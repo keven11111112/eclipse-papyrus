@@ -35,43 +35,89 @@ public class Messages extends NLS {
 
 	public static String AbstractCreateNattableEditorHandler_PapyrusTableCreation;
 
-	public static String AbstractPasteImportInNattableManager_column;
-
-	public static String AbstractPasteImportInNattableManager_EnablementStatusForPasteInTheTable;
-
-	public static String AbstractPasteImportInNattableManager_INVERTED_MESSAGE;
-
-	public static String AbstractPasteImportInNattableManager_NoPasteConfiguration;
-
-	public static String AbstractPasteImportInNattableManager_NoPasteConfiguration2;
-
-	public static String AbstractPasteImportInNattableManager_NumberOfColumnsAreEquals;
-
-	public static String AbstractPasteImportInNattableManager_NumberOfColumnsAreNotEquals;
-
+	public static String AbstractPasteInSelectionNattableCommandProvider_AnExceptionOccuredDuringThePaste;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_ElementCantBeAdded;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_identifierNotFoundInSelection;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_identifierNotFoundInSelectionSoTheObjectWasCreated;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_MultipleSelectedRowsCorrespondingForIdentifier;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_NonEditableCellTriedToBeOverwrited;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_notyetimplemented;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_readrowsexceedsexistingrows;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_readcolumnsexceedsexistingcolumns;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_TheAxisUsedAsIdentifierNotAvailable;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_TheCommandCantBeExecuted;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_ThePasteHasBeenDoneWithSomeProblems;
+	
+	public static String AbstractPasteInSelectionNattableCommandProvider_ThePasteHasNotBeenDoneBecauseOfSomeProblems;
+	
 	public static String AbstractPasteImportInNattableManager_PasteColumnsError;
+	
+	public static String AbstractPasteImportInNattableManager_PasteNotYetManaged;
 
 	public static String AbstractPasteImportInNattableManager_PasteRowsError;
+	
+	public static String AbstractPasteImportInsertInNattableManager_column;
 
-	public static String AbstractPasteImportInNattableManager_row;
+	public static String AbstractPasteImportInsertInNattableManager_EnablementStatusForPasteInTheTable;
 
-	public static String AbstractPasteImportInNattableManager_TheContextOfTheTableHasNotTheContainmentFeatureDefinedForThePaste;
+	public static String AbstractPasteImportInsertInNattableManager_INVERTED_MESSAGE;
 
-	public static String AbstractPasteImportInNattableManager_TheContextOfTheTableHasTheContainmentFeatureDefinedForThePaste;
+	public static String AbstractPasteImportInsertInNattableManager_NoPasteConfiguration;
 
-	public static String AbstractPasteImportInNattableManager_TheTableCanCreateElement;
+	public static String AbstractPasteImportInsertInNattableManager_NoPasteConfiguration2;
+	
+	public static String AbstractPasteImportInsertInNattableManager_NoPasteConfigurationNeeded;
 
-	public static String AbstractPasteImportInNattableManager_TheTableCantCreateElement;
+	public static String AbstractPasteImportInsertInNattableManager_NumberOfColumnsAreEquals;
 
-	public static String AbstractPasteImportInNattableManager_TheTableDoesntHaveColumns;
+	public static String AbstractPasteImportInsertInNattableManager_NumberOfColumnsAreNotEquals;
 
-	public static String AbstractPasteImportInNattableManager_TheTableHasAConfigurationToPaste;
+	public static String AbstractPasteImportInsertInNattableManager_row;
+	
+	public static String AbstractPasteImportInsertInNattableManager_PasteConfigurationAxisIdentifierHasBeenSet;
+	
+	public static String AbstractPasteImportInsertInNattableManager_PasteConfigurationAxisIdentifierHasNotBeenSet;
 
-	public static String AbstractPasteImportInNattableManager_TheUserChosesToPasteColumns;
+	public static String AbstractPasteImportInsertInNattableManager_PasteConfigurationFeatureHasNotBeenSet;
+	
+	public static String AbstractPasteImportInsertInNattableManager_TheContextOfTheTableHasNotTheContainmentFeatureDefinedForThePaste;
 
-	public static String AbstractPasteImportInNattableManager_TheUserChosesToPasteRows;
+	public static String AbstractPasteImportInsertInNattableManager_TheContextOfTheTableHasTheContainmentFeatureDefinedForThePaste;
+	
+	public static String AbstractPasteImportInsertInNattableManager_TheElementTypeIsUnknown;
+	
+	public static String AbstractPasteImportInsertInNattableManager_ThereIsNoElementIdDefinedInThePasteConfiguration;
+	
+	public static String AbstractPasteImportInsertInNattableManager_ThereIsNoPasteConfgurationForATreeFillingConfiguration;
 
-	public static String AbstractPasteImportInNattableManager_WhatAreYouPasting;
+	public static String AbstractPasteImportInsertInNattableManager_TheTableCanCreateElement;
+
+	public static String AbstractPasteImportInsertInNattableManager_TheTableCantCreateElement;
+
+	public static String AbstractPasteImportInsertInNattableManager_TheTableDoesntHaveColumns;
+
+	public static String AbstractPasteImportInsertInNattableManager_TheTableHasAConfigurationToPaste;
+
+	public static String AbstractPasteImportInsertInNattableManager_TheUserChosesToPasteColumns;
+
+	public static String AbstractPasteImportInsertInNattableManager_TheUserChosesToPasteRows;
+	
+	public static String AbstractPasteImportInsertInNattableManager_YouHaveMoreThan1Category;
+
+	public static String AbstractPasteImportInsertInNattableManager_WhatAreYouPasting;
+	
+	public static String AbstractInsertImportInNattableManager_MoreThanOnePasteConfigurationByDepth;
 
 	public static String AbstractSaveCurrentAxisProvidersHandler_0;
 
@@ -103,6 +149,12 @@ public class Messages extends NLS {
 
 	public static String EObjectManager_AddAxisElement;
 
+	public static String InsertInNattableManager_InsertColumnsError;
+	
+	public static String InsertInNattableManager_InsertNotYetManaged;
+
+	public static String InsertInNattableManager_InsertRowsError;
+	
 	public static String NattableConfigurationRegistry_ConfigurationNotFound;
 
 	public static String NattableConfigurationRegistry_NoTesterForThisConfiguration;
@@ -314,10 +366,17 @@ public class Messages extends NLS {
 	public static String PasteInPapyrusTableCommandProvider_TheTextCantBeMappedOnAnExistingElement;
 
 	public static String PasteInTableHandler_PasteCancelled;
-
+	
 	public static String PasteInTableHandler_PasteCreation;
-
+	
+	public static String PasteInTableHandler_PasteError;
+	
+	public static String PasteInTableHandler_PasteInformation;
+	
+	public static String PasteInTableHandler_PasteWarning;
+	
 	public static String PasteInTableHandler_ThePasteCommandCantBeExecuted;
+	
 	public static String PasteSeparator_Comma;
 
 	public static String PasteSeparator_Other;

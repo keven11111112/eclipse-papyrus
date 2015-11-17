@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.nattable.manager.axis;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectAxisManager;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -48,7 +49,15 @@ public class UMLElementAxisManager extends EObjectAxisManager {
 	 */
 	@Override
 	public boolean canCreateAxisElement(String elementId) {
+		if (elementId == null) {
+			return false;
+		}
+		
 		final IElementType types = ElementTypeRegistry.getInstance().getType(elementId);
+		if (types == null || (types instanceof SpecializationType && ((SpecializationType) types).getMetamodelType() == null)) {
+			return false;
+		}
+
 		final EClass eClass = types.getEClass();
 		if (eClass != null) {
 			if (eClass.getEPackage() == UMLPackage.eINSTANCE) {

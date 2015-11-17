@@ -83,6 +83,7 @@ import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
 import org.eclipse.papyrus.infra.nattable.configuration.CellEditorAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.ClearSelectionUIBindingConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
@@ -198,7 +199,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * the columnHeaderLayerStack
 	 */
 	private ColumnHeaderLayerStack columnHeaderLayerStack;
-	
+
 	/**
 	 * @return the rowHeaderLayerStack
 	 */
@@ -360,7 +361,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		addClickSortConfiguration(this.natTable);
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
 		this.natTable.addConfiguration(new RowSortModelConfiguration(getRowSortModel()));
-
+		this.natTable.addConfiguration(new ClearSelectionUIBindingConfiguration());
 		// we register some information in the config registry of the nattable widget
 		IConfigRegistry configRegistry = this.natTable.getConfigRegistry();
 
@@ -426,7 +427,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	protected void addClickSortConfiguration(NatTable natTable) {
 		natTable.addConfiguration(new TableClickSortConfiguration());
 	}
-	
+
 	/**
 	 * @return
 	 * 		the filter strategy to use
@@ -1243,7 +1244,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					toFind.add(realObject);
 				}
 			}
-			
+
 			Object currentAxisObject = rowObjects.get(rowIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
@@ -1266,7 +1267,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					toFind.add(realObject);
 				}
 			}
-			
+
 			Object currentAxisObject = columnObjects.get(columnIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
@@ -1690,7 +1691,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @return
 	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 */
-	protected final TableStructuredSelection getSelectionInTable() {
+	public final TableStructuredSelection getSelectionInTable() {
 		ISelection selection = this.selectionProvider.getSelection();
 		if (selection instanceof TableStructuredSelection) {
 			return (TableStructuredSelection) selection;

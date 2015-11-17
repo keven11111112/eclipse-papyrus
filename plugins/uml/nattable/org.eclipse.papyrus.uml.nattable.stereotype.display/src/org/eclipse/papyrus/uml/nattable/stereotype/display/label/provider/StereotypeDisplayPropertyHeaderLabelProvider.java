@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
@@ -119,13 +120,13 @@ public class StereotypeDisplayPropertyHeaderLabelProvider extends EMFFeatureHead
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getLabelConfiguration(org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper)
 	 */
 	@Override
-	protected ILabelProviderConfiguration getLabelConfiguration(final LabelProviderCellContextElementWrapper wrapper) {
+	protected ILabelProviderConfiguration getLabelConfiguration(final ILabelProviderCellContextElementWrapper wrapper) {
 		ILabelProviderConfiguration conf = null;
 		final IConfigRegistry configRegistry = wrapper.getConfigRegistry();
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		final Table table = modelManager.getTable();
-		if (wrapper instanceof LabelProviderCellContextElementWrapper) {
-			LabelStack labels = ((LabelProviderCellContextElementWrapper) wrapper).getConfigLabels();
+		if (wrapper instanceof ILabelProviderCellContextElementWrapper) {
+			LabelStack labels = ((ILabelProviderCellContextElementWrapper) wrapper).getConfigLabels();
 			if (labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 				conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(table);
 			} else if (labels.hasLabel(GridRegion.ROW_HEADER)) {

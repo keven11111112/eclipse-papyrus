@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EOperationAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
@@ -80,6 +81,39 @@ public class EOperationAxisManager extends EObjectAxisManager {
 	 */
 	@Override
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+		}
+		return null;
+	}
+
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the axis to add from the objects to add.
+	 * 
+	 * @param objectToAdd The objects to add.
+	 * @return The axis to add.
+	 */
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for (final Object current : objectToAdd) {
 			if (isAllowedContents(current) && !isAlreadyManaged(current)) {
@@ -90,12 +124,8 @@ public class EOperationAxisManager extends EObjectAxisManager {
 				managedObject.add(current);
 			}
 		}
-		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
-		}
-		return null;
+		return toAdd;
 	}
-
 
 
 	/**
@@ -108,17 +138,46 @@ public class EOperationAxisManager extends EObjectAxisManager {
 	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
-		final Set<Object> features = new HashSet<Object>();
-		for (final Object current : objectToAdd) {
-			if (current instanceof EObject) {
-				features.addAll(((EObject) current).eClass().getEAllStructuralFeatures());
-			}
-		}
-		features.removeAll(getElements());
-		if (!features.isEmpty()) {
-			return getAddAxisCommand(domain, features);
+		final Set<Object> operations = getOperationsToAdd(objectToAdd);
+		if (!operations.isEmpty()) {
+			return getAddAxisCommand(domain, operations);
 		}
 		return null;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Set<Object> operations = getOperationsToAdd(objectToAdd);
+		if (!operations.isEmpty()) {
+			return getAddAxisCommand(domain, operations, index);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the operations to add.
+	 * 
+	 * @param objectToAdd The initial objects to add.
+	 * @return The operations to add.
+	 */
+	protected Set<Object> getOperationsToAdd(final Collection<Object> objectToAdd){
+		final Set<Object> operations = new HashSet<Object>();
+		for (final Object current : objectToAdd) {
+			if (current instanceof EObject) {
+				operations.addAll(((EObject) current).eClass().getEAllOperations());
+			}
+		}
+		operations.removeAll(getElements());
+		return operations;
 	}
 
 

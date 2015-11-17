@@ -21,9 +21,9 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderFullCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
@@ -95,7 +95,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * @param element
 	 * @param property
 	 * @return
-	 *         false
+	 * 		false
 	 */
 	@Override
 	public boolean isLabelProperty(Object element, String property) {
@@ -119,10 +119,10 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * @param cell
 	 * @param registry
 	 * @return
-	 *         the row object for this cell
+	 * 		the row object for this cell
 	 */
 	protected Object getRowObject(final ILayerCell cell, final IConfigRegistry registry) {
-		if(cell instanceof LabelProviderFullCellContextElementWrapper){
+		if (cell instanceof LabelProviderFullCellContextElementWrapper) {
 			return ((LabelProviderFullCellContextElementWrapper) cell).getRowObject();
 		}
 		int rowIndex = cell.getRowIndex();
@@ -135,10 +135,10 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * @param cell
 	 * @param registry
 	 * @return
-	 *         the column object for this cell
+	 * 		the column object for this cell
 	 */
 	protected Object getColumnObject(final ILayerCell cell, final IConfigRegistry registry) {
-		if(cell instanceof LabelProviderFullCellContextElementWrapper){
+		if (cell instanceof LabelProviderFullCellContextElementWrapper) {
 			return ((LabelProviderFullCellContextElementWrapper) cell).getColumnObject();
 		}
 		int columnIndex = cell.getColumnIndex();
@@ -150,7 +150,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *
 	 * @param registry
 	 * @return
-	 *         the table axis element provider
+	 * 		the table axis element provider
 	 */
 	protected INattableModelManager getAxisContentProvider(final IConfigRegistry registry) {
 		return registry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
@@ -160,7 +160,7 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 *
 	 * @param registry
 	 * @return
-	 *         the label provider service
+	 * 		the label provider service
 	 */
 	protected LabelProviderService getLabelProviderService(final IConfigRegistry registry) {
 		return registry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
@@ -171,9 +171,9 @@ public abstract class AbstractNattableCellLabelProvider implements IFilteredLabe
 	 * @param element
 	 *            a label provider context element
 	 * @return
-	 *         the configuration to use for this element
+	 * 		the configuration to use for this element
 	 */
-	protected ILabelProviderConfiguration getLabelConfiguration(final LabelProviderCellContextElementWrapper element) {
+	protected ILabelProviderConfiguration getLabelConfiguration(final ILabelProviderCellContextElementWrapper element) {
 		ILabelProviderConfiguration conf = null;
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper) element).getConfigRegistry();
 		INattableModelManager manager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);

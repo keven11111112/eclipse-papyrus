@@ -247,6 +247,33 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		}
 		return cmd;
 	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		if (FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(this.tableManager.getTable(), 0)) {
+			return null;
+		}
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
+		for (final IAxisManager current : this.subManagers) {
+			final Command tmp = current.getAddAxisCommand(domain, objectToAdd, index);
+			if (tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		if (cmd.isEmpty()) {
+			return null;
+		}
+		return cmd;
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManagerForEventList#initializeManagedObjectList()
@@ -270,6 +297,30 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
 		for (final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd);
+			if (tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		if (cmd.isEmpty()) {
+			return null;
+		}
+		return cmd;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
+		for (final IAxisManager current : this.subManagers) {
+			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd, index);
 			if (tmp != null) {
 				cmd.append(tmp);
 			}

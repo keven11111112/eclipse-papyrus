@@ -95,11 +95,15 @@ public class Constants {
 	public static final String ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE = "localRowHeaderAxisConfiguration.postActions";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_EOBJECT_ID = "localColumnHeaderAxisConfiguration.pastedEObjectId";//$NON-NLS-1$
+	
+	public static final String ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE = "localRowHeaderAxisConfiguration.axisIdentifier";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE = "localColumnHeaderAxisConfiguration.pastedEObjectContainmentFeature";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_OBJECT_DETACHED_MODE_FEATURE = "localColumnHeaderAxisConfiguration.detachedMode";//$NON-NLS-1$
 
 	public static final String COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE = "localColumnHeaderAxisConfiguration.postActions";//$NON-NLS-1$
+	
+	public static final String COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE = "localColumnHeaderAxisConfiguration.axisIdentifier";//$NON-NLS-1$
 
 }

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructura
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -167,8 +168,8 @@ public class EMFFeatureHeaderLabelProvider extends EMFEObjectHeaderLabelProvider
 			returnedValue = feature.getName();
 		}
 		ILabelProviderConfiguration conf = null;
-		if (wrapper instanceof LabelProviderCellContextElementWrapper) {
-			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper) wrapper);
+		if (wrapper instanceof ILabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((ILabelProviderCellContextElementWrapper) wrapper);
 		}
 		if (conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration) conf).isDisplayLabel()) {
 			returnedValue = ""; //$NON-NLS-1$

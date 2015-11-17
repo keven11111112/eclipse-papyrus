@@ -82,6 +82,39 @@ public class EObjectAxisManager extends AbstractAxisManager {
 	 */
 	@Override
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+		}
+		return null;
+	}
+	
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the axis to add from the objects to add.
+	 * 
+	 * @param objectToAdd The objects to add.
+	 * @return The axis to add.
+	 */
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for (final Object object : objectToAdd) {
 			if (isAllowedContents(object) && !isAlreadyManaged(object)) {
@@ -92,10 +125,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 				managedObject.add(object);
 			}
 		}
-		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
-		}
-		return null;
+		return toAdd;
 	}
 
 

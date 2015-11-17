@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
@@ -85,6 +86,38 @@ public class EStructuralFeatureAxisManager extends EObjectAxisManager {
 	 */
 	@Override
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the axis to add from the objects to add.
+	 * 
+	 * @param objectToAdd The objects to add.
+	 * @return The axis to add.
+	 */
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for (final Object current : objectToAdd) {
 			if (isAllowedContents(current) && !isAlreadyManaged(current)) {
@@ -95,16 +128,12 @@ public class EStructuralFeatureAxisManager extends EObjectAxisManager {
 				managedObject.add(current);
 			}
 		}
-		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
-		}
-		return null;
+		return toAdd;
 	}
 
 	/**
 	 * calculus of the contents of the axis
 	 */
-
 	public Collection<Object> getAllPossibleAxis() {
 		Set<Object> objects = new HashSet<Object>();
 		for (final Object current : getAllManagedAxis()) {
@@ -127,6 +156,38 @@ public class EStructuralFeatureAxisManager extends EObjectAxisManager {
 	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		final Set<Object> features = getFeaturesToAdd(objectToAdd);
+		if (!features.isEmpty()) {
+			return getAddAxisCommand(domain, features);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Set<Object> features = getFeaturesToAdd(objectToAdd);
+		if (!features.isEmpty()) {
+			return getAddAxisCommand(domain, features, index);
+		}
+		return null;
+	}
+
+	/**
+	 * Get the features to add.
+	 * 
+	 * @param objectToAdd The initial objects to add.
+	 * @return The features to add.
+	 */
+	protected Set<Object> getFeaturesToAdd(final Collection<Object> objectToAdd){
 		final Set<Object> features = new HashSet<Object>();
 		for (final Object current : objectToAdd) {
 			if (current instanceof EObject) {
@@ -134,12 +195,8 @@ public class EStructuralFeatureAxisManager extends EObjectAxisManager {
 			}
 		}
 		features.removeAll(getElements());
-		if (!features.isEmpty()) {
-			return getAddAxisCommand(domain, features);
-		}
-		return null;
+		return features;
 	}
-
 
 	/**
 	 *

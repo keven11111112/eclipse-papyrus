@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
@@ -52,11 +53,18 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
+import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.data.IColumnAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
 import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
+import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectCellCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
@@ -64,6 +72,7 @@ import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.dialog.DisplayedAxisSelectorDialog;
 import org.eclipse.papyrus.infra.nattable.filter.PapyrusFilterStrategy;
+import org.eclipse.papyrus.infra.nattable.layer.PapyrusSelectionLayer;
 import org.eclipse.papyrus.infra.nattable.manager.axis.AxisManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.axis.CompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
@@ -91,6 +100,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
+import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
@@ -101,6 +111,7 @@ import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagemen
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
+import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -338,6 +349,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			}
 		};
 	}
+
 	
 	private ListEventListener<Object> listEventListener;
 
@@ -382,11 +394,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			if (needConfiguration) {
 				configureCellAxisEditor();
 				configureFilters();
-				
-				//comment to fix the bug 469739: [Table] Infinite refresh in Tables
-				//https://bugs.eclipse.org/bugs/show_bug.cgi?id=469739
-				//moreover this refresh seems 
-				//refreshNatTable();
+
+				// comment to fix the bug 469739: [Table] Infinite refresh in Tables
+				// https://bugs.eclipse.org/bugs/show_bug.cgi?id=469739
+				// moreover this refresh seems
+				// refreshNatTable();
 			}
 		}
 	}
@@ -409,7 +421,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 * 
 	 * @return
-	 *         the new list to use for vertical element
+	 * 		the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -423,7 +435,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 * 
 	 * @return
-	 *         the new list to use for horizontal element
+	 * 		the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -519,7 +531,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		updateToggleActionState();
 	}
 
-	
+
 	/**
 	 * this command update the status of the toggle actions
 	 */
@@ -703,7 +715,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 		this.basicVerticalList = newVerticalBasicList;
 		this.basicHorizontalList = newHorizontalBasicList;
-		
+
 		this.horizontalFilterList = newHorizontalFilterList;
 		this.verticalFilterList = newVerticalFilterLilst;
 
@@ -1050,10 +1062,64 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 			return;
 		}
 
+		// Get the previous selection before the refresh
+		TableStructuredSelection selectionInTable = getSelectionInTable();
+		Collection<PositionCoordinate> selectedCells = null;
+		Collection<Integer> columnPositions = null;
+		Collection<Integer> rowsPositions = null;
+
+		if (null != selectionInTable) {
+			TableSelectionWrapper tableSelectionWrapper = (TableSelectionWrapper) selectionInTable.getAdapter(TableSelectionWrapper.class);
+			selectedCells = tableSelectionWrapper.getSelectedCells();
+			columnPositions = tableSelectionWrapper.getFullySelectedColumns().keySet();
+			rowsPositions = tableSelectionWrapper.getFullySelectedRows().keySet();
+		}
+
 		// avoid reentrant call
 		// Refresh only of we are not already refreshing.
 		if (isRefreshing.compareAndSet(false, true)) {
+			final SelectionLayer selectionLayer = getBodyLayerStack().getSelectionLayer();
+			selectionLayer.doCommand(new ClearAllSelectionsCommand());
 			this.natTable.refresh();
+
+			// Keep the selection after the refresh of the table
+			if (null != selectedCells && !selectedCells.isEmpty()) {
+				Collection<Integer> selectedColumns = new ArrayList<Integer>();
+				Collection<Integer> selectedRows = new ArrayList<Integer>();
+
+				// Keep the columns selected before the refresh
+				if (null != columnPositions && !columnPositions.isEmpty()) {
+					List<Range> selectedColumnsRanges = ((PapyrusSelectionLayer) selectionLayer).getRangeSelectedAxis(columnPositions);
+
+					for (final Range selectedColumnRange : selectedColumnsRanges) {
+						for (int position = selectedColumnRange.start; position < selectedColumnRange.end; position++) {
+							// int realIndex = getBodyLayerStack().getColumnHideShowLayer().getColumnPositionByIndex(position);
+							selectionLayer.doCommand(new SelectColumnCommand(selectionLayer, position, 0, false, true));
+							selectedColumns.add(position);
+						}
+					}
+				}
+
+				// Keep the rows selected before the refresh
+				if (null != rowsPositions && !rowsPositions.isEmpty()) {
+					List<Range> selectedRowsRanges = ((PapyrusSelectionLayer) selectionLayer).getRangeSelectedAxis(rowsPositions);
+
+					for (final Range selectedRowRange : selectedRowsRanges) {
+						for (int position = selectedRowRange.start; position < selectedRowRange.end; position++) {
+							// int realIndex = getBodyLayerStack().getRowHideShowLayer().getRowPositionByIndex(position);
+							selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, position, false, true));
+							selectedRows.add(position);
+						}
+					}
+				}
+
+				// Manage the cells not contained in the rows and columns already selected
+				for (PositionCoordinate selectedCell : selectedCells) {
+					if (!selectedColumns.contains(selectedCell.getColumnPosition()) && !selectedRows.contains(selectedCell.getRowPosition())) {
+						selectionLayer.doCommand(new SelectCellCommand(selectionLayer, selectedCell.getColumnPosition(), selectedCell.getRowPosition(), false, true));
+					}
+				}
+			}
 			isRefreshing.set(false);
 		}
 	}
@@ -1068,11 +1134,11 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		try {
 			if (null != getContextEditingDomain()) {
 				getContextEditingDomain().runExclusive(new Runnable() {
-	
+
 					@Override
 					public void run() {
 						Display.getDefault().syncExec(new Runnable() {
-	
+
 							@Override
 							public void run() {
 								if (NattableModelManager.this.natTable != null && !NattableModelManager.this.natTable.isDisposed()) {
@@ -1087,9 +1153,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 								}
 							}
 						});
-	
+
 					}
-	
+
 				});
 			}
 		} catch (final InterruptedException e) {
@@ -1304,6 +1370,56 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		final AbstractAxisProvider rowsProvider = AxisUtils.getAxisProviderUsedForRows(this);
 		final AbstractAxisProvider columnsProvider = AxisUtils.getAxisProviderUsedForColumns(this);
 		final boolean addComplementaryAxis = columnsProvider instanceof IMasterAxisProvider && rowsProvider instanceof ISlaveAxisProvider && !((IMasterAxisProvider) columnsProvider).isDisconnectSlave();
+		if (addComplementaryAxis) {
+			tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
+			if (tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		return cmd;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getAddRowElementCommand(java.util.Collection, int)
+	 */
+	@Override
+	public Command getAddRowElementCommand(final Collection<Object> objectsToAdd, final int index) {
+		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddRowCommand);
+		Command tmp = this.rowManager.getAddAxisCommand(domain, objectsToAdd, index);
+		if (tmp != null) {
+			cmd.append(tmp);
+		}
+		final AbstractAxisProvider rowsProvider = AxisUtils.getAxisProviderUsedForRows(this);
+		final AbstractAxisProvider columnsProvider = AxisUtils.getAxisProviderUsedForColumns(this);
+		boolean addComplementaryAxis = rowsProvider instanceof IMasterAxisProvider && columnsProvider instanceof ISlaveAxisProvider && !((IMasterAxisProvider) rowsProvider).isDisconnectSlave();
+		if (addComplementaryAxis) {
+			tmp = this.columnManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
+			if (tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		return cmd;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#getAddColumnElementCommand(java.util.Collection, int)
+	 */
+	@Override
+	public Command getAddColumnElementCommand(final Collection<Object> objectsToAdd, final int index) {
+		final TransactionalEditingDomain domain = getContextEditingDomain();
+		final CompoundCommand cmd = new CompoundCommand(Messages.NattableModelManager_AddColumnCommand);
+		Command tmp = this.columnManager.getAddAxisCommand(domain, objectsToAdd, index);
+		if (tmp != null) {
+			cmd.append(tmp);
+		}
+		final AbstractAxisProvider rowsProvider = AxisUtils.getAxisProviderUsedForRows(this);
+		final AbstractAxisProvider columnsProvider = AxisUtils.getAxisProviderUsedForColumns(this);
+		boolean addComplementaryAxis = columnsProvider instanceof IMasterAxisProvider && rowsProvider instanceof ISlaveAxisProvider && !((IMasterAxisProvider) columnsProvider).isDisconnectSlave();
 		if (addComplementaryAxis) {
 			tmp = this.rowManager.getComplementaryAddAxisCommand(domain, objectsToAdd);
 			if (tmp != null) {

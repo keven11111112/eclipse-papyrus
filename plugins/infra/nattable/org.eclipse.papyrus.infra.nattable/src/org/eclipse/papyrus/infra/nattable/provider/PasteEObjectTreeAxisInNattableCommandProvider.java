@@ -90,7 +90,7 @@ import org.eclipse.ui.progress.UIJob;
 // TODO : refactor me to create common ancestor with normal paste
 // TODO : refactor me : This class should be in oep.infra.emf.nattable
 // TODO Nicolas FAUVERGUE : This class must be refactor because the detached mode and the attached mode have some duplicated code.
-public class PasteEObjectTreeAxisInNattableCommandProvider {
+public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNattableCommandProvider {
 
 	private static final int MIN_AXIS_FOR_PROGRESS_MONITOR = 5;
 
@@ -342,8 +342,11 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 	 *
 	 * @param useProgressMonitor
 	 *            boolean indicating that we must do the paste with a progress monitor
+	 * @return the result status
 	 */
-	public void executePasteFromStringCommand(final boolean useProgressMonitor) {
+	public IStatus executePasteFromStringCommand(boolean useProgressMonitor, boolean openDialog) {
+		IStatus resultStatus = Status.OK_STATUS;
+
 		// if (this.pasteColumn) {// not yet supported
 		// return;
 		// }
@@ -361,6 +364,8 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 		} else {
 			executePasteFromStringCommandInAttachedMode(useProgressMonitor, pasteJobName);
 		}
+
+		return resultStatus;
 	}
 
 
@@ -989,12 +994,12 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 						try {
 							depth = getDepth(nbReadCell);
 							isCategory = isCategory(nbReadCell);
-						} catch (UnsupportedOperationException ex) {
-							String message = NLS.bind("No defined depth for line {0}", nbReadCell); //$NON-NLS-1$
+						} catch (final UnsupportedOperationException ex) {
+							final String message = NLS.bind("No defined depth for line {0}", nbReadCell); //$NON-NLS-1$
 							// The following lines allows to cancel all the paste if a problem of depth appears
 							// If a partial paste is authorized, remove this lines
 							Activator.log.error(message, ex);
-							IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_LINES_THAN_DEPTH, message, null);
+							final IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_LINES_THAN_DEPTH, message, null);
 							return new CommandResult(status);
 						}
 
@@ -1188,5 +1193,4 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 			Activator.log.error(e);
 		}
 	}
-
 }

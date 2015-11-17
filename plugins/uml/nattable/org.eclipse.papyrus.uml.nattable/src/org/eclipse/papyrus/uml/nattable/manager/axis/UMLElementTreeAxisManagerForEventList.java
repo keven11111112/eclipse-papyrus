@@ -18,15 +18,20 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.SpecializationType;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  *
@@ -51,6 +56,33 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 	@Override
 	public boolean isAllowedContents(Object objectToTest, Object semanticParent, TreeFillingConfiguration conf, int depth) {
 		return objectToTest instanceof Element;
+	}
+	
+	/**
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canCreateAxisElement(java.lang.String)
+	 *
+	 * @param elementId
+	 * @return
+	 */
+	@Override
+	public boolean canCreateAxisElement(String elementId) {
+		if (elementId == null) {
+			return false;
+		}
+		
+		final IElementType types = ElementTypeRegistry.getInstance().getType(elementId);
+		if (types == null || (types instanceof SpecializationType && ((SpecializationType) types).getMetamodelType() == null)) {
+			return false;
+		}
+
+		final EClass eClass = types.getEClass();
+		if (eClass != null) {
+			if (eClass.getEPackage() == UMLPackage.eINSTANCE) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**

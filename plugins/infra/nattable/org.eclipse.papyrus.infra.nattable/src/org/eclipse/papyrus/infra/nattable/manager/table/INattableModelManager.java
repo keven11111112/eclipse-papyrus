@@ -90,6 +90,24 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	public Command getAddRowElementCommand(Collection<Object> objectsToAdd);
 
 	public Command getAddColumnElementCommand(Collection<Object> objectsToAdd);
+	
+	/**
+	 * Get the command to add row elements at the index in parameter.
+	 * 
+	 * @param objectsToAdd The row elements to add.
+	 * @param index The index where add the elements.
+	 * @return The command.
+	 */
+	public Command getAddRowElementCommand(final Collection<Object> objectsToAdd, final int index);
+
+	/**
+	 * Get the command to add column elements at the index in parameter.
+	 * 
+	 * @param objectsToAdd The column elements to add.
+	 * @param index The index where add the elements.
+	 * @return The command.
+	 */
+	public Command getAddColumnElementCommand(final Collection<Object> objectsToAdd, final int index);
 
 	public void setTableName(String name);
 

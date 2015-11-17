@@ -455,7 +455,7 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 				break;
 			}
 		}
-		Assert.assertEquals(4, selectedRows.size());
+		Assert.assertEquals(0, selectedRows.size());
 		
 		Assert.assertEquals(3, selectedColumns.size());
 		

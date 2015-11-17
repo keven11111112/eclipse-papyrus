@@ -27,7 +27,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -75,7 +74,7 @@ import org.eclipse.ui.progress.UIJob;
  */
 @Deprecated
 // use PasteEObjectAxisInNattableCommandProvider, will be removed when the new paste api will allows to paste columns
-public class PasteEObjectAxisInTableCommandProvider {
+public class PasteEObjectAxisInTableCommandProvider implements PasteNattableCommandProvider {
 
 	private static final int MIN_AXIS_FOR_PROGRESS_MONITOR = 5;
 
@@ -112,7 +111,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	/**
 	 * the copnverter map
 	 */
-	private Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters;
+	private final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters;
 
 	private static final String PASTE_ACTION_TASK_NAME = Messages.PasteEObjectAxisInTableCommandProvider_PasteAction;
 
@@ -176,12 +175,14 @@ public class PasteEObjectAxisInTableCommandProvider {
 	}
 
 	/**
-	 *
-	 * @param useProgressMonitor
-	 *            boolean indicating that we must do the paste with a progress monitor
-	 *            TODO : post actions are not yet supported in the in the detached mode
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.PasteNattableCommandProvider#executePasteFromStringCommand(boolean, boolean)
 	 */
-	public void executePasteFromStringCommand(final boolean useProgressMonitor) {
+	@Override
+	public IStatus executePasteFromStringCommand(final boolean useProgressMonitor, final boolean openDialog) {
+		IStatus resultStatus = Status.OK_STATUS;
+
 		final String pasteJobName;
 		if (pasteMode == PasteModeEnumeration.PASTE_EOBJECT_COLUMN) {
 			pasteJobName = PASTE_COLUMNS_JOB_NAME;
@@ -193,6 +194,8 @@ public class PasteEObjectAxisInTableCommandProvider {
 		} else {
 			executePasteFromStringCommandInAttachedMode(useProgressMonitor, pasteJobName);
 		}
+
+		return resultStatus;
 	}
 
 	/**
@@ -201,7 +204,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	 *            boolean indicating that we must do the paste with a progress monitor
 	 */
 	protected void executePasteFromStringCommandInDetachedMode(final boolean useProgressMonitor, final String pasteJobName) {
-		Table table = tableManager.getTable();
+		final Table table = tableManager.getTable();
 		final TransactionalEditingDomain tableEditingDomain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final TransactionalEditingDomain contextEditingDomain = TableEditingDomainUtils.getTableContextEditingDomain(table);
 
@@ -211,7 +214,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 			final ICommand pasteCommand = getPasteFromFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, new NullProgressMonitor(), sharedMap);
 			try {
 				CheckedOperationHistory.getInstance().execute(pasteCommand, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
+			} catch (final ExecutionException e) {
 				Activator.log.error(e);
 			}
 			sharedMap.clear();
@@ -220,7 +223,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 			final UIJob job = new UIJob(pasteJobName) {
 
 				@Override
-				public IStatus runInUIThread(IProgressMonitor monitor) {
+				public IStatus runInUIThread(final IProgressMonitor monitor) {
 
 					final ICommand pasteCommand = getPasteFromFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, monitor, sharedMap);
 					if (pasteCommand == null) {
@@ -230,7 +233,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 					if (pasteCommand.canExecute()) {
 						try {
 							CheckedOperationHistory.getInstance().execute(pasteCommand, monitor, null);
-						} catch (ExecutionException e) {
+						} catch (final ExecutionException e) {
 							return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occured during the paste", e); //$NON-NLS-1$
 						} finally {
 							sharedMap.clear();
@@ -254,7 +257,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	 *            boolean indicating that we must do the paste with a progress monitor
 	 */
 	protected void executePasteFromStringCommandInAttachedMode(final boolean useProgressMonitor, final String pasteJobName) {
-		Table table = tableManager.getTable();
+		final Table table = tableManager.getTable();
 		final TransactionalEditingDomain tableEditingDomain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final TransactionalEditingDomain contextEditingDomain = TableEditingDomainUtils.getTableContextEditingDomain(table);
 
@@ -263,7 +266,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 			final ICommand pasteCommand = getPasteFromFromStringCommand(contextEditingDomain, tableEditingDomain, new NullProgressMonitor());
 			try {
 				CheckedOperationHistory.getInstance().execute(pasteCommand, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
+			} catch (final ExecutionException e) {
 				Activator.log.error(e);
 			}
 		} else {
@@ -271,7 +274,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 			final UIJob job = new UIJob(pasteJobName) {
 
 				@Override
-				public IStatus runInUIThread(IProgressMonitor monitor) {
+				public IStatus runInUIThread(final IProgressMonitor monitor) {
 
 					final ICommand pasteCommand = getPasteFromFromStringCommand(contextEditingDomain, tableEditingDomain, monitor);
 					if (pasteCommand == null) {
@@ -281,7 +284,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 					if (pasteCommand.canExecute()) {
 						try {
 							CheckedOperationHistory.getInstance().execute(pasteCommand, monitor, null);
-						} catch (ExecutionException e) {
+						} catch (final ExecutionException e) {
 							return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occured during the paste", e); //$NON-NLS-1$
 						}
 						monitor.done();
@@ -307,7 +310,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	 *            a map used to share objects and informations during the paste between this class and the cell value manager
 	 *
 	 * @return
-	 *         the command to use to finish the paste (the main part of the paste is directly done here)
+	 * 		the command to use to finish the paste (the main part of the paste is directly done here)
 	 */
 	protected ICommand getPasteFromFromStringCommandInDetachedMode(final TransactionalEditingDomain contextEditingDomain, final TransactionalEditingDomain tableEditingDomain, final IProgressMonitor progressMonitor, final Map<Object, Object> sharedMap) {
 		final Table table = this.tableManager.getTable();
@@ -389,7 +392,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 				}
 
 
-				boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap);
+				final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap);
 				if (isEditable) {
 					final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR);
 					CellManagerFactory.INSTANCE.setStringValue(columnObject, rowObject, valueAsString, converter, tableManager, sharedMap);
@@ -409,7 +412,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 		final AbstractTransactionalCommand pasteCommand = new AbstractTransactionalCommand(tableEditingDomain, PASTE_COMMAND_NAME, null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				// initialize lists
 				final Collection<String> postActions = getPostActions();
 				final List<Cell> cells = (List<Cell>) sharedMap.get(Constants.CELLS_TO_ADD_KEY);
@@ -558,7 +561,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 			 * @throws ExecutionException
 			 */
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				int moduloForRefresh = 1;
 				if (axisToPaste.length > 1000) {
 					moduloForRefresh = 100;
@@ -613,7 +616,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 							}
 
 
-							boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
+							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
 
 							if (isEditable) {
 								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, TableClipboardUtils.MULTI_VALUE_SEPARATOR);
@@ -653,8 +656,8 @@ public class PasteEObjectAxisInTableCommandProvider {
 		} else {
 			existingColumns = this.tableManager.getColumnElementsList();
 		}
-		for (Object object : existingColumns) {
-			Object current = AxisUtils.getRepresentedElement(object);
+		for (final Object object : existingColumns) {
+			final Object current = AxisUtils.getRepresentedElement(object);
 			if (current instanceof EAttribute && ((EAttribute) current).getName().equals("name")) { //$NON-NLS-1$
 				return Boolean.FALSE;
 			}
@@ -665,7 +668,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	/**
 	 *
 	 * @return
-	 *         the paste mode selected by the user
+	 * 		the paste mode selected by the user
 	 */
 	protected PasteModeEnumeration askWhichPasteModeDo() {
 		// FIXME develop a dialog for that
@@ -675,7 +678,7 @@ public class PasteEObjectAxisInTableCommandProvider {
 	/**
 	 *
 	 * @return
-	 *         the list of the post actions to do
+	 * 		the list of the post actions to do
 	 */
 	private Collection<String> getPostActions() {
 		return this.postActions;

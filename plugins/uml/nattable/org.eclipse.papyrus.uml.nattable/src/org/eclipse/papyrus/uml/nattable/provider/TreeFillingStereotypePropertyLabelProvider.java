@@ -18,8 +18,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 
 /**
@@ -58,7 +58,7 @@ public class TreeFillingStereotypePropertyLabelProvider extends StereotypeProper
 	 * @return
 	 */
 	@Override
-	protected ILabelProviderConfiguration getLabelConfiguration(LabelProviderCellContextElementWrapper element) {
+	protected ILabelProviderConfiguration getLabelConfiguration(ILabelProviderCellContextElementWrapper element) {
 		if (element instanceof ILabelProviderContextElementWrapper) {
 			final Object object = ((ILabelProviderContextElementWrapper) element).getObject();
 			if (object instanceof IAxis && ((IAxis) object).getElement() instanceof TreeFillingConfiguration) {
@@ -72,7 +72,7 @@ public class TreeFillingStereotypePropertyLabelProvider extends StereotypeProper
 	 * 
 	 * @param wrapper
 	 * @return
-	 *         the wrapped value to use to calculate the label
+	 * 		the wrapped value to use to calculate the label
 	 */
 	@Override
 	protected Object getWrappedValue(final ILabelProviderContextElementWrapper wrapper) {

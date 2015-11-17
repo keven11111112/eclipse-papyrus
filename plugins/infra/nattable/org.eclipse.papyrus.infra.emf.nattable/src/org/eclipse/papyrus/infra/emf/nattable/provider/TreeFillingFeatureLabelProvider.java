@@ -19,8 +19,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 
 /**
  * @author VL222926
@@ -57,7 +57,7 @@ public class TreeFillingFeatureLabelProvider extends EMFFeatureHeaderLabelProvid
 	 * @return
 	 */
 	@Override
-	protected ILabelProviderConfiguration getLabelConfiguration(LabelProviderCellContextElementWrapper element) {
+	protected ILabelProviderConfiguration getLabelConfiguration(ILabelProviderCellContextElementWrapper element) {
 		if (element instanceof ILabelProviderContextElementWrapper) {
 			final Object object = ((ILabelProviderContextElementWrapper) element).getObject();
 			if (object instanceof IAxis && ((IAxis) object).getElement() instanceof TreeFillingConfiguration) {
@@ -72,7 +72,7 @@ public class TreeFillingFeatureLabelProvider extends EMFFeatureHeaderLabelProvid
 	 * 
 	 * @param wrapper
 	 * @return
-	 *         the wrapped value to use to calculate the label
+	 * 		the wrapped value to use to calculate the label
 	 */
 	@Override
 	protected Object getWrappedValue(final ILabelProviderContextElementWrapper wrapper) {

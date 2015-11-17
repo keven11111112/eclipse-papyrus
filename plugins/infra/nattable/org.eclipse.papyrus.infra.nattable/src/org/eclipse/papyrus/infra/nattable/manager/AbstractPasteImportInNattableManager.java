@@ -7,132 +7,190 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
- *		 Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.dialog.PasteImportStatusDialog;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
-import org.eclipse.papyrus.infra.nattable.parsers.CSVParser;
-import org.eclipse.papyrus.infra.nattable.parsers.CellIterator;
-import org.eclipse.papyrus.infra.nattable.parsers.RowIterator;
 import org.eclipse.papyrus.infra.nattable.provider.PasteEObjectAxisInNattableCommandProvider;
 import org.eclipse.papyrus.infra.nattable.provider.PasteEObjectTreeAxisInNattableCommandProvider;
-import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
+import org.eclipse.papyrus.infra.nattable.provider.PasteInSelectionNattableCommandProvider;
+import org.eclipse.papyrus.infra.nattable.provider.PasteInSelectionTreeNattableCommandProvider;
+import org.eclipse.papyrus.infra.nattable.provider.PasteNattableCommandProvider;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
-import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.CreatableEObjectAxisUtils;
-import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElementWrapper;
-import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
-import org.eclipse.papyrus.infra.nattable.utils.PasteConfigurationUtils;
+import org.eclipse.papyrus.infra.nattable.utils.IPapyrusNattableStatus;
+import org.eclipse.papyrus.infra.nattable.utils.PapyrusNattableStatus;
 import org.eclipse.papyrus.infra.nattable.utils.PasteEnablementStatus;
+import org.eclipse.papyrus.infra.nattable.utils.PasteHelperUtils;
 import org.eclipse.papyrus.infra.nattable.utils.PasteModeEnumeration;
-import org.eclipse.papyrus.infra.nattable.utils.PasteSeverityCode;
-import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
-import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
-import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.swt.widgets.Display;
 
 /**
- *
- * Abstract class for the copy/paste and import file in the table
- *
+ * Abstract class for the copy/paste and import file in the table.
  */
-public abstract class AbstractPasteImportInNattableManager {
+public abstract class AbstractPasteImportInNattableManager extends AbstractPasteImportInsertInNattableManager {
 
 	/**
-	 * the helper used to do the paste (help for the split of the string)
+	 * This allows to define if the paste is an overwrite or a basic paste EOBject.
 	 */
-	protected final CSVPasteHelper pasteHelper;
+	protected boolean isPasteWithOverwrite;
 
 	/**
-	 * the table manager
+	 * This boolean allows to determinate if the paste with overwrite was already calculated or not and prevent another calculation is this was already done.
 	 */
-	protected final INattableModelManager tableManager;
+	private boolean isPasteWithOverwriteAlreadyCalculated = false;
 
 	/**
-	 * true if we must use progress monitor
-	 */
-	private boolean useProgressMonitorDialog;
-
-	/**
-	 * message in case of inverted table
-	 */
-	private static final String INVERTED_MESSAGE = Messages.AbstractPasteImportInNattableManager_INVERTED_MESSAGE;
-
-	/**
-	 *
 	 * Constructor.
 	 *
+	 * @param tableManager
+	 *            The nattable model manager.
 	 * @param pasteHelper
-	 *            the helper used to do the paste (help for the split of the string)
+	 *            The paste helper.
+	 * @param useProgressMonitorDialog
+	 *            Boolean to determinate if a progress monitor dialog must be used.
+	 * @param openDialog
+	 *            Boolean to determinate if the dialog must be opened during the process.
+	 * @param preferredUserAction
+	 *            The preferred user action for the insert row action.
 	 */
-	public AbstractPasteImportInNattableManager(final INattableModelManager tableManager, final CSVPasteHelper pasteHelper, final boolean useProgressMonitorDialog) {
-		this.pasteHelper = pasteHelper;
-		this.tableManager = tableManager;
-		this.useProgressMonitorDialog = useProgressMonitorDialog;
+	public AbstractPasteImportInNattableManager(final INattableModelManager tableManager, final CSVPasteHelper pasteHelper, final boolean useProgressMonitorDialog, final boolean openDialog, final int preferredUserAction) {
+		super(tableManager, pasteHelper, useProgressMonitorDialog, openDialog, preferredUserAction);
+		this.isPasteWithOverwrite = false;
+		this.isPasteWithOverwriteAlreadyCalculated = false;
 	}
 
-
+	/**
+	 * Constructor.
+	 *
+	 * @param tableManager
+	 *            The nattable model manager.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @param useProgressMonitorDialog
+	 *            Boolean to determinate if a progress monitor dialog must be used.
+	 * @param openDialog
+	 *            Boolean to determinate if the dialog must be opened during the process.
+	 * @param preferredUserAction
+	 *            The preferred user action for the insert row action.
+	 * @param tableSelectionWrapper
+	 *            The current selection in the table.
+	 */
+	public AbstractPasteImportInNattableManager(final INattableModelManager tableManager, final CSVPasteHelper pasteHelper, final boolean useProgressMonitorDialog, final boolean openDialog, final int preferredUserAction,
+			final TableSelectionWrapper tableSelectionWrapper) {
+		super(tableManager, pasteHelper, useProgressMonitorDialog, openDialog, preferredUserAction, tableSelectionWrapper);
+		this.isPasteWithOverwrite = false;
+		this.isPasteWithOverwriteAlreadyCalculated = false;
+	}
 
 	/**
-	 * This method manages the paste and the possible error dialog before doing the paste
+	 * Constructor.
 	 *
-	 * @return
-	 *         <code>true</code> if the paste can be done (as it is done in a job, it will be after the return of this method)
+	 * @param tableManager
+	 *            The nattable model manager.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @param useProgressMonitorDialog
+	 *            Boolean to determinate if a progress monitor dialog must be used.
+	 * @param openDialog
+	 *            Boolean to determinate if the dialog must be opened during the process.
+	 * @param preferredUserAction
+	 *            The preferred user action for the insert row action.
+	 * @param tableSelectionWrapper
+	 *            The current selection in the table.
+	 * @param isPasteWithOverwrite
+	 *            Boolean to determinate if this is a paste with overwrite.
 	 */
-	public IStatus doPaste() {
-		if (this.tableManager.getTable().isInvertAxis()) {
+	public AbstractPasteImportInNattableManager(final INattableModelManager tableManager, final CSVPasteHelper pasteHelper, final boolean useProgressMonitorDialog, final boolean openDialog, final int preferredUserAction,
+			final TableSelectionWrapper tableSelectionWrapper, final boolean isPasteWithOverwrite) {
+		super(tableManager, pasteHelper, useProgressMonitorDialog, openDialog, preferredUserAction, tableSelectionWrapper);
+		this.isPasteWithOverwrite = isPasteWithOverwrite;
+		this.isPasteWithOverwriteAlreadyCalculated = true;
+	}
 
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, INVERTED_MESSAGE);
-			// new PasteImportStatusDialog(Display.getDefault().getActiveShell(), INVERTED_MESSAGE).open();
-			// return false;
-		}
-		final PasteEnablementStatus pasteStatus = findPasteModeFromTableConfiguration(this.tableManager);
-		if (pasteStatus.getPasteMode() == PasteModeEnumeration.PASTE_EOBJECT_ROW_OR_COLUMN) {
-			boolean value = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), PasteImportStatusDialog.DIALOG_TITLE, Messages.AbstractPasteImportInNattableManager_WhatAreYouPasting);
-			if (value) {
-				pasteStatus.getColumnStatus().add(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_TheUserChosesToPasteRows));
-			} else {
-				pasteStatus.getRowStatus().add(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_TheUserChosesToPasteColumns));
+	/**
+	 * This method manages the paste and the possible error dialog before doing the paste.
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.AbstractPasteImportInsertInNattableManager#doAction()
+	 */
+	@Override
+	public IStatus doAction() {
+		IStatus resultStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_PasteNotYetManaged);
+
+		PasteEnablementStatus pasteStatus = null;
+		// Check if the paste configuration is needed for the paste action
+		boolean useElse = true;
+		if (!isNeededPasteConfiguration()) {
+			if (!isPasteWithOverwriteAlreadyCalculated) {
+				isPasteWithOverwrite = PasteHelperUtils.isPasteWithOverwrite(tableManager, pasteHelper, createReader());
+			}
+			if (isPasteWithOverwrite) {
+				final MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, Messages.AbstractPasteImportInsertInNattableManager_NoPasteConfigurationNeeded, null);
+				if (null == tableSelectionWrapper) {
+					// Check the configuration if no selection is available
+					pasteStatus = findPasteModeFromTableConfiguration(this.tableManager);
+					if (PasteModeEnumeration.PASTE_NO_CONFIGURATION != pasteStatus.getPasteMode() && PasteModeEnumeration.CANT_PASTE != pasteStatus.getPasteMode()) {
+						pasteStatus = findPasteConfigurationAxisIdentifier(this.tableManager);
+					}
+				} else {
+					// If the paste is a paste overwrite on columns, no need to check the paste configuration
+					if (!tableSelectionWrapper.getFullySelectedColumns().isEmpty()) {
+						status.add(new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.AbstractPasteImportInsertInNattableManager_NoPasteConfigurationNeeded));
+						pasteStatus = new PasteEnablementStatus(status, null);
+						// If the paste is a paste overwrite on rows, check the paste configuration only for axis identifier
+					} else if (!tableSelectionWrapper.getFullySelectedRows().isEmpty()) {
+						pasteStatus = findPasteConfigurationAxisIdentifier(this.tableManager);
+						// If the paste is a paste overwrite on cells, no need to check the paste configuration
+					} else {
+						status.add(new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.AbstractPasteImportInsertInNattableManager_NoPasteConfigurationNeeded));
+						pasteStatus = new PasteEnablementStatus(null, status);
+					}
+				}
+				useElse = false;
 			}
 		}
-		PasteModeEnumeration pasteMode = pasteStatus.getPasteMode();
+
+		if (useElse) {
+			pasteStatus = findPasteModeFromTableConfiguration(this.tableManager);
+			if (pasteStatus.getPasteMode() == PasteModeEnumeration.PASTE_EOBJECT_ROW_OR_COLUMN) {
+				final boolean value = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), PasteImportStatusDialog.DIALOG_TITLE, Messages.AbstractPasteImportInsertInNattableManager_WhatAreYouPasting);
+				if (value) {
+					pasteStatus.getColumnStatus().add(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, Messages.AbstractPasteImportInsertInNattableManager_TheUserChosesToPasteRows));
+				} else {
+					pasteStatus.getRowStatus().add(new Status(IStatus.CANCEL, Activator.PLUGIN_ID, Messages.AbstractPasteImportInsertInNattableManager_TheUserChosesToPasteColumns));
+				}
+			}
+		}
+
+		final PasteModeEnumeration pasteMode = pasteStatus.getPasteMode();
 		switch (pasteMode) {
 		case PASTE_NO_CONFIGURATION:
-			return new Status(IStatus.INFO, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_NoPasteConfiguration2);
-			// return openPasteWithNoConfigurationDialog();
+			resultStatus = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_INFO, Activator.PLUGIN_ID, Messages.AbstractPasteImportInsertInNattableManager_NoPasteConfiguration2);
+			break;
 		case CANT_PASTE:
-			return createCantPasteStatus(pasteStatus);
+			resultStatus = createCantPasteStatus(pasteStatus);
+			break;
 		case PASTE_EOBJECT_ROW:
-			return pasteRow(this.tableManager, pasteStatus, pasteHelper);
+			resultStatus = pasteRow(this.tableManager, pasteStatus, pasteHelper);
+			break;
 		case PASTE_EOBJECT_COLUMN:
-			return pasteColumn(this.tableManager, pasteStatus, pasteHelper);
+			resultStatus = pasteColumn(this.tableManager, pasteStatus, pasteHelper);
+			break;
 		case PASTE_EOBJECT_ROW_OR_COLUMN:
 			// nothing to do
 			break;
@@ -140,89 +198,57 @@ public abstract class AbstractPasteImportInNattableManager {
 			break;
 		}
 
-		return new Status(IStatus.INFO, Activator.PLUGIN_ID, " paste not yet managed");
+		return resultStatus;
 	}
 
-	private IStatus createCantPasteStatus(final PasteEnablementStatus pasteStatus) {
+	/**
+	 * Some paste actions don't need paste configuration. This methos allows to determinate if a paste configuration is needed for the paste action.
+	 * 
+	 * @return <code>true</code> if a paste configuration is needed, <code>false</code> otherwise.
+	 */
+	protected boolean isNeededPasteConfiguration() {
+		boolean result = true;
+
+		if (null == tableSelectionWrapper
+				|| ((tableSelectionWrapper.getFullySelectedColumns().isEmpty() && tableSelectionWrapper.getFullySelectedRows().isEmpty() && !tableSelectionWrapper.getSelectedCells().isEmpty())
+						|| (!tableSelectionWrapper.getFullySelectedColumns().isEmpty() && tableSelectionWrapper.getFullySelectedRows().isEmpty())
+						|| (tableSelectionWrapper.getFullySelectedColumns().isEmpty() && !tableSelectionWrapper.getFullySelectedRows().isEmpty()))) {
+			result = false;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Manage the status when can't paste.
+	 * 
+	 * @param pasteStatus
+	 *            The paste status.
+	 * @return The status when this can't be pasted
+	 */
+	protected IStatus createCantPasteStatus(final PasteEnablementStatus pasteStatus) {
+		IStatus resultStatus = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_INFO, Activator.PLUGIN_ID, Messages.AbstractPasteImportInsertInNattableManager_NoPasteConfiguration2);
+
 		final MultiStatus rowStatus = pasteStatus.getRowStatus();
 		final MultiStatus columnStatus = pasteStatus.getColumnStatus();
 		if (rowStatus == null && columnStatus != null) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, getFirstNonOKStatus(columnStatus).getMessage());
+			resultStatus = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, getFirstNonOKStatus(columnStatus).getMessage());
 		} else if (columnStatus == null && rowStatus != null) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, getFirstNonOKStatus(rowStatus).getMessage());
+			resultStatus = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, getFirstNonOKStatus(rowStatus).getMessage());
 		} else if (columnStatus != null && rowStatus != null) {
-			StringBuffer buffer = new StringBuffer(Messages.AbstractPasteImportInNattableManager_NoPasteConfiguration);
+			final StringBuffer buffer = new StringBuffer(Messages.AbstractPasteImportInsertInNattableManager_NoPasteConfiguration);
 			buffer.append(Messages.AbstractPasteImportInNattableManager_PasteRowsError);
 			buffer.append(getFirstNonOKStatus(rowStatus).getMessage());
 			buffer.append(Messages.AbstractPasteImportInNattableManager_PasteColumnsError);
 			buffer.append(getFirstNonOKStatus(columnStatus).getMessage());
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, buffer.toString());
-		} else {
-			return new Status(IStatus.INFO, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_NoPasteConfiguration2);
+			resultStatus = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, buffer.toString());
 		}
-	}
 
-	//
-	// /**
-	// *
-	// * @param pasteStatus
-	// * the paste status
-	// * @return
-	// */
-	// private boolean openCantPasteDialog(final PasteEnablementStatus pasteStatus) {
-	// final MultiStatus rowStatus = pasteStatus.getRowStatus();
-	// final MultiStatus columnStatus = pasteStatus.getColumnStatus();
-	// if (rowStatus == null && columnStatus != null) {
-	// new PasteImportStatusDialog(Display.getCurrent().getActiveShell(), getFirstNonOKStatus(columnStatus).getMessage()).open();
-	// } else if (columnStatus == null && rowStatus != null) {
-	// new PasteImportStatusDialog(Display.getCurrent().getActiveShell(), getFirstNonOKStatus(rowStatus).getMessage()).open();
-	// } else if (columnStatus != null && rowStatus != null) {
-	// StringBuffer buffer = new StringBuffer(Messages.AbstractPasteImportInNattableManager_NoPasteConfiguration);
-	// buffer.append(Messages.AbstractPasteImportInNattableManager_PasteRowsError);
-	// buffer.append(getFirstNonOKStatus(rowStatus).getMessage());
-	// buffer.append(Messages.AbstractPasteImportInNattableManager_PasteColumnsError);
-	// buffer.append(getFirstNonOKStatus(columnStatus).getMessage());
-	// new PasteImportStatusDialog(Display.getDefault().getActiveShell(), buffer.toString()).open();
-	// } else {
-	// // never possible
-	// openPasteWithNoConfigurationDialog();
-	// }
-	// return true;
-	// }
-	//
-	/**
-	 *
-	 * @param status
-	 *            a status
-	 * @return
-	 *         the first non ok status
-	 */
-	private IStatus getFirstNonOKStatus(final IStatus status) {
-		if (status != null && !status.isOK()) {
-			for (final IStatus current : status.getChildren()) {
-				if (!current.isOK()) {
-					if (current.isMultiStatus()) {
-						return getFirstNonOKStatus(current);
-					} else {
-						return current;
-					}
-				}
-			}
-		}
-		return null;
+		return resultStatus;
 	}
 
 	/**
-	 * open the dialog used when the table has no paste configuration
-	 *
-	 * @return
-	 */
-	private boolean openPasteWithNoConfigurationDialog() {
-		new PasteImportStatusDialog(Display.getDefault().getActiveShell(), Messages.AbstractPasteImportInNattableManager_NoPasteConfiguration2, MessageDialog.INFORMATION).open();
-		return true;
-	}
-
-	/**
+	 * Paste the column.
 	 *
 	 * @param manager
 	 *            the table manager
@@ -234,11 +260,15 @@ public abstract class AbstractPasteImportInNattableManager {
 	 *         <code>true</code> if the paste can be done
 	 */
 	private IStatus pasteColumn(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
-		// TODO
-		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Paste column, not yet implemented");
+		IStatus resultStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_PasteNotYetManaged);
+		if (null != tableSelectionWrapper) {
+			resultStatus = pasteColumns(manager, pasteStatus, pasteHelper, tableSelectionWrapper);
+		}
+		return resultStatus;
 	}
 
 	/**
+	 * Paste the row.
 	 *
 	 * @param manager
 	 *            the table manager
@@ -250,150 +280,195 @@ public abstract class AbstractPasteImportInNattableManager {
 	 *         <code>true</code> if the paste can be done
 	 */
 	private IStatus pasteRow(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
+		IStatus resultStatus = Status.OK_STATUS;
+
 		if (TableHelper.isTreeTable(manager)) {
-			return pasteTreeRows(manager, pasteStatus, pasteHelper);
+			if (null != tableSelectionWrapper) {
+				resultStatus = pasteTreeRows(manager, pasteStatus, pasteHelper, tableSelectionWrapper);
+			} else {
+				resultStatus = pasteTreeRows(manager, pasteStatus, pasteHelper);
+			}
+		} else {
+			if (null != tableSelectionWrapper) {
+				resultStatus = pasteNormalRows(manager, pasteStatus, pasteHelper, tableSelectionWrapper);
+			} else {
+				resultStatus = pasteNormalRows(manager, pasteStatus, pasteHelper);
+			}
 		}
-		return pasteNormalRows(manager, pasteStatus, pasteHelper);
+
+		return resultStatus;
 	}
 
 	/**
-	 *
-	 * @param registry
-	 * @return
-	 *         the label provider service
+	 * Paste the rows for a tree table with a current selection.
+	 * 
+	 * @param manager
+	 *            The nattable manager.
+	 * @param pasteStatus
+	 *            The paste status.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @param tableSelectionWrapper
+	 *            The current selection.
+	 * @return The status of the paste.
 	 */
-	protected LabelProviderService getLabelProviderService(final IConfigRegistry registry) {
-		return registry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-	}
-
-	private IStatus pasteTreeRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
-
-		// we check than there is only one categories by hidden depth
-		List<Integer> hiddenCategories = StyleUtils.getHiddenDepths(manager);
-		for (Integer current : hiddenCategories) {
-			int size = FillingConfigurationUtils.getAllTreeFillingConfigurationForDepth(manager.getTable(), current.intValue()).size();
-			if (size > 1) {
-				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_THAN_ONE_CATEGORY_FOR_A_HIDDEN_DEPTH, NLS.bind(
-						"You have more than 1 category for the depth {0}, so this depth must be visible to do the paste and our pasted file must be conform to the new table appearance", current.intValue()), null);
-			}
-		}
-
-		for (TreeFillingConfiguration current : FillingConfigurationUtils.getAllTreeFillingConfiguration(manager.getTable())) {
-			PasteEObjectConfiguration conf = current.getPasteConfiguration();
-			if (conf == null) {
-				// TODO : add detail of the error in message
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_PASTE_CONFIGURATION, "There is no paste configuration for a TreeFillingConfiguration", null);
-				return status;
-			}
-
-			String elementTypeId = conf.getPastedElementId();
-			if (elementTypeId == null || elementTypeId.isEmpty()) {
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_ELEMENT_TYPE_IN_PASTE_CONFIGURATION, "There is no element id defined in the paste configuration", null);
-				return status;
-			} else if (!ElementTypeUtils.getAllExistingElementTypesIds().contains(elementTypeId)) {
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__UNKNOWN_ELEMENT_TYPE, NLS.bind("The element type {0} is unknown", elementTypeId), null);
-				return status;
-			}
-
-
-			EStructuralFeature feature = conf.getPasteElementContainementFeature();
-			if (feature == null) {
-				IAxis axis = current.getAxisUsedAsAxisProvider();
-				NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
-				LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper();
-				wrapper.setObject(axis);
-				wrapper.setConfigRegistry(natTable.getConfigRegistry());
-				final LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-				ILabelProvider p = serv.getLabelProvider(wrapper);
-				p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-				String categoryName = p.getText(axis);
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_CONTAINMENT_FEATURE, NLS.bind("Paste feature has not been set for category {0} on depth {1}", categoryName, current.getDepth()), null);
-				return status;
-			}
-		}
-
-		// final Reader reader = createReader();
-		// final IStatus status = verifyColumnCountOnFirstLine(manager, reader);
-		final IStatus status = Status.OK_STATUS;
-		// try {
-		// reader.close();
-		// } catch (IOException e) {
-		// Activator.log.error(e);
-		// }
+	private IStatus pasteTreeRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper, final TableSelectionWrapper tableSelectionWrapper) {
+		IStatus status = Status.OK_STATUS;
 		if (status.isOK()) {
-			pasteTree(manager, pasteStatus, useProgressMonitorDialog, createReader(), getDataSize());
+			status = pasteTree(manager, pasteStatus, useProgressMonitorDialog, createReader(), tableSelectionWrapper, getDataSize());
 		}
-		// else {
-		// return statis
-		// new PasteImportStatusDialog(Display.getDefault().getActiveShell(), status.getMessage()).open();
-		// return false;
-		// }
-		// return true;
 		return status;
 	}
 
+	/**
+	 * Paste the rows for a tree table without selection.
+	 * 
+	 * @param manager
+	 *            The nattable manager.
+	 * @param pasteStatus
+	 *            The paste status.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @param tableSelectionWrapper
+	 *            The current selection.
+	 * @return The status of the paste.
+	 */
+	private IStatus pasteTreeRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
+		IStatus status = checkTreeTableConfiguration(manager);
+		if (status.isOK()) {
+			status = pasteTree(manager, pasteStatus, useProgressMonitorDialog, createReader(), null, getDataSize());
+		}
+		return status;
+	}
 
-
+	/**
+	 * This allow to paste rows in a flat nattable.
+	 * 
+	 * @param manager
+	 *            The nattable model manager.
+	 * @param pasteStatus
+	 *            The paste status.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @return The status corresponding to the paste.
+	 */
 	private IStatus pasteNormalRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
 		final Reader reader = createReader();
-		final IStatus status = verifyColumnCountOnFirstLine(manager, reader);
+		IStatus status = verifyColumnCountOnFirstLine(manager, reader);
 		try {
 			reader.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			Activator.log.error(e);
 		}
 		if (status.isOK()) {
-			paste(manager, pasteStatus, useProgressMonitorDialog, createReader(), getDataSize());
+			status = paste(manager, pasteStatus, useProgressMonitorDialog, createReader(), null, getDataSize());
 		}
-		// else {
-		// new PasteImportStatusDialog(Display.getDefault().getActiveShell(), status.getMessage()).open();
-		// return false;
-		// }
-		// return true;
 		return status;
 	}
 
+	/**
+	 * This allow to paste rows in a flat nattable with selection
+	 * 
+	 * @param manager
+	 *            The nattable model manager.
+	 * @param pasteStatus
+	 *            The paste status.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @param tableSelectionWrapper
+	 *            The current selection in table.
+	 * @return The status corresponding to the paste.
+	 */
+	private IStatus pasteNormalRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper, final TableSelectionWrapper tableSelectionWrapper) {
+		final Reader reader = createReader();
+		IStatus status = verifyColumnCountOnFirstLine(manager, reader);
+		try {
+			reader.close();
+		} catch (final IOException e) {
+			Activator.log.error(e);
+		}
+		if (status.isOK()) {
+			status = paste(manager, pasteStatus, useProgressMonitorDialog, createReader(), tableSelectionWrapper, getDataSize());
+		}
+		return status;
+	}
 
 	/**
-	 *
-	 * @param tableManager
-	 *            the table manager
-	 * @param reader
-	 *            the reader to use to do parsing
-	 * @return
-	 *         a status indicating if the first line of the file allows to do the paste
+	 * Paste the columns for a table with a current selection.
+	 * 
+	 * @param manager
+	 *            The nattable manager.
+	 * @param pasteStatus
+	 *            The paste status.
+	 * @param pasteHelper
+	 *            The paste helper.
+	 * @param tableSelectionWrapper
+	 *            The current selection.
+	 * @return The status of the paste.
 	 */
-	private IStatus verifyColumnCountOnFirstLine(final INattableModelManager tableManager, final Reader reader) {
-		final int axisCount = tableManager.getColumnCount();
-		CSVParser parser = this.pasteHelper.createParser(reader);
-		// we verify the nb of columns
-		final RowIterator rowIter = parser.parse();
-		int nbCell = 0;
-		if (rowIter.hasNext()) {
-			final CellIterator cellIter = rowIter.next();
-			while (cellIter.hasNext()) {
-				cellIter.next();
-				nbCell++;
-			}
-		}
-		// 430115: [Table2] Paste/Import must be possible when the number of columns is not the same in the table and in the clipboard/file
-		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=430115
-		if (axisCount == 0) {
-			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_TheTableDoesntHaveColumns);
-		}
-		// commented because the next line could have data
-		// if(nbCell == 0) {
-		// return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Your data doesn't have cell on the first row");
-		// }
-		if (axisCount == nbCell) {
-			return new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.AbstractPasteImportInNattableManager_NumberOfColumnsAreEquals);
+	private IStatus pasteColumns(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper, final TableSelectionWrapper tableSelectionWrapper) {
+		IStatus status = Status.OK_STATUS;
+
+		if (TableHelper.isTreeTable(manager)) {
+			status = pasteTree(manager, pasteStatus, useProgressMonitorDialog, createReader(), tableSelectionWrapper, getDataSize());
 		} else {
-			return new Status(IStatus.OK, Activator.PLUGIN_ID, NLS.bind(Messages.AbstractPasteImportInNattableManager_NumberOfColumnsAreNotEquals, nbCell, axisCount));
+			status = paste(manager, pasteStatus, useProgressMonitorDialog, createReader(), tableSelectionWrapper, getDataSize());
 		}
+
+		return status;
 	}
 
+	/**
+	 * Create the command provider for the paste in the tree table and execute the this command.
+	 * 
+	 * @param manager
+	 *            the table manager
+	 * @param status
+	 *            the status
+	 * @param useProgressMonitorDialog
+	 *            if <code>true</code> a progress monitor will be used
+	 * @param reader
+	 *            the reader used to import data in the table.
+	 * @param tableSelectionWrapper
+	 *            The table selection wrapper for the current table.
+	 * @param totalSize
+	 *            the full size of the elements to import
+	 * @return The result status
+	 */
+	private IStatus pasteTree(final INattableModelManager manager, final PasteEnablementStatus status, final boolean useProgressMonitorDialog, final Reader reader, final TableSelectionWrapper tableSelectionWrapper, final long totalSize) {
+		IStatus resultStatus = Status.OK_STATUS;
+
+		PasteNattableCommandProvider commandProvider = null;
+		if (null != tableSelectionWrapper) {
+			switch (status.getPasteMode()) {
+			case PASTE_EOBJECT_ROW:
+				commandProvider = new PasteInSelectionTreeNattableCommandProvider(manager, false, false, reader, this.pasteHelper, this.tableSelectionWrapper, this.preferredUserAction, totalSize);
+				break;
+			case PASTE_EOBJECT_COLUMN:
+				commandProvider = new PasteInSelectionTreeNattableCommandProvider(manager, true, false, reader, this.pasteHelper, this.tableSelectionWrapper, this.preferredUserAction, totalSize);
+				break;
+			default:
+				break;
+			}
+		} else if (isPasteWithOverwrite) {
+			commandProvider = new PasteInSelectionTreeNattableCommandProvider(manager, PasteModeEnumeration.PASTE_EOBJECT_COLUMN.equals(status.getPasteMode()), true, reader, this.pasteHelper, this.tableSelectionWrapper, this.preferredUserAction, totalSize);
+		} else {
+			switch (status.getPasteMode()) {
+			case PASTE_EOBJECT_ROW:
+				commandProvider = new PasteEObjectTreeAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
+				break;
+			default:
+				break;
+			}
+		}
+		if (null != commandProvider) {
+			resultStatus = commandProvider.executePasteFromStringCommand(useProgressMonitorDialog, openDialog);
+		}
+		return resultStatus;
+	}
 
 	/**
+	 * Create the command provider for the paste in the flat table and execute the this command.
 	 *
 	 * @param manager
 	 *            the table manager
@@ -403,189 +478,42 @@ public abstract class AbstractPasteImportInNattableManager {
 	 *            if <code>true</code> a progress monitor will be used
 	 * @param reader
 	 *            the reader used to import data in the table.
+	 * @param tableSelectionWrapper
+	 *            The table selection wrapper for the current table.
 	 * @param totalSize
 	 *            the full size of the elements to import
+	 * @return The result status
 	 */
-	private void pasteTree(final INattableModelManager manager, final PasteEnablementStatus status, final boolean useProgressMonitorDialog, final Reader reader, final long totalSize) {
-		PasteEObjectTreeAxisInNattableCommandProvider commandProvider = null;
-		switch (status.getPasteMode()) {
-		case PASTE_EOBJECT_ROW:
-			commandProvider = new PasteEObjectTreeAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
-			break;
-		// case PASTE_EOBJECT_COLUMN:
-		// commandProvider = new PasteEObjectAxisInNattableCommandProvider(manager, true, reader, this.pasteHelper, totalSize);
-		// break;
-		default:
-			break;
-		}
-		// TODO : ask for the element to paste (column or row)!
-		if (commandProvider != null) {
-			commandProvider.executePasteFromStringCommand(useProgressMonitorDialog);
-		}
-	}
+	private IStatus paste(final INattableModelManager manager, final PasteEnablementStatus status, final boolean useProgressMonitorDialog, final Reader reader, final TableSelectionWrapper tableSelectionWrapper, final long totalSize) {
+		IStatus resultStatus = Status.OK_STATUS;
 
-	/**
-	 *
-	 * @param manager
-	 *            the table manager
-	 * @param status
-	 *            the status
-	 * @param useProgressMonitorDialog
-	 *            if <code>true</code> a progress monitor will be used
-	 * @param reader
-	 *            the reader used to import data in the table.
-	 * @param totalSize
-	 *            the full size of the elements to import
-	 */
-	private void paste(final INattableModelManager manager, final PasteEnablementStatus status, final boolean useProgressMonitorDialog, final Reader reader, final long totalSize) {
-		PasteEObjectAxisInNattableCommandProvider commandProvider = null;
-		switch (status.getPasteMode()) {
-		case PASTE_EOBJECT_ROW:
-			commandProvider = new PasteEObjectAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
-			break;
-		case PASTE_EOBJECT_COLUMN:
-			commandProvider = new PasteEObjectAxisInNattableCommandProvider(manager, true, reader, this.pasteHelper, totalSize);
-			break;
-		default:
-			break;
-		}
-		// TODO : ask for the element to paste (column or row)!
-		if (commandProvider != null) {
-			commandProvider.executePasteFromStringCommand(useProgressMonitorDialog);
-		}
-	}
-
-	/**
-	 *
-	 * @param tableManager
-	 *            the table manager used to calculate the enablement of the paste
-	 * @return
-	 *         the status for the paste
-	 */
-	private PasteEnablementStatus findPasteModeFromTableConfiguration(final INattableModelManager tableManager) {
-		if (TableHelper.isTreeTable(tableManager)) {
-			return findPasteModeFromTableConfigurationForTreeTable(tableManager);
-		}
-		return findPasteModeFromTableConfigurationForNormalTable(tableManager);
-	}
-
-	private PasteEnablementStatus findPasteModeFromTableConfigurationForTreeTable(final INattableModelManager tableManager) {
-		MultiStatus pasteRowsStatus = canPasteAxis_verifyPasteConfigurationForTreeTable(tableManager);
-		boolean fullSynchro = FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(tableManager.getTable(), 0);
-		if (fullSynchro) {
-			pasteRowsStatus.add(canPasteAxis_verifyPasteConfiguration(tableManager, false));
-		}
-		final PasteEnablementStatus pasteStatus = new PasteEnablementStatus(null, pasteRowsStatus);
-		return pasteStatus;
-	}
-
-
-	private PasteEnablementStatus findPasteModeFromTableConfigurationForNormalTable(final INattableModelManager tableManager) {
-		final MultiStatus pasteRowsStatus = canPasteAxis_verifyPasteConfiguration(tableManager, false);
-		final MultiStatus pasteColumnsStatus = canPasteAxis_verifyPasteConfiguration(tableManager, true);
-		final PasteEnablementStatus pasteStatus = new PasteEnablementStatus(pasteColumnsStatus, pasteRowsStatus);
-		return pasteStatus;
-	}
-
-	private static MultiStatus canPasteAxis_verifyPasteConfigurationForTreeTable(final INattableModelManager tableManager) {
-		// TODO : do more check + use more ERROR status?
-
-		final String pluginId = Activator.PLUGIN_ID;
-		final String axisName = Messages.AbstractPasteImportInNattableManager_row;
-		MultiStatus status = null;
-		for (TreeFillingConfiguration current : FillingConfigurationUtils.getAllTreeFillingConfiguration(tableManager.getTable())) {
-			IPasteConfiguration conf = current.getPasteConfiguration();
-			if (conf instanceof PasteEObjectConfiguration) {
-				status = new MultiStatus(pluginId, IStatus.OK, NLS.bind(Messages.AbstractPasteImportInNattableManager_EnablementStatusForPasteInTheTable, axisName), null);
-				status.add(new Status(IStatus.OK, pluginId, NLS.bind(Messages.AbstractPasteImportInNattableManager_TheTableHasAConfigurationToPaste, axisName)));
-
-				if (status.isOK() && current.getDepth() == 0) {
-					final PasteEObjectConfiguration pasteConfiguration = (PasteEObjectConfiguration) conf;
-					status.add(PasteConfigurationUtils.hasConsistentPasteEObjectConfiguration(pasteConfiguration));
-
-					// verify that the table context have the required feature
-					if (status.isOK()) {
-						final EStructuralFeature containmentFeature = pasteConfiguration.getPasteElementContainementFeature();
-						if (tableManager.getTable().getContext().eClass().getEAllStructuralFeatures().contains(containmentFeature)) {
-							status.add(new Status(IStatus.OK, pluginId, Messages.AbstractPasteImportInNattableManager_TheContextOfTheTableHasTheContainmentFeatureDefinedForThePaste));
-						} else {
-							status.add(new Status(IStatus.ERROR, pluginId, Messages.AbstractPasteImportInNattableManager_TheContextOfTheTableHasNotTheContainmentFeatureDefinedForThePaste));
-						}
-
-						// verify that the elements to create are supported by the axis manager
-						if (status.isOK()) {
-							final String elementId = pasteConfiguration.getPastedElementId();
-							if (CreatableEObjectAxisUtils.getCreatableElementIds(tableManager, false).contains(elementId)) {
-								status.add(new Status(IStatus.OK, pluginId, NLS.bind(Messages.AbstractPasteImportInNattableManager_TheTableCanCreateElement, elementId, axisName)));
-							} else {
-								status.add(new Status(IStatus.OK, pluginId, NLS.bind(Messages.AbstractPasteImportInNattableManager_TheTableCantCreateElement, elementId, axisName)));
-							}
-						}
-					}
-				}
+		PasteNattableCommandProvider commandProvider = null;
+		if (null != tableSelectionWrapper) {
+			switch (status.getPasteMode()) {
+			case PASTE_EOBJECT_ROW:
+				commandProvider = new PasteInSelectionNattableCommandProvider(manager, false, false, reader, pasteHelper, tableSelectionWrapper, this.preferredUserAction, totalSize);
+				break;
+			case PASTE_EOBJECT_COLUMN:
+				commandProvider = new PasteInSelectionNattableCommandProvider(manager, true, false, reader, pasteHelper, tableSelectionWrapper, this.preferredUserAction, totalSize);
+				break;
+			default:
+				break;
+			}
+		}else if (isPasteWithOverwrite) {
+			commandProvider = new PasteInSelectionNattableCommandProvider(manager, PasteModeEnumeration.PASTE_EOBJECT_COLUMN.equals(status.getPasteMode()), true, reader, pasteHelper, tableSelectionWrapper, this.preferredUserAction, totalSize);
+		} else {
+			switch (status.getPasteMode()) {
+			case PASTE_EOBJECT_ROW:
+				commandProvider = new PasteEObjectAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
+				break;
+			default:
+				break;
 			}
 		}
-		return status;
-	}
-
-
-	/**
-	 *
-	 * @param tableManager
-	 *            teh table manager
-	 * @param columnAxis
-	 *            if <code>true</code> this method tests the paste configuration for the columns, if not, it tests the paste configuration for the rows
-	 * @return
-	 *         a multi status with information on all verified point in the table configuration or <code>null</code> when there is no table
-	 *         configuration
-	 */
-	private static MultiStatus canPasteAxis_verifyPasteConfiguration(final INattableModelManager tableManager, final boolean columnAxis) {
-		final IPasteConfiguration conf = (IPasteConfiguration) AxisConfigurationUtils.getIAxisConfigurationUsedInTable(tableManager.getTable(), NattableaxisconfigurationPackage.eINSTANCE.getPasteEObjectConfiguration(), columnAxis);
-		final String pluginId = Activator.PLUGIN_ID;
-		final String axisName = columnAxis ? Messages.AbstractPasteImportInNattableManager_column : Messages.AbstractPasteImportInNattableManager_row;
-		MultiStatus status = null;
-		if (conf instanceof PasteEObjectConfiguration) {
-			status = new MultiStatus(pluginId, IStatus.OK, NLS.bind(Messages.AbstractPasteImportInNattableManager_EnablementStatusForPasteInTheTable, axisName), null);
-			status.add(new Status(IStatus.OK, pluginId, NLS.bind(Messages.AbstractPasteImportInNattableManager_TheTableHasAConfigurationToPaste, axisName)));
-			if (status.isOK()) {
-				final PasteEObjectConfiguration pasteConfiguration = (PasteEObjectConfiguration) conf;
-				status.add(PasteConfigurationUtils.hasConsistentPasteEObjectConfiguration(pasteConfiguration));
-
-				// verify that the table context have the required feature
-				if (status.isOK()) {
-					final EStructuralFeature containmentFeature = pasteConfiguration.getPasteElementContainementFeature();
-					if (tableManager.getTable().getContext().eClass().getEAllStructuralFeatures().contains(containmentFeature)) {
-						status.add(new Status(IStatus.OK, pluginId, Messages.AbstractPasteImportInNattableManager_TheContextOfTheTableHasTheContainmentFeatureDefinedForThePaste));
-					} else {
-						status.add(new Status(IStatus.ERROR, pluginId, Messages.AbstractPasteImportInNattableManager_TheContextOfTheTableHasNotTheContainmentFeatureDefinedForThePaste));
-					}
-
-					// verify that the elements to create are supported by the axis manager
-					if (status.isOK()) {
-						final String elementId = pasteConfiguration.getPastedElementId();
-						if (CreatableEObjectAxisUtils.getCreatableElementIds(tableManager, columnAxis).contains(elementId)) {
-							status.add(new Status(IStatus.OK, pluginId, NLS.bind(Messages.AbstractPasteImportInNattableManager_TheTableCanCreateElement, elementId, axisName)));
-						} else {
-							status.add(new Status(IStatus.OK, pluginId, NLS.bind(Messages.AbstractPasteImportInNattableManager_TheTableCantCreateElement, elementId, axisName)));
-						}
-					}
-				}
-			}
+		
+		if (commandProvider != null) {
+			resultStatus = commandProvider.executePasteFromStringCommand(useProgressMonitorDialog, openDialog);
 		}
-		return status;
+		return resultStatus;
 	}
-
-	/**
-	 *
-	 * @return
-	 *         a new reader
-	 */
-	protected abstract Reader createReader();
-
-	/**
-	 *
-	 * @return
-	 *         the size of the copied data
-	 */
-	protected abstract long getDataSize();
 }

@@ -1113,6 +1113,8 @@
               value="This field references the feature of the context of the table in which the created element will be added."/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="axisIdentifier" eType="#//nattableaxis/IAxis"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers
         xsi:type="ecore:EEnum"
