@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     CEA LIST. - initial API and implementation
- *     Mauricio Alférez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595
+ *     Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595, 481377 
  *     
  ******************************************************************************/
 package org.eclipse.papyrus.req.sysml.preferences;
@@ -17,13 +17,12 @@ package org.eclipse.papyrus.req.sysml.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 
-
 /**
- * Initializes the preferences for the creation of Papyrus REQ SysML requirements
+ * Initializes the preferences for the creation of Papyrus REQ SysML
+ * requirements
  *
  */
 public class PreferenceInitializer extends AbstractPreferenceInitializer {
-
 
 	@Override
 	public void initializeDefaultPreferences() {
@@ -31,6 +30,9 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 		store.setDefault(PreferenceConstants.REQUIREMENT_ID_PREFIX, "REQ_");
 		store.setDefault(PreferenceConstants.REQUIREMENT_ID_DIGIT, 3);
 		store.setDefault(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR, "_");
-	}
 
+		store.setDefault(PreferenceConstants.NSURI_PREFIX, "https://www.eclipse.org/papyrus/");
+		store.setDefault(PreferenceConstants.GENERATE_ABSTRACTIONS_MODEL, false);
+		store.setDefault(PreferenceConstants.FROM_ASSOCIATIONS_TO_STEREOTYPES, false);
+	}
 }

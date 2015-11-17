@@ -21,4 +21,10 @@ public class PreferenceConstants {
 	public static final String REQUIREMENT_ID_PREFIX = "REQUIREMENT_ID_PREFIX";
 	public static final String REQUIREMENT_ID_DIGIT = "REQUIREMENT_ID_DIGIT";
 	public static final String CHILD_REQUIREMENTS_SEPARATOR = "CHILD_REQUIREMENTS_SEPARATOR";
+	
+	public static final String NSURI_PREFIX = "NSURI_PREFIX";
+	public static final String GENERATE_ABSTRACTIONS_MODEL = "GENERATE_ABSTRACTIONS_MODEL";
+	public static final String FROM_ASSOCIATIONS_TO_STEREOTYPES = "FROM_ASSOCIATIONS_TO_STEREOTYPES";
+//	public static final String METACLASS_EXTENDED_BY_NODES = "METACLASS_EXTENDED_BY_NODES";
+//	public static final String METACLASS_EXTENDED_BY_EDGES = "METACLASS_EXTENDED_BY_EDGES";
 }

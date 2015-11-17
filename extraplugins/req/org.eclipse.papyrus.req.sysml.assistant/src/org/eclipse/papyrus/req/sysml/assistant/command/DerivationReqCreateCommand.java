@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
- * this command is used to create a "DerivedReq" link between requirements
+ * Creates a "DerivedReq" link between requirements
  *
  */
 public class DerivationReqCreateCommand extends RecordingCommand {

@@ -29,13 +29,11 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * 
- * This command is used to create a requirement and add a decomposition link from
- * the selected requirement to the new requirement. The names are based on the
- * Papyrus Req preferences
+ * Creates a requirement and adds a decomposition link from the selected
+ * requirement to the new requirement. The names are based on the Papyrus Req
+ * preferences.
  *
  */
-
 public class InitDecomposeReqCommand extends RecordingCommand {
 	protected Element selectedElement;
 	TransactionalEditingDomain domain;
@@ -68,19 +66,27 @@ public class InitDecomposeReqCommand extends RecordingCommand {
 	}
 
 	/**
-	 * get a new name of a Papyrus SysML child requirement based on the Papyrus req preferences and the Id of the parent Requirement
+	 * get a new name of a Papyrus SysML child requirement based on the Papyrus
+	 * req preferences and the Id of the parent Requirement
 	 * 
-	 * @param parent the parent requirement
+	 * @param parent
+	 *            the parent requirement
 	 * @return the name for a potential requirement
 	 */
 	public static String getNewIDReq(org.eclipse.uml2.uml.Class parent, Stereotype stereotype) {
 		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		String prefix = store.getString(PreferenceConstants.REQUIREMENT_ID_PREFIX);//by default "REQ_"
-		String separator = store.getString(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR); //by default "_" 
-		
+		String prefix = store.getString(PreferenceConstants.REQUIREMENT_ID_PREFIX);// by
+																					// default
+																					// "REQ_"
+		String separator = store.getString(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR); // by
+																								// default
+																								// "_"
+
 		String parentRequirementId = (String) parent.getValue(stereotype, I_SysMLStereotype.REQUIREMENT_ID_ATT);
 		String parentRequirementIdSuffix = parentRequirementId.replaceAll(prefix, "");
-		int digit = store.getInt(PreferenceConstants.REQUIREMENT_ID_DIGIT);//by default 3
+		int digit = store.getInt(PreferenceConstants.REQUIREMENT_ID_DIGIT);// by
+																			// default
+																			// 3
 		int i = 0;
 		DecimalFormat df = new DecimalFormat();
 		df.setMinimumIntegerDigits(digit);
@@ -99,9 +105,7 @@ public class InitDecomposeReqCommand extends RecordingCommand {
 					if (classifier.getValue(reqStereotype, I_SysMLStereotype.REQUIREMENT_ID_ATT) != null) {
 						String existedID = (String) classifier.getValue(reqStereotype,
 								I_SysMLStereotype.REQUIREMENT_ID_ATT);
-						String newID = prefix
-								+ parentRequirementIdSuffix
-								+ separator + value;
+						String newID = prefix + parentRequirementIdSuffix + separator + value;
 						// id already exists so increment suffix
 						if (newID.equals(existedID)) {
 							IDexist = true;

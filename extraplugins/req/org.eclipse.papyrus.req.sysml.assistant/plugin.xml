@@ -7,7 +7,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu?after=filtersMenu">
          <menu
-               icon="images/Papyrus_Req_logo_16x16.bmp"
+               icon="images/Papyrus_Req_logo_16x16.png"
                id="org.eclipse.papyrus.req.sysml.menu"
                label="%menu.label"
                tooltip="%menu.tooltip">
@@ -25,7 +25,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
          <menu
-               icon="images/Papyrus_Req_logo_16x16.bmp"
+               icon="images/Papyrus_Req_logo_16x16.png"
                id="org.eclipse.papyrus.req.sysml.menu"
                label="%menu.label"
                tooltip="%menu.tooltip">
@@ -62,7 +62,6 @@
                <with
                      variable="selection">
                   <test
-                        forcePluginActivation="true"
                         property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
                         value="true">
                   </test>
@@ -80,7 +79,6 @@
                <with
                      variable="selection">
                   <test
-                        forcePluginActivation="true"
                         property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
                         value="true">
                   </test>
@@ -98,7 +96,6 @@
                <with
                      variable="selection">
                   <test
-                        forcePluginActivation="true"
                         property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
                         value="true">
                   </test>
@@ -116,7 +113,6 @@
                <with
                      variable="selection">
                   <test
-                        forcePluginActivation="true"
                         property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
                         value="true">
                   </test>
@@ -134,7 +130,6 @@
                <with
                      variable="selection">
                   <test
-                        forcePluginActivation="true"
                         property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
                         value="true">
                   </test>
@@ -170,12 +165,33 @@
                <with
                      variable="selection">
                   <test
-                        forcePluginActivation="true"
                         property="org.eclipse.papyrus.req.sysml.assistant.requirement.isRequirementElement"
                         value="true">
                   </test>
                </with>
             </visibleWhen>
+         </command>
+         <menu
+               icon="images/Profile.gif"
+               id="org.eclipse.papyrus.req.sysml.defineReqLang.menu"
+               label="%menu.label.0"
+               tooltip="%menu.tooltip.0">
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.req.sysml.defineReqLang.menu">
+         <command
+               commandId="org.eclipse.papyrus.uml.profile.drafter.updateprofile"
+               label="%command.label.7"
+               style="push"
+               tooltip="%command.tooltip.7">
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.req.sysml.assistant.handler.InitCreateInitialProfileFromDomainModelHandler"
+               label="%command.label.8"
+               style="push"
+               tooltip="%command.tooltip.8">
          </command>
       </menuContribution>
    </extension>
@@ -229,6 +245,18 @@
             id="org.eclipse.papyrus.req.sysml.assistant.handler.AddVerifyLinkHandler"
             name="%command.name.6">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.req.sysml.assistant.handler.InitCreateInitialProfileFromDomainModelHandler"
+            id="org.eclipse.papyrus.req.sysml.assistant.handler.InitCreateInitialProfileFromDomainModelHandler"
+            name="%command.name.7">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.uml.profile.drafter.ui.handler.UpdateProfileHandler"
+            id="org.eclipse.papyrus.req.sysml.assistant.handler.InitDefineRequirementsLanguageHandler"
+            name="%command.name.8">
+      </command>
    </extension>
    <extension
          point="org.eclipse.core.expressions.propertyTesters">
@@ -244,6 +272,13 @@
             id="org.eclipse.papyrus.req.sysml.assistant.packageElement"
             namespace="org.eclipse.papyrus.req.sysml.assistant.packageElement"
             properties="isUMLPackage"
+            type="org.eclipse.jface.viewers.IStructuredSelection">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.req.sysml.assistant.testers.ProfileTester"
+            id="org.eclipse.papyrus.req.sysml.assistant.profileElement"
+            namespace="org.eclipse.papyrus.req.sysml.assistant.profileElement"
+            properties="isUMLProfile"
             type="org.eclipse.jface.viewers.IStructuredSelection">
       </propertyTester>
    </extension>
