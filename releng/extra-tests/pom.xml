@@ -29,6 +29,10 @@
     <module>../../tests/junit/extraplugins/migration/org.eclipse.papyrus.migration.rsa.tests</module>
     <!-- Tests for umlrt -->
     <module>../../tests/junit/extraplugins/umlrt/org.eclipse.papyrus.umlrt.validation.tests</module>
+    
+    <!-- Tests for Examples -->
+    <module>../../examples/library/org.eclipse.papyrus.training.library.tests</module>
+    
   </modules>
 	<repositories>
 		<repository>

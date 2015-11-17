@@ -40,6 +40,8 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.sysml14.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
+		<module>../../features/papyrus-example-features/org.eclipse.papyrus.example.feature</module>
+		<module>../../features/papyrus-example-features/org.eclipse.papyrus.training.library.feature</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo.ui</module>
@@ -246,6 +248,15 @@
 		<module>../../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.linklf</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.uml.diagram.linklf.feature</module>
 		<module>site</module>
+		
+		<!-- Papyrus Examples - Framework -->
+		<module>../../examples/framework/org.eclipse.papyrus.example.framework</module>
+		<!-- Papyrus Examples - Library -->
+		<module>../../examples/library/org.eclipse.papyrus.training.library.elementtypes</module>
+		<module>../../examples/library/org.eclipse.papyrus.training.library.model</module>
+		<module>../../examples/library/org.eclipse.papyrus.training.library.palette</module>
+		<module>../../examples/library/org.eclipse.papyrus.training.library.profile</module>
+		<module>../../examples/library/org.eclipse.papyrus.training.library.properties</module>
 	</modules>
 	<properties>
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
