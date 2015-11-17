@@ -36,8 +36,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -321,13 +319,11 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	}
 
 	private void initProfile(ModelSet modelSet) {
-		boolean isProfileApplied = selectDiagramKindPage.getProfileURI() != null;
-		if (isProfileApplied) {
+		boolean isToApplyProfile = selectDiagramKindPage.getProfileURI() != null;
+		if (isToApplyProfile) {
 			applyProfile(modelSet);
 			saveDiagram(modelSet);
-
 		}
-
 	}
 
 	private void initTemplate(ModelSet modelSet) {
@@ -459,13 +455,14 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	protected void applyProfile(ModelSet modelSet) {
 		String profilePath = selectDiagramKindPage.getProfileURI();
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
-		Profile profile = (Profile) resource.getContents().get(0);
+		Resource resource = modelSet.getResource(URI.createURI(profilePath), true);
+		Profile profileToApply = (Profile) resource.getContents().get(0);
 
 		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
 		org.eclipse.uml2.uml.Package manipulatedModel = (org.eclipse.uml2.uml.Package) myModelUMLResource.getContents().get(0);
-		getCommandStack(modelSet).execute(new ApplyProfileCommand(manipulatedModel, profile, modelSet.getTransactionalEditingDomain()));
+
+		RecordingCommand applyProfileCommand = new ApplyProfileCommand(manipulatedModel, profileToApply, modelSet.getTransactionalEditingDomain());
+		getCommandStack(modelSet).execute(applyProfileCommand);
 	}
 
 	protected void applyTemplateTransfo(ModelSet modelSet) {
