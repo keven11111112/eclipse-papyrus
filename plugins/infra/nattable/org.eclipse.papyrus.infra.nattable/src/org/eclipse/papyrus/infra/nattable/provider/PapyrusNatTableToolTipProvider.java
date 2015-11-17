@@ -58,6 +58,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 * the wrapper used to get the text and image from the table label provider
 	 */
 	private final LabelProviderCellContextElementWrapper wrapper = new LabelProviderCellContextElementWrapper();
+	
 	/**
 	 *
 	 * Constructor.
@@ -149,7 +150,9 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 		if (isInHeaderRegion(cell) && isCellWithDecorationMarker(cell)) {
 			DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
 			Object value = cell.getDataValue();
-			return Decoration.getMessageFromDecorations(serv, AxisUtils.getRepresentedElement(value));
+			if (value != null) {
+				return Decoration.getMessageFromDecorations(serv, AxisUtils.getRepresentedElement(value));
+			}
 		}
 		return super.getText(event);
 	}
@@ -167,7 +170,10 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 		}
 		DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
 		Object value = cell.getDataValue();
-		return serv.getDecorations(AxisUtils.getRepresentedElement(value), true).size() > 0;
+		if (value != null) {
+			return serv.getDecorations(AxisUtils.getRepresentedElement(value), true).size() > 0;
+		}
+		return false;
 	}
 
 	/**
@@ -248,7 +254,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 		if (isCellWithError(cell)) {
 			return true;
 		}
-		if (isCellWithDecorationMarker(cell)) {
+		if (isInHeaderRegion(getCell(event)) && isCellWithDecorationMarker(cell)) {
 			return true;
 		}
 		if (!isDisplayingFullCellText(event)) {
