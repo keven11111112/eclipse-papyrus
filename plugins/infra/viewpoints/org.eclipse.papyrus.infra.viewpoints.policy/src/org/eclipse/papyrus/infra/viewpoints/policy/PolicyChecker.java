@@ -54,6 +54,7 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.ModelKind;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.Stakeholder;
+import org.eclipse.papyrus.infra.viewpoints.policy.listener.PolicyCheckerNotifier;
 
 /**
  * The <code>PolicyChecker</code> enforces the viewpoints configuration as a policy in the user interface
@@ -281,6 +282,7 @@ public class PolicyChecker {
 	public static PolicyChecker getCurrent() {
 		if (currentPolicyChecker == null) {
 			currentPolicyChecker = new PolicyChecker();
+			PolicyCheckerNotifier.getInstance().fire(currentPolicyChecker);
 		}
 		return currentPolicyChecker;
 	}
@@ -293,6 +295,7 @@ public class PolicyChecker {
 	 */
 	public static void setCurrent(PolicyChecker pc) {
 		currentPolicyChecker = pc;
+		PolicyCheckerNotifier.getInstance().fire(pc);
 	}
 
 

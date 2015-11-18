@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.viewpoints.policy,
+ org.eclipse.papyrus.infra.viewpoints.policy.listener,
  org.eclipse.papyrus.infra.viewpoints.policy.query,
  org.eclipse.papyrus.infra.viewpoints.style,
  org.eclipse.papyrus.infra.viewpoints.style.impl,
