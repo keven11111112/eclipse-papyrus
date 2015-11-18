@@ -1634,6 +1634,31 @@
       </stream>
       <description/>
     </project>
+    <project
+        name="bpmn"
+        label="BPMN">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="papyrus.extraplugins.folder"
+          value="bpmn"/>
+      <stream
+          name="master"
+          label="master (Neon/1.2)">
+        <setupTask
+            xsi:type="setup:VariableTask"
+            name="papyrus.bugzilla.version"
+            value="${papyrus.bugzver.master}"/>
+      </stream>
+      <stream
+          name="streams/1.1-maintenance"
+          label="streams/1.1-maintenance (Mars/1.1.x)">
+        <setupTask
+            xsi:type="setup:VariableTask"
+            name="papyrus.bugzilla.version"
+            value="${papyrus.bugzver.mars}"/>
+      </stream>
+      <description>Papyrus BPMN</description>
+    </project>
     <description>Select sub-projects to import dependencies and sources for Papyrus extra components.</description>
   </project>
   <project label="Developer" name="dev">
