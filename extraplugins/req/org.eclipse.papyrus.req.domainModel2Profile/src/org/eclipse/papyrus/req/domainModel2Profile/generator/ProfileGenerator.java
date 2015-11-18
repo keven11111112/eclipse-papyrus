@@ -33,6 +33,7 @@ import org.eclipse.papyrus.req.domainModel2Profile.utils.Utils;
 import org.eclipse.papyrus.req.sysml.preferences.Activator;
 import org.eclipse.papyrus.req.sysml.preferences.PreferenceConstants;
 import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 //import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -70,8 +71,9 @@ public class ProfileGenerator {
 	private static String NSURI_PREFIX = "https://www.eclipse.org/papyrus/";
 	private static boolean GENERATE_ABSTRACTIONS_MODEL = false;
 	private static boolean FROM_ASSOCIATIONS_TO_STEREOTYPES = false;
-	private static String METACLASS_EXTENDED_BY_NODES = UMLPackage.Literals.CLASS.getName();
-	private static String METACLASS_EXTENDED_BY_EDGES = UMLPackage.Literals.ASSOCIATION.getName();
+	private static boolean FROM_ASSOCIATIONS_TO_ASSOCIATIONS = false;
+	private static String METACLASS_EXTENDED_BY_NODES = "none"; //UMLPackage.Literals.CLASS.getName();
+	private static String METACLASS_EXTENDED_BY_EDGES = "none";//= UMLPackage.Literals.ASSOCIATION.getName();
 	// Debug=true will automatically refresh the project to show the output
 	// files.
 	private static boolean DEBUG = true;
@@ -79,20 +81,22 @@ public class ProfileGenerator {
 	protected Stereotype baseEdgeStereotype;
 	protected Map<Element, Element> mapClassNodes = new HashMap<Element, Element>();
 	protected Map<Element, Element> mapAssociationsEdges = new HashMap<Element, Element>();
+	protected Map<Element, Element> mapProfileAssociations2MMAssociations = new HashMap<Element, Element>();
 	protected Map<Element, Element> mapPrimitiveTypesNodes = new HashMap<Element, Element>();
 	protected Map<Element, Element> mapEnumerationsNodes = new HashMap<Element, Element>();
 	protected Map<Element, Element> mapPackagesNodes = new HashMap<Element, Element>();
 	protected List<PrimitiveType> listStandardPrimitiveTypes = new ArrayList<PrimitiveType>();
 	protected String outputDirectoryPath;
 	protected List<Generalization> listInternalGeneralizations = new ArrayList<Generalization>();
+	protected List<Association> listAssociations = new ArrayList<Association>();
 	protected Model abstractionsModel;
+	
 
 	/**
 	 * Constructor to be called by Eclipse, takes into account generation
-	 * preferences
+	 * preferences in the Papyrus Req preference page.
 	 * 
-	 * @param selectedPackage
-	 *            uml domain model
+	 * @param selectedPackage The UML domain model
 	 */
 	public ProfileGenerator(Package selectedPackage) {
 		DEBUG = false;
@@ -100,6 +104,7 @@ public class ProfileGenerator {
 		NSURI_PREFIX = store.getString(PreferenceConstants.NSURI_PREFIX);
 		GENERATE_ABSTRACTIONS_MODEL = store.getBoolean(PreferenceConstants.GENERATE_ABSTRACTIONS_MODEL);
 		FROM_ASSOCIATIONS_TO_STEREOTYPES = store.getBoolean(PreferenceConstants.FROM_ASSOCIATIONS_TO_STEREOTYPES);
+		FROM_ASSOCIATIONS_TO_ASSOCIATIONS =store.getBoolean(PreferenceConstants.FROM_ASSOCIATIONS_TO_ASSOCIATIONS);
 		// METACLASS_EXTENDED_BY_NODES =
 		// store.getString(PreferenceConstants.METACLASS_EXTENDED_BY_NODES);
 		// //by default "none"
@@ -114,10 +119,12 @@ public class ProfileGenerator {
 	}
 
 	/**
-	 * Constructor to be used in an standalone Java application, takes into
-	 * account
+	 * Constructor to be used in an standalone Java application. It does not takes
+	 * into account preferences in the Papyrus Req preference page.
 	 * 
-	 * @param selectedPackage
+	 * @param _inputModelPath The path of the input model
+	 * @param _outputDirectoryPath The path to save the profile and if the abstractions model
+	 * @param _prefix the NSURI prefix used in the profile
 	 */
 	public ProfileGenerator(String _inputModelPath, String _outputDirectoryPath, String _prefix) {
 		DEBUG = true;
@@ -143,9 +150,11 @@ public class ProfileGenerator {
 		setProfile(Utils.createProfile(nameOfProfile, NSURI_PREFIX + sourcePackage.getName()));
 
 		if (!METACLASS_EXTENDED_BY_NODES.contentEquals("none")) {
+			METACLASS_EXTENDED_BY_NODES= UMLPackage.Literals.CLASS.getName();
 			baseNodeStereotype = Utils.createStereotype(profile, "baseNodeStereotype", true);
 		}
 		if (!METACLASS_EXTENDED_BY_EDGES.contentEquals("none")) {
+			METACLASS_EXTENDED_BY_EDGES= UMLPackage.Literals.ASSOCIATION.getName();
 			baseEdgeStereotype = Utils.createStereotype(profile, "baseEdgeStereotype", true);
 		}
 
@@ -159,6 +168,9 @@ public class ProfileGenerator {
 		createProfiles(mapEnumerationsNodes);
 		if (FROM_ASSOCIATIONS_TO_STEREOTYPES) {
 			createProfiles(mapAssociationsEdges);
+		}
+		if (FROM_ASSOCIATIONS_TO_ASSOCIATIONS) {
+			createAssociations();
 		}
 		createEnumerationLiterals();
 		createTagDefinitions();
@@ -188,6 +200,7 @@ public class ProfileGenerator {
 		if (GENERATE_ABSTRACTIONS_MODEL) {
 			abstractionsModel = Utils.createModel(nameOfAbstractionsModel);
 			createAbstractionsModel(mapClassNodes);
+			createAbstractionsModel(mapProfileAssociations2MMAssociations);
 			abstractionsModel.setURI(NSURI_PREFIX + nameOfAbstractionsModel);
 			save(abstractionsModel, outputDirectoryPath, nameOfAbstractionsModel, UMLResource.FILE_EXTENSION);
 		}
@@ -196,6 +209,50 @@ public class ProfileGenerator {
 		if (!DEBUG) {
 			Utils.refreshProject(sourceModelFile);
 		}
+	}
+
+	/**
+	 * Creates associations between stereotypes in a profile, based on the
+	 * associations in a domain model
+	 */
+	protected void createAssociations() {
+		Stereotype targetEndInProfile = null;
+		Stereotype sourceEndInProfile = null;
+		for (Association assocInMM : listAssociations) {
+			Property targetEndInMM = Utils.getTargetEnd(assocInMM);
+			// Property sourceEndInMM = targetEndInMM.getOtherEnd();
+			Property sourceEndInMM = Utils.getSourceEnd(assocInMM);
+			targetEndInProfile = getStereotypeByName(targetEndInMM.getType().getName());
+			sourceEndInProfile = getStereotypeByName(sourceEndInMM.getType().getName());
+			if (targetEndInProfile != null) {
+				Association assocInProfile = Utils.createAssociation(sourceEndInProfile, true,
+						AggregationKind.NONE_LITERAL, targetEndInMM.getName(), targetEndInMM.getLower(),
+						targetEndInMM.getUpper(), targetEndInProfile, true, AggregationKind.NONE_LITERAL,
+						sourceEndInMM.getName(), sourceEndInMM.getLower(), sourceEndInMM.getUpper());
+				assocInProfile.setName(assocInMM.getName());
+				mapProfileAssociations2MMAssociations.put(assocInProfile, assocInMM);
+			}
+		}
+	}
+
+	/**
+	 * @param stereotypeName
+	 *            The not qualified name of a stereotype
+	 * @return stereotype The stereotype with the stereotypeName in the
+	 *         Stereotypes - Class map (ex. key: Stereotype named Focus, value:
+	 *         Class named Focus).
+	 */
+	protected Stereotype getStereotypeByName(String stereotypeName) {
+		Stereotype stereotype=null;
+		for (Map.Entry<Element, Element> entry : mapClassNodes.entrySet()) {
+			if (entry.getKey() instanceof Stereotype && entry.getValue() instanceof Class) {
+				stereotype = (Stereotype) entry.getKey();
+				if (stereotype.getName().contentEquals(stereotypeName)){
+					return stereotype;
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -244,6 +301,7 @@ public class ProfileGenerator {
 				mapAssociationsEdges.put(
 						(Element) Utils.createStereotype(profile, ((NamedElement) element).getName(), false), element);
 			}
+			listAssociations.add((Association)element);
 		}
 	}
 

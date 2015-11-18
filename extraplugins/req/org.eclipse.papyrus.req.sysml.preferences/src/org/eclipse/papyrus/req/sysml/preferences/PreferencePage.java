@@ -9,7 +9,7 @@
  *
  * Contributors:
  *     CEA LIST. - initial API and implementation
- *     Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595, 
+ *     Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595, 481377,...
  *     
  *******************************************************************************/
 
@@ -45,21 +45,23 @@ public class PreferencePage extends FieldEditorPreferencePage implements IWorkbe
 	 */
 	@Override
 	public void createFieldEditors() {
-		Group reqCreationOptions = createGroup("Requirement");
+		Group reqCreationOptions = createGroup("Requirements creation");
 		addField(new StringFieldEditor(PreferenceConstants.REQUIREMENT_ID_PREFIX, "Prefix for requirement ID",
 				reqCreationOptions));
 		addField(new IntegerFieldEditor(PreferenceConstants.REQUIREMENT_ID_DIGIT, "Number of digits for requirement ID",
 				reqCreationOptions));
 		addField(new StringFieldEditor(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR,
 				"Separator between parent and child requirements IDs", reqCreationOptions));
-		
-		Group profileCreationOptions = createGroup("Profile Creation");
+
+		Group profileCreationOptions = createGroup("Generation of a profile based on a domain model");
+		addField(new StringFieldEditor(PreferenceConstants.NSURI_PREFIX, "Ns URI prefix for new profile",
+				profileCreationOptions));
 		addField(new BooleanFieldEditor(PreferenceConstants.GENERATE_ABSTRACTIONS_MODEL,
 				"Generate an abstraction model?", profileCreationOptions));
 		addField(new BooleanFieldEditor(PreferenceConstants.FROM_ASSOCIATIONS_TO_STEREOTYPES,
 				"Transform from associations to stereotypes?", profileCreationOptions));
-		addField(new StringFieldEditor(PreferenceConstants.NSURI_PREFIX, "Ns URI prefix for new profile",
-				profileCreationOptions));
+		addField(new BooleanFieldEditor(PreferenceConstants.FROM_ASSOCIATIONS_TO_ASSOCIATIONS,
+				"Transform from associations to associations?", profileCreationOptions));
 	}
 
 	/*
