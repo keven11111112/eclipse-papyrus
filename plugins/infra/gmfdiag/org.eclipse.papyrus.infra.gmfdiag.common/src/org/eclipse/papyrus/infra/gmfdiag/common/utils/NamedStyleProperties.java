@@ -110,6 +110,9 @@ public interface NamedStyleProperties {
 	/** The NamedStyle property to define the text alignment. */
 	public static final String TEXT_ALIGNMENT = "textAlignment"; //$NON-NLS-1$
 
+	/** The NamedStyle property to define the text wrap. */
+	public static final String WRAP_NAME = "isNameWrap"; //$NON-NLS-1$
+
 	/** NamedStyle property to define the label offset on Y. */
 	public static final String LABEL_OFFSET_Y = "labelOffsetY"; //$NON-NLS-1$
 
