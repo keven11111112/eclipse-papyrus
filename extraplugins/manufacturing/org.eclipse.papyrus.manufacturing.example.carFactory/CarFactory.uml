@@ -246,229 +246,31 @@
           <ownedComment xmi:type="uml:Comment" xmi:id="_1KyLMHwAEeW58uGvBWqVTQ">
             <body>Papyrus4Lego</body>
           </ownedComment>
-          <packagedElement xmi:type="uml:Class" xmi:id="_QnJicG2XEeWIL8vkyXioGQ" name="Module"/>
-          <packagedElement xmi:type="uml:Association" xmi:id="_VJYsoG2ZEeWIL8vkyXioGQ" name="Association1" memberEnd="_VJT0IG2ZEeWIL8vkyXioGQ _VJYso22ZEeWIL8vkyXioGQ">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_VJYsoW2ZEeWIL8vkyXioGQ" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_VJYsom2ZEeWIL8vkyXioGQ" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_VJYso22ZEeWIL8vkyXioGQ" name="factory" type="_c1l1QG2XEeWIL8vkyXioGQ" association="_VJYsoG2ZEeWIL8vkyXioGQ"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_gDLgsG2ZEeWIL8vkyXioGQ" name="Association2" memberEnd="_gDKSkG2ZEeWIL8vkyXioGQ _gDLgs22ZEeWIL8vkyXioGQ">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_gDLgsW2ZEeWIL8vkyXioGQ" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_gDLgsm2ZEeWIL8vkyXioGQ" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_gDLgs22ZEeWIL8vkyXioGQ" name="factory" type="_c1l1QG2XEeWIL8vkyXioGQ" association="_gDLgsG2ZEeWIL8vkyXioGQ"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_nyofsG2ZEeWIL8vkyXioGQ" name="Association3" memberEnd="_nynRkG2ZEeWIL8vkyXioGQ _nyofs22ZEeWIL8vkyXioGQ">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_nyofsW2ZEeWIL8vkyXioGQ" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_nyofsm2ZEeWIL8vkyXioGQ" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_nyofs22ZEeWIL8vkyXioGQ" name="factory" type="_c1l1QG2XEeWIL8vkyXioGQ" association="_nyofsG2ZEeWIL8vkyXioGQ"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_r5Y5sG2ZEeWIL8vkyXioGQ" name="Association4" memberEnd="_r5YSoG2ZEeWIL8vkyXioGQ _r5Y5s22ZEeWIL8vkyXioGQ">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_r5Y5sW2ZEeWIL8vkyXioGQ" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_r5Y5sm2ZEeWIL8vkyXioGQ" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_r5Y5s22ZEeWIL8vkyXioGQ" name="factory" type="_c1l1QG2XEeWIL8vkyXioGQ" association="_r5Y5sG2ZEeWIL8vkyXioGQ"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_ycQFkG2gEeWjcIKjKwsfEw" name="ChassisAssemblyModule">
-            <generalization xmi:type="uml:Generalization" xmi:id="_-J9C0G2gEeWjcIKjKwsfEw" general="_QnJicG2XEeWIL8vkyXioGQ"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="__2brYG2jEeWjcIKjKwsfEw" name="ev3Brick" type="_aPvp0G2WEeWIL8vkyXioGQ" aggregation="composite" association="__2vNYG2jEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_jMEt0G2lEeWjcIKjKwsfEw" name="keypad" type="__vpZ0G2WEeWIL8vkyXioGQ" aggregation="composite" association="_jMPF4G2lEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_XV4tgG2mEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" aggregation="composite" association="_XV7JwG2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_jmfjgG2mEeWjcIKjKwsfEw" name="conveyor" type="_ftiSwG2XEeWIL8vkyXioGQ" aggregation="composite" association="_jmjN4G2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_7z_CQG2mEeWjcIKjKwsfEw" name="rack" type="_jaz1wG2XEeWIL8vkyXioGQ" aggregation="composite" association="_70DTsG2mEeWjcIKjKwsfEw">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PCHrEG2nEeWjcIKjKwsfEw" value="2"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PCTRQG2nEeWjcIKjKwsfEw" value="2"/>
-            </ownedAttribute>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_CzXZwG2oEeWjcIKjKwsfEw" name="presenceDetector" type="_4cD3cG2WEeWIL8vkyXioGQ" aggregation="composite" association="_CzadEG2oEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_uCA1QG2oEeWjcIKjKwsfEw" name="socket" type="_7IcIsG2XEeWIL8vkyXioGQ" aggregation="composite" association="_uCCqcG2oEeWjcIKjKwsfEw"/>
-            <ownedConnector xmi:type="uml:Connector" xmi:id="_b7PMYG3EEeWjcIKjKwsfEw" name=" ">
-              <end xmi:type="uml:ConnectorEnd" xmi:id="_b7Y9YG3EEeWjcIKjKwsfEw" partWithPort="_XV4tgG2mEeWjcIKjKwsfEw" role="_MOsiYG3BEeWjcIKjKwsfEw"/>
-              <end xmi:type="uml:ConnectorEnd" xmi:id="_b7aLgG3EEeWjcIKjKwsfEw" partWithPort="_7z_CQG2mEeWjcIKjKwsfEw" role="_2DoHAG3DEeWjcIKjKwsfEw"/>
-            </ownedConnector>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_zzVNQG2gEeWjcIKjKwsfEw" name="TrunkAssemblyModule">
-            <generalization xmi:type="uml:Generalization" xmi:id="_-on70G2gEeWjcIKjKwsfEw" general="_QnJicG2XEeWIL8vkyXioGQ"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_A8c4QG2kEeWjcIKjKwsfEw" name="ev3Brick" type="_aPvp0G2WEeWIL8vkyXioGQ" aggregation="composite" association="_A8gioG2kEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_XpdJwG2mEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" aggregation="composite" association="_XpfmAG2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_oZW1kG2mEeWjcIKjKwsfEw" name="conveyor" type="_ftiSwG2XEeWIL8vkyXioGQ" aggregation="composite" association="_oZZ44G2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_8iJIwG2mEeWjcIKjKwsfEw" name="rack" type="_jaz1wG2XEeWIL8vkyXioGQ" aggregation="composite" association="_8iK98G2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_Hc3UcG2oEeWjcIKjKwsfEw" name="presenceDetector" type="_4cD3cG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Hc8M8G2oEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_xAlfMG2oEeWjcIKjKwsfEw" name="socket" type="_7IcIsG2XEeWIL8vkyXioGQ" aggregation="composite" association="_xAn7cG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Class" xmi:id="_3eJSIG2gEeWjcIKjKwsfEw" name="RoofAssemblyModule">
-            <generalization xmi:type="uml:Generalization" xmi:id="__caJMG2gEeWjcIKjKwsfEw" general="_QnJicG2XEeWIL8vkyXioGQ"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_CUK5IG2kEeWjcIKjKwsfEw" name="ev3Brick" type="_aPvp0G2WEeWIL8vkyXioGQ" aggregation="composite" association="_CUV4QG2kEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_X37qoG2mEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" aggregation="composite" association="_X384wG2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_osWqEG2mEeWjcIKjKwsfEw" name="conveyor" type="_ftiSwG2XEeWIL8vkyXioGQ" aggregation="composite" association="_osZGUG2mEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_9GPUUG2mEeWjcIKjKwsfEw" name="rack" type="_jaz1wG2XEeWIL8vkyXioGQ" aggregation="composite" association="_9GRJgG2mEeWjcIKjKwsfEw">
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Rnpi4G2nEeWjcIKjKwsfEw" value="2"/>
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RpDREG2nEeWjcIKjKwsfEw" value="2"/>
-            </ownedAttribute>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_H-SmgG2oEeWjcIKjKwsfEw" name="presenceDetector" type="_4cD3cG2WEeWIL8vkyXioGQ" aggregation="composite" association="_H-VCwG2oEeWjcIKjKwsfEw"/>
-            <ownedAttribute xmi:type="uml:Property" xmi:id="_xQVLYG2oEeWjcIKjKwsfEw" name="socket" type="_7IcIsG2XEeWIL8vkyXioGQ" aggregation="composite" association="_xQXAkG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="__2vNYG2jEeWjcIKjKwsfEw" name="Association5" memberEnd="__2brYG2jEeWjcIKjKwsfEw __2vNY22jEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__2vNYW2jEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__2vNYm2jEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="__2vNY22jEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_ycQFkG2gEeWjcIKjKwsfEw" association="__2vNYG2jEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_A8gioG2kEeWjcIKjKwsfEw" name="Association6" memberEnd="_A8c4QG2kEeWjcIKjKwsfEw _A8gio22kEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_A8gioW2kEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_A8giom2kEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_A8gio22kEeWjcIKjKwsfEw" name="trunkengineassemblymodule" type="_zzVNQG2gEeWjcIKjKwsfEw" association="_A8gioG2kEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_CUV4QG2kEeWjcIKjKwsfEw" name="Association8" memberEnd="_CUK5IG2kEeWjcIKjKwsfEw _CUV4Q22kEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CUV4QW2kEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CUV4Qm2kEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_CUV4Q22kEeWjcIKjKwsfEw" name="roofassemblymodule" type="_3eJSIG2gEeWjcIKjKwsfEw" association="_CUV4QG2kEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_jMPF4G2lEeWjcIKjKwsfEw" name="Association9" memberEnd="_jMEt0G2lEeWjcIKjKwsfEw _jMPF422lEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jMPF4W2lEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jMPF4m2lEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_jMPF422lEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_ycQFkG2gEeWjcIKjKwsfEw" association="_jMPF4G2lEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_XV7JwG2mEeWjcIKjKwsfEw" name="Association10" memberEnd="_XV7Jw22mEeWjcIKjKwsfEw _XV4tgG2mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XV7JwW2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XV7Jwm2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_XV7Jw22mEeWjcIKjKwsfEw" type="_ycQFkG2gEeWjcIKjKwsfEw" association="_XV7JwG2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_XpfmAG2mEeWjcIKjKwsfEw" name="Association10" memberEnd="_XpfmA22mEeWjcIKjKwsfEw _XpdJwG2mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XpfmAW2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XpfmAm2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_XpfmA22mEeWjcIKjKwsfEw" type="_zzVNQG2gEeWjcIKjKwsfEw" association="_XpfmAG2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_X384wG2mEeWjcIKjKwsfEw" name="Association10" memberEnd="_X39f0G2mEeWjcIKjKwsfEw _X37qoG2mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_X384wW2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_X384wm2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_X39f0G2mEeWjcIKjKwsfEw" type="_3eJSIG2gEeWjcIKjKwsfEw" association="_X384wG2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_jmjN4G2mEeWjcIKjKwsfEw" name="Association11" memberEnd="_jmfjgG2mEeWjcIKjKwsfEw _jmjN422mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jmjN4W2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jmjN4m2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_jmjN422mEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_ycQFkG2gEeWjcIKjKwsfEw" association="_jmjN4G2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_oZZ44G2mEeWjcIKjKwsfEw" name="Association11" memberEnd="_oZZ4422mEeWjcIKjKwsfEw _oZW1kG2mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oZZ44W2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_oZZ44m2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_oZZ4422mEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_zzVNQG2gEeWjcIKjKwsfEw" association="_oZZ44G2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_osZGUG2mEeWjcIKjKwsfEw" name="Association11" memberEnd="_osZGU22mEeWjcIKjKwsfEw _osWqEG2mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_osZGUW2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_osZGUm2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_osZGU22mEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_3eJSIG2gEeWjcIKjKwsfEw" association="_osZGUG2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_70DTsG2mEeWjcIKjKwsfEw" name="Association12" memberEnd="_7z_CQG2mEeWjcIKjKwsfEw _70Eh0m2mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_70Eh0G2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_70Eh0W2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_70Eh0m2mEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_ycQFkG2gEeWjcIKjKwsfEw" association="_70DTsG2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_8iK98G2mEeWjcIKjKwsfEw" name="Association13" memberEnd="_8iJIwG2mEeWjcIKjKwsfEw _8iK9822mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8iK98W2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8iK98m2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_8iK9822mEeWjcIKjKwsfEw" name="trunkengineassemblymodule" type="_zzVNQG2gEeWjcIKjKwsfEw" association="_8iK98G2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_9GRJgG2mEeWjcIKjKwsfEw" name="Association14" memberEnd="_9GPUUG2mEeWjcIKjKwsfEw _9GRJg22mEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9GRJgW2mEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_9GRJgm2mEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_9GRJg22mEeWjcIKjKwsfEw" name="roofassemblymodule" type="_3eJSIG2gEeWjcIKjKwsfEw" association="_9GRJgG2mEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_CzadEG2oEeWjcIKjKwsfEw" name="Association15" memberEnd="_CzXZwG2oEeWjcIKjKwsfEw _CzadE22oEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CzadEW2oEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CzadEm2oEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_CzadE22oEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_ycQFkG2gEeWjcIKjKwsfEw" association="_CzadEG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_Hc8M8G2oEeWjcIKjKwsfEw" name="Association15" memberEnd="_Hc8M822oEeWjcIKjKwsfEw _Hc3UcG2oEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Hc8M8W2oEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Hc8M8m2oEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_Hc8M822oEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_zzVNQG2gEeWjcIKjKwsfEw" association="_Hc8M8G2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_H-VCwG2oEeWjcIKjKwsfEw" name="Association15" memberEnd="_H-VCw22oEeWjcIKjKwsfEw _H-SmgG2oEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_H-VCwW2oEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_H-VCwm2oEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_H-VCw22oEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_3eJSIG2gEeWjcIKjKwsfEw" association="_H-VCwG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_uCCqcG2oEeWjcIKjKwsfEw" name="Association16" memberEnd="_uCA1QG2oEeWjcIKjKwsfEw _uCCqc22oEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uCCqcW2oEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_uCCqcm2oEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_uCCqc22oEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_ycQFkG2gEeWjcIKjKwsfEw" association="_uCCqcG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_xAn7cG2oEeWjcIKjKwsfEw" name="Association16" memberEnd="_xAn7c22oEeWjcIKjKwsfEw _xAlfMG2oEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xAn7cW2oEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xAn7cm2oEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_xAn7c22oEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_zzVNQG2gEeWjcIKjKwsfEw" association="_xAn7cG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_xQXAkG2oEeWjcIKjKwsfEw" name="Association16" memberEnd="_xQXAk22oEeWjcIKjKwsfEw _xQVLYG2oEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_xQXAkW2oEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_xQXAkm2oEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_xQXAk22oEeWjcIKjKwsfEw" name="chassisassemblymodule" type="_3eJSIG2gEeWjcIKjKwsfEw" association="_xQXAkG2oEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_Tow0IG2pEeWjcIKjKwsfEw" name="Association17" memberEnd="_TotJwG2pEeWjcIKjKwsfEw _Tow0I22pEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Tow0IW2pEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Tow0Im2pEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_Tow0I22pEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" association="_Tow0IG2pEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_WfaRIG2pEeWjcIKjKwsfEw" name="Association18" memberEnd="_WfWmwG2pEeWjcIKjKwsfEw _WfaRI22pEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WfaRIW2pEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_WfaRIm2pEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_WfaRI22pEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" association="_WfaRIG2pEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_YgpwIG2pEeWjcIKjKwsfEw" name="Association19" memberEnd="_Ygms0G2pEeWjcIKjKwsfEw _YgpwI22pEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_YgpwIW2pEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_YgpwIm2pEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_YgpwI22pEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" association="_YgpwIG2pEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_Zk5bYG2pEeWjcIKjKwsfEw" name="Association20" memberEnd="_Zk2_IG2pEeWjcIKjKwsfEw _Zk5bY22pEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Zk5bYW2pEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Zk5bYm2pEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_Zk5bY22pEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" association="_Zk5bYG2pEeWjcIKjKwsfEw"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:Association" xmi:id="_cEWgYG2pEeWjcIKjKwsfEw" name="Association21" memberEnd="_cEUEIG2pEeWjcIKjKwsfEw _cEWgY22pEeWjcIKjKwsfEw">
-            <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_cEWgYW2pEeWjcIKjKwsfEw" source="org.eclipse.papyrus">
-              <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_cEWgYm2pEeWjcIKjKwsfEw" key="nature" value="SysML_Nature"/>
-            </eAnnotations>
-            <ownedEnd xmi:type="uml:Property" xmi:id="_cEWgY22pEeWjcIKjKwsfEw" name="arm" type="_K6SGQG2XEeWIL8vkyXioGQ" association="_cEWgYG2pEeWjcIKjKwsfEw"/>
-          </packagedElement>
           <packagedElement xmi:type="uml:Package" xmi:id="_ikwsQHv1EeW58uGvBWqVTQ" name="ProductionLine">
-            <packagedElement xmi:type="uml:Package" xmi:id="_sfHaQH1uEeW11410LKyvTg" name="ChassisAssemblyModule"/>
-            <packagedElement xmi:type="uml:Package" xmi:id="_tDsmoH1xEeW11410LKyvTg" name="TrunkAssemblyModule"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_sfHaQH1uEeW11410LKyvTg" name="ChassisAssemblyModule">
+              <packagedElement xmi:type="uml:Class" xmi:id="_ycQFkG2gEeWjcIKjKwsfEw" name="ChassisAssemblyModule">
+                <generalization xmi:type="uml:Generalization" xmi:id="_-J9C0G2gEeWjcIKjKwsfEw" general="_QnJicG2XEeWIL8vkyXioGQ"/>
+              </packagedElement>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="_tDsmoH1xEeW11410LKyvTg" name="TrunkAssemblyModule">
+              <packagedElement xmi:type="uml:Class" xmi:id="_zzVNQG2gEeWjcIKjKwsfEw" name="TrunkAssemblyModule">
+                <generalization xmi:type="uml:Generalization" xmi:id="_-on70G2gEeWjcIKjKwsfEw" general="_QnJicG2XEeWIL8vkyXioGQ"/>
+              </packagedElement>
+            </packagedElement>
             <packagedElement xmi:type="uml:Package" xmi:id="_FBMhkH1yEeW11410LKyvTg" name="EngineAssemblyModule"/>
-            <packagedElement xmi:type="uml:Package" xmi:id="_N4WvgH1yEeW11410LKyvTg" name="RoofAssemblyModule"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_N4WvgH1yEeW11410LKyvTg" name="RoofAssemblyModule">
+              <packagedElement xmi:type="uml:Class" xmi:id="_3eJSIG2gEeWjcIKjKwsfEw" name="RoofAssemblyModule">
+                <generalization xmi:type="uml:Generalization" xmi:id="__caJMG2gEeWjcIKjKwsfEw" general="_QnJicG2XEeWIL8vkyXioGQ"/>
+              </packagedElement>
+            </packagedElement>
             <packagedElement xmi:type="uml:Package" xmi:id="_hD0fsH7vEeWbUK2TODqFLw" name="ProductionLineSystems">
-              <packagedElement xmi:type="uml:Class" xmi:id="__phHMG2XEeWIL8vkyXioGQ" name="Press"/>
+              <packagedElement xmi:type="uml:Class" xmi:id="__phHMG2XEeWIL8vkyXioGQ" name="Press">
+                <ownedAttribute xmi:type="uml:Port" xmi:id="_KGHJ8I6qEeWim-pW1nJ5mA" name="PressServices" type="_Hq8WcH7wEeWbUK2TODqFLw" aggregation="composite"/>
+              </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_4cD3cG2WEeWIL8vkyXioGQ" name="ColorSensor"/>
               <packagedElement xmi:type="uml:Class" xmi:id="_lhY9MG2WEeWIL8vkyXioGQ" name="EV3ServoMotor"/>
               <packagedElement xmi:type="uml:Class" xmi:id="_oipuwG2WEeWIL8vkyXioGQ" name="RcServoMotor"/>
               <packagedElement xmi:type="uml:Class" xmi:id="_K6SGQG2XEeWIL8vkyXioGQ" name="Arm">
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_TotJwG2pEeWjcIKjKwsfEw" name="rotator" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Tow0IG2pEeWjcIKjKwsfEw"/>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_WfWmwG2pEeWjcIKjKwsfEw" name="motor" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_WfaRIG2pEeWjcIKjKwsfEw"/>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_Ygms0G2pEeWjcIKjKwsfEw" name="part3" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_YgpwIG2pEeWjcIKjKwsfEw"/>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_Zk2_IG2pEeWjcIKjKwsfEw" name="motor" type="_oipuwG2WEeWIL8vkyXioGQ" aggregation="composite" association="_Zk5bYG2pEeWjcIKjKwsfEw"/>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_cEUEIG2pEeWjcIKjKwsfEw" name="colorPicker" type="_4cD3cG2WEeWIL8vkyXioGQ" aggregation="composite" association="_cEWgYG2pEeWjcIKjKwsfEw"/>
                 <ownedAttribute xmi:type="uml:Port" xmi:id="_MOsiYG3BEeWjcIKjKwsfEw" name="armServices" type="_DykDkG3BEeWjcIKjKwsfEw" aggregation="composite"/>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_ftiSwG2XEeWIL8vkyXioGQ" name="Conveyor"/>
@@ -512,6 +314,11 @@
                 </packagedElement>
               </packagedElement>
             </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="_yq0kMI6pEeWim-pW1nJ5mA" name="GenericModule">
+              <packagedElement xmi:type="uml:Class" xmi:id="_QnJicG2XEeWIL8vkyXioGQ" name="GenericModule">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_EfNL0I6qEeWim-pW1nJ5mA" name="conveyor" type="_ftiSwG2XEeWIL8vkyXioGQ"/>
+              </packagedElement>
+            </packagedElement>
           </packagedElement>
           <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_73CEgH7kEeWbUK2TODqFLw">
             <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_73CrkH7kEeWbUK2TODqFLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -520,12 +327,7 @@
             <appliedProfile xmi:type="uml:Profile" href="pathmap://Robotml_PROFILES/RobotMLProfile.profile.uml#_3QOHEPcEEd-J06U5HM_o-Q"/>
           </profileApplication>
         </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="_c1l1QG2XEeWIL8vkyXioGQ" name="LegoCarFactory">
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_VJT0IG2ZEeWIL8vkyXioGQ" name="chassisAssemblyModule" type="_ycQFkG2gEeWjcIKjKwsfEw" aggregation="composite" association="_VJYsoG2ZEeWIL8vkyXioGQ"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_gDKSkG2ZEeWIL8vkyXioGQ" name="trunkAssemblyModule" type="_zzVNQG2gEeWjcIKjKwsfEw" aggregation="composite" association="_gDLgsG2ZEeWIL8vkyXioGQ"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_nynRkG2ZEeWIL8vkyXioGQ" name="engineAssemblyModule" type="_zzVNQG2gEeWjcIKjKwsfEw" aggregation="composite" association="_nyofsG2ZEeWIL8vkyXioGQ"/>
-          <ownedAttribute xmi:type="uml:Property" xmi:id="_r5YSoG2ZEeWIL8vkyXioGQ" name="roofAssemblyModule" type="_3eJSIG2gEeWjcIKjKwsfEw" aggregation="composite" association="_r5Y5sG2ZEeWIL8vkyXioGQ"/>
-        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_c1l1QG2XEeWIL8vkyXioGQ" name="LegoCarFactory"/>
         <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_5XkYcH7kEeWbUK2TODqFLw">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5Xm0sH7kEeWbUK2TODqFLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
             <references xmi:type="ecore:EPackage" href="http://Papyrus/RobotML/1#/"/>
@@ -792,4 +594,6 @@
   <Blocks:Block xmi:id="_Vv978H7mEeWbUK2TODqFLw" base_Class="__phHMG2XEeWIL8vkyXioGQ"/>
   <RobotML:Environment xmi:id="_hPxGcH7uEeWbUK2TODqFLw" base_Class="_c1l1QG2XEeWIL8vkyXioGQ"/>
   <Blocks:Block xmi:id="_t_45EH7lEeWbUK2TODqFLw" base_Class="_c1l1QG2XEeWIL8vkyXioGQ"/>
+  <RobotML:ServicePort xmi:id="_YNu20I6oEeWim-pW1nJ5mA" base_Port="_2DoHAG3DEeWjcIKjKwsfEw"/>
+  <RobotML:ServicePort xmi:id="_KMPnII6qEeWim-pW1nJ5mA" base_Port="_KGHJ8I6qEeWim-pW1nJ5mA"/>
 </xmi:XMI>
