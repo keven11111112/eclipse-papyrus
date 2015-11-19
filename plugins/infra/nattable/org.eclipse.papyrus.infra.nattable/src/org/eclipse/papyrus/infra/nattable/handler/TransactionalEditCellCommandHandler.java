@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
+import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.config.IEditableRule;
 import org.eclipse.nebula.widgets.nattable.edit.ActiveCellEditorRegistry;
@@ -31,11 +32,18 @@ import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.gui.CellEditDialogFactory;
 import org.eclipse.nebula.widgets.nattable.edit.gui.ICellEditDialog;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
+import org.eclipse.nebula.widgets.nattable.layer.ILayerListener;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.nebula.widgets.nattable.layer.event.ILayerEvent;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer.MoveDirectionEnum;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
+import org.eclipse.nebula.widgets.nattable.viewport.event.ScrollEvent;
 import org.eclipse.nebula.widgets.nattable.widget.EditModeEnum;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseWheelListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -46,8 +54,18 @@ import org.eclipse.swt.widgets.Control;
  */
 public class TransactionalEditCellCommandHandler extends TransactionalCommandHandler<EditCellCommand> {
 
+	/**
+	 * The listener to manage the mouse wheel listener
+	 */
+	protected MouseWheelListener mouseWheelListener = null;
+
+	/**
+	 * The listener to manage the scroll event.
+	 */
+	protected ILayerListener scrollLayerListener = null;
+
 	public TransactionalEditCellCommandHandler(TransactionalEditingDomain domain) {
-		this(domain, "Edit Table Cell");
+		this(domain, "Edit Table Cell"); //$NON-NLS-1$
 	}
 
 	public TransactionalEditCellCommandHandler(TransactionalEditingDomain domain, String label) {
@@ -102,6 +120,7 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 					editorControl.setBounds(editorBounds);
 
 					cellEditor.addEditorControlListeners();
+					addScrollListener(cellEditor);
 					ActiveCellEditorRegistry.registerActiveCellEditor(cellEditor);
 				}
 
@@ -122,6 +141,57 @@ public class TransactionalEditCellCommandHandler extends TransactionalCommandHan
 		}
 
 		return result;
+	}
+
+	/**
+	 * This allows to create the listeners to manage the scroll event when a cell is editing.
+	 * 
+	 * @param cellEditor
+	 *            The cell editor used to edit the cell.
+	 */
+	protected void addScrollListener(final ICellEditor cellEditor) {
+		final Control control = cellEditor.getEditorControl();
+
+		if (null != control && !control.isDisposed()) {
+			// Create the mouse wheel listener
+			mouseWheelListener = new MouseWheelListener() {
+
+				@Override
+				public void mouseScrolled(MouseEvent e) {
+					if (null != control && !control.isDisposed() && null != control.getParent()) {
+						control.getParent().forceFocus();
+					}
+				}
+			};
+
+			// Create the layer listener for the scroll event
+			scrollLayerListener = new ILayerListener() {
+
+				@Override
+				public void handleLayerEvent(ILayerEvent event) {
+					if (event instanceof ScrollEvent) {
+						if (null != control && !control.isDisposed() && null != control.getParent()) {
+							control.getParent().forceFocus();
+						}
+					}
+				}
+			};
+
+			// Add the listeners
+			control.addMouseWheelListener(mouseWheelListener);
+			((NatTable) control.getParent()).addLayerListener(scrollLayerListener);
+
+			// Add a dispose listener which allow to remove the previous listener and the current
+			control.addDisposeListener(new DisposeListener() {
+
+				@Override
+				public void widgetDisposed(DisposeEvent e) {
+					control.removeMouseWheelListener(mouseWheelListener);
+					((NatTable) control.getParent()).removeLayerListener(scrollLayerListener);
+					control.removeDisposeListener(this);
+				}
+			});
+		}
 	}
 
 	// From Nebula EditController (with minor tweaks)
