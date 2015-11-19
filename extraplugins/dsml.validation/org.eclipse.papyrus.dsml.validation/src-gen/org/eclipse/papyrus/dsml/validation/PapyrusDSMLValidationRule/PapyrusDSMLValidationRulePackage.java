@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRuleFactory
  * @model kind="package"
  * @generated
@@ -30,7 +29,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNAME = "PapyrusDSMLValidationRule";
@@ -39,7 +37,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/dsmlvalidation";
@@ -48,7 +45,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "PapyrusDSMLValidationRule";
@@ -57,7 +53,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	PapyrusDSMLValidationRulePackage eINSTANCE = org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl.init();
@@ -66,7 +61,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.ValidationRuleImpl <em>Validation Rule</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.ValidationRuleImpl
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getValidationRule()
 	 * @generated
@@ -77,7 +71,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Severity</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -87,7 +80,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Mode</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -97,7 +89,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Is Enabled By Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -107,7 +98,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Base Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -117,7 +107,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Status Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -127,7 +116,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -137,7 +125,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -147,7 +134,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Target</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -157,7 +143,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -167,7 +152,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -177,7 +161,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The number of structural features of the '<em>Validation Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -187,40 +170,102 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * The number of operations of the '<em>Validation Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
 	int VALIDATION_RULE_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.MessageHandlingImpl <em>Message Handling</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.MessageHandlingImpl
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getMessageHandling()
+	 * @generated
+	 */
+	int MESSAGE_HANDLING = 1;
+
+	/**
+	 * The feature id for the '<em><b>Message Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_HANDLING__MESSAGE_MODE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Base Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_HANDLING__BASE_PACKAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Custom Template</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_HANDLING__CUSTOM_TEMPLATE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Message Handling</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_HANDLING_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Message Handling</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MESSAGE_HANDLING_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Severity <em>Severity</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Severity
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getSeverity()
 	 * @generated
 	 */
-	int SEVERITY = 1;
+	int SEVERITY = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode <em>Mode</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getMode()
 	 * @generated
 	 */
-	int MODE = 2;
+	int MODE = 3;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode <em>Name Based Msg Mode</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getNameBasedMsgMode()
+	 * @generated
+	 */
+	int NAME_BASED_MSG_MODE = 4;
 
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule <em>Validation Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Validation Rule</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule
 	 * @generated
@@ -231,7 +276,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getSeverity <em>Severity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Severity</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getSeverity()
 	 * @see #getValidationRule()
@@ -243,7 +287,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getMode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Mode</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getMode()
 	 * @see #getValidationRule()
@@ -255,7 +298,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#isEnabledByDefault <em>Is Enabled By Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Is Enabled By Default</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#isEnabledByDefault()
 	 * @see #getValidationRule()
@@ -267,7 +309,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getBase_Constraint <em>Base Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the reference '<em>Base Constraint</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getBase_Constraint()
 	 * @see #getValidationRule()
@@ -279,7 +320,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getStatusCode <em>Status Code</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Status Code</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getStatusCode()
 	 * @see #getValidationRule()
@@ -291,7 +331,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getMessage <em>Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Message</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getMessage()
 	 * @see #getValidationRule()
@@ -303,7 +342,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getDescription()
 	 * @see #getValidationRule()
@@ -315,7 +353,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute list '<em>Target</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getTarget()
 	 * @see #getValidationRule()
@@ -327,7 +364,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getClass_ <em>Class</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Class</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getClass_()
 	 * @see #getValidationRule()
@@ -339,7 +375,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Id</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationRule#getId()
 	 * @see #getValidationRule()
@@ -348,10 +383,52 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	EAttribute getValidationRule_Id();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling <em>Message Handling</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Message Handling</em>'.
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling
+	 * @generated
+	 */
+	EClass getMessageHandling();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling#getMessageMode <em>Message Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message Mode</em>'.
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling#getMessageMode()
+	 * @see #getMessageHandling()
+	 * @generated
+	 */
+	EAttribute getMessageHandling_MessageMode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling#getBase_Package <em>Base Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Base Package</em>'.
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling#getBase_Package()
+	 * @see #getMessageHandling()
+	 * @generated
+	 */
+	EReference getMessageHandling_Base_Package();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling#getCustomTemplate <em>Custom Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Custom Template</em>'.
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling#getCustomTemplate()
+	 * @see #getMessageHandling()
+	 * @generated
+	 */
+	EAttribute getMessageHandling_CustomTemplate();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Severity <em>Severity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for enum '<em>Severity</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Severity
 	 * @generated
@@ -362,7 +439,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for enum '<em>Mode</em>'.
 	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode
 	 * @generated
@@ -370,10 +446,19 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	EEnum getMode();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode <em>Name Based Msg Mode</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Name Based Msg Mode</em>'.
+	 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode
+	 * @generated
+	 */
+	EEnum getNameBasedMsgMode();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -390,7 +475,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
@@ -398,7 +482,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.ValidationRuleImpl <em>Validation Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.ValidationRuleImpl
 		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getValidationRule()
 		 * @generated
@@ -409,7 +492,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Severity</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__SEVERITY = eINSTANCE.getValidationRule_Severity();
@@ -418,7 +500,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__MODE = eINSTANCE.getValidationRule_Mode();
@@ -427,7 +508,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Is Enabled By Default</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__IS_ENABLED_BY_DEFAULT = eINSTANCE.getValidationRule_IsEnabledByDefault();
@@ -436,7 +516,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference VALIDATION_RULE__BASE_CONSTRAINT = eINSTANCE.getValidationRule_Base_Constraint();
@@ -445,7 +524,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Status Code</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__STATUS_CODE = eINSTANCE.getValidationRule_StatusCode();
@@ -454,7 +532,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__MESSAGE = eINSTANCE.getValidationRule_Message();
@@ -463,7 +540,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__DESCRIPTION = eINSTANCE.getValidationRule_Description();
@@ -472,7 +548,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Target</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__TARGET = eINSTANCE.getValidationRule_Target();
@@ -481,7 +556,6 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Class</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__CLASS = eINSTANCE.getValidationRule_Class();
@@ -490,16 +564,48 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute VALIDATION_RULE__ID = eINSTANCE.getValidationRule_Id();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.MessageHandlingImpl <em>Message Handling</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.MessageHandlingImpl
+		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getMessageHandling()
+		 * @generated
+		 */
+		EClass MESSAGE_HANDLING = eINSTANCE.getMessageHandling();
+
+		/**
+		 * The meta object literal for the '<em><b>Message Mode</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MESSAGE_HANDLING__MESSAGE_MODE = eINSTANCE.getMessageHandling_MessageMode();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Package</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MESSAGE_HANDLING__BASE_PACKAGE = eINSTANCE.getMessageHandling_Base_Package();
+
+		/**
+		 * The meta object literal for the '<em><b>Custom Template</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MESSAGE_HANDLING__CUSTOM_TEMPLATE = eINSTANCE.getMessageHandling_CustomTemplate();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Severity <em>Severity</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Severity
 		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getSeverity()
 		 * @generated
@@ -510,12 +616,21 @@ public interface PapyrusDSMLValidationRulePackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode <em>Mode</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode
 		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getMode()
 		 * @generated
 		 */
 		EEnum MODE = eINSTANCE.getMode();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode <em>Name Based Msg Mode</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode
+		 * @see org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.impl.PapyrusDSMLValidationRulePackageImpl#getNameBasedMsgMode()
+		 * @generated
+		 */
+		EEnum NAME_BASED_MSG_MODE = eINSTANCE.getNameBasedMsgMode();
 
 	}
 

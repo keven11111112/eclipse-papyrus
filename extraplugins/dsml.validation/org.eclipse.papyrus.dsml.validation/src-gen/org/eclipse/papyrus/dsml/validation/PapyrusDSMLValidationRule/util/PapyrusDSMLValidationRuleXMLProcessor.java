@@ -13,7 +13,6 @@ import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSML
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class PapyrusDSMLValidationRuleXMLProcessor extends XMLProcessor {
@@ -22,7 +21,6 @@ public class PapyrusDSMLValidationRuleXMLProcessor extends XMLProcessor {
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public PapyrusDSMLValidationRuleXMLProcessor() {
@@ -34,7 +32,6 @@ public class PapyrusDSMLValidationRuleXMLProcessor extends XMLProcessor {
 	 * Register for "*" and "xml" file extensions the PapyrusDSMLValidationRuleResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

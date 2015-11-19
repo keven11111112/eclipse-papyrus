@@ -26,6 +26,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
+import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling;
+import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
@@ -35,8 +37,10 @@ import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -50,6 +54,11 @@ import org.xml.sax.SAXException;
  *
  */
 public class ValidationPluginGenerator {
+
+	/**
+	 * 
+	 */
+	private static final String CONSTRAINT_S_IS_VIOLATED = "Constraint '%s' is violated"; //$NON-NLS-1$
 
 	private static final String XML_CONSTRAINT_TARGET = "target"; //$NON-NLS-1$
 
@@ -236,12 +245,30 @@ public class ValidationPluginGenerator {
 		}
 
 		String validationMsg = validationRule.getMessage();
+		Element message = editor.addChild(extElForConstraint, XML_CONSTRAINT_MESSAGE);
 		if ((validationMsg != null) && (validationMsg.length() > 0)) {
-			Element message = editor.addChild(extElForConstraint, XML_CONSTRAINT_MESSAGE);
 			message.setTextContent(validationMsg);
 		} else {
-			Element message = editor.addChild(extElForConstraint, XML_CONSTRAINT_MESSAGE);
-			message.setTextContent(validationRule.getName() + " not valid"); //$NON-NLS-1$
+			Package constraintPkg = validationRule.getConstraint().getNearestPackage();
+			boolean set = false;
+			if (constraintPkg != null) {
+				MessageHandling messageHandling = UMLUtil.getStereotypeApplication(constraintPkg, MessageHandling.class);
+				if (messageHandling != null) {
+					if (messageHandling.getMessageMode() == NameBasedMsgMode.NAME_IS_MESSAGE) {
+						message.setTextContent(validationRule.getName());
+						set = true;
+					} else if (messageHandling.getMessageMode() == NameBasedMsgMode.CUSTOM_TEMPLATE) {
+						String template = messageHandling.getCustomTemplate();
+						if (template != null && template.length() > 0) {
+							message.setTextContent(String.format(template, validationRule.getName()));
+							set = true;
+						}
+					}
+				}
+			}
+			if (!set) {
+				message.setTextContent(String.format(CONSTRAINT_S_IS_VIOLATED, validationRule.getName()));
+			}
 		}
 
 		if (validationRule.getDescription() != null) {
@@ -417,8 +444,8 @@ public class ValidationPluginGenerator {
 	 * children are removed. This function enables multiple generation phases without duplicating elements.
 	 *
 	 * CAVEAT: This function has been changed: filtering is now based on its name instead of the ID. Using an
-	 *   ID on the extension point level, unifies the associated contexts, see bug 467692 - [UML-RT] Multiple
-	 *   issues when validating a UML-RT model
+	 * ID on the extension point level, unifies the associated contexts, see bug 467692 - [UML-RT] Multiple
+	 * issues when validating a UML-RT model
 	 *
 	 * @param editor
 	 *            the plugin editor
