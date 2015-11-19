@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPaste
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.MoveElementsTreeTableTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.NoDepth0TreeFillingConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.RequirementsNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_H1_H3_V1_Test;
@@ -188,6 +189,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		
 		// Bug 481020 : Delete a requirement containing a nested requirement
 		DeleteRequirementsWithNestedClassifier.class,
+
+		// Bug 481023 : The nested requirement was not available in table
+		RequirementsNestedClassifier.class,
 
 		// Move elements
 		MoveElementsTreeTableTest.class,

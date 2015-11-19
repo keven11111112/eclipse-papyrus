@@ -226,7 +226,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 			} else {
 				if (values.contains(baseElement)) {
 					// we create the conf rep only for depth==0 (<=> semanticParent==null) or when the semantic parent has already been expanded
-					if (confRep == null && (nextDepth == 0 || !alreadyExpanded.contains(semanticParent))) {
+					if (confRep == null && (nextDepth == 0 || alreadyExpanded.contains(semanticParent))) {
 						confRep = addObject(null, curr);
 					}
 
