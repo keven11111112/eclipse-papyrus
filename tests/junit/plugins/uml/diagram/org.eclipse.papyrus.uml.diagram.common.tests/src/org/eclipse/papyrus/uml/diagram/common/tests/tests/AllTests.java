@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.common.tests.tests;
 
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.uml.diagram.common.canonical.tests.CanonicalRegressionTest;
 import org.eclipse.papyrus.uml.diagram.common.tests.css.Bug431694_UndoDeleteTest;
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.HTMLCleanerTestCase;
@@ -23,7 +24,6 @@ import org.eclipse.papyrus.uml.diagram.common.tests.parser.MultiplicityStringFor
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.ValueSpecificationUtilTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayStructureTest;
 import org.junit.runner.RunWith;
-import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(ClassificationSuite.class)
@@ -37,7 +37,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		MultiplicityStringFormatterTestCase.class,
 		ValueSpecificationUtilTestCase.class,
 		CanonicalRegressionTest.class,
-		ShapeCustomisationTest.class
+		ShapeCustomisationTest.class,
+		Bug476873_MoveCommandTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite
