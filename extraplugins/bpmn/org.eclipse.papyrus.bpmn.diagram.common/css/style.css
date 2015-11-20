@@ -21,7 +21,8 @@ ObjectFlow > Label{
 
 OpaqueAction{
 	rightMarginLabel : 5;
-    textAlignment : right;    
+    textAlignment : center;    
+    isNameWrap : true;
 }
 OpaqueAction > Compartment[kind="symbol"] {
     visible:false;
