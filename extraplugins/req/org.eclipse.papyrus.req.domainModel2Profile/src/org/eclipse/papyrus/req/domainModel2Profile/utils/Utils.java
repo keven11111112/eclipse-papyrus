@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.req.domainModel2Profile.utils;
 
 import java.io.File;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -26,7 +27,11 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.uml2.uml.AggregationKind;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Extension;
@@ -34,6 +39,7 @@ import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
@@ -45,6 +51,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Utility methods to create a profile
+ *
+ */
+/**
+ * @author MA244259
  *
  */
 public class Utils {
@@ -279,4 +289,91 @@ public class Utils {
 		}
 		return null;
 	}
+	
+	/**
+	 * Creates an interface to call the createAssociation method of Type.class.
+	 * In other words, it creates a(n) (binary) association between this type
+	 * and the specified other type, with the specified navigabilities,
+	 * aggregations, names, lower bounds, and upper bounds, and owned by this
+	 * type's nearest package.
+	 * 
+	 * @param end1IsNavigable The navigability for the first end of the new
+	 * association.
+	 * 
+	 * @param end1Aggregation The aggregation for the first end of the new
+	 * association.
+	 * 
+	 * @param end1Name The name for the first end of the new association.
+	 * 
+	 * @param end1Lower The lower bound for the first end of the new
+	 * association.
+	 * 
+	 * @param end1Upper The upper bound for the first end of the new
+	 * association.
+	 * 
+	 * @param end1Type The type for the first end of the new association.
+	 * 
+	 * @param end2IsNavigable The navigability for the second end of the new
+	 * association.
+	 * 
+	 * @param end2Aggregation The aggregation for the second end of the new
+	 * association.
+	 * 
+	 * @param end2Name The name for the second end of the new association.
+	 * 
+	 * @param end2Lower The lower bound for the second end of the new
+	 * association.
+	 * 
+	 * @param end2Upper The upper bound for the second end of the new
+	 * association.
+	 */
+	public static Association createAssociation(Type type1,
+			boolean end1IsNavigable, AggregationKind end1Aggregation,
+			String end1Name, int end1LowerBound, int end1UpperBound,
+			Type type2, boolean end2IsNavigable,
+			AggregationKind end2Aggregation, String end2Name,
+			int end2LowerBound, int end2UpperBound) {
+		Association association = type1.createAssociation(end1IsNavigable,
+			end1Aggregation, end1Name, end1LowerBound, end1UpperBound, type2,
+			end2IsNavigable, end2Aggregation, end2Name, end2LowerBound,
+			end2UpperBound);
+		return association;
+	}
+	
+
+
+	/**
+	 * Obtains the source end of an association
+	 * @param association
+	 * @return The member end
+	 */
+	public static Property getSourceEnd(Association association) {
+		return getMemberEnd(association, true);
+	}
+
+	/**
+	 * Obtains the target end of an association
+	 * @param association
+	 * @return The member end
+	 */
+	public static Property getTargetEnd(Association association) {
+		return getMemberEnd(association, false);
+	}
+	
+	/**
+	 * Obtains the source or target ends of an association
+	 * @param association
+	 * @param sourceNotTarget
+	 * @return
+	 */
+	public static Property getMemberEnd(Association association, boolean sourceNotTarget) {
+		if (sourceNotTarget && association.getMemberEnds().size() > 0) {
+			return (Property) association.getMemberEnds().get(0);
+		}
+		if (!sourceNotTarget && association.getMemberEnds().size() > 1) {
+			return (Property) association.getMemberEnds().get(1);
+		}
+		return null;
+	}
+	
 }
