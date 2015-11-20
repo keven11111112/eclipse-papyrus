@@ -38,24 +38,25 @@ public class SM_EventAccepter extends EventAccepter{
 		this.registrationContext = execution;
 	}
 	
-	/**
-	 * Among the set of ready to fire transitions select one and fire it. 
-	 * The execution continues while there are transition to fire (i.e. run
-	 * to completion semantics)  
-	 *
-	 * @param signalInstance - The signal consumed to trigger a transition 
-	 */
 	@Override
 	public void accept(EventOccurrence eventOccurrence) {
-		/*1. Select the transition that will fire according to priority rules and fire it*/
+		// Based on the analysis of the state-machine configuration, a set of transition that are ready to fire are selected.
+		// The set of selected transition is reduced.
+		// All the transitions within the set provided by the choice strategy are fired **concurrently**
+		// A new event accepter is placed in the event accepter list
+		// Note: a state-machine has always as single (dedicated) event accepter
 		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
 		List<TransitionActivation> fireableTransition = selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence);
 		TransitionChoiceStrategy choiceStrategy = (TransitionChoiceStrategy)this.registrationContext.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
 		if(!fireableTransition.isEmpty()){
-			TransitionActivation transitionActivation = choiceStrategy.choose(fireableTransition);
-			transitionActivation.fire();
+			List<TransitionActivation> chosenTransition = choiceStrategy.choose(fireableTransition);
+			int i = 0;
+			// **Firing occurs concurrently**
+			while(i < chosenTransition.size()){
+				chosenTransition.get(i).fire();
+				i++;
+			}
 		}
-		/*2. Register an event accepter for the executed state-machine*/
 		Object_ context = this.registrationContext.context;
 		if(context!=null && context.objectActivation!=null){
 			context.register(new SM_EventAccepter((StateMachineExecution)this.registrationContext));

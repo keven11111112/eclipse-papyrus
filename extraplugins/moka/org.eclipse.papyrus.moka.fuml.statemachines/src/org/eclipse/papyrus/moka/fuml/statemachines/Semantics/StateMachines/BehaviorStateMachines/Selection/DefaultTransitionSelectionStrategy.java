@@ -16,7 +16,6 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
@@ -27,16 +26,14 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrategy {
 	
-	/**
-	 * Find for the given configuration the set of transition that can fire.
-	 * The search starts from the deepest level. If no transition enabled are found at this level
-	 * then the search continue in the upper level. The search stops when at given level a not empty
-	 * set of enabled transition is calculated. Transition returned are only those that are not triggered by an event 
-	 * (i.e. Transitions that are automatic or only guarded).
-	 */
 	public List<TransitionActivation> selectTransitions(StateMachineConfiguration configuration, EventOccurrence eventOccurrence) {
+		// Find for the given configuration the set of transition that can fire.
+		// The search starts from the deepest level. If no transition enabled are found at this level
+		// then the search continue in the upper level. The search stops when at given level a not empty
+		// set of enabled transition is calculated. Transition returned are only those that are not triggered by an event 
+		// (i.e. Transitions that are automatic or only guarded).
 		List<TransitionActivation> fireableTransition = new ArrayList<TransitionActivation>();
-		Map<Integer, Set<VertexActivation>> cartography = configuration.getCartography();
+		Map<Integer, List<VertexActivation>> cartography = configuration.getCartography();
 		int i = cartography.size();
 		boolean nextLevel = true;
 		while(i >= 1 && nextLevel){

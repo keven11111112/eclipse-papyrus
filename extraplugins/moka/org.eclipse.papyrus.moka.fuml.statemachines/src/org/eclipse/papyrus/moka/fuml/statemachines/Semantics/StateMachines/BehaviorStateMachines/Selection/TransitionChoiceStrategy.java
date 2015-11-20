@@ -27,5 +27,5 @@ public abstract class TransitionChoiceStrategy extends SemanticStrategy{
 		return NAME;
 	}
 
-	public abstract TransitionActivation choose(List<TransitionActivation> transitionActivations);
+	public abstract List<TransitionActivation> choose(List<TransitionActivation> transitionActivations);
 }

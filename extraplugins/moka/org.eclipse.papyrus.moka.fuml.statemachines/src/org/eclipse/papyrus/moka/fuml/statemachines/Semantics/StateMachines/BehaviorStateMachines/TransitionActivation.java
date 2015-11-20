@@ -179,7 +179,7 @@ public class TransitionActivation extends SM_SemanticVisitor {
 		}
 	}
 	
-	protected StateActivation getContainingState(){
+	public StateActivation getContainingState(){
 		RegionActivation regionActivation = (RegionActivation) this.getParent();
 		if(regionActivation!=null){
 			if(regionActivation.getParent() instanceof StateActivation){

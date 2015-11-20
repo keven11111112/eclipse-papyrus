@@ -15,10 +15,10 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
@@ -39,7 +39,7 @@ public class StateMachineConfiguration {
 	/**
 	 * Cartography of the state-machine configuration
 	 */
-	private Map<Integer, Set<VertexActivation>> cartorgraphy;
+	private Map<Integer, List<VertexActivation>> cartorgraphy;
 	
 	public StateConfiguration getRoot(){
 		return this.rootConfiguration;
@@ -49,21 +49,21 @@ public class StateMachineConfiguration {
 		return this.execution;
 	}
 	
-	public Map<Integer, Set<VertexActivation>> getCartography(){
+	public Map<Integer, List<VertexActivation>> getCartography(){
 		return this.cartorgraphy;
 	}
 	
 	public StateMachineConfiguration(StateMachineExecution execution){
 		this.rootConfiguration = new StateConfiguration(this);
 		this.execution = execution;
-		this.cartorgraphy = new HashMap<Integer, Set<VertexActivation>>();
+		this.cartorgraphy = new HashMap<Integer, List<VertexActivation>>();
 	}
 	
 	protected void addToCartography(StateConfiguration configuration){
 		if(this.cartorgraphy.containsKey(configuration.getLevel())){
 			this.cartorgraphy.get(configuration.getLevel()).add(configuration.vertexActivation);
 		}else{
-			Set<VertexActivation> activation = new HashSet<VertexActivation>();
+			List<VertexActivation> activation = new ArrayList<VertexActivation>();
 			activation.add(configuration.getVertexActivation());
 			this.cartorgraphy.put(configuration.getLevel(), activation);
 		}
