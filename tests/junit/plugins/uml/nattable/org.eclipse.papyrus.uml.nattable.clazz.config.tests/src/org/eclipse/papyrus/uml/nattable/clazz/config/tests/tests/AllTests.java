@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRequirementsWithNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.MoveElementsTreeTableTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
@@ -180,6 +181,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,
+		
+		// Bug 481020 : Delete a requirement containing a nested requirement
+		DeleteRequirementsWithNestedClassifier.class,
 
 		// Move elements
 		MoveElementsTreeTableTest.class,

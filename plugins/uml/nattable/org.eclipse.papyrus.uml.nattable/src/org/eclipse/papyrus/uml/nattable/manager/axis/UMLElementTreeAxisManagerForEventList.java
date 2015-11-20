@@ -219,7 +219,9 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 			if (values.isEmpty()) {
 				if (confRep != null) {
 					ITreeItemAxis toDestroy = getITreeItemAxisRepresentingObject(confRep.getChildren(), baseElement);
-					removeObject(toDestroy);
+					if(null != toDestroy){
+						removeObject(toDestroy);
+					}
 				}
 			} else {
 				if (values.contains(baseElement)) {
@@ -232,7 +234,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 						ITreeItemAxis stereotypedElementRep = getITreeItemAxisRepresentingObject(confRep.getChildren(), baseElement);
 						if (stereotypedElementRep == null) {
 							ITreeItemAxis newAxis = addObject(confRep, baseElement);
-							if (alreadyExpanded.contains(confRep) || confRep.getParent() == null) {// already expanded or root!
+							if (!managedElements.containsKey(baseElement) && (alreadyExpanded.contains(confRep) || confRep.getParent() == null)) {// already expanded or root!
 								fillChildrenForSemanticElement(newAxis);
 							}
 						}

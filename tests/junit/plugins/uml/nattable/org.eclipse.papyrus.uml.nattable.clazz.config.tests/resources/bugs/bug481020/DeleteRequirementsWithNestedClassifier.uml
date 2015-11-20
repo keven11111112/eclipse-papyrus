@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements">
+  <uml:Model xmi:id="_oxW30I7BEeW-WMYGxs4DXg" name="RootElement">
+    <packagedElement xmi:type="uml:Class" xmi:id="_rbPxkI7JEeWx-7Nn3LdonQ" name="Requirement1">
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_kfcWoI-FEeWtP9VLNNH5kQ" name="NestedRequirement1"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_o2jg5I7BEeW-WMYGxs4DXg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_o2kH8I7BEeW-WMYGxs4DXg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+  </uml:Model>
+  <Requirements:Requirement xmi:id="_rkbiwI7JEeWx-7Nn3LdonQ" base_Class="_rbPxkI7JEeWx-7Nn3LdonQ"/>
+  <Requirements:Requirement xmi:id="_kfjrYI-FEeWtP9VLNNH5kQ" base_Class="_kfcWoI-FEeWtP9VLNNH5kQ"/>
+</xmi:XMI>
