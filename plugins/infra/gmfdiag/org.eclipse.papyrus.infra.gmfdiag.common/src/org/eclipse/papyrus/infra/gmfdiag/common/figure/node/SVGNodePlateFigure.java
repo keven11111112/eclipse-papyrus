@@ -124,7 +124,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 	protected DefaultSizeNodeFigure defaultNodePlate;
 
 	/** The follow svg papyrus path. */
-	private boolean followSVGPapyrusPath = false;
+	protected boolean followSVGPapyrusPath = false;
 
 	/**
 	 * Sets if has to follow svg papyrus path.
@@ -441,7 +441,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 			}
 			if (defaultNodePlate instanceof IRoundedRectangleFigure) {
 				defaultNodePlate.setBounds(this.getBounds());
-				return new SlidableRoundedRectangleAnchor(this);
+				return new SlidableRoundedRectangleAnchor(this, new PrecisionPoint(0, 0));
 			}
 		}
 		return super.createDefaultAnchor();

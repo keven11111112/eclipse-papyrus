@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Bug 482586
  *   
  *****************************************************************************/
 
@@ -29,16 +30,25 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 
 	private boolean myLinkLFIsEnabled = false;
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public LinkLFSVGNodePlateFigure(GraphicalEditPart hostEP, int width, int height) {
 		super(width, height);
 		myHost = hostEP;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public LinkLFSVGNodePlateFigure withLinkLFEnabled() {
 		myLinkLFIsEnabled = Boolean.getBoolean(ENABLE_LINKLF);
 		return this;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected ConnectionAnchor createAnchor(PrecisionPoint p) {
 		if (!myLinkLFIsEnabled) {
@@ -49,16 +59,30 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 			// PrecisionPoint will passed in - this is handled here
 			return createDefaultAnchor();
 		}
-		PapyrusSlidableSnapToGridAnchor result = new PapyrusSlidableSnapToGridAnchor(this, p);
+
+		PapyrusSlidableSnapToGridAnchor result;
+		if (followSVGPapyrusPath) {
+			result = new PapyrusSlidableSnapToGridAnchor(this, p);
+		} else {
+			result = new SlidableRoundedRectangleAnchor(this, p);
+		}
 		result.setEditPart(myHost);
+
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected double getSlidableAnchorArea() {
 		return myLinkLFIsEnabled ? AVOID_DEFAULT_ANCHOR_AREA : super.getSlidableAnchorArea();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected ConnectionAnchor createConnectionAnchor(Point p) {
 		if (!myLinkLFIsEnabled) {
 			return super.createConnectionAnchor(p);
@@ -78,7 +102,4 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 			return createAnchor(pt);
 		}
 	}
-
-
-
 }
