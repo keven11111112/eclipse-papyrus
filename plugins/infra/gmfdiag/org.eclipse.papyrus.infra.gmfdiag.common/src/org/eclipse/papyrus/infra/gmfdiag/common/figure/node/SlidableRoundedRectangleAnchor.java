@@ -22,7 +22,7 @@ import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.LineSeg;
-import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 
 /**
  * A slideable anchor for rounded rectangle figures.
@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
  * @author mri
  * @author Mickael ADAM - ALL4TEC - mickael.adam@all4tec.net - Integration and adaptation for Papyrus API
  */
-public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
+public class SlidableRoundedRectangleAnchor extends PapyrusSlidableSnapToGridAnchor {
 	/** the offset applied to the size of the rectangle */
 	private Dimension offset = new Dimension();
 
@@ -41,8 +41,8 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	 * @param figure
 	 *            the anchorable figure
 	 */
-	public SlidableRoundedRectangleAnchor(final IFigure figure) {
-		super(figure);
+	public SlidableRoundedRectangleAnchor(final NodeFigure figure) {
+		super(figure, new PrecisionPoint(0, 0));
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	 * @param p
 	 *            the anchor precision point
 	 */
-	public SlidableRoundedRectangleAnchor(final IFigure figure, final PrecisionPoint p) {
+	public SlidableRoundedRectangleAnchor(final NodeFigure figure, final PrecisionPoint p) {
 		super(figure, p);
 	}
 
