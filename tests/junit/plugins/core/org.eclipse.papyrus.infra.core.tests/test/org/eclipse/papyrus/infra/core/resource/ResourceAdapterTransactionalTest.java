@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,27 +7,27 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 482949
- *
+ *   Christian W. Damus - Initial API and implementation
+ *   
  */
 package org.eclipse.papyrus.infra.core.resource;
 
-import static org.junit.Assert.fail;
-
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 
 
 /**
- * Test suite for the {@link ResourceAdapter} class.
+ * Test suite for the {@link ResourceAdapter.Transactional} class.
  */
-public class ResourceAdapterTest extends AbstractResourceAdapterTest<ResourceSet, ResourceAdapter> {
+public class ResourceAdapterTransactionalTest extends AbstractResourceAdapterTest<TransactionalEditingDomain, ResourceAdapter.Transactional> {
 
-	public ResourceAdapterTest() {
+	public ResourceAdapterTransactionalTest() {
 		super();
 	}
 
@@ -36,52 +36,68 @@ public class ResourceAdapterTest extends AbstractResourceAdapterTest<ResourceSet
 	//
 
 	@Override
-	protected ResourceSet createTarget(HouseKeeper keeper) {
-		return keeper.createResourceSet();
+	protected boolean isTransactional() {
+		return true;
 	}
 
 	@Override
-	protected ResourceSet getResourceSet(ResourceSet target) {
-		return target;
+	protected TransactionalEditingDomain createTarget(HouseKeeper keeper) {
+		return keeper.createSimpleEditingDomain();
+	}
+
+	@Override
+	protected ResourceSet getResourceSet(TransactionalEditingDomain target) {
+		return target.getResourceSet();
 	}
 
 	@Override
 	protected void execute(Runnable command) {
-		command.run();
+		TransactionalEditingDomain domain = getTarget();
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Test") {
+
+			@Override
+			protected void doExecute() {
+				command.run();
+			}
+		});
 	}
 
 	@Override
 	protected void safeExecute(RunnableWithException command) {
-		try {
-			command.run();
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Command execution failed: " + e.getMessage());
-		}
+		TransactionalEditingDomain domain = getTarget();
+		domain.getCommandStack().execute(new RecordingCommand(domain, "Test") {
+
+			@Override
+			protected void doExecute() {
+				try {
+					command.run();
+				} catch (Exception e) {
+					throw new WrappedException(e);
+				}
+			}
+		});
 	}
 
 	@Override
-	protected AbstractResourceAdapterTest<ResourceSet, ResourceAdapter>.Fixture doCreateFixture() {
+	protected Fixture doCreateFixture() {
 		return new MyFixture();
 	}
 
 	class MyFixture extends Fixture {
 
 		@Override
-		protected void doInstall(ResourceAdapter adapter, ResourceSet target) {
-			if (!target.eAdapters().contains(adapter)) {
-				target.eAdapters().add(adapter);
-			}
+		protected void doInstall(ResourceAdapter.Transactional adapter, TransactionalEditingDomain target) {
+			adapter.install(target);
 		}
 
 		@Override
-		protected void doUninstall(ResourceAdapter adapter, ResourceSet target) {
-			target.eAdapters().remove(adapter);
+		protected void doUninstall(ResourceAdapter.Transactional adapter, TransactionalEditingDomain target) {
+			adapter.uninstall(target);
 		}
 
 		@Override
-		protected ResourceAdapter createAdapter() {
-			return new ResourceAdapter() {
+		protected ResourceAdapter.Transactional createAdapter() {
+			return new ResourceAdapter.Transactional() {
 				@Override
 				protected void handleResourceAdded(Resource resource) {
 					MyFixture.this.handleResourceAdded(resource);

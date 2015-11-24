@@ -11,9 +11,15 @@
  *   Christian W. Damus - bug 399859
  *   Christian W. Damus - bug 465416
  *   Eike Stepper (CEA) - bug 466520
+ *   Christian W. Damus - bug 482949
  *
  */
 package org.eclipse.papyrus.infra.core.resource;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
@@ -82,9 +88,9 @@ public abstract class ResourceAdapter extends AdapterImpl {
 					case Notification.SET:
 					case Notification.UNSET:
 						if (msg.getNewBooleanValue()) {
-							handleResourceLoaded((Resource) notifier);
+							handleResourceLoaded0((Resource) notifier);
 						} else {
-							handleResourceUnloaded((Resource) notifier);
+							handleResourceUnloaded0((Resource) notifier);
 						}
 						break;
 					}
@@ -171,7 +177,7 @@ public abstract class ResourceAdapter extends AdapterImpl {
 
 		// Don't report addition of roots when loading nor removal of roots when unloading
 		// because loading and unloading are semantically more significant events
-		if (resource.isLoaded() && !resource.isLoading()) {
+		if (resource.isLoaded() && !isLoading(resource)) {
 			switch (msg.getEventType()) {
 			case Notification.ADD: {
 				Object newValue = msg.getNewValue();
@@ -226,8 +232,20 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		// Pass
 	}
 
+	void handleResourceLoaded0(Resource resource) {
+		handleResourceLoaded(resource);
+	}
+
+	boolean isLoading(Resource.Internal resource) {
+		return resource.isLoading();
+	}
+
 	protected void handleResourceLoaded(Resource resource) {
 		// Pass
+	}
+
+	void handleResourceUnloaded0(Resource resource) {
+		handleResourceUnloaded(resource);
 	}
 
 	protected void handleResourceUnloaded(Resource resource) {
@@ -257,6 +275,11 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		private final boolean isPrecommit;
 
 		private final NotificationFilter filter = NotificationFilter.NOT_TOUCH.and(createFilter());
+
+		private List<Notification> notifications;
+
+		/** Because we are invoked after the fact, we need to emulate the is-loading state. */
+		private Map<Resource, Boolean> loadingState;
 
 		/**
 		 * Initializes me as a post-commit resource notification handler.
@@ -308,12 +331,12 @@ public abstract class ResourceAdapter extends AdapterImpl {
 
 		@Override
 		public void resourceSetChanged(ResourceSetChangeEvent event) {
-			handleResourceSetChangeEvent(event);
+			handleResourceSetChangeEvent0(event);
 		}
 
 		@Override
 		public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
-			handleResourceSetChangeEvent(event);
+			handleResourceSetChangeEvent0(event);
 			return null;
 		}
 
@@ -358,7 +381,17 @@ public abstract class ResourceAdapter extends AdapterImpl {
 					}
 				}
 			} finally {
-				editingDomain.addResourceSetListener(this);
+				editingDomain.removeResourceSetListener(this);
+			}
+		}
+
+		protected void handleResourceSetChangeEvent0(ResourceSetChangeEvent event) {
+			try {
+				notifications = event.getNotifications();
+				handleResourceSetChangeEvent(event);
+			} finally {
+				notifications = null;
+				loadingState = null;
 			}
 		}
 
@@ -386,6 +419,41 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		@Override
 		protected final void removeAdapter(Notifier notifier) {
 			// Pass
+		}
+
+		@Override
+		boolean isLoading(Resource.Internal resource) {
+			return getLoadingState().computeIfAbsent(resource,
+					r -> notifications.stream().anyMatch(isLoadOf(r)));
+		}
+
+		private Predicate<Notification> isLoadOf(Resource resource) {
+			return msg -> (msg.getNotifier() == resource)
+					&& (msg.getFeatureID(Resource.class) == Resource.RESOURCE__IS_LOADED)
+					&& msg.getNewBooleanValue();
+		}
+
+		Map<Resource, Boolean> getLoadingState() {
+			if (loadingState == null) {
+				loadingState = new HashMap<>();
+			}
+			return loadingState;
+		}
+
+		void setLoading(Resource resource, boolean loading) {
+			getLoadingState().put(resource, loading);
+		}
+
+		@Override
+		void handleResourceLoaded0(Resource resource) {
+			setLoading(resource, true);
+			super.handleResourceLoaded0(resource);
+		}
+
+		@Override
+		void handleResourceUnloaded0(Resource resource) {
+			setLoading(resource, false);
+			super.handleResourceUnloaded0(resource);
 		}
 	}
 }

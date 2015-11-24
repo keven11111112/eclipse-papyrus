@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 399859
  *  Christian W. Damus - bug 456934
  *  Christian W. Damus - bug 468030
+ *  Christian W. Damus - bug 482949
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
@@ -25,13 +26,14 @@ import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResourceTe
 import org.eclipse.papyrus.infra.core.resource.ModelSetTest;
 import org.eclipse.papyrus.infra.core.resource.NestingTransactionalCommandStackTest;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapterTest;
+import org.eclipse.papyrus.infra.core.resource.ResourceAdapterTransactionalTest;
 import org.eclipse.papyrus.infra.core.services.ComposedServiceTest;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistryTest;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtilsTest;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFutureTest;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorServiceTest;
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -39,7 +41,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// {oep.resource}
-		ModelSetTest.class, AbstractModelWithSharedResourceTest.class, NestingTransactionalCommandStackTest.class, ResourceAdapterTest.class,
+		ModelSetTest.class, AbstractModelWithSharedResourceTest.class, NestingTransactionalCommandStackTest.class,
+		ResourceAdapterTest.class, ResourceAdapterTransactionalTest.class,
 		// {oep}.core.language
 		LanguageServiceTest.class,
 		// {oep}.core.services
