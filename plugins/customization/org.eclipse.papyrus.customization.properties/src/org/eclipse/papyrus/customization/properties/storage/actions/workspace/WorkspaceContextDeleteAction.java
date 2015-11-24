@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
+ *  Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.storage.actions.workspace;
 
@@ -45,7 +46,7 @@ public class WorkspaceContextDeleteAction implements IContextDeleteAction {
 	public void delete(final Context context, IProgressMonitor monitor) throws CoreException {
 		final File directory = new File(context.eResource().getURI().toFileString()).getParentFile();
 
-		SubMonitor sub = SubMonitor.convert(monitor, Messages.WorkspaceContextDeleteAction_1 + context.getName(), IProgressMonitor.UNKNOWN);
+		SubMonitor sub = SubMonitor.convert(monitor, Messages.WorkspaceContextDeleteAction_1 + context.getUserLabel(), IProgressMonitor.UNKNOWN);
 		try {
 			delete(directory);
 		} finally {

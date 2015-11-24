@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_gJfb0Ld1EeShYcLqgrAa5Q" name="UMLStereotypeApplicationExternalResource">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_gJfb0Ld1EeShYcLqgrAa5Q" name="UMLStereotypeApplicationExternalResource" label="UML Profile Externalization">
   <dependencies href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#_69QJkKDJEeSZxfCXzZz3-w"/>
   <tabs xmi:id="_gJfb0bd1EeShYcLqgrAa5Q" label="Profile" id="profile" category="org.eclipse.papyrus" priority="50">
     <sections xmi:id="_gJfb0rd1EeShYcLqgrAa5Q" name="SinglePackageProfile" sectionFile="ui/SinglePackageProfile.xwt">

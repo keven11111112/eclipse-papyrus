@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_8Mp0IIk1EeWBadfj_-2HEQ" name="CSS">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_8Mp0IIk1EeWBadfj_-2HEQ" name="CSS" label="CSS in Diagrams">
   <tabs xmi:id="_8Mp0IYk1EeWBadfj_-2HEQ" label="Style" id="style" category="org.eclipse.papyrus" image="" priority="70">
     <sections xmi:id="_8Mp0Iok1EeWBadfj_-2HEQ" name="SingleStylableElement" sectionFile="ui/SingleStylableElement.xwt">
       <widget href="ui/SingleStylableElement.xwt#/"/>

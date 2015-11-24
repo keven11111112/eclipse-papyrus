@@ -68,7 +68,11 @@
       nsPrefix="contexts">
     <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="An unique name for the context, which is used in various components to&#xA;identify it."/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dependencies" ordered="false"
           upperBound="-1" eType="#//contexts/Context"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="tabs" upperBound="-1"
@@ -80,6 +84,18 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="prototype" eType="#//contexts/Context">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="References the context from which a context was copied.  The context manager caches the prototype reference so that it can enable a prototype when the copied context is not available."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A potentially translatable (localizable) label for presentation of the context&#xA;in the user interface. If absent, the name should be used in its place."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="userLabel" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          changeable="false" volatile="true" transient="true" derived="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="A computed label for presentation to the user:  the label, if available, otherwise&#xA;just the name of the context."/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>

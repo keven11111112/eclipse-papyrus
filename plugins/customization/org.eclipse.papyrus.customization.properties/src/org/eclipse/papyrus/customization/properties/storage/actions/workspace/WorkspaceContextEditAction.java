@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
+ *  Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.storage.actions.workspace;
 
@@ -47,7 +48,7 @@ public class WorkspaceContextEditAction implements IContextEditAction {
 	 */
 	@Override
 	public void openEditor(final Context context, IProgressMonitor monitor) throws CoreException {
-		SubMonitor sub = SubMonitor.convert(monitor, Messages.WorkspaceContextEditAction_1 + context.getName(), IProgressMonitor.UNKNOWN);
+		SubMonitor sub = SubMonitor.convert(monitor, Messages.WorkspaceContextEditAction_1 + context.getUserLabel(), IProgressMonitor.UNKNOWN);
 
 		try {
 			runOpenEditor(context);
@@ -58,6 +59,6 @@ public class WorkspaceContextEditAction implements IContextEditAction {
 
 	protected void runOpenEditor(Context context) throws CoreException {
 		IFile contextFile = ProjectUtil.getContextFile(context);
-		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.customization.properties.UIEditor", true); //$NON-NLS-1$;
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(new FileEditorInput(contextFile), "org.eclipse.papyrus.customization.properties.UIEditor", true); //$NON-NLS-1$ ;
 	}
 }

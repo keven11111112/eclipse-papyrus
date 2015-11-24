@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 482927
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.generation.wizard;
@@ -97,19 +98,19 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 		for (Context context : contexts) {
 			Tab defaultTab = ContextsFactory.eINSTANCE.createTab();
 			defaultTab.setId(context.getName().toLowerCase());
-			defaultTab.setLabel(context.getName());
+			defaultTab.setLabel(context.getUserLabel());
 			defaultTab.setPriority(100);
 			context.getTabs().add(defaultTab);
 
 			FieldSelection fieldSelection = selectFieldsPage.getFieldSelection();
 
 			// URI contextURI = context.eResource().getURI();
-			//		Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
+			// Resource selectionResource = context.eResource().getResourceSet().createResource(URI.createURI(context.getName() + "FieldSelection.xmi").resolve(contextURI)); //$NON-NLS-1$
 			// selectionResource.getContents().add(fieldSelection);
 			// try {
 			// selectionResource.save(null);
 			// } catch (IOException ex) {
-			//			Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
+			// Activator.log.error("Couldn't persist the field selection model", ex); //$NON-NLS-1$
 			// }
 
 			layoutGenerator.setGenerator(generator);
@@ -157,7 +158,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 				getContainer().run(true, true, new IRunnableWithProgress() {
 
 					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-						monitor.beginTask(Messages.CreateContextWizard_propertyViewGenerationJobName + currentContext.getName(), numberOfSections + 1);
+						monitor.beginTask(Messages.CreateContextWizard_propertyViewGenerationJobName + currentContext.getUserLabel(), numberOfSections + 1);
 						monitor.worked(1);
 
 						try {

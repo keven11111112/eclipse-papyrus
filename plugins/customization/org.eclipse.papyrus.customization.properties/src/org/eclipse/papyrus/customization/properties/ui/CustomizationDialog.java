@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
+ *  Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.ui;
 
@@ -109,7 +110,7 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 			public String getText(final Object element) {
 				if (element != null && element instanceof Context) {
 					Context context = (Context) element;
-					return context.getName() + (ConfigurationManager.getInstance().isPlugin(context) ? Messages.CustomizationDialog_plugin : ""); //$NON-NLS-1$
+					return context.getUserLabel() + (ConfigurationManager.getInstance().isPlugin(context) ? Messages.CustomizationDialog_plugin : ""); //$NON-NLS-1$
 				}
 				return super.getText(element);
 			}
@@ -277,7 +278,7 @@ public class CustomizationDialog extends TrayDialog implements SelectionListener
 				return;
 			}
 
-			MessageDialog dialog = new MessageDialog(getShell(), Messages.CustomizationDialog_deleteContext, null, Messages.CustomizationDialog_deleteContextConfirmation1 + sourceContext.getName() + Messages.CustomizationDialog_deleteContextConfirmation2,
+			MessageDialog dialog = new MessageDialog(getShell(), Messages.CustomizationDialog_deleteContext, null, Messages.CustomizationDialog_deleteContextConfirmation1 + sourceContext.getUserLabel() + Messages.CustomizationDialog_deleteContextConfirmation2,
 					MessageDialog.CONFIRM, new String[] { IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL }, 2);
 			int result = dialog.open();
 			if (result == 0) { // 0 is "Yes" (It is *not* the same 0 as Window.OK)

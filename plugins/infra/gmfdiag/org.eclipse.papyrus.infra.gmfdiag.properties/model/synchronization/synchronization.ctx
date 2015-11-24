@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_SsfbQMElEeS_u7hIvAIReA" name="synchronization">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_SsfbQMElEeS_u7hIvAIReA" name="synchronization" label="Diagram Synchronization">
   <tabs xmi:id="_SsfbQcElEeS_u7hIvAIReA" label="Appearance" id="appearance" category="org.eclipse.papyrus" priority="75">
     <sections xmi:id="_SsgCV8ElEeS_u7hIvAIReA" name="Single CanonicalStyle" sectionFile="ui/SingleCanonicalStyle.xwt">
       <widget href="ui/SingleCanonicalStyle.xwt#/"/>

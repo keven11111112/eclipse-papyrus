@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
+ *   Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts;
 
@@ -155,6 +156,26 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT__PROTOTYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__LABEL = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>User Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__USER_LABEL = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,7 +183,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl <em>Tab</em>}' class.
@@ -907,6 +928,30 @@ public interface ContextsPackage extends EPackage {
 	EReference getContext_Prototype();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.contexts.Context#getLabel <em>Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Label</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Context#getLabel()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EAttribute getContext_Label();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.contexts.Context#getUserLabel <em>User Label</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>User Label</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Context#getUserLabel()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EAttribute getContext_UserLabel();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.Tab <em>Tab</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1443,6 +1488,24 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__PROTOTYPE = eINSTANCE.getContext_Prototype();
+
+		/**
+		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute CONTEXT__LABEL = eINSTANCE.getContext_Label();
+
+		/**
+		 * The meta object literal for the '<em><b>User Label</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute CONTEXT__USER_LABEL = eINSTANCE.getContext_UserLabel();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl <em>Tab</em>}' class.

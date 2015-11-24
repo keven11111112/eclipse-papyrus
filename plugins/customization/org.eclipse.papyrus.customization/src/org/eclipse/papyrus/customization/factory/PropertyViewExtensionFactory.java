@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 482927
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.factory;
@@ -104,7 +105,7 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 			dialog.run(true, false, new IRunnableWithProgress() {
 
 				public void run(IProgressMonitor monitor) {
-					monitor.beginTask(Messages.PropertyViewExtensionFactory_InitializingCopy + source.getName() + Messages.PropertyViewExtensionFactory_WaitMessage, IProgressMonitor.UNKNOWN);
+					monitor.beginTask(Messages.PropertyViewExtensionFactory_InitializingCopy + source.getUserLabel() + Messages.PropertyViewExtensionFactory_WaitMessage, IProgressMonitor.UNKNOWN);
 					EcoreUtil.resolveAll(source);
 					monitor.done();
 					result = Status.OK_STATUS;
@@ -121,7 +122,7 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 						try {
 							targetDirectory.mkdirs();
 
-							monitor.beginTask(Messages.PropertyViewExtensionFactory_Copying + source.getName() + Messages.PropertyViewExtensionFactory_To + targetName, source.eResource().getResourceSet().getResources().size());
+							monitor.beginTask(Messages.PropertyViewExtensionFactory_Copying + source.getUserLabel() + Messages.PropertyViewExtensionFactory_To + targetName, source.eResource().getResourceSet().getResources().size());
 
 							// Copy of the context
 							copy(source.eResource(), target);
@@ -142,7 +143,7 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 							monitor.done();
 						} catch (IOException ex) {
 							Activator.log.error(ex);
-							result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occured during the copy of " + source.getName(), ex); //$NON-NLS-1$
+							result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An error occured during the copy of " + source.getUserLabel(), ex); //$NON-NLS-1$
 							return;
 						}
 						result = Status.OK_STATUS;

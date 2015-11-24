@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *  Christian W. Damus (CEA) - bug 422257
+ *  Christian W. Damus - bug 482927
  *
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.storage.actions.workspace;
@@ -78,7 +79,7 @@ public class WorkspaceContextCopyAction implements IContextCopyAction {
 	 * @param targetName
 	 *            The name of the new context
 	 * @return
-	 *         The new Context
+	 * 		The new Context
 	 *
 	 * @throws CoreException
 	 *             If an error occured : the previous context cannot be read, or
@@ -151,7 +152,7 @@ public class WorkspaceContextCopyAction implements IContextCopyAction {
 				}
 			}
 
-			monitor.beginTask(Messages.CopyContextAction_Copying + source.getName() + Messages.CopyContextAction_To + targetName, filesToCopy);
+			monitor.beginTask(Messages.CopyContextAction_Copying + source.getUserLabel() + Messages.CopyContextAction_To + targetName, filesToCopy);
 
 			// Copy of the context
 			copy(sourceResource, target);

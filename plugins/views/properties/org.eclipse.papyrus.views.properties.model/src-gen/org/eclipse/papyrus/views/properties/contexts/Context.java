@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
+ *   Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.ecore.EModelElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getDependencies <em>Dependencies</em>}</li>
@@ -29,8 +31,9 @@ import org.eclipse.emf.ecore.EModelElement;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getViews <em>Views</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getPrototype <em>Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getLabel <em>Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getUserLabel <em>User Label</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext()
  * @model
@@ -44,6 +47,10 @@ public interface Context extends EModelElement {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * An unique name for the context, which is used in various components to
+	 * identify it.
+	 * <!-- end-model-doc -->
 	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
@@ -158,5 +165,50 @@ public interface Context extends EModelElement {
 	 * @generated
 	 */
 	void setPrototype(Context value);
+
+	/**
+	 * Returns the value of the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A potentially translatable (localizable) label for presentation of the context
+	 * in the user interface. If absent, the name should be used in its place.
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>Label</em>' attribute.
+	 * @see #setLabel(String)
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Label()
+	 * @model
+	 * @generated
+	 */
+	String getLabel();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.contexts.Context#getLabel <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Label</em>' attribute.
+	 * @see #getLabel()
+	 * @generated
+	 */
+	void setLabel(String value);
+
+	/**
+	 * Returns the value of the '<em><b>User Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * A computed label for presentation to the user: the label, if available, otherwise
+	 * just the name of the context.
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>User Label</em>' attribute.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_UserLabel()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	String getUserLabel();
 
 } // Context

@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 482927
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts.provider;
 
 
@@ -59,6 +65,7 @@ public class ContextItemProvider
 			addNamePropertyDescriptor(object);
 			addDependenciesPropertyDescriptor(object);
 			addPrototypePropertyDescriptor(object);
+			addLabelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,19 +78,17 @@ public class ContextItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Context_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Context_name_feature", "_UI_Context_type"),
-						ContextsPackage.Literals.CONTEXT__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Context_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_name_feature", "_UI_Context_type"),
+				ContextsPackage.Literals.CONTEXT__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -94,19 +99,17 @@ public class ContextItemProvider
 	 * @generated
 	 */
 	protected void addDependenciesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Context_dependencies_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Context_dependencies_feature", "_UI_Context_type"),
-						ContextsPackage.Literals.CONTEXT__DEPENDENCIES,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Context_dependencies_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_dependencies_feature", "_UI_Context_type"),
+				ContextsPackage.Literals.CONTEXT__DEPENDENCIES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -117,23 +120,43 @@ public class ContextItemProvider
 	 * @generated
 	 */
 	protected void addPrototypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Context_prototype_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Context_prototype_feature", "_UI_Context_type"),
-						ContextsPackage.Literals.CONTEXT__PROTOTYPE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Context_prototype_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_prototype_feature", "_UI_Context_type"),
+				ContextsPackage.Literals.CONTEXT__PROTOTYPE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This adds a property descriptor for the Label feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addLabelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Context_label_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_label_feature", "_UI_Context_type"),
+				ContextsPackage.Literals.CONTEXT__LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
+	}
+
+	/**
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,10 +209,8 @@ public class ContextItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Context) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_Context_type") :
-				getString("_UI_Context_type") + " " + label;
+		String label = ((Context) object).getUserLabel();
+		return label == null || label.length() == 0 ? getString("_UI_Context_type") : getString("_UI_Context_type") + " " + label;
 	}
 
 	/**
@@ -206,6 +227,7 @@ public class ContextItemProvider
 
 		switch (notification.getFeatureID(Context.class)) {
 		case ContextsPackage.CONTEXT__NAME:
+		case ContextsPackage.CONTEXT__LABEL:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case ContextsPackage.CONTEXT__TABS:
@@ -229,20 +251,14 @@ public class ContextItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.CONTEXT__TABS,
-						ContextsFactory.eINSTANCE.createTab()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.CONTEXT__TABS,
+				ContextsFactory.eINSTANCE.createTab()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.CONTEXT__VIEWS,
-						ContextsFactory.eINSTANCE.createView()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.CONTEXT__VIEWS,
+				ContextsFactory.eINSTANCE.createView()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.CONTEXT__DATA_CONTEXTS,
-						ContextsFactory.eINSTANCE.createDataContextRoot()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.CONTEXT__DATA_CONTEXTS,
+				ContextsFactory.eINSTANCE.createDataContextRoot()));
 	}
 
 	/**

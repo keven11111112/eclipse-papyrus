@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_eFBoQGT4EeSYLucr8QJGMw" name="UMLExtendedTypes">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_eFBoQGT4EeSYLucr8QJGMw" name="UMLExtendedTypes" label="UML Extended Element Types">
   <dependencies href="ppe:/context/org.eclipse.papyrus.customization.extendedtypes//propertyView/ExtendedTypes/ExtendedTypes.ctx#_LxfSZGTrEeSnqN8Csryy_Q"/>
   <tabs xmi:id="_elTDwGT4EeSYLucr8QJGMw" label="ExtendedTypes" id="extendedtypes" priority="100">
     <sections xmi:id="_elTDwWT4EeSYLucr8QJGMw" name="Single ApplyStereotypeActionConfiguration" sectionFile="ui/SingleApplyStereotypeActionConfiguration.xwt">

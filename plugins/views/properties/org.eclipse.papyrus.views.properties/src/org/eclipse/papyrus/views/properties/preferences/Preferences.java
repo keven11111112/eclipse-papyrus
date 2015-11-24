@@ -9,10 +9,13 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 482930
+ *  Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.preferences;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +70,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		// Only customizable Property view contexts should appear here
 		List<Context> contexts = new java.util.ArrayList<Context>(configurationManager.getCustomizableContexts());
 		contexts.addAll(configurationManager.getMissingContexts());
+		Collections.sort(contexts, contextOrdering());
 
 		for (Context context : contexts) {
 			boolean applied = configurationManager.isApplied(context);
@@ -95,6 +99,18 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 		contextState.snapshot();
 		return null;
+	}
+
+	protected Comparator<? super Context> contextOrdering() {
+		return Comparator.comparingInt(this::getCategory).thenComparing(
+				Comparator.comparing(Context::getUserLabel));
+	}
+
+	protected int getCategory(Context context) {
+		ConfigurationManager mgr = ConfigurationManager.getInstance();
+		return mgr.isCustomizable(context)
+				? mgr.isPlugin(context) ? 0 : 1
+				: 1000;
 	}
 
 	@Override
@@ -130,7 +146,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 			qualifier = Messages.Preferences_Custom;
 		}
 
-		return String.format("%s (%s)", context.getName(), qualifier); //$NON-NLS-1$
+		return String.format("%s (%s)", context.getUserLabel(), qualifier); //$NON-NLS-1$
 	}
 
 	private final ContextState contextState = new ContextState();

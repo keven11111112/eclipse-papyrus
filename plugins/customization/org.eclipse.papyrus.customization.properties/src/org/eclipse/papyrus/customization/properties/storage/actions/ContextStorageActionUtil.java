@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factored out some methods from existing code for reuse (CDO)
+ *  Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.storage.actions;
 
@@ -37,7 +38,7 @@ public class ContextStorageActionUtil {
 	}
 
 	public static void initializeCopy(Context source, IProgressMonitor monitor) {
-		monitor.beginTask(Messages.CopyContextAction_InitializingTheCopyOf + source.getName() + Messages.CopyContextAction_ThisMayTakeSomeTime, IProgressMonitor.UNKNOWN);
+		monitor.beginTask(Messages.CopyContextAction_InitializingTheCopyOf + source.getUserLabel() + Messages.CopyContextAction_ThisMayTakeSomeTime, IProgressMonitor.UNKNOWN);
 		// EcoreUtil.resolveAll(source); //This method is too expensive
 		resolveAllResources(source); // Ignores the *.xwt files. We will copy them manually.
 		monitor.done();

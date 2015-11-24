@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_69QJkKDJEeSZxfCXzZz3-w" name="UML">
+<contexts:Context xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmlns:contexts="http://www.eclipse.org/papyrus/properties/contexts/0.9" xmi:id="_69QJkKDJEeSZxfCXzZz3-w" name="UML" label="UML Metamodel">
   <tabs xmi:id="_69QJkaDJEeSZxfCXzZz3-w" label="UML" id="uml" category="org.eclipse.papyrus" image="" priority="10">
     <sections xmi:id="_69QJkqDJEeSZxfCXzZz3-w" name="SinglePackage" sectionFile="ui/SinglePackage.xwt">
       <widget href="ui/SinglePackage.xwt#/"/>

@@ -1,9 +1,15 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 482927
+ *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts.util;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -82,68 +88,67 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected ContextsSwitch<Adapter> modelSwitch =
-			new ContextsSwitch<Adapter>() {
-				@Override
-				public Adapter caseContext(Context object) {
-					return createContextAdapter();
-				}
+	protected ContextsSwitch<Adapter> modelSwitch = new ContextsSwitch<Adapter>() {
+		@Override
+		public Adapter caseContext(Context object) {
+			return createContextAdapter();
+		}
 
-				@Override
-				public Adapter caseTab(Tab object) {
-					return createTabAdapter();
-				}
+		@Override
+		public Adapter caseTab(Tab object) {
+			return createTabAdapter();
+		}
 
-				@Override
-				public Adapter caseView(View object) {
-					return createViewAdapter();
-				}
+		@Override
+		public Adapter caseView(View object) {
+			return createViewAdapter();
+		}
 
-				@Override
-				public Adapter caseSection(Section object) {
-					return createSectionAdapter();
-				}
+		@Override
+		public Adapter caseSection(Section object) {
+			return createSectionAdapter();
+		}
 
-				@Override
-				public Adapter caseDataContextElement(DataContextElement object) {
-					return createDataContextElementAdapter();
-				}
+		@Override
+		public Adapter caseDataContextElement(DataContextElement object) {
+			return createDataContextElementAdapter();
+		}
 
-				@Override
-				public Adapter caseProperty(Property object) {
-					return createPropertyAdapter();
-				}
+		@Override
+		public Adapter caseProperty(Property object) {
+			return createPropertyAdapter();
+		}
 
-				@Override
-				public Adapter caseUnknownProperty(UnknownProperty object) {
-					return createUnknownPropertyAdapter();
-				}
+		@Override
+		public Adapter caseUnknownProperty(UnknownProperty object) {
+			return createUnknownPropertyAdapter();
+		}
 
-				@Override
-				public Adapter caseDataContextPackage(DataContextPackage object) {
-					return createDataContextPackageAdapter();
-				}
+		@Override
+		public Adapter caseDataContextPackage(DataContextPackage object) {
+			return createDataContextPackageAdapter();
+		}
 
-				@Override
-				public Adapter caseDataContextRoot(DataContextRoot object) {
-					return createDataContextRootAdapter();
-				}
+		@Override
+		public Adapter caseDataContextRoot(DataContextRoot object) {
+			return createDataContextRootAdapter();
+		}
 
-				@Override
-				public Adapter caseEModelElement(EModelElement object) {
-					return createEModelElementAdapter();
-				}
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
 
-				@Override
-				public Adapter caseDisplayUnit(DisplayUnit object) {
-					return createDisplayUnitAdapter();
-				}
+		@Override
+		public Adapter caseDisplayUnit(DisplayUnit object) {
+			return createDisplayUnitAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

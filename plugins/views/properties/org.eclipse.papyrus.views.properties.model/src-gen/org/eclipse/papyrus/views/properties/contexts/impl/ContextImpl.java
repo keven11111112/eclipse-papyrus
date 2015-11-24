@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - add prototype reference to Context (CDO)
+ *   Christian W. Damus - bug 482927
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getDependencies <em>Dependencies</em>}</li>
@@ -44,8 +46,9 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getPrototype <em>Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getLabel <em>Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getUserLabel <em>User Label</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -126,6 +129,39 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * @ordered
 	 */
 	protected Context prototype;
+
+	/**
+	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LABEL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected String label = LABEL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getUserLabel() <em>User Label</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getUserLabel()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String USER_LABEL_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,6 +317,47 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 *
 	 * @generated
 	 */
+	@Override
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setLabel(String newLabel) {
+		String oldLabel = label;
+		label = newLabel;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.CONTEXT__LABEL, oldLabel, label));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	@Override
+	public String getUserLabel() {
+		String result = getLabel();
+		if ((result == null) || result.isEmpty()) {
+			result = getName();
+		}
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -334,6 +411,10 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				return getPrototype();
 			}
 			return basicGetPrototype();
+		case ContextsPackage.CONTEXT__LABEL:
+			return getLabel();
+		case ContextsPackage.CONTEXT__USER_LABEL:
+			return getUserLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -370,6 +451,9 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		case ContextsPackage.CONTEXT__PROTOTYPE:
 			setPrototype((Context) newValue);
 			return;
+		case ContextsPackage.CONTEXT__LABEL:
+			setLabel((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -401,6 +485,9 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		case ContextsPackage.CONTEXT__PROTOTYPE:
 			setPrototype((Context) null);
 			return;
+		case ContextsPackage.CONTEXT__LABEL:
+			setLabel(LABEL_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -426,6 +513,10 @@ public class ContextImpl extends EModelElementImpl implements Context {
 			return dataContexts != null && !dataContexts.isEmpty();
 		case ContextsPackage.CONTEXT__PROTOTYPE:
 			return prototype != null;
+		case ContextsPackage.CONTEXT__LABEL:
+			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+		case ContextsPackage.CONTEXT__USER_LABEL:
+			return USER_LABEL_EDEFAULT == null ? getUserLabel() != null : !USER_LABEL_EDEFAULT.equals(getUserLabel());
 		}
 		return super.eIsSet(featureID);
 	}
@@ -445,6 +536,8 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
+		result.append(", label: ");
+		result.append(label);
 		result.append(')');
 		return result.toString();
 	}
