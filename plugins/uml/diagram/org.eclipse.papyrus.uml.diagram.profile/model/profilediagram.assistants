@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ASCII"?>
+<assistant:ModelingAssistantProvider xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant" xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters" name="PapyrusUMLProfileDiagram">
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Profile" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Profile_1000"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Model" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Model_2005"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Profile" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Profile_1030"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Package_1004"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Model" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Model_1027"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Profile" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Profile_1024"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PackageCN_1012"/>
+  <ownedFilter xsi:type="assistant:AssistedElementTypeFilter"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="DataType" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.DataType_2010"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="DataType" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.DataType_3027"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Enumeration" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Enumeration_2006"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Enumeration" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Enumeration_3025"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Stereotype" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1026"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Class" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Class_2008"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Stereotype" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1023"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Class" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Class_3010"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Metaclass" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Metaclass_1031"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Metaclass" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Metaclass_3028"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="AssociationNode" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Association_2015"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="PrimitiveType" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_2009"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="PrimitiveType" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_3026"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Dependency" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Dependency_2014"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Constraint_1014"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Constraint_1028"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Comment" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Comment_1002"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Comment" elementTypeID="org.eclipse.papyrus.uml.diagram.profile.CommentCN_1007"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Dependency_2014" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Association_2015" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1026" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Class_2008" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Metaclass_1031" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Comment_1002" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Constraint_1014" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Model_2005" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Profile_1030" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Package_1004" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Enumeration_2006" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_2009" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.DataType_2010" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Diagram_2016" filter="//@ownedFilter.0"/>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_3026" filter="//@popupAssistant.14/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.14/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.DataTypeOperation_3019" filter="//@popupAssistant.15/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.15/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.8 //@ownedFilter.9" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.EnumerationLiteral_1037" filter="//@popupAssistant.16/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.16/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.10 //@ownedFilter.11" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.DataTypeProperty_3018" filter="//@popupAssistant.17/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.17/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.8 //@ownedFilter.9" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.ClassProperty_3002" filter="//@popupAssistant.18/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.18/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.ClassOperation_3020" filter="//@popupAssistant.19/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.19/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.14 //@ownedFilter.15" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Stereotype_1023" filter="//@popupAssistant.20/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.20/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Class_3010" filter="//@popupAssistant.21/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.21/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Metaclass_3028" filter="//@popupAssistant.22/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.22/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.2 //@ownedFilter.5" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.CommentCN_1007" filter="//@popupAssistant.23/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.23/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Model_1027" filter="//@popupAssistant.24/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.24/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Profile_1024" filter="//@popupAssistant.25/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.25/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PackageCN_1012" filter="//@popupAssistant.26/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.26/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Constraint_1028" filter="//@popupAssistant.27/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.27/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Enumeration_3025" filter="//@popupAssistant.28/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.28/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <popupAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.DataType_3027" filter="//@popupAssistant.29/@ownedFilter">
+    <ownedFilter xsi:type="filters:CompoundFilter" filter="//@popupAssistant.29/@ownedFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedFilter>
+  </popupAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Extension_1013" sourceFilter="//@ownedFilter.7" targetFilter="//@connectionAssistant.0/@ownedTargetFilter">
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.0/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Association_4001" sourceFilter="//@connectionAssistant.1/@ownedSourceFilter" targetFilter="//@connectionAssistant.1/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.1/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.1/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.ProfileApplication_1045" sourceFilter="//@connectionAssistant.2/@ownedSourceFilter" targetFilter="//@connectionAssistant.2/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.2/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.2/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.2 //@ownedFilter.5" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Association_4019" sourceFilter="//@connectionAssistant.3/@ownedSourceFilter" targetFilter="//@connectionAssistant.3/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.3/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.3/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Generalization_4002" sourceFilter="//@connectionAssistant.4/@ownedSourceFilter" targetFilter="//@connectionAssistant.4/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.4/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.4/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Dependency_4008" sourceFilter="//@connectionAssistant.5/@ownedSourceFilter" targetFilter="//@connectionAssistant.5/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.5/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.5/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.Dependency_4018" sourceFilter="//@connectionAssistant.6/@ownedSourceFilter" targetFilter="//@connectionAssistant.6/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.6/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.6/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.ElementImport_1064" sourceFilter="//@connectionAssistant.7/@ownedSourceFilter" targetFilter="//@connectionAssistant.7/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.7/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.7/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.PackageImport_1065" sourceFilter="//@connectionAssistant.8/@ownedSourceFilter" targetFilter="//@connectionAssistant.8/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.8/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.8/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.CommentAnnotatedElement_1022" sourceFilter="//@connectionAssistant.9/@ownedSourceFilter" targetFilter="//@connectionAssistant.9/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.9/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.24 //@ownedFilter.25" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.9/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.24 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.25 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.ConstraintConstrainedElement_4014" sourceFilter="//@connectionAssistant.10/@ownedSourceFilter" targetFilter="//@connectionAssistant.10/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.10/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.22 //@ownedFilter.23" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.10/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.24 //@ownedFilter.22 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.25 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.23 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <connectionAssistant elementTypeID="org.eclipse.papyrus.uml.diagram.profile.ConstraintContext_8500" sourceFilter="//@connectionAssistant.11/@ownedSourceFilter" targetFilter="//@connectionAssistant.11/@ownedTargetFilter">
+    <ownedSourceFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.11/@ownedSourceFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.22 //@ownedFilter.23" operator="or"/>
+    </ownedSourceFilter>
+    <ownedTargetFilter xsi:type="filters:CompoundFilter" filter="//@connectionAssistant.11/@ownedTargetFilter/@ownedFilter.0 //@ownedFilter.7">
+      <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.18 //@ownedFilter.12 //@ownedFilter.13 //@ownedFilter.16 //@ownedFilter.1 //@ownedFilter.2 //@ownedFilter.3 //@ownedFilter.10 //@ownedFilter.19 //@ownedFilter.8 //@ownedFilter.20 //@ownedFilter.14 //@ownedFilter.15 //@ownedFilter.17 //@ownedFilter.4 //@ownedFilter.5 //@ownedFilter.6 //@ownedFilter.11 //@ownedFilter.9" operator="or"/>
+    </ownedTargetFilter>
+  </connectionAssistant>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Dependency_2014</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Association_2015</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Stereotype_1026</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Class_2008</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Metaclass_1031</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Comment_1002</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Constraint_1014</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Model_2005</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Profile_1030</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Package_1004</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Enumeration_2006</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_2009</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.DataType_2010</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Diagram_2016</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.PrimitiveType_3026</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.DataTypeOperation_3019</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.EnumerationLiteral_1037</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.DataTypeProperty_3018</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.ClassProperty_3002</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.ClassOperation_3020</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Stereotype_1023</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Class_3010</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Metaclass_3028</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.CommentCN_1007</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Model_1027</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Profile_1024</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.PackageCN_1012</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Constraint_1028</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Enumeration_3025</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.DataType_3027</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Extension_1013</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Association_4001</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.ProfileApplication_1045</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Association_4019</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Generalization_4002</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Dependency_4008</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.Dependency_4018</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.ElementImport_1064</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.PackageImport_1065</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.CommentAnnotatedElement_1022</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.ConstraintConstrainedElement_4014</elementTypeID>
+  <elementTypeID>org.eclipse.papyrus.uml.diagram.profile.ConstraintContext_8500</elementTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.Extension_1013</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.Association_4001</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.ProfileApplication_1045</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.Association_4019</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.Generalization_4002</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.Dependency_4008</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.Dependency_4018</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.ElementImport_1064</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.PackageImport_1065</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.CommentAnnotatedElement_1022</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.ConstraintConstrainedElement_4014</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.diagram.profile.ConstraintContext_8500</relationshipTypeID>
+</assistant:ModelingAssistantProvider>
