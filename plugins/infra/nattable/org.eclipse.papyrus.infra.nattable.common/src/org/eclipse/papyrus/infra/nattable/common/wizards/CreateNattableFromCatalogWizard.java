@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 482443
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.wizards;
 
@@ -16,57 +17,60 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * Wizard declaration to display and choose existing Nattable configurations
  */
 public class CreateNattableFromCatalogWizard extends Wizard {
 
+	/**
+	 * The page which allow to select the table to create.
+	 */
 	private ChooseNattableConfigWizardPage page;
 
-	private Map<TableConfiguration, Integer> selectedConfigs;
+	/**
+	 * The selected view prototypes in the wizard.
+	 */
+	private Map<ViewPrototype, Integer> selectedViewPrototypes;
 
-	private Map<TableConfiguration, String> tableNames;
+	/**
+	 * The table name by view prototype.
+	 */
+	private Map<ViewPrototype, String> tableNames;
 
+	/**
+	 * The context of the future table.
+	 */
 	private EObject context;
 
-	public CreateNattableFromCatalogWizard(EObject context) {
+	/**
+	 * Constructor.
+	 *
+	 * @param context
+	 *            The context of the table to create
+	 */
+	public CreateNattableFromCatalogWizard(final EObject context) {
 		this.context = context;
 	}
 
 	/**
-	 * Getter for selected configurations.
-	 *
-	 * @return
-	 */
-	public Map<TableConfiguration, Integer> getSelectedConfig() {
-		return selectedConfigs;
-	}
-
-	/**
-	 * Enables the finish button when there's at least one selected configuration
+	 * Enables the finish button when there's at least one selected configuration.
+	 * {@inheritDoc}
 	 *
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
-	 *
-	 * @return
 	 */
 	@Override
 	public boolean performFinish() {
-		this.selectedConfigs = page.getSelectedConfigs();
+		this.selectedViewPrototypes = page.getSelectedViewPrototypes();
 		this.tableNames = page.getTableNames();
-		if (this.selectedConfigs != null && this.tableNames != null) {
-			if (this.selectedConfigs.size() > 0) {
+		if (this.selectedViewPrototypes != null && this.tableNames != null) {
+			if (this.selectedViewPrototypes.size() > 0) {
 
 				return true;
 			}
 		}
 		return false;
-	}
-
-
-	public Map<TableConfiguration, String> getTableNames() {
-		return tableNames;
 	}
 
 	/**
@@ -96,6 +100,23 @@ public class CreateNattableFromCatalogWizard extends Wizard {
 		return Messages.CreateNattableFromCatalogWizard_2;
 	}
 
+	/**
+	 * Getter for selected view prototypes.
+	 *
+	 * @return The selected view prototypes.
+	 */
+	public Map<ViewPrototype, Integer> getSelectedViewPrototypes() {
+		return selectedViewPrototypes;
+	}
 
+
+	/**
+	 * Getter for the selected table names.
+	 *
+	 * @return The selected table names.
+	 */
+	public Map<ViewPrototype, String> getTableNames() {
+		return tableNames;
+	}
 
 }

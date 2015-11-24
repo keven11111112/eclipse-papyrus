@@ -8,15 +8,22 @@
  *
  * Contributors:
  *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 482443
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.wizards;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
@@ -30,9 +37,15 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.ViewerColumn;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.infra.nattable.common.Activator;
+import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration;
 import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
+import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusTable;
+import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -47,36 +60,51 @@ import org.eclipse.swt.widgets.TableColumn;
  */
 public class ChooseNattableConfigWizardPage extends WizardPage {
 
-	private Map<TableConfiguration, Integer> selectedConfigs = new HashMap<TableConfiguration, Integer>();
-
-	private Map<TableConfiguration, String> tableNames = new HashMap<TableConfiguration, String>();
-
-	private Object context;
-
-	private static final Image CHECKED = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("org.eclipse.papyrus.infra.nattable.common", "icons/checked.gif"); //$NON-NLS-1$ //$NON-NLS-2$
-
-	private static final Image UNCHECKED = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage("org.eclipse.papyrus.infra.nattable.common", "icons/unchecked.gif"); //$NON-NLS-1$ //$NON-NLS-2$
+	/**
+	 * The selected view prototypes in the wizard.
+	 */
+	private Map<ViewPrototype, Integer> selectedViewPrototypes = new HashMap<ViewPrototype, Integer>();
 
 	/**
-	 *
+	 * The table name by view prototype.
+	 */
+	private Map<ViewPrototype, String> tableNames = new HashMap<ViewPrototype, String>();
+
+	/**
+	 * The context of the future table.
+	 */
+	private Object context;
+
+	/**
+	 * The checked image for the table to select the view prototypes.
+	 */
+	private static final Image CHECKED = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, "icons/checked.gif"); //$NON-NLS-1
+
+	/**
+	 * The unchecked image for the table to select the view prototypes.
+	 */
+	private static final Image UNCHECKED = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, "icons/unchecked.gif"); //$NON-NLS-1$
+
+	/**
 	 * Constructor.
 	 *
 	 * @param pageName
+	 *            The page name.
 	 * @param context
+	 *            The context of the table to create.
 	 */
-	protected ChooseNattableConfigWizardPage(String pageName, EObject context) {
+	protected ChooseNattableConfigWizardPage(final String pageName, final EObject context) {
 		super(pageName);
 		this.context = context;
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-	 *
-	 * @param parent
 	 */
 	@Override
-	public void createControl(Composite parent) {
+	public void createControl(final Composite parent) {
 		setPageComplete(false);
 		Composite container = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
@@ -87,12 +115,11 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		setControl(container);
 	}
 
-
-
 	/**
-	 * Create the table to display the catalog of existing configurations
+	 * Create the table to display the catalog of existing view prototypes corresponding to the tables viewpoint.
 	 *
 	 * @param container
+	 *            The container composite.
 	 */
 	public void createTableViewer(final Composite container) {
 		final TableViewer viewer = new TableViewer(container, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
@@ -100,17 +127,27 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		final Table table = viewer.getTable();
 		table.setHeaderVisible(true);
 		ViewerColumn colCheckbox = createTableViewerColumn("", 23, viewer); //$NON-NLS-1$
-		Collection<TableConfiguration> configs = loadConfigs();
+		Collection<ViewPrototype> viewPrototypes = loadConfigs();
+
+		// Calculate the TableConfiguration for the icon and the description of table
+		final Map<ViewPrototype, TableConfiguration> tableConfigurations = new HashMap<ViewPrototype, TableConfiguration>(viewPrototypes.size());
+		for (ViewPrototype viewPrototype : viewPrototypes) {
+			final ResourceSet resourceSet = new ResourceSetImpl();
+			// TODO : The following code line must be replaced by TableEditorCreationHelper.getTableConfigurationURI when the API for table creation is merged
+			final Resource resource = resourceSet.getResource(getTableConfigurationURI((TableViewPrototype) viewPrototype), true);
+			tableConfigurations.put(viewPrototype, (TableConfiguration) resource.getContents().get(0));
+		}
+
 		colCheckbox.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
-			public String getText(Object element) {
+			public String getText(final Object element) {
 				return ""; //$NON-NLS-1$
 			}
 
 			@Override
-			public Image getImage(Object element) {
-				if (selectedConfigs.containsKey(element)) {
+			public Image getImage(final Object element) {
+				if (selectedViewPrototypes.containsKey(element)) {
 					return CHECKED;
 				} else {
 					return UNCHECKED;
@@ -123,28 +160,28 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 			private CheckboxCellEditor checkboxCellEditor;
 
 			@Override
-			protected void setValue(Object element, Object value) {
+			protected void setValue(final Object element, final Object value) {
 				if (Boolean.TRUE.equals(checkboxCellEditor.getValue())) {
-					selectedConfigs.put((TableConfiguration) element, 1);
+					selectedViewPrototypes.put((ViewPrototype) element, 1);
 				} else {
-					selectedConfigs.remove(element);
+					selectedViewPrototypes.remove(element);
 				}
 				viewer.update(element, null);
 			}
 
 			@Override
-			protected Object getValue(Object element) {
-				return selectedConfigs.containsKey(element);
+			protected Object getValue(final Object element) {
+				return selectedViewPrototypes.containsKey(element);
 			}
 
 			@Override
-			protected CellEditor getCellEditor(Object element) {
+			protected CellEditor getCellEditor(final Object element) {
 				checkboxCellEditor = new CheckboxCellEditor(container, SWT.CHECK | SWT.READ_ONLY);
 				return checkboxCellEditor;
 			}
 
 			@Override
-			protected boolean canEdit(Object element) {
+			protected boolean canEdit(final Object element) {
 				return true;
 			}
 		});
@@ -152,15 +189,16 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		colType.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
-			public String getText(Object element) {
-				TableConfiguration tc = (TableConfiguration) element;
-				return tc.getType();
+			public String getText(final Object element) {
+				ViewPrototype viewPrototype = (ViewPrototype) element;
+				return viewPrototype.getConfiguration().getImplementationID();
 			}
 
 			@Override
-			public Image getImage(Object element) {
-				TableConfiguration tc = (TableConfiguration) element;
-				Image image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(tc.getIconPath());
+			public Image getImage(final Object element) {
+				final ViewPrototype viewPrototype = (ViewPrototype) element;
+				final TableConfiguration tableConfiguration = tableConfigurations.get(viewPrototype);
+				Image image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(tableConfiguration.getIconPath());
 				return image;
 			}
 
@@ -171,13 +209,13 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		colName.setEditingSupport(new EditingSupport(viewer) {
 
 			@Override
-			protected void setValue(Object element, Object value) {
-				tableNames.put((TableConfiguration) element, (String) value);
+			protected void setValue(final Object element, final Object value) {
+				tableNames.put((ViewPrototype) element, (String) value);
 				viewer.update(element, null);
 			}
 
 			@Override
-			protected Object getValue(Object element) {
+			protected Object getValue(final Object element) {
 				if (tableNames.containsKey(element)) {
 					return tableNames.get(element);
 				}
@@ -185,19 +223,19 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 			}
 
 			@Override
-			protected CellEditor getCellEditor(Object element) {
+			protected CellEditor getCellEditor(final Object element) {
 				return new TextCellEditor(viewer.getTable());
 			}
 
 			@Override
-			protected boolean canEdit(Object element) {
+			protected boolean canEdit(final Object element) {
 				return true;
 			}
 		});
 		colName.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
-			public String getText(Object element) {
+			public String getText(final Object element) {
 				return tableNames.get(element);
 			}
 		});
@@ -206,26 +244,31 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		colQuantity.setEditingSupport(new EditingSupport(viewer) {
 
 			@Override
-			protected void setValue(Object element, Object value) {
-				selectedConfigs.put((TableConfiguration) element, Integer.parseInt((String) value));
+			protected void setValue(final Object element, final Object value) {
+				// When the quantity is not filled, only one table must be created
+				if (value.toString().isEmpty()) {
+					selectedViewPrototypes.put((ViewPrototype) element, 1);
+				} else {
+					selectedViewPrototypes.put((ViewPrototype) element, Integer.parseInt((String) value));
+				}
 				viewer.update(element, null);
 			}
 
 			@Override
-			protected Object getValue(Object element) {
-				if (selectedConfigs.containsKey(element)) {
-					return selectedConfigs.get(element).toString();
+			protected Object getValue(final Object element) {
+				if (selectedViewPrototypes.containsKey(element)) {
+					return selectedViewPrototypes.get(element).toString();
 				}
 				return "0"; //$NON-NLS-1$
 			}
 
 			@Override
-			protected CellEditor getCellEditor(Object element) {
+			protected CellEditor getCellEditor(final Object element) {
 				TextCellEditor textCellEditor = new TextCellEditor(viewer.getTable());
 				textCellEditor.setValidator(new ICellEditorValidator() {
 
 					@Override
-					public String isValid(Object value) {
+					public String isValid(final Object value) {
 						if (!(value instanceof Integer)) {
 							return null;
 						}
@@ -236,16 +279,16 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 			}
 
 			@Override
-			protected boolean canEdit(Object element) {
+			protected boolean canEdit(final Object element) {
 				return true;
 			}
 		});
 		colQuantity.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
-			public String getText(Object element) {
-				if (selectedConfigs.containsKey(element)) {
-					return selectedConfigs.get(element).toString();
+			public String getText(final Object element) {
+				if (selectedViewPrototypes.containsKey(element)) {
+					return selectedViewPrototypes.get(element).toString();
 				}
 				return ""; //$NON-NLS-1$
 			}
@@ -255,17 +298,18 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		colDescription.setLabelProvider(new ColumnLabelProvider() {
 
 			@Override
-			public String getText(Object element) {
-				TableConfiguration tc = (TableConfiguration) element;
-				return tc.getDescription();
+			public String getText(final Object element) {
+				final ViewPrototype viewPrototype = (ViewPrototype) element;
+				final TableConfiguration tableConfiguration = tableConfigurations.get(viewPrototype);
+				return tableConfiguration.getDescription();
 			}
 
 		});
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			@Override
-			public void selectionChanged(SelectionChangedEvent event) {
-				if (selectedConfigs.size() > 0) {
+			public void selectionChanged(final SelectionChangedEvent event) {
+				if (selectedViewPrototypes.size() > 0) {
 					setPageComplete(true);
 				} else {
 					setPageComplete(false);
@@ -279,18 +323,21 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 		gridData.grabExcessVerticalSpace = true;
 		gridData.horizontalAlignment = GridData.FILL;
 		viewer.getControl().setLayoutData(gridData);
-		viewer.setInput(configs);
+		viewer.setInput(viewPrototypes);
 	}
 
 	/**
-	 * Constructor.
+	 * This allows to create a table viewer column.
 	 *
 	 * @param title
+	 *            The title of the wizard page.
 	 * @param bound
+	 *            The width.
 	 * @param viewer
-	 * @return
+	 *            The table viewer.
+	 * @return The created table viewer column.
 	 */
-	private TableViewerColumn createTableViewerColumn(String title, int bound, TableViewer viewer) {
+	private TableViewerColumn createTableViewerColumn(final String title, final int bound, final TableViewer viewer) {
 		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
 		column.setText(title);
@@ -305,43 +352,83 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 	 *
 	 * @return
 	 */
-	public Collection<TableConfiguration> loadConfigs() {
-		Collection<TableConfiguration> tableConfigurations = new ArrayList<TableConfiguration>(NattableConfigurationRegistry.INSTANCE.getTableConfigurations());
+	public Collection<ViewPrototype> loadConfigs() {
+		final List<ViewPrototype> viewPrototypes = new ArrayList<ViewPrototype>();
 
-		final ArrayList<TableConfiguration> tableConfigurationsToRemove = new ArrayList<TableConfiguration>();
-		for (TableConfiguration tableConfiguration : tableConfigurations) {
-
-			if (NattableConfigurationRegistry.INSTANCE.canCreateTable(tableConfiguration.getType(), context).isOK()) {
-
-				tableNames.put(tableConfiguration, tableConfiguration.getName());
-			} else {
-				tableConfigurationsToRemove.add(tableConfiguration);
+		// build a list of all the available prototypes corresponding to the context
+		for (final ViewPrototype proto : PolicyChecker.getCurrent().getAllPrototypes()) {
+			if ((proto.getConfiguration() instanceof PapyrusTable || proto.getConfiguration() instanceof PapyrusSyncTable)) {
+				if (NattableConfigurationRegistry.INSTANCE.canCreateTable(proto.getImplementation(), context).isOK()) {
+					viewPrototypes.add(proto);
+				}
 			}
 		}
-		tableConfigurations.removeAll(tableConfigurationsToRemove);
-		return tableConfigurations;
+
+		// sort them
+		Collections.sort(viewPrototypes, new ViewPrototype.Comp());
+
+		return viewPrototypes;
+	}
+
+	/**
+	 * TODO : To remove when the API for table creation is merged
+	 * 
+	 * @param viewPrototype
+	 *            a view {@link TableViewPrototype}, must not be <code>null</code>
+	 * @return
+	 * 		the {@link URI} of the nattable configuration, or <code>null</code> if not found
+	 */
+	private URI getTableConfigurationURI(final TableViewPrototype viewPrototype) {
+		if (viewPrototype.getConfiguration() instanceof PapyrusTable) {
+			PapyrusTable papyrusTable = (PapyrusTable) viewPrototype.getConfiguration();
+			String uri = papyrusTable.getConfiguration();
+			if (uri != null && uri.length() > 0) {
+				return URI.createURI(uri);
+			}
+		}
+		if (viewPrototype.getConfiguration() instanceof PapyrusSyncTable) {
+			return NattableConfigurationRegistry.INSTANCE.getConfigurationURI(((PapyrusSyncTable) viewPrototype.getConfiguration()).getImplementationID());
+		}
+		return null;
+	}
+
+	/**
+	 * Getter for selected view prototypes.
+	 *
+	 * @return The selected view prototypes.
+	 */
+	public Map<ViewPrototype, Integer> getSelectedViewPrototypes() {
+		return selectedViewPrototypes;
 	}
 
 
 	/**
-	 * Getter for selected table configurations
+	 * Getter for the selected table names.
 	 *
-	 * @return
+	 * @return The selected table names.
 	 */
-	public Map<TableConfiguration, Integer> getSelectedConfigs() {
-		return selectedConfigs;
-	}
-
-
-	/**
-	 * Getter for the selected table names
-	 *
-	 * @return
-	 */
-	public Map<TableConfiguration, String> getTableNames() {
+	public Map<ViewPrototype, String> getTableNames() {
 		return tableNames;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.dialogs.DialogPage#dispose()
+	 */
+	@Override
+	public void dispose() {
+		if (null != selectedViewPrototypes) {
+			selectedViewPrototypes.clear();
+			selectedViewPrototypes = null;
+		}
+
+		if (null != tableNames) {
+			tableNames.clear();
+			tableNames = null;
+		}
+		super.dispose();
+	}
 
 
 }
