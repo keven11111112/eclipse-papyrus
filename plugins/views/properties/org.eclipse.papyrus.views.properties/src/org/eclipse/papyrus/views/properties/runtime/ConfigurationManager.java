@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *  Christian W. Damus (CEA) - Support implicit enablement of prototypes of unavailable contexts (CDO)
+ *  Christian W. Damus - bug 482930
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
@@ -211,6 +212,7 @@ public class ConfigurationManager {
 		if (contextStorageProviderListener == null) {
 			contextStorageProviderListener = new IContextStorageProviderListener() {
 
+				@Override
 				public void contextsAdded(Collection<? extends Context> contexts) {
 					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
 
@@ -229,6 +231,7 @@ public class ConfigurationManager {
 					}
 				}
 
+				@Override
 				public void contextsChanged(Collection<? extends Context> contexts) {
 					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
 
@@ -247,6 +250,7 @@ public class ConfigurationManager {
 					}
 				}
 
+				@Override
 				public void contextsRemoved(Collection<? extends Context> contexts) {
 					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
 
@@ -304,6 +308,7 @@ public class ConfigurationManager {
 
 		Display.getDefault().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				NotificationBuilder.createAsyncPopup(message).setType(org.eclipse.papyrus.infra.widgets.toolbox.notification.Type.INFO).setDelay(5000L).run();
 			}
@@ -694,6 +699,19 @@ public class ConfigurationManager {
 	}
 
 	/**
+	 * Queries whether a given context is {@linkplain #getEnabledContexts() enabled}.
+	 * 
+	 * @param context
+	 *            a context
+	 * @return whether it is currently enabled
+	 * 
+	 * @see #getEnabledContexts()
+	 */
+	public boolean isEnabled(Context context) {
+		return enabledContexts.contains(context);
+	}
+
+	/**
 	 * Tests if a Context is a plugin context. plugin contexts
 	 * are registered through {@link ContextExtensionPoint} and are
 	 * read-only.
@@ -1073,7 +1091,7 @@ public class ConfigurationManager {
 	}
 
 	/**
-	 * Checks the conflicts between all applied configurations
+	 * Checks the conflicts between all applied {@linkplain #getEnabledContexts() enabled}) configurations
 	 * A Conflict may occur when two sections have the same ID : they can't
 	 * be displayed at the same time
 	 *
@@ -1081,6 +1099,24 @@ public class ConfigurationManager {
 	 * 		The list of conflicts
 	 */
 	public Collection<ConfigurationConflict> checkConflicts() {
+		return checkConflicts(getEnabledContexts());
+	}
+
+	/**
+	 * Checks the conflicts between those of the specified configurations that are enabled.
+	 * A Conflict may occur when two sections have the same ID : they can't
+	 * be displayed at the same time.
+	 *
+	 * @param contexts
+	 *            a set of configurations to check for conflicts (amongst the subset of these
+	 *            that are actually {@linkplain #isEnabled(Context) enabled}
+	 * 
+	 * @return
+	 * 		The list of conflicts
+	 * 
+	 * @see #isEnabled(Context)
+	 */
+	public Collection<ConfigurationConflict> checkConflicts(Collection<? extends Context> contexts) {
 		Map<String, List<Context>> sections = new HashMap<String, List<Context>>();
 		Map<String, ConfigurationConflict> conflicts = new HashMap<String, ConfigurationConflict>();
 
@@ -1088,24 +1124,32 @@ public class ConfigurationManager {
 			for (Tab tab : context.getTabs()) {
 				for (Section section : tab.getSections()) {
 					String sectionID = section.getName();
-					List<Context> contexts = sections.get(sectionID);
-					if (contexts == null) {
-						contexts = new LinkedList<Context>();
-						sections.put(sectionID, contexts);
+					List<Context> sectionContexts = sections.get(sectionID);
+					if (sectionContexts == null) {
+						sectionContexts = new LinkedList<Context>();
+						sections.put(sectionID, sectionContexts);
 					} else {
 						ConfigurationConflict conflict = conflicts.get(sectionID);
 						if (conflict == null) {
 							conflict = new ConfigurationConflict(sectionID);
 							conflicts.put(sectionID, conflict);
 
-							conflict.addContext(contexts.get(0));
+							conflict.addContext(sectionContexts.get(0));
 						}
 
 						conflict.addContext(context);
 					}
 
-					contexts.add(context);
+					sectionContexts.add(context);
 				}
+			}
+		}
+
+		// Report only conflicts involving the originally requested contexts
+		for (Iterator<ConfigurationConflict> iter = conflicts.values().iterator(); iter.hasNext();) {
+			ConfigurationConflict next = iter.next();
+			if (next.conflictingContexts.stream().noneMatch(ctx -> contexts.contains(ctx))) {
+				iter.remove();
 			}
 		}
 

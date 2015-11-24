@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 482930
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.preferences;
 
@@ -16,6 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -44,8 +48,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 public class Preferences extends PreferencePage implements IWorkbenchPreferencePage {
 
-	private boolean changeOccured = false;
-
+	@Override
 	public void init(IWorkbench workbench) {
 		// Nothing
 	}
@@ -61,8 +64,6 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 		final ConfigurationManager configurationManager = ConfigurationManager.getInstance();
 
-		contextState.init();
-
 		// Only customizable Property view contexts should appear here
 		List<Context> contexts = new java.util.ArrayList<Context>(configurationManager.getCustomizableContexts());
 		contexts.addAll(configurationManager.getMissingContexts());
@@ -77,10 +78,12 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 			checkbox.addSelectionListener(new SelectionListener() {
 
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					contextState.setContextState(theContext, ((Button) e.widget).getSelection());
 				}
 
+				@Override
 				public void widgetDefaultSelected(SelectionEvent e) {
 					// Nothing
 				}
@@ -90,7 +93,7 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 			checkboxes.put(context, checkbox);
 		}
 
-		changeOccured = false;
+		contextState.snapshot();
 		return null;
 	}
 
@@ -111,9 +114,8 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 			Button checkbox = checkboxes.get(context);
 			if (checkbox != null) {
 				checkbox.setSelection(applied);
+				contextState.setContextState(context, applied);
 			}
-
-			contextState.setContextState(context, applied);
 		}
 	}
 
@@ -137,16 +139,20 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 	private class ContextState {
 
-		public ContextState() {
+		private Map<Context, Boolean> contexts = new HashMap<>();
+
+		private Map<Context, Boolean> snapshot;
+
+		ContextState() {
+			super();
 		}
 
-		public void init() {
-			contexts.clear();
+		void snapshot() {
+			snapshot = new HashMap<>(contexts);
 		}
 
 		public void setContextState(Context context, boolean applied) {
 			contexts.put(context, applied);
-			changeOccured = true;
 		}
 
 		public boolean saveContext() {
@@ -160,27 +166,39 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 			ConfigurationManager.getInstance().update();
 
-			Collection<ConfigurationConflict> conflicts = ConfigurationManager.getInstance().checkConflicts();
+			Set<Context> delta = getChangedContexts();
+			if (!delta.isEmpty()) {
+				Collection<ConfigurationConflict> conflicts = ConfigurationManager.getInstance().checkConflicts(delta);
 
-			if (changeOccured && !conflicts.isEmpty()) {
-				String errorMessage = Messages.Preferences_ConflictWarning1;
-				for (ConfigurationConflict conflict : conflicts) {
-					errorMessage += conflict.toString() + "\n"; //$NON-NLS-1$
-				}
-				errorMessage += Messages.Preferences_ConflictWarning2;
+				if (!conflicts.isEmpty()) {
+					String errorMessage = Messages.Preferences_ConflictWarning1;
+					for (ConfigurationConflict conflict : conflicts) {
+						errorMessage += conflict.toString() + "\n"; //$NON-NLS-1$
+					}
+					errorMessage += Messages.Preferences_ConflictWarning2;
 
-				MessageDialog dialog = new MessageDialog(getShell(), Messages.Preferences_ConflictWarningTitle, null, errorMessage, MessageDialog.WARNING, new String[] { IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL }, 1);
-				int result = dialog.open();
-				if (result != 0) {
-					return false;
+					MessageDialog dialog = new MessageDialog(getShell(), Messages.Preferences_ConflictWarningTitle, null, errorMessage, MessageDialog.WARNING,
+							new String[] { IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL },
+							1);
+					int result = dialog.open();
+					if (result != 0) {
+						return false;
+					}
 				}
+
+				snapshot();
 			}
 
-			changeOccured = false;
 			return true;
 		}
 
-		private Map<Context, Boolean> contexts = new HashMap<Context, Boolean>();
+		Set<Context> getChangedContexts() {
+			return (snapshot == null)
+					? contexts.keySet()
+					: snapshot.keySet().stream()
+							.filter(c -> !Objects.equals(snapshot.get(c), contexts.get(c)))
+							.collect(Collectors.toSet());
+		}
 	}
 
 }
