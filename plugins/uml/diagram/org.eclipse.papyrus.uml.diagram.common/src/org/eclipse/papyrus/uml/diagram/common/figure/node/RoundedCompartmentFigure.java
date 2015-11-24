@@ -299,7 +299,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 				// Fill figure
 				if (isUsingGradient()) {
-
 					fillPolygonWithGradient(graphics, polygonPoints);
 
 				} else {
@@ -307,7 +306,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				}
 
 				graphics.setLineWidth(getLineWidth());
-				// set the lineStyle: not compatible with custom style
 				graphics.setLineStyle(borderStyle);
 
 				// border draw trough graphics
@@ -323,10 +321,12 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 				if (!noBorder) {
 					// Draw lines
+					if (graphics.getLineStyle() == Graphics.LINE_CUSTOM) {
+						graphics.setLineDash(getCustomDash());
+					}
 					graphics.drawPolyline(polygonPoints);
 				}
 			}
-
 		} else {
 
 			// Retrieve the border when was be set to null for package
@@ -579,6 +579,9 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			public void paint(final IFigure figure, final Graphics graphics, final Insets insets) {
 				final int transparency = 255 - ((NodeFigure) figure).getTransparency() * 255 / 100;
 				graphics.setAlpha(transparency);
+				if (getStyle() == Graphics.LINE_CUSTOM) {
+					graphics.setLineDash(getCustomDash());
+				}
 				super.paint(figure, graphics, insets);
 			}
 		};
