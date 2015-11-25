@@ -276,9 +276,7 @@ alternateBorderColor path{
 }
 
 [appliedStereotypes~="BPMNProfile::DataObject"]{
-	/*
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataObject.svg";
-	 */
 	transparency: 100;
 	maintainSymbolRatio: true;
 	displayTag: false;
