@@ -76,12 +76,14 @@ public class CellEditorAxisConfiguration extends AbstractRegistryConfiguration {
 
 		final CellEditorDeclaration editorDeclaration = TableHelper.getCellEditorDeclaration(modelManager);
 		if (editorDeclaration.equals(CellEditorDeclaration.COLUMN)) {
-			final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack);
+			// Bug 483000: Manage the accumulator with the bodyDataLayer instead of the bodyLayerStack
+			final ColumnOverrideLabelAccumulator accumulator = new ColumnOverrideLabelAccumulator(bodyLayerStack.getBodyDataLayer());
 			declaredCellEditors(modelManager.getColumnElementsList(), configRegistry, accumulator, null);
 			//bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of  bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
 			bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator(accumulator);
 		} else if (editorDeclaration.equals(CellEditorDeclaration.ROW)) {
-			final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack);
+			// Bug 483000: Manage the accumulator with the bodyDataLayer instead of the bodyLayerStack
+			final CustomRowOverrideLabelAccumulator accumulator = new CustomRowOverrideLabelAccumulator(bodyLayerStack.getBodyDataLayer());
 			declaredCellEditors(modelManager.getRowElementsList(), configRegistry, null, accumulator);
 			//bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator instead of  bodyLayerStack.setConfigLabelAccumulator to fix bug 480190
 			bodyLayerStack.getBodyDataLayer().setConfigLabelAccumulator(accumulator);
