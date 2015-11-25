@@ -3,6 +3,7 @@ package org.eclipse.papyrus.uml.diagram.composite.test.canonical;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.composite.CreateCompositeDiagramCommand;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.composite.test.ICompositeDiagramTestsConstants;
 import org.junit.Test;
@@ -42,6 +43,11 @@ public class TestPortLocation extends org.eclipse.papyrus.uml.diagram.tests.cano
 	@Test
 	public void testClassPortLocation() {
 		testPortLocation(UMLElementTypes.Class_2073);
+	}
+
+	@Test
+	public void testClassPartPortLocation() {
+		testPortLocation(UMLElementTypes.Class_2073, ClassCompositeCompartmentEditPart.VISUAL_ID, UMLElementTypes.Property_3070);
 	}
 
 	@Test

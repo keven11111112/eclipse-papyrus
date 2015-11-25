@@ -11,6 +11,7 @@ import java.util.Map;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
@@ -24,11 +25,16 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
 
 public abstract class TestPortLocation extends AbstractPapyrusTestCase {
@@ -36,7 +42,23 @@ public abstract class TestPortLocation extends AbstractPapyrusTestCase {
 	protected abstract IElementType getPortType();
 
 	protected void testPortLocation(IElementType container) {
+		testPortLocation(container, 0, null);
+	}
+
+	protected void testPortLocation(IElementType container, int containerCompartmentVisualId, IElementType child) {
 		IGraphicalEditPart parentEP = createChild(getDiagramEditPart(), container);
+		EObject containerSemantic = parentEP.resolveSemanticElement();
+		if (containerCompartmentVisualId > 0) {
+			parentEP = findChildBySemanticHint(parentEP, containerCompartmentVisualId);
+		}
+		if (child != null) {
+			parentEP = createChild(parentEP, child);
+			EObject parentSemantic = parentEP.resolveSemanticElement();
+			if (parentSemantic instanceof Property) {
+				SetValueCommand setPropertyTypeCommand = new SetValueCommand(new SetRequest(parentSemantic, UMLPackage.eINSTANCE.getTypedElement_Type(), containerSemantic));
+				executeOnUIThread(new GMFtoGEFCommandWrapper(setPropertyTypeCommand));
+			}
+		}
 		Point parentLocation = new Point(100, 100);
 		parentEP.getFigure().setBounds(new Rectangle(parentLocation, new Dimension(200, 200)));
 		Point portLocation = new Point(100, 280);
@@ -44,10 +66,16 @@ public abstract class TestPortLocation extends AbstractPapyrusTestCase {
 		Port portSemantic = (Port) portEP.resolveSemanticElement();
 		assertNotNull(portSemantic);
 		checkPortPosition(portEP);
-		testViewDeletion(portEP, 1);
-		testDrop(parentEP, portSemantic, portLocation, 1);
+		testViewDeletion(portEP, child == null ? 1 : 0);
+		testDrop(parentEP, portSemantic, portLocation, child == null ? 1 : 0);
 		portEP = parentEP.getChildBySemanticHint(((IHintedType) getPortType()).getSemanticHint());
 		checkPortPosition(portEP);
+	}
+
+	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
+		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
+		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
+		return childEP;
 	}
 
 	private void checkPortPosition(IGraphicalEditPart port) {
