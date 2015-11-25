@@ -20,8 +20,9 @@ ObjectFlow > Label{
 }
 
 OpaqueAction{
-	rightMarginLabel : 5;
-    textAlignment : center;    
+	rightMarginLabel : 2;
+	leftMarginLabel : 30;
+    topMarginLabel : 10;
     isNameWrap : true;
 }
 OpaqueAction > Compartment[kind="symbol"] {
