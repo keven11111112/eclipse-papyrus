@@ -45,7 +45,6 @@ public class FontGroup extends AbstractGroup {
 	 **/
 	public FontGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, key, dialogPage);
-		System.out.println("FONT key = " + key);
 		createContent(parent);
 	}
 

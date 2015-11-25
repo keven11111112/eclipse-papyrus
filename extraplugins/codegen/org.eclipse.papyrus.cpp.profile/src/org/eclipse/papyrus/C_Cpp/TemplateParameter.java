@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.TemplateParameter#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.TemplateParameter#getBase_templateparameter <em>Base templateparameter</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.TemplateParameter#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.TemplateParameter#getBase_templateparameter <em>Base templateparameter</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getTemplateParameter()
  * @model
@@ -39,7 +39,6 @@ public interface TemplateParameter extends EObject {
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getTemplateParameter_Name()
@@ -52,9 +51,7 @@ public interface TemplateParameter extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.TemplateParameter#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -67,7 +64,6 @@ public interface TemplateParameter extends EObject {
 	 * If the meaning of the '<em>Base templateparameter</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base templateparameter</em>' reference.
 	 * @see #setBase_templateparameter(org.eclipse.uml2.uml.TemplateParameter)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getTemplateParameter_Base_templateparameter()
@@ -80,9 +76,7 @@ public interface TemplateParameter extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.TemplateParameter#getBase_templateparameter <em>Base templateparameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base templateparameter</em>' reference.
+	 * @param value the new value of the '<em>Base templateparameter</em>' reference.
 	 * @see #getBase_templateparameter()
 	 * @generated
 	 */

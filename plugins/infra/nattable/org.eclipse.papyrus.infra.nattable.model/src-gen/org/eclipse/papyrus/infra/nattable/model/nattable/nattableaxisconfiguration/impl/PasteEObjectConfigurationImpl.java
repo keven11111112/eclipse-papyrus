@@ -13,10 +13,12 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 
@@ -30,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getPastedElementId <em>Pasted Element Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getAxisIdentifier <em>Axis Identifier</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +68,16 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 * @ordered
 	 */
 	protected EStructuralFeature pasteElementContainementFeature;
+
+	/**
+	 * The cached value of the '{@link #getAxisIdentifier() <em>Axis Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAxisIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected IAxis axisIdentifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -153,6 +166,63 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public IAxis getAxisIdentifier() {
+		return axisIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAxisIdentifier(IAxis newAxisIdentifier, NotificationChain msgs) {
+		IAxis oldAxisIdentifier = axisIdentifier;
+		axisIdentifier = newAxisIdentifier;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER, oldAxisIdentifier, newAxisIdentifier);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAxisIdentifier(IAxis newAxisIdentifier) {
+		if (newAxisIdentifier != axisIdentifier) {
+			NotificationChain msgs = null;
+			if (axisIdentifier != null)
+				msgs = ((InternalEObject)axisIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER, null, msgs);
+			if (newAxisIdentifier != null)
+				msgs = ((InternalEObject)newAxisIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER, null, msgs);
+			msgs = basicSetAxisIdentifier(newAxisIdentifier, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER, newAxisIdentifier, newAxisIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER:
+				return basicSetAxisIdentifier(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -161,6 +231,8 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
 				if (resolve) return getPasteElementContainementFeature();
 				return basicGetPasteElementContainementFeature();
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER:
+				return getAxisIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -178,6 +250,9 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 				return;
 			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
 				setPasteElementContainementFeature((EStructuralFeature)newValue);
+				return;
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER:
+				setAxisIdentifier((IAxis)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -197,6 +272,9 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
 				setPasteElementContainementFeature((EStructuralFeature)null);
 				return;
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER:
+				setAxisIdentifier((IAxis)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,6 +291,8 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 				return PASTED_ELEMENT_ID_EDEFAULT == null ? pastedElementId != null : !PASTED_ELEMENT_ID_EDEFAULT.equals(pastedElementId);
 			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
 				return pasteElementContainementFeature != null;
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER:
+				return axisIdentifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

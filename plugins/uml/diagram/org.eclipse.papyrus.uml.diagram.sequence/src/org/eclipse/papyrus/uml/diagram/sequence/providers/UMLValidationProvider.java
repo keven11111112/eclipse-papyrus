@@ -46,7 +46,6 @@ public class UMLValidationProvider {
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -164,7 +163,9 @@ public class UMLValidationProvider {
 		 */
 		CtxSwitchStrategy(IBatchValidator validator) {
 			this.defaultStrategy = validator.getDefaultTraversalStrategy();
-			this.contextSwitchingIdentifiers = new int[] { LifelineEditPart.VISUAL_ID };
+			this.contextSwitchingIdentifiers = new int[] {
+					LifelineEditPart.VISUAL_ID
+			};
 			Arrays.sort(this.contextSwitchingIdentifiers);
 		}
 
@@ -225,7 +226,8 @@ public class UMLValidationProvider {
 				if (nextTarget instanceof View) {
 					final int id = UMLVisualIDRegistry.getVisualID((View) nextTarget);
 					int nextSemanticId = (id != -1 && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : -1;
-					if ((currentSemanticCtxId != -1 && currentSemanticCtxId != nextSemanticId) || (nextSemanticId != -1 && nextSemanticId != currentSemanticCtxId)) {
+					if ((currentSemanticCtxId != -1 && currentSemanticCtxId != nextSemanticId)
+							|| (nextSemanticId != -1 && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;
 					}
 					currentSemanticCtxId = nextSemanticId;

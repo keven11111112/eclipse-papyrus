@@ -97,8 +97,9 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			break;
 		case Notification.ADD_MANY:
 			final Collection<?> addedValues = (Collection<?>) notification.getNewValue();
-			// final int lisIndex = notification.getPosition();
-			newListValue.addAll(addedValues);
+			final int listIndex = notification.getPosition();
+			
+			newListValue.addAll(listIndex, addedValues);
 			needRefresh = true;
 			break;
 		case Notification.EVENT_TYPE_COUNT:
@@ -174,11 +175,11 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public void dispose() {
-		super.dispose();
 		for (final IAxisManager current : this.subManagers) {
 			current.dispose();
 		}
 		this.subManagers.clear();
+		super.dispose();
 	}
 
 
@@ -245,6 +246,30 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		}
 		return cmd;
 	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
+		for (final IAxisManager current : this.subManagers) {
+			final Command tmp = current.getAddAxisCommand(domain, objectToAdd, index);
+			if (tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		if (cmd.isEmpty()) {
+			return null;
+		}
+		return cmd;
+	}
 
 	/**
 	 *
@@ -259,6 +284,30 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
 		for (final IAxisManager current : this.subManagers) {
 			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd);
+			if (tmp != null) {
+				cmd.append(tmp);
+			}
+		}
+		if (cmd.isEmpty()) {
+			return null;
+		}
+		return cmd;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final CompoundCommand cmd = new CompoundCommand(Messages.CompositeAxisManager_AddAxisCommand);
+		for (final IAxisManager current : this.subManagers) {
+			final Command tmp = current.getComplementaryAddAxisCommand(domain, objectToAdd, index);
 			if (tmp != null) {
 				cmd.append(tmp);
 			}

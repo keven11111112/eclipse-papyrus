@@ -182,16 +182,10 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 
 		}
 		if (setValueCommand == null) {
+			// The problem is created or updated with the following command, we don't need to destroy the previous problem
 			Command createCellProblemCommand = CellHelper.getCreateStringResolutionProblemCommand(domain, tableManager, columnElement, rowElement, newValue, valueConverter.getConvertedValue());
 			if (createCellProblemCommand != null && createCellProblemCommand.canExecute()) {
 				cc.append(createCellProblemCommand);
-			}
-			if (createCellProblemCommand != null) {
-				// we need to destroy existing associated cell problem. It could be the case when we edit the cell with an Xtext editor
-				Command destroyExistingCellStringResolutionProblemCommand = CellHelper.getDestroyStringResolutionProblemCommand(domain, columnElement, rowElement, newValue, tableManager);
-				if (destroyExistingCellStringResolutionProblemCommand != null && destroyExistingCellStringResolutionProblemCommand.canExecute()) {
-					cc.append(destroyExistingCellStringResolutionProblemCommand);
-				}
 			}
 
 		}

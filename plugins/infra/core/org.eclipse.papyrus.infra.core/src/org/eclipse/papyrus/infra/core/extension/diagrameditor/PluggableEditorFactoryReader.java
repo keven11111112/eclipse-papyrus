@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.core.extension.diagrameditor;
 import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -31,7 +32,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
  */
 public class PluggableEditorFactoryReader {
 
-	/** list of editor descriptors */
+	/** ordered list of editor descriptors */
 	protected List<EditorDescriptor> editorDescriptors;
 
 	/** ID of the editor extension (schema filename) */
@@ -123,6 +124,8 @@ public class PluggableEditorFactoryReader {
 				log.error("Initialization editor problem ", e); //$NON-NLS-1$
 			}
 		}
+
+		Collections.sort(editorDescriptors, (ed1, ed2) -> Integer.compare(ed1.getOrder(), ed2.getOrder()));
 
 		if (log.isDebugEnabled()) {
 			log.debug("Read " + editorDescriptors.size() + " editor descriptors from Eclipse extensions"); //$NON-NLS-1$ //$NON-NLS-2$

@@ -24,7 +24,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.uml.profile.drafter.exceptions.DraftProfileException;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.ExecutionException;
@@ -36,7 +35,6 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 
@@ -65,6 +63,7 @@ public class ModelSetManagerTest extends AbstractDrafterTest {
 	 * Prefix name of the resources
 	 */
 	static protected String PROFILE1_MODEL = "house.profile";
+	static protected String PROFILE2_MODEL = "pets.profile";
 
 	/**
 	 * Full name of the di resource, in project.
@@ -245,21 +244,37 @@ public class ModelSetManagerTest extends AbstractDrafterTest {
 	 * Test Stereotype access.
 	 *
 	 * @throws TestUtilsException
+	 * @throws IOException 
+	 * @throws CoreException 
 	 */
 	@Test
-	@InvalidTest 
 	//there is no code that load the profile, need to be improve
 	//need to use PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".di", getBundle(), project, PROFILE1_MODEL + ".di");
 	//but requiere a prelaoded model...
-	public void testGetNamedElementByNameWithSterotype() throws TestUtilsException {
+	public void testGetNamedElementByNameWithSterotype() throws TestUtilsException, CoreException, IOException {
+		//preload a model to have a default model
+		initModel(PROJECT_NAME, TEST_MODEL_1, getBundle());
+		
+		//use the services to preload profile
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".di", getBundle(), project, PROFILE1_MODEL + ".di");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".uml", getBundle(), project, PROFILE1_MODEL + ".uml");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE1_MODEL + ".notation", getBundle(), project, PROFILE1_MODEL + ".notation");
+		
+		//use the services to preload profile
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE2_MODEL + ".di", getBundle(), project, PROFILE2_MODEL + ".di");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE2_MODEL + ".uml", getBundle(), project, PROFILE2_MODEL + ".uml");
+		PapyrusProjectUtils.copyIFile(getSourcePath()+PROFILE2_MODEL + ".notation", getBundle(), project, PROFILE2_MODEL + ".notation");
+		
+		//define the modelsetmanager with preloaded profile files
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		
+		
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 		assertNotNull("Class found", namedElement);
 		assertTrue("Right Class found", namedElement instanceof org.eclipse.uml2.uml.Class);
 		// Check stereotype
-		List<Stereotype> stereotypes = namedElement.getApplicableStereotypes();
+		List<Stereotype> stereotypes = namedElement.getAppliedStereotypes();
 		assertFalse("No Stereotype applied", stereotypes.isEmpty());
 		assertNotNull("Stereotype not found", namedElement.getAppliedStereotype("house::Building"));
 	}

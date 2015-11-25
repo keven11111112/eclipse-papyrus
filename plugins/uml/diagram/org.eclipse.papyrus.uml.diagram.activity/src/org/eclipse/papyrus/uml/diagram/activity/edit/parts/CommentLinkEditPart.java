@@ -16,14 +16,14 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.LinkFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 
 /**
  * @generated
  */
-public class CommentLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class CommentLinkEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

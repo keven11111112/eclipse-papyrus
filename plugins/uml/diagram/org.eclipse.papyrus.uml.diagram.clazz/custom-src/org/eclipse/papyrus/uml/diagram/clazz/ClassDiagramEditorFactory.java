@@ -29,4 +29,10 @@ public class ClassDiagramEditorFactory extends GmfEditorFactory {
 	public ClassDiagramEditorFactory() {
 		super(UmlClassDiagramForMultiEditor.class, ModelEditPart.MODEL_ID);
 	}
+
+	@Override
+	public String getLabel() {
+		return "Class Diagram (GMF)";
+	}
+
 }

@@ -37,7 +37,7 @@ public class PopupBuilder implements IBuilder {
 	 */
 	public INotification build(PropertyWrapper wrapper, FormToolkit toolkit) {
 		PapyrusPopup popup = null;
-		String title = "Papyrus";
+		String title = "Papyrus"; //$NON-NLS-1$
 		if (wrapper.getTitle() != null) {
 			title = wrapper.getTitle();
 		}
@@ -45,7 +45,7 @@ public class PopupBuilder implements IBuilder {
 		if (wrapper.getMessage() != null) {
 			message = wrapper.getMessage();
 		}
-		Shell activeShell = new Shell(Display.getDefault());
+		Shell activeShell = Display.getDefault().getActiveShell();
 		if (wrapper.getType() != null) {
 			popup = new IconAndMessagePapyrusPopup(activeShell, toolkit, message, wrapper.getType());
 		} else if (wrapper.getImage() != null) {

@@ -4,6 +4,7 @@
    <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.custom" name="Custom Viewpoints Policy" schema="schema/custom.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.profilehelper" name="Viewpoints Policy Profile Helper" schema="schema/profilehelper.exsd"/>
    <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.viewType" name="View Type Definition" schema="schema/viewType.exsd"/>
+   <extension-point id="org.eclipse.papyrus.infra.viewpoints.policy.policycheckerlistener" name="PolicyChecker Listener" schema="schema/policycheckerlistener.exsd"/>
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package

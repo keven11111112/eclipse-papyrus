@@ -129,9 +129,10 @@ public class ActionPinInReadStructuralFeatureAsObjectEditPart extends AbstractPi
 
 
 	/**
-	*Papyrus codeGen
-	*@generated
-	**/
+	 * Papyrus codeGen
+	 * 
+	 * @generated
+	 **/
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
@@ -161,6 +162,7 @@ public class ActionPinInReadStructuralFeatureAsObjectEditPart extends AbstractPi
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure
+	 * 
 	 * @generated
 	 */
 	public InputPinFigure getPrimaryShape() {
@@ -188,6 +190,9 @@ public class ActionPinInReadStructuralFeatureAsObjectEditPart extends AbstractPi
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;
@@ -215,7 +220,9 @@ public class ActionPinInReadStructuralFeatureAsObjectEditPart extends AbstractPi
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {

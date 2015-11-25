@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.uml.extensionpoints.standard;
 
+import org.eclipse.papyrus.uml.extensionpoints.IRegisteredItem;
+
 /**
  * Label provider for Registered elements, for details section in dialogs
  */
@@ -10,15 +12,15 @@ public class RegisteredElementsDetailsLabelProvider extends RegisteredElementsLa
 	 */
 	@Override
 	public String getText(Object element) {
-		if (!(element instanceof RegisteredElementExtensionPoint)) {
+		if (!(element instanceof IRegisteredItem)) {
 			return super.getText(element);
 		}
 
-		RegisteredElementExtensionPoint point = (RegisteredElementExtensionPoint) element;
+		IRegisteredItem item = (IRegisteredItem) element;
 		String text = "";
-		text += point.getDescription();
+		text += item.getDescription();
 		text += " - ";
-		text += point.getProvider();
+		text += item.getProvider();
 		return text;
 	}
 }

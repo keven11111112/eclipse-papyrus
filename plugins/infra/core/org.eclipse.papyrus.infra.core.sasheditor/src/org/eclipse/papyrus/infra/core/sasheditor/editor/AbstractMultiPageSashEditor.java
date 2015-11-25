@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST, LIFL, and others.
+ * Copyright (c) 2009, 2015 CEA LIST, LIFL, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *  Christian W. Damus (CEA) - bug 437217
+ *  Christian W. Damus - bug 479999
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.editor;
@@ -18,6 +19,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsCon
 import org.eclipse.papyrus.infra.core.sasheditor.internal.IMultiEditorManager;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageSelectionProvider;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -25,7 +27,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchPartConstants;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.util.Util;
 import org.eclipse.ui.part.EditorPart;
 
 /**
@@ -48,31 +49,33 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 * Synchronizer in charge of synchronizing tab names with IEditorPart title.
 	 */
 	private SashTabDecorationSynchronizer tabsSynchronizer;
-	
+
 	/**
 	 * Listener on editor internal pages.
 	 * Used to relay the firePropertyChange() event.
 	 */
 	private IPageLifeCycleEventsListener2 pageLifeCycleEventListener = new DefaultPageLifeCycleEventListener() {
-		
+
+		@Override
 		public void pageFirePropertyChange(IPage page, int propertyId) {
 			// relay the event.
 			firePropertyChange(propertyId);
 		};
-		
+
 		/**
-		 * 	Calling getActiveEditor().getEditorInput() will return a different value since the
-		 * active editor has now changed.  Notify the Eclipse Platform listeners by firing an
+		 * Calling getActiveEditor().getEditorInput() will return a different value since the
+		 * active editor has now changed. Notify the Eclipse Platform listeners by firing an
 		 * appropriate notification.
 		 * 
 		 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.DefaultPageLifeCycleEventListener#pageChanged(org.eclipse.papyrus.infra.core.sasheditor.editor.IPage)
 		 *
 		 * @param newPage
 		 */
+		@Override
 		public void pageActivated(IPage newPage) {
 			firePropertyChange(IWorkbenchPartConstants.PROP_INPUT);
 		};
-		
+
 
 	};
 
@@ -178,7 +181,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 		tabMouseEventListener = new TabMouseEventListener(sashContainer, getSite());
 
 		tabsSynchronizer = new SashTabDecorationSynchronizer(sashContainer);
-		
+
 		// Listen on page life cycle to relay property change events
 		// we don't need to remove the handler from sashContainer on dispose, because sashContainer
 		// is disposed itself.
@@ -275,7 +278,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 			// see bug 138823 - prevent some subclasses from causing
 			// an infinite loop
 			if (innerEditor != null && innerEditor != this) {
-				result = Util.getAdapter(innerEditor, adapter);
+				result = PlatformHelper.getAdapter(innerEditor, adapter);
 			}
 		}
 		return result;

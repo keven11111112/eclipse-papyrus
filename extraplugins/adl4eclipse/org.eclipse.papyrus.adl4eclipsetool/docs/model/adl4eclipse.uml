@@ -295,6 +295,22 @@
         <packagedElement xmi:type="uml:Package" xmi:id="_I0CFwNn6EeSINLpSHYvWhw" name="org.eclipse.papyrus.adltool.designer.wizard">
           <packagedElement xmi:type="uml:Class" xmi:id="_Y8ORUNn6EeSINLpSHYvWhw" name="BundleSelectionPage"/>
         </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_rJqHYDt8EeWw5YMn7oPf2g" name="org.eclipse.papyrus.adltool.reversible">
+          <packagedElement xmi:type="uml:Interface" xmi:id="_x2vDYDt8EeWw5YMn7oPf2g" name="Reversible"/>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_zM8BUDt8EeWw5YMn7oPf2g" name="ReversibleProject">
+            <generalization xmi:type="uml:Generalization" xmi:id="_9vTM0Dt8EeWw5YMn7oPf2g" general="_x2vDYDt8EeWw5YMn7oPf2g"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_0CM1YDt8EeWw5YMn7oPf2g" name="ReversiblePackage">
+            <generalization xmi:type="uml:Generalization" xmi:id="_-ebjsDt8EeWw5YMn7oPf2g" general="_x2vDYDt8EeWw5YMn7oPf2g"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_2OH6YDt8EeWw5YMn7oPf2g" name="ReversibleExtensionPoint">
+            <generalization xmi:type="uml:Generalization" xmi:id="_-7AyADt8EeWw5YMn7oPf2g" general="_x2vDYDt8EeWw5YMn7oPf2g"/>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_4iDr4Dt8EeWw5YMn7oPf2g" name="ReversibleExtension">
+            <generalization xmi:type="uml:Generalization" xmi:id="__p-w0Dt8EeWw5YMn7oPf2g" general="_x2vDYDt8EeWw5YMn7oPf2g"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_r8B_gDt8EeWw5YMn7oPf2g" name="org.eclipse.papyrus.adltool.reversible.project"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_a9PMsM8LEeSyusPDpwNP0g" name="UseCases">

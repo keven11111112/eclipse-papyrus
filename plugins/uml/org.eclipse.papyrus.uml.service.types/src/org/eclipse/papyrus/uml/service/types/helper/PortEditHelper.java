@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.service.types.helper;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -50,16 +51,19 @@ public class PortEditHelper extends ElementEditHelper {
 	 */
 	@Override
 	protected ICommand getEditContextCommand(GetEditContextRequest req) {
-		
+
 		// Avoid Port creation is the container is not an EncapsulatedClassifier (return null edit context).
 		if (req.getEditCommandRequest() instanceof CreateElementRequest) {
 			CreateElementRequest createRequest = (CreateElementRequest) req.getEditCommandRequest();
-			if (createRequest.getContainer() instanceof EncapsulatedClassifier) {
+			EObject container = createRequest.getContainer();
+			// Allow Port creation on typed part
+
+			if (container instanceof EncapsulatedClassifier) {
 				return super.getEditContextCommand(req);
 			}
 			return null;
 		}
-		
+
 		return super.getEditContextCommand(req);
 	}
 
@@ -68,18 +72,19 @@ public class PortEditHelper extends ElementEditHelper {
 	 */
 	@Override
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
-		
+
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
-				Port element = (Port)req.getElementToConfigure();
+				Port element = (Port) req.getElementToConfigure();
 				element.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 
 				return CommandResult.newOKCommandResult(element);
 			}
 		};
-		
+
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 
@@ -90,7 +95,7 @@ public class PortEditHelper extends ElementEditHelper {
 	protected ICommand getSetCommand(SetRequest req) {
 
 		// Forbid any attempt to change Port aggregation
-		if(UMLPackage.eINSTANCE.getProperty_Aggregation().equals(req.getFeature())) {
+		if (UMLPackage.eINSTANCE.getProperty_Aggregation().equals(req.getFeature())) {
 			return UnexecutableCommand.INSTANCE;
 		}
 

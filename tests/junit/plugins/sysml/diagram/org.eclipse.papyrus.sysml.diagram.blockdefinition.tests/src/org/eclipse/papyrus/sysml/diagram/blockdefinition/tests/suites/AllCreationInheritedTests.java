@@ -25,10 +25,10 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.inherite
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.inherited.TestNodeCreationOnPackageCompartment;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.inherited.TestNodeCreationOnPackageCompartmentCN;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	//TestNodeCreationOnComment.class, 
 	//TestNodeCreationOnCommentCN.class,

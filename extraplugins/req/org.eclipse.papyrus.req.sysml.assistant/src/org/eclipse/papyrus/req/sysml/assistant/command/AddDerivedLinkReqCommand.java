@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 /**
  * 
- *create a set of derived Link
+ * Creates a set of DerivedReq links
  */
 public class AddDerivedLinkReqCommand extends RecordingCommand {
 	protected Element selectedElement;
@@ -56,11 +56,11 @@ public class AddDerivedLinkReqCommand extends RecordingCommand {
 			ReferenceSelector selector = new ReferenceSelector();
 			selector.setLabelProvider(new UMLLabelProvider());
 			selector.setContentProvider(provider);
-			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(Display.getDefault().getActiveShell(),selector,"Choose Requirements to add Derived Link");
+			MultipleValueSelectionDialog dialog = new MultipleValueSelectionDialog(Display.getDefault().getActiveShell(),selector,"Choose requirements to add DeriveReqt link");
 			
 			dialog.setLabelProvider(new UMLLabelProvider());
-			dialog.setMessage("Choose Requirements to add Derived Link");
-			dialog.setTitle("Choose Requirements to add Derived Link");
+			//dialog.setMessage("Choose Requirements to add Derived Link");
+			//dialog.setTitle("Choose Requirements to add Derived Link");
 			dialog.create();
 			if(dialog.open() == org.eclipse.jface.window.Window.OK) {
 				Object[] result = dialog.getResult();

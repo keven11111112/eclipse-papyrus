@@ -19,10 +19,10 @@ package SoaML;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Catalog#getBase_Package <em>Base Package</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getCatalog()
  * @model

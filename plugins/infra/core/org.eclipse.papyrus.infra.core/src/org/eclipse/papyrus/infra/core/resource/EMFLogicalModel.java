@@ -63,11 +63,16 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 	}
 
 	protected boolean isRelatedResource(Resource resource) {
-		if (resource == null) {
+		if (resource == null || resource.getURI() == null) {
 			return false;
 		}
 
-		return resource.getURI().fileExtension().equals(getModelFileExtension());
+		URI uri = resource.getURI();
+		if (uri.fileExtension() == null) {
+			return false;
+		}
+
+		return uri.fileExtension().equals(getModelFileExtension());
 	}
 
 	@Override

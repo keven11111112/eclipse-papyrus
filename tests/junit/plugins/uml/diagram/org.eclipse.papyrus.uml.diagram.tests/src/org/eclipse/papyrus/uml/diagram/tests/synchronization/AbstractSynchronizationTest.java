@@ -65,6 +65,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
+import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
@@ -72,9 +73,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
@@ -87,11 +85,9 @@ import com.google.common.util.concurrent.Futures;
  */
 public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCase {
 	@Rule
-	public final TestRule annotationRule = new AnnotationRule();
+	public final AnnotationRule<Boolean> needUIEvents = AnnotationRule.createExists(NeedsUIEvents.class);
 
 	private ComposedAdapterFactory adapterFactory;
-
-	private boolean needUIEvents;
 
 	public AbstractSynchronizationTest() {
 		super();
@@ -402,7 +398,7 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 	}
 
 	protected final boolean isNeedUIEvents() {
-		return needUIEvents;
+		return needUIEvents.get();
 	}
 
 	protected void execute(final Runnable writeOperation) {
@@ -651,12 +647,5 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 	@Target({ ElementType.TYPE, ElementType.METHOD })
 	public @interface NeedsUIEvents {
 		// Empty
-	}
-
-	private class AnnotationRule extends TestWatcher {
-		@Override
-		protected void starting(Description description) {
-			needUIEvents = JUnitUtils.getAnnotation(description, NeedsUIEvents.class) != null;
-		}
 	}
 }

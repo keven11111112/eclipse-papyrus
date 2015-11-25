@@ -15,10 +15,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getChildren <em>Children</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getTabFolder()
  * @model
@@ -66,7 +66,16 @@ public interface TabFolder extends AbstractPanel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @model pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
+	 * @model pageIndexDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" pageIndexRequired="true" pageIndexOrdered="false"
+	 * @generated
+	 */
+	void removePage(int pageIndex);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @model indexDataType="org.eclipse.uml2.types.Integer" indexRequired="true" indexOrdered="false" pageIdentifierDataType="org.eclipse.papyrus.infra.core.sashwindows.di.JavaObject" pageIdentifierRequired="true" pageIdentifierOrdered="false"
 	 * @generated
 	 */
 	void addPage(int index, Object pageIdentifier);
@@ -75,9 +84,9 @@ public interface TabFolder extends AbstractPanel {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @model pageIndexDataType="org.eclipse.papyrus.infra.core.sashwindows.di.int" pageIndexRequired="true" pageIndexOrdered="false"
+	 * @model pageRefRequired="true" pageRefOrdered="false"
 	 * @generated
 	 */
-	void removePage(int pageIndex);
+	void addPage(PageRef pageRef);
 
 } // TabFolder

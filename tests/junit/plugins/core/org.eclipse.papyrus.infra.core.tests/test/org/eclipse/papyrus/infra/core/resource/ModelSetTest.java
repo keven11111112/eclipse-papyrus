@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 LIFL, CEA, and others.
+ * Copyright (c) 2010, 2015 LIFL, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus (CEA) - bug 436047
  *  Christian W. Damus (CEA) - bug 437052
+ *  Christian W. Damus - bug 481149
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -24,6 +25,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -53,6 +55,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 /**
  * Test for {@link ModelSet}. <br>
@@ -211,7 +216,7 @@ public class ModelSetTest extends AbstractPapyrusTest {
 		mngr.registerModel(model2);
 
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		if(!p.exists()) {
+		if (!p.exists()) {
 			p.create(new NullProgressMonitor());
 		}
 		p.open(new NullProgressMonitor());
@@ -333,7 +338,7 @@ public class ModelSetTest extends AbstractPapyrusTest {
 		assertThat("EMF resource not created", model.getResource().getContents().isEmpty(), is(false));
 		assertThat("EMF resource not created", res2.getContents().isEmpty(), is(false));
 
-		// Change the referenced resource's URI.  This should make the resource and its dependents dirty
+		// Change the referenced resource's URI. This should make the resource and its dependents dirty
 		final URI modelURI2New = modelURI2.trimSegments(1).appendSegment("library1").appendFileExtension(model.getModelFileExtension());
 		res2.setURI(modelURI2New);
 
@@ -362,19 +367,19 @@ public class ModelSetTest extends AbstractPapyrusTest {
 	protected void createResources(String... filenames) throws CoreException, IOException {
 
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject(PLUGIN_PROJECT_NAME);
-		if(!p.exists()) {
+		if (!p.exists()) {
 			p.create(new NullProgressMonitor());
 		}
 		p.open(new NullProgressMonitor());
 
 		ResourceSet resourceSet = houseKeeper.createResourceSet();
 
-		for(String filename : filenames) {
+		for (String filename : filenames) {
 			createResource(p, resourceSet, filename);
 		}
 
 		// Save created resources
-		for(Resource resource : resourceSet.getResources()) {
+		for (Resource resource : resourceSet.getResources()) {
 			resource.save(null);
 		}
 	}
@@ -415,7 +420,7 @@ public class ModelSetTest extends AbstractPapyrusTest {
 		mngr.registerModel(model2);
 
 		IProject p = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.infra.core");
-		if(!p.exists()) {
+		if (!p.exists()) {
 			p.create(new NullProgressMonitor());
 		}
 		p.open(new NullProgressMonitor());
@@ -533,7 +538,7 @@ public class ModelSetTest extends AbstractPapyrusTest {
 		// force model creation
 		testSnippetCalledAfterCreateModels();
 
-		// now  do load.
+		// now do load.
 		ModelSet mngr = houseKeeper.cleanUpLater(new ModelSet());
 
 		// Add snippets
@@ -639,5 +644,48 @@ public class ModelSetTest extends AbstractPapyrusTest {
 		assertEquals("model1 has changed", 0, model1.getResource().getContents().size());
 
 
+	}
+
+	/**
+	 * Tests that model snippets are started if added to a model after it has loaded.
+	 */
+	@Test
+	public void testStartLateSnippet_bug481149() throws IOException, CoreException, ModelMultiException {
+		ModelSet modelSet = houseKeeper.cleanUpLater(new ModelSet());
+
+		String model1Key = "ecore";
+		String model2Key = "genmodel";
+
+		FakeModel model1 = new FakeModel(model1Key);
+		FakeModel model2 = new FakeModel(model2Key);
+
+		modelSet.registerModel(model1);
+		modelSet.registerModel(model2);
+
+		class TestSnippet implements IModelSnippet {
+			Set<IModel> active = Sets.newHashSet();
+
+			public void start(IModel startingModel) {
+				active.add(startingModel);
+			}
+
+			public void dispose(IModel stoppingModel) {
+				active.remove(stoppingModel);
+			}
+		}
+
+		TestSnippet earlySnippet = new TestSnippet();
+		TestSnippet lateSnippet = new TestSnippet();
+
+		model1.addModelSnippet(earlySnippet);
+		model2.addModelSnippet(earlySnippet);
+
+		modelSet.createModels(URI.createURI("bogus://test"));
+
+		model1.addModelSnippet(lateSnippet);
+		model2.addModelSnippet(lateSnippet);
+
+		assertThat(earlySnippet.active, is((Set<IModel>) ImmutableSet.<IModel> of(model1, model2)));
+		assertThat(lateSnippet.active, is((Set<IModel>) ImmutableSet.<IModel> of(model1, model2)));
 	}
 }

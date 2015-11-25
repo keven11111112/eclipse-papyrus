@@ -18,11 +18,11 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.delete.TestLinkBa
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.delete.TestNodeBasicDeleteFromDiagram;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.delete.TestNodeBasicDeleteFromModel;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	TestLinkBasicDeleteFromDiagram.class, 
 	TestLinkBasicDeleteFromModel.class, 

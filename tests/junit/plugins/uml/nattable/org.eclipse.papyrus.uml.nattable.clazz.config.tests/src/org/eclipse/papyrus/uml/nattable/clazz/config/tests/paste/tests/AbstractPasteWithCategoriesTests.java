@@ -137,10 +137,10 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	public void checkModelForTestConsistency() throws Exception {
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		String[] result = className.split("_"); //$NON-NLS-1$
-		Assert.assertTrue(result.length == 5);
+		final String[] result = className.split("_"); //$NON-NLS-1$
+		Assert.assertTrue(result.length == 6);
 		for (int depth = 0; depth < 3; depth++) {
-			String current = result[depth];
+			final String current = result[depth];
 			// filled by DnD
 			if (current.equals("Empty")) { //$NON-NLS-1$
 				// no configuration
@@ -151,8 +151,8 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 			}
 			else {
 				Assert.assertEquals(2, current.length());
-				char visibility = current.charAt(0);
-				char nbCategoriesForTheDepth = current.charAt(1);
+				final char visibility = current.charAt(0);
+				final char nbCategoriesForTheDepth = current.charAt(1);
 				switch (visibility) {
 				case 'H':
 					Assert.assertTrue(NLS.bind("The depth {0} must be hidden", depth), true == StyleUtils.isHiddenDepth(getTable(), depth));//$NON-NLS-1$
@@ -164,15 +164,15 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 					throw new Exception("Not supported case"); //$NON-NLS-1$
 				}
 				// we check that we have the wanted number of filling categories
-				List<TreeFillingConfiguration> confs = FillingConfigurationUtils.getAllTreeFillingConfigurationForDepth(getTable(), depth);
-				int nbConfig = confs.size();
-				int wantedConfig = Integer.parseInt(String.valueOf(nbCategoriesForTheDepth));
+				final List<TreeFillingConfiguration> confs = FillingConfigurationUtils.getAllTreeFillingConfigurationForDepth(getTable(), depth);
+				final int nbConfig = confs.size();
+				final int wantedConfig = Integer.parseInt(String.valueOf(nbCategoriesForTheDepth));
 				Assert.assertEquals(wantedConfig, nbConfig);
 
 				if (depth == 0) {
 					Assert.assertTrue(confs.size() == 1);
-					for (TreeFillingConfiguration tmp : confs) {
-						PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
+					for (final TreeFillingConfiguration tmp : confs) {
+						final PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
 						Assert.assertNotNull("We don't have paste configuration for a TreeFillingConfiguration, depth=" + tmp.getDepth(), pasteConf); //$NON-NLS-1$
 						if (depth == 0) {
 							Assert.assertTrue(confs.size() == 1);
@@ -185,8 +185,8 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 					boolean operation = false;
 					boolean property = false;
 
-					for (TreeFillingConfiguration tmp : confs) {
-						PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
+					for (final TreeFillingConfiguration tmp : confs) {
+						final PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
 						Assert.assertNotNull("We don't have paste configuration for a TreeFillingConfiguration, depth=" + tmp.getDepth(), pasteConf); //$NON-NLS-1$
 						if (depth == 1) {
 							if (PROPERTY_ELEMENT_ID.equals(pasteConf.getPastedElementId())) {
@@ -208,8 +208,8 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 						Assert.assertTrue(!nestedClass);
 					}
 					if (depth == 2) {
-						for (TreeFillingConfiguration tmp : confs) {
-							PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
+						for (final TreeFillingConfiguration tmp : confs) {
+							final PasteEObjectConfiguration pasteConf = tmp.getPasteConfiguration();
 							Assert.assertNotNull("We don't have paste configuration for a TreeFillingConfiguration, depth=" + tmp.getDepth(), pasteConf); //$NON-NLS-1$
 
 							Assert.assertTrue(confs.size() == 1);
@@ -237,35 +237,35 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	@Test
 	public void testPaste() throws Exception {
 		testOpenExistingTable("classTreeTable", " openTest"); //$NON-NLS-1$ //$NON-NLS-2$
-		IEditorPart tableEditor = editor.getActiveEditor();
+		final IEditorPart tableEditor = editor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertTrue(manager instanceof ITreeNattableModelManager);
 
-		List<?> rowElements = manager.getRowElementsList();
-		int size = rowElements.size();
+		final List<?> rowElements = manager.getRowElementsList();
+		final int size = rowElements.size();
 		Assert.assertEquals(0, size);
 
 		// fill the clipboard
-		ICommandService commandService = EclipseCommandUtils.getCommandService();
+		final ICommandService commandService = EclipseCommandUtils.getCommandService();
 		Assert.assertNotNull(commandService);
-		String fileName = getPasteFileName();
-		String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
+		final String fileName = getPasteFileName();
+		final String str = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID, getSourcePath(), fileName);
 		fillClipboard(str);
 
-		Command cmd = commandService.getCommand("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
-		IHandler handler = cmd.getHandler();
+		final Command cmd = commandService.getCommand("org.eclipse.ui.edit.paste"); //$NON-NLS-1$
+		final IHandler handler = cmd.getHandler();
 		Assert.assertTrue(handler.isEnabled());
 
 
-		Map<Object, Object> parameters = new HashMap<Object, Object>();
+		final Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
-		ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
+		final ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
-		Object res = cmd.executeWithChecks(event);
+		final Object res = cmd.executeWithChecks(event);
 		Assert.assertTrue(res instanceof IStatus);
-		IStatus iStatus = (IStatus) res;
+		final IStatus iStatus = (IStatus) res;
 		validateReturnedStatus(iStatus);
 		if (iStatus.isOK()) {
 			verifyModelContents();
@@ -282,21 +282,21 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 
 	protected void testClose_Open() throws Exception {
-		Command cmd = EclipseCommandUtils.getCommandService().getCommand("org.eclipse.ui.file.save"); //$NON-NLS-1$
+		final Command cmd = EclipseCommandUtils.getCommandService().getCommand("org.eclipse.ui.file.save"); //$NON-NLS-1$
 		cmd.executeWithChecks(new ExecutionEvent());
 
 		this.editor.getEditorSite().getPage().closeEditor(editor, false);
 
 		editor = EditorUtils.openPapyrusEditor(diModelFile);
 
-		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
+		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(1, pageManager.allPages().size());
 		IEditorPart tableEditor = editor.getActiveEditor();
 		// the editor has been saved, so the table is already opened when we re open the model
 		// Assert.assertNull(tableEditor);
-		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
-		Table table = (Table) notationResource.getContents().get(0);
-		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		final Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
+		final Table table = (Table) notationResource.getContents().get(0);
+		final TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, table)));
 		// to refresh the table content
 		// while(!Display.getDefault().isDisposed() && Display.getDefault().readAndDispatch());
@@ -305,7 +305,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertTrue(manager instanceof ITreeNattableModelManager);
 
 
@@ -318,7 +318,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		// TODO : use eclipse command will be better
 
 		// IUndoableOperation[] undoContext = CheckedOperationHistory.getInstance().getUndoHistory(CheckedOperationHistory.GLOBAL_UNDO_CONTEXT);
-		EditingDomainUndoContext undoContext = new EditingDomainUndoContext(getTransactionalEditingDomain());
+		final EditingDomainUndoContext undoContext = new EditingDomainUndoContext(getTransactionalEditingDomain());
 		getTransactionalEditingDomain().getCommandStack().undo();
 		CheckedOperationHistory.getInstance().undo(undoContext, null, null);
 
@@ -326,17 +326,17 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		// editingDomain.getCommandStack().undo();
 		flushDisplayEvents();
 
-		IEditorPart tableEditor = editor.getActiveEditor();
-		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
+		final IEditorPart tableEditor = editor.getActiveEditor();
+		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(1, pageManager.allPages().size());
 		Assert.assertNotNull(tableEditor);
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertTrue(manager instanceof ITreeNattableModelManager);
 
-		List<?> rowElements = manager.getRowElementsList();
+		final List<?> rowElements = manager.getRowElementsList();
 		flushDisplayEvents();
-		int size = rowElements.size();
+		final int size = rowElements.size();
 		Assert.assertEquals(0, size);
 		CheckedOperationHistory.getInstance().redo(undoContext, null, null);
 		// editingDomain.getCommandStack().redo();
@@ -347,22 +347,22 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	}
 
 	protected void verifyModel_1_1_1() throws ServiceException {
-		EObject context = getTable().getContext();
+		final EObject context = getTable().getContext();
 		Assert.assertTrue(context instanceof Model);
-		Model pack = (Model) context;
-		List<NamedElement> members = pack.getMembers();
+		final Model pack = (Model) context;
+		final List<NamedElement> members = pack.getMembers();
 		Assert.assertEquals(2, members.size());
 		for (int i = 0; i < members.size(); i++) {
-			NamedElement tmp = members.get(i);
+			final NamedElement tmp = members.get(i);
 			Assert.assertTrue(tmp instanceof Class);
-			Class clazz = (Class) tmp;
-			StringBuilder className = new StringBuilder(CLASS_BASE_NAME);
+			final Class clazz = (Class) tmp;
+			final StringBuilder className = new StringBuilder(CLASS_BASE_NAME);
 			className.append(i);
 			Assert.assertEquals(className.toString(), clazz.getName());
 			Assert.assertEquals(3, clazz.getOwnedOperations().size());
 			for (int j = 0; j < clazz.getOwnedOperations().size(); j++) {
-				Operation prop = clazz.getOwnedOperations().get(j);
-				StringBuilder propName = new StringBuilder(OPERATION_BASE_NAME);
+				final Operation prop = clazz.getOwnedOperations().get(j);
+				final StringBuilder propName = new StringBuilder(OPERATION_BASE_NAME);
 				propName.append(j);
 				Assert.assertEquals(propName.toString(), prop.getName());
 			}
@@ -371,64 +371,64 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 
 	protected void verifyModel_1_3_1() throws ServiceException {
-		EObject context = getTable().getContext();
+		final EObject context = getTable().getContext();
 		Assert.assertTrue(context instanceof Model);
-		Model pack = (Model) context;
-		List<NamedElement> members = pack.getMembers();
+		final Model pack = (Model) context;
+		final List<NamedElement> members = pack.getMembers();
 		Assert.assertEquals(2, members.size());
 		for (int i = 0; i < members.size(); i++) {
-			NamedElement tmp = members.get(i);
+			final NamedElement tmp = members.get(i);
 			Assert.assertTrue(tmp instanceof Class);
-			Class clazz = (Class) tmp;
-			StringBuilder className = new StringBuilder(CLASS_BASE_NAME);
+			final Class clazz = (Class) tmp;
+			final StringBuilder className = new StringBuilder(CLASS_BASE_NAME);
 			className.append(i);
 			Assert.assertEquals(className.toString(), clazz.getName());
 			Assert.assertEquals(3, clazz.getOwnedAttributes().size());
 			for (int j = 0; j < clazz.getOwnedAttributes().size(); j++) {
-				Property prop = clazz.getOwnedAttributes().get(j);
-				StringBuilder propName = new StringBuilder(PROPERTY_BASE_NAME);
+				final Property prop = clazz.getOwnedAttributes().get(j);
+				final StringBuilder propName = new StringBuilder(PROPERTY_BASE_NAME);
 				propName.append(j);
 				Assert.assertEquals(propName.toString(), prop.getName());
 			}
-			List<Operation> operations = clazz.getOperations();
+			final List<Operation> operations = clazz.getOperations();
 			Assert.assertEquals(3, operations.size());
 			for (int k = 0; k < operations.size(); k++) {
-				Operation op = operations.get(k);
-				StringBuilder operationName = new StringBuilder(OPERATION_BASE_NAME);
+				final Operation op = operations.get(k);
+				final StringBuilder operationName = new StringBuilder(OPERATION_BASE_NAME);
 				operationName.append(k);
 				Assert.assertEquals(operationName.toString(), op.getName());
 
-				List<Parameter> params = op.getOwnedParameters();
+				final List<Parameter> params = op.getOwnedParameters();
 				Assert.assertEquals(3, params.size());
 
 				for (int l = 0; l < params.size(); l++) {
-					Parameter param = params.get(l);
-					StringBuilder paramName = new StringBuilder(PARAMETER_BASE_NAME);
+					final Parameter param = params.get(l);
+					final StringBuilder paramName = new StringBuilder(PARAMETER_BASE_NAME);
 					paramName.append(l);
 					Assert.assertEquals(paramName.toString(), param.getName());
 				}
 			}
 
-			List<Classifier> nestedClasses = clazz.getNestedClassifiers();
+			final List<Classifier> nestedClasses = clazz.getNestedClassifiers();
 			Assert.assertEquals(3, nestedClasses.size());
 			for (int l = 0; l < nestedClasses.size(); l++) {
-				Classifier classifier = nestedClasses.get(l);
-				StringBuilder nestedClassName = new StringBuilder(NESTED_CLASS_BASE_NAME);
+				final Classifier classifier = nestedClasses.get(l);
+				final StringBuilder nestedClassName = new StringBuilder(NESTED_CLASS_BASE_NAME);
 				nestedClassName.append(l);
 				Assert.assertEquals(nestedClassName.toString(), classifier.getName());
 			}
 		}
 	}
 
-	protected final void validateReturnedStatus(IStatus status) {
+	protected final void validateReturnedStatus(final IStatus status) {
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		String[] result = className.split("_"); //$NON-NLS-1$
-		Assert.assertTrue(result.length == 5);
-		String depth1 = result[1];
+		final String[] result = className.split("_"); //$NON-NLS-1$
+		Assert.assertTrue(result.length == 6);
+		final String depth1 = result[1];
 		if (depth1.startsWith("H") && depth1.endsWith("3")) { //$NON-NLS-1$ //$NON-NLS-2$
 			Assert.assertTrue(!status.isOK());
-			int errorCode = status.getCode();
+			final int errorCode = status.getCode();
 			Assert.assertEquals(PasteSeverityCode.PASTE_ERROR__MORE_THAN_ONE_CATEGORY_FOR_A_HIDDEN_DEPTH, errorCode);
 		} else {
 			Assert.assertTrue(status.isOK());
@@ -443,9 +443,9 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	protected final void verifyModelContents() throws Exception {
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		String[] result = className.split("_"); //$NON-NLS-1$
-		Assert.assertTrue(result.length == 5);
-		String depth1 = result[1];
+		final String[] result = className.split("_"); //$NON-NLS-1$
+		Assert.assertTrue(result.length == 6);
+		final String depth1 = result[1];
 		if (depth1.endsWith("3")) { //$NON-NLS-1$
 			verifyModel_1_3_1();
 		} else if (depth1.endsWith("1")) { //$NON-NLS-1$
@@ -459,71 +459,71 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	 *
 	 * @param newClipBoardContents
 	 */
-	protected void fillClipboard(String newClipBoardContents) {
+	protected void fillClipboard(final String newClipBoardContents) {
 
 		// its seems that the clipboard must be filled with the same way than we read it!
-		java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		final java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
 		// if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
-		StringSelection s = new StringSelection(newClipBoardContents);
+		final StringSelection s = new StringSelection(newClipBoardContents);
 		clipboard.setContents(s, s);
 		// }
 	}
 
-	protected void checkRootClasses(ITreeItemAxis root, EObject parent) throws Exception {
-		Object tmp = AxisUtils.getRepresentedElement(root);
+	protected void checkRootClasses(final ITreeItemAxis root, final EObject parent) throws Exception {
+		final Object tmp = AxisUtils.getRepresentedElement(root);
 		Assert.assertTrue(tmp instanceof Class);
-		Class clazz = (Class) tmp;
+		final Class clazz = (Class) tmp;
 		Assert.assertEquals(parent, clazz.eContainer());
 		checkChildrenClasses(root);
 	}
 
-	protected void checkSynchronizedRoot(TreeList<?> treeList) throws Exception {
-		List<?> roots = treeList.getRoots();
+	protected void checkSynchronizedRoot(final TreeList<?> treeList) throws Exception {
+		final List<?> roots = treeList.getRoots();
 		Assert.assertEquals(1, roots.size());
 		for (int i = 0; i < roots.size(); i++) {
 			// we check the first level
 			Object tmp = roots.get(i);
 			if (tmp instanceof TreeList.Node<?>) {
-				Node<?> node = (Node<?>) tmp;
+				final Node<?> node = (Node<?>) tmp;
 				tmp = node.getElement();
 			}
 			Assert.assertTrue(tmp instanceof EObjectTreeItemAxis);
-			EObjectTreeItemAxis root = (EObjectTreeItemAxis) tmp;
+			final EObjectTreeItemAxis root = (EObjectTreeItemAxis) tmp;
 			tmp = AxisUtils.getRepresentedElement(root);
 			Assert.assertTrue(tmp instanceof TreeFillingConfiguration);
-			TreeFillingConfiguration fillingConf = (TreeFillingConfiguration) tmp;
+			final TreeFillingConfiguration fillingConf = (TreeFillingConfiguration) tmp;
 			tmp = AxisUtils.getRepresentedElement(fillingConf.getAxisUsedAsAxisProvider());
 			Assert.assertEquals(UMLPackage.eINSTANCE.getPackage_PackagedElement(), tmp);
 
 			// we check the children : 2 classes
-			List<ITreeItemAxis> classes = root.getChildren();
+			final List<ITreeItemAxis> classes = root.getChildren();
 			Assert.assertEquals(2, classes.size());
-			for (Object current : classes) {
+			for (final Object current : classes) {
 				Assert.assertTrue(current instanceof ITreeItemAxis);
-				ITreeItemAxis axis = (ITreeItemAxis) current;
+				final ITreeItemAxis axis = (ITreeItemAxis) current;
 				checkRootClasses(axis, getTable().getContext());
 			}
 		}
 	}
 
-	protected void checkDnDRoot(TreeList<?> treeList) throws Exception {
-		List<?> roots = treeList.getRoots();
+	protected void checkDnDRoot(final TreeList<?> treeList) throws Exception {
+		final List<?> roots = treeList.getRoots();
 		Assert.assertEquals(2, roots.size());
 		for (int i = 0; i < roots.size(); i++) {
 			Object tmp = roots.get(i);
 			if (tmp instanceof TreeList.Node<?>) {
-				Node<?> node = (Node<?>) tmp;
+				final Node<?> node = (Node<?>) tmp;
 				tmp = node.getElement();
 			}
 			Assert.assertTrue(tmp instanceof ITreeItemAxis);
-			ITreeItemAxis axis = (ITreeItemAxis) tmp;
+			final ITreeItemAxis axis = (ITreeItemAxis) tmp;
 			checkRootClasses(axis, getTable().getContext());
 		}
 	}
 
 	public void checkTableDataStructure() throws Exception {
-		final INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = this.editor.getAdapter(INattableModelManager.class);
 		flushDisplayEvents();
 		// boolean tmp = true;
 		// while (tmp) {
@@ -551,13 +551,13 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		// Activator.log.error(e);
 		// }
 		// }
-		List<?> elements = manager.getRowElementsList();
+		final List<?> elements = manager.getRowElementsList();
 		Assert.assertTrue(elements instanceof TreeList<?>);
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		String[] result = className.split("_"); //$NON-NLS-1$
-		Assert.assertTrue(result.length == 5);
-		String first = result[0];
+		final String[] result = className.split("_"); //$NON-NLS-1$
+		Assert.assertTrue(result.length == 6);
+		final String first = result[0];
 		if ("Empty".equals(first)) { //$NON-NLS-1$
 			checkDnDRoot((TreeList<?>) elements);
 		} else {
@@ -567,14 +567,14 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 
 
-	protected void checkChildrenClasses(ITreeItemAxis axisRepresentingClass) throws Exception {
-		List<ITreeItemAxis> axis = axisRepresentingClass.getChildren();
+	protected void checkChildrenClasses(final ITreeItemAxis axisRepresentingClass) throws Exception {
+		final List<ITreeItemAxis> axis = axisRepresentingClass.getChildren();
 		// Assert.assertEquals(3, axis.size());
 		ITreeItemAxis propertyAxis = null;
 		ITreeItemAxis operationAxis = null;
 		ITreeItemAxis nestedClassAxis = null;
-		Class clazz = (Class) AxisUtils.getRepresentedElement(axisRepresentingClass);
-		for (ITreeItemAxis current : axis) {
+		final Class clazz = (Class) AxisUtils.getRepresentedElement(axisRepresentingClass);
+		for (final ITreeItemAxis current : axis) {
 			Object tmp = AxisUtils.getRepresentedElement(current);
 			Assert.assertTrue(tmp instanceof TreeFillingConfiguration);
 			tmp = AxisUtils.getRepresentedElement(((TreeFillingConfiguration) tmp).getAxisUsedAsAxisProvider());
@@ -597,9 +597,9 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		String[] result = className.split("_"); //$NON-NLS-1$
-		Assert.assertTrue(result.length == 5);
-		String depth1 = result[1];
+		final String[] result = className.split("_"); //$NON-NLS-1$
+		Assert.assertTrue(result.length == 6);
+		final String depth1 = result[1];
 		if (depth1.endsWith("3")) { //$NON-NLS-1$
 			Assert.assertNotNull(propertyAxis);
 			Assert.assertNotNull(nestedClassAxis);
@@ -614,13 +614,13 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		}
 	}
 
-	public void checkPropertyAxis(ITreeItemAxis propertyAxis, Class parent) {
-		List<ITreeItemAxis> axis = propertyAxis.getChildren();
+	public void checkPropertyAxis(final ITreeItemAxis propertyAxis, final Class parent) {
+		final List<ITreeItemAxis> axis = propertyAxis.getChildren();
 		Assert.assertEquals(3, axis.size());
-		Set<Object> properties = new HashSet<Object>();
-		for (ITreeItemAxis tmp : axis) {
+		final Set<Object> properties = new HashSet<Object>();
+		for (final ITreeItemAxis tmp : axis) {
 			Assert.assertEquals(0, tmp.getChildren().size());
-			Object representedElement = AxisUtils.getRepresentedElement(tmp);
+			final Object representedElement = AxisUtils.getRepresentedElement(tmp);
 			Assert.assertTrue(representedElement instanceof Property);
 			Assert.assertTrue(((EObject) representedElement).eContainer() == parent);
 			properties.add(representedElement);
@@ -629,13 +629,13 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		Assert.assertEquals(3, properties.size());
 	}
 
-	public void checkNestedClassAxis(ITreeItemAxis nestedClassAxis, Class parent) {
-		List<ITreeItemAxis> axis = nestedClassAxis.getChildren();
+	public void checkNestedClassAxis(final ITreeItemAxis nestedClassAxis, final Class parent) {
+		final List<ITreeItemAxis> axis = nestedClassAxis.getChildren();
 		Assert.assertEquals(3, axis.size());
-		Set<Object> nestedClasses = new HashSet<Object>();
-		for (ITreeItemAxis tmp : axis) {
+		final Set<Object> nestedClasses = new HashSet<Object>();
+		for (final ITreeItemAxis tmp : axis) {
 			Assert.assertEquals(0, tmp.getChildren().size());
-			Object representedElement = AxisUtils.getRepresentedElement(tmp);
+			final Object representedElement = AxisUtils.getRepresentedElement(tmp);
 			Assert.assertTrue(representedElement instanceof Class);
 			Assert.assertTrue(((EObject) representedElement).eContainer() == parent);
 			nestedClasses.add(representedElement);
@@ -645,17 +645,17 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 	}
 
-	public void checkOperationAxis(ITreeItemAxis operationAxis, Class parent) {
-		List<ITreeItemAxis> axis = operationAxis.getChildren();
+	public void checkOperationAxis(final ITreeItemAxis operationAxis, final Class parent) {
+		final List<ITreeItemAxis> axis = operationAxis.getChildren();
 		Assert.assertEquals(3, axis.size());
-		Set<Object> operation = new HashSet<Object>();
-		for (ITreeItemAxis tmp : axis) {
+		final Set<Object> operation = new HashSet<Object>();
+		for (final ITreeItemAxis tmp : axis) {
 			Assert.assertEquals(1, tmp.getChildren().size());
-			ITreeItemAxis parameterAxis = tmp.getChildren().get(0);
-			Object rep = AxisUtils.getRepresentedElement(parameterAxis);
+			final ITreeItemAxis parameterAxis = tmp.getChildren().get(0);
+			final Object rep = AxisUtils.getRepresentedElement(parameterAxis);
 			Assert.assertTrue(rep instanceof TreeFillingConfiguration);
 			Assert.assertEquals(UMLPackage.eINSTANCE.getBehavioralFeature_OwnedParameter(), AxisUtils.getRepresentedElement(((TreeFillingConfiguration) rep).getAxisUsedAsAxisProvider()));
-			Object representedElement = AxisUtils.getRepresentedElement(tmp);
+			final Object representedElement = AxisUtils.getRepresentedElement(tmp);
 			Assert.assertTrue(representedElement instanceof Operation);
 			Assert.assertTrue(((EObject) representedElement).eContainer() == parent);
 			operation.add(representedElement);
@@ -666,13 +666,13 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	}
 
 
-	public void checkParameterAxis(ITreeItemAxis parameterAxis, Operation parent) {
-		List<ITreeItemAxis> axis = parameterAxis.getChildren();
+	public void checkParameterAxis(final ITreeItemAxis parameterAxis, final Operation parent) {
+		final List<ITreeItemAxis> axis = parameterAxis.getChildren();
 		Assert.assertEquals(3, axis.size());
-		Set<Object> parameters = new HashSet<Object>();
-		for (ITreeItemAxis tmp : axis) {
+		final Set<Object> parameters = new HashSet<Object>();
+		for (final ITreeItemAxis tmp : axis) {
 			Assert.assertEquals(0, tmp.getChildren().size());
-			Object representedElement = AxisUtils.getRepresentedElement(tmp);
+			final Object representedElement = AxisUtils.getRepresentedElement(tmp);
 			Assert.assertTrue(representedElement instanceof Parameter);
 			Assert.assertTrue(((EObject) representedElement).eContainer() == parent);
 			parameters.add(representedElement);
@@ -696,13 +696,13 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		if (true) {// TODO, fixme
 			return;
 		}
-		final INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = this.editor.getAdapter(INattableModelManager.class);
 
 		boolean tmp = true;
 		while (tmp) {
 			try {
 				tmp = Display.getDefault().readAndDispatch();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				Activator.log.error(e);
 			}
 		}
@@ -717,18 +717,18 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		while (tmp) {
 			try {
 				tmp = Display.getDefault().readAndDispatch();
-			} catch (Exception e) {
+			} catch (final Exception e) {
 				Activator.log.error(e);
 			}
 		}
-		List<?> elements = manager.getRowElementsList();
+		final List<?> elements = manager.getRowElementsList();
 		Assert.assertTrue(" the list managing the rows in not a TreeList", elements instanceof TreeList<?>); //$NON-NLS-1$
 		Assert.assertEquals(2, elements.size());
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		String[] result = className.split("_"); //$NON-NLS-1$
-		Assert.assertTrue(result.length == 5);
-		String depth1 = result[1];
+		final String[] result = className.split("_"); //$NON-NLS-1$
+		Assert.assertTrue(result.length == 6);
+		final String depth1 = result[1];
 		//		if (depth1.endsWith("3")) { //$NON-NLS-1$
 		// // verifyTableContents_1_3_1(elements);
 		//		} else if (depth1.endsWith("1")) { //$NON-NLS-1$
@@ -743,30 +743,30 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		manager.selectAll();
 		((AbstractNattableWidgetManager) manager).copyToClipboard();
 
-		String clipboardContents = TableClipboardUtils.getClipboardContentsAsString();
-		String fileName = getPasteFileName();
+		final String clipboardContents = TableClipboardUtils.getClipboardContentsAsString();
+		final String fileName = getPasteFileName();
 
 		// String pastedContents = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID,get filePath, fileNameWithExtension)
 		int i = 0;
 		i++;
 
-		StringReader clipboardReader = new StringReader(clipboardContents);
-		StringReader fileReader = new StringReader(pastedString);
-		CSVPasteHelper helperClipboard = new CSVPasteHelper();
-		CSVPasteHelper helperfile = new CSVPasteHelper();
-		CSVParser clipboardParser = helperClipboard.createParser(clipboardReader);
-		CSVParser fileParser = helperfile.createParser(fileReader);
-		RowIterator clipboardRowIter = clipboardParser.parse();
-		RowIterator fileRowIter = fileParser.parse();
+		final StringReader clipboardReader = new StringReader(clipboardContents);
+		final StringReader fileReader = new StringReader(pastedString);
+		final CSVPasteHelper helperClipboard = new CSVPasteHelper();
+		final CSVPasteHelper helperfile = new CSVPasteHelper();
+		final CSVParser clipboardParser = helperClipboard.createParser(clipboardReader);
+		final CSVParser fileParser = helperfile.createParser(fileReader);
+		final RowIterator clipboardRowIter = clipboardParser.parse();
+		final RowIterator fileRowIter = fileParser.parse();
 		// doesn't work because tree header are not in the clipboard
 		while (clipboardRowIter.hasNext()) {
 			Assert.assertEquals(fileRowIter.hasNext(), clipboardRowIter.hasNext());
-			CellIterator fileCellIterator = fileRowIter.next();
-			CellIterator clipboardCellIterator = clipboardRowIter.next();
+			final CellIterator fileCellIterator = fileRowIter.next();
+			final CellIterator clipboardCellIterator = clipboardRowIter.next();
 			while (clipboardCellIterator.hasNext()) {
 				Assert.assertEquals(fileCellIterator.hasNext(), clipboardCellIterator.hasNext());
-				String origin = fileCellIterator.next();
-				String current = clipboardCellIterator.next();
+				final String origin = fileCellIterator.next();
+				final String current = clipboardCellIterator.next();
 
 				// contains and not equals, because due to label provider, it could be different
 				Assert.assertTrue(current.contains(origin));
@@ -782,7 +782,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	 *         the name of the paste file to use
 	 */
 	protected String getPasteFileName() {
-		StringBuilder builder = new StringBuilder(getClass().getSimpleName());
+		final StringBuilder builder = new StringBuilder(getClass().getSimpleName());
 		builder.append(FileUtils.DOT_STRING);
 		builder.append(FileUtils.TEXT_EXTENSION);
 		return builder.toString();

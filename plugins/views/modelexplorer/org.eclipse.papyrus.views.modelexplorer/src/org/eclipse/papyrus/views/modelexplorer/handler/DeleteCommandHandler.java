@@ -73,7 +73,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 
 	/**
 	 * Return if the parameter is page.
-	 * 
+	 *
 	 * @param current
 	 * @return
 	 */
@@ -97,7 +97,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 * elements.
 	 * @param selectedElements elements to delete
 	 * @return the composite deletion command for current selection
-	 * 
+	 *
 	 * @TODO : Manage possible Diagrams listed in the selection
 	 *
 	 * </pre>

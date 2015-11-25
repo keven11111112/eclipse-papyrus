@@ -95,14 +95,14 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 
 		// Try global mechanism
 		{
-			T ele = (T) Platform.getAdapterManager().getAdapter(object, expectedClassType);
+			T ele = Platform.getAdapterManager().getAdapter(object, expectedClassType);
 			if (ele != null) {
 				return ele;
 			}
 			// Try as EObject if the expectedClasType is sub-type of EObject.
 			if (EObject.class.isAssignableFrom(expectedClassType)) {
 				// to EObject
-				eobject = (EObject) Platform.getAdapterManager().getAdapter(object, EObject.class);
+				eobject = Platform.getAdapterManager().getAdapter(object, EObject.class);
 
 				if (eobject != null && expectedClassType.isInstance(eobject)) {
 

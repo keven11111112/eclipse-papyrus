@@ -10,6 +10,7 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 433206
  *   Christian W. Damus - bug 473148
+ *   Christian W. Damus - bug 478558
  *   
  *****************************************************************************/
 
@@ -117,7 +118,11 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 			// Add relationships
 			result = Lists.<EObject> newArrayList(element.getRelationships());
 
-			// And relationship-like elements
+			// But we don't visualize associations as relationships of properties (which can
+			// be visualized as shapes in a composite structure diagram, for example)
+			result = new CleanRelationshipsSwitch(viewFromEditPart, result).doSwitch(element);
+
+			// And then add relationship-like elements
 			result = new ConnectionsSwitch(viewFromEditPart, result).doSwitch(element);
 		}
 
@@ -223,6 +228,34 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 				}
 			}
 			return super.caseConstraint(object);
+		}
+	}
+
+	private class CleanRelationshipsSwitch extends UMLSwitch<List<EObject>> {
+		@SuppressWarnings("unused") // It isn't used, *yet*
+		private final View visualContext;
+		private final List<EObject> result;
+
+		CleanRelationshipsSwitch(View visualContext, List<EObject> result) {
+			super();
+
+			this.visualContext = visualContext;
+			this.result = result;
+		}
+
+		@Override
+		public List<EObject> doSwitch(EObject eObject) {
+			super.doSwitch(eObject);
+
+			return result;
+		}
+
+		@Override
+		public List<EObject> caseProperty(Property object) {
+			if (object.getAssociation() != null) {
+				result.remove(object.getAssociation());
+			}
+			return super.caseProperty(object);
 		}
 	}
 

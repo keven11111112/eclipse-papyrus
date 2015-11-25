@@ -27,9 +27,9 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ObjectLabelProviderConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.nattable.messages.Messages;
@@ -92,8 +92,8 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		}
 
 		ILabelProviderConfiguration conf = null;
-		if (wrapper instanceof LabelProviderCellContextElementWrapper) {
-			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper) wrapper);
+		if (wrapper instanceof ILabelProviderCellContextElementWrapper) {
+			conf = getLabelConfiguration((ILabelProviderCellContextElementWrapper) wrapper);
 		}
 
 		String returnedValue = null;
@@ -122,13 +122,19 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		return returnedValue;
 	}
 
-	protected ILabelProviderConfiguration getLabelConfiguration(LabelProviderCellContextElementWrapper wrapper) {
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getLabelConfiguration(org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper)
+	 */
+	@Override
+	protected ILabelProviderConfiguration getLabelConfiguration(ILabelProviderCellContextElementWrapper wrapper) {
 		ILabelProviderConfiguration conf = null;
 		final IConfigRegistry configRegistry = wrapper.getConfigRegistry();
 		final INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		final Table table = modelManager.getTable();
-		if (wrapper instanceof LabelProviderCellContextElementWrapper) {
-			LabelStack labels = ((LabelProviderCellContextElementWrapper) wrapper).getConfigLabels();
+		if (wrapper instanceof ILabelProviderCellContextElementWrapper) {
+			LabelStack labels = ((ILabelProviderCellContextElementWrapper) wrapper).getConfigLabels();
 			if (labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 				conf = LabelConfigurationManagementUtils.getUsedColumnFeatureLabelConfiguration(table);
 			} else if (labels.hasLabel(GridRegion.ROW_HEADER)) {
@@ -150,7 +156,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		final Object value = getWrappedValue((ILabelProviderContextElementWrapper) element);
 		final IConfigRegistry configRegistry = ((ILabelProviderContextElementWrapper) element).getConfigRegistry();
 		final INattableModelManager modelManager = getAxisContentProvider(configRegistry);
-		ILabelProviderConfiguration conf = getLabelConfiguration((LabelProviderCellContextElementWrapper) element);
+		ILabelProviderConfiguration conf = getLabelConfiguration((ILabelProviderCellContextElementWrapper) element);
 		if (conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration) conf).isDisplayIcon()) {
 			return null;
 		}

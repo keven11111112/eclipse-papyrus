@@ -187,6 +187,9 @@ public class ActionPinInBroadcastSignalActionEditPart extends AbstractPinEditPar
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;

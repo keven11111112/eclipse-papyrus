@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -566,6 +567,7 @@ public class ImportTransformation {
 
 			for (Resource resource : resourcesToSave) {
 				try {
+					cleanMetadataAnnotations(resource);
 					ResourceAccessHelper.INSTANCE.saveResource(resource, null);
 				} catch (Exception ex) {
 					Activator.log.error(ex);
@@ -584,6 +586,24 @@ public class ImportTransformation {
 
 		monitor.done();
 		return generationStatus;
+	}
+
+	/**
+	 * @param resource
+	 */
+	private void cleanMetadataAnnotations(Resource resource) {
+		// Bug 471684: UML2.x to UML2.5 creates (invalid) Ecore Metadata EAnnotations, which then cause OCL validation to fail
+		// Remove these EAnnotations from the model to avoid side effects
+		Iterator<EObject> rootElementsIterator = resource.getContents().iterator();
+		while (rootElementsIterator.hasNext()) {
+			EObject root = rootElementsIterator.next();
+			if (root instanceof EAnnotation) {
+				EAnnotation annotation = (EAnnotation) root;
+				if (ExtendedMetaData.ANNOTATION_URI.equals(annotation.getSource())) {
+					rootElementsIterator.remove();
+				}
+			}
+		}
 	}
 
 	protected void handleDanglingURIs(Collection<Resource> resourcesToSave) {

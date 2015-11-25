@@ -46,6 +46,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.UseContextImpl#getRepresentations <em>Representations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.UseContextImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.UseContextImpl#getGmftRepresentations <em>Gmft Representations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.UseContextImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -110,6 +111,26 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 * @ordered
 	 */
 	protected EList<GMFT_BasedRepresentation> gmftRepresentations;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +222,27 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -226,6 +268,8 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 				return getName();
 			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return getGmftRepresentations();
+			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -253,6 +297,9 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 				getGmftRepresentations().clear();
 				getGmftRepresentations().addAll((Collection<? extends GMFT_BasedRepresentation>)newValue);
 				return;
+			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+				setDescription((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -277,6 +324,9 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				getGmftRepresentations().clear();
 				return;
+			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -297,6 +347,8 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return gmftRepresentations != null && !gmftRepresentations.isEmpty();
+			case ExpansionmodelPackage.USE_CONTEXT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -315,6 +367,8 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		result.append(diagramType);
 		result.append(", name: ");
 		result.append(name);
+		result.append(", description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

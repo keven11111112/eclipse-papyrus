@@ -35,7 +35,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateComponentDiagramCommand();
@@ -45,7 +45,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_3200, getDiagramEditPart().getDiagramPreferencesHint());
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return IComponentDiagramTestsConstants.PROJECT_NAME;
@@ -87,7 +87,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	public void testToManageInterface() {
 		testToManageNode(UMLElementTypes.Interface_3078, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3076, true);
 	}
-	
+
 
 	/**
 	 * Test to manage Comment

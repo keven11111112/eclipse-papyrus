@@ -32,12 +32,12 @@ import org.eclipse.papyrus.infra.tools.util.TypesConstants;
  * @author MA244259
  *
  */
-public class SingleIntegerCellEditorConfiguration implements ICellAxisConfiguration{
+public class SingleIntegerCellEditorConfiguration implements ICellAxisConfiguration {
 
 	/**
 	 * the id of this editor
 	 */
-	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleIntegerCellEditorConfiguration.Text";//$NON-NLS-1$	
+	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleIntegerCellEditorConfiguration.Text";//$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
@@ -58,7 +58,7 @@ public class SingleIntegerCellEditorConfiguration implements ICellAxisConfigurat
 	public String getConfigurationDescription() {
 		return "This configuration provides a Text editor for a single Integer"; //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
 	 *
@@ -71,10 +71,12 @@ public class SingleIntegerCellEditorConfiguration implements ICellAxisConfigurat
 		Object object = AxisUtils.getRepresentedElement(axisElement);
 		if (object instanceof EStructuralFeature) {
 			EStructuralFeature feature = (EStructuralFeature) object;
-			EClassifier etype = feature.getEType();
-			if (etype instanceof EDataType) {
-				EDataType datatype = (EDataType) etype;
-				return TypesConstants.INTEGER.equals(datatype.getName());
+			if (!feature.isMany()) {
+				EClassifier etype = feature.getEType();
+				if (etype instanceof EDataType) {
+					EDataType datatype = (EDataType) etype;
+					return TypesConstants.INTEGER.equals(datatype.getName());
+				}
 			}
 		}
 		return false;

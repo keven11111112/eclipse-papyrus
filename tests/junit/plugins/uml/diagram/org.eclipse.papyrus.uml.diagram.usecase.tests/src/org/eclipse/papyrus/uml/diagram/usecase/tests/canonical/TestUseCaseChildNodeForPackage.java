@@ -30,16 +30,17 @@ import org.junit.Test;
  * The Class TestUseCaseChildNodeForPackage.
  */
 public class TestUseCaseChildNodeForPackage extends TestChildNode {
-	
+
 	@Override
 	public DiagramUpdater getDiagramUpdater() {
 		return org.eclipse.papyrus.uml.diagram.usecase.custom.edit.parts.CustomUMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2016, getDiagramEditPart().getDiagramPreferencesHint());
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return IUseCaseDiagramTestsConstants.PROJECT_NAME;
@@ -49,7 +50,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	protected String getFileName() {
 		return IUseCaseDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -57,7 +58,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	public void testToManagePackage() {
 		testToManageNode(UMLElementTypes.Package_3014, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3014, true);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -65,7 +66,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	public void testToManageActor() {
 		testToManageNode(UMLElementTypes.Actor_3011, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Package_3014, true);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -73,6 +74,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	public void testToManageComment() {
 		testToManageNode(UMLElementTypes.Comment_3015, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_3014, true);
 	}
+
 	/**
 	 * Test to manage component.
 	 */
@@ -80,18 +82,20 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	public void testToManageConstraint() {
 		testToManageNode(UMLElementTypes.Constraint_3010, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3014, true);
 	}
+
 	@Test
 	public void testToManageComponent() {
 		testToManageNode(UMLElementTypes.Component_3013, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3014, true);
 	}
+
 	@Test
 	public void testToManageUseCase() {
 		testToManageNode(UMLElementTypes.UseCase_3012, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Package_3014, true);
 	}
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return  new CreateUseCaseDiagramCommand();
+		return new CreateUseCaseDiagramCommand();
 	}
-	
+
 }

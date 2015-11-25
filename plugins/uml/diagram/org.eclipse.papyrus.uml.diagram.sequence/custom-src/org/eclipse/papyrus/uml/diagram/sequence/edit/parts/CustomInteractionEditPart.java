@@ -40,29 +40,25 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.InteractionRectangleFigure;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.uml.diagram.common.util.MessageDirection;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
@@ -74,7 +70,6 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.InteractionHeadImp
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomInteractionItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.StereotypeInteractionFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
@@ -98,23 +93,23 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	/**
 	 * CSS Integer property to define the horizontal Label Margin
 	 */
-	public static final String TOP_MARGIN_PROPERTY = "TopMarginLabel"; //$NON-NLS$
+	public static final String TOP_MARGIN_PROPERTY = "TopMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the vertical Label Margin
 	 */
-	public static final String LEFT_MARGIN_PROPERTY = "LeftMarginLabel"; //$NON-NLS$
+	public static final String LEFT_MARGIN_PROPERTY = "LeftMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the horizontal Label Margin
 	 */
-	public static final String BOTTOM_MARGIN_PROPERTY = "BottomMarginLabel"; //$NON-NLS$
+	public static final String BOTTOM_MARGIN_PROPERTY = "BottomMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the vertical Label Margin
 	 */
-	public static final String RIGHT_MARGIN_PROPERTY = "RightMarginLabel"; //$NON-NLS$
-	
+	public static final String RIGHT_MARGIN_PROPERTY = "RightMarginLabel"; // $NON-NLS$
+
 	/**
 	 * Notifier for listen and unlisted model element.
 	 */
@@ -157,7 +152,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 				InteractionInteractionCompartmentEditPart childEditPart = (InteractionInteractionCompartmentEditPart) child;
 				for (Object grandChild : childEditPart.getChildren()) {
 					if (grandChild instanceof CustomLifelineEditPart) {
-						command = ((CustomLifelineEditPart)grandChild).getAlignLifelineBottomToParentCommand(command, false);
+						command = ((CustomLifelineEditPart) grandChild).getAlignLifelineBottomToParentCommand(command, false);
 					}
 				}
 			}
@@ -225,7 +220,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 							IFigure figure = editPart.getFigure();
 							if (grandChild instanceof CustomLifelineEditPart) {
 								Rectangle childBounds = figure.getBounds().getCopy();
-								childBounds.height = ((CustomLifelineEditPart)grandChild).getMinimumHeight(-1);
+								childBounds.height = ((CustomLifelineEditPart) grandChild).getMinimumHeight(-1);
 								bounds.union(childBounds);
 							} else {
 								bounds.union(figure.getBounds());
@@ -268,26 +263,26 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 		}
 	}
 
-	
-	
+
+
 	@Override
 	protected void refreshFont() {
 		super.refreshFont();
 		refreshBounds();
 	}
-	
-	@Override 
+
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabelMargin();
 	};
-	
+
 	/**
 	 * Refresh margin of named element children labels
 	 * <ul>
-	 * <li> Get Css values </li>
-	 * <li> Get all the children figure </li>
-	 * <li> If the child is a label then apply the margin </li>
+	 * <li>Get Css values</li>
+	 * <li>Get all the children figure</li>
+	 * <li>If the child is a label then apply the margin</li>
 	 * </ul>
 	 */
 	public void refreshLabelMargin() {
@@ -311,12 +306,12 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 
 
 		// Get all children figures of the Edit Part and set margin according to the retrieve values
-		if (this instanceof IPapyrusEditPart){
+		if (this instanceof IPapyrusEditPart) {
 			figure = ((IPapyrusEditPart) this).getPrimaryShape();
 			List<IPapyrusWrappingLabel> labelChildFigureList = FigureUtils.findChildFigureInstances(figure, IPapyrusWrappingLabel.class);
 
-			for (IPapyrusWrappingLabel label : labelChildFigureList){
-				if (label != null){
+			for (IPapyrusWrappingLabel label : labelChildFigureList) {
+				if (label != null) {
 					label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
 				}
 			}
@@ -614,24 +609,12 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 		return false;
 	}
 
-	/**
-	 * Create a BorderedNodeFigure for holding Gates.
-	 */
-	@Override
-	protected NodeFigure createNodeFigure() {
-		return new BorderedNodeFigure(super.createNodeFigure());
-	}
-
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
-		return getContentPane();
-	}
-
-	public final BorderedNodeFigure getBorderedFigure() {
-		return (BorderedNodeFigure) getFigure();
+		return super.getContentPaneFor(editPart);
 	}
 
 	@Override
@@ -645,11 +628,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 
 	@Override
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "Interaction";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight)) {
+		return new RoundedRectangleNodePlateFigure(857, 757) {
 
 			@Override
 			protected ConnectionAnchor createAnchor(PrecisionPoint p) {
@@ -661,8 +640,5 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 				return new AnchorHelper.IntersectionPointAnchor(this, p);
 			}
 		};
-		return result;
 	}
-
-
 }

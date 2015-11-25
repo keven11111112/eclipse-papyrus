@@ -45,14 +45,6 @@ import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerForEventList implements IAxisManagerForEventList, ITreeItemAxisManagerForEventList {
 
 
-
-	/**
-	 * NOT IN THE API, only here to do the dev about the display of the category (intermediate level displayed filling configuration
-	 * 
-	 */
-	public static final boolean DISPLAY_CATEOGORY = HierarchicalRowLabelHeaderDataProvider.DISPLAY_CATEOGORY;
-
-
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection)
 	 *
@@ -61,7 +53,39 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 	 * @return
 	 */
 	@Override
-	public Command getAddAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToAdd) {
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+		}
+		return null;
+	}
+
+	
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if (!toAdd.isEmpty()) {
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the axis to add from the objects to add.
+	 * 
+	 * @param objectToAdd The objects to add.
+	 * @return The axis to add.
+	 */
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
 		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		for (final Object object : objectToAdd) {
 			if (isAllowedContents(object, null, null, 0) && !isAlreadyManaged(object)) {
@@ -71,12 +95,8 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 				toAdd.add(horizontalAxis);
 			}
 		}
-		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
-		}
-		return null;
+		return toAdd;
 	}
-
 
 
 	/**

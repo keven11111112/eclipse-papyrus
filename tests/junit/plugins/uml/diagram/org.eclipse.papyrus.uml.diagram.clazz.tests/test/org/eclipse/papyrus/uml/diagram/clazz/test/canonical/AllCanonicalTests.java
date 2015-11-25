@@ -12,13 +12,13 @@
 package org.eclipse.papyrus.uml.diagram.clazz.test.canonical;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All test in canonical package
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // top nodes
 TestClassDiagramTopNode.class,
@@ -49,7 +49,10 @@ TestListCompartmentIllegalElements.class,
 TestListCompartmentPropertiesOperationsDrop.class,
 TestEditableClassDiagramTopNode.class,
 TestClassDiagramAssociationClass.class,
-TestListCompartmentNestedChild.class
+TestListCompartmentNestedChild.class,
+TestClassDiagramAssociationLinkSemantic.class,
+TestClassDiagramInstanceSpecification.class,
+TestRedefinableTemplateSignature.class
 })
 public class AllCanonicalTests {
 }

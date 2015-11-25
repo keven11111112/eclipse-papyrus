@@ -23,14 +23,10 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.uml.profile.drafter.Activator;
 import org.eclipse.papyrus.uml.profile.drafter.ProfileCatalog;
 import org.eclipse.papyrus.uml.profile.drafter.exceptions.NotFoundException;
-import org.eclipse.papyrus.uml.profile.drafter.tests.ModelSetManager;
 import org.eclipse.papyrus.uml.profile.drafter.tests.exception.TestUtilsException;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
@@ -38,10 +34,8 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
 
 
 /**
@@ -144,7 +138,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testProfileCatalog() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -160,7 +154,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetNamedElement() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -177,7 +171,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testLookupStereotype() throws TestUtilsException, NotFoundException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -195,7 +189,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testLookupStereotypeInAppliedProfile() throws NotFoundException, TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -212,7 +206,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetProfiles() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -231,7 +225,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetStereotypes() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -250,7 +244,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetProfileNames() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -271,7 +265,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetStereotypeNames() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -292,7 +286,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetProfileQualifiedNames() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -313,7 +307,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	@Test
 	public void testGetStereotypeQualifiedNames() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 
 		ProfileCatalog catalog = new ProfileCatalog(namedElement);
@@ -345,7 +339,7 @@ public class ProfileCatalogTest extends AbstractDrafterTest{
 	public void testIsModelsExist() throws TestUtilsException {
 		ModelSetManager modelSetManager = new ModelSetManager(MODEL_1_FULLPATH);
 
-		String qualifiedName = "p2::ClassWith1Sterotype";
+		String qualifiedName = "p2::ClassWith1Stereotype";
 		NamedElement namedElement = modelSetManager.getNamedElementByName(qualifiedName);
 		assertNotNull("Class found", namedElement);
 		assertTrue("Right Class found", namedElement instanceof org.eclipse.uml2.uml.Class);

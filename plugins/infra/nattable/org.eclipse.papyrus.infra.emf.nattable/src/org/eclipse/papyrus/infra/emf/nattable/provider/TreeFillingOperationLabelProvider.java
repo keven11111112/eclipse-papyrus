@@ -19,8 +19,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
-import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 
 /**
  * The label provider for the tree filling operation
@@ -55,7 +55,7 @@ public class TreeFillingOperationLabelProvider extends EMFEOperationHeaderLabelP
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getLabelConfiguration(org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper)
 	 */
 	@Override
-	protected ILabelProviderConfiguration getLabelConfiguration(final LabelProviderCellContextElementWrapper element) {
+	protected ILabelProviderConfiguration getLabelConfiguration(final ILabelProviderCellContextElementWrapper element) {
 		ILabelProviderConfiguration result = null;
 		if (element instanceof ILabelProviderContextElementWrapper) {
 			final Object object = ((ILabelProviderContextElementWrapper) element).getObject();

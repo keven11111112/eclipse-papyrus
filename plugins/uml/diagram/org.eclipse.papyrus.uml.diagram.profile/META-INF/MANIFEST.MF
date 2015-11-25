@@ -83,7 +83,8 @@ Require-Bundle: org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.2.
  org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.canonical;bundle-version="1.2.0",
- com.google.guava;bundle-version="11.0.0"
+ com.google.guava;bundle-version="11.0.0",
+ org.eclipse.core.databinding
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
 Bundle-Version: 1.2.0.qualifier

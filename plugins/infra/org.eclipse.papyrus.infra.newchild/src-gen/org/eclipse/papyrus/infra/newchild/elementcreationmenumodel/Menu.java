@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.newchild.elementcreationmenumodel;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.filters.Filter;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#getIcon <em>Icon</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#isVisible <em>Visible</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#getFilter <em>Filter</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#getMenu()
@@ -108,5 +110,31 @@ public interface Menu extends EObject {
 	 * @generated
 	 */
 	void setVisible(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Filter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Filter</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Filter</em>' containment reference.
+	 * @see #setFilter(Filter)
+	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#getMenu_Filter()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Filter getFilter();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu#getFilter <em>Filter</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Filter</em>' containment reference.
+	 * @see #getFilter()
+	 * @generated
+	 */
+	void setFilter(Filter value);
 
 } // Menu

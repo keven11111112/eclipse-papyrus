@@ -12,15 +12,17 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.tests;
 
 import org.eclipse.papyrus.uml.diagram.interactionoverview.tests.canonical.AllCanonicalTests;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 //@formatter:off
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
-// canonical
-AllCanonicalTests.class, })
-//@formatter:on
+		// canonical
+		AllCanonicalTests.class,
+		RoundedCompartmentTest.class,
+})
+// @formatter:on
 public class AllTests {
 	// Junit 4 test case
 }

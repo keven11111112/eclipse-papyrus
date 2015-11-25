@@ -14,14 +14,17 @@
 package org.eclipse.papyrus.uml.filters.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * The master test suite for the plug-in.
  */
-@RunWith(Suite.class)
-@SuiteClasses(UMLFiltersAllTests.class)
+@RunWith(ClassificationSuite.class)
+@SuiteClasses({
+		UMLFiltersAllTests.class,
+		ProfileAppliedRegressionTest.class,
+})
 public class AllTests {
 	// Nothing required
 }

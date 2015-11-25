@@ -12,12 +12,12 @@
 package org.eclipse.papyrus.uml.diagram.wizards;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// {oep}.uml.diagram.wizards
 		TestCreateModelWizard.class, TestCreateSysMLModelWizard.class, TestInitModelWizard.class, TestNewProjectWizard.class, TestNewSysMLProjectWizard.class, TestCreateModelFromExistingModelWizard.class })

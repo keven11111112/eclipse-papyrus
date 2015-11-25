@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.sysml.modelelements.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * A test suite for the '<em><b>modelelements</b></em>' package.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ ViewTest.class
 // ProblemTest.class, RationaleTest.class, ViewPointTest.class
 })

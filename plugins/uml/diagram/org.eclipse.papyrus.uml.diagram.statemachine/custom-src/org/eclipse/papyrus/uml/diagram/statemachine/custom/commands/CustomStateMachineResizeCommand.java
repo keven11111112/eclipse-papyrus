@@ -71,10 +71,12 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 			// dy = 0;
 		}
 		// first resize the state machine node with the constraint provided
-		Zone.setX(stateMachine, newX);
-		Zone.setY(stateMachine, newY);
-		Zone.setWidth(stateMachine, Zone.getWidth(stateMachine) + dx);
-		Zone.setHeight(stateMachine, Zone.getHeight(stateMachine) + dy);
+		if (!internalResize) {
+			Zone.setX(stateMachine, newX);
+			Zone.setY(stateMachine, newY);
+			Zone.setWidth(stateMachine, Zone.getWidth(stateMachine) + dx);
+			Zone.setHeight(stateMachine, Zone.getHeight(stateMachine) + dy);
+		}
 		// resize label and compartment
 		Zone.setWidth(stateMachineLabel, Zone.getWidth(stateMachine));
 		Zone.setWidth(stateMachineCompartment, Zone.getWidth(stateMachine));
@@ -101,6 +103,10 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 		Iterator<?> it = stateMachineCompartment.getChildren().iterator();
 		while (it.hasNext()) {
 			View view = (View) it.next();
+			if (Zone.isStereotype(view)) {
+				continue;
+			}
+
 			String zone = Zone.getZone(view);
 			switch (direction) {
 			case PositionConstants.WEST:
@@ -332,7 +338,7 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			}// switch
-		}// while
+		} // while
 		return CommandResult.newOKCommandResult();
 	}
 }

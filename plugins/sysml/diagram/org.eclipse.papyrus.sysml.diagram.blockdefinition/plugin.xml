@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/BlockDefinitionDiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
 
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">

@@ -20,10 +20,19 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -32,18 +41,22 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.diagram.internalblock.dnd.helper.CustomLinkMappingHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomGraphicalTypeRegistry;
+import org.eclipse.papyrus.sysml.diagram.internalblock.utils.PortDropHelper;
 import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
-import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementNodeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /** Customization of the DND edit policy for the Internal Block Diagram */
@@ -91,54 +104,206 @@ public class CustomDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 		ConnectorEnd source = droppedEObject.getEnds().get(0);
 		ConnectorEnd target = droppedEObject.getEnds().get(1);
 
-		// Find views in current diagram representing source and target
-		Collection<View> sourceViews = getViewsForConnectorEnd(source);
-		Collection<View> targetViews = getViewsForConnectorEnd(target);
+		return dropBinaryLink(new CompositeCommand("drop Connector"), source.getRole(), target.getRole(), edgeType, dropRequest.getLocation(), droppedEObject);
+	}
 
-		IAdaptable sourceViewAdapter = null;
-		IAdaptable targetViewAdapter = null;
+	/**
+	 * the method provides command to create the binary link into the diagram.
+	 * If the source and the target views do not exist, these views will be
+	 * created.
+	 *
+	 * @param cc
+	 *            the composite command that will contain the set of command to
+	 *            create the binary link
+	 * @param source
+	 *            the source the element source of the link
+	 * @param target
+	 *            the target the element target of the link
+	 * @param linkVISUALID
+	 *            the link VISUALID used to create the view
+	 * @param location
+	 *            the location the location where the view will be be created
+	 * @param semanticLink
+	 *            the semantic link that will be attached to the view
+	 *
+	 * @return the composite command
+	 */
+	protected CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, String edgeType, Point absoluteLocation, Element semanticLink) {
+		IAdaptable sourceViewAdapter = findAdapter(cc, source, getLinkSourceDropLocation(absoluteLocation, source, target), edgeType);
+		IAdaptable targetViewAdapter = findAdapter(cc, target, getLinkTargetDropLocation(absoluteLocation, source, target), edgeType);
+		IAdaptable droppedViewAdapter = new SemanticAdapter(semanticLink, null);
 
-		// If either a source or target lacks create view for these elements, abort...
-		if (sourceViews.isEmpty() || targetViews.isEmpty()) {
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(droppedViewAdapter, edgeType, getDiagramPreferencesHint());
+		CommonDeferredCreateConnectionViewCommand createConnectionViewCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), edgeType, sourceViewAdapter, targetViewAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
+		createConnectionViewCommand.setElement(semanticLink);
+		cc.compose(createConnectionViewCommand);
+		return cc;
+	}
+
+	/**
+	 * This method allows to specify a location for the creation of a node at
+	 * the source of a dropped link. Overriding implementations must not modify
+	 * the absoluteLocation parameter (use {@link Point#getCopy()})
+	 *
+	 * @param absoluteLocation
+	 *            the request's drop location
+	 * @param source
+	 *            the source of the dropped link
+	 * @param target
+	 *            the target of the dropped link
+	 * @return the new location for the node
+	 */
+	protected Point getLinkSourceDropLocation(Point absoluteLocation, Element source, Element target) {
+		return absoluteLocation;
+	}
+
+	/**
+	 * This method allows to specify a location for the creation of a node at
+	 * the target of a dropped link. Overriding implementations must not modify
+	 * the absoluteLocation parameter (use {@link Point#getCopy()})
+	 *
+	 * @param absoluteLocation
+	 *            the request's drop location
+	 * @param source
+	 *            the source of the dropped link
+	 * @param target
+	 *            the target of the dropped link
+	 * @return the new location for the node
+	 */
+	protected Point getLinkTargetDropLocation(Point absoluteLocation, Element source, Element target) {
+		if (lookForEditPart(source) == null && lookForEditPart(target) == null) {
+			return absoluteLocation.getTranslated(100, 0);
 		}
+		return absoluteLocation;
+	}
 
-		View selectedSourceView = null;
-		View selectedTargetView = null;
-		// until a correct one is found, check that source and target views selected are correct given the current path for the connector...
-		for (View sourceView : sourceViews) {
-			View targetView = getFirstValidTargetViewForSource(sourceView, targetViews, droppedEObject);
-			if (targetView != null) {
-				selectedSourceView = sourceView;
-				selectedTargetView = targetView;
-				break;
+	/**
+	 * the method provides command to create the binary link into the diagram.
+	 * Find source/target adapter
+	 * If the source and the target views do not exist, these views will be
+	 * created.
+	 * 
+	 * @see dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID
+	 *      , Point absoluteLocation, Element semanticLink)
+	 *
+	 * @param cc
+	 *            the composite command that will contain the set of command to
+	 *            create the binary link
+	 * @param source
+	 *            source/target link node
+	 * @param point
+	 *            source/target node location
+	 */
+	private IAdaptable findAdapter(CompositeCommand cc, Element source, Point dropLocation, String edgeType) {
+		IAdaptable result = getElement2IAdaptableRegistryHelper().findAdapter(source);
+		if (result != null) {
+			return result;
+		}
+		GraphicalEditPart editPart = (GraphicalEditPart) lookForEditPart(source);
+		if (editPart != null) {
+			return new SemanticAdapter(null, editPart.getModel());
+		}
+		if (isPortSource(source)) {
+			ICommand createPortCommand = createPortViewCommand(source, dropLocation);
+			cc.add(createPortCommand);
+			return (IAdaptable) createPortCommand.getCommandResult().getReturnValue();
+		}
+		ICommand createCommand = getDefaultDropNodeCommand(edgeType, dropLocation, source);
+		cc.add(createCommand);
+		return (IAdaptable) createCommand.getCommandResult().getReturnValue();
+	}
+
+	protected boolean isPortSource(Element source) {
+		return source instanceof Port;
+	}
+
+	private ICommand createPortViewCommand(Element source, Point dropLocation) {
+		if (false == source instanceof Port) {
+			return new CommandProxy(UnexecutableCommand.INSTANCE);
+		}
+		EditPart portContainer = lookForEditPart(source.eContainer(), true);
+		if (portContainer == null) {
+			return new CommandProxy(UnexecutableCommand.INSTANCE);
+		}
+		PortDropHelper portDropHelper = new PortDropHelper(getEditingDomain());
+		return portDropHelper.getDropPortOnPart((Port) source, dropLocation.getCopy(), (GraphicalEditPart) portContainer);
+	}
+
+	protected EditPart lookForEditPart(EObject semantic) {
+		return lookForEditPart(semantic, false);
+	}
+
+	/**
+	 * Look for editPart from his semantic.
+	 *
+	 * @param semantic
+	 *            the semantic
+	 *
+	 * @return the edits the part or null if not found
+	 */
+	protected EditPart lookForEditPart(EObject semantic, boolean byType) {
+		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
+		Iterator<EditPart> editPartIterator = editPartSet.iterator();
+		while (editPartIterator.hasNext()) {
+			EditPart nextEditPart = editPartIterator.next();
+			if (!isEditPartTypeAdapted(nextEditPart.getClass(), semantic.eClass())) {
+				continue;
+			}
+			EObject nextSemantic = ((GraphicalEditPart) nextEditPart).resolveSemanticElement();
+			if (semantic.equals(nextSemantic)) {
+				return nextEditPart;
+			}
+			if (byType && nextSemantic instanceof TypedElement && ((TypedElement) nextSemantic).getType() != null) {
+				EObject nextSemanticType = ((TypedElement) nextSemantic).getType();
+				if (semantic.equals(nextSemanticType)) {
+					return nextEditPart;
+				}
 			}
 		}
+		return null;
+	}
 
-
-		// Create source adapter
-		if (selectedSourceView != null) { // sourceViewAdapter should still be null in this case
-			sourceViewAdapter = new SemanticAdapter(null, selectedSourceView);
-		} else {
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	/**
+	 * Check if the edit part type is the best one to represent an object of the
+	 * given EClass type
+	 *
+	 * @param editPartClass
+	 *            the type of EditPart which may represent a semantic element
+	 * @param eClass
+	 *            the EClass type of the represented semantic element
+	 * @return true if an edit part of this type should be selected
+	 */
+	private boolean isEditPartTypeAdapted(Class<? extends EditPart> editPartClass, EClass eClass) {
+		if (DiagramEditPart.class.isAssignableFrom(editPartClass) || CompartmentEditPart.class.isAssignableFrom(editPartClass)) {
+			// the edit part is disqualified, as a compartment or a diagram can not be dropped
+			return false;
+		} else if (AbstractElementNodeLabelEditPart.class.isAssignableFrom(editPartClass)) {
+			return false;
+		} else if (GraphicalEditPart.class.isAssignableFrom(editPartClass)) {
+			// check the edit part type against advised ones
+			return isEditPartTypeSuitableForEClass(editPartClass.asSubclass(GraphicalEditPart.class), eClass);
 		}
+		return false;
+	}
 
-		// Create target adapter
-		if (selectedTargetView != null) { // targetViewAdapter should still be null in this case
-			targetViewAdapter = new SemanticAdapter(null, selectedTargetView);
-		} else {
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
-		}
-
-		// Create a view for the dropped link between the source and target view adapters
-		IAdaptable droppedObjectAdapter = new SemanticAdapter(droppedEObject, null);
-
-		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(droppedObjectAdapter, edgeType, getDiagramPreferencesHint());
-
-		CommonDeferredCreateConnectionViewCommand createConnectionViewCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), edgeType, sourceViewAdapter, targetViewAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
-		createConnectionViewCommand.setElement(droppedEObject);
-
-		return createConnectionViewCommand;
+	/**
+	 * Check if an edit part type correctly represent a semantic element of the
+	 * given EClass. Subclasses should implement this method to restrict the
+	 * possibilities during drop of a link. If an edit part is not of a suitable
+	 * type, returning false will eliminate it to represent the element as a
+	 * source or target edit part. This can be used for example to disable label
+	 * edit parts, which may represent the same model element as the main node.
+	 *
+	 * @param editPartClass
+	 *            the type of EditPart which must be checked
+	 * @param eClass
+	 *            the EClass type of the element which the edit part must
+	 *            represent
+	 * @return the only edit part type which can be selected (return a common
+	 *         super type if several edit parts can be chosen)
+	 */
+	protected boolean isEditPartTypeSuitableForEClass(Class<? extends GraphicalEditPart> editPartClass, EClass eClass) {
+		return true;
 	}
 
 	/**

@@ -14,6 +14,14 @@
    
 -->
 <plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/ComponentDiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
+
 <extension
       point="org.eclipse.ui.commands">
    <command
@@ -880,6 +888,22 @@
 				type="7011">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="6016">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6017">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6010">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6011">
+			</mapping>
+			<mapping
 				humanReadableType="Stereotype"
 				type="2">
 			</mapping>
@@ -928,6 +952,14 @@
 				type="6025">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="5006">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5007">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6033">
 			</mapping>
@@ -938,6 +970,10 @@
 			<mapping
 				humanReadableType="Floating Label"
 				type="6027">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="0">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -954,6 +990,10 @@
 			<mapping
 				humanReadableType="Floating Label"
 				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="5005">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -987,6 +1027,12 @@
          reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilier"
          source="undefined"
          target="1.1.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLComponentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
    </diagramReconciler>
 </extension>
 

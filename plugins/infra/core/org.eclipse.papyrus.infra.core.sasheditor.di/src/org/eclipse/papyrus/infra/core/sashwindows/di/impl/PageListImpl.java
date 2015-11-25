@@ -26,10 +26,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageListImpl#getAvailablePage <em>Available Page</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

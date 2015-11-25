@@ -22,10 +22,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.FreeFormValue#getBase_ValueSpecification <em>Base Value Specification</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getFreeFormValue()
  * @model

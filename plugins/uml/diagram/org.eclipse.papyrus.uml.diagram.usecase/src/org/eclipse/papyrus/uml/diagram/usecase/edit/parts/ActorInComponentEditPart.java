@@ -112,8 +112,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -186,21 +185,26 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 		if (borderItemEditPart instanceof ActorInComponentNameEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof ActorInComponentAppliedStereotypeEditPart) {
+		} else
+			if (borderItemEditPart instanceof ActorInComponentAppliedStereotypeEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof ActorQualifiedNameInCEditPart) {
-			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof ActorInComponentFloatingLabelEditPart) {
-			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else
-		{
+				if (borderItemEditPart instanceof ActorQualifiedNameInCEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else
+					if (borderItemEditPart instanceof ActorInComponentFloatingLabelEditPart) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(30, 50);

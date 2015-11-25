@@ -37,7 +37,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;
 
 
@@ -110,6 +109,7 @@ public class UMLModelCreatorTest {
 		Resource resource = createResource("temp.uml");
 
 		try {
+			@SuppressWarnings("unused")
 			UMLModelCreator creator = new UMLModelCreator(resource);
 			fail("Exception must be thrown");
 		} catch (IllegalArgumentException e) {

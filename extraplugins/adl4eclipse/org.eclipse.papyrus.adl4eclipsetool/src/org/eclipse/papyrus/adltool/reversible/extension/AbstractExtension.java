@@ -13,12 +13,11 @@ package org.eclipse.papyrus.adltool.reversible.extension;
 
 import static org.eclipse.papyrus.adltool.Activator.log;
 
-import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
+import org.eclipse.papyrus.adl4eclipse.org.ADL4Eclipse_Stereotypes;
 import org.eclipse.papyrus.adltool.reversible.AbstractReversible;
 import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtensionPoint;
 import org.eclipse.papyrus.adltool.reversible.factory.ReversibleFactory;
 import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
-import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -27,7 +26,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * type, stereotype name to be applied) of the {@link ReversibleExtension}
  * adapter.
  */
-public abstract class AbstractExtension extends AbstractReversible<InstanceSpecification>implements ReversibleExtension {
+public abstract class AbstractExtension extends AbstractReversible<InstanceSpecification> implements ReversibleExtension {
 
 	protected ReversibleProject parent;
 
@@ -43,12 +42,12 @@ public abstract class AbstractExtension extends AbstractReversible<InstanceSpeci
 
 	@Override
 	public String getStereotypeName() {
-		return IADL4ECLIPSE_Stereotype.EXTENSION_STEREOTYPE;
+		return ADL4Eclipse_Stereotypes.EXTENSION_STEREOTYPE;
 	}
 
 	@Override
 	public String getDependencyStereotypeName() {
-		return IOSGIStereotype.EXTENSION_REFERENCE;
+		return ADL4Eclipse_Stereotypes.EXTENSION_REFERENCE;
 	}
 
 	@Override

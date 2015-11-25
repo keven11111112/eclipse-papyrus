@@ -16,10 +16,7 @@ package org.eclipse.papyrus.adl4eclipsetool.assistant;
 import java.util.Set;
 
 import org.eclipse.papyrus.adltool.ADL4EclipseUtils;
-import org.eclipse.papyrus.adltool.command.CompleteArchitectureSnapshotCommand;
-import org.eclipse.papyrus.adltool.designer.ReverseSettings;
 import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * This class is used to do the reverse engineering from workspace plug-in. It adds only in the platform dependencies.
@@ -30,29 +27,11 @@ public class AdvancePluginImport extends AbstractImportWizard {
 
 	public AdvancePluginImport() {
 		super(ADVANCED_MODE);
-
-		reversibleList = ADL4EclipseUtils.getLoadedPlugins();
 	}
 
 	@Override
-	public boolean performFinish() {
-		Set<ReversibleProject> selectedBundles = bundleSelectionPage.getResult();
-
-		// One bundle must be selected
-		if (selectedBundles.size() > 0) {
-			Package selection = bundleSelectionPage.getSelectedModel();
-
-			if (selection != null) {
-				ReverseSettings reverseSettings = bundleSelectionPage.getReverseSettings();
-
-				// Launch the advanced reverse engineering
-				CompleteArchitectureSnapshotCommand comd = new CompleteArchitectureSnapshotCommand(transactionalEditingDomain, selection, selectedBundles, reverseSettings);
-				transactionalEditingDomain.getCommandStack().execute(comd);
-
-				return true;
-			}
-		}
-
-		return false;
+	protected Set<ReversibleProject> getReversibleList() {
+		return ADL4EclipseUtils.getLoadedPlugins();
+		//return ADL4EclipseUtils.getReversiblePlugins();
 	}
 }

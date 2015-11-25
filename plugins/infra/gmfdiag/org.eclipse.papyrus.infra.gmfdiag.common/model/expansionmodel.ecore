@@ -45,9 +45,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="viewFactory" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="if the kind is filled, the view factory has to be filled. It references the factory of notation element see (model inside GEF framework)"/>
+        <details key="documentation" value="if the kind is filled, the view factory has to be filled. It references the factory of notation element see (model inside GEF framework)&#xA;Have alook to http://www-01.ibm.com/support/knowledgecenter/SS8PJ7_7.0.0/org.eclipse.gmf.doc/reference/api/runtime/org/eclipse/gmf/runtime/diagram/core/view/factories/ViewFactory.html"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RepresentationKind">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="editPartQualifiedName"
@@ -97,10 +99,16 @@
         upperBound="-1" eType="#//RepresentationKind" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representations" ordered="false"
         upperBound="-1" eType="#//AbstractRepresentation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UseContext">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="DT is a key that repreferences an existing diagram (such as class diagram) or a reference to a ViewPoint (view prototype identifier)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representations" ordered="false"
         lowerBound="1" upperBound="-1" eType="#//Representation">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -115,8 +123,13 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="gmftRepresentations" ordered="false"
         upperBound="-1" eType="#//GMFT_BasedRepresentation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GMFT_BasedRepresentation" eSuperTypes="#//Representation">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Usecase is for a specific diagram. In case of class diagram, the goal is to be able to extend existing diagrams based on gmf."/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reusedID" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -130,6 +143,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraries" ordered="false"
         upperBound="-1" eType="#//GraphicalElementLibrary" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

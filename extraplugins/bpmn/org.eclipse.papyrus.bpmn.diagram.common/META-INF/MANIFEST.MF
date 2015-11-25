@@ -29,4 +29,4 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.bpmn.diagram.common.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.bpmn.diagram.common;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

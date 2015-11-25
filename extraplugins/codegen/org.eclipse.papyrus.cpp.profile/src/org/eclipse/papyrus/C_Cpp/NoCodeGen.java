@@ -26,10 +26,10 @@ import org.eclipse.uml2.uml.Element;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.NoCodeGen#getBase_element <em>Base element</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.NoCodeGen#getBase_element <em>Base element</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getNoCodeGen()
  * @model
@@ -43,7 +43,6 @@ public interface NoCodeGen extends EObject {
 	 * If the meaning of the '<em>Base element</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base element</em>' reference.
 	 * @see #setBase_element(Element)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getNoCodeGen_Base_element()
@@ -56,9 +55,7 @@ public interface NoCodeGen extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.NoCodeGen#getBase_element <em>Base element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base element</em>' reference.
+	 * @param value the new value of the '<em>Base element</em>' reference.
 	 * @see #getBase_element()
 	 * @generated
 	 */

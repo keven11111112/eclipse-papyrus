@@ -31,9 +31,24 @@ public interface ReversibleProject extends Reversible<Component> {
 	List<ReversibleProject> getDependencies();
 
 	/**
+	 * Returns the version range of a dependency.
+	 *
+	 * @return
+	 */
+	StereotypeVersion getReversibleVersion(Reversible<?> reversible);
+
+	/**
+	 * Sets the version range of a reversible.
+	 *
+	 * @param reversible
+	 * @param version
+	 */
+	void setReversibleVersion(Reversible<?> reversible, StereotypeVersion version);
+
+	/**
 	 * Gets the description.
 	 *
-	 * @return the description
+	 * @return the description or null.
 	 */
 	String getDescription();
 

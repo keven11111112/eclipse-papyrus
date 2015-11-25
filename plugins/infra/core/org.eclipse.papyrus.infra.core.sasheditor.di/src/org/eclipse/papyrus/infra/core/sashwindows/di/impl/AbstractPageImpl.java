@@ -19,10 +19,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.AbstractPageImpl#getPageIdentifier <em>Page Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

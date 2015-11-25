@@ -44,13 +44,13 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		CreateElementRequest semanticRequest = new CreateElementRequest(UMLElementTypes.Classifier_2015);
+		final CreateElementRequest semanticRequest = new CreateElementRequest(UMLElementTypes.Classifier_2015);
 		semanticRequest.setParameter(CreateEditBasedElementCommand.ECLASS_HINT, UMLPackage.eINSTANCE.getClass_());
 
-		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(
+		final ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(
 				new CreateElementRequestAdapter(semanticRequest),
 				Node.class, ((IHintedType) UMLElementTypes.Classifier_2015).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
-		CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
+		final CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
 		return requestcreation;
 	}
 

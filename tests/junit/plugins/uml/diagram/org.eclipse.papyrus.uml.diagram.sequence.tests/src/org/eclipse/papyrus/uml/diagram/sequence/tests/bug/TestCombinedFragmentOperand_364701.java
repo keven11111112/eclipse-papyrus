@@ -87,7 +87,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 		}
 
 		{ // delete operand
-			InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+			InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 			Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 			Command command = op.getCommand(deleteViewRequest);
 			assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
@@ -107,7 +107,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 		{ // delete view
 			assertTrue(VIEW_DELETION + INITIALIZATION_TEST, cfp.getChildren().size() == 2);
-			InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+			InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 			Command command = op.getCommand(deleteViewRequest);
 			assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
@@ -127,8 +127,8 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 	private CombinedFragmentCombinedFragmentCompartmentEditPart setupCombinedFragment() {
 		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(30, 80), new Dimension(100, 100));
-		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
-		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
+		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
+		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 		assertTrue(CREATION + INITIALIZATION_TEST, cfp.getChildren().size() == 1);
 		return cfp;
 	}
@@ -137,7 +137,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	public void testOperandResizeHeight() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
 		waitForComplete();
-		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 		// resize operand north
 		{
 			Dimension deltaSize = new Dimension(0, 30);
@@ -181,7 +181,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	public void testOperandResizeWidth() {
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = setupCombinedFragment();
 		waitForComplete();
-		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
+		InteractionOperandEditPart op = (InteractionOperandEditPart) cfp.getChildren().get(0);
 
 		// resize operand east
 		{
@@ -193,9 +193,12 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());
 		}
 
+		Rectangle hostLocation = ((IGraphicalEditPart) cfp.getParent()).getFigure().getBounds();
 		// resize operand west
 		{
-			Dimension deltaSize = new Dimension(20, 0);
+			Dimension deltaSize = new Dimension(hostLocation.x, 0);
+			Rectangle before = getAbsoluteBounds(op);
+			assertTrue(OPERAND_RESIZE + INITIALIZATION_TEST, before.width() == getAbsoluteBounds(cfp).width());
 			resizeWest(op, deltaSize);
 			Rectangle after = getAbsoluteBounds(op);
 			assertTrue(OPERAND_RESIZE + TEST_THE_EXECUTION, after.width() == getAbsoluteBounds(cfp).width());

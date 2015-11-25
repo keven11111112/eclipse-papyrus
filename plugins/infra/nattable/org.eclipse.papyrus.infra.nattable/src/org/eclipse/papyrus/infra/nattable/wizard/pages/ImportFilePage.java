@@ -172,7 +172,7 @@ public class ImportFilePage extends WizardPage {
 	 * @param filePath
 	 *            find the file from the filePath and set it
 	 */
-	protected void setFilePath(final String filePath) {
+	public void setFilePath(final String filePath) {
 		if (filePath == null || filePath.length() == 0) {
 			this.selectedFilePath = null;
 		} else {

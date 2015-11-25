@@ -12,14 +12,14 @@
 package org.eclipse.papyrus.infra.extendedtypes.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * All tests for this fragment
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ ExtendedTypesRegistryTests.class, ExtendedEditHelperAdviceTests.class })
 public class AllTests {
 

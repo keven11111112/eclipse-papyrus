@@ -22,12 +22,12 @@ import org.eclipse.uml2.uml.Property;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Attachment#getEncoding <em>Encoding</em>}</li>
  *   <li>{@link SoaML.Attachment#getBase_Property <em>Base Property</em>}</li>
  *   <li>{@link SoaML.Attachment#getMimetype <em>Mimetype</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getAttachment()
  * @model

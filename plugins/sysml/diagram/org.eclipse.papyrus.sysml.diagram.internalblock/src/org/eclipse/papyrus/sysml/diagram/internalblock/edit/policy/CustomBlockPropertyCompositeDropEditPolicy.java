@@ -22,7 +22,6 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -69,8 +68,7 @@ public class CustomBlockPropertyCompositeDropEditPolicy extends CustomDragDropEd
 	protected ICommand getSpecificDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject, String nodeType, String edgeType) {
 		if ((UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID.equals(nodeType)) || (SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID.equals(nodeType))) {
 			PortDropHelper portDropHelper = new PortDropHelper(getEditingDomain());
-			Command portDropCommand = portDropHelper.getDropPortOnPart((Port) droppedEObject, dropRequest.getLocation().getCopy(), (GraphicalEditPart) getHost());
-			return new CommandProxy(portDropCommand);
+			return portDropHelper.getDropPortOnPart((Port) droppedEObject, dropRequest.getLocation().getCopy(), (GraphicalEditPart) getHost());
 		}
 
 		return super.getSpecificDropCommand(dropRequest, droppedEObject, nodeType, edgeType);

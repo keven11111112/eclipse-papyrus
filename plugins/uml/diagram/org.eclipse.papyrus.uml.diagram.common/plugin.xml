@@ -533,6 +533,13 @@
             properties="isSemanticDeletion"
             type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
       </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.uml.diagram.common.propertytester.DeleteActionPropertyTester"
+            id="org.eclipse.papyrus.uml.diagram.common.propertytester.deleteReadOnlyActionTester"
+            namespace="org.eclipse.papyrus.uml.diagram.common"
+            properties="isReadOnly"
+            type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+      </propertyTester>
    </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
@@ -560,5 +567,20 @@
          </with>
       </enablement>
    </visualChildrenStrategy>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.common.hyperlink.DirectedRelationshipTargetHyperlinkContributor"
+            description="Creates hyperlinks referencing targets of directed relationships for which the clicked element is a source"
+            id="org.eclipse.papyrus.uml.diagram.common.DirectedRelationshipTargetHyperlinkContributor"
+            label="Directed relationship target hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.common.hyperlink.DirectedRelationshipSourceHyperlinkContributor"
+            description="Creates hyperlinks referencing sources of directed relationships for which the clicekd element is a target"
+            id="org.eclipse.papyrus.uml.diagram.common.DirectedRelationshipSourceHyperlinkContributor"
+            label="Directed relationship source hyperlinks">
+      </contributor>
 </extension>
 </plugin>

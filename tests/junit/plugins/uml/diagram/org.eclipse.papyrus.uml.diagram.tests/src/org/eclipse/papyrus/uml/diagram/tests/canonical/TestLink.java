@@ -10,6 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 440263
  *  Christian W. Damus - bug 459701
+ *  Christian W. Damus - bug 476436
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.canonical;
@@ -57,7 +58,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
-import org.eclipse.papyrus.junit.utils.JUnitUtils;
+import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.ui.PlatformUI;
@@ -65,9 +66,6 @@ import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
 import org.junit.Rule;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -98,9 +96,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	public abstract DiagramUpdater getDiagramUpdater();
 
-	private FixtureEditPartConfigurator sourceConfigurator;
+	@Rule
+	public final AnnotationRule<FixtureEditPartConfigurator> sourceConfigurator = AnnotationRule.create(SourceConfigurator.class);
 
-	private FixtureEditPartConfigurator targetConfigurator;
+	@Rule
+	public final AnnotationRule<FixtureEditPartConfigurator> targetConfigurator = AnnotationRule.create(TargetConfigurator.class);
 
 	protected int rootSemanticOwnedElements = 5;
 
@@ -112,9 +112,6 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 
 	protected int initialEnvironmentChildsCount = 4;
 
-	@Rule
-	public final TestRule annotationRule = new AnnotationRule();
-
 	/**
 	 * Test view deletion.
 	 *
@@ -124,7 +121,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	public void testViewDeletion(IElementType type) {
 		// DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
 		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
@@ -132,13 +129,13 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 0);
-		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, source.getSourceConnections().size() == 1);
-		assertTrue(VIEW_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, source.getSourceConnections().size() == 0);
-		assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 	}
 
 	/**
@@ -146,6 +143,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	 *
 	 * @return the editing domain (can be null)
 	 */
+	@Override
 	protected TransactionalEditingDomain getEditingDomain() {
 		ServiceUtilsForActionHandlers serviceUtils = ServiceUtilsForActionHandlers.getInstance();
 		TransactionalEditingDomain editingDomain = null;
@@ -167,7 +165,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		// DESTROY SEMANTIC+ VIEW
 		assertEquals(DESTROY_DELETION + INITIALIZATION_TEST, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
-		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
 		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
@@ -182,7 +180,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertEquals(DESTROY_DELETION + TEST_THE_UNDO, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, source.getSourceConnections().size() == 1);
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(DESTROY_DELETION + TEST_THE_REDO, source.getSourceConnections().size() == 0);
@@ -198,11 +196,11 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	public void testDrop(IElementType type) {
 		// DROP
 		assertEquals(DROP + INITIALIZATION_TEST, 4, getDiagramEditPart().getChildren().size());
-		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 		ArrayList<Element> list = new ArrayList<Element>();
-		list.add(getRootSemanticModel().getOwnedElements().get(4));
+		list.add(getRootSemanticModel().getOwnedElements().get(rootSemanticOwnedElements - 1));
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20, 20));
 		Command command = getDiagramEditPart().getCommand(dropObjectsRequest);
@@ -211,15 +209,15 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 		assertTrue(DROP + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertEquals(DROP + TEST_THE_EXECUTION, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
-		assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertEquals(DROP + TEST_THE_EXECUTION, createdEdgesCount, ((Diagram) getRootView()).getEdges().size());
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(DROP + TEST_THE_UNDO, getDiagramEditPart().getChildren().size() == 4);
-		assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertTrue(DROP + TEST_THE_UNDO, ((Diagram) getRootView()).getEdges().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertEquals(DROP + TEST_THE_REDO, initialEnvironmentChildsCount + createdChildsCount, getDiagramEditPart().getChildren().size());
-		assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 5);
+		assertTrue(DROP + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == rootSemanticOwnedElements);
 		assertTrue(DROP + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == createdEdgesCount);
 	}
 
@@ -587,7 +585,7 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	}
 
 	private Command additionalConfig(Command additionalConfig, IGraphicalEditPart editPart, IElementType elementType, boolean isSource) {
-		FixtureEditPartConfigurator configurator = isSource ? sourceConfigurator : targetConfigurator;
+		FixtureEditPartConfigurator configurator = isSource ? sourceConfigurator.get() : targetConfigurator.get();
 		Command config = (configurator == null) ? null : configurator.configureFixtureEditPart(editPart, elementType, isSource);
 		return (additionalConfig == null) ? config : (config == null) ? additionalConfig : additionalConfig.chain(config);
 	}
@@ -626,33 +624,5 @@ public abstract class TestLink extends AbstractPapyrusTestCase {
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface TargetConfigurator {
 		Class<? extends FixtureEditPartConfigurator>value();
-	}
-
-	private class AnnotationRule extends TestWatcher {
-		@Override
-		protected void starting(Description description) {
-			SourceConfigurator sourceConfiguratorDecl = JUnitUtils.getAnnotation(description, SourceConfigurator.class);
-			if (sourceConfiguratorDecl != null) {
-				try {
-					sourceConfigurator = sourceConfiguratorDecl.value().newInstance();
-				} catch (Exception e) {
-					throw new AssertionError("Bad source configurator annotation", e); //$NON-NLS-1$
-				}
-			}
-			TargetConfigurator targetConfiguratorDecl = JUnitUtils.getAnnotation(description, TargetConfigurator.class);
-			if (targetConfiguratorDecl != null) {
-				try {
-					targetConfigurator = targetConfiguratorDecl.value().newInstance();
-				} catch (Exception e) {
-					throw new AssertionError("Bad target configurator annotation", e); //$NON-NLS-1$
-				}
-			}
-		}
-
-		@Override
-		protected void finished(Description description) {
-			targetConfigurator = null;
-			sourceConfigurator = null;
-		}
 	}
 }

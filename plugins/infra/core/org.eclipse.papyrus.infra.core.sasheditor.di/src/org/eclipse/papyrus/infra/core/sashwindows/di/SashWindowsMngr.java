@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashWindowsMngr()
  * @model
@@ -38,15 +38,14 @@ public interface SashWindowsMngr extends EObject {
 	 * @return the value of the '<em>Page List</em>' containment reference.
 	 * @see #setPageList(PageList)
 	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashWindowsMngr_PageList()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	@Deprecated
 	PageList getPageList();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}' containment
-	 * reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getPageList <em>Page List</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -75,8 +74,7 @@ public interface SashWindowsMngr extends EObject {
 	SashModel getSashModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}' containment
-	 * reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr#getSashModel <em>Sash Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *

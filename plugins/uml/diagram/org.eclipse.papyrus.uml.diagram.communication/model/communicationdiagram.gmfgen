@@ -981,7 +981,7 @@
     <plugin
         iD="org.eclipse.papyrus.uml.diagram.communication"
         name="org.eclipse.papyrus.uml.diagram.communication"
-        version="1.1.0.qualifier">
+        version="1.2.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
@@ -1132,10 +1132,10 @@
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
     <extensionNodes
-    	xsi:type="papyrusgmfgenextension:ExtendedGenView"
-    	comment="Label in charge to display applied stereotypes on links"
-    	genView="/0/@diagram/@links.2"
-    	name="UMLConnectionNodeEditPart"
-    	superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Label in charge to display applied stereotypes on links"
+        genView="/0/@diagram/@links.2 /0/@diagram/@links.1"
+        name="UMLConnectionNodeEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

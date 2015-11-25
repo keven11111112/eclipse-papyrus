@@ -84,73 +84,72 @@ public class DiAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected DiSwitch<Adapter> modelSwitch =
-			new DiSwitch<Adapter>() {
-				@Override
-				public Adapter caseSashModel(SashModel object) {
-					return createSashModelAdapter();
-				}
+	protected DiSwitch<Adapter> modelSwitch = new DiSwitch<Adapter>() {
+		@Override
+		public Adapter caseSashModel(SashModel object) {
+			return createSashModelAdapter();
+		}
 
-				@Override
-				public Adapter caseWindow(Window object) {
-					return createWindowAdapter();
-				}
+		@Override
+		public Adapter caseWindow(Window object) {
+			return createWindowAdapter();
+		}
 
-				@Override
-				public Adapter casePanelParent(PanelParent object) {
-					return createPanelParentAdapter();
-				}
+		@Override
+		public Adapter casePanelParent(PanelParent object) {
+			return createPanelParentAdapter();
+		}
 
-				@Override
-				public Adapter caseAbstractPanel(AbstractPanel object) {
-					return createAbstractPanelAdapter();
-				}
+		@Override
+		public Adapter caseAbstractPanel(AbstractPanel object) {
+			return createAbstractPanelAdapter();
+		}
 
-				@Override
-				public Adapter casePosition(Position object) {
-					return createPositionAdapter();
-				}
+		@Override
+		public Adapter casePosition(Position object) {
+			return createPositionAdapter();
+		}
 
-				@Override
-				public Adapter caseSize(Size object) {
-					return createSizeAdapter();
-				}
+		@Override
+		public Adapter caseSize(Size object) {
+			return createSizeAdapter();
+		}
 
-				@Override
-				public Adapter caseTabFolder(TabFolder object) {
-					return createTabFolderAdapter();
-				}
+		@Override
+		public Adapter caseTabFolder(TabFolder object) {
+			return createTabFolderAdapter();
+		}
 
-				@Override
-				public Adapter casePageRef(PageRef object) {
-					return createPageRefAdapter();
-				}
+		@Override
+		public Adapter casePageRef(PageRef object) {
+			return createPageRefAdapter();
+		}
 
-				@Override
-				public Adapter caseSashPanel(SashPanel object) {
-					return createSashPanelAdapter();
-				}
+		@Override
+		public Adapter caseSashPanel(SashPanel object) {
+			return createSashPanelAdapter();
+		}
 
-				@Override
-				public Adapter caseAbstractPage(AbstractPage object) {
-					return createAbstractPageAdapter();
-				}
+		@Override
+		public Adapter caseAbstractPage(AbstractPage object) {
+			return createAbstractPageAdapter();
+		}
 
-				@Override
-				public Adapter casePageList(PageList object) {
-					return createPageListAdapter();
-				}
+		@Override
+		public Adapter casePageList(PageList object) {
+			return createPageListAdapter();
+		}
 
-				@Override
-				public Adapter caseSashWindowsMngr(SashWindowsMngr object) {
-					return createSashWindowsMngrAdapter();
-				}
+		@Override
+		public Adapter caseSashWindowsMngr(SashWindowsMngr object) {
+			return createSashWindowsMngrAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

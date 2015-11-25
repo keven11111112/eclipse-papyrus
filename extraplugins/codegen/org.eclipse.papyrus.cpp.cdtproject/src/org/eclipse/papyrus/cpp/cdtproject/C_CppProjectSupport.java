@@ -108,7 +108,7 @@ public class C_CppProjectSupport implements ILangProjectSupport {
 
 			ICProjectDescriptionManager mngr =
 					CoreModel.getDefault().getProjectDescriptionManager();
-			ICProjectDescription cdesc = mngr.getProjectDescription(m_project, true);
+			ICProjectDescription cdesc = mngr.getProjectDescription(project, true);
 
 			// loop over all configurations
 			for (ICConfigurationDescription configDescr : cdesc.getConfigurations()) {
@@ -171,9 +171,9 @@ public class C_CppProjectSupport implements ILangProjectSupport {
 						main.setOption(cfTool, opt, settings.libPaths.toArray(new String[0]));
 					}
 				}
-				mngr.setProjectDescription(m_project, cdesc, true, null);
+				mngr.setProjectDescription(project, cdesc, true, null);
 			}
-			ManagedBuildManager.saveBuildInfo(m_project, true);
+			ManagedBuildManager.saveBuildInfo(project, true);
 		} catch (BuildException be) {
 			throw new RuntimeException(be.getMessage());
 		} catch (CoreException ce) {
@@ -222,6 +222,4 @@ public class C_CppProjectSupport implements ILangProjectSupport {
 			owner = owner.getOwner();
 		}
 	}
-
-	static IProject m_project;
 }

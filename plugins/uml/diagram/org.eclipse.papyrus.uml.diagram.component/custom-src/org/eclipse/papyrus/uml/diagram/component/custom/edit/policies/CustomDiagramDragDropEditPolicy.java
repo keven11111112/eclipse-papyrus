@@ -25,6 +25,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -34,7 +35,9 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -43,12 +46,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.SideAffixedNodesCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ComponentLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ConnectorHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.MultiDependencyHelper;
-import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.log.Log;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPart;
@@ -206,8 +211,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ComponentEditPartPCN.VISUAL_ID:
 			case InterfaceEditPartPCN.VISUAL_ID:
 				return dropChildNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
-				// Test ChildNode... End
-				// Test TopLevelNode... Start
+			// Test ChildNode... End
+			// Test TopLevelNode... Start
 			case DependencyNodeEditPart.VISUAL_ID:
 				return dropDependencyNode(dropRequest, semanticElement, nodeVISUALID);
 			case PackageEditPart.VISUAL_ID:
@@ -215,7 +220,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ComponentEditPart.VISUAL_ID:
 			case InterfaceEditPart.VISUAL_ID:
 				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
-				// Test TopLevelNode... End
+			// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
 				return dropAffixedNode(dropRequest, semanticElement, nodeVISUALID);
 			case CommentEditPart.VISUAL_ID:
@@ -547,18 +552,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			// Translate the requested drop location (relative to parent)
 			dropLocation = dropRequest.getLocation().getTranslated(delta);
 		}
+		// If SideAffixedNodesCreationEditPolicy installed to the parent then delegate calculation of the real drop location to it
+		if (!isSideAffixedNodesCreationPolicyInstalled(graphicalParentEditPart)) {
+			Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
+			PortPositionLocator locator = new PortPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
+			Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
+			proposedBounds = proposedBounds.getTranslated(parentLoc);
+			Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
+			// Convert the calculated preferred bounds as relative to parent location
+			Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
+			dropLocation = creationBounds.getLocation();
+		}
 		// Manage Element drop in compartment
 		// Create proposed creation bounds and use the locator to find the
 		// expected position
-		Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
-		PortPositionLocator locator = new PortPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
-		Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
-		proposedBounds = proposedBounds.getTranslated(parentLoc);
-		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
-		// Convert the calculated preferred bounds as relative to parent
-		// location
-		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
-		dropLocation = creationBounds.getLocation();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		if ((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier) graphicalParentObject).getAllAttributes().contains(droppedElement))) {
 			// Drop Port on StructuredClassifier
@@ -583,6 +590,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	private boolean isSideAffixedNodesCreationPolicyInstalled(IGraphicalEditPart editPart) {
+		EditPolicy policy = editPart.getEditPolicy(EditPolicyRoles.CREATION_ROLE);
+		if (policy == null && false == policy instanceof CustomizableDropEditPolicy) {
+			return false;
+		}
+		EditPolicy defaultCreationPolicy = ((CustomizableDropEditPolicy) policy).getDefaultCreationPolicy();
+		return defaultCreationPolicy != null && defaultCreationPolicy instanceof SideAffixedNodesCreationEditPolicy;
 	}
 
 	/**

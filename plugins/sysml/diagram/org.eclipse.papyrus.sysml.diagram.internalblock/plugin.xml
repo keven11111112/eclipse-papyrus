@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/InternalBlockDiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
+   
 <!-- Diagram declaration -->
 <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
 	<creationCommand creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand" creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition" icon="icons/obj16/Diagram_InternalBlock.gif" id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" language="sysml" label="Internal Block Diagram"></creationCommand>
@@ -506,12 +513,12 @@
                       <!-- Link labels -->
 
       <mapping
-             humanReadableType="Label"
+             humanReadableType="Name"
              type="affixedlabel_sysml_flowport_label">
       </mapping>
       
       <mapping
-             humanReadableType="Name"
+             humanReadableType="Stereotype"
              type="affixedlabel_uml_appliedstereotype">
       </mapping>
       

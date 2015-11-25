@@ -22,10 +22,10 @@ import org.eclipse.uml2.uml.Property;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.FreeFormDescriptor#getBase_Property <em>Base Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getFreeFormDescriptor()
  * @model

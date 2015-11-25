@@ -35,6 +35,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateDeploymentDiagramCommand();
@@ -54,7 +55,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	protected String getFileName() {
 		return IDeploymentDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	/**
 	 * Test to manage i package.
 	 */
@@ -118,54 +119,60 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	public void testToManageConstraint() {
 		testToManageNode(UMLElementTypes.Constraint_56, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_36, true);
 	}
-	
+
 	/**
-	* Test to manage Model.
-	*/
+	 * Test to manage Model.
+	 */
 	@Test
 	public void testToModel() {
 		testToManageNode(UMLElementTypes.Model_49, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_36, true);
 	}
+
 	/**
-	* Test to manage Package.
-	*/
+	 * Test to manage Package.
+	 */
 	@Test
 	public void testToPackage() {
 		testToManageNode(UMLElementTypes.Package_36, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_36, true);
 	}
+
 	/**
-	* Test to manage ExecutionEnvironment.
-	*/
+	 * Test to manage ExecutionEnvironment.
+	 */
 	@Test
 	public void testToExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_46, UMLPackage.eINSTANCE.getExecutionEnvironment(),  UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_46, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_36, true);
 	}
+
 	/**
-	* Test to manage Node.
-	*/
+	 * Test to manage Node.
+	 */
 	@Test
 	public void testToNode() {
-		testToManageNode(UMLElementTypes.Node_42, UMLPackage.eINSTANCE.getNode(),UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Node_42, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_36, true);
 	}
+
 	/**
-	* Test to manage Artifact.
-	*/
+	 * Test to manage Artifact.
+	 */
 	@Test
 	public void testToArtifact3() {
-		testToManageNode(UMLElementTypes.Artifact_40, UMLPackage.eINSTANCE.getArtifact(),UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Artifact_40, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_36, true);
 	}
+
 	/**
-	* Test to manage Comment.
-	*/
+	 * Test to manage Comment.
+	 */
 	@Test
 	public void testToComment() {
-		testToManageNode(UMLElementTypes.Comment_54, UMLPackage.eINSTANCE.getComment(),UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Comment_54, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_36, true);
 	}
+
 	/**
-	* Test to manage Constraint.
-	*/
+	 * Test to manage Constraint.
+	 */
 	@Test
 	public void testToConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_56, UMLPackage.eINSTANCE.getConstraint(),UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Constraint_56, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_36, true);
 	}
 }

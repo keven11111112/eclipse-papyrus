@@ -26,15 +26,15 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths <em>Include Paths</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getBase_package <em>Base package</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibPaths <em>Lib Paths</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getMacros <em>Macros</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibs <em>Libs</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludes <em>Includes</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludePaths <em>Include Paths</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getBase_package <em>Base package</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibPaths <em>Lib Paths</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getMacros <em>Macros</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getLibs <em>Libs</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getIncludes <em>Includes</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary()
  * @model
@@ -49,7 +49,6 @@ public interface ExternLibrary extends EObject {
 	 * If the meaning of the '<em>Include Paths</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Include Paths</em>' attribute list.
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_IncludePaths()
 	 * @model unique="false" dataType="org.eclipse.uml2.types.String" ordered="false"
@@ -64,7 +63,6 @@ public interface ExternLibrary extends EObject {
 	 * If the meaning of the '<em>Base package</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base package</em>' reference.
 	 * @see #setBase_package(org.eclipse.uml2.uml.Package)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_Base_package()
@@ -77,9 +75,7 @@ public interface ExternLibrary extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.ExternLibrary#getBase_package <em>Base package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base package</em>' reference.
+	 * @param value the new value of the '<em>Base package</em>' reference.
 	 * @see #getBase_package()
 	 * @generated
 	 */
@@ -93,7 +89,6 @@ public interface ExternLibrary extends EObject {
 	 * If the meaning of the '<em>Lib Paths</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Lib Paths</em>' attribute list.
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_LibPaths()
 	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
@@ -109,7 +104,6 @@ public interface ExternLibrary extends EObject {
 	 * If the meaning of the '<em>Macros</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Macros</em>' attribute list.
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_Macros()
 	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
@@ -125,7 +119,6 @@ public interface ExternLibrary extends EObject {
 	 * If the meaning of the '<em>Libs</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Libs</em>' attribute list.
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_Libs()
 	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
@@ -141,7 +134,6 @@ public interface ExternLibrary extends EObject {
 	 * If the meaning of the '<em>Includes</em>' attribute list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Includes</em>' attribute list.
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getExternLibrary_Includes()
 	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"

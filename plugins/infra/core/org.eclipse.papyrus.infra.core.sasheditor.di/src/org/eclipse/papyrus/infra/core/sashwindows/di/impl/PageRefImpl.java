@@ -24,13 +24,14 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getEmfPageIdentifier <em>Emf Page Identifier</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getPageIdentifier <em>Page Identifier</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getObjectPageIdentifier <em>Object Page Identifier</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getFavoriteEditor <em>Favorite Editor</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -79,6 +80,28 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 	 * @ordered
 	 */
 	protected Object objectPageIdentifier = OBJECT_PAGE_IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFavoriteEditor() <em>Favorite Editor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getFavoriteEditor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FAVORITE_EDITOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFavoriteEditor() <em>Favorite Editor</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getFavoriteEditor()
+	 * @generated
+	 * @ordered
+	 */
+	protected String favoriteEditor = FAVORITE_EDITOR_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -244,6 +267,8 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 			return getPageIdentifier();
 		case DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER:
 			return getObjectPageIdentifier();
+		case DiPackage.PAGE_REF__FAVORITE_EDITOR:
+			return getFavoriteEditor();
 		case DiPackage.PAGE_REF__PARENT:
 			return getParent();
 		}
@@ -267,6 +292,9 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 			return;
 		case DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER:
 			setObjectPageIdentifier(newValue);
+			return;
+		case DiPackage.PAGE_REF__FAVORITE_EDITOR:
+			setFavoriteEditor((String) newValue);
 			return;
 		case DiPackage.PAGE_REF__PARENT:
 			setParent((TabFolder) newValue);
@@ -293,6 +321,9 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 		case DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER:
 			setObjectPageIdentifier(OBJECT_PAGE_IDENTIFIER_EDEFAULT);
 			return;
+		case DiPackage.PAGE_REF__FAVORITE_EDITOR:
+			setFavoriteEditor(FAVORITE_EDITOR_EDEFAULT);
+			return;
 		case DiPackage.PAGE_REF__PARENT:
 			setParent((TabFolder) null);
 			return;
@@ -315,6 +346,8 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 			return PAGE_IDENTIFIER_EDEFAULT == null ? getPageIdentifier() != null : !PAGE_IDENTIFIER_EDEFAULT.equals(getPageIdentifier());
 		case DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER:
 			return OBJECT_PAGE_IDENTIFIER_EDEFAULT == null ? objectPageIdentifier != null : !OBJECT_PAGE_IDENTIFIER_EDEFAULT.equals(objectPageIdentifier);
+		case DiPackage.PAGE_REF__FAVORITE_EDITOR:
+			return FAVORITE_EDITOR_EDEFAULT == null ? favoriteEditor != null : !FAVORITE_EDITOR_EDEFAULT.equals(favoriteEditor);
 		case DiPackage.PAGE_REF__PARENT:
 			return getParent() != null;
 		}
@@ -336,6 +369,8 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (objectPageIdentifier: ");
 		result.append(objectPageIdentifier);
+		result.append(", favoriteEditor: ");
+		result.append(favoriteEditor);
 		result.append(')');
 		return result.toString();
 	}
@@ -387,6 +422,32 @@ public class PageRefImpl extends EObjectImpl implements PageRef {
 		objectPageIdentifier = newObjectPageIdentifier;
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__OBJECT_PAGE_IDENTIFIER, oldObjectPageIdentifier, objectPageIdentifier));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public String getFavoriteEditor() {
+		return favoriteEditor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setFavoriteEditor(String newFavoriteEditor) {
+		String oldFavoriteEditor = favoriteEditor;
+		favoriteEditor = newFavoriteEditor;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.PAGE_REF__FAVORITE_EDITOR, oldFavoriteEditor, favoriteEditor));
 		}
 	}
 

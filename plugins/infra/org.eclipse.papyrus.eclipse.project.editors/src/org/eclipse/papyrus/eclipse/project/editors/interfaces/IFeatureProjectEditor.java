@@ -1,51 +1,106 @@
 package org.eclipse.papyrus.eclipse.project.editors.interfaces;
 
+import java.util.Set;
+
 import org.w3c.dom.Document;
 
+public interface IFeatureProjectEditor {
 
-public interface IFeatureProjectEditor { // TODo use interface inheritance
+	void init();
 
-	/** the name of the file plugin.xml */
-	public static final String FRAGMENT_XML_FILE = "feature.xml"; //$NON-NLS-1$
+	void save();
 
-	public static final String LABEL = "label"; //$NON-NLS-1$
+	void createFiles(final Set<String> files);
 
-	public static final String VERSION = "version"; //$NON-NLS-1$
+	/**
+	 * Retrieves the feature.xml XML Document associated to this project.
+	 *
+	 * @return The XML Document associated to this feature.xml file
+	 */
+	Document getDocument();
 
-	public static final String PROVIDER = "provider-name"; //$NON-NLS-1$
+	/**
+	 * Gets the feature's id.
+	 *
+	 * @return the feature's id
+	 */
+	String getId();
 
-	public static final String URL = "url";
+	/**
+	 * Gets the feature's label.
+	 *
+	 * @return the feature's label
+	 */
+	String getLabel();
 
-	public static final String COPYRIGHT = "copyright";
+	/**
+	 * Gets the feature's version.
+	 *
+	 * @return the feature's version
+	 */
+	String getVersion();
 
-	public static final String LICENSE = "license";
+	/**
+	 * Gets the feature's provider name.
+	 *
+	 * @return the feature's provider name
+	 */
+	String getProviderName();
 
-	/** the method to retrieve the plugin.xml XML Document associated to this project */
-	public Document getDocument();
+	/**
+	 * Gets the operating system of the feature
+	 * @return
+	 */
+	String getOS();
 
-	public void setLabel(final String label);
+	String getWS();
 
-	public void setVersion(final String version);
+	String getNL();
 
-	public void setProviderName(final String providerName);
+	String getArch();
 
-	public void setCopyright(final String copyrightURL, final String copyRightDesc);
+	String getDescriptionText();
 
-	public void setLicense(final String licenseURL, final String licenseDesc);
+	String getDescriptionURL();
 
-	public String getLabel();
+	String getCopyrightText();
 
-	public String getVersion();
+	String getCopyrightURL();
 
-	public String getProviderName();
+	String getLicenseText();
 
-	public String getCopyrightText();
+	String getLicenceURL();
 
-	public String getCopyrightURL();
+	void setId(final String id);
 
-	public String getLicense();
+	void setLabel(final String label);
 
-	public void init();
+	void setVersion(final String version);
 
-	public void save() throws Throwable;
+	void setProviderName(final String providerName);
+
+	void setOS(final String os);
+
+	void setWS(final String ws);
+
+	void setNL(final String nl);
+
+	void setArch(final String arch);
+
+	void setDescription(final String descriptionURL, final String descriptionDesc);
+
+	void setCopyright(final String copyrightURL, final String copyrightDesc);
+
+	void setLicense(final String licenseURL, final String licenseDesc);
+
+	void setUpdateURL(final String urlLabel, final String url);
+
+	void addPlugin(final String pluginName);
+
+	void addRequiredFeature(final String featureName, final String version);
+
+	void addRequiredPlugin(String pluginName);
+
+	void addInclude(String featureName, String version);
+
 }

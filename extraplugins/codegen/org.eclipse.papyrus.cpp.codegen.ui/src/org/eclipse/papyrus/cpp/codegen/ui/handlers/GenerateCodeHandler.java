@@ -20,12 +20,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
 import org.eclipse.papyrus.cpp.codegen.utils.ClassUtils;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -74,9 +72,19 @@ public class GenerateCodeHandler extends CmdHandler {
 	 */
 	public void generate(CppModelElementsCreator mec, PackageableElement pe, EList<PackageableElement> alreadyHandled, boolean recurse) {
 		alreadyHandled.add(pe);
-		mec.createPackageableElement(pe, null, recurse);
+		mec.createPackageableElement(pe, null, false);
 		// Eventual refresh is done in createPackageableElement
-	
+
+		// if recursion is active, go into all sub-elements
+		if (pe instanceof Package && recurse) {
+			for (PackageableElement subPe : ((Package) pe).getPackagedElements()) {
+				if (!alreadyHandled.contains(subPe)) {
+					generate(mec, subPe, alreadyHandled, recurse);
+				}
+			}
+		}
+
+		// add required classifiers
 		if (pe instanceof Classifier) {
 			EList<Classifier> requiredClassifiers = ClassUtils.includedClassifiers((Classifier) pe);
 			for (Classifier requiredClassifier : requiredClassifiers) {
@@ -85,6 +93,7 @@ public class GenerateCodeHandler extends CmdHandler {
 				}
 			}
 		}
+		
 		// owning package is required by generated code.
 		Package owningPackage = pe.getNearestPackage();
 		if ((owningPackage != null) && (owningPackage != pe)) {
@@ -108,17 +117,6 @@ public class GenerateCodeHandler extends CmdHandler {
 			// get the container for the current element
 			CppModelElementsCreator mec = new CppModelElementsCreator(modelProject);
 			generate(mec, pe, new BasicEList<PackageableElement>(), true);
-
-			// TODO: need a way to get error messages
-			if (false && !Headless) {
-				Display.getDefault().syncExec(new Runnable() {
-					@Override
-					public void run() {
-						MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Errors during code generation", //$NON-NLS-1$
-								"Errors occured during code generation. Please check the error log"); //$NON-NLS-1$
-					}
-				});
-			}
 		}
 		return null;
 	}

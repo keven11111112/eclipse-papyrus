@@ -395,7 +395,7 @@ public class ActivityIsSingleExecutionEditPart extends PapyrusCompartmentEditPar
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
@@ -798,6 +798,9 @@ public class ActivityIsSingleExecutionEditPart extends PapyrusCompartmentEditPar
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

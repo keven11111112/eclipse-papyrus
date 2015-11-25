@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.assistants.generator.tests;
@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests.BaseElementTypes;
 import org.eclipse.uml2.uml.Class;
@@ -53,7 +54,7 @@ import com.google.common.collect.Sets;
  */
 @PluginResource("/resources/j2ee.profile.uml")
 @BaseElementTypes("org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet")
-public class DiagramSpecificAssistantsGenerationTest {
+public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest {
 
 	@ClassRule
 	public static final ModelGenFixture fixture = new ModelGenFixture();

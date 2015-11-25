@@ -15,7 +15,6 @@ import org.eclipse.papyrus.C_Cpp.Union
 import org.eclipse.papyrus.codegen.base.GenUtils
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils
 import org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils
-import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.Classifier
 import org.eclipse.uml2.uml.DataType
 import org.eclipse.uml2.uml.NamedElement
@@ -26,11 +25,6 @@ import org.eclipse.uml2.uml.profile.standard.Create
  * @author Ansgar Radermacher (ansgar.radermacher@cea.fr)
  */
 class CppClassifierGenerator {
-
-	static def generateHeaderCode(Classifier classifier, String commentHeader) ''' 
-		«commentHeader»
-		AcceleoDriver.evaluate(cppInclude.getHeader(), classifier, null);
-	'''
 
 	static def generateBindHeaderCode(Classifier classifier) ''' 
 		#ifndef «GenUtils.getFullNameUC(classifier)»_H
@@ -130,7 +124,7 @@ class CppClassifierGenerator {
 		«CppDocumentation.CppElementDoc(classifier)»
 		«CppTemplates.templateSignature(classifier)»«classUnionOrStruct(classifier)» «classifier.name»«CppClassInheritedDeclarations.
 			CppClassInheritedDeclarations(classifier)» {
-		«CppClassFriendDeclaration.CppClassIncludeFriendDeclaration(classifier)»«CppClassTypeAndEnum.CppClassTypeAndEnum(classifier)»
+		    «CppClassFriendDeclaration.CppClassIncludeFriendDeclaration(classifier)»«CppClassTypeAndEnum.CppClassTypeAndEnum(classifier)»
 			«var publicVisibility = VisibilityKind.PUBLIC_LITERAL»
 			«CppGenUtils.getSection(publicVisibility, defaultInitializer(classifier))»
 			«CppGenUtils.getSection(publicVisibility,

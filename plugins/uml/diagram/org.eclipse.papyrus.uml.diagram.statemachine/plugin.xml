@@ -15,7 +15,13 @@
    
 -->
 <plugin>
-
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/stateMachineDiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
       
    <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
 				      <?gmfgen generated="true"?>
@@ -808,8 +814,24 @@
 				type="16001">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="16002">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="17001">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="17002">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="18001">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="18002">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -846,5 +868,23 @@
             name="Medium">
       </Priority>
    </ParserProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLStateMachineDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.statemachine.custom.migration.StateMachineReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
+   <contributor
+         contributor="org.eclipse.papyrus.uml.diagram.statemachine.custom.hyperlink.OwnedBehaviorHyperlinkContributor"
+         description="Creates hyperlinks referencing a state machine represented in a diagram owned by a behaviored classifier"
+         id="org.eclipse.papyrus.uml.diagram.statemachine.ownedBehaviorHyperlinkContributor"
+         label="Owned state machine hyperlinks">
+   </contributor>
 </extension>
 </plugin>

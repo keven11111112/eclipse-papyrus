@@ -83,6 +83,7 @@ import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
 import org.eclipse.papyrus.infra.nattable.configuration.CellEditorAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.ClearSelectionUIBindingConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
@@ -135,6 +136,7 @@ import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -197,6 +199,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * the columnHeaderLayerStack
 	 */
 	private ColumnHeaderLayerStack columnHeaderLayerStack;
+
+	/**
+	 * @return the rowHeaderLayerStack
+	 */
+	public ColumnHeaderLayerStack getColumnHeaderLayerStack() {
+		return columnHeaderLayerStack;
+	}
 
 	/**
 	 * the rowHeaderLayerStack
@@ -352,7 +361,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		addClickSortConfiguration(this.natTable);
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
 		this.natTable.addConfiguration(new RowSortModelConfiguration(getRowSortModel()));
-
+		this.natTable.addConfiguration(new ClearSelectionUIBindingConfiguration());
 		// we register some information in the config registry of the nattable widget
 		IConfigRegistry configRegistry = this.natTable.getConfigRegistry();
 
@@ -367,6 +376,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
 
+		// register the decoration service
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, getDecorationService(), DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+		
 		this.natTable.setConfigRegistry(configRegistry);
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 		this.natTable.configure();
@@ -415,7 +427,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	protected void addClickSortConfiguration(NatTable natTable) {
 		natTable.addConfiguration(new TableClickSortConfiguration());
 	}
-	
+
 	/**
 	 * @return
 	 * 		the filter strategy to use
@@ -597,12 +609,27 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * 
 	 * @return
-	 * 		the label provider serviceS
+	 * 		the label provider service
 	 */
 	private LabelProviderService getContextLabelProviderService() {
 		try {
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the decoration service
+	 */
+	protected DecorationService getDecorationService() {
+		try {
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
+			return serviceRegistry.getService(DecorationService.class);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
@@ -1155,7 +1182,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			this.columnHeaderDataProvider = null;
 		}
 
-
 		if (this.tableEditingDomain != null && this.resourceSetListener != null) {
 			this.tableEditingDomain.removeResourceSetListener(this.resourceSetListener);
 			this.tableEditingDomain = null;
@@ -1163,9 +1189,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		if (this.filterStrategy instanceof IDisposable) {
 			((IDisposable) this.filterStrategy).dispose();
 		}
+		this.cellAxisConfiguration = null;
+		this.filterConfiguration = null;
 		this.tableEditingDomain = null;
 		this.contextEditingDomain = null;
 		this.tableContext = null;
+		if(this.natTable!=null){
+			this.natTable.dispose();
+		}
 	}
 
 	public EObject getTableContext() {
@@ -1213,7 +1244,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					toFind.add(realObject);
 				}
 			}
-			
+
 			Object currentAxisObject = rowObjects.get(rowIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
@@ -1236,7 +1267,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					toFind.add(realObject);
 				}
 			}
-			
+
 			Object currentAxisObject = columnObjects.get(columnIndex);
 			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			if (toFind.contains(currentRealObject)) {
@@ -1660,7 +1691,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @return
 	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 */
-	protected final TableStructuredSelection getSelectionInTable() {
+	public final TableStructuredSelection getSelectionInTable() {
 		ISelection selection = this.selectionProvider.getSelection();
 		if (selection instanceof TableStructuredSelection) {
 			return (TableStructuredSelection) selection;

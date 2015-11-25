@@ -13,6 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
@@ -28,6 +32,8 @@ public class MultiplicityElementUtil {
 	 * The quote character representation.
 	 */
 	private static final String QUOTE = "\"";
+
+	private static final Collection<String> DEFAULT_MULTIPLICITY = Collections.unmodifiableCollection(Arrays.asList("[1]", "1"));
 
 	/**
 	 * The string representing the multiplicity with space " [x..y]"
@@ -66,7 +72,7 @@ public class MultiplicityElementUtil {
 	public static String formatMultiplicity(final MultiplicityElement element) {
 		return formatMultiplicity(element, false);
 	}
-	
+
 	/**
 	 * Return the multiplicity of the element "[x..y]" (with quote edition for LiteralString).
 	 *
@@ -218,6 +224,10 @@ public class MultiplicityElementUtil {
 			boundStr = buffer.toString();
 		}
 		return boundStr;
+	}
+
+	public static String manageDefaultMultiplicity(String multiplicity, boolean blockDefault) {
+		return blockDefault && DEFAULT_MULTIPLICITY.contains(multiplicity) ? "" : multiplicity;
 	}
 
 }

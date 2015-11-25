@@ -30,6 +30,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IIdAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisFactory;
@@ -93,6 +94,38 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		final Set<Object> propertiesToAdd = getPropertiesToAdd(objectToAdd);
+		if (!propertiesToAdd.isEmpty()) {
+			return getAddAxisCommand(domain, propertiesToAdd);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.EStructuralFeatureAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		final Set<Object> propertiesToAdd = getPropertiesToAdd(objectToAdd);
+		if (!propertiesToAdd.isEmpty()) {
+			return getAddAxisCommand(domain, propertiesToAdd, index);
+		}
+		return null;
+	}
+
+	/**
+	 * Get the properties to add.
+	 * 
+	 * @param objectToAdd The initial objects to add.
+	 * @return The properties to add.
+	 */
+	protected Set<Object> getPropertiesToAdd(final Collection<Object> objectToAdd){
 		final Set<Stereotype> appliedStereotypes = new HashSet<Stereotype>();
 		for (final Object current : objectToAdd) {
 			if (current instanceof Element) {
@@ -104,12 +137,9 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 		for (final Stereotype stereotype : appliedStereotypes) {
 			propertiesToAdd.addAll(StereotypeUtil.getAllStereotypePropertiesWithoutBaseProperties(stereotype));
 		}
-		if (!propertiesToAdd.isEmpty()) {
-			return getAddAxisCommand(domain, propertiesToAdd);
-		}
-		return null;
+		return propertiesToAdd;
 	}
-
+	
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(TransactionalEditingDomain, java.util.Collection)
@@ -120,6 +150,39 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 	 */
 	@Override
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if(!toAdd.isEmpty()){
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.emf.nattable.manager.axis.EStructuralFeatureAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
+		if(!toAdd.isEmpty()){
+			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index);
+		}
+		return null;
+	}
+	
+	/**
+	 * Get the axis to add from the objects to add.
+	 * 
+	 * @param objectToAdd The objects to add.
+	 * @return The axis to add.
+	 */
+	protected Collection<IAxis> getAxisToAdd(final Collection<Object> objectToAdd){
+		final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 		final List<String> allPropertyQN = new ArrayList<String>();
 		for (Object object : objectToAdd) {
 			if (isAllowedContents(object)) {
@@ -128,16 +191,15 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 		}
 		allPropertyQN.removeAll(getElements());
 		if (!allPropertyQN.isEmpty()) {
-			final Collection<IAxis> toAdd = new ArrayList<IAxis>();
 			for (String propQN : allPropertyQN) {
 				final IdAxis newAxis = NattableaxisFactory.eINSTANCE.createFeatureIdAxis();
 				newAxis.setElement(propQN);
 				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
+				managedObject.add(propQN);
 			}
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
 		}
-		return null;
+		return toAdd;
 	}
 
 

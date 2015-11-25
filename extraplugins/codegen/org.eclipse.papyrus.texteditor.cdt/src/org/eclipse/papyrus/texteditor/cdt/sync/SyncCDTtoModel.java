@@ -44,11 +44,14 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Array;
 import org.eclipse.papyrus.C_Cpp.Const;
+import org.eclipse.papyrus.C_Cpp.EStorageClass;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
+import org.eclipse.papyrus.C_Cpp.StorageClass;
 import org.eclipse.papyrus.C_Cpp.Volatile;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen2;
 import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.codegen.extensionpoints.SyncInformation;
 import org.eclipse.papyrus.cpp.codegen.Constants;
@@ -74,6 +77,12 @@ import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class SyncCDTtoModel implements Runnable {
+
+	public static final String REGISTER = "register"; //$NON-NLS-1$
+
+	public static final String CONST = "const";	 //$NON-NLS-1$
+
+	public static final String VOLATILE = "volatile"; //$NON-NLS-1$
 
 	public static final String sAtParam = "@param"; //$NON-NLS-1$
 
@@ -171,9 +180,13 @@ public class SyncCDTtoModel implements Runnable {
 				if (node instanceof IASTFunctionDefinition) {
 					IASTFunctionDefinition definition = (IASTFunctionDefinition) node;
 					IASTFunctionDeclarator declarator = definition.getDeclarator();
-					String body = getBody(itu, definition);
+					String unfilteredBody = getBody(itu, definition);
 					// get additional information about method synchronization from generator
-					SyncInformation syncInfo = m_codegen.getSyncInformation(name, body);
+					SyncInformation syncInfo = null;
+					if (m_codegen instanceof ILangCodegen2) {
+						syncInfo = ((ILangCodegen2) m_codegen).getSyncInformation(name, unfilteredBody);
+					}
+					String body = Utils.removeGenerated(unfilteredBody);
 					if (syncInfo == null || !syncInfo.isGenerated) {
 						// only update method, if it is not generated 
 						NamedElement ne = updateMethod(position, parent, name, body, declarator, syncInfo);
@@ -315,21 +328,19 @@ public class SyncCDTtoModel implements Runnable {
 				IASTParameterDeclaration parameter = (IASTParameterDeclaration) declaratorChild;
 				IASTName parameterName = parameter.getDeclarator().getName();
 				IASTDeclSpecifier parameterType = parameter.getDeclSpecifier();
-				boolean isPointer = false;
-				boolean isRef = false;
-				String array = ""; //$NON-NLS-1$
+				ParameterModifiers modifiers = new ParameterModifiers();
 				String parameterTypeName = ""; //$NON-NLS-1$
 				try {
 					IToken token = parameter.getDeclarator().getSyntax();
 					while (token != null) {
 						String tokenStr = token.toString();
 						if (tokenStr.equals("*")) { //$NON-NLS-1$
-							isPointer = true;
+							modifiers.isPointer = true;
 						} else if (tokenStr.equals("&")) { //$NON-NLS-1$
-							isRef = true;
+							modifiers.isRef = true;
 						} else if (tokenStr.equals("[")) { //$NON-NLS-1$
 							while (token != null) {
-								array += token.toString();
+								modifiers.array += token.toString();
 								token = token.getNext();
 							}
 							if (token == null) {
@@ -345,12 +356,13 @@ public class SyncCDTtoModel implements Runnable {
 						if (tokenStr.equals("*")) { //$NON-NLS-1$
 							// TODO: check, if this can be called (depending on
 							// * position with different semantics?)
-							isPointer = true;
+							modifiers.isPointer = true;
 						} else if (tokenStr.equals("&")) { //$NON-NLS-1$
-							isRef = true;
-						} else if (tokenStr.equals("const")) { //$NON-NLS-1$
-							// do nothing (use isConst() operation of
-							// parameterType)
+							modifiers.isRef = true;
+						} else if (tokenStr.equals(REGISTER)) {
+							modifiers.isRegister = true;
+						} else if (tokenStr.equals(CONST) || tokenStr.equals(VOLATILE)) {
+							// do nothing (use isConst() or isVolatile() operation of parameterType)
 							// is not part of parameter type
 						} else {
 							if (parameterTypeName.length() > 0) {
@@ -375,26 +387,10 @@ public class SyncCDTtoModel implements Runnable {
 				Type paramType = namedElemParamType instanceof Type ? (Type) namedElemParamType : null;
 				if (operation != null) {
 					umlParameter = operation.createOwnedParameter(parameterName.toString(), paramType);
+					applyParameterModifiers(parameterType, umlParameter, modifiers);
 				}
-				behavior.createOwnedParameter(parameterName.toString(), paramType);
-				if (parameterType.isConst()) {
-					StereotypeUtil.apply(umlParameter, Const.class);
-				}
-				if (parameterType.isVolatile()) {
-					StereotypeUtil.apply(umlParameter, Volatile.class);
-				}
-				if (isPointer) {
-					StereotypeUtil.apply(umlParameter, Ptr.class);
-				} else if (isRef) {
-					StereotypeUtil.apply(umlParameter, Ref.class);
-				}
-				if (array.length() > 0) {
-					Array arraySt = StereotypeUtil.applyApp(umlParameter, Array.class);
-					if (arraySt != null && !array.equals("[]") && (!array.equals("[ ]"))) { //$NON-NLS-1$//$NON-NLS-2$
-						arraySt.setDefinition(array);
-					}
-				}
-
+				umlParameter = behavior.createOwnedParameter(parameterName.toString(), paramType);
+				applyParameterModifiers(parameterType, umlParameter, modifiers);
 			}
 		}
 
@@ -426,6 +422,39 @@ public class SyncCDTtoModel implements Runnable {
 		}
 	}
 
+	/**
+	 * Apply the modifiers for a parameter, notably the stereotypes of the C++ profile
+	 * 
+	 * @param parameterType the CDT AST parameter specification
+	 * @param umlParameter the UML parameter (to which a stereotype should be applied)
+	 * @param modifiers the modifiers that should be applied (stored in an instance of class ParameterModifiers)
+	 */
+	public void applyParameterModifiers(IASTDeclSpecifier parameterType, Parameter umlParameter, ParameterModifiers modifiers) {
+		if (parameterType.isConst()) {
+			StereotypeUtil.apply(umlParameter, Const.class);
+		}
+		if (parameterType.isVolatile()) {
+			StereotypeUtil.apply(umlParameter, Volatile.class);
+		}
+		if (modifiers.isRegister) {
+			StorageClass sc = StereotypeUtil.applyApp(umlParameter, StorageClass.class);
+			if (sc != null) {
+				sc.setStorageClass(EStorageClass.REGISTER);
+			}
+		}
+		if (modifiers.isPointer) {
+			StereotypeUtil.apply(umlParameter, Ptr.class);
+		} else if (modifiers.isRef) {
+			StereotypeUtil.apply(umlParameter, Ref.class);
+		}
+		if (modifiers.array.length() > 0) {
+			Array arraySt = StereotypeUtil.applyApp(umlParameter, Array.class);
+			if (arraySt != null && !modifiers.array.equals("[]") && (!modifiers.array.equals("[ ]"))) { //$NON-NLS-1$//$NON-NLS-2$
+				arraySt.setDefinition(modifiers.array);
+			}
+		}
+	}
+	
 	/**
 	 * Obtain an operation from the model by using the name of a CDT method.
 	 * If an operation of the given name does not exist, it might indicate that
@@ -481,8 +510,7 @@ public class SyncCDTtoModel implements Runnable {
 			// cannot use the
 			// first and last statement, since leading and trailing comments are
 			// not part of the AST tree.
-			String bodyStr = Utils.decreaseIndent(contents, start + 2, end - 2);
-			return Utils.removeGenerated(bodyStr);
+			return Utils.decreaseIndent(contents, start + 2, end - 2);
 		}
 		return ""; //$NON-NLS-1$
 	}
@@ -577,6 +605,14 @@ public class SyncCDTtoModel implements Runnable {
 		}
 	}
 
+	/**
+	 * Accessor
+	 * @return value of codegen attribute
+	 */
+	public ILangCodegen getCodeGen() {
+		return m_codegen;
+	}
+	
 	/**
 	 * input of the CDT editor. Used to obtain code within editor.
 	 */

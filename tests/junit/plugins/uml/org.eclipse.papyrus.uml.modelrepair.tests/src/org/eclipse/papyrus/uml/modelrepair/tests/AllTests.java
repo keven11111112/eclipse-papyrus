@@ -15,14 +15,14 @@ package org.eclipse.papyrus.uml.modelrepair.tests;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeApplicationRepairSnippetTest;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.StereotypeRepairRegressionTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * This is the AllTests type. Enjoy.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ StereotypeApplicationRepairSnippetTest.class, StereotypeRepairRegressionTest.class })
 public class AllTests {
 	//JUnit 4 Test Suite

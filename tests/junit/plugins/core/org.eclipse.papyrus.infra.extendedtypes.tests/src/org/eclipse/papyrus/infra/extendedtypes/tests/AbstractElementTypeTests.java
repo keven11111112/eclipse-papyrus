@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
@@ -48,7 +49,7 @@ import org.osgi.framework.Bundle;
 /**
  * Abstract class for element types tests
  */
-public abstract class AbstractElementTypeTests implements ITestConstants {
+public abstract class AbstractElementTypeTests extends AbstractPapyrusTest implements ITestConstants {
 
 
 	@ClassRule
@@ -120,14 +121,14 @@ public abstract class AbstractElementTypeTests implements ITestConstants {
 			}
 		});
 
-		transactionalEditingDomain = (TransactionalEditingDomain)openPapyrusEditor.getAdapter(TransactionalEditingDomain.class);
+		transactionalEditingDomain = openPapyrusEditor.getAdapter(TransactionalEditingDomain.class);
 		assertTrue("Impossible to init editing domain", transactionalEditingDomain instanceof TransactionalEditingDomain);
 
 		// retrieve UML model from this editor
 		try {
 			modelset = ModelUtils.getModelSetChecked(openPapyrusEditor.getServicesRegistry());
 			umlIModel = UmlUtils.getUmlModel(modelset);
-			rootModel = (Model)umlIModel.lookupRoot();
+			rootModel = (Model) umlIModel.lookupRoot();
 
 			Assert.assertNotNull("root model should not be null", rootModel);
 
@@ -169,13 +170,13 @@ public abstract class AbstractElementTypeTests implements ITestConstants {
 		Assert.assertTrue(OTHER_PACKAGE_WITH_COMPONENTS + " should be a Package", otherPackageWithComponents instanceof Package);
 
 		// init components
-		component1_packageWithComponents = (Component)packageWithComponents.getPackagedElement(COMPONENT_NAME);
+		component1_packageWithComponents = (Component) packageWithComponents.getPackagedElement(COMPONENT_NAME);
 		Assert.assertNotNull(COMPONENT_NAME + " should not be null", component1_packageWithComponents);
 
-		component1_otherPackageWithComponents = (Component)otherPackageWithComponents.getPackagedElement(COMPONENT_NAME);
+		component1_otherPackageWithComponents = (Component) otherPackageWithComponents.getPackagedElement(COMPONENT_NAME);
 		Assert.assertNotNull(COMPONENT_NAME + " should not be null", component1_otherPackageWithComponents);
 
-		component1_packageWithAllElements = (Component)packageWithAllElements.getPackagedElement(COMPONENT_NAME);
+		component1_packageWithAllElements = (Component) packageWithAllElements.getPackagedElement(COMPONENT_NAME);
 		Assert.assertNotNull(COMPONENT_NAME + " should not be null", component1_packageWithAllElements);
 
 	}

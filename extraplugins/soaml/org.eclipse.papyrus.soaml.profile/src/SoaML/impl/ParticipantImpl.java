@@ -37,10 +37,10 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.ParticipantImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

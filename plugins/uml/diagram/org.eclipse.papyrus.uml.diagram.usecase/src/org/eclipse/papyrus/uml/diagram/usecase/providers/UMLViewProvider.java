@@ -483,6 +483,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6048 = (Location) label6048.getLayoutConstraint();
 		location6048.setX(0);
 		location6048.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Actor");
 		return node;
 	}
 
@@ -670,6 +671,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5032 = (Location) label5032.getLayoutConstraint();
 		location5032.setX(0);
 		location5032.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ShortCutDiagram");
 		return node;
 	}
 
@@ -815,6 +817,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6050 = (Location) label6050.getLayoutConstraint();
 		location6050.setX(0);
 		location6050.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Actor");
 		return node;
 	}
 
@@ -869,6 +872,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6049 = (Location) label6049.getLayoutConstraint();
 		location6049.setX(0);
 		location6049.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Actor");
 		return node;
 	}
 
@@ -1386,12 +1390,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		// rv.setShowTitle(showTitle);
 		// rv.setCollapsed(isCollapsed);
-		Node rv;
-		if (canCollapse) {
-			rv = NotationFactory.eINSTANCE.createBasicCompartment();
-		} else {
-			rv = NotationFactory.eINSTANCE.createDecorationNode();
-		}
+		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 
@@ -1442,8 +1441,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
 
 		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null)
-		{
+		if (viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());

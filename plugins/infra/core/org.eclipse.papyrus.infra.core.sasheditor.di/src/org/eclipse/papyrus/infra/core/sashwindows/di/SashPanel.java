@@ -14,11 +14,11 @@ package org.eclipse.papyrus.infra.core.sashwindows.di;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel#getSashPosition <em>Sash Position</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel#getDirection <em>Direction</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashPanel()
  * @model

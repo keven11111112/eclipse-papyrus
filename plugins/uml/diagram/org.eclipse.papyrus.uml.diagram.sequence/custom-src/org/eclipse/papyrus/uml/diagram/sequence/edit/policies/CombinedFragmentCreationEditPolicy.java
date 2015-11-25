@@ -52,6 +52,9 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		Command createElementAndViewCmd = super.getCreateElementAndViewCommand(request);
+		if (createElementAndViewCmd == null || !createElementAndViewCmd.canExecute()) {
+			return createElementAndViewCmd;
+		}
 		if (isDerivedCombinedFragment(request.getViewAndElementDescriptor().getSemanticHint())) {
 			Rectangle selectionRect = getSelectionRectangle(request);
 			Set<InteractionFragment> coveredInteractionFragments = SequenceUtil.getCoveredInteractionFragments(selectionRect, getHost(), null);
@@ -72,7 +75,7 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 			}
 		}
 		// Ordering fragments
-		if (createElementAndViewCmd != null && createElementAndViewCmd.canExecute()) {
+		if (createElementAndViewCmd.canExecute()) {
 			ICommand orderingFragmentsCommand = FragmentsOrdererHelper.createOrderingFragmentsCommand(getHost(), request);
 			if (orderingFragmentsCommand != null) {
 				createElementAndViewCmd = createElementAndViewCmd.chain(new ICommandProxy(orderingFragmentsCommand));

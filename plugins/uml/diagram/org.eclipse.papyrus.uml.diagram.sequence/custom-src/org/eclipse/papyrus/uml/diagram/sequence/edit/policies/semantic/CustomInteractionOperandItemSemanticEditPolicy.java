@@ -90,6 +90,10 @@ public class CustomInteractionOperandItemSemanticEditPolicy extends InteractionO
 		if (UMLElementTypes.Continuation_3016 == req.getElementType()) {
 			return getGEFWrapper(new CustomContinuationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
+		if (UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
+			// delegate to parent
+			return UnexecutableCommand.INSTANCE;
+		}
 		return super.getCreateCommand(req);
 	}
 

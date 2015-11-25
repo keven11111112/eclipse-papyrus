@@ -395,6 +395,16 @@ public interface DiPackage extends EPackage {
 	int PAGE_REF__OBJECT_PAGE_IDENTIFIER = 2;
 
 	/**
+	 * The feature id for the '<em><b>Favorite Editor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int PAGE_REF__FAVORITE_EDITOR = 3;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,7 +412,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_REF__PARENT = 3;
+	int PAGE_REF__PARENT = 4;
 
 	/**
 	 * The number of structural features of the '<em>Page Ref</em>' class.
@@ -412,7 +422,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PAGE_REF_FEATURE_COUNT = 4;
+	int PAGE_REF_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashPanelImpl <em>Sash Panel</em>}' class.
@@ -891,6 +901,18 @@ public interface DiPackage extends EPackage {
 	EAttribute getPageRef_ObjectPageIdentifier();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getFavoriteEditor <em>Favorite Editor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Favorite Editor</em>'.
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getFavoriteEditor()
+	 * @see #getPageRef()
+	 * @generated
+	 */
+	EAttribute getPageRef_FavoriteEditor();
+
+	/**
 	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1028,6 +1050,7 @@ public interface DiPackage extends EPackage {
 	 *
 	 * @return the meta object for data type '<em>int</em>'.
 	 * @model instanceClass="int"
+	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='Integer'"
 	 * @generated
 	 */
 	EDataType getint();
@@ -1313,6 +1336,15 @@ public interface DiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PAGE_REF__OBJECT_PAGE_IDENTIFIER = eINSTANCE.getPageRef_ObjectPageIdentifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Favorite Editor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute PAGE_REF__FAVORITE_EDITOR = eINSTANCE.getPageRef_FavoriteEditor();
 
 		/**
 		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.

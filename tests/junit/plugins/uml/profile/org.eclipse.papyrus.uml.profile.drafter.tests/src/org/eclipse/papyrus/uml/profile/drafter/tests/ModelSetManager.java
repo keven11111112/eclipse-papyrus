@@ -213,7 +213,8 @@ public class ModelSetManager {
 		} catch (org.eclipse.papyrus.infra.core.resource.NotFoundException e) {
 			throw new NotFoundException("Can't find model root", e);
 		}
-
+		
+		
 		return getNamedElementByName(modelRoot, qualifiedName);		
 	}
 	
@@ -231,6 +232,8 @@ public class ModelSetManager {
 			throw new NotFoundException("QualifiedName is empty"); 
 		}
 
+		
+		
 		String path[] = qualifiedName.split("::");
 
 		NamedElement namedElement = namespace;

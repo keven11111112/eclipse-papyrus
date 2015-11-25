@@ -1,3 +1,4 @@
+
 Class0				Class0	public	false	N/A
 	ownedAttribute						
 		Property0		Property0	protected	true	N/A
@@ -8,7 +9,7 @@ Class0				Class0	public	false	N/A
 		NestedClass1		NestedClass1	private	true	N/A
 		NestedClass2		NestedClass2	private	true	N/A
 	ownedOperation						
-		Operation0		Operation0	package	false	N/A						
+		Operation0		Operation0	package	false	N/A
 			Param0	Param0	public	N/A	in
 			Param1	Param1	public	N/A	out
 			Param2	Param2	public	N/A	return

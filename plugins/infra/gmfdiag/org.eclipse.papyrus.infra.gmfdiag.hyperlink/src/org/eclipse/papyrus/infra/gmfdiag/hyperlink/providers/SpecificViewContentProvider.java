@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -28,10 +29,13 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 
 
-public class SpecificViewContentProvider implements IHierarchicContentProvider {
+public class SpecificViewContentProvider implements IHierarchicContentProvider, IRevealSemanticElement {
 
+	private Viewer viewer;
+	
 	private EObject[] roots;
 
 	private EObject[] getRoots(ServicesRegistry context) {
@@ -97,7 +101,7 @@ public class SpecificViewContentProvider implements IHierarchicContentProvider {
 	}
 
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// Ignored
+		this.viewer = viewer;
 	}
 
 	public boolean isValidValue(Object element) {
@@ -105,5 +109,16 @@ public class SpecificViewContentProvider implements IHierarchicContentProvider {
 			return false;
 		}
 		return element instanceof View && SemanticElementHelper.findTopView((View) element) == element;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement#revealSemanticElement(java.util.List)
+	 *
+	 * @param elementList
+	 */
+	public void revealSemanticElement(List<?> elementList) {
+		if (viewer != null) {
+			viewer.setSelection(new StructuredSelection(elementList), true);
+		}
 	}
 }

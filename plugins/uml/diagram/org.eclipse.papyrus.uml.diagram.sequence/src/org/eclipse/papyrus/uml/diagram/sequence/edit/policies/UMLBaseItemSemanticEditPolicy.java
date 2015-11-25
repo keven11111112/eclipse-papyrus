@@ -49,7 +49,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.sequence.expressions.UMLOCLFactory;
@@ -231,14 +230,23 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		// no more usage of the extended types here.
+		IElementType requestElementType = req.getElementType();
+		if (requestElementType instanceof IElementType) {
+			IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
+			if (commandProvider != null) {
+				ICommand command = commandProvider.getEditCommand(req);
+				if (command != null && command.canExecute()) {
+					return new ICommandProxy(command);
+				}
+			}
+		}
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -251,7 +259,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -264,7 +272,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IExtendedHintedElementType requestElementType) {
+	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -326,6 +334,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
+
 	}
 
 	/**
@@ -346,7 +355,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected final Command getGEFWrapper(ICommand cmd) {
-		return new ICommandProxy(cmd);
+		return (cmd == null) ? UnexecutableCommand.INSTANCE : new ICommandProxy(cmd);
 	}
 
 	/**
@@ -365,7 +374,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
 			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
@@ -393,57 +402,63 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public LinkConstraints() {
-			// use static method #getLinkConstraints() to access instance
+		public LinkConstraints() { // use static method #getLinkConstraints() to access instance
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4003(Interaction container, Element source, Element target) {
-			return canExistMessage_4003(container, null, source, target);
+			return canExistMessage_4003(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4004(Interaction container, Element source, Element target) {
-			return canExistMessage_4004(container, null, source, target);
+			return canExistMessage_4004(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4005(Interaction container, Element source, Element target) {
-			return canExistMessage_4005(container, null, source, target);
+			return canExistMessage_4005(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4006(Interaction container, Element source, Element target) {
-			return canExistMessage_4006(container, null, source, target);
+			return canExistMessage_4006(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4007(Interaction container, Element source, Element target) {
-			return canExistMessage_4007(container, null, source, target);
+			return canExistMessage_4007(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4008(Interaction container, Element source, Element target) {
-			return canExistMessage_4008(container, null, source, target);
+			return canExistMessage_4008(
+					container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateMessage_4009(Interaction container, Element source, Element target) {
-			return canExistMessage_4009(container, null, source, target);
+			return canExistMessage_4009(
+					container, null, source, target);
 		}
 
 		/**
@@ -451,11 +466,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateCommentAnnotatedElement_4010(Comment source, Element target) {
 			if (source != null) {
-				if (source.getAnnotatedElements().contains(target)) {
+				if (source.getAnnotatedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
-			return canExistCommentAnnotatedElement_4010(source, target);
+
+			return canExistCommentAnnotatedElement_4010(
+					source, target);
 		}
 
 		/**
@@ -463,18 +481,22 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintConstrainedElement_4011(Constraint source, Element target) {
 			if (source != null) {
-				if (source.getConstrainedElements().contains(target)) {
+				if (source.getConstrainedElements()
+						.contains(target)) {
 					return false;
 				}
 			}
-			return canExistConstraintConstrainedElement_4011(source, target);
+
+			return canExistConstraintConstrainedElement_4011(
+					source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralOrdering_4012(InteractionFragment container, OccurrenceSpecification source, OccurrenceSpecification target) {
-			return canExistGeneralOrdering_4012(container, null, source, target);
+			return canExistGeneralOrdering_4012(
+					container, null, source, target);
 		}
 
 		/**
@@ -486,10 +508,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return false;
 				}
 			}
-			if (target != null && (target.getOwnedRules().contains(target))) {
+			if (target != null && (target.getOwnedRules()
+					.contains(target))) {
 				return false;
 			}
-			return canExistConstraintContext_8500(source, target);
+
+			return canExistConstraintContext_8500(
+					source, target);
 		}
 
 		/**

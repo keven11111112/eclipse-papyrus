@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
-import org.eclipse.uml2.uml.Interface;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,25 +38,14 @@ import org.eclipse.uml2.uml.Interface;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
- *   <li>{@link SoaML.impl.ServiceInterfaceImpl#getBase_Interface <em>Base Interface</em>}</li>
  *   <li>{@link SoaML.impl.ServiceInterfaceImpl#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
 public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implements ServiceInterface {
-	/**
-	 * The cached value of the '{@link #getBase_Interface() <em>Base Interface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBase_Interface()
-	 * @generated
-	 * @ordered
-	 */
-	protected Interface base_Interface;
-
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -155,50 +143,9 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interface getBase_Interface() {
-		if (base_Interface != null && base_Interface.eIsProxy()) {
-			InternalEObject oldBase_Interface = (InternalEObject)base_Interface;
-			base_Interface = (Interface)eResolveProxy(oldBase_Interface);
-			if (base_Interface != oldBase_Interface) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SoaMLPackage.SERVICE_INTERFACE__BASE_INTERFACE, oldBase_Interface, base_Interface));
-			}
-		}
-		return base_Interface;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Interface basicGetBase_Interface() {
-		return base_Interface;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBase_Interface(Interface newBase_Interface) {
-		Interface oldBase_Interface = base_Interface;
-		base_Interface = newBase_Interface;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SoaMLPackage.SERVICE_INTERFACE__BASE_INTERFACE, oldBase_Interface, base_Interface));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case SoaMLPackage.SERVICE_INTERFACE__BASE_INTERFACE:
-				if (resolve) return getBase_Interface();
-				return basicGetBase_Interface();
 			case SoaMLPackage.SERVICE_INTERFACE__BASE_CLASS:
 				if (resolve) return getBase_Class();
 				return basicGetBase_Class();
@@ -214,9 +161,6 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case SoaMLPackage.SERVICE_INTERFACE__BASE_INTERFACE:
-				setBase_Interface((Interface)newValue);
-				return;
 			case SoaMLPackage.SERVICE_INTERFACE__BASE_CLASS:
 				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
 				return;
@@ -232,9 +176,6 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case SoaMLPackage.SERVICE_INTERFACE__BASE_INTERFACE:
-				setBase_Interface((Interface)null);
-				return;
 			case SoaMLPackage.SERVICE_INTERFACE__BASE_CLASS:
 				setBase_Class((org.eclipse.uml2.uml.Class)null);
 				return;
@@ -250,8 +191,6 @@ public class ServiceInterfaceImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case SoaMLPackage.SERVICE_INTERFACE__BASE_INTERFACE:
-				return base_Interface != null;
 			case SoaMLPackage.SERVICE_INTERFACE__BASE_CLASS:
 				return base_Class != null;
 		}

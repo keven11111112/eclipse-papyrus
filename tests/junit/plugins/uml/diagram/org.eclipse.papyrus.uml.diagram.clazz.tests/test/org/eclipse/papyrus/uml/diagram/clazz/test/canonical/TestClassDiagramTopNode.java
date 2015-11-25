@@ -34,10 +34,12 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return CustomUMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateClassDiagramCommand();
 	}
+
 	@Override
 	protected String getProjectName() {
 		return IClassDiagramTestsConstants.PROJECT_NAME;
@@ -143,7 +145,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageInformationItem() {
 		testToManageNode(UMLElementTypes.InformationItem_2099, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -151,7 +153,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageInterface() {
 		testToManageNode(UMLElementTypes.Interface_2004, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */
@@ -159,7 +161,7 @@ public class TestClassDiagramTopNode extends TestTopNode {
 	public void testToManageTimeObservation() {
 		testToManageNode(UMLElementTypes.TimeObservation_2096, UMLPackage.eINSTANCE.getTimeObservation(), UMLElementTypes.Package_2007, true);
 	}
-	
+
 	/**
 	 * Test to manage component.
 	 */

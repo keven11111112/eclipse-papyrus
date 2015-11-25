@@ -51,8 +51,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class InteractionEditPartTN extends NamedElementEditPart
-{
+public class InteractionEditPartTN extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -128,8 +127,9 @@ public class InteractionEditPartTN extends NamedElementEditPart
 
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 * 
+	 * @generated
 	 **/
 	@Override
 	protected void handleNotificationEvent(Notification event) {
@@ -147,6 +147,7 @@ public class InteractionEditPartTN extends NamedElementEditPart
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.timing.custom.figures.CustomInteractionRectangleFigure
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,7 +279,9 @@ public class InteractionEditPartTN extends NamedElementEditPart
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
 	@Override

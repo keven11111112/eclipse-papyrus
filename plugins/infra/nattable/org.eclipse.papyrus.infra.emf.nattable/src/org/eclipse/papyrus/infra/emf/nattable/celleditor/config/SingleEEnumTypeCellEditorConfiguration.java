@@ -39,7 +39,7 @@ public class SingleEEnumTypeCellEditorConfiguration implements ICellAxisConfigur
 	/**
 	 * the id of this editor
 	 */
-	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleEEnumTypeCellEditorConfiguration.ComboBox";//$NON-NLS-1$	
+	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleEEnumTypeCellEditorConfiguration.ComboBox";//$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
@@ -67,14 +67,17 @@ public class SingleEEnumTypeCellEditorConfiguration implements ICellAxisConfigur
 	 * @param table
 	 * @param axisElement
 	 * @return
-	 *         <code>true</code> if axisElement is a {@link EEnum} {@link EStructuralFeature}
+	 * 		<code>true</code> if axisElement is a {@link EEnum} {@link EStructuralFeature}
 	 */
 	@Override
 	public boolean handles(Table table, Object axisElement) {
 		Object representedElement = AxisUtils.getRepresentedElement(axisElement);
 		if (representedElement instanceof EStructuralFeature) {
-			EClassifier eType = ((EStructuralFeature) representedElement).getEType();
-			return eType instanceof EEnum;
+			EStructuralFeature feature = (EStructuralFeature) representedElement;
+			if (!feature.isMany()) {
+				EClassifier eType = feature.getEType();
+				return eType instanceof EEnum;
+			}
 		}
 		return false;
 	}
@@ -89,7 +92,7 @@ public class SingleEEnumTypeCellEditorConfiguration implements ICellAxisConfigur
 	@Override
 	public void configureCellEditor(final IConfigRegistry configRegistry, Object axis, String configLabel) {
 		Object representedElement = AxisUtils.getRepresentedElement(axis);
-		EEnum eenum =(EEnum)((EStructuralFeature) representedElement).getEType();
+		EEnum eenum = (EEnum) ((EStructuralFeature) representedElement).getEType();
 
 		IDisplayConverter displayConverter = new DisplayConverter() {
 

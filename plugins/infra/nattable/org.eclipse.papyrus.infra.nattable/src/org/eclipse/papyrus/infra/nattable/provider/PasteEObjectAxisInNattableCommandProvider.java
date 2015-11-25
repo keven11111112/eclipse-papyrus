@@ -41,7 +41,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -88,7 +87,7 @@ import org.eclipse.ui.progress.UIJob;
  *
  */
 
-public class PasteEObjectAxisInNattableCommandProvider {
+public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableCommandProvider {
 
 	private static final int MIN_AXIS_FOR_PROGRESS_MONITOR = 5;
 
@@ -135,7 +134,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 	/**
 	 * the converter map
 	 */
-	private Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters;
+	private final Map<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter> existingConverters;
 
 	private static final String PASTE_ACTION_TASK_NAME = Messages.PasteEObjectAxisInTableCommandProvider_PasteAction;
 
@@ -157,7 +156,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 
 
 	// we refresh the dialog each X read char
-	private int refreshEachReadChar = 1000;
+	private final int refreshEachReadChar = 1000;
 
 	/**
 	 * if <code>true</code> the command can't be created and executed
@@ -172,11 +171,11 @@ public class PasteEObjectAxisInNattableCommandProvider {
 	/**
 	 * the parser to use
 	 */
-	private CSVParser parser;
+	private final CSVParser parser;
 
 	int factor;
 
-	private Table table;
+	private final Table table;
 
 	final TransactionalEditingDomain tableEditingDomain;
 
@@ -186,7 +185,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 
 	List<Object> secondAxis;
 
-	public PasteEObjectAxisInNattableCommandProvider(INattableModelManager tableManager, boolean pasteColumn, Reader reader, CSVPasteHelper pasteHelper2, long totalSize) {
+	public PasteEObjectAxisInNattableCommandProvider(final INattableModelManager tableManager, final boolean pasteColumn, final Reader reader, final CSVPasteHelper pasteHelper2, final long totalSize) {
 		this.tableManager = tableManager;
 		// this.pasteMode = status;
 		this.existingConverters = new HashMap<Class<? extends AbstractStringValueConverter>, AbstractStringValueConverter>();
@@ -236,29 +235,30 @@ public class PasteEObjectAxisInNattableCommandProvider {
 	}
 
 	/**
-	 *
-	 * @param useProgressMonitor
-	 *            boolean indicating that we must do the paste with a progress monitor
-	 *            TODO : post actions are not yet supported in the in the detached mode
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.provider.PasteNattableCommandProvider#executePasteFromStringCommand(boolean, boolean)
 	 */
-	public void executePasteFromStringCommand(final boolean useProgressMonitor) {
-		if (this.pasteColumn) {// not yet supported
-			return;
+	@Override
+	public IStatus executePasteFromStringCommand(final boolean useProgressMonitor, final boolean openDialog) {
+		IStatus resultStatus = Status.OK_STATUS;
+		if (!this.pasteColumn) {// not yet supported
+			if (this.isDisposed) {
+				throw new RuntimeException("The command provider is disposed");
+			}
+			final String pasteJobName;
+			if (this.pasteColumn) {
+				pasteJobName = PASTE_COLUMNS_JOB_NAME;
+			} else {
+				pasteJobName = PASTE_ROWS_JOB_NAME;
+			}
+			if (this.detachedMode) {
+				executePasteFromStringCommandInDetachedMode(useProgressMonitor, pasteJobName);
+			} else {
+				executePasteFromStringCommandInAttachedMode(useProgressMonitor, pasteJobName);
+			}
 		}
-		if (this.isDisposed) {
-			throw new RuntimeException("The command provider is disposed");
-		}
-		final String pasteJobName;
-		if (this.pasteColumn) {
-			pasteJobName = PASTE_COLUMNS_JOB_NAME;
-		} else {
-			pasteJobName = PASTE_ROWS_JOB_NAME;
-		}
-		if (this.detachedMode) {
-			executePasteFromStringCommandInDetachedMode(useProgressMonitor, pasteJobName);
-		} else {
-			executePasteFromStringCommandInAttachedMode(useProgressMonitor, pasteJobName);
-		}
+		return resultStatus;
 	}
 
 
@@ -284,7 +284,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			final ICommand pasteCommand = getPasteFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, new NullProgressMonitor(), sharedMap);
 			try {
 				CheckedOperationHistory.getInstance().execute(pasteCommand, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
+			} catch (final ExecutionException e) {
 				Activator.log.error(e);
 			}
 			sharedMap.clear();
@@ -293,7 +293,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			final UIJob job = new UIJob(pasteJobName) {
 
 				@Override
-				public IStatus runInUIThread(IProgressMonitor monitor) {
+				public IStatus runInUIThread(final IProgressMonitor monitor) {
 
 					final ICommand pasteCommand = getPasteFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, monitor, sharedMap);
 					if (pasteCommand == null) {
@@ -303,7 +303,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 					if (pasteCommand.canExecute()) {
 						try {
 							CheckedOperationHistory.getInstance().execute(pasteCommand, monitor, null);
-						} catch (ExecutionException e) {
+						} catch (final ExecutionException e) {
 							return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occured during the paste", e); //$NON-NLS-1$
 						} finally {
 							sharedMap.clear();
@@ -331,7 +331,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			final ICommand pasteCommand = getPasteFromStringCommandInAttachedMode(contextEditingDomain, tableEditingDomain, new NullProgressMonitor());
 			try {
 				CheckedOperationHistory.getInstance().execute(pasteCommand, new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
+			} catch (final ExecutionException e) {
 				Activator.log.error(e);
 			}
 		} else {
@@ -339,7 +339,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			final UIJob job = new UIJob(pasteJobName) {
 
 				@Override
-				public IStatus runInUIThread(IProgressMonitor monitor) {
+				public IStatus runInUIThread(final IProgressMonitor monitor) {
 
 					final ICommand pasteCommand = getPasteFromStringCommandInAttachedMode(contextEditingDomain, tableEditingDomain, monitor);
 					if (pasteCommand == null) {
@@ -349,7 +349,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 					if (pasteCommand.canExecute()) {
 						try {
 							CheckedOperationHistory.getInstance().execute(pasteCommand, monitor, null);
-						} catch (ExecutionException e) {
+						} catch (final ExecutionException e) {
 							return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occured during the paste", e); //$NON-NLS-1$
 						}
 						monitor.done();
@@ -428,7 +428,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 				}
 
 
-				boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap);
+				final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject, sharedMap);
 				if (isEditable) {
 					final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, this.pasteHelper.getMultiValueSeparator());
 					CellManagerFactory.INSTANCE.setStringValue(columnObject, rowObject, valueAsString, converter, tableManager, sharedMap);
@@ -445,7 +445,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 		final AbstractTransactionalCommand pasteCommand = new AbstractTransactionalCommand(tableEditingDomain, PASTE_COMMAND_NAME, null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				// initialize lists
 				final Collection<String> postActions = getPostActions();
 
@@ -566,7 +566,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 	 * @param commandExecutionProgressMonitor
 	 *            the command execution progress monitor
 	 * @return
-	 *         the command to use to finish the paste (the main part of the paste is directly done here)
+	 * 		the command to use to finish the paste (the main part of the paste is directly done here)
 	 */
 	private ICommand getPasteFromStringCommandInDetachedMode(final TransactionalEditingDomain contextEditingDomain, final TransactionalEditingDomain tableEditingDomain, final IProgressMonitor progressMonitor, final Map<Object, Object> sharedMap) {
 		if (!this.pasteColumn) {
@@ -610,7 +610,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			 * @throws ExecutionException
 			 */
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				long readChar = 0;
 				long previousreadChar = 0;
 
@@ -672,7 +672,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 							}
 
 
-							boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
+							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
 
 							if (isEditable) {
 								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
@@ -729,7 +729,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 			 * @throws ExecutionException
 			 */
 			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				long readChar = 0;
 				long previousreadChar = 0;
 
@@ -790,8 +790,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 								rowObject = createdElement;
 							}
 
-
-							boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
+							final boolean isEditable = CellManagerFactory.INSTANCE.isCellEditable(columnObject, rowObject);
 
 							if (isEditable) {
 								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
@@ -836,7 +835,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 	/**
 	 *
 	 * @return
-	 *         the list of the post actions to do
+	 * 		the list of the post actions to do
 	 */
 	private Collection<String> getPostActions() {
 		return this.postActions;
@@ -856,7 +855,7 @@ public class PasteEObjectAxisInNattableCommandProvider {
 		this.existingConverters.clear();
 		try {
 			this.reader.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			Activator.log.error(e);
 		}
 	}

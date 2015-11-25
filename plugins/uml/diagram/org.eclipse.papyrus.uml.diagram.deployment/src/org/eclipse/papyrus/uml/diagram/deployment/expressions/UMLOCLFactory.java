@@ -47,10 +47,11 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[2];
+		this.expressions = new UMLAbstractExpression[3];
 		this.expressionBodies = new String[] {
 				"self.name.concat(\'.file\') ", //$NON-NLS-1$
 				"self.oclIsKindOf(DeploymentTarget)", //$NON-NLS-1$
+				"not self.oclIsKindOf(DeploymentSpecification)", //$NON-NLS-1$
 		};
 	}
 

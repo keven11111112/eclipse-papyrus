@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.bug;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -146,7 +147,7 @@ public class TestCreationUndo_384618 extends TestLink {
 
 		assertTrue(CREATION + TEST_THE_UNDO, getDiagramCommandStack().canUndo());
 		getEMFCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_UNDO, lifeline1.getSourceConnections().size() == 0);
+		assertEquals(CREATION + TEST_THE_UNDO, 0, lifeline1.getSourceConnections().size());
 
 		assertTrue(CREATION + TEST_THE_REDO, getDiagramCommandStack().canRedo());
 		getEMFCommandStack().redo();

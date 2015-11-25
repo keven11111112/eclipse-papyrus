@@ -17,6 +17,8 @@ package org.eclipse.papyrus.uml.diagram.composite.test;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite.DynamicClasses;
 import org.eclipse.papyrus.uml.diagram.composite.test.canonical.AllCanonicalTests;
+import org.eclipse.papyrus.uml.diagram.composite.test.model.AllModelTests;
+import org.eclipse.papyrus.uml.diagram.composite.tests.copyPaste.ConstraintCopyPasteTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -27,6 +29,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		// canonical
 		AllCanonicalTests.class,
+		RoundedCompartmentTest.class,
+		AllModelTests.class,
+		ConstraintCopyPasteTest.class
 })
 @DynamicClasses("org.eclipse.papyrus.uml.diagram.composite.test.AllGenTests")
 public class AllTests {

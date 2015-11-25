@@ -3,6 +3,7 @@ Export-Package: org.eclipse.papyrus.infra.hyperlink,
  org.eclipse.papyrus.infra.hyperlink.commands,
  org.eclipse.papyrus.infra.hyperlink.helper,
  org.eclipse.papyrus.infra.hyperlink.object,
+ org.eclipse.papyrus.infra.hyperlink.service,
  org.eclipse.papyrus.infra.hyperlink.ui,
  org.eclipse.papyrus.infra.hyperlink.util
 Require-Bundle: org.eclipse.emf.transaction,

@@ -45,6 +45,14 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyAppliedSt
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsClassifierFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsClassifierNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsNestedArtifactFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsNestedArtifactNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsPackageableElFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsPackageableElNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecificationFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecificationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentNameEditPart;
@@ -290,6 +298,44 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			namedElementName_53Parser = parser;
 		}
 		return namedElementName_53Parser;
+	}
+
+	/**
+	* @generated
+	*/
+	private IParser deploymentSpecificationName_62Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_62Parser() {
+		if (deploymentSpecificationName_62Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_62Parser = parser;
+		}
+		return deploymentSpecificationName_62Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecificationName_63Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_63Parser() {
+		if (deploymentSpecificationName_63Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_63Parser = parser;
+		}
+		return deploymentSpecificationName_63Parser;
 	}
 
 	/**
@@ -589,6 +635,120 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	}
 
 	/**
+	* @generated
+	*/
+	private IParser deploymentSpecificationName_64Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_64Parser() {
+		if (deploymentSpecificationName_64Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_64Parser = parser;
+		}
+		return deploymentSpecificationName_64Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecificationName_65Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_65Parser() {
+		if (deploymentSpecificationName_65Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_65Parser = parser;
+		}
+		return deploymentSpecificationName_65Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecificationName_66Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_66Parser() {
+		if (deploymentSpecificationName_66Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_66Parser = parser;
+		}
+		return deploymentSpecificationName_66Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecificationName_67Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_67Parser() {
+		if (deploymentSpecificationName_67Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_67Parser = parser;
+		}
+		return deploymentSpecificationName_67Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecificationName_68Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_68Parser() {
+		if (deploymentSpecificationName_68Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_68Parser = parser;
+		}
+		return deploymentSpecificationName_68Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecificationName_69Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecificationName_69Parser() {
+		if (deploymentSpecificationName_69Parser == null) {
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecificationName_69Parser = parser;
+		}
+		return deploymentSpecificationName_69Parser;
+	}
+
+	/**
 	 * @generated
 	 */
 	private IParser deploymentName_13Parser;
@@ -778,6 +938,11 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		case DefaultNamedElementNameEditPart.VISUAL_ID:
 			return getNamedElementName_53Parser();
 
+		case DeploymentSpecificationNameEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_62Parser();
+		case DeploymentSpecificationFloatingLabelEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_63Parser();
+
 		case ModelNameEditPartCN.VISUAL_ID:
 			return getModelName_50Parser();
 
@@ -822,6 +987,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_57Parser();
 		case ConstraintSpecificationEditPartCN.VISUAL_ID:
 			return getConstraintSpecification_58Parser();
+
+		case DeploymentSpecAsClassifierNameEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_64Parser();
+		case DeploymentSpecAsClassifierFloatingLabelEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_65Parser();
+
+		case DeploymentSpecAsPackageableElNameEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_66Parser();
+		case DeploymentSpecAsPackageableElFloatingLabelEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_67Parser();
+
+		case DeploymentSpecAsNestedArtifactNameEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_68Parser();
+		case DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID:
+			return getDeploymentSpecificationName_69Parser();
 
 
 

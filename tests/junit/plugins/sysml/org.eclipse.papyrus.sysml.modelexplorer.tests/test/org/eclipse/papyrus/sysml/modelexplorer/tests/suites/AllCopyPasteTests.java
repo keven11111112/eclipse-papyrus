@@ -18,7 +18,7 @@ import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimpleBl
 import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimplePartTest;
 import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.CopyPasteSimpleReferenceTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -26,7 +26,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * Tests suite for Copy/Paste
  * 
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // Reference
 CopyPasteSimpleReferenceTest.class,

@@ -358,6 +358,9 @@ public class TestIdentityActionEditPart extends RoundedCompartmentEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;

@@ -92,6 +92,8 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 
 		//this diagram is known as extended?
 		if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType)==null){
+			Activator.log.trace(Activator.EXPANSION_TRACE,this.getClass().getName()+" " +currentDiagramType+ " not supported by loaded expansion model");
+			
 			//this diagram is unknown
 			return false;
 		}

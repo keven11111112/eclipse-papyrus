@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageList#getAvailablePage <em>Available Page</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getPageList()
  * @model

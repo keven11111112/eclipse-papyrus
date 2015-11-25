@@ -14,9 +14,12 @@
 package org.eclipse.papyrus.junit.utils;
 
 import java.lang.annotation.Annotation;
+import java.util.Map;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
+
+import com.google.common.collect.Maps;
 
 /**
  * Utilities for working with the JUnit data model and execution environment.
@@ -52,6 +55,35 @@ public class JUnitUtils {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Obtains the annotations applied to a {@code description} that is supplied to a {@link TestRule}.
+	 * If the description is for a test method, the annotations of its owning class are included,
+	 * excepting annotations of the same type applied to the method.
+	 * 
+	 * @param description
+	 *            a rule's owning description, which generally would be a test method or a test class
+	 *            (as these are the contexts in which rules are invoked)
+	 * 
+	 * @return all of the annotations applied to the test description
+	 */
+	public static Iterable<Annotation> getAnnotations(Description description) {
+		Map<Class<? extends Annotation>, Annotation> result = Maps.newLinkedHashMap();
+
+		for (Annotation next : description.getAnnotations()) {
+			result.put(next.annotationType(), next);
+		}
+
+		if (description.getTestClass() != null) {
+			for (Annotation next : description.getTestClass().getAnnotations()) {
+				if (!result.containsKey(next.annotationType())) {
+					result.put(next.annotationType(), next);
+				}
+			}
+		}
+
+		return result.values();
 	}
 
 	/**

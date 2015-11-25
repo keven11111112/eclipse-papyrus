@@ -25,6 +25,8 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.internal.util.LabelViewConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusLabelHelper;
 
@@ -55,6 +57,8 @@ public class PapyrusLabelLocator extends AbstractLocator {
 
 	/** The view. */
 	private View view;
+
+	public static final String IS_UPDATED_POSITION = "IS_UPDATED_POSITION";
 
 	/**
 	 * Constructor to create a an instance of <code>LabelLocator</code> which locates an IFigure offset relative to a calculated reference point.
@@ -103,7 +107,6 @@ public class PapyrusLabelLocator extends AbstractLocator {
 	 *
 	 * @return the location
 	 */
-	@SuppressWarnings("restriction")
 	private int getLocation() {
 		switch (getAlignment()) {
 		case ConnectionLocator.SOURCE:
@@ -114,6 +117,19 @@ public class PapyrusLabelLocator extends AbstractLocator {
 			return LabelViewConstants.MIDDLE_LOCATION;
 		default:
 			return LabelViewConstants.MIDDLE_LOCATION;
+		}
+	}
+
+	private int getUpdatedLocation() {
+		switch (getAlignment()) {
+		case ConnectionLocator.SOURCE:
+			return LabelViewConstantsEx.TARGET_LOCATION;
+		case ConnectionLocator.TARGET:
+			return LabelViewConstantsEx.SOURCE_LOCATION;
+		case ConnectionLocator.MIDDLE:
+			return LabelViewConstantsEx.MIDDLE_LOCATION;
+		default:
+			return LabelViewConstantsEx.MIDDLE_LOCATION;
 		}
 	}
 
@@ -149,11 +165,17 @@ public class PapyrusLabelLocator extends AbstractLocator {
 	@Override
 	public Point getReferencePoint() {
 		if (parent instanceof Connection) {
-			PointList ptList = ((Connection) parent).getPoints();
-			return PointListUtilities.calculatePointRelativeToLine(ptList, 0, getLocation(), true);
+			NamedStyle style = view.getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), IS_UPDATED_POSITION); 
+			Boolean updated = style == null ? false : (Boolean) style.eGet(NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue());
+			return getConnectionReferancePoint(updated);
 		} else {
 			return parent.getBounds().getLocation();
 		}
+	}
+
+	public Point getConnectionReferancePoint(boolean updated) {
+		PointList ptList = ((Connection) parent).getPoints();
+		return PointListUtilities.calculatePointRelativeToLine(ptList, 0, updated ? getUpdatedLocation() : getLocation(), true);
 	}
 
 	/**

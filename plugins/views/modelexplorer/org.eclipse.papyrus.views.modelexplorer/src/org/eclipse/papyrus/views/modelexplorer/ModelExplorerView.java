@@ -45,11 +45,9 @@ import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerColumn;
@@ -78,8 +76,8 @@ import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
-import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.SharedModelExplorerState.StateChangedEvent;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
@@ -120,7 +118,6 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
-
 import com.google.common.base.Supplier;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -161,6 +158,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/** Flag to avoid reentrant call to refresh. */
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
+
+	/** Currently selected tree item */
+	private TreeItem currentItem;
+
+	/** Navigation menu for selected tree item */
+	private NavigationMenu navigationMenu;
 
 	/**
 	 * A listener on page (all editors) selection change. This listener is set
@@ -456,13 +459,25 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			}
 		}));
 
+		try {
+			navigationMenu = serviceRegistry.getService(NavigationService.class).createNavigationList();
+			if (navigationMenu != null) {
+				navigationMenu.setServicesRegistry(serviceRegistry);
+				navigationMenu.setParentShell(this.getControl().getShell());
+			}
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+
 		Tree tree = getCommonViewer().getTree();
 
 		tree.addKeyListener(new KeyListener() {
 
 			public void keyReleased(KeyEvent e) {
-				if (e.keyCode == SWT.ALT) {
-					exitItem();
+				if (navigationMenu != null) {
+					if (e.keyCode == SWT.ALT) {
+						navigationMenu.exitItem();
+					}
 				}
 			}
 
@@ -471,21 +486,21 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					return;
 				}
 
-				Tree tree = getCommonViewer().getTree();
+				if (navigationMenu != null) {
+					Tree tree = getCommonViewer().getTree();
 
-				// Generate a basic mouse event
-				Event event = new Event();
-				event.widget = tree;
-				event.stateMask = SWT.ALT;
+					// Generate a basic mouse event
+					Event event = new Event();
+					event.widget = tree;
+					event.stateMask = SWT.ALT;
 
-				Point absoluteTreeLocation = tree.toDisplay(new Point(0, 0));
+					Point absoluteTreeLocation = tree.toDisplay(new Point(0, 0));
 
-				event.x = tree.getDisplay().getCursorLocation().x - absoluteTreeLocation.x;
-				event.y = tree.getDisplay().getCursorLocation().y - absoluteTreeLocation.y;
+					event.x = tree.getDisplay().getCursorLocation().x - absoluteTreeLocation.x;
+					event.y = tree.getDisplay().getCursorLocation().y - absoluteTreeLocation.y;
 
-				MouseEvent mouseEvent = new MouseEvent(event);
-				if (isEnterState(mouseEvent)) {
-					enterItem(currentItem);
+					MouseEvent mouseEvent = new MouseEvent(event);
+					navigationMenu.handleRequest(mouseEvent, getTreeItem(mouseEvent));
 				}
 			}
 		});
@@ -521,15 +536,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		tree.addMouseMoveListener(new MouseMoveListener() {
 
 			public void mouseMove(MouseEvent e) {
-
-				if (isExitState(e)) {
-					exitItem();
+				if (navigationMenu != null) {
+					navigationMenu.handleRequest(e, getTreeItem(e));
 				}
-
-				if (isEnterState(e)) {
-					enterItem(currentItem);
-				}
-
 			}
 
 		});
@@ -553,93 +562,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		ViewerColumn column = (ViewerColumn) viewer.getTree().getData(Policy.JFACE + ".columnViewer");
 		column.setEditingSupport(new DirectEditorEditingSupport(viewer));
 		return viewer;
-	}
-
-
-	TreeItem currentItem;
-
-	SelectionMenu selectionMenu;
-
-	private boolean isExitState(MouseEvent e) {
-		if (currentItem == null) {
-			return false;
-		}
-
-		TreeItem item = getTreeItem(e);
-		if (item == null) {
-			return true;
-		}
-
-		if (item != currentItem) {
-			return true;
-		}
-
-		if ((e.stateMask & SWT.ALT) == 0) {
-			return true;
-		}
-
-		return false;
-	}
-
-	private boolean isEnterState(MouseEvent e) {
-		TreeItem item = getTreeItem(e);
-		if (item == currentItem) {
-			return false;
-		}
-
-		if (item == null) {
-			return false;
-		}
-
-		if ((e.stateMask & SWT.ALT) == 0) {
-			return false;
-		}
-
-		currentItem = item;
-
-		return true;
-	}
-
-	private void disposeCurrentMenu() {
-		if (selectionMenu != null) {
-			selectionMenu.dispose();
-			selectionMenu = null;
-		}
-	}
-
-	private void exitItem() {
-		currentItem = null;
-		disposeCurrentMenu();
-	}
-
-	private void enterItem(TreeItem item) {
-		try {
-			final NavigationService navigation = serviceRegistry.getService(NavigationService.class);
-			disposeCurrentMenu();
-			selectionMenu = navigation.createNavigationList(item.getData(), item.getParent());
-			if (selectionMenu == null) {
-				return;
-			}
-
-			selectionMenu.addSelectionChangedListener(new ISelectionChangedListener() {
-
-				public void selectionChanged(SelectionChangedEvent event) {
-					if (event.getSelection().isEmpty()) {
-						return;
-					}
-					Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
-					if (selectedElement instanceof NavigableElement) {
-						NavigableElement navigableElement = (NavigableElement) selectedElement;
-						if (navigableElement.isEnabled()) {
-							navigation.navigate((NavigableElement) selectedElement);
-							exitItem();
-						}
-					}
-				}
-			});
-		} catch (ServiceException ex) {
-			Activator.log.error(ex);
-		}
 	}
 
 	private TreeItem getTreeItem(MouseEvent e) {

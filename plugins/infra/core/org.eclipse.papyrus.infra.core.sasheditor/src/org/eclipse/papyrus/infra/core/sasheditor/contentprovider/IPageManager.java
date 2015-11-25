@@ -36,9 +36,9 @@ public interface IPageManager extends IPageMngr {
 	/**
 	 * Reload the Diagram
 	 * This used when a resource is reloaded, the related diagrams are reloaded as well
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.services.controlmode.listener.LoadResourceSnippet
-	 * 
+	 *
 	 * @param pageIdentifier
 	 *            Identifier of the page to reload
 	 */
@@ -81,7 +81,6 @@ public interface IPageManager extends IPageMngr {
 	 * The identifier is first added to the current folder model. Then the Sash Windows should react and
 	 * ask the {@link IPageModelFactory} to create the IPageModel. This later is then used to create the
 	 * SWT page.
-	 * If
 	 *
 	 * @param page
 	 *            The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
@@ -90,6 +89,23 @@ public interface IPageManager extends IPageMngr {
 	 */
 	@Override
 	public void openPage(Object pageIdentifier);
+
+	/**
+	 * Open a Page corresponding to the identifier.
+	 * The identifier is first added to the current folder model. Then the Sash Windows should react and
+	 * ask the {@link IPageModelFactory} to create the IPageModel. This later is then used to create the
+	 * SWT page.
+	 *
+	 * The specified EditorID will be propagated to the {@link IPageModelFactory} to open the right editor
+	 *
+	 * @param page
+	 *            The object identifying the page to add. This object will be passed to the {@link IPageModelFactory#createIPageModel(EObject)}. This
+	 *            identifier is stored in the sash model.
+	 *            It should be a reference on a EMF object identifying the page.
+	 */
+	default void openPage(Object pageIdentifier, String editorID) {
+		openPage(pageIdentifier);
+	}
 
 	/**
 	 * Return all available page identifiers (open and closed pages).
@@ -138,7 +154,7 @@ public interface IPageManager extends IPageMngr {
 
 	/**
 	 * Get the open pages associated to the passed Object
-	 * 
+	 *
 	 * @param uri
 	 *            URI of the Object from which we want the associated open pages
 	 * @return List of Pages identifier of the related object'URI

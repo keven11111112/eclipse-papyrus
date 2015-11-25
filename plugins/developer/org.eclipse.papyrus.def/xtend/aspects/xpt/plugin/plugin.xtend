@@ -3,23 +3,23 @@ package aspects.xpt.plugin
 import aspects.xpt.editor.palette.Utils_qvto
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import java.util.Iterator
+import java.util.List
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.gmf.codegen.gmfgen.AbstractToolEntry
+import org.eclipse.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
+import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.gmf.codegen.gmfgen.GenLink
+import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
 import org.eclipse.gmf.codegen.gmfgen.GenPlugin
 import org.eclipse.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.gmf.codegen.gmfgen.ToolGroup
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
+import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
 import xpt.Common
 import xpt.editor.extensions
 import xpt.plugin.pluginUtils
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
-import org.eclipse.gmf.codegen.gmfgen.GenCompartment
-import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
-import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
-import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
-import org.eclipse.gmf.codegen.gmfgen.GenLink
-import org.eclipse.gmf.codegen.gmfgen.GenNode
-import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode
 
 @Singleton class plugin extends xpt.plugin.plugin {
 
@@ -198,8 +198,9 @@ import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode
 			«FOR link : diagram.links»
 				«linksToTypeMap(link)»
 			«ENDFOR»
-			«FOR floatingLabel : diagram.eResource.allContents.filter(typeof (GenExternalNodeLabel)).toIterable»
-				«nodesToTypeMap(floatingLabel)»
+			«FOR externalLabel : diagram.eResource.allContents.filter(typeof (GenExternalNodeLabel)).toIterable»
+				«floatingLabelToTypeMap(externalLabel)»
+				«externalNodeLabelToTypeMap(externalLabel)»
 			«ENDFOR»
 «tripleSpace(1)»</diagramMappings>
 «tripleSpace(0)»</extension>
@@ -219,15 +220,24 @@ import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode
 	
 	def linkLabelToTypeMap(GenLinkLabel it)'''
 	«««	it is used on a LabelVisibilityPreference...
-	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels.contains(it) && v.role != null].size != 0»
+		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels != null && v.linkLabels.contains(it) && v.role != null], visualID)»	
+	'''
+	
+	def externalNodeLabelToTypeMap(GenExternalNodeLabel it)'''
+		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.externalNodeLabels != null && v.externalNodeLabels.contains(it) && v.role != null],visualID)»	
+	'''
+	
+	def LabelVisibilityPreferenceToTypeMap(Iterator<LabelVisibilityPreference> it, int visualID)'''
+	«var List<LabelVisibilityPreference> links = it.toList»
+	«IF links.size != 0»
 		<mapping
-			humanReadableType="«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.linkLabels.contains(it)].head.role»"
+			humanReadableType="«links.get(0).role»"
 			type="«visualID»">
 		</mapping>
 	«ENDIF»	
 	'''
 		
-	def nodesToTypeMap(GenExternalNodeLabel it)'''
+	def floatingLabelToTypeMap(GenExternalNodeLabel it)'''
 	«««	it is used on a ExtensionGenView...
 	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
 	«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»

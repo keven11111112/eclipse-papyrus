@@ -36,7 +36,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
@@ -73,7 +72,6 @@ import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -93,7 +91,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated NOT implements IPapyrusEditPart
  */
-public class FlowFinalNodeAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
+public class FlowFinalNodeAppliedStereotypeEditPart extends AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -448,7 +446,7 @@ public class FlowFinalNodeAppliedStereotypeEditPart extends LabelEditPart implem
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
@@ -568,14 +566,8 @@ public class FlowFinalNodeAppliedStereotypeEditPart extends LabelEditPart implem
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-			View view = (View) getModel();
-			if (view.isVisible()) {
-				setLabelTextHelper(getFigure(), getLabelText());
-				setLabelIconHelper(getFigure(), getLabelIcon());
-			} else {
-				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
-				setLabelIconHelper(getFigure(), null);
-			}
+			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {

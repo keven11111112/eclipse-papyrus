@@ -24,6 +24,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -45,6 +46,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.ILabelProviderConfiguration;
@@ -420,6 +422,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 					ITreeItemAxis root = (ITreeItemAxis) tmp;
 					AxisManagerRepresentation representation = root.getManager();
 					List<TreeFillingConfiguration> createdFillingConfiguration = new ArrayList<TreeFillingConfiguration>();
+					List<PasteEObjectConfiguration> createdPasteEObjectConfiguration = new ArrayList<PasteEObjectConfiguration>();
+					
 					for (ITreeItemAxis depthItem : root.getChildren()) {
 						Assert.isTrue(CategoriesWizardUtils.isDepthItem(depthItem));
 						int wantedDepth = Integer.valueOf((String) depthItem.getElement());
@@ -433,7 +437,15 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 
 							// 1. try to find existing conf
 							TreeFillingConfiguration newConf = findExistingTreeFillingConfiguration(table, representation, wantedDepth, categoryItem.getElement());
-							if (newConf == null || EMFHelper.isReadOnly(newConf)) {
+							if (null == newConf || EMFHelper.isReadOnly(newConf)) {
+								PasteEObjectConfiguration copiedEObjectConfiguration = null;
+								if(null != newConf){
+									PasteEObjectConfiguration existingPasteConfiguration = newConf.getPasteConfiguration();
+									copiedEObjectConfiguration = EcoreUtil.copy(existingPasteConfiguration);
+									if(null != copiedEObjectConfiguration){
+										createdPasteEObjectConfiguration.add(copiedEObjectConfiguration);
+									}
+								}
 								// we create new TreeFillingConfiguration
 								newConf = NattableaxisconfigurationFactory.eINSTANCE.createTreeFillingConfiguration();
 								newConf.setDepth(wantedDepth);
@@ -441,6 +453,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 								newConf.setAxisUsedAsAxisProvider(axis);
 								newConf.setLabelProvider(getLabelConfigurationForTreeFillingConfiguration(table));
 								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table));
+								// Manage the paste configuration
+								newConf.setPasteConfiguration(copiedEObjectConfiguration);
 							} else {
 
 								// update the alias if required
@@ -479,6 +493,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 					}
 					local.getOwnedAxisConfigurations().clear();
 					local.getOwnedAxisConfigurations().addAll(createdFillingConfiguration);
+					local.getOwnedAxisConfigurations().addAll(createdPasteEObjectConfiguration);
 					wantedAxisManagerConfiguration.getLocalSpecificConfigurations().clear();
 					wantedAxisManagerConfiguration.getLocalSpecificConfigurations().addAll(createdFillingConfiguration);
 				}

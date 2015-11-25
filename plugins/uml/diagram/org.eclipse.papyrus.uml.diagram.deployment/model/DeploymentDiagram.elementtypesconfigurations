@@ -193,6 +193,54 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_H3PAAEvtEeWDlLIkRlZnAA"
+      name="DeploymentSpecification"
+      identifier="org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2013"
+      hint="2013">
+    <iconEntry
+        xmi:id="_NrvVQEvtEeWDlLIkRlZnAA"
+        iconPath="/icons/full/obj16/DeploymentSpecification.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DeploymentSpecification</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_CafvEEwwEeWwb_6uOhatZA"
+      name="DeploymentSpecification"
+      identifier="org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2014"
+      hint="2014">
+    <iconEntry
+        xmi:id="_bp_zEEyhEeW-zLOt2X96xQ"
+        iconPath="/icons/full/obj16/DeploymentSpecification.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DeploymentSpecification</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_dGBFIEyhEeW-zLOt2X96xQ"
+      name="DeploymentSpecification"
+      identifier="org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2015"
+      hint="2015">
+    <iconEntry
+        xmi:id="_dGBFIUyhEeW-zLOt2X96xQ"
+        iconPath="/icons/full/obj16/DeploymentSpecification.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DeploymentSpecification</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_GKvkwEy4EeWcB5wRNPiyyQ"
+      name="DeploymentSpecification"
+      identifier="org.eclipse.papyrus.uml.diagram.deployment.DeploymentSpecification_2016"
+      hint="2016">
+    <iconEntry
+        xmi:id="_GKwL0Ey4EeWcB5wRNPiyyQ"
+        iconPath="/icons/full/obj16/DeploymentSpecification.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DeploymentSpecification</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_gv-d4P8PEeS2nvlxgM4H8g"
       name="Device"
       identifier="org.eclipse.papyrus.uml.diagram.deployment.Device_16"

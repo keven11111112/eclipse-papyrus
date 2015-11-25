@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *   Christian W. Damus - bug 454536
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.modelexplorer;
@@ -41,7 +41,7 @@ import com.google.common.collect.Iterators;
 
 /**
  * Specific PropertySheetPage for Model Explorer view to contribute to Undo/Redo Edit menu.
- * 
+ *
  * @author Gabriel Pascual
  *
  */
@@ -125,7 +125,7 @@ class ModelExplorerPropertySheetPage extends TabbedPropertySheetPage implements 
 
 	/**
 	 * Queries whether the current selection includes any element from a resource in the context of the specified {@code context} that is being unloaded.
-	 * 
+	 *
 	 * @param context
 	 *            the service registry context of an editor that is being unloaded
 	 * @return whether any currently presented input element has already been unloaded (is now a proxy) or is in the given {@code context}

@@ -26,6 +26,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 		// canonical
 		AllCanonicalTests.class,
+		RoundedCompartmentTest.class,
 
 		// load
 		// LoadTests.class,

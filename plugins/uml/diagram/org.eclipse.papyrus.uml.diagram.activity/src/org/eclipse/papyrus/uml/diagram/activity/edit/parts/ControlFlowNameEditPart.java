@@ -454,7 +454,7 @@ public class ControlFlowNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated NOT consult preference store before displaying label
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		// consult preference store before displaying label
 		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
 		if (getManager() instanceof TextDirectEditManager && showName) {

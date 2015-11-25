@@ -4,12 +4,8 @@
     <availablePage>
       <emfPageIdentifier href="adl4eclipse.profile.notation#_nE-wwHz7EeKfO4elN3J5Fw"/>
     </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="adl4eclipse.profile.notation#_vNr94IGIEeKWufV7WxSyhw"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="adl4eclipse.profile.notation#_5XfK4NT3EeKj0Lzrn2trlQ"/>
-    </availablePage>
+    <availablePage/>
+    <availablePage/>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -18,10 +14,10 @@
           <emfPageIdentifier href="adl4eclipse.profile.notation#_nE-wwHz7EeKfO4elN3J5Fw"/>
         </children>
         <children>
-          <emfPageIdentifier href="adl4eclipse.profile.notation#_vNr94IGIEeKWufV7WxSyhw"/>
+          <emfPageIdentifier href="adl4eclipse.profile.notation#_UyoWMDIUEeWWouxtI2Wm3A"/>
         </children>
         <children>
-          <emfPageIdentifier href="adl4eclipse.profile.notation#_5XfK4NT3EeKj0Lzrn2trlQ"/>
+          <emfPageIdentifier href="adl4eclipse.profile.notation#_6SWYIFChEeWCD4ik6H8FlQ"/>
         </children>
         <children>
           <emfPageIdentifier href="adl4eclipse.profile.notation#_mkLhcAkxEeWrfsZGFf1vbQ"/>

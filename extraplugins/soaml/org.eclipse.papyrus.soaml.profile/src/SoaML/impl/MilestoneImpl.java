@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
@@ -39,13 +38,13 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.MilestoneImpl#getSignal <em>Signal</em>}</li>
  *   <li>{@link SoaML.impl.MilestoneImpl#getProgress <em>Progress</em>}</li>
  *   <li>{@link SoaML.impl.MilestoneImpl#getValue <em>Value</em>}</li>
  *   <li>{@link SoaML.impl.MilestoneImpl#getBase_Comment <em>Base Comment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -188,33 +187,6 @@ public class MilestoneImpl extends MinimalEObjectImpl.Container implements Miles
 			value = new EObjectResolvingEList<ValueSpecification>(ValueSpecification.class, this, SoaMLPackage.MILESTONE__VALUE);
 		}
 		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueSpecification getValue(String name, Type type) {
-		return getValue(name, type, false, null);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ValueSpecification getValue(String name, Type type, boolean ignoreCase, EClass eClass) {
-		valueLoop: for (ValueSpecification value : getValue()) {
-			if (eClass != null && !eClass.isInstance(value))
-				continue valueLoop;
-			if (name != null && !(ignoreCase ? name.equalsIgnoreCase(value.getName()) : name.equals(value.getName())))
-				continue valueLoop;
-			if (type != null && !type.equals(value.getType()))
-				continue valueLoop;
-			return value;
-		}
-		return null;
 	}
 
 	/**

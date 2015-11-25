@@ -8,22 +8,19 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Extends the Abstract Class
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.strategy.copy;
 
 import java.util.Map;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.ICopyStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.AbstractCopyStrategy;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.swt.graphics.Image;
 
 /**
- *
+ * Copy all the content of a compartment into a Classifier
  */
-public class AllContentCopyStrategy implements ICopyStrategy {
+public class AllContentCopyStrategy extends AbstractCopyStrategy {
 
 	@Override
 	public String getLabel() {
@@ -32,7 +29,7 @@ public class AllContentCopyStrategy implements ICopyStrategy {
 
 	@Override
 	public String getID() {
-		return Activator.ID + ".AllContentCopyStrategy";//".ClassifierToStructureCompDrop"; //$NON-NLS-1$
+		return Activator.ID + ".AllContentCopyStrategy";// ".ClassifierToStructureCompDrop"; //$NON-NLS-1$
 	}
 
 	@Override
@@ -48,24 +45,8 @@ public class AllContentCopyStrategy implements ICopyStrategy {
 		return "Select elements to copy"; //$NON-NLS-1$
 	}
 
-	@Override
-	public Image getImage() {
-		return null;
-	}
-
-	@Override
-	public int getPriority() {
-		return 0;
-	}
-
 	public void setOptions(Map<String, Object> options) {
 		// Nothing
-	}
-
-	@Override
-	public Command getCommand(Request request, EditPart targetEditPart) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

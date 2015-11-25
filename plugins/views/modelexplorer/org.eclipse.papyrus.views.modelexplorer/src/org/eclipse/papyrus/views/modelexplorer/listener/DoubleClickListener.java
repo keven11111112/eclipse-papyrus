@@ -46,7 +46,7 @@ public class DoubleClickListener implements IDoubleClickListener {
 	 * Initializes me with a fixed service registry.
 	 *
 	 * @param servicesRegistry a service registry
-	 * 
+	 *
 	 * @deprecated The editor that the Model Explorer views can change dynamically, replacing its service registry. Use the {@link #DoubleClickListener(Supplier)} constructor instead to account for the variability of the registry.
 	 */
 	@Deprecated

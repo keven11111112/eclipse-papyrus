@@ -14,13 +14,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.query;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.search.ui.ISearchQuery;
+import org.eclipse.uml2.uml.Element;
 
 /**
  *
@@ -28,20 +39,6 @@ import org.eclipse.search.ui.ISearchQuery;
  *
  */
 public abstract class AbstractPapyrusQuery implements ISearchQuery {
-
-	/**
-	 * Sleep SLEEP_MILLISECONDS every NUMBER_ADDS_BEFORE_SLEEP of adds (events fired to update UI)
-	 * so UI does not get stuck
-	 */
-	public static final int NUMBER_ADDS_BEFORE_SLEEP = 100;
-	public static final int SLEEP_MILLISECONDS = 500;
-	
-	/**
-	 * Display results every BUFFER_SIZE
-	 */
-	public static final int BUFFER_SIZE = 100;
-	
-	protected boolean delay = false;
 	
 	protected SubMonitor progressMonitor;
 	
@@ -97,5 +94,59 @@ public abstract class AbstractPapyrusQuery implements ISearchQuery {
 		public String getSearchQueryText() {
 			return "";
 		}
+	}
+	
+	/**
+	 * Get views in which the UML element is shown
+	 * @param element
+	 * @return
+	 */
+	
+	protected List<View> getViews(Element element) {
+		if (element == null) {
+			return null;
+		}
+		
+		IPageManager pageManager;
+		try {
+			pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(element);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return null;
+		}
+
+		List<View> viewsToSelect = new LinkedList<View>();
+
+		try {
+			for (Object page : pageManager.allPages()) {
+				try {
+					if (page instanceof View) {
+						View view = (View) page;
+						TreeIterator<EObject> allViews = view.eAllContents();
+						while (allViews.hasNext()) {
+							EObject next = allViews.next();
+							if (!(next instanceof View)) {
+								allViews.prune();
+								continue;
+							}
+
+							View nextView = (View) next;
+							if (element.equals(nextView.getElement())) {
+								viewsToSelect.add(nextView);
+								allViews.prune();
+							}
+						}
+					}
+				} catch (Exception e) {
+					Activator.log.error(e);
+					return null;
+				}
+			}
+		} catch (Exception e) {
+			Activator.log.error(e);
+			return null;
+		}
+		
+		return viewsToSelect;
 	}
 }

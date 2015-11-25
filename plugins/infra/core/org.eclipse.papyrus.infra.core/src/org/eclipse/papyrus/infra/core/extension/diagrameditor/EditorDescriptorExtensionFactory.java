@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.core.extension.diagrameditor;
 import static org.eclipse.papyrus.infra.core.Activator.log;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.extension.BadNameExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
@@ -43,6 +44,9 @@ public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 	/** constant for the attribute icon **/
 	public final static String ICON_ATTRIBUTE = "icon";
 
+	/** constant for the order attribute */
+	public final static String ORDER_ATTRIBUTE = "order";
+
 	/**
 	 * @return the eINSTANCE
 	 */
@@ -67,6 +71,19 @@ public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 		res = new EditorDescriptor();
 		res.setEditorFactoryClass((Class<IPluggableEditorFactory>) parseClass(element, FACTORYCLASS_ATTRIBUTE, EDITOR_DIAGRAM_EXTENSIONPOINT));
 		res.setActionBarContributorId(element.getAttribute(ACTIONBARCONTRIBUTORID_ATTRIBUTE));
+
+		int order = 0; // Default
+		try {
+			String orderAttribute = element.getAttribute(ORDER_ATTRIBUTE);
+			if (orderAttribute != null) {
+				order = Integer.parseInt(orderAttribute);
+			}
+		} catch (NumberFormatException ex) {
+			Activator.log.warn("Invalid order provided by " + element.getContributor() + ". Order should be an integer value"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+
+		res.setOrder(order);
+
 		String iconPath = element.getAttribute(ICON_ATTRIBUTE);
 		if (iconPath != null) {
 			/** Implementation which set the icon and register the complete URL of the icon : Bug eclipse 358732 */

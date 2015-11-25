@@ -27,6 +27,11 @@ public class ReverseSettings {
 	private boolean reverseExportPackages;
 
 	/**
+	 * Whether the designer should reverse the imported packages or not.
+	 */
+	private boolean reverseImportPackages;
+
+	/**
 	 * Whether the designer should reverse the extension points or not.
 	 */
 	private boolean reverseExtensionPoints;
@@ -49,6 +54,7 @@ public class ReverseSettings {
 		reverseExtensions = true;
 		reverseDependencies = true;
 		reverseExportPackages = true;
+		reverseImportPackages = true;
 		reverseExtensionPoints = true;
 	}
 
@@ -82,6 +88,22 @@ public class ReverseSettings {
 	 */
 	public void setReverseExportPackages(boolean reverseExportPackages) {
 		this.reverseExportPackages = reverseExportPackages;
+	}
+
+	/**
+	 *
+	 * @return
+	 */
+	public boolean reverseImportPackages() {
+		return reverseImportPackages;
+	}
+
+	/**
+	 * @param reverseExportPackages
+	 *            the reverseImportPackages to set
+	 */
+	public void setReverseImportPackages(boolean reverseImportPackages) {
+		this.reverseImportPackages = reverseImportPackages;
 	}
 
 	/**

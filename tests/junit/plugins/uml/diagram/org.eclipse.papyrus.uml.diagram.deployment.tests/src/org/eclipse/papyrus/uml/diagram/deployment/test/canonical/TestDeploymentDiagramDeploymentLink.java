@@ -14,8 +14,6 @@ package org.eclipse.papyrus.uml.diagram.deployment.test.canonical;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gef.commands.Command;
@@ -95,7 +93,7 @@ public class TestDeploymentDiagramDeploymentLink extends TestWithoutReconnectAMu
 	private void testUnexecutableLink(IElementType sourceType, IElementType targetType, IElementType linkType) {
 		installEnvironment(sourceType, targetType);
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
-		assertNull(CREATION + COMMAND_NULL, command);
+		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command == null || !command.canExecute());
 	}
 
 }

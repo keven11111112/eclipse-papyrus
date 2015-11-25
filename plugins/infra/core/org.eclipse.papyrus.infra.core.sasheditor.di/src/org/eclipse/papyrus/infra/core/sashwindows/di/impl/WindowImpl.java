@@ -23,12 +23,12 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPosition <em>Position</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getSize <em>Size</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl#getPanel <em>Panel</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

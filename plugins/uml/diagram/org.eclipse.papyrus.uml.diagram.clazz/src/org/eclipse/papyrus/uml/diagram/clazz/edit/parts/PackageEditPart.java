@@ -254,6 +254,9 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 		return getContentPane();
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(200, 100);

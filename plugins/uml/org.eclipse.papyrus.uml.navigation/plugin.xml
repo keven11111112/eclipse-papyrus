@@ -4,17 +4,61 @@
    <extension
          point="org.eclipse.papyrus.infra.services.navigation.navigationContributor">
       <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.contributor.TypedElementNavigationContributor"
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.TypedElementNavigationContributor"
             description="Navigates to the type of the current UML Element"
             id="org.eclipse.papyrus.uml.navigation.typedElement"
             label="UML Typed Element navigation">
       </contributor>
       <contributor
-            contributor="org.eclipse.papyrus.uml.navigation.contributor.CBANavigationContributor"
-            description="Navigates to the Behavior linked to the current UML CallBehaviourAction"
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.CBANavigationContributor"
+            description="Navigates to the behavior linked to the current UML CallBehaviourAction"
             id="org.eclipse.papyrus.uml.navigation.callBehaviorAction"
             label="UML Call Behavior Action navigation">
       </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.navigableElement.NamedElementNavigationContributor"
+            description="Navigates to the current UML Named Element"
+            id="org.eclipse.papyrus.uml.navigation.namedElement"
+            label="UML Named Element navigation">
+      </contributor>
    </extension>
-
+   <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationMenuContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ParentsButton"
+            description="Navigate to parents of an element"
+            id="org.eclipse.papyrus.uml.navigation.menuContributor.parentsButton"
+            label="Parents">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ChildrenButton"
+            description="Navigate to children of an element"
+            id="org.eclipse.papyrus.uml.navigation.menuContributor.childrenButton"
+            label="Children">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.TypesButton"
+            description="Navigate to elements typed by selected element"
+            id="org.eclipse.papyrus.uml.navigation.menuContributor.typesButton"
+            label="Types">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.TargetsButton"
+            description="Navigate to targets of relationships for which the selected element is a source"
+            id="org.eclipse.papyrus.uml.navigation.menuContributor.targetsButton"
+            label="Targets">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.SourcesButton"
+            description="Navigate to sources of relationships for which the selected element is a target"
+            id="org.eclipse.papyrus.uml.navigation.menuContributor.sourcesButton"
+            label="Sources">
+      </contributor>
+      <!--<contributor
+            contributor="org.eclipse.papyrus.uml.navigation.menuContributor.ViewsButton"
+            description="Views button"
+            id="org.eclipse.papyrus.uml.navigation.menuContributor.viewsButton"
+            label="Views button">
+      </contributor>-->
+   </extension>
 </plugin>

@@ -31,19 +31,10 @@ public interface ServiceContract extends Collaboration {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *   self.base_Collaboration.role-> notEmpty()  implies self.base_Collaboration.role-> forAll(role|
-	 * 		role.type.oclIsTypeOf(UML::Interface) 
-	 * 	or 
-	 * 		(role.type.oclIsTypeOf(UML::Class)	and 
-	 * 		(role.type.oclIsTypeOf(UML::Class) implies (role.type.getAppliedStereotypes()->select(s|s.name='Provider')->size()>0 
-	 * 			and  role.type.getAppliedStereotypes()->select(s|s.name='Consumer') ->size()>0
-	 * 		)
-	 * 			or  role.type.getAppliedStereotypes()->select(s| s.name='ServiceInterface') ->size()>0
-	 * 		))) 
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body=' \r\nlet isComposit :  Boolean= self.base_Collaboration.ownedConnector->isEmpty()\r\n and self.base_Collaboration.getAllAttributes()\r\n->collect(oclAsType(UML::CollaborationUse))->notEmpty(),\r\nisSimple :Boolean=  self.base_Collaboration.getAllAttributes()\r\n->collect(oclAsType(UML::CollaborationUse))->isEmpty()\r\nin  self.base_Collaboration.role-> notEmpty() implies \r\nisSimple and  self.base_Collaboration.role-> forAll(role|\r\nrole.type.oclIsTypeOf(UML::Interface))\r\nor\r\nisComposit  and self.base_Collaboration.role->forAll(role|\r\nrole.type.oclIsTypeOf(UML::Interface) or\r\n(role.type.oclIsTypeOf(UML::Class)\tand\r\n(role.type.oclIsTypeOf(UML::Class) implies(role.type.getAppliedStereotypes()\r\n->select(s|s.name=\'Provider\' or s.name=\'Consumer\' \r\nor s.name=\'ServiceInterface\') ->size()=1))))\r\n'"
 	 * @generated
 	 */
 	boolean RoleType(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -52,30 +43,10 @@ public interface ServiceContract extends Collaboration {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 *  self.base_Collaboration.ownedBehavior->size()=1 implies
-	 * 	self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclIsTypeOf(UML::Interaction) implies
-	 * 		let attachedInteraction=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction),
-	 * 		lifelines=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).lifeline,
-	 * 		messages= self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).message,
-	 * 		messOccuSpec=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).fragment
-	 * 		->select(f|f.oclIsTypeOf(MessageOccurrenceSpecification)) in 
-	 * 		lifelines->size()>0 implies lifelines->forAll(l| self.base_Collaboration.role -> includes(l.oclAsType(UML::Lifeline).represents)  ) 
-	 * 		and 
-	 * 		messages->size()>0 implies messages->select(m|m.messageSort=MessageSort::asynchCall) 
-	 * 		--signature of messages should be one of the operations or signal of the corresponding Service Declaration
-	 * 		->forAll(m|m.signature.oclIsTypeOf(Operation) implies 
-	 * 			m.receiveEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()
-	 * 			->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Operation))
-	 * 			->includes(m.signature.oclAsType(Operation)) and 
-	 * 				m.signature.oclIsTypeOf(Signal) implies 
-	 * 				m.sendEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()
-	 * 				->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Signal))
-	 * 			->includes(m.signature.oclAsType(Signal)
-	 * 			))  
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body=' self.base_Collaboration.ownedBehavior->size()>0 implies (\r\n\tself.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclIsTypeOf(UML::Interaction) implies\r\n\t\tlet attachedInteraction=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction),\r\n\t\tlifelines=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).lifeline,\r\n\t\tmessages= self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).message,\r\n\t\tmessOccuSpec=self.base_Collaboration.ownedBehavior->asOrderedSet()->first().oclAsType(UML::Interaction).fragment\r\n\t\t->select(f|f.oclIsTypeOf(MessageOccurrenceSpecification)) in \r\n\t\tlifelines->size()>0 implies lifelines->forAll(l| self.base_Collaboration.role -> includes(l.oclAsType(UML::Lifeline).represents)  ) \r\n\t\tand \r\n\t\tmessages->size()>0 implies messages\r\n\t\t--->select(m|m.messageSort=MessageSort::asynchCall) \r\n\t\t--signature of messages should be one of the operations or signal of the corresponding Service Declaration\r\n\t\t->forAll(m|m.signature.oclIsTypeOf(Operation) implies \r\n\t\t\tm.receiveEvent.oclAsType(MessageOccurrenceSpecification).covered->flatten()->asOrderedSet()\r\n\t\t\t->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement->select(oclIsTypeOf(Operation))\r\n\t\t\t->includes(m.signature.oclAsType(Operation)) and \r\n\t\t\t\tm.signature.oclIsTypeOf(Signal) implies \r\n\t\t\t\tm.sendEvent->asOrderedSet()->first().oclAsType(MessageOccurrenceSpecification).covered->asOrderedSet()\r\n\t\t\t\t->first().oclAsType(Sequence)->asOrderedSet()->first().oclAsType(Lifeline).represents.type.oclAsType(Classifier).ownedElement\r\n\t\t\t\t->select(oclIsTypeOf(Signal))->includes(m.signature.oclAsType(Signal)\r\n\t\t\t))  )'"
 	 * @generated
 	 */
 	boolean AttachedBehaviorCompatibility(DiagnosticChain diagnostics, Map<Object, Object> context);

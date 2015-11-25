@@ -17,13 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.DelegatingLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -51,8 +46,6 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
@@ -61,7 +54,6 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.helpers.AnchorHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ExecutionSpecificationEndEditPart.DummyCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.ExecutionGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.semantic.CustomBehaviorExecutionSpecificationItemSemanticEditPolicy;
@@ -176,75 +168,6 @@ public class CustomBehaviorExecutionSpecificationEditPart extends BehaviorExecut
 		return lep;
 	}
 
-	/**
-	 * Overrides to disable the defaultAnchorArea. The edge is no more stuck with the middle of the
-	 * figure.
-	 *
-	 * @Override
-	 */
-	@Override
-	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60) {
-
-			/**
-			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
-			 */
-			@Override
-			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
-				return false;
-			}
-
-			@Override
-			public ConnectionAnchor getConnectionAnchor(String terminal) {
-				// Use FixedAnchorEx for MessageSync, this will be invoked by mapConnectionAnchor(termial) operation.
-				if (terminal != null && terminal.indexOf("{") != -1 && terminal.indexOf("}") != -1) {
-					int position = AnchorHelper.FixedAnchorEx.parsePosition(terminal);
-					if (PositionConstants.TOP == position || PositionConstants.BOTTOM == position) {
-						return new AnchorHelper.FixedAnchorEx(this, position);
-					}
-				}
-				return super.getConnectionAnchor(terminal);
-			}
-		};
-		result.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(20))); // min height 20
-		return result;
-	}
-
-	/**
-	 * Creates figure for this edit part.
-	 *
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
-	 *
-	 * @Override
-	 */
-	@Override
-	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = createNodePlate();
-		// figure.setLayoutManager(new StackLayout());
-		figure.setLayoutManager(new DelegatingLayout());
-		IFigure shape = createNodeShape();
-		figure.add(shape, new FillParentLocator());
-		contentPane = setupContentPane(shape);
-		return figure;
-	}
-
-	/**
-	 * We did NOT use a BorderedNodeFigure in current EditPart. There are some problems about moving external labels.
-	 *
-	 * We just find and use the root(Interaction) BorderedNodeFigure.
-	 */
-	private BorderedNodeFigure getBorderedFigure() {
-		EditPart parent = getParent();
-		while (parent != null && !(parent instanceof CustomInteractionEditPart)) {
-			parent = parent.getParent();
-		}
-		if (parent != null) {
-			return ((CustomInteractionEditPart) parent).getBorderedFigure();
-		}
-		return null;
-	}
-
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (childEditPart instanceof BehaviorExecutionSpecificationBehaviorEditPart) {
@@ -271,16 +194,6 @@ public class CustomBehaviorExecutionSpecificationEditPart extends BehaviorExecut
 			return;
 		}
 		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart#setLineWidth(int)
-	 *
-	 * @param width
-	 */
-	@Override
-	protected void setLineWidth(int width) {
-		// super.setLineWidth(width);
 	}
 
 	@Override

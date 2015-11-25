@@ -978,22 +978,13 @@ public interface SoaMLPackage extends EPackage {
 	int SERVICE_INTERFACE = 19;
 
 	/**
-	 * The feature id for the '<em><b>Base Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SERVICE_INTERFACE__BASE_INTERFACE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE__BASE_CLASS = 1;
+	int SERVICE_INTERFACE__BASE_CLASS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Service Interface</em>' class.
@@ -1002,7 +993,7 @@ public interface SoaMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICE_INTERFACE_FEATURE_COUNT = 2;
+	int SERVICE_INTERFACE_FEATURE_COUNT = 1;
 
 	/**
 	 * The operation id for the '<em>Parts Types Of Service Interface</em>' operation.
@@ -1078,13 +1069,22 @@ public interface SoaMLPackage extends EPackage {
 	int SERVICES_ARCHITECTURE___PARTS_TYPES__DIAGNOSTICCHAIN_MAP = COLLABORATION_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Get Icon</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SERVICES_ARCHITECTURE___GET_ICON__IMAGE = COLLABORATION_OPERATION_COUNT + 2;
+
+	/**
 	 * The number of operations of the '<em>Services Architecture</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SERVICES_ARCHITECTURE_OPERATION_COUNT = COLLABORATION_OPERATION_COUNT + 2;
+	int SERVICES_ARCHITECTURE_OPERATION_COUNT = COLLABORATION_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link SoaML.impl.AttachmentImpl <em>Attachment</em>}' class.
@@ -1537,11 +1537,11 @@ public interface SoaMLPackage extends EPackage {
 	EReference getCollaboration_Base_Collaboration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link SoaML.Collaboration#isStrict <em>Is Strict</em>}'.
+	 * Returns the meta object for the attribute '{@link SoaML.Collaboration#isIsStrict <em>Is Strict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Strict</em>'.
-	 * @see SoaML.Collaboration#isStrict()
+	 * @see SoaML.Collaboration#isIsStrict()
 	 * @see #getCollaboration()
 	 * @generated
 	 */
@@ -2029,17 +2029,6 @@ public interface SoaMLPackage extends EPackage {
 	EOperation getServiceInterface__PartsTypesOfServiceInterface__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the reference '{@link SoaML.ServiceInterface#getBase_Interface <em>Base Interface</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Base Interface</em>'.
-	 * @see SoaML.ServiceInterface#getBase_Interface()
-	 * @see #getServiceInterface()
-	 * @generated
-	 */
-	EReference getServiceInterface_Base_Interface();
-
-	/**
 	 * Returns the meta object for class '{@link SoaML.ServicesArchitecture <em>Services Architecture</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2068,6 +2057,16 @@ public interface SoaMLPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getServicesArchitecture__PartsTypes__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link SoaML.ServicesArchitecture#getIcon(org.eclipse.uml2.uml.Image) <em>Get Icon</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Get Icon</em>' operation.
+	 * @see SoaML.ServicesArchitecture#getIcon(org.eclipse.uml2.uml.Image)
+	 * @generated
+	 */
+	EOperation getServicesArchitecture__GetIcon__Image();
 
 	/**
 	 * Returns the meta object for class '{@link SoaML.Attachment <em>Attachment</em>}'.
@@ -2134,11 +2133,11 @@ public interface SoaMLPackage extends EPackage {
 	EReference getCollaborationUse_Base_CollaborationUse();
 
 	/**
-	 * Returns the meta object for the attribute '{@link SoaML.CollaborationUse#isStrict <em>Is Strict</em>}'.
+	 * Returns the meta object for the attribute '{@link SoaML.CollaborationUse#isIsStrict <em>Is Strict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is Strict</em>'.
-	 * @see SoaML.CollaborationUse#isStrict()
+	 * @see SoaML.CollaborationUse#isIsStrict()
 	 * @see #getCollaborationUse()
 	 * @generated
 	 */
@@ -2299,11 +2298,11 @@ public interface SoaMLPackage extends EPackage {
 	EClass getProperty();
 
 	/**
-	 * Returns the meta object for the attribute '{@link SoaML.Property#isID <em>Is ID</em>}'.
+	 * Returns the meta object for the attribute '{@link SoaML.Property#isIsID <em>Is ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Is ID</em>'.
-	 * @see SoaML.Property#isID()
+	 * @see SoaML.Property#isIsID()
 	 * @see #getProperty()
 	 * @generated
 	 */
@@ -2845,14 +2844,6 @@ public interface SoaMLPackage extends EPackage {
 		EOperation SERVICE_INTERFACE___PARTS_TYPES_OF_SERVICE_INTERFACE__DIAGNOSTICCHAIN_MAP = eINSTANCE.getServiceInterface__PartsTypesOfServiceInterface__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Interface</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SERVICE_INTERFACE__BASE_INTERFACE = eINSTANCE.getServiceInterface_Base_Interface();
-
-		/**
 		 * The meta object literal for the '{@link SoaML.impl.ServicesArchitectureImpl <em>Services Architecture</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2877,6 +2868,14 @@ public interface SoaMLPackage extends EPackage {
 		 * @generated
 		 */
 		EOperation SERVICES_ARCHITECTURE___PARTS_TYPES__DIAGNOSTICCHAIN_MAP = eINSTANCE.getServicesArchitecture__PartsTypes__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Icon</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation SERVICES_ARCHITECTURE___GET_ICON__IMAGE = eINSTANCE.getServicesArchitecture__GetIcon__Image();
 
 		/**
 		 * The meta object literal for the '{@link SoaML.impl.AttachmentImpl <em>Attachment</em>}' class.

@@ -8,6 +8,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 464647
+ *   Christian W. Damus - bug 476436
  *     
  ******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.tests.edition;
@@ -26,16 +27,21 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.internal.parts.TextCellEditorEx;
 import org.eclipse.jface.viewers.ICellEditorValidator;
+import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultiLineCellEditor;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.junit.Assert;
+import org.junit.Rule;
 
 /**
  * Abstract test case definitions for testing direct-edit functionality of editable node edit-parts.
  */
 public abstract class AbstractEditableNodeTest extends EditableElementTest {
+	@Rule
+	public final AnnotationRule<Integer> expectedKind = AnnotationRule.create(ExpectedDirectEditor.class, ExpectedDirectEditor.DEFAULT_MASK);
+
 	protected Command command = null;
 
 	@Override
@@ -99,41 +105,40 @@ public abstract class AbstractEditableNodeTest extends EditableElementTest {
 					// performDirectEdit(char initialCharacter) {
 
 					// call and test kind of editor
+					int directEditorType = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 					Method methodgetDirectEditionType = editableEditPartClass.getDeclaredMethod("getDirectEditionType", null);
 					if (methodgetDirectEditionType != null) {
-						Object resultdirectEditorType = methodgetDirectEditionType.invoke(editableEditPart, null);
-						Assert.assertEquals("the editpart must be dafault direct editor", IDirectEdition.DEFAULT_DIRECT_EDITOR, resultdirectEditorType);
+						directEditorType = (Integer) methodgetDirectEditionType.invoke(editableEditPart, null);
+						Assert.assertEquals("wrong kind of direct editor", expectedKind.get() & directEditorType, directEditorType);
 					}
-					// call and test current editor
-					Method methodGetManager = editableEditPartClass.getDeclaredMethod("getManager", null);
-					if (methodGetManager != null) {
-						methodGetManager.setAccessible(true);
-						Object result = methodGetManager.invoke(editableEditPart, null);
-						Assert.assertTrue("the manager to edit name must be a MultilineLabelDirectEditManager", result instanceof MultilineLabelDirectEditManager);
-						MultilineLabelDirectEditManager manager = (MultilineLabelDirectEditManager) result;
-						IFigure fig = getPrimaryFigure(editableEditPart);
+					// call and test current editor if supported and it is not contributed by some external plug-in
+					if (directEditorType == IDirectEdition.DEFAULT_DIRECT_EDITOR) {
+						Method methodGetManager = editableEditPartClass.getDeclaredMethod("getManager", null);
+						if (methodGetManager != null) {
+							methodGetManager.setAccessible(true);
+							Object result = methodGetManager.invoke(editableEditPart, null);
+							Assert.assertTrue("the manager to edit name must be a MultilineLabelDirectEditManager", result instanceof MultilineLabelDirectEditManager);
+							MultilineLabelDirectEditManager manager = (MultilineLabelDirectEditManager) result;
+							IFigure fig = getPrimaryFigure(editableEditPart);
 
-						if (fig instanceof IMultilineEditableFigure) {
-							Assert.assertEquals("the editor of this editpart must be multiline editor", MultiLineCellEditor.class, manager.getTextCellEditorClass(editableEditPart));
+							if (fig instanceof IMultilineEditableFigure) {
+								Assert.assertEquals("the editor of this editpart must be multiline editor", MultiLineCellEditor.class, manager.getTextCellEditorClass(editableEditPart));
 
-						} else {
-							Assert.assertEquals("the editor of this editpart must be simple editor", TextCellEditorEx.class, manager.getTextCellEditorClass(editableEditPart));
+							} else {
+								Assert.assertEquals("the editor of this editpart must be simple editor", TextCellEditorEx.class, manager.getTextCellEditorClass(editableEditPart));
+							}
 						}
 					}
 				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Assert.fail(e.getMessage());
 				}
 
 			}

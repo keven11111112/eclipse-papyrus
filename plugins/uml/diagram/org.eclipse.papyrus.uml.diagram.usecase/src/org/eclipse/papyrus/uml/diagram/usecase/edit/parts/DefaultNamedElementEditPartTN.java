@@ -192,6 +192,9 @@ public class DefaultNamedElementEditPartTN extends NamedElementEditPart {
 		return getContentPane();
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 50);

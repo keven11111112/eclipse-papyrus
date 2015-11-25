@@ -123,8 +123,7 @@ public class UseCaseEditPartTN extends UseCaseNodeEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -201,7 +200,7 @@ public class UseCaseEditPartTN extends UseCaseNodeEditPart {
 
 		if (childEditPart instanceof UseCasePointsEditPartTN) {
 			IFigure pane = getPrimaryShape().getExtensionPointContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((UseCasePointsEditPartTN) childEditPart).getFigure());
 			return true;
 		}
@@ -268,12 +267,14 @@ public class UseCaseEditPartTN extends UseCaseNodeEditPart {
 		if (borderItemEditPart instanceof UseCaseFloatingLabelEditPartTN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(140, 60);

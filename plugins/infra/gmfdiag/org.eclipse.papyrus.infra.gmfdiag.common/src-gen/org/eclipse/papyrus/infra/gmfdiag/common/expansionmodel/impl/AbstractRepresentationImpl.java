@@ -51,6 +51,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.Expansionmod
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.AbstractRepresentationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.AbstractRepresentationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.AbstractRepresentationImpl#getViewFactory <em>View Factory</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.AbstractRepresentationImpl#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @generated
@@ -125,6 +126,26 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	 * @ordered
 	 */
 	protected String viewFactory = VIEW_FACTORY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -251,6 +272,27 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validate(DiagnosticChain diagnostic, Map context) {
 		// TODO: implement this method
 		// -> specify the condition that violates the invariant
@@ -288,6 +330,8 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 				return getName();
 			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				return getViewFactory();
+			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -311,6 +355,9 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 				return;
 			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				setViewFactory((String)newValue);
+				return;
+			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -336,6 +383,9 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				setViewFactory(VIEW_FACTORY_EDEFAULT);
 				return;
+			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -356,6 +406,8 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__VIEW_FACTORY:
 				return VIEW_FACTORY_EDEFAULT == null ? viewFactory != null : !VIEW_FACTORY_EDEFAULT.equals(viewFactory);
+			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -390,6 +442,8 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 		result.append(name);
 		result.append(", viewFactory: ");
 		result.append(viewFactory);
+		result.append(", description: ");
+		result.append(description);
 		result.append(')');
 		return result.toString();
 	}

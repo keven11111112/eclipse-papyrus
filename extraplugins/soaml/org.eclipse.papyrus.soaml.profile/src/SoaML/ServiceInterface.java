@@ -15,8 +15,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.uml2.uml.Interface;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Service Interface</b></em>'.
@@ -24,11 +22,10 @@ import org.eclipse.uml2.uml.Interface;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
- *   <li>{@link SoaML.ServiceInterface#getBase_Interface <em>Base Interface</em>}</li>
  *   <li>{@link SoaML.ServiceInterface#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getServiceInterface()
  * @model
@@ -65,47 +62,12 @@ public interface ServiceInterface extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * if self.base_Interface.oclIsUndefined()
-	 * then self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or 
-	 * 	self.base_Class.allRealizedInterfaces()->includes(a.type)
-	 * )
-	 * else 
-	 * 	self.base_Interface.ownedAttribute->forAll(a|self.base_Interface.getAllUsedInterfaces()->includes(a.type) or 	
-	 * 		self.base_Interface.allRealizedInterfaces()->includes(a.type)
-	 * 	)
-	 * endif
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='self.base_Class.ownedAttribute->forAll(a|self.base_Class.getAllUsedInterfaces()->includes(a.type) or \r\n\tself.base_Class.allRealizedInterfaces()->includes(a.type))\r\n'"
 	 * @generated
 	 */
 	boolean partsTypesOfServiceInterface(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * Returns the value of the '<em><b>Base Interface</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Base Interface</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base Interface</em>' reference.
-	 * @see #setBase_Interface(Interface)
-	 * @see SoaML.SoaMLPackage#getServiceInterface_Base_Interface()
-	 * @model ordered="false"
-	 * @generated
-	 */
-	Interface getBase_Interface();
-
-	/**
-	 * Sets the value of the '{@link SoaML.ServiceInterface#getBase_Interface <em>Base Interface</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base Interface</em>' reference.
-	 * @see #getBase_Interface()
-	 * @generated
-	 */
-	void setBase_Interface(Interface value);
 
 } // ServiceInterface

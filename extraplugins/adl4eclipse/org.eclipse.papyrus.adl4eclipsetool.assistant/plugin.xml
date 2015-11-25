@@ -1,81 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-      <!--extension
-            point="org.eclipse.ui.menus">
-         <menuContribution
-               allPopups="false"
-               locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup">
-            <menu
-                  icon="img/adl.png"
-                  id="com.cea.papyrus.adl4eclipse.menu"
-                  label="ADL4eclipse"
-                  tooltip="ADL4eclipse">
-            </menu>
-         </menuContribution>
-      </extension>
-      <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:com.cea.papyrus.adl4eclipse.menu">
-         <command
-               commandId="org.eclipse.papyrus.adltool.assistant.SimplePluginModelHandler"
-               id="org.eclipse.papyrus.adltool.assistant.SimplePluginModelHandler.popup"
-               label="Model plugin architecture from Workspace"
-               style="push"
-               tooltip="Model Plugin Architecture from Workspace">
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.adltool.assistant.CompletePluginModelHandler"
-               id="org.eclipse.papyrus.adltool.assistantCompletePluginModelHandler.popup"
-               label="Model plugin architecture from all possible plugins"
-               style="push"
-               tooltip="Model Plugin Architecture from all possible plugins (workpace + platform)">
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.adltool.assistant.SimpleFeatureModelHandler"
-               id="org.eclipse.papyrus.adltool.assistant.SimpleFeatureModelHandler.popup"
-               label="Model features architecture from Workspace"
-               style="push"
-               tooltip="Model features architecture from Workspace">
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.adltool.assistant.ModelCompleteFeatureArchitectureHandler"
-               id="org.eclipse.papyrus.adltool.assistant.ModelCompleteFeatureArchitectureHandler.popup"
-               label="Model features architecture"
-               style="push"
-               tooltip="Model features architecture ( Workspace + Platform)">
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.adltool.assistant.ModelPluginArchitectureFromWorkspaceHandler"
-            id="org.eclipse.papyrus.adltool.assistant.SimplePluginModelHandler"
-            name="Simple plugins architecture snapshot">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.adltool.assistant.ModelCompletePluginArchitectureHandler"
-            id="org.eclipse.papyrus.adltool.assistant.CompletePluginModelHandler"
-            name="Complete plugins architecture snapshot">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.adltool.assistant.ModelFeatureArchitectureFromWorkspaceHandler"
-            id="org.eclipse.papyrus.adltool.assistant.SimpleFeatureModelHandler"
-            name="Simple Feature architecture snapshot">
-      </command>
-      <command
-            categoryId="org.eclipse.papyrus.editor.category"
-            defaultHandler="org.eclipse.papyrus.adltool.assistant.ModelCompleteFeatureArchitectureHandler"
-            id="org.eclipse.papyrus.adltool.assistant.ModelCompleteFeatureArchitectureHandler"
-            name="Complete Feature architecture snapshot">
-      </command>
-   </extension-->
      <extension
          point="org.eclipse.ui.startup">
       <startup
@@ -91,22 +16,36 @@
               category="org.eclipse.papyrus.editor.category"
               class="org.eclipse.papyrus.adl4eclipsetool.assistant.SimplePluginImport"
               icon="img/adl.png"
-              id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
-              name="Simple Plugins architecture snapshot">
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.simplePluginsWizard"
+              name="Workspace plug-ins architecture snapshot">
         </wizard>
         <wizard
               category="org.eclipse.papyrus.editor.category"
               class="org.eclipse.papyrus.adl4eclipsetool.assistant.AdvancePluginImport"
               icon="img/adl.png"
-              id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
-              name="Advanced Plugins architecture snapshot">
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.advancedPluginsWizard"
+              name="Platform plug-ins architecture snapshot (advanced)">
         </wizard>
         <wizard
               category="org.eclipse.papyrus.editor.category"
               class="org.eclipse.papyrus.adl4eclipsetool.assistant.SimpleFeatureImport"
               icon="img/adl.png"
-              id="org.eclipse.papyrus.adl4eclipsetool.assistant.wizard1"
-              name="Simple Features architecture snapshot">
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.simpleFeaturesWizard"
+              name="Workspace features architecture snapshot">
+        </wizard>
+        <wizard
+              category="org.eclipse.papyrus.editor.category"
+              class="org.eclipse.papyrus.adl4eclipsetool.assistant.AdvanceFeatureImport"
+              icon="img/adl.png"
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.advancedFeaturesWizard"
+              name="Platform features architecture snapshot (advanced)">
+        </wizard>
+        <wizard
+              category="org.eclipse.papyrus.editor.category"
+              class="org.eclipse.papyrus.adl4eclipsetool.assistant.CompleteImport"
+              icon="img/adl.png"
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.completeWizard"
+              name="Complete platform architecture snapshot">
         </wizard>
      </extension>
      <extension

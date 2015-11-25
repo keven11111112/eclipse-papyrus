@@ -13,17 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.viewersearch.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.viewersearch.Activator;
+import org.eclipse.papyrus.infra.services.viewersearch.IExtendedViewerSearcher;
 import org.eclipse.papyrus.infra.services.viewersearch.IViewerSearcher;
 import org.eclipse.papyrus.infra.services.viewersearch.Messages;
 
@@ -148,6 +152,39 @@ public class ViewerSearchService extends AbstractViewerSearcher implements IServ
 					}
 				}
 			}
+		}
+
+		return results;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.services.viewersearch.impl.AbstractViewerSearcher#getViewersInCurrentModel(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, boolean, boolean)
+	 *
+	 * @param element
+	 * @param container
+	 * @param pagesOnly
+	 * @param openPagesOnly
+	 * @return
+	 */
+	@Override
+	public List<Object> getViewersInCurrentModel(EObject element, EObject container, boolean pagesOnly, boolean openPagesOnly) {
+		List<Object> results = new ArrayList<Object>();
+		
+		for (String key : viewerSearchers.keySet()) {
+			IViewerSearcher viewerSearcher = viewerSearchers.get(key);
+			
+			if (viewerSearcher instanceof IExtendedViewerSearcher) {
+				List<Object> subResults = ((IExtendedViewerSearcher) viewerSearcher).getViewersInCurrentModel(element, container, pagesOnly, openPagesOnly);
+				
+				if (subResults != null) {
+					for (Object object : subResults) {
+						if (!results.contains(object)) {
+							results.add(object);
+						}
+					}
+				}
+			}
+
 		}
 
 		return results;

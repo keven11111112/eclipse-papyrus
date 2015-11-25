@@ -112,7 +112,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceNameEditPar
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceOperationCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfacePortLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.LinkDescriptorEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
@@ -147,7 +149,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNa
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -654,6 +658,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6032 = (Location) label6032.getLayoutConstraint();
 		location6032.setX(0);
 		location6032.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
 
@@ -681,6 +686,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5007 = (Location) label5007.getLayoutConstraint();
 		location5007.setX(25);
 		location5007.setY(-10);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Port");
 		return node;
 	}
 
@@ -909,6 +915,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6028 = (Location) label6028.getLayoutConstraint();
 		location6028.setX(0);
 		location6028.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
 
@@ -954,7 +961,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
+		Node label6016 = createLabel(edge, UMLVisualIDRegistry.getType(UsageNameEditPart.VISUAL_ID));
+		label6016.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6016 = (Location) label6016.getLayoutConstraint();
+		location6016.setX(0);
+		location6016.setY(60);
+		Node label6017 = createLabel(edge, UMLVisualIDRegistry.getType(UsageAppliedStereotypeEditPart.VISUAL_ID));
+		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6017 = (Location) label6017.getLayoutConstraint();
+		location6017.setX(0);
+		location6017.setY(30);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Usage");
 		return edge;
 	}
 
@@ -982,7 +1000,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// if (routing != null) {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
+		Node label6010 = createLabel(edge, UMLVisualIDRegistry.getType(InterfaceRealizationNameEditPart.VISUAL_ID));
+		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6010 = (Location) label6010.getLayoutConstraint();
+		location6010.setX(0);
+		location6010.setY(60);
+		Node label6011 = createLabel(edge, UMLVisualIDRegistry.getType(InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID));
+		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6011 = (Location) label6011.getLayoutConstraint();
+		location6011.setX(0);
+		location6011.setY(30);
 
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InterfaceRealization");
 		return edge;
 	}
 
@@ -1421,12 +1450,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		// rv.setShowTitle(showTitle);
 		// rv.setCollapsed(isCollapsed);
-		Node rv;
-		if (canCollapse) {
-			rv = NotationFactory.eINSTANCE.createBasicCompartment();
-		} else {
-			rv = NotationFactory.eINSTANCE.createDecorationNode();
-		}
+		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 

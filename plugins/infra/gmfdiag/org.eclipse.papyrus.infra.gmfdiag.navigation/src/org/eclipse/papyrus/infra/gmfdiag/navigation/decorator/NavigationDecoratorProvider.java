@@ -69,7 +69,7 @@ public class NavigationDecoratorProvider extends AbstractProvider implements IDe
 		String decoratorVisibility = Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DECORATOR_VISIBILITY);
 		if (operation instanceof CreateDecoratorsOperation && !INavigationPreferenceConstant.DISABLED.equals(decoratorVisibility)) {
 			IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-			EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
+			EditPart editPart = decoratorTarget.getAdapter(EditPart.class);
 			if (editPart instanceof IPrimaryEditPart) {
 				EObject element = ((IGraphicalEditPart) editPart).resolveSemanticElement();
 				boolean decorate = false;

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.utils;
@@ -29,6 +29,7 @@ import java.util.concurrent.TimeoutException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.matchers.MoreMatchers;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +45,7 @@ import com.google.common.util.concurrent.Futures;
 /**
  * JUnit tests for the {@link JobBasedFuture} class.
  */
-public class JobBasedFutureTest {
+public class JobBasedFutureTest extends AbstractPapyrusTest {
 	private static final long FUTURE_DURATION = 3L;
 
 	private static final TimeUnit FUTURE_DURATION_UNIT = TimeUnit.SECONDS;

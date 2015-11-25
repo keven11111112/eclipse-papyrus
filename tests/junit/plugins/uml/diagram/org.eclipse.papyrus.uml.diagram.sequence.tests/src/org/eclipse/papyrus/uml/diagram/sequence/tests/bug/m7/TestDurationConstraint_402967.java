@@ -97,6 +97,8 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 	private static final String SEP = "..";
 
+	private static final String DURATION_CONSTRAINT_ROTATE_MENU = "rotate";
+
 	@Override
 	protected String getProjectName() {
 		return ISequenceDiagramTestsConstants.PROJECT_NAME;
@@ -142,7 +144,6 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		event.type = SWT.MouseDown;
 		event.widget = control;
 		control.notifyListeners(SWT.MouseDown, event);
-
 		event.type = SWT.MouseUp;
 		control.notifyListeners(SWT.MouseUp, event);
 		return p;
@@ -159,14 +160,17 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		menu.notifyListeners(SWT.Show, event);
 		menu.setVisible(true);
 		MenuItem[] items = menu.getItems();
+		boolean menuItemSelected = false;
 		for (MenuItem it : items) {
 			if (it.getText().toLowerCase().contains(itemText)) {
+				menuItemSelected = true;
 				Event e = createEvent();
 				e.widget = it;
-
 				it.notifyListeners(SWT.Selection, e);
+				break;
 			}
 		}
+		assertTrue("Menu item '" + itemText + "' not selected.", menuItemSelected);
 		menu.notifyListeners(SWT.Hide, event);
 		menu.setVisible(false);
 		waitForComplete();
@@ -280,22 +284,21 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		return null;
 	}
 
-	@FailingTest
 	@Test
 	public void testDurationRotate() {
 		DurationConstraintEditPart dc = (DurationConstraintEditPart) createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(100, 200), null);
 		assertNotNull(dc);
-		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, getBorderSides(dc) == (PositionConstants.TOP | PositionConstants.BOTTOM));
+		assertEquals(CREATION + TEST_THE_EXECUTION, 1, getRootEditPart().getChildren().size());
+		assertEquals(CREATION + TEST_THE_EXECUTION, PositionConstants.TOP | PositionConstants.BOTTOM, getBorderSides(dc));
 
 		Rectangle before = getAbsoluteBounds(dc);
 		Point p = selectEditpart(dc);
-		clickMenuItem(dc, p, "rotate");
+		clickMenuItem(dc, p, DURATION_CONSTRAINT_ROTATE_MENU);
 		Rectangle after = getAbsoluteBounds(dc);
 
-		assertTrue("TEST_THE_EXECUTION", before.width == after.height);
-		assertTrue("TEST_THE_EXECUTION", before.height == after.width);
-		assertTrue("TEST_THE_EXECUTION", getBorderSides(dc) == (PositionConstants.LEFT | PositionConstants.RIGHT));
+		assertEquals("TEST_THE_EXECUTION", before.width, after.height);
+		assertEquals("TEST_THE_EXECUTION", before.height, after.width);
+		assertEquals("TEST_THE_EXECUTION", PositionConstants.LEFT | PositionConstants.RIGHT, getBorderSides(dc));
 
 		// undo
 		assertTrue(TEST_THE_UNDO, getEMFCommandStack().canUndo());
@@ -311,11 +314,11 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 		// rotate again, should be same as before
 		p = selectEditpart(dc);
-		clickMenuItem(dc, p, "rotate");
+		clickMenuItem(dc, p, DURATION_CONSTRAINT_ROTATE_MENU);
 		after = getAbsoluteBounds(dc);
-		assertTrue("TEST_THE_EXECUTION", before.width == after.width);
-		assertTrue("TEST_THE_EXECUTION", before.height == after.height);
-		assertTrue("TEST_THE_EXECUTION", getBorderSides(dc) == (PositionConstants.TOP | PositionConstants.BOTTOM));
+		assertEquals("TEST_THE_EXECUTION", before.width, after.width);
+		assertEquals("TEST_THE_EXECUTION", before.height, after.height);
+		assertEquals("TEST_THE_EXECUTION", PositionConstants.TOP | PositionConstants.BOTTOM, getBorderSides(dc));
 	}
 
 	@Test
@@ -377,7 +380,6 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		assertTrue(EDIT + TEST_THE_EXECUTION, label.getText().contains("1") && !label.getText().contains(SEP));
 	}
 
-	@FailingTest
 	@Test
 	// link to the top and bottom of execution specification on the single lifeline
 	public void testLinkingExecutionOnSameLifeline() {

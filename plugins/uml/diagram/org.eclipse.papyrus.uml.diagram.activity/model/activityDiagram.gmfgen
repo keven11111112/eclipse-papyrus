@@ -4341,9 +4341,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="LinkAndCornerBentWithTextFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class LinkAndCornerBentWithTextFigure extends org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fLinkToBehaviorProperty; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public LinkAndCornerBentWithTextFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fCornerBentContent = new org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fCornerBentContent);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fLinkToBehaviorProperty = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;fLinkToBehaviorProperty.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#xD;&#xA;this.add(fLinkToBehaviorProperty);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xD;&#xA;&#x9;&#x9;return fCornerBentContent;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getLinkToBehaviorProperty() {&#xD;&#xA;&#x9;&#x9;return fLinkToBehaviorProperty;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xD;&#xA;&#xD;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LinkAndCornerBentWithTextFigure"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
@@ -4734,9 +4733,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="LinkAndCornerBentWithTextFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class LinkAndCornerBentWithTextFigure extends org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fLinkToBehaviorProperty; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public LinkAndCornerBentWithTextFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fCornerBentContent = new org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fCornerBentContent);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fLinkToBehaviorProperty = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;fLinkToBehaviorProperty.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#xD;&#xA;this.add(fLinkToBehaviorProperty);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xD;&#xA;&#x9;&#x9;return fCornerBentContent;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getLinkToBehaviorProperty() {&#xD;&#xA;&#x9;&#x9;return fLinkToBehaviorProperty;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xD;&#xA;&#xD;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LinkAndCornerBentWithTextFigure"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
@@ -12224,9 +12222,8 @@
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
-              xsi:type="gmfgen:InnerClassViewmap"
-              className="LinkAndCornerBentWithTextFigure"
-              classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class LinkAndCornerBentWithTextFigure extends org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel fCornerBentContent; &#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private org.eclipse.draw2d.PolylineShape fLinkToBehaviorProperty; &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public LinkAndCornerBentWithTextFigure() {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#xD;&#xA;&#xD;&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xD;&#xA;);&#xD;&#xA;&#x9;&#x9;createContents();&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;private void createContents(){&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fCornerBentContent = new org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel();&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;this.add(fCornerBentContent);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;fLinkToBehaviorProperty = new org.eclipse.draw2d.PolylineShape();&#xD;&#xA;fLinkToBehaviorProperty.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#xD;&#xA;this.add(fLinkToBehaviorProperty);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.papyrus.uml.diagram.activity.figures.WrappedLabel getCornerBentContent() {&#xD;&#xA;&#x9;&#x9;return fCornerBentContent;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public org.eclipse.draw2d.PolylineShape getLinkToBehaviorProperty() {&#xD;&#xA;&#x9;&#x9;return fLinkToBehaviorProperty;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xD;&#xA;&#xD;&#xA;"/>
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.LinkAndCornerBentWithTextFigure"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.21"/>
         </labels>
@@ -18996,7 +18993,7 @@
           notationViewFactoryClassName="ActivityActivityParametersCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityParametersCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.0"
-          title="ActivityFigureParameterCompartment"
+          title="parameters"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.0">
@@ -19018,7 +19015,7 @@
           notationViewFactoryClassName="ActivityActivityPreConditionsCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityPreConditionsCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
-          title="ActivityFigurePreconditionCompartment"
+          title="pre conditions"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.0">
@@ -19044,7 +19041,7 @@
           notationViewFactoryClassName="ActivityActivityPostConditionsCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityPostConditionsCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.2"
-          title="ActivityFigurePostCondtionCompartment"
+          title="post conditions"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.0">
@@ -19066,7 +19063,7 @@
           notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="ActivityFigureContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@topLevelNodes.0"
@@ -19101,7 +19098,7 @@
           notationViewFactoryClassName="ConditionalNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.175"
-          title="StructuredActivityNodeContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.56"
@@ -19132,7 +19129,7 @@
           notationViewFactoryClassName="ExpansionRegionStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ExpansionRegionStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="StructuredActivityNodeContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.57"
@@ -19163,7 +19160,7 @@
           notationViewFactoryClassName="LoopNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="StructuredActivityNodeContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.60"
@@ -19194,7 +19191,7 @@
           notationViewFactoryClassName="SequenceNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="SequenceNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="StructuredActivityNodeContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.67"
@@ -19225,7 +19222,7 @@
           notationViewFactoryClassName="StructuredActivityNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="StructuredActivityNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="StructuredActivityNodeContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.68"
@@ -19256,7 +19253,7 @@
           notationViewFactoryClassName="ActivityPartitionActivityPartitionContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="ActivityPartitionContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.73"
@@ -19287,7 +19284,7 @@
           notationViewFactoryClassName="InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentViewFactory"
           canonicalEditPolicyClassName="InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="InterruptibleActivityRegionContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.74"
@@ -19317,7 +19314,7 @@
           notationViewFactoryClassName="ActivityActivityParametersCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityCNParametersCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.0"
-          title="ActivityFigureParameterCompartment"
+          title="parameters"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.78">
@@ -19331,6 +19328,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7015"
@@ -19339,7 +19340,7 @@
           notationViewFactoryClassName="ActivityActivityPreConditionsCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityCNPreConditionsCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
-          title="ActivityFigurePreconditionCompartment"
+          title="pre conditions"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.78">
@@ -19357,6 +19358,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7016"
@@ -19365,7 +19370,7 @@
           notationViewFactoryClassName="ActivityActivityPostConditionsCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityCNPostConditionsCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.2"
-          title="ActivityFigurePostCondtionCompartment"
+          title="post conditions"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.78">
@@ -19379,6 +19384,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <compartments
           visualID="7013"
@@ -19387,7 +19396,7 @@
           notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityCNContentCompartmentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.51 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.175"
-          title="ActivityFigureContentCompartment"
+          title="content"
           canCollapse="false"
           needsTitle="false"
           node="/0/@diagram/@childNodes.78"
@@ -19414,6 +19423,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.BorderDisplayEditPolicy"/>
       </compartments>
       <palette
           packageName="org.eclipse.papyrus.uml.diagram.activity.part">
@@ -20146,7 +20159,7 @@
         iD="org.eclipse.papyrus.uml.diagram.activity"
         name="Papyrus activity editor Plugin"
         provider="Papyrus"
-        version="1.1.0.qualifier">
+        version="1.2.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.papyrus.uml.diagram.common</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
@@ -21078,7 +21091,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="link that to intherits from UML specificities"
-        genView="/0/@diagram/@links.3 /0/@diagram/@links.2"
+        genView="/0/@diagram/@links.3 /0/@diagram/@links.2 /0/@diagram/@links.5 /0/@diagram/@links.6"
         name="UML link inheritance"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
     <extensionNodes

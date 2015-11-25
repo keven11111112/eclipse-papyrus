@@ -79,6 +79,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
+import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
@@ -100,9 +101,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicates;
@@ -120,14 +118,12 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 	public final HouseKeeper houseKeeper = new HouseKeeper();
 
 	@Rule
-	public final TestRule annotationRule = new AnnotationRule();
+	public final AnnotationRule<Boolean> needUIEvents = AnnotationRule.createExists(NeedsUIEvents.class);
 
 	@Rule
 	public final PapyrusEditorFixture editor = new PapyrusEditorFixture();
 
 	private ComposedAdapterFactory adapterFactory;
-
-	private boolean needUIEvents;
 
 	public AbstractCanonicalTest() {
 		super();
@@ -284,7 +280,7 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 	}
 
 	protected final boolean isNeedUIEvents() {
-		return needUIEvents;
+		return needUIEvents.get();
 	}
 
 	protected void execute(final Runnable writeOperation) {
@@ -737,12 +733,5 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 	@Target({ ElementType.TYPE, ElementType.METHOD })
 	protected @interface NeedsUIEvents {
 		// Empty
-	}
-
-	private class AnnotationRule extends TestWatcher {
-		@Override
-		protected void starting(Description description) {
-			needUIEvents = JUnitUtils.getAnnotation(description, NeedsUIEvents.class) != null;
-		}
 	}
 }

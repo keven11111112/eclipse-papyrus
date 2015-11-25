@@ -36,11 +36,11 @@ import org.eclipse.swt.SWT;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#getWindows <em>Windows</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#getCurrentSelection <em>Current Selection</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -172,6 +172,17 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		// folder = getFirstFolder();
 		// }
 		folder.addPage(pageIdentifier);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	@Override
+	public void addPage(TabFolder folder, PageRef pageRef) {
+		folder.addPage(pageRef);
 	}
 
 	/**

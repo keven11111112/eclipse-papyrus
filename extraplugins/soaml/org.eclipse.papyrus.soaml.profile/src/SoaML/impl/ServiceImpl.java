@@ -39,10 +39,10 @@ import org.eclipse.uml2.uml.Port;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.ServiceImpl#getBase_Port <em>Base Port</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

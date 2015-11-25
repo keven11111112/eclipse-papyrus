@@ -208,6 +208,22 @@ ActivityDiagram Activity
 	bottomMarginLabel:5;
 }
 
+ActivityDiagram SequenceNode,
+ActivityDiagram ConditionalNode,
+ActivityDiagram ExpansionRegion,
+ActivityDiagram LoopNode,
+ActivityDiagram StructuredActivityNode{
+	textAlignment:left;
+}
+
+ActivityDiagram SequenceNode>Compartment,
+ActivityDiagram ConditionalNode>Compartment,
+ActivityDiagram ExpansionRegion>Compartment,
+ActivityDiagram LoopNode>Compartment,
+ActivityDiagram StructuredActivityNode>Compartment{
+	lineLength:0;
+}
+
 /* For most Activity diagram nodes (e.g. initial, final, fork, decision, ...), 
  * the element icon is displayed next to the actual object. 
  * By default, we prevent this. 
@@ -358,19 +374,21 @@ CompositeStructureDiagram Property[aggregation="shared"]{
 }
 
 CompositeStructureDiagram DurationObservation > Compartment[kind="symbol"],
-CompositeStructureDiagram TimeObservation > Compartment[kind="symbol"]
-{
+CompositeStructureDiagram TimeObservation > Compartment[kind="symbol"]{
     visible:true;
 }
 
 CompositeStructureDiagram DurationObservation > Label,
 CompositeStructureDiagram TimeObservation > Label,
-CompositeStructureDiagram Port > Label
-{
+CompositeStructureDiagram Port > Label{
     visible:true;
     textAlignment:"left";
 }
 
+/*Fix of Bug 481701: this permits to hide floating label of collaboration roles which don't have a specific Semantic Element*/
+CompositeStructureDiagram Collaboration > Compartment[kind=internalstructure] > * > Label[kind=FloatingLabel]{
+	visible:false;
+}
 
 /*---------- Interaction Overview Diagram ----------*/
 
@@ -434,3 +452,8 @@ InteractionOverviewDiagram Activity
 	bottomMarginLabel:5;
 }
 
+/*---------- Sequence Diagram ----------*/
+
+SequenceDiagram InteractionOperand {
+	borderStyle: dash;
+}

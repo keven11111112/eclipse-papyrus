@@ -30,10 +30,10 @@ import org.eclipse.uml2.uml.Realization;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.impl.MotivationRealizationImpl#getBase_Realization <em>Base Realization</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

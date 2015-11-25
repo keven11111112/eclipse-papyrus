@@ -14,6 +14,14 @@
    
 -->
 <plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/DeploymentDiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
+
 <extension
       point="org.eclipse.ui.commands">
    <command
@@ -188,6 +196,16 @@
 				</entry>
 				<entry
 				      defineOnly="true"
+				      description="Create new DeploymentSpecification"
+				      id="deployment.tool.deploymentspecification"
+				      kind="tool"
+				      label="DeploymentSpecification"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif">
+				</entry>
+				<entry
+				      defineOnly="true"
 				      description="Create new ExecutionEnvironment"
 				      id="deployment.tool.executionEnvironment"
 				      kind="tool"
@@ -342,6 +360,10 @@
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.device"
+				path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.deploymentspecification"
 				path="/deployment.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
@@ -507,7 +529,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLDeploymentDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,49,36,16,44,21,46,23,42,25,28,40,54,56"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,2013,49,36,16,44,21,46,23,42,25,28,40,54,56,2014,2015,2016"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4008,4009,4001,4002,4003,4004,4010,4011"/>
       </viewProvider>
    </extension>
@@ -520,13 +542,13 @@
             <method name="getType()" value="PapyrusUMLDeploymentDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,49,36,16,44,21,46,23,42,25,28,40,54,56"/>
+            <method name="getType()" value="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,2013,49,36,16,44,21,46,23,42,25,28,40,54,56,2014,2015,2016"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4005,4008,4009,4001,4002,4003,4004,4010,4011"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="7,48,35,2,3,1,5,6,8,61,9,53,50,37,20,45,22,47,24,43,27,59,29,60,41,55,57,58"/>
+            <method name="getType()" value="7,48,35,2,3,1,5,6,8,61,9,53,62,63,50,37,20,45,22,47,24,43,27,59,29,60,41,55,57,58,64,65,66,67,68,69"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="51,38,17,18,19,26,52,39,30,31,32,33,34"/>
@@ -678,7 +700,23 @@
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
+				type="65">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="67">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="69">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
 				type="61">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="63">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -700,6 +738,12 @@
          reconcilerClass="org.eclipse.papyrus.uml.diagram.deployment.custom.migration.DeploymentReconcilier"
          source="undefined"
          target="1.1.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLDeploymentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.deployment.custom.migration.DeploymentReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
    </diagramReconciler>
 </extension>
 <extension

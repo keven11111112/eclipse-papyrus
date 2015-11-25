@@ -17,11 +17,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.adl4eclipse.org.IADL4ECLIPSE_Stereotype;
+import org.eclipse.papyrus.adl4eclipse.org.ADL4Eclipse_Stereotypes;
 import org.eclipse.papyrus.adl4eclipsetool.table.Activator;
 import org.eclipse.papyrus.adl4eclipsetool.table.Messages;
 import org.eclipse.papyrus.infra.nattable.tester.ITableTester;
-import org.eclipse.papyrus.osgi.profile.IOSGIStereotype;
+import org.eclipse.papyrus.osgi.profile.OSGIStereotypes;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 
@@ -35,14 +35,14 @@ public class TableArchitectureCreationTester implements ITableTester {
 		if (context instanceof Package) {
 			Package package_= (Package)context;
 			// check OSGI and eclipse profile
-			IStatus ADL4EclipseStatus = checkProfileApplied(package_, IADL4ECLIPSE_Stereotype.ADL4ECLIPSE);
-			IStatus oSGIStatus = checkProfileApplied(package_, IOSGIStereotype.OSGI);
-			IStatus oSGIModuleLayerStatus = checkProfileApplied(package_, IOSGIStereotype.OSGI_MODULE_LAYER);
+			IStatus ADL4EclipseStatus = checkProfileApplied(package_, ADL4Eclipse_Stereotypes.ADL4ECLIPSE);
+			IStatus oSGIStatus = checkProfileApplied(package_, OSGIStereotypes.OSGI);
+			IStatus oSGIModuleLayerStatus = checkProfileApplied(package_, OSGIStereotypes.OSGI_MODULE_LAYER);
 			if(!ADL4EclipseStatus.isOK() || !oSGIStatus.isOK() || !oSGIModuleLayerStatus.isOK()) {
 				return new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, new IStatus[] {ADL4EclipseStatus, oSGIStatus, oSGIModuleLayerStatus}, Messages.TableArchitectureCreationTester_MissingRequiredProfiles, null);
 			}
 			return Status.OK_STATUS;
-			
+
 		}
 		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.TableArchitectureCreationTester_NotAPackage);
 	}

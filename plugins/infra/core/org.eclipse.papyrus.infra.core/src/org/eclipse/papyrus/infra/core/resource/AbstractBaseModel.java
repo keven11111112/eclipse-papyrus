@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
- *
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +11,7 @@
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Christian W. Damus (CEA) - bug 437052
  *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bug 481149
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware;
 import org.eclipse.papyrus.infra.core.Activator;
 
 /**
- * An abstract implmeentation of model. This class should be subclassed to fit
+ * An abstract implementation of model. This class should be subclassed to fit
  * the required model.
  *
  * @author cedric dumoulin
@@ -124,6 +124,9 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 			resource = getModelManager().createResource(resourceURI);
 		}
 		configureResource(resource);
+
+		// And start snippets
+		startSnippets();
 	}
 
 	protected void configureResource(Resource resource) {
@@ -186,7 +189,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 		configureResource(resource);
 
 		// call registered snippets
-		snippets.performStart(this);
+		startSnippets();
 	}
 
 	/**
@@ -257,7 +260,7 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 	@Override
 	public void unload() {
 		// call registered snippets
-		snippets.performDispose(this);
+		stopSnippets();
 
 		// Do unloading
 		if (resource != null) {

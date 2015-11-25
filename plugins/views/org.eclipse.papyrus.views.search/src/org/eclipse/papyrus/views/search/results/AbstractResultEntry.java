@@ -155,7 +155,7 @@ public abstract class AbstractResultEntry extends Match {
 			// support comparison against EObjects
 			// FIXME: This violates the symmetry contract of Object::equals!
 			if (obj instanceof EObject && this.getSource() instanceof EObject) {
-				if (EcoreUtil.equals((EObject) this.getSource(), (EObject) obj)) {
+				if (EcoreUtil.getURI((EObject) this.getSource()).equals(EcoreUtil.getURI((EObject) obj))) {
 					if (((AbstractResultEntry) obj).getOffset() == this.getOffset()) {
 						if (((AbstractResultEntry) obj).getLength() == this.getLength()) {
 							return true;

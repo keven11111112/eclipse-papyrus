@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.sync.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Diagram-to-diagram synchronization framework test suite.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		MasterSlaveNotationSyncTest.class,
 		NotationSyncOverrideTest.class,

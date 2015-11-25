@@ -212,7 +212,7 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
-		ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
+		ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null); 
 		flushDisplayEvents();
 		Object res = cmd.executeWithChecks(event);
 		Assert.assertTrue(res instanceof IStatus);
@@ -225,7 +225,7 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		}
 	}
 
-	protected final void validateReturnedStatus(IStatus status) {
+	protected void validateReturnedStatus(IStatus status) {
 		Assert.assertTrue(status.isOK());
 	}
 

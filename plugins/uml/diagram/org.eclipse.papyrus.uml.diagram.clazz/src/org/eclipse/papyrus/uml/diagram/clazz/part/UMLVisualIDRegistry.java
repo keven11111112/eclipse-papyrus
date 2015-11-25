@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.clazz.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -205,6 +206,11 @@ public class UMLVisualIDRegistry {
 				return TemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case EnumerationEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case PackageEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
@@ -214,6 +220,11 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
@@ -246,6 +257,11 @@ public class UMLVisualIDRegistry {
 				return TemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case EnumerationEditPartCN.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case PackageEditPartCN.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
@@ -259,13 +275,18 @@ public class UMLVisualIDRegistry {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case DataTypeEditPartCN.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3012((Property) domainElement)) {
 				return PropertyForClassEditPart.VISUAL_ID;
 			}
 			break;
@@ -301,7 +322,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentAttributeCompartmentEditPartCN.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3002((Property) domainElement)) {
 				return PropertyForComponentEditPart.VISUAL_ID;
 			}
 			break;
@@ -337,12 +358,12 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case SignalAttributeCompartmentEditPartCN.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3005((Property) domainElement)) {
 				return PropertyForSignalEditPart.VISUAL_ID;
 			}
 			break;
 		case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3006((Property) domainElement)) {
 				return PropertyForInterfaceEditPart.VISUAL_ID;
 			}
 			break;
@@ -378,7 +399,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3041((Property) domainElement)) {
 				return PropertyforPrimitiveTypeEditPart.VISUAL_ID;
 			}
 			break;
@@ -388,7 +409,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3018((Property) domainElement)) {
 				return PropertyforDataTypeEditPart.VISUAL_ID;
 			}
 			break;
@@ -490,7 +511,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ClassAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3012((Property) domainElement)) {
 				return PropertyForClassEditPart.VISUAL_ID;
 			}
 			break;
@@ -526,7 +547,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case ComponentAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3002((Property) domainElement)) {
 				return PropertyForComponentEditPart.VISUAL_ID;
 			}
 			break;
@@ -562,7 +583,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3006((Property) domainElement)) {
 				return PropertyForInterfaceEditPart.VISUAL_ID;
 			}
 			break;
@@ -598,7 +619,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3041((Property) domainElement)) {
 				return PropertyforPrimitiveTypeEditPart.VISUAL_ID;
 			}
 			break;
@@ -608,7 +629,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3018((Property) domainElement)) {
 				return PropertyforDataTypeEditPart.VISUAL_ID;
 			}
 			break;
@@ -618,7 +639,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case AssociationClassAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3002((Property) domainElement)) {
 				return PropertyForComponentEditPart.VISUAL_ID;
 			}
 			break;
@@ -628,7 +649,7 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case SignalAttributeCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+			if (UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3005((Property) domainElement)) {
 				return PropertyForSignalEditPart.VISUAL_ID;
 			}
 			break;
@@ -958,6 +979,9 @@ public class UMLVisualIDRegistry {
 			if (EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackageEditPart.VISUAL_ID:
 			if (PackageNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -1012,6 +1036,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1170,6 +1197,9 @@ public class UMLVisualIDRegistry {
 			if (EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case PackageEditPartCN.VISUAL_ID:
 			if (PackageNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1224,6 +1254,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1983,6 +2016,54 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
+	private static boolean isProperty_3012(Property domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isProperty_3002(Property domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isProperty_3005(Property domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isProperty_3006(Property domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isProperty_3041(Property domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isProperty_3018(Property domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getProperty(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
 	private static boolean isInstanceSpecification_3020(InstanceSpecification domainElement) {
 		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
@@ -2131,7 +2212,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
-
 		/**
 		 * @generated
 		 */

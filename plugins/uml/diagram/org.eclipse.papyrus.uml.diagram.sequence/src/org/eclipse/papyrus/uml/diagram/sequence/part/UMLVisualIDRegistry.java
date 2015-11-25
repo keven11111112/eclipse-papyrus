@@ -164,7 +164,10 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static int getDiagramVisualID(EObject domainElement) {
-		return PackageEditPart.VISUAL_ID;
+		if (domainElement == null) {
+			return -1;
+		}
+		return 1000;
 	}
 
 	/**
@@ -738,7 +741,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
-
 		/**
 		 * @generated
 		 */

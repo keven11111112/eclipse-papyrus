@@ -20,6 +20,7 @@ import org.eclipse.uml2.uml.CommunicationPath;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Deployment;
+import org.eclipse.uml2.uml.DeploymentSpecification;
 import org.eclipse.uml2.uml.Device;
 import org.eclipse.uml2.uml.ExecutionEnvironment;
 import org.eclipse.uml2.uml.LiteralString;
@@ -164,6 +165,26 @@ public class ElementInitializers {
 			if (value_0 != null) {
 				instance.setName(
 						(String) value_0);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	* @generated
+	*/
+	public void init_DeploymentSpecification_2013(DeploymentSpecification instance) {
+		try {
+			Object value_0 = name_DeploymentSpecification_2013(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+			Object value_1 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getDeploymentSpecification(), null).evaluate(instance);
+			if (value_1 != null) {
+				instance.setFileName(
+						(String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -386,6 +407,66 @@ public class ElementInitializers {
 	}
 
 	/**
+	* @generated
+	*/
+	public void init_DeploymentSpecification_2014(DeploymentSpecification instance) {
+		try {
+			Object value_0 = name_DeploymentSpecification_2014(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+			Object value_1 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getDeploymentSpecification(), null).evaluate(instance);
+			if (value_1 != null) {
+				instance.setFileName(
+						(String) value_1);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_DeploymentSpecification_2015(DeploymentSpecification instance) {
+		try {
+			Object value_0 = name_DeploymentSpecification_2015(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+			Object value_1 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getDeploymentSpecification(), null).evaluate(instance);
+			if (value_1 != null) {
+				instance.setFileName(
+						(String) value_1);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_DeploymentSpecification_2016(DeploymentSpecification instance) {
+		try {
+			Object value_0 = name_DeploymentSpecification_2016(instance);
+			if (value_0 != null) {
+				instance.setName(
+						(String) value_0);
+			}
+			Object value_1 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getDeploymentSpecification(), null).evaluate(instance);
+			if (value_1 != null) {
+				instance.setFileName(
+						(String) value_1);
+			}
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	public void init_Deployment_4001(Deployment instance) {
@@ -528,6 +609,13 @@ public class ElementInitializers {
 	}
 
 	/**
+	* @generated
+	*/
+	private String name_DeploymentSpecification_2013(DeploymentSpecification it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
 	 * @generated
 	 */
 	private String name_Model_49(Model it) {
@@ -627,6 +715,27 @@ public class ElementInitializers {
 		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
 		value.setValue("");
 		return value;
+	}
+
+	/**
+	* @generated
+	*/
+	private String name_DeploymentSpecification_2014(DeploymentSpecification it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DeploymentSpecification_2015(DeploymentSpecification it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DeploymentSpecification_2016(DeploymentSpecification it) {
+		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**

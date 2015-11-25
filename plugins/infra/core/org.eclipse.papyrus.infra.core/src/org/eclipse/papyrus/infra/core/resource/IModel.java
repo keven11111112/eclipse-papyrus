@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
+ *  Christian W. Damus - bug 481149
  *
  *
  *****************************************************************************/
@@ -141,7 +142,9 @@ public interface IModel {
 	/**
 	 * Add a snippet to this model. The snippet is called just after model is
 	 * initialized, and before it is disposed or unloaded. Snippet can be shared
-	 * among models.
+	 * among models. If this model's snippets have already been started (the
+	 * model was previously loaded), then this new {@code snippet} is started
+	 * also.
 	 *
 	 * @param snippet
 	 *            The snippet to add.

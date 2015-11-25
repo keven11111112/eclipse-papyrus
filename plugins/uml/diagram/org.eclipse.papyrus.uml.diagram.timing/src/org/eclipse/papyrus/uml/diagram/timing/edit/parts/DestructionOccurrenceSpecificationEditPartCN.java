@@ -106,8 +106,7 @@ public class DestructionOccurrenceSpecificationEditPartCN extends NodeEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -159,8 +158,7 @@ public class DestructionOccurrenceSpecificationEditPartCN extends NodeEditPart {
 		} else if (borderItemEditPart instanceof DestructionOccurrenceSpecificationLabelEditPart) {
 			IBorderItemLocator locator = new LabelInCompartmentLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

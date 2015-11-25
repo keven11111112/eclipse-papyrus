@@ -8,22 +8,19 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Extends Abstract Class
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.strategy.copy;
 
 import java.util.Map;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.ICopyStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.AbstractCopyStrategy;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.swt.graphics.Image;
 
 /**
- *
+ * Copy Strategy to Copy only the Root of an element.
  */
-public class RootOnlyCopyStrategy implements ICopyStrategy {
+public class RootOnlyCopyStrategy extends AbstractCopyStrategy {
 
 	@Override
 	public String getLabel() {
@@ -32,12 +29,12 @@ public class RootOnlyCopyStrategy implements ICopyStrategy {
 
 	@Override
 	public String getID() {
-		return Activator.ID + ".RootOnlyCopyStrategy";//".ClassifierToStructureCompDrop"; //$NON-NLS-1$
+		return Activator.ID + ".RootOnlyCopyStrategy";// ".ClassifierToStructureCompDrop"; //$NON-NLS-1$
 	}
 
 	@Override
 	public String getDescription() {
-		return "Copopy only root of the selected element"; //$NON-NLS-1$
+		return "Copy only root of the selected element"; //$NON-NLS-1$
 	}
 
 	public String getCategoryID() {
@@ -48,25 +45,11 @@ public class RootOnlyCopyStrategy implements ICopyStrategy {
 		return "Select elements to copy"; //$NON-NLS-1$
 	}
 
-	@Override
-	public Image getImage() {
-		return null;
-	}
-
-	@Override
-	public int getPriority() {
-		return 0;
-	}
 
 	public void setOptions(Map<String, Object> options) {
 		// Nothing
 	}
 
-	@Override
-	public Command getCommand(Request request, EditPart targetEditPart) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 }

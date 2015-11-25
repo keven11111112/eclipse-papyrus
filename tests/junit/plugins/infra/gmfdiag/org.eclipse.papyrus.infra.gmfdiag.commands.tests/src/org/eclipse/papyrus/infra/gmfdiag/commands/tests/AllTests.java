@@ -17,14 +17,14 @@ import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStackTest;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStackTest;
 import org.eclipse.papyrus.commands.util.CommandTreeIteratorTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Master test suite for this test fragment.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// {oep.commands}
 		NotifyingWorkspaceCommandStackTest.class, NestingNotifyingWorkspaceCommandStackTest.class,

@@ -114,4 +114,24 @@ public class EditorFactoryProxy implements IEditorFactory {
 
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.core.editorsfactory.IEditorFactory#getFactoryID()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getFactoryID() {
+		return getEditorFactory().getFactoryID();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.core.editorsfactory.IEditorFactory#getLabel()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getLabel() {
+		return getEditorFactory().getLabel();
+	}
+
 }

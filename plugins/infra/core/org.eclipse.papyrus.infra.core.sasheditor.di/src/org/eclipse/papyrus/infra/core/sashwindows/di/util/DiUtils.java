@@ -98,15 +98,15 @@ public class DiUtils {
 	 */
 	static public TabFolder lookupCurrentTabFolderSelection(Resource diResource) {
 		SashWindowsMngr lookupSashWindowsMngr = lookupSashWindowsMngr(diResource);
-		if (lookupSashWindowsMngr != null){
+		if (lookupSashWindowsMngr != null) {
 			SashModel sashModel = lookupSashWindowsMngr.getSashModel();
-			if (sashModel != null){
+			if (sashModel != null) {
 				return sashModel.getCurrentSelection();
 			}
 		}
 		return null;
-	}	
-	
+	}
+
 	/**
 	 * Gets the page reference of the specified eObject
 	 *

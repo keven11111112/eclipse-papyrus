@@ -194,35 +194,35 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		case CreateLinkObjectActionEditPart.VISUAL_ID:
 			return getCreateLinkObjectAction_3198SemanticChildren(view);
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigureParameterCompartment_7001SemanticChildren(view);
+			return getActivityParameters_7001SemanticChildren(view);
 		case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigurePreconditionCompartment_7002SemanticChildren(view);
+			return getActivityPreconditions_7002SemanticChildren(view);
 		case ActivityActivityPostConditionsCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigurePostCondtionCompartment_7003SemanticChildren(view);
+			return getActivityPostconditions_7003SemanticChildren(view);
 		case ActivityActivityContentCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigureContentCompartment_7004SemanticChildren(view);
+			return getActivityContent_7004SemanticChildren(view);
 		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
-			return getConditionalNodeStructuredActivityNodeContentCompartment_7008SemanticChildren(view);
+			return getConditionalNodeContent_7008SemanticChildren(view);
 		case ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
-			return getExpansionRegionStructuredActivityNodeContentCompartment_7009SemanticChildren(view);
+			return getExpansionRegionContent_7009SemanticChildren(view);
 		case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
-			return getLoopNodeStructuredActivityNodeContentCompartment_7010SemanticChildren(view);
+			return getLoopNodeContent_7010SemanticChildren(view);
 		case SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
-			return getSequenceNodeStructuredActivityNodeContentCompartment_7012SemanticChildren(view);
+			return getSequenceNodeContent_7012SemanticChildren(view);
 		case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
-			return getStructuredActivityNodeStructuredActivityNodeContentCompartment_7005SemanticChildren(view);
+			return getStructuredActivityNodeContent_7005SemanticChildren(view);
 		case ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID:
-			return getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren(view);
+			return getActivityPartitionContent_7006SemanticChildren(view);
 		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
-			return getInterruptibleActivityRegionInterruptibleActivityRegionContentCompartment_7007SemanticChildren(view);
+			return getInterruptibleActivityRegionContent_7007SemanticChildren(view);
 		case ActivityCNParametersCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigureParameterCompartment_7014SemanticChildren(view);
+			return getActivityParameters_7014SemanticChildren(view);
 		case ActivityCNPreConditionsCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigurePreconditionCompartment_7015SemanticChildren(view);
+			return getActivityPreconditions_7015SemanticChildren(view);
 		case ActivityCNPostConditionsCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigurePostCondtionCompartment_7016SemanticChildren(view);
+			return getActivityPostconditions_7016SemanticChildren(view);
 		case ActivityCNContentCompartmentEditPart.VISUAL_ID:
-			return getActivityActivityFigureContentCompartment_7013SemanticChildren(view);
+			return getActivityContent_7013SemanticChildren(view);
 		}
 		return Collections.emptyList();
 	}
@@ -1364,9 +1364,9 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getActivityActivityFigureParameterCompartment_7001SemanticChildren(View view) {
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getActivityParameters_7001SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -1391,7 +1391,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getActivityActivityFigurePreconditionCompartment_7002SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getActivityPreconditions_7002SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -1416,7 +1416,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getActivityActivityFigurePostCondtionCompartment_7003SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getActivityPostconditions_7003SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -1443,7 +1443,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 *
 	 * @generated NOT
 	 */
-	public static List<UMLNodeDescriptor> getActivityActivityFigureContentCompartment_7004SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getActivityContent_7004SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -1859,7 +1859,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
-	public static List<UMLNodeDescriptor> getConditionalNodeStructuredActivityNodeContentCompartment_7008SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getConditionalNodeContent_7008SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2001,7 +2001,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions
 	 */
-	public static List<UMLNodeDescriptor> getExpansionRegionStructuredActivityNodeContentCompartment_7009SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getExpansionRegionContent_7009SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2143,7 +2143,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
-	public static List<UMLNodeDescriptor> getLoopNodeStructuredActivityNodeContentCompartment_7010SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getLoopNodeContent_7010SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2285,7 +2285,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
-	public static List<UMLNodeDescriptor> getSequenceNodeStructuredActivityNodeContentCompartment_7012SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getSequenceNodeContent_7012SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2427,7 +2427,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
-	public static List<UMLNodeDescriptor> getStructuredActivityNodeStructuredActivityNodeContentCompartment_7005SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getStructuredActivityNodeContent_7005SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2569,7 +2569,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
-	public static List<UMLNodeDescriptor> getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getActivityPartitionContent_7006SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2715,7 +2715,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
-	public static List<UMLNodeDescriptor> getInterruptibleActivityRegionInterruptibleActivityRegionContentCompartment_7007SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getInterruptibleActivityRegionContent_7007SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2855,9 +2855,9 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getActivityActivityFigureParameterCompartment_7014SemanticChildren(View view) {
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getActivityParameters_7014SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2882,7 +2882,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getActivityActivityFigurePreconditionCompartment_7015SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getActivityPreconditions_7015SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2907,7 +2907,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getActivityActivityFigurePostCondtionCompartment_7016SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getActivityPostconditions_7016SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -2934,7 +2934,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 *
 	 * @generated NOT
 	 */
-	public static List<UMLNodeDescriptor> getActivityActivityFigureContentCompartment_7013SemanticChildren(View view) {
+	public static List<UMLNodeDescriptor> getActivityContent_7013SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}

@@ -23,9 +23,11 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.AbstractCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentEditPolicy;
@@ -53,9 +55,13 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 
 				}
 				if (editPart instanceof NamedElementEditPart || editPart instanceof AbstractCommentEditPart) {
-					editPart.installEditPolicy(AppliedStereotypeCompartmentEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
-
-
+					editPart.installEditPolicy(AppliedStereotypeCompartmentEditPolicy.STEREOTYPE_COMPARTMENT_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+				}
+				if (editPart instanceof NodeEditPart) {
+					NodeEditPart nodeEP = (NodeEditPart) editPart;
+					if (nodeEP.getPrimaryShape() instanceof RoundedCompartmentFigure) {
+						editPart.installEditPolicy(AppliedStereotypeCompartmentEditPolicy.STEREOTYPE_COMPARTMENT_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+					}
 				}
 			}
 		}

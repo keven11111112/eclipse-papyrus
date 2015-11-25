@@ -48,11 +48,11 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.custom.T
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.custom.TestNodeCreationOnValueTypeOperationCompartment;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.creation.custom.TestNodeCreationOnValueTypePropertyCompartment;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	TestNodeCreationOnActor.class, 
 	TestNodeCreationOnActorOperationCompartment.class, 

@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -49,14 +51,16 @@ public class DiSashModelManager {
 	/**
 	 * Instance of the {@link PageManagerImpl}.
 	 */
-	private PageManagerImpl pageMngr = null;
+	private final PageManagerImpl pageMngr;
 
 	/**
 	 * Instance of the DiContentProvider used to manipulate SashModel.
 	 */
-	private DiContentProvider contentProvider;
+	private final DiContentProvider contentProvider;
 
-	private TransactionalDiContentProvider transDiContentProvider;
+	private final TransactionalDiContentProvider transDiContentProvider;
+
+	private final IPageModelFactory pageModelFactory;
 
 	/**
 	 * Object used externally listen to model changes.
@@ -97,6 +101,8 @@ public class DiSashModelManager {
 			editingDomain.getCommandStack().execute(cmd);
 		}
 
+		this.pageModelFactory = pageModelFactory;
+
 		contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, contentChangedEventProvider);
 		// Create the TransactionalDiContentProvider
 		transDiContentProvider = new TransactionalDiContentProvider(getDiContentProvider(), editingDomain);
@@ -135,6 +141,8 @@ public class DiSashModelManager {
 				Activator.log.error(ex);
 			}
 		}
+
+		this.pageModelFactory = pageModelFactory;
 
 		contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, getContentChangedEventProvider());
 		// Create the TransactionalDiContentProvider
@@ -296,11 +304,12 @@ public class DiSashModelManager {
 		return DiUtils.lookupSashWindowsMngr(diResource);
 	}
 
-	/**
+	/*
 	 * Create an instance of IPageMngr acting on the provided resource.
 	 * This instance is suitable to add, remove, close or open diagrams.
 	 *
 	 * @param diResource
+	 *
 	 * @return The non transactional version of the IPageMngr
 	 */
 	// public static IPageMngr createIPageMngr(Resource diResource) {
@@ -310,5 +319,17 @@ public class DiSashModelManager {
 	// return new DiSashModelManager(null, diResource).getIPageMngr();
 	//
 	// }
+
+	/**
+	 * Finds a the EditorIDs that can open the given pageIdentifier
+	 *
+	 * @param pageIdentifier
+	 * @return A map of (ID -> Label) for the matching editors
+	 *
+	 * @see {@link IPageManager#DEFAULT_EDITOR}
+	 */
+	public Map<String, String> getEditorIDsFor(Object pageIdentifier) {
+		return pageModelFactory.getEditorIDsFor(pageIdentifier);
+	}
 
 }

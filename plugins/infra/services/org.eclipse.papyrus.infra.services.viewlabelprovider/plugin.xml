@@ -10,6 +10,13 @@
             priority="10"
             provider="org.eclipse.papyrus.infra.services.viewlabelprovider.provider.ViewLabelProvider">
       </labelProvider>
+      <labelProvider
+            priority="9"
+            provider="org.eclipse.papyrus.infra.services.viewlabelprovider.provider.DiagramOfViewLabelProvider">
+            <labelProviderContext
+                  context="org.eclipse.papyrus.infra.services.navigation.menu.labelprovider">
+            </labelProviderContext>
+      </labelProvider>
    </extension>
 
 </plugin>

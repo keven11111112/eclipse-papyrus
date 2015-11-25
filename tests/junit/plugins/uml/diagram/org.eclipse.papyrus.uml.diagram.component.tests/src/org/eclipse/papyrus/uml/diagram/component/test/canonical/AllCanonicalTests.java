@@ -13,13 +13,13 @@
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All test in canonical package
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // Top Node
 TestComponentDiagramTopNode.class,

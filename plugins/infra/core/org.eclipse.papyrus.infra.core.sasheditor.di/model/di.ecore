@@ -64,6 +64,14 @@
     <eOperations name="setCurrentSelectionSilently" ordered="false" lowerBound="1">
       <eParameters name="selection" ordered="false" lowerBound="1" eType="#//TabFolder"/>
     </eOperations>
+    <eOperations name="addPage" ordered="false" lowerBound="1">
+      <eParameters name="folder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+      <eParameters name="pageIdentifier" ordered="false" lowerBound="1" eType="#//JavaObject"/>
+    </eOperations>
+    <eOperations name="addPage" ordered="false" lowerBound="1">
+      <eParameters name="folder" ordered="false" lowerBound="1" eType="#//TabFolder"/>
+      <eParameters name="pageRef" ordered="false" lowerBound="1" eType="#//PageRef"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="windows" ordered="false"
         upperBound="-1" eType="#//Window" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentSelection" ordered="false"
@@ -104,7 +112,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" ordered="false" unique="false"
         lowerBound="1" eType="#//int"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="int" instanceClassName="int"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="int" instanceClassName="int">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="Integer"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Size">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" ordered="false"
         unique="false" lowerBound="1" eType="#//int"/>
@@ -121,6 +133,13 @@
     </eOperations>
     <eOperations name="removePage" ordered="false" lowerBound="1">
       <eParameters name="pageIndex" ordered="false" lowerBound="1" eType="#//int"/>
+    </eOperations>
+    <eOperations name="addPage" ordered="false" lowerBound="1">
+      <eParameters name="index" ordered="false" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//Integer"/>
+      <eParameters name="pageIdentifier" ordered="false" lowerBound="1" eType="#//JavaObject"/>
+    </eOperations>
+    <eOperations name="addPage" ordered="false" lowerBound="1">
+      <eParameters name="pageRef" ordered="false" lowerBound="1" eType="#//PageRef"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
         upperBound="-1" eType="#//PageRef" containment="true" eOpposite="#//PageRef/parent"/>
@@ -144,6 +163,8 @@
         <details key="documentation" value="Storage to store Identifier that are not EObject."/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="favoriteEditor" ordered="false"
+        eType="ecore:EDataType ../../org.eclipse.uml2.types/model/Types.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
         unique="false" eType="#//TabFolder" eOpposite="#//TabFolder/children"/>
   </eClassifiers>
@@ -184,7 +205,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SashWindowsMngr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pageList" ordered="false"
-        unique="false" eType="#//PageList" containment="true"/>
+        unique="false" lowerBound="1" eType="#//PageList" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sashModel" ordered="false"
         unique="false" lowerBound="1" eType="#//SashModel" containment="true"/>
   </eClassifiers>

@@ -15,7 +15,14 @@
    
 -->
 <plugin>
-
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="models/usecaseDiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
+   
    <extension point="org.eclipse.ui.contexts" id="ui-context">
 				      <?gmfgen generated="true"?>
 				      <context
@@ -143,41 +150,6 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.usecase.TypeContext">
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Package_1000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_2011"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_2012"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Package_2016"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Constraint_2017"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Comment_2018"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.DefaultNamedElement_2022"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3007"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3008"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3009"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Component_3016"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Comment_3015"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3017"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_3018"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3010"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Actor_3011"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3012"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Component_3013"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Package_3014"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Include_4008"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Extend_4009"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Generalization_4010"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Association_4011"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.ConstraintConstrainedElement_4012"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.CommentAnnotatedElement_4014"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Abstraction_4015"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Usage_4016"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.Realization_4017"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.PackageMerge_4018"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.usecase.PackageImport_4019"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -269,7 +241,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Subject"
@@ -279,7 +251,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Actor"
@@ -289,7 +261,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Use Case"
@@ -299,7 +271,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Constraint"
@@ -309,7 +281,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Comment"
@@ -319,7 +291,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Extension Point"
@@ -329,7 +301,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Association Link"
@@ -339,7 +311,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Generalization Link"
@@ -349,7 +321,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Dependency Link"
@@ -359,7 +331,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Abstraction Link"
@@ -369,7 +341,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Realization Link"
@@ -379,7 +351,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Usage Link"
@@ -389,7 +361,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create PackageMerge Link"
@@ -399,7 +371,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create PackageImport Link"
@@ -409,7 +381,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Include Link"
@@ -419,7 +391,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Include.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Extend"
@@ -429,7 +401,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Extend.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Constrained Element"
@@ -439,7 +411,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Comment Link"
@@ -449,7 +421,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -801,161 +773,129 @@
 
 <!-- Custom extension point editpart provider for editing properties of stereotype-->
   
- <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+ <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
    <?gmfgen generated="true"?>
-		<diagramMappings diagramID="UseCase">
-			<mapping type="UseCase" humanReadableType="UseCaseDiagram"/>
-			
-	<mapping
-		humanReadableType="points"
-		type="7009">
-	</mapping>
-
-	<mapping
-		humanReadableType="points"
-		type="7010">
-	</mapping>
-
-	<mapping
-		humanReadableType="use cases"
-		type="7011">
-	</mapping>
-
-	<mapping
-		humanReadableType="points"
-		type="7012">
-	</mapping>
-
-	<mapping
-		humanReadableType="use cases"
-		type="7017">
-	</mapping>
-
-	<mapping
-		humanReadableType="points"
-		type="7014">
-	</mapping>
-
-	<mapping
-		humanReadableType="use cases"
-		type="7015">
-	</mapping>
-
-	<mapping
-		humanReadableType="PackageableElement"
-		type="7016">
-	</mapping>
-
-	<mapping
-		humanReadableType="PackageableElement"
-		type="7013">
-	</mapping>
-
-			
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6030">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6031">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6032">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6008">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6033">
-	</mapping>
-
-
-	
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6010">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6034">
-	</mapping>
-
-
-	
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6011">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6014">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6012">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6013">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6015">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6035">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="0">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6036">
-	</mapping>
+   <diagramMappings diagramID="UseCase">
+   	<mapping type="UseCase" humanReadableType="UseCaseDiagram"/>
+			<mapping
+				humanReadableType="points"
+				type="7009">
+			</mapping>
+			<mapping
+				humanReadableType="points"
+				type="7010">
+			</mapping>
+			<mapping
+				humanReadableType="use cases"
+				type="7011">
+			</mapping>
+			<mapping
+				humanReadableType="points"
+				type="7012">
+			</mapping>
+			<mapping
+				humanReadableType="use cases"
+				type="7017">
+			</mapping>
+			<mapping
+				humanReadableType="points"
+				type="7014">
+			</mapping>
+			<mapping
+				humanReadableType="use cases"
+				type="7015">
+			</mapping>
+			<mapping
+				humanReadableType="PackageableElement"
+				type="7016">
+			</mapping>
+			<mapping
+				humanReadableType="PackageableElement"
+				type="7013">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6030">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6032">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6008">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6010">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6034">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6011">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6014">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6012">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6013">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6015">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6035">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="0">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6036">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6045">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="5031">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6027">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6050">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="5021">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6028">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
@@ -970,6 +910,14 @@
 				type="6051">
 			</mapping>
 			<mapping
+				humanReadableType="Name"
+				type="5014">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6029">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="6048">
 			</mapping>
@@ -981,8 +929,12 @@
 				humanReadableType="Floating Label"
 				type="6047">
 			</mapping>
-		</diagramMappings>
-	</extension>
+			<mapping
+				humanReadableType="Name"
+				type="5032">
+			</mapping>
+   </diagramMappings>
+</extension>
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
       <viewProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLViewProvider">
@@ -1028,9 +980,6 @@
          path="models/usecaseDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="true"?>
-   </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
@@ -1059,6 +1008,12 @@
          reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilier"
          source="undefined"
          target="1.1.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="UseCase"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
    </diagramReconciler>
 </extension>
 

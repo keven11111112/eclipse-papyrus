@@ -15,7 +15,13 @@
    
 -->
 <plugin>
-
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/communicationdiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
       
    <extension
          point="org.eclipse.ui.commands">
@@ -693,25 +699,31 @@
 				         <context decoratorTargets="PRIMARY_VIEW"/>
 				      </decoratorProvider>
 				   </extension>
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-      <?gmfgen generated="true"?>
-	<diagramMappings diagramID="PapyrusUMLCommunicationDiagram">
-		<mapping type="PapyrusUMLCommunicationDiagram" humanReadableType="CommunicationDiagram"/>
-			
-		<mapping
-			humanReadableType="Interaction"
-			type="7001">
-		</mapping>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="PapyrusUMLCommunicationDiagram">
+   	<mapping type="PapyrusUMLCommunicationDiagram" humanReadableType="CommunicationDiagram"/>
+			<mapping
+				humanReadableType="Interaction"
+				type="7001">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6014">
 			</mapping>
-
+			<mapping
+				humanReadableType="Floating Label"
+				type="5153">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5155">
+			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
 				type="6013">
 			</mapping>
-	</diagramMappings>
+   </diagramMappings>
 </extension>
 
 
@@ -742,6 +754,12 @@
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
+       <diagramReconciler
+             diagramType="PapyrusUMLCommunicationDiagram"
+             reconcilerClass="org.eclipse.papyrus.uml.diagram.communication.custom.migration.CommunicationReconcilerForCompartment"
+             source="undefined"
+             target="1.2.0">
+       </diagramReconciler>
 </extension>
 
 

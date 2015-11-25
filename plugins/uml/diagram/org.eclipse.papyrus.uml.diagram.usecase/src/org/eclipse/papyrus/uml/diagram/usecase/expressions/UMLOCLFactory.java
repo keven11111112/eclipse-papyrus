@@ -48,7 +48,8 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[11];
-		this.expressionBodies = new String[] { "self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
+		this.expressionBodies = new String[] {
+				"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
 				"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
 				"not self.oclIsTypeOf(uml::AssociationClass)", //$NON-NLS-1$
 				"let sourceName : String = self.memberEnd->first().name in\r\nlet targetName : String = self.memberEnd->at(2).name in\r\n\'A_\'.concat(sourceName).concat(\'_\').concat(targetName)", //$NON-NLS-1$

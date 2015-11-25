@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
+ *  Christian W. Damus - bug 481149
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -32,6 +33,8 @@ public abstract class AbstractModel implements IModel {
 
 	/** List of attached snippets */
 	protected ModelSnippetList snippets = new ModelSnippetList();
+
+	private boolean snippetsStarted;
 
 	/** list of Models (referenced by identifiers) that should be loaded before this one can be loaded */
 	protected List<String> afterLoadModelIdentifiers;
@@ -76,7 +79,10 @@ public abstract class AbstractModel implements IModel {
 	 */
 	@Override
 	public void addModelSnippet(IModelSnippet snippet) {
-		snippets.add(snippet);
+		if (snippets.add(snippet) && snippetsStarted) {
+			// Snippets have already started, so start this one, too
+			snippet.start(this);
+		}
 	}
 
 	/**
@@ -114,6 +120,8 @@ public abstract class AbstractModel implements IModel {
 	@Override
 	public void unload() {
 		this.modelSet = null;
+
+		stopSnippets();
 		snippets.clear();
 	}
 
@@ -132,5 +140,25 @@ public abstract class AbstractModel implements IModel {
 	public void cleanModel(Set<URI> resourcesToDelete) {
 		// Nothing to do
 
+	}
+
+	/**
+	 * Starts my registered snippets.
+	 */
+	protected void startSnippets() {
+		if (!snippetsStarted) {
+			snippetsStarted = true;
+			snippets.performStart(this);
+		}
+	}
+
+	/**
+	 * Stops my registered snippets.
+	 */
+	protected void stopSnippets() {
+		if (snippetsStarted) {
+			snippetsStarted = false;
+			snippets.performDispose(this);
+		}
 	}
 }

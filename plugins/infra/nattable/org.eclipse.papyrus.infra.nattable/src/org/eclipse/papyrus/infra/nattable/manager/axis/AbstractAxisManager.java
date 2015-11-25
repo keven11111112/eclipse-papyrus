@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 469289
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.axis;
@@ -96,7 +97,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 *
 	 * @return
-	 *         a new managed object list
+	 * 		a new managed object list
 	 */
 	protected List<Object> createManagedObjectList() {
 		return new ArrayList<Object>();
@@ -232,6 +233,12 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public void dispose() {
 		removeListeners();
 		this.tableContext = null;
+		this.tableManager = null;
+		this.representedAxisManager = null;
+		this.representedContentProvider = null;
+		if(null != this.managedObject){
+			this.managedObject.clear();
+		}
 	}
 
 	/**
@@ -278,6 +285,20 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
+		return null;
+	}
 
 	/**
 	 *
@@ -302,6 +323,20 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	@Override
 	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager#getComplementaryAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection, int)
+	 *
+	 * @param domain
+	 * @param objectToAdd
+	 * @param index
+	 * @return
+	 */
+	@Override
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
 		return null;
 	}
 
@@ -342,15 +377,16 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	}
 
 	/**
+	 * This allows to check if the object is already managed.
 	 *
 	 * @param object
 	 *            an object
 	 * @return
-	 *         <code>true</code> if the object is already displayed
+	 *         <code>true</code> if the object is already displayed, <code>false</code> otherwise.
 	 */
 	@Override
 	public boolean isAlreadyManaged(final Object object) {
-		return getElements().contains(object);
+		return managedObject.contains(object);
 	}
 
 	/**
@@ -409,7 +445,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 *
 	 * @return
-	 *         the context of the managed table
+	 * 		the context of the managed table
 	 */
 	protected final EObject getTableContext() {
 		return this.tableContext;
@@ -439,7 +475,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	protected TransactionalEditingDomain getTableEditingDomain() {// Duplicated from NatTableModelManager
 		ServicesRegistry registry = null;
-		if(null != getTableManager() && null != getTableManager().getTable() && null != getTableManager().getTable().eResource()){
+		if (null != getTableManager() && null != getTableManager().getTable() && null != getTableManager().getTable().eResource()) {
 			try {
 				registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableManager().getTable());
 				return registry.getService(TransactionalEditingDomain.class);
@@ -614,7 +650,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param axisPositions
 	 *            axis positions
 	 * @return
-	 *         the elements located at these axis position
+	 * 		the elements located at these axis position
 	 */
 	protected List<Object> getElements(final List<Integer> axisPositions) {
 		final List<Object> elements = getElements();
@@ -646,7 +682,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 *
 	 * @return
-	 *         the list owning the elements displayed on the managed axis
+	 * 		the list owning the elements displayed on the managed axis
 	 */
 	protected final List<Object> getElements() {
 		if (isUsedAsColumnManager()) {

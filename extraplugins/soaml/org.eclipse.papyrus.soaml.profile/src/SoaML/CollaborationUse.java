@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.CollaborationUse#getBase_CollaborationUse <em>Base Collaboration Use</em>}</li>
- *   <li>{@link SoaML.CollaborationUse#isStrict <em>Is Strict</em>}</li>
+ *   <li>{@link SoaML.CollaborationUse#isIsStrict <em>Is Strict</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getCollaborationUse()
  * @model
@@ -73,14 +73,14 @@ public interface CollaborationUse extends EObject {
 	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isStrict();
+	boolean isIsStrict();
 
 	/**
-	 * Sets the value of the '{@link SoaML.CollaborationUse#isStrict <em>Is Strict</em>}' attribute.
+	 * Sets the value of the '{@link SoaML.CollaborationUse#isIsStrict <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is Strict</em>' attribute.
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 */
 	void setIsStrict(boolean value);
@@ -89,33 +89,10 @@ public interface CollaborationUse extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * --only in case of defining Contract collaboratinUse inside the ServiceInterface
-	 * --If the CollaborationUse has isStrict=true, then the parts must be compatible with the roles they are bound to.
-	 * self.isStrict=true and self.base_CollaborationUse.owner.oclIsTypeOf(Classifier) 
-	 * and  self.base_CollaborationUse.type.oclAsType(UML::Collaboration).getAppliedStereotypes()->select(s|s.name='ServiceContract')->size()=1 implies
-	 * --For parts to be compatible with a role, one of the following must be true:
-	 * --1. The role and part have the same type.
-	 * self.base_CollaborationUse.roleBinding-> forAll(rb|
-	 * 	(let supplierType =(rb.oclAsType(UML::Dependency).supplier->select(s|s.oclIsTypeOf(UML::Property))->select(s|s.oclAsType(UML::Property).type.oclIsTypeOf(Class))
-	 * 	->collect(oclAsType(UML::Property).type ->asOrderedSet()->first())),
-	 * 	clientType= (rb.oclAsType(UML::Dependency).client->select(s|s.oclIsTypeOf(UML::Property))->collect(t:UML::NamedElement|t.oclAsType(UML::Property).type)->asOrderedSet()->first())in (
-	 * 	supplierType= clientType
-	 * --2. The part (the supplier) has a type that specializes the type of the role.
-	 * or(clientType.oclAsType(Classifier).generalization.general->closure(general)->includes(supplierType)) 
-	 * --3. The part has a type that realizes the type of the role.
-	 * or(clientType.oclAsType(Classifier).getRelationships().oclAsType(UML::Realization)->includes(supplierType)) 
-	 * --4. The part has a type that contains at least the ownedAttributes and ownedOperations of the role. In general this is a
-	 * --special case of item 3 where the part has an Interface type that realizes another Interface.
-	 * or(supplierType.oclAsType(Classifier).getAllAttributes()->includesAll(clientType.oclAsType(Classifier).getAllAttributes()) 
-	 * 	and supplierType.oclAsType(Classifier).getAllOperations()->includesAll(clientType.oclAsType(Classifier).getAllOperations())
-	 * ) )
-	 * --5. The type of each role in a service contract shall have a uses dependency to the type of all roles that role is connected to.
-	 * )
-	 * )
 	 * @param diagnostics The chain of diagnostics to which problems are to be appended.
 	 * @param context The cache of context-specific information.
 	 * <!-- end-model-doc -->
-	 * @model
+	 * @model annotation="http://www.eclipse.org/uml2/1.1.0/GenModel body='--only in case of defining Contract collaboratinUse inside the ServiceInterface\r\n--If the CollaborationUse has isStrict=true, then the parts must be compatible with the roles they are bound to.\r\nself.isStrict=true and self.base_CollaborationUse.owner.oclIsTypeOf(Classifier) \r\nand  self.base_CollaborationUse.type.oclAsType(UML::Collaboration).getAppliedStereotypes()->select(s|s.name=\'ServiceContract\')->size()=1 implies\r\n--For parts to be compatible with a role, one of the following must be true:\r\n--1. The role and part have the same type.\r\nself.base_CollaborationUse.roleBinding-> forAll(rb|\r\n\t(let supplierType =(rb.oclAsType(UML::Dependency).supplier->select(s|s.oclIsTypeOf(UML::Property))->select(s|s.oclAsType(UML::Property).type.oclIsTypeOf(Class))\r\n\t->collect(oclAsType(UML::Property).type ->asOrderedSet()->first())),\r\n\tclientType= (rb.oclAsType(UML::Dependency).client->select(s|s.oclIsTypeOf(UML::Property))->collect(t:UML::NamedElement|t.oclAsType(UML::Property).type)->asOrderedSet()->first())in (\r\n\tsupplierType= clientType\r\n--2. The part (the supplier) has a type that specializes the type of the role.\r\nor(clientType.oclAsType(Classifier).generalization.general->closure(general)->includes(supplierType)) \r\n--3. The part has a type that realizes the type of the role.\r\nor(clientType.oclAsType(Classifier).getRelationships().oclAsType(UML::Realization)->includes(supplierType)) \r\n--4. The part has a type that contains at least the ownedAttributes and ownedOperations of the role. In general this is a\r\n--special case of item 3 where the part has an Interface type that realizes another Interface.\r\nor(supplierType.oclAsType(Classifier).getAllAttributes()->includesAll(clientType.oclAsType(Classifier).getAllAttributes()) \r\n\tand supplierType.oclAsType(Classifier).getAllOperations()->includesAll(clientType.oclAsType(Classifier).getAllOperations())\r\n) )\r\n--5. The type of each role in a service contract shall have a uses dependency to the type of all roles that role is connected to.\r\n)\r\n)'"
 	 * @generated
 	 */
 	boolean RoleBindingClientSupplierCompatibility(DiagnosticChain diagnostics, Map<Object, Object> context);

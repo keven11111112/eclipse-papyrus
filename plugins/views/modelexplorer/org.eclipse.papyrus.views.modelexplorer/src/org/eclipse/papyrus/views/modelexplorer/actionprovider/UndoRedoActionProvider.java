@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *   Christian W. Damus - bug 450536
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.modelexplorer.actionprovider;
@@ -34,7 +34,7 @@ import org.eclipse.ui.operations.UndoActionHandler;
 
 /**
  * Action Provider to provide Redo/Undo action trough workbench menu.
- * 
+ *
  * @author Gabriel Pascual
  *
  */
@@ -122,7 +122,7 @@ public class UndoRedoActionProvider extends AbstractCommonActionProvider impleme
 	 * <p>
 	 * Synchronise handlers after a Command stack's change.
 	 * </p>
-	 * 
+	 *
 	 * @see org.eclipse.emf.common.command.CommandStackListener#commandStackChanged(java.util.EventObject)
 	 *
 	 * @param event

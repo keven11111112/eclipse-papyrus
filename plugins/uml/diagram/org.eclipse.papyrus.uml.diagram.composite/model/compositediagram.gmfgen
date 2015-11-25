@@ -8109,7 +8109,7 @@
 			</preferencePages>
 		</diagram>
 		<plugin iD="org.eclipse.papyrus.uml.diagram.composite" name="Papyrus Composite Structure Diagram "
-			provider="Eclipse Modeling Project" version="1.1.0.qualifier">
+			provider="Eclipse Modeling Project" version="1.2.0.qualifier">
 			<requiredPlugins>org.eclipse.draw2d</requiredPlugins>
 			<requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
 		</plugin>
@@ -8198,7 +8198,7 @@
 			superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart" />
 		<extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView"
 			comment="Label in charge to display applied stereotypes on links"
-			genView="/0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.13 /0/@diagram/@links.15 /0/@diagram/@links.14 /0/@diagram/@links.12 /0/@diagram/@links.19 /0/@diagram/@links.18 /0/@diagram/@links.3"
+			genView="/0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.13 /0/@diagram/@links.15 /0/@diagram/@links.14 /0/@diagram/@links.12 /0/@diagram/@links.19 /0/@diagram/@links.18 /0/@diagram/@links.3  /0/@diagram/@links.2"
 			name="EP_NamedElement_EDGE"
 			superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart" />
 		<extensionNodes xsi:type="papyrusgmfgenextension:ExtendedGenView"

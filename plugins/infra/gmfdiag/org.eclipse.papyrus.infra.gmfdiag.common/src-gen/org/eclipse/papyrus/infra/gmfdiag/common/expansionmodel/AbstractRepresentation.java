@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getViewFactory <em>View Factory</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getDescription <em>Description</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation()
@@ -132,6 +133,7 @@ public interface AbstractRepresentation extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * if the kind is filled, the view factory has to be filled. It references the factory of notation element see (model inside GEF framework)
+	 * Have alook to http://www-01.ibm.com/support/knowledgecenter/SS8PJ7_7.0.0/org.eclipse.gmf.doc/reference/api/runtime/org/eclipse/gmf/runtime/diagram/core/view/factories/ViewFactory.html
 	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Factory</em>' attribute.
 	 * @see #setViewFactory(String)
@@ -150,6 +152,32 @@ public interface AbstractRepresentation extends EObject {
 	 * @generated
 	 */
 	void setViewFactory(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_Description()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -18,15 +18,16 @@ import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.DesignLabelModelFacet
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
 import org.eclipse.gmf.codegen.gmfgen.LabelModelFacet
 import org.eclipse.gmf.codegen.gmfgen.ParentAssignedViewmap
 import org.eclipse.gmf.codegen.gmfgen.Viewmap
 import parsers.ParserProvider
-import xpt.Common
-import xpt.diagram.ViewmapAttributesUtils_qvto
-import xpt.Common_qvto
-import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
 import xpt.CodeStyle
+import xpt.Common
+import xpt.Common_qvto
+import xpt.diagram.ViewmapAttributesUtils_qvto
 
 //DOCUMENTATION: PapyrusGencode
 //This template has been modified to take in account the possibility to have extended direct editors
@@ -456,7 +457,7 @@ def performDirectEditAtPoint (GenCommonBase it)'''
 	
 override performDirectEditWithInitialChar (GenCommonBase it)'''
 	«generatedMemberComment»
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager) {
 			((org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
@@ -579,7 +580,7 @@ override refreshLabel(GenCommonBase it , GenDiagram diagram )'''
 			 maskLabelPolicy = getEditPolicy(org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-		«IF it.oclIsKindOf(typeof(GenLinkLabel))»
+		«IF it.oclIsKindOf(typeof(GenLinkLabel)) || it.oclIsKindOf(typeof(GenExternalNodeLabel))»
 			setLabelTextHelper(getFigure(), getLabelText());
 			setLabelIconHelper(getFigure(), getLabelIcon());
 		«ELSE»

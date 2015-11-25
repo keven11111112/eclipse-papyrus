@@ -21,6 +21,7 @@ import org.eclipse.papyrus.codegen.base.GenUtils
 import org.eclipse.papyrus.C_Cpp.Const
 import org.eclipse.papyrus.cpp.codegen.utils.Modifier
 import org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils
+import org.eclipse.papyrus.C_Cpp.Mutable
 
 /**
  * @author Önder GÜRCAN (onder.gurcan@cea.fr)
@@ -33,7 +34,7 @@ class CppAttribute {
 		var code = '''
 			// static attributes (if any)
 			«FOR ownedAttribute : getOwnedAttributes(classifier)»
-				«IF (ownedAttribute.isStatic && !GenUtils.hasStereotype(ownedAttribute, Const))»
+				«IF (ownedAttribute.isStatic)»
 					«CppStaticAttributeImplementation(ownedAttribute)»
 				«ENDIF»
 			«ENDFOR»
@@ -81,8 +82,7 @@ class CppAttribute {
 	static def CppAttributeDeclaration(Property attribute) '''
 		«CppDocumentation.CppElementDoc(attribute)»
 		«staticValue(attribute)» «Modifier.modCVQualifier(attribute)»«CppGenUtils.cppQualifiedName(attribute.type)»«Modifier.
-			modPtr(attribute)»«Modifier.modRef(attribute)» «attribute.name»«Modifier.modArray(attribute)»«IF GenUtils.
-			hasStereotype(attribute, Const)»«defaultValue(attribute)»«ENDIF»;
+			modPtr(attribute)»«Modifier.modRef(attribute)» «attribute.name»«Modifier.modArray(attribute)»;
 	'''
 
 	static def staticValue(Property attribute) {

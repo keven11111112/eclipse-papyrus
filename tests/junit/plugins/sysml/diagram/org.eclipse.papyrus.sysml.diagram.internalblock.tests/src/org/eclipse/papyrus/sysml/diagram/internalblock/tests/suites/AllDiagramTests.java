@@ -17,11 +17,11 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.TestDiagra
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.node.TestNodeCreationOnDiagram;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.dnd.node.TestNodeDropOnDiagram;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 	TestDiagramCreation.class,
 	TestNodeCreationOnDiagram.class,

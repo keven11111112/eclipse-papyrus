@@ -4,7 +4,7 @@
     modelDirectory="/org.eclipse.papyrus.infra.core.sasheditor.di/src"
     modelPluginID="org.eclipse.papyrus.infra.core.sasheditor.di" modelName="Sashwindowsdi"
     importerID="org.eclipse.uml2.uml.ecore.importer" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
     <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
     <details key="UNION_PROPERTIES" value="REPORT"/>
@@ -22,6 +22,12 @@
     <details key="OPERATION_BODIES" value="IGNORE"/>
     <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>sashwindowsdi.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Di" basePackage="org.eclipse.papyrus.infra.core.sashwindows"
@@ -75,6 +81,14 @@
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/setCurrentSelectionSilently">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/setCurrentSelectionSilently/selection"/>
       </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/addPage.1">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/addPage.1/folder"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/addPage.1/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/addPage.2">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/addPage.2/folder"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/addPage.2/pageRef"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//Window">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
@@ -117,12 +131,20 @@
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//TabFolder/removePage">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/removePage/pageIndex"/>
       </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//TabFolder/addPage.1">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/addPage.1/index"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/addPage.1/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//TabFolder/addPage.2">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//TabFolder/addPage.2/pageRef"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//PageRef">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference di.ecore#//PageRef/emfPageIdentifier"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//PageRef/pageIdentifier"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//PageRef/objectPageIdentifier"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute di.ecore#//PageRef/favoriteEditor"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference di.ecore#//PageRef/parent"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//PageRef/isForIdentifier">

@@ -141,7 +141,9 @@ public class ConstraintPasteStrategy extends AbstractPasteStrategy implements IP
 		EObject targetOwner = targetView.getElement();
 		org.eclipse.gef.commands.CompoundCommand compoundCommand = new org.eclipse.gef.commands.CompoundCommand("Reassociate constraint context");
 		Map<Object, ?> additionalDataMap = papyrusClipboard.getAdditionalDataForStrategy(getID());
-
+		if (targetEditPart.resolveSemanticElement() instanceof org.eclipse.uml2.uml.Class) {
+			return null;
+		}
 		for (Iterator<Object> iterator = papyrusClipboard.iterator(); iterator.hasNext();) {
 			Object object = iterator.next();
 			// get target Element
@@ -150,6 +152,12 @@ public class ConstraintPasteStrategy extends AbstractPasteStrategy implements IP
 			if (target instanceof View && ((View) target).getElement() instanceof Constraint) {
 				Constraint targetConstraint = (Constraint) ((View) target).getElement();
 				if (!alreadyprocesed.contains(targetConstraint)) {
+					if (targetConstraint.getContext() != null) {
+						ShowConstraintContextLink command = new ShowConstraintContextLink((TransactionalEditingDomain) domain, targetEditPart, (View) target);
+						compoundCommand.add(GMFtoGEFCommandWrapper.wrap(command));
+						alreadyprocesed.add(targetConstraint);
+						continue;
+					}
 					Object internalFromTarget = getInternalFromTarget(papyrusClipboard, targetConstraint);
 					ConstraintClipboard constraintClipboard = (ConstraintClipboard) additionalDataMap.get(internalFromTarget);
 					Namespace context = constraintClipboard.getContext();

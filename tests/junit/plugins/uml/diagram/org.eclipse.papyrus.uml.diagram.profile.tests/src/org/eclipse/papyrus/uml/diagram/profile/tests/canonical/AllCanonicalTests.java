@@ -12,11 +12,12 @@
 package org.eclipse.papyrus.uml.diagram.profile.tests.canonical;
 
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
-@Suite.SuiteClasses({
+@RunWith(ClassificationSuite.class)
+@SuiteClasses({
 		TestProfileDiagramTopNode.class,
 		TestProfileDiagramChildNode.class,
 		TestProfileDiagramLink.class,

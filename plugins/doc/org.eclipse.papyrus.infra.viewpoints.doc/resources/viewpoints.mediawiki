@@ -9,16 +9,13 @@
   Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Initial API and implementation
 -->
 
-=Viewpoints in Papyrus=
-
-
-==Introduction==
+=Introduction=
 Viewpoints in Papyrus enable the specialization and customization of the user experience by constraining what can be seen and interacted with in Papyrus diagrams and tables. Viewpoints can be used for the following purposes in Papyrus:
 * Constrain the set  of diagrams and tables that are available to a particular class of users
 * Define new kinds of diagrams with custom names, icons, figures and palette in order to implement domain-specific views in Papyrus, based on the classical UML and SysML diagrams.
 
 
-==Configuration Options for Viewpoints==
+=Configuration Options for Viewpoints=
 
 At any given time, there can only be one viewpoint that is currently applied to an Eclipse instance. Users are free to select any viewpoint that is provided to them. Papyrus itself comes with a default viewpoint that is automatically selected when to other viewpoint is specified.
 
@@ -49,7 +46,7 @@ It is possible at any time to see the details of the diagrams and tables offered
 This view summarizes the currently available diagrams and tables, as well as the conditions for their availability.
 
 
-==Viewpoints-Related UI Elements==
+=Viewpoints-Related UI Elements=
 
 The application of a viewpoint has some impacts on the following UI elements in Papyrus:
 * The diagram selection window in the '''New Model''' wizard is populated with only the diagrams and tables that are available in the current viewpoint.
@@ -64,11 +61,11 @@ The application of a viewpoint has some impacts on the following UI elements in 
 * The '''Root''' element attribute is the model element that is the diagram�s root semantic element.
 
 
-==Definition of New Viewpoints==
+=Definition of New Viewpoints=
 
 Papyrus supports the definition of new viewpoints that can subsequently be used by selecting them in the Papyrus Viewpoints preference panel, as presented above. Papyrus viewpoints are defined in configuration files with the �.configuration� extension. They are really just an ECore model that can be edited with the specialized viewpoint configuration editor provided by Papyrus.
 
-===Basic Concepts===
+==Basic Concepts==
 
 Viewpoints in Papyrus are implemented as an extension to the ISO 42010 standard for architecture description framework. Hence many concepts presented here are derived from those presented in the ISO 42010 standard. However, the standard has been extended with Papyrus-specific concepts and properties.
 * A ''configuration'' is a top element of a configuration file. It contains can contains ''viewpoints'' specifications, ''stakeholders'', as well as ''view categories''.
@@ -77,7 +74,7 @@ Viewpoints in Papyrus are implemented as an extension to the ISO 42010 standard 
 * A ''diagram'' in this context does not represent a single instance (for example the diagram named X in model Y), but the specification (or prototype) of future diagrams of this kind. For example the ''UML Class Diagram''.
 * A ''table'' is another kind of view in Papyrus that enables the presentation of models in a tabular format.
 
-===Walkthrough===
+==Walkthrough==
 
 The definition of a new viewpoint in Papyrus starts with the creation of a new configuration file: ''Viewpoint s configuration'' in the Papyrus folder of the Eclipse new element creation dialog. The top element of the file should be a ''Papyrus Configuration'' element.
 
@@ -100,7 +97,7 @@ Notes:
 * The ''configuration'' element lets you register a configuration file and give it a priority. The configuration file is selected with the ''file'' property. Giving an URI of the form <code>platform:/plugin/my.plugin.name/path/myconfig.configuration</code> is a good practice. The ''priority'' is a value between 0 and 100, 100 is the highest priority. This value will be used to select the configuration with the highest priority when the user selects the ''Deployed through the extension point'' option in the configuration page as explained above. In this mode, the deployed configuration replaces the default Papyrus configuration and its viewpoint. This means that unless the provided viewpoint extends the default one or replicate it, the UML and SysML diagrams and tables will not be available.
 * The ''contribution'' elements lets you specifies a configuration file as an extension of another one. The custom configuration file is selected with the ''file'' property. The ''original'' property is used to select the configuration file that is extended. To extend the default Papyrus configuration, this value must be <code>platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration</code>. In this mode the custom viewpoints must have the same name as the extended on in the original configuration file. In essence, the diagrams and tables defined in the new custom viewpoint will be available along the one in the original viewpoints, instead of replacing them. This mode is used by RobotML to add the RobotML diagrams to the default Papyrus viewpoint.
 
-===Diagram Specification===
+==Diagram Specification==
 
 A diagram has the following attributes:
 * A ''name'' (required) that is the user-visible name of the diagram. It will appear in the creation menus and property panel.

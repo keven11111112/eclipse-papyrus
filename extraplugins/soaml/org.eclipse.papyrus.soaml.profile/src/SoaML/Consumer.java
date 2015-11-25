@@ -22,11 +22,11 @@ import org.eclipse.uml2.uml.Interface;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Consumer#getBase_Interface <em>Base Interface</em>}</li>
  *   <li>{@link SoaML.Consumer#getBase_Class <em>Base Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getConsumer()
  * @model

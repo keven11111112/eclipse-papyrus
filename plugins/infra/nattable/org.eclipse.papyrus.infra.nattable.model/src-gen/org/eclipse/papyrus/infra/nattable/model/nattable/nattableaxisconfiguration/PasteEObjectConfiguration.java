@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPastedElementId <em>Pasted Element Id</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getAxisIdentifier <em>Axis Identifier</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getPasteEObjectConfiguration()
@@ -86,4 +88,30 @@ public interface PasteEObjectConfiguration extends IPasteConfiguration {
 	 * @generated
 	 */
 	void setPasteElementContainementFeature(EStructuralFeature value);
+
+	/**
+	 * Returns the value of the '<em><b>Axis Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Axis Identifier</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Axis Identifier</em>' containment reference.
+	 * @see #setAxisIdentifier(IAxis)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getPasteEObjectConfiguration_AxisIdentifier()
+	 * @model containment="true"
+	 * @generated
+	 */
+	IAxis getAxisIdentifier();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getAxisIdentifier <em>Axis Identifier</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Axis Identifier</em>' containment reference.
+	 * @see #getAxisIdentifier()
+	 * @generated
+	 */
+	void setAxisIdentifier(IAxis value);
 } // PasteEObjectConfiguration

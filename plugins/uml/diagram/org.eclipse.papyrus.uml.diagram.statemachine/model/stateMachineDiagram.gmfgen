@@ -2198,6 +2198,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ContextLinkSemanticEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:FeatureLinkModelFacet">
           <metaFeature
@@ -2556,7 +2560,7 @@
         iD="org.eclipse.papyrus.uml.diagram.statemachine"
         name="PapyrusUMLStateMachineDiagram"
         provider="Papyrus"
-        version="1.1.0.qualifier"/>
+        version="1.2.0.qualifier"/>
     <editor
         iconPath="icons/UMLDiagramFile.gif"/>
     <diagramUpdater/>
@@ -2738,7 +2742,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Label in charge to display applied stereotypes on links"
-        genView="/0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.4"
+        genView="/0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.4 /0/@diagram/@links.3"
         name="UMLConnectionNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
     <extensionNodes
@@ -2795,5 +2799,17 @@
         genView="/0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"
         name="RoundedBorderNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Stereotype"
+        role="Stereotype"
+        iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+        externalNodeLabels="/0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        comment="Name"
+        role="Name"
+        iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
+        externalNodeLabels="/0/@diagram/@childNodes.13/@labels.0"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

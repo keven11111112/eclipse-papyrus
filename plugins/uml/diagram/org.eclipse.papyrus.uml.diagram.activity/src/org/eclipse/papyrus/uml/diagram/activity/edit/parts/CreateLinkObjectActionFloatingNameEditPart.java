@@ -102,12 +102,14 @@ public class CreateLinkObjectActionFloatingNameEditPart extends FloatingLabelEdi
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -412,7 +414,7 @@ public class CreateLinkObjectActionFloatingNameEditPart extends FloatingLabelEdi
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
@@ -530,14 +532,8 @@ public class CreateLinkObjectActionFloatingNameEditPart extends FloatingLabelEdi
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
 		if (maskLabelPolicy == null) {
-			View view = (View) getModel();
-			if (view.isVisible()) {
-				setLabelTextHelper(getFigure(), getLabelText());
-				setLabelIconHelper(getFigure(), getLabelIcon());
-			} else {
-				setLabelTextHelper(getFigure(), ""); //$NON-NLS-1$
-				setLabelIconHelper(getFigure(), null);
-			}
+			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
@@ -695,6 +691,7 @@ public class CreateLinkObjectActionFloatingNameEditPart extends FloatingLabelEdi
 
 	/**
 	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -710,6 +707,7 @@ public class CreateLinkObjectActionFloatingNameEditPart extends FloatingLabelEdi
 
 	/**
 	 * Updates the preference configuration
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -723,10 +721,12 @@ public class CreateLinkObjectActionFloatingNameEditPart extends FloatingLabelEdi
 	}
 
 	/**
-	* Performs the direct edit usually used by GMF editors.
-	* @param theRequest the direct edit request that starts the direct edit system
-	* @generated
-	*/
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 * @generated
+	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
 		try {

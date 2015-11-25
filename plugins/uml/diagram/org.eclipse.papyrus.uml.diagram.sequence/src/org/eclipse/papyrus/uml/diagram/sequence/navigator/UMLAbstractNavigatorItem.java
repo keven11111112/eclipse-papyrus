@@ -27,9 +27,9 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
+		@SuppressWarnings("rawtypes")
 		final Class[] supportedTypes = new Class[] { ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
-
 			@Override
 			public String getContributorId() {
 				return "org.eclipse.papyrus.uml.diagram.sequence"; //$NON-NLS-1$
@@ -38,6 +38,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
+			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
 					return propertySheetPageContributor;
@@ -46,6 +47,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 			}
 
 			@Override
+			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;
 			}

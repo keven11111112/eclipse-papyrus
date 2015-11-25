@@ -293,14 +293,11 @@ public class PapyrusCDTEditor extends CEditor {
 	 * @throws CoreException
 	 */
 	public void gotoElement(NamedElement element) {
-		// IFile srcFile = SyncModelToCDT.syncModelToCDT((Classifier) pe);
-		// ITranslationUnit itu2 = (ITranslationUnit) CoreModel.getDefault().create(srcFile);
-
 		ICElement ice = CDTUITools.getEditorInputCElement(m_input);
 
 		if (ice instanceof ITranslationUnit) {
 			ITranslationUnit itu = (ITranslationUnit) ice;
-			ICElement icElement = ObtainICElement.getICElement(itu, element);
+			ICElement icElement = ObtainICElement.getICElement(syncCpp.getCodeGen(), itu, element);
 			if (icElement instanceof ISourceReference) {
 				try {
 					ISourceRange range = ((ISourceReference) icElement).getSourceRange();
@@ -385,9 +382,6 @@ public class PapyrusCDTEditor extends CEditor {
 	protected IAction gmfUndo, gmfRedo;
 
 	protected IAction textUndo, textRedo;
-
-	// TODO: remove, unused
-	protected IActionBars gmfActionBars, textActionBars;
 
 	protected boolean oldDirty;
 

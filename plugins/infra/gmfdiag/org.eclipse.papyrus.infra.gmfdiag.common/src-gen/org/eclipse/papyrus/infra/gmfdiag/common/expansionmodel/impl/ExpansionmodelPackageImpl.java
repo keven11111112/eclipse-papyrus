@@ -253,6 +253,15 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAbstractRepresentation_Description() {
+		return (EAttribute)abstractRepresentationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getAbstractRepresentation__Validate__DiagnosticChain_Map() {
 		return abstractRepresentationEClass.getEOperations().get(0);
 	}
@@ -361,6 +370,15 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGraphicalElementLibrary_Description() {
+		return (EAttribute)graphicalElementLibraryEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getUseContext() {
 		return useContextEClass;
 	}
@@ -399,6 +417,15 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 */
 	public EReference getUseContext_GmftRepresentations() {
 		return (EReference)useContextEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getUseContext_Description() {
+		return (EAttribute)useContextEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -460,6 +487,15 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDiagramExpansion_Description() {
+		return (EAttribute)diagramExpansionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExpansionmodelFactory getExpansionmodelFactory() {
 		return (ExpansionmodelFactory)getEFactoryInstance();
 	}
@@ -493,6 +529,7 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		createEReference(abstractRepresentationEClass, ABSTRACT_REPRESENTATION__KIND);
 		createEAttribute(abstractRepresentationEClass, ABSTRACT_REPRESENTATION__NAME);
 		createEAttribute(abstractRepresentationEClass, ABSTRACT_REPRESENTATION__VIEW_FACTORY);
+		createEAttribute(abstractRepresentationEClass, ABSTRACT_REPRESENTATION__DESCRIPTION);
 		createEOperation(abstractRepresentationEClass, ABSTRACT_REPRESENTATION___VALIDATE__DIAGNOSTICCHAIN_MAP);
 
 		representationKindEClass = createEClass(REPRESENTATION_KIND);
@@ -508,12 +545,14 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		createEAttribute(graphicalElementLibraryEClass, GRAPHICAL_ELEMENT_LIBRARY__NAME);
 		createEReference(graphicalElementLibraryEClass, GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
 		createEReference(graphicalElementLibraryEClass, GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
+		createEAttribute(graphicalElementLibraryEClass, GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION);
 
 		useContextEClass = createEClass(USE_CONTEXT);
 		createEAttribute(useContextEClass, USE_CONTEXT__DIAGRAM_TYPE);
 		createEReference(useContextEClass, USE_CONTEXT__REPRESENTATIONS);
 		createEAttribute(useContextEClass, USE_CONTEXT__NAME);
 		createEReference(useContextEClass, USE_CONTEXT__GMFT_REPRESENTATIONS);
+		createEAttribute(useContextEClass, USE_CONTEXT__DESCRIPTION);
 
 		gmfT_BasedRepresentationEClass = createEClass(GMFT_BASED_REPRESENTATION);
 		createEAttribute(gmfT_BasedRepresentationEClass, GMFT_BASED_REPRESENTATION__REUSED_ID);
@@ -522,6 +561,7 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		createEReference(diagramExpansionEClass, DIAGRAM_EXPANSION__USAGES);
 		createEReference(diagramExpansionEClass, DIAGRAM_EXPANSION__LIBRARIES);
 		createEAttribute(diagramExpansionEClass, DIAGRAM_EXPANSION__ID);
+		createEAttribute(diagramExpansionEClass, DIAGRAM_EXPANSION__DESCRIPTION);
 	}
 
 	/**
@@ -567,6 +607,7 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		initEReference(getAbstractRepresentation_Kind(), this.getRepresentationKind(), null, "kind", null, 0, 1, AbstractRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getAbstractRepresentation_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getAbstractRepresentation_ViewFactory(), ecorePackage.getEString(), "viewFactory", null, 0, 1, AbstractRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractRepresentation_Description(), ecorePackage.getEString(), "description", null, 0, 1, AbstractRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		EOperation op = initEOperation(getAbstractRepresentation__Validate__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validate", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostic", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -585,12 +626,14 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		initEAttribute(getGraphicalElementLibrary_Name(), ecorePackage.getEString(), "name", null, 1, 1, GraphicalElementLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getGraphicalElementLibrary_Representationkinds(), this.getRepresentationKind(), null, "representationkinds", null, 0, -1, GraphicalElementLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getGraphicalElementLibrary_Representations(), this.getAbstractRepresentation(), null, "representations", null, 0, -1, GraphicalElementLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getGraphicalElementLibrary_Description(), ecorePackage.getEString(), "description", null, 0, 1, GraphicalElementLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(useContextEClass, UseContext.class, "UseContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUseContext_DiagramType(), ecorePackage.getEString(), "diagramType", null, 1, 1, UseContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getUseContext_Representations(), this.getRepresentation(), null, "representations", null, 1, -1, UseContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getUseContext_Name(), ecorePackage.getEString(), "name", null, 1, 1, UseContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getUseContext_GmftRepresentations(), this.getGMFT_BasedRepresentation(), null, "gmftRepresentations", null, 0, -1, UseContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getUseContext_Description(), ecorePackage.getEString(), "description", null, 0, 1, UseContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(gmfT_BasedRepresentationEClass, GMFT_BasedRepresentation.class, "GMFT_BasedRepresentation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGMFT_BasedRepresentation_ReusedID(), ecorePackage.getEString(), "reusedID", null, 0, 1, GMFT_BasedRepresentation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -599,6 +642,7 @@ public class ExpansionmodelPackageImpl extends EPackageImpl implements Expansion
 		initEReference(getDiagramExpansion_Usages(), this.getUseContext(), null, "usages", null, 0, -1, DiagramExpansion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDiagramExpansion_Libraries(), this.getGraphicalElementLibrary(), null, "libraries", null, 0, -1, DiagramExpansion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getDiagramExpansion_ID(), ecorePackage.getEString(), "ID", null, 1, 1, DiagramExpansion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDiagramExpansion_Description(), ecorePackage.getEString(), "description", null, 0, 1, DiagramExpansion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

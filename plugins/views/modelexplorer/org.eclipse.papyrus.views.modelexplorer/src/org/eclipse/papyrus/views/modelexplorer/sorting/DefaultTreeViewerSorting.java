@@ -37,7 +37,7 @@ public class DefaultTreeViewerSorting implements ITreeViewerSorting {
 		ITreeViewerSorting result = null;
 
 		if (part != null) {
-			result = (ITreeViewerSorting) part.getAdapter(ITreeViewerSorting.class);
+			result = part.getAdapter(ITreeViewerSorting.class);
 		}
 
 		if (result == null) {

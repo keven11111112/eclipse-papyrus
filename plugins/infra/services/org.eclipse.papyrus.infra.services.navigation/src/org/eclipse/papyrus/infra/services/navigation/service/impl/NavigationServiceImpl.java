@@ -20,21 +20,17 @@ import java.util.TreeSet;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.navigation.Activator;
 import org.eclipse.papyrus.infra.services.navigation.provider.NavigationTargetProvider;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationContributor;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenuButton;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenuContributor;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
-import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
-import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * Base implementation of the NavigationService. It is based on the
@@ -44,7 +40,11 @@ import org.eclipse.swt.widgets.Control;
  */
 public class NavigationServiceImpl implements NavigationService {
 
-	public static final String EXTENSION_ID = Activator.PLUGIN_ID + ".navigationContributor";
+	public static final String NAVIGATION_CONTRIBUTOR_EXTENSION_ID = Activator.PLUGIN_ID + ".navigationContributor";
+
+	public static final String NAVIGATION_MENU_CONTRIBUTOR_EXTENSION_ID = Activator.PLUGIN_ID + ".navigationMenuContributor";
+
+	public static final String NAVIGATION_MENU_EXTENSION_ID = Activator.PLUGIN_ID + ".navigationMenu";
 
 	/**
 	 * The isActive property suffix (For preferences)
@@ -67,12 +67,13 @@ public class NavigationServiceImpl implements NavigationService {
 	public void startService() throws ServiceException {
 		createNavigationContributors();
 		createNavigationTargetProviders();
+		createNavigationMenuContributors();
 	}
 
 	protected void createNavigationContributors() {
 		navigationContributors = new LinkedList<NavigationContributorDescriptor>();
 
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(NAVIGATION_CONTRIBUTOR_EXTENSION_ID);
 
 		for (IConfigurationElement e : config) {
 			if (!"contributor".equals(e.getName())) {
@@ -94,10 +95,35 @@ public class NavigationServiceImpl implements NavigationService {
 		}
 	}
 
+	protected void createNavigationMenuContributors() {
+		navigationMenuContributors = new LinkedList<NavigationMenuContributorDescriptor>();
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(NAVIGATION_MENU_CONTRIBUTOR_EXTENSION_ID);
+
+		for (IConfigurationElement e : config) {
+			if (!"contributor".equals(e.getName())) {
+				continue;
+			}
+			try {
+				Object instance = e.createExecutableExtension("contributor");
+				if (instance instanceof NavigationMenuContributor) {
+					NavigationMenuContributorDescriptor wrapper = new NavigationMenuContributorDescriptor((NavigationMenuContributor) instance);
+					wrapper.setId(e.getAttribute("id"));
+					wrapper.setLabel(e.getAttribute("label"));
+					wrapper.setDescription(e.getAttribute("description"));
+					wrapper.init();
+					navigationMenuContributors.add(wrapper);
+				}
+			} catch (Exception ex) {
+				Activator.log.warn("Invalid navigation contribution from: " + e.getContributor());
+			}
+		}
+	}
+
 	protected void createNavigationTargetProviders() {
 		navigationTargetProviders = new TreeSet<NavigationTargetProvider>();
 
-		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(NAVIGATION_CONTRIBUTOR_EXTENSION_ID);
 
 		for (IConfigurationElement e : config) {
 			if (!"target".equals(e.getName())) {
@@ -139,6 +165,21 @@ public class NavigationServiceImpl implements NavigationService {
 		}
 
 		return navigableElements;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<NavigationMenuButton> getButtons(Object fromElement) {
+		List<NavigationMenuButton> buttons = new LinkedList<NavigationMenuButton>();
+
+		for (NavigationMenuContributorDescriptor contributor : navigationMenuContributors) {
+			if (contributor.isActive()) {
+				buttons.addAll(contributor.getButtons(fromElement));
+			}
+		}
+
+		return buttons;
 	}
 
 	public static class NavigationTargetProviderDescriptor implements NavigationTargetProvider, Comparable<NavigationTargetProviderDescriptor> {
@@ -207,10 +248,7 @@ public class NavigationServiceImpl implements NavigationService {
 
 	}
 
-	public static class NavigationContributorDescriptor implements NavigationContributor {
-
-		private final NavigationContributor contributor;
-
+	public static class ContributorDescriptor {
 		private String label;
 
 		private String description;
@@ -219,23 +257,13 @@ public class NavigationServiceImpl implements NavigationService {
 
 		private final IPreferenceStore preferences;
 
-		public NavigationContributorDescriptor(NavigationContributor contributor) {
-			this.contributor = contributor;
-
+		public ContributorDescriptor() {
 			preferences = Activator.getDefault().getPreferenceStore();
 		}
 
 		public void init() {
 			String isActiveKey = getIsActiveKey(this);
 			preferences.setDefault(isActiveKey, true);
-		}
-
-		public List<NavigableElement> getNavigableElements(Object fromElement) {
-			if (isActive()) {
-				return contributor.getNavigableElements(fromElement);
-			} else {
-				return Collections.emptyList();
-			}
 		}
 
 		public String getLabel() {
@@ -267,15 +295,48 @@ public class NavigationServiceImpl implements NavigationService {
 			return preferences.getBoolean(preferenceKey);
 		}
 
-		public static String getIsActiveKey(NavigationContributorDescriptor strategy) {
+		public static String getIsActiveKey(ContributorDescriptor strategy) {
 			return strategy.getId() + "." + IS_ACTIVE_KEY;
 		}
+	}
 
+	public static class NavigationContributorDescriptor extends ContributorDescriptor implements NavigationContributor {
+		private final NavigationContributor contributor;
+
+		public NavigationContributorDescriptor(NavigationContributor contributor) {
+			this.contributor = contributor;
+		}
+
+		public List<NavigableElement> getNavigableElements(Object fromElement) {
+			if (isActive()) {
+				return contributor.getNavigableElements(fromElement);
+			} else {
+				return Collections.emptyList();
+			}
+		}
+	}
+
+	public static class NavigationMenuContributorDescriptor extends ContributorDescriptor implements NavigationMenuContributor {
+		private final NavigationMenuContributor contributor;
+
+		public NavigationMenuContributorDescriptor(NavigationMenuContributor contributor) {
+			this.contributor = contributor;
+		}
+
+		public List<NavigationMenuButton> getButtons(Object fromElement) {
+			if (isActive()) {
+				return contributor.getButtons(fromElement);
+			} else {
+				return Collections.emptyList();
+			}
+		}
 	}
 
 	private List<NavigationContributorDescriptor> navigationContributors;
 
 	private Collection<NavigationTargetProvider> navigationTargetProviders;
+
+	private List<NavigationMenuContributorDescriptor> navigationMenuContributors;
 
 	public List<NavigationContributorDescriptor> getNavigationContributors() {
 		return navigationContributors;
@@ -285,60 +346,32 @@ public class NavigationServiceImpl implements NavigationService {
 		return navigationTargetProviders;
 	}
 
+	public List<NavigationMenuContributorDescriptor> getNavigationMenuContributors() {
+		return navigationMenuContributors;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
-	public SelectionMenu createNavigationList(Object fromElement, final Control parent) {
-		List<NavigableElement> navigableElements = getNavigableElements(fromElement);
-		if (navigableElements.isEmpty()) {
-			return null;
+	public NavigationMenu createNavigationList() {
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(NAVIGATION_MENU_EXTENSION_ID);
+
+		for (IConfigurationElement e : config) {
+			if (!"menu".equals(e.getName())) {
+				continue;
+			}
+			try {
+				Object instance = e.createExecutableExtension("menu");
+				if (instance instanceof NavigationMenu) {
+					return (NavigationMenu) instance;
+				}
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+				Activator.log.warn("Invalid navigation menu from: " + e.getContributor());
+			}
 		}
 
-		SelectionMenu selectionMenu = new SelectionMenu(parent.getShell());
-		selectionMenu.setLabelProvider(new ColumnLabelProvider() {
-
-			@Override
-			public String getText(Object element) {
-				if (element instanceof NavigableElement) {
-					return ((NavigableElement) element).getLabel();
-				}
-				return super.getText(element);
-			}
-
-			@Override
-			public Image getImage(Object element) {
-				if (element instanceof NavigableElement) {
-					return ((NavigableElement) element).getImage();
-				}
-				return super.getImage(element);
-			}
-
-			@Override
-			public String getToolTipText(Object element) {
-				if (element instanceof NavigableElement) {
-					return ((NavigableElement) element).getDescription();
-				}
-				return super.getToolTipText(element);
-			}
-
-			@Override
-			public Color getForeground(Object element) {
-				if (element instanceof NavigableElement) {
-					NavigableElement navigableElement = (NavigableElement) element;
-					if (!navigableElement.isEnabled()) {
-						return parent.getDisplay().getSystemColor(SWT.COLOR_GRAY);
-					}
-				}
-				return super.getForeground(element);
-			}
-		});
-
-		selectionMenu.setContentProvider(CollectionContentProvider.instance);
-		selectionMenu.setInput(navigableElements);
-
-		selectionMenu.open();
-
-		return selectionMenu;
+		return null;
 	}
 
 	/**
@@ -379,6 +412,29 @@ public class NavigationServiceImpl implements NavigationService {
 
 			if (target.revealElement(element)) {
 				return;
+			}
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void navigate(Object element, String providerId) {
+		if (registry == null) {
+			throw new IllegalStateException("The navigation service is not initialized");
+		}
+
+		for (NavigationTargetProvider provider : getNavigationTargetProviders()) {
+			if (((NavigationTargetProviderDescriptor) provider).getId().equals(providerId)) {
+				NavigationTarget target = provider.getNavigationTarget(registry);
+
+				if (target == null) {
+					continue;
+				}
+
+				if (target.revealElement(element)) {
+					return;
+				}
 			}
 		}
 	}

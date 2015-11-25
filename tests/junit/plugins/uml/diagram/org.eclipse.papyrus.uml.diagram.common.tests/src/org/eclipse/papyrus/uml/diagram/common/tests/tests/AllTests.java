@@ -23,10 +23,10 @@ import org.eclipse.papyrus.uml.diagram.common.tests.parser.MultiplicityStringFor
 import org.eclipse.papyrus.uml.diagram.common.tests.parser.ValueSpecificationUtilTestCase;
 import org.eclipse.papyrus.uml.diagram.common.tests.stereotype.display.AppliedStereotypeDisplayStructureTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		AppliedStereotypeDisplayStructureTest.class,
 		CommonBendpointsTest.class,
@@ -37,6 +37,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		MultiplicityStringFormatterTestCase.class,
 		ValueSpecificationUtilTestCase.class,
 		CanonicalRegressionTest.class,
+		ShapeCustomisationTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite

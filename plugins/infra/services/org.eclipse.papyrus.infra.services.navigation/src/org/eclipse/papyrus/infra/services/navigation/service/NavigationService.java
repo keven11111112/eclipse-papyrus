@@ -12,8 +12,6 @@
 package org.eclipse.papyrus.infra.services.navigation.service;
 
 import org.eclipse.papyrus.infra.core.services.IService;
-import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
-import org.eclipse.swt.widgets.Control;
 
 /**
  * A Service to navigate from an element.
@@ -27,7 +25,7 @@ import org.eclipse.swt.widgets.Control;
  *
  * @see NavigationContributor
  */
-public interface NavigationService extends IService, NavigationContributor {
+public interface NavigationService extends IService, NavigationContributor, NavigationMenuContributor {
 
 	/**
 	 * Creates a Selection Menu to display all the NavigableElement which can be reached from an element
@@ -36,7 +34,7 @@ public interface NavigationService extends IService, NavigationContributor {
 	 * @param parent
 	 * @return
 	 */
-	public SelectionMenu createNavigationList(Object fromElement, Control parent);
+	public NavigationMenu createNavigationList();
 
 	/**
 	 * Navigate to the target of the given NavigableElement (e.g. To the type of a TypedElement)
@@ -51,4 +49,11 @@ public interface NavigationService extends IService, NavigationContributor {
 	 * @param element
 	 */
 	public void navigate(Object element);
+
+	/**
+	 * Navigate to the given element with the chosen target provider
+	 *
+	 * @param element
+	 */
+	public void navigate(Object element, String providerClassKey);
 }

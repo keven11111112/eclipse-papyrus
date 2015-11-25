@@ -44,8 +44,8 @@ public class GeneralOrderingEditPart extends ConnectionNodeEditPart implements I
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof GeneralOrderingAppliedStereotypeEditPart) {
-			((GeneralOrderingAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
-			return true;
+			((GeneralOrderingAppliedStereotypeEditPart) childEditPart).setLabel(
+					getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

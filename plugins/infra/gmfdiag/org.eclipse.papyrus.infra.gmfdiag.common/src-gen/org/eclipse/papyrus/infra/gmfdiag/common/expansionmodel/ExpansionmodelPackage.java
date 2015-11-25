@@ -114,13 +114,22 @@ public interface ExpansionmodelPackage extends EPackage {
 	int ABSTRACT_REPRESENTATION__VIEW_FACTORY = 3;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_REPRESENTATION__DESCRIPTION = 4;
+
+	/**
 	 * The number of structural features of the '<em>Abstract Representation</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_REPRESENTATION_FEATURE_COUNT = 4;
+	int ABSTRACT_REPRESENTATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The operation id for the '<em>Validate</em>' operation.
@@ -185,6 +194,15 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int REPRESENTATION__VIEW_FACTORY = ABSTRACT_REPRESENTATION__VIEW_FACTORY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPRESENTATION__DESCRIPTION = ABSTRACT_REPRESENTATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Graphical Element Type</b></em>' attribute.
@@ -342,6 +360,15 @@ public interface ExpansionmodelPackage extends EPackage {
 	int INDUCED_REPRESENTATION__VIEW_FACTORY = ABSTRACT_REPRESENTATION__VIEW_FACTORY;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDUCED_REPRESENTATION__DESCRIPTION = ABSTRACT_REPRESENTATION__DESCRIPTION;
+
+	/**
 	 * The feature id for the '<em><b>Hint</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,13 +451,22 @@ public interface ExpansionmodelPackage extends EPackage {
 	int GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION = 3;
+
+	/**
 	 * The number of structural features of the '<em>Graphical Element Library</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GRAPHICAL_ELEMENT_LIBRARY_FEATURE_COUNT = 3;
+	int GRAPHICAL_ELEMENT_LIBRARY_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Graphical Element Library</em>' class.
@@ -488,13 +524,22 @@ public interface ExpansionmodelPackage extends EPackage {
 	int USE_CONTEXT__GMFT_REPRESENTATIONS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CONTEXT__DESCRIPTION = 4;
+
+	/**
 	 * The number of structural features of the '<em>Use Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CONTEXT_FEATURE_COUNT = 4;
+	int USE_CONTEXT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Use Context</em>' class.
@@ -550,6 +595,15 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GMFT_BASED_REPRESENTATION__VIEW_FACTORY = REPRESENTATION__VIEW_FACTORY;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GMFT_BASED_REPRESENTATION__DESCRIPTION = REPRESENTATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Graphical Element Type</b></em>' attribute.
@@ -652,13 +706,22 @@ public interface ExpansionmodelPackage extends EPackage {
 	int DIAGRAM_EXPANSION__ID = 2;
 
 	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM_EXPANSION__DESCRIPTION = 3;
+
+	/**
 	 * The number of structural features of the '<em>Diagram Expansion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM_EXPANSION_FEATURE_COUNT = 3;
+	int DIAGRAM_EXPANSION_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Diagram Expansion</em>' class.
@@ -766,6 +829,17 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAbstractRepresentation_ViewFactory();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#getDescription()
+	 * @see #getAbstractRepresentation()
+	 * @generated
+	 */
+	EAttribute getAbstractRepresentation_Description();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation#validate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Validate</em>}' operation.
@@ -896,6 +970,17 @@ public interface ExpansionmodelPackage extends EPackage {
 	EReference getGraphicalElementLibrary_Representations();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary#getDescription()
+	 * @see #getGraphicalElementLibrary()
+	 * @generated
+	 */
+	EAttribute getGraphicalElementLibrary_Description();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext <em>Use Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -948,6 +1033,17 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUseContext_GmftRepresentations();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getDescription()
+	 * @see #getUseContext()
+	 * @generated
+	 */
+	EAttribute getUseContext_Description();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation <em>GMFT Based Representation</em>}'.
@@ -1012,6 +1108,17 @@ public interface ExpansionmodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDiagramExpansion_ID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion#getDescription()
+	 * @see #getDiagramExpansion()
+	 * @generated
+	 */
+	EAttribute getDiagramExpansion_Description();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1111,6 +1218,14 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ABSTRACT_REPRESENTATION__VIEW_FACTORY = eINSTANCE.getAbstractRepresentation_ViewFactory();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ABSTRACT_REPRESENTATION__DESCRIPTION = eINSTANCE.getAbstractRepresentation_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Validate</b></em>' operation.
@@ -1215,6 +1330,14 @@ public interface ExpansionmodelPackage extends EPackage {
 		EReference GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS = eINSTANCE.getGraphicalElementLibrary_Representations();
 
 		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GRAPHICAL_ELEMENT_LIBRARY__DESCRIPTION = eINSTANCE.getGraphicalElementLibrary_Description();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.UseContextImpl <em>Use Context</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1255,6 +1378,14 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USE_CONTEXT__GMFT_REPRESENTATIONS = eINSTANCE.getUseContext_GmftRepresentations();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USE_CONTEXT__DESCRIPTION = eINSTANCE.getUseContext_Description();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_BasedRepresentationImpl <em>GMFT Based Representation</em>}' class.
@@ -1307,6 +1438,14 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DIAGRAM_EXPANSION__ID = eINSTANCE.getDiagramExpansion_ID();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIAGRAM_EXPANSION__DESCRIPTION = eINSTANCE.getDiagramExpansion_Description();
 
 	}
 

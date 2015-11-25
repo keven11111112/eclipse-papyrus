@@ -85,9 +85,4 @@ public class DecorationGroup extends AbstractGroup {
 
 	}
 
-	@Override
-	protected String getPreferenceConstant(int preferenceType) {
-		System.out.println(super.getPreferenceConstant(preferenceType));
-		return super.getPreferenceConstant(preferenceType);
-	}
 }

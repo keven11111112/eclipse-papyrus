@@ -6,11 +6,11 @@
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<parent>
-	    <groupId>org.eclipse.papyrus</groupId>
-	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
-	    <version>1.2.0-SNAPSHOT</version>
-	    <relativePath>..</relativePath>
-    </parent>
+		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.all.releng</artifactId>
+		<version>1.2.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
 	<modules>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cdo.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cpp.feature</module>
@@ -22,7 +22,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.properties.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.marte.textedit.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.migration.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.moka.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.qompass.designer.basic.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.qompass.designer.tracing.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.robotml.feature</module>
@@ -37,7 +36,6 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
@@ -103,16 +101,6 @@
 		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.vsl</module>
 		<module>../../extraplugins/marte/org.eclipse.papyrus.marte.vsl.ui</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.properties.model</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.async.fuml</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.composites</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.composites.utils</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.fuml</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.fuml.activeobjectcontrollerlibrary</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.fuml.assertionlibrary</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.fuml.standardlibrary</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.fuml.validation</module>
-		<module>../../extraplugins/moka/org.eclipse.papyrus.moka.ui</module>
 		<module>../../extraplugins/qompass-designer/org.eclipse.papyrus.qompass.designer.core</module>
 		<module>../../extraplugins/qompass-designer/org.eclipse.papyrus.qompass.designer.cpp</module>
 		<module>../../extraplugins/qompass-designer/org.eclipse.papyrus.qompass.designer.java</module>
@@ -139,96 +127,105 @@
 		<module>../../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
 		<module>../../extraplugins/uml/org.eclipse.papyrus.uml.diagram.dnd.smart</module>
-		
-		<!-- Papyrus SoaML   -->
+
+		<!-- Papyrus SoaML -->
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.profile</module>
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.profile.validation</module>
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.ui</module>
 		<module>../../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.common</module>
-		
+
 		<!-- ALF -->
 		<module>../../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.text</module>
 		<module>../../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.transaction</module>
 		<module>../../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.properties.xtext</module>
 		<module>../../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.preferences</module>
-		
-		<!-- Papyrus Uml Rt  -->
+
+		<!-- Papyrus Uml Rt -->
 		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt</module>
 		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.ui</module>
 		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.properties</module>
 		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.validation</module>
-		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.wizard</module>					
-		
+		<module>../../extraplugins/umlrt/org.eclipse.papyrus.umlrt.wizard</module>
+
 		<module>../../extraplugins/migration/org.eclipse.papyrus.m2m.qvto</module>
 		<module>../../extraplugins/migration/org.eclipse.papyrus.migration.rsa</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.views.cpp</module>
 		<module>../../extraplugins/qompass-designer/tracing/org.eclipse.papyrus.views.tracepoints</module>
 		<!-- Papyrus Uml Diagram Ecore -->
 		<module>../../extraplugins/papyrus4ecore/org.eclipse.papyrus.uml.diagram.ecore</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.ecore.feature</module>	
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.ecore.feature</module>
 		<!-- Papyrus 4 Education -->
 		<module>../../extraplugins/papyrus4education/org.eclipse.papyrus.uml.diagram.education</module>
-		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>	
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.diagram.education.feature</module>
 		<!-- Module EPF -->
-<!-- 		<module>../../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module> -->
-<!-- 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module> -->
+		<!-- <module>../../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module> -->
+		<!-- <module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module> -->
 
-        <module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipse.profile</module>
-        <module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.assistant</module>
-        <module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.table</module>
-        <module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool</module>
-        <module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.osgi.profile</module>
-        <!-- Missing org.eclipse.xtext.gmf.glue 0.8.0' <module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext.ui</module> 
-        <module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext</module>-->
- 
-        <module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture</module>
-        <module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
-        <module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.editor</module>
+		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipse.profile</module>
+		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.assistant</module>
+		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.table</module>
+		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool</module>
+		<module>../../extraplugins/adl4eclipse/org.eclipse.papyrus.osgi.profile</module>
+		<!-- Missing org.eclipse.xtext.gmf.glue 0.8.0' <module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext.ui</module> 
+			<module>../../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext</module> -->
+
+		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture</module>
+		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
+		<module>../../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.editor</module>
 
 		<!-- Diagram Definition -->
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.qvt</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation.export</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation.qvt</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation2umldi</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.edit</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.editor</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi</module>
-        <module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi2dg</module>
-        <module>../../features/papyrus-extra-features/org.eclipse.papyrus.dd.feature</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd.qvt</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.dd</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation.export</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation.qvt</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.notation2umldi</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.edit</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.editor</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi</module>
+		<module>../../extraplugins/diagram-definition/org.eclipse.papyrus.umldi2dg</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.dd.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.umldi.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.notation.feature</module>
-		
-        <module>../../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>
-        <module>../../extraplugins/facade/org.eclipse.papyrus.facade.definition.editor</module>
-        <module>../../extraplugins/facade/org.eclipse.papyrus.facade.edit</module>
-        <module>../../extraplugins/facade/org.eclipse.papyrus.facade.editor</module>
-        <module>../../extraplugins/facade/org.eclipse.papyrus.facade.utils</module>
-        <module>../../extraplugins/facade/org.eclipse.papyrus.facade</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout</module> 
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.gridAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.radialAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.springAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.treeAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm</module>
-        <module>../../extraplugins/layout/org.eclipse.papyrus.layout.subeditor.gmf</module>
-        
-        <module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
-        <module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
-		
+
+		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>
+		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.definition.editor</module>
+		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.edit</module>
+		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.editor</module>
+		<module>../../extraplugins/facade/org.eclipse.papyrus.facade.utils</module>
+		<module>../../extraplugins/facade/org.eclipse.papyrus.facade</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.gridAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.radialAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.springAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.treeAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm</module>
+		<module>../../extraplugins/layout/org.eclipse.papyrus.layout.subeditor.gmf</module>
+
+		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
+		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
+
 		<!-- Papyrus Req -->
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.reqif</module>
-		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.preferences</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.assistant</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.sysml.traceabilityassistant</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		
-		<!--  Papyrus BPMN  -->
+		<!-- Papyrus BMM -->
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm.diagram</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm.diagram.common</module>
+		<module>../../extraplugins/req/org.eclipse.papyrus.req.bmm.diagram.ui</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bmm.extra.feature</module>
+
+		<!-- Papyrus BPMN -->
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn</module>
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram</module>
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.common</module>
@@ -240,194 +237,70 @@
 		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.core</module>
 		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.emf</module>
 		<module>../../extraplugins/aof/org.eclipse.papyrus.aof.lang</module>
-		
+
 		<module>site</module>
 	</modules>
-	<properties>
-		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}</papyrus.repo.main>
-	</properties>
+
 	<repositories>
-	<!--  	<repository>
-			<id>org.eclipse.epf.richtext_1.5.1.6-update-site</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url>
-		</repository>-->
+		<!-- <repository> <id>org.eclipse.epf.richtext_1.5.1.6-update-site</id> 
+			<layout>p2</layout> <url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url> 
+			</repository> -->
 		<repository>
 			<id>papyrus-main</id>
 			<layout>p2</layout>
 			<url>${papyrus.repo.main}</url>
 		</repository>
 		<repository>
-			<id>ep</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M1-201508052000/</url>
-		</repository>
-		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
-			<url>http://download.eclipse.org/tools/cdt/builds/mars/milestones</url>
+			<url>${cdt.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF CDO",0) -->
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20150819-1258</url>
+			<url>${emf-cdo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
-			<url>http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.2/S201508181443</url>
-		</repository>
-		<repository>
-			<id>emf-emf</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF (Core)",0) -->
-			<url>http://download.eclipse.org/modeling/emf/emf/updates/2.12milestones/</url>
-		</repository>
-		<repository>
-			<id>emft-mwe[0]</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030321/mwe</url>
-		</repository>
-		<repository>
-			<id>emft-mwe[1]</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030411/mwe2lang/</url>
+			<url>${emf-compare.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-query</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF Query",0) -->
-			<url>http://download.eclipse.org/modeling/emf/query/updates/releases/R201505312221</url>
-		</repository>
-		<repository>
-			<id>emf-transaction</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221</url>
-		</repository>
-		<repository>
-			<id>emf-validation</id>
-			<layout>p2</layout>
-			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255</url>
-		</repository>
-		<repository>
-			<id>gef</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GEF",0) -->
-			<url>http://download.eclipse.org/tools/gef/updates/milestones</url>
-		</repository>
-		<repository>
-			<id>gmp-gmf-notation</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
-		</repository>
-		<repository>
-			<id>gmp-gmf-runtime</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
-		</repository>
-		<repository>
-			<id>gmf-tooling</id>
-			<layout>p2</layout>
-			<!-- updateFrom("GMF Tooling",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-tooling/updates/milestones-3.3/S201506090500</url>
+			<url>${emf-query.repo.url}</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201508181441</url>
-		</repository>
-		<repository>
-			<id>m2t-xpand</id>
-			<layout>p2</layout>
-			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201508180411/</url>
-		</repository>
-		<repository>
-			<id>mdt-ocl</id>
-			<layout>p2</layout>
-			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.1.0/S201508171259</url>
-		</repository>
-		<repository>
-			<id>mdt-uml2</id>
-			<layout>p2</layout>
-			<!-- updateFrom("MDT UML2",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1</url>
-		</repository>
-		<repository>
-			<id>mmt-qvto</id>
-			<layout>p2</layout>
-			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/releases/3.5.0</url>
-		</repository>
-		<repository>
-			<id>nattable</id>
-			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>http://download.eclipse.org/nattable/releases/1.2.0/repository/</url>
-		</repository>
-		<repository>
-			<id>orbit</id>
-			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20150519210750/repository</url>
-		</repository>
-		<repository>
-			<id>subversive</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Subversive",0) -->
-			<url>http://download.eclipse.org/technology/subversive/3.0/neon-site/</url>
-		</repository>
-		<repository>
-			<id>tmf-xtext</id>
-			<layout>p2</layout>
-			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/</url>
-		</repository>
-		<repository>
-			<id>webtools</id>
-			<layout>p2</layout>
-			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M1-20150818010140/repository/</url>
-		</repository>
-		<repository>
-			<id>XWT</id>
-			<layout>p2</layout>
-			<!-- updateFrom("XWT",0) -->
-			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
+			<url>${m2t-acceleo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>EEF</id>
 			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>http://download.eclipse.org/modeling/emft/eef/updates/releases/1.2/</url>
+			<!-- updateFrom("Extended Editing Framework (EEF)",0) -->
+			<url>${eef.repo.url}</url>
 		</repository>
 		<repository>
 			<id>RMF</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>http://download.eclipse.org/rmf/updates/releases</url>
+			<url>${rmf.repo.url}</url>
 		</repository>
 		<repository>
 			<id>PapyrusRT</id>
 			<layout>p2</layout>
-			<!--  manualUpdate -->
-			<url>http://download.eclipse.org/papyrus-rt/updates/releases/mars/0.7.0/</url>
+			<!-- manualUpdate -->
+			<url>${papyrusrt.repo.url}</url>
 		</repository>
 	</repositories>
 	<build>
-	
+
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -440,11 +313,6 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
-				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>build-helper-maven-plugin</artifactId>
 					<version>1.9.1</version>
@@ -454,53 +322,39 @@
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>1.2.1</version>
 				</plugin>
-                <plugin>
-                    <groupId>org.eclipse.xtend</groupId>
-                    <artifactId>xtend-maven-plugin</artifactId>
-                    <version>${xtext.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.6</version>
-                    <configuration>
-                        <encoding>UTF-8</encoding>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>tycho-compiler-plugin</artifactId>
-                    <version>${tycho-version}</version>
-                    <configuration>
-                        <optimize>true</optimize>
-                        <showWarnings>true</showWarnings>
-                        <!-- Tycho build using the project's JDT settings. -->
-                        <useProjectSettings>true</useProjectSettings>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>tycho-maven-plugin</artifactId>
-                    <version>${tycho-version}</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>org.eclipse.tycho</groupId>
-                    <artifactId>target-platform-configuration</artifactId>
-                    <version>${tycho-version}</version>
-                    <configuration>
-                        <environments>
-                            <environment>
-                                <os>win32</os>
-                                <ws>win32</ws>
-                                <arch>x86_64</arch>
-                            </environment>
-                        </environments>
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-compiler-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<optimize>true</optimize>
+						<showWarnings>true</showWarnings>
+						<!-- Tycho build using the project's JDT settings. -->
+						<useProjectSettings>true</useProjectSettings>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>target-platform-configuration</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<environments>
+							<environment>
+								<os>win32</os>
+								<ws>win32</ws>
+								<arch>x86_64</arch>
+							</environment>
+						</environments>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
-	
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -523,7 +377,7 @@
 				<artifactId>tycho-p2-repository-plugin</artifactId>
 				<version>${tycho-version}</version>
 			</plugin>
-            <!-- Sources -->
+			<!-- Sources -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-source-plugin</artifactId>
@@ -551,12 +405,29 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<sourceReferences>
+						<generate>true</generate>
+					</sourceReferences>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-sourceref-jgit</artifactId>
+						<version>${tychoExtrasVersion}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
-	
-	
+
+
 	<profiles>
-		
+
 		<profile>
 			<id>defaultProfile</id>
 			<build>
@@ -580,13 +451,13 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
-		</profile>	  
-	  
+		</profile>
+
 		<profile>
-	  		<id>packAndSign</id> <!-- Stable release profile. Takes +30min. Eclipse servers only -->
-		  	<!-- Pack200 -->
-		  	<build>
-			  	<plugins>
+			<id>packAndSign</id> <!-- Stable release profile. Takes +30min. Eclipse servers only -->
+			<!-- Pack200 -->
+			<build>
+				<plugins>
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200a-plugin</artifactId>
@@ -606,13 +477,13 @@
 						<version>${jarSignerVersion}</version>
 						<executions>
 							<execution>
-						    	<id>sign</id>
-						    	<goals>
-						    		<goal>sign</goal>
-						    	</goals>
-						  	</execution>
+								<id>sign</id>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
 						</executions>
-		            </plugin>
+					</plugin>
 					<plugin>
 						<groupId>org.eclipse.tycho.extras</groupId>
 						<artifactId>tycho-pack200b-plugin</artifactId>
@@ -645,61 +516,62 @@
 					</plugin>
 				</plugins>
 			</build>
-	        <activation>
-	        	<property>
-	        		<name>SIGN</name>
-	        		<value>true</value>
-	        	</property>
-	        </activation>
+			<activation>
+				<property>
+					<name>SIGN</name>
+					<value>true</value>
+				</property>
+			</activation>
 		</profile>
-	  
-	  
-    	<profile>
-	        <id>pack</id> <!-- Nightly profile. Artifacts can be consumed, but are not signed -->
-	        <build>
-	          <plugins>
-	            <!-- Pack200 -->
-				<plugin>
-					<groupId>org.eclipse.tycho.extras</groupId>
-					<artifactId>tycho-pack200b-plugin</artifactId>
-					<version>${tychoExtrasVersion}</version>
-					<executions>
-						<execution>
-							<id>pack200-pack</id>
-							<goals>
-								<goal>pack</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-p2-plugin</artifactId>
-					<version>${tycho-version}</version>
-					<executions>
-						<execution>
-							<id>attach-p2-metadata</id>
-							<phase>package</phase>
-							<goals>
-								<goal>p2-metadata</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<defaultP2Metadata>false</defaultP2Metadata>
-					</configuration>
-				</plugin>
-	          </plugins>
-	        </build>
-	        <activation>
-	        	<property>
-	        		<name>SIGN</name>
-	        		<value>false</value>
-	        	</property>
-	        </activation>
-    	</profile>
-      
-        <!-- profile dedicated to activate the repository linked to nightly artifacts, useful for daily life of developers -->
+
+
+		<profile>
+			<id>pack</id> <!-- Nightly profile. Artifacts can be consumed, but are not signed -->
+			<build>
+				<plugins>
+					<!-- Pack200 -->
+					<plugin>
+						<groupId>org.eclipse.tycho.extras</groupId>
+						<artifactId>tycho-pack200b-plugin</artifactId>
+						<version>${tychoExtrasVersion}</version>
+						<executions>
+							<execution>
+								<id>pack200-pack</id>
+								<goals>
+									<goal>pack</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<defaultP2Metadata>false</defaultP2Metadata>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<activation>
+				<property>
+					<name>SIGN</name>
+					<value>false</value>
+				</property>
+			</activation>
+		</profile>
+
+		<!-- profile dedicated to activate the repository linked to nightly artifacts, 
+			useful for daily life of developers -->
 		<profile>
 			<id>nightly</id>
 			<repositories>
@@ -727,5 +599,5 @@
 				<activeByDefault>false</activeByDefault>
 			</activation>
 		</profile>
-    </profiles>
+	</profiles>
 </project>

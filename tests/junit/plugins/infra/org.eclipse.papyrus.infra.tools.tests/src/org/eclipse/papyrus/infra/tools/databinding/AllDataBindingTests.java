@@ -13,14 +13,14 @@
 package org.eclipse.papyrus.infra.tools.databinding;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * The test suite for data-bindings API.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ DelegatingObservableValueTest.class, DelegatingObservableSetTest.class, DelegatingObservableListTest.class })
 public class AllDataBindingTests {
 

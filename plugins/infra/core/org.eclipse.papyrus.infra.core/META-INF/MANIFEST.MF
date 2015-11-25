@@ -44,4 +44,4 @@ Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.core.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

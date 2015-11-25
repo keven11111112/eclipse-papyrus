@@ -54,6 +54,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -77,6 +78,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
+		// Filter Classes (including Behaviors, since Behavior inherits from Class), Operation and Transition
 		if (selectedEObject instanceof Class ||
 				selectedEObject instanceof Operation ||
 				selectedEObject instanceof Transition)
@@ -250,6 +252,16 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		}
 		else if (selectedEObject instanceof Transition) {
 			return ((Transition) selectedEObject).getContainer().getStateMachine().getContext();
+		}
+		else if (selectedEObject instanceof Behavior) {
+			Element owner = (Behavior) selectedEObject;
+			while (owner != null) {
+				owner = owner.getOwner();
+				if ((owner instanceof Classifier) && !(owner instanceof Behavior)) {
+					return (Classifier) owner;
+				}
+			}
+			return null;
 		}
 		else if (selectedEObject instanceof Classifier) {
 			// must be class or datatype

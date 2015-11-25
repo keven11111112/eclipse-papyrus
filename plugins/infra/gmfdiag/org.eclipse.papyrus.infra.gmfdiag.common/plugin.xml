@@ -311,6 +311,12 @@
             name="Lowest">
       </Priority>
    </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.PopupBarEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.commands.historyListeners">
@@ -468,6 +474,13 @@
             uri="http:///expansionmodel.ecore"
             class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage"
             genModel="model/ExpansionModel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated ExpansionModel -->
+      <parser
+            type="expansionmodel"
+            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelResourceFactoryImpl"/>
    </extension>
 
 

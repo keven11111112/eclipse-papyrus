@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests;
@@ -22,6 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
@@ -36,7 +37,7 @@ import org.junit.Test;
  * Test cases for element types generation for UML profiles that have nested packages and profiles.
  */
 @PluginResource("/resources/nesting.profile.uml")
-public class ProfilesWithPackageNestingTest {
+public class ProfilesWithPackageNestingTest extends AbstractPapyrusTest {
 
 	@ClassRule
 	public static final ModelGenFixture fixture = new ModelGenFixture();

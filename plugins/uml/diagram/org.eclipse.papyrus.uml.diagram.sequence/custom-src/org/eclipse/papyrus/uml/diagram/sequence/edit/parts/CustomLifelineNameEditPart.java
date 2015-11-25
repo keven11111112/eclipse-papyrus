@@ -22,7 +22,6 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.window.Window;
@@ -51,16 +50,10 @@ public class CustomLifelineNameEditPart extends LifelineNameEditPart {
 		super(view);
 	}
 
-	@Override
-	public void setLabel(WrappingLabel figure) {
-		figure.setTextWrap(false); // If the width is too small, the text will be displayed in part and suffixed by "..."
-		super.setLabel(figure);
-	}
-
 	/**
 	 * @Override
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
@@ -168,9 +161,9 @@ public class CustomLifelineNameEditPart extends LifelineNameEditPart {
 			Lifeline lifeline = (Lifeline) this.resolveSemanticElement();
 			// handle possible change in the name container size
 			// In AutoSize mode, the width should be resized if the content of the text gets changed. see https://bugs.eclipse.org/bugs/show_bug.cgi?id=383723
-			if(notifier.equals(lifeline.getRepresents()) || notifier.equals(lifeline.getSelector()) 
-					|| UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature) 
-					|| UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature) 
+			if (notifier.equals(lifeline.getRepresents()) || notifier.equals(lifeline.getSelector())
+					|| UMLPackage.Literals.NAMED_ELEMENT__NAME.equals(feature) || UMLPackage.Literals.LIFELINE__REPRESENTS.equals(feature)
+					|| UMLPackage.Literals.LIFELINE__DECOMPOSED_AS.equals(feature) || UMLPackage.Literals.LIFELINE__SELECTOR.equals(feature)
 					|| event.getNotifier() instanceof Bounds) {
 				((CustomLifelineEditPart) getParent()).updateLifelinePosition();
 			}

@@ -43,7 +43,6 @@ import org.osgi.framework.Bundle;
  * @author VL222926
  *
  */
-@SuppressWarnings("restriction")
 public class BundlesTests extends AbstractPapyrusTest {
 
 	// Transform the version number to the regex format
@@ -57,7 +56,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
 
-	private static final String NATTABLE_VERSION = "1.2.0"; //$NON-NLS-1$
+	private static final String NATTABLE_VERSION = "1.3.0"; //$NON-NLS-1$
 
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
@@ -472,27 +471,6 @@ public class BundlesTests extends AbstractPapyrusTest {
 			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[] { Integer.toString(nb), wantedVersion, partialDependencyName })); //$NON-NLS-1$
 		}
 		Assert.assertTrue(builder.toString(), builder.length() == 0);
-	}
-
-	/**
-	 * This test verify that the plugin contains pdoc file
-	 */
-	@NotImplemented("Documentation file is not mandatory")
-	@Test
-	public void documentationFileTest() {
-		String message = null;
-		int nb = 0;
-		for (final Bundle bundle : BundleTestsUtils.getPapyrusBundles()) {
-			final URL res = bundle.getResource("plugin.pdoc"); //$NON-NLS-1$
-			if (res == null) {
-				nb++;
-				if (message == null) {
-					message = "No file plugin.pdoc found for:"; //$NON-NLS-1$
-				}
-				message += NLS.bind("\n  - {0}", bundle.getSymbolicName()); //$NON-NLS-1$
-			}
-		}
-		Assert.assertNull(nb + " problems! " + message, message); //$NON-NLS-1$
 	}
 
 	/**

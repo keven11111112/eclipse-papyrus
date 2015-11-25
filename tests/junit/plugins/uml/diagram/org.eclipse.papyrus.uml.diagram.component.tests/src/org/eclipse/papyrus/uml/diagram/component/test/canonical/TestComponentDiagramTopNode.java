@@ -33,11 +33,12 @@ public class TestComponentDiagramTopNode extends TestTopNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateComponentDiagramCommand();
 	}
+
 	@Override
 	protected boolean isSemanticTest() {
 		return true;
@@ -52,7 +53,7 @@ public class TestComponentDiagramTopNode extends TestTopNode {
 	protected String getFileName() {
 		return IComponentDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_3200, getDiagramEditPart().getDiagramPreferencesHint());
@@ -109,7 +110,7 @@ public class TestComponentDiagramTopNode extends TestTopNode {
 		testToManageNode(UMLElementTypes.Constraint_3199, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3200, true);
 
 	}
-	
-	
+
+
 
 }

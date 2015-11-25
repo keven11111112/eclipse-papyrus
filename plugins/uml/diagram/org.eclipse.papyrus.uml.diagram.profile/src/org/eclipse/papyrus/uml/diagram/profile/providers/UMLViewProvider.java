@@ -646,6 +646,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location2 = (Location) label2.getLayoutConstraint();
 		location2.setX(0);
 		location2.setY(5);
+		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "ShortCutDiagram");
 		return node;
 	}
 
@@ -1360,12 +1361,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		// rv.setShowTitle(showTitle);
 		// rv.setCollapsed(isCollapsed);
-		Node rv;
-		if (canCollapse) {
-			rv = NotationFactory.eINSTANCE.createBasicCompartment();
-		} else {
-			rv = NotationFactory.eINSTANCE.createDecorationNode();
-		}
+		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 

@@ -23,10 +23,10 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PanelParent;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.AbstractPanelImpl#getParent <em>Parent</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -101,8 +101,7 @@ public abstract class AbstractPanelImpl extends EObjectImpl implements AbstractP
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.ABSTRACT_PANEL__PARENT, newParent, newParent));
 		}
 	}

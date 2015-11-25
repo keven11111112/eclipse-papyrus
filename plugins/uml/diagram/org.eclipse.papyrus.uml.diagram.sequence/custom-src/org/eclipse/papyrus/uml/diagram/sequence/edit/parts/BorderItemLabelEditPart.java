@@ -345,7 +345,7 @@ public abstract class BorderItemLabelEditPart extends PapyrusLabelEditPart imple
 		}
 	}
 
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {

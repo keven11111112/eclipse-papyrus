@@ -33,6 +33,7 @@ import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.junit.utils.rules.ShowView;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -62,6 +63,8 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 	public static final String PASTE_COMMAND_ID = "org.eclipse.ui.edit.paste"; //$NON-NLS-1$
 
 	public final static String CLASS1_NAME = "Class1"; //$NON-NLS-1$
+
+	public final static String COPY_CLASS1_NAME = "CopyOf_Class1_1"; //$NON-NLS-N$;
 
 	public final static String CONSTRAINT_NAME = "Constraint1"; //$NON-NLS-1$
 
@@ -158,14 +161,106 @@ public class ConstraintPasteStrategyTest extends AbstractPapyrusTest {
 
 	}
 
+	@Test
+	public void testCopyConstraintInClassDiagramWithClass() throws Exception {
+
+		// get all semantic element that will handled
+		Model model = (Model) editorFixture.getModel();
+		Assert.assertNotNull("RootModel is null", model);
+
+
+		org.eclipse.uml2.uml.Class class1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(CLASS1_NAME);
+		org.eclipse.uml2.uml.Constraint constraint = (org.eclipse.uml2.uml.Constraint) class1.getMember(CONSTRAINT_NAME);
+
+		Assert.assertNotNull("Constraint is missing in the model", constraint);
+
+		Diagram mainDiagram = DiagramUtils.getNotationDiagram(editorFixture.getModelSet(), DIAGRAM_NAME);
+		editorFixture.getPageManager().openPage(mainDiagram);
+		Assert.assertEquals("current opened diagram is not the expected one", mainDiagram.getName(), DIAGRAM_NAME);
+
+		Shape constraintView = DiagramUtils.findShape(mainDiagram, CONSTRAINT_NAME);
+		Assert.assertNotNull("Constraint view not present", constraintView);
+
+		Object defaultSelection = getSelectionLikeTestOnModelExplorer();
+		Object defaultSelectionHandler = getSelectionLikeInAbstractGraphicalHandler();
+
+		editorFixture.flushDisplayEvents();
+		Assert.assertNotNull("Constraint TreeElement is null", defaultSelection); //$NON-NLS-1$		
+		Assert.assertEquals("TreeElement is not a model", ModelEditPart.class, defaultSelection.getClass());
+		Assert.assertEquals("TreeElement is not a model", ModelEditPart.class, defaultSelectionHandler.getClass());
+
+		EditPart constraintEP = editorFixture.findEditPart(constraint);
+		editorFixture.select(constraintEP);
+
+		EditPart classEP = editorFixture.findEditPart(class1);
+		editorFixture.select(classEP);
+
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		ISelectionService selectionService = activeWorkbenchWindow.getSelectionService();
+		Object constraintSelection = ((IStructuredSelection) selectionService.getSelection()).toList().get(0);
+		Object classSelection = ((IStructuredSelection) selectionService.getSelection()).toList().get(1);
+		
+		// it's working on service selection
+		Assert.assertEquals("TreeElement is not a constraint", CustomConstraintEditPart.class, constraintSelection.getClass());
+		Assert.assertEquals("TreeElement is not a class", ClassEditPart.class, classSelection.getClass());
+
+		ISelection selection = editorFixture.getEditor().getEditorSite().getSelectionProvider().getSelection();
+		Object editorConstraintSelection = ((IStructuredSelection) selection).toList().get(0);
+		Object editorClassSelection = ((IStructuredSelection) selection).toList().get(1);
+
+		// it's working on editor selection
+		Assert.assertEquals("TreeElement is not a constraint", CustomConstraintEditPart.class, editorConstraintSelection.getClass());
+		Assert.assertEquals("TreeElement is not a class", ClassEditPart.class, editorClassSelection.getClass());
+
+		editorFixture.flushDisplayEvents();
+		Object defaultConstraintFromLinkHelperSelection = getSelectionLikeInAbstractGraphicalHandler(0);
+		Assert.assertEquals("TreeElement is not a constraint", CustomConstraintEditPart.class, defaultConstraintFromLinkHelperSelection.getClass());
+		Object defaultClassFromLinkHelperSelection = getSelectionLikeInAbstractGraphicalHandler(1);
+		Assert.assertEquals("TreeElement is not a constraint", ClassEditPart.class, defaultClassFromLinkHelperSelection.getClass());
+
+		// Copy
+		IHandler copyHandler = HandlerUtils.getActiveHandlerFor(COPY_COMMAND_ID);
+		Assert.assertTrue("Copy not available", copyHandler.isEnabled()); //$NON-NLS-1$
+		copyHandler.execute(new ExecutionEvent());
+
+		// Select diagram
+		EditPart modelEP = editorFixture.findEditPart(model);
+		editorFixture.deselect(constraintEP);
+		editorFixture.deselect(classEP);
+		editorFixture.select(modelEP);
+		editorFixture.getPageManager().selectPage(mainDiagram);
+
+		editorFixture.flushDisplayEvents();
+
+		int amountRulesBeforeCopy = class1.getOwnedRules().size();
+
+		// Paste
+		IHandler pasteHandler = HandlerUtils.getActiveHandlerFor(PASTE_COMMAND_ID);
+		Assert.assertTrue("Paste not available", pasteHandler.isEnabled()); //$NON-NLS-1$
+		pasteHandler.execute(new ExecutionEvent());
+
+		editorFixture.flushDisplayEvents();
+
+		// Check that there is a copy of Constraint
+		Assert.assertEquals("The copy failed", amountRulesBeforeCopy, class1.getOwnedRules().size()); //$NON-NLS-1$
+
+		org.eclipse.uml2.uml.Class copy_class1 = (org.eclipse.uml2.uml.Class) model.getPackagedElement(COPY_CLASS1_NAME);
+		Assert.assertNotNull("Copy of class1 is missing in the model", copy_class1);
+		Assert.assertEquals(copy_class1.getOwnedRules().size(), 1);
+	}
+
 	private Object getSelectionLikeInAbstractGraphicalHandler() {
+		return getSelectionLikeInAbstractGraphicalHandler(0);
+	}
+
+	private Object getSelectionLikeInAbstractGraphicalHandler(int numberOfSelectedEl) {
 		IEvaluationService evaluationService = PlatformUI.getWorkbench().getService(IEvaluationService.class);
 		IEvaluationContext currentState = evaluationService.getCurrentState();
 		Object defaultVariable = currentState.getDefaultVariable();
 		if (defaultVariable instanceof List) {
 			List arrayList = (List) defaultVariable;
 			if (!arrayList.isEmpty()) {
-				return arrayList.get(0);
+				return arrayList.get(numberOfSelectedEl);
 			}
 		}
 		return defaultVariable;

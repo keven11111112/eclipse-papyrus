@@ -579,6 +579,15 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getPasteEObjectConfiguration_AxisIdentifier() {
+		return (EReference)pasteEObjectConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public EClass getTreeFillingConfiguration() {
 		return treeFillingConfigurationEClass;
@@ -715,6 +724,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		pasteEObjectConfigurationEClass = createEClass(PASTE_EOBJECT_CONFIGURATION);
 		createEAttribute(pasteEObjectConfigurationEClass, PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID);
 		createEReference(pasteEObjectConfigurationEClass, PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE);
+		createEReference(pasteEObjectConfigurationEClass, PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER);
 
 		treeFillingConfigurationEClass = createEClass(TREE_FILLING_CONFIGURATION);
 		createEReference(treeFillingConfigurationEClass, TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER);
@@ -817,6 +827,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		initEClass(pasteEObjectConfigurationEClass, PasteEObjectConfiguration.class, "PasteEObjectConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getPasteEObjectConfiguration_PastedElementId(), ecorePackage.getEString(), "pastedElementId", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getPasteEObjectConfiguration_PasteElementContainementFeature(), ecorePackage.getEStructuralFeature(), null, "pasteElementContainementFeature", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getPasteEObjectConfiguration_AxisIdentifier(), theNattableaxisPackage.getIAxis(), null, "axisIdentifier", null, 0, 1, PasteEObjectConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(treeFillingConfigurationEClass, TreeFillingConfiguration.class, "TreeFillingConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getTreeFillingConfiguration_AxisUsedAsAxisProvider(), theNattableaxisPackage.getIAxis(), null, "axisUsedAsAxisProvider", null, 1, 1, TreeFillingConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -854,12 +865,6 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
-		  (abstractHeaderAxisConfigurationEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "oneObjectLabelConfigurationTypes oneFeatureLabelConfigurationTypes" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
 		  (axisManagerRepresentationEClass, 
 		   source, 
 		   new String[] {
@@ -882,13 +887,6 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$	
 		addAnnotation
-		  (abstractHeaderAxisConfigurationEClass, 
-		   source, 
-		   new String[] {
-			 "oneObjectLabelConfigurationTypes", "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() <= 1", //$NON-NLS-1$ //$NON-NLS-2$
-			 "oneFeatureLabelConfigurationTypes", "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() <= 1" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
 		  (axisManagerRepresentationEClass, 
 		   source, 
 		   new String[] {
@@ -898,7 +896,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		  (tableHeaderAxisConfigurationEClass, 
 		   source, 
 		   new String[] {
-			 "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)" //$NON-NLS-1$ //$NON-NLS-2$
+			 "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation | ( (axisManagers->excluding (am1))->forAll(am2 : AxisManagerRepresentation | am1.axisManagerId<>am2.axisManagerId) ))" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 } // NattableaxisconfigurationPackageImpl

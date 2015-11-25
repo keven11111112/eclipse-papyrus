@@ -33,6 +33,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateDeploymentDiagramCommand();
@@ -52,7 +53,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	protected String getFileName() {
 		return IDeploymentDiagramTestsConstants.FILE_NAME;
 	}
-	
+
 	/**
 	 * Test to manage i package.
 	 */

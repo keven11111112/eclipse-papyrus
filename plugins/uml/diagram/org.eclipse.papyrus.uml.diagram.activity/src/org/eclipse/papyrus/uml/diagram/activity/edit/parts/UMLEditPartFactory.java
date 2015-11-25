@@ -22,7 +22,6 @@ import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.LabelCellEditorLocator;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.jface.viewers.CellEditor;
@@ -1968,8 +1967,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
 		} else if (source.getFigure() instanceof WrappingLabel) {
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
-		} else if (source.getFigure() instanceof DecisionInputEditPart.LinkAndCornerBentWithTextFigure) {
-			return new TextCellEditorLocator(((DecisionInputEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
 		} else if (source.getFigure() instanceof ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) {
 			return new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
 		} else if (source.getFigure() instanceof ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) {

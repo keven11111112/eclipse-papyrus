@@ -95,6 +95,18 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentAppliedSt
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsClassifierEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsClassifierFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsClassifierNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsNestedArtifactEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsNestedArtifactFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsNestedArtifactNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsPackageableElEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsPackageableElFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecAsPackageableElNameEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecificationEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecificationFloatingLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentSpecificationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceCompositeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceCompositeCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPart;
@@ -261,8 +273,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ArtifactEditPart.VISUAL_ID:
 				case NodeEditPart.VISUAL_ID:
 				case DefaultNamedElementEditPart.VISUAL_ID:
+				case DeploymentSpecificationEditPart.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
 				case ConstraintEditPartCN.VISUAL_ID:
+				case DeploymentSpecAsClassifierEditPart.VISUAL_ID:
+				case DeploymentSpecAsPackageableElEditPart.VISUAL_ID:
+				case DeploymentSpecAsNestedArtifactEditPart.VISUAL_ID:
 				case ModelEditPart.VISUAL_ID:
 				case PackageEditPart.VISUAL_ID:
 				case ModelEditPartCN.VISUAL_ID:
@@ -369,6 +385,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createNode_2008(domainElement, containerView, index, persisted, preferencesHint);
 		case DefaultNamedElementEditPart.VISUAL_ID:
 			return createNamedElement_2012(domainElement, containerView, index, persisted, preferencesHint);
+		case DeploymentSpecificationEditPart.VISUAL_ID:
+			return createDeploymentSpecification_2013(domainElement, containerView, index, persisted, preferencesHint);
 		case ModelEditPartCN.VISUAL_ID:
 			return createModel_49(domainElement, containerView, index, persisted, preferencesHint);
 		case PackageEditPartCN.VISUAL_ID:
@@ -395,6 +413,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createComment_54(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPartCN.VISUAL_ID:
 			return createConstraint_56(domainElement, containerView, index, persisted, preferencesHint);
+		case DeploymentSpecAsClassifierEditPart.VISUAL_ID:
+			return createDeploymentSpecification_2014(domainElement, containerView, index, persisted, preferencesHint);
+		case DeploymentSpecAsPackageableElEditPart.VISUAL_ID:
+			return createDeploymentSpecification_2015(domainElement, containerView, index, persisted, preferencesHint);
+		case DeploymentSpecAsNestedArtifactEditPart.VISUAL_ID:
+			return createDeploymentSpecification_2016(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -630,6 +654,29 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DefaultNamedElement");
 		Node label53 = createLabel(node, UMLVisualIDRegistry.getType(DefaultNamedElementNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDeploymentSpecification_2013(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DeploymentSpecificationEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DeploymentSpecification");
+		Node label62 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecificationNameEditPart.VISUAL_ID));
+		Node label63 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecificationFloatingLabelEditPart.VISUAL_ID));
+		label63.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location63 = (Location) label63.getLayoutConstraint();
+		location63.setX(25);
+		location63.setY(0);
 		return node;
 	}
 
@@ -876,6 +923,72 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
 		Node label57 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
 		Node label58 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintSpecificationEditPartCN.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDeploymentSpecification_2014(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DeploymentSpecAsClassifierEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DeploymentSpecification");
+		Node label64 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecAsClassifierNameEditPart.VISUAL_ID));
+		Node label65 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecAsClassifierFloatingLabelEditPart.VISUAL_ID));
+		label65.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location65 = (Location) label65.getLayoutConstraint();
+		location65.setX(25);
+		location65.setY(0);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDeploymentSpecification_2015(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DeploymentSpecAsPackageableElEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DeploymentSpecification");
+		Node label66 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecAsPackageableElNameEditPart.VISUAL_ID));
+		Node label67 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecAsPackageableElFloatingLabelEditPart.VISUAL_ID));
+		label67.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location67 = (Location) label67.getLayoutConstraint();
+		location67.setX(25);
+		location67.setY(0);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDeploymentSpecification_2016(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DeploymentSpecAsNestedArtifactEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DeploymentSpecification");
+		Node label68 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecAsNestedArtifactNameEditPart.VISUAL_ID));
+		Node label69 = createLabel(node, UMLVisualIDRegistry.getType(DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID));
+		label69.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location69 = (Location) label69.getLayoutConstraint();
+		location69.setX(25);
+		location69.setY(0);
 		return node;
 	}
 
@@ -1199,12 +1312,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		//rv.setShowTitle(showTitle);
 		//rv.setCollapsed(isCollapsed);
-		Node rv;
-		if (canCollapse) {
-			rv = NotationFactory.eINSTANCE.createBasicCompartment();
-		} else {
-			rv = NotationFactory.eINSTANCE.createDecorationNode();
-		}
+		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
 
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 

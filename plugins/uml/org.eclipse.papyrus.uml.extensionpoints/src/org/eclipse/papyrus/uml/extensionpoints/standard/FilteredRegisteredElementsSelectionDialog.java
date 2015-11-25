@@ -21,6 +21,7 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.papyrus.uml.extensionpoints.Activator;
+import org.eclipse.papyrus.uml.extensionpoints.IRegisteredItem;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -171,7 +172,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 */
 	@Override
 	protected ItemsFilter createFilter() {
-		return new RegisteredElementExtensionPointFilter() {
+		return new RegisteredItemFilter() {
 		};
 	}
 
@@ -179,10 +180,10 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Comparator<RegisteredElementExtensionPoint> getItemsComparator() {
-		Comparator<RegisteredElementExtensionPoint> comp = new Comparator<RegisteredElementExtensionPoint>() {
+	protected Comparator<IRegisteredItem> getItemsComparator() {
+		Comparator<IRegisteredItem> comp = new Comparator<IRegisteredItem>() {
 
-			public int compare(RegisteredElementExtensionPoint o1, RegisteredElementExtensionPoint o2) {
+			public int compare(IRegisteredItem o1, IRegisteredItem o2) {
 				return o1.getName().compareTo(o2.getName());
 			}
 		};
@@ -213,14 +214,14 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 	/**
 	 * Filter for extension points
 	 */
-	private class RegisteredElementExtensionPointFilter extends ItemsFilter {
+	private class RegisteredItemFilter extends ItemsFilter {
 
 		/**
 		 * {@inheritDoc}
 		 */
 		@Override
 		public boolean isConsistentItem(Object item) {
-			if (item instanceof RegisteredElementExtensionPoint) {
+			if (item instanceof IRegisteredItem) {
 				return true;
 			}
 			return false;
@@ -231,7 +232,7 @@ public class FilteredRegisteredElementsSelectionDialog extends FilteredItemsSele
 		 */
 		@Override
 		public boolean matchItem(Object item) {
-			if (!(item instanceof RegisteredElementExtensionPoint)) {
+			if (!(item instanceof IRegisteredItem)) {
 				return false;
 			}
 			return matches(registeredElementsLabelProvider.getText(item));

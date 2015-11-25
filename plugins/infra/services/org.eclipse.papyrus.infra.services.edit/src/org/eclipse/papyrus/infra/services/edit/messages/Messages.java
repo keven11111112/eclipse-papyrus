@@ -31,6 +31,7 @@ public class Messages extends NLS {
 
 	public static String ElementEditServiceUtils_UnableToFindElementType;
 	public static String ElementEditServiceUtils_UnableToFindServiceProvider;
+	public static String ElementEditServiceUtils_CantGetEditingDomainProvider;
 
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$

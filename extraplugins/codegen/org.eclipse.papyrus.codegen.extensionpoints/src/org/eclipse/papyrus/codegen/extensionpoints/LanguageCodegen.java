@@ -24,11 +24,9 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Package;
 
 /**
  * Common interface to generate code. Supports for multiple target languages via
@@ -125,17 +123,20 @@ public class LanguageCodegen {
 	 * eligible for a passe classifier
 	 * 
 	 * @param languagePattern
-	 *            a l-anguage pattern
+	 *            a language pattern
 	 * @param classifier
 	 *            a classifier
 	 * @return
 	 */
 	public static List<ILangCodegen> getEligibleGeneratorList(Pattern languagePattern, Classifier classifier) {
 		List<ILangCodegen> eligibleGenerators = new ArrayList<ILangCodegen>();
-		Package modelRoot = PackageUtil.getRootPackage(classifier);
-
 		for (ILangCodegen generator : getCodegenList(languagePattern)) {
-			if (generator.isEligible(modelRoot)) {
+			if (generator instanceof ILangCodegen2) {
+				if (((ILangCodegen2) generator).isEligible(classifier)) {
+					eligibleGenerators.add(generator);
+				}
+			}
+			else {
 				eligibleGenerators.add(generator);
 			}
 		}
@@ -174,6 +175,35 @@ public class LanguageCodegen {
 			}
 		}
 		return generators;
+	}
+	
+	/**
+	 * Get a code generator for a given language
+	 * @param language
+	 * @return
+	 * @deprecated This method is deprecated and kept for compatibility, since there could be more than one generator
+	 *    for a given programming language.  
+	 */
+	@Deprecated
+	public static ILangCodegen getCodegen(String language)
+	{
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(ILANG_SUPPORT_ID);
+		for (IConfigurationElement configElement : configElements) {
+			try {
+				final String extLanguage = configElement.getAttribute(LANGUAGE);
+				if (extLanguage.equals(language)) {
+					// TODO: cache returned instance (avoid creating a new instance each time => more efficient, no need for static attributes)
+					final Object obj = configElement.createExecutableExtension("class"); //$NON-NLS-1$
+					if (obj instanceof ILangCodegen) {
+						return (ILangCodegen) obj;
+					}
+				}
+			} catch (CoreException exception) {
+				exception.printStackTrace();
+			}
+		}
+		throw new RuntimeException(String.format(Messages.LanguageSupport_LanguageNotSupported, language));
 	}
 	
 	public static String getID(ILangCodegen generator) {

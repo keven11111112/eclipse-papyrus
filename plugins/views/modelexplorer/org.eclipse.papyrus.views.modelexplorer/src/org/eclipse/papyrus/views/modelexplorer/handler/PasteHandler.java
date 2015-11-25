@@ -59,7 +59,7 @@ public class PasteHandler extends AbstractCommandHandler {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#computeEnabled()
 	 */
 	@Override

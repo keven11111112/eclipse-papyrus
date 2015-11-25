@@ -13,19 +13,15 @@ import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.DestructionOccurrenceSpecificationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.DestructionEventFigure;
-import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -119,13 +115,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		String prefElementId = "DestructionOccurrenceSpecification";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		// FIXME: workaround for #154536
-		result.getBounds().setSize(result.getPreferredSize());
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
 
@@ -137,7 +127,8 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 		EditPolicy result = super.getPrimaryDragEditPolicy();
 		if (result instanceof ResizableEditPolicy) {
 			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(PositionConstants.NONE);
+			ep.setResizeDirections(
+					PositionConstants.NONE);
 		}
 		return result;
 	}
@@ -158,6 +149,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -198,9 +190,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
-			((IPapyrusNodeFigure) primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -208,7 +198,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
+		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}

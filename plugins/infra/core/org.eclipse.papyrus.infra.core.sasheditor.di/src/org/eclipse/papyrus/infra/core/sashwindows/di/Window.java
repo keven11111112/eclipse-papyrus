@@ -14,12 +14,12 @@ package org.eclipse.papyrus.infra.core.sashwindows.di;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.Window#getPosition <em>Position</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.Window#getSize <em>Size</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.Window#getPanel <em>Panel</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getWindow()
  * @model

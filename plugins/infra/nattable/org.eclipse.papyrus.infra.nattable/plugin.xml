@@ -26,14 +26,6 @@
                          value="true">
                    </test>
                 </with>
-                <with
-                      variable="selection">
-                   <test
-                         forcePluginActivation="true"
-                         property="org.eclipse.papyrus.infra.nattable.tester.canInvertAxis"
-                         value="true">
-                   </test>
-                </with>
              </and>
           </visibleWhen>
        </command>
@@ -577,6 +569,49 @@
              </with>
           </visibleWhen>
        </command>
+       <separator
+             name="org.eclipse.papyrus.infra.nattable.separator1">
+       </separator>
+       <command
+             commandId="org.eclipse.ui.edit.paste"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+                <test
+                      args="cell"
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.canPaste"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.nattable.insert"
+             style="push">
+          <visibleWhen>
+             <with
+                   variable="selection">
+                <test
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                      value="true">
+                </test>
+                <test
+                      args="none"
+                      forcePluginActivation="true"
+                      property="org.eclipse.papyrus.infra.nattable.canInsert"
+                      value="true">
+                </test>
+             </with>
+          </visibleWhen>
+       </command>
     </menuContribution>
   </extension>
    <extension
@@ -767,6 +802,72 @@
              <test
                    forcePluginActivation="true"
                    property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                   value="true">
+             </test>
+          </with>
+       </and>
+    </activeWhen>
+ </handler>
+ <handler
+       class="org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler"
+       commandId="org.eclipse.papyrus.infra.nattable.row.paste">
+    <activeWhen>
+       <and>
+          <with
+                variable="selection">
+             <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                   value="true">
+             </test>
+             <test
+                   args="row"
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.infra.nattable.canPaste"
+                   value="true">
+             </test>
+          </with>
+       </and>
+    </activeWhen>
+ </handler>
+ <handler
+       class="org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler"
+       commandId="org.eclipse.papyrus.infra.nattable.column.paste">
+    <activeWhen>
+       <and>
+          <with
+                variable="selection">
+             <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                   value="true">
+             </test>
+             <test
+                   args="column"
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.infra.nattable.canPaste"
+                   value="true">
+             </test>
+          </with>
+       </and>
+    </activeWhen>
+ </handler>
+ <handler
+       class="org.eclipse.papyrus.infra.nattable.handler.InsertInTableHandler"
+       commandId="org.eclipse.papyrus.infra.nattable.row.insert">
+    <activeWhen>
+       <and>
+          <with
+                variable="selection">
+             <test
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.infra.nattable.tester.isNattableWidget"
+                   value="true">
+             </test>
+             <test
+                   args="row"
+                   forcePluginActivation="true"
+                   property="org.eclipse.papyrus.infra.nattable.canInsert"
                    value="true">
              </test>
           </with>
@@ -1367,11 +1468,22 @@
             id="org.eclipse.papyrus.infra.nattable.import.command"
             name="Import from file">
       </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ImportTableHandler"
+            description="Import a file into a table"
+            id="org.eclipse.papyrus.infra.nattable.row.import.command"
+            name="Import from file">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.commandImages">
       <image
             commandId="org.eclipse.papyrus.infra.nattable.import.command"
+            icon="icons/import_wiz_16x16-papyrusColor.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.row.import.command"
             icon="icons/import_wiz_16x16-papyrusColor.gif">
       </image>
    </extension>
@@ -1530,5 +1642,68 @@
             class="org.eclipse.papyrus.infra.nattable.filter.configuration.TextEditorFilterConfiguration"
             order="100000">
       </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler"
+            id="org.eclipse.papyrus.infra.nattable.row.paste"
+            name="Paste">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.columns.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler"
+            id="org.eclipse.papyrus.infra.nattable.column.paste"
+            name="Paste">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.InsertInTableHandler"
+            id="org.eclipse.papyrus.infra.nattable.row.insert"
+            name="Insert">
+      </command>
+      <command
+            categoryId="org.eclipse.papyrus.infra.nattable.category"
+            defaultHandler="org.eclipse.papyrus.infra.nattable.handler.InsertInTableHandler"
+            id="org.eclipse.papyrus.infra.nattable.insert"
+            name="Insert">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.column.paste"
+            icon="icons/paste_edit.png">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.row.paste"
+            icon="icons/paste_edit.png">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.row.insert"
+            icon="icons/insert_row.gif">
+      </image>
+      <image
+            commandId="org.eclipse.papyrus.infra.nattable.insert"
+            icon="icons/insert.gif">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.papyrus.infra.nattable.utils.PastePropertyTester"
+            id="org.eclipse.papyrus.infra.nattable.pastePropertyTester"
+            namespace="org.eclipse.papyrus.infra.nattable"
+            properties="canPaste"
+            type="java.lang.Object">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.infra.nattable.utils.PastePropertyTester"
+            id="org.eclipse.papyrus.infra.nattable.pastePropertyTester"
+            namespace="org.eclipse.papyrus.infra.nattable"
+            properties="canInsert"
+            type="java.lang.Object">
+      </propertyTester>
    </extension>
 </plugin>

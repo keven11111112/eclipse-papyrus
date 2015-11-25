@@ -2,6 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="navigationContributor" name="navigationContributor" schema="schema/navigationContributor.exsd"/>
+   <extension-point id="navigationMenuContributor" name="navigationMenuContributor" schema="schema/navigationMenuContributor.exsd"/>
+   <extension-point id="navigationMenu" name="navigationMenu" schema="schema/navigationMenu.exsd"/>
    <extension
          point="org.eclipse.papyrus.infra.core.service">
       <service
@@ -29,6 +31,13 @@
             navigationTargetProvider="org.eclipse.papyrus.infra.services.navigation.provider.impl.ActiveEditorNavigationTargetProvider"
             order="10">
       </target>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <context
+            description="Context of the navigation alt menu"
+            id="org.eclipse.papyrus.infra.services.navigation.menu.labelprovider">
+      </context>
    </extension>
 
 </plugin>

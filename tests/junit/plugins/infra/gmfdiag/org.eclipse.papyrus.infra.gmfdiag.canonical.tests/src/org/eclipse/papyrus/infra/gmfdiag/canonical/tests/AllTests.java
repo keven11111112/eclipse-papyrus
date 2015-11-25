@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Test suite for the {@code org.eclipse.papyrus.infra.gmfdiag.canonical} plug-in.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		BasicCanonicalClassDiagramTest.class,
 		CanonicalStateInClassDiagramTest.class,

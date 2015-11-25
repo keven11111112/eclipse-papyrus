@@ -25,10 +25,10 @@ import org.eclipse.papyrus.uml.modelexplorer.tests.paste.DiagramCopyPasteModelEx
 import org.eclipse.papyrus.uml.modelexplorer.tests.paste.StereotypeCopyPasteModelExplorerTest;
 import org.eclipse.papyrus.uml.modelexplorer.tests.paste.TableCopyPasteModelExplorerTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ //
 DeleteModelExplorerTest.class, RenameHandlerTest.class, ModelExplorerViewTests.class, CutPasteModelExplorerTest.class, CopyPasteModelExplorerTest.class, //
 DiagramCopyPasteModelExplorerTest.class, TableCopyPasteModelExplorerTest.class, StereotypeCopyPasteModelExplorerTest.class, //

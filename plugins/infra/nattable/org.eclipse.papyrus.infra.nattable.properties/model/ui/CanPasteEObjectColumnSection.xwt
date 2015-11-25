@@ -23,5 +23,8 @@
 		<ppe:MultiReference input="{Binding}"
 			property="nattable:Table:localColumnHeaderAxisConfiguration.postActions"
 			customLabel="Post Actions"></ppe:MultiReference>
+		<ppe:ReferenceDialog input="{Binding}"
+			property="nattable:Table:localColumnHeaderAxisConfiguration.axisIdentifier"
+			customLabel="Axis used as identifier"></ppe:ReferenceDialog>
 	</Group>
 </Composite>

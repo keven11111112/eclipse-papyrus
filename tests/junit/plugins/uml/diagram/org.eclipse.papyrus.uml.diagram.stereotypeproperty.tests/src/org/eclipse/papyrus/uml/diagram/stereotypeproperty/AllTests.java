@@ -15,13 +15,13 @@ package org.eclipse.papyrus.uml.diagram.stereotypeproperty;
 
 import org.eclipse.papyrus.uml.diagram.stereotypeproperty.tests.creation.TestCreationReopen2Comment;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * All tests together.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 	// canonical
 	TestProfileApplication.class,

@@ -71,6 +71,31 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 
 	/**
 	 *
+	 * @param domain
+	 *            the editing domain
+	 * @param objectToAdd
+	 *            the object to add
+	 * @param index
+	 *            the index where add the objects
+	 * @return the command to add an axis to the emf model
+	 */
+	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index);
+
+	/**
+	 *
+	 * @param domain
+	 *            the editing domain
+	 * @param objectToAdd
+	 *            the object to add
+	 * @param index
+	 *            the index where add the objects
+	 * @return the complementary command, which is called by the master on the
+	 *         slave to add required axis
+	 */
+	public Command getComplementaryAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index);
+
+	/**
+	 *
 	 * @param manager
 	 *            the table model manager
 	 * @param managerRep
@@ -85,7 +110,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	/**
 	 *
 	 * @return
-	 *         the managed axis provider
+	 * 		the managed axis provider
 	 */
 	public AbstractAxisProvider getRepresentedContentProvider();
 
@@ -93,7 +118,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 *
 	 *
 	 * @return
-	 *         the table manager using this axis manager
+	 * 		the table manager using this axis manager
 	 */
 	public NattableModelManager getTableManager();
 
@@ -131,7 +156,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 *
 	 * @param isRestricted
 	 * @return
-	 *         a content provider or <code>null</code> if the dialog to add/destroy axis is not supported
+	 * 		a content provider or <code>null</code> if the dialog to add/destroy axis is not supported
 	 */
 	public IRestrictedContentProvider createPossibleAxisContentProvider(boolean isRestricted);
 
@@ -147,7 +172,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	/**
 	 *
 	 * @return
-	 *         the list of the existing axis managed by the axis manager
+	 * 		the list of the existing axis managed by the axis manager
 	 */
 	public List<Object> getAllManagedAxis();
 
@@ -194,7 +219,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	/**
 	 *
 	 * @return
-	 *         the axis manager representation
+	 * 		the axis manager representation
 	 */
 	public AxisManagerRepresentation getAxisManagerRepresentation();
 
@@ -203,7 +228,7 @@ public interface IAxisManager extends IDisposable, IAdaptable {
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         the name used for this axis
+	 * 		the name used for this axis
 	 */
 	public String getElementAxisName(final IAxis axis);// TODO pb if the axisManager returns Object and not IAxis... -> use the index!
 

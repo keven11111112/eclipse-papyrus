@@ -89,7 +89,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteractionName_5001Parser() {
 		if (interactionName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("sd: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
@@ -124,7 +126,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getStateInvariantName_5008Parser() {
 		if (stateInvariantName_5008Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateInvariantName_5008Parser = parser;
 		}
@@ -246,7 +250,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getInteractionUseName_5003Parser() {
 		if (interactionUseName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Ref"); //$NON-NLS-1$
 			parser.setEditorPattern("Ref"); //$NON-NLS-1$
@@ -281,7 +287,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getContinuationName_5007Parser() {
 		if (continuationName_5007Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			continuationName_5007Parser = parser;
 		}
@@ -298,7 +306,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getConstraintName_5005Parser() {
 		if (constraintName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			EAttribute[] features = new EAttribute[] {
+					UMLPackage.eINSTANCE.getNamedElement_Name()
+			};
 			MessageFormatParser parser = new MessageFormatParser(features);
 			constraintName_5005Parser = parser;
 		}
@@ -642,76 +652,106 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		switch (visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
 			return getInteractionName_5001Parser();
+
+
+
+
 		case InteractionUseNameEditPart.VISUAL_ID:
 			return getInteractionUseName_5003Parser();
 		case InteractionUseName2EditPart.VISUAL_ID:
 			return getInteractionUseName_5004Parser();
+
 		case ContinuationNameEditPart.VISUAL_ID:
 			return getContinuationName_5007Parser();
+
 		case LifelineNameEditPart.VISUAL_ID:
 			return getLifelineName_5002Parser();
+
+
+
 		case StateInvariantNameEditPart.VISUAL_ID:
 			return getStateInvariantName_5008Parser();
 		case StateInvariantLabelEditPart.VISUAL_ID:
 			return getStateInvariantLabel_5023Parser();
+
+
 		case TimeConstraintLabelEditPart.VISUAL_ID:
 			return getTimeConstraintLabel_5009Parser();
 		case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
 			return getTimeConstraintLabel_5013Parser();
+
 		case TimeObservationLabelEditPart.VISUAL_ID:
 			return getTimeObservationLabel_5010Parser();
 		case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
 			return getTimeObservationLabel_5014Parser();
+
 		case DurationConstraintLabelEditPart.VISUAL_ID:
 			return getDurationConstraintLabel_5011Parser();
 		case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
 			return getDurationConstraintLabel_5015Parser();
+
+
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
 		case Constraint2EditPart.VISUAL_ID:
 			return getConstraintLabel_5012Parser();
+
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5006Parser();
+
 		case DurationConstraintInMessageLabelEditPart.VISUAL_ID:
 			return getDurationConstraintLabel_5018Parser();
 		case DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID:
 			return getDurationConstraintLabel_5019Parser();
+
 		case DurationObservationLabelEditPart.VISUAL_ID:
 			return getDurationObservationLabel_5016Parser();
 		case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
 			return getDurationObservationLabel_5017Parser();
+
 		case MessageNameEditPart.VISUAL_ID:
 			return getMessageName_6001Parser();
 		case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6008Parser();
+
 		case MessageName2EditPart.VISUAL_ID:
 			return getMessageName_6002Parser();
 		case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6009Parser();
+
 		case MessageName3EditPart.VISUAL_ID:
 			return getMessageName_6003Parser();
 		case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6010Parser();
+
 		case MessageName4EditPart.VISUAL_ID:
 			return getMessageName_6004Parser();
 		case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6011Parser();
+
 		case MessageName5EditPart.VISUAL_ID:
 			return getMessageName_6005Parser();
 		case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6012Parser();
+
 		case MessageName6EditPart.VISUAL_ID:
 			return getMessageName_6006Parser();
 		case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6013Parser();
+
 		case MessageName7EditPart.VISUAL_ID:
 			return getMessageName_6007Parser();
 		case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
 			return getMessageLabel_6014Parser();
+
+
+
 		case GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID:
 			return getGeneralOrderingLabel_6015Parser();
+
 		case ConstraintContextAppliedStereotypeEditPart.VISUAL_ID:
 			return getConstraintContextName_8501Parser();
+
 		}
 		return null;
 	}
@@ -779,7 +819,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		 * @generated
 		 */
 		@Override
-		public Object getAdapter(Class adapter) {
+		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;
 			}

@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.NotVisibleBorder;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
@@ -80,11 +81,18 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	/** The shadow color. */
 	String shadowColor = null;
 
+	/** set to true to define the figure as a package. */
+	private boolean isPackage = false;
+
+	/** set to true to define if the figure has a shadow. */
+	private boolean shadow;
+
 	/**
 	 * Gets the shadow color.
 	 *
 	 * @return the shadowColor
 	 */
+	@Override
 	public String getShadowColor() {
 		return shadowColor;
 	}
@@ -95,7 +103,8 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param shadowColor
 	 *            the shadowColor to set
 	 */
-	public void setShadowColor(String shadowColor) {
+	@Override
+	public void setShadowColor(final String shadowColor) {
 		this.shadowColor = shadowColor;
 	}
 
@@ -104,7 +113,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 *            the borderStyle to set
 	 */
 	@Override
-	public void setBorderStyle(int borderStyle) {
+	public void setBorderStyle(final int borderStyle) {
 		this.borderStyle = borderStyle;
 		if (shadowborder != null) {
 			shadowborder.setStyle(borderStyle);
@@ -121,8 +130,8 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	/**
 	 * Instantiates a new rounded compartment figure.
 	 */
-	public RoundedCompartmentFigure(String taggedLabel) {
-		super(taggedLabel);
+	public RoundedCompartmentFigure(final String taggedLabel) {
+		this(null, taggedLabel);
 	}
 
 	/**
@@ -131,7 +140,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param compartmentFigure
 	 *            the compartment figure
 	 */
-	public RoundedCompartmentFigure(List<String> compartmentFigure) {
+	public RoundedCompartmentFigure(final List<String> compartmentFigure) {
 		this(compartmentFigure, null);
 	}
 
@@ -143,28 +152,38 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param taggedLabelValue
 	 *            the value to display as tagged value
 	 */
-	public RoundedCompartmentFigure(List<String> compartmentFigure, String taggedLabelValue) {
+	public RoundedCompartmentFigure(final List<String> compartmentFigure, final String taggedLabelValue) {
 		super(taggedLabelValue);
 		setOpaque(false);
 		setLayoutManager(new AutomaticCompartmentLayoutManager());
 		if (compartmentFigure != null) {
 			createContentPane(compartmentFigure);
 		}
+		setBorder(getRoundedBorder());
 	}
 
 	/**
 	 * @param shadowWidth
 	 *            the shadowWidth to set
 	 */
-	public void setShadowWidth(int shadowWidth) {
+	@Override
+	public void setShadowWidth(final int shadowWidth) {
 		this.shadowWidth = shadowWidth;
+	}
+
+	/**
+	 * @return shadowWidth
+	 */
+	protected int getShadowWidth() {
+		return this.shadowWidth;
 	}
 
 	/**
 	 * @param isPackage
 	 *            the isPackage to set
 	 */
-	public void setIsPackage(boolean isPackage) {
+	@Override
+	public void setIsPackage(final boolean isPackage) {
 		this.isPackage = isPackage;
 	}
 
@@ -174,10 +193,10 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param compartmentFigure
 	 *            the compartment figure
 	 */
-	protected void createContentPane(List<String> compartmentFigure) {
+	protected void createContentPane(final List<String> compartmentFigure) {
 		containerFigures = new HashMap<String, RectangleFigure>();
-		for (String id : compartmentFigure) {
-			RectangleFigure newFigure = new RectangleFigure();
+		for (final String id : compartmentFigure) {
+			final RectangleFigure newFigure = new RectangleFigure();
 			newFigure.setLayoutManager(new SubCompartmentLayoutManager());
 			// to debug graphically: newFigure.setFill(true);
 			newFigure.setFill(false);
@@ -196,7 +215,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 *            the id to find the right compartment
 	 * @return the RectangleFigure
 	 */
-	public RectangleFigure getCompartment(String id) {
+	public RectangleFigure getCompartment(final String id) {
 		return containerFigures.get(id);
 	}
 
@@ -224,25 +243,25 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void paintFigure(Graphics graphics) {
+	public void paintFigure(final Graphics graphics) {
 
 		graphics.pushState();
-		Rectangle rectangle = getBounds().getCopy();
-		Rectangle clipRectangle = getBounds().getCopy();
+		final Rectangle rectangle = getBounds().getCopy();
+		final Rectangle clipRectangle = getBounds().getCopy();
 		refreshCornerSizeWhenOval();
 
 		applyTransparency(graphics);
 
 		// in case of package polygon
 		if (isPackage) {
-			SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
+			final SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
 			// Get the connection anchor
-			ConnectionAnchor connectionAnchor = ((SVGNodePlateFigure) mainFigure).getConnectionAnchor("");
+			final ConnectionAnchor connectionAnchor = mainFigure.getConnectionAnchor(""); //$NON-NLS-1$
 
 			if (connectionAnchor instanceof SlidableRoundedRectangleAnchor) {
 
 				// get the polygon points with the Anchor.
-				PointList polygonPoints = ((SlidableRoundedRectangleAnchor) connectionAnchor).getPolygonPoints();
+				final PointList polygonPoints = ((SlidableRoundedRectangleAnchor) connectionAnchor).getPolygonPoints();
 				this.translateToRelative(polygonPoints);
 
 				// setClip
@@ -280,7 +299,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 				// Fill figure
 				if (isUsingGradient()) {
-
 					fillPolygonWithGradient(graphics, polygonPoints);
 
 				} else {
@@ -288,7 +306,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				}
 
 				graphics.setLineWidth(getLineWidth());
-				// set the lineStyle: not compatible with custom style
 				graphics.setLineStyle(borderStyle);
 
 				// border draw trough graphics
@@ -297,14 +314,19 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				}
 
 				// no used of the border of figure
-				if (getBorder() != null) {
-					setBorder(null);
+				if (null != getBorder() && !(getBorder() instanceof NotVisibleBorder)) {
+					// Set a not visible border to the figure
+					setBorder(new NotVisibleBorder());
 				}
 
-				// Draw lines
-				graphics.drawPolyline(polygonPoints);
+				if (!noBorder) {
+					// Draw lines
+					if (graphics.getLineStyle() == Graphics.LINE_CUSTOM) {
+						graphics.setLineDash(getCustomDash());
+					}
+					graphics.drawPolyline(polygonPoints);
+				}
 			}
-
 		} else {
 
 			// Retrieve the border when was be set to null for package
@@ -343,6 +365,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				setShadowTransparency(graphics, false);
 			}
 
+			// Fill figure
 			if (isUsingGradient()) {
 				fillRoundedRectangleWithGradient(graphics, rectangle, cornerDimension.width, cornerDimension.height);
 			} else {
@@ -356,6 +379,15 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			// Draw header if needed
 			if (hasHeader) {
 				graphics.drawPolyline(getHeader());
+			}
+
+			// Draw border
+			Border border = getBorder();
+			if (border instanceof RoundedRectangleBorder) {
+				((RoundedRectangleBorder) border).setArcHeight(cornerDimension.height);
+				((RoundedRectangleBorder) border).setArcWidth(cornerDimension.width);
+				((RoundedRectangleBorder) border).setWidth(getLineWidth());
+				((RoundedRectangleBorder) border).setStyle(borderStyle);
 			}
 		}
 		graphics.popState();
@@ -372,7 +404,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	protected void fillPolygonWithGradient(final Graphics graphics, final PointList polygonPoints) {
 		graphics.pushState();
 
-		Path path = new Path(null);
+		final Path path = new Path(null);
 		path.moveTo(polygonPoints.getPoint(0).x, polygonPoints.getPoint(0).y);
 		for (int i = 1; i < polygonPoints.size(); i++) {
 			path.lineTo(polygonPoints.getPoint(i).x, polygonPoints.getPoint(i).y);
@@ -402,12 +434,12 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 */
 	protected void fillRoundedRectangleWithGradient(final Graphics graphics, final Rectangle rectangle, final int arcWidths, final int arcHeights) {
 		graphics.pushState();
-		Rectangle rect = rectangle.getCopy();
-		Dimension arc = new Dimension(arcWidths, arcHeights);
+		final Rectangle rect = rectangle.getCopy();
+		final Dimension arc = new Dimension(arcWidths, arcHeights);
 
 		rect.setWidth(rect.width - 1);
 		rect.setHeight(rect.height - 1);
-		Path path = new Path(null);
+		final Path path = new Path(null);
 
 		if (isOval) {
 			arc.width = rect.width;
@@ -445,22 +477,22 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 
 	/**
-	 * Sets the shadow backgroud color.
+	 * Sets the shadow background color.
 	 *
 	 * @param graphics
-	 *            the new shadow backgroud color
+	 *            the new shadow background color
 	 */
-	private void setShadowBackgroundColor(Graphics graphics) {
+	private void setShadowBackgroundColor(final Graphics graphics) {
 
 		Color color = null;
 		if (shadowColor != null && !"-1".equals(shadowColor)) {
 			// get the the RGBColor from string
-			RGBColor rgbColor = CSS2ColorHelper.getRGBColor(shadowColor);
+			final RGBColor rgbColor = CSS2ColorHelper.getRGBColor(shadowColor);
 			if (rgbColor != null) {
 				// extract RGB
-				int red = Integer.parseInt(rgbColor.getRed().toString());
-				int green = Integer.parseInt(rgbColor.getGreen().toString());
-				int blue = Integer.parseInt(rgbColor.getBlue().toString());
+				final int red = Integer.parseInt(rgbColor.getRed().toString());
+				final int green = Integer.parseInt(rgbColor.getGreen().toString());
+				final int blue = Integer.parseInt(rgbColor.getBlue().toString());
 
 				// get the the Color from RGB
 				color = new Color(Display.getCurrent(), new RGB(red, green, blue));
@@ -469,7 +501,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			if (color == null) {
 				try {
 					color = ColorRegistry.getInstance().getColor(Integer.valueOf(shadowColor));
-				} catch (NumberFormatException e) {
+				} catch (final NumberFormatException e) {
 					Activator.log.error("Shadow Color not well set", e);
 				}
 			}
@@ -506,6 +538,17 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		}
 	}
 
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#isShadow()
+	 *
+	 * @return true if has a shadow
+	 */
+	@Override
+	public boolean isShadow() {
+		return shadow;
+	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#setShadow(boolean)
 	 *
@@ -513,11 +556,18 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 */
 	@Override
 	public void setShadow(boolean shadow) {
-		super.setShadow(shadow);
+		this.shadow = shadow;
+	}
+
+	/**
+	 * @return the Rounded border used as border for this figure.
+	 * 
+	 */
+	private Border getRoundedBorder() {
 
 		refreshCornerSizeWhenOval();
 
-		RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height) {
+		final RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height) {
 			/**
 			 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder#paint(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.Graphics, org.eclipse.draw2d.geometry.Insets)
 			 *
@@ -526,17 +576,17 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			 * @param insets
 			 */
 			@Override
-			public void paint(IFigure figure, Graphics graphics, Insets insets) {
-				int transparency = 255 - ((NodeFigure) figure).getTransparency() * 255 / 100;
+			public void paint(final IFigure figure, final Graphics graphics, final Insets insets) {
+				final int transparency = 255 - ((NodeFigure) figure).getTransparency() * 255 / 100;
 				graphics.setAlpha(transparency);
+				if (getStyle() == Graphics.LINE_CUSTOM) {
+					graphics.setLineDash(getCustomDash());
+				}
 				super.paint(figure, graphics, insets);
 			}
 		};
 
-		border.setWidth(getLineWidth());
-		border.setStyle(borderStyle);
-		setBorder(border);
-		setLineStyle(borderStyle);
+		return border;
 	}
 
 	/**
@@ -548,8 +598,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			if (cornerDimension.width != getBounds().width || cornerDimension.height != getBounds().height) {
 				cornerDimension.width = getBounds().width;
 				cornerDimension.height = getBounds().height;
-				// Force to repaint the border thought setShadow()
-				setShadow(isShadow());
 			}
 		}
 	}
@@ -561,7 +609,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 *            the new corner dimension
 	 */
 	@Override
-	public void setCornerDimensions(Dimension cornerDimension) {
+	public void setCornerDimensions(final Dimension cornerDimension) {
 		if (cornerDimension.width == 0 || cornerDimension.height == 0) {
 			this.cornerDimension = new Dimension();
 		} else {
@@ -575,7 +623,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param booleanValue
 	 */
 	@Override
-	public void setOval(boolean booleanValue) {
+	public void setOval(final boolean booleanValue) {
 		isOval = booleanValue;
 		if (booleanValue) {
 			refreshCornerSizeWhenOval();
@@ -598,7 +646,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param booleanValue
 	 */
 	@Override
-	public void setFloatingNameConstrained(boolean booleanValue) {
+	public void setFloatingNameConstrained(final boolean booleanValue) {
 		isLabelConstrained = booleanValue;
 	}
 
@@ -618,7 +666,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param offset
 	 */
 	@Override
-	public void setFloatingNameOffset(Dimension offset) {
+	public void setFloatingNameOffset(final Dimension offset) {
 		this.floatingNameOffset = offset;
 
 	}
@@ -638,26 +686,23 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @return the point list to draw an header. its width is set to the width of the name and it's position to the left.
 	 */
 	protected PointList getHeader() {
+		final PointList points = new PointList();
 
-		Rectangle labelBounds = nameLabel.getBounds().getCopy();
-		PointList points = new PointList();
-
-		int labelWidth = -1;
-		labelWidth = Math.max(labelWidth, nameLabel.getPreferredSize().width);
+		final Rectangle labelBounds = new Rectangle(getLocation(), getLabelsDimension());
 
 		// case the size of the label is 0 or -1 (no label)
-		if (labelWidth <= 0) {
-			labelWidth = getBounds().width / 4;
+		if (labelBounds.width <= 0) {
+			labelBounds.width = getBounds().width / 4;
 		}
 
-		Point verticalStart = new Point();
-		Point verticalEnd = new Point();
-		Point diagonalStart = new Point();
-		Point diagonalEnd = new Point();
-		Point horizontalStart = new Point();
-		Point horizontalEnd = new Point();
+		final Point verticalStart = new Point();
+		final Point verticalEnd = new Point();
+		final Point diagonalStart = new Point();
+		final Point diagonalEnd = new Point();
+		final Point horizontalStart = new Point();
+		final Point horizontalEnd = new Point();
 
-		verticalStart.x = labelBounds.x + labelWidth + 4;
+		verticalStart.x = labelBounds.x + labelBounds.width + 4;
 		verticalStart.y = getBounds().y; // labelBounds.y;
 		points.addPoint(verticalStart);
 
@@ -683,48 +728,35 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		return points;
 	}
 
-	/** set to true to define the figure as a package. */
-	private boolean isPackage = false;
-
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
+	 * Gets the package header. Return empty rectangle if not a package.
 	 *
-	 * @return
+	 * @return the package header
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
 	 */
+	@Override
 	public Rectangle getPackageHeader() {
-		Rectangle headerBound = new Rectangle();
+		final Rectangle headerBound = new Rectangle();
 		if (isPackage) {
-
-			ResizableCompartmentFigure firstCompartment = FigureUtils.findChildFigureInstance(this, ResizableCompartmentFigure.class);
-			if (firstCompartment != null) {
-				int labelWidth = 60;
-				labelWidth = Math.max(labelWidth, nameLabel.getPreferredSize().width);
-				if (stereotypesLabel != null) {
-					labelWidth = Math.max(labelWidth, stereotypesLabel.getPreferredSize().width);
-				}
-
-				// If the width of the figure is < to the label width
-				labelWidth = Math.min(labelWidth, getBounds().width);
-
-				headerBound.x = getBounds().x;
-				headerBound.y = getBounds().y;
-				headerBound.height = firstCompartment.getBounds().y - getBounds().y;
-				headerBound.width = labelWidth;
-			} else {
-				headerBound = nameLabel.getBounds().getCopy();
+			headerBound.setBounds(getLocation(), getLabelsDimension());
+			if (-1 == headerBound.width) {
+				headerBound.width = 60;
 			}
+			// If the width of the figure is < to the label width
+			headerBound.width = Math.min(headerBound.width, getBounds().width);
 		}
-
 		return headerBound;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setHasHeader(boolean)
+	 * Sets the checks for header.
 	 *
 	 * @param hasHeader
+	 *            the new checks for header
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setHasHeader(boolean)
 	 */
 	@Override
-	public void setHasHeader(boolean hasHeader) {
+	public void setHasHeader(final boolean hasHeader) {
 		this.hasHeader = hasHeader;
 	}
 
@@ -736,5 +768,37 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	@Override
 	public boolean hasHeader() {
 		return hasHeader;
+	}
+
+	/**
+	 * Gets the dimension of all labels together.
+	 *
+	 * @return the dimension. (-1,-1) if there is no label.
+	 */
+	private Dimension getLabelsDimension() {
+		final Dimension labelDimension = new Dimension(-1, -1);
+
+		if (null != nameLabel && labelDimension.width < nameLabel.getPreferredSize().width) {
+			labelDimension.width = nameLabel.getPreferredSize().width;
+		}
+		if (null != taggedLabel && labelDimension.width < taggedLabel.getPreferredSize().width) {
+			labelDimension.width = taggedLabel.getPreferredSize().width;
+		}
+		if (null != stereotypesLabel && labelDimension.width < stereotypesLabel.getPreferredSize().width) {
+			labelDimension.width = stereotypesLabel.getPreferredSize().width;
+		}
+		if (null != stereotypePropertiesInBraceContent && labelDimension.width < stereotypePropertiesInBraceContent.getPreferredSize().width) {
+			labelDimension.width = stereotypePropertiesInBraceContent.getPreferredSize().width;
+		}
+		if (null != qualifiedLabel && labelDimension.width < qualifiedLabel.getPreferredSize().width) {
+			labelDimension.width = qualifiedLabel.getPreferredSize().width;
+		}
+
+		final ResizableCompartmentFigure firstCompartment = FigureUtils.findChildFigureInstance(this, ResizableCompartmentFigure.class);
+		if (null != firstCompartment) {
+			labelDimension.height = firstCompartment.getBounds().y - getBounds().y;
+		}
+
+		return labelDimension;
 	}
 }

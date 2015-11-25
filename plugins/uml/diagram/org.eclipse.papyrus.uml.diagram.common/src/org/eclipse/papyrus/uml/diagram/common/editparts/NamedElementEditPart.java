@@ -245,7 +245,8 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 			if (svgNodePlate.hasLabelBounds()) {
 				figure.getNameLabel().setTextWrap(true);
 			} else {
-				figure.getNameLabel().setTextWrap(false);
+				boolean isWrap = NotationUtils.getBooleanValue(view, WRAP_NAME, false);
+				figure.getNameLabel().setTextWrap(isWrap);
 			}
 		}
 
@@ -264,8 +265,6 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 			figure.removeTaggedLabel();
 		} else {
 			figure.restoreNameLabel();
-
-
 			// Manage the display of the Stereotypes Properties Label
 			if (displayTags != null && !displayTags.isBooleanValue()) {
 				figure.removeTaggedLabel();

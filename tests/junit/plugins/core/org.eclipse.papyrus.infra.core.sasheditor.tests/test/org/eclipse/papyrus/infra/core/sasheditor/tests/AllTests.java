@@ -12,14 +12,14 @@
 package org.eclipse.papyrus.infra.core.sasheditor.tests;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * All tests for this plugin
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 // testModel1
 org.eclipse.papyrus.infra.core.sasheditor.contentprovider.simple.AllTests.class, 

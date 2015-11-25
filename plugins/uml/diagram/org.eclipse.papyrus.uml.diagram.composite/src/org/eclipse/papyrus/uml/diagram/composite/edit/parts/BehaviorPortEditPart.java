@@ -184,6 +184,9 @@ public class BehaviorPortEditPart extends AbstractBehaviorPortEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;

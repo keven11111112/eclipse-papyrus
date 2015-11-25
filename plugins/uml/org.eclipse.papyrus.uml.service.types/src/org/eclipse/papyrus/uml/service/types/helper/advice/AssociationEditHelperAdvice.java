@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,12 +22,10 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
@@ -39,8 +36,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.service.types.Activator;
@@ -48,7 +43,6 @@ import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ClassifierUtils;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
-import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -218,7 +212,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 					Activator.log.error(e);
 					return CommandResult.newCancelledCommandResult();
 				}
-
+				targetEnd.setOwningAssociation(association);
 				return CommandResult.newOKCommandResult(association);
 			}
 		};
@@ -305,8 +299,11 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Retrieve re-oriented association and add it to the list of re-factored elements
 		Association association = (Association) request.getRelationship();
-		EObject modifiedPropertyType = null;
 
+		// 1 property change its parents, if it is not contains by the association
+		// 1 property change its types
+		Property changeContainer = null;
+		Property changeType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
 		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>) request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS)
 				: new ArrayList<EObject>();
 
@@ -321,29 +318,20 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Retrieve property ends of the binary Association
 		if (association.getMemberEnds().size() == 2) {
-
-
-			Property semanticTarget = association.getMemberEnds().get(0);
-			Property semanticSource = association.getMemberEnds().get(1);
-
-
-			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
-				if (!association.getOwnedEnds().contains(semanticSource)) {
-					moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticSource);
-				}
-
-				modifiedPropertyType = semanticTarget;
-				setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
+			// if this a binary
+			// 1 property change its parents, if it is not contains by the association
+			// 1 property change its types
+			changeContainer = association.getMemberEnds().get(0);
+			if (changeType.equals(association.getMemberEnds().get(0))) {
+				changeContainer = association.getMemberEnds().get(1);
+			}
+			if (!association.getOwnedEnds().contains(changeContainer)) {
+				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), changeContainer);
 			}
 
-			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
-				if (!association.getOwnedEnds().contains(semanticTarget)) {
-					moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticTarget);
-				}
+			setTypeRequest = new SetRequest(changeType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 
-				modifiedPropertyType = semanticSource;
-				setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
-			}
+
 
 			if (moveRequest != null) {
 				// Propagate parameters to the move request
@@ -356,35 +344,22 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 				}
 			}
 
-			// Destroy inconsistent views of the association
-			Set<View> viewsToDestroy = new HashSet<View>();
-			viewsToDestroy.addAll(getViewsToDestroy(association, request));
-
-			// return the command to destroy all these views
-			if (!viewsToDestroy.isEmpty()) {
-				DestroyDependentsRequest ddr = new DestroyDependentsRequest(request.getEditingDomain(), request.getRelationship(), false);
-				ddr.setClientContext(request.getClientContext());
-				ddr.addParameters(request.getParameters());
-				ICommand destroyViewsCommand = ddr.getDestroyDependentsCommand(viewsToDestroy);
-				gmfCommand = CompositeCommand.compose(gmfCommand, destroyViewsCommand);
-			}
-
 			if (gmfCommand != null) {
 				gmfCommand.reduce();
 			}
 		} else {
 			// Process nary-association
-
+			// we do pay attention to change container
 			// Forbid source reorient
 			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
 				return UnexecutableCommand.INSTANCE;
 			}
 
 			// Update the reoriented end
-			modifiedPropertyType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
+			changeType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
 
-			if (modifiedPropertyType != null) {
-				setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
+			if (changeType != null) {
+				setTypeRequest = new SetRequest(changeType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 			}
 
 		}
@@ -393,7 +368,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 			// Propagate parameters to the set request
 			setTypeRequest.addParameters(request.getParameters());
 
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(modifiedPropertyType);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(changeType);
 			if (provider != null) {
 				ICommand setTypeCommand = provider.getEditCommand(setTypeRequest);
 				gmfCommand = CompositeCommand.compose(gmfCommand, setTypeCommand);
@@ -412,39 +387,12 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	 * @param classifier
 	 * @return
 	 */
-	protected Property getMemberEnd(Association association, Classifier classifier)
-	{
+	protected Property getMemberEnd(Association association, Classifier classifier) {
 		for (Property member : association.getMemberEnds()) {
-			if (member.getType().equals(classifier))
-			{
+			if (member.getType().equals(classifier)) {
 				return member;
 			}
 		}
 		return null;
-	}
-
-
-	/**
-	 * Returns all views referencing Association except the view currently re-oriented.
-	 * 
-	 * @param association
-	 *            the association referenced by views
-	 * @param request
-	 *            the re-orient relationship request
-	 * @return the list of views to be destroy
-	 */
-	private Set<View> getViewsToDestroy(Association association, ReorientRelationshipRequest request) {
-		Set<View> viewsToDestroy = new HashSet<View>();
-
-		// Find all views representing the Associations
-		EReference[] refs = new EReference[] { NotationPackage.eINSTANCE.getView_Element() };
-		@SuppressWarnings("unchecked")
-		Collection<View> associationViews = EMFCoreUtil.getReferencers(association, refs);
-
-		View currentlyReorientedView = RequestParameterUtils.getReconnectedEdge(request);
-		viewsToDestroy.addAll(associationViews);
-		viewsToDestroy.remove(currentlyReorientedView);
-
-		return viewsToDestroy;
 	}
 }

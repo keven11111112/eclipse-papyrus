@@ -561,19 +561,19 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 						IHintedType elementType = (IHintedType) object;
 						switch (UMLVisualIDRegistry.getVisualID(elementType.getSemanticHint())) {
 						case MessageEditPart.VISUAL_ID:
-							return Messages.createMessageSync1CreationTool_title;
+							return Messages.MessageSync1CreationTool_title;
 						case Message2EditPart.VISUAL_ID:
-							return Messages.createMessageAsync2CreationTool_title;
+							return Messages.MessageAsync2CreationTool_title;
 						case Message3EditPart.VISUAL_ID:
-							return Messages.createMessageReply3CreationTool_title;
+							return Messages.MessageReply3CreationTool_title;
 						case Message4EditPart.VISUAL_ID:
-							return Messages.createMessageCreate4CreationTool_title;
+							return Messages.MessageCreate4CreationTool_title;
 						case Message5EditPart.VISUAL_ID:
-							return Messages.createMessageDelete5CreationTool_title;
+							return Messages.MessageDelete5CreationTool_title;
 						case Message6EditPart.VISUAL_ID:
-							return Messages.createMessageLost6CreationTool_title;
+							return Messages.MessageLost6CreationTool_title;
 						case Message7EditPart.VISUAL_ID:
-							return Messages.createMessageFound7CreationTool_title;
+							return Messages.MessageFound7CreationTool_title;
 						}
 					}
 					return super.getText(object);

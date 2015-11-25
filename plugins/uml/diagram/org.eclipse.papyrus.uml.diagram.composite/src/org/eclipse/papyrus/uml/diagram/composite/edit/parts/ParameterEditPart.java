@@ -197,6 +197,9 @@ public class ParameterEditPart extends RoundedBorderNamedElementEditPart {
 		}
 	}
 
+	/**
+	 * @generated
+	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(20, 20);
 		return result;

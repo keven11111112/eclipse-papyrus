@@ -15,6 +15,13 @@
    
 -->
 <plugin> 
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="model/clazzdiagram.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
 
    <extension point="org.eclipse.ui.contexts" id="ui-context">
 				      <?gmfgen generated="true"?>
@@ -1694,8 +1701,16 @@
 				type="5155">
 			</mapping>
 			<mapping
+				humanReadableType="Stereotype"
+				type="5156">
+			</mapping>
+			<mapping
 				humanReadableType="Floating Label"
 				type="5153">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="5154">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -1729,6 +1744,12 @@
          source="1.0.0" 
          target="1.1.0">
    </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLClassDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconcilerForCompartment"
+         source="1.0.0"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
@@ -1743,7 +1764,27 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-
+<extension
+         point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink.InnerClassHyperlinkContributor"
+            description="Creates hyperlinks referencing inner classes of a class"
+            id="org.eclipse.papyrus.uml.diagram.clazz.hyperlink.innerClassHyperlinkContributor"
+            label="Inner class diagram hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink.NestingPackageHyperlinkContributor"
+            description="Creates hyperlinks referencing class diagrams that are directly owned by the nesting package of the selected package"
+            id="org.eclipse.papyrus.uml.diagram.clazz.hyperlink.NestingPackageHyperlinkContributor"
+            label="Nesting package class diagram hyperlinks">
+      </contributor>
+      <contributor
+            contributor="org.eclipse.papyrus.uml.diagram.clazz.custom.hyperlink.NestedPackageHyperlinkContributor"
+            description="Creates hyperlinks referencing class diagrams that are directly owned by nested packages of the selected package"
+            id="org.eclipse.papyrus.uml.diagram.clazz.hyperlink.NestedPackageHyperlinkContributor"
+            label="Nested package class diagram hyperlinks">
+      </contributor>
+</extension>
 
 
 </plugin>

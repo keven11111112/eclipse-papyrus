@@ -18,12 +18,15 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.EditPart;
@@ -35,6 +38,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.ResizableLabelLocator;
+import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
@@ -48,6 +53,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelPrimarySelecti
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.RefreshTextAlignmentEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.locator.IPapyrusBorderItemLocator;
+import org.eclipse.papyrus.infra.gmfdiag.common.locator.LabelViewConstantsEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.locator.PapyrusLabelLocator;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
@@ -455,10 +461,51 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 	 */
 	@Override
 	public Object getAdapter(Class key) {
-		if (IResource.class == key && getParent() == null) {
-			return null;
+		if (getParent() == null) {
+			if (key == IMarker.class) {
+				return null;
+			}
+			if (key == IResource.class) {
+				return null;
+			}
 		}
 		return super.getAdapter(key);
 	}
 
+	public Point getReferencePoint() {
+		NamedStyle style = getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getBooleanValueStyle(), PapyrusLabelLocator.IS_UPDATED_POSITION); 
+		Boolean updated = style == null ? false : (Boolean) style.eGet(NotationPackage.eINSTANCE.getBooleanValueStyle_BooleanValue());
+		return updated ? getUpdatedRefencePoint() : getBaseReferencePoint();
+	}
+
+	public Point getBaseReferencePoint() {
+		return super.getReferencePoint();
+	}
+
+	public Point getUpdatedRefencePoint() {
+		if (getParent() instanceof AbstractConnectionEditPart) {
+			switch (getKeyPoint()) {
+				case ConnectionLocator.TARGET:
+					return calculateRefPoint(LabelViewConstantsEx.SOURCE_LOCATION);
+				case ConnectionLocator.SOURCE:
+					return calculateRefPoint(LabelViewConstantsEx.TARGET_LOCATION);
+				case ConnectionLocator.MIDDLE:
+					return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
+				default:
+					return calculateRefPoint(LabelViewConstantsEx.MIDDLE_LOCATION);
+			}
+		}
+		return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
+	}
+
+	private Point calculateRefPoint(int percent) {
+		if (getParent() instanceof AbstractConnectionEditPart) {
+			PointList ptList = ((Connection)((ConnectionEditPart)getParent()).getFigure()).getPoints();
+			Point refPoint = PointListUtilities.calculatePointRelativeToLine(ptList, 0, percent, true);
+			return refPoint;
+		} else if (getParent() instanceof GraphicalEditPart) {
+			return ((AbstractGraphicalEditPart)getParent()).getFigure().getBounds().getTopLeft();
+		}
+		return null;			
+	}
 }

@@ -19,10 +19,10 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.inher
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.inherited.TestLinkCreationCommentConstraintFromConstraint;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.creation.link.inherited.TestLinkCreationCommentConstraintFromConstraintCN;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	
 	TestLinkCreationCommentConstraintForSources.class,

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.tests.canonical;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -47,9 +48,9 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	protected GraphicalEditPart rootPart;
 
 	protected GraphicalEditPart getRootEditPart() {
-		if(rootPart == null) {
-			GraphicalEditPart part = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
-			rootPart = (GraphicalEditPart)part.getChildren().get(1);
+		if (rootPart == null) {
+			GraphicalEditPart part = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
+			rootPart = (GraphicalEditPart) part.getChildren().get(1);
 		}
 		return rootPart;
 	}
@@ -61,7 +62,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 	@Override
 	protected Element getRootSemanticModel() {
-		return (Element)getRootView().getElement();
+		return (Element) getRootView().getElement();
 	}
 
 	protected DiagramCommandStack getDiagramCommandStack() {
@@ -74,7 +75,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 
 	protected void waitForComplete() {
 		boolean run = true;
-		while(run) {
+		while (run) {
 			try {
 				run = Display.getDefault().readAndDispatch();
 			} catch (Exception e) {
@@ -87,10 +88,10 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	 * Test view deletion.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testViewDeletion(IElementType type, IChildTestProvider provider) {
-		//DELETION OF THE VIEW
+		// DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 1);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, provider.getViewChildrenSize() == 1);
@@ -124,10 +125,10 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	 * Test destroy.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testDestroy(IElementType type, IChildTestProvider provider) {
-		//DESTROY SEMANTIC+ VIEW
+		// DESTROY SEMANTIC+ VIEW
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 1);
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
 
@@ -157,11 +158,11 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	 * Test to create a node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testToCreateChildNode(IElementType type, IChildTestProvider provider) {
 
-		//CREATION
+		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, provider.getEditPartChildrenSize() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 0);
 
@@ -175,7 +176,7 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getViewChildrenSize() == 1);
+		assertEquals(CREATION + TEST_THE_EXECUTION, 1, provider.getViewChildrenSize());
 		assertTrue(CREATION + TEST_THE_EXECUTION, !provider.hasSemanticChild() || provider.getSemanticChildrenSize() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, provider.getEditPartChildrenSize() == 1);
 
@@ -226,11 +227,11 @@ public abstract class TestChildNode extends AbstractPapyrusTestCase {
 	 * Test to manage child node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param containerType
-	 *        the container type
+	 *            the container type
 	 */
-	public void testToManageChildNode(IElementType type, IChildTestProvider provider) { //IElementType containerType,
+	public void testToManageChildNode(IElementType type, IChildTestProvider provider) { // IElementType containerType,
 		testToCreateChildNode(type, provider);
 		// the node is still present
 		testDestroy(type, provider);

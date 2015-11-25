@@ -409,7 +409,7 @@ public class StructuredActivityNodeKeywordEditPart extends PapyrusCompartmentEdi
 	/**
 	 * @generated
 	 */
-	private void performDirectEdit(char initialCharacter) {
+	protected void performDirectEdit(char initialCharacter) {
 		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
@@ -815,6 +815,9 @@ public class StructuredActivityNodeKeywordEditPart extends PapyrusCompartmentEdi
 		return null;
 	}
 
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**

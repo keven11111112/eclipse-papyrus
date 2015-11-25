@@ -14,13 +14,13 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites;
 
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Main test suite class
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
  AllCopyPasteTests.class,
  AllCreationCustomTests.class,
@@ -33,7 +33,8 @@ import org.junit.runners.Suite.SuiteClasses;
  AllDnDLinkTests.class,
  AllDeletionTests.class, 
  AllUtilsTests.class,
- AllCanonicalTests.class
+ AllCanonicalTests.class,
+ AllProviderTests.class
  })
 public class AllTests {
 

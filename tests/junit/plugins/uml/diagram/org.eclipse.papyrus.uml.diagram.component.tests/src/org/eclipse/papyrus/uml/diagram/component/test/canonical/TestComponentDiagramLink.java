@@ -12,14 +12,19 @@
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
+import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.EditPolicy;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.component.test.IComponentDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestLink;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -31,12 +36,12 @@ public class TestComponentDiagramLink extends TestLink {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateComponentDiagramCommand();
 	}
-	
+
 	@Override
 	protected String getProjectName() {
 		return IComponentDiagramTestsConstants.PROJECT_NAME;
@@ -102,4 +107,61 @@ public class TestComponentDiagramLink extends TestLink {
 		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.ComponentRealization_4007, UMLElementTypes.Package_3200, true);
 	}
 
+	/**
+	 * Test to manage Abstraction for Interface source
+	 */
+	@Test
+	public void testToManageInterfaceAbstraction() {
+		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Abstraction_4013, UMLElementTypes.Package_3200, true);
+	}
+
+	/**
+	 * Test to manage Dependency for Interface source
+	 */
+	@Test
+	public void testToManageInterfaceDependency() {
+		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_3200, true);
+
+	}
+
+	/**
+	 * Test to manage Manifestation for Interface source
+	 */
+	@Test
+	public void testToManageInterfaceManifestation() {
+		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Manifestation_4014, UMLElementTypes.Package_3200, false);
+	}
+
+	/**
+	 * Test to manage Usage for Interface source
+	 */
+	@Test
+	public void testToManageInterfaceUsage() {
+		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Usage_4001, UMLElementTypes.Package_3200, true);
+	}
+
+	/**
+	 * Test to create a link.
+	 *
+	 * @param linkType
+	 *            the type
+	 */
+	@Override
+	public void testToCreateALink(IElementType linkType, String initialName) {
+		testCreateLink(linkType, initialName);
+	}
+
+	/**
+	 * htis method is used to test the created link editpart
+	 *
+	 * @param linkEditPart
+	 */
+	@Override
+	protected void testLinkEditPart(ConnectionEditPart linkEditPart, String initialName) {
+		super.testLinkEditPart(linkEditPart, initialName);
+		EditPolicy policy = linkEditPart.getEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY);
+		Assert.assertNotNull("the link must have an stereotype edipolicy.", policy); //$NON-NLS-1$
+		Assert.assertTrue("the policy of the link must be an instance of AppliedStereotypeLinkLabelDisplayEditPolicy", policy instanceof AppliedStereotypeLinkLabelDisplayEditPolicy); //$NON-NLS-1$
+		Assert.assertTrue("Expected link childs count is 2.", linkEditPart.getChildren().size() == 2);
+	}
 }

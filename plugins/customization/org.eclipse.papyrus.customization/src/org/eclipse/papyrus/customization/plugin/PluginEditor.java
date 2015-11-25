@@ -49,11 +49,11 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	}
 
 	public IManifestEditor getManifestEditor() {
-		return this.manifest;
+		return manifest;
 	}
 
 	public IBuildEditor getBuildEditor() {
-		return this.build;
+		return build;
 	}
 
 	public void registerSourceFolder(String source) {
@@ -85,7 +85,7 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 	public boolean hasDependency(String dependency) {
 		return manifest.hasDependency(dependency);
 	}
-	
+
 	public void setValue(String key, String value) {
 		manifest.setValue(key, value);
 	}
@@ -175,5 +175,43 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 
 	public void setDependenciesVersion(String dependencyPattern, String newVersion) {
 		manifest.setDependenciesVersion(dependencyPattern, newVersion);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addImportPackage(java.lang.String)
+	 *
+	 * @param packageName
+	 */
+	public void addImportPackage(String packageName) {
+		manifest.addImportPackage(packageName);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addImportPackage(java.lang.String, java.lang.String)
+	 *
+	 * @param packageName
+	 * @param version
+	 */
+	public void addImportPackage(String packageName, String version) {
+		manifest.addImportPackage(packageName, version);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addExportPackage(java.lang.String)
+	 *
+	 * @param packageName
+	 */
+	public void addExportPackage(String packageName) {
+		manifest.addExportPackage(packageName);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#addExportPackage(java.lang.String, java.lang.String)
+	 *
+	 * @param packageName
+	 * @param version
+	 */
+	public void addExportPackage(String packageName, String version) {
+		manifest.addExportPackage(packageName, version);
 	}
 }

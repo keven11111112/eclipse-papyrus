@@ -415,10 +415,10 @@ public class NavigatorSearchDialog extends TrayDialog {
 		T result = null;
 		if (object instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable) object;
-			result = (T) adaptable.getAdapter(toAdapt);
+			result = adaptable.getAdapter(toAdapt);
 		}
 		if (result == null) {
-			result = (T) Platform.getAdapterManager().getAdapter(object, toAdapt);
+			result = Platform.getAdapterManager().getAdapter(object, toAdapt);
 		}
 		return result;
 	}

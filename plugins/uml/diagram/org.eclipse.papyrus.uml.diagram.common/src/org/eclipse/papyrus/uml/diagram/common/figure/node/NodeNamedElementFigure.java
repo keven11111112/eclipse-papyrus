@@ -44,7 +44,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	private static final String CHEVRON = String.valueOf("\u00AB") + String.valueOf("\u00BB");
 
-	private PapyrusWrappingLabel taggedLabel;
+	/** The tagged label. */
+	protected PapyrusWrappingLabel taggedLabel;
 
 	/** the depth of the qualified name **/
 	private int depth = 0;
@@ -57,14 +58,14 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	/**
 	 * The name label.
 	 */
-	protected WrappingLabel nameLabel;
+	protected PapyrusWrappingLabel nameLabel;
 
 	protected Image nameLabelIcon = null;
 
 	/**
 	 * The qualified label.
 	 */
-	protected Label qualifiedLabel;
+	protected PapyrusWrappingLabel qualifiedLabel;
 
 	/**
 	 * Added for stereotypes properties
@@ -74,7 +75,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	/**
 	 * Added for stereotypes properties, displayed in the InBrace location
 	 */
-	protected Label stereotypePropertiesInBraceContent;
+	protected PapyrusWrappingLabel stereotypePropertiesInBraceContent;
 
 	/**
 	 * The stereotypes label.
@@ -187,6 +188,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(namePosition);
 		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), getNameLabelPosition());
+		if (null != qualifiedLabel) {
+			qualifiedLabel.setOpaque(false);
+			qualifiedLabel.setAlignment(namePosition);
+		}
 	}
 
 
@@ -206,10 +211,14 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	@Override
 	public void restoreStereotypeLabel() {
-		if (stereotypesLabel != null) {
+		if (null != stereotypesLabel) {
 			stereotypesLabel.setOpaque(false);
 			stereotypesLabel.setAlignment(namePosition);
 			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypeLabelPosition());
+		}
+		if (null != stereotypePropertiesInBraceContent) {
+			stereotypePropertiesInBraceContent.setOpaque(false);
+			stereotypePropertiesInBraceContent.setAlignment(namePosition);
 		}
 	}
 
@@ -475,7 +484,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * create the label that contains the qualified name.
 	 */
 	protected void createQualifiedNameLabel() {
-		qualifiedLabel = new Label();
+		qualifiedLabel = new PapyrusWrappingLabel();
 		qualifiedLabel.setOpaque(false);
 		qualifiedLabel.setFont(getNameLabel().getFont());
 		qualifiedLabel.setForegroundColor(getNameLabel().getForegroundColor());
@@ -500,7 +509,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypePropertiesInBraceLabel() {
-		stereotypePropertiesInBraceContent = new Label();
+		stereotypePropertiesInBraceContent = new PapyrusWrappingLabel();
 		stereotypePropertiesInBraceContent.setOpaque(false);
 		// Add the stereotype label to the figure at pos 0
 		getStereotypePropertiesInBraceLabelContainer().add(stereotypePropertiesInBraceContent, getStereotypePropertiesInBraceLabelConstraint(), getStereotypePropertiesLabelPosition());
@@ -688,7 +697,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @return the label that contains the qualified name
 	 */
 	@Override
-	public Label getQualifiedNameLabel() {
+	public WrappingLabel getQualifiedNameLabel() {
 		return this.qualifiedLabel;
 	}
 

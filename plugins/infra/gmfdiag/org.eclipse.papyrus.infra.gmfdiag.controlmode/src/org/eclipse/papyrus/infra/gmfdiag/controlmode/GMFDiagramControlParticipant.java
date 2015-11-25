@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 Atos.
+ * Copyright (c) 2013, 2015 Atos, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     Arthur Daussy <a href="mailto:arthur.daussy@atos.net"> - initial API and implementation
+ *     Christian W. Damus - bug 480209
  ******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.controlmode;
 
@@ -94,6 +95,16 @@ public class GMFDiagramControlParticipant implements IControlCommandParticipant,
 	}
 
 	public boolean provideUnControlCommand(ControlModeRequest request) {
-		return request.getTargetObject() instanceof EObject;
+		boolean result = false;
+
+		EObject objectToUncontrol = request.getTargetObject();
+		if (objectToUncontrol != null) {
+			// If there is no notation resource, then there's nothing to do
+			URI notationURI = request.getNewURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
+			ModelSet modelSet = request.getModelSet();
+			result = (modelSet != null) && modelSet.getURIConverter().exists(notationURI, null);
+		}
+
+		return result;
 	}
 }

@@ -9,20 +9,25 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
+ *		Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 478288
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.utils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.sysml.service.types.utils.AssociationUtils;
 import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
@@ -41,11 +46,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  */
 public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExistingElementHelper {
-
-	/**
-	 * the sysml connector util
-	 */
-	private ConnectorUtils sysmlConnectorUtils = new ConnectorUtils();
 
 	/**
 	 *
@@ -94,7 +94,7 @@ public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExisting
 	 * @param wantedType
 	 *            the wanted element type
 	 * @return
-	 *         true if the eobject is an instance of the wanted element type.
+	 * 		true if the eobject is an instance of the wanted element type.
 	 *
 	 *         Add test for SysML Association
 	 */
@@ -135,7 +135,7 @@ public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExisting
 	 * @param association
 	 *            an association
 	 * @return
-	 *         the association kind for the association
+	 * 		the association kind for the association
 	 */
 	private static final AggregationKind getAssociationAggregationKind(final Association association) {
 		// Incomplete associations
@@ -161,13 +161,20 @@ public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExisting
 	 *            the request for the creation
 	 * @param wantedEClass
 	 * @return
-	 *         a list of {@link EdgeEndsMapper} referencing the existing links between the source and the target
+	 * 		a list of {@link EdgeEndsMapper} referencing the existing links between the source and the target
 	 */
 	@Override
 	protected List<LinkEndsMapper> getExistingLinksBetweenSourceAndTarget(final CreateRelationshipRequest request, final IElementType wantedElementType) {
-		if (wantedElementType.getEClass() == UMLPackage.eINSTANCE.getConnector()) {
-			final List<LinkEndsMapper> existingElement = new ArrayList<LinkEndsMapper>();
-			for (final Element current : ((Element) request.getContainer()).getOwnedElements()) {
+		List<LinkEndsMapper> existingElement = null;
+
+		final EClass wantedEClass = wantedElementType.getEClass();
+
+		if (UMLPackage.eINSTANCE.getConnector().equals(wantedEClass)) {
+			EList<Element> ownedElements = ((Element) request.getContainer()).getOwnedElements();
+
+			existingElement = new ArrayList<LinkEndsMapper>();
+
+			for (final Element current : ownedElements) {
 				if (hasWantedType(current, wantedElementType)) {
 					final Collection<?> sources = this.linkMappingHelper.getSource(current);
 					final Collection<?> targets = this.linkMappingHelper.getTarget(current);
@@ -183,8 +190,66 @@ public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExisting
 					}
 				}
 			}
-			return existingElement;
+
+		} else if (UMLPackage.eINSTANCE.getAssociation().equals(wantedEClass)) {
+			final EList<Element> ownedElements = ((Element) request.getContainer()).getOwnedElements();
+
+			existingElement = new ArrayList<LinkEndsMapper>();
+
+			for (final Element current : ownedElements) {
+				if (hasWantedType(current, wantedElementType)) {
+					final Collection<?> sources = this.linkMappingHelper.getSource(current);
+					final Collection<?> targets = this.linkMappingHelper.getTarget(current);
+
+					if (sources.contains(request.getSource()) && targets.contains(request.getTarget()) && (current instanceof Association)) {
+						boolean identicalAssociation = true;
+
+						final Iterator<Property> iterator = ((Association) current).getMemberEnds().iterator();
+
+						while (iterator.hasNext() && identicalAssociation) {
+							final Property property = iterator.next();
+
+							final boolean source = request.getSource().equals(property.getType());
+
+							// Handle of all types of Association in SysML
+							if (SysMLElementTypes.ASSOCIATION_NONE_DIRECTED.equals(wantedElementType)) {
+								if (!AssociationUtils.isIdenticalProperties(false, AggregationKind.NONE_LITERAL, source, property)) {
+									identicalAssociation = false;
+								}
+							} else if (SysMLElementTypes.ASSOCIATION_NONE.equals(wantedElementType)) {
+								if (!AssociationUtils.isIdenticalProperties(true, AggregationKind.NONE_LITERAL, source, property)) {
+									identicalAssociation = false;
+								}
+							} else if (SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED.equals(wantedElementType)) {
+								if (!AssociationUtils.isIdenticalProperties(false, AggregationKind.COMPOSITE_LITERAL, source, property)) {
+									identicalAssociation = false;
+								}
+							} else if (SysMLElementTypes.ASSOCIATION_COMPOSITE.equals(wantedElementType)) {
+								if (!AssociationUtils.isIdenticalProperties(true, AggregationKind.COMPOSITE_LITERAL, source, property)) {
+									identicalAssociation = false;
+								}
+							} else if (SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED.equals(wantedElementType)) {
+								if (!AssociationUtils.isIdenticalProperties(false, AggregationKind.SHARED_LITERAL, source, property)) {
+									identicalAssociation = false;
+								}
+							} else if (SysMLElementTypes.ASSOCIATION_SHARED.equals(wantedElementType)) {
+								if (!AssociationUtils.isIdenticalProperties(true, AggregationKind.SHARED_LITERAL, source, property)) {
+									identicalAssociation = false;
+								}
+							}
+						}
+
+						if (identicalAssociation) {
+							existingElement.add(new LinkEndsMapper(current, sources, null, null));
+						}
+					}
+				}
+			}
+		} else {
+			existingElement = super.getExistingLinksBetweenSourceAndTarget(request, wantedElementType);
 		}
-		return super.getExistingLinksBetweenSourceAndTarget(request, wantedElementType);
+
+		return existingElement;
 	}
+
 }

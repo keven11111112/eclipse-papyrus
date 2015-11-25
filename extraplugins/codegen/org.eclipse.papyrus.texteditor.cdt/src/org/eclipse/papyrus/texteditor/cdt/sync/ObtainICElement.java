@@ -12,11 +12,17 @@
 
 package org.eclipse.papyrus.texteditor.cdt.sync;
 
+import java.util.Iterator;
+
 import org.eclipse.cdt.core.model.ICElement;
 import org.eclipse.cdt.core.model.IFunctionDeclaration;
 import org.eclipse.cdt.core.model.IParent;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen2;
+import org.eclipse.papyrus.codegen.extensionpoints.MethodInfo;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -41,31 +47,60 @@ public class ObtainICElement {
 	 *            A named UML element
 	 * @throws CoreException
 	 */
-	public static ICElement getICElement(IParent parent, NamedElement element) {
+	public static ICElement getICElement(ILangCodegen codegen, IParent parent, NamedElement element) {
+		MethodInfo methodInfo = null;
+		NamedElement operationOrBehavior = element;
+		if (element instanceof Transition) {
+			operationOrBehavior = ((Transition) element).getEffect();
+		}
+		
+		// no behavior found => not possible to locate element
+		if (operationOrBehavior == null) {
+			return null;
+		}
+		
+		if (codegen instanceof ILangCodegen2) {
+			// get generator specific method info.
+			methodInfo = ((ILangCodegen2) codegen).getMethodInfo(operationOrBehavior);
+		}
+		if (methodInfo == null) {
+			// use default behavior.
+			if (element instanceof Behavior) {
+				methodInfo = MethodInfo.fromBehavior((Behavior) operationOrBehavior);
+			}
+			else if (element instanceof Operation) {
+				methodInfo = MethodInfo.fromOperation((Operation) operationOrBehavior);
+			}
+			else {
+				return null;
+			}
+		}
+		
 		try {
 			for (ICElement child : parent.getChildren()) {
 				if (child instanceof IParent) {
-					return getICElement((IParent) child, element);
+					return getICElement(codegen, (IParent) child, element);
 				}
 				if (child instanceof IFunctionDeclaration) {
 					IFunctionDeclaration function = (IFunctionDeclaration) child;
-
-					if (element instanceof Operation) {
-						if (child.getElementName().endsWith(NamedElement.SEPARATOR + element.getName())) {
-							// check, if number of parameter matches. TODO: this only handles a part of possible overloading cases
-							if (function.getNumberOfParameters() == countParameters(((Operation) element).getOwnedParameters())) {
-								return child;
-							}
-						}
-					}
-					else if (element instanceof Transition) {
-						Transition transition = (Transition) element;
-						if (transition.getEffect() != null) {
-							if (FindTransition.behaviorMatches(transition.getEffect(), child.getElementName())) {
-							
-								if (function.getNumberOfParameters() == countParameters(transition.getEffect().getOwnedParameters())) {
-									return child;
+					
+					// does the element name match? (CDT provides className::methodName information). Since we are in the scope of
+					// the class, we only verify the postfix part of the name
+					if (child.getElementName().endsWith(NamedElement.SEPARATOR + methodInfo.getName())) {
+						// check, if parameters match. This handles most common overloading cases (it does not handle functions that
+						// only differ with respect to the modifiers
+						Iterator<String> paramIter = methodInfo.getParameterTypes().iterator();
+						boolean match = methodInfo.getParameterTypes().size() == function.getParameterTypes().length;
+						if (match) {
+							for (String cdtParamType : function.getParameterTypes()) {
+								String umlParamType = paramIter.next();
+								if (!cdtParamType.equals(umlParamType)) {
+									match = false;
+									break;
 								}
+							}
+							if (match) {
+								return child;
 							}
 						}
 					}

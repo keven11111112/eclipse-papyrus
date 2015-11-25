@@ -13,10 +13,10 @@ package org.eclipse.papyrus.infra.gmfdiag.menu.tests.tests;
 
 import org.eclipse.papyrus.infra.gmfdiag.menu.utils.DeleteActionUtilTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ DeleteActionUtilTest.class })
 public class AllTests {
 	// JUnit 4 test suite

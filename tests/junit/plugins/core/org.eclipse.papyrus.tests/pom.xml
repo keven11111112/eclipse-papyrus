@@ -23,9 +23,8 @@
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>
-					<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
-					<appArgLine>-testConfig=${testConfig}</appArgLine>
 					<product>org.eclipse.sdk.ide</product>
+					<!-- If a specific <argLine> is required here, make sure to include JaCoCo parameters (See parent pom, Bug 478170) -->
 					<skipTests>${skipAllTests}</skipTests>
 					<testClass>org.eclipse.papyrus.tests.AllTests</testClass>
 				</configuration>

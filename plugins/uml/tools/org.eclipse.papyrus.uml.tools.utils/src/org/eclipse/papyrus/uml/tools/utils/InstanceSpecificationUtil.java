@@ -65,20 +65,21 @@ public class InstanceSpecificationUtil {
 	 */
 	private static String getTypesAsString(InstanceSpecification instance) {
 		StringBuffer typeString = new StringBuffer();
-		Iterator<Classifier> classifierIterator = instance.getClassifiers().iterator();
-		boolean firstParameter = true;
-		while (classifierIterator.hasNext()) {
-			Classifier classifier = classifierIterator.next();
-
-			// get the label for this Classifier
-			String classifierName = NamedElementUtil.getName(classifier);
-			if (!classifierName.trim().equals("")) {
-				if (!firstParameter) {
-					typeString.append(", ");
+		if (instance != null){
+			Iterator<Classifier> classifierIterator = instance.getClassifiers().iterator();
+			boolean firstParameter = true;
+			while (classifierIterator.hasNext()) {
+				Classifier classifier = classifierIterator.next();
+				// get the label for this Classifier
+				String classifierName = NamedElementUtil.getName(classifier);
+				if (classifierName!= null && !"".equals(classifierName.trim())) { //$NON-NLS-1$
+					if (!firstParameter) {
+						typeString.append(", ");
+					}
+					typeString.append(classifierName);
+					firstParameter = false;
 				}
-				typeString.append(classifierName);
-				firstParameter = false;
-			}
+			}			
 		}
 		return typeString.toString();
 	}

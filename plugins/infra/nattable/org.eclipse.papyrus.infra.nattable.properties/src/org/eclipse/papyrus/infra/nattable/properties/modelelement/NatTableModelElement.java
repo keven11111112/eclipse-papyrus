@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Nicolas FAUVERGUE (ALL4tEC) nicolas.fauvergue@all4tec.net - Bug 476618
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.properties.modelelement;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnFeatureLab
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnIndexHeaderStyleObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabelDisplayIconObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnObjectLabelDisplayLabelObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectAxisIdentifierObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectContainmentFeatureObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteEObjectElementTypeIdObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.ColumnPasteObjectDetachedModeObservableValue;
@@ -63,14 +65,18 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowFeatureLabelD
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowIndexHeaderStyleObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayIconObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowObjectLabelDisplayLabelObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectAxisIdentifierObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectContainmentFeatureObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectElementTypeIdObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectDetachedModeObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPostActionsObservableValue;
+import org.eclipse.papyrus.infra.nattable.properties.provider.AxisIdentifierLabelProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnAxisIdentifierContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ContextFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.properties.provider.RowAxisIdentifierContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowContainmentFeatureContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
@@ -406,6 +412,8 @@ public class NatTableModelElement extends EMFModelElement {
 				value = new RowPasteObjectDetachedModeObservableValue(getEditedTable());
 			} else if (Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
 				value = new RowPasteObjectPostActionsObservableValue(getDomain(), getEditedTable());
+			} else if (Constants.ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+				value = new RowPasteEObjectAxisIdentifierObservableValue(table);
 			}
 
 			// paste column EObject
@@ -417,6 +425,8 @@ public class NatTableModelElement extends EMFModelElement {
 				value = new ColumnPasteObjectDetachedModeObservableValue(getEditedTable());
 			} else if (Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
 				value = new ColumnPasteObjectPostActionsObservableValue(getDomain(), getEditedTable());
+			} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+				value = new ColumnPasteEObjectAxisIdentifierObservableValue(table);
 			}
 
 			if (value != null) {
@@ -490,6 +500,8 @@ public class NatTableModelElement extends EMFModelElement {
 				res = true;
 			} else if (Constants.ROW_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
 				res = new RowPostActionIdsProvider(this.tableModelManager).getElements().length != 0;
+			} else if (Constants.ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+				res = new RowAxisIdentifierContentProvider(this.tableModelManager).getElements().length != 0;
 
 				// paste column EObject
 			} else if (Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
@@ -500,6 +512,8 @@ public class NatTableModelElement extends EMFModelElement {
 				res = true;
 			} else if (Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
 				res = new ColumnPostActionIdsProvider(this.tableModelManager).getElements().length != 0;
+			} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+				res = new ColumnAxisIdentifierContentProvider(this.tableModelManager).getElements().length != 0;
 			}
 		}
 
@@ -514,7 +528,7 @@ public class NatTableModelElement extends EMFModelElement {
 	 * @return
 	 */
 	@Override
-	public IStaticContentProvider getContentProvider(String propertyPath) {
+	public IStaticContentProvider getContentProvider(final String propertyPath) {
 		IStaticContentProvider provider = null;
 		if (Constants.TABLE_CONTEXT.equals(propertyPath)) {
 			Table table = getEditedTable();
@@ -531,13 +545,17 @@ public class NatTableModelElement extends EMFModelElement {
 			provider = new RowPostActionIdsProvider(this.tableModelManager);
 		} else if (Constants.COLUMN_PASTED_OBJECT_POST_ACTIONS_FEATURE.equals(propertyPath)) {
 			provider = new RowPostActionIdsProvider(this.tableModelManager);
+		} else if (Constants.ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+			provider = new RowAxisIdentifierContentProvider(tableModelManager);
+		} else if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+			provider = new ColumnAxisIdentifierContentProvider(tableModelManager);
 		}
 		if (provider != null) {
 			return provider;
 		}
 		return super.getContentProvider(propertyPath);
 	}
-
+	
 	/**
 	 *
 	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isUnique(java.lang.String)
@@ -574,8 +592,9 @@ public class NatTableModelElement extends EMFModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		if (propertyPath.endsWith("prototype")) {
-			return new ILabelProvider() {
+		ILabelProvider provider = null;
+		if (propertyPath.endsWith("prototype")) { //$NON-NLS-1$
+			provider = new ILabelProvider() {
 				@Override
 				public void addListener(ILabelProviderListener listener) {
 				}
@@ -612,7 +631,15 @@ public class NatTableModelElement extends EMFModelElement {
 				}
 			};
 		}
-		return super.getLabelProvider(propertyPath);
+		
+		if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath) || Constants.ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
+			provider = new AxisIdentifierLabelProvider(tableModelManager);
+		}
+		
+		if(null == provider){
+			provider = super.getLabelProvider(propertyPath);
+		}
+		return provider;
 	}
 
 	/**

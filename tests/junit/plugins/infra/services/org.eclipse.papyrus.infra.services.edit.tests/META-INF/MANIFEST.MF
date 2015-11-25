@@ -16,7 +16,7 @@ Export-Package: org.eclipse.papyrus.infra.services.edit.tests,
  org.eclipse.papyrus.infra.services.edit.tests.suites,
  org.eclipse.papyrus.infra.services.edit.tests.utils
 Bundle-Vendor: %providerName
-Fragment-Host: org.eclipse.papyrus.infra.services.edit;bundle-version="0.10.0"
+Fragment-Host: org.eclipse.papyrus.infra.services.edit;bundle-version="1.2.0"
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin

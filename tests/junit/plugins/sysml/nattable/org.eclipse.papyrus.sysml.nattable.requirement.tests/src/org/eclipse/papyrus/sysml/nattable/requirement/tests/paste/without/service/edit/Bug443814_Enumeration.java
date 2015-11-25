@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.without.servi
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.papyrus.infra.emf.nattable.dataprovider.EEnumComboBoxDataProvider;
@@ -45,7 +46,7 @@ public class Bug443814_Enumeration extends AbstractPasteTests {
 
 	@Test
 	public void availableColorTest() throws Exception {
-		
+
 		StringBuilder builder = new StringBuilder(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX);
 		builder.append("profile::Task::color"); //$NON-NLS-1$
 		String wantedProperty = builder.toString();
@@ -53,37 +54,37 @@ public class Bug443814_Enumeration extends AbstractPasteTests {
 		List<IAxis> iAxis = getTable().getCurrentColumnAxisProvider().getAxis();
 		IAxis colorAxis = null;
 		Object representedElement = null;
-	
+
 		for (IAxis current : iAxis) {
 			representedElement = AxisUtils.getRepresentedElement(current);
-			if (wantedProperty.equals(representedElement)){
+			if (wantedProperty.equals(representedElement)) {
 				colorAxis = current;
 				break;
 			}
 		}
 		Assert.assertNotNull(colorAxis);
 		Assert.assertNotNull(representedElement);
-		
+
 		UMLStereotypeSingleEnumerationComboBoxDataProvider provider = new UMLStereotypeSingleEnumerationComboBoxDataProvider(colorAxis, getTableManager());
 		List<?> values = provider.getValues(iAxis.indexOf(colorAxis), 0);
-		boolean findBlack  = false;
+		boolean findBlack = false;
 		boolean findRed = false;
 		boolean findBlue = false;
-		for(Object current : values){
+		for (Object current : values) {
 			Assert.assertTrue(current instanceof EEnumLiteral);
 			EEnumLiteral lit = (EEnumLiteral) current;
-			if(lit.getLiteral().equals("black")){ //$NON-NLS-1$
+			if (lit.getLiteral().equals("black")) { //$NON-NLS-1$
 				findBlack = true;
 			}
-			if(lit.getLiteral().equals("red")){ //$NON-NLS-1$
+			if (lit.getLiteral().equals("red")) { //$NON-NLS-1$
 				findRed = true;
 			}
-			if(lit.getLiteral().equals("blue")){ //$NON-NLS-1$
+			if (lit.getLiteral().equals("blue")) { //$NON-NLS-1$
 				findBlue = true;
 			}
 		}
-		
-		
+
+
 		Assert.assertTrue(findBlack);
 		Assert.assertTrue(findRed);
 		Assert.assertTrue(findBlue);
@@ -98,37 +99,37 @@ public class Bug443814_Enumeration extends AbstractPasteTests {
 		List<IAxis> iAxis = getTable().getCurrentColumnAxisProvider().getAxis();
 		IAxis priorityAxis = null;
 		Object representedElement = null;
-	
+
 		for (IAxis current : iAxis) {
 			representedElement = AxisUtils.getRepresentedElement(current);
-			if (wantedProperty.equals(representedElement)){
+			if (wantedProperty.equals(representedElement)) {
 				priorityAxis = current;
 				break;
 			}
 		}
 		Assert.assertNotNull(priorityAxis);
 		Assert.assertNotNull(representedElement);
-		
+
 		UMLStereotypeSingleEnumerationComboBoxDataProvider provider = new UMLStereotypeSingleEnumerationComboBoxDataProvider(priorityAxis, getTableManager());
 		List<?> values = provider.getValues(iAxis.indexOf(priorityAxis), 0);
-		boolean findHight  = false;
+		boolean findHight = false;
 		boolean findMedium = false;
 		boolean findLow = false;
-		for(Object current : values){
+		for (Object current : values) {
 			Assert.assertTrue(current instanceof EEnumLiteral);
 			EEnumLiteral lit = (EEnumLiteral) current;
-			if(lit.getLiteral().equals("hight")){ //$NON-NLS-1$
+			if (lit.getLiteral().equals("hight")) { //$NON-NLS-1$
 				findHight = true;
 			}
-			if(lit.getLiteral().equals("medium")){ //$NON-NLS-1$
+			if (lit.getLiteral().equals("medium")) { //$NON-NLS-1$
 				findMedium = true;
 			}
-			if(lit.getLiteral().equals("low")){ //$NON-NLS-1$
+			if (lit.getLiteral().equals("low")) { //$NON-NLS-1$
 				findLow = true;
 			}
 		}
-		
-		
+
+
 		Assert.assertTrue(findHight);
 		Assert.assertTrue(findMedium);
 		Assert.assertTrue(findLow);
@@ -157,6 +158,16 @@ public class Bug443814_Enumeration extends AbstractPasteTests {
 		Assert.assertTrue(values.contains(VisibilityKind.PRIVATE_LITERAL));
 		Assert.assertTrue(values.contains(VisibilityKind.PROTECTED_LITERAL));
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.without.service.edit.AbstractPasteTests#validateReturnedStatus(org.eclipse.core.runtime.IStatus)
+	 */
+	@Override
+	protected void validateReturnedStatus(final IStatus status) {
+		Assert.assertEquals("Status must be a warning", IStatus.WARNING, status.getSeverity());
 	}
 
 }

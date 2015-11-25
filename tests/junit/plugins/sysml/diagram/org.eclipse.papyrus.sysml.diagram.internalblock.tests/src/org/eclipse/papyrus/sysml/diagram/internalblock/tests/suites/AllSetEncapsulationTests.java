@@ -30,10 +30,10 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.tests.set.encapsulation.T
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.set.encapsulation.TestSetEncapsulationDeleteConnectorFromReference;
 import org.eclipse.papyrus.sysml.diagram.internalblock.tests.set.encapsulation.TestSetEncapsulationDeleteConnectorFromValue;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ 
 	
 	// Lot of duplicate tests, more subtle situation should be tested.

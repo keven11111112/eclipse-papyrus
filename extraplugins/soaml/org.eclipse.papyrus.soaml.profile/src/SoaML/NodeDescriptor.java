@@ -22,10 +22,10 @@ import org.eclipse.uml2.uml.Artifact;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.NodeDescriptor#getBase_Artifact <em>Base Artifact</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getNodeDescriptor()
  * @model

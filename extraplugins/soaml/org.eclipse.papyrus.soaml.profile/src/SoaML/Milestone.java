@@ -12,13 +12,10 @@
 package SoaML;
 
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
@@ -28,13 +25,13 @@ import org.eclipse.uml2.uml.ValueSpecification;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link SoaML.Milestone#getSignal <em>Signal</em>}</li>
  *   <li>{@link SoaML.Milestone#getProgress <em>Progress</em>}</li>
  *   <li>{@link SoaML.Milestone#getValue <em>Value</em>}</li>
  *   <li>{@link SoaML.Milestone#getBase_Comment <em>Base Comment</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getMilestone()
  * @model
@@ -108,32 +105,6 @@ public interface Milestone extends EObject {
 	 * @generated
 	 */
 	EList<ValueSpecification> getValue();
-
-	/**
-	 * Retrieves the first {@link org.eclipse.uml2.uml.ValueSpecification} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>' from the '<em><b>Value</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.ValueSpecification} to retrieve, or <code>null</code>.
-	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.ValueSpecification} to retrieve, or <code>null</code>.
-	 * @return The first {@link org.eclipse.uml2.uml.ValueSpecification} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
-	 * @see #getValue()
-	 * @generated
-	 */
-	ValueSpecification getValue(String name, Type type);
-
-	/**
-	 * Retrieves the first {@link org.eclipse.uml2.uml.ValueSpecification} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>' from the '<em><b>Value</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param name The '<em><b>Name</b></em>' of the {@link org.eclipse.uml2.uml.ValueSpecification} to retrieve, or <code>null</code>.
-	 * @param type The '<em><b>Type</b></em>' of the {@link org.eclipse.uml2.uml.ValueSpecification} to retrieve, or <code>null</code>.
-	 * @param ignoreCase Whether to ignore case in {@link java.lang.String} comparisons.
-	 * @param eClass The Ecore class of the {@link org.eclipse.uml2.uml.ValueSpecification} to retrieve, or <code>null</code>.
-	 * @return The first {@link org.eclipse.uml2.uml.ValueSpecification} with the specified '<em><b>Name</b></em>', and '<em><b>Type</b></em>', or <code>null</code>.
-	 * @see #getValue()
-	 * @generated
-	 */
-	ValueSpecification getValue(String name, Type type, boolean ignoreCase, EClass eClass);
 
 	/**
 	 * Returns the value of the '<em><b>Base Comment</b></em>' reference.

@@ -22,7 +22,7 @@ import org.eclipse.papyrus.editor.integration.tests.tests.ModelSetTests;
 import org.eclipse.papyrus.editor.integration.tests.tests.PageManagerTests;
 import org.eclipse.papyrus.editor.integration.tests.tests.RecoveryTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -32,7 +32,7 @@ import org.junit.runners.Suite.SuiteClasses;
  * the outline view's toolbar even after the editor was closed, and these persistent actions cause leaks of
  * models opened later.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ EditorMemoryLeakTest.class, EditingScenariosMemoryLeakTest.class, //
 PageManagerTests.class, RecoveryTest.class, ModelSetTests.class, //
 EditorReloadTest.class })

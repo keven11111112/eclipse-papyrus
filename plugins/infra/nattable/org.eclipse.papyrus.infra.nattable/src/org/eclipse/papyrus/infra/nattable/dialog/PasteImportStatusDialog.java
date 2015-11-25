@@ -8,15 +8,18 @@
  *
  * Contributors:
  *
- *		 Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *	Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *	Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 476618
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.nattable.dialog;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
+import org.eclipse.papyrus.infra.nattable.utils.IPapyrusNattableStatus;
 import org.eclipse.papyrus.infra.widgets.util.ImageConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -27,9 +30,7 @@ import org.eclipse.swt.widgets.Shell;
 
 
 /**
- *
- * @author VL222926
- *         This dialog is used to display paste error status
+ * This dialog is used to display paste error status when the error is a paste configuration.
  */
 public class PasteImportStatusDialog extends MessageDialog {
 
@@ -43,30 +44,20 @@ public class PasteImportStatusDialog extends MessageDialog {
 	 */
 	public static final String DIALOG_TITLE = Messages.PasteImportStatusDialog_ImportPasteDialogTitle;
 
+
+	/**
+	 * Constructor.
+	 *
+	 * @param parentShell
+	 *            the shell parent to use
+	 * @param status
+	 *            the status of the process
+	 */
 	public PasteImportStatusDialog(final Shell parentShell, final IStatus status) {
 		super(parentShell, DIALOG_TITLE, getPapyrusIcon(), status.getMessage(), getDialogImageType(status), new String[] { IDialogConstants.OK_LABEL }, 0);
 	}
 
-	protected static int getDialogImageType(final IStatus status) {
-		switch (status.getSeverity()) {
-		case IStatus.ERROR:
-			return MessageDialog.ERROR;
-		case IStatus.INFO:
-			return MessageDialog.INFORMATION;
-		case IStatus.WARNING:
-			return MessageDialog.WARNING;
-		case IStatus.CANCEL:
-			break;
-		case IStatus.OK:
-			break;
-		default:
-			break;
-		}
-		return 0;
-	}
-
 	/**
-	 *
 	 * Constructor.
 	 *
 	 * @param parentShell
@@ -79,7 +70,6 @@ public class PasteImportStatusDialog extends MessageDialog {
 	}
 
 	/**
-	 *
 	 * Constructor.
 	 *
 	 * @param parentShell
@@ -87,20 +77,52 @@ public class PasteImportStatusDialog extends MessageDialog {
 	 * @param dialogMessage
 	 *            the message to display
 	 * @param dialogImageType
+	 *            the dialog image type
 	 */
 	public PasteImportStatusDialog(final Shell parentShell, final String dialogMessage, final int dialogImageType) {
 		super(parentShell, DIALOG_TITLE, getPapyrusIcon(), dialogMessage, dialogImageType, new String[] { IDialogConstants.OK_LABEL }, 0);
 	}
 
+
 	/**
-	 *
+	 * Get the dialog image.
+	 * 
+	 * @param status
+	 *            the status.
+	 * @return the dialog image.
+	 */
+	protected static int getDialogImageType(final IStatus status) {
+		int dialogImage = 0;
+		switch (status.getSeverity()) {
+		case IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR:
+		case IStatus.ERROR:
+			dialogImage = MessageDialog.ERROR;
+			break;
+		case IPapyrusNattableStatus.PASTE_CONFIGURATiON_INFO:
+		case IStatus.INFO:
+			dialogImage = MessageDialog.INFORMATION;
+			break;
+		case IPapyrusNattableStatus.PASTE_CONFIGURATiON_WARNING:
+		case IStatus.WARNING:
+			dialogImage = MessageDialog.WARNING;
+			break;
+		case IStatus.CANCEL:
+			break;
+		case IStatus.OK:
+			break;
+		default:
+			break;
+		}
+		return dialogImage;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.MessageDialog#createDialogArea(org.eclipse.swt.widgets.Composite)
-	 *
-	 * @param parent
-	 * @return
 	 */
 	@Override
-	protected Control createDialogArea(Composite parent) {
+	protected Control createDialogArea(final Composite parent) {
 		final Composite comp = (Composite) super.createDialogArea(parent);
 		final CLabel label = new CLabel(comp, SWT.NONE);
 		label.setText(HOW_TO_PASTE_MESSAGE);
@@ -108,11 +130,11 @@ public class PasteImportStatusDialog extends MessageDialog {
 		return comp;
 	}
 
-
 	/**
-	 *
+	 * Get the papyrus icon.
+	 * 
 	 * @return
-	 *         the papyrus icon
+	 * 		the papyrus icon
 	 */
 	private static final Image getPapyrusIcon() {
 		return org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(ImageConstants.PAPYRUS_ICON_PATH);

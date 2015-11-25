@@ -69,7 +69,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceNameEditPar
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceNameEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceOperationCompartmentEditPartCN;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ManifestationNameEditPart;
@@ -103,7 +105,9 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceNa
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionNameEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
+import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageNameEditPart;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -761,6 +765,22 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case UsageEditPart.VISUAL_ID:
+			if (UsageNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (UsageAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InterfaceRealizationEditPart.VISUAL_ID:
+			if (InterfaceRealizationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case GeneralizationEditPart.VISUAL_ID:
 			if (GeneralizationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -873,7 +893,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
 		if (candidate == -1) {
-			// unrecognized id is always bad
+			//unrecognized id is always bad
 			return false;
 		}
 		int basic = getNodeVisualID(containerView, domainElement);

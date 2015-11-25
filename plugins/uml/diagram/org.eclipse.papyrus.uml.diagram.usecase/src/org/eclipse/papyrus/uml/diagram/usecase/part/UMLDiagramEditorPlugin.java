@@ -141,9 +141,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider =
-				(IItemLabelProvider) adapterFactory.adapt(
-						item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(
+				item, IItemLabelProvider.class);
 		if (labelProvider != null) {
 			return ExtendedImageRegistry.getInstance().getImageDescriptor(
 					labelProvider.getImage(item));

@@ -17,14 +17,14 @@ import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 
-public class CoRegionCombinedFragmentFigure extends RectangleFigure {
+public class CoRegionCombinedFragmentFigure extends PapyrusNodeFigure {
 
 	// The area (to the left,right, top and bottom) near the border of the Coregion that is sensible to the mouse
 	private static final int COREGION_HIT_WIDTH = 6;
@@ -120,11 +120,17 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		bounds.width = -1;
 		return bounds.getSize();
 	}
-	
+
 	/**
 	 * Get a rectangleFigure representing a central vertical line
 	 */
 	public NodeFigure getCentralVerticalLine() {
 		return centralVerticalLine;
+	}
+
+	@Override
+	protected void paintBorder(Graphics graphics) {
+		// is empty.
+		// CoRegion has specific border that consists of two begin/end brackets. @see CoRegionCombinedFragmentFigure#paintFigure(Graphics graphics)
 	}
 }

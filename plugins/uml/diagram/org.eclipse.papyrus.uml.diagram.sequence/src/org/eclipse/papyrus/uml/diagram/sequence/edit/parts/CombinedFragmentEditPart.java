@@ -100,6 +100,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -150,12 +151,15 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+
+
 		if (childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane.add(((CombinedFragmentCombinedFragmentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -269,9 +273,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	protected void setLineWidth(int width) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
-			((IPapyrusNodeFigure) primaryShape).setLineWidth(width);
-		}
+		super.setLineWidth(width);
 	}
 
 	/**
@@ -279,7 +281,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) { // Manually replaced, waiting for next generation
+		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
@@ -292,7 +294,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if (request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.InteractionOperand_3005) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.InteractionOperand_3005)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
 			}
 		}

@@ -1234,13 +1234,22 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	int PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE = IPASTE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Axis Identifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER = IPASTE_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Paste EObject Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PASTE_EOBJECT_CONFIGURATION_FEATURE_COUNT = IPASTE_CONFIGURATION_FEATURE_COUNT + 2;
+	int PASTE_EOBJECT_CONFIGURATION_FEATURE_COUNT = IPASTE_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -1766,6 +1775,17 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 	EReference getPasteEObjectConfiguration_PasteElementContainementFeature();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getAxisIdentifier <em>Axis Identifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Axis Identifier</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration#getAxisIdentifier()
+	 * @see #getPasteEObjectConfiguration()
+	 * @generated
+	 */
+	EReference getPasteEObjectConfiguration_AxisIdentifier();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration <em>Tree Filling Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2141,6 +2161,14 @@ public interface NattableaxisconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE = eINSTANCE.getPasteEObjectConfiguration_PasteElementContainementFeature();
+
+		/**
+		 * The meta object literal for the '<em><b>Axis Identifier</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER = eINSTANCE.getPasteEObjectConfiguration_AxisIdentifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl <em>Tree Filling Configuration</em>}' class.

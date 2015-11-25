@@ -3732,12 +3732,12 @@
       inheritance="all"
       target="_SccC-1YCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations
-      xmi:id="_R_pDcGT7EeSzFvTXGJPhUg"
-      name="org.eclipse.papyrus.uml.advice.ContainmentSubsetRemoval"
-      identifier="org.eclipse.papyrus.uml.advice.ContainmentSubsetRemoval"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ContainmentSubsetRemovalAdvice"
-      inheritance="all"
-      target="_ScgUUFYCEeS0WsAAtVmToA"/>
+  	  xmi:id="_PBjP4BM9EeW4hZNFQ_NOtQ" 
+  	  name="" description="" 
+  	  identifier="org.eclipse.papyrus.uml.advice.ConstraintContextDestroyEditHelperAdvice" 
+  	  editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintContextDestroyEditHelperAdvice" 
+  	  inheritance="all" 
+  	  target="_SccC-1YCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations
       xmi:id="_R_pDcWT7EeSzFvTXGJPhUg"
       name="org.eclipse.papyrus.uml.advice.Classifier"

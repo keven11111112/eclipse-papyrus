@@ -20,11 +20,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
- *   <li>{@link SoaML.Property#isID <em>Is ID</em>}</li>
+ *   <li>{@link SoaML.Property#isIsID <em>Is ID</em>}</li>
  *   <li>{@link SoaML.Property#getBase_Property <em>Base Property</em>}</li>
  * </ul>
- * </p>
  *
  * @see SoaML.SoaMLPackage#getProperty()
  * @model
@@ -46,14 +46,14 @@ public interface Property extends EObject {
 	 * @model default="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
-	boolean isID();
+	boolean isIsID();
 
 	/**
-	 * Sets the value of the '{@link SoaML.Property#isID <em>Is ID</em>}' attribute.
+	 * Sets the value of the '{@link SoaML.Property#isIsID <em>Is ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Is ID</em>' attribute.
-	 * @see #isID()
+	 * @see #isIsID()
 	 * @generated
 	 */
 	void setIsID(boolean value);

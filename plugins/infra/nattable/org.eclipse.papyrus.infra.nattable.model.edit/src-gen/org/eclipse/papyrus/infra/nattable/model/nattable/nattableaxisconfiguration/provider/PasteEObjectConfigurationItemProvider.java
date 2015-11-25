@@ -55,6 +55,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 
 			addPastedElementIdPropertyDescriptor(object);
 			addPasteElementContainementFeaturePropertyDescriptor(object);
+			addAxisIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -104,6 +105,28 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	}
 
 	/**
+	 * This adds a property descriptor for the Axis Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAxisIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PasteEObjectConfiguration_axisIdentifier_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_PasteEObjectConfiguration_axisIdentifier_feature", "_UI_PasteEObjectConfiguration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 NattableaxisconfigurationPackage.Literals.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+	
+	/**
 	 * This returns PasteEObjectConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -140,6 +163,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 
 		switch (notification.getFeatureID(PasteEObjectConfiguration.class)) {
 			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
+			case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__AXIS_IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

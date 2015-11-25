@@ -17,14 +17,14 @@ import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManagerTest;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTesterTest;
 import org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandlerTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 /**
  * Master test suite.
  */
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({
 PapyrusROTransactionalEditingDomainTest.class, ReferencedModelReadOnlyHandlerTest.class, ReadOnlyManagerTest.class, ReadOnlyTesterTest.class
 })

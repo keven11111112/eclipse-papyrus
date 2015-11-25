@@ -18,13 +18,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.services.viewersearch.IExtendedViewerSearcher;
 import org.eclipse.papyrus.infra.services.viewersearch.IViewerSearcher;
 
 /**
  * Abstract implementation of a ViewerSearcher.
  */
-public abstract class AbstractViewerSearcher implements IViewerSearcher {
+public abstract class AbstractViewerSearcher implements IExtendedViewerSearcher {
 
 	/**
 	 * Generic implementation of this method that shouldn't be overridden
@@ -73,4 +75,16 @@ public abstract class AbstractViewerSearcher implements IViewerSearcher {
 	 */
 
 	public abstract Map<Object, Map<Object, Object>> getViewers(Collection<Object> modelElements, Collection<ModelSet> models);
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.services.viewersearch.IExtendedViewerSearcher#getViewersInCurrentModel(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EObject, boolean, boolean)
+	 *
+	 * @param element
+	 * @param container
+	 * @param pagesOnly
+	 * @param openPagesOnly
+	 * @return
+	 */
+	public abstract List<Object> getViewersInCurrentModel(EObject element, EObject container, boolean pagesOnly, boolean openPagesOnly);
 }

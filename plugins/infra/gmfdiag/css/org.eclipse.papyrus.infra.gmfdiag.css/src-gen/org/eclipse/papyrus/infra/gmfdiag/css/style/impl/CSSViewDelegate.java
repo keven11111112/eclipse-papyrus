@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.ParserHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
+import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
 import org.w3c.dom.css.CSSValue;
 
@@ -59,7 +60,9 @@ public class CSSViewDelegate implements CSSView {
 
 	@Override
 	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
-
+		if (!CSSNotationResource.isCSSEnabled(view.eResource())) {
+			return null;
+		}
 
 		if (!NotationPackage.eINSTANCE.getNamedStyle().isSuperTypeOf(eClass)) {
 			return null;

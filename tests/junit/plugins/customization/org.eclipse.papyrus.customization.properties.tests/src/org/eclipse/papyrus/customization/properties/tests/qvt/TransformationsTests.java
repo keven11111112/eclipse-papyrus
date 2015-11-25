@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.customization.properties.tests.Activator;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
@@ -77,7 +79,7 @@ public class TransformationsTests extends AbstractPapyrusTest {
 
 	@After
 	public void disposeFixture() {
-		if(generator != null) {
+		if (generator != null) {
 			generator.dispose();
 			generator = null;
 		}
@@ -85,7 +87,7 @@ public class TransformationsTests extends AbstractPapyrusTest {
 
 	@Test
 	public void handleXWTFileFromResource() {
-		//From an XWT Resource
+		// From an XWT Resource
 		Resource xwtResource = new XWTResource(xwtModelUri);
 		try {
 			xwtResource.load(null);
@@ -98,28 +100,28 @@ public class TransformationsTests extends AbstractPapyrusTest {
 
 	@Test
 	public void handleXWTFileFromResourceSet() {
-		//From a generic ResourceSet
+		// From a generic ResourceSet
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource xwtResource = resourceSet.getResource(xwtModelUri, true);
 		checkContents(xwtResource);
 	}
 
-	//Briefly check the resource contents
+	// Briefly check the resource contents
 	private void checkContents(Resource xwtResource) {
 		Assert.assertNotNull(xwtResource);
 
-		Assert.assertEquals(1, xwtResource.getContents().size()); //Exactly one root
+		Assert.assertEquals(1, xwtResource.getContents().size()); // Exactly one root
 
 		EObject root = xwtResource.getContents().get(0);
-		Assert.assertTrue(root instanceof CompositeWidget); //The root is a Composite
+		Assert.assertTrue(root instanceof CompositeWidget); // The root is a Composite
 
-		CompositeWidget widget = (CompositeWidget)root;
+		CompositeWidget widget = (CompositeWidget) root;
 		Assert.assertEquals("Composite", widget.getWidgetType().getWidgetClass()); //$NON-NLS-1$ //The root is a SWT Composite
 		Assert.assertEquals("PropertiesLayout", widget.getLayout().getLayoutType().getWidgetClass()); //$NON-NLS-1$ //The layout is a Papyrus Properties Layout
-		Assert.assertEquals(3, widget.getWidgets().size()); //There are exactly three widgets under the root composite
+		Assert.assertEquals(3, widget.getWidgets().size()); // There are exactly three widgets under the root composite
 
-		//...
-		//More precise tests might be required...
+		// ...
+		// More precise tests might be required...
 	}
 
 	@Test
@@ -128,12 +130,12 @@ public class TransformationsTests extends AbstractPapyrusTest {
 
 		generator = new EcoreGenerator() {
 
-			//FIXME: The EcoreGenerator is currently not built to be used programmatically; we need to override it to test it.
+			// FIXME: The EcoreGenerator is currently not built to be used programmatically; we need to override it to test it.
 
 			@Override
 			protected List<ModelExtent> getModelExtents() {
 				try {
-					ecorePackage = (EPackage)loadEMFModel(packageURI);
+					ecorePackage = (EPackage) loadEMFModel(packageURI);
 				} catch (IOException e) {
 					// nothing
 				}
@@ -146,7 +148,7 @@ public class TransformationsTests extends AbstractPapyrusTest {
 				PropertiesRoot root = ConfigurationManager.getInstance().getPropertiesRoot();
 				ModelExtent inRoot = new BasicModelExtent(Collections.singletonList(root));
 
-				//Basic Method
+				// Basic Method
 				result.add(inPackage);
 				result.add(inPackage);
 
@@ -161,10 +163,10 @@ public class TransformationsTests extends AbstractPapyrusTest {
 
 		ArrayList<URI> listURI = new ArrayList<URI>();
 		listURI.add(targetURI);
-		//		List<Object> listObject = generator.getExternalReference();
-		//		for(Object p: listObject){
-		//			generator.addCheckElement(p);
-		//		}
+		// List<Object> listObject = generator.getExternalReference();
+		// for(Object p: listObject){
+		// generator.addCheckElement(p);
+		// }
 		List<Context> generatedContexts = generator.generate(listURI);
 
 		Assert.assertNotNull(generatedContexts);
@@ -172,32 +174,32 @@ public class TransformationsTests extends AbstractPapyrusTest {
 
 		Context context = generatedContexts.get(0);
 
-		Assert.assertEquals(1, context.getDataContexts().size()); //Only one DataContextRoot
-		Assert.assertEquals(3, context.getDataContexts().get(0).getElements().size()); //3 DataContextElements
+		Assert.assertEquals(1, context.getDataContexts().size()); // Only one DataContextRoot
+		Assert.assertEquals(3, context.getDataContexts().get(0).getElements().size()); // 3 DataContextElements
 
 		Assert.assertEquals(6, context.getViews().size());
 
-		//int numberOfSections = checkGeneratedContents(context);
-		//Assert.assertEquals(6, numberOfSections);
+		// int numberOfSections = checkGeneratedContents(context);
+		// Assert.assertEquals(6, numberOfSections);
 	}
 
 	@Test
 	public void generateProfileContext() {
 		final URI profileURI = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/profile/model3.profile.uml", true);
 
-		//FIXME: The ProfileGenerator is currently not built to be used programmatically; we need to override it to test it.
+		// FIXME: The ProfileGenerator is currently not built to be used programmatically; we need to override it to test it.
 
 		generator = new ProfileGenerator() {
 
 			@Override
 			protected List<ModelExtent> getModelExtents() {
 				try {
-					Profile umlProfile = (Profile)loadEMFModel(profileURI);
+					Profile umlProfile = (Profile) loadEMFModel(profileURI);
 					ModelExtent inProfile = new BasicModelExtent(Collections.singletonList(umlProfile));
 
 					URI umlURI = URI.createURI("ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx", true);
-					Context umlContext = (Context)loadEMFModel(umlURI);
-					if(umlContext == null) {
+					Context umlContext = (Context) loadEMFModel(umlURI);
+					if (umlContext == null) {
 						Activator.log.warn("Cannot find the UML Property View configuration");
 					}
 					ModelExtent inUml = new BasicModelExtent(Collections.singletonList(umlContext));
@@ -232,51 +234,82 @@ public class TransformationsTests extends AbstractPapyrusTest {
 		Context context = generatedContexts.get(0);
 		Assert.assertEquals(1, context.getDependencies().size());
 		Assert.assertEquals("UML", context.getDependencies().get(0).getName());
-		Assert.assertEquals(1, context.getDataContexts().size()); //Only one DataContextRoot
-		Assert.assertEquals(12, context.getViews().size()); //12 view for 6 elements
-		//		Assert.assertEquals(6, generatedContexts.get(0).getDataContexts().get(0).getElements().size());
-		Assert.assertEquals(6, context.getDataContexts().get(0).getElements().size()); //6 DataContextElements
+		Assert.assertEquals(1, context.getDataContexts().size()); // Only one DataContextRoot
+		Assert.assertEquals(12, context.getViews().size()); // 12 view for 6 elements
+		Assert.assertEquals(6, context.getDataContexts().get(0).getElements().size()); // 6 DataContextElements
+
+		// Test stereotype inheritance (Bug 480969)
+		DataContextElement st5Element = findContextElement(context, "Stereotype5");
+		Assert.assertEquals("Stereotype5 should have exactly two supertypes", 2, st5Element.getSupertypes().size());
+
+		List<String> names = new LinkedList<String>();
+		for (DataContextElement superElement : st5Element.getSupertypes()) {
+			names.add(superElement.getName());
+		}
+		Assert.assertTrue("Stereotype5 should extend Stereotype3", names.contains("Stereotype3"));
+		Assert.assertTrue("Stereotype5 should extend Stereotype6", names.contains("Stereotype6"));
 
 
-		//Check that all 12 sections have an associated CompositeWidget (xwt file)
-		//		int numberOfSections = checkGeneratedContents(context);
+		// Test metaclass extension
+		DataContextElement st3Element = findContextElement(context, "Stereotype3");
+		Assert.assertEquals("Stereotype3 should have exactly one supertype", 1, st3Element.getSupertypes().size());
+		Assert.assertEquals("Stereotype3 should extend Activity", "Activity", st3Element.getSupertypes().get(0).getName());
+
+		// Check that all 12 sections have an associated CompositeWidget (xwt file)
+		// int numberOfSections = checkGeneratedContents(context);
 
 
-		//		Assert.assertEquals(12, numberOfSections);
+		// Assert.assertEquals(12, numberOfSections);
 	}
 
-	//FIXME: This test is disabled, because we haven't generated the views yet.
-	//We need to run the full wizard ; not only the IGenerator (Which only generates the Context model)
-	//The wizard isn't built to be used programmatically
+	private DataContextElement findContextElement(Context context, String name) {
+		TreeIterator<EObject> iterator = context.getDataContexts().get(0).eAllContents();
+		while (iterator.hasNext()) {
+			EObject next = iterator.next();
+			if (next instanceof DataContextElement) {
+				DataContextElement element = (DataContextElement) next;
+				if (name.equals(element.getName())) {
+					return element;
+				}
+			} else {
+				iterator.prune();
+			}
+		}
+		return null;
+	}
+
+	// FIXME: This test is disabled, because we haven't generated the views yet.
+	// We need to run the full wizard ; not only the IGenerator (Which only generates the Context model)
+	// The wizard isn't built to be used programmatically
 	//
-	//		private int checkGeneratedContents(Context context) {
-	//			int numberOfSections = 0;
+	// private int checkGeneratedContents(Context context) {
+	// int numberOfSections = 0;
 	//
-	//			ResourceSet loadingResourceSet = new ResourceSetImpl();
-	//			for(Tab tab : context.getTabs()) {
-	//				for(Section section : tab.getSections()) {
-	//					//There is a CompositeWidget
-	//					Assert.assertNotNull(section.getWidget());
+	// ResourceSet loadingResourceSet = new ResourceSetImpl();
+	// for(Tab tab : context.getTabs()) {
+	// for(Section section : tab.getSections()) {
+	// //There is a CompositeWidget
+	// Assert.assertNotNull(section.getWidget());
 	//
-	//					Resource widgetResource = section.getWidget().eResource();
-	//					URI widgetURI = widgetResource.getURI();
+	// Resource widgetResource = section.getWidget().eResource();
+	// URI widgetURI = widgetResource.getURI();
 	//
-	//					//The CompositeWidget is located in its own *.xwt resource
-	//					Assert.assertTrue(widgetURI.lastSegment().endsWith(".xwt"));
+	// //The CompositeWidget is located in its own *.xwt resource
+	// Assert.assertTrue(widgetURI.lastSegment().endsWith(".xwt"));
 	//
-	//					//The Resource is serialized to the XWT Format (Not XMI)
-	//					Assert.assertTrue(widgetResource instanceof XWTResource);
+	// //The Resource is serialized to the XWT Format (Not XMI)
+	// Assert.assertTrue(widgetResource instanceof XWTResource);
 	//
-	//					//The XWT Resource can be unserialized
-	//					Resource xwtResource = loadingResourceSet.getResource(widgetURI, true);
-	//					Assert.assertTrue(xwtResource instanceof XWTResource);
-	//					Assert.assertEquals(1, xwtResource.getContents().size());
-	//					Assert.assertTrue(xwtResource.getContents().get(0) instanceof CompositeWidget);
+	// //The XWT Resource can be unserialized
+	// Resource xwtResource = loadingResourceSet.getResource(widgetURI, true);
+	// Assert.assertTrue(xwtResource instanceof XWTResource);
+	// Assert.assertEquals(1, xwtResource.getContents().size());
+	// Assert.assertTrue(xwtResource.getContents().get(0) instanceof CompositeWidget);
 	//
-	//					numberOfSections++;
-	//				}
-	//			}
+	// numberOfSections++;
+	// }
+	// }
 	//
-	//			return numberOfSections;
-	//		}
+	// return numberOfSections;
+	// }
 }

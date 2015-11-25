@@ -15,10 +15,8 @@
 package org.eclipse.papyrus.uml.diagram.sequence.part;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
@@ -47,6 +45,11 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public static final String ID = "org.eclipse.papyrus.uml.diagram.sequence"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private LogHelper myLogHelper;
 
 	/**
 	 * @generated
@@ -145,9 +148,11 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(
+				item, IItemLabelProvider.class);
 		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(
+					labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -178,7 +183,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(
+					p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -208,7 +214,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public static String getString(String key) {
-		return Platform.getResourceString(getInstance().getBundle(), "%" + key); //$NON-NLS-1$
+		return Platform.getResourceString(
+				getInstance().getBundle(), "%" + key); //$NON-NLS-1$
 	}
 
 	/**
@@ -267,50 +274,34 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public void logError(String error) {
-		logError(error, null);
+		getLogHelper().warn(error);
 	}
 
 	/**
 	 * @generated
 	 */
 	public void logError(String error, Throwable throwable) {
-		if (error == null && throwable != null) {
-			error = throwable.getMessage();
-		}
-		getLog().log(new Status(IStatus.ERROR, UMLDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
-		debug(error, throwable);
+		getLogHelper().error(error, throwable);
 	}
 
 	/**
 	 * @generated
 	 */
 	public void logInfo(String message) {
-		logInfo(message, null);
+		getLogHelper().info(message);
 	}
 
 	/**
 	 * @generated
 	 */
 	public void logInfo(String message, Throwable throwable) {
-		if (message == null && throwable != null) {
-			message = throwable.getMessage();
-		}
-		getLog().log(new Status(IStatus.INFO, UMLDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
-		debug(message, throwable);
+		getLogHelper().error(message, throwable);
 	}
 
 	/**
 	 * @generated
 	 */
-	private void debug(String message, Throwable throwable) {
-		if (!isDebugging()) {
-			return;
-		}
-		if (message != null) {
-			System.err.println(message);
-		}
-		if (throwable != null) {
-			throwable.printStackTrace();
-		}
+	public LogHelper getLogHelper() {
+		return myLogHelper;
 	}
 }

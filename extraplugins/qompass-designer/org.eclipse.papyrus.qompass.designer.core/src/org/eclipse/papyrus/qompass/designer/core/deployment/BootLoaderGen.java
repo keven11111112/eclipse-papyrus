@@ -60,6 +60,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class BootLoaderGen {
 
+	private static final String EMPTYSTR = ""; //$NON-NLS-1$
+
 	final public static String NODE_INFO = "NodeInfo"; //$NON-NLS-1$
 
 	final public static String INIT_OP_NAME = "init"; //$NON-NLS-1$
@@ -131,7 +133,7 @@ public class BootLoaderGen {
 			throw new TransformationException(Messages.BootLoaderGen_CannotApplyCppInclude);
 		}
 		String existingBody = cppInclude.getBody();
-		String bodyStr = "#include <unistd.h> // for sleep\n"; //$NON-NLS-1$
+		String bodyStr = EMPTYSTR;
 
 		if (outputSizeof) {
 			bodyStr +=
@@ -142,11 +144,11 @@ public class BootLoaderGen {
 
 		// bootLoader.createOwnedAttribute (mainInstance.getName (), composite);
 
-		m_initCode = ""; //$NON-NLS-1$
-		m_initCodeRun = ""; //$NON-NLS-1$
+		m_initCode = EMPTYSTR;
+		m_initCodeRun = EMPTYSTR;
 		m_activation = new HashMap<Class, EList<String>>();
-		m_initCodeCConnections = ""; //$NON-NLS-1$
-		m_initCodeCConfig = ""; //$NON-NLS-1$
+		m_initCodeCConnections = EMPTYSTR;
+		m_initCodeCConfig = EMPTYSTR;
 
 		if (outputSizeof) {
 			m_initCode += "cout << \"sizeof bootloader: \" << sizeof (bootloader) << endl;" + EOL; //$NON-NLS-1$
@@ -258,7 +260,7 @@ public class BootLoaderGen {
 		// Currently, this check is based on the use of "executor" as reserved part name (validation checks that the
 		// user does not use this name for application components)
 		if (hasUnconnectedStartRoutine(m_copy, implementation, containerSlot)) {
-			if (m_initCodeRun.equals("")) { //$NON-NLS-1$
+			if (m_initCodeRun.equals(EMPTYSTR)) {
 				// call start's run method
 				// TODO: Need path that uses the right dereference operator ("->" or ".")
 				m_initCodeRun = varName + "." + get_start + "()->run()" + EOL; //$NON-NLS-1$ //$NON-NLS-2$
@@ -462,10 +464,15 @@ public class BootLoaderGen {
 				}
 			}
 		}
+		
+		Include cppInclude = UMLUtil.getStereotypeApplication(m_bootLoader, Include.class);
 		if (m_initCodeRun.length() > 0) {
 			code += "// initial user start\n" + m_initCodeRun; //$NON-NLS-1$
 		} else {
-			// this change broke client-server example!
+			// no component implements the initial start, therefore enter a sleep
+			// unistd is required (at least on unix systems) for sleep
+			cppInclude.setPreBody("#include <unistd.h> // for sleep\n"); //$NON-NLS-1$
+
 			code += "// sleep forever\n"; //$NON-NLS-1$
 			code += "for (;;) { sleep(100); }\n"; //$NON-NLS-1$
 			// throw new TransformationRTException("no component implements the initial start. Assure that one component inherits from the CStart component");

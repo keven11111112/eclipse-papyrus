@@ -16,10 +16,10 @@ import org.eclipse.papyrus.infra.services.controlmode.tests.control.ControlModel
 import org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol.UncontrolModelTest;
 import org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol.UncontrolModelWithProfileTest;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
+@RunWith(ClassificationSuite.class)
 @SuiteClasses({ ControlModelWithProfileTest.class,
 		UncontrolModelTest.class,
 		ControlModelTest.class,
