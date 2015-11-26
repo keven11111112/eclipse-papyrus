@@ -1644,6 +1644,23 @@
       </stream>
       <description>Papyrus BPMN</description>
     </project>
+    <project
+        name="manufacturing"
+        label="Manufacturing">
+      <setupTask
+          xsi:type="setup:VariableTask"
+          name="papyrus.extraplugins.folder"
+          value="manufacturing"/>
+      <stream
+          name="master"
+          label="master (Neon/1.2)">
+        <setupTask
+            xsi:type="setup:VariableTask"
+            name="papyrus.bugzilla.version"
+            value="${papyrus.bugzver.master}"/>
+      </stream>
+      <description>Papyrus4Manufacturing</description>
+    </project>
     <description>Select sub-projects to import dependencies and sources for Papyrus extra components.</description>
   </project>
   <project label="Developer" name="dev">

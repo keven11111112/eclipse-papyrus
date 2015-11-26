@@ -4,7 +4,7 @@
     <packageImport xmi:type="uml:PackageImport" xmi:id="_8yvQEA6cEeWAwbLB97M__A">
       <importedPackage xmi:type="uml:Profile" href="pathmap://BPMN_PROF/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"/>
     </packageImport>
-    <packagedElement xmi:type="uml:Activity" xmi:id="_47da8AR0EeWIQumHcGWAvg" name="CarEnterpriseProcess" node="_fZZZIAR4EeWyl-_r6kRgqw _95dCIAR4EeWyl-_r6kRgqw _7JNSoAR5EeWyl-_r6kRgqw _8Y71IAR5EeWyl-_r6kRgqw _wWcowAR7EeWyl-_r6kRgqw _x9oB8AR7EeWyl-_r6kRgqw _1naMEAR7EeWyl-_r6kRgqw _ObvoYAR8EeWyl-_r6kRgqw _QurUUAR8EeWyl-_r6kRgqw _CC44gASAEeWyl-_r6kRgqw _V--zgASAEeWyl-_r6kRgqw _vsznIASBEeWyl-_r6kRgqw _7B1lsASBEeWyl-_r6kRgqw _SCePwASCEeWyl-_r6kRgqw _8kUPoASCEeWyl-_r6kRgqw _CSghgASDEeWyl-_r6kRgqw _F5IW8AVUEeW3arN6DgdBDQ _WH7sQHmREeWeCYbCThYi4A _adZQoHmREeWeCYbCThYi4A" group="_THFKYHmREeWeCYbCThYi4A">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_47da8AR0EeWIQumHcGWAvg" name="CarEnterpriseProcess" node="_fZZZIAR4EeWyl-_r6kRgqw _95dCIAR4EeWyl-_r6kRgqw _7JNSoAR5EeWyl-_r6kRgqw _8Y71IAR5EeWyl-_r6kRgqw _wWcowAR7EeWyl-_r6kRgqw _x9oB8AR7EeWyl-_r6kRgqw _1naMEAR7EeWyl-_r6kRgqw _ObvoYAR8EeWyl-_r6kRgqw _QurUUAR8EeWyl-_r6kRgqw _CC44gASAEeWyl-_r6kRgqw _V--zgASAEeWyl-_r6kRgqw _vsznIASBEeWyl-_r6kRgqw _7B1lsASBEeWyl-_r6kRgqw _SCePwASCEeWyl-_r6kRgqw _8kUPoASCEeWyl-_r6kRgqw _CSghgASDEeWyl-_r6kRgqw _F5IW8AVUEeW3arN6DgdBDQ _WH7sQHmREeWeCYbCThYi4A _adZQoHmREeWeCYbCThYi4A">
       <edge xmi:type="uml:ObjectFlow" xmi:id="_VEMUUASCEeWyl-_r6kRgqw" target="_SCePwASCEeWyl-_r6kRgqw" source="_BbsqIA6bEeWAwbLB97M__A">
         <guard xmi:type="uml:LiteralBoolean" xmi:id="_VIGj8ASCEeWyl-_r6kRgqw" value="true"/>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_VIGj8QSCEeWyl-_r6kRgqw" value="1"/>
@@ -67,7 +67,6 @@
         <guard xmi:type="uml:LiteralBoolean" xmi:id="_h8LdABThEeWfYoAHTRGC0g" value="true"/>
         <weight xmi:type="uml:LiteralInteger" xmi:id="_h8LdARThEeWfYoAHTRGC0g" value="1"/>
       </edge>
-      <group xmi:type="uml:ActivityPartition" xmi:id="_THFKYHmREeWeCYbCThYi4A" name="Commercial" node="_WH7sQHmREeWeCYbCThYi4A _adZQoHmREeWeCYbCThYi4A"/>
       <node xmi:type="uml:OpaqueAction" xmi:id="_fZZZIAR4EeWyl-_r6kRgqw" name="Gather raw pieces in kit" incoming="_FuhVYASDEeWyl-_r6kRgqw">
         <outputValue xmi:type="uml:OutputPin" xmi:id="_1GSMoA6aEeWAwbLB97M__A" name=" " outgoing="_7pWAwBTLEeWfYoAHTRGC0g">
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_1GY6UA6aEeWAwbLB97M__A" value="100"/>
@@ -146,8 +145,8 @@
           <upperBound xmi:type="uml:LiteralInteger" xmi:id="_MnYfcA6bEeWAwbLB97M__A" value="1"/>
         </result>
       </node>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_WH7sQHmREeWeCYbCThYi4A" name="OpaqueAction1" inPartition="_THFKYHmREeWeCYbCThYi4A"/>
-      <node xmi:type="uml:OpaqueAction" xmi:id="_adZQoHmREeWeCYbCThYi4A" name="OpaqueAction2" inPartition="_THFKYHmREeWeCYbCThYi4A"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_WH7sQHmREeWeCYbCThYi4A" name="OpaqueAction1"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_adZQoHmREeWeCYbCThYi4A" name="OpaqueAction2"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_k3jpcA-FEeWtWOH565QwTw" name="Events">
       <packagedElement xmi:type="uml:ChangeEvent" xmi:id="_Azs7UA9yEeW1k7cB-vLtKg" name="LoadRawMaterialsDuration"/>
@@ -229,7 +228,6 @@
   <BPMNProfile:BPMNExpression xmi:id="_KRYfQA-JEeWtWOH565QwTw" base_Element="_GeutAA-JEeWtWOH565QwTw"/>
   <BPMNProfile:ServiceTask xmi:id="_NEq_sHN1EeWb3vNKniFtKg" base_Element="_1naMEAR7EeWyl-_r6kRgqw" base_ActivityNode="_1naMEAR7EeWyl-_r6kRgqw" base_Action="_1naMEAR7EeWyl-_r6kRgqw"/>
   <BPMNProfile:ScriptTask xmi:id="_RcqToHN1EeWb3vNKniFtKg" base_Element="_7B1lsASBEeWyl-_r6kRgqw" base_ActivityNode="_7B1lsASBEeWyl-_r6kRgqw" base_Action="_7B1lsASBEeWyl-_r6kRgqw" base_OpaqueAction="_7B1lsASBEeWyl-_r6kRgqw" scriptFormat=""/>
-  <BPMNProfile:Lane xmi:id="_THOUUHmREeWeCYbCThYi4A" base_Element="_THFKYHmREeWeCYbCThYi4A" base_ActivityPartition="_THFKYHmREeWeCYbCThYi4A"/>
   <BPMNProfile:Task xmi:id="_WIFdQHmREeWeCYbCThYi4A" base_Element="_WH7sQHmREeWeCYbCThYi4A" base_ActivityNode="_WH7sQHmREeWeCYbCThYi4A" base_Action="_WH7sQHmREeWeCYbCThYi4A"/>
   <BPMNProfile:UserTask xmi:id="_adsLkHmREeWeCYbCThYi4A" base_Element="_adZQoHmREeWeCYbCThYi4A" base_ActivityNode="_adZQoHmREeWeCYbCThYi4A" base_Action="_adZQoHmREeWeCYbCThYi4A" base_OpaqueAction="_adZQoHmREeWeCYbCThYi4A"/>
 </xmi:XMI>

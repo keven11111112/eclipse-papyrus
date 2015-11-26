@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.papyrus.uml.diagram.wizards.templates">
+      <template
+            di_file="template/rami40.di"
+            file="template/rami40.uml"
+            id="org.eclipse.papyrus.manufacturing.rami40"
+            language="uml"
+            name="Template implementing the RAMI 4.0 Reference Architecture"
+            notation_file="template/rami40.notation">
+      </template>
+   </extension>
+</plugin>

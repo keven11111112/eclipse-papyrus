@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_r-xR8JRGEeWI-K5c0BQQLA" name="Papyrus4ManufacturingTemplate">
+  <packagedElement xmi:type="uml:Package" xmi:id="_esiKYJRHEeWI-K5c0BQQLA" name="ValueStreamHierarchy">
+    <packagedElement xmi:type="uml:Package" xmi:id="_FYgr8JRIEeWI-K5c0BQQLA" name="BusinessLayer"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Gy_s8JRIEeWI-K5c0BQQLA" name="FunctionalLayer"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="__4LZcJRTEeWI-K5c0BQQLA" name="InformationLayer"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_CLvXgJRUEeWI-K5c0BQQLA" name="CommunicationLayer"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_D-lOIJRUEeWI-K5c0BQQLA" name="IntegrationLayer"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_Gt7wUJRUEeWI-K5c0BQQLA" name="AssetLayer"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_-X_2kJRHEeWI-K5c0BQQLA" name="InfrastructureHierarchy">
+    <packagedElement xmi:type="uml:Package" xmi:id="_IZaasJRUEeWI-K5c0BQQLA" name="ConnectedWorldLevel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_K9sVUJRUEeWI-K5c0BQQLA" name="EnterpriseLevel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_M3-QsJRUEeWI-K5c0BQQLA" name="WorkCentersLevel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_UkMVgJRUEeWI-K5c0BQQLA" name="StationsLevel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_nc8kMJRUEeWI-K5c0BQQLA" name="ControlDeviceLevel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_plb6sJRUEeWI-K5c0BQQLA" name="FieldDeviceLevel"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_vlhN0JRUEeWI-K5c0BQQLA" name="ProductLevel"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_r54iMJRXEeWI-K5c0BQQLA" name="LifeCycleHierarchy">
+    <packagedElement xmi:type="uml:Package" xmi:id="_zrD_gJRXEeWI-K5c0BQQLA" name="TypeDevelopment"/>
+    <packagedElement xmi:type="uml:Package" xmi:id="_2C5ZkJRXEeWI-K5c0BQQLA" name="InstanceProduction"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_1bEr8JRUEeWI-K5c0BQQLA" name="Variability"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_33K68JRUEeWI-K5c0BQQLA" name="Safety"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_5B_IQJRUEeWI-K5c0BQQLA" name="Security"/>
+</uml:Model>

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
-Bundle-SymbolicName: org.eclipse.papyrus.manufacturing
-Bundle-Version: 1.1.0.qualifier
+Bundle-SymbolicName: org.eclipse.papyrus.manufacturing;singleton:=true
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.manufacturing.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime

@@ -650,72 +650,6 @@
           <element xsi:nil="true"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Rd8tEnN1EeWb3vNKniFtKg" x="801" y="-169"/>
         </children>
-        <children xmi:type="notation:Shape" xmi:id="_TKDl4HmREeWeCYbCThYi4A" type="3067">
-          <children xmi:type="notation:DecorationNode" xmi:id="_TKDl43mREeWeCYbCThYi4A" type="5118"/>
-          <children xmi:type="notation:DecorationNode" xmi:id="_TKDl5HmREeWeCYbCThYi4A" type="6016">
-            <layoutConstraint xmi:type="notation:Location" xmi:id="_TKDl5XmREeWeCYbCThYi4A" y="5"/>
-          </children>
-          <children xmi:type="notation:BasicCompartment" xmi:id="_TKDl5nmREeWeCYbCThYi4A" type="7006">
-            <children xmi:type="notation:Shape" xmi:id="_WKnM0HmREeWeCYbCThYi4A" type="3007">
-              <children xmi:type="notation:DecorationNode" xmi:id="_WKnM03mREeWeCYbCThYi4A" type="5003"/>
-              <children xmi:type="notation:DecorationNode" xmi:id="_WKnM1HmREeWeCYbCThYi4A" type="6028">
-                <layoutConstraint xmi:type="notation:Location" xmi:id="_WKnM1XmREeWeCYbCThYi4A" y="5"/>
-              </children>
-              <children xmi:type="notation:DecorationNode" xmi:id="_WMsQcHmREeWeCYbCThYi4A" visible="false" type="StereotypeLabel">
-                <styles xmi:type="notation:StringValueStyle" xmi:id="_WMsQcXmREeWeCYbCThYi4A" name="stereotype" stringValue="BPMNProfile::Task"/>
-                <element xmi:type="uml:Stereotype" href="pathmap://BPMN_PROF/bpmn.profile.uml#BPMNProfile-Process-Activities-Task"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WMsQcnmREeWeCYbCThYi4A"/>
-              </children>
-              <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_WKnM0XmREeWeCYbCThYi4A"/>
-              <styles xmi:type="notation:BooleanValueStyle" xmi:id="_Z1UkAHmREeWeCYbCThYi4A" name="shapeVisibility" booleanValue="true"/>
-              <element xmi:type="uml:OpaqueAction" href="CarEnterpriseProcess.uml#_WH7sQHmREeWeCYbCThYi4A"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WKw90HmREeWeCYbCThYi4A" x="177" y="43"/>
-            </children>
-            <children xmi:type="notation:Shape" xmi:id="_WM_ycHmREeWeCYbCThYi4A" type="StereotypeComment">
-              <styles xmi:type="notation:TitleStyle" xmi:id="_WM_ycXmREeWeCYbCThYi4A" showTitle="true"/>
-              <styles xmi:type="notation:EObjectValueStyle" xmi:id="_WM_yc3mREeWeCYbCThYi4A" name="BASE_ELEMENT">
-                <eObjectValue xmi:type="uml:OpaqueAction" href="CarEnterpriseProcess.uml#_WH7sQHmREeWeCYbCThYi4A"/>
-              </styles>
-              <element xsi:nil="true"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WM_ycnmREeWeCYbCThYi4A" x="200"/>
-            </children>
-            <children xmi:type="notation:Shape" xmi:id="_agzxAHmREeWeCYbCThYi4A" type="3007">
-              <children xmi:type="notation:DecorationNode" xmi:id="_agzxA3mREeWeCYbCThYi4A" type="5003"/>
-              <children xmi:type="notation:DecorationNode" xmi:id="_agzxBHmREeWeCYbCThYi4A" type="6028">
-                <layoutConstraint xmi:type="notation:Location" xmi:id="_agzxBXmREeWeCYbCThYi4A" y="5"/>
-              </children>
-              <children xmi:type="notation:DecorationNode" xmi:id="_ajWHoHmREeWeCYbCThYi4A" visible="false" type="StereotypeLabel">
-                <styles xmi:type="notation:StringValueStyle" xmi:id="_ajWHoXmREeWeCYbCThYi4A" name="stereotype" stringValue="BPMNProfile::UserTask"/>
-                <element xmi:type="uml:Stereotype" href="pathmap://BPMN_PROF/bpmn.profile.uml#BPMNProfile-Process-HumanInteraction-UserTask"/>
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ajWHonmREeWeCYbCThYi4A"/>
-              </children>
-              <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_agzxAXmREeWeCYbCThYi4A"/>
-              <styles xmi:type="notation:BooleanValueStyle" xmi:id="_a3RwQHmREeWeCYbCThYi4A" name="shapeVisibility" booleanValue="true"/>
-              <element xmi:type="uml:OpaqueAction" href="CarEnterpriseProcess.uml#_adZQoHmREeWeCYbCThYi4A"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_agzxBnmREeWeCYbCThYi4A" x="93" y="98" width="188"/>
-            </children>
-            <children xmi:type="notation:Shape" xmi:id="_ajfRk3mREeWeCYbCThYi4A" type="StereotypeComment">
-              <styles xmi:type="notation:TitleStyle" xmi:id="_ajfRlHmREeWeCYbCThYi4A" showTitle="true"/>
-              <styles xmi:type="notation:EObjectValueStyle" xmi:id="_ajfRlnmREeWeCYbCThYi4A" name="BASE_ELEMENT">
-                <eObjectValue xmi:type="uml:OpaqueAction" href="CarEnterpriseProcess.uml#_adZQoHmREeWeCYbCThYi4A"/>
-              </styles>
-              <element xsi:nil="true"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ajfRlXmREeWeCYbCThYi4A" x="200"/>
-            </children>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TKDl53mREeWeCYbCThYi4A"/>
-          </children>
-          <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_TKDl4XmREeWeCYbCThYi4A"/>
-          <element xmi:type="uml:ActivityPartition" href="CarEnterpriseProcess.uml#_THFKYHmREeWeCYbCThYi4A"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TKDl4nmREeWeCYbCThYi4A" x="145" y="225" width="388"/>
-        </children>
-        <children xmi:type="notation:Shape" xmi:id="_TL1usHmREeWeCYbCThYi4A" type="StereotypeComment">
-          <styles xmi:type="notation:TitleStyle" xmi:id="_TL1usXmREeWeCYbCThYi4A" showTitle="true"/>
-          <styles xmi:type="notation:EObjectValueStyle" xmi:id="_TL1us3mREeWeCYbCThYi4A" name="BASE_ELEMENT">
-            <eObjectValue xmi:type="uml:ActivityPartition" href="CarEnterpriseProcess.uml#_THFKYHmREeWeCYbCThYi4A"/>
-          </styles>
-          <element xsi:nil="true"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TL1usnmREeWeCYbCThYi4A" x="200"/>
-        </children>
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_48Wy4QR0EeWIQumHcGWAvg"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_Hxoz2BTCEeWfYoAHTRGC0g" type="StereotypeCompartment">
@@ -1501,36 +1435,6 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Rd9UI3N1EeWb3vNKniFtKg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Rd9UJHN1EeWb3vNKniFtKg"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Rd9UJXN1EeWb3vNKniFtKg"/>
-    </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_TL1utHmREeWeCYbCThYi4A" type="StereotypeCommentLink" source="_TKDl4HmREeWeCYbCThYi4A" target="_TL1usHmREeWeCYbCThYi4A">
-      <styles xmi:type="notation:FontStyle" xmi:id="_TL1utXmREeWeCYbCThYi4A"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_TL1uuXmREeWeCYbCThYi4A" name="BASE_ELEMENT">
-        <eObjectValue xmi:type="uml:ActivityPartition" href="CarEnterpriseProcess.uml#_THFKYHmREeWeCYbCThYi4A"/>
-      </styles>
-      <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TL1utnmREeWeCYbCThYi4A" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TL1ut3mREeWeCYbCThYi4A"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TL1uuHmREeWeCYbCThYi4A"/>
-    </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_WM_ydHmREeWeCYbCThYi4A" type="StereotypeCommentLink" source="_WKnM0HmREeWeCYbCThYi4A" target="_WM_ycHmREeWeCYbCThYi4A">
-      <styles xmi:type="notation:FontStyle" xmi:id="_WM_ydXmREeWeCYbCThYi4A"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_WM_yeXmREeWeCYbCThYi4A" name="BASE_ELEMENT">
-        <eObjectValue xmi:type="uml:OpaqueAction" href="CarEnterpriseProcess.uml#_WH7sQHmREeWeCYbCThYi4A"/>
-      </styles>
-      <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_WM_ydnmREeWeCYbCThYi4A" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WM_yd3mREeWeCYbCThYi4A"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_WM_yeHmREeWeCYbCThYi4A"/>
-    </edges>
-    <edges xmi:type="notation:Connector" xmi:id="_ajfRl3mREeWeCYbCThYi4A" type="StereotypeCommentLink" source="_agzxAHmREeWeCYbCThYi4A" target="_ajfRk3mREeWeCYbCThYi4A">
-      <styles xmi:type="notation:FontStyle" xmi:id="_ajfRmHmREeWeCYbCThYi4A"/>
-      <styles xmi:type="notation:EObjectValueStyle" xmi:id="_ajfRnHmREeWeCYbCThYi4A" name="BASE_ELEMENT">
-        <eObjectValue xmi:type="uml:OpaqueAction" href="CarEnterpriseProcess.uml#_adZQoHmREeWeCYbCThYi4A"/>
-      </styles>
-      <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ajfRmXmREeWeCYbCThYi4A" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ajfRmnmREeWeCYbCThYi4A"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ajfRm3mREeWeCYbCThYi4A"/>
     </edges>
   </notation:Diagram>
   <css:EmbeddedStyleSheet xmi:id="_2SiXYHNCEeWvWbw3QXW-3g" label="DataObject" content="[appliedStereotypes~=&quot;BPMNProfile::DataObject&quot;]{&#xD;&#xA;&#x9;svgFile: &quot;platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataObject.svg&quot;;&#xD;&#xA;}"/>
