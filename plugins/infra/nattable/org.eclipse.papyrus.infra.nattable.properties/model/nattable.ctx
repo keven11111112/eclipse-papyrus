@@ -194,8 +194,18 @@
       <sections xmi:id="_bYfDB5LDEeWbp4A9_-WIrQ" name="Multiple ObjectIdAxis" sectionFile="ui/MultipleObjectIdAxis.xwt">
         <widget href="ui/MultipleObjectIdAxis.xwt#/"/>
       </sections>
+      <sections xmi:id="_lFizkJOGEeWeQ8lFehLIEQ" name="Single Tree Table" sectionFile="ui/SingleTreeTable.xwt">
+        <widget href="ui/SingleTreeTable.xwt#/"/>
+      </sections>
     </tabs>
     <tabs xmi:id="_bYfDCJLDEeWbp4A9_-WIrQ" label="Appearance" id="TableAppearance" category="default" afterTab="_bYd04ZLDEeWbp4A9_-WIrQ">
+      <sections xmi:id="_hIAtIJQtEeWx9KtEop_Tug" name="SingleNormalTableAppearance" sectionFile="ui/SingleNormalTableAppearance.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_2SAlsJQtEeWx9KtEop_Tug" name="isNormalTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLypMSEeWeQ8lFehLIEQ" name="expectedValue" value="false"/>
+        </constraints>
+        <widget href="ui/SingleNormalTableAppearance.xwt#/"/>
+      </sections>
       <sections xmi:id="_bYfDCZLDEeWbp4A9_-WIrQ" name="SingleTableAppearance" sectionFile="ui/SingleTableAppearance.xwt">
         <widget href="ui/SingleTableAppearance.xwt#/"/>
       </sections>
@@ -257,19 +267,51 @@
         </constraints>
         <widget href="ui/CantPasteEObjectRowSection.xwt#/"/>
       </sections>
+      <sections xmi:id="_HDwIwJQnEeWx9KtEop_Tug" name="HasTreeFillingConfiguration" sectionFile="ui/HasTreeFillingConfiguration.xwt">
+        <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Og7sAJQnEeWx9KtEop_Tug" name="hasTreeFillingConfigurationConstraint">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.4"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_sEFvqqOFEeWeQ8lFehLIEQ" name="className" value="org.eclipse.papyrus.infra.nattable.properties.constraints.HasTreeFillingConfigurationConstraint"/>
+        </constraints>
+        <widget href="ui/HasTreeFillingConfiguration.xwt#/"/>
+      </sections>
     </tabs>
     <views xmi:id="_bYfDI5LDEeWbp4A9_-WIrQ" name="Single Table" sections="_bYd04pLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_bYg4hJLDEeWbp4A9_-WIrQ">
-      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYfDJJLDEeWbp4A9_-WIrQ" name="isSingleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDJZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDJpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+      <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_3Ik7MJOGEeWeQ8lFehLIEQ" name="isSingleNormalTable">
+        <constraints xmi:id="_bYfDJJLDEeWbp4A9_-WIrQ" name="isSingleTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDJZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDJpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+        </constraints>
+        <constraints xmi:id="_3Ik7MpOGEeWeQ8lFehLIEQ" name="isTreeTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLypNSEeWeQ8lFehLIEQ" name="expectedValue" value="false"/>
+        </constraints>
+      </constraints>
+    </views>
+    <views xmi:id="_jgp5YJOGEeWeQ8lFehLIEQ" name="Single Tree Table" sections="_lFizkJOGEeWeQ8lFehLIEQ" automaticContext="true" datacontexts="_bYg4hJLDEeWbp4A9_-WIrQ">
+      <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_5X6gkJOGEeWeQ8lFehLIEQ" name="isSingleTreeTable">
+        <constraints xmi:id="_DhW1wJOHEeWeQ8lFehLIEQ" name="isSingleTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.constraints/Model/ConstraintEnvironment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLyZNSEeWeQ8lFehLIEQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLypNSEeWeQ8lFehLIEQ" name="className" value="Table"/>
+        </constraints>
+        <constraints xmi:id="_E8Bc8JOHEeWeQ8lFehLIEQ" name="isTreeTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLypNSEeWeQ8lFehLIEQ" name="expectedValue" value="true"/>
+        </constraints>
       </constraints>
     </views>
     <views xmi:id="_bYfDJ5LDEeWbp4A9_-WIrQ" elementMultiplicity="-1" name="Multiple Table" sections="_bYd045LDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_bYg4hJLDEeWbp4A9_-WIrQ">
-      <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_bYfDKJLDEeWbp4A9_-WIrQ" name="isMultipleTable">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDKZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
-        <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDKpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+      <constraints xsi:type="constraints:CompositeConstraint" xmi:id="_BlaGcJOHEeWeQ8lFehLIEQ" name="isMultipleNormalTable">
+        <constraints xmi:id="_bYfDKJLDEeWbp4A9_-WIrQ" name="isMultipleTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDKZLDEeWbp4A9_-WIrQ" name="nsUri" value="http://www.eclipse.org/papyrus/nattable/model"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_bYfDKpLDEeWbp4A9_-WIrQ" name="className" value="Table"/>
+        </constraints>
+        <constraints xmi:id="_BlaGcpOHEeWeQ8lFehLIEQ" name="isTreeTable">
+          <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.nattable.properties/model/Environment.xmi#//@constraintTypes.0"/>
+          <properties xsi:type="constraints:ValueProperty" xmi:id="_1knLypNSEeWeQ8lFehLIEQ" name="expectedValue" value="false"/>
+        </constraints>
       </constraints>
     </views>
     <views xmi:id="_bYfDK5LDEeWbp4A9_-WIrQ" name="Single TableConfiguration" sections="_bYd05JLDEeWbp4A9_-WIrQ" automaticContext="true" datacontexts="_bYhfX5LDEeWbp4A9_-WIrQ">
