@@ -20,7 +20,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class InitialPseudostateActivation extends PseudostateActivation{
 	
-	public void enter(TransitionActivation enteringTransition) {
+	public void enter(TransitionActivation enteringTransition, boolean explicit) {
 		/*1. The vertex becomes active*/
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		this.setState(StateMetadata.ACTIVE);

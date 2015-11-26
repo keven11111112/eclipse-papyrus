@@ -13,10 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines;
 
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
-
-
-public class FinalStateActivation extends PseudostateActivation {
+public class FinalStateActivation extends StateActivation {
 
 	public void enter(TransitionActivation enteringTransition, boolean explicit) {
 		// The final state completes the region in which it is located*/

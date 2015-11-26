@@ -176,7 +176,7 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
-	protected void doExit(){
+	protected void tryExecuteDoExit(){
 		// Execute the exit behavior if any
 		State state = (State) this.getNode();
 		Execution execution = this.getExecutionFor(state.getExit());
@@ -254,7 +254,7 @@ public class StateActivation extends VertexActivation {
 		}
 		// If there is an exit behavior specified for the state it is executed
 		if(!this.isExitCompleted){
-			this.doExit();
+			this.tryExecuteDoExit();
 		}
 		super.exit(exitingTransition);
 		// When the state is exited then it is removed from the state-machine configuration
