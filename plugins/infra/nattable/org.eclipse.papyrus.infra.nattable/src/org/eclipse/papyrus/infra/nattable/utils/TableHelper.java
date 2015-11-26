@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -55,7 +56,7 @@ public class TableHelper {
 	/**
 	 *
 	 * @param configuration
-	 *            the configuration used to create the table
+	 *           the configuration used to create the table, cannot be <code>null</code>
 	 * @param context
 	 *            the context of the table
 	 * @return
@@ -68,7 +69,7 @@ public class TableHelper {
 	/**
 	 *
 	 * @param configuration
-	 *            the configuration used to create the table
+	 *            the configuration used to create the table, cannot be <code>null</code>
 	 * @param context
 	 *            the context of the table
 	 * @param name
@@ -83,7 +84,7 @@ public class TableHelper {
 	/**
 	 *
 	 * @param configuration
-	 *            the configuration used to create the table
+	 *            the configuration used to create the table, cannot be <code>null</code>
 	 * @param context
 	 *            the context of the table
 	 * @param name
@@ -94,7 +95,7 @@ public class TableHelper {
 	 * 		the table created from these parameters
 	 */
 	public static final Table createTable(final TableConfiguration configuration, final EObject context, final String name, final String description) {
-		assert configuration != null;
+		Assert.isNotNull(configuration);
 
 		Table table = NattableFactory.eINSTANCE.createTable();
 		table.setTableConfiguration(configuration);
