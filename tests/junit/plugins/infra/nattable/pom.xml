@@ -15,6 +15,7 @@
 	<description>Papyrus Nattable are a set of plugins dedicated to manage tables in relation with models.</description>
 
 	<modules>
+		<module>org.eclipse.papyrus.infra.nattable.common.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.model.editor.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.model.tests</module>
 		<module>org.eclipse.papyrus.infra.nattable.tests</module>

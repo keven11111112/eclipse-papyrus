@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.nattable.common,
+ org.eclipse.papyrus.infra.nattable.common.api,
  org.eclipse.papyrus.infra.nattable.common.editor,
  org.eclipse.papyrus.infra.nattable.common.factory,
  org.eclipse.papyrus.infra.nattable.common.handlers,
@@ -14,8 +15,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit,
  org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
  org.eclipse.emf.transaction,
- org.eclipse.nebula.widgets.nattable.core;bundle-version="[1.3.0,
- 2.0.0)",
+ org.eclipse.nebula.widgets.nattable.core;bundle-version="[1.3.0,2.0.0)",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.emf;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.2.0",
@@ -25,7 +25,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui,
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.2.0",
  com.google.guava;bundle-version="11.0.0",
- org.eclipse.papyrus.infra.emf.nattable;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.emf.nattable;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.2.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
