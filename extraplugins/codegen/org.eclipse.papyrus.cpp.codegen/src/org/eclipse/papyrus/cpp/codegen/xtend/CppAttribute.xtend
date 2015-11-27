@@ -70,7 +70,7 @@ class CppAttribute {
 
 	static def CppStaticAttributeImplementation(Property attribute) '''
 		«CppDocumentation.CppElementDoc(attribute)»
-		«CppGenUtils.cppQualifiedName(attribute.type)»«Modifier.modPtr(attribute)»«Modifier.modRef(attribute)»  «attribute.class_.name»::«attribute.name»«Modifier.modArray(attribute)»«defaultValue(attribute)»;
+		«Modifier.modCVQualifier(attribute)» «CppGenUtils.cppQualifiedName(attribute.type)»«Modifier.modPtr(attribute)»«Modifier.modRef(attribute)»  «attribute.class_.name»::«attribute.name»«Modifier.modArray(attribute)»«defaultValue(attribute)»;
 	'''
 
 	static def defaultValue(Property attribute) {
