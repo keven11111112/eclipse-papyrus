@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,20 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 434983
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
 
 import java.io.IOException;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.internal.commands.TogglePageLayoutStorageHandler;
+import org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences;
+import org.eclipse.papyrus.infra.core.internal.preferences.YesNo;
 import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider;
@@ -70,7 +77,7 @@ public class SaveLayoutBeforeClose implements IService {
 
 			@Override
 			public void postDisplay(IMultiDiagramEditor editor) {
-				// Nothing
+				checkSharedLayout(editor);
 			}
 
 			@Override
@@ -82,7 +89,7 @@ public class SaveLayoutBeforeClose implements IService {
 		lifecycleManager.addEditorLifecycleEventsListener(lifecycleListener);
 	}
 
-	protected void saveBeforeClose(IMultiDiagramEditor editor) {
+	public void saveBeforeClose(IMultiDiagramEditor editor) {
 		if (editor.isDirty()) {
 			return; // User explicitly quit without saving. Do nothing (And if user wants to save during exit, the sashmodel will be saved anyway)
 		}
@@ -121,6 +128,77 @@ public class SaveLayoutBeforeClose implements IService {
 			}
 		} catch (IOException ex) {
 			Activator.log.error(ex);
+		}
+	}
+
+	private void checkSharedLayout(IMultiDiagramEditor editor) {
+		try {
+			ModelSet modelSet = registry.getService(ModelSet.class);
+			SashModel sashModel = (SashModel) modelSet.getModel(SashModel.MODEL_ID);
+
+			if (sashModel.isLegacyMode()) {
+				// Have we ever created the private sash model file?
+				URI privateURI = sashModel.getPrivateResourceURI();
+				if (!modelSet.getURIConverter().exists(privateURI, null)) {
+					// Prompt the user
+					promptToEnablePrivateStorage(editor);
+				}
+			}
+		} catch (ServiceException ex) {
+			// Shared layout doesn't matter if there's no model-set
+		}
+	}
+
+	private void promptToEnablePrivateStorage(IMultiDiagramEditor editor) {
+		YesNo preference = EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+
+		if (preference == YesNo.PROMPT) {
+			MessageDialogWithToggle dlg = MessageDialogWithToggle.openYesNoCancelQuestion(editor.getSite().getShell(),
+					Messages.SaveLayoutBeforeClose_0,
+					Messages.SaveLayoutBeforeClose_1,
+					Messages.SaveLayoutBeforeClose_2, false, null, null);
+
+			switch (dlg.getReturnCode()) {
+			case IDialogConstants.YES_ID:
+				preference = YesNo.YES;
+				break;
+			case IDialogConstants.NO_ID:
+				preference = YesNo.NO;
+				break;
+			default:
+				// User cancelled
+				preference = YesNo.PROMPT;
+				break;
+			}
+
+			if (dlg.getToggleState()) {
+				EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(preference);
+			}
+		}
+
+		switch (preference) {
+		case YES:
+			// Change the storage to private
+			new TogglePageLayoutStorageHandler().togglePrivatePageLayout(editor);
+
+			// And save the new layout scheme
+			saveBeforeClose(editor);
+			break;
+		case NO:
+			// Just create the empty resource and save it
+			try {
+				ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
+				SashModel sashModel = (SashModel) modelSet.getModel(SashModel.MODEL_ID);
+				modelSet.createResource(sashModel.getPrivateResourceURI());
+				saveBeforeClose(editor);
+			} catch (ServiceException e) {
+				// Without a model-set, much else is going wrong, so there's no need to deal
+				// with this here
+			}
+			break;
+		default:
+			// User cancelled
+			break;
 		}
 	}
 

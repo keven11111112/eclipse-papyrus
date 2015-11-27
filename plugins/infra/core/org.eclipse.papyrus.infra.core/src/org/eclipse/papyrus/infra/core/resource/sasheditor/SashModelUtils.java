@@ -1,11 +1,24 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 434983
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
@@ -118,4 +131,14 @@ public class SashModelUtils {
 		return SashModelUtils.getSashModel(modelSet).getResourceURI();
 	}
 
+	public static SashWindowsMngr getSashWindowsMngr(ModelSet modelSet) {
+		SashWindowsMngr result = null;
+
+		SashModel model = getSashModel(modelSet);
+		if (model != null) {
+			result = (SashWindowsMngr) EcoreUtil.getObjectByType(model.getResource().getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		}
+
+		return result;
+	}
 }

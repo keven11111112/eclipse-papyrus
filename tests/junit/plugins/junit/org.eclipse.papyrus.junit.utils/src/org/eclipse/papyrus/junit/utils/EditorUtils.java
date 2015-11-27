@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 434983
  *
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils;
@@ -31,24 +32,26 @@ import org.junit.Assert;
 public class EditorUtils {
 
 	private EditorUtils() {
-		//to prevent instanciation
+		// to prevent instanciation
 	}
 
 	/**
 	 * 
 	 * @param file
-	 *        a file
+	 *            a file
 	 * @return
-	 *         the opened editor for this file
+	 * 		the opened editor for this file
 	 * @throws PartInitException
 	 */
 	public static final IEditorPart openEditor(final IFile file) throws PartInitException {
-		GenericUtils.closeIntroPart();
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorPart editor = null;
-		editor = IDE.openEditor(activePage, file);
-		Assert.assertNotNull(editor);
-		return editor;
+		return withoutLayoutStoragePopup(() -> {
+			GenericUtils.closeIntroPart();
+			final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart editor = null;
+			editor = IDE.openEditor(activePage, file);
+			Assert.assertNotNull(editor);
+			return editor;
+		});
 	}
 
 	/**
@@ -59,12 +62,48 @@ public class EditorUtils {
 	 * @throws PartInitException
 	 */
 	public static final IMultiDiagramEditor openPapyrusEditor(final IFile file) throws PartInitException {
-		GenericUtils.closeIntroPart();
-		final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		IEditorPart editor = null;
-		editor = IDE.openEditor(activePage, file, PapyrusMultiDiagramEditor.EDITOR_ID);
-		Assert.assertNotNull(editor);
-		return (IMultiDiagramEditor)editor;
+		return withoutLayoutStoragePopup(() -> {
+			GenericUtils.closeIntroPart();
+			final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart editor = null;
+			editor = IDE.openEditor(activePage, file, PapyrusMultiDiagramEditor.EDITOR_ID);
+			Assert.assertNotNull(editor);
+			return (IMultiDiagramEditor) editor;
+		});
 	}
 
+	/**
+	 * Opens an editor without the possibility of it showing a prompt dialog to convert
+	 * DI-file storage of the page layout to private sash-file storage.
+	 */
+	@SuppressWarnings("restriction")
+	private static <E extends IEditorPart> E withoutLayoutStoragePopup(EditorOpener<E> editorOpener) throws PartInitException {
+		E result;
+		boolean posted = false;
+
+		org.eclipse.papyrus.infra.core.internal.preferences.YesNo originalPreference = org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.core.internal.preferences.YesNo.NO);
+
+		try {
+			result = editorOpener.openEditor();
+			result.getSite().getShell().getDisplay().asyncExec(() -> org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(originalPreference));
+			posted = true;
+		} finally {
+			if (!posted) {
+				// Revert now because the editor failed to open and we won't be reverting asynchronously
+				org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(originalPreference);
+			}
+		}
+
+		return result;
+	}
+
+	//
+	// Nested types
+	//
+
+	@FunctionalInterface
+	private interface EditorOpener<E extends IEditorPart> {
+		E openEditor() throws PartInitException;
+	}
 }

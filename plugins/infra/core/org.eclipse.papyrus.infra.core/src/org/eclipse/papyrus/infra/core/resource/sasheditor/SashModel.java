@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Rewrite the sash model - store in the plugin's PreferenceStore (Bug 429239)
  *  Christian W. Damus (CEA) - bug 429242
  *  Christian W. Damus (CEA) - bug 436468
+ * 	Christian W. Damus - bug 434983
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
@@ -107,7 +108,19 @@ public class SashModel extends EMFLogicalModel implements IModel {
 
 	@Override
 	protected boolean isRelatedResource(Resource resource) {
-		return resource != null && this.resource == resource; // We only handle the main Sash resource. Imported *.sash are not relevant
+		boolean result = false;
+
+		if (resource != null) {
+			// We only handle the main Sash resource. Imported *.sash are not relevant
+			if (resource == getResource()) {
+				result = true;
+			} else if (getModelManager().getURIWithoutExtension() != null) {
+				// We can only calculate these related URIs if the ModelSet is initialized
+				result = resource.getURI().equals(getPrivateResourceURI()) || resource.getURI().equals(getSharedResourceURI());
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -222,4 +235,28 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		return saveOptions;
 	}
 
+	public boolean isLegacyMode() {
+		return isLegacy(getURI().trimFileExtension());
+	}
+
+	/**
+	 * Gets the URI of the sash-model resource in the user private area, irrespective
+	 * of whether that actually is the resource that currently stores the sash model.
+	 * 
+	 * @return the private sash-model resource URI
+	 */
+	public URI getPrivateResourceURI() {
+		return getSashModelStoreURI(getModelManager().getURIWithoutExtension());
+	}
+
+	/**
+	 * Gets the URI of the sash-model resource in the shared (collocated with the user model)
+	 * area, irrespective of whether that actually is the resource that currently stores the
+	 * sash model.
+	 * 
+	 * @return the shared sash-model resource URI
+	 */
+	public URI getSharedResourceURI() {
+		return getModelManager().getURIWithoutExtension().appendFileExtension(DiModel.MODEL_FILE_EXTENSION);
+	}
 }

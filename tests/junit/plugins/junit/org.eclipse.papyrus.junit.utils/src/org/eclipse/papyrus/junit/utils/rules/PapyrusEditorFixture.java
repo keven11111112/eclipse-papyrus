@@ -10,6 +10,7 @@
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 433206
  *   Christian W. Damus - bug 465416
+ *   Christian W. Damus - bug 434983
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -80,13 +81,13 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.nattable.common.editor.AbstractEMFNattableEditor;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
@@ -115,7 +116,6 @@ import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
-import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
@@ -131,6 +131,9 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	private final Collection<IEditorPart> editorsToClose = Lists.newArrayList();
 
 	private final List<String> excludedTypeView = Arrays.asList(new String[] { "Note" });
+
+	@SuppressWarnings("restriction")
+	private org.eclipse.papyrus.infra.core.internal.preferences.YesNo initialEditorLayoutStorageMigrationPreference;
 
 	private IMultiDiagramEditor editor;
 
@@ -167,10 +170,16 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	protected void starting(Description description) {
 		testClass = description.getTestClass();
 		testDescription = description;
+
+		// Ensure that we won't see a dialog prompting the user to migrate page layout
+		// storage from the DI file to the workspace-private sash file
+		initialEditorLayoutStorageMigrationPreference = org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.core.internal.preferences.YesNo.NO);
 
 		if (hasRequiredViews()) {
 			openRequiredViews();
@@ -214,11 +223,12 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 						}
 					}
 				}
-				//nothing to do for table
+				// nothing to do for table
 			}
 		});
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	protected void finished(Description description) {
 		try {
@@ -242,6 +252,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			editorsToClose.clear();
 			editor = null;
 			activeDiagramEditor = null;
+
+			org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialEditorLayoutStorageMigrationPreference);
 
 			try {
 				if (hasRequiredViews()) {
@@ -502,7 +514,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public PapyrusEditorFixture activateDiagram(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
-		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final ISashWindowsContainer sashContainer = PlatformHelper.getAdapter(editor, ISashWindowsContainer.class);
 		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] select = { null };
 
 		sashContainer.visit(new IPageVisitor() {
@@ -532,7 +544,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public PapyrusEditorFixture activateTable(IMultiDiagramEditor editor, final String name) {
 		activate(editor);
 
-		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final ISashWindowsContainer sashContainer = PlatformHelper.getAdapter(editor, ISashWindowsContainer.class);
 		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] select = { null };
 
 		sashContainer.visit(new IPageVisitor() {
@@ -576,7 +588,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public PapyrusEditorFixture activateDiagram(IMultiDiagramEditor editor, final DiagramEditPart diagram) {
 		activate(editor);
 
-		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final ISashWindowsContainer sashContainer = PlatformHelper.getAdapter(editor, ISashWindowsContainer.class);
 		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] select = { null };
 
 		sashContainer.visit(new IPageVisitor() {
@@ -642,7 +654,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 			activateTable(editor, name);
 		} catch (Exception e) {
-			throw new IllegalStateException("Cannot initialize test", e); //NON-NLS-1
+			throw new IllegalStateException("Cannot initialize test", e); // NON-NLS-1
 		}
 
 		return this;
@@ -718,16 +730,16 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return getActiveDiagramEditor().getDiagramEditPart();
 	}
 
-	public INattableModelManager getActiveTableManager(){
+	public INattableModelManager getActiveTableManager() {
 		return (INattableModelManager) getActiveTableEditor().getAdapter(INattableModelManager.class);
 	}
-	
+
 	public DiagramEditPart getDiagram(String name) {
 		return getDiagram(editor, name);
 	}
 
 	public DiagramEditPart getDiagram(IMultiDiagramEditor editor, final String name) {
-		final ISashWindowsContainer sashContainer = AdapterUtils.adapt(editor, ISashWindowsContainer.class, null);
+		final ISashWindowsContainer sashContainer = PlatformHelper.getAdapter(editor, ISashWindowsContainer.class);
 		final org.eclipse.papyrus.infra.core.sasheditor.editor.IPage[] matchedPage = { null };
 
 		sashContainer.visit(new IPageVisitor() {
@@ -826,8 +838,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public EditPart findEditPart(EditPart scope, EObject modelElement) {
 		EditPart result = null;
 
-		Optional<View> view = AdapterUtils.adapt(scope, View.class);
-		if (view.isPresent() && (view.get().getElement() == modelElement)) {
+		View view = PlatformHelper.getAdapter(scope, View.class);
+		if ((view != null) && (view.getElement() == modelElement)) {
 			result = scope;
 		}
 
