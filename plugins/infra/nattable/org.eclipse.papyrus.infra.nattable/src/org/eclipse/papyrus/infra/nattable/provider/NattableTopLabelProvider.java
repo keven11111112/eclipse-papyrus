@@ -250,9 +250,12 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 		Image im = getImage(contextElement, configRegistry, labelproviderContext);
 		DecorationService decorationService = configRegistry.getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
 		if (decorationService != null) {
-			List<IPapyrusDecoration> decoration = ((DecorationService) decorationService).getDecorations(AxisUtils.getRepresentedElement(contextElement.getObject()), true);
-			if (decoration.size() > 0) {
-				return DecorationImageUtils.getDecoratedImage(im, decoration, DecorationImageUtils.SIZE_16_16);
+			Object representedObject= AxisUtils.getRepresentedElement(contextElement.getObject());
+			if(representedObject!=null){
+				List<IPapyrusDecoration> decoration = ((DecorationService) decorationService).getDecorations(representedObject, true);
+				if (decoration.size() > 0) {
+					return DecorationImageUtils.getDecoratedImage(im, decoration, DecorationImageUtils.SIZE_16_16);
+				}	
 			}
 		}
 		return im;
