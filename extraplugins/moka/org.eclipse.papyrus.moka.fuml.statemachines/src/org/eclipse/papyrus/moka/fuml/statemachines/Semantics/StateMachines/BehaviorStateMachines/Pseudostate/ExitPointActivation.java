@@ -13,25 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate;
 
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 
 public class ExitPointActivation extends ConnectionPointReferenceActivation {
 
-	public void enter(TransitionActivation enteringTransition, boolean explicit) {
-		super.enter(enteringTransition, explicit);
-		this._doExit(this.getParentState());
-		this.outgoingTransitionActivations.get(0).fire(); //FIXME: Just to make sure the test sequence is right
-	}
-	
-	protected void _doExit(VertexActivation activation){
-		if(activation!=null){
-			if(activation.isActive() && activation.getParentState()!=null){
-				this._doExit(activation.getParentState());
-			}else{
-				activation.implicitExit();
-			}
+	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+		// Exit a state through an entry point. 
+		RegionActivation newLeastCommonAncestor = this.getLeastCommonAncestor(this.outgoingTransitionActivations.get(0).getTargetActivation());
+		super.enter(enteringTransition, leastCommonAncestor);
+		VertexActivation vertexActivation = this.getParentState();
+		if(vertexActivation!=null){
+			vertexActivation.exit(enteringTransition, newLeastCommonAncestor);
 		}
+		this.outgoingTransitionActivations.get(0).fire(); //FIXME: Just to make sure the test sequence is right
 	}
 }

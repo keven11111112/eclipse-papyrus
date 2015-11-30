@@ -180,6 +180,7 @@ public class TransitionActivation extends SM_SemanticVisitor {
 	}
 	
 	public StateActivation getContainingState(){
+		// Get the state containing the region which contains the transition
 		RegionActivation regionActivation = (RegionActivation) this.getParent();
 		if(regionActivation!=null){
 			if(regionActivation.getParent() instanceof StateActivation){
@@ -189,25 +190,14 @@ public class TransitionActivation extends SM_SemanticVisitor {
 		return null;
 	}
 	
-	private boolean isExplicitEntry(){
-		// A transition implies an explicit entry of region since it targets
-		// a state that is owned by a composite state that is not already
-		// active (i.e. member of the current state-machine configuration)
-		VertexActivation vertexActivation = this.vertexTargetActivation.getParentState();
-		if(vertexActivation==null){
-			return false;
-		}else{
-			return !vertexActivation.isActive();
-		}
-	}
-	
-	public void fire(){
-		Transition node = (Transition) this.getNode();
+	protected void exitSource(){
 		// A source state is exited when the transition fires under the following conditions:
 		// 1 - The transition leaving the source state is external
 		// 2 - The transition leaving the source state is local but the source state is not the
 		//	   state which contains the transition
+		Transition node = (Transition) this.getNode();
 		boolean exitSourceState = false;
+		RegionActivation leastCommonAncestor = null;
 		if(node.getKind()==TransitionKind.EXTERNAL_LITERAL){
 			exitSourceState = true;
 		}else if(node.getKind()==TransitionKind.LOCAL_LITERAL){
@@ -215,19 +205,37 @@ public class TransitionActivation extends SM_SemanticVisitor {
 			exitSourceState = stateActivation!=null && node.getSource()!=stateActivation.getNode();
 		}
 		if(exitSourceState){
-			this.vertexSourceActivation.exit(this);
+			if(this.vertexSourceActivation.getParentState()!=this.vertexTargetActivation.getParentState()){
+				leastCommonAncestor = this.vertexSourceActivation.getLeastCommonAncestor(this.vertexTargetActivation);
+			}
+			this.vertexSourceActivation.exit(this, leastCommonAncestor);
 		}
-		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); // FIXME: specific to the Moka implementation
-		// Execute the effect on the transition if present*/
-		this.executeEffect();
-		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 	// FIXME: specific to the Moka implementation
-		this.setState(TransitionMetadata.TRAVERSED);
-		logger.info(this.getNode().getName()+" => TRAVERSED");
+	}
+	
+	protected void enterTarget(){
+		Transition node = (Transition) this.getNode();
+		RegionActivation leastCommonAncestor = null;
 		// A target state is always entered except when the transition reaching this latter
 		// has the internal kind
 		if(node.getKind()!=TransitionKind.INTERNAL_LITERAL){
-			this.vertexTargetActivation.enter(this, this.isExplicitEntry());
+			if(this.vertexSourceActivation.getParentState()!=this.vertexTargetActivation.getParentState()){
+				leastCommonAncestor = this.vertexSourceActivation.getLeastCommonAncestor(this.vertexTargetActivation);
+			}
+			this.vertexTargetActivation.enter(this, leastCommonAncestor);
 		}
+	}
+	
+	public void fire(){
+		this.exitSource();
+		// FIXME: specific to the Moka implementation
+		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); 
+		this.executeEffect();
+		// FIXME: specific to the Moka implementation
+		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 
+		this.setState(TransitionMetadata.TRAVERSED);
+		// FIXME: specific to the Moka implementation
+		logger.info(this.getNode().getName()+" => TRAVERSED");
+		this.enterTarget();
 	}
 	
 	public String toString(){

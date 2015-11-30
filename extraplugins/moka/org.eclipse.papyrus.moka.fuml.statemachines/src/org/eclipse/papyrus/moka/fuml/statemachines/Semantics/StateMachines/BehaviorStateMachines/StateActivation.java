@@ -183,10 +183,10 @@ public class StateActivation extends VertexActivation {
 		if(execution!=null){
 			execution.execute();
 		}
-		super.exit(null);
+		super.exit(null,null);
 	}
 	
-	public void enterRegions(TransitionActivation enteringTransition, boolean explicit){
+	public void enterRegions(TransitionActivation enteringTransition){
 		// Regions can be entered either implicitly or explicitly. 
 		// A region is typically entered implicitly when its activation is triggered
 		// by a transition terminating on the edge of its containing state.
@@ -196,33 +196,30 @@ public class StateActivation extends VertexActivation {
 		Vertex vertex = (Vertex)enteringTransition.getTargetActivation().getNode();
 		for(int i=0; i < this.regionActivation.size(); i++){
 			RegionActivation regionActivation = this.regionActivation.get(i);
-			if(explicit){
-				if(regionActivation.getVertexActivation(vertex)!=null){
-					regionActivation.enter(explicit);
-				}else{
-					regionActivation.enter(false);
-				}
-			}else{
-				regionActivation.enter(false);
+			if(regionActivation.getVertexActivation(vertex)==null){
+				regionActivation.enter(enteringTransition);
 			}
 		}
 	}
 	
-	public void enter(TransitionActivation enteringTransition, boolean explicit) {
+	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
 		if(this.state.equals(StateMetadata.IDLE)){
 			// The state is entered via an explicit transition
 			// The impact on the execution is that the parent state
 			// of the current state is not active then it must be entered
 			// the rule applies recursively
-			if(explicit){
-				VertexActivation vertexActivation = this.getParentState();
-				if(vertexActivation!=null && !vertexActivation.isActive()){
-					vertexActivation.enter(enteringTransition, explicit);
+			if(leastCommonAncestor!=null){
+				RegionActivation parentRegionActivation = (RegionActivation) this.getParent();
+				if(leastCommonAncestor!=parentRegionActivation){
+					StateActivation stateActivation = (StateActivation) parentRegionActivation.getParent();
+					if(stateActivation!=null){
+						stateActivation.enter(enteringTransition, leastCommonAncestor);
+					}
 				}
 			}
 			// Initialization
 			State state = (State) this.getNode();
-			super.enter(enteringTransition, explicit);
+			super.enter(enteringTransition, leastCommonAncestor);
 			this.isEntryCompleted = state.getEntry()==null;
 			this.isDoActivityCompleted = state.getDoActivity()==null;
 			this.isExitCompleted = state.getExit()==null;
@@ -238,25 +235,25 @@ public class StateActivation extends VertexActivation {
 				this.tryExecuteEntry();
 				// If the state is not completed, then try to start its owned regions.
 				// A region is entered implicitly since the is not the 
-				this.enterRegions(enteringTransition, explicit);
+				this.enterRegions(enteringTransition);
 				// Execute the doActtivity if any
 				this.tryExecuteDoActivity();
 			}
 		}
 	}
 	
-	public void exit(TransitionActivation exitingTransition){
+	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor){
 		// If we exit a composite state, this provokes the termination of all of its regions 
 		if(!this.regionActivation.isEmpty()){
 			for(RegionActivation regionActivation : this.regionActivation){
-				regionActivation.exit(null);
+				regionActivation.exit(exitingTransition);
 			}
 		}
 		// If there is an exit behavior specified for the state it is executed
 		if(!this.isExitCompleted){
 			this.tryExecuteDoExit();
 		}
-		super.exit(exitingTransition);
+		super.exit(exitingTransition, leastCommonAncestor);
 		// When the state is exited then it is removed from the state-machine configuration
 		StateMachineExecution smExecution = (StateMachineExecution)this.getStateMachineExecution();
 		smExecution.getConfiguration().unregister(this);
@@ -264,5 +261,16 @@ public class StateActivation extends VertexActivation {
 		this.isEntryCompleted = false;
 		this.isDoActivityCompleted = false;
 		this.isExitCompleted = false;
+		// The state is exited by a transition that targets a state which is located within 
+		// another region. This means parent state must also be exited.  
+		if(leastCommonAncestor!=null){
+			RegionActivation parentRegionActivation = (RegionActivation) this.getParent();
+			if(leastCommonAncestor!=parentRegionActivation){
+				StateActivation stateActivation = (StateActivation) parentRegionActivation.getParent();
+				if(stateActivation!=null){
+					stateActivation.exit(exitingTransition, leastCommonAncestor);
+				}
+			}
+		}
 	}
 }

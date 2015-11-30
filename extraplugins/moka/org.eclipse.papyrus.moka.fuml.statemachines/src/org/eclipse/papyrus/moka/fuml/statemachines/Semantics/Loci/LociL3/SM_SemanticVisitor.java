@@ -21,6 +21,8 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Ex
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ExitPointActivation;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -58,7 +60,9 @@ public abstract class SM_SemanticVisitor extends SemanticVisitor {
 	
 	public List<SemanticVisitor> getContextChain(){
 		List<SemanticVisitor> contextChain = new ArrayList<SemanticVisitor>();
-		contextChain.add(this);
+		if(!(this instanceof ExitPointActivation) && !(this instanceof EntryPointActivation)){
+			contextChain.add(this);
+		}
 		if(this.parent!=null){
 			if(this.parent instanceof StateMachineExecution){
 				contextChain.add(this.parent);

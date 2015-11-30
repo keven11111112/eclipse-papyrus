@@ -13,19 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate;
 
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 public class EntryPointActivation extends ConnectionPointReferenceActivation {
 	
-	public void enter(TransitionActivation enteringTransition, boolean explicit) {
+	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
 		// Enter a state through an entry point. The state on which the entry point is
 		// placed can be a deeply nested state. Therefore parent state of that state must
 		// be entered before if it is not already the case.
-		super.enter(enteringTransition, explicit);
+		super.enter(enteringTransition, leastCommonAncestor);
 		VertexActivation vertexActivation = this.getParentState();
-		if(vertexActivation!=null && !vertexActivation.isActive()){
-			vertexActivation.enter(enteringTransition, explicit);
+		if(vertexActivation!=null){
+			vertexActivation.enter(enteringTransition, leastCommonAncestor);
 		}
 		this.outgoingTransitionActivations.get(0).fire(); //FIXME: should be delegated to transition selection strategy
 	}

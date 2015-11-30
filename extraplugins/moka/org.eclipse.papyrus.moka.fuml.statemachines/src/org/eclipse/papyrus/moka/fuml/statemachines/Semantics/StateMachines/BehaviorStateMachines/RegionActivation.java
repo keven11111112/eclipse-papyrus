@@ -117,46 +117,42 @@ public class RegionActivation extends SM_SemanticVisitor{
 		return activation;
 	}
 	
-	protected void enter(boolean explicit){
+	protected void enter(TransitionActivation enteringTransition){
 		// An implicit entry of a region means the initial transition is searched.
 		// If such transition exists then it is fired. An explicit entry as no impact on the region.
 		// In case the region is entered implicitly a initial pseudo state shall be found to
 		// start its execution. If no such pseudo-state is found and the state containing
 		// the region has no other region(s) then the state is treated as a simple leaf state
-		if(!explicit){
-			int i = 0; 
-			VertexActivation initialNodeActivation = null;
-			while(initialNodeActivation==null && i < this.vertexActivations.size()){
-				if(this.vertexActivations.get(i) instanceof InitialPseudostateActivation){
-					initialNodeActivation = this.vertexActivations.get(i);
-				}else{
-					i++;
-				}
-			}
-			if(initialNodeActivation!=null){
-				for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
-					transitionActivation.fire();
-				}
+		int i = 0; 
+		VertexActivation initialNodeActivation = null;
+		while(initialNodeActivation==null && i < this.vertexActivations.size()){
+			if(this.vertexActivations.get(i) instanceof InitialPseudostateActivation){
+				initialNodeActivation = this.vertexActivations.get(i);
 			}else{
-				SemanticVisitor parent = this.getParent();
-				if(parent != null && parent instanceof StateActivation){
-					StateActivation parentState = (StateActivation) parent; 
-					parentState.regionActivation.remove(this);
-					if(parentState.hasCompleted()){
-						parentState.notifyCompletion();
-					}
+				i++;
+			}
+		}
+		if(initialNodeActivation!=null){
+			for(TransitionActivation transitionActivation : initialNodeActivation.getOutgoingTransitions()){
+				transitionActivation.fire();
+			}
+		}else{
+			SemanticVisitor parent = this.getParent();
+			if(parent != null && parent instanceof StateActivation){
+				StateActivation parentState = (StateActivation) parent; 
+				parentState.regionActivation.remove(this);
+				if(parentState.hasCompleted()){
+					parentState.notifyCompletion();
 				}
 			}
 		}
 	}
 	
-	/**
-	 * Active states in this region will be exited
-	 */
 	public void exit(TransitionActivation exitingTransition){
+		// Exiting a region implies exiting all of is active vertices.
 		for(VertexActivation vertexActivation: this.getVertexActivations()){
 			if(vertexActivation.isActive()){
-				vertexActivation.exit(null);
+				vertexActivation.exit(exitingTransition, null);
 			}
 		}
 	}

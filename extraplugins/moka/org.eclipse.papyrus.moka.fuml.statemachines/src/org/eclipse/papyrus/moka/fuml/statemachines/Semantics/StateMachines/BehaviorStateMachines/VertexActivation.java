@@ -121,7 +121,7 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	/**
 	 * Describes the semantics of a vertex
 	 */
-	public void enter(TransitionActivation enteringTransition,  boolean explicit){
+	public void enter(TransitionActivation enteringTransition,  RegionActivation leastCommonAncestor){
 		logger.info(this.getNode().getName()+" => ACTIVE");
 		/*1. The vertex becomes active*/
 		this.setState(StateMetadata.ACTIVE);
@@ -134,7 +134,7 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	/**
 	 * Describes the semantics of a vertex when exited
 	 */
-	public void exit(TransitionActivation exitingTransition){
+	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor){
 		/*1. The representation of the vertex stops to be highlighted*/
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
 		/*2. The incoming transitions of this vertex get back to the NONE status*/
@@ -148,12 +148,43 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	 * Implicit exit consists in exiting a state without using a transition
 	 */
 	public final void implicitExit(){
-		this.exit(null);
+		this.exit(null,null);
 	}
 	
 	public boolean isActive(){
 		// FIXME: Shall be replaced by a call to the state-machine configuration
 		// If a state is active, it is in the state-machine configuration
 		return this.state.equals(StateMetadata.ACTIVE);
-	} 
+	}
+	
+	public RegionActivation getLeastCommonAncestor(VertexActivation targetVertexActivation){
+		// Calculate paths from both vertices to the root of the state-machine.
+		// Compare the paths, the first difference means the previous item in the
+		// path was the least common ancestor.
+		List<SemanticVisitor> sourceHierarchy = this.getContextChain();
+		List<SemanticVisitor> targetHierachy = targetVertexActivation.getContextChain();
+		int i = targetHierachy.size() - 1;
+		int j = sourceHierarchy.size() - 1;
+		RegionActivation leastCommonAncestor = null;
+		while(i >= 0 && j >= 0 && leastCommonAncestor==null){
+			if(targetHierachy.get(i)!=sourceHierarchy.get(j)){
+				leastCommonAncestor = (RegionActivation) sourceHierarchy.get(j+1);
+			}
+			i--;
+			j--;
+		}
+		if(leastCommonAncestor==null){
+			StateActivation commonAncestor = (StateActivation) sourceHierarchy.get(j+1);
+			VertexActivation searchedVertexActivation = sourceHierarchy.size() >= targetHierachy.size() ? this : targetVertexActivation;
+			int x = 0;
+			while(leastCommonAncestor==null && x < commonAncestor.getRegionActivation().size()){
+				RegionActivation regionActivation = commonAncestor.getRegionActivation().get(x);
+				if(regionActivation.getVertexActivation((Vertex)searchedVertexActivation.node)!=null){
+					leastCommonAncestor = regionActivation;
+				}
+				x++;
+			}
+		}
+		return leastCommonAncestor;
+	}
 }

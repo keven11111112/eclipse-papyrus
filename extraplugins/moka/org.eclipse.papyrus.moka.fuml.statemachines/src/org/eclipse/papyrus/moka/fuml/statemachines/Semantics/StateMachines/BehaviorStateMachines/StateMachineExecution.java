@@ -105,7 +105,7 @@ public class StateMachineExecution extends Execution {
 		}
 		/*3. Fire "concurrently" all initial transition in the different regions*/
 		for(RegionActivation regionActivation: this.regionActivation){
-			regionActivation.enter(false);
+			regionActivation.enter(null);
 		}
 	}
 
