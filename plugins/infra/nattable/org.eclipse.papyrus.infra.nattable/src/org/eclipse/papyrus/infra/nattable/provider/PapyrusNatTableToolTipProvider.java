@@ -133,6 +133,8 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 *
 	 * @param event
 	 * @return
+	 * 		the text to display in the tooltip
+	 *
 	 */
 	@Override
 	protected String getText(final Event event) {

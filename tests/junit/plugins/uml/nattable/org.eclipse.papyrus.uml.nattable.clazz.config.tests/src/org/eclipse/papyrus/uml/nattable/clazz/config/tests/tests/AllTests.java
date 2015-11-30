@@ -44,6 +44,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFiltered
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_H1_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_V1_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_V1_V1_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.markers.ValidationMarkerInTableHeaderTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_Empty_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_Empty_H1_H1_SingleColumn_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests.PasteWithCategories_Empty_H1_V1_MultiColumns_Test;
@@ -170,6 +171,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_H1_V1_MultiColumns_Test.class,
 		PasteWithCategories_V1_V3_H1_MultiColumns_Test.class,
 		PasteWithCategories_V1_V3_V1_MultiColumns_Test.class,
+		
+		//validation marker test
+		ValidationMarkerInTableHeaderTest.class,
 })
 public class AllTests {
 	// JUnit 4 test suite
