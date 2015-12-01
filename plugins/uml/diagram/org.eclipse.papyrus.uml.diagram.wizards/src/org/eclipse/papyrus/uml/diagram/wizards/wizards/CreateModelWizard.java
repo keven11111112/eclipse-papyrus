@@ -472,8 +472,9 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	protected void applyProfile(ModelSet modelSet) {
 		String profilePath = selectDiagramKindPage.getProfileURI();
+
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createURI(profilePath), true);
+		Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(profilePath, true), true);
 		Profile profile = (Profile) resource.getContents().get(0);
 
 		Resource myModelUMLResource = UmlUtils.getUmlResource(modelSet);
