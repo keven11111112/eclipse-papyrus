@@ -40,11 +40,11 @@ import org.eclipse.ui.PlatformUI;
  *
  * @author VL222926
  *         This class provides the tooltip to display in the table
- *         
- *         This class allows to display as tooltip : 
+ * 
+ *         This class allows to display as tooltip :
  *         <ul>
- *         <li> the text and image when there is Problem associated to a cell located in the body area</li>
- *         <li> the text and image when there is decoration associated to the object represented by a cell located in a header area </li>
+ *         <li>the text and image when there is Problem associated to a cell located in the body area</li>
+ *         <li>the text and image when there is decoration associated to the object represented by a cell located in a header area</li>
  *         </ul>
  */
 public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
@@ -58,7 +58,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 * the wrapper used to get the text and image from the table label provider
 	 */
 	private final LabelProviderCellContextElementWrapper wrapper = new LabelProviderCellContextElementWrapper();
-	
+
 	/**
 	 *
 	 * Constructor.
@@ -95,7 +95,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 		LabelStack labels = cell.getConfigLabels();
 		return labels.hasLabel(GridRegion.BODY);
 	}
-	
+
 	/**
 	 *
 	 * @see org.eclipse.jface.window.DefaultToolTip#getImage(org.eclipse.swt.widgets.Event)
@@ -117,7 +117,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 		// we return the image of the object with its decorator
 		if (isInHeaderRegion(cell) && isCellWithDecorationMarker(cell)) {
 			LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-			
+
 			wrapper.setCell(cell);
 			wrapper.setConfigRegistry(natTable.getConfigRegistry());
 			wrapper.setObject(cell.getDataValue());
@@ -168,10 +168,13 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 		if (cell == null) {
 			return false;
 		}
-		DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
-		Object value = cell.getDataValue();
+		final DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+		final Object value = cell.getDataValue();
 		if (value != null) {
-			return serv.getDecorations(AxisUtils.getRepresentedElement(value), true).size() > 0;
+			final Object representedValue = AxisUtils.getRepresentedElement(value);
+			if (representedValue != null) {
+				return serv.getDecorations(representedValue, true).size() > 0;
+			}
 		}
 		return false;
 	}
@@ -248,7 +251,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	@Override
 	protected boolean shouldCreateToolTip(final Event event) {
 		final ILayerCell cell = getCell(event);
-		if(cell==null){
+		if (cell == null) {
 			return false;
 		}
 		if (isCellWithError(cell)) {
@@ -268,7 +271,7 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 	 * @param event
 	 *            an event
 	 * @return
-	 *         <code>true</code> if the cell size allow to display the full text
+	 * 		<code>true</code> if the cell size allow to display the full text
 	 */
 	protected boolean isDisplayingFullCellText(final Event event) {
 		return true;// TODO : display a tooltip when the full text is not displayed in the cell
