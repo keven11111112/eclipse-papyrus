@@ -41,8 +41,8 @@
 		<module>site</module>
 	</modules>
 	<properties>
-		<papyrus.repo.main>${eclipse.download}.org/modeling/mdt/papyrus/updates/nightly/mars/main</papyrus.repo.main>
-		<papyrus.repo.extra>${eclipse.download}.org/modeling/mdt/papyrus/updates/nightly/mars/extra</papyrus.repo.extra>
+		<papyrus.repo.main>${eclipse.download}/org/modeling/mdt/papyrus/updates/nightly/mars/main</papyrus.repo.main>
+		<papyrus.repo.extra>${eclipse.download}/org/modeling/mdt/papyrus/updates/nightly/mars/extra</papyrus.repo.extra>
 	</properties>
 	<repositories>
 		<repository>
@@ -133,18 +133,18 @@
 			<id>nattable</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>${eclipse.download}.org/nattable/releases/1.3.0/repository/</url>
+			<url>${eclipse.download}/org/nattable/releases/1.3.0/repository/</url>
 		</repository>
         <repository>
             <id>nebula-tablecombo</id>
             <layout>p2</layout>
             <!-- manualUpdate -->
-            <url>${eclipse.download}.org/technology/nebula/archives/Q12015/release/</url>
+            <url>${eclipse.download}/org/technology/nebula/archives/Q12015/release/</url>
         </repository>
 		<repository>
 			<id>orbit</id>
 			<layout>p2</layout>
-			<url>${eclipse.download}.org/tools/orbit/downloads/drops/R20150519210750/repository</url>
+			<url>${eclipse.download}/org/tools/orbit/downloads/drops/R20150519210750/repository</url>
 		</repository>
 		<repository>
 			<id>tmf-xtext</id>
@@ -180,7 +180,7 @@
 			<id>b3</id>
 			<layout>p2</layout>
 			<!-- B3 is not in the release train. Always targets the latest released version (i.e. Luna for Mars Development) -->
-			<url>${eclipse.download}.org/modeling/emft/b3/updates-4.4</url>
+			<url>${eclipse.download}/org/modeling/emft/b3/updates-4.4</url>
 		</repository>
 		<repository>
 			<id>oomph</id>
