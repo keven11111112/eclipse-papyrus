@@ -448,13 +448,13 @@
 			<id>nattable</id>
 			<layout>p2</layout>
 			<!-- manualUpdate -->
-			<url>${eclipse.download}/org/nattable/releases/1.3.0/repository/</url>
+			<url>${eclipse.download}/nattable/releases/1.3.0/repository/</url>
 		</repository>
 		<!-- Bug 468668: Reinstate and update this when the TableCombo has a new release for Mars or later.
         <repository>
             <id>nebula-tablecombo</id>
             <layout>p2</layout>
-            <url>${eclipse.download}/org/technology/nebula/archives/Q12015/release/</url>
+            <url>${eclipse.download}/technology/nebula/archives/Q12015/release/</url>
         </repository>
         -->
 		<repository>
@@ -848,7 +848,7 @@
 				<repository>
 					<id>papyrus-nightly</id>
 					<layout>p2</layout>
-					<url>${eclipse.download}/org/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/
+					<url>${eclipse.download}/modeling/mdt/papyrus/updates/nightly/${papyrus.eclipse.target}/
 					</url>
 					<releases>
 						<enabled>true</enabled>
