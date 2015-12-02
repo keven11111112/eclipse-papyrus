@@ -24,6 +24,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getGenView <em>Gen View</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#isIsAbstract <em>Is Abstract</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getExtendedGenView()
  * @model

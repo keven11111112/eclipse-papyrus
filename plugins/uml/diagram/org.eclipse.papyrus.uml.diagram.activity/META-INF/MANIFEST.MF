@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.diagram.activity,
- org.eclipse.papyrus.uml.diagram.activity.canonical,
  org.eclipse.papyrus.uml.diagram.activity.commands,
  org.eclipse.papyrus.uml.diagram.activity.draw2d,
  org.eclipse.papyrus.uml.diagram.activity.edit.actions,
@@ -32,7 +31,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,

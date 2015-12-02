@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.ContainerChildrenSyncFeature;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.DiagramEdgesSyncFeature;
 import org.eclipse.papyrus.infra.gmfdiag.common.sync.EditPartMasterSlaveSyncBucket;
@@ -39,6 +40,7 @@ import org.eclipse.papyrus.infra.sync.service.ISyncAction;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.sync.service.ISyncTrigger;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
+import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.junit.rules.RuleChain;
@@ -193,6 +195,8 @@ public class TestSyncFixture extends TestWatcher {
 	}
 
 	static class AssociationEdgesSyncFeature extends DiagramEdgesSyncFeature<org.eclipse.uml2.uml.Package, Association, EditPart> {
+		private final ISemanticChildrenStrategy semanticChildren = new DefaultUMLSemanticChildrenStrategy();
+
 		public AssociationEdgesSyncFeature(SyncBucket<Package, EditPart, Notification> bucket) {
 			super(bucket);
 		}
@@ -200,6 +204,18 @@ public class TestSyncFixture extends TestWatcher {
 		@Override
 		protected Class<? extends SyncRegistry<Association, EditPart, Notification>> getNestedSyncRegistryType() {
 			return AssociationEdgeSyncRegistry.class;
+		}
+
+		@Override
+		protected EObject getSourceElement(EObject connectionElement) {
+			// I am only invoked on associations, so this cast is OK
+			return (EObject) semanticChildren.getSource(connectionElement);
+		}
+
+		@Override
+		protected EObject getTargetElement(EObject connectionElement) {
+			// I am only invoked on associations, so this cast is OK
+			return (EObject) semanticChildren.getTarget(connectionElement);
 		}
 	}
 

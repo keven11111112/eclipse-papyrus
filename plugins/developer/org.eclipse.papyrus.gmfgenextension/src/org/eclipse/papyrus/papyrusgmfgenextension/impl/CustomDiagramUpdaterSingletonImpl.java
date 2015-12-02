@@ -14,10 +14,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl#getSingletonPath <em>Singleton Path</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

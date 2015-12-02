@@ -26,6 +26,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getGenView <em>Gen View</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#isIsAbstract <em>Is Abstract</em>}</li>
@@ -34,7 +35,6 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -265,8 +265,7 @@ public class ExtendedGenViewImpl extends CommentedElementImpl implements Extende
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK, newPropRefreshHook, newPropRefreshHook));
 		}
 	}

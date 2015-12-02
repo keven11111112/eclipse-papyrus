@@ -1229,6 +1229,14 @@
          target="1.2.0">
    </diagramReconciler>
 </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.timing.providers.UMLVisualTypeProvider"
+            diagramType="PapyrusUMLTimingDiagram">
+         </visualTypeProvider>
+   </extension>
+
 
 
 

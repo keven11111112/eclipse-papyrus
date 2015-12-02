@@ -13,6 +13,7 @@
 	</parent>
 	<modules>
 		<module>../../plugins/developer/org.eclipse.papyrus.codegen</module>
+		<module>../../plugins/developer/org.eclipse.papyrus.def</module>
 		<module>../../plugins/developer/org.eclipse.papyrus.dev.java.utils</module>
 		<module>../../plugins/developer/org.eclipse.papyrus.dev.project.management</module>
 		<module>../../plugins/developer/org.eclipse.papyrus.dev.assistants.codegen</module>

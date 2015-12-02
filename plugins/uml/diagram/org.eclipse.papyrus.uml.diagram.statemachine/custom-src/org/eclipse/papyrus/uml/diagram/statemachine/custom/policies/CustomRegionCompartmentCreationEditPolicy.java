@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 477384
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
@@ -42,12 +43,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.EMFCustomTransitionRetargetContainerCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure;
@@ -71,7 +73,7 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 
 	@Override
 	protected Command getReparentCommand(ChangeBoundsRequest changeBoundsRequest) {
-		View container = (View) getHost().getAdapter(View.class);
+		View container = getHost().getAdapter(View.class);
 		EObject context = container == null ? null : ViewUtil.resolveSemanticElement(container);
 		CompositeCommand cc = new CompositeCommand("move (re-parent) state");
 		Iterator<?> it = changeBoundsRequest.getEditParts().iterator();
@@ -85,15 +87,14 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 				if (ep instanceof GroupEditPart) {
 					cc.compose(getReparentGroupCommand((GroupEditPart) ep));
 				}
-				View view = (View) ep.getAdapter(View.class);
+				View view = ep.getAdapter(View.class);
 				if (view == null) {
 					continue;
 				}
 				EObject semantic = ViewUtil.resolveSemanticElement(view);
 				if (semantic == null) {
 					cc.compose(getReparentViewCommand((IGraphicalEditPart) ep));
-				}
-				else if (context != null && shouldReparent(semantic, context)) {
+				} else if (context != null && shouldReparent(semantic, context)) {
 					cc.compose(getReparentCommand((IGraphicalEditPart) ep));
 					if (semantic instanceof State) {
 						State state = (State) semantic;
@@ -138,6 +139,29 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 						cc.compose(createNewRegion);
 						return new ICommandProxy(cc.reduce());
 					}
+				}
+			} else if (request instanceof CreateViewRequest) {
+				CreateViewRequest create = (CreateViewRequest) request;
+				for (CreateViewRequest.ViewDescriptor descriptor : create.getViewDescriptors()) {
+					if (((IHintedType) UMLElementTypes.Region_3000).getSemanticHint().equals(descriptor.getSemanticHint())) {
+						// Creating a region view as a sibling of the region owning this compartment
+						IAdaptable compartment = new SemanticAdapter(null, ((View) getHost().getModel()).eContainer());
+
+						// Create the view with a reasonable initial layout
+						CustomRegionCreateElementCommand command = new CustomRegionCreateElementCommand(
+								compartment, descriptor.getElementAdapter(),
+								((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(),
+								editingDomain, DiagramUIMessages.CreateCommand_Label, dropLocation);
+						cc.compose(command);
+					}
+				}
+
+				// It's all-or-nothing: if anything besides regions were being created (which
+				// would be an odd sort of a compound request), then only the regions will be
+				if (!cc.isEmpty()) {
+					return new ICommandProxy(cc.reduce());
+				} else {
+					return super.getCommand(request);
 				}
 			} else if (request instanceof ChangeBoundsRequest) {
 				return getReparentCommand((ChangeBoundsRequest) request);

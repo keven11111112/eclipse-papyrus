@@ -19,10 +19,10 @@ package org.eclipse.papyrus.papyrusgmfgenextension;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook#getClasspath <em>Classpath</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getExternalHook()
  * @model

@@ -22,7 +22,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -67,6 +70,64 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 		Lifeline lifeline = (semanticFromEditPart instanceof Lifeline) ? (Lifeline) semanticFromEditPart : null;
 		if (lifeline != null) {
 			result = Lists.newArrayList(getMessageEnds(lifeline));
+		}
+
+		return result;
+	}
+
+	@Override
+	public Object getSource(EObject connectionElement) {
+		Object result;
+
+		if (connectionElement instanceof Message) {
+			MessageEnd end = ((Message) connectionElement).getSendEvent();
+			result = end;
+
+			// But, in this diagram, messages connect lifelines, not message-ends
+			Lifeline covered = getCovered(end);
+			if (covered != null) {
+				result = covered;
+			}
+		} else {
+			result = super.getSource(connectionElement);
+		}
+
+		return result;
+	}
+
+	/**
+	 * If a message end is a message occurrence specification (not a gate), get the lifeline
+	 * that it covers.
+	 * 
+	 * @param messageEnd
+	 *            a message end
+	 * @return its covered lifeline, if any
+	 */
+	protected Lifeline getCovered(MessageEnd messageEnd) {
+		Lifeline result = null;
+
+		if (messageEnd instanceof OccurrenceSpecification) {
+			result = ((MessageOccurrenceSpecification) messageEnd).getCovered();
+		}
+
+		return result;
+	}
+
+	@Override
+	public Object getTarget(EObject connectionElement) {
+		Object result;
+
+		if (connectionElement instanceof Message) {
+			MessageEnd end = ((Message) connectionElement).getReceiveEvent();
+			result = end;
+
+			// But, in this diagram, messages connect lifelines, not message-ends
+			Lifeline covered = getCovered(end);
+			if (covered != null) {
+				result = covered;
+			}
+		} else {
+			result = super.getTarget(connectionElement);
 		}
 
 		return result;

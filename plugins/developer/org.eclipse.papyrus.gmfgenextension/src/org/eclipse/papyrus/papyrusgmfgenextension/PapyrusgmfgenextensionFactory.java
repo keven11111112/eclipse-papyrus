@@ -289,6 +289,16 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	SpecificNodePlate createSpecificNodePlate();
 
 	/**
+	 * Returns a new object of class '<em>Gen Visual Type Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Gen Visual Type Provider</em>'.
+	 * @generated
+	 */
+	GenVisualTypeProvider createGenVisualTypeProvider();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

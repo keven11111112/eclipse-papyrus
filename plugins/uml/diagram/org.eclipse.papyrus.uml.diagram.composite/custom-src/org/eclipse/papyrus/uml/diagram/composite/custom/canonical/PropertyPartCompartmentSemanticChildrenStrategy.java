@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 477384
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.canonical;
 
@@ -17,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy;
 import org.eclipse.uml2.uml.Element;
@@ -44,6 +46,12 @@ public class PropertyPartCompartmentSemanticChildrenStrategy extends DefaultUMLS
 			if (type != null) {
 				// Show nested structure of the part as defined by its type
 				result = super.getCanonicalSemanticChildren(type, viewFromEditPart);
+
+				// But, we only visualize ports on the borders of the parts
+				// (not as nested parts: they're not that kind of attribute)
+				if (viewFromEditPart instanceof DecorationNode) {
+					result.removeIf(Port.class::isInstance);
+				}
 			}
 		}
 

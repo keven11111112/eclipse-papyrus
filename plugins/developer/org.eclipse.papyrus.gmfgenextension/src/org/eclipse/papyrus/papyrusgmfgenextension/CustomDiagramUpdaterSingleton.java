@@ -10,10 +10,10 @@ package org.eclipse.papyrus.papyrusgmfgenextension;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton#getSingletonPath <em>Singleton Path</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getCustomDiagramUpdaterSingleton()
  * @model annotation="http://www.eclipse.org/emf/2002/GenModel Documentation='This object is used to register the diagram updater instance to use in the code. \r\nThe class must extends the generated diagram updater.\r\n\r\n'"

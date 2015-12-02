@@ -31,6 +31,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.ExternalElementTypesLibrary;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook;
 import org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint;
+import org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider;
 import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand;
 import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference;
 import org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas;
@@ -249,10 +250,23 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	private EClass specificNodePlateEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass genVisualTypeProviderEClass = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#eNS_URI
@@ -274,7 +288,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link PapyrusgmfgenextensionPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
+	 * This method is used to initialize {@link PapyrusgmfgenextensionPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 *
 	 * @see #eNS_URI
@@ -1072,6 +1088,28 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getGenVisualTypeProvider() {
+		return genVisualTypeProviderEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getGenVisualTypeProvider_ClassName() {
+		return (EAttribute) genVisualTypeProviderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @generated
@@ -1199,6 +1237,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		createEReference(specificNodePlateEClass, SPECIFIC_NODE_PLATE__EDIT_PARTS);
 		createEAttribute(specificNodePlateEClass, SPECIFIC_NODE_PLATE__NAME);
 		createEAttribute(specificNodePlateEClass, SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME);
+
+		genVisualTypeProviderEClass = createEClass(GEN_VISUAL_TYPE_PROVIDER);
+		createEAttribute(genVisualTypeProviderEClass, GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME);
 	}
 
 	/**
@@ -1263,6 +1304,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		generateUsingElementTypeCreationCommandEClass.getESuperTypes().add(this.getCommentedElement());
 		customDiagramUpdaterSingletonEClass.getESuperTypes().add(this.getCommentedElement());
 		specificNodePlateEClass.getESuperTypes().add(this.getCommentedElement());
+		genVisualTypeProviderEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1292,8 +1334,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(papyrusExtensionRootNodeEClass, PapyrusExtensionRootNode.class, "PapyrusExtensionRootNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPapyrusExtensionRootNode_ExtensionNodes(), this.getCommentedElement(), null, "extensionNodes", null, 0, -1, PapyrusExtensionRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPapyrusExtensionRootNode_ExtensionNodes(), this.getCommentedElement(), null, "extensionNodes", null, 0, -1, PapyrusExtensionRootNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(alternateCanvasEClass, AlternateCanvas.class, "AlternateCanvas", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAlternateCanvas_DomainDiagramElement(), theGenModelPackage.getGenClass(), null, "domainDiagramElement", null, 1, 1, AlternateCanvas.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
@@ -1335,8 +1377,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(specificLocatorExternalLabelEClass, SpecificLocatorExternalLabel.class, "SpecificLocatorExternalLabel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSpecificLocatorExternalLabel_GenExternalNodeLabel(), theGMFGenPackage.getGenExternalNodeLabel(), null, "genExternalNodeLabel", null, 0, -1, SpecificLocatorExternalLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecificLocatorExternalLabel_GenExternalNodeLabel(), theGMFGenPackage.getGenExternalNodeLabel(), null, "genExternalNodeLabel", null, 0, -1, SpecificLocatorExternalLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additionalEditPartCandiesEClass, AdditionalEditPartCandies.class, "AdditionalEditPartCandies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAdditionalEditPartCandies_BaseEditHelperPackage(), theEcorePackage.getEString(), "baseEditHelperPackage", null, 0, 1, AdditionalEditPartCandies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
@@ -1363,8 +1405,8 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(compartmentVisibilityPreferenceEClass, CompartmentVisibilityPreference.class, "CompartmentVisibilityPreference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCompartmentVisibilityPreference_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, CompartmentVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompartmentVisibilityPreference_VisibleByDefault(), theEcorePackage.getEBoolean(), "visibleByDefault", "true", 0, 1, CompartmentVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getCompartmentVisibilityPreference_Compartments(), theGMFGenPackage.getGenCompartment(), null, "compartments", null, 0, -1, CompartmentVisibilityPreference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1396,6 +1438,10 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 				!IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSpecificNodePlate_Name(), theEcorePackage.getEString(), "name", null, 0, 1, SpecificNodePlate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSpecificNodePlate_NodePlateQualifiedName(), theEcorePackage.getEString(), "nodePlateQualifiedName", null, 0, 1, SpecificNodePlate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(genVisualTypeProviderEClass, GenVisualTypeProvider.class, "GenVisualTypeProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenVisualTypeProvider_ClassName(), ecorePackage.getEString(), "className", "UMLVisualTypeProvider", 0, 1, GenVisualTypeProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 				IS_ORDERED);
 
 		// Create resource

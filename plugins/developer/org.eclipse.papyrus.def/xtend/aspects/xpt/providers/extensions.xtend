@@ -32,6 +32,7 @@ import xpt.providers.ShortcutsDecoratorProvider
 	@Inject EditPartProvider editPartProvider;
 	@Inject ParserProvider labelParsers;
 	@Inject ShortcutsDecoratorProvider shorcutProvider;
+	@Inject VisualTypeProvider visualTypeProvider;
 	
 	override extensions(GenDiagram it) '''
 		«extraLineBreak»
@@ -137,6 +138,15 @@ import xpt.providers.ShortcutsDecoratorProvider
 				«ENDFOR»
 		«tripleSpace(3)»<advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
 		«tripleSpace(2)»</binding>
+		«tripleSpace(1)»</extension>
+
+		«extraLineBreak»
+		«tripleSpace(1)»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+		«tripleSpace(2)»«xmlGeneratedTag»
+		«tripleSpace(2)»<visualTypeProvider
+		«tripleSpace(4)»class="«visualTypeProvider.getQualifiedClassName(it)»"
+		«tripleSpace(4)»diagramType="«editorGen.modelID»">
+		«tripleSpace(3)»</visualTypeProvider>
 		«tripleSpace(1)»</extension>
 	'''
 

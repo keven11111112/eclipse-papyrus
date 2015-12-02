@@ -1648,6 +1648,47 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl <em>Gen Visual Type Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenVisualTypeProvider()
+	 * @generated
+	 */
+	int GEN_VISUAL_TYPE_PROVIDER = 26;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_VISUAL_TYPE_PROVIDER__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Gen Visual Type Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_VISUAL_TYPE_PROVIDER_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2486,6 +2527,29 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EAttribute getSpecificNodePlate_NodePlateQualifiedName();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider <em>Gen Visual Type Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Gen Visual Type Provider</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider
+	 * @generated
+	 */
+	EClass getGenVisualTypeProvider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider#getClassName <em>Class Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Class Name</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider#getClassName()
+	 * @see #getGenVisualTypeProvider()
+	 * @generated
+	 */
+	EAttribute getGenVisualTypeProvider_ClassName();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3209,6 +3273,26 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME = eINSTANCE.getSpecificNodePlate_NodePlateQualifiedName();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl <em>Gen Visual Type Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenVisualTypeProvider()
+		 * @generated
+		 */
+		EClass GEN_VISUAL_TYPE_PROVIDER = eINSTANCE.getGenVisualTypeProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME = eINSTANCE.getGenVisualTypeProvider_ClassName();
 
 	}
 

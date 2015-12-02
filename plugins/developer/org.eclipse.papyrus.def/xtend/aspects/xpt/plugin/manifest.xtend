@@ -1,7 +1,5 @@
-
 /*
- * Copyright (c) 2007, 2009 Borland Software Corporation
-
+ * Copyright (c) 2007, 2015 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +10,7 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  * 	  Thibault Landre (Atos Origin) - add Papyrus dependencies to Papyrus GMF diagram*
  *	  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr : add the dependencyorg.eclipse.papyrus.infra.services.edit
+ *    Christian W. Damus - bug 477384
  */
 package aspects.xpt.plugin
 
@@ -73,7 +72,7 @@ Require-Bundle: org.eclipse.core.runtime,
 '''
 
 	override def executionEnvironment(GenPlugin it) '''
-		Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+		Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 	'''
 	
 }

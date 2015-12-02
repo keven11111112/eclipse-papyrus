@@ -564,4 +564,12 @@
    </diagramReconciler>
 </extension>
 
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <visualTypeProvider
+            class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockVisualTypeProvider"
+            diagramType="InternalBlock">
+      </visualTypeProvider>
+   </extension>
+
 </plugin>

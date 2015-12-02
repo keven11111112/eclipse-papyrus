@@ -11,6 +11,7 @@
  *   Christian W. Damus - bug 433206
  *   Christian W. Damus - bug 473148
  *   Christian W. Damus - bug 478558
+ *   Christian W. Damus - bug 477384
  *   
  *****************************************************************************/
 
@@ -32,15 +33,22 @@ import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStr
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
+import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Relationship;
+import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.Vertex;
 import org.eclipse.uml2.uml.util.UMLSwitch;
@@ -159,10 +167,25 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		return result;
 	}
 
+	@Override
+	public Object getSource(EObject connectionElement) {
+		return ConnectionSourceSwitch.INSTANCE.doSwitch(connectionElement);
+	}
+
+	@Override
+	public Object getTarget(EObject connectionElement) {
+		return ConnectionTargetSwitch.INSTANCE.doSwitch(connectionElement);
+	}
+
 	//
 	// Nested types
 	//
 
+	/**
+	 * A computation of the elements associated with some element
+	 * that are not {@link Relationship}s but are visualized as
+	 * connections in a manner similar to {@link Relationship}s.
+	 */
 	private class ConnectionsSwitch extends UMLSwitch<List<EObject>> {
 		private final View visualContext;
 		private final List<EObject> result;
@@ -231,6 +254,11 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		}
 	}
 
+	/**
+	 * An algorithm that removes relationships or relationship-like elements
+	 * from an element's semantic connections that it is not appropriate to
+	 * try to visualize in a given diagram context.
+	 */
 	private class CleanRelationshipsSwitch extends UMLSwitch<List<EObject>> {
 		@SuppressWarnings("unused") // It isn't used, *yet*
 		private final View visualContext;
@@ -259,4 +287,152 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		}
 	}
 
+	/**
+	 * A computation of the source element of a relationship or
+	 * relationship-like element that is to be visualized.
+	 */
+	private static class ConnectionSourceSwitch extends UMLSwitch<Object> {
+		static final ConnectionSourceSwitch INSTANCE = new ConnectionSourceSwitch();
+
+		@Override
+		public Object caseDirectedRelationship(DirectedRelationship object) {
+			List<Element> sources = object.getSources();
+			return sources.isEmpty() ? null : sources.get(0);
+		}
+
+		@Override
+		public Object caseRelationship(Relationship object) {
+			List<Element> related = object.getRelatedElements();
+			return related.isEmpty() ? null : related.get(0);
+		}
+
+		@Override
+		public Object caseAssociation(Association object) {
+			Property sourceEnd = getSourceEnd(object);
+
+			// The classifier at the source end is the other end's type (the
+			// source end may not be owned by the source type)
+			return (sourceEnd == null) ? null : sourceEnd.getOtherEnd().getType();
+		}
+
+		static Property getSourceEnd(Association association) {
+
+			Property result;
+
+			List<Property> ends = association.getMemberEnds();
+			if (ends.size() != 2) {
+				result = null;
+			} else {
+				Property end1 = ends.get(0);
+				Property end2 = ends.get(1);
+
+				// The first end that is classifier-owned is the "source"
+				if (end1.getOwningAssociation() == null) {
+					result = end1;
+				} else if (end2.getOwningAssociation() == null) {
+					result = end2;
+				} else {
+					// Otherwise, the first end that is navigable is the "source"
+					if (association.getNavigableOwnedEnds().contains(end1)) {
+						result = end1;
+					} else if (association.getNavigableOwnedEnds().contains(end2)) {
+						result = end2;
+					} else {
+						// Otherwise, it's just the first end
+						result = end1;
+					}
+				}
+			}
+
+			return result;
+		}
+
+		@Override
+		public Object caseConnector(Connector object) {
+			Object result = null;
+
+			List<ConnectorEnd> ends = object.getEnds();
+			ConnectorEnd source = ends.isEmpty() ? null : ends.get(0);
+			if (source != null) {
+				result = (source.getPartWithPort() != null)
+						? ISemanticChildrenStrategy.createVisualStack(source.getPartWithPort(), source.getRole())
+						: source.getRole();
+			}
+
+			return result;
+		}
+
+		@Override
+		public Object caseTransition(Transition object) {
+			return object.getSource();
+		}
+
+		@Override
+		public Object caseActivityEdge(ActivityEdge object) {
+			return object.getSource();
+		}
+
+		@Override
+		public Object caseMessage(Message object) {
+			return object.getSendEvent();
+		}
+	}
+
+	/**
+	 * A computation of the target element of a relationship or
+	 * relationship-like element that is to be visualized.
+	 */
+	private static class ConnectionTargetSwitch extends UMLSwitch<Object> {
+		static final ConnectionTargetSwitch INSTANCE = new ConnectionTargetSwitch();
+
+		@Override
+		public Object caseDirectedRelationship(DirectedRelationship object) {
+			List<Element> targets = object.getTargets();
+			return targets.isEmpty() ? null : targets.get(0);
+		}
+
+		@Override
+		public Object caseRelationship(Relationship object) {
+			List<Element> related = object.getRelatedElements();
+			return (related.size() < 2) ? null : related.get(1);
+		}
+
+		@Override
+		public Object caseAssociation(Association object) {
+			Property sourceEnd = ConnectionSourceSwitch.getSourceEnd(object);
+
+			// The target type is the type of the source end
+			return (sourceEnd == null) ? null : sourceEnd.getType();
+		}
+
+		@Override
+		public Object caseConnector(Connector object) {
+			Object result = null;
+
+			List<ConnectorEnd> ends = object.getEnds();
+			ConnectorEnd source = ends.isEmpty() ? null : ends.get(1);
+			if (source != null) {
+				result = (source.getPartWithPort() != null)
+						? ISemanticChildrenStrategy.createVisualStack(source.getPartWithPort(), source.getRole())
+						: source.getRole();
+			}
+
+			return result;
+		}
+
+		@Override
+		public Object caseTransition(Transition object) {
+			return object.getTarget();
+		}
+
+		@Override
+		public Object caseActivityEdge(ActivityEdge object) {
+			return object.getTarget();
+		}
+
+		@Override
+		public Object caseMessage(Message object) {
+			return object.getReceiveEvent();
+		}
+	}
 }

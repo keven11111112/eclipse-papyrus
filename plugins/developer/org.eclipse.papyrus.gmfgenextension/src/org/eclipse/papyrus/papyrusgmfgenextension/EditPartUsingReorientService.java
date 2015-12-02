@@ -24,11 +24,11 @@ import org.eclipse.gmf.codegen.gmfgen.GenLink;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService#getGenView <em>Gen View</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getEditPartUsingReorientService()
  * @model

@@ -16,11 +16,11 @@ import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink#getGenLinkNode <em>Gen Link Node</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink#getTypeModelFacet <em>Type Model Facet</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getAlternateGenLink()
  * @model

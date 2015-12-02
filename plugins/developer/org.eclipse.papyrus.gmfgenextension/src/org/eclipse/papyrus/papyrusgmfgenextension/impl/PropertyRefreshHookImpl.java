@@ -18,11 +18,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl#getTriggeringCondition <em>Triggering Condition</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl#getAction <em>Action</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

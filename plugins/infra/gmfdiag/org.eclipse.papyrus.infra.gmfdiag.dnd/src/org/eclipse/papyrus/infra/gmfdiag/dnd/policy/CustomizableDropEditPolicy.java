@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 477384
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
@@ -41,7 +42,6 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultActionHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DefaultDropStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
@@ -104,13 +104,8 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 				command = getCustomCommand(request);
 			}
 		} else if (this.understands(request)) {
-			if (CanonicalDropObjectsRequest.REQ_CANONICAL_DROP_OBJECTS.equals(request.getType())) {
-				// Forward canonical drop to the default drop policy
-				command = getCanonicalDropObjectsCommand(request);
-			} else {
-				// Add request
-				command = getCreationCommand(request);
-			}
+			// Add request
+			command = getCreationCommand(request);
 		} else if (defaultCreationEditPolicy != null) {
 			// Creation request
 			if (defaultCreationEditPolicy.understandsRequest(request)) {
@@ -141,8 +136,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	}
 
 	protected boolean understands(Request request) {
-		return org.eclipse.gef.RequestConstants.REQ_ADD.equals(request.getType())
-				|| CanonicalDropObjectsRequest.REQ_CANONICAL_DROP_OBJECTS.equals(request.getType());
+		return org.eclipse.gef.RequestConstants.REQ_ADD.equals(request.getType());
 	}
 
 	protected boolean isCustomRequest(Request request) {
@@ -153,11 +147,15 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		return getCustomCommand(request);
 	}
 
+	/**
+	 * @deprecated No longer used.
+	 */
+	@Deprecated
 	protected Command getCanonicalDropObjectsCommand(Request request) {
 		Command result = null;
 
-		if ((defaultDropEditPolicy != null) && (request instanceof CanonicalDropObjectsRequest)) {
-			result = defaultDropEditPolicy.getCommand(((CanonicalDropObjectsRequest) request).getDropObjectsRequest());
+		if ((defaultDropEditPolicy != null) && (request instanceof org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest)) {
+			result = defaultDropEditPolicy.getCommand(((org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest) request).getDropObjectsRequest());
 		}
 
 		return result;

@@ -24,10 +24,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl#getAlternateCanvases <em>Alternate Canvases</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

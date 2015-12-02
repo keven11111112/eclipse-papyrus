@@ -18,10 +18,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

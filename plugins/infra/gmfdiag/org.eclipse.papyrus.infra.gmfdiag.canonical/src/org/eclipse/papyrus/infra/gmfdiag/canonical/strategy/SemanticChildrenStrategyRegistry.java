@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 477384
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.strategy;
@@ -18,6 +19,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.internal.Activator;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -35,6 +37,7 @@ public class SemanticChildrenStrategyRegistry {
 	private final List<DefaultSemanticChildrenStrategyRegistration> defaultStrategies;
 	private final List<VisualChildrenStrategyRegistration> visualChildrenStrategies;
 	private final Multimap<Class<?>, VisualChildrenStrategyRegistration> visualChildrenStrategiesByEditPart = ArrayListMultimap.create();
+	@SuppressWarnings("deprecation")
 	private final List<CreationTargetStrategyRegistration> creationTargetStrategies;
 
 	private static SemanticChildrenStrategyRegistry INSTANCE = new SemanticChildrenStrategyRegistry();
@@ -48,6 +51,7 @@ public class SemanticChildrenStrategyRegistry {
 
 		List<SemanticChildrenStrategyRegistration> strategies = Lists.newArrayList();
 		List<DefaultSemanticChildrenStrategyRegistration> defaultStrategies = Lists.newArrayListWithExpectedSize(1);
+		@SuppressWarnings("deprecation")
 		List<CreationTargetStrategyRegistration> creationTargetStrategies = Lists.newArrayList();
 		List<VisualChildrenStrategyRegistration> visualChildrenStrategies = Lists.newArrayList();
 
@@ -65,7 +69,9 @@ public class SemanticChildrenStrategyRegistry {
 					defaultStrategies.add(new DefaultSemanticChildrenStrategyRegistration(config));
 					break;
 				case "creationTargetStrategy": //$NON-NLS-1$
-					creationTargetStrategies.add(new CreationTargetStrategyRegistration(config));
+					@SuppressWarnings("deprecation")
+					CreationTargetStrategyRegistration creationReg = new CreationTargetStrategyRegistration(config);
+					creationTargetStrategies.add(creationReg);
 					break;
 				case "visualChildrenStrategy": //$NON-NLS-1$
 					visualChildrenStrategies.add(new VisualChildrenStrategyRegistration(config));
@@ -158,7 +164,11 @@ public class SemanticChildrenStrategyRegistry {
 	 *            an edit part in a diagram
 	 * 
 	 * @return the {@link ICreationTargetStrategy} or {@code null} if no applicable strategy is registered
+	 * 
+	 * @deprecated As of Neon, this strategy is no longer needed because the {@link PapyrusCanonicalEditPolicy}
+	 *             no longer uses the drag-and-drop infrastructure to create views of existing elements in the diagram.
 	 */
+	@Deprecated
 	public ICreationTargetStrategy getCreationTargetStrategy(EditPart editPart) {
 		return getStrategy(editPart, creationTargetStrategies);
 	}

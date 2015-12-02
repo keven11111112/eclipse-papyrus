@@ -1531,6 +1531,13 @@
          target="1.1.0">
    </diagramReconciler>
 </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLVisualTypeProvider"
+            diagramType="CompositeStructure">
+         </visualTypeProvider>
+</extension>
 <extension
       point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
       <contributor

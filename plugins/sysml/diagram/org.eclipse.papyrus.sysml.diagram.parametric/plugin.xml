@@ -705,4 +705,12 @@
    
    </diagramMappings>
 </extension>
+
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <visualTypeProvider
+            class="org.eclipse.papyrus.sysml.diagram.parametric.provider.ParametricVisualTypeProvider"
+            diagramType="Parametric">
+      </visualTypeProvider>
+   </extension>
 </plugin>

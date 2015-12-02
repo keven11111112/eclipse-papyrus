@@ -23,6 +23,10 @@ public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 		super(useBaseTemplatesOnly, templateDirectory, includeDynamicModelTemplates);
 	}
 
+	public JavaClassEmitter getVisualTypeProviderEmitter() {
+		return createPrimaryJavaClassEmitter("aspects::xpt::providers::VisualTypeProvider"); //$NON-NLS-1$
+	}
+
 	@Override
 	public JavaClassEmitter getDiagramCanonicalEditPolicyEmitter() {
 		return null;

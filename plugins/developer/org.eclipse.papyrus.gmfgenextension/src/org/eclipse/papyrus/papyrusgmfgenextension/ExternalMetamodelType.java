@@ -12,10 +12,10 @@ import org.eclipse.papyrus.domaincontextcodegen.ElementType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalMetamodelType#getElementTypeRef <em>Element Type Ref</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getExternalMetamodelType()
  * @model

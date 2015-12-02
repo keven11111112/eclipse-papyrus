@@ -1004,43 +1004,13 @@
             </with>
          </enablement>
       </semanticChildrenStrategy>
-      <creationTargetStrategy
-            class="org.eclipse.papyrus.uml.diagram.profile.custom.canonical.ProfileDiagramCreationTargetStrategy">
-         <enablement>
-            <with
-                  variable="editPart">
-               <or>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeEditPart"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.StereotypeEditPartCN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPart"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ClassEditPartCN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEditPart"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.EnumerationEditPartCN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeEditPart"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.DataTypeEditPartCN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeEditPart"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PrimitiveTypeEditPartCN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPart"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPartCN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartTN"/>
-                  <instanceof
-                        value="org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartCN"/>
-               </or>
-            </with>
-         </enablement>
-      </creationTargetStrategy>
    </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLVisualTypeProvider"
+            diagramType="PapyrusUMLProfileDiagram">
+         </visualTypeProvider>
+   </extension>
+
 </plugin>

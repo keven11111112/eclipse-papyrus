@@ -22,6 +22,7 @@ import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.runner.Scenario;
 import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
@@ -138,6 +139,7 @@ public class RegressionTest extends AbstractCanonicalTest {
 		assertNoView(end); // but not the association end
 	}
 
+	@InvalidTest("The class diagram doesn't want ever to show association ends in the attributes compartment")
 	@PluginResource("models/bugs/473148.di")
 	@Test
 	public void associationEndWhenNoAssociationEdge_bug473148() {

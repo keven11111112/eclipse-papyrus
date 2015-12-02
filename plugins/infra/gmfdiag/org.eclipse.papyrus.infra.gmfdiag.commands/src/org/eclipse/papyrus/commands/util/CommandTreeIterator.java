@@ -44,7 +44,6 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 	private List<Iterator<?>> iterators = new ArrayList<Iterator<?>>();
 
 	private C preparedNext;
-	private boolean done;
 
 	private CommandTreeIterator(Object root, Class<C> type) {
 		super();
@@ -56,7 +55,7 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 		if (isCompound(root)) {
 			pushIterator(root);
 		} else {
-			done = !prepareNext(root);
+			prepareNext(root);
 		}
 	}
 
@@ -99,7 +98,6 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 	private Iterator<?> popIterator() {
 		if (iterators.isEmpty()) {
 			current = null;
-			done = true;
 		} else {
 			current = iterators.remove(iterators.size() - 1);
 		}
@@ -128,8 +126,12 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 		return result;
 	}
 
+	boolean isDone() {
+		return (current == null) && iterators.isEmpty();
+	}
+
 	public boolean hasNext() {
-		while (!done && (preparedNext == null)) {
+		while (!isDone() && (preparedNext == null)) {
 			Object next = internalNext();
 			if (type.isInstance(next)) {
 				preparedNext = type.cast(next);

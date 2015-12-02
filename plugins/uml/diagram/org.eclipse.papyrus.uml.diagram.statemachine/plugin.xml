@@ -838,22 +838,6 @@
 
 
     <extension
-            point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
-        <creationTargetStrategy
-                class="org.eclipse.papyrus.uml.diagram.statemachine.custom.canonical.StateMachineCanonicalCreationTargetStrategy">
-            <enablement>
-                <with
-                        variable="element">
-                    <or>
-                        <instanceof value="org.eclipse.uml2.uml.Vertex"/>
-                        <instanceof value="org.eclipse.uml2.uml.StateMachine"/>
-                    </or>
-                </with>
-            </enablement>
-        </creationTargetStrategy>
-    </extension>
-    
-    <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
          id="org.eclipse.papyrus.uml.diagram.statemachine.elementTypeSet"
@@ -878,6 +862,13 @@
          target="1.2.0">
    </diagramReconciler>
 </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLVisualTypeProvider"
+            diagramType="PapyrusUMLStateMachineDiagram">
+         </visualTypeProvider>
+   </extension>
 <extension
       point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
    <contributor

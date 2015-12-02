@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 430726
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - bug 450341 
  *  Christian W. Damus - bug 450944
+ *  Christian W. Damus - bug 477384
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -70,9 +71,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.VisualTypeService;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.policy.CustomizableDropEditPolicy;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.helper.Element2IAdaptableRegistryHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
@@ -123,13 +126,41 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *
 	 * @return the uML element type
 	 */
-	public abstract IElementType getUMLElementType(int elementID);
+	public IElementType getUMLElementType(int elementID) {
+		return VisualTypeService.getInstance().getElementType(getContextDiagram(), Integer.toString(elementID));
+	}
 
-	public abstract int getNodeVisualID(View containerView, EObject domainElement);
+	public int getNodeVisualID(View containerView, EObject domainElement) {
+		String result = VisualTypeService.getInstance().getNodeType(containerView, domainElement);
 
-	public abstract int getLinkWithClassVisualID(EObject domainElement);
+		try {
+			return (result == null) ? -1 : Integer.parseInt(result);
+		} catch (NumberFormatException e) {
+			// Not supported by this diagram
+			return -1;
+		}
+	}
 
+	public int getLinkWithClassVisualID(EObject domainElement) {
+		String result = VisualTypeService.getInstance().getLinkType(getContextDiagram(), domainElement);
 
+		try {
+			return (result == null) ? -1 : Integer.parseInt(result);
+		} catch (NumberFormatException e) {
+			// Not supported by this diagram
+			return -1;
+		}
+	}
+
+	/**
+	 * Gets the notational diagram in which my host edit part is rendering a view.
+	 * 
+	 * @return the contextual diagram
+	 */
+	protected Diagram getContextDiagram() {
+		View view = TypeUtils.as(getHost().getModel(), View.class);
+		return (view == null) ? null : view.getDiagram();
+	}
 
 	/**
 	 * Gets composite command adapters

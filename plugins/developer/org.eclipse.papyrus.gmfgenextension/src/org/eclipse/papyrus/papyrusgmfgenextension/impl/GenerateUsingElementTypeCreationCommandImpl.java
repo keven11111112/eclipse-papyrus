@@ -10,8 +10,6 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Generate Using Element Type Creation Command</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

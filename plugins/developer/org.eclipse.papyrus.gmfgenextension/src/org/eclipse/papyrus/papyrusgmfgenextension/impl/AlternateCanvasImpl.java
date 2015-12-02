@@ -29,13 +29,13 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getDomainDiagramElement <em>Domain Diagram Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getAlternateTopLevelNodes <em>Alternate Top Level Nodes</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getAlternateLinkNodes <em>Alternate Link Nodes</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl#getDiagram <em>Diagram</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

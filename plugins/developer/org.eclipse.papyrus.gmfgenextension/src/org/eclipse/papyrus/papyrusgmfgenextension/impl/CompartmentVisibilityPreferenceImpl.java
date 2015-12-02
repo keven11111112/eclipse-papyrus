@@ -23,11 +23,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl#isVisibleByDefault <em>Visible By Default</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl#getCompartments <em>Compartments</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

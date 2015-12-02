@@ -22,12 +22,12 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getEditParts <em>Edit Parts</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

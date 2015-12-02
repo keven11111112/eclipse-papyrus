@@ -18,10 +18,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl#getClasspath <em>Classpath</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -22,11 +22,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenLinkImpl#getGenLinkNode <em>Gen Link Node</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenLinkImpl#getTypeModelFacet <em>Type Model Facet</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -171,8 +171,7 @@ public class AlternateGenLinkImpl extends CommentedElementImpl implements Altern
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusgmfgenextensionPackage.ALTERNATE_GEN_LINK__TYPE_MODEL_FACET, newTypeModelFacet, newTypeModelFacet));
 		}
 	}

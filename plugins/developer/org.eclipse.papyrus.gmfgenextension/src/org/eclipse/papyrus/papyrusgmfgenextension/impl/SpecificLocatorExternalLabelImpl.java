@@ -21,10 +21,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl#getGenExternalNodeLabel <em>Gen External Node Label</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

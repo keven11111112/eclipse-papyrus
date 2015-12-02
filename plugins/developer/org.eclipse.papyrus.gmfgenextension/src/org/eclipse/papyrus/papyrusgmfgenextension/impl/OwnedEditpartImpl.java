@@ -18,10 +18,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

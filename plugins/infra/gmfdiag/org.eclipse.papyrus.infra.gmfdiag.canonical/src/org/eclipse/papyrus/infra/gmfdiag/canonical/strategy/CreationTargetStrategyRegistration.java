@@ -14,11 +14,16 @@ package org.eclipse.papyrus.infra.gmfdiag.canonical.strategy;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 
 
 /**
  * The registration of a creation target strategy.
+ * 
+ * @deprecated As of Neon, this strategy is no longer needed because the {@link PapyrusCanonicalEditPolicy}
+ *             no longer uses the drag-and-drop infrastructure to create views of existing elements in the diagram.
  */
+@Deprecated
 class CreationTargetStrategyRegistration extends Registration<ICreationTargetStrategy, CreationTargetStrategyRegistration> {
 
 	CreationTargetStrategyRegistration(IConfigurationElement config) throws CoreException {

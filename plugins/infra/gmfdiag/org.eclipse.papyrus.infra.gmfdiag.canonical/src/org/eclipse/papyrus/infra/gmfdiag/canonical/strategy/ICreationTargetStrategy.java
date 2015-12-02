@@ -16,11 +16,16 @@ package org.eclipse.papyrus.infra.gmfdiag.canonical.strategy;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy.PapyrusCanonicalEditPolicy;
 
 /**
  * A pluggable strategy for determining which edit part should be requested to create
  * canonical views on behalf of a requesting edit part.
+ * 
+ * @deprecated As of Neon, this strategy is no longer needed because the {@link PapyrusCanonicalEditPolicy}
+ *             no longer uses the drag-and-drop infrastructure to create views of existing elements in the diagram.
  */
+@Deprecated
 public interface ICreationTargetStrategy {
 	/**
 	 * A creation-target strategy that always returns the requesting host edit-part as the creation target.

@@ -26,6 +26,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getRole <em>Role</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getIconPathRole <em>Icon Path Role</em>}</li>
@@ -33,7 +34,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel;
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getExternalNodeLabels <em>External Node Labels</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getLabelVisibilityPreference()
  * @model

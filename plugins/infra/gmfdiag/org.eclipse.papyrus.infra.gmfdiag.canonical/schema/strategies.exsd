@@ -144,9 +144,14 @@ The nested &amp;lt;enablement&amp;gt; expression, if specified, is used to match
 
    <element name="creationTargetStrategy">
       <annotation>
+         <appinfo>
+            <meta.element deprecated="true"/>
+         </appinfo>
          <documentation>
-            An extension that provides an alternative target edit part to which requests should be sent for canonical creation of child views.
+            As of Neon, this strategy is no longer needed because the PapyrusCanonicalEditPolicy no longer uses the drag-and-drop infrastructure to create views of existing elements in the diagram.
 &lt;p&gt;
+An extension that provides an alternative target edit part to which requests should be sent for canonical creation of child views.
+&lt;/p&gt;&lt;p&gt;
 The nested &amp;lt;enablement&amp;gt; expression, if specified, is used to match edit parts that the strategy supports.  The expression has three variables available to it:
 &lt;/p&gt;
 &lt;table border=&quot;1&quot; align=&quot;center&quot;&gt;

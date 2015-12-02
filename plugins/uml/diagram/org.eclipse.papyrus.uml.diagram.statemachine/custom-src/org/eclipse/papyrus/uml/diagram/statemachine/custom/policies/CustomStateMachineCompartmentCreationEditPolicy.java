@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 477384
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
@@ -16,6 +17,7 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
@@ -24,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -31,7 +34,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomFirstRegionInStateMachineCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
+
+import com.google.common.collect.Iterables;
 
 public class CustomStateMachineCompartmentCreationEditPolicy extends CreationEditPolicy {
 	IFigure sizeOnDropFeedback = null;
@@ -62,12 +69,32 @@ public class CustomStateMachineCompartmentCreationEditPolicy extends CreationEdi
 						return new ICommandProxy(cc.reduce());
 					}
 				}
-			}
-			else if (request instanceof ChangeBoundsRequest) {
+			} else if (request instanceof ChangeBoundsRequest) {
 				return getReparentCommand((ChangeBoundsRequest) request);
 			}
 			return super.getCommand(request);
 		}
 		return null;
+	}
+
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		if (request instanceof CreateViewRequest) {
+			CreateViewRequest create = (CreateViewRequest) request;
+			// If we are creating any regions, and there are already existing regions, redirect
+			// to the last existing region
+			for (CreateViewRequest.ViewDescriptor descriptor : create.getViewDescriptors()) {
+				if (((IHintedType) UMLElementTypes.Region_3000).getSemanticHint().equals(descriptor.getSemanticHint())) {
+					RegionEditPart existingRegion = Iterables.getLast(Iterables.filter(getHost().getChildren(), RegionEditPart.class), null);
+					if (existingRegion != null) {
+						RegionCompartmentEditPart compartment = Iterables.getFirst(Iterables.filter(existingRegion.getChildren(), RegionCompartmentEditPart.class), null);
+						if (compartment != null) {
+							return compartment.getTargetEditPart(request);
+						}
+					}
+				}
+			}
+		}
+		return super.getTargetEditPart(request);
 	}
 }

@@ -26,4 +26,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.canonical.internal.Activator
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.canonical;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -188,4 +188,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nodePlateQualifiedName"
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GenVisualTypeProvider" eSuperTypes="#//CommentedElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="Configuration of this diagram's provider to the Visual Type Service,&#xA;which enables canonical view synchronization, drag-and-drop, and&#xA;possibly other capabilities."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="className" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="UMLVisualTypeProvider"/>
+  </eClassifiers>
 </ecore:EPackage>

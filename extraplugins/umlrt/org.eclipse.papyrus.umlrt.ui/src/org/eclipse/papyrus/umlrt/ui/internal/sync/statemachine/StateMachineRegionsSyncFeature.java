@@ -16,8 +16,6 @@ package org.eclipse.papyrus.umlrt.ui.internal.sync.statemachine;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.umlrt.ui.internal.sync.UMLRTChildNodesSyncFeature;
 import org.eclipse.papyrus.umlrt.ui.internal.sync.UMLRTSyncRegistry;
@@ -25,8 +23,6 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
-
-import com.google.common.collect.Iterables;
 
 /**
  * Synchronization feature for the edit-parts visualizing the regions of a state machine
@@ -54,26 +50,5 @@ public class StateMachineRegionsSyncFeature<M extends Element> extends UMLRTChil
 				: (model instanceof State)
 						? ((State) model).getRegions()
 						: ECollections.<Region> emptyEList();
-	}
-
-	/**
-	 * Regions fill the entire contents of a state machine or composite state, so new regions must be dropped
-	 * on the shape compartment of some existing region because there is no state machine or state
-	 * area uncovered on which they could be dropped.
-	 */
-	@Override
-	protected EditPart getTargetEditPart(EditPart parentEditPart, DropObjectsRequest dropObjectsRequest) {
-		EditPart result;
-
-		if (getModelOf(parentEditPart) instanceof StateMachine) {
-			// Have to dig in through the initial region
-			parentEditPart = (EditPart) parentEditPart.getChildren().get(0);
-			result = Iterables.getFirst(Iterables.filter(parentEditPart.getChildren(), ShapeCompartmentEditPart.class), parentEditPart);
-		} else {
-			// The state-machine diagram expects to drop on the State, not its compartment
-			result = parentEditPart.getParent();// super.getTargetEditPart(parentEditPart, dropObjectsRequest);
-		}
-
-		return result;
 	}
 }

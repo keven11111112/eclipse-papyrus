@@ -12,6 +12,7 @@
    <extension-point id="copyStrategy" name="copyStrategy" schema="schema/copyStrategy.exsd"/>
    <extension-point id="diagramReconciler" name="diagramReconciler" schema="schema/diagramReconciler.exsd"/>
    <extension-point id="diagramExpansion" name="diagramExpansion" schema="schema/DiagramExpansion.exsd"/>
+   <extension-point id="visualTypeProviders" name="Visual Type Providers" schema="schema/visualTypeProviders.exsd"/>
 
 <extension
       point="org.eclipse.ui.handlers">

@@ -9,15 +9,16 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus - bug 465416
+ *   Christian W. Damus - bug 477384
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.sync;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.AbstractCommand;
@@ -29,9 +30,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticElementAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.VisualTypeService;
 import org.eclipse.papyrus.infra.sync.EStructuralFeatureSyncFeature;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
 import org.eclipse.papyrus.infra.sync.SyncItem;
@@ -159,18 +166,13 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 					FigureCanvas figureCanvas = (FigureCanvas) control;
 					Point location = figureCanvas.getViewport().getViewLocation();
 
-					DropObjectsRequest dropObjectsRequest = new DropObjectsRequest();
 					objectToDrop = getTargetModel(from, to, newModel);
-					dropObjectsRequest.setObjects(Collections.singletonList(objectToDrop));
-					dropObjectsRequest.setLocation(location);
+					IGraphicalEditPart dropEditPart = (IGraphicalEditPart) getEffectiveEditPart(to.getBackend());
 
-					EditPart dropEditPart = getEffectiveEditPart(to.getBackend());
-					EditPart targetEditPart = getTargetEditPart(dropEditPart, dropObjectsRequest);
-					if (targetEditPart != null) {
-						dropEditPart = targetEditPart;
+					CreateRequest createRequest = getCreateRequest(dropEditPart, objectToDrop, location);
+					if (createRequest != null) {
+						dropCommand = getCreateCommand(dropEditPart, createRequest);
 					}
-
-					dropCommand = dropEditPart.getCommand(new CanonicalDropObjectsRequest(dropObjectsRequest));
 
 					if (dropCommand == null) {
 						dropCommand = org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
@@ -221,8 +223,40 @@ public abstract class AbstractNestedDiagramViewsSyncFeature<M extends EObject, N
 		};
 	}
 
-	protected EditPart getTargetEditPart(EditPart parentEditPart, DropObjectsRequest dropObjectsRequest) {
-		return parentEditPart.getTargetEditPart(dropObjectsRequest);
+	protected CreateRequest getCreateRequest(IGraphicalEditPart parentPart, EObject element, Point atLocation) {
+		CreateRequest result = null;
+
+		View parentView = parentPart.getNotationView();
+
+		// Consult the visual type service to get the appropriate view type
+		String viewType = VisualTypeService.getInstance().getNodeType(parentView, element);
+		if (viewType != null) {
+			IElementType elementType = VisualTypeService.getInstance().getElementType(parentView.getDiagram(), viewType);
+			IAdaptable elementAdapter = new SemanticElementAdapter(element, elementType);
+
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
+					elementAdapter,
+					Node.class,
+					viewType,
+					parentPart.getDiagramPreferencesHint());
+			result = new CreateViewRequest(descriptor);
+			result.setLocation(atLocation);
+		}
+
+		return result;
+	}
+
+	protected org.eclipse.gef.commands.Command getCreateCommand(IGraphicalEditPart parentPart, CreateRequest request) {
+		EditPart targetEditPart = getTargetEditPart(parentPart, request);
+		if (targetEditPart instanceof IGraphicalEditPart) {
+			parentPart = (IGraphicalEditPart) targetEditPart;
+		}
+
+		return parentPart.getCommand(request);
+	}
+
+	protected EditPart getTargetEditPart(EditPart parentEditPart, Request request) {
+		return parentEditPart.getTargetEditPart(request);
 	}
 
 	/**

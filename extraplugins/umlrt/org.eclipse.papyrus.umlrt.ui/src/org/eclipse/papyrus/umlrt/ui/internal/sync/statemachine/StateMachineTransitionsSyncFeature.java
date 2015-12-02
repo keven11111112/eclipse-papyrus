@@ -21,7 +21,6 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.sync.SyncBucket;
@@ -31,7 +30,6 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
-import org.eclipse.uml2.uml.Vertex;
 
 import com.google.common.collect.AbstractIterator;
 import com.google.common.collect.Iterables;
@@ -54,15 +52,6 @@ public class StateMachineTransitionsSyncFeature extends UMLRTDiagramEdgesSyncFea
 	@Override
 	protected SyncBucket<Transition, EditPart, Notification> createNestedSyncBucket(Transition model, EditPart editPart) {
 		return new TransitionSyncBucket(model, editPart);
-	}
-
-	@Override
-	protected EditPart getTargetEditPart(EditPart parentEditPart, DropObjectsRequest dropObjectsRequest) {
-		// Get the parent edit-part of the source vertex's edit-part
-		Transition transition = (Transition) dropObjectsRequest.getObjects().get(0);
-		Vertex source = transition.getSource();
-		EditPart sourceEditPart = findEditPart(parentEditPart, source);
-		return sourceEditPart.getParent();
 	}
 
 	@Override
@@ -130,4 +119,16 @@ public class StateMachineTransitionsSyncFeature extends UMLRTDiagramEdgesSyncFea
 
 		return result;
 	}
+
+	@Override
+	protected EObject getSourceElement(EObject connectionElement) {
+		return ((Transition) connectionElement).getSource();
+	}
+
+	@Override
+	protected EObject getTargetElement(EObject connectionElement) {
+		return ((Transition) connectionElement).getTarget();
+	}
+
+
 }

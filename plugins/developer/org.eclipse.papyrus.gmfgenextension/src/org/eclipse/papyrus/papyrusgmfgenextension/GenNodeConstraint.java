@@ -17,11 +17,11 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode <em>Gen Node</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint <em>Gen Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenNodeConstraint()
  * @model

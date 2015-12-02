@@ -30,10 +30,10 @@ import org.eclipse.gmf.codegen.gmfgen.GenChildSideAffixedNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocator()
  * @model

@@ -23,11 +23,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingReorientServiceImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingReorientServiceImpl#getGenView <em>Gen View</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

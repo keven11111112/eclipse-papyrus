@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 477384
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
@@ -29,16 +30,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomFirstRegionInCompositeStateCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
+
+import com.google.common.collect.Iterables;
 
 public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy {
 	IFigure sizeOnDropFeedback = null;
@@ -93,6 +98,36 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 	}
 
 	@Override
+	protected Command getCreateCommand(CreateViewRequest request) {
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		CompositeTransactionalCommand cc = null;
+
+		for (CreateViewRequest.ViewDescriptor descriptor : request.getViewDescriptors()) {
+			if (((IHintedType) UMLElementTypes.Region_3000).getSemanticHint().equals(descriptor.getSemanticHint())) {
+				// Creating a region view in this compartment
+				IAdaptable compartment = new SemanticAdapter(null, getHost().getModel());
+
+				// Create the view with a reasonable initial layout
+				CustomFirstRegionInCompositeStateCreateElementCommand command = new CustomFirstRegionInCompositeStateCreateElementCommand(
+						compartment, descriptor.getElementAdapter(),
+						((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(),
+						editingDomain, DiagramUIMessages.CreateCommand_Label, dropLocation);
+
+				if (cc == null) {
+					cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
+					cc.compose(command);
+				}
+			}
+		}
+
+		// It's all-or-nothing: if anything besides regions were being created (which
+		// would be an odd sort of a compound request), then only the regions will be
+		return (cc != null)
+				? new ICommandProxy(cc.reduce())
+				: super.getCommand(request);
+	}
+
+	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateUnspecifiedTypeRequest) {
 			CreateUnspecifiedTypeRequest createUnspecifiedTypeRequest = (CreateUnspecifiedTypeRequest) request;
@@ -104,6 +139,21 @@ public class CustomStateCompartmentCreationEditPolicy extends CreationEditPolicy
 					// If the target is a compartment replace by its parent edit part
 					if ((getHost() instanceof ShapeCompartmentEditPart)) {
 						return getHost().getParent();
+					}
+				}
+			}
+		} else if (request instanceof CreateViewRequest) {
+			CreateViewRequest create = (CreateViewRequest) request;
+			// If we are creating any regions, and there are already existing regions, redirect
+			// to the last existing region
+			for (CreateViewRequest.ViewDescriptor descriptor : create.getViewDescriptors()) {
+				if (((IHintedType) UMLElementTypes.Region_3000).getSemanticHint().equals(descriptor.getSemanticHint())) {
+					RegionEditPart existingRegion = Iterables.getLast(Iterables.filter(getHost().getChildren(), RegionEditPart.class), null);
+					if (existingRegion != null) {
+						RegionCompartmentEditPart compartment = Iterables.getFirst(Iterables.filter(existingRegion.getChildren(), RegionCompartmentEditPart.class), null);
+						if (compartment != null) {
+							return compartment.getTargetEditPart(request);
+						}
 					}
 				}
 			}

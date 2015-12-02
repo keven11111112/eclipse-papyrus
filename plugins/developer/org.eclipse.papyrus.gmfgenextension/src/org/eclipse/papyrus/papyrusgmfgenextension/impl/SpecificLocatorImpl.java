@@ -21,10 +21,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

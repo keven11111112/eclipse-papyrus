@@ -21,12 +21,12 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getEditParts <em>Edit Parts</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate()
  * @model

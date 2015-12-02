@@ -7,7 +7,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.codegen.ui;bundle-version="1.1.0",
  org.eclipse.gmf.codegen.xtend;bundle-version="1.0.0",
  org.eclipse.gmf.codegen.xtend.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.2.0",
+ org.eclipse.papyrus.def;bundle-version="1.2.0",
+ org.eclipse.papyrus.gmfgenextension;bundle-version="1.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
@@ -16,4 +18,4 @@ Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.codegen.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.codegen;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

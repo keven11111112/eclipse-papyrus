@@ -20,10 +20,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl#getGenNode <em>Gen Node</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -1,0 +1,67 @@
+/**
+ * Copyright (c) 2015 Christian W. Damus and others.
+  * 
+  * All rights reserved. This program and the accompanying materials
+  * are made available under the terms of the Eclipse Public License v1.0
+  * which accompanies this distribution, and is available at
+  * http://www.eclipse.org/legal/epl-v10.html
+  * 
+  * Contributors:
+  *  Christian W. Damus - Initial API and implementation
+ */
+package org.eclipse.papyrus.uml.diagram.component.providers;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.AbstractVisualTypeProvider;
+import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
+
+/**
+ * @generated
+ */
+public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
+
+	/**
+	 * @generated
+	 */
+	public UMLVisualTypeProvider() {
+		super();
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public IElementType getElementType(Diagram diagram, String viewType) {
+		IElementType result = null;
+		
+		try {
+			result = UMLElementTypes.getElementType(Integer.parseInt(viewType));
+		} catch (NumberFormatException e) {
+			// Not supported by this diagram
+		}
+		
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public String getNodeType(View parentView, EObject element) {
+		int result = UMLVisualIDRegistry.getNodeVisualID(parentView, element);
+		return (result < 0) ? null : Integer.toString(result);
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	public String getLinkType(Diagram diagram, EObject element) {
+		int result = UMLVisualIDRegistry.getLinkWithClassVisualID(element);
+		return (result < 0) ? null : Integer.toString(result);
+	}
+
+}

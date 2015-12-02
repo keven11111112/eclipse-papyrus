@@ -1022,6 +1022,14 @@
              strategy="org.eclipse.papyrus.uml.diagram.usecase.dnd.strategy.UsecaseToSubjectinUsecaseDiagramDropStrategy">
        </strategy>
    </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLVisualTypeProvider"
+            diagramType="UseCase">
+         </visualTypeProvider>
+   </extension>
+
 
 
 </plugin>

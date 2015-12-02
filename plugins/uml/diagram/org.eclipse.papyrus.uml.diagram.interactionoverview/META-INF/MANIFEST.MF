@@ -66,4 +66,4 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.interactionoverview.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.interactionoverview;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

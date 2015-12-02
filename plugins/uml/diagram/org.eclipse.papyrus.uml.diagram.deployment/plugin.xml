@@ -753,5 +753,13 @@
          path="model/DeploymentDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLVisualTypeProvider"
+            diagramType="PapyrusUMLDeploymentDiagram">
+         </visualTypeProvider>
+   </extension>
+
    <!-- optionally, specify keybindings -->
 </plugin>

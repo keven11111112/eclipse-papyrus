@@ -25,11 +25,11 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl#getGenNode <em>Gen Node</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl#getGenConstraint <em>Gen Constraint</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

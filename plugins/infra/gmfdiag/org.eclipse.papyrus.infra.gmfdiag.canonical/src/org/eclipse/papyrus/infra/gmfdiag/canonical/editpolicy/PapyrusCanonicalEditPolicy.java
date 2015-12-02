@@ -12,6 +12,7 @@
  *  Christian W. Damus - bug 420549
  *  Christian W. Damus - bug 472155
  *  Christian W. Damus - bug 471954
+ *  Christian W. Damus - bug 477384
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.canonical.editpolicy;
@@ -42,13 +43,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.TopGraphicEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Sorting;
 import org.eclipse.gmf.runtime.notation.SortingStyle;
@@ -56,20 +59,20 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.util.CommandTreeIterator;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFCommandWrapper;
-import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.internal.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ICreationTargetStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.IVisualChildrenStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.SemanticChildrenStrategyRegistry;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.RollingDeferredArrangeRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.EdgeWithNoSemanticElementRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IPapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype.VisualTypeService;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
 import com.google.common.base.Function;
-import com.google.common.base.Optional;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Ordering;
@@ -108,7 +111,9 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	};
 
 	private ISemanticChildrenStrategy semanticChildrenStrategy = null;
-	private ICreationTargetStrategy creationTargetStrategy;
+
+	@SuppressWarnings("deprecation")
+	private org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ICreationTargetStrategy creationTargetStrategy;
 
 	private Collection<? extends EObject> dependents = null;
 
@@ -119,12 +124,15 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 
 	private boolean overrideEnabled;
 
+	private ChildrenKindStack currentChildrenKind;
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public final void activate() {
 		if (host().getNotationView() != null) {
 			final SemanticChildrenStrategyRegistry reg = SemanticChildrenStrategyRegistry.getInstance();
 			semanticChildrenStrategy = reg.getSemanticChildrenStrategy(getHost());
-			creationTargetStrategy = ICreationTargetStrategy.Safe.safe(reg.getCreationTargetStrategy(getHost()));
+			creationTargetStrategy = org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ICreationTargetStrategy.Safe.safe(reg.getCreationTargetStrategy(getHost()));
 
 			hookCanonicalStateListener();
 			if (isEnabled()) {
@@ -532,7 +540,12 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		List<IAdaptable> createdViews = Collections.emptyList();
 		if (isInState(State.ACTIVE)) {
 			if (!semanticChildren.isEmpty()) {
-				createdViews = createViews(semanticChildren);
+				pushChildrenKind(kind);
+				try {
+					createdViews = createViews(semanticChildren);
+				} finally {
+					popChildrenKind();
+				}
 			}
 
 			if (isManagedListCompartment()) {
@@ -549,6 +562,18 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		}
 
 		return createdViews;
+	}
+
+	private void pushChildrenKind(ChildrenKind kind) {
+		currentChildrenKind = new ChildrenKindStack(kind);
+	}
+
+	private void popChildrenKind() {
+		currentChildrenKind = currentChildrenKind.parent();
+	}
+
+	protected final ChildrenKind currentChildrenKind() {
+		return (currentChildrenKind == null) ? null : currentChildrenKind.kind();
 	}
 
 	@Override
@@ -602,13 +627,64 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	}
 
 	@Override
+	protected ViewDescriptor getViewDescriptor(EObject element) {
+		ViewDescriptor result;
+		boolean isEdge = false;
+
+		// Consult the visual type service to get the appropriate
+		IGraphicalEditPart parentPart = host();
+		IGraphicalEditPart sourcePart = null;
+		IGraphicalEditPart targetPart = null;
+
+		// Look for a node to create
+		String viewType;
+
+		switch (currentChildrenKind()) {
+		case NODE:
+			viewType = VisualTypeService.getInstance().getNodeType(parentPart.getNotationView(), element);
+			break;
+		case CONNECTION:
+			isEdge = true;
+			parentPart = DiagramEditPartsUtil.getDiagramEditPart(host());
+			viewType = VisualTypeService.getInstance().getLinkType(host().getNotationView().getDiagram(), element);
+			if (viewType != null) {
+				// Identify the source and target
+				sourcePart = semanticChildrenStrategy.resolveSourceEditPart(element, host());
+				targetPart = semanticChildrenStrategy.resolveTargetEditPart(element, host());
+			}
+			break;
+		default:
+			viewType = null;
+			break;
+		}
+
+		if ((viewType != null) && (!isEdge || ((sourcePart != null) && (targetPart != null)))) {
+			IAdaptable elementAdapter = new SemanticElementAdapter(
+					element,
+					VisualTypeService.getInstance().getElementType(
+							host().getNotationView().getDiagram(),
+							viewType));
+
+			int pos = getViewIndexFor(element);
+			result = isEdge
+					? new ChildConnectionDescriptor(elementAdapter, viewType, pos, sourcePart, targetPart)
+					: new ChildNodeDescriptor(elementAdapter, viewType, pos, parentPart);
+		} else {
+			// i.e., return a view descriptor that is certain not to result in an useful command
+			result = super.getViewDescriptor(element);
+		}
+
+		return result;
+	}
+
+	@Override
 	protected Command getCreateViewCommand(CreateRequest request) {
 		Command result;
 
 		if (!(request instanceof CreateViewRequest)) {
 			result = super.getCreateViewCommand(request);
 		} else {
-			// Transform the request to a drop request serviced by the canonical drop policy
+			// Obtain the view creation commands and decorate them
 			CreateViewRequest createViewRequest = (CreateViewRequest) request;
 			Iterable<? extends ViewDescriptor> descriptors = createViewRequest.getViewDescriptors();
 
@@ -617,13 +693,33 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 				EObject element = viewDescriptor.getElementAdapter().getAdapter(EObject.class);
 
 				if (element != null) {
-					List<EObject> elementToDrop = Collections.singletonList(element);
-					DropObjectsRequest dropRequest = new DropObjectsRequest();
-					dropRequest.setObjects(elementToDrop);
-					dropRequest.setLocation(createViewRequest.getLocation());
-					CanonicalDropObjectsRequest canonicalRequest = new CanonicalDropObjectsRequest(dropRequest);
+					CreateRequest newRequest = createCreateRequest(viewDescriptor);
+					Command cmd;
 
-					Command cmd = creationTargetStrategy.getTargetEditPart(getHost(), element).getCommand(canonicalRequest);
+					if (newRequest instanceof CreateConnectionViewRequest) {
+						// Connection case
+						EditPart sourceEditPart = ((CreateConnectionViewRequest) newRequest).getSourceEditPart();
+						EditPart targetEditPart = ((CreateConnectionViewRequest) newRequest).getTargetEditPart();
+
+						// Initialize the command
+						newRequest.setType(RequestConstants.REQ_CONNECTION_START);
+						sourceEditPart.getCommand(newRequest);
+						newRequest.setType(RequestConstants.REQ_CONNECTION_END);
+
+						// Get the command
+						cmd = targetEditPart.getCommand(newRequest);
+					} else {
+						// Node case
+						EditPart parentEditPart = (viewDescriptor instanceof ChildNodeDescriptor)
+								? ((ChildNodeDescriptor) viewDescriptor).getParentEditPart()
+								: host();
+
+						@SuppressWarnings("deprecation")
+						EditPart targetEditPart = creationTargetStrategy.getTargetEditPart(parentEditPart, element);
+
+						cmd = targetEditPart.getCommand(newRequest);
+					}
+
 					if ((cmd != null) && cmd.canExecute()) {
 						compoundCommand.add(cmd);
 					}
@@ -634,6 +730,27 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 			if (result.canExecute()) {
 				result = tagAndArrange(result);
 			}
+		}
+
+		return result;
+	}
+
+	protected CreateRequest createCreateRequest(ViewDescriptor viewDescriptor) {
+		CreateRequest result;
+
+		if (viewDescriptor instanceof CreateConnectionViewRequest.ConnectionViewDescriptor) {
+			CreateConnectionViewRequest.ConnectionViewDescriptor cvd = (CreateConnectionViewRequest.ConnectionViewDescriptor) viewDescriptor;
+			CreateConnectionViewRequest ccvr = new CreateConnectionViewRequest(cvd);
+
+			if (cvd instanceof ChildConnectionDescriptor) {
+				ChildConnectionDescriptor ccd = (ChildConnectionDescriptor) cvd;
+				ccvr.setSourceEditPart(ccd.getSourceEditPart());
+				ccvr.setTargetEditPart(ccd.getTargetEditPart());
+			}
+
+			result = ccvr;
+		} else {
+			result = new CreateViewRequest(viewDescriptor);
 		}
 
 		return result;
@@ -806,6 +923,26 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		NODE, CONNECTION;
 	}
 
+	private final class ChildrenKindStack {
+		private final ChildrenKind kind;
+		private final ChildrenKindStack parent;
+
+		ChildrenKindStack(ChildrenKind kind) {
+			super();
+
+			this.kind = kind;
+			this.parent = currentChildrenKind;
+		}
+
+		ChildrenKind kind() {
+			return kind;
+		}
+
+		ChildrenKindStack parent() {
+			return parent;
+		}
+	}
+
 	protected static abstract class PostCreationWrapperCommand<A> extends GEFCommandWrapper {
 		public PostCreationWrapperCommand(Command command) {
 			super(command);
@@ -845,14 +982,50 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		}
 
 		protected void postProcessView(Object viewish, A accumulator) {
-			Optional<View> view = AdapterUtils.adapt(viewish, View.class);
-			if (view.isPresent()) {
-				postProcessView(view.get(), accumulator);
+			View view = PlatformHelper.getAdapter(viewish, View.class);
+			if (view != null) {
+				postProcessView(view, accumulator);
 			}
 		}
 
 		protected void postProcessView(View view, A accumulator) {
 			// Pass
+		}
+	}
+
+	private class ChildNodeDescriptor extends CreateViewRequest.ViewDescriptor {
+
+		private final EditPart parentEditPart;
+
+		public ChildNodeDescriptor(IAdaptable elementAdapter, String factoryHint, int index, EditPart parentEditPart) {
+			super(elementAdapter, Node.class, factoryHint, index, host().getDiagramPreferencesHint());
+
+			this.parentEditPart = parentEditPart;
+		}
+
+		EditPart getParentEditPart() {
+			return parentEditPart;
+		}
+	}
+
+	private class ChildConnectionDescriptor extends CreateConnectionViewRequest.ConnectionViewDescriptor {
+
+		private final EditPart sourceEditPart;
+		private final EditPart targetEditPart;
+
+		public ChildConnectionDescriptor(IAdaptable elementAdapter, String factoryHint, int index, EditPart sourceEditPart, EditPart targetEditPart) {
+			super(elementAdapter, factoryHint, index, host().getDiagramPreferencesHint());
+
+			this.sourceEditPart = sourceEditPart;
+			this.targetEditPart = targetEditPart;
+		}
+
+		EditPart getSourceEditPart() {
+			return sourceEditPart;
+		}
+
+		EditPart getTargetEditPart() {
+			return targetEditPart;
 		}
 	}
 }

@@ -140,6 +140,8 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			return createCustomDiagramUpdaterSingleton();
 		case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE:
 			return createSpecificNodePlate();
+		case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER:
+			return createGenVisualTypeProvider();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -455,6 +457,18 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public SpecificNodePlate createSpecificNodePlate() {
 		SpecificNodePlateImpl specificNodePlate = new SpecificNodePlateImpl();
 		return specificNodePlate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public GenVisualTypeProvider createGenVisualTypeProvider() {
+		GenVisualTypeProviderImpl genVisualTypeProvider = new GenVisualTypeProviderImpl();
+		return genVisualTypeProvider;
 	}
 
 	/**

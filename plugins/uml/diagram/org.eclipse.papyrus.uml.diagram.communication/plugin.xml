@@ -733,12 +733,6 @@
                 editPart="org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN"
                 class="org.eclipse.papyrus.uml.diagram.communication.custom.canonical.LifelineSemanticChildrenStrategy">
         </semanticChildrenStrategy>
-        <creationTargetStrategy
-                class="org.eclipse.papyrus.uml.diagram.communication.custom.canonical.CommunicationCanonicalCreationTargetStrategy">
-            <enablement>
-                <instanceof value="org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN"/>
-            </enablement>
-        </creationTargetStrategy>
         <visualChildrenStrategy
                 editPart="org.eclipse.papyrus.uml.diagram.communication.edit.parts.LifelineEditPartCN"
                 class="org.eclipse.papyrus.uml.diagram.communication.custom.canonical.LifelineVisualChildrenStrategy">
@@ -761,6 +755,14 @@
              target="1.2.0">
        </diagramReconciler>
 </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.communication.providers.UMLVisualTypeProvider"
+            diagramType="PapyrusUMLCommunicationDiagram">
+         </visualTypeProvider>
+   </extension>
+
 
 
 </plugin>

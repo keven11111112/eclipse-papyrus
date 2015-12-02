@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.gmfgenextension/src" modelPluginID="org.eclipse.papyrus.gmfgenextension"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2015 CEA LIST and others.&#xA;&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA;Contributors:&#xA;  CEA LIST - Initial API and implementation&#xA;"
+    modelDirectory="/org.eclipse.papyrus.gmfgenextension/src" modelPluginID="org.eclipse.papyrus.gmfgenextension"
     modelName="PapyrusGmfgenExtension" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.papyrus.domaincontextcodegen/resource/DomainContext.genmodel#//domaincontextcodegen platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.genmodel#//gmfgen">
+    complianceLevel="8.0" copyrightFields="false" usedGenPackages="../../org.eclipse.papyrus.domaincontextcodegen/resource/DomainContext.genmodel#//domaincontextcodegen platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel platform:/plugin/org.eclipse.gmf.codegen/models/gmfgen.genmodel#//gmfgen">
   <foreignModel>papyrusGmfgenExtension.ecore</foreignModel>
   <genPackages prefix="Papyrusgmfgenextension" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
       ecorePackage="papyrusGmfgenExtension.ecore#/">
@@ -94,5 +95,16 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//ExternalMetamodelType/elementTypeRef"/>
     </genClasses>
     <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//GenerateUsingElementTypeCreationCommand"/>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//CustomDiagramUpdaterSingleton">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//CustomDiagramUpdaterSingleton/singletonPath"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//SpecificNodePlate">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//SpecificNodePlate/editParts"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//SpecificNodePlate/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//SpecificNodePlate/nodePlateQualifiedName"/>
+    </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//GenVisualTypeProvider">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//GenVisualTypeProvider/className"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

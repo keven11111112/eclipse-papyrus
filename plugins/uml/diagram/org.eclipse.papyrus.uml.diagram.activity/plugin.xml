@@ -3324,25 +3324,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          path="model/activityDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
-<extension
-      point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
-   <creationTargetStrategy
-         class="org.eclipse.papyrus.uml.diagram.activity.canonical.ActivityCanonicalCreationTargetStrategy">
-      <enablement>
-         <with
-               variable="element">
-            <or>
-               <instanceof
-                     value="org.eclipse.uml2.uml.Pin">
-               </instanceof>
-               <instanceof
-                     value="org.eclipse.uml2.uml.ActivityGroup">
-               </instanceof>
-            </or>
-         </with>
-      </enablement>
-   </creationTargetStrategy>
-</extension>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
       <?gmfgen generated="false"?>
    </extension>
@@ -3366,6 +3347,14 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          target="1.2.0">
    </diagramReconciler>
 </extension>
+   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <?gmfgen generated="true"?>
+      <visualTypeProvider
+            class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLVisualTypeProvider"
+            diagramType="PapyrusUMLActivityDiagram">
+         </visualTypeProvider>
+   </extension>
+
 
 <extension
       point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">

@@ -909,4 +909,12 @@
 <!-- // End of user code 
   -->
 
+
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
+      <visualTypeProvider
+            class="org.eclipse.papyrus.sysml.diagram.requirement.provider.RequirementVisualTypeProvider"
+            diagramType="RequirementDiagram">
+      </visualTypeProvider>
+   </extension>
 </plugin>

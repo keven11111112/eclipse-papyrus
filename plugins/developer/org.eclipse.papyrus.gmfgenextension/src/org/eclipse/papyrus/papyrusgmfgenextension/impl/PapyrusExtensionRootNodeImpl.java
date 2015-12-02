@@ -22,10 +22,10 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Papyrus Extension Root Node</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusExtensionRootNodeImpl#getExtensionNodes <em>Extension Nodes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

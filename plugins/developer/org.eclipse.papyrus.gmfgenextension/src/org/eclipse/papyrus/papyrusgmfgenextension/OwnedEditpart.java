@@ -14,10 +14,10 @@ package org.eclipse.papyrus.papyrusgmfgenextension;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getOwnedEditpart()
  * @model

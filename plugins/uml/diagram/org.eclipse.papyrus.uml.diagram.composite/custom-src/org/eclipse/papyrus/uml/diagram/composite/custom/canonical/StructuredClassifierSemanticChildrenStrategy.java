@@ -15,8 +15,10 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.canonical;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.StructuredClassifier;
 
 /**
@@ -41,6 +43,12 @@ public class StructuredClassifierSemanticChildrenStrategy extends DefaultUMLSema
 			// features (parts, ports, connectors), remembering that connectors are handled by
 			// the getCanonicalSemanticConnections(...) method for connectable elements
 			result = new java.util.ArrayList<>(composite.getOwnedAttributes());
+
+			// But, we only visualize ports on the borders of the composite frame and parts
+			// (not as parts: they're not that kind of attribute)
+			if (viewFromEditPart instanceof DecorationNode) {
+				result.removeIf(Port.class::isInstance);
+			}
 		}
 
 		return result;

@@ -8,7 +8,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -58,8 +58,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,
- 4.0.0)",
+ org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,4.0.0)",
  org.eclipse.papyrus.uml.diagram.menu;bundle-version="1.2.0",
  org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.2.0",
  org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.2.0",

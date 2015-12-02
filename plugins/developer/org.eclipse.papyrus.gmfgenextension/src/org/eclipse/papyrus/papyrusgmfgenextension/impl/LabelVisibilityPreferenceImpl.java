@@ -24,6 +24,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getRole <em>Role</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getIconPathRole <em>Icon Path Role</em>}</li>
@@ -31,7 +32,6 @@ import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#getExternalNodeLabels <em>External Node Labels</em>}</li>
  * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl#isVisibleByDefault <em>Visible By Default</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
