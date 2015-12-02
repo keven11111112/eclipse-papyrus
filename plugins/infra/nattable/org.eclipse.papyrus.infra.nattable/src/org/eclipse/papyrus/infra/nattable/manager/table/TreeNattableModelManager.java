@@ -34,6 +34,7 @@ import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.configuration.TreeTableClickSortConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.TreeTablePopupMenuConfiguration;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
@@ -143,6 +144,15 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		this(rawModel, new ObjectsSelectionExtractor());
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#registerPopupMenuConfiguration(org.eclipse.nebula.widgets.nattable.NatTable)
+	 *
+	 * @param natTable
+	 */
+	@Override
+	protected void registerPopupMenuConfiguration(final NatTable natTable) {
+		natTable.addConfiguration(new TreeTablePopupMenuConfiguration());
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#createHorizontalElementList()
@@ -463,9 +473,9 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			this.hideShowCategoriesListener = null;
 		}
 		final List<IAxis> iAxis;
-		if(null == getHorizontalAxisProvider()){
+		if (null == getHorizontalAxisProvider()) {
 			iAxis = null;
-		}else{
+		} else {
 			iAxis = getHorizontalAxisProvider().getAxis();
 		}
 

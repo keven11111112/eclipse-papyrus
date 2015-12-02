@@ -25,18 +25,27 @@ import org.eclipse.swt.SWT;
  * Adapted code from AbstractHeaderMenuConfiguration
  *
  * @author vl222926
- *
+ * 
+ * @deprecated since Papyrus 1.2 (Eclipse Neon), Use TablePopupMenuConfiguration instead or a subclass)
  */
+@Deprecated
 public class PapyrusHeaderMenuConfiguration extends AbstractUiBindingConfiguration {
 
 	/**
 	 * the category used for the column command
+	 * 
+	 * @deprecated with no replacement, because useless now
+	 * 
 	 */
+	@Deprecated
 	public static final String COLUMN_COMMANDS_CATEGORY_ID = "org.eclipse.papyrus.infra.nattable.columns.command.category"; //$NON-NLS-1$
 
 	/**
 	 * the category used for the row command
+	 * 
+	 * @deprecated with no replacement, because useless now
 	 */
+	@Deprecated
 	public static final String ROW_COMMANDS_CATEGORY_ID = "org.eclipse.papyrus.infra.nattable.rows.command.category"; //$NON-NLS-1$
 
 

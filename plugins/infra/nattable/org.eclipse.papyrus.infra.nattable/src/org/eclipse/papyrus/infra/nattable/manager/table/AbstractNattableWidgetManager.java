@@ -37,9 +37,6 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.jface.action.GroupMarker;
-import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -88,9 +85,9 @@ import org.eclipse.papyrus.infra.nattable.configuration.ClearSelectionUIBindingC
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
-import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.RowSortModelConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.TableClickSortConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.TablePopupMenuConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractCompositeDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.BodyDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnIndexHeaderDataProvider;
@@ -105,6 +102,7 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
+import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
@@ -150,7 +148,6 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.services.IDisposable;
@@ -161,16 +158,6 @@ import org.eclipse.ui.services.IDisposable;
  *
  */
 public abstract class AbstractNattableWidgetManager implements INattableModelManager, NavigationTarget, IAdaptable {
-
-	/**
-	 * the table popup menu id
-	 */
-	public static final String TABLE_POPUP_MENU_ID = "org.eclipse.papyrus.infra.nattable.widget.menu"; //$NON-NLS-1$
-
-	/**
-	 * the string popup used to declare the menu location
-	 */
-	public static final String POPUP = "popup"; //$NON-NLS-1$
 
 	/**
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
@@ -368,7 +355,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 		// we register nattable configuration
-		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
+		registerPopupMenuConfiguration(this.natTable);
+
 		addClickSortConfiguration(this.natTable);
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
 		this.natTable.addConfiguration(new RowSortModelConfiguration(getRowSortModel()));
@@ -419,6 +407,16 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
 		initResourceSetListener();
 		return this.natTable;
+	}
+
+	/**
+	 * Register the menu configuration for the table
+	 * 
+	 * @param natTable
+	 *            the nattable to configure
+	 */
+	protected void registerPopupMenuConfiguration(final NatTable natTable) {
+		natTable.addConfiguration(new TablePopupMenuConfiguration());
 	}
 
 	/**
@@ -661,7 +659,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * 		This method creates the MenuManager used for theBody of the table and register it, with the selection provider in the {@link IWorkbenchPartSite} of the editor when not <code>null</code>
 	 */
 	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(final NatTable natTable, final IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
-		final MenuManager menuManager = new MenuManager(POPUP, TABLE_POPUP_MENU_ID);
+		final MenuManager menuManager = new MenuManager(MenuConstants.POPUP, MenuConstants.TABLE_POPUP_MENU_ID);
 		menuManager.setRemoveAllWhenShown(true);
 
 		final Menu menu = menuManager.createContextMenu(this.natTable);
@@ -1209,7 +1207,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.tableEditingDomain = null;
 		this.contextEditingDomain = null;
 		this.tableContext = null;
-		if(this.natTable!=null){
+		if (this.natTable != null) {
 			this.natTable.dispose();
 		}
 	}

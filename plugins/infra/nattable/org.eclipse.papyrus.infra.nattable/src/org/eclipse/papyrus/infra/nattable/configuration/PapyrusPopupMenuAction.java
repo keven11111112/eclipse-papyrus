@@ -56,7 +56,9 @@ import org.eclipse.ui.handlers.IHandlerService;
  *
  * @author vl222926
  *
+ * @deprecated since Papyrus 1.2 (Eclipse Neon)
  */
+@Deprecated
 public class PapyrusPopupMenuAction extends PopupMenuAction {
 
 	/** the category of the commands to add to this menu */
