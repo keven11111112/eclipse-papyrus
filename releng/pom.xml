@@ -27,7 +27,7 @@
 		<nebula-tablecombo.repo.url>${eclipse.download}/technology/nebula/archives/Q12015/release/</nebula-tablecombo.repo.url>
 
 		<!-- manualUpdate -->
-		<orbit.repo.url>${eclipse.download}/tools/orbit/downloads/drops/R20150519210750/repository</orbit.repo.url>
+		<orbit.repo.url>${eclipse.download}/tools/orbit/downloads/drops/R20150821153341/repository</orbit.repo.url>
 
 		<!-- updateFrom("Extended Editing Framework (EEF)",0) -->
 		<eef.repo.url>${eclipse.download}/modeling/emft/eef/updates/milestones/1.5/S201505291308/</eef.repo.url>
