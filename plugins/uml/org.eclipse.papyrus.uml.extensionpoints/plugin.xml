@@ -25,6 +25,16 @@
       </profile>
    </extension>
    <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="OCL for UML profile"
+            path="pathmap://OCL_PROFILES/OCLforUML.profile.uml"
+            iconpath="icons/ocl.gif"
+            name="OCL for UML"
+            provider="Eclipse Modeling Project">
+      </profile>
+   </extension>
+   <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLLibrary">
       <library
             description="Standard UML primitive types Library "
