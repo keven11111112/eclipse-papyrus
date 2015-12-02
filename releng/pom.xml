@@ -18,6 +18,7 @@
 		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
 		<skipAllTests>false</skipAllTests>
 		<skipInnerTests>true</skipInnerTests>
+		<eclipse.download>http://download.eclipse.org</eclipse.download><!-- Set to file:/home/data/httpd/download.eclipse.org when building on Eclipse servers to improve performances -->
 	</properties>
 	
 	<modules>
