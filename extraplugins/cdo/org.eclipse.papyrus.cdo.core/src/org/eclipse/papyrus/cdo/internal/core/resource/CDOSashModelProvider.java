@@ -12,14 +12,11 @@
 package org.eclipse.papyrus.cdo.internal.core.resource;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
-import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
-import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.AbstractSashModelProvider;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
@@ -52,7 +49,7 @@ public class CDOSashModelProvider extends AbstractSashModelProvider {
 	}
 
 	public CDOSashModelProvider initialize(CDOCheckout checkout) {
-		indexFolder = new Path(checkout.getStateFolder("sashidx").toString());
+		indexFolder = SASH_MODEL_STORAGE_ROOT.append(checkout.getView().getSession().getRepositoryInfo().getUUID());
 		return this;
 	}
 
