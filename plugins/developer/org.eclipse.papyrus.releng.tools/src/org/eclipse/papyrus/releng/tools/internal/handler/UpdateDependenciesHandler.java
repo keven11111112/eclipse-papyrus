@@ -10,7 +10,7 @@
  *     Camille Letavernier (CEA LIST) - camille.letavernier@cea.fr - Generalize to handle POMs
  *     Christian W. Damus (CEA) - Add support for updating Oomph setup models
  *     Christian W. Damus - Support updating of multiple selected files
- *     
+ *
  *******************************************************************************/
 package org.eclipse.papyrus.releng.tools.internal.handler;
 
@@ -18,6 +18,7 @@ import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -201,8 +202,8 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 	protected boolean updateFile(IFile selectedFile, Aggregation aggregationModel, Shell activeShell, Map<Object, Object> context) throws CoreException {
 		boolean result = false;
 
-		DependencyUpdater updater = findDependencyUpdater(selectedFile);
-		if (updater != null) {
+		List<DependencyUpdater> updaters = findDependencyUpdater(selectedFile);
+		for (DependencyUpdater updater : updaters) {
 			updater.updateDocument(activeShell, selectedFile, aggregationModel.getAllContributions(true), context);
 			result = true;
 		}
@@ -210,9 +211,9 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 		return result;
 	}
 
-	protected DependencyUpdater findDependencyUpdater(IFile mapFile) throws CoreException {
+	protected List<DependencyUpdater> findDependencyUpdater(IFile mapFile) throws CoreException {
 		final String path = "org/eclipse/papyrus/releng/tools/internal/popup/actions/"; //$NON-NLS-1$
-		DependencyUpdater result = null;
+
 		Bundle bundle = Activator.getDefault().getBundle();
 
 		// Try dev mode, first
@@ -221,6 +222,8 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 			// Deployed mode
 			urls = bundle.findEntries(path, "*.class", false);
 		}
+
+		List<DependencyUpdater> updaters = new LinkedList<>();
 
 		while (urls.hasMoreElements()) {
 			URL classURL = urls.nextElement();
@@ -233,8 +236,7 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 					if (!Modifier.isAbstract(updaterClass.getModifiers())) {
 						DependencyUpdater updater = updaterClass.newInstance();
 						if (updater.canUpdate(mapFile)) {
-							result = updater;
-							break;
+							updaters.add(updater);
 						}
 					}
 				}
@@ -245,6 +247,6 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 			}
 		}
 
-		return result;
+		return updaters;
 	}
 }

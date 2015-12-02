@@ -12,13 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.releng.tools.internal.popup.actions;
 
-import java.util.Map;
-
-import org.eclipse.b3.aggregator.Contribution;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.swt.widgets.Shell;
 import org.w3c.dom.Node;
 
 
@@ -45,6 +39,9 @@ public class PomPropertiesUpdater extends DependencyUpdater {
 
 	@Override
 	protected void updateUri(Node uri, String location) {
+		if (location.startsWith("http://download.eclipse.org")) {
+			location = location.replace("http://download.eclipse.org", "${eclipse.download}");
+		}
 		uri.setTextContent(location);
 	}
 

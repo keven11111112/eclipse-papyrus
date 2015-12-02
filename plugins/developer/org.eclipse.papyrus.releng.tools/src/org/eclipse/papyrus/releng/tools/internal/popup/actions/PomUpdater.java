@@ -39,6 +39,9 @@ public class PomUpdater extends DependencyUpdater {
 
 	@Override
 	protected void updateUri(Node uri, String location) {
+		if (location.startsWith("http://download.eclipse.org")) {
+			location = location.replace("http://download.eclipse.org", "${eclipse.download}");
+		}
 		uri.setTextContent(location);
 	}
 
