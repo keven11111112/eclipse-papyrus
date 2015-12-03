@@ -87,6 +87,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.Paste
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteCellsOverwriteFailRows_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteAll_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteAll_V1_V3_V1_MultiColumns_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteFailRows_H1_H1_H1_MultiColumns_Test;
@@ -310,6 +311,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteColumnsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
 		PasteColumnsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
 		PasteColumnsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
+		PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test.class,
 		PasteColumnsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test.class,
 		PasteColumnsOverwriteFailRows_H1_H1_H1_MultiColumns_Test.class,
 

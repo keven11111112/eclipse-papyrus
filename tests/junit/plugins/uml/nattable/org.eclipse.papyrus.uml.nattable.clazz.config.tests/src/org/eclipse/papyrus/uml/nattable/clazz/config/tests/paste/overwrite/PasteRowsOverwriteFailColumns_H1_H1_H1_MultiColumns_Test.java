@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.junit.Assert;
@@ -43,7 +43,7 @@ public class PasteRowsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test extends Ab
 	@Override
 	public void manageSelection(final NattableModelManager manager) throws Exception {
 		super.manageSelection(manager);
-		manager.getBodyLayerStack().getSelectionLayer().doCommand(new SelectColumnCommand(manager.getBodyLayerStack().getSelectionLayer(), 0, 11, true, false));
+		manager.getBodyLayerStack().getSelectionLayer().doCommand(new SelectRowsCommand(manager.getBodyLayerStack().getSelectionLayer(), 0, 11, true, false));
 	}
 
 	/**

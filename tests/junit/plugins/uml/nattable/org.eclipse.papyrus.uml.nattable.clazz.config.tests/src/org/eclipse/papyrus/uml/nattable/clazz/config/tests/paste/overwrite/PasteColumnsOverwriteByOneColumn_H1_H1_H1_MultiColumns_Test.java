@@ -13,16 +13,15 @@
 
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
+import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.selection.command.ClearAllSelectionsCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.messages.Messages;
-import org.junit.Assert;
 
 /**
- * Test pastes overwrite when the number of rows to paste is not equals to the number of rows selected.
+ * Test pastes overwrite all of selection with hidden categories when a single column is copied.
  */
-public class PasteRowsOverwriteFailRows_H1_H1_H1_MultiColumns_Test extends AbstractPasteRowsOverwriteTest {
+public class PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test extends AbstractPasteColumnsOverwriteTest {
 
 	/**
 	 * {@inheritDoc}
@@ -31,7 +30,7 @@ public class PasteRowsOverwriteFailRows_H1_H1_H1_MultiColumns_Test extends Abstr
 	 */
 	@Override
 	public String removeClassName(final String className) throws Exception {
-		return className.replaceFirst("PasteRowsOverwriteFailRows_", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		return className.replaceFirst("PasteColumnsOverwriteByOneColumn_", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
@@ -42,19 +41,9 @@ public class PasteRowsOverwriteFailRows_H1_H1_H1_MultiColumns_Test extends Abstr
 	 */
 	@Override
 	public void manageSelection(final NattableModelManager manager) throws Exception {
-		super.manageSelection(manager);
-		manager.getBodyLayerStack().getSelectionLayer().doCommand(new SelectRowsCommand(manager.getBodyLayerStack().getSelectionLayer(), 0, 10, true, false));
+		final NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
+		natTable.doCommand(new ClearAllSelectionsCommand());
+		manager.getBodyLayerStack().getSelectionLayer().doCommand(new SelectColumnCommand(manager.getBodyLayerStack().getSelectionLayer(), 3, 0, false, false));
+		manager.getBodyLayerStack().getSelectionLayer().doCommand(new SelectColumnCommand(manager.getBodyLayerStack().getSelectionLayer(), 5, 0, true, false));
 	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.AbstractPasteOverwriteTest#checkReturned_Status(org.eclipse.core.runtime.IStatus)
-	 */
-	@Override
-	protected void checkReturned_Status(final IStatus status) {
-		Assert.assertEquals("Error must be caught", IStatus.ERROR, status.getSeverity()); //$NON-NLS-1$
-		Assert.assertEquals("Error message is not the expected message", Messages.AbstractPasteInSelectionNattableCommandProvider_readrowsexceedsexistingrows, status.getMessage()); //$NON-NLS-1$
-	}
-
 }

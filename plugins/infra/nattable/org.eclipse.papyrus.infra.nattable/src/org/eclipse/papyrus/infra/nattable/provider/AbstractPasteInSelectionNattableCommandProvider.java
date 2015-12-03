@@ -663,7 +663,34 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 					if (IStatus.ERROR != canPasteStatus.getSeverity()) {
 						resultCommand = getPasteColumnsFromStringCommand(contextEditingDomain, tableEditingDomain, fullySelectedColumns, openDialog, progressMonitor, sharedMap, attachedMode);
 					} else {
-						resultCommand = new ErrorTransactionalCommand(contextEditingDomain, PASTE_COMMAND_NAME, null, canPasteStatus);
+						// If only one row is pasted in the columns,
+						// transpose the pastedValues to try to repeat for each row in the table
+						final Map<Object, List<String>> returnedPastedValues = new LinkedHashMap<Object, List<String>>();
+						if(!pastedValues.isEmpty()){
+							for(Object o : pastedValues.keySet()){
+								int i = 0;
+								for(String s : pastedValues.get(o)){
+									if(null == returnedPastedValues.get(i)){
+										returnedPastedValues.put(i, new ArrayList<String>());
+									}
+									returnedPastedValues.get(i).add(s);
+									i++;
+								}
+							}
+							pastedValues = returnedPastedValues;
+							
+							// The number of columns must be the same to repeat it
+							if(pastedValues.size() == 1 && fullySelectedColumns.size() == pastedValues.get(pastedValues.keySet().iterator().next()).size()){
+								this.isSingleAxisPasted = true;
+								this.numberSelectedAxis = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowCount();
+								resultCommand = getPasteCellsRowFromStringCommand(contextEditingDomain, tableEditingDomain, tableSelectionWrapper.getSelectedCells(), openDialog, progressMonitor, sharedMap, attachedMode);
+							}
+						}
+						
+						// If we can't repeat (not only one line or not the same number of columns), return the error message
+						if(null == resultCommand){
+							resultCommand = new ErrorTransactionalCommand(contextEditingDomain, PASTE_COMMAND_NAME, null, canPasteStatus);
+						}
 					}
 				} else {
 					final Collection<PositionCoordinate> selectedCells = tableSelectionWrapper.getSelectedCells();
@@ -892,11 +919,6 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 					pastedValues.get(nbColumnReadByRow).add(cellIter.next());
 					nbColumnReadByRow++;
 				}
-			} else {
-				if (null == pastedValues.get(nbColumnReadByRow)) {
-					pastedValues.put(nbColumnReadByRow, new ArrayList<String>());
-				}
-				pastedValues.get(nbColumnReadByRow).add(null);
 			}
 			nbColumnRead = nbColumnRead >= nbColumnReadByRow ? nbColumnRead : nbColumnReadByRow;
 			nbRowRead++;
@@ -910,7 +932,10 @@ public abstract class AbstractPasteInSelectionNattableCommandProvider implements
 		// - The rows numbers are not equals -> Error
 		// - The column read is alone -> Continue and repeat the column pasted
 		// - The columns numbers are not equals -> Error
-		if (nbRowRead != nbRowsSelected) {
+		/*if (1 == nbRowRead && nbColumnsSelected == nbColumnRead){
+			this.isSingleAxisPasted = true;
+			this.numberSelectedAxis = nbRowsSelected;
+		}else*/ if (nbRowRead != nbRowsSelected) {
 			result = new Status(Status.ERROR, Activator.PLUGIN_ID, Messages.AbstractPasteInSelectionNattableCommandProvider_readrowsexceedsexistingrows);
 		} else if (1 == nbColumnRead && 1 < nbColumnsSelected) {
 			this.isSingleAxisPasted = true;

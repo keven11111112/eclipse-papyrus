@@ -55,6 +55,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.nattable.Activator;
@@ -286,8 +288,10 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				CheckedOperationHistory.getInstance().execute(pasteCommand, new NullProgressMonitor(), null);
 			} catch (final ExecutionException e) {
 				Activator.log.error(e);
+			} finally {
+				sharedMap.clear();
+				tableManager = null;
 			}
-			sharedMap.clear();
 		} else {
 			// we create a job in order to don't freeze the UI
 			final UIJob job = new UIJob(pasteJobName) {
@@ -297,21 +301,33 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 
 					final ICommand pasteCommand = getPasteFromStringCommandInDetachedMode(contextEditingDomain, tableEditingDomain, monitor, sharedMap);
 					if (pasteCommand == null) {
+						tableManager = null;
 						return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, PASTE_COMMAND_HAS_BEEN_CANCELLED);
 					}
 					// we execute the paste command
 					if (pasteCommand.canExecute()) {
 						try {
+							int initialRowsSize = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowCount();
+
 							CheckedOperationHistory.getInstance().execute(pasteCommand, monitor, null);
+
+
+							int finalRowsSize = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowCount();
+
+							final SelectionLayer selectionLayer = tableManager.getBodyLayerStack().getSelectionLayer();
+							selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, initialRowsSize, false, false));
+							selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, finalRowsSize, true, false));
 						} catch (final ExecutionException e) {
 							return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occured during the paste", e); //$NON-NLS-1$
 						} finally {
+							tableManager = null;
 							sharedMap.clear();
 						}
 						monitor.done();
 						return Status.OK_STATUS;
 					} else {
 						sharedMap.clear();
+						tableManager = null;
 						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, PASTE_COMMAND_CANT_BE_EXECUTED);
 					}
 				}
@@ -333,6 +349,8 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				CheckedOperationHistory.getInstance().execute(pasteCommand, new NullProgressMonitor(), null);
 			} catch (final ExecutionException e) {
 				Activator.log.error(e);
+			} finally {
+				tableManager = null;
 			}
 		} else {
 			// we create a job in order to don't freeze the UI
@@ -343,18 +361,30 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 
 					final ICommand pasteCommand = getPasteFromStringCommandInAttachedMode(contextEditingDomain, tableEditingDomain, monitor);
 					if (pasteCommand == null) {
+						tableManager = null;
 						return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, PASTE_COMMAND_HAS_BEEN_CANCELLED);
 					}
 					// we execute the paste command
 					if (pasteCommand.canExecute()) {
 						try {
+							int initialRowsSize = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowCount();
+
 							CheckedOperationHistory.getInstance().execute(pasteCommand, monitor, null);
+
+							int finalRowsSize = tableManager.getBodyLayerStack().getRowHideShowLayer().getRowCount();
+
+							final SelectionLayer selectionLayer = tableManager.getBodyLayerStack().getSelectionLayer();
+							selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, initialRowsSize, false, false));
+							selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, finalRowsSize, true, false));
 						} catch (final ExecutionException e) {
 							return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occured during the paste", e); //$NON-NLS-1$
+						} finally {
+							tableManager = null;
 						}
 						monitor.done();
 						return Status.OK_STATUS;
 					} else {
+						tableManager = null;
 						return new Status(IStatus.ERROR, Activator.PLUGIN_ID, PASTE_COMMAND_CANT_BE_EXECUTED);
 					}
 				}
@@ -846,7 +876,6 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 	 */
 	private void localDispose() {
 		this.isDisposed = true;
-		this.tableManager = null;
 		this.typeToCreate = null;
 		this.containmentFeature = null;
 		for (final AbstractStringValueConverter current : existingConverters.values()) {

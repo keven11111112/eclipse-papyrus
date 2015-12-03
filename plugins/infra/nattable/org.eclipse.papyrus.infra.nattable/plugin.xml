@@ -1758,7 +1758,7 @@
       </image>
       <image
             commandId="org.eclipse.papyrus.infra.nattable.row.insert"
-            icon="icons/insert_row.gif">
+            icon="icons/insert.gif">
       </image>
       <image
             commandId="org.eclipse.papyrus.infra.nattable.insert"

@@ -5,8 +5,8 @@
     <intListValue>1</intListValue>
     <intListValue>2</intListValue>
   </styles>
-  <context xmi:type="uml:Model" href="PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
-  <owner xmi:type="uml:Model" href="PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
+  <context xmi:type="uml:Model" href="PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
+  <owner xmi:type="uml:Model" href="PasteColumnsOverwriteByOneColumn_H1_H1_H1_MultiColumns_Test.uml#_yDlxwHucEeSTu_GUJ96b9g"/>
   <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/classTreeTable.configuration#_P3J1cEr7EeSVGbM3cmVSqQ"/>
   <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#/"/>
   <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_zDRtIXucEeSTu_GUJ96b9g" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider">
@@ -18,13 +18,21 @@
       <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
       <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/visibility"/>
     </axis>
+    <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_c9O5wXrxEeSFP8xW-pegcg">
+      <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
+      <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Parameter/direction"/>
+    </axis>
     <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_c9O5wHrxEeSFP8xW-pegcg">
       <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
       <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//RedefinableElement/isLeaf"/>
     </axis>
-    <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_c9O5wXrxEeSFP8xW-pegcg">
+    <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_cJYNEGlFEeWEcZU4lwyzjA">
       <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-      <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Parameter/direction"/>
+      <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier/isAbstract"/>
+    </axis>
+    <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_cJYNEWlFEeWEcZU4lwyzjA">
+      <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
+      <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/isActive"/>
     </axis>
   </columnAxisProvidersHistory>
   <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_zDRtI3ucEeSTu_GUJ96b9g" description="This axis provider manages the rows, according to the wanted hierarchy" name="HierarchicalRowaAxisManager" disconnectSlave="true"/>
@@ -47,12 +55,8 @@
       </axisUsedAsAxisProvider>
       <labelProvider xmi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.1"/>
     </ownedAxisConfigurations>
-    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_BOaEMHufEeSTu_GUJ96b9g" detachedMode="false" pastedElementId="org.eclipse.papyrus.uml.Class">
+    <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_BOaEMHufEeSTu_GUJ96b9g" pastedElementId="org.eclipse.papyrus.uml.Class">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-      <axisIdentifier xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_vxwyIILREeWLaq02JKSl_g">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-      </axisIdentifier>
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_BOaEMnufEeSTu_GUJ96b9g" pastedElementId="org.eclipse.papyrus.uml.Operation">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/ownedOperation"/>

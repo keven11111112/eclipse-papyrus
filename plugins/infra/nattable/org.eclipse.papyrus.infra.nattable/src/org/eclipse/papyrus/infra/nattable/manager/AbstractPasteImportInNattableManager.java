@@ -439,7 +439,16 @@ public abstract class AbstractPasteImportInNattableManager extends AbstractPaste
 		IStatus resultStatus = Status.OK_STATUS;
 
 		PasteNattableCommandProvider commandProvider = null;
-		if (null != tableSelectionWrapper) {
+
+		if (!isPasteWithOverwrite) {
+			switch (status.getPasteMode()) {
+			case PASTE_EOBJECT_ROW:
+				commandProvider = new PasteEObjectTreeAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
+				break;
+			default:
+				break;
+			}
+		} else if (null != tableSelectionWrapper) {
 			switch (status.getPasteMode()) {
 			case PASTE_EOBJECT_ROW:
 				commandProvider = new PasteInSelectionTreeNattableCommandProvider(manager, false, false, reader, this.pasteHelper, this.tableSelectionWrapper, this.preferredUserAction, totalSize);
@@ -450,17 +459,10 @@ public abstract class AbstractPasteImportInNattableManager extends AbstractPaste
 			default:
 				break;
 			}
-		} else if (isPasteWithOverwrite) {
-			commandProvider = new PasteInSelectionTreeNattableCommandProvider(manager, PasteModeEnumeration.PASTE_EOBJECT_COLUMN.equals(status.getPasteMode()), true, reader, this.pasteHelper, this.tableSelectionWrapper, this.preferredUserAction, totalSize);
 		} else {
-			switch (status.getPasteMode()) {
-			case PASTE_EOBJECT_ROW:
-				commandProvider = new PasteEObjectTreeAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
-				break;
-			default:
-				break;
-			}
+			commandProvider = new PasteInSelectionTreeNattableCommandProvider(manager, PasteModeEnumeration.PASTE_EOBJECT_COLUMN.equals(status.getPasteMode()), true, reader, this.pasteHelper, this.tableSelectionWrapper, this.preferredUserAction, totalSize);
 		}
+
 		if (null != commandProvider) {
 			resultStatus = commandProvider.executePasteFromStringCommand(useProgressMonitorDialog, openDialog);
 		}
@@ -488,7 +490,16 @@ public abstract class AbstractPasteImportInNattableManager extends AbstractPaste
 		IStatus resultStatus = Status.OK_STATUS;
 
 		PasteNattableCommandProvider commandProvider = null;
-		if (null != tableSelectionWrapper) {
+
+		if (!isPasteWithOverwrite) {
+			switch (status.getPasteMode()) {
+			case PASTE_EOBJECT_ROW:
+				commandProvider = new PasteEObjectAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
+				break;
+			default:
+				break;
+			}
+		} else if (null != tableSelectionWrapper) {
 			switch (status.getPasteMode()) {
 			case PASTE_EOBJECT_ROW:
 				commandProvider = new PasteInSelectionNattableCommandProvider(manager, false, false, reader, pasteHelper, tableSelectionWrapper, this.preferredUserAction, totalSize);
@@ -499,18 +510,10 @@ public abstract class AbstractPasteImportInNattableManager extends AbstractPaste
 			default:
 				break;
 			}
-		}else if (isPasteWithOverwrite) {
-			commandProvider = new PasteInSelectionNattableCommandProvider(manager, PasteModeEnumeration.PASTE_EOBJECT_COLUMN.equals(status.getPasteMode()), true, reader, pasteHelper, tableSelectionWrapper, this.preferredUserAction, totalSize);
 		} else {
-			switch (status.getPasteMode()) {
-			case PASTE_EOBJECT_ROW:
-				commandProvider = new PasteEObjectAxisInNattableCommandProvider(manager, false, reader, this.pasteHelper, totalSize);
-				break;
-			default:
-				break;
-			}
+			commandProvider = new PasteInSelectionNattableCommandProvider(manager, PasteModeEnumeration.PASTE_EOBJECT_COLUMN.equals(status.getPasteMode()), true, reader, pasteHelper, tableSelectionWrapper, this.preferredUserAction, totalSize);
 		}
-		
+
 		if (commandProvider != null) {
 			resultStatus = commandProvider.executePasteFromStringCommand(useProgressMonitorDialog, openDialog);
 		}
