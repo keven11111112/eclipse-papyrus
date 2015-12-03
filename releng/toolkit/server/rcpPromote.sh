@@ -1,4 +1,3 @@
-##!/bin/bash
 #Based upon Gef4 publish.sh script
 
 #causes the shell to exit if any subcommand or pipeline returns a non-zero status.
@@ -156,6 +155,8 @@ fi
 
 cd $localRCPRoot
 tmpdir=$localRCPRoot/tmp
+#Clean if already exists
+rm -rf $tmpdir
 mkdir $tmpdir
 
 for f in *win*; do
