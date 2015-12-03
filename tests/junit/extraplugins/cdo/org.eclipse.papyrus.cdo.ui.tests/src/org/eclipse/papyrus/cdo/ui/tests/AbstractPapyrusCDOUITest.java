@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *   Christian W. Damus (CEA) - bug 422257
  *   Christian W. Damus (CEA) - bug 432813
  *   Eike Stepper (CEA) - bug 466520
+ *   Christian W. Damus - bug 434983
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.ui.tests;
@@ -85,6 +86,9 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 
 	private DiagramDocumentEditor lastDiagramEditor;
 
+	@SuppressWarnings("restriction")
+	private org.eclipse.papyrus.infra.core.internal.preferences.YesNo initialSashStoragePreference;
+
 	public AbstractPapyrusCDOUITest() {
 		super();
 	}
@@ -140,6 +144,13 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 		close(getCheckout(), transaction);
 	}
 
+	@SuppressWarnings("restriction")
+	@Before
+	public void suppressSashLayoutMigrationDialog() {
+		initialSashStoragePreference = org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.core.internal.preferences.YesNo.NO);
+	}
+
 	@After
 	public void closeEditors() {
 		flushDisplayEvents();
@@ -160,6 +171,12 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 		lastDiagramEditor = null;
 
 		flushDisplayEvents();
+	}
+
+	@SuppressWarnings("restriction")
+	@After
+	public void restoreSashLayoutMigrationDialog() {
+		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialSashStoragePreference);
 	}
 
 	private void importResource(CDOTransaction transaction, String srcPath, String dstPath, Map<? super Resource, ? super Resource> importMap) {
@@ -240,7 +257,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	}
 
 	protected IDawnEditor getDawnEditor() {
-		return (IDawnEditor) lastEditor.getAdapter(IDawnEditor.class);
+		return lastEditor.getAdapter(IDawnEditor.class);
 	}
 
 	protected IDawnEditorSupport getDawnEditorSupport() {
