@@ -79,6 +79,15 @@
                label="Remove markers from subtree">
          </command>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=additions">
+           <menu
+               icon="icons/etool16/validate.gif"
+               id="org.eclipse.papyrus.views.modelexplorer.popup.validation"
+               label="Validation">
+         </menu>
+      </menuContribution>
    </extension>
   
    <extension
@@ -125,9 +134,6 @@
             id="org.eclipse.papyrus.validation.ValidateDelMarkersFromSubtreeCommand"
             name="ValidateDelMarkersFromSubtree">
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.decorators">
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
