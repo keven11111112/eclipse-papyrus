@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 
@@ -209,7 +210,15 @@ public class DiSashModelMngr {
 	 * @return
 	 */
 	protected SashWindowsMngr createDefaultSashModel() {
-		return DiUtils.createDefaultSashWindowsMngr();
+		SashWindowsMngr result = DiUtils.createDefaultSashWindowsMngr();
+
+		if (result.getSashModel() != null) {
+			// Default this to true for new models, which store the sash model
+			// in the workspace private area by default
+			result.getSashModel().setRestoreActivePage(true);
+		}
+
+		return result;
 	}
 
 	/**

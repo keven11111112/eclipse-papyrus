@@ -12,13 +12,19 @@
  *  Christian W. Damus (CEA) - bug 429242
  *  Christian W. Damus (CEA) - bug 436468
  * 	Christian W. Damus - bug 434983
+ * 	Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Collections;
 import java.util.Map;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -33,10 +39,21 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import com.google.common.base.Objects;
 
 /**
+ * <p>
  * Model for the sash system.
- *
+ * </p>
+ * <p>
  * It may be stored in the *.di file (Legacy mode) or in a *.sash file in the user
  * preference space (~workspace/.metadata/.plugins/org.eclipse.papyrus.infra.core/)
+ * </p>
+ * <p>
+ * The following properties are observable via Java Beans {@linkplain #addPropertyChangeListener(String, PropertyChangeListener) listeners}:
+ * </p>
+ * <ul>
+ * <li>{@link #isLegacyMode() legacyMode}</li>
+ * <li>{@link #getPrivateResourceURI() privateResourceURI}</li>
+ * <li>{@link #getSharedResourceURI() sharedResourceURI}</li>
+ * </ul>
  *
  * @author Cedric Dumoulin
  * @author Camille Letavernier
@@ -44,7 +61,17 @@ import com.google.common.base.Objects;
  */
 public class SashModel extends EMFLogicalModel implements IModel {
 
+	public static final String PROPERTY_PRIVATE_RESOURCE_URI = "privateResourceURI"; //$NON-NLS-1$
+	public static final String PROPERTY_SHARED_RESOURCE_URI = "sharedResourceURI"; //$NON-NLS-1$
+	public static final String PROPERTY_LEGACY_MODE = "legacyMode"; //$NON-NLS-1$
+
+	private final PropertyChangeSupport bean = new PropertyChangeSupport(this);
+
 	private SashModelProviderManager providerManager;
+
+	private Adapter sashModelStorageAdapter;
+
+	private volatile Boolean legacyMode;
 
 	/**
 	 * File extension.
@@ -70,7 +97,20 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 *
 	 */
 	public SashModel() {
+		super();
 
+		sashModelStorageAdapter = new AdapterImpl() {
+			@Override
+			public void notifyChanged(Notification msg) {
+				if (getResources().contains(msg.getNotifier())) {
+					switch (msg.getFeatureID(Resource.class)) {
+					case Resource.RESOURCE__CONTENTS:
+						invalidateLegacyMode();
+						break;
+					}
+				}
+			}
+		};
 	}
 
 	/**
@@ -103,6 +143,8 @@ public class SashModel extends EMFLogicalModel implements IModel {
 			providerManager = null;
 		}
 
+		getResources().forEach(res -> res.eAdapters().remove(sashModelStorageAdapter));
+
 		super.unload();
 	}
 
@@ -114,13 +156,22 @@ public class SashModel extends EMFLogicalModel implements IModel {
 			// We only handle the main Sash resource. Imported *.sash are not relevant
 			if (resource == getResource()) {
 				result = true;
-			} else if (getModelManager().getURIWithoutExtension() != null) {
+			} else {
 				// We can only calculate these related URIs if the ModelSet is initialized
 				result = resource.getURI().equals(getPrivateResourceURI()) || resource.getURI().equals(getSharedResourceURI());
 			}
 		}
 
 		return result;
+	}
+
+	@Override
+	protected void configureResource(Resource resourceToConfigure) {
+		super.configureResource(resourceToConfigure);
+
+		if (resourceToConfigure != null) {
+			resourceToConfigure.eAdapters().add(sashModelStorageAdapter);
+		}
 	}
 
 	/**
@@ -164,6 +215,9 @@ public class SashModel extends EMFLogicalModel implements IModel {
 
 	@Override
 	public void setModelURI(URI uriWithoutExtension) {
+		URI oldPrivateURI = getPrivateResourceURI();
+		URI oldSharedURI = getSharedResourceURI();
+
 		URI newURI;
 		if ((resourceURI != null) && isLegacy(resourceURI.trimFileExtension())) {
 			newURI = getLegacyURI(uriWithoutExtension);
@@ -172,6 +226,9 @@ public class SashModel extends EMFLogicalModel implements IModel {
 		}
 
 		super.setModelURI(newURI.trimFileExtension());
+
+		bean.firePropertyChange(PROPERTY_PRIVATE_RESOURCE_URI, oldPrivateURI, getPrivateResourceURI());
+		bean.firePropertyChange(PROPERTY_SHARED_RESOURCE_URI, oldSharedURI, getSharedResourceURI());
 	}
 
 	protected boolean isLegacy(URI uriWithoutExtension) {
@@ -236,7 +293,34 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	}
 
 	public boolean isLegacyMode() {
-		return isLegacy(getURI().trimFileExtension());
+		if (legacyMode == null) {
+			legacyMode = false; // Assume not
+
+			// Does the shared DI resource contain the sash layout?
+			URI sharedURI = getSharedResourceURI();
+			if (sharedURI != null) {
+				for (Resource next : getResources()) {
+					if (sharedURI.equals(next.getURI())) {
+						legacyMode = DiUtils.lookupSashWindowsMngr(next) != null;
+						break;
+					}
+				}
+			}
+		}
+
+		return legacyMode;
+	}
+
+	void invalidateLegacyMode() {
+		boolean oldValue = isLegacyMode();
+
+		legacyMode = null;
+
+		boolean newValue = isLegacyMode();
+
+		if (oldValue != newValue) {
+			bean.firePropertyChange(PROPERTY_LEGACY_MODE, oldValue, newValue);
+		}
 	}
 
 	/**
@@ -246,7 +330,8 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 * @return the private sash-model resource URI
 	 */
 	public URI getPrivateResourceURI() {
-		return getSashModelStoreURI(getModelManager().getURIWithoutExtension());
+		URI modelURI = (getModelManager() == null) ? null : getModelManager().getURIWithoutExtension();
+		return (modelURI == null) ? null : getSashModelStoreURI(modelURI);
 	}
 
 	/**
@@ -257,6 +342,27 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	 * @return the shared sash-model resource URI
 	 */
 	public URI getSharedResourceURI() {
-		return getModelManager().getURIWithoutExtension().appendFileExtension(DiModel.MODEL_FILE_EXTENSION);
+		URI modelURI = (getModelManager() == null) ? null : getModelManager().getURIWithoutExtension();
+		return (modelURI == null) ? null : modelURI.appendFileExtension(DiModel.MODEL_FILE_EXTENSION);
+	}
+
+	//
+	// Bean API
+	//
+
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		bean.addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		bean.removePropertyChangeListener(listener);
+	}
+
+	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+		bean.addPropertyChangeListener(propertyName, listener);
+	}
+
+	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
+		bean.removePropertyChangeListener(propertyName, listener);
 	}
 }

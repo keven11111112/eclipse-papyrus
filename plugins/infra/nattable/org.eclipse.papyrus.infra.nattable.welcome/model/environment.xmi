@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:Environment
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9">
+  <modelElementFactories
+      name="Welcome Factory"
+      factoryClass="org.eclipse.papyrus.infra.nattable.welcome.internal.modelelements.WelcomeModelElementFactory"/>
+  <widgetTypes
+      label="Create Table"
+      widgetClass="CreateNewTableButton"
+      namespace="//@namespaces.0"/>
+  <compositeWidgetTypes
+      label="Tables"
+      widgetClass="TablesTable"
+      namespace="//@namespaces.0"/>
+  <namespaces
+      name="ppew"
+      value="org.eclipse.papyrus.infra.nattable.welcome.internal.widgets"/>
+</environment:Environment>

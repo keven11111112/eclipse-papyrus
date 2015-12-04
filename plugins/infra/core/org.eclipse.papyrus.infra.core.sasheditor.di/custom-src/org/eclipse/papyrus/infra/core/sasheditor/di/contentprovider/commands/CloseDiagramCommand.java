@@ -3,12 +3,8 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.IPageUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * A command to be used with the Eclipse Commands Framework.
@@ -25,7 +21,7 @@ public class CloseDiagramCommand extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		// System.out.println("call to CloseDiagramCommand.setEnable(" + evaluationContext + ")");
+		setBaseEnabled(IPageUtils.canClose(new PageContext(evaluationContext).currentPage));
 	}
 
 	/**
@@ -34,22 +30,10 @@ public class CloseDiagramCommand extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		PageContext context = new PageContext(event);
 
-		try {
-			IEditorPart part = HandlerUtil.getActiveEditor(event);
-			IPageManager pageManager = (IPageManager) part.getAdapter(IPageManager.class);
-			ISashWindowsContainer container = (ISashWindowsContainer) part.getAdapter(ISashWindowsContainer.class);
-			Object pageIdentifier = container.getActiveSashWindowsPage().getRawModel();
-			// FIXME Bug from sash Di to be corrected
-			if (pageIdentifier instanceof PageRef) {
-				pageIdentifier = ((PageRef) pageIdentifier).getPageIdentifier();
-			}
-
-			pageManager.closePage(pageIdentifier);
-
-		} catch (NullPointerException e) {
-			// PageMngr can't be found
-			return null;
+		if (context.isValid() && IPageUtils.canClose(context.currentPage)) {
+			context.pageManager.closePage(context.currentPageIdentifier);
 		}
 
 		return null;

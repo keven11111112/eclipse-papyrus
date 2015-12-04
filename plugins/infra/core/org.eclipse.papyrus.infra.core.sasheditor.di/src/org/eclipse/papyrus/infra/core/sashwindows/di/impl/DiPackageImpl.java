@@ -1,11 +1,19 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -277,6 +285,17 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSashModel_RestoreActivePage() {
+		return (EAttribute) sashModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EClass getWindow() {
 		return windowEClass;
 	}
@@ -444,6 +463,17 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	@Override
 	public EReference getTabFolder_Children() {
 		return (EReference) tabFolderEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getTabFolder_CurrentSelection() {
+		return (EReference) tabFolderEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -703,6 +733,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		sashModelEClass = createEClass(SASH_MODEL);
 		createEReference(sashModelEClass, SASH_MODEL__WINDOWS);
 		createEReference(sashModelEClass, SASH_MODEL__CURRENT_SELECTION);
+		createEAttribute(sashModelEClass, SASH_MODEL__RESTORE_ACTIVE_PAGE);
 
 		windowEClass = createEClass(WINDOW);
 		createEReference(windowEClass, WINDOW__POSITION);
@@ -725,6 +756,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 
 		tabFolderEClass = createEClass(TAB_FOLDER);
 		createEReference(tabFolderEClass, TAB_FOLDER__CHILDREN);
+		createEReference(tabFolderEClass, TAB_FOLDER__CURRENT_SELECTION);
 
 		pageRefEClass = createEClass(PAGE_REF);
 		createEReference(pageRefEClass, PAGE_REF__EMF_PAGE_IDENTIFIER);
@@ -800,6 +832,7 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		initEReference(getSashModel_Windows(), this.getWindow(), null, "windows", null, 0, -1, SashModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSashModel_CurrentSelection(), this.getTabFolder(), null, "currentSelection", null, 1, 1, SashModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
+		initEAttribute(getSashModel_RestoreActivePage(), this.getboolean(), "restoreActivePage", null, 1, 1, SashModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		EOperation op = addEOperation(sashModelEClass, null, "addPage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -880,6 +913,8 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		initEClass(tabFolderEClass, TabFolder.class, "TabFolder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTabFolder_Children(), this.getPageRef(), this.getPageRef_Parent(), "children", null, 0, -1, TabFolder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 				!IS_ORDERED);
+		initEReference(getTabFolder_CurrentSelection(), this.getPageRef(), null, "currentSelection", null, 0, 1, TabFolder.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				!IS_ORDERED);
 
 		op = addEOperation(tabFolderEClass, null, "movePage", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getint(), "oldIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -953,6 +988,8 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		createResourceXMIAnnotations();
 		// http://www.eclipse.org/uml2/2.0.0/UML
 		createUMLAnnotations();
+		// subsets
+		createSubsetsAnnotations();
 	}
 
 	/**
@@ -983,6 +1020,24 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 				source,
 				new String[] {
 						"originalName", "Integer"
+				});
+	}
+
+	/**
+	 * Initializes the annotations for <b>subsets</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void createSubsetsAnnotations() {
+		String source = "subsets";
+		addAnnotation(getTabFolder_CurrentSelection(),
+				source,
+				new String[] {
+				},
+				new URI[] {
+						URI.createURI(eNS_URI).appendFragment("//TabFolder/children")
 				});
 	}
 

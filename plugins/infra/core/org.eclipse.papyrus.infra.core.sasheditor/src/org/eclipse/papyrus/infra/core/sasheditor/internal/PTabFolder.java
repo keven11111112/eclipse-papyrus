@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -144,9 +145,10 @@ public class PTabFolder {
 	 */
 	private CTabFolder createContainer(Composite parent) {
 		// use SWT.FLAT style so that an extra 1 pixel border is not reserved
-		// inside the folder
+		// inside the folder. Don't use SWT.CLOSE style because each tab determines
+		// whether it is closeable or not
 		parent.setLayout(new FillLayout());
-		final CTabFolder newContainer = new CTabFolder(parent, SWT.BOTTOM | SWT.FLAT | SWT.CLOSE);
+		final CTabFolder newContainer = new CTabFolder(parent, SWT.BOTTOM | SWT.FLAT);
 
 		// TODO Move listener init in appropriate method.
 		newContainer.addSelectionListener(new SelectionAdapter() {

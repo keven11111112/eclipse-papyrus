@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di;
 
 import org.eclipse.emf.common.util.EList;
@@ -26,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#getWindows <em>Windows</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#getCurrentSelection <em>Current Selection</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#isRestoreActivePage <em>Restore Active Page</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashModel()
@@ -77,6 +85,35 @@ public interface SashModel extends EObject {
 	 * @generated
 	 */
 	void setCurrentSelection(TabFolder value);
+
+	/**
+	 * Returns the value of the '<em><b>Restore Active Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Restore Active Page</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Restore Active Page</em>' attribute.
+	 * @see #setRestoreActivePage(boolean)
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getSashModel_RestoreActivePage()
+	 * @model dataType="org.eclipse.papyrus.infra.core.sashwindows.di.boolean" required="true" ordered="false"
+	 * @generated
+	 */
+	boolean isRestoreActivePage();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#isRestoreActivePage <em>Restore Active Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Restore Active Page</em>' attribute.
+	 * @see #isRestoreActivePage()
+	 * @generated
+	 */
+	void setRestoreActivePage(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

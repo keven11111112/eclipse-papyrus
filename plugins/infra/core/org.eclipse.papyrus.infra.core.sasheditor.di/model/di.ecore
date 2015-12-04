@@ -76,6 +76,8 @@
         upperBound="-1" eType="#//Window" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="currentSelection" ordered="false"
         unique="false" lowerBound="1" eType="#//TabFolder"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="restoreActivePage" ordered="false"
+        lowerBound="1" eType="#//boolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Window" eSuperTypes="#//PanelParent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="position" ordered="false"
@@ -143,6 +145,10 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
         upperBound="-1" eType="#//PageRef" containment="true" eOpposite="#//PageRef/parent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentSelection" ordered="false"
+        eType="#//PageRef">
+      <eAnnotations source="subsets" references="#//TabFolder/children"/>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PageRef">
     <eOperations name="isForIdentifier" ordered="false" lowerBound="1" eType="#//boolean">

@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - Factor out workspace storage for pluggable storage providers (CDO)
  *  Christian W. Damus (CEA) - Support implicit enablement of prototypes of unavailable contexts (CDO)
  *  Christian W. Damus - bug 482930
+ *  Christian W. Damus - bug 469188
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.runtime;
 
@@ -27,6 +28,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -108,6 +111,9 @@ public class ConfigurationManager {
 
 	private IContextStorageProviderListener contextStorageProviderListener;
 
+	/** Map of preference page identifier to context unique identifiers. */
+	private final Map<String, Set<String>> preferencePageBindings;
+
 	/**
 	 * The global constraint engine
 	 */
@@ -133,6 +139,7 @@ public class ConfigurationManager {
 		customizableContexts = new HashMap<Context, Boolean>();
 		contexts = new LinkedHashMap<URI, Context>();
 		contextStorageRegistry = new ContextStorageRegistry(resourceSet);
+		preferencePageBindings = new HashMap<>();
 
 		root = RootFactory.eINSTANCE.createPropertiesRoot();
 
@@ -1186,5 +1193,64 @@ public class ConfigurationManager {
 
 	public ViewConstraintEngine getConstraintEngine() {
 		return constraintEngine;
+	}
+
+	/**
+	 * Registers association of a context with a preference page in which to present it
+	 * for enablement/customization.
+	 * 
+	 * @param context
+	 *            the context name
+	 * @param page
+	 *            the preference page identifier
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if the {@code context} or {@link page} is
+	 *             {@code null} or empty
+	 * 
+	 * @see #registerContext(URI, String)
+	 */
+	public void registerPreferencePageBinding(String context, String page) {
+		if ((context == null) || context.isEmpty()) {
+			throw new IllegalArgumentException("context name is missing"); //$NON-NLS-1$
+		}
+		if ((page == null) || page.isEmpty()) {
+			throw new IllegalArgumentException("preference page identifier is missing"); //$NON-NLS-1$
+		}
+
+		Set<String> contexts = preferencePageBindings.get(page);
+		if (contexts == null) {
+			contexts = new HashSet<>();
+			preferencePageBindings.put(page, contexts);
+		}
+		contexts.add(context);
+	}
+
+	public List<Context> getContextsForPreferencePage(String page) {
+		return Stream.concat(getContexts().stream(), getMissingContexts().stream())
+				.filter(this::isCustomizable) // Only present customizable contexts
+				.filter(c -> isBoundToPreferencePage(c, page))
+				.collect(Collectors.toList());
+	}
+
+	private boolean isBoundToPreferencePage(Context context, String page) {
+		boolean result = false;
+		String contextName = context.getName();
+
+		if ((page == null) || page.equals(org.eclipse.papyrus.views.properties.preferences.Preferences.DEFAULT_ID)) {
+			page = org.eclipse.papyrus.views.properties.preferences.Preferences.DEFAULT_ID;
+			Set<String> explicitBindings = preferencePageBindings.getOrDefault(page, Collections.emptySet());
+
+			// Looking for bindings to the default preference page. This includes
+			// all contexts that are not bound to any page and those that are
+			// explicitly bound to the default page
+			result = explicitBindings.contains(contextName)
+					|| preferencePageBindings.values().stream().noneMatch(set -> set.contains(contextName));
+		} else {
+			// Only explicit bindings
+			result = preferencePageBindings.getOrDefault(page, Collections.emptySet()).contains(contextName);
+		}
+
+		return result;
 	}
 }

@@ -3,9 +3,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.IPageUtils;
 
 /**
  * A command to be used with the Eclipse Commands Framework.
@@ -22,7 +20,9 @@ public class CloseAllDiagramsCommand extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		// System.out.println("call to CloseAllDiagramsCommand.setEnable(" + evaluationContext + ")");
+		PageContext context = new PageContext(evaluationContext);
+		setBaseEnabled((context.getOpenPageCount() > 0)
+				&& context.getOpenPages().stream().allMatch(IPageUtils::canClose));
 	}
 
 	/**
@@ -31,53 +31,12 @@ public class CloseAllDiagramsCommand extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-		IPageManager pageManager;
-		try {
-			pageManager = getPageManager(event);
-		} catch (NullPointerException e) {
-			// PageMngr or Editing Domain can't be found
-			return null;
+		PageContext context = new PageContext(event);
+		if ((context.getOpenPageCount() > 0) && context.getOpenPages().stream().allMatch(IPageUtils::canClose)) {
+			context.pageManager.closeAllOpenedPages();
 		}
-		execute(pageManager);
 
 		return null;
-	}
-
-	/**
-	 * Get the PageMngr used to interact with the content provider.
-	 *
-	 * @param event
-	 * @return
-	 * @throws NullPointerException
-	 *             if the PageMngr can't be found.
-	 */
-	private IPageManager getPageManager(ExecutionEvent event) {
-		IEditorPart part = HandlerUtil.getActiveEditor(event);
-		IPageManager pageManager = (IPageManager) part.getAdapter(IPageManager.class);
-
-		return pageManager;
-	}
-
-	/**
-	 * Close all the diagrams.
-	 *
-	 * @param pageManager
-	 */
-	public void execute(final IPageManager pageManager) throws ExecutionException {
-		boolean atLeastOneOpenPage = false;
-		for (Object pageIdentifier : pageManager.allPages()) {
-			if (pageManager.isOpen(pageIdentifier)) {
-				atLeastOneOpenPage = true;
-				break;
-			}
-		}
-
-		if (!atLeastOneOpenPage) {
-			return;
-		}
-
-		pageManager.closeAllOpenedPages();
 	}
 
 }

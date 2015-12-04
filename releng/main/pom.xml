@@ -110,6 +110,8 @@
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.pluginexplorer</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor.di</module>
+		<module>../../plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome</module>
+		<module>../../plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome.nattable</module>
 		<module>../../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery</module>
 		<module>../../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery.ui</module>
 		<module>../../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery.ui.menu</module>
@@ -118,6 +120,7 @@
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.diagram.common</module>
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.export</module>
+		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.welcome</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.emf</module>

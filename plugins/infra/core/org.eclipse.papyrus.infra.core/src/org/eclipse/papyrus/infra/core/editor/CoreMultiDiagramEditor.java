@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 431953 (pre-requisite refactoring of ModelSet service start-up)
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bug 469464
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 
@@ -492,6 +493,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
+
+		// Fire the PreDisplay event synchronously, so that listeners can continue
+		// setting up the UI before the contents are actually rendered fully
+		getLifecycleManager().firePreDisplay(this);
 
 		// Fire the PostDisplay event asynchronously, to leave time to the Eclipse
 		// framework to actually display the contents of the editor

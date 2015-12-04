@@ -17,9 +17,10 @@
          </appInfo>
       </annotation>
       <complexType>
-         <sequence>
-            <element ref="context" minOccurs="1" maxOccurs="unbounded"/>
-         </sequence>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="context"/>
+            <element ref="preferencePageBinding"/>
+         </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -71,6 +72,33 @@
                <documentation>
                   
                </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="preferencePageBinding">
+      <annotation>
+         <documentation>
+            Specifies a binding of a particular registered Properties context model to some preference page (usually different than the default Papyrus Properties View preference page).
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="context" type="string" use="required">
+            <annotation>
+               <documentation>
+                  References the Properties Context (by name) to associate with a preference page.  The name is used instead of the URI because that is what the enablement preferences use to identify contexts and it is how (temporarily) missing contexts are tracked.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="page" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Indicates the preference page in which to present the customization of the referenced properties context.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.preferencePages/page/@id"/>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -18,7 +19,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -57,6 +58,11 @@ public class ComponentPart extends PagePart implements IComponentPage {
 	public ComponentPart(TabFolderPart parent, IComponentModel partModel, Object rawModel) {
 		super(parent, rawModel);
 		this.partModel = partModel;
+	}
+
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		return PlatformHelper.getAdapter(partModel, adapter, () -> super.getAdapter(adapter));
 	}
 
 	/**

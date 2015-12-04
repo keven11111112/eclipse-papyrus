@@ -26,6 +26,7 @@
 		<module>org.eclipse.papyrus.infra.nattable.properties</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.config</module>
 		<module>org.eclipse.papyrus.infra.nattable.views.editor</module>
+		<module>org.eclipse.papyrus.infra.nattable.welcome</module>
 	</modules>
 
 

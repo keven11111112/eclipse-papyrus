@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di;
 
 import org.eclipse.emf.common.util.EList;
@@ -18,6 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getChildren <em>Children</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getCurrentSelection <em>Current Selection</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getTabFolder()
@@ -43,6 +51,41 @@ public interface TabFolder extends AbstractPanel {
 	 * @generated
 	 */
 	EList<PageRef> getChildren();
+
+	/**
+	 * Returns the value of the '<em><b>Current Selection</b></em>' reference.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 * <li>'{@link org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getChildren() <em>Children</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Current Selection</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Current Selection</em>' reference.
+	 * @see #setCurrentSelection(PageRef)
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage#getTabFolder_CurrentSelection()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	PageRef getCurrentSelection();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getCurrentSelection <em>Current Selection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Current Selection</em>' reference.
+	 * @see #getCurrentSelection()
+	 * @generated
+	 */
+	void setCurrentSelection(PageRef value);
 
 	/**
 	 * <!-- begin-user-doc -->

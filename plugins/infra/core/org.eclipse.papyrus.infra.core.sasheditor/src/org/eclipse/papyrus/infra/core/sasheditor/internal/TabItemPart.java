@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -93,6 +94,7 @@ public class TabItemPart {
 	public void refreshTabDecorations() {
 		setTabText(childPart.getPageTitle());
 		setTabImage(childPart.getPageIcon());
+		control.setShowClose(childPart.canClose());
 	}
 
 	/**

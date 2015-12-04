@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import java.util.Collection;
@@ -40,6 +47,7 @@ import org.eclipse.swt.SWT;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#getWindows <em>Windows</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#getCurrentSelection <em>Current Selection</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.SashModelImpl#isRestoreActivePage <em>Restore Active Page</em>}</li>
  * </ul>
  *
  * @generated
@@ -67,6 +75,28 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 * @ordered
 	 */
 	protected TabFolder currentSelection;
+
+	/**
+	 * The default value of the '{@link #isRestoreActivePage() <em>Restore Active Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #isRestoreActivePage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RESTORE_ACTIVE_PAGE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRestoreActivePage() <em>Restore Active Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #isRestoreActivePage()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean restoreActivePage = RESTORE_ACTIVE_PAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,6 +175,32 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		currentSelection = newCurrentSelection;
 		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_MODEL__CURRENT_SELECTION, oldCurrentSelection, currentSelection));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public boolean isRestoreActivePage() {
+		return restoreActivePage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setRestoreActivePage(boolean newRestoreActivePage) {
+		boolean oldRestoreActivePage = restoreActivePage;
+		restoreActivePage = newRestoreActivePage;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.SASH_MODEL__RESTORE_ACTIVE_PAGE, oldRestoreActivePage, restoreActivePage));
 		}
 	}
 
@@ -678,6 +734,8 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 				return getCurrentSelection();
 			}
 			return basicGetCurrentSelection();
+		case DiPackage.SASH_MODEL__RESTORE_ACTIVE_PAGE:
+			return isRestoreActivePage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -699,6 +757,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
 			setCurrentSelection((TabFolder) newValue);
 			return;
+		case DiPackage.SASH_MODEL__RESTORE_ACTIVE_PAGE:
+			setRestoreActivePage((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -718,6 +779,9 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
 			setCurrentSelection((TabFolder) null);
 			return;
+		case DiPackage.SASH_MODEL__RESTORE_ACTIVE_PAGE:
+			setRestoreActivePage(RESTORE_ACTIVE_PAGE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -735,8 +799,29 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 			return windows != null && !windows.isEmpty();
 		case DiPackage.SASH_MODEL__CURRENT_SELECTION:
 			return currentSelection != null;
+		case DiPackage.SASH_MODEL__RESTORE_ACTIVE_PAGE:
+			return restoreActivePage != RESTORE_ACTIVE_PAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) {
+			return super.toString();
+		}
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (restoreActivePage: ");
+		result.append(restoreActivePage);
+		result.append(')');
+		return result.toString();
 	}
 
 } // SashModelImpl

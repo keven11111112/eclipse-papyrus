@@ -18,6 +18,7 @@ containing pages.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mW0_EUJkEd6kIY39uis5Uw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mW0_EkJkEd6kIY39uis5Uw" value="1"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_eF-DIJUXEeWeT68xCjxnSQ" name="restoreActivePage" type="_SNSWAEbaEd6g-YgfS2DHrA"/>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_wdFgUEV4Ed6g-YgfS2DHrA" name="addPage">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_yMF_0EV4Ed6g-YgfS2DHrA" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1N0EYEV4Ed6g-YgfS2DHrA" value="1"/>
@@ -308,6 +309,10 @@ Lookup in the entire SashModel structure.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ANIzkUJWEd6kIY39uis5Uw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ANIzkkJWEd6kIY39uis5Uw" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_kgs5oJUREeWeT68xCjxnSQ" name="currentSelection" type="_h_HVwEJVEd6kIY39uis5Uw" subsettedProperty="_ANIzkEJWEd6kIY39uis5Uw" association="_kgdpEJUREeWeT68xCjxnSQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_vkeJEJUREeWeT68xCjxnSQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vkhzcJUREeWeT68xCjxnSQ" value="1"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_Cqh_oEViEd6g-YgfS2DHrA" name="movePage">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_ETI8MEViEd6g-YgfS2DHrA" name="oldIndex" type="_Hkk78EVbEd6g-YgfS2DHrA">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_G2wIcEViEd6g-YgfS2DHrA" value="1"/>
@@ -565,6 +570,15 @@ Used to insert a new SashPanel.</body>
       <ownedEnd xmi:type="uml:Property" xmi:id="_lnWPIksFEd6MxdnlcgT3eA" name="window" type="_Xa5wIEJVEd6kIY39uis5Uw" isUnique="false" association="_li3-0EsFEd6MxdnlcgT3eA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_lnWPJEsFEd6MxdnlcgT3eA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lnWPI0sFEd6MxdnlcgT3eA" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kgdpEJUREeWeT68xCjxnSQ" memberEnd="_kgs5oJUREeWeT68xCjxnSQ _kgtgsJUREeWeT68xCjxnSQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kgrEcJUREeWeT68xCjxnSQ" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kgrrgJUREeWeT68xCjxnSQ" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_kgtgsJUREeWeT68xCjxnSQ" type="_fbWYgEJVEd6kIY39uis5Uw" association="_kgdpEJUREeWeT68xCjxnSQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8ejZ4JUREeWeT68xCjxnSQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8ekA8JUREeWeT68xCjxnSQ" value="1"/>
       </ownedEnd>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_NuHhwkJVEd6kIY39uis5Uw">

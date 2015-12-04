@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.infra.core.internal.commands;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 
@@ -31,7 +33,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * The boolean toggle state of the private page layout storage menu item.
  */
-public class PageLayoutStorageState extends ToggleState implements IPartListener {
+public class PageLayoutStorageState extends ToggleState implements IPartListener, PropertyChangeListener {
 
 	private IPartService partService = null;
 
@@ -76,6 +78,8 @@ public class PageLayoutStorageState extends ToggleState implements IPartListener
 		// Default state is private storage
 		boolean state = true;
 
+		unhookSashModelListener();
+
 		activeEditor = null;
 
 		if (part instanceof IMultiDiagramEditor) {
@@ -83,6 +87,8 @@ public class PageLayoutStorageState extends ToggleState implements IPartListener
 			activeEditor = new WeakReference<>(editor);
 			state = isPrivateLayout(editor);
 		}
+
+		hookSashModelListener();
 
 		// Fires notification if changed from previous state
 		setValue(state);
@@ -116,5 +122,43 @@ public class PageLayoutStorageState extends ToggleState implements IPartListener
 	@Override
 	public void partOpened(IWorkbenchPart part) {
 		// Pass
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getSource() instanceof SashModel) {
+			switch (evt.getPropertyName()) {
+			case SashModel.PROPERTY_LEGACY_MODE:
+				setValue(!(Boolean) evt.getNewValue());
+				break;
+			}
+		}
+	}
+
+	private SashModel getSashModel() {
+		SashModel result = null;
+
+		if (activeEditor != null) {
+			IMultiDiagramEditor editor = activeEditor.get();
+			if (editor != null) {
+				result = SashModelUtils.getSashModel(editor.getServicesRegistry());
+			}
+		}
+
+		return result;
+	}
+
+	private void unhookSashModelListener() {
+		SashModel sash = getSashModel();
+		if (sash != null) {
+			sash.removePropertyChangeListener(SashModel.PROPERTY_LEGACY_MODE, this);
+		}
+	}
+
+	private void hookSashModelListener() {
+		SashModel sash = getSashModel();
+		if (sash != null) {
+			sash.addPropertyChangeListener(SashModel.PROPERTY_LEGACY_MODE, this);
+		}
 	}
 }

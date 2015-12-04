@@ -3,12 +3,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.SashWindowsContainer;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * A command to be used with the Eclipse Commands Framework.
@@ -25,7 +20,7 @@ public class CloseOtherDiagramsCommand extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		// System.out.println("call to CloseDiagramCommand.setEnable(" + evaluationContext + ")");
+		setBaseEnabled(new PageContext(evaluationContext).getOpenPageCount() > 1);
 	}
 
 	/**
@@ -34,47 +29,13 @@ public class CloseOtherDiagramsCommand extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		PageContext context = new PageContext(event);
 
-		try {
-			IEditorPart part = HandlerUtil.getActiveEditor(event);
-			IPageManager pageManager = (IPageManager) part.getAdapter(IPageManager.class);
-			ISashWindowsContainer container = (ISashWindowsContainer) part.getAdapter(ISashWindowsContainer.class);
-			Object pageIdentifier = container.getActiveSashWindowsPage().getRawModel();
-			// FIXME Bug from sash Di to be corrected
-			if (pageIdentifier instanceof PageRef) {
-				pageIdentifier = ((PageRef) pageIdentifier).getPageIdentifier();
-			}
-			execute(pageManager, pageIdentifier);
-
-		} catch (NullPointerException e) {
-			// PageMngr can't be found
-			return null;
+		if (context.isValid() && (context.getOpenPageCount() > 1)) {
+			context.pageManager.closeOtherPages(context.currentPageIdentifier);
 		}
-
-
 
 		return null;
-	}
-
-	/**
-	 * Close selected page.
-	 *
-	 * @param pageManager
-	 */
-	public void execute(final IPageManager pageManager, final Object pageIdentifier) {
-		boolean atLeastOneDifferentPageOpen = false;
-		for (Object page : pageManager.allPages()) {
-			if (page != pageIdentifier && pageManager.isOpen(page)) {
-				atLeastOneDifferentPageOpen = true;
-				break;
-			}
-		}
-
-		if (!atLeastOneDifferentPageOpen) {
-			return; // Nothing to do
-		}
-
-		pageManager.closeOtherPages(pageIdentifier);
 	}
 
 }

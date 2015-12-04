@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 417409
  *  Christian W. Damus (CEA) - bug 443417
  *  Christian W. Damus (CEA) - bug 444227
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.widgets;
@@ -253,6 +254,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		AbstractEditor editor = getEditor();
 		if (editor != null) {
 			editor.refreshValue();
+
+			// And refresh the read-only state
+			isEditable = input.isEditable(propertyPath);
+			applyReadOnly(getReadOnly());
 		}
 	}
 

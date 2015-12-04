@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -24,9 +25,9 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.IMultiPageEditorSite;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -169,19 +170,12 @@ public class EditorPart extends PagePart implements IEditorPage {
 		this.multiEditorManager = multiEditorManager;
 	}
 
-
-	/**
-	 * Create the control of this part.
-	 * For a this implementations, also create the children's controls.
-	 * This method forward to {@link createPartControl(Composite)}.
-	 *
-	 * @param parent
-	 *            TODO remove ?
-	 */
-	// public void createControl(Composite parent) {
-	// createPartControl(parent);
-	// }
-
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		return PlatformHelper.getAdapter(editorPart, adapter, ()//
+		-> PlatformHelper.getAdapter(editorModel, adapter, ()//
+		-> super.getAdapter(adapter)));
+	}
 
 	/**
 	 * Create the control of this Part, and children's controls.
@@ -379,7 +373,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 		// cedric : old fashion, deprecated ?
 		getSashWindowContainer().firePropertyChange(propertyId);
 		// relay the event to the page lifecycle event notifier
-		getSashWindowContainer().getLifeCycleEventProvider().firePageFirePropertyChangeEvent(this,  propertyId);
+		getSashWindowContainer().getLifeCycleEventProvider().firePageFirePropertyChangeEvent(this, propertyId);
 	}
 
 	/**
@@ -582,7 +576,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 	 * TODO: change the interface.
 	 *
 	 * @param draggedObject
-	 * @param sourcePart
 	 * @param position
 	 * @return
 	 */

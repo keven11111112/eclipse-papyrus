@@ -1,23 +1,33 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.uml2.common.util.SubsetSupersetEObjectContainmentWithInverseEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +38,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
  * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl#getChildren <em>Children</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.TabFolderImpl#getCurrentSelection <em>Current Selection</em>}</li>
  * </ul>
  *
  * @generated
@@ -44,6 +55,17 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	 * @ordered
 	 */
 	protected EList<PageRef> children;
+
+	/**
+	 * The cached value of the '{@link #getCurrentSelection() <em>Current Selection</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getCurrentSelection()
+	 * @generated
+	 * @ordered
+	 */
+	protected PageRef currentSelection;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,9 +97,74 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 	@Override
 	public EList<PageRef> getChildren() {
 		if (children == null) {
-			children = new EObjectContainmentWithInverseEList<PageRef>(PageRef.class, this, DiPackage.TAB_FOLDER__CHILDREN, DiPackage.PAGE_REF__PARENT);
+			children = new SubsetSupersetEObjectContainmentWithInverseEList<PageRef>(PageRef.class, this, DiPackage.TAB_FOLDER__CHILDREN, null, CHILDREN_ESUBSETS, DiPackage.PAGE_REF__PARENT);
 		}
 		return children;
+	}
+
+	/**
+	 * The array of subset feature identifiers for the '{@link #getChildren() <em>Children</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getChildren()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] CHILDREN_ESUBSETS = new int[] { DiPackage.TAB_FOLDER__CURRENT_SELECTION };
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public PageRef getCurrentSelection() {
+		if (currentSelection != null && currentSelection.eIsProxy()) {
+			InternalEObject oldCurrentSelection = (InternalEObject) currentSelection;
+			currentSelection = (PageRef) eResolveProxy(oldCurrentSelection);
+			if (currentSelection != oldCurrentSelection) {
+				if (eNotificationRequired()) {
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DiPackage.TAB_FOLDER__CURRENT_SELECTION, oldCurrentSelection, currentSelection));
+				}
+			}
+		}
+		return currentSelection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public PageRef basicGetCurrentSelection() {
+		return currentSelection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setCurrentSelection(PageRef newCurrentSelection) {
+		PageRef oldCurrentSelection = currentSelection;
+		currentSelection = newCurrentSelection;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, DiPackage.TAB_FOLDER__CURRENT_SELECTION, oldCurrentSelection, currentSelection));
+		}
+		Resource.Internal eInternalResource = eInternalResource();
+		if (eInternalResource == null || !eInternalResource.isLoading()) {
+			if (newCurrentSelection != null) {
+				EList<PageRef> children = getChildren();
+				if (!children.contains(newCurrentSelection)) {
+					children.add(newCurrentSelection);
+				}
+			}
+		}
 	}
 
 	/**
@@ -170,6 +257,11 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		switch (featureID) {
 		case DiPackage.TAB_FOLDER__CHILDREN:
 			return getChildren();
+		case DiPackage.TAB_FOLDER__CURRENT_SELECTION:
+			if (resolve) {
+				return getCurrentSelection();
+			}
+			return basicGetCurrentSelection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -188,6 +280,9 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 			getChildren().clear();
 			getChildren().addAll((Collection<? extends PageRef>) newValue);
 			return;
+		case DiPackage.TAB_FOLDER__CURRENT_SELECTION:
+			setCurrentSelection((PageRef) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -204,6 +299,9 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		case DiPackage.TAB_FOLDER__CHILDREN:
 			getChildren().clear();
 			return;
+		case DiPackage.TAB_FOLDER__CURRENT_SELECTION:
+			setCurrentSelection((PageRef) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -219,6 +317,8 @@ public class TabFolderImpl extends AbstractPanelImpl implements TabFolder {
 		switch (featureID) {
 		case DiPackage.TAB_FOLDER__CHILDREN:
 			return children != null && !children.isEmpty();
+		case DiPackage.TAB_FOLDER__CURRENT_SELECTION:
+			return currentSelection != null;
 		}
 		return super.eIsSet(featureID);
 	}

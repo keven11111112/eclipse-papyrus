@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 LIFL, CEA LIST, and others.
+ * Copyright (c) 2010, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 433371
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 
@@ -18,6 +19,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -25,6 +27,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl.SashModelOperation;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
@@ -57,8 +60,7 @@ public class IPageUtils {
 
 		Object pageModel = page.getRawModel();
 		// Get the real model because of bug
-		if (pageModel instanceof PageRef)
-		{
+		if (pageModel instanceof PageRef) {
 			return ((PageRef) pageModel).getPageIdentifier();
 		}
 		// do not use trick
@@ -163,5 +165,20 @@ public class IPageUtils {
 			// Won't happen because this is our own operation
 			throw new IllegalAccessError(e.getLocalizedMessage());
 		}
+	}
+
+	/**
+	 * Queries whether the user should be permitted to close a {@code page}.
+	 * 
+	 * @param page
+	 *            a page
+	 * @return whether it can be closed
+	 */
+	public static boolean canClose(IPage page) {
+		ICloseablePart closeable = (page instanceof IAdaptable)
+				? ((IAdaptable) page).getAdapter(ICloseablePart.class)
+				: null;
+
+		return (closeable == null) || closeable.canClose();
 	}
 }

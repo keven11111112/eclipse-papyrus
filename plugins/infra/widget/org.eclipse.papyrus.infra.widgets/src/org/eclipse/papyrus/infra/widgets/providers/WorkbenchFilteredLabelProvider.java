@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.providers;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -34,17 +36,35 @@ public class WorkbenchFilteredLabelProvider extends LabelProvider implements IFi
 
 	@Override
 	public String getText(Object element) {
-		return workbenchLabelProvider.getText(element);
+		return workbenchLabelProvider.getText(unwrapSelection(element));
 	}
 
 	@Override
 	public Image getImage(Object element) {
-		return workbenchLabelProvider.getImage(element);
+		return workbenchLabelProvider.getImage(unwrapSelection(element));
 	}
 
 	@Override
 	public boolean accept(Object element) {
-		return element instanceof IResource;
+		return unwrapSelection(element) instanceof IResource;
 	}
 
+	/**
+	 * Unwraps a single selection to get the element inside it.
+	 * 
+	 * @param selection
+	 * @return
+	 */
+	Object unwrapSelection(Object possibleSelection) {
+		Object result = possibleSelection;
+
+		if (possibleSelection instanceof IStructuredSelection) {
+			IStructuredSelection selection = (IStructuredSelection) possibleSelection;
+			if (selection.size() == 1) {
+				result = selection.getFirstElement();
+			}
+		}
+
+		return result;
+	}
 }

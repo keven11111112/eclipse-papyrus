@@ -1,9 +1,16 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -98,6 +105,16 @@ public interface DiPackage extends EPackage {
 	int SASH_MODEL__CURRENT_SELECTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Restore Active Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_MODEL__RESTORE_ACTIVE_PAGE = 2;
+
+	/**
 	 * The number of structural features of the '<em>Sash Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -105,7 +122,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SASH_MODEL_FEATURE_COUNT = 2;
+	int SASH_MODEL_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PanelParentImpl <em>Panel Parent</em>}' class.
@@ -344,6 +361,16 @@ public interface DiPackage extends EPackage {
 	int TAB_FOLDER__CHILDREN = ABSTRACT_PANEL_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Current Selection</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int TAB_FOLDER__CURRENT_SELECTION = ABSTRACT_PANEL_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Tab Folder</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -351,7 +378,7 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAB_FOLDER_FEATURE_COUNT = ABSTRACT_PANEL_FEATURE_COUNT + 1;
+	int TAB_FOLDER_FEATURE_COUNT = ABSTRACT_PANEL_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl <em>Page Ref</em>}' class.
@@ -668,6 +695,18 @@ public interface DiPackage extends EPackage {
 	EReference getSashModel_CurrentSelection();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#isRestoreActivePage <em>Restore Active Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Restore Active Page</em>'.
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.SashModel#isRestoreActivePage()
+	 * @see #getSashModel()
+	 * @generated
+	 */
+	EAttribute getSashModel_RestoreActivePage();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.sashwindows.di.Window <em>Window</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -852,6 +891,18 @@ public interface DiPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTabFolder_Children();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getCurrentSelection <em>Current Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Current Selection</em>'.
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder#getCurrentSelection()
+	 * @see #getTabFolder()
+	 * @generated
+	 */
+	EReference getTabFolder_CurrentSelection();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.core.sashwindows.di.PageRef <em>Page Ref</em>}'.
@@ -1144,6 +1195,15 @@ public interface DiPackage extends EPackage {
 		EReference SASH_MODEL__CURRENT_SELECTION = eINSTANCE.getSashModel_CurrentSelection();
 
 		/**
+		 * The meta object literal for the '<em><b>Restore Active Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute SASH_MODEL__RESTORE_ACTIVE_PAGE = eINSTANCE.getSashModel_RestoreActivePage();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.WindowImpl <em>Window</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1298,6 +1358,15 @@ public interface DiPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TAB_FOLDER__CHILDREN = eINSTANCE.getTabFolder_Children();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Selection</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference TAB_FOLDER__CURRENT_SELECTION = eINSTANCE.getTabFolder_CurrentSelection();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.core.sashwindows.di.impl.PageRefImpl <em>Page Ref</em>}' class.

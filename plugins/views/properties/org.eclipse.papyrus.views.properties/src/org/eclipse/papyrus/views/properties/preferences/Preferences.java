@@ -10,11 +10,11 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 482930
  *  Christian W. Damus - bug 482927
+ *  Christian W. Damus - bug 469188
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.preferences;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +24,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
@@ -49,11 +52,34 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  *
  * @author Camille Letavernier
  */
-public class Preferences extends PreferencePage implements IWorkbenchPreferencePage {
+public class Preferences extends PreferencePage implements IWorkbenchPreferencePage, IExecutableExtension {
+
+	/**
+	 * The unique identifier of the default preference page, covering the <b>Properties View</b>.
+	 * 
+	 * @see #getID()
+	 */
+	public static final String DEFAULT_ID = "org.eclipse.papyrus.views.properties.propertyview"; //$NON-NLS-1$
+
+	private String id;
 
 	@Override
 	public void init(IWorkbench workbench) {
 		// Nothing
+	}
+
+	/**
+	 * Queries my unique identifier as configured on the extension point.
+	 * 
+	 * @return my unique identifier
+	 */
+	public final String getID() {
+		return id;
+	}
+
+	@Override
+	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
+		this.id = config.getAttribute("id"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -67,12 +93,11 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 
 		final ConfigurationManager configurationManager = ConfigurationManager.getInstance();
 
-		// Only customizable Property view contexts should appear here
-		List<Context> contexts = new java.util.ArrayList<Context>(configurationManager.getCustomizableContexts());
-		contexts.addAll(configurationManager.getMissingContexts());
-		Collections.sort(contexts, contextOrdering());
+		List<Context> sortedContexts = configurationManager.getContextsForPreferencePage(getID()).stream()
+				.sorted(contextOrdering())
+				.collect(Collectors.toList());
 
-		for (Context context : contexts) {
+		for (Context context : sortedContexts) {
 			boolean applied = configurationManager.isApplied(context);
 			Button checkbox = new Button(self, SWT.CHECK);
 			checkbox.setText(getLabel(context));

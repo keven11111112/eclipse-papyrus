@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST & LIFL
+ * Copyright (c) 2009, 2015 CEA LIST & LIFL, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,15 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
-import org.eclipse.papyrus.infra.core.sasheditor.internal.AbstractPart.GarbageState;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
@@ -26,7 +29,7 @@ import org.eclipse.swt.widgets.Widget;
  *
  * @author dumoulin
  */
-public abstract class PagePart extends AbstractPart implements IPage {
+public abstract class PagePart extends AbstractPart implements IPage, IAdaptable {
 
 	/** Raw model associated to this part. We store it because the PartModel do not provide it */
 	protected Object rawModel;
@@ -46,6 +49,10 @@ public abstract class PagePart extends AbstractPart implements IPage {
 		this.rawModel = rawModel;
 	}
 
+	@Override
+	public <T> T getAdapter(Class<T> adapter) {
+		return Platform.getAdapterManager().getAdapter(this, adapter);
+	}
 
 	/**
 	 * @return the parent
@@ -209,6 +216,18 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	 */
 	public void refreshTab() {
 		getParent().refreshPageTab(this);
+	}
+
+	/**
+	 * Queries whether I should be permitted to be closed.
+	 * 
+	 * @return whether my containing tab should show the close widget
+	 */
+	public boolean canClose() {
+		ICloseablePart closeable = getAdapter(ICloseablePart.class);
+		return (closeable == null)
+				|| (closeable == this) // Avoid unbounded re-entry into this method!
+				|| closeable.canClose();
 	}
 
 	/**

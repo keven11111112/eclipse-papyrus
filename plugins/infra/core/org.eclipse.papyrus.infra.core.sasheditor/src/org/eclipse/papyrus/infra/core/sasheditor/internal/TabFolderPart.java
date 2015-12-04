@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 392301
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal;
@@ -22,8 +23,10 @@ import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.infra.core.sasheditor.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ITabFolderModel;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IFolder;
 import org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy.AbstractTabFolderPart;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabFolderEvent;
@@ -41,6 +44,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.internal.DragCursors;
 import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDragOverListener;
@@ -1078,11 +1082,33 @@ public class TabFolderPart extends AbstractTabFolderPart implements IFolder {
 				// No part control? Dispose the model, now
 				partModel.dispose();
 			}
+
+			ICloseablePart closeable = PlatformHelper.getAdapter(newPart, ICloseablePart.class);
+			if (closeable != null) {
+				attachListeners(closeable, newPart);
+			}
+
 			return newPart;
 		}
 
 		// Use exception?
 		return createErrorPage();
+	}
+
+	private void attachListeners(ICloseablePart closeable, PagePart part) {
+		closeable.addPropertyListener(new IPropertyListener() {
+
+			@Override
+			public void propertyChanged(Object source, int propId) {
+				switch (propId) {
+				case ICloseablePart.PROP_CAN_CLOSE:
+					// Update the presentation of the close widget, if necessary
+					refreshPageTab(part);
+					break;
+				}
+			}
+		});
+
 	}
 
 	/**

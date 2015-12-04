@@ -1,9 +1,17 @@
-/**
- * <copyright>
- * </copyright>
+/*****************************************************************************
+ * Copyright (c) 2009, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
  *
- * $Id$
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation (assumed)
+ *  Christian W. Damus - bug 469188
+ *
+ *****************************************************************************/
+
 package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
 import org.eclipse.emf.ecore.EClass;
@@ -286,10 +294,21 @@ public class DiFactoryImpl extends EFactoryImpl implements DiFactory {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @generated
+	 * @generated NOT
 	 */
 	public Object createJavaObjectFromString(EDataType eDataType, String initialValue) {
-		return super.createFromString(eDataType, initialValue);
+		Object result = null;
+
+		try {
+			result = super.createFromString(eDataType, initialValue);
+		} catch (IllegalArgumentException e) {
+			// Not deserialized as a Java object? Then just return the string value (or null)
+			if (initialValue != null) {
+				result = initialValue.intern();
+			}
+		}
+
+		return result;
 	}
 
 	/**
