@@ -79,6 +79,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertRowsRepl
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertRowsSkipAll_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertRowsSkipAll_V1_V3_V1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertRowsWarningNotExisting_H1_H1_H1_MultiColumns_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.markers.ValidationMarkerInTableHeaderTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteCellsOverwriteAll_V1_V3_V1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteCellsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test;
@@ -368,6 +369,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		ImportEmptyAddAll_V1_V3_V1_MultiColumns_Test.class,
 		ImportEmptySkipAll_H1_H1_H1_MultiColumns_Test.class,
 		ImportEmptySkipAll_V1_V3_V1_MultiColumns_Test.class,
+		
+		//validation markers tests
+		ValidationMarkerInTableHeaderTest.class,
 })
 public class AllTests {
 	// JUnit 4 test suite

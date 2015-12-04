@@ -47,11 +47,11 @@ public class DecorationUtils {
 	 * Create instance of class DecorationUtils.
 	 *
 	 * @param element
-	 *            the element
+	 *            the element, must not be <code>null</code>
 	 */
 	public DecorationUtils(Object element) {
 		if (element == null) {
-			throw new IllegalArgumentException("The decorated element shall not be null");
+			throw new IllegalArgumentException("The decorated element shall not be null"); //$NON-NLS-1$
 		}
 
 		EObject eObject = EMFHelper.getEObject(element);
@@ -75,11 +75,11 @@ public class DecorationUtils {
 	 * Instantiates a new decoration utils.
 	 *
 	 * @param eObject
-	 *            the e object
+	 *            the eobject, must not be <code>null</code>
 	 */
 	public DecorationUtils(EObject eObject) {
 		if (eObject == null) {
-			throw new IllegalArgumentException("The decorated EObject shall not be null");
+			throw new IllegalArgumentException("The decorated EObject shall not be null"); //$NON-NLS-1$
 		}
 		eObjects = new BasicEList<EObject>();
 		eObjects.add(eObject);
@@ -127,7 +127,7 @@ public class DecorationUtils {
 				if (getEObjects().contains(eObjectOfDecorator)) {
 					// decoration is for this element
 					if (decoration.getMessage() == null) {
-						decoration.setMessage("");
+						decoration.setMessage(""); //$NON-NLS-1$
 					}
 					foundDecorations.add(decoration);
 				}
@@ -186,20 +186,22 @@ public class DecorationUtils {
 	 * @param decorationService
 	 *            the decoration service
 	 * @return the decoration message
+	 * 
+	 * @deprecated, use {@link Decoration#getMessageFromDecorations(DecorationService, Object)} instead of this method
 	 */
 	@Deprecated
 	public String getDecorationMessage(DecorationService decorationService) {
 
 		Map<String, Decoration> decorations = getDecorations(decorationService);
 		if (decorations != null) {
-			String message = "";
+			String message = ""; //$NON-NLS-1$
 			for (Decoration decoration : decorations.values()) {
 				EObject eObjectOfDecorator = decoration.getElement();
 				if (getEObjects().contains(eObjectOfDecorator)) {
 					if (message.length() > 0) {
-						message += "\n";
+						message += "\n"; //$NON-NLS-1$
 					}
-					message += "- " + WordUtils.wrap(decoration.getMessage(), 100, "\n  ", true);
+					message += "- " + WordUtils.wrap(decoration.getMessage(), 100, "\n  ", true); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 			return (message.length() > 0) ? message : null;
