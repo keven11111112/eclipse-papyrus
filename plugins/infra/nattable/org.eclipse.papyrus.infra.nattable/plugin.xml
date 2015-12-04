@@ -12,12 +12,8 @@
        point="org.eclipse.ui.menus">
     <menuContribution
           allPopups="true"
-          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu">
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=general.separator">
       
-       <separator
-             name="table.generic.actions"
-             visible="false">
-       </separator>
        <command
              commandId="org.eclipse.ui.file.print"
              label="Print Table"
@@ -44,10 +40,10 @@
              </and>
           </visibleWhen>
        </command>
-         <separator
-             name="edit"
-             visible="true">
-       </separator>
+    </menuContribution>
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=edit.separator">
        <command
              commandId="org.eclipse.ui.edit.selectAll"
              style="push">
@@ -90,10 +86,10 @@
              </with>
           </visibleWhen>
        </command>
-       <separator
-             name="table.tree.separator"
-             visible="true">
-       </separator>
+    </menuContribution>
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=tree.separator">
        <menu
              label="Hierarchic Style">
           <visibleWhen>
@@ -139,10 +135,10 @@
              </with>
           </visibleWhen>
        </command>
-       <separator
-             name="cell.separator"
-             visible="true">
-       </separator>
+    </menuContribution>
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=cells.separator">
        <menu
              icon="icons/mergeTable.gif"
              label="Merge Options">
@@ -171,10 +167,10 @@
              commandId="org.eclipse.papyrus.infra.nattable.mark.as.resolved.command"
              style="push">
        </command>
-       <separator
-             name="rows.and.columns.separator"
-             visible="true">
-       </separator>
+    </menuContribution>
+    <menuContribution
+          allPopups="true"
+          locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=rows.and.columns.separator">
        <menu
              icon="icons/tableColumnAction.gif"
              id="org.eclipse.papyrus.infra.nattable.columns.menu"
@@ -512,14 +508,6 @@
                 style="push">
           </command>
        </menu>
-       <separator
-             name="creations"
-             visible="true">
-       </separator>
-       <separator
-             name="additions"
-             visible="true">
-       </separator>
     </menuContribution>
     <menuContribution
           allPopups="true"
@@ -1607,21 +1595,21 @@
             defaultHandler="org.eclipse.papyrus.infra.nattable.handler.TreeRowHideAllCategoriesHandler"
             description="This command allows to Hide all categories displayed in a table"
             id="org.eclipse.papyrus.infra.nattable.row.hide.allcategories.command"
-            name="Hide All Categories Command">
+            name="Hide All Categories">
       </command>
       <command
             categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
             defaultHandler="org.eclipse.papyrus.infra.nattable.handler.TreeRowShowAllCategoriesHandler"
             description="This command allows to Show all categories displayed in a table"
             id="org.eclipse.papyrus.infra.nattable.row.show.allcategories.command"
-            name="Show All Categories Command">
+            name="Show All Categories">
       </command>
       <command
             categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"
             defaultHandler="org.eclipse.papyrus.infra.nattable.handler.TreeRowHideShowCategoryHandler"
             description="This command allows to Show/hide the categories for a given depth"
             id="org.eclipse.papyrus.infra.nattable.row.show.hide.category.command"
-            name="Show/Hide Category for a given depth command">
+            name="Show/Hide Category for a given depth">
       </command>
       <command
             categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"

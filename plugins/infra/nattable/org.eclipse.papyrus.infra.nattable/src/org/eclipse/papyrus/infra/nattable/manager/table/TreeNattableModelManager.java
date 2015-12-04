@@ -24,6 +24,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.hideshow.ColumnHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnHideCommand;
@@ -46,6 +50,7 @@ import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ICompositeAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.ITreeItemAxisManagerForEventList;
+import org.eclipse.papyrus.infra.nattable.menu.MenuConstants;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -111,7 +116,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	public TreeNattableModelManager(Table rawModel, ISelectionExtractor selectionExtractor) {
 		super(rawModel, selectionExtractor);
 		Assert.isTrue(TableHelper.isTreeTable(rawModel));
-		
+
 		// Manage the change axis provider adapter only for the column (row cannot manage refresh)
 		rawModel.eAdapters().remove(changeAxisProvider);
 		changeAxisProvider = new AdapterImpl() {
@@ -180,6 +185,23 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		return this.treeList;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#createAndRegisterMenuManagerAndSelectionProvider(org.eclipse.nebula.widgets.nattable.NatTable, org.eclipse.ui.IWorkbenchPartSite,
+	 *      org.eclipse.jface.viewers.ISelectionProvider)
+	 *
+	 * @param natTable
+	 * @param site
+	 * @param selectionProvider
+	 * @return
+	 */
+	@Override
+	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(NatTable natTable, IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
+		final MenuManager menuManager = super.createAndRegisterMenuManagerAndSelectionProvider(natTable, site, selectionProvider);
+		final Separator separator = new Separator(MenuConstants.TREE_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.insertAfter(MenuConstants.EDIT_SEPARATOR_ID, separator);
+		return menuManager;
+	}
 
 
 	/**

@@ -80,8 +80,8 @@
          </command>
       </menuContribution>
       <menuContribution
-            allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=additions">
+            allPopups="true"
+            locationURI="popup:org.eclipse.papyrus.infra.nattable.widget.menu?after=tools.separator">
            <menu
                icon="icons/etool16/validate.gif"
                id="org.eclipse.papyrus.views.modelexplorer.popup.validation"

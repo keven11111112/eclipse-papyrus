@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -377,7 +378,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		// register the decoration service
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, getDecorationService(), DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
-		
+
 		this.natTable.setConfigRegistry(configRegistry);
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 		this.natTable.configure();
@@ -660,7 +661,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public MenuManager createAndRegisterMenuManagerAndSelectionProvider(final NatTable natTable, final IWorkbenchPartSite site, ISelectionProvider selectionProvider) {
 		final MenuManager menuManager = new MenuManager(MenuConstants.POPUP, MenuConstants.TABLE_POPUP_MENU_ID);
-		menuManager.setRemoveAllWhenShown(true);
+		// menuManager.setRemoveAllWhenShown(true);
 
 		final Menu menu = menuManager.createContextMenu(this.natTable);
 
@@ -669,6 +670,36 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			site.registerContextMenu(menuManager.getId(), menuManager, selectionProvider);
 			site.setSelectionProvider(this.selectionProvider);
 		}
+
+		// we create the separator here, and not in the plugin.xml file in order to get the wanted order (in plugin.xml it seems depends on the order of plugin activation
+		Separator separator = new Separator(MenuConstants.GENERAL_SEPARATOR_ID);
+		separator.setVisible(false);// the first one is not visible
+		menuManager.add(separator);
+
+		separator = new Separator(MenuConstants.EDIT_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
+
+		separator = new Separator(MenuConstants.CELL_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
+
+		separator = new Separator(MenuConstants.ROWS_AND_COLUMNS_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
+
+		separator = new Separator(MenuConstants.CREATIONS_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
+
+		separator = new Separator(MenuConstants.TOOLS_SEPARATOR_ID);
+		separator.setVisible(true);
+		menuManager.add(separator);
+
+		// commented to avoid to pollute the table menu with global contribution
+		// separator = new Separator(MenuConstants.ADDITIONS_SEPARATOR_ID);
+		// separator.setVisible(true);
+		// menuManager.add(separator);
 
 		return menuManager;
 	}
