@@ -80,6 +80,10 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	public List<TransitionActivation> getOutgoingTransitions(){
 		return this.outgoingTransitionActivations;
 	}
+	
+	public List<TransitionActivation> getIncomingTransitions(){
+		return this.incomingTransitionActivations;
+	}
 
 	/**
 	 * By default return nothing. Must be overridden by state activation;
