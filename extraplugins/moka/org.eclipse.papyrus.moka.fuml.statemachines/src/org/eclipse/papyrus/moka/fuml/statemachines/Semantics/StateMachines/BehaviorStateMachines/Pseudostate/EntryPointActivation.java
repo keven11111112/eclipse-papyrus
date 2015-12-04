@@ -28,6 +28,10 @@ public class EntryPointActivation extends ConnectionPointReferenceActivation {
 		if(vertexActivation!=null){
 			vertexActivation.enter(enteringTransition, leastCommonAncestor);
 		}
-		this.outgoingTransitionActivations.get(0).fire(); //FIXME: should be delegated to transition selection strategy
+		// Fire all transitions originating from the entry point
+		// FIXME: Can these transitions have guards and triggers ?
+		for(int i = 0; i < this.getOutgoingTransitions().size(); i++){
+			this.getOutgoingTransitions().get(i).fire();
+		}
 	}
 }

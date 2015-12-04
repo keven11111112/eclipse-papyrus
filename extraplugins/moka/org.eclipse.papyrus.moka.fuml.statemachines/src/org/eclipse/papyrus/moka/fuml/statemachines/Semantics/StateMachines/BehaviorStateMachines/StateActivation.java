@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_Object;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
@@ -190,13 +191,28 @@ public class StateActivation extends VertexActivation {
 		// Regions can be entered either implicitly or explicitly. 
 		// A region is typically entered implicitly when its activation is triggered
 		// by a transition terminating on the edge of its containing state.
-		// A region is typically entered explicitly when on of its contained
+		// A region is typically entered explicitly when one of its contained
 		// state is targeted by a transition coming from the outside.
 		// *** Regions are entered concurrently ***
-		Vertex vertex = (Vertex)enteringTransition.getTargetActivation().getNode();
+		VertexActivation vertexActivation = enteringTransition.getTargetActivation();
+		List<Vertex> targetedVertices = new ArrayList<Vertex>();
+		if(vertexActivation instanceof EntryPointActivation){
+			Pseudostate entryPoint = (Pseudostate)vertexActivation.getNode();
+			for(int i = 0; i < entryPoint.getOutgoings().size(); i++){
+				targetedVertices.add(entryPoint.getOutgoings().get(i).getTarget());
+			}
+		}else{
+			targetedVertices.add((Vertex)vertexActivation.getNode());
+		}
 		for(int i=0; i < this.regionActivation.size(); i++){
 			RegionActivation regionActivation = this.regionActivation.get(i);
-			if(regionActivation.getVertexActivation(vertex)==null){
+			int j = 0;
+			boolean found = false;
+			while(j < targetedVertices.size() && !found){
+				found = regionActivation.getVertexActivation(targetedVertices.get(j)) != null;
+				j++;
+			}
+			if(!found){
 				regionActivation.enter(enteringTransition);
 			}
 		}
