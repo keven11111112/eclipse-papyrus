@@ -11,6 +11,7 @@
  *   Christian W. Damus - bug 433206
  *   Christian W. Damus - bug 465416
  *   Christian W. Damus - bug 434983
+ *   Christian W. Damus - bug 483721
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -100,6 +101,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IPerspectiveDescriptor;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbench;
@@ -1235,4 +1237,22 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	public void ensurePapyrusPerspective() {
+		Display.getDefault().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				final String papyrus = "org.eclipse.papyrus.infra.core.perspective"; //$NON-NLS-1$
+				final IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				IPerspectiveDescriptor perspective = activePage.getPerspective();
+				if (!papyrus.equals(perspective.getId())) {
+					perspective = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId(papyrus);
+					if (perspective != null) {
+						activePage.setPerspective(perspective);
+						flushDisplayEvents();
+					}
+				}
+			}
+		});
+	}
 }

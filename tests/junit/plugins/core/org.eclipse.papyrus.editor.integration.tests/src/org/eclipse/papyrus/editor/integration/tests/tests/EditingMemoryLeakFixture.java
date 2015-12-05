@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 483721
  *
  */
 package org.eclipse.papyrus.editor.integration.tests.tests;
@@ -83,7 +84,7 @@ class EditingMemoryLeakFixture extends TestWatcher {
 
 		editor.getView(PROPERTY_SHEET, true);
 		editor.getView(OUTLINE, true);
-		
+
 		editor.activate();
 	}
 
@@ -108,19 +109,19 @@ class EditingMemoryLeakFixture extends TestWatcher {
 
 		// Is the active inner editor a diagram editor?
 		DiagramEditor diagram = getDiagramEditor();
-		if(diagram != null) {
+		if (diagram != null) {
 			result = diagram.getEditingDomain();
 		}
 
-		if(result == null) {
+		if (result == null) {
 			// Maybe it's a table editor
 			IEditorPart active = getActiveEditor();
-			if(active != null) {
+			if (active != null) {
 				result = new Duck(active).quackp("get.+", TransactionalEditingDomain.class);
 			}
 		}
 
-		if(result == null) {
+		if (result == null) {
 			// Fall back to the outer editor
 			result = editor.getEditingDomain();
 		}
@@ -160,16 +161,16 @@ class EditingMemoryLeakFixture extends TestWatcher {
 		ISetSelectionTarget result = null;
 
 		IViewPart explorer = editor.getView(PROJECT_EXPLORER, false);
-		if(explorer == null) {
+		if (explorer == null) {
 			// Maybe we're in the Java perspective
 			explorer = editor.getView(PACKAGE_EXPLORER, false);
-			if(explorer == null) {
+			if (explorer == null) {
 				// Force the Project Explorer, then
 				explorer = editor.getView(PROJECT_EXPLORER, true);
 			}
 		}
 
-		result = (ISetSelectionTarget)explorer;
+		result = (ISetSelectionTarget) explorer;
 
 		return result;
 	}
@@ -178,12 +179,14 @@ class EditingMemoryLeakFixture extends TestWatcher {
 	// Test lifecycle
 	//
 
+	@Override
 	public Statement apply(Statement base, Description description) {
 		return editor.apply(super.apply(base, description), description);
 	}
 
 	@Override
 	protected void starting(Description description) {
+		editor.ensurePapyrusPerspective();
 		selectModelInModelExplorer();
 	}
 

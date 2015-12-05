@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 451013
+ *   Christian W. Damus - bug 483721
  *
  */
 package org.eclipse.papyrus.junit.framework.classification.rules;
@@ -29,8 +30,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.junit.runner.JUnitCore;
@@ -38,7 +41,6 @@ import org.junit.runner.Request;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -76,8 +78,6 @@ public class MemoryLeakRule extends TestWatcher {
 
 	private boolean isSoftReferenceSensitive;
 
-	private ComposedAdapterFactory factory;
-
 	public MemoryLeakRule() {
 		super();
 	}
@@ -88,7 +88,6 @@ public class MemoryLeakRule extends TestWatcher {
 		if (queue == null) {
 			queue = new ReferenceQueue<Object>();
 			tracker = Lists.newArrayList();
-			factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		}
 
 		tracker.add(new WeakReference<Object>(leak, queue));
@@ -157,14 +156,6 @@ public class MemoryLeakRule extends TestWatcher {
 		// Clean up
 		tracker = null;
 		queue = null;
-		disposeFactory();
-	}
-
-	void disposeFactory() {
-		if (factory != null) {
-			factory.dispose();
-			factory = null;
-		}
 	}
 
 	Reference<?> dequeueTracker() {
@@ -196,11 +187,31 @@ public class MemoryLeakRule extends TestWatcher {
 	}
 
 	String label(Object input) {
-		IItemLabelProvider provider = (IItemLabelProvider) factory.adapt(input, IItemLabelProvider.class);
-		String result = (provider == null) ? String.valueOf(input) : provider.getText(input);
+		String result = null;
 
-		if (Strings.isNullOrEmpty(result)) {
+		if (!(input instanceof EObject)) {
 			result = String.valueOf(input);
+		} else {
+			EObject object = (EObject) input;
+			EClass eclass = object.eClass();
+			String label = null;
+
+			EStructuralFeature nameFeature = eclass.getEStructuralFeature("name"); //$NON-NLS-1$
+			if (nameFeature != null) {
+				label = String.valueOf(object.eGet(nameFeature));
+			} else {
+				// Look for anything label-like
+				for (EAttribute next : eclass.getEAllAttributes()) {
+					if (!next.isMany() && next.getEAttributeType().getInstanceClass() == String.class) {
+						label = (String) object.eGet(next);
+						if ((label != null) && !label.isEmpty()) {
+							break;
+						}
+					}
+				}
+			}
+
+			result = String.format("<%s> %s", eclass.getName(), label);
 		}
 
 		return result;
