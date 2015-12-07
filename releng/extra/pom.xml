@@ -287,12 +287,6 @@
 			<!-- manualUpdate -->
 			<url>${rmf.repo.url}</url>
 		</repository>
-		<repository>
-			<id>PapyrusRT</id>
-			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>${papyrusrt.repo.url}</url>
-		</repository>
 	</repositories>
 	<build>
 

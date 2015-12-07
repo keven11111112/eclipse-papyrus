@@ -186,10 +186,10 @@ public class ImportTransformationLauncher {
 				long cumulatedLoadingTime = 0L;
 				long cumulatedTransformationTime = 0L;
 				long cumulatedHandleDanglingTime = 0L;
-				long cumulatedImportRTTime = 0L;
+				long cumulatedImportExtensionsTime = 0L;
 				for (ImportTransformation transformation : transformations) {
 					cumulatedLoadingTime += transformation.getLoadingTime();
-					cumulatedImportRTTime += transformation.getImportRTTime();
+					cumulatedImportExtensionsTime += transformation.getImportExtensionsTime();
 					cumulatedHandleDanglingTime += transformation.getHandleDanglingRefTime();
 
 					cumulatedTransformationTime += transformation.getExecutionTime();
@@ -197,7 +197,7 @@ public class ImportTransformationLauncher {
 					log("Import " + transformation.getModelName());
 					log("First phase (0-50%):");
 					log("\tTotal loading time: " + timeFormat(transformation.getLoadingTime()));
-					log("\tTotal Import UML-RT time: " + timeFormat(transformation.getImportRTTime()));
+					log("\tTotal Import Extensions time: " + timeFormat(transformation.getImportExtensionsTime()));
 					log("\tTotal Handle Dangling References time: " + timeFormat(transformation.getHandleDanglingRefTime()));
 					log("\tTotal execution time: " + timeFormat(transformation.getExecutionTime()));
 
@@ -222,7 +222,7 @@ public class ImportTransformationLauncher {
 				log("\tCumulated Transformation Time: " + timeFormat(cumulatedTransformationTime));
 				log("\tCumulated Loading Time: " + timeFormat(cumulatedLoadingTime));
 				log("\tCumulated Handle Dangling Refs Time: " + timeFormat(cumulatedHandleDanglingTime));
-				log("\tCumulated Import RT Time: " + timeFormat(cumulatedImportRTTime));
+				log("\tCumulated Import Extensions Time: " + timeFormat(cumulatedImportExtensionsTime));
 				log("\tTotal Transformation Time: " + timeFormat(transformationsExecutionTime));
 
 				log("Second phase (50-100%) / " + nbThreads + " Threads");
@@ -601,7 +601,7 @@ public class ImportTransformationLauncher {
 		}
 
 		IStatus repairDisplayStatus = repairStereotypeDisplay(modelSet, resourcesToRepair);
-		if (! repairDisplayStatus.isOK()){
+		if (!repairDisplayStatus.isOK()) {
 			return repairDisplayStatus;
 		}
 
@@ -738,13 +738,13 @@ public class ImportTransformationLauncher {
 				}
 			}
 
-			//Simple delete for performances (These styles don't have any incoming reference other than the containment)
+			// Simple delete for performances (These styles don't have any incoming reference other than the containment)
 			for (StringValueStyle styleToDelete : stylesToDelete) {
 				EObject container = styleToDelete.eContainer();
 				EReference feature = styleToDelete.eContainmentFeature();
 
 				if (container != null && feature != null) {
-					
+
 					if (feature.isMany()) {
 						List<?> values = (List<?>) container.eGet(feature);
 						values.remove(styleToDelete);

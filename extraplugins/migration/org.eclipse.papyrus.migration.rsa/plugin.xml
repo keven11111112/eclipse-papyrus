@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="extensions" name="extensions" schema="schema/extensions.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -113,18 +114,6 @@
       </package>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated PapyrusRT -->
-      <package
-            uri="http://www.eclipse.org/papyrus/profile/umlrt"
-            class="org.eclipse.papyrus.migration.rsa.umlrt.UMLRealTimePackage"
-            genModel="model/PapyrusRT.genmodel"/>
-      <package
-            class="org.eclipse.papyrus.migration.rsa.umlrt.UMLRealTimePackage"
-            genModel="model/PapyrusRT.genmodel"
-            uri="http:///schemas/UMLRealTime/_3TUzoHq6Ed2hSeAAWZznoA/119">
-      </package>
-   </extension>
    <extension
          point="org.eclipse.m2m.qvt.oml.javaBlackboxUnits">
       <unit

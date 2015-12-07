@@ -36,9 +36,6 @@
 		<rmf.repo.url>${eclipse.download}/rmf/updates/releases</rmf.repo.url>
 
 		<!-- manualUpdate -->
-		<papyrusrt.repo.url>${eclipse.download}/papyrus-rt/updates/releases/mars/0.7.0/</papyrusrt.repo.url>
-
-		<!-- manualUpdate -->
 		<swtbot.repo.url>${eclipse.download}/technology/swtbot/snapshots</swtbot.repo.url>
 		
 		<!-- updateFrom("CDT",0) -->

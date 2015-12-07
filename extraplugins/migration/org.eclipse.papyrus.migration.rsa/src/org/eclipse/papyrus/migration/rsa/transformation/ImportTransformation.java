@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -29,9 +30,11 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
@@ -67,6 +70,7 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.m2m.qvto.TransformationUI;
 import org.eclipse.papyrus.migration.rsa.Activator;
@@ -76,9 +80,9 @@ import org.eclipse.papyrus.migration.rsa.blackbox.ProfileBaseHelper;
 import org.eclipse.papyrus.migration.rsa.concurrent.ExecutorsPool;
 import org.eclipse.papyrus.migration.rsa.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.rsa.default_.DefaultPackage;
+import org.eclipse.papyrus.migration.rsa.internal.extension.TransformationExtension;
 import org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage;
 import org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage;
-import org.eclipse.papyrusrt.umlrt.profile.statemachine.UMLRealTimeStateMach.UMLRealTimeStateMachPackage;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.statushandlers.StatusManager;
@@ -88,6 +92,8 @@ import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLUtil;
+
+import com.google.common.collect.ImmutableList;
 
 /**
  * Executes a single RSA-to-Papyrus transformation
@@ -130,7 +136,7 @@ public class ImportTransformation {
 	protected long danglingRefTime = 0L;
 
 	/** Execution time for executing the UML-RT transformation / ns */
-	protected long importRTTime = 0L;
+	protected long importExtensionsTime = 0L;
 
 	/** Source URI to Target URI map (For Models/Libraries/Fragments) */
 	protected final Map<URI, URI> uriMappings = new HashMap<URI, URI>();
@@ -147,10 +153,22 @@ public class ImportTransformation {
 
 	protected final DependencyAnalysisHelper analysisHelper;
 
+	/** Store the extension classes to avoid re-parsing the extension point, but still be able to instantiate them in parallel/multiple times */
+	protected final static List<Class<? extends TransformationExtension>> extensionClasses = ImmutableList.copyOf(loadExtensionClasses());
+
+	/** Extensions contributed via other plug-ins */
+	protected final List<TransformationExtension> extensions;
+
+	/** The extension point contributing {@link TransformationExtension}s */
+	public static final String EXTENSION_POINT_ID = Activator.PLUGIN_ID + ".extensions";
+
 	static {
 		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.default_.DefaultPackage.eINSTANCE);
 		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage.eINSTANCE);
-		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.umlrt.UMLRealTimePackage.eINSTANCE);
+
+		for (TransformationExtension extension : getAllExtensions()) {
+			sourceEPackages.addAll(extension.getAdditionalSourceEPackages());
+		}
 	}
 
 	public ImportTransformation(URI sourceURI) {
@@ -162,6 +180,59 @@ public class ImportTransformation {
 		this.sourceURI = sourceURI;
 		this.parameters = config;
 		this.analysisHelper = analysisHelper;
+		this.extensions = getAllExtensions();
+	}
+
+	/**
+	 * Parse the extension point and return all valid classes (To be instantiated by each instance of the transformation)
+	 *
+	 * @return
+	 * 		All the valid (i.e. instantiatable) extensions to the RSA-to-Papyrus transformation. The list is never null, but can be empty
+	 */
+	protected static List<Class<? extends TransformationExtension>> loadExtensionClasses() {
+		LinkedList<Class<? extends TransformationExtension>> result = new LinkedList<>();
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT_ID);
+		for (IConfigurationElement e : config) {
+			try {
+				String className = e.getAttribute("className");
+
+				Class<? extends TransformationExtension> extensionClass = ClassLoaderHelper.loadClass(className, TransformationExtension.class);
+				if (result == null) {
+					continue; // ClassLoaderHelper has already logged an exception (ClassNotFound, not type-compliant, ...)
+				}
+
+				if (extensionClass.getConstructor() == null) { // No default constructor
+					Activator.log.error(new IllegalArgumentException(String.format("The class %s contributed by %s should have a default constructor", extensionClass.getName(), e.getContributor())));
+				}
+
+				result.add(extensionClass);
+			} catch (Throwable t) { // Other errors (Most common ones should have already been caught)
+				Activator.log.error(String.format("The plug-in %s contributed an invalid class", e.getContributor()), t);
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Instantiate all the extensions for a specific transformation
+	 *
+	 * @return
+	 * 		A non-null (potentially empty) list of extensions
+	 */
+	protected static List<TransformationExtension> getAllExtensions() {
+		List<TransformationExtension> extensions = new ArrayList<>(extensionClasses.size());
+
+		for (Class<? extends TransformationExtension> extension : extensionClasses) {
+			try {
+				extensions.add(extension.newInstance()); // Extension has already been checked while parsing the extension point. We don't expect any error here
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
+		}
+
+		return extensions;
 	}
 
 	public void run() {
@@ -254,8 +325,8 @@ public class ImportTransformation {
 		return danglingRefTime;
 	}
 
-	public long getImportRTTime() {
-		return importRTTime;
+	public long getImportExtensionsTime() {
+		return importExtensionsTime;
 	}
 
 	public Map<URI, URI> getURIMappings() {
@@ -328,6 +399,14 @@ public class ImportTransformation {
 		}
 
 		i += getAllTransformationURIs().size();
+
+		// Add the number of steps required by each extension
+		for (TransformationExtension extension : extensions) {
+			int extraSteps = extension.getNumberOfSteps();
+			if (extraSteps > 0) {
+				i += extraSteps;
+			}
+		}
 
 		return i;
 	}
@@ -423,10 +502,12 @@ public class ImportTransformation {
 
 		IStatus result; // Result of an individual transformation (Will be aggregated to the complete GenerationStatus)
 
-		long startRT = System.nanoTime();
-		result = importRTProfile(context, monitor);
-		long endRT = System.nanoTime();
-		this.importRTTime = endRT - startRT;
+		prepareExtensions();
+
+		long startExtensions = System.nanoTime();
+		result = importExtensions(context, monitor, ExtensionFunction::executeBefore);
+		long endExtensions = System.nanoTime();
+		this.importExtensionsTime = endExtensions - startExtensions;
 		generationStatus.add(result);
 
 		// Diagrams
@@ -449,6 +530,11 @@ public class ImportTransformation {
 			result = importRSAProfiles(context, monitor);
 			generationStatus.add(result);
 		}
+
+		long startExtensionsAfter = System.nanoTime();
+		result = importExtensions(context, monitor, ExtensionFunction::executeAfter);
+		long endExtensionsAfter = System.nanoTime();
+		this.importExtensionsTime += endExtensionsAfter - startExtensionsAfter;
 
 		//
 		// FRAGMENTS & SAVE
@@ -589,6 +675,65 @@ public class ImportTransformation {
 	}
 
 	/**
+	 * Functional interface to abstract {@link TransformationExtension#executeBefore(ExecutionContext, IProgressMonitor)}
+	 * and {@link TransformationExtension#executeAfter(ExecutionContext, IProgressMonitor)}
+	 *
+	 * @author Camille Letavernier
+	 *
+	 */
+	@FunctionalInterface
+	protected static interface ExtensionFunction {
+		public IStatus apply(TransformationExtension extension, ExecutionContext context, IProgressMonitor monitor);
+
+		/**
+		 * Implements ExtensionFunction
+		 *
+		 * Delegates to {@link TransformationExtension#executeBefore(ExecutionContext, IProgressMonitor)}
+		 */
+		public static IStatus executeBefore(TransformationExtension extension, ExecutionContext context, IProgressMonitor monitor) {
+			return extension.executeBefore(context, monitor);
+		}
+
+		/**
+		 * Implements ExtensionFunction
+		 *
+		 * Delegates to {@link TransformationExtension#executeAfter(ExecutionContext, IProgressMonitor)}
+		 */
+		public static IStatus executeAfter(TransformationExtension extension, ExecutionContext context, IProgressMonitor monitor) {
+			return extension.executeAfter(context, monitor);
+		}
+	}
+
+	protected void prepareExtensions() {
+		for (TransformationExtension extension : extensions) {
+			extension.setResourceSet(resourceSet);
+			extension.setExecutorsPool(executorsPool);
+			extension.setTransformation(this);
+		}
+	}
+
+	protected IStatus importExtensions(ExecutionContext context, IProgressMonitor monitor, ExtensionFunction function) {
+		List<IStatus> allResults = new ArrayList<>(extensions.size());
+		for (TransformationExtension extension : extensions) {
+			IStatus result = function.apply(extension, context, monitor);
+			allResults.add(result);
+		}
+
+		if (allResults.isEmpty()) {
+			return Status.OK_STATUS;
+		} else if (allResults.size() == 1) {
+			return allResults.get(0);
+		} else {
+			return aggregateStatus(allResults);
+		}
+	}
+
+	// FIXME implement properly
+	public static MultiStatus aggregateStatus(List<IStatus> statuses) {
+		return new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, statuses.toArray(new IStatus[statuses.size()]), "", null);
+	}
+
+	/**
 	 * @param resource
 	 */
 	private void cleanMetadataAnnotations(Resource resource) {
@@ -712,46 +857,10 @@ public class ImportTransformation {
 		return properties;
 	}
 
-	protected IStatus importRTProfile(ExecutionContext context, IProgressMonitor monitor) {
-		monitor.subTask("Importing RT Profile... ");
-
-		URI transformationURI = getRTTransformationURI();
-
-		List<ModelExtent> extents = new LinkedList<ModelExtent>();
-		extents.add(getInOutUMLModel());
-		extents.add(getInoutNotationModel());
-		extents.add(getInPapyrusProfiles());
-		extents.add(getInProfileDefinitions());
-		extents.add(getInConfig());
-
-		TransformationExecutor executor;
-		try {
-			executor = getTransformation(transformationURI, monitor);
-		} catch (DiagnosticException ex) {
-			Diagnostic diagnostic = ex.getDiagnostic();
-			Activator.log.warn(String.format("Cannot load the transformation : %s. Diagnostic: %s", transformationURI, diagnostic.getMessage()));
-			return createStatusFromDiagnostic(diagnostic);
-		}
-
-		ExecutionDiagnostic result;
-		synchronized (executor) {
-			try {
-				result = executor.execute(context, extents.toArray(new ModelExtent[0]));
-			} finally {
-				executor.cleanup();
-				executorsPool.releaseExecutor(executor);
-			}
-		}
-
-		return createStatusFromDiagnostic(result);
-	}
-
 	protected ModelExtent getInProfileDefinitions() {
 		return new BasicModelExtent(Arrays.asList(new EPackage[] {
 				PapyrusDSMLValidationRulePackage.eINSTANCE,
-				DocumentationPackage.eINSTANCE,
-				org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.UMLRealTimePackage.eINSTANCE,
-				UMLRealTimeStateMachPackage.eINSTANCE
+				DocumentationPackage.eINSTANCE
 		}));
 	}
 
@@ -793,24 +902,6 @@ public class ImportTransformation {
 			allContents.addAll(documentationProfile.getContents());
 		} catch (WrappedException ex) {
 			missingProfiles.add("Documentation Profile");
-		}
-
-		try {
-			URI umlrtProfileURI = URI.createURI("pathmap://UML_RT_PROFILE/uml-rt.profile.uml");
-			Resource umlrtProfile = resourceSet.getResource(umlrtProfileURI, true);
-			checkResource(umlrtProfile);
-			allContents.addAll(umlrtProfile.getContents());
-		} catch (WrappedException ex) {
-			missingProfiles.add("UML RT Profile");
-		}
-
-		try {
-			URI umlrtSMProfileURI = URI.createURI("pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml");
-			Resource umlrtSMProfile = resourceSet.getResource(umlrtSMProfileURI, true);
-			checkResource(umlrtSMProfile);
-			allContents.addAll(umlrtSMProfile.getContents());
-		} catch (WrappedException ex) {
-			missingProfiles.add("UML RT / StateMachine extension Profile");
 		}
 
 		inPapyrusProfiles = new BasicModelExtent(allContents);
@@ -1112,7 +1203,7 @@ public class ImportTransformation {
 		return allExtents;
 	}
 
-	protected ModelExtent getInOutUMLModel() {
+	public ModelExtent getInOutUMLModel() {
 		if (outUML == null) {
 			try {
 				Resource resource = resourceSet.getResource(sourceURI, true);
@@ -1165,7 +1256,7 @@ public class ImportTransformation {
 	}
 
 	/* Notation model is initially empty, but will be filled successively by each transformation */
-	protected ModelExtent getInoutNotationModel() {
+	public ModelExtent getInoutNotationModel() {
 		if (outNotation == null) {
 			outNotation = new BasicModelExtent();
 		}
@@ -1209,17 +1300,12 @@ public class ImportTransformation {
 		return getTransformationURI("RSAModelToPapyrus");
 	}
 
-	protected URI getRTTransformationURI() {
-		return getTransformationURI("RSARTToPapyrusRT");
-	}
-
 	protected URI getProfilesTransformationURI() {
 		return getTransformationURI("RSAProfilesToPapyrus");
 	}
 
 	protected Collection<URI> getAllTransformationURIs() {
 		Collection<URI> allTransformations = getDiagramTransformationURIs();
-		allTransformations.add(getRTTransformationURI());
 		allTransformations.add(getProfilesTransformationURI());
 		allTransformations.add(getSemanticTransformationURI());
 		return allTransformations;
@@ -1260,5 +1346,9 @@ public class ImportTransformation {
 			List<?> values = (List<?>) parent.eGet(containmentFeature);
 			values.remove(elementToDelete);
 		}
+	}
+
+	public URI getSourceURI() {
+		return sourceURI;
 	}
 }
