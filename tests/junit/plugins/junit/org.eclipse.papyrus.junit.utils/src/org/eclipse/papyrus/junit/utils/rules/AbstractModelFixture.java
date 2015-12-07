@@ -11,6 +11,7 @@
  *   Christian W. Damus - bug 399859
  *   Christian W. Damus - bug 451230
  *   Christian W. Damus - bug 458685
+ *   Christian W. Damus - bug 469188
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -35,6 +36,7 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -43,6 +45,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -239,7 +242,8 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			result = Lists.newArrayListWithCapacity(paths.length);
 
 			for (String path : paths) {
-				result.add(initModelResource(new Path(path), kind));
+				// Ensure that the bundle ID prefix, if any, is taken as the "device"
+				result.add(initModelResource(Path.forWindows(path), kind));
 			}
 
 			List<URI> uris = Lists.newArrayListWithCapacity(result.size());
@@ -301,7 +305,8 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 		Set<Resource> toUnload = Sets.newHashSet();
 		try {
-			IPath resourceIPath = new Path(resourcePath);
+			// Ensure that the bundle ID prefix, if any, is taken as the "device"
+			IPath resourceIPath = Path.forWindows(resourcePath);
 			if (isDIModel(resourceIPath)) {
 				// Try to initialize the entire collection of files
 				resourceIPath = resourceIPath.removeFileExtension();
@@ -535,7 +540,10 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			case JAVA:
 				return ((JavaResource) resourceAnnotation).value();
 			case BUNDLE:
-				return ((PluginResource) resourceAnnotation).value();
+				PluginResource plugin = (PluginResource) resourceAnnotation;
+				return plugin.bundle().isEmpty()
+						? plugin.value()
+						: Stream.of(plugin.value()).map(path -> String.format("%s:%s", plugin.bundle(), path)).toArray(String[]::new);
 			}
 
 			fail("Not a resource annotation: " + resourceAnnotation);
@@ -564,6 +572,16 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 		private URL getBundleURL(Class<?> testClass, IPath resourcePath) {
 			URL result = null;
 
+			String bundleID = resourcePath.getDevice();
+			if (bundleID != null) {
+				resourcePath = resourcePath.setDevice(null);
+
+				int colon = bundleID.lastIndexOf(':');
+				if (colon >= 0) {
+					bundleID = bundleID.substring(0, colon);
+				}
+			}
+
 			String pattern = resourcePath.lastSegment();
 			IPath search;
 			if (resourcePath.segmentCount() > 1) {
@@ -572,7 +590,9 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 				search = Path.ROOT;
 			}
 
-			Bundle testBundle = FrameworkUtil.getBundle(testClass);
+			Bundle testBundle = (bundleID != null)
+					? Platform.getBundle(bundleID)
+					: FrameworkUtil.getBundle(testClass);
 			Enumeration<URL> urls = testBundle.findEntries(search.toPortableString(), pattern, false);
 			if ((urls != null) && urls.hasMoreElements()) {
 				result = urls.nextElement();

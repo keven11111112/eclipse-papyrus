@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 469188
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -29,4 +30,7 @@ import java.lang.annotation.Target;
 public @interface PluginResource {
 
 	String[] value();
+
+	/** The bundle containing the referenced paths, if not the bundle containing the test. */
+	String bundle() default "";
 }

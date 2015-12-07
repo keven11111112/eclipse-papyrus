@@ -14,6 +14,7 @@
  *  Christian W. Damus - bug 433206
  *  Christian W. Damus - bug 463156
  *  Christian W. Damus - bug 474610
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
@@ -65,6 +66,8 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.emf.readonly.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.emf.readonly.tests.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.viewpoints.configuration.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.editor.welcome.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.welcome.tests.AllTests.class));
 
 		/* views */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.views.modelexplorer.tests.AllTests.class));

@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.services.EditorLifecycleEventListener;
 import org.eclipse.papyrus.infra.core.services.EditorLifecycleManager;
@@ -209,8 +210,9 @@ public class WelcomePageService implements IWelcomePageService {
 		}
 	}
 
-	void initializeActivePages(PageRef welcomePage) {
-		SashModel sashModel = EMFHelper.getContainer(welcomePage, SashModel.class);
+	void initializeActivePages() {
+		SashWindowsMngr sashMngr = SashModelUtils.getSashWindowsMngr((ModelSet) getWelcomeResource().getResourceSet());
+		SashModel sashModel = (sashMngr == null) ? null : sashMngr.getSashModel();
 		if ((sashModel != null) && sashModel.isRestoreActivePage()) {
 			// Select all of the remembered pages to make them active
 			sashContainer.getIFolderList().stream()
@@ -276,9 +278,7 @@ public class WelcomePageService implements IWelcomePageService {
 			welcomePage = IPageUtils.lookupModelPage(sashContainer, getModel());
 			checkWelcomePage();
 
-			if ((welcomePage != null) && (welcomePage.getRawModel() instanceof PageRef)) {
-				initializeActivePages((PageRef) welcomePage.getRawModel());
-			}
+			initializeActivePages();
 		}
 
 		@Override

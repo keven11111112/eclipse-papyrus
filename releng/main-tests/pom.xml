@@ -41,6 +41,7 @@
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
+		<module>../../tests/junit/plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.canonical.tests</module>
@@ -48,6 +49,7 @@
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
+		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.welcome.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
 		<module>../../tests/junit/plugins/infra/nattable</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.tests</module>

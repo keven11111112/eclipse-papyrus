@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
@@ -97,6 +98,12 @@ public class WelcomePageOperations {
 					return basicListIterator(index);
 				}
 			};
+		}
+
+		@Override
+		protected boolean isIncluded(EStructuralFeature feature) {
+			// Require always isIncluded(Object)
+			return false;
 		}
 
 		@Override

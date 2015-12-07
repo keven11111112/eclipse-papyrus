@@ -12,6 +12,7 @@
  *   Christian W. Damus - bug 465416
  *   Christian W. Damus - bug 434983
  *   Christian W. Damus - bug 483721
+ *   Christian W. Damus - bug 469188
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -118,9 +119,11 @@ import org.junit.runner.Description;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.FrameworkUtil;
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
+import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Lists;
 
 
@@ -150,6 +153,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	private Description testDescription;
 
 	private Collection<IViewPart> viewsToClose;
+
+	private ListMultimap<Description, IFile> modelFiles;
 
 	public PapyrusEditorFixture() {
 		super();
@@ -187,6 +192,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			openRequiredViews();
 		}
 
+		modelFiles = ArrayListMultimap.create();
 		openAll(description);
 
 		ActiveDiagram activeDiagram = JUnitUtils.getAnnotation(description, ActiveDiagram.class);
@@ -234,6 +240,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	@Override
 	protected void finished(Description description) {
 		try {
+			modelFiles = null;
+
 			Exception exception = null;
 
 			for (IEditorPart editor : ImmutableList.copyOf(editorsToClose)) {
@@ -360,6 +368,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 	protected IMultiDiagramEditor openOne(Description description) {
 		IFile papyrusModel = getProject().getFile(Iterables.getOnlyElement(initModelResources(description)).getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
+		modelFiles.put(description, papyrusModel);
 		return open(papyrusModel);
 	}
 
@@ -368,10 +377,16 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		for (Resource resource : initModelResources(description)) {
 			IFile papyrusModel = getProject().getFile(resource.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
+			modelFiles.put(description, papyrusModel);
 			result.add(open(papyrusModel));
 		}
 
 		return result;
+	}
+
+	protected IMultiDiagramEditor reopenOne(Description description) {
+		IFile papyrusModel = modelFiles.get(description).get(0);
+		return open(papyrusModel);
 	}
 
 	public IMultiDiagramEditor open() {
@@ -389,6 +404,19 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	public IMultiDiagramEditor open(String targetPath, ResourceKind resourceKind, String resourcePath) {
 		final IFile papyrusModel = getProject().getFile(initModelResource(targetPath, resourceKind, resourcePath).getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION));
 		return open(papyrusModel);
+	}
+
+	/**
+	 * Reopens the same test model that was previously {@link #open() opened} and the
+	 * subsequently {@link #close() closed}. This is an important disction, as simply
+	 * {@link #open() opening} the test model again would actually re-initialize it from
+	 * the deployed test resources, potentially replacing any changes in the model files
+	 * that may be significant to the test.
+	 * 
+	 * @return the re-opened editor
+	 */
+	public IMultiDiagramEditor reopen() {
+		return reopenOne(testDescription);
 	}
 
 	public void activate() {

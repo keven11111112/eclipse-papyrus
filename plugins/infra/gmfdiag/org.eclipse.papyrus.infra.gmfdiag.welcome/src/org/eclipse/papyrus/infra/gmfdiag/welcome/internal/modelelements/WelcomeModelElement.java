@@ -54,7 +54,7 @@ public class WelcomeModelElement extends EMFModelElement {
 			result = true;
 			break;
 		default:
-			result = super.isEditable(propertyPath);
+			result = super.isFeatureEditable(propertyPath);
 			break;
 		}
 
