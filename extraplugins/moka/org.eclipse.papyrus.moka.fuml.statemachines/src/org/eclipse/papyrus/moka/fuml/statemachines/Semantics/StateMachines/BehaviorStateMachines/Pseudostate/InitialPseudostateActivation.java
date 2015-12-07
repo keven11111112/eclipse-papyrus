@@ -13,21 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate;
 
-import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
-
-import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 
 public class InitialPseudostateActivation extends PseudostateActivation{
 	
-	public void enter(TransitionActivation enteringTransition, boolean explicit) {
-		/*1. The vertex becomes active*/
-		logger.info(this.getNode().getName()+" => ACTIVE");
-		this.setState(StateMetadata.ACTIVE);
-		/*2. The vertex starts to be highlighted*/
-		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
-		/*3. Its only outgoing transition do have a guard and triggers*/
-		this.outgoingTransitionActivations.get(0).fire();
+	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+		// If there is an outgoing transition then this outgoing transition is fired.
+		// If there is a guard or a trigger associated with this initial pseudo state then
+		// they are not taken into account. If there is no outgoing transitions then the model
+		// is considered as being ill-formed, similar interpretation occurs if there are more than
+		// an single outgoing transition for the initial pseudo state.
+		super.enter(enteringTransition, leastCommonAncestor);
+		if(this.outgoingTransitionActivations.size()==0){
+			this.outgoingTransitionActivations.get(0).fire();	
+		}
 	}
 
 }
