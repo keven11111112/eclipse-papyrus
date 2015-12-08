@@ -400,7 +400,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 		return result;
 	}
 
-	protected EReference getContainmentFeatureFromSpecializationType(ISpecializationType specializationType, CreateElementRequest req) {
+	protected EReference getContainmentFeatureFromSpecializationType(ISpecializationType specializationType, Object editHelperContext) {
 		if (specializationType != null) {
 
 			IContainerDescriptor containerDescriptor = specializationType.getEContainerDescriptor();
@@ -412,7 +412,6 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 					for (int i = 0; i < features.length; i++) {
 
-						Object editHelperContext = req.getEditHelperContext();
 						EClass eClass = null;
 
 						if (editHelperContext instanceof EClass) {
@@ -476,12 +475,16 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 
 	protected EReference computeContainmentFeature(CreateElementRequest request) {
+		return computeContainmentFeature(request.getElementType(), request.getContainer(), request.getEditHelperContext());
+	}
+
+	protected EReference computeContainmentFeature(IElementType elementType, EObject container, Object editHelperContext) {
 		// First, try to find the feature from the element type
-		ISpecializationType specializationType = (ISpecializationType) request.getElementType().getAdapter(ISpecializationType.class);
+		ISpecializationType specializationType = (ISpecializationType) elementType.getAdapter(ISpecializationType.class);
 
 		if (specializationType != null) {
 
-			EReference reference = getContainmentFeatureFromSpecializationType(specializationType, request);
+			EReference reference = getContainmentFeatureFromSpecializationType(specializationType, editHelperContext);
 			if (reference != null) {
 				return reference;
 			}
@@ -493,7 +496,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 				IElementType superElementType = superTypes[i];
 
 				if (superElementType instanceof ISpecializationType) {
-					reference = getContainmentFeatureFromSpecializationType((ISpecializationType) superElementType, request);
+					reference = getContainmentFeatureFromSpecializationType((ISpecializationType) superElementType, editHelperContext);
 					if (reference != null) {
 						return reference;
 					}
@@ -502,7 +505,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 		}
 
 		// reference has not been found from element types ==> return from default containment feature for EClass
-		EClass eClass = request.getElementType().getEClass();
+		EClass eClass = elementType.getEClass();
 
 		if (eClass != null) {
 			// Next, try to get a default feature
@@ -512,7 +515,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 			}
 
 			// Compute default container (the first feature of container that can contain the new element's type)
-			EReference defaultEReference = findDefaultContainmentFeature(request.getContainer().eClass(), eClass);
+			EReference defaultEReference = findDefaultContainmentFeature(container.eClass(), eClass);
 			if (defaultEReference != null) {
 				return defaultEReference;
 			}

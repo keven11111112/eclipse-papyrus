@@ -18,9 +18,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -55,14 +57,30 @@ public class ComponentEditHelper extends ElementEditHelper {
 
 	@Override
 	protected ICommand getMoveCommand(MoveRequest req) {
-		// override the creation in order to prevent to move a component into a component by using the role "nestedClassifier"
 		for (Object elementToMove : req.getElementsToMove().keySet()) {
+			EReference ref = req.getTargetFeature((EObject) elementToMove);
+			if (ref == null) {
+				ref = computeContainmentFeature((EObject) elementToMove, req);
+			}
+			// override the creation in order to prevent to move a component into a component by using the role "nestedClassifier"
 			if (elementToMove instanceof Component && (UMLPackage.eINSTANCE.getClass_NestedClassifier().equals(req.getTargetFeature((EObject) elementToMove)))) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}
-
 		return super.getMoveCommand(req);
+	}
+
+	private EReference computeContainmentFeature(EObject elementToMove, MoveRequest req) {
+		if (false == req.getTargetContainer() instanceof Component) {
+			return null;
+		}
+		if (false == elementToMove instanceof Component) {
+			return null;
+		}
+		IElementType type = UMLElementTypes.COMPONENT;
+		EReference containmentFeature = computeContainmentFeature(type, req.getTargetContainer(), req.getEditHelperContext());
+		req.setTargetFeature(elementToMove, containmentFeature);
+		return req.getTargetFeature(elementToMove);
 	}
 
 	@Override
