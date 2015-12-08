@@ -536,6 +536,36 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
+		
+		<profile>
+			<id>buildAll</id>
+			
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
+				</property>
+			</activation>
+		</profile>
 	
 		<profile>
 		  	<id>findBugs</id> <!-- Analysis profile. Takes +1h -->
@@ -693,6 +723,7 @@
 	        	</property>
 	        </activation>
     	</profile>
+      
       
         <!-- nightly profile is useful for developers that want to link to nightly build -->
 		<profile>

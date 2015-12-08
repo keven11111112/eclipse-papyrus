@@ -95,16 +95,6 @@
 	</properties>
 	<repositories>
 		<repository>
-			<id>papyrus-main</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.main}</url>
-		</repository>
-		<repository>
-			<id>papyrus-dev</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.dev}</url>
-		</repository>
-		<repository>
 			<id>emf-compare</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF COMPARE",0) -->
@@ -272,4 +262,56 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>defaultProfile</id>
+			<repositories>
+				<repository>
+					<id>papyrus-main</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.main}</url>
+				</repository>
+				<repository>
+					<id>papyrus-dev</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.dev}</url>
+				</repository>
+			</repositories>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		
+		
+		<profile>
+			<id>buildAll</id>
+			<!-- Papyrus Update sites not included (They are included in the same build) -->
+			
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
 </project>

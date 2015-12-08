@@ -78,18 +78,21 @@
 			<!-- manualUpdate -->
 			<url>${upr.repo.url}</url>
 		</repository>
-		<repository>
-			<id>papyrus-main</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.main}</url>
-		</repository>
-		<repository>
-			<id>papyrus-extra</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.extra}</url>
-		</repository>
 	</repositories>
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
+					<configuration>
+						<source>${java.source.version}</source>
+						<target>${java.target.version}</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -196,4 +199,54 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>defaultProfile</id>
+			<repositories>
+				<repository>
+					<id>papyrus-main</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.main}</url>
+				</repository>
+				<repository>
+					<id>papyrus-extra</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.extra}</url>
+				</repository>
+			</repositories>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>buildAll</id>
+			<!-- Papyrus Update sites not included (They are included in the same build) -->
+			
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
 </project>

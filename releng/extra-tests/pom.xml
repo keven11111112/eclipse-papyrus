@@ -32,26 +32,6 @@
    </modules>
 	<repositories>
 		<repository>
-			<id>papyrus-main</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.main}</url>
-		</repository>
-		<repository>
-			<id>papyrus-dev</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.dev}</url>
-		</repository>
-	<!--  	<repository>
-			<id>org.eclipse.epf.richtext_1.5.1.6-update-site</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url>
-		</repository>-->
-		<repository>
-			<id>papyrus-extra</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.extra}</url>
-		</repository>
-				<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
@@ -202,4 +182,60 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>defaultProfile</id>
+			<repositories>
+				<repository>
+					<id>papyrus-main</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.main}</url>
+				</repository>
+				<repository>
+					<id>papyrus-dev</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.dev}</url>
+				</repository>
+				<repository>
+					<id>papyrus-extra</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.extra}</url>
+				</repository>
+			</repositories>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		
+		<profile>
+			<id>buildAll</id>
+			<!-- Papyrus Update sites not included (They are included in the same build) -->
+			
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
 </project>
