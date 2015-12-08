@@ -21,6 +21,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ChoicePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ExitPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.InitialPseudostateActivation;
@@ -36,6 +37,8 @@ import org.eclipse.uml2.uml.Transition;
 public class SM_ExecutionFactory extends CS_ExecutionFactory {
 	
 	public SemanticVisitor instantiateVisitor(Element element) {
+		// Provide the semantic visitor corresponding to the syntactic
+		// element provided as a parameter
 		SemanticVisitor visitor = null ;
 		if(element instanceof StateMachine){
 			visitor = new StateMachineExecution();
@@ -45,6 +48,7 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 				case INITIAL_LITERAL: visitor = new InitialPseudostateActivation(); break;
 				case ENTRY_POINT_LITERAL: visitor = new EntryPointActivation(); break;
 				case EXIT_POINT_LITERAL: visitor = new ExitPointActivation(); break;
+				case CHOICE_LITERAL: visitor = new ChoicePseudostateActivation(); break;
 				default: System.out.println("Unsupported construction: "+element);break;
 			}
 		}else if (element instanceof State) {
