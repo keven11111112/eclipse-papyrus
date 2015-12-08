@@ -13,10 +13,19 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.internal;
 
+import static java.util.Spliterators.spliteratorUnknownSize;
+import static java.util.stream.StreamSupport.stream;
+
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Spliterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -41,6 +50,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.PageRemovalValidator;
 import org.eclipse.papyrus.infra.core.services.EditorLifecycleEventListener;
 import org.eclipse.papyrus.infra.core.services.EditorLifecycleManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -93,10 +103,14 @@ public class WelcomePageService implements IWelcomePageService {
 		editorManager = services.getService(EditorLifecycleManager.class);
 		editorListener = new EditorListener();
 		editorManager.addEditorLifecycleEventsListener(editorListener);
+
+		installPageRemovalValidator();
 	}
 
 	@Override
 	public void disposeService() throws ServiceException {
+		uninstallPageRemovalValidator();
+
 		if (welcomeLocator != null) {
 			welcomeLocator.dispose();
 			welcomeLocator = null;
@@ -211,8 +225,7 @@ public class WelcomePageService implements IWelcomePageService {
 	}
 
 	void initializeActivePages() {
-		SashWindowsMngr sashMngr = SashModelUtils.getSashWindowsMngr((ModelSet) getWelcomeResource().getResourceSet());
-		SashModel sashModel = (sashMngr == null) ? null : sashMngr.getSashModel();
+		SashModel sashModel = getSashModel();
 		if ((sashModel != null) && sashModel.isRestoreActivePage()) {
 			// Select all of the remembered pages to make them active
 			sashContainer.getIFolderList().stream()
@@ -226,6 +239,29 @@ public class WelcomePageService implements IWelcomePageService {
 							}
 						}
 					});
+		}
+	}
+
+	private SashModel getSashModel() {
+		ModelSet modelSet = (ModelSet) getWelcomeResource().getResourceSet();
+		// Resource may have been unloaded and removed
+		SashWindowsMngr sashMngr = (modelSet == null) ? null : SashModelUtils.getSashWindowsMngr(modelSet);
+		return (sashMngr == null) ? null : sashMngr.getSashModel();
+	}
+
+	private void installPageRemovalValidator() {
+		SashModel sashModel = getSashModel();
+
+		if (sashModel != null) {
+			sashModel.eAdapters().add(new CloseValidator());
+		}
+	}
+
+	private void uninstallPageRemovalValidator() {
+		SashModel sashModel = getSashModel();
+
+		if (sashModel != null) {
+			sashModel.eAdapters().removeIf(CloseValidator.class::isInstance);
 		}
 	}
 
@@ -412,6 +448,54 @@ public class WelcomePageService implements IWelcomePageService {
 
 		Resource getWelcomeResource() {
 			return welcomeResource;
+		}
+	}
+
+	private class CloseValidator extends AdapterImpl implements PageRemovalValidator {
+		private SashModel sashModel;
+
+		@Override
+		public void setTarget(Notifier newTarget) {
+			if (newTarget instanceof SashModel) {
+				sashModel = (SashModel) newTarget;
+			}
+		}
+
+		@Override
+		public void unsetTarget(Notifier oldTarget) {
+			if (oldTarget == sashModel) {
+				sashModel = null;
+			}
+		}
+
+		@Override
+		public boolean canRemovePage(PageRef page) {
+			Object pageIdentifier = page.getPageIdentifier();
+			return (pageIdentifier != getModel()) || canCloseWelcomePage();
+		}
+
+		@Override
+		public Collection<? extends PageRef> filterRemovablePages(Collection<? extends PageRef> pages) {
+			Collection<? extends PageRef> result;
+			Optional<? extends PageRef> welcomePage = pages.stream().filter(p -> p.getPageIdentifier() == getModel()).findAny();
+
+			// No problem if the welcome page is not among them
+			if (!welcomePage.isPresent()) {
+				result = pages;
+			} else {
+				// If these are all of the pages, then don't close the welcome page
+				long allPagesCount = stream(spliteratorUnknownSize(sashModel.eAllContents(), Spliterator.ORDERED), false)
+						.filter(PageRef.class::isInstance)
+						.count();
+				if (allPagesCount > pages.size()) {
+					result = pages;
+				} else {
+					result = new ArrayList<>(pages);
+					result.remove(welcomePage.get());
+				}
+			}
+
+			return result;
 		}
 	}
 }

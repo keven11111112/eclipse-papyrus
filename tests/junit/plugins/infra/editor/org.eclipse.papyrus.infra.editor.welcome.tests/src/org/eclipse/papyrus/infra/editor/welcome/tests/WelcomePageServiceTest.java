@@ -13,15 +13,27 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.tests;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeThat;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.IPageUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.PageRemovalValidator;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
 import org.eclipse.papyrus.infra.editor.welcome.Welcome;
 import org.eclipse.papyrus.infra.editor.welcome.internal.WelcomePage;
@@ -124,5 +136,68 @@ public class WelcomePageServiceTest extends AbstractWelcomePageTest {
 		assumeThat(page, notNullValue());
 
 		assertThat(getService().canCloseWelcomePage(), is(false));
+	}
+
+	@Test
+	@PluginResource("resources/many_diagrams.di")
+	public void pageRemovalValidator() {
+		SashModel sashModel = SashModelUtils.getSashWindowsMngr(editor.getModelSet()).getSashModel();
+
+		getService().openWelcomePage();
+		editor.flushDisplayEvents();
+
+		PageRef welcomePage = sashModel.lookupPage(getWelcome());
+		assertNotNull(welcomePage);
+
+		PageRemovalValidator validator = PageRemovalValidator.getInstance(sashModel);
+		assertThat(validator.canRemovePage(welcomePage), is(true));
+		Collection<PageRef> allPages = getAllPages(sashModel);
+		Collection<PageRef> removable = new ArrayList<>(validator.filterRemovablePages(allPages));
+		assertThat(removable.size(), lessThan(allPages.size()));
+		assertThat(removable, not(hasItem(welcomePage)));
+
+		// Composition of multiple validators
+		sashModel.eAdapters().add(new DenyAllRemovals());
+
+		validator = PageRemovalValidator.getInstance(sashModel);
+		assertThat(validator.canRemovePage(welcomePage), is(false));
+		removable = new ArrayList<>(validator.filterRemovablePages(allPages));
+		assertThat(removable.size(), is(0));
+
+		// No validators
+		sashModel.eAdapters().removeIf(PageRemovalValidator.class::isInstance);
+
+		validator = PageRemovalValidator.getInstance(sashModel);
+		assertThat(validator.canRemovePage(welcomePage), is(true));
+		removable = new ArrayList<>(validator.filterRemovablePages(allPages));
+		assertThat(removable, is(allPages));
+
+	}
+
+	//
+	// Test Framework
+	//
+
+	Collection<PageRef> getAllPages(SashModel sash) {
+		Collection<PageRef> result = new ArrayList<>();
+
+		sash.eAllContents().forEachRemaining(next -> {
+			if (next instanceof PageRef) {
+				result.add((PageRef) next);
+			}
+		});
+
+		return result;
+	}
+
+	//
+	// Nested types
+	//
+
+	static class DenyAllRemovals extends AdapterImpl implements PageRemovalValidator {
+		@Override
+		public boolean canRemovePage(PageRef page) {
+			return false;
+		}
 	}
 }

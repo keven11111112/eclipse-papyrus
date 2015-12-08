@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sashwindows.di.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
 import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiSwitch;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.PageRemovalValidator;
 import org.eclipse.swt.SWT;
 
 /**
@@ -260,7 +262,7 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	@Override
 	public void removePage(Object pageIdentifier) {
 		PageRef pageRef = lookupPage(pageIdentifier);
-		if (pageRef == null) {
+		if ((pageRef == null) || !PageRemovalValidator.getInstance(this).canRemovePage(pageRef)) {
 			return;
 		}
 
@@ -280,15 +282,20 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	public void removePageAndEmptyFolder(Object pageIdentifier) {
 		PageRef pageRef;
 
-		while ((pageRef = lookupPage(pageIdentifier)) != null) {
-			// Get the folder containing the page
-			TabFolder folder = pageRef.getParent();
-			// Remove the page
-			folder.getChildren().remove(pageRef);
-			// Remove parent if empty
-			removeEmptyFolder(folder);
+		PageRemovalValidator validator = PageRemovalValidator.getInstance(this);
+		for (pageRef = lookupPage(pageIdentifier); (pageRef != null) && validator.canRemovePage(pageRef); pageRef = lookupPage(pageIdentifier)) {
+			removeAndEmptyFolder(pageRef);
 		}
 
+	}
+
+	void removeAndEmptyFolder(PageRef pageRef) {
+		// Get the folder containing the page
+		TabFolder folder = pageRef.getParent();
+		// Remove the page
+		folder.getChildren().remove(pageRef);
+		// Remove parent if empty
+		removeEmptyFolder(folder);
 	}
 
 	/**
@@ -669,15 +676,23 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 */
 	@Override
 	public void removeAllPages() {
+		Collection<? extends PageRef> pagesToRemove = getAllPages();
+		int originalCount = pagesToRemove.size();
+		pagesToRemove = PageRemovalValidator.getInstance(this).filterRemovablePages(pagesToRemove);
 
-		// Get a the first window and a folder.
-		// Clear the folder and set it as the root folder.
-		// This disguard all other folder and pages ...
-		Window firstWindow = lookupFirstWindow();
-		TabFolder folder = lookupFirstFolder();
+		if (pagesToRemove.size() < originalCount) {
+			// Do it the hard way
+			pagesToRemove.forEach(this::removeAndEmptyFolder);
+		} else {
+			// Get a the first window and a folder.
+			// Clear the folder and set it as the root folder.
+			// This disguard all other folder and pages ...
+			Window firstWindow = lookupFirstWindow();
+			TabFolder folder = lookupFirstFolder();
 
-		folder.getChildren().clear();
-		firstWindow.setPanel(folder);
+			folder.getChildren().clear();
+			firstWindow.setPanel(folder);
+		}
 	}
 
 	/**
@@ -688,20 +703,42 @@ public class SashModelImpl extends EObjectImpl implements SashModel {
 	 */
 	@Override
 	public void removeOtherPages(Object pageIdentifier) {
-		// Get a the first window and a folder.
-		// Clear the folder and set it as the root folder.
-		// This disguard all other folder and pages ...
-		Window firstWindow = lookupFirstWindow();
-		TabFolder folder = lookupFirstFolder();
 		PageRef page = lookupPage(pageIdentifier);
 
-		folder.getChildren().clear();
-		if (page != null) {
-			folder.getChildren().add(page);
+		Collection<? extends PageRef> pagesToRemove = getAllPages();
+		pagesToRemove.remove(page);
+		int originalCount = pagesToRemove.size();
+		pagesToRemove = PageRemovalValidator.getInstance(this).filterRemovablePages(pagesToRemove);
+
+		if (pagesToRemove.size() < originalCount) {
+			// Do it the hard way
+			pagesToRemove.forEach(this::removeAndEmptyFolder);
+		} else {
+			// Get a the first window and a folder.
+			// Clear the folder and set it as the root folder.
+			// This disguard all other folder and pages ...
+			Window firstWindow = lookupFirstWindow();
+			TabFolder folder = lookupFirstFolder();
+
+			folder.getChildren().clear();
+			if (page != null) {
+				folder.getChildren().add(page);
+			}
+			firstWindow.setPanel(folder);
 		}
-		firstWindow.setPanel(folder);
 	}
 
+	private Collection<PageRef> getAllPages() {
+		Collection<PageRef> result = new ArrayList<>();
+
+		eAllContents().forEachRemaining(next -> {
+			if (next instanceof PageRef) {
+				result.add((PageRef) next);
+			}
+		});
+
+		return result;
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

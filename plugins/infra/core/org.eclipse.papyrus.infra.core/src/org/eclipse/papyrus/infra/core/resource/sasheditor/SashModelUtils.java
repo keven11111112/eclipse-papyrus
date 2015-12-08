@@ -9,11 +9,13 @@
  * Contributors:
  *  LIFL - Initial API and implementation
  *  Christian W. Damus - bug 434983
+ *  Christian W. Damus - bug 469188
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
@@ -136,7 +138,10 @@ public class SashModelUtils {
 
 		SashModel model = getSashModel(modelSet);
 		if (model != null) {
-			result = (SashWindowsMngr) EcoreUtil.getObjectByType(model.getResource().getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+			Resource resource = model.getResource();
+			if (resource != null) {
+				result = (SashWindowsMngr) EcoreUtil.getObjectByType(resource.getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+			}
 		}
 
 		return result;
