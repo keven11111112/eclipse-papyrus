@@ -560,6 +560,23 @@
 			</activation>
 		</profile>
 		
+		<!-- Used with pack and packAndSign -->
+		<profile>
+			<id>buildExtra</id>
+				<repositories>
+					<repository>
+						<id>papyrus-main</id>
+						<layout>p2</layout>
+						<url>${papyrus.repo.main}</url>
+					</repository>
+			</repositories>
+			<activation>
+				<property>
+					<name>SIGN</name> <!-- Either true or false -->
+				</property>
+			</activation>
+		</profile>
+		
 		
 		<profile>
 			<id>buildAll</id>
