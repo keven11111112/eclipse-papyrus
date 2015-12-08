@@ -12,43 +12,13 @@
 package org.eclipse.papyrus.migration.rsa.tests.qvt;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.Protocol;
-import org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.ProtocolContainer;
-import org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.RTMessageKind;
-import org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.RTMessageSet;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class ImportProfilesTest extends AbstractTransformationTest {
-
-	protected void assertIsValidProtocol(Package protocolContainer) {
-		String name = protocolContainer.getName();
-
-		Assert.assertNotNull("The package Protocol1 should be stereotyped with ProtocolContainer", UMLUtil.getStereotypeApplication(protocolContainer, ProtocolContainer.class));
-
-		Collaboration protocol = (Collaboration) protocolContainer.getMember(name, false, UMLPackage.eINSTANCE.getCollaboration());
-		Assert.assertNotNull("The collaboration Protocol1 should be stereotyped with Protocol", UMLUtil.getStereotypeApplication(protocol, Protocol.class));
-
-		Interface protocolIn = (Interface) protocolContainer.getMember(name, false, UMLPackage.eINSTANCE.getInterface());
-		RTMessageSet messageSetIn = UMLUtil.getStereotypeApplication(protocolIn, RTMessageSet.class);
-		Assert.assertEquals("The direction of the Protocol1 interface should be 'in'", RTMessageKind.IN, messageSetIn.getRtMsgKind());
-
-		Interface protocolOut = (Interface) protocolContainer.getMember(name + "~", false, UMLPackage.eINSTANCE.getInterface());
-		RTMessageSet messageSetOut = UMLUtil.getStereotypeApplication(protocolOut, RTMessageSet.class);
-		Assert.assertEquals("The direction of the Protocol1~ interface should be 'out'", RTMessageKind.OUT, messageSetOut.getRtMsgKind());
-
-		Interface protocolInOut = (Interface) protocolContainer.getMember(name + "IO", false, UMLPackage.eINSTANCE.getInterface());
-		RTMessageSet messageSetInOut = UMLUtil.getStereotypeApplication(protocolInOut, RTMessageSet.class);
-		Assert.assertEquals("The direction of the Protocol1 interface should be 'inOut'", RTMessageKind.IN_OUT, messageSetInOut.getRtMsgKind());
-	}
-
 
 	// customProfile/*
 	@Test
