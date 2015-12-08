@@ -1027,7 +1027,8 @@ The result is the following:
 
 ===Paste with columns header selection (D2)===
 Depending on the selection and to the clipboard, different actions are possible:
-*if some columns are selected and only one is available in the clipboard, the selected columns must be updated with the values of the single column of the clipboard
+*if some columns are selected and only one column is available in the clipboard, the selected columns must be updated with the values of the single column of the clipboard
+*if some columns are selected and only one row is available in the clipboard, the selected columns must be updated with the rows' values repeated for each rows
 *else the width of the selection must be equals to the width from the clipboard, the selected columns will be modified
 
 ====Examples==== 
@@ -1053,6 +1054,19 @@ And this copied text:
 
 The result is the following:
  [[File:images/PasteOneColumnClipboardResult.jpg|none|frame]]
+
+
+=====One row in clipboard=====
+Get the following current table and selection:
+ [[File:images/PasteOneRowInColumnSelectionClipboardInitial.jpg|none|frame]]
+
+And this copied text:
+ [[File:images/PasteOneRowInColumnSelectionClipboardToCopy.jpg|none|frame]]
+
+
+The result is the following:
+ [[File:images/PasteOneRowInColumnSelectionClipboardResult.jpg|none|frame]]
+
 
 =Import from file (CSV)=
 The import from file (CSV) works like [[#Paste with rows header|paste with rows header]] when the rows header are available in the CSV.
