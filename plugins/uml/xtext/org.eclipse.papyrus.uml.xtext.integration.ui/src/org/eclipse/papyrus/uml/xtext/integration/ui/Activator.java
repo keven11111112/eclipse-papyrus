@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.uml.xtext.integration.ui;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.uml.xtext.integration.ActiveEditorTracker;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -36,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -44,11 +46,17 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+		System.out.println("Start");
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				new ActiveEditorTracker().earlyStartup();
+			}
+		});
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override

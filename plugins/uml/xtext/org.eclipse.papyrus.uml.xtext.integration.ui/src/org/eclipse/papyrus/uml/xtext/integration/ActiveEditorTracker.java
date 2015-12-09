@@ -28,7 +28,6 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPageListener;
 import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IStartup;
 import org.eclipse.ui.IWindowListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -47,7 +46,7 @@ import org.eclipse.ui.PlatformUI;
  *
  */
 public class ActiveEditorTracker implements IPageListener, IPartListener,
-		IStartup, IWindowListener {
+		IWindowListener {
 
 	private static final String SINGLETON_MSG = "This class is a singleton and may only be instantiated once!";
 
@@ -131,11 +130,11 @@ public class ActiveEditorTracker implements IPageListener, IPartListener,
 		if (editor instanceof IEditingDomainProvider) {
 			domain = ((IEditingDomainProvider) editor).getEditingDomain();
 		} else if (editor.getAdapter(IEditingDomainProvider.class) != null) {
-			domain = ((IEditingDomainProvider) editor
-					.getAdapter(IEditingDomainProvider.class))
+			domain = editor
+					.getAdapter(IEditingDomainProvider.class)
 					.getEditingDomain();
 		} else if (editor.getAdapter(EditingDomain.class) != null) {
-			domain = (EditingDomain) editor.getAdapter(EditingDomain.class);
+			domain = editor.getAdapter(EditingDomain.class);
 		}
 		if (domain == null) {
 			return null;
