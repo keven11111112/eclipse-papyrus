@@ -29,11 +29,19 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class HyperlinkTable<E> extends FormTable<E> {
 	public HyperlinkTable(Composite parent, int style, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
-		this(parent, style, null, columnAccessor, columnTitle);
+		super(parent, style, columnAccessor, columnTitle);
 	}
 
 	public HyperlinkTable(Composite parent, int style, String label, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
 		super(parent, style, label, columnAccessor, columnTitle);
+	}
+
+	public HyperlinkTable(Composite parent, int style, boolean filter, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
+		super(parent, style, filter, columnAccessor, columnTitle);
+	}
+
+	public HyperlinkTable(Composite parent, int style, boolean filter, String label, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
+		super(parent, style, filter, label, columnAccessor, columnTitle);
 	}
 
 	@Override

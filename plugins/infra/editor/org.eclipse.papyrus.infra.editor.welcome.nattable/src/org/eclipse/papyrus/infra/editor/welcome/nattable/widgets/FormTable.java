@@ -58,7 +58,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
+import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.SortedList;
 
 /**
@@ -73,11 +75,75 @@ public abstract class FormTable<E> extends Composite {
 	private String propertyPath;
 	private DataSource input;
 
+	/**
+	 * Initializes me with neither label text nor filter field.
+	 *
+	 * @param parent
+	 *            the composite in which I am created
+	 * @param style
+	 *            my styling (affects the nested {@code NatTable} widget, only)
+	 * @param columnAccessor
+	 *            the column property accessor for the nested {@code NatTable} to present columns
+	 * @param columnTitle
+	 *            the titles of the columns, which must correspond to the {@code columnAccessor}
+	 */
 	public FormTable(Composite parent, int style, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
-		this(parent, style, null, columnAccessor, columnTitle);
+		this(parent, style, false, null, columnAccessor, columnTitle);
 	}
 
+	/**
+	 * Initializes me without any label text.
+	 *
+	 * @param parent
+	 *            the composite in which I am created
+	 * @param style
+	 *            my styling (affects the nested {@code NatTable} widget, only)
+	 * @param filter
+	 *            whether to show a filter field above the table
+	 * @param columnAccessor
+	 *            the column property accessor for the nested {@code NatTable} to present columns
+	 * @param columnTitle
+	 *            the titles of the columns, which must correspond to the {@code columnAccessor}
+	 */
+	public FormTable(Composite parent, int style, boolean filter, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
+		this(parent, style, filter, null, columnAccessor, columnTitle);
+	}
+
+	/**
+	 * Initializes me without a filter field.
+	 *
+	 * @param parent
+	 *            the composite in which I am created
+	 * @param style
+	 *            my styling (affects the nested {@code NatTable} widget, only)
+	 * @param label
+	 *            the label to show above the table, or {@code null} to show no label
+	 * @param columnAccessor
+	 *            the column property accessor for the nested {@code NatTable} to present columns
+	 * @param columnTitle
+	 *            the titles of the columns, which must correspond to the {@code columnAccessor}
+	 */
 	public FormTable(Composite parent, int style, String label, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
+		this(parent, style, false, label, columnAccessor, columnTitle);
+	}
+
+	/**
+	 * Initializes me.
+	 *
+	 * @param parent
+	 *            the composite in which I am created
+	 * @param style
+	 *            my styling (affects the nested {@code NatTable} widget, only)
+	 * @param filter
+	 *            whether to show a filter field above the table
+	 * @param label
+	 *            the label to show above the table (and filter field, if any), or {@code null} to show no label
+	 * @param columnAccessor
+	 *            the column property accessor for the nested {@code NatTable} to present columns
+	 * @param columnTitle
+	 *            the titles of the columns, which must correspond to the {@code columnAccessor}
+	 */
+	public FormTable(Composite parent, int style, boolean filter, String label, IColumnPropertyAccessor<E> columnAccessor, String... columnTitle) {
 		super(parent, style);
 
 		setBackground(parent.getBackground());
@@ -93,10 +159,26 @@ public abstract class FormTable<E> extends Composite {
 			_label.setText(label);
 		}
 
+		// Optional filter field
+		Text filterField = null;
+		if (filter) {
+			filterField = new Text(parent, SWT.BORDER | SWT.SEARCH | SWT.ICON_CANCEL);
+			filterField.setMessage("filter");
+			filterField.setToolTipText("Filter the table contents (use * to match any string)");
+			GridDataFactory.fillDefaults().applyTo(filterField);
+		}
+
 		// Body of the table
 		backingList = new EventListObservableAdapter<>();
-		SortedList<E> sortedDiagrams = new SortedList<>(backingList, null);
-		IDataProvider dataProvider = new GlazedListsDataProvider<>(sortedDiagrams, columnAccessor);
+		FilterList<E> filteredList = null;
+		SortedList<E> sortedList;
+		if (filter) {
+			filteredList = new FilterList<>(backingList);
+			sortedList = new SortedList<>(filteredList, null);
+		} else {
+			sortedList = new SortedList<>(backingList, null);
+		}
+		IDataProvider dataProvider = new GlazedListsDataProvider<>(sortedList, columnAccessor);
 		DataLayer bodyDataLayer = new DataLayer(dataProvider);
 		eventLayer = new PapyrusGlazedListEventsLayer<>(bodyDataLayer, backingList);
 		SelectionLayer selectionLayer = new SelectionLayer(eventLayer, false);
@@ -106,7 +188,13 @@ public abstract class FormTable<E> extends Composite {
 
 		// Column headers
 		ColumnHeaderHelper<E> headerHelper = new ColumnHeaderHelper<>(configRegistry, viewportLayer, selectionLayer);
-		ILayer headers = headerHelper.createHeaderLayer(sortedDiagrams, columnAccessor, columnTitle);
+		ILayer headers = headerHelper.createHeaderLayer(sortedList, columnAccessor, columnTitle);
+
+		if (filteredList != null) {
+			// Filtering
+			headers = headerHelper.createFilterLayer(filteredList);
+			headerHelper.setFilterField(filterField);
+		}
 
 		// Arrange the headers and body together
 		CompositeLayer composition = new CompositeLayer(1, 2);

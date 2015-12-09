@@ -15,6 +15,9 @@ package org.eclipse.papyrus.infra.editor.welcome.nattable.sorting;
 
 import java.text.Collator;
 import java.util.Comparator;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -23,12 +26,15 @@ import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.extension.glazedlists.GlazedListsSortModel;
+import org.eclipse.nebula.widgets.nattable.extension.glazedlists.filterrow.DefaultGlazedListsStaticFilterStrategy;
+import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultColumnHeaderDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.ColumnHeaderLayer;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumulator;
+import org.eclipse.nebula.widgets.nattable.layer.event.RowStructuralRefreshEvent;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
@@ -41,8 +47,15 @@ import org.eclipse.nebula.widgets.nattable.style.IStyle;
 import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
 import org.eclipse.papyrus.infra.editor.welcome.nattable.ServiceConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Text;
 
+import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.SortedList;
+import ca.odell.glazedlists.matchers.AbstractMatcherEditor;
+import ca.odell.glazedlists.matchers.Matcher;
+import ca.odell.glazedlists.matchers.Matchers;
 
 /**
  * A helper utility for the configuration of sorting a NatTable that renders a
@@ -55,8 +68,12 @@ public class ColumnHeaderHelper<T> {
 	private final SelectionLayer selectionLayer;
 
 	private IColumnPropertyAccessor<T> columnAccessor;
+	private IDataProvider headerProvider;
 	private DataLayer headerData;
 	private SortHeaderLayer<T> sortHeaders;
+	private SortedList<T> sortedData;
+
+	private FilterMatcherEditor filterMatcher;
 
 	/**
 	 * Initializes me.
@@ -91,12 +108,24 @@ public class ColumnHeaderHelper<T> {
 	 */
 	public ILayer createHeaderLayer(SortedList<T> data, IColumnPropertyAccessor<T> columnAccessor, String... columnHeadings) {
 		this.columnAccessor = columnAccessor;
-		IDataProvider headerProvider = new DefaultColumnHeaderDataProvider(columnHeadings);
+		this.sortedData = data;
+
+		headerProvider = new DefaultColumnHeaderDataProvider(columnHeadings);
 		headerData = new DataLayer(headerProvider);
 		ColumnHeaderLayer headers = new ColumnHeaderLayer(headerData, viewportLayer, selectionLayer);
-		ISortModel sortModel = new GlazedListsSortModel<>(data, columnAccessor, configRegistry, headerData);
+		ISortModel sortModel = new GlazedListsSortModel<>(sortedData, columnAccessor, configRegistry, headerData);
 		sortHeaders = new SortHeaderLayer<>(headers, sortModel, false);
+
 		return sortHeaders;
+	}
+
+	public FilterRowHeaderComposite<T> createFilterLayer(FilterList<T> filteredData) {
+		DefaultGlazedListsStaticFilterStrategy<T> filterStrategy = new DefaultGlazedListsStaticFilterStrategy<>(filteredData, columnAccessor, configRegistry);
+		filterMatcher = new FilterMatcherEditor();
+		filterStrategy.addStaticFilter(filterMatcher);
+		FilterRowHeaderComposite<T> result = new FilterRowHeaderComposite<T>(filterStrategy, sortHeaders, headerProvider, configRegistry);
+		result.setFilterRowVisible(false);
+		return result;
 	}
 
 	/**
@@ -141,17 +170,71 @@ public class ColumnHeaderHelper<T> {
 		return "sortBy:" + propertyName;
 	}
 
-	private Comparator<IObservableValue<?>> getByLabelOrdering() {
+	private Comparator<Object> getByLabelOrdering() {
 		Collator collator = Collator.getInstance();
 		collator.setStrength(Collator.PRIMARY);
 		return (a, b) -> collator.compare(getLabel(a), getLabel(b));
 	}
 
-	private String getLabel(IObservableValue<?> observable) {
+	private String getLabel(Object object) {
 		LabelProviderService labels = ServiceConfigAttributes.getService(LabelProviderService.class, configRegistry, DisplayMode.NORMAL);
-		Object value = (observable == null) ? null : observable.getValue();
-		ILabelProvider labelProvider = (value == null) ? null : labels.getLabelProvider(observable);
+		Object value = (object instanceof IObservableValue<?>) ? ((IObservableValue<?>) object).getValue() : object;
+		ILabelProvider labelProvider = (value == null) ? null : labels.getLabelProvider(value);
 		return (labelProvider == null) ? null : labelProvider.getText(value);
 	}
 
+	public void setFilterField(Text filterField) {
+		if (filterField != null) {
+			filterField.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetDefaultSelected(SelectionEvent e) {
+					filterMatcher.setFilter(filterField.getText());
+				}
+			});
+		}
+	}
+
+	//
+	// Nested types
+	//
+
+	class FilterMatcherEditor extends AbstractMatcherEditor<T> {
+		void setFilter(String filterText) {
+			Matcher<T> matcher = Matchers.trueMatcher();
+
+			if ((filterText != null) && !filterText.isEmpty()) {
+				// First, collapse sequences of asterisks
+				filterText = filterText.replaceAll("\\*{2,}", "*"); //$NON-NLS-1$//$NON-NLS-2$
+
+				// Then split on the asterisks
+				String[] sections = filterText.split("\\*"); //$NON-NLS-1$
+
+				// And compose the pattern
+				Pattern pattern = Pattern.compile(Stream.of(sections)
+						.map(Pattern::quote)
+						.collect(Collectors.joining(".*")), //$NON-NLS-1$
+						Pattern.CASE_INSENSITIVE);
+				java.util.regex.Matcher regex = pattern.matcher(""); //$NON-NLS-1$
+
+				matcher = item -> {
+					boolean match = false;
+
+					int cols = columnAccessor.getColumnCount();
+					for (int i = 0; !match && (i < cols); i++) {
+						String label = getLabel(columnAccessor.getDataValue(item, i));
+						// The null label never matches
+						if (label != null) {
+							regex.reset(label);
+							match = regex.find();
+						}
+					}
+
+					return match;
+				};
+			}
+
+			fireChanged(matcher);
+			viewportLayer.fireLayerEvent(new RowStructuralRefreshEvent(viewportLayer));
+		}
+	}
 }

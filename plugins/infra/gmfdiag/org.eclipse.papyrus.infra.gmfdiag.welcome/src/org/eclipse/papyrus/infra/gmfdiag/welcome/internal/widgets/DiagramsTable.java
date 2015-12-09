@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 public class DiagramsTable extends HyperlinkTable<DiagramObservable> {
 
 	public DiagramsTable(Composite parent, int style) {
-		super(parent, style, new DiagramsColumnAccessor(), "Diagram", "Context");
+		super(parent, style, true, new DiagramsColumnAccessor(), "Diagram", "Context");
 	}
 
 	//
