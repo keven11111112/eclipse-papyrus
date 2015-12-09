@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 Christian W. Damus and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.welcome.internal;
 
@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.gmfdiag.welcome"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.nattable.welcome"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
