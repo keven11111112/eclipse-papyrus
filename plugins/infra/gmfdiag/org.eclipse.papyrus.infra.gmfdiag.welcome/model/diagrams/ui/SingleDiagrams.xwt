@@ -8,6 +8,6 @@
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
-	<ppew:DiagramsTable input="{Binding}" property="welcomeDiagrams:Welcome:diagrams"></ppew:DiagramsTable>
-	<ppew:CreateNewDiagramButton input="{Binding}"></ppew:CreateNewDiagramButton>
+	<ppew:NotationsTable input="{Binding}" property="welcomeDiagrams:Welcome:views"></ppew:NotationsTable>
+	<ppew:CreateNewNotationButton input="{Binding}" label="Create View"></ppew:CreateNewNotationButton>
 </Composite>

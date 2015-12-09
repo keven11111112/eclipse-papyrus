@@ -23,7 +23,7 @@ import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
  *
  */
 public class WelcomeModelElement extends EMFModelElement {
-	private final String DIAGRAMS = "diagrams"; //$NON-NLS-1$
+	private final String VIEWS = "views"; //$NON-NLS-1$
 
 	public WelcomeModelElement(EObject source, EditingDomain domain) {
 		super(source, domain);
@@ -34,8 +34,8 @@ public class WelcomeModelElement extends EMFModelElement {
 		IObservable result;
 
 		switch (propertyPath) {
-		case DIAGRAMS:
-			result = new DiagramsObservableList(this);
+		case VIEWS:
+			result = new NotationObservableList(this);
 			break;
 		default:
 			result = super.doGetObservable(propertyPath);
@@ -50,7 +50,7 @@ public class WelcomeModelElement extends EMFModelElement {
 		boolean result;
 
 		switch (propertyPath) {
-		case DIAGRAMS:
+		case VIEWS:
 			result = true;
 			break;
 		default:

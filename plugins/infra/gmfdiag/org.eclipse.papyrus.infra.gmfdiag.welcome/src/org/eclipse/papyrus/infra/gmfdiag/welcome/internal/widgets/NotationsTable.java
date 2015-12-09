@@ -11,30 +11,30 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.nattable.welcome.internal.widgets;
+package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.widgets;
 
 import org.eclipse.nebula.widgets.nattable.data.IColumnPropertyAccessor;
 import org.eclipse.papyrus.infra.editor.welcome.nattable.widgets.HyperlinkTable;
-import org.eclipse.papyrus.infra.nattable.welcome.internal.modelelements.TableObservable;
+import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.NotationObservable;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * A two-column table of hyperlinks for diagrams: on the left side, a link that navigates
- * to the diagram page, and on the right side, a link that navigates to the diagram's
- * context element in the Model Explorer.
+ * A two-column table of hyperlinks for diagrams, tables, and other notational views:
+ * on the left side, a link that navigates to the diagram/table page, and on the right side,
+ * a link that navigates to the view's context element in the Model Explorer.
  */
-public class TablesTable extends HyperlinkTable<TableObservable> {
+public class NotationsTable extends HyperlinkTable<NotationObservable> {
 
-	public TablesTable(Composite parent, int style) {
-		super(parent, style, true, new DiagramsColumnAccessor(), "Table", "Context");
+	public NotationsTable(Composite parent, int style) {
+		super(parent, style, true, new NotationsColumnAccessor(), "View", "Context");
 	}
 
 	//
 	// Nested types
 	//
 
-	static class DiagramsColumnAccessor implements IColumnPropertyAccessor<TableObservable> {
-		static final String TABLE = "table"; //$NON-NLS-1$
+	static class NotationsColumnAccessor implements IColumnPropertyAccessor<NotationObservable> {
+		static final String VIEW = "view"; //$NON-NLS-1$
 		static final String CONTEXT = "context"; //$NON-NLS-1$
 
 		@Override
@@ -43,12 +43,12 @@ public class TablesTable extends HyperlinkTable<TableObservable> {
 		}
 
 		@Override
-		public Object getDataValue(TableObservable rowObject, int columnIndex) {
+		public Object getDataValue(NotationObservable rowObject, int columnIndex) {
 			Object result;
 
 			switch (columnIndex) {
 			case 0:
-				result = rowObject.getTable();
+				result = rowObject.getView();
 				break;
 			case 1:
 				result = rowObject.getContext();
@@ -61,7 +61,7 @@ public class TablesTable extends HyperlinkTable<TableObservable> {
 		}
 
 		@Override
-		public void setDataValue(TableObservable rowObject, int columnIndex, Object newValue) {
+		public void setDataValue(NotationObservable rowObject, int columnIndex, Object newValue) {
 			throw new IllegalStateException("not editable"); //$NON-NLS-1$
 		}
 
@@ -69,7 +69,7 @@ public class TablesTable extends HyperlinkTable<TableObservable> {
 		public String getColumnProperty(int columnIndex) {
 			switch (columnIndex) {
 			case 0:
-				return TABLE;
+				return VIEW;
 			case 1:
 				return CONTEXT;
 			default:
@@ -80,7 +80,7 @@ public class TablesTable extends HyperlinkTable<TableObservable> {
 		@Override
 		public int getColumnIndex(String propertyName) {
 			switch (propertyName) {
-			case TABLE:
+			case VIEW:
 				return 0;
 			case CONTEXT:
 				return 1;

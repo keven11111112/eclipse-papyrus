@@ -28,7 +28,6 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -44,26 +43,35 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 /**
- * The properties widget that creates a new diagram.
+ * The properties widget that creates a new diagram, table, or other notation view.
  */
-public class CreateNewDiagramButton extends Composite {
+public class CreateNewNotationButton extends Composite {
 
+	private Button button;
 	private DataSource input;
 
-	public CreateNewDiagramButton(Composite parent, int style) {
+	public CreateNewNotationButton(Composite parent, int style) {
 		super(parent, style);
 
 		GridLayout layout = new GridLayout(1, false);
 		setLayout(layout);
 
-		Button button = new Button(this, SWT.PUSH | SWT.FLAT);
-		button.setText("Create Diagram");
+		button = new Button(this, SWT.PUSH | SWT.FLAT);
+		button.setText("Create View");
 		button.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				createDiagram();
 			}
 		});
+	}
+
+	public void setLabel(String label) {
+		button.setText(label);
+	}
+
+	public String getLabel() {
+		return button.getText();
 	}
 
 	@Override
@@ -117,9 +125,6 @@ public class CreateNewDiagramButton extends Composite {
 					if (object != null) {
 						// build a list of all the available prototypes
 						for (final ViewPrototype proto : PolicyChecker.getCurrent().getPrototypesFor(object)) {
-							if (!(proto.getConfiguration() instanceof PapyrusDiagram)) {
-								continue;
-							}
 							availablePrototypes.add(proto);
 						}
 					}
@@ -132,8 +137,8 @@ public class CreateNewDiagramButton extends Composite {
 		TreeSelectorDialog dlg = new TreeSelectorDialog(getShell());
 		dlg.setLabelProvider(labels.getLabelProvider());
 		dlg.setContentProvider(content);
-		dlg.setMessage("Select an element for which to create a new diagram.");
-		dlg.setTitle("Select Diagram Context");
+		dlg.setMessage("Select an element for which to create a new notation view.");
+		dlg.setTitle("Select Notation Context");
 		dlg.setInput(modelSet);
 
 		if (dlg.open() == Window.OK) {
@@ -163,8 +168,8 @@ public class CreateNewDiagramButton extends Composite {
 		};
 
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(getShell(), labels);
-		dlg.setTitle("Create Diagram");
-		dlg.setMessage("Select the diagram to create");
+		dlg.setTitle("Create Notation View");
+		dlg.setMessage("Select the notation view to create");
 		dlg.setMultipleSelection(false);
 		dlg.setElements(prototypes.toArray());
 

@@ -18,78 +18,78 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.util.ViewUtil;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.tools.databinding.TouchableValue;
 
 /**
- * Encapsulation of a {@link Diagram} that presents the following as observable properties:
+ * Encapsulation of a {@link Diagram}, {@link Table}, or other notation view that presents the
+ * following as observable properties:
  * <ul>
- * <li>the diagram</li>
- * <li>the diagram's context element</li>
+ * <li>the notation view</li>
+ * <li>the view's context element</li>
  * </ul>
  */
-public class DiagramObservable extends AbstractObservable {
-	private final Diagram diagram;
+public class NotationObservable extends AbstractObservable {
+	private ViewAdapter viewAdapter;
+	private ContextAdapter contextAdapter;
 
-	private Adapter diagramAdapter;
-	private Adapter contextAdapter;
-
-	private final TouchableValue<Diagram> diagramValue;
+	private final TouchableValue<EObject> viewValue;
 	private final TouchableValue<EObject> contextValue;
 
-	public DiagramObservable(Diagram diagram) {
-		this(Realm.getDefault(), diagram);
+	public NotationObservable(EObject view) {
+		this(Realm.getDefault(), view);
 	}
 
-	public DiagramObservable(Realm realm, Diagram diagram) {
+	public NotationObservable(Realm realm, EObject view) {
 		super(realm);
 
-		this.diagram = diagram;
+		EObject context = ViewUtil.getContext(view);
 
-		this.diagramValue = new TouchableValue<Diagram>(realm, Diagram.class, diagram);
-		this.contextValue = new TouchableValue<EObject>(realm, EObject.class, diagram.getElement());
+		this.viewValue = new TouchableValue<>(realm, EObject.class, view);
+		this.contextValue = new TouchableValue<>(realm, EObject.class, context);
 
-		this.diagramAdapter = new DiagramAdapter(diagram);
-		handleContextChanged(null, diagram.getElement());
-
+		this.viewAdapter = new ViewAdapter(view);
+		handleContextChanged(null, context);
 		// Roll up changes to my elements as changes to me
 		IChangeListener rollup = new IChangeListener() {
 
 			@Override
 			public void handleChange(ChangeEvent event) {
-				DiagramObservable.this.fireChange();
+				NotationObservable.this.fireChange();
 			}
 		};
-		diagramValue.addChangeListener(rollup);
+		viewValue.addChangeListener(rollup);
 		contextValue.addChangeListener(rollup);
 	}
 
 	@Override
 	public synchronized void dispose() {
-		if (diagramAdapter != null) {
-			// This will nullify the 'diagramAdapter' field
-			diagram.eAdapters().remove(diagramAdapter);
+		if (viewAdapter != null) {
+			// This will nullify the 'viewAdapter' field
+			viewAdapter.dispose();
 		}
 
 		if (contextAdapter != null) {
 			// This will nullify the 'contextAdapter' field
-			diagram.getElement().eAdapters().remove(contextAdapter);
+			contextAdapter.dispose();
 		}
 
-		diagramValue.dispose();
+		viewValue.dispose();
 		contextValue.dispose();
 
 		super.dispose();
 	}
 
-	public IObservableValue<Diagram> getDiagram() {
-		return diagramValue;
+	public IObservableValue<EObject> getView() {
+		return viewValue;
 	}
 
 	public IObservableValue<EObject> getContext() {
@@ -102,7 +102,7 @@ public class DiagramObservable extends AbstractObservable {
 	}
 
 	void handleContextChanged(EObject oldContext, EObject newContext) {
-		Adapter adapter = this.contextAdapter;
+		ContextAdapter adapter = this.contextAdapter;
 
 		if (oldContext != null) {
 			// This will nullify the 'contextAdapter' field
@@ -126,18 +126,24 @@ public class DiagramObservable extends AbstractObservable {
 	// Nested types
 	//
 
-	private class DiagramAdapter extends AdapterImpl {
-		DiagramAdapter(Diagram diagram) {
+	private class ViewAdapter extends AdapterImpl {
+		ViewAdapter(EObject view) {
 			super();
 
-			diagram.eAdapters().add(this);
+			view.eAdapters().add(this);
+		}
+
+		void dispose() {
+			if (target != null) {
+				target.eAdapters().remove(this);
+			}
 		}
 
 		@Override
 		public void unsetTarget(Notifier oldTarget) {
 			if (target == oldTarget) {
 				// I am disposed
-				diagramAdapter = null;
+				viewAdapter = null;
 			}
 
 			super.unsetTarget(oldTarget);
@@ -146,14 +152,28 @@ public class DiagramObservable extends AbstractObservable {
 		@Override
 		public void notifyChanged(Notification msg) {
 			if (!msg.isTouch()) {
-				switch (msg.getFeatureID(Diagram.class)) {
-				case NotationPackage.DIAGRAM__NAME:
-				case NotationPackage.DIAGRAM__TYPE:
-					diagramValue.touch();
-					break;
-				case NotationPackage.DIAGRAM__ELEMENT:
-					handleContextChanged((EObject) msg.getOldValue(), (EObject) msg.getNewValue());
-					break;
+				Object notifier = msg.getNotifier();
+
+				if (notifier instanceof Diagram) {
+					switch (msg.getFeatureID(Diagram.class)) {
+					case NotationPackage.DIAGRAM__NAME:
+					case NotationPackage.DIAGRAM__TYPE:
+						viewValue.touch();
+						break;
+					case NotationPackage.DIAGRAM__ELEMENT:
+						handleContextChanged((EObject) msg.getOldValue(), (EObject) msg.getNewValue());
+						break;
+					}
+				} else if (notifier instanceof Table) {
+					switch (msg.getFeatureID(Diagram.class)) {
+					case NattablePackage.TABLE__NAME:
+					case NattablePackage.TABLE__TABLE_CONFIGURATION:
+						viewValue.touch();
+						break;
+					case NattablePackage.TABLE__CONTEXT:
+						handleContextChanged((EObject) msg.getOldValue(), (EObject) msg.getNewValue());
+						break;
+					}
 				}
 			}
 		}
@@ -164,6 +184,12 @@ public class DiagramObservable extends AbstractObservable {
 			super();
 
 			context.eAdapters().add(this);
+		}
+
+		void dispose() {
+			if (target != null) {
+				target.eAdapters().remove(this);
+			}
 		}
 
 		@Override

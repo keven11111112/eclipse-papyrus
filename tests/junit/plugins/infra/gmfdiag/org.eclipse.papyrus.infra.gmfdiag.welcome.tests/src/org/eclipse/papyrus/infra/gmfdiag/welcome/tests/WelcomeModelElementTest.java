@@ -29,11 +29,12 @@ import java.util.stream.Collectors;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.list.ListDiffEntry;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.editor.welcome.tests.AbstractWelcomePageTest;
-import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.DiagramObservable;
+import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.NotationObservable;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.WelcomeModelElement;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.WelcomeModelElementFactory;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
@@ -57,38 +58,39 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 	}
 
 	@Test
-	public void diagramsProperty() {
-		IObservableList<DiagramObservable> diagrams = getDiagrams();
+	public void viewsProperty() {
+		IObservableList<NotationObservable> views = getNotationViews();
 
-		assertThat(diagrams.size(), is(4));
-		assertThat(diagrams, hasItem(anything()));
+		assertThat(views.size(), is(6));
+		assertThat(views, hasItem(anything()));
 
-		List<String> diagramNames = diagrams.stream()
-				.map(DiagramObservable::getDiagram)
+		List<String> diagramNames = views.stream()
+				.map(NotationObservable::getView)
 				.map(IObservableValue::getValue)
-				.map(Diagram::getName)
+				.map(this::getName)
 				.collect(Collectors.toList());
 		assertThat(diagramNames, both(hasItem("classes")).and(hasItem("packages"))
-				.and(hasItem("use cases")).and(hasItem("components")));
+				.and(hasItem("use cases")).and(hasItem("components"))
+				.and(hasItem("table")).and(hasItem("tree table")));
 
-		List<String> contextNames = diagrams.stream()
-				.map(DiagramObservable::getContext)
+		List<String> contextNames = views.stream()
+				.map(NotationObservable::getContext)
 				.map(IObservableValue::getValue)
 				.map(NamedElement.class::cast)
 				.map(NamedElement::getName)
 				.collect(Collectors.toList());
-		assertThat(contextNames, is(Collections.nCopies(4, "model")));
+		assertThat(contextNames, is(Collections.nCopies(6, "model")));
 	}
 
 	@Test
-	public void deleteDiagram() {
-		IObservableList<DiagramObservable> diagrams = getDiagrams();
+	public void deleteView() {
+		IObservableList<NotationObservable> views = getNotationViews();
 
-		DiagramObservable toBeDeleted = getDiagram(diagrams, "use cases");
+		NotationObservable toBeDeleted = getView(views, "use cases");
 
 		boolean[] deleted = { false };
-		diagrams.addListChangeListener(event -> {
-			for (ListDiffEntry<? extends DiagramObservable> next : event.diff.getDifferences()) {
+		views.addListChangeListener(event -> {
+			for (ListDiffEntry<? extends NotationObservable> next : event.diff.getDifferences()) {
 				if (!next.isAddition() && (next.getElement() == toBeDeleted)) {
 					deleted[0] = true;
 				}
@@ -99,24 +101,24 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 
 			@Override
 			protected void doExecute() {
-				EcoreUtil.delete(toBeDeleted.getDiagram().getValue(), true);
+				EcoreUtil.delete(toBeDeleted.getView().getValue(), true);
 			}
 		});
 
 		assertThat("List did not notify", deleted[0], is(true));
-		assertThat(diagrams.size(), is(3));
-		assertThat(diagrams, not(hasItem(toBeDeleted)));
+		assertThat(views.size(), is(5));
+		assertThat(views, not(hasItem(toBeDeleted)));
 	}
 
 	@Test
-	public void createDiagram() {
-		IObservableList<DiagramObservable> diagrams = getDiagrams();
+	public void createView() {
+		IObservableList<NotationObservable> views = getNotationViews();
 
-		DiagramObservable[] created = { null };
+		NotationObservable[] created = { null };
 
-		diagrams.addListChangeListener(event -> {
-			for (ListDiffEntry<? extends DiagramObservable> next : event.diff.getDifferences()) {
-				if (next.isAddition() && "CreatedInTest".equals(next.getElement().getDiagram().getValue().getName())) {
+		views.addListChangeListener(event -> {
+			for (ListDiffEntry<? extends NotationObservable> next : event.diff.getDifferences()) {
+				if (next.isAddition() && "CreatedInTest".equals(getName(next.getElement().getView().getValue()))) {
 					created[0] = next.getElement();
 				}
 			}
@@ -134,13 +136,13 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 		});
 
 		assertThat("List did not notify", created[0], notNullValue());
-		assertThat(diagrams.size(), is(5));
-		assertThat(diagrams, hasItem(created[0]));
+		assertThat(views.size(), is(7));
+		assertThat(views, hasItem(created[0]));
 	}
 
 	@Test
 	public void isEditable() {
-		assertThat(fixture.isEditable("diagrams"), is(true));
+		assertThat(fixture.isEditable("views"), is(true));
 		assertThat(fixture.isEditable("garbage"), is(false));
 	}
 
@@ -154,15 +156,21 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 				requireWelcome(), null); // The data-context isn't used by the factory
 	}
 
-	IObservableList<DiagramObservable> getDiagrams() {
+	IObservableList<NotationObservable> getNotationViews() {
 		@SuppressWarnings("unchecked")
-		IObservableList<DiagramObservable> result = (IObservableList<DiagramObservable>) fixture.getObservable("diagrams");
+		IObservableList<NotationObservable> result = (IObservableList<NotationObservable>) fixture.getObservable("views");
 		return result;
 	}
 
-	DiagramObservable getDiagram(Collection<? extends DiagramObservable> diagrams, String name) {
-		return diagrams.stream()
-				.filter(d -> name.equals(d.getDiagram().getValue().getName()))
+	NotationObservable getView(Collection<? extends NotationObservable> views, String name) {
+		return views.stream()
+				.filter(d -> name.equals(getName(d.getView().getValue())))
 				.findFirst().get();
+	}
+
+	// Diagrams and tables have a 'name' attribute
+	String getName(EObject object) {
+		EStructuralFeature nameAttribute = object.eClass().getEStructuralFeature("name");
+		return (String) object.eGet(nameAttribute);
 	}
 }

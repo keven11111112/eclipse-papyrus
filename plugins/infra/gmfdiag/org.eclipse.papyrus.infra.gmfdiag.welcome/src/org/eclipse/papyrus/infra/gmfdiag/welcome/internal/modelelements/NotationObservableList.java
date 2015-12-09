@@ -11,7 +11,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.nattable.welcome.internal.modelelements;
+package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -20,19 +20,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * An observable list of diagram-observables, tracking all of the diagrams available
  * in the resource set.
  */
-public class TablesObservableList extends WritableListWithIterator<TableObservable> {
+public class NotationObservableList extends WritableListWithIterator<NotationObservable> {
 	private TransactionalEditingDomain domain;
 	private ResourceAdapter.Transactional diagramsListener;
 
-	public TablesObservableList(WelcomeModelElement owner) {
-		super(new ArrayList<>(), TableObservable.class);
+	public NotationObservableList(WelcomeModelElement owner) {
+		super(new ArrayList<>(), NotationObservable.class);
 
 		this.domain = (TransactionalEditingDomain) owner.getDomain();
 		hookDiagramsListener();
@@ -55,25 +55,24 @@ public class TablesObservableList extends WritableListWithIterator<TableObservab
 			@Override
 			protected void handleResourceLoaded(Resource resource) {
 				resource.getContents().stream()
-						.filter(Table.class::isInstance)
-						.map(Table.class::cast)
-						.map(TableObservable::new)
-						.forEach(TablesObservableList.this::add);
+						.filter(ViewPrototype::isViewObject)
+						.map(NotationObservable::new)
+						.forEach(NotationObservableList.this::add);
 			}
 
 			@Override
 			protected void handleRootAdded(Resource resource, EObject root) {
-				if (root instanceof Table) {
-					add(new TableObservable((Table) root));
+				if (ViewPrototype.isViewObject(root)) {
+					add(new NotationObservable(root));
 				}
 			}
 
 			@Override
 			protected void handleRootRemoved(Resource resource, EObject root) {
-				if (root instanceof Table) {
-					for (Iterator<TableObservable> iter = iterator(); iter.hasNext();) {
-						TableObservable next = iter.next();
-						if (next.getTable().getValue() == root) {
+				if (ViewPrototype.isViewObject(root)) {
+					for (Iterator<NotationObservable> iter = iterator(); iter.hasNext();) {
+						NotationObservable next = iter.next();
+						if (next.getView().getValue() == root) {
 							iter.remove();
 							next.dispose();
 						}

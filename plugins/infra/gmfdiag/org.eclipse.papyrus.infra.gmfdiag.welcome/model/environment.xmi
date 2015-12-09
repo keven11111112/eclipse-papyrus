@@ -7,12 +7,12 @@
       name="Welcome Factory"
       factoryClass="org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements.WelcomeModelElementFactory"/>
   <widgetTypes
-      label="Create Diagram"
-      widgetClass="CreateNewDiagramButton"
+      label="Create View"
+      widgetClass="CreateNewNotationButton"
       namespace="//@namespaces.0"/>
   <compositeWidgetTypes
-      label="Diagrams"
-      widgetClass="DiagramsTable"
+      label="Views"
+      widgetClass="NotationsTable"
       namespace="//@namespaces.0"/>
   <namespaces
       name="ppew"
