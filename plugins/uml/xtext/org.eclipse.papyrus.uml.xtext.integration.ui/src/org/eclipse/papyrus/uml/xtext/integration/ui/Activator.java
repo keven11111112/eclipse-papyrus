@@ -46,7 +46,6 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
-		System.out.println("Start");
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
 				new ActiveEditorTracker().earlyStartup();
