@@ -200,9 +200,4 @@
          </menu>
       </menuContribution>
    </extension>
-   <extension
-         point="org.eclipse.ui.startup">
-      <startup
-            class="org.eclipse.papyrus.emf.facet.custom.sdk.ui.internal.Startup"></startup>
-   </extension>
 </plugin>

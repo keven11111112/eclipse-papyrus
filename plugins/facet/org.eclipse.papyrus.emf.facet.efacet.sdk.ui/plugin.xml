@@ -194,10 +194,4 @@
            name="%command.name.10">
      </command>
   </extension>
-  <extension
-        point="org.eclipse.ui.startup">
-     <startup
-           class="org.eclipse.papyrus.emf.facet.efacet.sdk.ui.internal.Startup">
-     </startup>
-  </extension>
 </plugin>
