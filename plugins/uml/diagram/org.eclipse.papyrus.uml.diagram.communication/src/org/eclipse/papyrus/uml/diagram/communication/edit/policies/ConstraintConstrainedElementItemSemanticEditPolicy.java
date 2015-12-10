@@ -25,7 +25,7 @@ public class ConstraintConstrainedElementItemSemanticEditPolicy extends UMLBaseI
 	 * @generated
 	 */
 	public ConstraintConstrainedElementItemSemanticEditPolicy() {
-		super(UMLElementTypes.ConstraintConstrainedElement_8011);
+		super(UMLElementTypes.Constraint_ConstrainedElementEdge);
 	}
 
 	/**

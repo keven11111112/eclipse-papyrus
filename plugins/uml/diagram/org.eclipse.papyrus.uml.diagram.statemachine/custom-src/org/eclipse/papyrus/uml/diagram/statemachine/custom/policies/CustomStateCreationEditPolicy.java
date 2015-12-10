@@ -65,7 +65,7 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 				for (Iterator<?> iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
 					IElementType elementType = (IElementType) iter.next();
-					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Region_3000).getSemanticHint())) {
+					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint())) {
 						// starting point is the state node on
 						// which mouse was moving
 						View stateView = (View) getHost().getModel();
@@ -94,18 +94,18 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 						cc.compose(showCompartment);
 						cc.compose(createNewRegion);
 						return new ICommandProxy(cc.reduce());
-					} else if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_8000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_9000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_10000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_11000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_12000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_13000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_14000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_15000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_16000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_17000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.State_6000).getSemanticHint())
-							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.FinalState_5000).getSemanticHint())) {
+					} else if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_InitialShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_JoinShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_ForkShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_ChoiceShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_JunctionShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_ShallowHistoryShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_DeepHistoryShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_TerminateShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_EntryPointShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_ExitPointShape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.State_Shape).getSemanticHint())
+							|| ((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.FinalState_Shape).getSemanticHint())) {
 						// starting point is the state node on
 						// which mouse was moving
 						View stateView = (View) getHost().getModel();
@@ -177,7 +177,7 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 	// List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 	// // Treat the case where only one element type is listed
 	// // Only take EntryPoint or ExitPoint element type into account
-	// if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_16000) || ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_17000))) {
+	// if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_EntryPointShape) || ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Pseudostate_ExitPointShape))) {
 	// // If the target is a compartment replace by its grand parent edit part
 	// if((getHost() instanceof ShapeCompartmentEditPart)) {
 	// return getHost().getParent().getParent().getParent();
@@ -195,7 +195,7 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 	// CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest)request;
 	// for(Iterator iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
 	// IElementType elementType = (IElementType)iter.next();
-	// if(elementType.equals(UMLElementTypes.Region_3000)) {
+	// if(elementType.equals(UMLElementTypes.Region_Shape)) {
 	// RegionFigure targetFig = ((RegionEditPart)getHost().getParent()).getPrimaryShape();
 	//
 	// // make a local copy

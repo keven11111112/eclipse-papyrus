@@ -31,7 +31,7 @@ public class CustomDependencyBranchSemanticEditPolicy extends DefaultSemanticEdi
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		if (request instanceof CreateRelationshipRequest) {
 			IElementType type = ((CreateRelationshipRequest) request).getElementType();
-			if (UMLElementTypes.Dependency_4010 == type) {
+			if (UMLElementTypes.Dependency_BranchEdge == type) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		}

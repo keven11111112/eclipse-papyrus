@@ -38,7 +38,7 @@ public class InteractionUseStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_3002, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
+		interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
 		assertNotNull(interactionUse);
 	}
 

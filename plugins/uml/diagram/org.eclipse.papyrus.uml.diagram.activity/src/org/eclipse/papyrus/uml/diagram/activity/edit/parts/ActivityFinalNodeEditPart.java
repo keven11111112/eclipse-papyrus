@@ -46,6 +46,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
@@ -64,7 +65,7 @@ public class ActivityFinalNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3005";
+	public static final String VISUAL_ID = "ActivityFinalNode_Shape";
 
 	/**
 	 * @generated
@@ -90,10 +91,13 @@ public class ActivityFinalNodeEditPart extends RoundedCompartmentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -119,6 +123,7 @@ public class ActivityFinalNodeEditPart extends RoundedCompartmentEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -204,7 +209,9 @@ public class ActivityFinalNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new CircleFigure(((Bounds) ((Node) getNotationView()).getLayoutConstraint()).getWidth(), ((Bounds) ((Node) getNotationView()).getLayoutConstraint()).getHeight());
+		DefaultSizeNodeFigure result = new CircleFigure(
+				((Bounds) ((Node) getNotationView()).getLayoutConstraint()).getWidth(),
+				((Bounds) ((Node) getNotationView()).getLayoutConstraint()).getHeight());
 		;
 		return result;
 	}
@@ -220,6 +227,7 @@ public class ActivityFinalNodeEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

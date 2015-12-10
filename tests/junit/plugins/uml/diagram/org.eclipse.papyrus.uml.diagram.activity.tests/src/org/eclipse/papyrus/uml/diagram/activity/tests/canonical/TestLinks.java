@@ -95,7 +95,7 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		IGraphicalEditPart reduceActionEP = createChild(ReduceActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 
 		List<IElementType> types = new LinkedList<IElementType>();
-		types.add(UMLElementTypes.ObjectFlow_4003);
+		types.add(UMLElementTypes.ObjectFlow_Edge);
 
 		AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest req =
 				new AspectUnspecifiedTypeConnectionTool(types).
@@ -124,7 +124,7 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		IGraphicalEditPart reduceActionEP = createChild(ReduceActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart inputPinInReduceAction = createChild(ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID, reduceActionEP);
 
-		Command endCommand = createLinkCommand(outputPinInAcceptEventAction, inputPinInReduceAction, UMLElementTypes.ObjectFlow_4003);
+		Command endCommand = createLinkCommand(outputPinInAcceptEventAction, inputPinInReduceAction, UMLElementTypes.ObjectFlow_Edge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 
@@ -139,7 +139,7 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		IGraphicalEditPart initialNodeEP = createChild(InitialNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart readExtentctionEP = createChild(ReadExtentActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(initialNodeEP, readExtentctionEP, UMLElementTypes.ControlFlow_4004);
+		Command endCommand = createLinkCommand(initialNodeEP, readExtentctionEP, UMLElementTypes.ControlFlow_Edge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 
@@ -157,7 +157,7 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		IGraphicalEditPart createLinkACtionEP = createChild(CreateLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart newTargetEP = createChild(InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID, createLinkACtionEP);
 
-		Command endCommand = createLinkCommand(opaqueEP, parameterNodeEP, UMLElementTypes.ObjectFlow_4003);
+		Command endCommand = createLinkCommand(opaqueEP, parameterNodeEP, UMLElementTypes.ObjectFlow_Edge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 
@@ -185,7 +185,7 @@ public class TestLinks extends AbstractPapyrusTestCase {
 
 		IGraphicalEditPart createLinkACtionEP = createChild(CreateLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(outputPinInOpaqueEP, opaqueEP, UMLElementTypes.ObjectFlow_4003);
+		Command endCommand = createLinkCommand(outputPinInOpaqueEP, opaqueEP, UMLElementTypes.ObjectFlow_Edge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 
@@ -209,7 +209,7 @@ public class TestLinks extends AbstractPapyrusTestCase {
 		IGraphicalEditPart broadCastSignalActionEP = createChild(BroadcastSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart acceptEventActionEP = createChild(AcceptEventActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(parameterNodeEP, broadCastSignalActionEP, UMLElementTypes.ControlFlow_4004);
+		Command endCommand = createLinkCommand(parameterNodeEP, broadCastSignalActionEP, UMLElementTypes.ControlFlow_Edge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 

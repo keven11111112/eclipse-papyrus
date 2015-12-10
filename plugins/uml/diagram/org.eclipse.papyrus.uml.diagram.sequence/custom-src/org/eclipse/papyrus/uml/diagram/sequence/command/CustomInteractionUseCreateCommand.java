@@ -77,7 +77,7 @@ public class CustomInteractionUseCreateCommand extends InteractionUseCreateComma
 			Interaction owner = (Interaction) elementToEdit;
 			owner.getFragments().add(newElement);
 		}
-		ElementInitializers.getInstance().init_InteractionUse_3002(newElement);
+		ElementInitializers.getInstance().init_InteractionUse_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -69,22 +69,22 @@ public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 
 	@Test
 	public void testCombinedFragmentDeleteAll() {
-		deleteAll(UMLElementTypes.CombinedFragment_3004);
+		deleteAll(UMLElementTypes.CombinedFragment_Shape);
 	}
 
 	@Test
 	public void testConsiderIgnoreFragmentDeleteAll() {
-		deleteAll(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		deleteAll(UMLElementTypes.ConsiderIgnoreFragment_Shape);
 	}
 
 	@Test
 	public void testCombinedFragmentKeepContents() {
-		keepContents(UMLElementTypes.CombinedFragment_3004);
+		keepContents(UMLElementTypes.CombinedFragment_Shape);
 	}
 
 	@Test
 	public void testConsiderIgnoreFragmentKeepContents() {
-		keepContents(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		keepContents(UMLElementTypes.ConsiderIgnoreFragment_Shape);
 	}
 
 	protected void deleteAll(IElementType type) {
@@ -98,13 +98,13 @@ public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 		createNode(type, op, new Point(150, 150), new Dimension(100, 100));
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
 
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 200), new Dimension(60, 240));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 200), new Dimension(60, 240));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 2);
 		LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 
 		waitForComplete();
-		createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifelineEP, getAbsoluteCenter(lifelineEP).translate(0, 10), null);
+		createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineEP, getAbsoluteCenter(lifelineEP).translate(0, 10), null);
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifelineEP.getChildren().size() == 2);
 
@@ -162,13 +162,13 @@ public class TestCombinedFragmentDeletion_364804 extends TestTopNode {
 		createNode(type, op, new Point(150, 150), new Dimension(100, 100));
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 1);
 
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 200), new Dimension(60, 240));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 200), new Dimension(60, 240));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, getRootEditPart().getChildren().size() == 2);
 		LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 
 		waitForComplete();
-		createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifelineEP, getAbsoluteCenter(lifelineEP).translate(0, 10), null);
+		createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineEP, getAbsoluteCenter(lifelineEP).translate(0, 10), null);
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifelineEP.getChildren().size() == 2);
 

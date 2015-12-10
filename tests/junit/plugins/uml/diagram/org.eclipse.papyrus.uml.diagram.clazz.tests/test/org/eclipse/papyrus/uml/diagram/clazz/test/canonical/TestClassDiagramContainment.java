@@ -48,6 +48,6 @@ public class TestClassDiagramContainment extends TestContainmentLink {
 	 */
 	@Test
 	public void testToManageContainment() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Link_4023, UMLElementTypes.Package_2007);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Element_ContainmentEdge, UMLElementTypes.Package_Shape);
 	}
 }

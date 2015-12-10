@@ -40,7 +40,7 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 	
 	@Test
 	public void testToManageLifeline() {
-		testToManageTopNode(UMLElementTypes.Lifeline_3001, provider);
+		testToManageTopNode(UMLElementTypes.Lifeline_Shape, provider);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageTopNode(UMLElementTypes.Constraint_3008, provider);
+		testToManageTopNode(UMLElementTypes.Constraint_Shape, provider);
 	}
 
 	/**
@@ -56,18 +56,18 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageTopNode(UMLElementTypes.Comment_3009, provider);
+		testToManageTopNode(UMLElementTypes.Comment_Shape, provider);
 	}
 
 	@Test
 	public void testToManageInteractionUse() {
-		testToManageTopNode(UMLElementTypes.InteractionUse_3002, provider);
+		testToManageTopNode(UMLElementTypes.InteractionUse_Shape, provider);
 	}
 
 	//	@Test
 	//	public void testToManageConsiderIgnoreFragment() { // popup menu when delete
 	//		PopupUtil.addMenuListener(0);
-	//		testToManageTopNode(UMLElementTypes.ConsiderIgnoreFragment_3007, provider);
+	//		testToManageTopNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, provider);
 	//
 	//		waitForComplete();
 	//		PopupUtil.removeMenuListener();
@@ -76,7 +76,7 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 	//	@Test
 	//	public void testToManageCombinedFragment() { // popup menu when delete
 	//		PopupUtil.addMenuListener(0);
-	//		testToManageTopNode(UMLElementTypes.CombinedFragment_3004, provider);
+	//		testToManageTopNode(UMLElementTypes.CombinedFragment_Shape, provider);
 	//
 	//		waitForComplete();
 	//		PopupUtil.removeMenuListener();
@@ -84,12 +84,12 @@ public class TestSequenceDiagramTopNode extends TestTopNode {
 
 	@Test
 	public void testToManageTimeObservation() {
-		testToManageTopNode(UMLElementTypes.TimeObservation_3020, observationProvider);
+		testToManageTopNode(UMLElementTypes.TimeObservation_Shape, observationProvider);
 	}
 
 	@Test
 	public void testToManageDurationObservation() {
-		testToManageTopNode(UMLElementTypes.DurationObservation_3024, observationProvider);
+		testToManageTopNode(UMLElementTypes.DurationObservation_Shape, observationProvider);
 	}
 
 	ITestProvider provider = new ITestProvider() {

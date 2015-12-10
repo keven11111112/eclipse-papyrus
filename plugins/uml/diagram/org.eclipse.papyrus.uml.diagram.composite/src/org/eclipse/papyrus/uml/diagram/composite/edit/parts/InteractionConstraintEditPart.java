@@ -45,7 +45,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "2113";
+	public static final String VISUAL_ID = "InteractionConstraint_Shape";
 
 	/**
 	 * @generated
@@ -70,9 +70,12 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -86,7 +89,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -112,6 +115,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -127,21 +131,23 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public ConstraintFigure getPrimaryShape() {
-		return (ConstraintFigure)primaryShape;
+		return (ConstraintFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InteractionConstraintNameEditPart) {
-			((InteractionConstraintNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof InteractionConstraintNameEditPart) {
+			((InteractionConstraintNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof InteractionConstraintSpecificationEditPart) {
-			((InteractionConstraintSpecificationEditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+		if (childEditPart instanceof InteractionConstraintSpecificationEditPart) {
+			((InteractionConstraintSpecificationEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -149,10 +155,10 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InteractionConstraintNameEditPart) {
+		if (childEditPart instanceof InteractionConstraintNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof InteractionConstraintSpecificationEditPart) {
+		if (childEditPart instanceof InteractionConstraintSpecificationEditPart) {
 			return true;
 		}
 		return false;
@@ -162,7 +168,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -172,7 +178,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -203,6 +209,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 */
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -214,7 +221,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -226,7 +233,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -236,7 +243,7 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -252,8 +259,8 @@ public class InteractionConstraintEditPart extends AbstractConstraintEditPart {
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

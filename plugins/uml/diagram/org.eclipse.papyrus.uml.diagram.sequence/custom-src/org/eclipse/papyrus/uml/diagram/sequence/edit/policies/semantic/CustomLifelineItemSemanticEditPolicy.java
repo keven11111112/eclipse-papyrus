@@ -94,33 +94,33 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ActionExecutionSpecification_3006 == req.getElementType()) {
+		if (UMLElementTypes.ActionExecutionSpecification_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomActionExecutionSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.BehaviorExecutionSpecification_3003 == req.getElementType()) {
+		if (UMLElementTypes.BehaviorExecutionSpecification_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomBehaviorExecutionSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.StateInvariant_3017 == req.getElementType()) {
+		if (UMLElementTypes.StateInvariant_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomStateInvariantCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.CombinedFragment_3018 == req.getElementType()) {
+		if (UMLElementTypes.CombinedFragment_CoRegionShape == req.getElementType()) {
 			return getGEFWrapper(new CustomCombinedFragment2CreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TimeConstraint_3019 == req.getElementType()) {
+		if (UMLElementTypes.TimeConstraint_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomTimeConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		// Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826
-		// if(UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
+		// if(UMLElementTypes.TimeObservation_Shape == req.getElementType()) {
 		// return getGEFWrapper(new TimeObservationCreateCommand(req));
 		// }
-		if (UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
+		if (UMLElementTypes.DurationConstraint_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DestructionOccurrenceSpecification_3022 == req.getElementType()) {
+		if (UMLElementTypes.DestructionOccurrenceSpecification_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomDestructionOccurrenceSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		// add lifelines
-		if (UMLElementTypes.Lifeline_3001 == req.getElementType()) {
+		if (UMLElementTypes.Lifeline_Shape == req.getElementType()) {
 			CustomLifelineEditPart lifelineEditPart = (CustomLifelineEditPart) getHost();
 			if (lifelineEditPart.isInlineCapability()) {
 				CustomLifelineCreateCommand cmd = new CustomLifelineCreateCommand(req, DiagramUtils.getDiagramFrom(getHost()));
@@ -129,11 +129,11 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 			}
 		}
 		// add DurationObservation/Constraint
-		if (UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
+		if (UMLElementTypes.DurationConstraint_Shape_CN == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		// Fix https://bugs.eclipse.org/bugs/show_bug.cgi?id=364826
-		// if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+		// if(UMLElementTypes.DurationObservation_Shape == req.getElementType()) {
 		// return getGEFWrapper(new DurationObservationCreateCommand(req));
 		// }
 		return super.getCreateCommand(req);
@@ -188,35 +188,35 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 	 */
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if (UMLElementTypes.Message_SynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if (UMLElementTypes.Message_AsynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if (UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if (UMLElementTypes.Message_CreateEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if (UMLElementTypes.Message_DeleteEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if (UMLElementTypes.Message_LostEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if (UMLElementTypes.Message_FoundEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 			return null;
 		}
 		// add general ordering
-		if (UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+		if (UMLElementTypes.GeneralOrdering_Edge == req.getElementType()) {
 			return getGEFWrapper(new CustomGeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -228,35 +228,35 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if (UMLElementTypes.Message_SynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if (UMLElementTypes.Message_AsynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if (UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if (UMLElementTypes.Message_CreateEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if (UMLElementTypes.Message_DeleteEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if (UMLElementTypes.Message_LostEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if (UMLElementTypes.Message_FoundEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		// add general ordering
-		if (UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+		if (UMLElementTypes.GeneralOrdering_Edge == req.getElementType()) {
 			return getGEFWrapper(new CustomGeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

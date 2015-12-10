@@ -29,7 +29,7 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4016";
+	public static final String VISUAL_ID = "Link_DescriptorEdge";
 
 	/**
 	 * @generated

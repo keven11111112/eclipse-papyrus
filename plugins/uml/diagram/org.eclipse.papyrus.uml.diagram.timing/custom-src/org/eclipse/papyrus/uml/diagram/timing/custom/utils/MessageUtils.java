@@ -85,8 +85,8 @@ public final class MessageUtils {
 	}
 
 	public static boolean isMessage(final IElementType requestElementType) {
-		return requestElementType == UMLElementTypes.Message_3 || requestElementType == UMLElementTypes.Message_4 || requestElementType == UMLElementTypes.Message_41 || requestElementType == UMLElementTypes.Message_44
-				|| requestElementType == UMLElementTypes.Message_47 || requestElementType == UMLElementTypes.Message_50 || requestElementType == UMLElementTypes.Message_53;
+		return requestElementType == UMLElementTypes.Message_SynchEdge || requestElementType == UMLElementTypes.Message_AsynchEdge || requestElementType == UMLElementTypes.Message_ReplyEdge || requestElementType == UMLElementTypes.Message_CreateEdge
+				|| requestElementType == UMLElementTypes.Message_DeleteEdge || requestElementType == UMLElementTypes.Message_LostEdge || requestElementType == UMLElementTypes.Message_FoundEdge;
 	}
 
 	public static boolean isMessage(final String visualID) {
@@ -95,36 +95,36 @@ public final class MessageUtils {
 	}
 
 	public static MessageKind getMessageKind(final IElementType requestElementType) {
-		if (requestElementType == UMLElementTypes.Message_3 || requestElementType == UMLElementTypes.Message_4 || requestElementType == UMLElementTypes.Message_41 || requestElementType == UMLElementTypes.Message_44
-				|| requestElementType == UMLElementTypes.Message_47) {
+		if (requestElementType == UMLElementTypes.Message_SynchEdge || requestElementType == UMLElementTypes.Message_AsynchEdge || requestElementType == UMLElementTypes.Message_ReplyEdge || requestElementType == UMLElementTypes.Message_CreateEdge
+				|| requestElementType == UMLElementTypes.Message_DeleteEdge) {
 			return MessageKind.UNKNOWN_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_50) {
+		if (requestElementType == UMLElementTypes.Message_LostEdge) {
 			return MessageKind.LOST_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_53) {
+		if (requestElementType == UMLElementTypes.Message_FoundEdge) {
 			return MessageKind.FOUND_LITERAL;
 		}
 		return null;
 	}
 
 	public static MessageSort getMessageSort(final IElementType requestElementType) {
-		if (requestElementType == UMLElementTypes.Message_3) {
+		if (requestElementType == UMLElementTypes.Message_SynchEdge) {
 			return MessageSort.SYNCH_CALL_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_4) {
+		if (requestElementType == UMLElementTypes.Message_AsynchEdge) {
 			return MessageSort.ASYNCH_CALL_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_41) {
+		if (requestElementType == UMLElementTypes.Message_ReplyEdge) {
 			return MessageSort.REPLY_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_44) {
+		if (requestElementType == UMLElementTypes.Message_CreateEdge) {
 			return MessageSort.CREATE_MESSAGE_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_47) {
+		if (requestElementType == UMLElementTypes.Message_DeleteEdge) {
 			return MessageSort.DELETE_MESSAGE_LITERAL;
 		}
-		if (requestElementType == UMLElementTypes.Message_50 || requestElementType == UMLElementTypes.Message_53) {
+		if (requestElementType == UMLElementTypes.Message_LostEdge || requestElementType == UMLElementTypes.Message_FoundEdge) {
 			// lost or found message
 			return MessageSort.SYNCH_CALL_LITERAL;
 		}
@@ -134,23 +134,23 @@ public final class MessageUtils {
 	public static IElementType getElementType(final Message message) {
 		switch (message.getMessageKind()) {
 		case LOST_LITERAL:
-			return UMLElementTypes.Message_50;
+			return UMLElementTypes.Message_LostEdge;
 		case FOUND_LITERAL:
-			return UMLElementTypes.Message_53;
+			return UMLElementTypes.Message_FoundEdge;
 		default:
 		}
 
 		switch (message.getMessageSort()) {
 		case SYNCH_CALL_LITERAL:
-			return UMLElementTypes.Message_3;
+			return UMLElementTypes.Message_SynchEdge;
 		case ASYNCH_CALL_LITERAL:
-			return UMLElementTypes.Message_4;
+			return UMLElementTypes.Message_AsynchEdge;
 		case REPLY_LITERAL:
-			return UMLElementTypes.Message_41;
+			return UMLElementTypes.Message_ReplyEdge;
 		case CREATE_MESSAGE_LITERAL:
-			return UMLElementTypes.Message_44;
+			return UMLElementTypes.Message_CreateEdge;
 		case DELETE_MESSAGE_LITERAL:
-			return UMLElementTypes.Message_47;
+			return UMLElementTypes.Message_DeleteEdge;
 		default:
 			throw new IllegalArgumentException("Unknown message type"); //$NON-NLS-1$
 		}

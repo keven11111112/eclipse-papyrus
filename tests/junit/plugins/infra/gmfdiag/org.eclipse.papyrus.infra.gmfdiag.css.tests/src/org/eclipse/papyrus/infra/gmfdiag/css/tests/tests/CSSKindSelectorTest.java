@@ -40,6 +40,8 @@ import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusT
 import org.eclipse.papyrus.junit.utils.DiagramUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassFloatingNameEditPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.commands.ICommandService;
 import org.junit.Assert;
@@ -123,7 +125,7 @@ public class CSSKindSelectorTest extends AbstractPapyrusTest {
 		EditPart classEditPart = getEditPart("Class1");
 		Assert.assertTrue(classEditPart instanceof GraphicalEditPart);
 
-		String classFloatingNameVisualID = "8510";
+		String classFloatingNameVisualID = ClassFloatingNameEditPart.VISUAL_ID;
 		IFigure floatingLabelFigure = findChildFigurebyVisualID(classEditPart, classFloatingNameVisualID);
 
 		// Test the default visibility of floatingLabel
@@ -142,7 +144,7 @@ public class CSSKindSelectorTest extends AbstractPapyrusTest {
 		EditPart associationEditPart = getEditPart("associationName");
 		Assert.assertTrue(associationEditPart instanceof ConnectionEditPart);
 
-		String associationTargetNameVisualID = "6003";
+		String associationTargetNameVisualID = AssociationTargetNameEditPart.VISUAL_ID;
 		IFigure associationTargetNameFigure = findChildFigurebyVisualID(associationEditPart, associationTargetNameVisualID);
 
 		// Test the default visibility of associationTargetName

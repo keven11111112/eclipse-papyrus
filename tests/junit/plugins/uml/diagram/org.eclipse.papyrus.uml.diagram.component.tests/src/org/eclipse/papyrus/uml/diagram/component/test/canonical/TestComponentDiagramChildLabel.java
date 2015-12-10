@@ -54,7 +54,7 @@ public class TestComponentDiagramChildLabel extends TestChildLabel {
 	 */
 	@Test
 	public void testToManageProperty() {
-		testToManageTopNode(UMLElementTypes.Interface_3205,UMLElementTypes.Property_1,   InterfaceAttributeCompartmentEditPart.VISUAL_ID, "Attribute");
+		testToManageTopNode(UMLElementTypes.Interface_ClassifierShape,UMLElementTypes.Property_InterfaceAttributeLabel,   InterfaceAttributeCompartmentEditPart.VISUAL_ID, "Attribute");
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class TestComponentDiagramChildLabel extends TestChildLabel {
 	 */
 	@Test
 	public void testToManageOperation() {
-		testToManageTopNode(UMLElementTypes.Interface_3205,UMLElementTypes.Operation_5,   InterfaceOperationCompartmentEditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Interface_ClassifierShape,UMLElementTypes.Operation_InterfaceOperationLabel,   InterfaceOperationCompartmentEditPart.VISUAL_ID);
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public class TestComponentDiagramChildLabel extends TestChildLabel {
 	 */
 	@Test
 	public void testToManageReception() {
-		testToManageTopNode(UMLElementTypes.Interface_3205,UMLElementTypes.Reception_6,  InterfaceOperationCompartmentEditPart.VISUAL_ID);
+		testToManageTopNode(UMLElementTypes.Interface_ClassifierShape,UMLElementTypes.Reception_InterfaceReceptionLabel,  InterfaceOperationCompartmentEditPart.VISUAL_ID);
 	}
 
 	

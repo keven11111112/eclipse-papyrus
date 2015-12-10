@@ -14,11 +14,11 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ClassifierTemplateParameter;
@@ -45,8 +45,9 @@ public class ClassifierTemplateParameterParser implements IParser {
 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final TemplateParameter templateParam = ((TemplateParameter) ((EObjectAdapter) element).getRealObject());
+		EObject e = element.getAdapter(EObject.class);
+		if (e != null) {
+			final TemplateParameter templateParam = (TemplateParameter) e;
 			if (templateParam.getOwnedParameteredElement() == null) {
 				return "<UNDEFINED>";
 			}

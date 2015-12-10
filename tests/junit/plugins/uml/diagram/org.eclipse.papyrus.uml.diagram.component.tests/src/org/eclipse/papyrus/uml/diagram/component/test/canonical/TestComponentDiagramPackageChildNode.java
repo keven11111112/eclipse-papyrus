@@ -43,7 +43,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_3200, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePackage() {
-		testToManageNode(UMLElementTypes.Package_3076, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageModel() {
-		testToManageNode(UMLElementTypes.Model_3077, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Model_Shape_CN, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComponent() {
-		testToManageNode(UMLElementTypes.Component_3071, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Component_PackagedElementShape_CN, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInterface() {
-		testToManageNode(UMLElementTypes.Interface_3078, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Interface_ClassifierShape_CN, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 
@@ -94,7 +94,7 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageNode(UMLElementTypes.Comment_3074, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Comment_Shape_CN, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -102,6 +102,6 @@ public class TestComponentDiagramPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_3075, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3076, true);
+		testToManageNode(UMLElementTypes.Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_Shape_CN, true);
 	}
 }

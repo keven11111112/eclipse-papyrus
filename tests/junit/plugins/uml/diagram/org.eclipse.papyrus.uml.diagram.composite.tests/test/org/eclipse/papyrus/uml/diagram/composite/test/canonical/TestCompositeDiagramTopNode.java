@@ -72,7 +72,7 @@ public class TestCompositeDiagramTopNode extends TestTopNode {
 	 */
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_2073, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 	
 	/**
@@ -80,342 +80,342 @@ public class TestCompositeDiagramTopNode extends TestTopNode {
 	*/
 	@Test
 	public void testToActivity() {
-		testToManageNode(UMLElementTypes.Activity_2060, UMLPackage.eINSTANCE.getActivity(), UMLElementTypes.Activity_2060, false);
+		testToManageNode(UMLElementTypes.Activity_Shape, UMLPackage.eINSTANCE.getActivity(), UMLElementTypes.Activity_Shape, false);
 	}
 	/**
 	* Test to manage Interaction.
 	*/
 	@Test
 	public void testToInteraction() {
-		testToManageNode(UMLElementTypes.Interaction_2061, UMLPackage.eINSTANCE.getInteraction(), UMLElementTypes.Interaction_2061, false);
+		testToManageNode(UMLElementTypes.Interaction_Shape, UMLPackage.eINSTANCE.getInteraction(), UMLElementTypes.Interaction_Shape, false);
 	}
 	/**
 	* Test to manage ProtocolStateMachine.
 	*/
 	@Test
 	public void testToProtocolStateMachine() {
-		testToManageNode(UMLElementTypes.ProtocolStateMachine_2062, UMLPackage.eINSTANCE.getProtocolStateMachine(), UMLElementTypes.ProtocolStateMachine_2062, false);
+		testToManageNode(UMLElementTypes.ProtocolStateMachine_Shape, UMLPackage.eINSTANCE.getProtocolStateMachine(), UMLElementTypes.ProtocolStateMachine_Shape, false);
 	}
 	/**
 	* Test to manage StateMachine.
 	*/
 	@Test
 	public void testToStateMachine() {
-		testToManageNode(UMLElementTypes.StateMachine_2063, UMLPackage.eINSTANCE.getStateMachine(), UMLElementTypes.StateMachine_2063, false);
+		testToManageNode(UMLElementTypes.StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine(), UMLElementTypes.StateMachine_Shape, false);
 	}
 	/**
 	* Test to manage FunctionBehavior.
 	*/
 	@Test
 	public void testToFunctionBehavior() {
-		testToManageNode(UMLElementTypes.FunctionBehavior_2064, UMLPackage.eINSTANCE.getFunctionBehavior(), UMLElementTypes.FunctionBehavior_2064, false);
+		testToManageNode(UMLElementTypes.FunctionBehavior_Shape, UMLPackage.eINSTANCE.getFunctionBehavior(), UMLElementTypes.FunctionBehavior_Shape, false);
 	}
 	/**
 	* Test to manage OpaqueBehavior.
 	*/
 	@Test
 	public void testToOpaqueBehavior() {
-		testToManageNode(UMLElementTypes.OpaqueBehavior_2065, UMLPackage.eINSTANCE.getOpaqueBehavior(), UMLElementTypes.OpaqueBehavior_2065, false);
+		testToManageNode(UMLElementTypes.OpaqueBehavior_Shape, UMLPackage.eINSTANCE.getOpaqueBehavior(), UMLElementTypes.OpaqueBehavior_Shape, false);
 	}
 	/**
 	* Test to manage Component.
 	*/
 	@Test
 	public void testToComponent() {
-		testToManageNode(UMLElementTypes.Component_2069, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Component_2069, false);
+		testToManageNode(UMLElementTypes.Component_Shape, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Component_Shape, false);
 	}
 	/**
 	* Test to manage Device.
 	*/
 	@Test
 	public void testToDevice() {
-		testToManageNode(UMLElementTypes.Device_2070, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Device_2070, false);
+		testToManageNode(UMLElementTypes.Device_Shape, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Device_Shape, false);
 	}
 	/**
 	* Test to manage ExecutionEnvironment.
 	*/
 	@Test
 	public void testToExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_2071, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.ExecutionEnvironment_2071, false);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_Shape, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.ExecutionEnvironment_Shape, false);
 	}
 	/**
 	* Test to manage Node.
 	*/
 	@Test
 	public void testToNode() {
-		testToManageNode(UMLElementTypes.Node_2072, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Node_2072, false);
+		testToManageNode(UMLElementTypes.Node_Shape, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Node_Shape, false);
 	}
 	/**
 	* Test to manage Class.
 	*/
 	@Test
 	public void testToClass() {
-		testToManageNode(UMLElementTypes.Class_2073, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Class_2073, false);
+		testToManageNode(UMLElementTypes.Class_Shape, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Class_Shape, false);
 	}
 	/**
 	* Test to manage Collaboration.
 	*/
 	@Test
 	public void testToCollaboration() {
-		testToManageNode(UMLElementTypes.Collaboration_2075, UMLPackage.eINSTANCE.getCollaboration(), UMLElementTypes.Collaboration_2075, false);
+		testToManageNode(UMLElementTypes.Collaboration_Shape, UMLPackage.eINSTANCE.getCollaboration(), UMLElementTypes.Collaboration_Shape, false);
 	}
 	/**
 	* Test to manage Interface.
 	*/
 	@Test
 	public void testToInterface() {
-		testToManageNode(UMLElementTypes.Interface_2076, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Interface_2076, false);
+		testToManageNode(UMLElementTypes.Interface_Shape, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Interface_Shape, false);
 	}
 	/**
 	* Test to manage PrimitiveType.
 	*/
 	@Test
 	public void testToPrimitiveType() {
-		testToManageNode(UMLElementTypes.PrimitiveType_2066, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.PrimitiveType_2066, false);
+		testToManageNode(UMLElementTypes.PrimitiveType_Shape, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.PrimitiveType_Shape, false);
 	}
 	/**
 	* Test to manage Enumeration.
 	*/
 	@Test
 	public void testToEnumeration() {
-		testToManageNode(UMLElementTypes.Enumeration_2067, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Enumeration_2067, false);
+		testToManageNode(UMLElementTypes.Enumeration_Shape, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Enumeration_Shape, false);
 	}
 	/**
 	* Test to manage DataType.
 	*/
 	@Test
 	public void testToDataType() {
-		testToManageNode(UMLElementTypes.DataType_2068, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.DataType_2068, false);
+		testToManageNode(UMLElementTypes.DataType_Shape, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.DataType_Shape, false);
 	}
 	/**
 	* Test to manage Actor.
 	*/
 	@Test
 	public void testToActor() {
-		testToManageNode(UMLElementTypes.Actor_2077, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Actor_2077, false);
+		testToManageNode(UMLElementTypes.Actor_Shape, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Actor_Shape, false);
 	}
 	/**
 	* Test to manage DeploymentSpecification.
 	*/
 	@Test
 	public void testToDeploymentSpecification() {
-		testToManageNode(UMLElementTypes.DeploymentSpecification_2078, UMLPackage.eINSTANCE.getDeploymentSpecification(), UMLElementTypes.DeploymentSpecification_2078, false);
+		testToManageNode(UMLElementTypes.DeploymentSpecification_Shape, UMLPackage.eINSTANCE.getDeploymentSpecification(), UMLElementTypes.DeploymentSpecification_Shape, false);
 	}
 	/**
 	* Test to manage Artifact.
 	*/
 	@Test
 	public void testToArtifact() {
-		testToManageNode(UMLElementTypes.Artifact_2079, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Artifact_2079, false);
+		testToManageNode(UMLElementTypes.Artifact_Shape, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Artifact_Shape, false);
 	}
 	/**
 	* Test to manage InformationItem.
 	*/
 	@Test
 	public void testToInformationItem() {
-		testToManageNode(UMLElementTypes.InformationItem_2080, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.InformationItem_2080, false);
+		testToManageNode(UMLElementTypes.InformationItem_Shape, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.InformationItem_Shape, false);
 	}
 	/**
 	* Test to manage Signal.
 	*/
 	@Test
 	public void testToSignal() {
-		testToManageNode(UMLElementTypes.Signal_2081, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Signal_2081, false);
+		testToManageNode(UMLElementTypes.Signal_Shape, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Signal_Shape, false);
 	}
 	/**
 	* Test to manage UseCase.
 	*/
 	@Test
 	public void testToUseCase() {
-		testToManageNode(UMLElementTypes.UseCase_2082, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.UseCase_2082, false);
+		testToManageNode(UMLElementTypes.UseCase_Shape, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.UseCase_Shape, false);
 	}
 	/**
 	* Test to manage SignalEvent.
 	*/
 	@Test
 	public void testToSignalEvent() {
-		testToManageNode(UMLElementTypes.SignalEvent_2083, UMLPackage.eINSTANCE.getSignalEvent(), UMLElementTypes.SignalEvent_2083, false);
+		testToManageNode(UMLElementTypes.SignalEvent_Shape, UMLPackage.eINSTANCE.getSignalEvent(), UMLElementTypes.SignalEvent_Shape, false);
 	}
 	/**
 	* Test to manage CallEvent.
 	*/
 	@Test
 	public void testToCallEvent() {
-		testToManageNode(UMLElementTypes.CallEvent_2084, UMLPackage.eINSTANCE.getCallEvent(), UMLElementTypes.CallEvent_2084, false);
+		testToManageNode(UMLElementTypes.CallEvent_Shape, UMLPackage.eINSTANCE.getCallEvent(), UMLElementTypes.CallEvent_Shape, false);
 	}
 	/**
 	* Test to manage AnyReceiveEvent.
 	*/
 	@Test
 	public void testToAnyReceiveEvent() {
-		testToManageNode(UMLElementTypes.AnyReceiveEvent_2085, UMLPackage.eINSTANCE.getAnyReceiveEvent(), UMLElementTypes.AnyReceiveEvent_2085, false);
+		testToManageNode(UMLElementTypes.AnyReceiveEvent_Shape, UMLPackage.eINSTANCE.getAnyReceiveEvent(), UMLElementTypes.AnyReceiveEvent_Shape, false);
 	}
 	/**
 	* Test to manage ChangeEvent.
 	*/
 	@Test
 	public void testToChangeEvent() {
-		testToManageNode(UMLElementTypes.ChangeEvent_2088, UMLPackage.eINSTANCE.getChangeEvent(), UMLElementTypes.ChangeEvent_2088, false);
+		testToManageNode(UMLElementTypes.ChangeEvent_Shape, UMLPackage.eINSTANCE.getChangeEvent(), UMLElementTypes.ChangeEvent_Shape, false);
 	}
 	/**
 	* Test to manage TimeEvent.
 	*/
 	@Test
 	public void testToTimeEvent() {
-		testToManageNode(UMLElementTypes.TimeEvent_2089, UMLPackage.eINSTANCE.getTimeEvent(), UMLElementTypes.TimeEvent_2089, false);
+		testToManageNode(UMLElementTypes.TimeEvent_Shape, UMLPackage.eINSTANCE.getTimeEvent(), UMLElementTypes.TimeEvent_Shape, false);
 	}
 	/**
 	* Test to manage DurationObservation.
 	*/
 	@Test
 	public void testToDurationObservation() {
-		testToManageNode(UMLElementTypes.DurationObservation_2093, UMLPackage.eINSTANCE.getDurationObservation(), UMLElementTypes.DurationObservation_2093, false);
+		testToManageNode(UMLElementTypes.DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation(), UMLElementTypes.DurationObservation_Shape, false);
 	}
 	/**
 	* Test to manage TimeObservation.
 	*/
 	@Test
 	public void testToTimeObservation() {
-		testToManageNode(UMLElementTypes.TimeObservation_2094, UMLPackage.eINSTANCE.getTimeObservation(), UMLElementTypes.TimeObservation_2094, false);
+		testToManageNode(UMLElementTypes.TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation(), UMLElementTypes.TimeObservation_Shape, false);
 	}
 	/**
 	* Test to manage LiteralBoolean.
 	*/
 	@Test
 	public void testToLiteralBoolean() {
-		testToManageNode(UMLElementTypes.LiteralBoolean_2095, UMLPackage.eINSTANCE.getLiteralBoolean(), UMLElementTypes.LiteralBoolean_2095, false);
+		testToManageNode(UMLElementTypes.LiteralBoolean_Shape, UMLPackage.eINSTANCE.getLiteralBoolean(), UMLElementTypes.LiteralBoolean_Shape, false);
 	}
 	/**
 	* Test to manage LiteralInteger.
 	*/
 	@Test
 	public void testToLiteralInteger() {
-		testToManageNode(UMLElementTypes.LiteralInteger_2096, UMLPackage.eINSTANCE.getLiteralInteger(), UMLElementTypes.LiteralInteger_2096, false);
+		testToManageNode(UMLElementTypes.LiteralInteger_Shape, UMLPackage.eINSTANCE.getLiteralInteger(), UMLElementTypes.LiteralInteger_Shape, false);
 	}
 	/**
 	* Test to manage LiteralNull.
 	*/
 	@Test
 	public void testToLiteralNull() {
-		testToManageNode(UMLElementTypes.LiteralNull_2097, UMLPackage.eINSTANCE.getLiteralNull(), UMLElementTypes.LiteralNull_2097, false);
+		testToManageNode(UMLElementTypes.LiteralNull_Shape, UMLPackage.eINSTANCE.getLiteralNull(), UMLElementTypes.LiteralNull_Shape, false);
 	}
 	/**
 	* Test to manage LiteralString.
 	*/
 	@Test
 	public void testToLiteralString() {
-		testToManageNode(UMLElementTypes.LiteralString_2098, UMLPackage.eINSTANCE.getLiteralString(), UMLElementTypes.LiteralString_2098, false);
+		testToManageNode(UMLElementTypes.LiteralString_Shape, UMLPackage.eINSTANCE.getLiteralString(), UMLElementTypes.LiteralString_Shape, false);
 	}
 	/**
 	* Test to manage LiteralUnlimitedNatural.
 	*/
 	@Test
 	public void testToLiteralUnlimitedNatural() {
-		testToManageNode(UMLElementTypes.LiteralUnlimitedNatural_2099, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural(), UMLElementTypes.LiteralUnlimitedNatural_2099, false);
+		testToManageNode(UMLElementTypes.LiteralUnlimitedNatural_Shape, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural(), UMLElementTypes.LiteralUnlimitedNatural_Shape, false);
 	}
 	/**
 	* Test to manage StringExpression.
 	*/
 	@Test
 	public void testToStringExpression() {
-		testToManageNode(UMLElementTypes.StringExpression_2100, UMLPackage.eINSTANCE.getStringExpression(), UMLElementTypes.StringExpression_2100, false);
+		testToManageNode(UMLElementTypes.StringExpression_PackagedElementShape, UMLPackage.eINSTANCE.getStringExpression(), UMLElementTypes.StringExpression_PackagedElementShape, false);
 	}
 	/**
 	* Test to manage OpaqueExpression.
 	*/
 	@Test
 	public void testToOpaqueExpression() {
-		testToManageNode(UMLElementTypes.OpaqueExpression_2101, UMLPackage.eINSTANCE.getOpaqueExpression(), UMLElementTypes.OpaqueExpression_2101, false);
+		testToManageNode(UMLElementTypes.OpaqueExpression_Shape, UMLPackage.eINSTANCE.getOpaqueExpression(), UMLElementTypes.OpaqueExpression_Shape, false);
 	}
 	/**
 	* Test to manage TimeExpression.
 	*/
 	@Test
 	public void testToTimeExpression() {
-		testToManageNode(UMLElementTypes.TimeExpression_2102, UMLPackage.eINSTANCE.getTimeExpression(), UMLElementTypes.TimeExpression_2102, false);
+		testToManageNode(UMLElementTypes.TimeExpression_Shape, UMLPackage.eINSTANCE.getTimeExpression(), UMLElementTypes.TimeExpression_Shape, false);
 	}
 	/**
 	* Test to manage Expression.
 	*/
 	@Test
 	public void testToExpression() {
-		testToManageNode(UMLElementTypes.Expression_2103, UMLPackage.eINSTANCE.getExpression(), UMLElementTypes.Expression_2103, false);
+		testToManageNode(UMLElementTypes.Expression_Shape, UMLPackage.eINSTANCE.getExpression(), UMLElementTypes.Expression_Shape, false);
 	}
 	/**
 	* Test to manage Duration.
 	*/
 	@Test
 	public void testToDuration() {
-		testToManageNode(UMLElementTypes.Duration_2104, UMLPackage.eINSTANCE.getDuration(), UMLElementTypes.Duration_2104, false);
+		testToManageNode(UMLElementTypes.Duration_Shape, UMLPackage.eINSTANCE.getDuration(), UMLElementTypes.Duration_Shape, false);
 	}
 	/**
 	* Test to manage TimeInterval.
 	*/
 	@Test
 	public void testToTimeInterval() {
-		testToManageNode(UMLElementTypes.TimeInterval_2105, UMLPackage.eINSTANCE.getTimeInterval(), UMLElementTypes.TimeInterval_2105, false);
+		testToManageNode(UMLElementTypes.TimeInterval_Shape, UMLPackage.eINSTANCE.getTimeInterval(), UMLElementTypes.TimeInterval_Shape, false);
 	}
 	/**
 	* Test to manage DurationInterval.
 	*/
 	@Test
 	public void testToDurationInterval() {
-		testToManageNode(UMLElementTypes.DurationInterval_2106, UMLPackage.eINSTANCE.getDurationInterval(), UMLElementTypes.DurationInterval_2106, false);
+		testToManageNode(UMLElementTypes.DurationInterval_Shape, UMLPackage.eINSTANCE.getDurationInterval(), UMLElementTypes.DurationInterval_Shape, false);
 	}
 	/**
 	* Test to manage Interval.
 	*/
 	@Test
 	public void testToInterval() {
-		testToManageNode(UMLElementTypes.Interval_2107, UMLPackage.eINSTANCE.getInterval(), UMLElementTypes.Interval_2107, false);
+		testToManageNode(UMLElementTypes.Interval_Shape, UMLPackage.eINSTANCE.getInterval(), UMLElementTypes.Interval_Shape, false);
 	}
 	/**
 	* Test to manage InstanceValue.
 	*/
 	@Test
 	public void testToInstanceValue() {
-		testToManageNode(UMLElementTypes.InstanceValue_2108, UMLPackage.eINSTANCE.getInstanceValue(), UMLElementTypes.InstanceValue_2108, false);
+		testToManageNode(UMLElementTypes.InstanceValue_Shape, UMLPackage.eINSTANCE.getInstanceValue(), UMLElementTypes.InstanceValue_Shape, false);
 	}
 	/**
 	* Test to manage Comment.
 	*/
 	@Test
 	public void testToComment() {
-		testToManageNode(UMLElementTypes.Comment_2109, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Comment_2109, false);
+		testToManageNode(UMLElementTypes.Comment_Shape, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Comment_Shape, false);
 	}
 	/**
 	* Test to manage DurationConstraint.
 	*/
 	@Test
 	public void testToDurationConstraint() {
-		testToManageNode(UMLElementTypes.DurationConstraint_2110, UMLPackage.eINSTANCE.getDurationConstraint(), UMLElementTypes.DurationConstraint_2110, false);
+		testToManageNode(UMLElementTypes.DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint(), UMLElementTypes.DurationConstraint_Shape, false);
 	}
 	/**
 	* Test to manage TimeConstraint.
 	*/
 	@Test
 	public void testToTimeConstraint() {
-		testToManageNode(UMLElementTypes.TimeConstraint_2111, UMLPackage.eINSTANCE.getTimeConstraint(), UMLElementTypes.TimeConstraint_2111, false);
+		testToManageNode(UMLElementTypes.TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint(), UMLElementTypes.TimeConstraint_Shape, false);
 	}
 	/**
 	* Test to manage IntervalConstraint.
 	*/
 	@Test
 	public void testToIntervalConstraint() {
-		testToManageNode(UMLElementTypes.IntervalConstraint_2112, UMLPackage.eINSTANCE.getIntervalConstraint(), UMLElementTypes.IntervalConstraint_2112, false);
+		testToManageNode(UMLElementTypes.IntervalConstraint_Shape, UMLPackage.eINSTANCE.getIntervalConstraint(), UMLElementTypes.IntervalConstraint_Shape, false);
 	}
 	/**
 	* Test to manage InteractionConstraint.
 	*/
 	@Test
 	public void testToInteractionConstraint() {
-		testToManageNode(UMLElementTypes.InteractionConstraint_2113, UMLPackage.eINSTANCE.getInteractionConstraint(), UMLElementTypes.InteractionConstraint_2113, false);
+		testToManageNode(UMLElementTypes.InteractionConstraint_Shape, UMLPackage.eINSTANCE.getInteractionConstraint(), UMLElementTypes.InteractionConstraint_Shape, false);
 	}
 	/**
 	* Test to manage Constraint.
 	*/
 	@Test
 	public void testToConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_2114, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Constraint_2114, false);
+		testToManageNode(UMLElementTypes.Constraint_Shape, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Constraint_Shape, false);
 	}
 }

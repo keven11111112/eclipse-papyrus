@@ -84,7 +84,7 @@ public class MessageLostReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_50(container, getLink(), getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_LostEdge(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class MessageLostReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_50(container, getLink(), source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_LostEdge(container, getLink(), source, getNewTarget());
 	}
 
 	/**

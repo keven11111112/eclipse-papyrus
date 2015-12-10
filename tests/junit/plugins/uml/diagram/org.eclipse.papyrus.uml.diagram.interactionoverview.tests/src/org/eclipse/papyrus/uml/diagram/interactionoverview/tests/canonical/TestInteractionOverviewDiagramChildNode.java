@@ -68,56 +68,56 @@ public class TestInteractionOverviewDiagramChildNode extends AbstractInteraction
 	@InvalidTest("To be verified")
 	@InteractiveTest("Opens a dialog")
 	public void testToManageCallBehaviorAction() {
-		testToManageNode(UMLElementTypes.CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.CallBehaviorAction_Shape, UMLPackage.eINSTANCE.getCallBehaviorAction(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageInitialNode() {
-		testToManageNode(UMLElementTypes.InitialNode_3004, UMLPackage.eINSTANCE.getInitialNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.InitialNode_Shape, UMLPackage.eINSTANCE.getInitialNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageActivityFinalNode() {
-		testToManageNode(UMLElementTypes.ActivityFinalNode_3005, UMLPackage.eINSTANCE.getActivityFinalNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.ActivityFinalNode_Shape, UMLPackage.eINSTANCE.getActivityFinalNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageDecisionNode() {
-		testToManageNode(UMLElementTypes.DecisionNode_3038, UMLPackage.eINSTANCE.getDecisionNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.DecisionNode_Shape, UMLPackage.eINSTANCE.getDecisionNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageFlowFinalNode() {
-		testToManageNode(UMLElementTypes.FlowFinalNode_3006, UMLPackage.eINSTANCE.getFlowFinalNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.FlowFinalNode_Shape, UMLPackage.eINSTANCE.getFlowFinalNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageForkNode() {
-		testToManageNode(UMLElementTypes.ForkNode_3040, UMLPackage.eINSTANCE.getForkNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.ForkNode_Shape, UMLPackage.eINSTANCE.getForkNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageJoinNode() {
-		testToManageNode(UMLElementTypes.JoinNode_3041, UMLPackage.eINSTANCE.getJoinNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.JoinNode_Shape, UMLPackage.eINSTANCE.getJoinNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageMergeNode() {
-		testToManageNode(UMLElementTypes.MergeNode_3039, UMLPackage.eINSTANCE.getMergeNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.MergeNode_Shape, UMLPackage.eINSTANCE.getMergeNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageConditionalNode() {
-		testToManageNode(UMLElementTypes.ConditionalNode_3069, UMLPackage.eINSTANCE.getConditionalNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.ConditionalNode_Shape, UMLPackage.eINSTANCE.getConditionalNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageLoopNode() {
-		testToManageNode(UMLElementTypes.LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.LoopNode_Shape, UMLPackage.eINSTANCE.getLoopNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	@Test
 	public void testToManageSequenceNode() {
-		testToManageNode(UMLElementTypes.SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.SequenceNode_Shape, UMLPackage.eINSTANCE.getSequenceNode(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 }

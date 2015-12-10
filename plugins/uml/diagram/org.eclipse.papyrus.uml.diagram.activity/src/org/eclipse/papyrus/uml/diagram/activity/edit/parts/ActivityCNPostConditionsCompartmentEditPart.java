@@ -30,7 +30,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "7016";
+	public static final String VISUAL_ID = "Activity_PostconditionCompartment_CN";
 
 	/**
 	 * @generated
@@ -75,8 +75,9 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNPostConditionsCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNPostConditionsCompartmentCanonicalEditPolicy());
+
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(BorderDisplayEditPolicy.BORDER_DISPLAY_EDITPOLICY, new BorderDisplayEditPolicy());
 	}
@@ -96,6 +97,7 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
+
 		return super.getTargetEditPart(request);
 	}
 
@@ -105,7 +107,10 @@ public class ActivityCNPostConditionsCompartmentEditPart extends NoBorderListCom
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

@@ -24,6 +24,11 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassFloatingNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
 
 /**
  * 
@@ -34,10 +39,10 @@ public class ClassifierViewFactory implements ViewFactory {
 
 	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
-		return createClass_2008((EObject) semanticAdapter.getAdapter(EObject.class), containerView, semanticHint, index, persisted, preferencesHint);
+		return createClass_Shape((EObject) semanticAdapter.getAdapter(EObject.class), containerView, semanticHint, index, persisted, preferencesHint);
 	}
 
-	public Node createClass_2008(EObject domainElement, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClass_Shape(EObject domainElement, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(semanticHint);
@@ -45,15 +50,15 @@ public class ClassifierViewFactory implements ViewFactory {
 		node.setElement(domainElement);
 		// initializeFromPreferences
 
-		Node label5029 = createLabel(node, "5029");
-		Node label8510 = createLabel(node, "8510");
-		label8510.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8510 = (Location) label8510.getLayoutConstraint();
-		location8510.setX(0);
-		location8510.setY(5);
-		createCompartment(node, "7017", true, true, true, true);
-		createCompartment(node, "7018", true, true, true, true);
-		createCompartment(node, "7019", true, true, true, true);
+		Node classNamelabel = createLabel(node, ClassNameEditPart.VISUAL_ID);
+		Node classFloatingNamelabel = createLabel(node, ClassFloatingNameEditPart.VISUAL_ID);
+		classFloatingNamelabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location classFloatingNameLabelLocation = (Location) classFloatingNamelabel.getLayoutConstraint();
+		classFloatingNameLabelLocation.setX(0);
+		classFloatingNameLabelLocation.setY(5);
+		createCompartment(node, ClassAttributeCompartmentEditPart.VISUAL_ID, true, true, true, true);
+		createCompartment(node, ClassOperationCompartmentEditPart.VISUAL_ID, true, true, true, true);
+		createCompartment(node, ClassNestedClassifierCompartmentEditPart.VISUAL_ID, true, true, true, true);
 		return node;
 	}
 

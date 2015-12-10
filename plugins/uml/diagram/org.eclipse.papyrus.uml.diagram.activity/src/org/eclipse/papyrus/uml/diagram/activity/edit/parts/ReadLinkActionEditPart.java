@@ -59,7 +59,7 @@ public class ReadLinkActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3116";
+	public static final String VISUAL_ID = "ReadLinkAction_Shape";
 
 	/**
 	 * @generated
@@ -86,16 +86,21 @@ public class ReadLinkActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadLinkActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadLinkActionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -171,6 +176,7 @@ public class ReadLinkActionEditPart extends RoundedCompartmentEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -199,30 +205,39 @@ public class ReadLinkActionEditPart extends RoundedCompartmentEditPart {
 			((ReadLinkActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInReadLinkActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInReadLinkActionEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((OutputPinInReadLinkActionEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInReadLinkActionAsInputValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((InputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInReadLinkActionAsInputValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((ValuePinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInReadLinkActionAsInputValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((ActionInputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -234,19 +249,23 @@ public class ReadLinkActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInReadLinkActionEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInReadLinkActionEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((OutputPinInReadLinkActionEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InputPinInReadLinkActionAsInputValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((InputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInReadLinkActionAsInputValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((ValuePinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionInputPinInReadLinkActionAsInputValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionInputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((ActionInputPinInReadLinkActionAsInputValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -319,6 +338,7 @@ public class ReadLinkActionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

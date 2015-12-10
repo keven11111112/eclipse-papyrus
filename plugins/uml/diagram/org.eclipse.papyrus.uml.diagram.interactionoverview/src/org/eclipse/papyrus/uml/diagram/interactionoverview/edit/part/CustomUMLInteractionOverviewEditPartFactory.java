@@ -24,15 +24,15 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 			String visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
 			if (visualID != null) {
 				switch (visualID) {
-				case CustomActivityEditPartTN.VISUAL_ID:// 2001
+				case CustomActivityEditPartTN.VISUAL_ID:// Activity_Shape
 					return new CustomActivityEditPartTN(view);
-				case CallBehaviorActionEditPart.VISUAL_ID: // 3008
-				case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:// 5005
+				case CallBehaviorActionEditPart.VISUAL_ID: // CallBehaviorAction_Shape
+				case CustomInteractionUseEditPartCN.VISUAL_ID:// CallBehaviorAction_InteractionShapeShape
 					return new CustomInteractionUseEditPartCN(view);
 				case CustomInteractionUseNameEditPart.VISUAL_ID:
-					return new CustomInteractionUseNameEditPart(view);// 5004
-				case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
-					return new CallBehaviorActionAsInteractionEditPart(view);// 5000
+					return new CustomInteractionUseNameEditPart(view);// CallBehaviorAction_NameLabel
+				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+					return new CallBehaviorActionAsInteractionEditPart(view);// CallBehaviorAction_InteractionShape
 				default:
 					// when adding cases to this switch, also add the corresponding
 					// IDs in the extension

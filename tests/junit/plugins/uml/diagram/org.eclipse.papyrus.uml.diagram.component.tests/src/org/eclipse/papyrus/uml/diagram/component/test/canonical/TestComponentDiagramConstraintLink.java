@@ -47,6 +47,6 @@ public class TestComponentDiagramConstraintLink extends TestConstraintLink {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageLink(UMLElementTypes.Constraint_3199, UMLElementTypes.Package_3200, UMLElementTypes.ConstraintConstrainedElement_4009, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Constraint_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.Constraint_ConstrainedElementEdge, UMLElementTypes.Package_Shape, true);
 	}
 }

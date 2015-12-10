@@ -41,7 +41,7 @@ public class CompactLifelineItemSemanticEditPolicyCN extends UMLBaseItemSemantic
 	 * @generated
 	 */
 	public CompactLifelineItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Lifeline_20);
+		super(UMLElementTypes.Lifeline_CompactShape);
 	}
 
 	/**
@@ -92,10 +92,10 @@ public class CompactLifelineItemSemanticEditPolicyCN extends UMLBaseItemSemantic
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_50 == baseElementType) {
+		if (UMLElementTypes.Message_LostEdge == baseElementType) {
 			return null;
 		}
-		if (UMLElementTypes.Message_53 == baseElementType) {
+		if (UMLElementTypes.Message_FoundEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
@@ -125,14 +125,14 @@ public class CompactLifelineItemSemanticEditPolicyCN extends UMLBaseItemSemantic
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_50 == baseElementType) {
+		if (UMLElementTypes.Message_LostEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageLostCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_53 == baseElementType) {
+		if (UMLElementTypes.Message_FoundEdge == baseElementType) {
 			return null;
 		}
 		return null;

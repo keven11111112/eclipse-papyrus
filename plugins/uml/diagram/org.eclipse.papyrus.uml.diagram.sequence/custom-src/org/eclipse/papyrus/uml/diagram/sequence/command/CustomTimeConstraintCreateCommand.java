@@ -89,7 +89,7 @@ public class CustomTimeConstraintCreateCommand extends TimeConstraintCreateComma
 		// get the Lifeline parent as owner
 		Namespace owner = (Namespace) getElementToEdit().eContainer();
 		owner.getOwnedRules().add(newElement);
-		ElementInitializers.getInstance().init_TimeConstraint_3019(newElement);
+		ElementInitializers.getInstance().init_TimeConstraint_Shape(newElement);
 		// assign the occurrence specification
 		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);

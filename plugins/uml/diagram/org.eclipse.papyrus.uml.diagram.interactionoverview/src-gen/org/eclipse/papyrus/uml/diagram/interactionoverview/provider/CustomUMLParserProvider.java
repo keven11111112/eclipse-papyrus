@@ -28,7 +28,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	protected IParser getParser(final String visualID) {
 		switch (visualID) {
 		case CallBehaviorActionNameEditPart.VISUAL_ID:
-			return getCallBehaviorActionLabel_5004Parser();
+			return getCallBehaviorAction_NameLabel_Parser();
 		default:
 			return super.getParser(visualID);
 		}
@@ -36,13 +36,13 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 
 	}
 
-	private IParser getCallBehaviorActionLabel_5004Parser() {
-		if (custom_callBehaviorActionLabel_5004Parser == null) {
+	private IParser getCallBehaviorAction_NameLabel_Parser() {
+		if (custom_callBehaviorAction_NameLabel_Parser == null) {
 			final CustomCallBehaviorActionParser parser = new CustomCallBehaviorActionParser();
-			custom_callBehaviorActionLabel_5004Parser = parser;
+			custom_callBehaviorAction_NameLabel_Parser = parser;
 		}
-		return custom_callBehaviorActionLabel_5004Parser;
+		return custom_callBehaviorAction_NameLabel_Parser;
 	}
 
-	private IParser custom_callBehaviorActionLabel_5004Parser;
+	private IParser custom_callBehaviorAction_NameLabel_Parser;
 }

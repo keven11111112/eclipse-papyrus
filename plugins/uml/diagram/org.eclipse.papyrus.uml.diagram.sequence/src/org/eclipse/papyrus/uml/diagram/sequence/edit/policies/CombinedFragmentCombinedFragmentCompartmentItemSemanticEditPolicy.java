@@ -31,7 +31,7 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 	 * @generated
 	 */
 	public CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy() {
-		super(UMLElementTypes.CombinedFragment_3004);
+		super(UMLElementTypes.CombinedFragment_Shape);
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy e
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.InteractionOperand_3005 == baseElementType) {
+		if (UMLElementTypes.InteractionOperand_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}

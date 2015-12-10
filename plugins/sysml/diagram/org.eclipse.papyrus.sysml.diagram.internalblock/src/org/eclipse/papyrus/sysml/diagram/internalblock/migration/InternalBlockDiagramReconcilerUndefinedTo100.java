@@ -46,7 +46,7 @@ import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 /**
  * Internal Block Diagram Reconciler from undefined to 1.0.0
  */
-public class InternalBlockDiagramReconcilierUndefinedTo100 extends DiagramReconciler {
+public class InternalBlockDiagramReconcilerUndefinedTo100 extends DiagramReconciler {
 
 	@Override
 	public ICommand getReconcileCommand(Diagram diagram) {
@@ -75,17 +75,17 @@ public class InternalBlockDiagramReconcilierUndefinedTo100 extends DiagramReconc
 
 			private void initializeMappings() {
 
-				conversionMapping.put(OldElementTypes.CLASS.getSemanticHint(), SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
+				conversionMapping.put(OldElementTypes.CLASS_HINT, SysMLGraphicalTypes.SHAPE_SYSML_BLOCK_AS_COMPOSITE_ID);
 				conversionMapping.put(OldElementTypes.CLASS_LABEL_COMPOSITE_NAME_HINT, SysMLGraphicalTypes.LABEL_SYSML_BLOCK_NAME_ID);
 				conversionMapping.put(OldElementTypes.CLASS_COMPARTMENT_STRUCTURE_HINT, SysMLGraphicalTypes.COMPARTMENT_SYSML_STRUCTURE_ID);
 
-				conversionMapping.put(OldElementTypes.PROPERTY_CN.getSemanticHint(), SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID);
+				conversionMapping.put(OldElementTypes.PROPERTY_CN_HINT, SysMLGraphicalTypes.SHAPE_SYSML_BLOCKPROPERTY_AS_COMPOSITE_ID);
 				conversionMapping.put(OldElementTypes.PROPERTY_CN_LABEL_PART_NAME_HINT, UMLGraphicalTypes.LABEL_UML_PROPERTY_LABEL_ID);
 				conversionMapping.put(OldElementTypes.PROPERTY_CN_COMPARTMENT_STRUCTURE_HINT, SysMLGraphicalTypes.COMPARTMENT_SYSML_BLOCKPROPERTY_STRUCTURE_ID);
 
 				conversionMapping.put(OldElementTypes.PORT_CN_LABEL_APPLIED_STEREOTYPE_HINT, UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID);
 
-				conversionMapping.put(OldElementTypes.CONNECTOR.getSemanticHint(), UMLGraphicalTypes.LINK_UML_CONNECTOR_ID);
+				conversionMapping.put(OldElementTypes.CONNECTOR_HINT, UMLGraphicalTypes.LINK_UML_CONNECTOR_ID);
 				conversionMapping.put(OldElementTypes.CONNECTOR_LABEL_APPLIED_STEREOTYPE_HINT, UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID);
 				conversionMapping.put(OldElementTypes.CONNECTOR_LABEL_NAME_HINT, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_LABEL_ID);
 				conversionMapping.put(OldElementTypes.CONNECTOR_LABEL_MULTIPLICITY_SOURCE_HINT, UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_SOURCE_MULTIPLICITY_ID);
@@ -111,7 +111,7 @@ public class InternalBlockDiagramReconcilierUndefinedTo100 extends DiagramReconc
 						View currentView = (View) currentEObject;
 
 						if (conversionMapping.containsKey(currentView.getType())) {
-							if (currentView.getType().equals(OldElementTypes.CLASS.getSemanticHint())) {
+							if (currentView.getType().equals(OldElementTypes.CLASS_HINT)) {
 								blockViews.add(currentView);
 							}
 
@@ -119,7 +119,7 @@ public class InternalBlockDiagramReconcilierUndefinedTo100 extends DiagramReconc
 						}
 
 						// Port require specific conversion
-						if (currentView.getType().equals(OldElementTypes.PORT_CN.getSemanticHint()) || currentView.getType().equals(OldElementTypes.PORT_CN_LABEL_NAME_HINT)) {
+						if (currentView.getType().equals(OldElementTypes.PORT_CN_HINT) || currentView.getType().equals(OldElementTypes.PORT_CN_LABEL_NAME_HINT)) {
 							portViews.add(currentView);
 						}
 					}
@@ -131,7 +131,7 @@ public class InternalBlockDiagramReconcilierUndefinedTo100 extends DiagramReconc
 
 					if (((ISpecializationType) SysMLElementTypes.FLOW_PORT).getMatcher().matches(eObject)) {
 
-						if (portView.getType().equals(OldElementTypes.PORT_CN.getSemanticHint())) {
+						if (portView.getType().equals(OldElementTypes.PORT_CN_HINT)) {
 							portView.setType(SysMLGraphicalTypes.SHAPE_SYSML_FLOWPORT_AS_AFFIXED_ID);
 						}
 
@@ -141,7 +141,7 @@ public class InternalBlockDiagramReconcilierUndefinedTo100 extends DiagramReconc
 
 					} else { // if (eObject instanceof Port)
 
-						if (portView.getType().equals(OldElementTypes.PORT_CN.getSemanticHint())) {
+						if (portView.getType().equals(OldElementTypes.PORT_CN_HINT)) {
 							portView.setType(UMLGraphicalTypes.SHAPE_UML_PORT_AS_AFFIXED_ID);
 						}
 

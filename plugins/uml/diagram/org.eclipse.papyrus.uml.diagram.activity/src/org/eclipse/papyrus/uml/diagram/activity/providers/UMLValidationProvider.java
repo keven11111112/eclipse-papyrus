@@ -64,7 +64,9 @@ public class UMLValidationProvider {
 	 *
 	 * @generated NOT
 	 */
-	protected static final Collection<String> SELF_MANAGING_CONSTRAINTS = Arrays.asList("org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer", "org.eclipse.papyrus.uml.diagram.activity.helper.ActivityParameterAndParameterSynchronizer");
+	protected static final Collection<String> SELF_MANAGING_CONSTRAINTS = Arrays.asList(
+			"org.eclipse.papyrus.uml.diagram.activity.helper.PinAndParameterSynchronizer",
+			"org.eclipse.papyrus.uml.diagram.activity.helper.ActivityParameterAndParameterSynchronizer");
 
 	/**
 	 * Validation listener which reports problems to the user
@@ -96,7 +98,8 @@ public class UMLValidationProvider {
 					if (status.getSeverity() >= event.getSeverity()) {
 						String constraintId = status.getConstraint().getDescriptor().getId();
 						String constraintPlugin = status.getConstraint().getDescriptor().getPluginId();
-						if (UMLDiagramEditorPlugin.ID.equals(constraintPlugin) && !handledConstraints.contains(constraintId)) {
+						if (UMLDiagramEditorPlugin.ID.equals(constraintPlugin)
+								&& !handledConstraints.contains(constraintId)) {
 							handledConstraints.add(constraintId);
 							messageBuff.append(status.getMessage());
 						}
@@ -112,7 +115,8 @@ public class UMLValidationProvider {
 
 						@Override
 						protected Void openDialog() {
-							MessageDialog.openWarning(new Shell(Display.getDefault()), CustomMessages.UMLValidation_ErrorTitle, message);
+							MessageDialog.openWarning(new Shell(Display.getDefault()),
+									CustomMessages.UMLValidation_ErrorTitle, message);
 							return null;
 						}
 					};
@@ -122,7 +126,8 @@ public class UMLValidationProvider {
 
 						@Override
 						protected Void openDialog() {
-							MessageDialog.openInformation(new Shell(Display.getDefault()), CustomMessages.UMLValidation_WarningTitle, message);
+							MessageDialog.openInformation(new Shell(Display.getDefault()),
+									CustomMessages.UMLValidation_WarningTitle, message);
 							return null;
 						}
 					};
@@ -154,7 +159,6 @@ public class UMLValidationProvider {
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -184,7 +188,8 @@ public class UMLValidationProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive && ActivityDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive
+					&& ActivityDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		// filter for Papyrus editor only
 		if (object instanceof EObject) {

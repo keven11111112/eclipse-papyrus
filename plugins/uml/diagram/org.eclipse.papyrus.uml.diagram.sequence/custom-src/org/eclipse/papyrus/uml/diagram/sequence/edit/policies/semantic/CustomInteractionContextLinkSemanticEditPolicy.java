@@ -25,7 +25,7 @@ public class CustomInteractionContextLinkSemanticEditPolicy extends CustomIntera
 
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.ConstraintContext_8500 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ContextEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);

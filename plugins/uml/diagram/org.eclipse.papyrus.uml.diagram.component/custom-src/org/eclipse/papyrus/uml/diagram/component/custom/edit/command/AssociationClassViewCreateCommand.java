@@ -96,7 +96,7 @@ public class AssociationClassViewCreateCommand extends AbstractTransactionalComm
 		CreateElementRequestAdapter requestAdapter = createConnectionViewAndElementRequest.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		node = viewProvider.createDependency_3203(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint);
+		node = viewProvider.createDependency_Shape(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint);
 		// this.node = factory.createView(new
 		// SemanticAdapter(createElementRequest.getNewElement()),
 		// this.containerView, ((IHintedType)

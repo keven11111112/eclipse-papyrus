@@ -50,7 +50,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3034";
+	public static final String VISUAL_ID = "DurationConstraint_LocalPreconditionShape";
 
 	/**
 	 * @generated
@@ -76,11 +76,15 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -93,6 +97,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -148,9 +153,11 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 			return true;
 		}
 		if (childEditPart instanceof DurationConstraintAsLocalPrecondBodyEditPart) {
-			((DurationConstraintAsLocalPrecondBodyEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+			((DurationConstraintAsLocalPrecondBodyEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -217,6 +224,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -281,6 +289,7 @@ public class DurationConstraintAsLocalPrecondEditPart extends AbstractConstraint
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(DurationConstraintAsLocalPrecondNameEditPart.VISUAL_ID));
 	}
 }

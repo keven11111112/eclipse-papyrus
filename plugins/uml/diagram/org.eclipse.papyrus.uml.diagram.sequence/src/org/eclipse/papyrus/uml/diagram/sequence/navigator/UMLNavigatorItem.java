@@ -29,14 +29,16 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 */
 	static {
 		@SuppressWarnings("rawtypes")
-		final Class[] supportedTypes = new Class[]{ View.class, EObject.class };
+		final Class[] supportedTypes = new Class[] { View.class, EObject.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem && (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem)adaptableObject).getView();
+				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem
+						&& (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem) adaptableObject)
+							.getView();
 				}
 				return null;
 			}
@@ -87,8 +89,9 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem)obj).getView()));
+		if (obj instanceof org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem) {
+			return EcoreUtil.getURI(getView()).equals(EcoreUtil
+					.getURI(((org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem) obj).getView()));
 		}
 		return super.equals(obj);
 	}

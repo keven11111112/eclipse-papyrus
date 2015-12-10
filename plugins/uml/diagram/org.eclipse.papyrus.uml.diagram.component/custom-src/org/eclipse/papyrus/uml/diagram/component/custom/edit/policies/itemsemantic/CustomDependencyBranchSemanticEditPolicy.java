@@ -27,7 +27,7 @@ public class CustomDependencyBranchSemanticEditPolicy extends DependencyBranchIt
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 
-		if (UMLElementTypes.Dependency_4017 == req.getElementType()) {
+		if (UMLElementTypes.Dependency_BranchEdge == req.getElementType()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 

@@ -49,22 +49,22 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.uml
 
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_8009 == req.getElementType()) {
+		if (UMLElementTypes.Path_Edge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if (UMLElementTypes.CommentAnnotatedElement_8010 == req.getElementType()) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if (UMLElementTypes.ConstraintConstrainedElement_8011 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if (UMLElementTypes.DurationObservationEvent_8012 == req.getElementType()) {
+		if (UMLElementTypes.DurationObservation_EventEdge == req.getElementType()) {
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.TimeObservationEvent_8013 == req.getElementType()) {
+		if (UMLElementTypes.TimeObservation_EventEdge == req.getElementType()) {
 			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
@@ -83,7 +83,7 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.uml
 
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_8009 == req.getElementType()) {
+		if (UMLElementTypes.Path_Edge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);

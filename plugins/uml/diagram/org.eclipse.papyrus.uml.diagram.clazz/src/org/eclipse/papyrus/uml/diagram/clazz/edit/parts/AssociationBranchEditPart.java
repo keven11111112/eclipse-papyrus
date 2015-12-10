@@ -30,7 +30,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4019";
+	public static final String VISUAL_ID = "Association_BranchEdge";
 
 	/**
 	 * @generated
@@ -53,11 +53,12 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
-			((AssociationBranchRoleEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if (childEditPart instanceof AssociationBranchRoleEditPart) {
+			((AssociationBranchRoleEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
-		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
-			((AssociationBranchMutliplicityEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+			((AssociationBranchMutliplicityEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
 		return false;
 	}
@@ -67,7 +68,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -77,10 +78,10 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationBranchRoleEditPart) {
+		if (childEditPart instanceof AssociationBranchRoleEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationBranchMutliplicityEditPart) {
+		if (childEditPart instanceof AssociationBranchMutliplicityEditPart) {
 			return true;
 		}
 		return false;
@@ -91,7 +92,7 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,6 +116,6 @@ public class AssociationBranchEditPart extends AbstractAssociationBranchEditPart
 	 */
 	@Override
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 }

@@ -79,7 +79,7 @@ public class CustomExpansionRegionStructuredActivityNodeContentCompartmentEditPa
 	}
 
 	private boolean isAffixedNodeType(Object type) {
-		return UMLElementTypes.ExpansionNode_3074.equals(type) || UMLElementTypes.ExpansionNode_3075.equals(type);
+		return UMLElementTypes.ExpansionNode_InputShape.equals(type) || UMLElementTypes.ExpansionNode_OutputShape.equals(type);
 	}
 
 	@Override

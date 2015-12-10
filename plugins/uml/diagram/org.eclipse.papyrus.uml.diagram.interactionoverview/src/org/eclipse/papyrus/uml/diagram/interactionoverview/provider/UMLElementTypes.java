@@ -42,9 +42,9 @@ public class UMLElementTypes {
 
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
-	public static final IElementType CallBehaviorAction_5000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"); //$NON-NLS-1$
+	public static final IElementType CallBehaviorAction_InteractionShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionShape"); //$NON-NLS-1$
 
-	public static final IElementType CallBehaviorAction_As_InteractionUse_5005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_As_InteractionUse_5005"); //$NON-NLS-1$
+	public static final IElementType CallBehaviorAction_InteractionUseShape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.CallBehaviorAction_InteractionUseShape"); //$NON-NLS-1$
 
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
@@ -148,7 +148,7 @@ public class UMLElementTypes {
 		final Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-			elements.put(CallBehaviorAction_5000, UMLPackage.eINSTANCE.getCallBehaviorAction());
+			elements.put(CallBehaviorAction_InteractionShape, UMLPackage.eINSTANCE.getCallBehaviorAction());
 		}
 		return elements.get(type);
 	}
@@ -166,8 +166,8 @@ public class UMLElementTypes {
 	public static boolean isKnownElementType(final IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_5000);
-			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_As_InteractionUse_5005);
+			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_InteractionShape);
+			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_InteractionUseShape);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -177,10 +177,10 @@ public class UMLElementTypes {
 	 */
 	public static IElementType getElementType(final String visualID) {
 		switch (visualID) {
-		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
-			return CallBehaviorAction_5000;
-		case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:
-			return CallBehaviorAction_As_InteractionUse_5005;
+		case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+			return CallBehaviorAction_InteractionShape;
+		case CustomInteractionUseEditPartCN.VISUAL_ID:
+			return CallBehaviorAction_InteractionUseShape;
 		}
 		return null;
 	}

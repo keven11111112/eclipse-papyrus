@@ -106,90 +106,90 @@ public class TestObservationLink_364826 extends TestLink {
 
 	@Test
 	public void testTimeObservationExecution1() {
-		manageTimeObservationExecution(UMLElementTypes.ActionExecutionSpecification_3006);
+		manageTimeObservationExecution(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testTimeObservationExecution2() {
-		manageTimeObservationExecution(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		manageTimeObservationExecution(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testTimeObservationLink1() {
-		manageTimeObservationLink(UMLElementTypes.Message_4004, null);
+		manageTimeObservationLink(UMLElementTypes.Message_AsynchEdge, null);
 	}
 
 	@Test
 	public void testTimeObservationLink2() {
-		manageTimeObservationLink(UMLElementTypes.Message_4006, null);
+		manageTimeObservationLink(UMLElementTypes.Message_CreateEdge, null);
 	}
 
 	@Test
 	public void testTimeObservationLink3() {
-		manageTimeObservationLink(UMLElementTypes.Message_4007, null);
+		manageTimeObservationLink(UMLElementTypes.Message_DeleteEdge, null);
 	}
 
 	@Test
 	public void testTimeObservationLink4() {
-		manageTimeObservationLink(UMLElementTypes.Message_4003, UMLElementTypes.ActionExecutionSpecification_3006);
+		manageTimeObservationLink(UMLElementTypes.Message_SynchEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testTimeObservationLink5() {
-		manageTimeObservationLink(UMLElementTypes.Message_4003, UMLElementTypes.BehaviorExecutionSpecification_3003);
+		manageTimeObservationLink(UMLElementTypes.Message_SynchEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testTimeObservationLink6() {
-		manageTimeObservationLink(UMLElementTypes.Message_4005, UMLElementTypes.ActionExecutionSpecification_3006);
+		manageTimeObservationLink(UMLElementTypes.Message_ReplyEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testTimeObservationLink7() {
-		manageTimeObservationLink(UMLElementTypes.Message_4005, UMLElementTypes.BehaviorExecutionSpecification_3003);
+		manageTimeObservationLink(UMLElementTypes.Message_ReplyEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testDurationObservationLink1() {
-		manageDurationObservationLink(UMLElementTypes.Message_4004, null);
+		manageDurationObservationLink(UMLElementTypes.Message_AsynchEdge, null);
 	}
 
 	@Test
 	public void testDurationObservationLink2() {
-		manageDurationObservationLink(UMLElementTypes.Message_4006, null);
+		manageDurationObservationLink(UMLElementTypes.Message_CreateEdge, null);
 	}
 
 	@Test
 	public void testDurationObservationLink3() {
-		manageDurationObservationLink(UMLElementTypes.Message_4007, null);
+		manageDurationObservationLink(UMLElementTypes.Message_DeleteEdge, null);
 	}
 
 	@Test
 	public void testDurationObservationLink4() {
-		manageDurationObservationLink(UMLElementTypes.Message_4003, UMLElementTypes.ActionExecutionSpecification_3006);
+		manageDurationObservationLink(UMLElementTypes.Message_SynchEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testDurationObservationLink5() {
-		manageDurationObservationLink(UMLElementTypes.Message_4003, UMLElementTypes.BehaviorExecutionSpecification_3003);
+		manageDurationObservationLink(UMLElementTypes.Message_SynchEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testDurationObservationLink6() {
-		manageDurationObservationLink(UMLElementTypes.Message_4005, UMLElementTypes.ActionExecutionSpecification_3006);
+		manageDurationObservationLink(UMLElementTypes.Message_ReplyEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testDurationObservationLink7() {
-		manageDurationObservationLink(UMLElementTypes.Message_4005, UMLElementTypes.BehaviorExecutionSpecification_3003);
+		manageDurationObservationLink(UMLElementTypes.Message_ReplyEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 
 	public void manageDurationObservationLink(IElementType linkType, IElementType execType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 250));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(500, 100), new Dimension(62, 250));
-		createNode(UMLElementTypes.DurationObservation_3024, getRootEditPart(), new Point(100, 100), new Dimension(20, 15));
-		createNode(UMLElementTypes.DurationObservation_3024, getRootEditPart(), new Point(100, 200), new Dimension(20, 15));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 250));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(500, 100), new Dimension(62, 250));
+		createNode(UMLElementTypes.DurationObservation_Shape, getRootEditPart(), new Point(100, 100), new Dimension(20, 15));
+		createNode(UMLElementTypes.DurationObservation_Shape, getRootEditPart(), new Point(100, 200), new Dimension(20, 15));
 		waitForComplete();
 
 		GraphicalEditPart lifeline1 = (GraphicalEditPart)getRootEditPart().getChildren().get(0);
@@ -221,10 +221,10 @@ public class TestObservationLink_364826 extends TestLink {
 
 
 	public void manageTimeObservationLink(IElementType linkType, IElementType execType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 250));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(500, 100), new Dimension(62, 250));
-		createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), new Point(100, 100), new Dimension(20, 15));
-		createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), new Point(100, 200), new Dimension(20, 15));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 250));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(500, 100), new Dimension(62, 250));
+		createNode(UMLElementTypes.TimeObservation_Shape, getRootEditPart(), new Point(100, 100), new Dimension(20, 15));
+		createNode(UMLElementTypes.TimeObservation_Shape, getRootEditPart(), new Point(100, 200), new Dimension(20, 15));
 		waitForComplete();
 
 		GraphicalEditPart lifeline1 = (GraphicalEditPart)getRootEditPart().getChildren().get(0);
@@ -260,9 +260,9 @@ public class TestObservationLink_364826 extends TestLink {
 
 
 	public void manageTimeObservationExecution(IElementType type) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 250));
-		createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), new Point(100, 100), new Dimension(20, 15));
-		createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), new Point(100, 200), new Dimension(20, 15));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 250));
+		createNode(UMLElementTypes.TimeObservation_Shape, getRootEditPart(), new Point(100, 100), new Dimension(20, 15));
+		createNode(UMLElementTypes.TimeObservation_Shape, getRootEditPart(), new Point(100, 200), new Dimension(20, 15));
 		waitForComplete();
 
 		GraphicalEditPart lifeline1 = (GraphicalEditPart)getRootEditPart().getChildren().get(0);

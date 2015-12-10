@@ -27,7 +27,7 @@ package org.eclipse.papyrus.papyrusgmfgenextension;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook#getClasspath <em>Classpath</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook#getClasspath <em>Classpath</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getExternalHook()
@@ -43,7 +43,6 @@ public interface ExternalHook extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Classpath</em>' attribute.
 	 * @see #setClasspath(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getExternalHook_Classpath()
@@ -56,9 +55,7 @@ public interface ExternalHook extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook#getClasspath <em>Classpath</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Classpath</em>' attribute.
+	 * @param value the new value of the '<em>Classpath</em>' attribute.
 	 * @see #getClasspath()
 	 * @generated
 	 */

@@ -96,9 +96,11 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		instance = this;
 		myLogHelper = new LogHelper(this);
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
-		adapterFactory = org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance().getItemProvidersAdapterFactory();
+		adapterFactory = org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance()
+				.getItemProvidersAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
+
 	}
 
 	/**
@@ -174,7 +176,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0),
+					p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}

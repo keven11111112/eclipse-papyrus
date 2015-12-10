@@ -31,7 +31,7 @@ public class LoopNodePortCreationInCompartmentEditPolicy extends PinAndEdgeCreat
 	@Override
 	protected Collection<IElementType> getElementHandleByParent() {
 		if (elements == null) {
-			elements = Lists.newArrayList(UMLElementTypes.InputPin_3105);
+			elements = Lists.newArrayList(UMLElementTypes.InputPin_LoopNodeVariableInputShape);
 		}
 		return elements;
 	}

@@ -57,73 +57,73 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 			final View view = (View) model;
 			final String visualID = UMLVisualIDRegistry.getVisualID(view);
 			switch (visualID) {
-			case TimingDiagramEditPart.VISUAL_ID:// 1
+			case TimingDiagramEditPart.VISUAL_ID:
 				return new CustomTimingDiagramEditPart(view);
-			case InteractionEditPartTN.VISUAL_ID:// 2
+			case InteractionEditPartTN.VISUAL_ID:
 				return new CustomInteractionEditPartTN(view);
-			case InteractionCompartmentEditPartTN.VISUAL_ID:// 5
+			case InteractionCompartmentEditPartTN.VISUAL_ID:
 				return new CustomInteractionCompartmentEditPartTN(view);
-			case FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID: // 7
+			case FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID:
 				return new CustomFullLifelineStateDefinitionCompartmentEditPartCN(view);
-			case FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID: // 8
+			case FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID:
 				return new CustomFullLifelineTimelineCompartmentEditPartCN(view);
-			case StateDefinitionEditPart.VISUAL_ID:// 9
+			case StateDefinitionEditPart.VISUAL_ID:
 				return new CustomStateDefinitionEditPart(view);
-			case OccurrenceSpecificationLabelEditPart.VISUAL_ID: // 10
+			case OccurrenceSpecificationLabelEditPart.VISUAL_ID:
 				return new CustomOccurrenceSpecificationLabelEditPart(view);
-			case FullStateInvariantEditPartCN.VISUAL_ID: // 11
+			case FullStateInvariantEditPartCN.VISUAL_ID:
 				return new CustomFullStateInvariantEditPartCN(view);
-			case OccurrenceSpecificationEditPartCN.VISUAL_ID: // 12
+			case OccurrenceSpecificationEditPartCN.VISUAL_ID:
 				return new CustomOccurrenceSpecificationEditPartCN(view);
-			case MessageOccurrenceSpecificationEditPartCN.VISUAL_ID: // 13
+			case MessageOccurrenceSpecificationEditPartCN.VISUAL_ID:
 				return new CustomMessageOccurrenceSpecificationEditPartCN(view);
-			case MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID: // 14
+			case MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID:
 				return new CustomMessageOccurrenceSpecificationLabelEditPart(view);
-			case TimeConstraintEditPart.VISUAL_ID: // 15
+			case TimeConstraintEditPart.VISUAL_ID:
 				return new CustomTimeConstraintEditPart(view);
-			case TimeObservationEditPart.VISUAL_ID: // 16
+			case TimeObservationEditPart.VISUAL_ID:
 				return new CustomTimeObservationEditPart(view);
-			case DurationObservationEditPartCN.VISUAL_ID: // 17
+			case DurationObservationEditPartCN.VISUAL_ID:
 				return new CustomDurationObservationEditPart(view);
-			case DurationConstraintEditPartCN.VISUAL_ID: // 18
+			case DurationConstraintEditPartCN.VISUAL_ID:
 				return new CustomDurationConstraintEditPart(view);
-			case FullLifelineEditPartCN.VISUAL_ID:// 19
+			case FullLifelineEditPartCN.VISUAL_ID:
 				return new CustomFullLifelineEditPartCN(view);
-			case CompactLifelineEditPartCN.VISUAL_ID:// 20
+			case CompactLifelineEditPartCN.VISUAL_ID:
 				return new CustomCompactLifelineEditPartCN(view);
-			case CompactLifelineCompartmentEditPartCN.VISUAL_ID:// 23
+			case CompactLifelineCompartmentEditPartCN.VISUAL_ID:
 				return new CustomCompactLifelineCompartmentEditPart(view);
-			case FreeTimingRulerEditPartCN.VISUAL_ID: // 24
+			case FreeTimingRulerEditPartCN.VISUAL_ID:
 				return new CustomFreeTimingRulerEditPart(view);
-			case TickEditPart.VISUAL_ID: // 26
+			case TickEditPart.VISUAL_ID:
 				return new CustomTickEditPart(view);
-			case DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID: // 27
+			case DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID:
 				return new CustomDestructionOccurrenceSpecificationEditPartCN(view);
-			case CompactStateInvariantEditPartCN.VISUAL_ID:// 28
+			case CompactStateInvariantEditPartCN.VISUAL_ID:
 				return new CustomCompactStateInvariantEditPartCN(view);
-			case TimeRulerCompartmentEditPartCN.VISUAL_ID: // 29
+			case TimeRulerCompartmentEditPartCN.VISUAL_ID:
 				return new CustomTimeRulerCompartmentEditPartCN(view);
-			case CompactStateInvariantNameEditPart.VISUAL_ID:// 31
+			case CompactStateInvariantNameEditPart.VISUAL_ID:
 				return new CustomCompactStateInvariantNameEditPart(view);
-			case DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID: // 32
+			case DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID:
 				return new CustomDestructionOccurrenceSpecificationLabelEditPart(view);
-			case StateDefinitionLabelEditPart.VISUAL_ID:// 38
+			case StateDefinitionLabelEditPart.VISUAL_ID:
 				return new CustomStateDefinitionLabelEditPart(view);
-			case FullStateInvariantVerticalLineEditPart.VISUAL_ID:// 39
+			case FullStateInvariantVerticalLineEditPart.VISUAL_ID:
 				return new CustomFullStateInvariantVerticalLineEditPart(view);
-			case MessageLostEditPart.VISUAL_ID: // 50
+			case MessageLostEditPart.VISUAL_ID:
 				return new CustomMessageLostEditPart(view);
-			case MessageFoundEditPart.VISUAL_ID: // 53
+			case MessageFoundEditPart.VISUAL_ID:
 				return new CustomMessageFoundEditPart(view);
-			case GeneralOrderingEditPart.VISUAL_ID: // 67
+			case GeneralOrderingEditPart.VISUAL_ID:
 				return new CustomGeneralOrderingEditPart(view);
-			case GateEditPart.VISUAL_ID: // 69
+			case GateEditPart.VISUAL_ID:
 				return new CustomGateEditPart(view);
-			case FreeTimeRulerCompartmentEditPart.VISUAL_ID: // 80
+			case FreeTimeRulerCompartmentEditPart.VISUAL_ID:
 				return new CustomFreeTimeRulerCompartmentEditPart(view);
-			case FullLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID: // 82
+			case FullLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID:
 				return new CustomFullLifelineTimeRulerCompartmentEditPartCN(view);
-			case CompactLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID: // 83
+			case CompactLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID:
 				return new CustomCompactLifelineTimeRulerCompartmentEditPartCN(view);
 			default:
 				// when adding cases to this switch, also add the corresponding IDs in the extension

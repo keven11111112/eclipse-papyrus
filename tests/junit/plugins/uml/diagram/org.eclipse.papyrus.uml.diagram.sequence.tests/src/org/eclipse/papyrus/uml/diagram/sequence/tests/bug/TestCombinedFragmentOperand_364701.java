@@ -76,7 +76,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 
 		// add operand
 		{
-			createNode(UMLElementTypes.InteractionOperand_3005, cfp, new Point(50, 100), new Dimension(100, 100));
+			createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(50, 100), new Dimension(100, 100));
 			assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
 
 			getDiagramCommandStack().undo();
@@ -126,7 +126,7 @@ public class TestCombinedFragmentOperand_364701 extends TestTopNode {
 	}
 
 	private CombinedFragmentCombinedFragmentCompartmentEditPart setupCombinedFragment() {
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(30, 80), new Dimension(100, 100));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(30, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart) getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart) cep.getChildren().get(0);
 		assertTrue(CREATION + INITIALIZATION_TEST, cfp.getChildren().size() == 1);

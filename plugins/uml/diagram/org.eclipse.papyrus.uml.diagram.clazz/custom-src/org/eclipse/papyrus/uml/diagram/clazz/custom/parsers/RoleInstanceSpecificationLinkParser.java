@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
@@ -68,7 +68,7 @@ public class RoleInstanceSpecificationLinkParser implements IParser {
 	}
 
 	private String getNamedNodeType(IAdaptable element) {
-		InstanceSpecification instanceSpecification = ((InstanceSpecification) ((EObjectAdapter) element).getRealObject());
+		InstanceSpecification instanceSpecification = (InstanceSpecification) element.getAdapter(EObject.class);
 		return instanceSpecification.getName();
 	}
 }

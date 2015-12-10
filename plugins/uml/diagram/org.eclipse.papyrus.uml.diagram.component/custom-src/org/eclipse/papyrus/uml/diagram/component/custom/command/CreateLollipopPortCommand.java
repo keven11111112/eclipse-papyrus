@@ -123,7 +123,7 @@ public class CreateLollipopPortCommand extends RecordingCommand {
 	 *            kind of the interface REQUIRED or PROVIDED
 	 */
 	protected void createEdge(UMLViewProvider umlViewProvider, Node node, String kind) {
-		Edge edge = umlViewProvider.createLink_4018(((View) porteditPart.getModel()).getDiagram(), -1, true, porteditPart.getDiagramPreferencesHint());
+		Edge edge = umlViewProvider.createLink_InterfacePortEdge(((View) porteditPart.getModel()).getDiagram(), -1, true, porteditPart.getDiagramPreferencesHint());
 		IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
 		edge.setSourceAnchor(anchor);
 		anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
@@ -146,7 +146,7 @@ public class CreateLollipopPortCommand extends RecordingCommand {
 	 * @return the node
 	 */
 	protected Node createInterfacenode(UMLViewProvider umlViewProvider, EditPart container, EObject currentInterface) {
-		Node node = umlViewProvider.createInterface_2003(currentInterface, (View) container.getModel(), -1, true, porteditPart.getDiagramPreferencesHint());
+		Node node = umlViewProvider.createInterface_Shape(currentInterface, (View) container.getModel(), -1, true, porteditPart.getDiagramPreferencesHint());
 		((Bounds) node.getLayoutConstraint()).setWidth(20);
 		((Bounds) node.getLayoutConstraint()).setHeight(20);
 		return node;

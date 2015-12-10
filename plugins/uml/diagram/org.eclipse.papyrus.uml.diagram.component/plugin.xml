@@ -247,8 +247,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.component.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLComponentDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3203,2002,3202,3200,3205,3201,3199,3204,2003,3069,3077,3076,3078,3070,3071,3074,3075,1,5,6,3072,3079"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017,4018,4019"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Dependency_Shape,Component_PackagedElementShape,Model_Shape,Package_Shape,Interface_ClassifierShape,Comment_Shape,Constraint_Shape,NamedElement_DefaultShape,Interface_Shape,Port_Shape,Model_Shape_CN,Package_Shape_CN,Interface_ClassifierShape_CN,Component_PackagedElementShape_CCN,Component_PackagedElementShape_CN,Comment_Shape_CN,Constraint_Shape_CN,Property_InterfaceAttributeLabel,Operation_InterfaceOperationLabel,Reception_InterfaceReceptionLabel,Interface_Shape_CN,Property_Shape"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Usage_Edge,InterfaceRealization_Edge,Generalization_Edge,Substitution_Edge,Manifestation_Edge,ComponentRealization_Edge,Abstraction_Edge,Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Dependency_Edge,Dependency_BranchEdge,Link_InterfacePortEdge,Connector_Edge"/>
       </viewProvider>
    </extension>
 
@@ -260,16 +260,16 @@
             <method name="getType()" value="PapyrusUMLComponentDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="3203,2002,3202,3200,3205,3201,3199,3204,2003,3069,3077,3076,3078,3070,3071,3074,3075,1,5,6,3072,3079"/>
+            <method name="getType()" value="Dependency_Shape,Component_PackagedElementShape,Model_Shape,Package_Shape,Interface_ClassifierShape,Comment_Shape,Constraint_Shape,NamedElement_DefaultShape,Interface_Shape,Port_Shape,Model_Shape_CN,Package_Shape_CN,Interface_ClassifierShape_CN,Component_PackagedElementShape_CCN,Component_PackagedElementShape_CN,Comment_Shape_CN,Constraint_Shape_CN,Property_InterfaceAttributeLabel,Operation_InterfaceOperationLabel,Reception_InterfaceReceptionLabel,Interface_Shape_CN,Property_Shape"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017,4018,4019"/>
+            <method name="getType()" value="Usage_Edge,InterfaceRealization_Edge,Generalization_Edge,Substitution_Edge,Manifestation_Edge,ComponentRealization_Edge,Abstraction_Edge,Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Dependency_Edge,Dependency_BranchEdge,Link_InterfacePortEdge,Connector_Edge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5008,6029,5004,6030,5262,5254,5266,6031,5255,5252,5253,5265,5005,6032,5006,5007,5264,5261,5267,6033,5256,6026,5257,6027,5258,5259,5260,0,6028,5268"/>
+            <method name="getType()" value="Dependency_MultiNameLabel,Dependency_FloatingNameLabel,Component_NameLabel,Component_FloatingNameLabel,Model_NameLabel,Package_NameLabel,Interface_ClassifierNameLabel,Interface_ClassifierFloatingNameLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel,NamedElement_NameLabel,Interface_NameLabel,Interface_FloatingNameLabel,Port_NameLabel,Port_StereotypeLabel,Model_NameLabel_CN,Package_NameLabel_CN,Interface_ClassifierNameLabel_CN,Interface_ClassifierFloatingNameLabel_CN,Component_NameLabel_CCN,Component_FloatingNameLabel_CCN,Component_NameLabel_CN,Component_FloatingNameLabel_CN,Comment_BodyLabel_CN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN,Interface_NameLabel_CN,Interface_FloatingNameLabel_CN,Property_NameLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7001,7006,7002,7007,7005,7003,7004,7008,7009,7010,7011"/>
+            <method name="getType()" value="Component_StructureCompartment,Model_PackagedElementCompartment,Package_PackagedElementCompartment,Model_PackagedElementCompartment_CN,Package_PackagedElementCompartment_CN,Component_StructureCompartment_CCN,Component_StructureCompartment_CN,Interface_AttributeCompartment,Interface_OperationCompartment,Interface_AttributeCompartment_CN,Interface_OperationCompartment_CN"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -786,218 +786,186 @@
       </command>
    </menuContribution>
 </extension>
-<extension
-      id="ep-provider"
-      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-   <editpartProvider
-         class="org.eclipse.papyrus.uml.diagram.component.custom.providers.CustomUMLEditPartProvider">
-      <Priority
-            name="Low">
-      </Priority>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Diagram"
-            id="generated-diagram">
-         <method
-               name="getType()"
-               value="PapyrusUMLComponentDiagram">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-nodes">
-         <method
-               name="getType()"
-               value="3203,2002,3202,3200,3205,3201,3199,3204,2003,3069,3077,3076,3070,3071,3072,3074,3075,1,5,6">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Edge"
-            id="generated-links">
-         <method
-               name="getType()"
-               value="4001,4006,4003,4012,4014,4007,4013,4016,4015,4009,4010,4017">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-labels">
-         <method
-               name="getType()"
-               value="5008,5004,5262,5254,5266,5255,5252,5253,5265,5005,5006,5007,5264,5261,5256,5257,0,5258,5259,5260">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-compartments">
-         <method
-               name="getType()"
-               value="7001,7006,7002,7007,7005,7003,7004,7008,7009">
-         </method>
-      </object>
-      <context
-            views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
-      </context>
-   </editpartProvider>
-</extension>
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.component.custom.providers.CustomUMLEditPartProvider">
+         <Priority name="Low"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="PapyrusUMLComponentDiagram"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="Dependency_Shape,Component_PackagedElementShape,Model_Shape,Package_Shape,Interface_ClassifierShape,Comment_Shape,Constraint_Shape,NamedElement_DefaultShape,Interface_Shape,Port_Shape,Model_Shape_CN,Package_Shape_CN,Interface_ClassifierShape_CN,Component_PackagedElementShape_CCN,Component_PackagedElementShape_CN,Comment_Shape_CN,Constraint_Shape_CN,Property_InterfaceAttributeLabel,Operation_InterfaceOperationLabel,Reception_InterfaceReceptionLabel,Interface_Shape_CN,Property_Shape"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="Usage_Edge,InterfaceRealization_Edge,Generalization_Edge,Substitution_Edge,Manifestation_Edge,ComponentRealization_Edge,Abstraction_Edge,Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Dependency_Edge,Dependency_BranchEdge,Link_InterfacePortEdge,Connector_Edge"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="Dependency_MultiNameLabel,Dependency_FloatingNameLabel,Component_NameLabel,Component_FloatingNameLabel,Model_NameLabel,Package_NameLabel,Interface_ClassifierNameLabel,Interface_ClassifierFloatingNameLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel,NamedElement_NameLabel,Interface_NameLabel,Interface_FloatingNameLabel,Port_NameLabel,Port_StereotypeLabel,Model_NameLabel_CN,Package_NameLabel_CN,Interface_ClassifierNameLabel_CN,Interface_ClassifierFloatingNameLabel_CN,Component_NameLabel_CCN,Component_FloatingNameLabel_CCN,Component_NameLabel_CN,Component_FloatingNameLabel_CN,Comment_BodyLabel_CN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN,Interface_NameLabel_CN,Interface_FloatingNameLabel_CN,Property_NameLabel"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="Component_StructureCompartment,Model_PackagedElementCompartment,Package_PackagedElementCompartment,Model_PackagedElementCompartment_CN,Package_PackagedElementCompartment_CN,Component_StructureCompartment_CCN,Component_StructureCompartment_CN,Interface_AttributeCompartment,Interface_OperationCompartment,Interface_AttributeCompartment_CN,Interface_OperationCompartment_CN"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
    <?gmfgen generated="true"?>
    <diagramMappings diagramID="PapyrusUMLComponentDiagram">
    	<mapping type="PapyrusUMLComponentDiagram" humanReadableType="ComponentDiagram"/>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7001">
+				type="Component_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7006">
+				type="Model_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7002">
+				type="Package_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7007">
+				type="Model_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7005">
+				type="Package_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7003">
+				type="Component_StructureCompartment_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7004">
+				type="Component_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7008">
+				type="Interface_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7009">
+				type="Interface_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7010">
+				type="Interface_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7011">
+				type="Interface_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6016">
+				type="Usage_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6017">
+				type="Usage_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6010">
+				type="InterfaceRealization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6011">
+				type="InterfaceRealization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="2">
+				type="Generalization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6006">
+				type="Substitution_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6020">
+				type="Substitution_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6008">
+				type="Manifestation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6022">
+				type="Manifestation_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="3">
+				type="ComponentRealization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="4">
+				type="ComponentRealization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6007">
+				type="Abstraction_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6021">
+				type="Abstraction_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6009">
+				type="Dependency_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6023">
+				type="Dependency_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6025">
+				type="Connector_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5006">
+				type="Port_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="5007">
+				type="Port_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6033">
+				type="Interface_ClassifierFloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6026">
+				type="Component_FloatingNameLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6027">
+				type="Component_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="0">
+				type="Interface_NameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6028">
+				type="Interface_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6029">
+				type="Dependency_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6030">
+				type="Component_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6031">
+				type="Interface_ClassifierFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5005">
+				type="Interface_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6032">
+				type="Interface_FloatingNameLabel">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -1012,26 +980,11 @@
    </ParserProvider>
 </extension>
 
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   		 clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/ComponentDiagram.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   		 clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/ComponentDiagram-notation.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-
    <extension
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="PapyrusUMLComponentDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilier"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconciler"
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
@@ -1039,6 +992,12 @@
          diagramType="PapyrusUMLComponentDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilerForCompartment"
          source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLComponentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconciler_1_2_0"
+         source="1.1.0"
          target="1.2.0">
    </diagramReconciler>
 </extension>

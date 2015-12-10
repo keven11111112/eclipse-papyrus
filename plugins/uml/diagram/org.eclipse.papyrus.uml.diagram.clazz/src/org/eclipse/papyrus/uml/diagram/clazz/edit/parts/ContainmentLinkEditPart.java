@@ -28,7 +28,7 @@ public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4023";
+	public static final String VISUAL_ID = "Element_ContainmentEdge";
 
 	/**
 	 * @generated
@@ -65,6 +65,6 @@ public class ContainmentLinkEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	public AddedLinkFigure getPrimaryShape() {
-		return (AddedLinkFigure)getFigure();
+		return (AddedLinkFigure) getFigure();
 	}
 }

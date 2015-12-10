@@ -159,8 +159,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.timing.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLTimingDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2,19,20,11,28,12,13,9,39,15,16,18,17,67,24,25,26,27,40,69"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="3,4,41,44,47,50,53"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Interaction_Shape,Lifeline_FullShape,Lifeline_CompactShape,StateInvariant_FullShape,StateInvariant_CompactShape,OccurrenceSpecification_Shape,MessageOccurrenceSpecification_Shape,Node_StateDefinitionShape,Node_StateInvariantTransitionShape,TimeConstraint_Shape,TimeObservation_Shape,DurationConstraint_Shape,DurationObservation_Shape,GeneralOrdering_Shape,Node_FreeTimeRulerShape,Node_LinearTimeRulerShape,Node_TickShape,DestructionOccurrenceSpecification_Shape,Lifeline_Shape,Gate_Shape"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Message_SynchEdge,Message_AsynchEdge,Message_ReplyEdge,Message_CreateEdge,Message_DeleteEdge,Message_LostEdge,Message_FoundEdge"/>
       </viewProvider>
    </extension>
 
@@ -172,16 +172,16 @@
             <method name="getType()" value="PapyrusUMLTimingDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2,19,20,11,28,12,13,9,39,15,16,18,17,67,24,25,26,27,40,69"/>
+            <method name="getType()" value="Interaction_Shape,Lifeline_FullShape,Lifeline_CompactShape,StateInvariant_FullShape,StateInvariant_CompactShape,OccurrenceSpecification_Shape,MessageOccurrenceSpecification_Shape,Node_StateDefinitionShape,Node_StateInvariantTransitionShape,TimeConstraint_Shape,TimeObservation_Shape,DurationConstraint_Shape,DurationObservation_Shape,GeneralOrdering_Shape,Node_FreeTimeRulerShape,Node_LinearTimeRulerShape,Node_TickShape,DestructionOccurrenceSpecification_Shape,Lifeline_Shape,Gate_Shape"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="3,4,41,44,47,50,53"/>
+            <method name="getType()" value="Message_SynchEdge,Message_AsynchEdge,Message_ReplyEdge,Message_CreateEdge,Message_DeleteEdge,Message_LostEdge,Message_FoundEdge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="37,21,22,62,31,64,10,58,14,59,38,30,65,34,66,33,35,68,36,32,63,70"/>
+            <method name="getType()" value="Interaction_NameLabel,Lifeline_FullNameLabel,Lifeline_CompactNameLabel,StateInvariant_FullStereotypeLabel,StateInvariant_CompactNameLabel,StateInvariant_CompactStereotypeLabel,OccurrenceSpecification_NameLabel,OccurrenceSpecification_StereotypeLabel,MessageOccurrenceSpecification_NameLabel,MessageOccurrenceSpecification_StereotypeLabel,Node_StateDefinitionNameLabel,TimeConstraint_BodyLabel,TimeConstraint_StereotypeLabel,TimeObservation_NameLabel,TimeObservation_StereotypeLabel,DurationConstraint_BodyLabel,DurationObservation_NameLabel,GeneralOrdering_NameLabel,Node_TickNameLabel,DestructionOccurrenceSpecification_NameLabel,DestructionOccurrenceSpecification_StereotypeLabel,Gate_NameLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="5,7,8,23,29,82,83,80,81"/>
+            <method name="getType()" value="Interaction_SubfragmentCompartment,Lifeline_FullStateDefinitionCompartment,Lifeline_FullSubfragmentCompartment,Lifeline_CompactSubfragmentCompartment,Interaction_TimeRulerCompartment,Lifeline_FullTimeRulerCompartment,Lifeline_CompactTimeRulerCompartment,Node_FreeTimeRulerCompartment,Node_LinearTimeRulerCompartment"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -206,267 +206,267 @@
       <?gmfgen generated="true"?>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.Package_1"
-               name="%metatype.name.Package_1"
+               id="org.eclipse.papyrus.uml.diagram.timing.Package_TimingDiagram"
+               name="%metatype.name.Package_TimingDiagram"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Package"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.PackageEditHelper">
-            <param name="semanticHint" value="1"/>
+            <param name="semanticHint" value="Package_TimingDiagram"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.Interaction_2"
-               name="%metatype.name.Interaction_2"
+               id="org.eclipse.papyrus.uml.diagram.timing.Interaction_Shape"
+               name="%metatype.name.Interaction_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Interaction"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.InteractionEditHelper">
-            <param name="semanticHint" value="2"/>
+            <param name="semanticHint" value="Interaction_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_19"
-               name="%metatype.name.Lifeline_19"
+               id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_FullShape"
+               name="%metatype.name.Lifeline_FullShape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.FullLifelineEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"/>
-            <param name="semanticHint" value="19"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_Shape"/>
+            <param name="semanticHint" value="Lifeline_FullShape"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_20"
-               name="%metatype.name.Lifeline_20"
+               id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_CompactShape"
+               name="%metatype.name.Lifeline_CompactShape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.CompactLifelineEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"/>
-            <param name="semanticHint" value="20"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_Shape"/>
+            <param name="semanticHint" value="Lifeline_CompactShape"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.FullStateInvariant_11"
-               name="%metatype.name.StateInvariant_11"
+               id="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_FullShape"
+               name="%metatype.name.StateInvariant_FullShape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="StateInvariant"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.FullStateInvariantEditHelper">
-            <param name="semanticHint" value="11"/>
+            <param name="semanticHint" value="StateInvariant_FullShape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.CompactStateInvariant_28"
-               name="%metatype.name.StateInvariant_28"
+               id="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_CompactShape"
+               name="%metatype.name.StateInvariant_CompactShape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.CompactStateInvariantEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.FullStateInvariant_11"/>
-            <param name="semanticHint" value="28"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_FullShape"/>
+            <param name="semanticHint" value="StateInvariant_CompactShape"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_12"
-               name="%metatype.name.OccurrenceSpecification_12"
+               id="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_Shape"
+               name="%metatype.name.OccurrenceSpecification_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="OccurrenceSpecification"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.OccurrenceSpecificationEditHelper">
-            <param name="semanticHint" value="12"/>
+            <param name="semanticHint" value="OccurrenceSpecification_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_13"
-               name="%metatype.name.MessageOccurrenceSpecification_13"
+               id="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_Shape"
+               name="%metatype.name.MessageOccurrenceSpecification_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MessageOccurrenceSpecification"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageOccurrenceSpecificationEditHelper">
-            <param name="semanticHint" value="13"/>
+            <param name="semanticHint" value="MessageOccurrenceSpecification_Shape"/>
          </metamodelType>
       </metamodel>
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.timing.Node_9"
-            name="%metatype.name.Node_9"
+            id="org.eclipse.papyrus.uml.diagram.timing.Node_StateDefinitionShape"
+            name="%metatype.name.Node_StateDefinitionShape"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="9"/>
+         <param name="semanticHint" value="Node_StateDefinitionShape"/>
       </specializationType>
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.timing.Node_39"
-            name="%metatype.name.Node_39"
+            id="org.eclipse.papyrus.uml.diagram.timing.Node_StateInvariantTransitionShape"
+            name="%metatype.name.Node_StateInvariantTransitionShape"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="39"/>
+         <param name="semanticHint" value="Node_StateInvariantTransitionShape"/>
       </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_15"
-               name="%metatype.name.TimeConstraint_15"
+               id="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_Shape"
+               name="%metatype.name.TimeConstraint_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TimeConstraint"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.TimeConstraintEditHelper">
-            <param name="semanticHint" value="15"/>
+            <param name="semanticHint" value="TimeConstraint_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_16"
-               name="%metatype.name.TimeObservation_16"
+               id="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_Shape"
+               name="%metatype.name.TimeObservation_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="TimeObservation"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.TimeObservationEditHelper">
-            <param name="semanticHint" value="16"/>
+            <param name="semanticHint" value="TimeObservation_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_18"
-               name="%metatype.name.DurationConstraint_18"
+               id="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_Shape"
+               name="%metatype.name.DurationConstraint_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DurationConstraint"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.DurationConstraintEditHelper">
-            <param name="semanticHint" value="18"/>
+            <param name="semanticHint" value="DurationConstraint_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_17"
-               name="%metatype.name.DurationObservation_17"
+               id="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_Shape"
+               name="%metatype.name.DurationObservation_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DurationObservation"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.DurationObservationEditHelper">
-            <param name="semanticHint" value="17"/>
+            <param name="semanticHint" value="DurationObservation_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_67"
-               name="%metatype.name.GeneralOrdering_67"
+               id="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_Shape"
+               name="%metatype.name.GeneralOrdering_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="GeneralOrdering"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.GeneralOrderingEditHelper">
-            <param name="semanticHint" value="67"/>
+            <param name="semanticHint" value="GeneralOrdering_Shape"/>
          </metamodelType>
       </metamodel>
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.timing.Node_24"
-            name="%metatype.name.Node_24"
+            id="org.eclipse.papyrus.uml.diagram.timing.Node_FreeTimeRulerShape"
+            name="%metatype.name.Node_FreeTimeRulerShape"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="24"/>
+         <param name="semanticHint" value="Node_FreeTimeRulerShape"/>
       </specializationType>
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.timing.Node_25"
-            name="%metatype.name.Node_25"
+            id="org.eclipse.papyrus.uml.diagram.timing.Node_LinearTimeRulerShape"
+            name="%metatype.name.Node_LinearTimeRulerShape"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="25"/>
+         <param name="semanticHint" value="Node_LinearTimeRulerShape"/>
       </specializationType>
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.timing.Node_26"
-            name="%metatype.name.Node_26"
+            id="org.eclipse.papyrus.uml.diagram.timing.Node_TickShape"
+            name="%metatype.name.Node_TickShape"
             kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
          <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="26"/>
+         <param name="semanticHint" value="Node_TickShape"/>
       </specializationType>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_27"
-               name="%metatype.name.DestructionOccurrenceSpecification_27"
+               id="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_Shape"
+               name="%metatype.name.DestructionOccurrenceSpecification_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="DestructionOccurrenceSpecification"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.DestructionOccurrenceSpecificationEditHelper">
-            <param name="semanticHint" value="27"/>
+            <param name="semanticHint" value="DestructionOccurrenceSpecification_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"
-               name="%metatype.name.Lifeline_40"
+               id="org.eclipse.papyrus.uml.diagram.timing.Lifeline_Shape"
+               name="%metatype.name.Lifeline_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Lifeline"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.LifelineEditHelper">
-            <param name="semanticHint" value="40"/>
+            <param name="semanticHint" value="Lifeline_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.Gate_69"
-               name="%metatype.name.Gate_69"
+               id="org.eclipse.papyrus.uml.diagram.timing.Gate_Shape"
+               name="%metatype.name.Gate_Shape"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Gate"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.GateEditHelper">
-            <param name="semanticHint" value="69"/>
+            <param name="semanticHint" value="Gate_Shape"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"
-               name="%metatype.name.Message_3"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"
+               name="%metatype.name.Message_SynchEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Message"
                edithelper="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageSyncEditHelper">
-            <param name="semanticHint" value="3"/>
+            <param name="semanticHint" value="Message_SynchEdge"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageAsync_4"
-               name="%metatype.name.Message_4"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_AsynchEdge"
+               name="%metatype.name.Message_AsynchEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageAsyncEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-            <param name="semanticHint" value="4"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_AsynchEdge"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageReply_41"
-               name="%metatype.name.Message_41"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_ReplyEdge"
+               name="%metatype.name.Message_ReplyEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageReplyEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-            <param name="semanticHint" value="41"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_ReplyEdge"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageCreate_44"
-               name="%metatype.name.Message_44"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_CreateEdge"
+               name="%metatype.name.Message_CreateEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageCreateEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-            <param name="semanticHint" value="44"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_CreateEdge"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageDelete_47"
-               name="%metatype.name.Message_47"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_DeleteEdge"
+               name="%metatype.name.Message_DeleteEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageDeleteEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-            <param name="semanticHint" value="47"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_DeleteEdge"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageLost_50"
-               name="%metatype.name.Message_50"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_LostEdge"
+               name="%metatype.name.Message_LostEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageLostEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-            <param name="semanticHint" value="50"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_LostEdge"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
          <specializationType
-               id="org.eclipse.papyrus.uml.diagram.timing.MessageFound_53"
-               name="%metatype.name.Message_53"
+               id="org.eclipse.papyrus.uml.diagram.timing.Message_FoundEdge"
+               name="%metatype.name.Message_FoundEdge"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                edithelperadvice="org.eclipse.papyrus.uml.diagram.timing.edit.helpers.MessageFoundEditHelper">
-            <specializes id="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-            <param name="semanticHint" value="53"/>
+            <specializes id="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+            <param name="semanticHint" value="Message_FoundEdge"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -481,34 +481,34 @@
          </enablement>
       </clientContext> 
       <binding context="org.eclipse.papyrus.uml.diagram.timing.TypeContext">
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Package_1"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Interaction_2"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Lifeline_19"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Lifeline_20"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.FullStateInvariant_11"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.CompactStateInvariant_28"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_12"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_13"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_9"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_39"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_15"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_16"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_18"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_17"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_67"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_24"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_25"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_26"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_27"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Gate_69"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageAsync_4"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageReply_41"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageCreate_44"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageDelete_47"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageLost_50"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageFound_53"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Package_TimingDiagram"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Interaction_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Lifeline_FullShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Lifeline_CompactShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_FullShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_CompactShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_StateDefinitionShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_StateInvariantTransitionShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_FreeTimeRulerShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_LinearTimeRulerShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Node_TickShape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Lifeline_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Gate_Shape"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_AsynchEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_ReplyEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_CreateEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_DeleteEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_LostEdge"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.timing.Message_FoundEdge"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -846,56 +846,48 @@
 
 
 
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-		<diagramMappings diagramID="PapyrusUMLTimingDiagram">
-			<mapping type="PapyrusUMLTimingDiagram" humanReadableType="TimingDiagram"/>
-			
-	<mapping
-		humanReadableType="Interaction"
-		type="5">
-	</mapping>
-
-	<mapping
-		humanReadableType="FullLifelineStateDefinition"
-		type="7">
-	</mapping>
-
-	<mapping
-		humanReadableType="FullLifelineTimeline"
-		type="8">
-	</mapping>
-
-	<mapping
-		humanReadableType="CompactLifeline"
-		type="23">
-	</mapping>
-
-	<mapping
-		humanReadableType="TimeRuler"
-		type="29">
-	</mapping>
-
-	<mapping
-		humanReadableType="FullLifelineTimeRuler"
-		type="82">
-	</mapping>
-
-	<mapping
-		humanReadableType="CompactLifelineTimeRuler"
-		type="83">
-	</mapping>
-
-	<mapping
-		humanReadableType="FreeTimeRuler"
-		type="80">
-	</mapping>
-
-	<mapping
-		humanReadableType="LinearTimeRuler"
-		type="81">
-	</mapping>
-		</diagramMappings>
-	</extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="PapyrusUMLTimingDiagram">
+   	<mapping type="PapyrusUMLTimingDiagram" humanReadableType="TimingDiagram"/>
+			<mapping
+				humanReadableType="Interaction"
+				type="Interaction_SubfragmentCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="FullLifelineStateDefinition"
+				type="Lifeline_FullStateDefinitionCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="FullLifelineTimeline"
+				type="Lifeline_FullSubfragmentCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="CompactLifeline"
+				type="Lifeline_CompactSubfragmentCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="TimeRuler"
+				type="Interaction_TimeRulerCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="FullLifelineTimeRuler"
+				type="Lifeline_FullTimeRulerCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="CompactLifelineTimeRuler"
+				type="Lifeline_CompactTimeRulerCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="FreeTimeRuler"
+				type="Node_FreeTimeRulerCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="LinearTimeRuler"
+				type="Node_LinearTimeRulerCompartment">
+			</mapping>
+   </diagramMappings>
+</extension>
 
 
 <extension point="org.eclipse.ui.menus" id="context-menus">
@@ -1226,6 +1218,12 @@
          diagramType="PapyrusUMLTimingDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.timing.custom.migration.TimingReconcilerForCompartment"
          source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLTimingDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.timing.custom.migration.TimingReconciler_1_2_0"
+         source="1.1.0"
          target="1.2.0">
    </diagramReconciler>
 </extension>

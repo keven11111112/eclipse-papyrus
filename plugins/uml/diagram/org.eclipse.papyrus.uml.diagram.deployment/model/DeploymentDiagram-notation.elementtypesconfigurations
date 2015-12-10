@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.uml.diagram.deployment.elementTypeSetNotation" metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation" name="elementTypeSetNotation" xmi:id="_rcmpgv_cEeS2GcUTq58BKg" xmi:version="2.0">
-  <elementTypeConfigurations hint="4005" identifier="org.eclipse.papyrus.uml.diagram.deployment.Link_4005" kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType" name="Undefined" xmi:id="_rcnQkP_cEeS2GcUTq58BKg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
-    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
-  </elementTypeConfigurations>
-</elementtypesconfigurations:ElementTypeSetConfiguration>

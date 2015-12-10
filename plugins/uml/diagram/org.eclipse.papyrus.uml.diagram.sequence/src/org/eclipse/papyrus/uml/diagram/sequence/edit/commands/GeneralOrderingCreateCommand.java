@@ -71,7 +71,7 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralOrdering_4012(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralOrdering_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class GeneralOrderingCreateCommand extends EditElementCommand {
 		getContainer().getGeneralOrderings().add(newElement);
 		newElement.setBefore(getSource());
 		newElement.setAfter(getTarget());
-		ElementInitializers.getInstance().init_GeneralOrdering_4012(newElement);
+		ElementInitializers.getInstance().init_GeneralOrdering_Edge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

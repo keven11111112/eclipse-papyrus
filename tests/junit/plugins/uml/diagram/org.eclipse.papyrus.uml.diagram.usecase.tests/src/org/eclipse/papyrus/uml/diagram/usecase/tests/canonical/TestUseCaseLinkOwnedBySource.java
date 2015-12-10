@@ -50,27 +50,27 @@ public class TestUseCaseLinkOwnedBySource extends TestLinkOwnedBySource {
 
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Actor_2011, UMLElementTypes.Actor_2011, UMLElementTypes.Generalization_4010, UMLElementTypes.Package_2016, false);
+		testToManageLink(UMLElementTypes.Actor_Shape, UMLElementTypes.Actor_Shape, UMLElementTypes.Generalization_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManagePackageMerge() {
-		testToManageLink(UMLElementTypes.Package_2016, UMLElementTypes.Package_2016, UMLElementTypes.PackageMerge_4018, UMLElementTypes.Package_2016, true);
+		testToManageLink(UMLElementTypes.Package_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.PackageMerge_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	@Test
 	public void testToManagePackageImport() {
-		testToManageLink(UMLElementTypes.Package_2016, UMLElementTypes.Package_2016, UMLElementTypes.PackageImport_4019, UMLElementTypes.Package_2016, true);
+		testToManageLink(UMLElementTypes.Package_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.PackageImport_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	@Test
 	public void testToManageExtend() {
-		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Extend_4009, UMLElementTypes.Package_2016, false);
+		testToManageLink(UMLElementTypes.UseCase_Shape, UMLElementTypes.UseCase_Shape, UMLElementTypes.Extend_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageInclude() {
-		testToManageLink(UMLElementTypes.UseCase_2013, UMLElementTypes.UseCase_2013, UMLElementTypes.Include_4008, UMLElementTypes.Package_2016, false);
+		testToManageLink(UMLElementTypes.UseCase_Shape, UMLElementTypes.UseCase_Shape, UMLElementTypes.Include_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 }

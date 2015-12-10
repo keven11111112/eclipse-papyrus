@@ -28,7 +28,7 @@ public class InteractionCompartmentItemSemanticEditPolicyTN extends UMLBaseItemS
 	 * @generated
 	 */
 	public InteractionCompartmentItemSemanticEditPolicyTN() {
-		super(UMLElementTypes.Interaction_2);
+		super(UMLElementTypes.Interaction_Shape);
 	}
 
 	/**
@@ -42,12 +42,12 @@ public class InteractionCompartmentItemSemanticEditPolicyTN extends UMLBaseItemS
 		}
 
 
-		if (UMLElementTypes.Lifeline_19 == requestElementType) {
+		if (UMLElementTypes.Lifeline_FullShape == requestElementType) {
 
 			return getGEFWrapper(new FullLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.Lifeline_20 == requestElementType) {
+		if (UMLElementTypes.Lifeline_CompactShape == requestElementType) {
 
 			return getGEFWrapper(new CompactLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 

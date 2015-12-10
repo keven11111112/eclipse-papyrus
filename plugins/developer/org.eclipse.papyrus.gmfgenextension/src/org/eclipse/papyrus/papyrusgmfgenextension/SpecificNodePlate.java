@@ -33,9 +33,9 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getEditParts <em>Edit Parts</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getEditParts <em>Edit Parts</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate()
@@ -52,7 +52,6 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Edit Parts</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate_EditParts()
 	 * @model required="true" ordered="false"
@@ -68,7 +67,6 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate_Name()
@@ -81,9 +79,7 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -97,7 +93,6 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Node Plate Qualified Name</em>' attribute.
 	 * @see #setNodePlateQualifiedName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificNodePlate_NodePlateQualifiedName()
@@ -110,9 +105,7 @@ public interface SpecificNodePlate extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Node Plate Qualified Name</em>' attribute.
+	 * @param value the new value of the '<em>Node Plate Qualified Name</em>' attribute.
 	 * @see #getNodePlateQualifiedName()
 	 * @generated
 	 */

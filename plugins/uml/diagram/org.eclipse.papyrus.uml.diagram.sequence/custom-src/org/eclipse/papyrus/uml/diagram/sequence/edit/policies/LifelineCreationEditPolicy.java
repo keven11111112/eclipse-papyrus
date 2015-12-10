@@ -126,7 +126,7 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 			cc.compose(new CommandProxy(refreshConnectionCommand));
 		}
 		LifelineEditPart parentPart = (LifelineEditPart) getHost();
-		IHintedType type = (IHintedType) UMLElementTypes.Lifeline_3001;
+		IHintedType type = (IHintedType) UMLElementTypes.Lifeline_Shape;
 		if (type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
 			setChildLifelineBounds(cc, request, parentPart);
 		}
@@ -171,9 +171,9 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 	 * @return true if correct hint
 	 */
 	private boolean isDurationHint(String requestHint) {
-		String durCstOnLifelineHint = ((IHintedType) UMLElementTypes.DurationConstraint_3021).getSemanticHint();
-		String durCstOnMessage = ((IHintedType) UMLElementTypes.DurationConstraint_3023).getSemanticHint();
-		String durObsOnMessage = ((IHintedType) UMLElementTypes.DurationObservation_3024).getSemanticHint();
+		String durCstOnLifelineHint = ((IHintedType) UMLElementTypes.DurationConstraint_Shape).getSemanticHint();
+		String durCstOnMessage = ((IHintedType) UMLElementTypes.DurationConstraint_Shape_CN).getSemanticHint();
+		String durObsOnMessage = ((IHintedType) UMLElementTypes.DurationObservation_Shape).getSemanticHint();
 		return durCstOnLifelineHint.equals(requestHint) || durCstOnMessage.equals(requestHint) || durObsOnMessage.equals(requestHint);
 	}
 
@@ -185,8 +185,8 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 	 * @return true if correct hint
 	 */
 	private boolean isTimeHint(String requestHint) {
-		String timeConstraintHint = ((IHintedType) UMLElementTypes.TimeConstraint_3019).getSemanticHint();
-		String timeObservationHint = ((IHintedType) UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		String timeConstraintHint = ((IHintedType) UMLElementTypes.TimeConstraint_Shape).getSemanticHint();
+		String timeObservationHint = ((IHintedType) UMLElementTypes.TimeObservation_Shape).getSemanticHint();
 		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint);
 	}
 }

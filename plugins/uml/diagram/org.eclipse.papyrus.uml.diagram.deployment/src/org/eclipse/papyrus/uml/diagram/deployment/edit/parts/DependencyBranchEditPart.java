@@ -29,7 +29,7 @@ public class DependencyBranchEditPart extends UMLConnectionNodeEditPart implemen
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4010";
+	public static final String VISUAL_ID = "Dependency_BranchEdge";
 
 	/**
 	 * @generated
@@ -66,6 +66,6 @@ public class DependencyBranchEditPart extends UMLConnectionNodeEditPart implemen
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

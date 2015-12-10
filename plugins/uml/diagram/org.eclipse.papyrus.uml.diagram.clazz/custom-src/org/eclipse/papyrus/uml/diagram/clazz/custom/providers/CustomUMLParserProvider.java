@@ -85,7 +85,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	/**
 	 * @generated
 	 */
-	protected IParser getAssociationName_6002Parser() {
+	protected IParser getAssociationNameParser() {
 		EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name(), };
 		MessageFormatParser parser = new MessageFormatParser(features);
 		return parser;
@@ -94,14 +94,14 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	/**
 	 * @generated
 	 */
-	protected IParser getAssociationSourceMultiplicity() {
+	protected IParser getAssociationSourceMultiplicityParser() {
 		return new AssociationMultiplicityParser(ASSOCIATION_SOURCE);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser getAssociationSourceRole() {
+	protected IParser getAssociationSourceRoleParser() {
 		return new AssociationEndParser(ASSOCIATION_SOURCE);
 	}
 
@@ -115,7 +115,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	/**
 	 * @generated
 	 */
-	protected IParser getAssociationTargetRole() {
+	protected IParser getAssociationTargetRoleParser() {
 		return new AssociationEndParser(ASSOCIATION_TARGET);
 	}
 
@@ -157,15 +157,15 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		case OperationForDataTypeEditPart.VISUAL_ID:
 			return getOperationParser();
 		case AssociationNameEditPart.VISUAL_ID:
-			return getAssociationName_6002Parser();
+			return getAssociationNameParser();
 		case AssociationTargetNameEditPart.VISUAL_ID:
-			return getAssociationTargetRole();
+			return getAssociationTargetRoleParser();
 		case AssociationSourceNameEditPart.VISUAL_ID:
-			return getAssociationSourceMultiplicity();
+			return getAssociationSourceMultiplicityParser();
 		case AssociationBranchRoleEditPart.VISUAL_ID:
-			return getAssociationSourceRole();
+			return getAssociationSourceRoleParser();
 		case AssociationBranchMutliplicityEditPart.VISUAL_ID:
-			return getAssociationSourceMultiplicity();
+			return getAssociationSourceMultiplicityParser();
 		case AppliedStereotypeAssociationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:

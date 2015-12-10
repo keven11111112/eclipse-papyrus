@@ -150,4 +150,19 @@ import xpt.providers.ParserUtils_qvto
 			return null;
 		}
 	'''
+
+	override def provider_providesMethod(GenParsers it) '''
+		«generatedMemberComment()»
+		public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
+			if (operation instanceof org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) {
+				org.eclipse.core.runtime.IAdaptable hint =
+						((org.eclipse.gmf.runtime.common.ui.services.parser.GetParserOperation) operation).getHint();
+				if («xptElementTypes.qualifiedClassName(editorGen.diagram)».getElement(hint) == null) {
+					return false;
+				}
+				return getParser(hint) != null;
+			}
+			return false;
+		}
+	'''
 }

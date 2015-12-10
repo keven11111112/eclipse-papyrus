@@ -33,7 +33,7 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4001";
+	public static final String VISUAL_ID = "Usage_Edge";
 
 	/**
 	 * @generated
@@ -49,7 +49,8 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}

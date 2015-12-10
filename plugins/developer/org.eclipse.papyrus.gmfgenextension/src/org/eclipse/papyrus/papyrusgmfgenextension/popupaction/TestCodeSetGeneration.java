@@ -93,8 +93,7 @@ public class TestCodeSetGeneration extends Action {
 									"@Test\n" +
 									"public void testTo" + name + "() {\n" +
 									"	testToManageNode(UMLElementTypes." + name + "_" + visalId + ", UMLPackage.eINSTANCE.get" + name + "(), UMLElementTypes." + name + "_" + visalId + ", false);\n" +
-									"}\n"
-							);
+									"}\n");
 				}
 			}
 		}
@@ -119,8 +118,7 @@ public class TestCodeSetGeneration extends Action {
 									"public void testTo" + name + "() {\n" +
 									"	testToManageNode(UMLElementTypes." + name + "_" + visalId + ", UMLPackage.eINSTANCE.get" + name + "(), container, true);\n" +
 
-									"}\n"
-							);
+									"}\n");
 				}
 			}
 		}
@@ -144,8 +142,7 @@ public class TestCodeSetGeneration extends Action {
 									"@Test\n" +
 									"public void testTo" + name + "() {\n" +
 									"testToManageTopNodeWithMask(UMLElementTypes.Container,UMLElementTypes." + name + "_" + visalId + ", Compartment.VISUAL_ID,null);\n" +
-									"}\n"
-							);
+									"}\n");
 				}
 			}
 		}
@@ -171,8 +168,7 @@ public class TestCodeSetGeneration extends Action {
 									"setTestAffixedNode(true);\n" +
 									"	testToManageNode(UMLElementTypes." + name + "_" + visalId + ", UMLPackage.eINSTANCE.get" + name + "(), container, true);\n" +
 									"setTestAffixedNode(false);\n" +
-									"}\n"
-							);
+									"}\n");
 
 				}
 			}
@@ -197,8 +193,7 @@ public class TestCodeSetGeneration extends Action {
 										"@Test\n" +
 										"public void testTo" + name + "() {\n" +
 										"testToManageLink(UMLElementTypes.source, UMLElementTypes.target, UMLElementTypes." + name + "_" + visalId + ", container, true);\n" +
-										"}\n"
-								);
+										"}\n");
 					}
 				}
 			}

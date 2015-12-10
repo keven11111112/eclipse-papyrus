@@ -46,7 +46,7 @@ public class ActivityActivityContentCompartmentEditPart extends BaseActivityCont
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "7004";
+	public static final String VISUAL_ID = "Activity_ActivityNodeCompartment";
 
 	/**
 	 * @generated
@@ -83,8 +83,9 @@ public class ActivityActivityContentCompartmentEditPart extends BaseActivityCont
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityContentCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityContentCompartmentCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
@@ -106,6 +107,7 @@ public class ActivityActivityContentCompartmentEditPart extends BaseActivityCont
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
+
 		return super.getTargetEditPart(request);
 	}
 
@@ -115,7 +117,10 @@ public class ActivityActivityContentCompartmentEditPart extends BaseActivityCont
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

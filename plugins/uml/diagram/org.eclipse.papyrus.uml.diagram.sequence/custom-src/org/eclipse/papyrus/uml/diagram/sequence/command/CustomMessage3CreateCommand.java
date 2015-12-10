@@ -76,7 +76,7 @@ public class CustomMessage3CreateCommand extends Message3CreateCommand {
 				return false;
 			}
 		}
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4005(getContainer(), getSource(), getTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_ReplyEdge(getContainer(), getSource(), getTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canExist(MessageSort.REPLY_LITERAL, getSource(), getTarget());

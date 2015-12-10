@@ -46,13 +46,13 @@ public class CustomGraphicalNodeEditPolicy extends DefaultGraphicalNodeEditPolic
 				// case of associationClass
 				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
-				if (UMLElementTypes.AssociationClass_4017.equals(createElementRequest.getElementType())) {
+				if (UMLElementTypes.AssociationClass_Edge.equals(createElementRequest.getElementType())) {
 					AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
 					return associationClassHelper.getAssociationClassElementCommand(((CreateConnectionViewAndElementRequest) request), c);
-				} else if (UMLElementTypes.Dependency_4018.equals(createElementRequest.getElementType())) {
+				} else if (UMLElementTypes.Dependency_BranchEdge.equals(createElementRequest.getElementType())) {
 					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
 					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
-				} else if (UMLElementTypes.Association_4019.equals(createElementRequest.getElementType())) {
+				} else if (UMLElementTypes.Association_BranchEdge.equals(createElementRequest.getElementType())) {
 					MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(getEditingDomain());
 					return multiAssociationHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
 				} else {

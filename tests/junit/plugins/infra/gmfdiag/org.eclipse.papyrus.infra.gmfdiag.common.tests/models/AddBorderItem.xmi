@@ -14,7 +14,7 @@
         name="Reuse representation of class of the class diagram"
         viewFactory="org.eclipse.papyrus.infra.gmfdiag.common.utils.ClassifierViewFactory"
         subRepresentations="//@libraries.0/@representations.0"
-        reusedID="2008"/>
+        reusedID="Class_Shape"/>
   </usages>
   <libraries
       name="library">

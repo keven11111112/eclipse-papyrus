@@ -103,7 +103,7 @@ public class DurationObservationCreateCommandCN extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_DurationObservation_8007(newElement);
+		ElementInitializers.getInstance().init_DurationObservation_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

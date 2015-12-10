@@ -130,7 +130,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.custom.providers.InnerPortViewProvider">
          <Priority name="Low"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3121,3069"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Port_BehaviorShape,Port_Shape"/>
          
        </viewProvider>
    </extension>
@@ -139,8 +139,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="CompositeStructure"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2088,2089,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3121,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3066"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4022,4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Activity_Shape,Interaction_Shape,ProtocolStateMachine_Shape,StateMachine_Shape,FunctionBehavior_Shape,OpaqueBehavior_Shape,Component_Shape,Device_Shape,ExecutionEnvironment_Shape,Node_Shape,Class_Shape,Collaboration_Shape,Interface_Shape,PrimitiveType_Shape,Enumeration_Shape,DataType_Shape,Actor_Shape,DeploymentSpecification_Shape,Artifact_Shape,InformationItem_Shape,Signal_Shape,UseCase_Shape,SignalEvent_Shape,CallEvent_Shape,AnyReceiveEvent_Shape,ChangeEvent_Shape,TimeEvent_Shape,DurationObservation_Shape,TimeObservation_Shape,LiteralBoolean_Shape,LiteralInteger_Shape,LiteralNull_Shape,LiteralString_Shape,LiteralUnlimitedNatural_Shape,StringExpression_PackagedElementShape,OpaqueExpression_Shape,TimeExpression_Shape,Expression_Shape,Duration_Shape,TimeInterval_Shape,DurationInterval_Shape,Interval_Shape,InstanceValue_Shape,Comment_Shape,DurationConstraint_Shape,TimeConstraint_Shape,IntervalConstraint_Shape,InteractionConstraint_Shape,Constraint_Shape,Port_BehaviorShape,Port_Shape,Parameter_Shape,Property_Shape,ConnectableElement_CollaborationRoleShape,CollaborationUse_Shape,Activity_Shape_CN,Interaction_Shape_CN,ProtocolStateMachine_Shape_CN,StateMachine_Shape_CN,FunctionBehavior_Shape_CN,OpaqueBehavior_Shape_CN,Component_Shape_CN,Device_Shape_CN,ExecutionEnvironment_Shape_CN,Node_Shape_CN,Class_Shape_CN,Collaboration_Shape_CN,Interface_Shape_CN,PrimitiveType_Shape_CN,Enumeration_Shape_CN,DataType_Shape_CN,Actor_Shape_CN,DeploymentSpecification_Shape_CN,Artifact_Shape_CN,InformationItem_Shape_CN,Signal_Shape_CN,UseCase_Shape_CN,Comment_Shape_CN,DurationConstraint_Shape_CN,TimeConstraint_Shape_CN,IntervalConstraint_Shape_CN,InteractionConstraint_Shape_CN,Constraint_Shape_CN,Property_AttributeLabel,Operation_OperationLabel,EnumerationLiteral_LiteralLabel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Port_BehaviorEdge,Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,ComponentRealization_Edge,InterfaceRealization_Edge,Substitution_Edge,Realization_Edge,Manifestation_Edge,Abstraction_Edge,Usage_Edge,Deployment_Edge,Dependency_RoleBindingEdge,Dependency_Edge,Connector_Edge,Generalization_Edge,TimeObservation_EventEdge,DurationObservation_EventEdge,Representation_Edge,InformationFlow_Edge"/>
       </viewProvider>
    </extension>
 
@@ -154,16 +154,16 @@
             <method name="getType()" value="CompositeStructure"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2060,2061,2062,2063,2064,2065,2069,2070,2071,2072,2073,2075,2076,2066,2067,2068,2077,2078,2079,2080,2081,2082,2083,2084,2085,2086,2087,2088,2089,2090,2091,2092,2093,2094,2095,2096,2097,2098,2099,2100,2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112,2113,2114,3069,3088,3070,3115,3071,3072,3073,3074,3075,3076,3077,3081,3082,3083,3084,3085,3086,3087,3078,3079,3080,3091,3092,3093,3094,3095,3096,3097,3116,3117,3118,3119,3120,3101,3102,3100,3066,3103,3104,3105,3106,3107,3108,3109,3110,3111,3112,3113,3114"/>
+            <method name="getType()" value="Activity_Shape,Interaction_Shape,ProtocolStateMachine_Shape,StateMachine_Shape,FunctionBehavior_Shape,OpaqueBehavior_Shape,Component_Shape,Device_Shape,ExecutionEnvironment_Shape,Node_Shape,Class_Shape,Collaboration_Shape,Interface_Shape,PrimitiveType_Shape,Enumeration_Shape,DataType_Shape,Actor_Shape,DeploymentSpecification_Shape,Artifact_Shape,InformationItem_Shape,Signal_Shape,UseCase_Shape,SignalEvent_Shape,CallEvent_Shape,AnyReceiveEvent_Shape,ChangeEvent_Shape,TimeEvent_Shape,DurationObservation_Shape,TimeObservation_Shape,LiteralBoolean_Shape,LiteralInteger_Shape,LiteralNull_Shape,LiteralString_Shape,LiteralUnlimitedNatural_Shape,StringExpression_PackagedElementShape,OpaqueExpression_Shape,TimeExpression_Shape,Expression_Shape,Duration_Shape,TimeInterval_Shape,DurationInterval_Shape,Interval_Shape,InstanceValue_Shape,Comment_Shape,DurationConstraint_Shape,TimeConstraint_Shape,IntervalConstraint_Shape,InteractionConstraint_Shape,Constraint_Shape,Port_BehaviorShape,Port_Shape,Parameter_Shape,Property_Shape,ConnectableElement_CollaborationRoleShape,CollaborationUse_Shape,Activity_Shape_CN,Interaction_Shape_CN,ProtocolStateMachine_Shape_CN,StateMachine_Shape_CN,FunctionBehavior_Shape_CN,OpaqueBehavior_Shape_CN,Component_Shape_CN,Device_Shape_CN,ExecutionEnvironment_Shape_CN,Node_Shape_CN,Class_Shape_CN,Collaboration_Shape_CN,Interface_Shape_CN,PrimitiveType_Shape_CN,Enumeration_Shape_CN,DataType_Shape_CN,Actor_Shape_CN,DeploymentSpecification_Shape_CN,Artifact_Shape_CN,InformationItem_Shape_CN,Signal_Shape_CN,UseCase_Shape_CN,Comment_Shape_CN,DurationConstraint_Shape_CN,TimeConstraint_Shape_CN,IntervalConstraint_Shape_CN,InteractionConstraint_Shape_CN,Constraint_Shape_CN,Property_AttributeLabel,Operation_OperationLabel,EnumerationLiteral_LiteralLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002,4003,4004,4005,4011,4006,4012,4007,4008,4009,4017,4010,4013,4015,4018,4019,4020,4021"/>
+            <method name="getType()" value="Port_BehaviorEdge,Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,ComponentRealization_Edge,InterfaceRealization_Edge,Substitution_Edge,Realization_Edge,Manifestation_Edge,Abstraction_Edge,Usage_Edge,Deployment_Edge,Dependency_RoleBindingEdge,Dependency_Edge,Connector_Edge,Generalization_Edge,TimeObservation_EventEdge,DurationObservation_EventEdge,Representation_Edge,InformationFlow_Edge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5112,5113,5114,5115,5116,5117,5121,5122,5123,5124,5156,5158,5159,5118,5119,5120,5160,5161,5162,5163,5164,5165,5166,5167,5168,5169,5170,5171,5172,5173,5174,5175,5151,5152,5142,5143,5178,5179,5180,5181,5182,5183,5184,5185,5186,5187,5188,5189,5190,5191,5192,5193,6035,5194,6036,5195,6037,5196,6038,5197,6039,5125,6029,6033,6034,5126,5198,5127,5128,5129,5130,5131,5132,5133,5137,5138,5139,5140,5155,5141,5154,5134,5135,5136,5144,5145,5146,5147,5148,5149,5150,6040,6041,6042,6043,6044,6045,6046,6047,6048,6049"/>
+            <method name="getType()" value="Activity_NameLabel,Activity_FloatingNameLabel,Interaction_NameLabel,Interaction_FloatingNameLabel,ProtocolStateMachine_NameLabel,ProtocolStateMachine_FloatingNameLabel,StateMachine_NameLabel,StateMachine_FloatingNameLabel,FunctionBehavior_NameLabel,FunctionBehavior_FloatingNameLabel,OpaqueBehavior_NameLabel,OpaqueBehavior_FloatingNameLabel,Component_NameLabel,Component_FloatingNameLabel,Device_NameLabel,Device_FloatingNameLabel,ExecutionEnvironment_NameLabel,ExecutionEnvironment_FloatingNameLabel,Node_NameLabel,Node_FloatingNameLabel,Class_NameLabel,Class_FloatingNameLabel,Collaboration_NameLabel,Collaboration_FloatingNameLabel,Interface_NameLabel,Interface_FloatingNameLabel,PrimitiveType_NameLabel,PrimitiveType_FloatingNameLabel,Enumeration_NameLabel,Enumeration_FloatingNameLabel,DataType_NameLabel,DataType_FloatingNameLabel,Actor_NameLabel,Actor_FloatingNameLabel,DeploymentSpecification_NameLabel,DeploymentSpecification_FloatingNameLabel,Artifact_NameLabel,Artifact_FloatingNameLabel,InformationItem_NameLabel,InformationItem_FloatingNameLabel,Signal_NameLabel,Signal_FloatingNameLabel,UseCase_NameLabel,UseCase_FloatingNameLabel,SignalEvent_NameLabel,SignalEvent_FloatingNameLabel,CallEvent_NameLabel,CallEvent_FloatingNameLabel,AnyReceiveEvent_NameLabel,AnyReceiveEvent_FloatingNameLabel,ChangeEvent_NameLabel,ChangeEvent_FloatingNameLabel,TimeEvent_NameLabel,TimeEvent_FloatingNameLabel,DurationObservation_NameLabel,DurationObservation_StereotypeLabel,TimeObservation_NameLabel,TimeObservation_StereotypeLabel,LiteralBoolean_NameLabel,LiteralBoolean_FloatingNameLabel,LiteralInteger_NameLabel,LiteralInteger_FloatingNameLabel,LiteralNull_NameLabel,LiteralNull_FloatingNameLabel,LiteralString_NameLabel,LiteralString_FloatingNameLabel,LiteralUnlimitedNatural_NameLabel,LiteralUnlimitedNatural_FloatingNameLabel,StringExpression_NameLabel,StringExpression_FloatingNameLabel,OpaqueExpression_NameLabel,OpaqueExpression_FloatingNameLabel,TimeExpression_NameLabel,TimeExpression_FloatingNameLabel,Expression_NameLabel,Expression_FloatingNameLabel,Duration_NameLabel,Duration_FloatingNameLabel,TimeInterval_NameLabel,TimeInterval_FloatingNameLabel,DurationInterval_NameLabel,DurationInterval_FloatingNameLabel,Interval_NameLabel,Interval_FloatingNameLabel,InstanceValue_NameLabel,InstanceValue_FloatingNameLabel,Comment_BodyLabel,DurationConstraint_NameLabel,DurationConstraint_BodyLabel,TimeConstraint_NameLabel,TimeConstraint_BodyLabel,IntervalConstraint_NameLabel,IntervalConstraint_BodyLabel,InteractionConstraint_NameLabel,InteractionConstraint_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel,Port_BehaviorFloatingNameLabel,Port_NameLabel,Port_StereotypeLabel,Parameter_NameLabel,Parameter_StereotypeLabel,Property_NameLabel,Property_FloatingNameLabel,ConnectableElement_CollaborationRoleNameLabel,ConnectableElement_CollaborationRoleFloatingNameLabel,CollaborationUse_NameLabel,CollaborationUse_FloatingNameLabel,Activity_NameLabel_CN,Activity_FloatingNameLabel_CN,Interaction_NameLabel_CN,Interaction_FloatingNameLabel_CN,ProtocolStateMachine_NameLabel_CN,ProtocolStateMachine_FloatingNameLabel_CN,StateMachine_NameLabel_CN,StateMachine_FloatingNameLabel_CN,FunctionBehavior_NameLabel_CN,FunctionBehavior_FloatingNameLabel_CN,OpaqueBehavior_NameLabel_CN,OpaqueBehavior_FloatingNameLabel_CN,Component_NameLabel_CN,Component_FloatingNameLabel_CN,Device_NameLabel_CN,Device_FloatingNameLabel_CN,ExecutionEnvironment_NameLabel_CN,ExecutionEnvironment_FloatingNameLabel_CN,Node_NameLabel_CN,Node_FloatingNameLabel_CN,Class_NameLabel_CN,Class_FloatingNameLabel_CN,Collaboration_NameLabel_CN,Collaboration_FloatingNameLabel_CN,Interface_NameLabel_CN,Interface_FloatingNameLabel_CN,PrimitiveType_NameLabel_CN,PrimitiveType_FloatingNameLabel_CN,Enumeration_NameLabel_CN,Enumeration_FloatingNameLabel_CN,DataType_NameLabel_CN,DataType_FloatingNameLabel_CN,Actor_NameLabel_CN,Actor_FloatingNameLabel_CN,DeploymentSpecification_NameLabel_CN,DeploymentSpecification_FloatingNameLabel_CN,Artifact_NameLabel_CN,Artifact_FloatingNameLabel_CN,InformationItem_NameLabel_CN,InformationItem_FloatingNameLabel_CN,Signal_NameLabel_CN,Signal_FloatingNameLabel_CN,UseCase_NameLabel_CN,UseCase_FloatingNameLabel_CN,Comment_BodyLabel_CN,DurationConstraint_NameLabel_CN,DurationConstraint_BodyLabel_CN,TimeConstraint_NameLabel_CN,TimeConstraint_BodyLabel_CN,IntervalConstraint_NameLabel_CN,IntervalConstraint_BodyLabel_CN,InteractionConstraint_NameLabel_CN,InteractionConstraint_BodyLabel_CN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7033,7034,7036,7037,7048,7049,7050,7051,7052,7053,7054,7055,7056,7057,7058,7059,7060,7061,7063,7064,7065,7066,7067,7068,7069,7070,7071,7072,7073,7075,7077"/>
+            <method name="getType()" value="DataType_AttributeCompartment,DataType_OperationCompartment,DataType_AttributeCompartment_CN,DataType_OperationCompartment_CN,Enumeration_LiteralCompartment,Enumeration_LiteralCompartment_CN,Activity_StructureCompartment_CN,Interaction_StructureCompartment_CN,ProtocolStateMachine_StructureCompartment_CN,StateMachine_StructureCompartment_CN,FunctionBehavior_StructureCompartment_CN,OpaqueBehavior_StructureCompartment_CN,Component_StructureCompartment_CN,Device_StructureCompartment_CN,ExecutionEnvironment_StructureCompartment_CN,Node_StructureCompartment_CN,Class_StructureCompartment_CN,Collaboration_StructureCompartment_CN,Activity_StructureCompartment,Interaction_StructureCompartment,ProtocolStateMachine_StructureCompartment,StateMachine_StructureCompartment,FunctionBehavior_StructureCompartment,OpaqueBehavior_StructureCompartment,Component_StructureCompartment,Device_StructureCompartment,ExecutionEnvironment_StructureCompartment,Node_StructureCompartment,Class_StructureCompartment,Collaboration_StructureCompartment,Property_StructureCompartment"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -952,13 +952,6 @@
          path="model/compositediagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/compositediagram-notation.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="true"?>
@@ -979,555 +972,555 @@
    	<mapping type="CompositeStructure" humanReadableType="CompositeStructureDiagram"/>
 			<mapping
 				humanReadableType="attributes"
-				type="7033">
+				type="DataType_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7034">
+				type="DataType_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7036">
+				type="DataType_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7037">
+				type="DataType_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="literals"
-				type="7048">
+				type="Enumeration_LiteralCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="literals"
-				type="7049">
+				type="Enumeration_LiteralCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7050">
+				type="Activity_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7051">
+				type="Interaction_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7052">
+				type="ProtocolStateMachine_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7053">
+				type="StateMachine_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7054">
+				type="FunctionBehavior_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7055">
+				type="OpaqueBehavior_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7056">
+				type="Component_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7057">
+				type="Device_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7058">
+				type="ExecutionEnvironment_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7059">
+				type="Node_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7060">
+				type="Class_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7061">
+				type="Collaboration_StructureCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7063">
+				type="Activity_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7064">
+				type="Interaction_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7065">
+				type="ProtocolStateMachine_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7066">
+				type="StateMachine_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7067">
+				type="FunctionBehavior_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7068">
+				type="OpaqueBehavior_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7069">
+				type="Component_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7070">
+				type="Device_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7071">
+				type="ExecutionEnvironment_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7072">
+				type="Node_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7073">
+				type="Class_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7075">
+				type="Collaboration_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="internal structure"
-				type="7077">
+				type="Property_StructureCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6001">
+				type="ComponentRealization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6015">
+				type="ComponentRealization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6002">
+				type="InterfaceRealization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6016">
+				type="InterfaceRealization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6003">
+				type="Substitution_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6017">
+				type="Substitution_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6004">
+				type="Realization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6018">
+				type="Realization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6005">
+				type="Manifestation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6019">
+				type="Manifestation_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6006">
+				type="Abstraction_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6020">
+				type="Abstraction_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6007">
+				type="Usage_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6021">
+				type="Usage_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6008">
+				type="Deployment_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6022">
+				type="Deployment_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6027">
+				type="Dependency_RoleBindingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6028">
+				type="Dependency_RoleBindingStereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6009">
+				type="Dependency_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6023">
+				type="Dependency_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6025">
+				type="Connector_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6050">
+				type="Connector_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="SourceMultiplicity"
-				type="6051">
+				type="Connector_SourceMultiplicityLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetMultiplicity"
-				type="6052">
+				type="Connector_TargetMultiplicityLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6024">
+				type="Generalization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Tag"
-				type="6030">
+				type="Representation_KeywordLabel">
 			</mapping>
 			<mapping
 				humanReadableType="ConveyedElements"
-				type="6031">
+				type="InformationFlow_ConveyedLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6032">
+				type="InformationFlow_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6053">
+				type="Port_BehaviorFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="5125">
+				type="Port_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5125">
+				type="Port_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6029">
+				type="Port_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6033">
+				type="Parameter_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6033">
+				type="Parameter_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6034">
+				type="Parameter_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6054">
+				type="Property_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6055">
+				type="ConnectableElement_CollaborationRoleFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6056">
+				type="CollaborationUse_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6057">
+				type="Activity_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6058">
+				type="Interaction_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6059">
+				type="ProtocolStateMachine_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6060">
+				type="StateMachine_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6061">
+				type="FunctionBehavior_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6062">
+				type="OpaqueBehavior_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6063">
+				type="Component_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6064">
+				type="Device_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6065">
+				type="ExecutionEnvironment_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6066">
+				type="Node_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6067">
+				type="Class_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6068">
+				type="Collaboration_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6069">
+				type="Interface_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6070">
+				type="PrimitiveType_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6071">
+				type="Enumeration_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6072">
+				type="DataType_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6073">
+				type="Actor_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6074">
+				type="DeploymentSpecification_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6075">
+				type="Artifact_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6076">
+				type="InformationItem_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6077">
+				type="Signal_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6078">
+				type="UseCase_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6079">
+				type="Activity_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6080">
+				type="Interaction_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6081">
+				type="ProtocolStateMachine_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6082">
+				type="StateMachine_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6083">
+				type="FunctionBehavior_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6084">
+				type="OpaqueBehavior_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6085">
+				type="Component_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6086">
+				type="Device_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6087">
+				type="ExecutionEnvironment_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6088">
+				type="Node_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6089">
+				type="Class_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6090">
+				type="Collaboration_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6091">
+				type="Interface_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6092">
+				type="PrimitiveType_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6093">
+				type="Enumeration_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6094">
+				type="DataType_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6095">
+				type="Actor_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6096">
+				type="DeploymentSpecification_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6097">
+				type="Artifact_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6098">
+				type="InformationItem_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6099">
+				type="Signal_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6100">
+				type="UseCase_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6101">
+				type="SignalEvent_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6102">
+				type="CallEvent_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6103">
+				type="AnyReceiveEvent_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6104">
+				type="ChangeEvent_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6105">
+				type="TimeEvent_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="5151">
+				type="DurationObservation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5151">
+				type="DurationObservation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="5152">
+				type="DurationObservation_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="5142">
+				type="TimeObservation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5142">
+				type="TimeObservation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="5143">
+				type="TimeObservation_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6106">
+				type="LiteralBoolean_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6107">
+				type="LiteralInteger_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6108">
+				type="LiteralNull_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6109">
+				type="LiteralString_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6110">
+				type="LiteralUnlimitedNatural_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6111">
+				type="StringExpression_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6112">
+				type="OpaqueExpression_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6113">
+				type="TimeExpression_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6114">
+				type="Expression_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6115">
+				type="Duration_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6116">
+				type="TimeInterval_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6117">
+				type="DurationInterval_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6118">
+				type="Interval_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6119">
+				type="InstanceValue_FloatingNameLabel">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -1535,9 +1528,21 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="CompositeStructure"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconcilier"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler"
          source="undefined"
          target="1.1.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="CompositeStructure"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="CompositeStructure"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler_1_2_0"
+         source="1.1.0"
+         target="1.2.0">
    </diagramReconciler>
 </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">

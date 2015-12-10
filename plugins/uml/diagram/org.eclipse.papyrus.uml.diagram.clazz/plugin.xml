@@ -102,8 +102,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLClassDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,3012,3002,3005,3006,3041,3018,3014,3004,3008,3013,3003,3007,3042,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038,3052,3053,3054,3047,3046,3048,3044,3045,3043,3050,3051,3049,3055,3056,3057"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4023,4024,4025,4026,8500"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Dependency_Shape,AssociationClass_Shape,Association_Shape,InstanceSpecification_Shape,Component_Shape,Signal_Shape,Interface_Shape,Model_Shape,Enumeration_Shape,Package_Shape,InformationItem_Shape,Class_Shape,PrimitiveType_Shape,DataType_Shape,Constraint_PackagedElementShape,Comment_Shape,Diagram_ShortcutShape,DurationObservation_Shape,TimeObservation_Shape,NamedElement_DefaultShape,Property_ClassAttributeLabel,Property_ComponentAttributeLabel,Property_SignalAttributeLabel,Property_InterfaceAttributeLabel,Property_PrimitiveTypeAttributeLabel,Property_DataTypeAttributeLabel,Class_ClassNestedClassifierLabel,Class_ComponentNestedClassifierLabel,Class_InterfaceNestedClassifierLabel,Operation_ClassOperationLabel,Operation_ComponentOperationLabel,Operation_InterfaceOperationLabel,Operation_PrimitiveTypeOperationLabel,Operation_DataTypeOperationLabel,ConnectableElementTemplateParameter_TemplateParameterLabel,OperationTemplateParameter_TemplateParameterLabel,ClassifierTemplateParameter_TemplateParameterLabel,TemplateParameter_TemplateParameterLabel,EnumerationLiteral_LiteralLabel,Reception_ReceptionLabel,Reception_InterfaceReceptionLabel,Slot_SlotLabel,RedefinableTemplateSignature_Shape,TemplateSignature_Shape,InstanceSpecification_Shape_CN,Component_Shape_CN,Signal_Shape_CN,Interface_Shape_CN,Model_Shape_CN,Enumeration_Shape_CN,Package_Shape_CN,InformationItem_Shape_CN,Class_Shape_CN,PrimitiveType_Shape_CN,DataType_Shape_CN,Comment_Shape_CN,Constraint_PackagedElementShape_CN,Interface_ClassNestedClassifierLabel,Interface_ComponentNestedClassifierLabel,Interface_InterfaceNestedClassifierLabel,Enumeration_ClassNestedClassifierLabel,Enumeration_ComponentNestedClassifierLabel,Enumeration_InterfaceNestedClassifierLabel,PrimitiveType_ClassNestedClassifierLabel,PrimitiveType_ComponentNestedClassifierLabel,PrimitiveType_InterfaceNestedClassifierLabel,DataType_ClassNestedClassifierLabel,DataType_ComponentNestedClassifierLabel,DataType_InterfaceNestedClassifierLabel,Signal_ClassNestedClassifierLabel,Signal_ComponentNestedClassifierLabel,Signal_InterfaceNestedClassifierLabel,Component_ClassNestedClassifierLabel,Component_InterfaceNestedClassifierLabel,Component_ComponentNestedClassifierLabel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="AssociationClass_TetherEdge,AssociationClass_Edge,Association_Edge,Association_BranchEdge,Generalization_Edge,InterfaceRealization_Edge,Substitution_Edge,Realization_Edge,Abstraction_Edge,Usage_Edge,Dependency_Edge,Dependency_BranchEdge,ElementImport_Edge,PackageImport_Edge,PackageMerge_Edge,ProfileApplication_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,TemplateBinding_Edge,GeneralizationSet_Edge,InstanceSpecification_Edge,Element_ContainmentEdge,TimeObservation_EventEdge,DurationObservation_EventEdge,InformationFlow_Edge,Constraint_ContextEdge"/>
       </viewProvider>
    </extension>
 <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
@@ -114,16 +114,16 @@
             <method name="getType()" value="PapyrusUMLClassDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2014,2013,2015,2001,2002,2003,2004,2005,2006,2007,2099,2008,2009,2010,2011,2012,2016,2095,2096,2097,3012,3002,3005,3006,3041,3018,3014,3004,3008,3013,3003,3007,3042,3019,3034,3035,3031,3016,3017,3011,3039,3030,3015,3032,3033,3020,3021,3022,3023,3024,3025,3009,3040,3010,3026,3027,3028,3029,3036,3037,3038,3052,3053,3054,3047,3046,3048,3044,3045,3043,3050,3051,3049"/>
+            <method name="getType()" value="Dependency_Shape,AssociationClass_Shape,Association_Shape,InstanceSpecification_Shape,Component_Shape,Signal_Shape,Interface_Shape,Model_Shape,Enumeration_Shape,Package_Shape,InformationItem_Shape,Class_Shape,PrimitiveType_Shape,DataType_Shape,Constraint_PackagedElementShape,Comment_Shape,Diagram_ShortcutShape,DurationObservation_Shape,TimeObservation_Shape,NamedElement_DefaultShape,Property_ClassAttributeLabel,Property_ComponentAttributeLabel,Property_SignalAttributeLabel,Property_InterfaceAttributeLabel,Property_PrimitiveTypeAttributeLabel,Property_DataTypeAttributeLabel,Class_ClassNestedClassifierLabel,Class_ComponentNestedClassifierLabel,Class_InterfaceNestedClassifierLabel,Operation_ClassOperationLabel,Operation_ComponentOperationLabel,Operation_InterfaceOperationLabel,Operation_PrimitiveTypeOperationLabel,Operation_DataTypeOperationLabel,ConnectableElementTemplateParameter_TemplateParameterLabel,OperationTemplateParameter_TemplateParameterLabel,ClassifierTemplateParameter_TemplateParameterLabel,TemplateParameter_TemplateParameterLabel,EnumerationLiteral_LiteralLabel,Reception_ReceptionLabel,Reception_InterfaceReceptionLabel,Slot_SlotLabel,RedefinableTemplateSignature_Shape,TemplateSignature_Shape,InstanceSpecification_Shape_CN,Component_Shape_CN,Signal_Shape_CN,Interface_Shape_CN,Model_Shape_CN,Enumeration_Shape_CN,Package_Shape_CN,InformationItem_Shape_CN,Class_Shape_CN,PrimitiveType_Shape_CN,DataType_Shape_CN,Comment_Shape_CN,Constraint_PackagedElementShape_CN,Interface_ClassNestedClassifierLabel,Interface_ComponentNestedClassifierLabel,Interface_InterfaceNestedClassifierLabel,Enumeration_ClassNestedClassifierLabel,Enumeration_ComponentNestedClassifierLabel,Enumeration_InterfaceNestedClassifierLabel,PrimitiveType_ClassNestedClassifierLabel,PrimitiveType_ComponentNestedClassifierLabel,PrimitiveType_InterfaceNestedClassifierLabel,DataType_ClassNestedClassifierLabel,DataType_ComponentNestedClassifierLabel,DataType_InterfaceNestedClassifierLabel,Signal_ClassNestedClassifierLabel,Signal_ComponentNestedClassifierLabel,Signal_InterfaceNestedClassifierLabel,Component_ClassNestedClassifierLabel,Component_InterfaceNestedClassifierLabel,Component_ComponentNestedClassifierLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4016,4017,4001,4019,4002,4003,4004,4005,4006,4007,4008,4018,4009,4010,4011,4012,4013,4014,4015,4020,4021,4022,4023,4024,4025,4026,8500"/>
+            <method name="getType()" value="AssociationClass_TetherEdge,AssociationClass_Edge,Association_Edge,Association_BranchEdge,Generalization_Edge,InterfaceRealization_Edge,Substitution_Edge,Realization_Edge,Abstraction_Edge,Usage_Edge,Dependency_Edge,Dependency_BranchEdge,ElementImport_Edge,PackageImport_Edge,PackageMerge_Edge,ProfileApplication_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,TemplateBinding_Edge,GeneralizationSet_Edge,InstanceSpecification_Edge,Element_ContainmentEdge,TimeObservation_EventEdge,DurationObservation_EventEdge,InformationFlow_Edge,Constraint_ContextEdge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="1,5066,5002,5005,5008,5011,5020,5023,5026,5161,5029,5032,5035,5037,5159,5038,0,5155,5156,5153,5154,5157,5040,5043,5046,5049,5052,5055,5017,5162,5014,5058,5061,5063,5064,5160"/>
+            <method name="getType()" value="Dependency_MultiNameLabel,Dependency_FloatingNameLabel,AssociationClass_NameLabel,AssociationClass_FloatingNameLabel,Association_FloatingNameLabel,InstanceSpecification_NameLabel,InstanceSpecification_FloatingNameLabel,Component_NameLabel,Component_FloatingNameLabel,Signal_NameLabel,Signal_FloatingNameLabel,Interface_NameLabel,Interface_FloatingNameLabel,Model_NameLabel,Enumeration_NameLabel,Enumeration_FloatingNameLabel,Package_NameLabel,InformationItem_NameLabel,InformationItem_FloatingNameLabel,Class_NameLabel,Class_FloatingNameLabel,PrimitiveType_NameLabel,PrimitiveType_FloatingNameLabel,DataType_NameLabel,DataType_FloatingNameLabel,Constraint_NameLabel,Constraint_BodyLabel,Comment_BodyLabel,Diagram_NameLabel,DurationObservation_FloatingNameLabel,DurationObservation_StereotypeLabel,TimeObservation_FloatingNameLabel,TimeObservation_StereotypeLabel,NamedElement_NameLabel,InstanceSpecification_NameLabel_CN,InstanceSpecification_FloatingNameLabel_CN,Component_NameLabel_CN,Component_FloatingNameLabel_CN,Signal_NameLabel_CN,Signal_FloatingNameLabel_CN,Interface_NameLabel_CN,Interface_FloatingNameLabel_CN,Model_NameLabel_CN,Enumeration_NameLabel_CN,Enumeration_FloatingNameLabel_CN,Package_NameLabel_CN,InformationItem_NameLabel_CN,InformationItem_FloatingNameLabel_CN,Class_NameLabel_CN,Class_FloatingNameLabel_CN,PrimitiveType_NameLabel_CN,PrimitiveType_FloatingNameLabel_CN,DataType_NameLabel_CN,DataType_FloatingNameLabel_CN,Comment_BodyLabel_CN,Constraint_NameLabel_CN,Constraint_FloatingNameLabel_CN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7011,7012,7013,7023,7024,7025,7026,7027,7028,7029,7041,7042,7032,7033,7030,7010,7031,7035,7017,7018,7019,7002,7003,7004,7006,7007,7008,7039,7040,7020,7021,7034,7001,7005,7009,7016,7015,7036,7037,7014,7038"/>
+            <method name="getType()" value="Class_AttributeCompartment_CN,Class_OperationCompartment_CN,Class_NestedClassifierCompartment_CN,Component_AttributeCompartment_CN,Component_OperationCompartment_CN,Component_NestedClassifierCompartment_CN,Signal_AttributeCompartment_CN,Interface_AttributeCompartment_CN,Interface_OperationCompartment_CN,Interface_NestedClassifierCompartment_CN,PrimitiveType_AttributeCompartment_CN,PrimitiveType_OperationCompartment_CN,DataType_AttributeCompartment_CN,DataType_OperationCompartment_CN,Model_PackagedElementCompartment_CN,Package_PackagedElementCompartment_CN,Enumeration_LiteralCompartment_CN,InstanceSpecification_SlotCompartment_CN,Class_AttributeCompartment,Class_OperationCompartment,Class_NestedClassifierCompartment,Component_AttributeCompartment,Component_OperationCompartment,Component_NestedClassifierCompartment,Interface_AttributeCompartment,Interface_OperationCompartment,Interface_NestedClassifierCompartment,PrimitiveType_AttributeCompartment,PrimitiveType_OperationCompartment,DataType_AttributeCompartment,DataType_OperationCompartment,AssociationClass_AttributeCompartment,InstanceSpecification_SlotCompartment,Signal_AttributeCompartment,Model_PackagedElementCompartment,Package_PackagedElementCompartment,Enumeration_LiteralCompartment,AssociationClass_OperationCompartment,AssociationClass_NestedClassifierCompartment,RedefinableTemplateSignature_TemplateParameterCompartment,TemplateSignature_TemplateParameterCompartment"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -1309,403 +1309,403 @@
    	<mapping type="PapyrusUMLClassDiagram" humanReadableType="ClassDiagram"/>
 			<mapping
 				humanReadableType="attributes"
-				type="7011">
+				type="Class_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7012">
+				type="Class_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7013">
+				type="Class_NestedClassifierCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7023">
+				type="Component_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7024">
+				type="Component_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7025">
+				type="Component_NestedClassifierCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7026">
+				type="Signal_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7027">
+				type="Interface_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7028">
+				type="Interface_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7029">
+				type="Interface_NestedClassifierCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7041">
+				type="PrimitiveType_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7042">
+				type="PrimitiveType_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7032">
+				type="DataType_AttributeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7033">
+				type="DataType_OperationCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7030">
+				type="Model_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7010">
+				type="Package_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="literals"
-				type="7031">
+				type="Enumeration_LiteralCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="slots"
-				type="7035">
+				type="InstanceSpecification_SlotCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7017">
+				type="Class_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7018">
+				type="Class_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7019">
+				type="Class_NestedClassifierCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7002">
+				type="Component_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7003">
+				type="Component_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7004">
+				type="Component_NestedClassifierCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7006">
+				type="Interface_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7007">
+				type="Interface_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7008">
+				type="Interface_NestedClassifierCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7039">
+				type="PrimitiveType_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7040">
+				type="PrimitiveType_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7020">
+				type="DataType_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7021">
+				type="DataType_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7034">
+				type="AssociationClass_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="slots"
-				type="7001">
+				type="InstanceSpecification_SlotCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="attributes"
-				type="7005">
+				type="Signal_AttributeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7009">
+				type="Model_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="packaged elements"
-				type="7016">
+				type="Package_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="literals"
-				type="7015">
+				type="Enumeration_LiteralCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="operations"
-				type="7036">
+				type="AssociationClass_OperationCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="nested classifiers"
-				type="7037">
+				type="AssociationClass_NestedClassifierCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="TemplateParameter"
-				type="7014">
+				type="RedefinableTemplateSignature_TemplateParameterCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="TemplateParameter"
-				type="7038">
+				type="TemplateSignature_TemplateParameterCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="SourceRole"
-				type="6031">
+				type="AssociationClass_SourceRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetRole"
-				type="6032">
+				type="AssociationClass_TargetRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6001">
+				type="Association_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6002">
+				type="Association_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetRole"
-				type="6003">
+				type="Association_TargetRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="SourceRole"
-				type="6005">
+				type="Association_SourceRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="SourceMultiplicity"
-				type="6033">
+				type="Association_SourceMultiplicityLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetMultiplicity"
-				type="6034">
+				type="Association_TargetMultiplicityLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetRole"
-				type="6024">
+				type="Association_BranchRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetMultiplicity"
-				type="6035">
+				type="Association_BranchMultiplicityLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6007">
+				type="Generalization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6008">
+				type="InterfaceRealization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6009">
+				type="InterfaceRealization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6010">
+				type="Substitution_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6011">
+				type="Substitution_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6012">
+				type="Realization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6013">
+				type="Realization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6014">
+				type="Abstraction_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6015">
+				type="Abstraction_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6016">
+				type="Usage_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6017">
+				type="Usage_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6026">
+				type="Dependency_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6027">
+				type="Dependency_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Alias"
-				type="6020">
+				type="ElementImport_AliasLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6021">
+				type="ElementImport_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6022">
+				type="PackageImport_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6030">
+				type="PackageMerge_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TemplateParameterSubstitution"
-				type="6023">
+				type="TemplateBinding_SubstitutionLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6036">
+				type="TemplateBinding_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6037">
+				type="GeneralizationSet_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="SourceRole"
-				type="6039">
+				type="InstanceSpecification_SourceRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="TargetRole"
-				type="6038">
+				type="InstanceSpecification_TargetRoleLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6041">
+				type="InformationFlow_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="8501">
+				type="Constraint_KeywordLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8509">
+				type="InstanceSpecification_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8513">
+				type="Component_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8514">
+				type="Signal_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8515">
+				type="Interface_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8516">
+				type="Enumeration_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8517">
+				type="InformationItem_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8518">
+				type="Class_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8519">
+				type="PrimitiveType_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8520">
+				type="DataType_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8522">
+				type="Dependency_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8504">
+				type="AssociationClass_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8521">
+				type="Association_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8505">
+				type="InstanceSpecification_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8503">
+				type="Component_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8506">
+				type="Signal_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8507">
+				type="Interface_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8508">
+				type="Enumeration_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8512">
+				type="InformationItem_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8510">
+				type="Class_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8511">
+				type="PrimitiveType_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8502">
+				type="DataType_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="5155">
+				type="DurationObservation_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="5156">
+				type="DurationObservation_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="5153">
+				type="TimeObservation_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="5154">
+				type="TimeObservation_StereotypeLabel">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -1720,13 +1720,6 @@
    </elementTypeSet>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   		 clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/classdiagram-notation.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-<extension
       point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
    <modelProvider
          uri="model/classdiagram.assistants"></modelProvider>
@@ -1735,7 +1728,7 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="PapyrusUMLClassDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconcilier"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconciler"
          source="1.0.0" 
          target="1.1.0">
    </diagramReconciler>
@@ -1743,6 +1736,12 @@
          diagramType="PapyrusUMLClassDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconcilerForCompartment"
          source="1.0.0"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLClassDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.clazz.custom.migration.ClassReconciler_1_2_0"
+         source="1.1.0"
          target="1.2.0">
    </diagramReconciler>
 </extension>

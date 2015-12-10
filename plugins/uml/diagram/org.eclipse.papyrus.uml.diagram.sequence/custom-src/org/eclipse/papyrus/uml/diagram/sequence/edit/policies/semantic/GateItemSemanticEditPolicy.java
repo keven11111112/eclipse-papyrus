@@ -144,15 +144,15 @@ public class GateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	 */
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if (UMLElementTypes.Message_SynchEdge == req.getElementType()) {
 			return new ICommandProxy(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
-		} else if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		} else if (UMLElementTypes.Message_AsynchEdge == req.getElementType()) {
 			return new ICommandProxy(new CustomMessage2CreateCommand(req, req.getSource(), req.getTarget()));
-		} else if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		} else if (UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
 			return new ICommandProxy(new CustomMessage3CreateCommand(req, req.getSource(), req.getTarget()));
-		} else if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		} else if (UMLElementTypes.Message_LostEdge == req.getElementType()) {
 			return new ICommandProxy(new CustomMessage6CreateCommand(req, req.getSource(), req.getTarget()));
-		} else if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		} else if (UMLElementTypes.Message_FoundEdge == req.getElementType()) {
 			return new ICommandProxy(new CustomMessage7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCreateRelationshipCommand(req);

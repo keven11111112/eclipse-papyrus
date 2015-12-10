@@ -77,7 +77,7 @@ public class CreateTickCommand extends GraphicalCommandHandler {
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
 				final UMLViewProvider umlViewProvider = new UMLViewProvider();
-				final Node tickNode = umlViewProvider.createNode_26(null, tickContainerView, ViewUtil.APPEND, true, osEditPart.getDiagramPreferencesHint());
+				final Node tickNode = umlViewProvider.createNode_TickShape(null, tickContainerView, ViewUtil.APPEND, true, osEditPart.getDiagramPreferencesHint());
 				TickUtils.associateTickNodeToOccurrenceNode(tickNode, osView, false);
 				tickContainer.refresh();
 				ViewUtils.performEditRequest(tickNode, osEditPart.getViewer());

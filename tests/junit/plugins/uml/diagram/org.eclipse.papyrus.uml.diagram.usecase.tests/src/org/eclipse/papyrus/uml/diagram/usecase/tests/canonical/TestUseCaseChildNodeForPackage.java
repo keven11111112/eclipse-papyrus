@@ -38,7 +38,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2016, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePackage() {
-		testToManageNode(UMLElementTypes.Package_3014, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManageActor() {
-		testToManageNode(UMLElementTypes.Actor_3011, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Actor_Shape_CN, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageNode(UMLElementTypes.Comment_3015, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Comment_Shape_CN, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -80,17 +80,17 @@ public class TestUseCaseChildNodeForPackage extends TestChildNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_3010, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	@Test
 	public void testToManageComponent() {
-		testToManageNode(UMLElementTypes.Component_3013, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.Component_Shape_CN, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	@Test
 	public void testToManageUseCase() {
-		testToManageNode(UMLElementTypes.UseCase_3012, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Package_3014, true);
+		testToManageNode(UMLElementTypes.UseCase_Shape_CN, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	@Override

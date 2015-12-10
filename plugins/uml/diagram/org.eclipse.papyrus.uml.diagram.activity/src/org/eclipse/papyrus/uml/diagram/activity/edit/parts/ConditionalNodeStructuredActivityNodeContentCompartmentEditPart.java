@@ -39,12 +39,13 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart extends ShapeCompartmentWithoutScrollbarsEditPart {
+public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart
+		extends ShapeCompartmentWithoutScrollbarsEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "7008";
+	public static final String VISUAL_ID = "ConditionalNode_ActivityNodeCompartment";
 
 	/**
 	 * @generated
@@ -83,8 +84,9 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart ext
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ActivityGroupCustomDragAndDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityCompartmentCreationEditPolicy());
@@ -105,6 +107,7 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart ext
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
+
 		return super.getTargetEditPart(request);
 	}
 
@@ -114,7 +117,10 @@ public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart ext
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

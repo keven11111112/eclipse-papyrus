@@ -34,16 +34,16 @@ public class Fixbug_EditorCrashesWhenMovingGeneralOrdering_417373 extends Abstra
 
 	@Test
 	public void test() {
-		EditPart lifeline1 = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 400), new Dimension(100, 400));
-		EditPart lifeline2 = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(350, 400), new Dimension(100, 400));
+		EditPart lifeline1 = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 400), new Dimension(100, 400));
+		EditPart lifeline2 = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(350, 400), new Dimension(100, 400));
 		Point startLocation = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)lifeline1).getCenter().getCopy();
 		Point endLocation = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)lifeline2).getCenter().getCopy();
-		AbstractMessageEditPart message1 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), startLocation, lifeline1, endLocation, lifeline2);
-		AbstractMessageEditPart message2 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), endLocation.getTranslated(0, 79), lifeline2, startLocation.getTranslated(0, 80), lifeline1);
+		AbstractMessageEditPart message1 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, lifeline2);
+		AbstractMessageEditPart message2 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), endLocation.getTranslated(0, 79), lifeline2, startLocation.getTranslated(0, 80), lifeline1);
 		//create General Ordering
 		startLocation = SequenceUtil.getAbsoluteEdgeExtremity(message1, false);
 		endLocation = SequenceUtil.getAbsoluteEdgeExtremity(message2, false);
-		EditPart generalOrdering = createLink(UMLElementTypes.GeneralOrdering_4012, lifeline1.getViewer(), startLocation, lifeline2, endLocation, lifeline1);
+		EditPart generalOrdering = createLink(UMLElementTypes.GeneralOrdering_Edge, lifeline1.getViewer(), startLocation, lifeline2, endLocation, lifeline1);
 		assertNotNull("generalOrdering", generalOrdering);
 
 		//Move down the end of message2 10 times.

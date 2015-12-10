@@ -78,9 +78,9 @@ public class ModelGenFixture extends org.eclipse.papyrus.uml.profile.types.gener
 		return String.format("%s_%s", getElementTypeID(metaclassExtension, false), visualID);
 	}
 
-	protected String getElementTypeID(org.eclipse.uml2.uml.Class metaclass, int visualID) {
+	protected String getElementTypeID(org.eclipse.uml2.uml.Class metaclass, String visualID) {
 		String metaclassID = getElementTypeID(metaclass);
-		return (visualID <= 0) ? metaclassID : String.format("%s_%s", metaclassID, visualID);
+		return (visualID == null) ? metaclassID : String.format("%s_%s", metaclassID, visualID.substring(visualID.indexOf('_')+1));
 	}
 
 	public Assistant getAssistant(String id) {
@@ -141,7 +141,7 @@ public class ModelGenFixture extends org.eclipse.papyrus.uml.profile.types.gener
 		return result;
 	}
 
-	public ElementTypeFilter getMetaclassFilter(Pair<Stereotype, Class> metaclassExtension, int visualID) {
+	public ElementTypeFilter getMetaclassFilter(Pair<Stereotype, Class> metaclassExtension, String visualID) {
 		ElementTypeFilter result = null;
 		String id = getElementTypeID(metaclassExtension.getValue(), visualID);
 
@@ -171,7 +171,7 @@ public class ModelGenFixture extends org.eclipse.papyrus.uml.profile.types.gener
 		return result;
 	}
 
-	public ElementTypeFilter assertMetaclassFilter(Pair<Stereotype, Class> metaclassExtension, int visualID) {
+	public ElementTypeFilter assertMetaclassFilter(Pair<Stereotype, Class> metaclassExtension, String visualID) {
 		ElementTypeFilter result = getMetaclassFilter(metaclassExtension, visualID);
 		assertThat(result, notNullValue());
 		return result;

@@ -145,7 +145,7 @@ public class ComponentLinksLFEditPolicy extends LinksLFGraphicalNodeEditPolicy {
 				// case of associationClass
 				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
-				if (UMLElementTypes.Dependency_4017.equals(createElementRequest.getElementType())) {
+				if (UMLElementTypes.Dependency_BranchEdge.equals(createElementRequest.getElementType())) {
 					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
 					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
 				} else {

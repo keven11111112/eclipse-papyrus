@@ -37,7 +37,7 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 		return null;
 	}
 
-	public static List<UMLNodeDescriptor> getLifelineFullLifelineTimelineCompartment_8SemanticChildren(final View view) {
+	public static List<UMLNodeDescriptor> getLifeline_FullSubfragmentCompartment_SemanticChildren(final View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -88,7 +88,7 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 		return result;
 	}
 
-	public static List<UMLNodeDescriptor> createLifelineCompactLifelineCompartment_23Children(final View view) {
+	public static List<UMLNodeDescriptor> createLifeline_CompactSubfragmentCompartment_Children(final View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}

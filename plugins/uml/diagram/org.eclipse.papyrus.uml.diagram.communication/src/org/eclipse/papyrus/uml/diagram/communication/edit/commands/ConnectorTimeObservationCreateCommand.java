@@ -64,7 +64,7 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTimeObservationEvent_8013(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTimeObservation_EventEdge(getSource(), getTarget());
 	}
 
 	/**

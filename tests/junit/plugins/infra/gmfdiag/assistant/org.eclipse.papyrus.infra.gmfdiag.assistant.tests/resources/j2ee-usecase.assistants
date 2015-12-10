@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="ASCII"?>
 <assistant:ModelingAssistantProvider xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:assistant="http://www.eclipse.org/Papyrus/2014/diagram/assistant" xmlns:filters="http://www.eclipse.org/Papyrus/2014/common/filters" xmlns:umlfilters="http://www.eclipse.org/Papyrus/2014/uml/filters" name="j2ee">
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Extension Point" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3007"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Extension Point" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3008"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3009"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Component" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Component_3016"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3017"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Actor_3018"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3010"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Actor_3011"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3012"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Component" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Component_3013"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Package_3014"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Actor_2011"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Actor_2012"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Classifier" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Package_2016"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Constraint_2017"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Default Named Element" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.DefaultNamedElement_2022"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint Constrained Element" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.ConstraintConstrainedElement_4012"/>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Package_1000"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Extension Point" elementTypeID="org.eclipse.papyrus.umldi.ExtensionPoint_ExtensionPointLabel"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Extension Point" elementTypeID="org.eclipse.papyrus.umldi.ExtensionPoint_ClassifierExtensionPointLabel"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.umldi.UseCase_Shape_CCN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Component" elementTypeID="org.eclipse.papyrus.umldi.Component_Shape_CCN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.umldi.Constraint_Shape_CCN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.umldi.Actor_Shape_CCN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.umldi.Constraint_Shape_CN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.umldi.Actor_Shape_CN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.umldi.UseCase_Shape_CN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Component" elementTypeID="org.eclipse.papyrus.umldi.Component_Shape_CN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.umldi.Package_Shape_CN"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.umldi.Actor_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Actor" elementTypeID="org.eclipse.papyrus.umldi.Actor_ClassifierShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.umldi.UseCase_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Use Case" elementTypeID="org.eclipse.papyrus.umldi.UseCase_ClassifierShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Classifier" elementTypeID="org.eclipse.papyrus.umldi.Classifier_SubjectShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.umldi.Package_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint" elementTypeID="org.eclipse.papyrus.umldi.Constraint_Shape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Default Named Element" elementTypeID="org.eclipse.papyrus.umldi.NamedElement_DefaultShape"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint Constrained Element" elementTypeID="org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.umldi.Package_UseCaseDiagram"/>
   <ownedFilter xsi:type="filters:CompoundFilter" name="pertains to Profile j2ee" filter="//@ownedFilter.21/@ownedFilter.0 //@ownedFilter.21/@ownedFilter.1" operator="or">
     <ownedFilter xsi:type="umlfilters:ProfileApplied" name="j2ee is applied in context" profileQualifiedName="j2ee" profileURI="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.assistant.tests/resources/j2ee.profile.uml#_raLqoEigEeSRp-p9nf2EsA"/>
     <ownedFilter xsi:type="assistant:AssistedElementTypeFilter"/>
   </ownedFilter>
-  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Association" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Association_4011"/>
+  <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Association" elementTypeID="org.eclipse.papyrus.umldi.Association_Edge"/>
   <popupAssistant elementTypeID="org.eclipse.papyrus.example.j2ee.User_3018" filter="//@popupAssistant.0/@ownedFilter">
     <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.21 //@popupAssistant.0/@ownedFilter/@ownedFilter.0">
       <ownedFilter xsi:type="filters:CompoundFilter" filter="//@ownedFilter.3 //@ownedFilter.9 //@ownedFilter.10 //@ownedFilter.16 //@ownedFilter.20" operator="or"/>

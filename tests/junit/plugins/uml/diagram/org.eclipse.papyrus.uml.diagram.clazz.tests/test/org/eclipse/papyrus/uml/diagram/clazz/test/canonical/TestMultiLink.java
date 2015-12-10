@@ -26,7 +26,7 @@ public class TestMultiLink extends AbstractTestMultiLink {
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		// TODO Auto-generated method stub
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_2008, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class TestMultiLink extends AbstractTestMultiLink {
 	 */
 	@Test
 	public void testToManageMultiDependency() {
-		testToManageMultiLink(UMLElementTypes.Dependency_4008, UMLElementTypes.Dependency_4018, true);
+		testToManageMultiLink(UMLElementTypes.Dependency_Edge, UMLElementTypes.Dependency_BranchEdge, true);
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class TestMultiLink extends AbstractTestMultiLink {
 	 */
 	@Test
 	public void testToManageMultiAssociation() {
-		testToManageMultiLink(UMLElementTypes.Association_4001, UMLElementTypes.Association_4019, false);
+		testToManageMultiLink(UMLElementTypes.Association_Edge, UMLElementTypes.Association_BranchEdge, false);
 	}
 
 	@Override

@@ -30,6 +30,6 @@ public class ChangeLifelineFromFullToCompact extends AbstractChangeLifelineTypeC
 
 	@Override
 	protected Node createTargetLifelineView(final UMLViewProvider umlViewProvider, final Lifeline lifeline, final View containerView, final int index) {
-		return umlViewProvider.createLifeline_20(lifeline, containerView, index, true, this.lifelineEditPart.getDiagramPreferencesHint());
+		return umlViewProvider.createLifeline_CompactShape(lifeline, containerView, index, true, this.lifelineEditPart.getDiagramPreferencesHint());
 	}
 }

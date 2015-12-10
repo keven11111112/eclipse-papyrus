@@ -46,7 +46,7 @@ public class ActionPinInStartObjectBehaviorActionAsArgumentEditPart extends Abst
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3159";
+	public static final String VISUAL_ID = "ActionInputPin_StartObjectBehaviorActionArgumentShape";
 
 	/**
 	 * @generated
@@ -73,7 +73,9 @@ public class ActionPinInStartObjectBehaviorActionAsArgumentEditPart extends Abst
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -149,6 +151,7 @@ public class ActionPinInStartObjectBehaviorActionAsArgumentEditPart extends Abst
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -211,6 +214,7 @@ public class ActionPinInStartObjectBehaviorActionAsArgumentEditPart extends Abst
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -269,6 +273,7 @@ public class ActionPinInStartObjectBehaviorActionAsArgumentEditPart extends Abst
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActionPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(ActionPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID));
 	}
 }

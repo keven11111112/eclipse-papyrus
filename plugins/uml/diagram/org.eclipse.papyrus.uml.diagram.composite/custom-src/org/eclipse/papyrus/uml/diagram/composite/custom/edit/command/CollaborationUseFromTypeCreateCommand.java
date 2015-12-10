@@ -75,7 +75,7 @@ public class CollaborationUseFromTypeCreateCommand extends EditElementCommand {
 		owner.getCollaborationUses().add(newElement);
 		newElement.setType(collaboration);
 
-		ElementInitializers.getInstance().init_CollaborationUse_3071(newElement);
+		ElementInitializers.getInstance().init_CollaborationUse_Shape(newElement);
 
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 

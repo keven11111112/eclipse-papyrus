@@ -236,7 +236,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 					final OccurrenceSpecification occurrenceSpecification = entry.getKey();
 					final Node occurrenceView = findOccurrenceView(occurrenceSpecification, timelineCompartmentView);
 					final String tickName = entry.getValue();
-					final Node tickNode = umlViewProvider.createNode_26(null, timeRulerCompartment, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+					final Node tickNode = umlViewProvider.createNode_TickShape(null, timeRulerCompartment, ViewUtil.APPEND, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 					setTickLabelDescription(tickNode, tickName);
 					TickUtils.associateTickNodeToOccurrenceNode(tickNode, occurrenceView, false);
 				}
@@ -398,7 +398,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 
 					// create the View for the state definition
 					final UMLViewProvider umlViewProvider = new UMLViewProvider();
-					final Node stateDefinitionView = umlViewProvider.createNode_9(null, stateDefinitionCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+					final Node stateDefinitionView = umlViewProvider.createNode_StateDefinitionShape(null, stateDefinitionCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 					// restore the same id
 					StateDefinitionUtils.setStateDefinitionViewID(stateDefinitionView, stateDefinitionId);
 					// set the name on the View
@@ -452,7 +452,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 						final StateInvariant stateInvariant = (StateInvariant) fragment;
 						final String stateInvariantName = StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
 						if (!Utils.safeEquals(stateInvariantName, previousStateInvariantName)) {
-							umlViewProvider.createStateInvariant_28(stateInvariant, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+							umlViewProvider.createStateInvariant_CompactShape(stateInvariant, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 							indexInCompartment++;
 							x += 60;
 						}
@@ -460,21 +460,21 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 
 					} else if (fragment instanceof DestructionOccurrenceSpecification) {
 						final DestructionOccurrenceSpecification occurrence = (DestructionOccurrenceSpecification) fragment;
-						final Node occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_27(occurrence, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+						final Node occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_Shape(occurrence, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 						indexInCompartment++;
 						occurrenceSpecificationView.setLayoutConstraint(loc);
 						x += 10;
 
 					} else if (fragment instanceof MessageOccurrenceSpecification) {
 						final MessageOccurrenceSpecification occurrence = (MessageOccurrenceSpecification) fragment;
-						final Node occurrenceSpecificationView = umlViewProvider.createMessageOccurrenceSpecification_13(occurrence, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+						final Node occurrenceSpecificationView = umlViewProvider.createMessageOccurrenceSpecification_Shape(occurrence, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 						indexInCompartment++;
 						occurrenceSpecificationView.setLayoutConstraint(loc);
 						x += 10;
 
 					} else if (fragment instanceof OccurrenceSpecification) {
 						final OccurrenceSpecification occurrence = (OccurrenceSpecification) fragment;
-						final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_12(occurrence, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+						final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_Shape(occurrence, stateInvariantCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 						indexInCompartment++;
 						occurrenceSpecificationView.setLayoutConstraint(loc);
 						x += 10;
@@ -513,13 +513,13 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 					// we always need a StateInvariant between OccurrenceSpecifications
 					// (otherwise we would be leaving a gap in the timeline)
 					if (!(fragment instanceof StateInvariant) && needStateInvariant && previousStateInvariant != null) {
-						umlViewProvider.createStateInvariant_11(previousStateInvariant, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+						umlViewProvider.createStateInvariant_FullShape(previousStateInvariant, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 					}
 
 					if (fragment instanceof StateInvariant) {
 						if (!firstStateInvariant) {
 							// add a vertical line
-							umlViewProvider.createNode_39(null, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+							umlViewProvider.createNode_StateInvariantTransitionShape(null, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 						}
 						final StateInvariant stateInvariant = (StateInvariant) fragment;
 						final String stateInvariantName = StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
@@ -529,7 +529,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 							x += 25;
 						}
 						// create the View for the state invariant
-						umlViewProvider.createStateInvariant_11(stateInvariant, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+						umlViewProvider.createStateInvariant_FullShape(stateInvariant, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 						firstStateInvariant = false;
 						previousStateInvariantName = stateInvariantName;
 						previousStateInvariant = stateInvariant;
@@ -537,21 +537,21 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 					} else if (fragment instanceof DestructionOccurrenceSpecification) {
 						final DestructionOccurrenceSpecification destructionOccurrenceSpecification = (DestructionOccurrenceSpecification) fragment;
 						// create the View for the occurrence specification
-						final Node occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_27(destructionOccurrenceSpecification, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+						final Node occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_Shape(destructionOccurrenceSpecification, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 						occurrenceSpecificationView.setLayoutConstraint(loc);
 						needStateInvariant = false;
 						x += 10;
 					} else if (fragment instanceof MessageOccurrenceSpecification) {
 						final MessageOccurrenceSpecification occurrenceSpecification = (MessageOccurrenceSpecification) fragment;
 						// create the View for the occurrence specification
-						final Node occurrenceSpecificationView = umlViewProvider.createMessageOccurrenceSpecification_13(occurrenceSpecification, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+						final Node occurrenceSpecificationView = umlViewProvider.createMessageOccurrenceSpecification_Shape(occurrenceSpecification, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 						occurrenceSpecificationView.setLayoutConstraint(loc);
 						needStateInvariant = true;
 						x += 10;
 					} else if (fragment instanceof OccurrenceSpecification) {
 						final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) fragment;
 						// create the View for the occurrence specification
-						final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_12(occurrenceSpecification, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+						final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_Shape(occurrenceSpecification, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 						occurrenceSpecificationView.setLayoutConstraint(loc);
 						needStateInvariant = true;
 						x += 10;
@@ -560,7 +560,7 @@ public class SwitchLifelineCommand extends GraphicalCommandHandler {
 
 				// we always need the timeline to end with a StateInvariant
 				if (needStateInvariant && previousStateInvariant != null) {
-					umlViewProvider.createStateInvariant_11(previousStateInvariant, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+					umlViewProvider.createStateInvariant_FullShape(previousStateInvariant, timelineCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 				}
 
 				return CommandResult.newOKCommandResult();

@@ -52,7 +52,7 @@ public class CustomMessage3ReorientCommand extends Message3ReorientCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4005(container, getLink(), getNewSource(), getOldTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_ReplyEdge(container, getLink(), getNewSource(), getOldTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());
@@ -71,7 +71,7 @@ public class CustomMessage3ReorientCommand extends Message3ReorientCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4005(container, getLink(), source, getNewTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_ReplyEdge(container, getLink(), source, getNewTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canReorientTarget(getLink(), getNewTarget());

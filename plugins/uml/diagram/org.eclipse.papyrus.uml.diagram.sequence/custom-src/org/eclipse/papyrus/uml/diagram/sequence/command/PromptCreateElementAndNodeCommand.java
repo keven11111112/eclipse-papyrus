@@ -37,8 +37,8 @@ public class PromptCreateElementAndNodeCommand extends CreateOrSelectElementComm
 
 	private static final List<IElementType> executionTypes = new ArrayList<IElementType>();
 	static {
-		executionTypes.add(UMLElementTypes.ActionExecutionSpecification_3006);
-		executionTypes.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		executionTypes.add(UMLElementTypes.ActionExecutionSpecification_Shape);
+		executionTypes.add(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	private final CompoundCommand command;

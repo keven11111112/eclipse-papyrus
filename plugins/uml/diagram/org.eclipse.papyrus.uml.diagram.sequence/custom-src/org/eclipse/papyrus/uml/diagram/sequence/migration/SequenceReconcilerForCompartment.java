@@ -17,18 +17,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
  */
 public class SequenceReconcilerForCompartment extends ReconcilerForCompartment {
 
+	private static final String InteractionInteractionCompartmentEditPart_VISUAL_ID = "7001";
+	private static final String CombinedFragmentCombinedFragmentCompartmentEditPart_VISUAL_ID = "7004";
+
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
-			InteractionInteractionCompartmentEditPart.VISUAL_ID,
-			CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
+			InteractionInteractionCompartmentEditPart_VISUAL_ID,
+			CombinedFragmentCombinedFragmentCompartmentEditPart_VISUAL_ID);
 
 	/**
 	 * Gets the compartments visual id.

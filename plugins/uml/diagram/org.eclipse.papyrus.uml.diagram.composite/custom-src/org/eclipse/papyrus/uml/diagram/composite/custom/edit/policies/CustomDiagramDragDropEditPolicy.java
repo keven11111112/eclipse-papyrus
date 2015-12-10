@@ -357,11 +357,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// return UnexecutableCommand.INSTANCE;
 		// }
 		if (CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_2109,
-					(IHintedType) UMLElementTypes.CommentAnnotatedElement_4002);
+			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape,
+					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 		} else if (CommentEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_3097,
-					(IHintedType) UMLElementTypes.CommentAnnotatedElement_4002);
+			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape_CN,
+					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -389,11 +389,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// }
 
 		if (ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_2114,
-					(IHintedType) UMLElementTypes.ConstraintConstrainedElement_4003);
+			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape,
+					(IHintedType) UMLElementTypes.Constraint_ConstrainedElementEdge);
 		} else if (ConstraintEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_3120,
-					(IHintedType) UMLElementTypes.ConstraintConstrainedElement_4003);
+			return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape_CN,
+					(IHintedType) UMLElementTypes.Constraint_ConstrainedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

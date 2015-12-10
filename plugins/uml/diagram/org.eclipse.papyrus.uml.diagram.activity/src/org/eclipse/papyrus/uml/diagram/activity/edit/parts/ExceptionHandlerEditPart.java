@@ -30,7 +30,7 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4005";
+	public static final String VISUAL_ID = "ExceptionHandler_Edge";
 
 	/**
 	 * @generated

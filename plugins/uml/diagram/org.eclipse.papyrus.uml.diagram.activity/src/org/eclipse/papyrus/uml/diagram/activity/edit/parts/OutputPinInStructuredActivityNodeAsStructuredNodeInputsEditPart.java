@@ -46,7 +46,7 @@ public class OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart ext
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3191";
+	public static final String VISUAL_ID = "OutputPin_StructuredActivityNodeOutputShape";
 
 	/**
 	 * @generated
@@ -73,7 +73,9 @@ public class OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart ext
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -148,6 +150,7 @@ public class OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart ext
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -207,6 +210,7 @@ public class OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart ext
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -265,6 +269,7 @@ public class OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart ext
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry
+				.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
 	}
 }

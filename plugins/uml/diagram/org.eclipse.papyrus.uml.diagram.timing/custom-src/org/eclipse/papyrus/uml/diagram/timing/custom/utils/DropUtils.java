@@ -256,7 +256,7 @@ public final class DropUtils {
 
 		@Override
 		public void drop(final TimeObservation timeObservation, final View compartmentView) {
-			final Node timeObservationNode = new UMLViewProvider().createTimeObservation_16(timeObservation, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			final Node timeObservationNode = new UMLViewProvider().createTimeObservation_Shape(timeObservation, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 			if (timeObservationNode != null) {
 				final Location loc = NotationFactory.eINSTANCE.createLocation();
 				loc.setX(0);
@@ -275,7 +275,7 @@ public final class DropUtils {
 
 		@Override
 		public void drop(final TimeConstraint timeConstraint, final View compartmentView) {
-			final Node timeConstraintNode = new UMLViewProvider().createTimeConstraint_15(timeConstraint, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			final Node timeConstraintNode = new UMLViewProvider().createTimeConstraint_Shape(timeConstraint, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 			if (timeConstraintNode != null) {
 				final Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 				bounds.setY(40);
@@ -294,7 +294,7 @@ public final class DropUtils {
 
 		@Override
 		public void drop(final DurationObservation durationObservation, final View compartmentView) {
-			final Node durationObservationNode = new UMLViewProvider().createDurationObservation_17(durationObservation, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			final Node durationObservationNode = new UMLViewProvider().createDurationObservation_Shape(durationObservation, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 			if (durationObservationNode != null) {
 				final Location loc = NotationFactory.eINSTANCE.createLocation();
 				loc.setX(0);
@@ -314,7 +314,7 @@ public final class DropUtils {
 
 		@Override
 		public void drop(final DurationConstraint durationConstraint, final View compartmentView) {
-			final Node durationConstraintNode = new UMLViewProvider().createDurationConstraint_18(durationConstraint, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			final Node durationConstraintNode = new UMLViewProvider().createDurationConstraint_Shape(durationConstraint, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 			if (durationConstraintNode != null) {
 				final Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 				bounds.setY(5);
@@ -333,7 +333,7 @@ public final class DropUtils {
 
 		@Override
 		public void drop(final GeneralOrdering generalOrdering, final View compartmentView) {
-			final Node generalOrderingNode = new UMLViewProvider().createGeneralOrdering_67(generalOrdering, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+			final Node generalOrderingNode = new UMLViewProvider().createGeneralOrdering_Shape(generalOrdering, compartmentView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 			if (generalOrderingNode != null) {
 				final Bounds bounds = NotationFactory.eINSTANCE.createBounds();
 				bounds.setY(30);
@@ -362,7 +362,7 @@ public final class DropUtils {
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				final Node gateNode = new UMLViewProvider().createGate_69(gate, interactionView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
+				final Node gateNode = new UMLViewProvider().createGate_Shape(gate, interactionView, ViewUtil.APPEND, true, PreferencesHint.USE_DEFAULTS);
 				try {
 					final int index = ((Interaction) gate.eContainer()).getFormalGates().indexOf(gate);
 					final Location loc = NotationFactory.eINSTANCE.createLocation();

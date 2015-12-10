@@ -331,7 +331,7 @@ public class ConstraintNodeLabelEditPart extends PapyrusCompartmentEditPart impl
 	@Override
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3120, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintSpecificationEditPartCN.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_Shape_CN, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintSpecificationEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}

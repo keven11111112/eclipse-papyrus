@@ -39,14 +39,14 @@ public class CustomIODPaletteFactory extends UMLPaletteFactory {
 
 	private static Tool createCallBehaviorActionAsInteractionCreationTool() {
 		final List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.CallBehaviorAction_5000);
+		types.add(UMLElementTypes.CallBehaviorAction_InteractionShape);
 		final Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 
 	private static Tool createCallBehaviorActionAsInteractionUseCreationTool() {
 		final List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.CallBehaviorAction_As_InteractionUse_5005);
+		types.add(UMLElementTypes.CallBehaviorAction_InteractionUseShape);
 		final Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

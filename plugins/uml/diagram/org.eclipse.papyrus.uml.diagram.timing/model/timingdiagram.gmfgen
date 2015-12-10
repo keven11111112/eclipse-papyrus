@@ -4,7 +4,8 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.timing"
       modelID="PapyrusUMLTimingDiagram"
@@ -27,6 +28,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Package_TimingDiagram"
           displayName="TimingDiagram"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
@@ -54,6 +56,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Lifeline_FullShape"
             displayName="FullLifeline"
             metamodelType="/0/@diagram/@childNodes.17/@elementType"
             editHelperAdviceClassName="FullLifelineEditHelper"/>
@@ -123,6 +126,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Lifeline_CompactShape"
             displayName="CompactLifeline"
             metamodelType="/0/@diagram/@childNodes.17/@elementType"
             editHelperAdviceClassName="CompactLifelineEditHelper"/>
@@ -191,7 +195,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.FullStateInvariant_11"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_FullShape"
             displayName="FullStateInvariant"
             editHelperClassName="FullStateInvariantEditHelper"/>
         <viewmap
@@ -251,7 +255,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.CompactStateInvariant_28"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.StateInvariant_CompactShape"
             displayName="CompactStateInvariant"
             metamodelType="/0/@diagram/@childNodes.2/@elementType"
             editHelperAdviceClassName="CompactStateInvariantEditHelper"/>
@@ -332,7 +336,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_12"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.OccurrenceSpecification_Shape"
             displayName="OccurrenceSpecification"
             editHelperClassName="OccurrenceSpecificationEditHelper"/>
         <viewmap
@@ -428,7 +432,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_13"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageOccurrenceSpecification_Shape"
             displayName="MessageOccurrenceSpecification"
             editHelperClassName="MessageOccurrenceSpecificationEditHelper"/>
         <viewmap
@@ -509,6 +513,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Node_StateDefinitionShape"
             displayName="StateDefinition"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -527,6 +532,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <elementType
               xsi:type="gmfgen:NotationType"
+              uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Node_StateDefinitionNameLabel"
               displayName="StateDefinitionLabel"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
@@ -549,6 +555,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Node_StateInvariantTransitionShape"
             displayName="VerticalLineStateInvariant"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -572,7 +579,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_15"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.TimeConstraint_Shape"
             displayName="TimeConstraint"
             editHelperClassName="TimeConstraintEditHelper"/>
         <viewmap
@@ -650,7 +657,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_16"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.TimeObservation_Shape"
             displayName="TimeObservation"
             editHelperClassName="TimeObservationEditHelper"/>
         <viewmap
@@ -730,7 +737,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_18"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.DurationConstraint_Shape"
             displayName="DurationConstraint"
             editHelperClassName="DurationConstraintEditHelper"/>
         <viewmap
@@ -778,7 +785,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_17"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.DurationObservation_Shape"
             displayName="DurationObservation"
             editHelperClassName="DurationObservationEditHelper"/>
         <viewmap
@@ -828,7 +835,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_67"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.GeneralOrdering_Shape"
             displayName="GeneralOrdering"
             editHelperClassName="GeneralOrderingEditHelper"/>
         <viewmap
@@ -880,6 +887,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Node_FreeTimeRulerShape"
             displayName="FreeTimingRuler"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -902,6 +910,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Node_LinearTimeRulerShape"
             displayName="LinearTimingRuler"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -923,6 +932,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:NotationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Node_TickShape"
             displayName="Tick"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -967,7 +977,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_27"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.DestructionOccurrenceSpecification_Shape"
             displayName="DestructionOccurrenceSpecification"
             editHelperClassName="DestructionOccurrenceSpecificationEditHelper"/>
         <viewmap
@@ -1049,7 +1059,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Lifeline_40"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Lifeline_Shape"
             editHelperClassName="LifelineEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1071,6 +1081,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Gate_Shape"
             displayName="Gate"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1126,7 +1137,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Interaction_2"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Interaction_Shape"
             displayName="Interaction"
             editHelperClassName="InteractionEditHelper"/>
         <viewmap
@@ -1186,7 +1197,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageSync_3"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_SynchEdge"
             displayName="MessageSync"
             editHelperClassName="MessageSyncEditHelper"/>
         <viewmap
@@ -1260,7 +1271,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageAsync_4"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_AsynchEdge"
             displayName="MessageAsync"
             metamodelType="/0/@diagram/@links.0/@elementType"
             editHelperAdviceClassName="MessageAsyncEditHelper"/>
@@ -1335,7 +1346,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageReply_41"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_ReplyEdge"
             displayName="MessageReply"
             metamodelType="/0/@diagram/@links.0/@elementType"
             editHelperAdviceClassName="MessageReplyEditHelper"/>
@@ -1410,7 +1421,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageCreate_44"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_CreateEdge"
             displayName="MessageCreate"
             metamodelType="/0/@diagram/@links.0/@elementType"
             editHelperAdviceClassName="MessageCreateEditHelper"/>
@@ -1485,7 +1496,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageDelete_47"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_DeleteEdge"
             displayName="MessageDelete"
             metamodelType="/0/@diagram/@links.0/@elementType"
             editHelperAdviceClassName="MessageDeleteEditHelper"/>
@@ -1560,7 +1571,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageLost_50"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_LostEdge"
             displayName="MessageLost"
             metamodelType="/0/@diagram/@links.0/@elementType"
             editHelperAdviceClassName="MessageLostEditHelper"/>
@@ -1635,7 +1646,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.MessageFound_53"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.timing.Message_FoundEdge"
             displayName="MessageFound"
             metamodelType="/0/@diagram/@links.0/@elementType"
             editHelperAdviceClassName="MessageFoundEditHelper"/>
@@ -2334,4 +2345,247 @@
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:VisualIDOverride
+      genView="/0/@diagram"
+      visualID="Package_TimingDiagram">
+    <child
+        genView="/0/@diagram/@childNodes.18"
+        visualID="Gate_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.18/@labels.0"
+          visualID="Gate_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.0"
+        visualID="Lifeline_FullShape">
+      <child
+          genView="/0/@diagram/@childNodes.0/@labels.0"
+          visualID="Lifeline_FullNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.1"
+        visualID="Lifeline_CompactShape">
+      <child
+          genView="/0/@diagram/@childNodes.1/@labels.0"
+          visualID="Lifeline_CompactNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.2"
+        visualID="StateInvariant_FullShape">
+      <child
+          genView="/0/@diagram/@childNodes.2/@labels.0"
+          visualID="StateInvariant_FullStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.3"
+        visualID="StateInvariant_CompactShape">
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.0"
+          visualID="StateInvariant_CompactNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.1"
+          visualID="StateInvariant_CompactStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.4"
+        visualID="OccurrenceSpecification_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.0"
+          visualID="OccurrenceSpecification_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.1"
+          visualID="OccurrenceSpecification_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.5"
+        visualID="MessageOccurrenceSpecification_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.0"
+          visualID="MessageOccurrenceSpecification_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.1"
+          visualID="MessageOccurrenceSpecification_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.6"
+        visualID="Node_StateDefinitionShape">
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.0"
+          visualID="Node_StateDefinitionNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.7"
+        visualID="Node_StateInvariantTransitionShape"/>
+    <child
+        genView="/0/@diagram/@childNodes.8"
+        visualID="TimeConstraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.0"
+          visualID="TimeConstraint_BodyLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.1"
+          visualID="TimeConstraint_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.9"
+        visualID="TimeObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.0"
+          visualID="TimeObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.1"
+          visualID="TimeObservation_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.10"
+        visualID="DurationConstraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.0"
+          visualID="DurationConstraint_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.11"
+        visualID="DurationObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.0"
+          visualID="DurationObservation_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.12"
+        visualID="GeneralOrdering_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.0"
+          visualID="GeneralOrdering_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.13"
+        visualID="Node_FreeTimeRulerShape"/>
+    <child
+        genView="/0/@diagram/@childNodes.14"
+        visualID="Node_LinearTimeRulerShape"/>
+    <child
+        genView="/0/@diagram/@childNodes.15"
+        visualID="Node_TickShape">
+      <child
+          genView="/0/@diagram/@childNodes.15/@labels.0"
+          visualID="Node_TickNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.16"
+        visualID="DestructionOccurrenceSpecification_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.16/@labels.0"
+          visualID="DestructionOccurrenceSpecification_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.16/@labels.1"
+          visualID="DestructionOccurrenceSpecification_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.17"
+        visualID="Lifeline_Shape"/>
+    <child
+        genView="/0/@diagram/@compartments.0"
+        visualID="Interaction_SubfragmentCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.1"
+        visualID="Lifeline_FullStateDefinitionCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.2"
+        visualID="Lifeline_FullSubfragmentCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.3"
+        visualID="Lifeline_CompactSubfragmentCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.4"
+        visualID="Interaction_TimeRulerCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.5"
+        visualID="Lifeline_FullTimeRulerCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.6"
+        visualID="Lifeline_CompactTimeRulerCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.7"
+        visualID="Node_FreeTimeRulerCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.8"
+        visualID="Node_LinearTimeRulerCompartment"/>
+    <child
+        genView="/0/@diagram/@topLevelNodes.0"
+        visualID="Interaction_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
+          visualID="Interaction_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.0"
+        visualID="Message_SynchEdge">
+      <child
+          genView="/0/@diagram/@links.0/@labels.0"
+          visualID="Message_SynchNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.0/@labels.1"
+          visualID="Message_SynchStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.1"
+        visualID="Message_AsynchEdge">
+      <child
+          genView="/0/@diagram/@links.1/@labels.0"
+          visualID="Message_AsynchNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.1/@labels.1"
+          visualID="Message_AsynchStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.2"
+        visualID="Message_ReplyEdge">
+      <child
+          genView="/0/@diagram/@links.2/@labels.0"
+          visualID="Message_ReplyNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.1"
+          visualID="Message_ReplyStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.3"
+        visualID="Message_CreateEdge">
+      <child
+          genView="/0/@diagram/@links.3/@labels.0"
+          visualID="Message_CreateNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.1"
+          visualID="Message_CreateStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.4"
+        visualID="Message_DeleteEdge">
+      <child
+          genView="/0/@diagram/@links.4/@labels.0"
+          visualID="Message_DeleteNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.4/@labels.1"
+          visualID="Message_DeleteStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.5"
+        visualID="Message_LostEdge">
+      <child
+          genView="/0/@diagram/@links.5/@labels.0"
+          visualID="Message_LostNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.5/@labels.1"
+          visualID="Message_LostStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.6"
+        visualID="Message_FoundEdge">
+      <child
+          genView="/0/@diagram/@links.6/@labels.0"
+          visualID="Message_FoundNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.6/@labels.1"
+          visualID="Message_FoundStereotypeLabel"/>
+    </child>
+  </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

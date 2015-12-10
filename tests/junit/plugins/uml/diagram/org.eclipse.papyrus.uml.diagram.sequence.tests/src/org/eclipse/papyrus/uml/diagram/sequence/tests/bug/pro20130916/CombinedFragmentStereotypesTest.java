@@ -39,7 +39,7 @@ public class CombinedFragmentStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
+		combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
 		assertNotNull(combinedFragment);
 	}
 

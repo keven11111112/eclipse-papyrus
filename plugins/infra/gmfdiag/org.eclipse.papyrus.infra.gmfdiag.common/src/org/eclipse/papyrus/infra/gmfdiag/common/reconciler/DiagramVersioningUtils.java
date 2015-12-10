@@ -44,7 +44,7 @@ public class DiagramVersioningUtils {
 	 * This method is intentinally NOT a constant but indeed the method. This method is intentionally private and should NOT be made public.
 	 */
 	private static String CURRENT_DIAGRAM_VERSION() {
-		return "1.1.0";
+		return "1.2.0";
 	}
 
 	/**

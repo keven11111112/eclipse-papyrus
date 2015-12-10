@@ -69,7 +69,7 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements ILabelPr
 			return (View) element;
 		}
 		if (element instanceof IAdaptable) {
-			return ((IAdaptable) element).getAdapter(View.class);
+			return (View) ((IAdaptable) element).getAdapter(View.class);
 		}
 		return null;
 	}

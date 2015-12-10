@@ -44,10 +44,10 @@ public class TestResizeStateInvariant_395774 extends AbstractNodeTest {
 
 	@Test
 	public void testResize() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		Rectangle r = getAbsoluteBounds(lifeline);
-		StateInvariantEditPart stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_3017, lifeline, r.getCenter(), null);
+		StateInvariantEditPart stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_Shape, lifeline, r.getCenter(), null);
 		assertNotNull(stateInvariant);
 		int move = 30;
 		Rectangle beforeBounds = getAbsoluteBounds(stateInvariant);

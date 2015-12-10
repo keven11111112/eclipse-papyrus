@@ -91,11 +91,11 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 
 	@Test
 	public void testDurationEdition() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200), null);
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200), null);
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
-		createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline1, new Point(131, 200), new Dimension(20, 40), null);
+		createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, new Point(131, 200), new Dimension(20, 40), null);
 		waitForComplete();
 
 		ActionExecutionSpecificationEditPart esp = (ActionExecutionSpecificationEditPart)lifeline1.getChildren().get(1);
@@ -149,7 +149,7 @@ public class TestDurationConstraints_384596 extends TestTopNode {
 		events.add(aes.getFinish());
 		extendedData.put(NEAREST_OCCURRENCE_SPECIFICATION_2, events);
 
-		createNode(UMLElementTypes.DurationConstraint_3021, lifeline1, getAbsoluteBounds(esp).getBottom(), new Dimension(20, 40), extendedData);
+		createNode(UMLElementTypes.DurationConstraint_Shape, lifeline1, getAbsoluteBounds(esp).getBottom(), new Dimension(20, 40), extendedData);
 		waitForComplete();
 	}
 

@@ -12,6 +12,7 @@
  */
 package aspects.xpt.editor
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
@@ -23,7 +24,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
 import org.eclipse.gmf.codegen.gmfgen.ValueExpression
 import xpt.CodeStyle
-import xpt.Common
 import xpt.Common_qvto
 import xpt.diagram.editpolicies.LinkUtils_qvto
 import xpt.diagram.updater.Utils_qvto
@@ -335,4 +335,5 @@ import xpt.diagram.updater.Utils_qvto
 		}
 	'''
 
+	override def domainElementConstraintMethodName(GenCommonBase it) '''is«stringUniqueIdentifier()»'''
 }

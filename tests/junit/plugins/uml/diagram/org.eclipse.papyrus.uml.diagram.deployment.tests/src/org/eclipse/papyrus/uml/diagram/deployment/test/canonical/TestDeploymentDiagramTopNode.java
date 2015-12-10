@@ -41,7 +41,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2009, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageIPackage() {
-		testToManageNode(UMLElementTypes.Package_2009, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageModel() {
-		testToManageNode(UMLElementTypes.Model_2010, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Model_Shape, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageNode() {
-		testToManageNode(UMLElementTypes.Node_2008, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Node_Shape, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageArtifact() {
-		testToManageNode(UMLElementTypes.Artifact_2006, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Artifact_Shape, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageDevice() {
-		testToManageNode(UMLElementTypes.Device_2003, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Device_Shape, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_2002, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_Shape, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageNode(UMLElementTypes.Comment_2001, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Comment_Shape, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -115,7 +115,7 @@ public class TestDeploymentDiagramTopNode extends TestTopNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_2005, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_2009, true);
+		testToManageNode(UMLElementTypes.Constraint_Shape, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_Shape, true);
 	}
 
 

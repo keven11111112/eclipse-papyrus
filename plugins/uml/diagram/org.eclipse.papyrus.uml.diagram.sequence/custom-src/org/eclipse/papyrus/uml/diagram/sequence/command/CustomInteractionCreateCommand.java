@@ -66,7 +66,7 @@ public class CustomInteractionCreateCommand extends InteractionCreateCommand {
 		} else if (elementToEdit instanceof BehavioredClassifier) {
 			((BehavioredClassifier) elementToEdit).setClassifierBehavior(newElement);
 		}
-		ElementInitializers.getInstance().init_Interaction_2001(newElement);
+		ElementInitializers.getInstance().init_Interaction_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -69,9 +69,9 @@ public class New_DisplayInvariantForStateInvariant_417377 extends AbstractNodeTe
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		EditPart lifeline = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		EditPart lifeline = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull("lifeline", lifeline);
-		stateInvarintEditPart = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_3017, lifeline, new Point(131, 150), null);
+		stateInvarintEditPart = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_Shape, lifeline, new Point(131, 150), null);
 		assertNotNull("stateInvariant", stateInvarintEditPart);
 		stateInvariant = (StateInvariant)stateInvarintEditPart.resolveSemanticElement();
 		assertNotNull("uml element", stateInvariant);

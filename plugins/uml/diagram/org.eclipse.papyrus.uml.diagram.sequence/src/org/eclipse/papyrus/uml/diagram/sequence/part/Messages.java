@@ -559,359 +559,359 @@ public class Messages extends NLS {
 	public static String CommandName_OpenDiagram;
 
 	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Package_1000_links;
+	* @generated
+	*/
+	public static String NavigatorGroupName_Package_SequenceDiagram_links;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Interaction_2001_incominglinks;
+	public static String NavigatorGroupName_Interaction_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Interaction_2001_outgoinglinks;
+	public static String NavigatorGroupName_Interaction_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Lifeline_3001_incominglinks;
+	public static String NavigatorGroupName_Lifeline_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Lifeline_3001_outgoinglinks;
+	public static String NavigatorGroupName_Lifeline_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActionExecutionSpecification_3006_incominglinks;
+	public static String NavigatorGroupName_InteractionUse_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActionExecutionSpecification_3006_outgoinglinks;
+	public static String NavigatorGroupName_InteractionUse_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_BehaviorExecutionSpecification_3003_incominglinks;
+	public static String NavigatorGroupName_BehaviorExecutionSpecification_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_BehaviorExecutionSpecification_3003_outgoinglinks;
+	public static String NavigatorGroupName_BehaviorExecutionSpecification_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_StateInvariant_3017_incominglinks;
+	public static String NavigatorGroupName_CombinedFragment_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_StateInvariant_3017_outgoinglinks;
+	public static String NavigatorGroupName_CombinedFragment_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CombinedFragment_3018_incominglinks;
+	public static String NavigatorGroupName_InteractionOperand_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CombinedFragment_3018_outgoinglinks;
+	public static String NavigatorGroupName_InteractionOperand_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_TimeConstraint_3019_incominglinks;
+	public static String NavigatorGroupName_ActionExecutionSpecification_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_TimeConstraint_3019_outgoinglinks;
+	public static String NavigatorGroupName_ActionExecutionSpecification_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationObservation_3024_incominglinks;
+	public static String NavigatorGroupName_ConsiderIgnoreFragment_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationObservation_3024_outgoinglinks;
+	public static String NavigatorGroupName_ConsiderIgnoreFragment_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_TimeObservation_3020_incominglinks;
+	public static String NavigatorGroupName_Constraint_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_TimeObservation_3020_outgoinglinks;
+	public static String NavigatorGroupName_Constraint_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationConstraint_3021_incominglinks;
+	public static String NavigatorGroupName_Comment_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationConstraint_3021_outgoinglinks;
+	public static String NavigatorGroupName_Comment_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InteractionUse_3002_incominglinks;
+	public static String NavigatorGroupName_Continuation_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InteractionUse_3002_outgoinglinks;
+	public static String NavigatorGroupName_Continuation_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CombinedFragment_3004_incominglinks;
+	public static String NavigatorGroupName_StateInvariant_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CombinedFragment_3004_outgoinglinks;
+	public static String NavigatorGroupName_StateInvariant_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InteractionOperand_3005_incominglinks;
+	public static String NavigatorGroupName_CombinedFragment_CoRegionShape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_InteractionOperand_3005_outgoinglinks;
+	public static String NavigatorGroupName_CombinedFragment_CoRegionShape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Continuation_3016_incominglinks;
+	public static String NavigatorGroupName_TimeConstraint_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Continuation_3016_outgoinglinks;
+	public static String NavigatorGroupName_TimeConstraint_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Constraint_3008_incominglinks;
+	public static String NavigatorGroupName_TimeObservation_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Constraint_3008_outgoinglinks;
+	public static String NavigatorGroupName_TimeObservation_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationConstraint_3023_incominglinks;
+	public static String NavigatorGroupName_DurationConstraint_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationConstraint_3023_outgoinglinks;
+	public static String NavigatorGroupName_DurationConstraint_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Comment_3009_incominglinks;
+	public static String NavigatorGroupName_DestructionOccurrenceSpecification_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Comment_3009_outgoinglinks;
+	public static String NavigatorGroupName_DestructionOccurrenceSpecification_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConsiderIgnoreFragment_3007_incominglinks;
+	public static String NavigatorGroupName_DurationConstraint_Shape_CN_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConsiderIgnoreFragment_3007_outgoinglinks;
+	public static String NavigatorGroupName_DurationConstraint_Shape_CN_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4003_target;
+	public static String NavigatorGroupName_DurationObservation_Shape_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4003_incominglinks;
+	public static String NavigatorGroupName_DurationObservation_Shape_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4003_source;
+	public static String NavigatorGroupName_Message_SynchEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4003_outgoinglinks;
+	public static String NavigatorGroupName_Message_SynchEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4004_target;
+	public static String NavigatorGroupName_Message_SynchEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4004_incominglinks;
+	public static String NavigatorGroupName_Message_SynchEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4004_source;
+	public static String NavigatorGroupName_Message_AsynchEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4004_outgoinglinks;
+	public static String NavigatorGroupName_Message_AsynchEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4005_target;
+	public static String NavigatorGroupName_Message_AsynchEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4005_incominglinks;
+	public static String NavigatorGroupName_Message_AsynchEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4005_source;
+	public static String NavigatorGroupName_Message_ReplyEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4005_outgoinglinks;
+	public static String NavigatorGroupName_Message_ReplyEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4006_target;
+	public static String NavigatorGroupName_Message_ReplyEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4006_incominglinks;
+	public static String NavigatorGroupName_Message_ReplyEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4006_source;
+	public static String NavigatorGroupName_Message_CreateEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4006_outgoinglinks;
+	public static String NavigatorGroupName_Message_CreateEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4007_target;
+	public static String NavigatorGroupName_Message_CreateEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4007_incominglinks;
+	public static String NavigatorGroupName_Message_CreateEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4007_source;
+	public static String NavigatorGroupName_Message_DeleteEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4007_outgoinglinks;
+	public static String NavigatorGroupName_Message_DeleteEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4008_target;
+	public static String NavigatorGroupName_Message_DeleteEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4008_incominglinks;
+	public static String NavigatorGroupName_Message_DeleteEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4008_source;
+	public static String NavigatorGroupName_Message_LostEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4008_outgoinglinks;
+	public static String NavigatorGroupName_Message_LostEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4009_target;
+	public static String NavigatorGroupName_Message_LostEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4009_incominglinks;
+	public static String NavigatorGroupName_Message_LostEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4009_source;
+	public static String NavigatorGroupName_Message_FoundEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Message_4009_outgoinglinks;
+	public static String NavigatorGroupName_Message_FoundEdge_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CommentAnnotatedElement_4010_target;
+	public static String NavigatorGroupName_Message_FoundEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_CommentAnnotatedElement_4010_source;
+	public static String NavigatorGroupName_Message_FoundEdge_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DestructionOccurrenceSpecification_3022_incominglinks;
+	public static String NavigatorGroupName_Comment_AnnotatedElementEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DestructionOccurrenceSpecification_3022_outgoinglinks;
+	public static String NavigatorGroupName_Comment_AnnotatedElementEdge_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConstraintConstrainedElement_4011_target;
+	public static String NavigatorGroupName_Constraint_ConstrainedElementEdge_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ConstraintConstrainedElement_4011_source;
+	public static String NavigatorGroupName_Constraint_ConstrainedElementEdge_source;
 
 	/**
 	 * @generated

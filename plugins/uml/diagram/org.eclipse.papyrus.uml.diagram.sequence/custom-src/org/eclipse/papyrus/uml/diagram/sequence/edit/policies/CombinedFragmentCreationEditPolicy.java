@@ -153,13 +153,13 @@ public class CombinedFragmentCreationEditPolicy extends CreationEditPolicy {
 	 * @return
 	 */
 	private static boolean isDerivedCombinedFragment(String hint) {
-		if (((IHintedType) UMLElementTypes.InteractionOperand_3005).getSemanticHint().equals(hint)) {
+		if (((IHintedType) UMLElementTypes.InteractionOperand_Shape).getSemanticHint().equals(hint)) {
 			return true;
 		}
-		if (((IHintedType) UMLElementTypes.CombinedFragment_3004).getSemanticHint().equals(hint)) {
+		if (((IHintedType) UMLElementTypes.CombinedFragment_Shape).getSemanticHint().equals(hint)) {
 			return true;
 		}
-		if (((IHintedType) UMLElementTypes.ConsiderIgnoreFragment_3007).getSemanticHint().equals(hint)) {
+		if (((IHintedType) UMLElementTypes.ConsiderIgnoreFragment_Shape).getSemanticHint().equals(hint)) {
 			return true;
 		}
 		return false;

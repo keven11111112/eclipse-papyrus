@@ -72,14 +72,14 @@ public class TestStaticFeatureRepresentation extends TestChildLabel {
 
 	@Test
 	public void testStaticOperation() {
-		testToCreateATopNode(UMLElementTypes.Class_2008);
-		testToTestStaticoperation(UMLElementTypes.Operation_3013, ClassOperationCompartmentEditPart.VISUAL_ID);
+		testToCreateATopNode(UMLElementTypes.Class_Shape);
+		testToTestStaticoperation(UMLElementTypes.Operation_ClassOperationLabel, ClassOperationCompartmentEditPart.VISUAL_ID);
 	}
 
 	@Test
 	public void testStaticProperty() {
-		testToCreateATopNode(UMLElementTypes.Class_2008);
-		testToTestStaticoperation(UMLElementTypes.Property_3012, ClassAttributeCompartmentEditPart.VISUAL_ID);
+		testToCreateATopNode(UMLElementTypes.Class_Shape);
+		testToTestStaticoperation(UMLElementTypes.Property_ClassAttributeLabel, ClassAttributeCompartmentEditPart.VISUAL_ID);
 	}
 
 	protected void testToTestStaticoperation(IElementType type, String containerType) {

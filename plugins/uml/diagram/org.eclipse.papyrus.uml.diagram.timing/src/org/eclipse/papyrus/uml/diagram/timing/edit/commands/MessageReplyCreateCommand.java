@@ -79,7 +79,7 @@ public class MessageReplyCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_41(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_ReplyEdge(getContainer(), getSource(), getTarget());
 	}
 
 	/**

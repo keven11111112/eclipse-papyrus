@@ -125,7 +125,7 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 				for (Iterator<?> iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
 					IElementType elementType = (IElementType) iter.next();
-					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Region_3000).getSemanticHint())) {
+					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint())) {
 						// starting point is the existing region compartment on
 						// which mouse was moving
 						View existingRegionCompartmentView = (View) getHost().getModel();
@@ -143,7 +143,7 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 			} else if (request instanceof CreateViewRequest) {
 				CreateViewRequest create = (CreateViewRequest) request;
 				for (CreateViewRequest.ViewDescriptor descriptor : create.getViewDescriptors()) {
-					if (((IHintedType) UMLElementTypes.Region_3000).getSemanticHint().equals(descriptor.getSemanticHint())) {
+					if (((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint().equals(descriptor.getSemanticHint())) {
 						// Creating a region view as a sibling of the region owning this compartment
 						IAdaptable compartment = new SemanticAdapter(null, ((View) getHost().getModel()).eContainer());
 
@@ -211,7 +211,7 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
 				// Only take EntryPoint or ExitPoint element type into account
-				if ((elementTypes.size() == 1) && (((IElementType) (elementTypes.get(0)) == UMLElementTypes.Pseudostate_16000) || ((IElementType) (elementTypes.get(0)) == UMLElementTypes.Pseudostate_17000))) {
+				if ((elementTypes.size() == 1) && (((IElementType) (elementTypes.get(0)) == UMLElementTypes.Pseudostate_EntryPointShape) || ((IElementType) (elementTypes.get(0)) == UMLElementTypes.Pseudostate_ExitPointShape))) {
 					// If the target is a compartment replace by its grand parent edit part
 					if ((getHost() instanceof ShapeCompartmentEditPart)) {
 						return getHost().getParent().getParent().getParent();
@@ -228,7 +228,7 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 			CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 			for (Iterator<?> iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
 				IElementType elementType = (IElementType) iter.next();
-				if (elementType.equals(UMLElementTypes.Region_3000)) {
+				if (elementType.equals(UMLElementTypes.Region_Shape)) {
 					RegionFigure targetFig = ((RegionEditPart) getHost().getParent()).getPrimaryShape();
 					// make a local copy
 					Rectangle targetFigBounds = targetFig.getBounds().getCopy();

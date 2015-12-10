@@ -50,7 +50,7 @@ public class TestDeploymentDiagramManifestationLink extends TestWithoutReconnect
 
 	@Test
 	public void testToManageManifestation() {
-		testToManageLink(UMLElementTypes.Artifact_2006, UMLElementTypes.Node_2008, UMLElementTypes.Manifestation_4002, UMLElementTypes.Package_2009, true);
+		testToManageLink(UMLElementTypes.Artifact_Shape, UMLElementTypes.Node_Shape, UMLElementTypes.Manifestation_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 }

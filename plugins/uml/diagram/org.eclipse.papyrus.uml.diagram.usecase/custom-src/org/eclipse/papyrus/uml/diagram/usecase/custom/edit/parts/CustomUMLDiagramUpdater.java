@@ -56,13 +56,13 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 	/**
 	 * overload it to avoid to count links as default named element
 	 *
-	 * @see org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramUpdater#getPackage_1000SemanticChildren(org.eclipse.gmf.runtime.notation.View)
+	 * @see org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramUpdater#getPackage_UseCaseDiagram_SemanticChildren(org.eclipse.gmf.runtime.notation.View)
 	 *
 	 * @param view
 	 * @return
 	 */
 	@Override
-	public List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getPackage_UseCaseDiagram_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
@@ -122,7 +122,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 	}
 
 	@Override
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_4011(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -145,13 +145,13 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4011, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_Edge, AssociationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	@Override
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_4011(Type target, CrossReferenceAdapter crossReferencer) {
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_Edge(Type target, CrossReferenceAdapter crossReferencer) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -190,7 +190,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 			}
 			Type src = (Type) theSource;
 
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4011, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_Edge, AssociationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -199,7 +199,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 	 * @generated
 	 */
 	@Override
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_4011(Type source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_Edge(Type source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -237,7 +237,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4011, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_Edge, AssociationEditPart.VISUAL_ID));
 		}
 		return result;
 	}

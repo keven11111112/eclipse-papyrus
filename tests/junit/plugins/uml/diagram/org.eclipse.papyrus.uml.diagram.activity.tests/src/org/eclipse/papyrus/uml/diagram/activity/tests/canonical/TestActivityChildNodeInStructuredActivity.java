@@ -47,7 +47,7 @@ public class TestActivityChildNodeInStructuredActivity extends AbstractTestActiv
 	 */
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.StructuredActivityNode_3065, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.StructuredActivityNode_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	/**
@@ -56,6 +56,6 @@ public class TestActivityChildNodeInStructuredActivity extends AbstractTestActiv
 	@FailingTest("Bug 425578, 431573")
 	@Test
 	public void testToManageOpaqueAction() {
-		testToManageNode(UMLElementTypes.OpaqueAction_3007, UMLPackage.eINSTANCE.getOpaqueAction(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.OpaqueAction_Shape, UMLPackage.eINSTANCE.getOpaqueAction(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 }

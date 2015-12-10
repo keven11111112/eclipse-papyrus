@@ -74,9 +74,9 @@ public class TestDropfunction extends TestChildLabel {
 
 	@Test
 	public void testDropWithOrder() {
-		testToCreateATopNode(UMLElementTypes.Enumeration_2006);
-		testToCreateSetOfNode(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
-		testSetOfDrop(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
+		testToCreateATopNode(UMLElementTypes.Enumeration_Shape);
+		testToCreateSetOfNode(UMLElementTypes.EnumerationLiteral_LiteralLabel, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
+		testSetOfDrop(UMLElementTypes.EnumerationLiteral_LiteralLabel, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
 	}
 
 	protected void testToCreateSetOfNode(IElementType type, String containerType) {

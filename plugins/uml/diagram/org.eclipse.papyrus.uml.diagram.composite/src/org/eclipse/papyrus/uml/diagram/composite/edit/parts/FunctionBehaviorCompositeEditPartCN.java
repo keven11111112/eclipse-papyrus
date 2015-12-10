@@ -70,7 +70,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3076";
+	public static final String VISUAL_ID = "FunctionBehavior_Shape_CN";
 
 	/**
 	 * @generated
@@ -96,16 +96,22 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new BehaviorLayoutEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
+				new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE,
+				new AffixedNodeAlignmentEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -120,16 +126,16 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case FunctionBehaviorCompositeFloatingLabelEditPartCN.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -140,7 +146,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -169,16 +175,17 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if(modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -194,35 +201,39 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	public FunctionBehaviorCompositeFigure getPrimaryShape() {
-		return (FunctionBehaviorCompositeFigure)primaryShape;
+		return (FunctionBehaviorCompositeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof FunctionBehaviorCompositeNameEditPartCN) {
-			((FunctionBehaviorCompositeNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof FunctionBehaviorCompositeNameEditPartCN) {
+			((FunctionBehaviorCompositeNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
+
+		if (childEditPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((FunctionBehaviorCompositeCompartmentEditPartCN)childEditPart).getFigure());
+			pane.add(((FunctionBehaviorCompositeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
+
 		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof PortEditPart) {
+		if (childEditPart instanceof PortEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((PortEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((PortEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 		//Papyrus Gencode :Affixed Port locator
-		if(childEditPart instanceof ParameterEditPart) {
+		if (childEditPart instanceof ParameterEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ParameterEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -230,20 +241,20 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof FunctionBehaviorCompositeNameEditPartCN) {
+		if (childEditPart instanceof FunctionBehaviorCompositeNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
+		if (childEditPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			pane.remove(((FunctionBehaviorCompositeCompartmentEditPartCN)childEditPart).getFigure());
+			pane.remove(((FunctionBehaviorCompositeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof PortEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((PortEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof PortEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((PortEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof ParameterEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ParameterEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof ParameterEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ParameterEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -253,7 +264,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -263,7 +274,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -273,10 +284,10 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
+		if (editPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -286,7 +297,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof FunctionBehaviorCompositeFloatingLabelEditPartCN) {
+		if (borderItemEditPart instanceof FunctionBehaviorCompositeFloatingLabelEditPartCN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -312,6 +323,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -323,7 +335,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -335,7 +347,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -345,7 +357,7 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -361,8 +373,8 @@ public class FunctionBehaviorCompositeEditPartCN extends RoundedCompartmentEditP
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

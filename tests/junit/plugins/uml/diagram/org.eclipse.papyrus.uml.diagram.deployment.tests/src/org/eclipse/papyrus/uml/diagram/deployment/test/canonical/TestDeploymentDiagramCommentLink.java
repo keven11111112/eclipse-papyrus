@@ -47,6 +47,6 @@ public class TestDeploymentDiagramCommentLink extends TestCommentLink {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageLink(UMLElementTypes.Comment_2001, UMLElementTypes.Package_2009, UMLElementTypes.CommentAnnotatedElement_4008, UMLElementTypes.Package_2009, true);
+		testToManageLink(UMLElementTypes.Comment_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.Comment_AnnotatedElementEdge, UMLElementTypes.Package_Shape, true);
 	}
 }

@@ -115,7 +115,7 @@ public class CustomViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Node createTimeObservation_3020(EObject domainElement,
+	public Node createTimeObservation_Shape(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -133,24 +133,24 @@ public class CustomViewProvider extends UMLViewProvider {
 				prefStore, "TimeObservation");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
 				prefStore, "TimeObservation");
-		Node label5010 = createLabel(node,
+		Node timeObservation_NameLabel = createLabel(node,
 				UMLVisualIDRegistry
 						.getType(TimeObservationLabelEditPart.VISUAL_ID), true);
-		label5010.setLayoutConstraint(NotationFactory.eINSTANCE
+		timeObservation_NameLabel.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location5010 = (Location) label5010.getLayoutConstraint();
-		location5010.setX(0);
-		location5010.setY(0);
-		Node label5014 = createLabel(
+		Location timeObservation_NameLabel_Location = (Location) timeObservation_NameLabel.getLayoutConstraint();
+		timeObservation_NameLabel_Location.setX(0);
+		timeObservation_NameLabel_Location.setY(0);
+		Node timeObservation_StereotypeLabel = createLabel(
 				node,
 				UMLVisualIDRegistry
 						.getType(TimeObservationAppliedStereotypeEditPart.VISUAL_ID),
 				true);
-		label5014.setLayoutConstraint(NotationFactory.eINSTANCE
+		timeObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location5014 = (Location) label5014.getLayoutConstraint();
-		location5014.setX(0);
-		location5014.setY(0);
+		Location timeObservation_StereotypeLabel_Location = (Location) timeObservation_StereotypeLabel.getLayoutConstraint();
+		timeObservation_StereotypeLabel_Location.setX(0);
+		timeObservation_StereotypeLabel_Location.setY(0);
 		return node;
 	}
 
@@ -164,7 +164,7 @@ public class CustomViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Node createDurationConstraint_3021(EObject domainElement,
+	public Node createDurationConstraint_Shape(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -182,28 +182,28 @@ public class CustomViewProvider extends UMLViewProvider {
 				prefStore, "DurationConstraint");
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
 				prefStore, "DurationConstraint");
-		Node label5011 = createLabel(node,
+		Node durationConstraint_BodyLabel = createLabel(node,
 				UMLVisualIDRegistry
 						.getType(DurationConstraintLabelEditPart.VISUAL_ID));
-		label5011.setLayoutConstraint(NotationFactory.eINSTANCE
+		durationConstraint_BodyLabel.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location5011 = (Location) label5011.getLayoutConstraint();
-		location5011.setX(25);
-		location5011.setY(0);
-		Node label5015 = createLabel(
+		Location durationConstraint_BodyLabel_Location = (Location) durationConstraint_BodyLabel.getLayoutConstraint();
+		durationConstraint_BodyLabel_Location.setX(25);
+		durationConstraint_BodyLabel_Location.setY(0);
+		Node durationConstraint_StereotypeLabel = createLabel(
 				node,
 				UMLVisualIDRegistry
 						.getType(DurationConstraintAppliedStereotypeEditPart.VISUAL_ID));
-		label5015.setLayoutConstraint(NotationFactory.eINSTANCE
+		durationConstraint_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location5015 = (Location) label5015.getLayoutConstraint();
-		location5015.setX(0);
-		location5015.setY(-22);
+		Location durationConstraint_StereotypeLabel_Location = (Location) durationConstraint_StereotypeLabel.getLayoutConstraint();
+		durationConstraint_StereotypeLabel_Location.setX(0);
+		durationConstraint_StereotypeLabel_Location.setY(-22);
 		return node;
 	}
 
 	@Override
-	public Node createCombinedFragment_3004(EObject domainElement,
+	public Node createCombinedFragment_Shape(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -229,7 +229,7 @@ public class CustomViewProvider extends UMLViewProvider {
 		// Add by default InteractionOperand
 		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement)
 				.getOperands()) {
-			createInteractionOperand_3005(interactionOperand, compartment, -1,
+			createInteractionOperand_Shape(interactionOperand, compartment, -1,
 					true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
 		// initialization for the compartment visibility
@@ -239,7 +239,7 @@ public class CustomViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Node createDurationConstraint_3023(EObject domainElement,
+	public Node createDurationConstraint_Shape_CN(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
@@ -252,32 +252,32 @@ public class CustomViewProvider extends UMLViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// custom layout for location
-		Location location3023 = (Location) node.getLayoutConstraint();
-		location3023.setX(0);
-		location3023.setY(20);
+		Location durationConstraint_Shape_CN_Location = (Location) node.getLayoutConstraint();
+		durationConstraint_Shape_CN_Location.setX(0);
+		durationConstraint_Shape_CN_Location.setY(20);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
 				prefStore, "DurationConstraint");
-		Node label5018 = createLabel(
+		Node durationConstraint_BodyLabel_CN = createLabel(
 				node,
 				UMLVisualIDRegistry
 						.getType(DurationConstraintInMessageLabelEditPart.VISUAL_ID));
-		Node label5019 = createLabel(
+		Node durationConstraint_StereotypeLabel_CN = createLabel(
 				node,
 				UMLVisualIDRegistry
 						.getType(DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID));
-		label5019.setLayoutConstraint(NotationFactory.eINSTANCE
+		durationConstraint_StereotypeLabel_CN.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location5019 = (Location) label5019.getLayoutConstraint();
-		location5019.setX(0);
-		location5019.setY(-22);
+		Location durationConstraint_StereotypeLabel_CN_Location = (Location) durationConstraint_StereotypeLabel_CN.getLayoutConstraint();
+		durationConstraint_StereotypeLabel_CN_Location.setX(0);
+		durationConstraint_StereotypeLabel_CN_Location.setY(-22);
 		return node;
 	}
 
 	@Override
-	public Node createDurationObservation_3024(EObject domainElement,
+	public Node createDurationObservation_Shape(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Node node = NotationFactory.eINSTANCE.createShape();
@@ -290,31 +290,31 @@ public class CustomViewProvider extends UMLViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// custom layout for location
-		Location location3024 = (Location) node.getLayoutConstraint();
-		location3024.setX(0);
-		location3024.setY(0);
+		Location durationObservation_Shape_Location = (Location) node.getLayoutConstraint();
+		durationObservation_Shape_Location.setX(0);
+		durationObservation_Shape_Location.setY(0);
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint
 				.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node,
 				prefStore, "DurationObservation");
-		Node label5016 = createLabel(node,
+		Node durationObservation_NameLabel = createLabel(node,
 				UMLVisualIDRegistry
 						.getType(DurationObservationLabelEditPart.VISUAL_ID));
-		Node label5017 = createLabel(
+		Node durationObservation_StereotypeLabel = createLabel(
 				node,
 				UMLVisualIDRegistry
 						.getType(DurationObservationAppliedStereotypeEditPart.VISUAL_ID));
-		label5017.setLayoutConstraint(NotationFactory.eINSTANCE
+		durationObservation_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
-		Location location5017 = (Location) label5017.getLayoutConstraint();
-		location5017.setX(0);
-		location5017.setY(0);
+		Location durationObservation_StereotypeLabel_Location = (Location) durationObservation_StereotypeLabel.getLayoutConstraint();
+		durationObservation_StereotypeLabel_Location.setX(0);
+		durationObservation_StereotypeLabel_Location.setY(0);
 		return node;
 	}
 
 	@Override
-	public Node createConsiderIgnoreFragment_3007(EObject domainElement,
+	public Node createConsiderIgnoreFragment_Shape(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
@@ -340,7 +340,7 @@ public class CustomViewProvider extends UMLViewProvider {
 		// Add by default InteractionOperand
 		for (InteractionOperand interactionOperand : ((CombinedFragment) domainElement)
 				.getOperands()) {
-			createInteractionOperand_3005(interactionOperand, compartment, -1,
+			createInteractionOperand_Shape(interactionOperand, compartment, -1,
 					true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		}
 		// initialization for the compartment visibility
@@ -350,7 +350,7 @@ public class CustomViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Edge createCommentAnnotatedElement_4010(View containerView,
+	public Edge createComment_AnnotatedElementEdge(View containerView,
 			int index, boolean persisted, PreferencesHint preferencesHint) {
 		Edge edge = NotationFactory.eINSTANCE.createEdge(); // override
 															// Connector
@@ -382,10 +382,10 @@ public class CustomViewProvider extends UMLViewProvider {
 
 	// Add Guard label support.
 	@Override
-	public Node createInteractionOperand_3005(EObject domainElement,
+	public Node createInteractionOperand_Shape(EObject domainElement,
 			View containerView, int index, boolean persisted,
 			PreferencesHint preferencesHint) {
-		Node node = super.createInteractionOperand_3005(domainElement,
+		Node node = super.createInteractionOperand_Shape(domainElement,
 				containerView, index, persisted, preferencesHint);
 		DecorationNode guardNode = NotationFactory.eINSTANCE
 				.createDecorationNode();
@@ -400,11 +400,11 @@ public class CustomViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Node createBehaviorExecutionSpecification_3003(
+	public Node createBehaviorExecutionSpecification_Shape(
 			EObject domainElement, View containerView, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
 		Node node = super
-				.createBehaviorExecutionSpecification_3003(domainElement,
+				.createBehaviorExecutionSpecification_Shape(domainElement,
 						containerView, index, persisted, preferencesHint);
 		// Add a label for Behavior.
 		Node label = createLabel(node,

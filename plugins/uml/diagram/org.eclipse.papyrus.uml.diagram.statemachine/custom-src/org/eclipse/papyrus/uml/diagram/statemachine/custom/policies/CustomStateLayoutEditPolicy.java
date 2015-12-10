@@ -79,9 +79,9 @@ public class CustomStateLayoutEditPolicy extends LayoutEditPolicy {
 
 			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
 
-			if (req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_16000).getSemanticHint())
-					|| req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_17000).getSemanticHint())
-					|| req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType) UMLElementTypes.ConnectionPointReference_18000).getSemanticHint())) {
+			if (req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_EntryPointShape).getSemanticHint())
+					|| req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType) UMLElementTypes.Pseudostate_ExitPointShape).getSemanticHint())
+					|| req.getViewAndElementDescriptor().getSemanticHint().equals(((IHintedType) UMLElementTypes.ConnectionPointReference_Shape).getSemanticHint())) {
 
 
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();

@@ -36,7 +36,7 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 	 * @generated
 	 */
 	public InteractionInteractionCompartmentItemSemanticEditPolicy() {
-		super(UMLElementTypes.Interaction_2001);
+		super(UMLElementTypes.Interaction_Shape);
 	}
 
 	/**
@@ -60,37 +60,37 @@ public class InteractionInteractionCompartmentItemSemanticEditPolicy extends UML
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.ConsiderIgnoreFragment_3007 == baseElementType) {
+		if (UMLElementTypes.ConsiderIgnoreFragment_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ConsiderIgnoreFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.CombinedFragment_3004 == baseElementType) {
+		if (UMLElementTypes.CombinedFragment_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CombinedFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Lifeline_3001 == baseElementType) {
+		if (UMLElementTypes.Lifeline_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new LifelineCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.InteractionUse_3002 == baseElementType) {
+		if (UMLElementTypes.InteractionUse_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new InteractionUseCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Constraint_3008 == baseElementType) {
+		if (UMLElementTypes.Constraint_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Comment_3009 == baseElementType) {
+		if (UMLElementTypes.Comment_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}

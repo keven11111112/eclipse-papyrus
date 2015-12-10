@@ -38,7 +38,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComponent() {
-		testToManageNode(UMLElementTypes.Component_3021, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Component_Shape_CN, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInstanceSpecification() {
-		testToManageNode(UMLElementTypes.InstanceSpecification_3020, UMLPackage.eINSTANCE.getInstanceSpecification(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.InstanceSpecification_Shape_CN, UMLPackage.eINSTANCE.getInstanceSpecification(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageSignal() {
-		testToManageNode(UMLElementTypes.Signal_3022, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Signal_Shape_CN, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	@Test
 	@FailingTest
 	public void testToManageModel() {
-		testToManageNode(UMLElementTypes.Model_3024, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Model_Shape_CN, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageEnumeration() {
-		testToManageNode(UMLElementTypes.Enumeration_3025, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Enumeration_Shape_CN, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	@Test
 	@FailingTest
 	public void testToManageIPackage() {
-		testToManageNode(UMLElementTypes.Package_3009, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageClass() {
-		testToManageNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Class_Shape_CN, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInformationItem() {
-		testToManageNode(UMLElementTypes.InformationItem_3040, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.InformationItem_Shape_CN, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePrimitiveType() {
-		testToManageNode(UMLElementTypes.PrimitiveType_3026, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.PrimitiveType_Shape_CN, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageDataType() {
-		testToManageNode(UMLElementTypes.DataType_3027, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_3029, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Constraint_PackagedElementShape_CN, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageNode(UMLElementTypes.Comment_3028, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Comment_Shape_CN, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class TestClassDiagramChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageInterface() {
-		testToManageNode(UMLElementTypes.Interface_3023, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_3009, true);
+		testToManageNode(UMLElementTypes.Interface_Shape_CN, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	@Override

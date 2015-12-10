@@ -57,17 +57,17 @@ public class ExpansionRegionCompartmentEPTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testExpansionNodeCreationRequest() {
-		assertEquals(myParentEP, getTestTargetEditPart(UMLElementTypes.ExpansionNode_3074, UMLElementTypes.ExpansionNode_3075));
+		assertEquals(myParentEP, getTestTargetEditPart(UMLElementTypes.ExpansionNode_InputShape, UMLElementTypes.ExpansionNode_OutputShape));
 	}
 
 	@Test
 	public void testMixedElementTypesCreationRequest() {
-		assertNotNull(getTestTargetEditPart(UMLElementTypes.ExpansionNode_3074, UMLElementTypes.LoopNode_3071));
+		assertNotNull(getTestTargetEditPart(UMLElementTypes.ExpansionNode_InputShape, UMLElementTypes.LoopNode_Shape));
 	}
 
 	@Test
 	public void testAlienCreationRequest() {
-		assertEquals(myCompartmentEP, getTestTargetEditPart(UMLElementTypes.StructuredActivityNode_3065));
+		assertEquals(myCompartmentEP, getTestTargetEditPart(UMLElementTypes.StructuredActivityNode_Shape));
 	}
 
 	private EditPart getTestTargetEditPart(IElementType... types) {

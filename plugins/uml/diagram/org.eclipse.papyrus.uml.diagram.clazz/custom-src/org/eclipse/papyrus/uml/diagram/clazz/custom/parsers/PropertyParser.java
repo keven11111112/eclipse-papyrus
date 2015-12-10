@@ -20,6 +20,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -28,7 +29,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -59,8 +59,9 @@ public class PropertyParser implements IParser {
 	 */
 	@Override
 	public String getEditString(final IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
+		EObject e = element.getAdapter(EObject.class);
+		if (e != null) {
+			final Property property = (Property) e;
 			return property.getName();
 		}
 		return "";
@@ -72,7 +73,7 @@ public class PropertyParser implements IParser {
 	 */
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-		final Property property = ((Property) ((EObjectAdapter) element).getRealObject());
+		final Property property = (Property) element.getAdapter(EObject.class);
 		final String result = newString;
 		final TransactionalEditingDomain editingDomain;
 		try {

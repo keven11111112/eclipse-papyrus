@@ -52,7 +52,7 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3203";
+	public static final String VISUAL_ID = "Dependency_Shape";
 
 	/**
 	 * @generated
@@ -78,7 +78,9 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
@@ -186,6 +188,7 @@ public class DependencyNodeEditPart extends NodeEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

@@ -233,7 +233,7 @@ public abstract class AbstractMessageEditPart extends UMLConnectionNodeEditPart 
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
-			if (types.contains(UMLElementTypes.Message_4009) || types.contains(UMLElementTypes.Message_4008)) {
+			if (types.contains(UMLElementTypes.Message_FoundEdge) || types.contains(UMLElementTypes.Message_LostEdge)) {
 				return null;
 			}
 		} else if (request instanceof ReconnectRequest) {

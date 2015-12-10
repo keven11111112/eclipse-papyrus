@@ -34,7 +34,7 @@ public class TestClassDiagramAssociationClass extends TestLink {
 
 	@Test
 	public void testManageAssociationClass() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.AssociationClass_4017, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.AssociationClass_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	@Override

@@ -58,9 +58,9 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 	}
 
 	protected AbstractExecutionSpecificationEditPart createExecutionSpecificationWithLifeline(Point lifelineLocation, Dimension lifelineSize) {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), lifelineLocation, lifelineSize);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), lifelineLocation, lifelineSize);
 		assertNotNull("create ExecutionSpecification's Lifeline", lifeline);
-		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, getAbsoluteBounds(lifeline).getCenter(), null);
+		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteBounds(lifeline).getCenter(), null);
 		assertNotNull("create ExecutionSpecification", es);
 		return es;
 	}
@@ -99,7 +99,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part2.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		MessageEditPart message = (MessageEditPart)createLink(UMLElementTypes.Message_4003, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageEditPart message = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Sync message", message);
 		Message msg = (Message)message.resolveSemanticElement();
 		assertNotNull("message", msg);
@@ -122,12 +122,12 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution2 = (ExecutionSpecification)part2.resolveSemanticElement();
 		assertNotNull("execution2", execution2);
 		doCheckExecution(execution2);
-		MessageEditPart messagePart = (MessageEditPart)createLink(UMLElementTypes.Message_4003, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageEditPart messagePart = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Sync message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
 		doCheckExecution(execution2, message, true);
-		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, part2.getParent(), getAbsoluteBounds(part2).getLocation().getTranslated(0, 100), null);
+		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, part2.getParent(), getAbsoluteBounds(part2).getLocation().getTranslated(0, 100), null);
 		ExecutionSpecification execution3 = (ExecutionSpecification)part3.resolveSemanticElement();
 		assertNotNull("execution3", execution3);
 		//reconnect from execution2 to execution3.
@@ -152,7 +152,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution2 = (ExecutionSpecification)part2.resolveSemanticElement();
 		assertNotNull("execution2", execution2);
 		doCheckExecution(execution2);
-		MessageEditPart messagePart = (MessageEditPart)createLink(UMLElementTypes.Message_4003, part1.getViewer(), startLocation, part1, endLocation, part2);
+		MessageEditPart messagePart = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Sync message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
@@ -183,7 +183,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_4005, part1.getViewer(), startLocation, part1, endLocation, part2);
+		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
@@ -206,13 +206,13 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_4005, part1.getViewer(), startLocation, part1, endLocation, part2);
+		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);
 		doCheckExecution(execution, message, false);
 		Point location = startLocation.getTranslated(0, -100);
-		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, part1.getParent(), location, null);
+		AbstractExecutionSpecificationEditPart part3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, part1.getParent(), location, null);
 		ExecutionSpecification execution3 = (ExecutionSpecification)part3.resolveSemanticElement();
 		assertNotNull("execution3", execution3);
 		//reconnect from execution to execution3.
@@ -237,7 +237,7 @@ public class TestMessageOccurrenceSpecification_402975 extends AbstractNodeTest 
 		ExecutionSpecification execution = (ExecutionSpecification)part1.resolveSemanticElement();
 		assertNotNull("execution", execution);
 		doCheckExecution(execution);
-		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_4005, part1.getViewer(), startLocation, part1, endLocation, part2);
+		Message3EditPart messagePart = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, part1.getViewer(), startLocation, part1, endLocation, part2);
 		assertNotNull("Reply message", messagePart);
 		Message message = (Message)messagePart.resolveSemanticElement();
 		assertNotNull("message", message);

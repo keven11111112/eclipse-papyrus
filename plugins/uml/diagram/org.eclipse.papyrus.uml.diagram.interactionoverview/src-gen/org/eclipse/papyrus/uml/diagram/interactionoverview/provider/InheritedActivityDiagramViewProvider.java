@@ -54,10 +54,10 @@ public class InheritedActivityDiagramViewProvider extends CustomUMLViewProvider 
 				// preferencesHint);
 
 				if (ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createCommentAnnotatedElement_4006(containerView, index, persisted, preferencesHint);
+					createdEdge = createComment_AnnotatedElementEdge(containerView, index, persisted, preferencesHint);
 				}
 				if (ElementTypes.CONTROL_FLOW.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createControlFlow_4004(domainElement, containerView, index, persisted, preferencesHint);
+					createdEdge = createControlFlow_Edge(domainElement, containerView, index, persisted, preferencesHint);
 				}
 			}
 		}

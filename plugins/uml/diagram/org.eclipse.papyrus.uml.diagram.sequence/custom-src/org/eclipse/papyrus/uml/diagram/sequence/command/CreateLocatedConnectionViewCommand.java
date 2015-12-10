@@ -175,19 +175,19 @@ public class CreateLocatedConnectionViewCommand extends CommonDeferredCreateConn
 	 */
 	private boolean isMessageHint(String hint) {
 		List<String> messageHints = new ArrayList<String>(7);
-		String messageHint = ((IHintedType) UMLElementTypes.Message_4003).getSemanticHint();
+		String messageHint = ((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4004).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_AsynchEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4005).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_ReplyEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4006).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_CreateEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4007).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_DeleteEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4008).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_LostEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4009).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_FoundEdge).getSemanticHint();
 		messageHints.add(messageHint);
 		return messageHints.contains(hint);
 	}

@@ -53,7 +53,7 @@ public class TestDeploymentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageDependency() {
-		testToManageLink(UMLElementTypes.Node_2008, UMLElementTypes.Node_2008, UMLElementTypes.Dependency_4004, UMLElementTypes.Package_2009, true);
+		testToManageLink(UMLElementTypes.Node_Shape, UMLElementTypes.Node_Shape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_Shape, true);
 	}
 	/**
 	* Test to manage component.
@@ -61,7 +61,7 @@ public class TestDeploymentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManifestation() {
-	testToManageLink(UMLElementTypes.Package_2009, UMLElementTypes.Package_2009, UMLElementTypes.Manifestation_4002, UMLElementTypes.Package_2009, true);
+	testToManageLink(UMLElementTypes.Package_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.Manifestation_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 }

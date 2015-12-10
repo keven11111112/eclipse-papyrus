@@ -113,7 +113,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated
 	 */
 	protected UMLDiagramUpdater() {
-		// to prevent instantiation allowing the override
+		//to prevent instantiation allowing the override
 	}
 
 	/**
@@ -125,46 +125,46 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		if (vid != null) {
 			switch (vid) {
 			case ComponentDiagramEditPart.VISUAL_ID:
-				return getPackage_1000SemanticChildren(view);
+				return getPackage_ComponentDiagram_SemanticChildren(view);
 			case ComponentEditPart.VISUAL_ID:
-				return getComponent_2002SemanticChildren(view);
+				return getComponent_PackagedElementShape_SemanticChildren(view);
 			case ComponentEditPartCN.VISUAL_ID:
-				return getComponent_3070SemanticChildren(view);
+				return getComponent_PackagedElementShape_CCN_SemanticChildren(view);
 			case ComponentEditPartPCN.VISUAL_ID:
-				return getComponent_3071SemanticChildren(view);
+				return getComponent_PackagedElementShape_CN_SemanticChildren(view);
 			case PropertyPartEditPartCN.VISUAL_ID:
-				return getProperty_3079SemanticChildren(view);
+				return getProperty_Shape_SemanticChildren(view);
 			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
-				return getComponentPackagedelements_7001SemanticChildren(view);
+				return getComponent_StructureCompartment_SemanticChildren(view);
 			case ModelPackageableElementCompartmentEditPart.VISUAL_ID:
-				return getModelPackagedelements_7006SemanticChildren(view);
+				return getModel_PackagedElementCompartment_SemanticChildren(view);
 			case PackagePackageableElementCompartmentEditPart.VISUAL_ID:
-				return getPackagePackagedelements_7002SemanticChildren(view);
+				return getPackage_PackagedElementCompartment_SemanticChildren(view);
 			case ModelPackageableElementCompartmentEditPartCN.VISUAL_ID:
-				return getModelPackagedelements_7007SemanticChildren(view);
+				return getModel_PackagedElementCompartment_CN_SemanticChildren(view);
 			case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
-				return getPackagePackagedelements_7005SemanticChildren(view);
+				return getPackage_PackagedElementCompartment_CN_SemanticChildren(view);
 			case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
-				return getComponentPackagedelements_7003SemanticChildren(view);
+				return getComponent_StructureCompartment_CCN_SemanticChildren(view);
 			case ComponentCompositeCompartmentEditPartPCN.VISUAL_ID:
-				return getComponentPackagedelements_7004SemanticChildren(view);
+				return getComponent_StructureCompartment_CN_SemanticChildren(view);
 			case InterfaceAttributeCompartmentEditPart.VISUAL_ID:
-				return getInterfaceAttributes_7008SemanticChildren(view);
+				return getInterface_AttributeCompartment_SemanticChildren(view);
 			case InterfaceOperationCompartmentEditPart.VISUAL_ID:
-				return getInterfaceOperations_7009SemanticChildren(view);
+				return getInterface_OperationCompartment_SemanticChildren(view);
 			case InterfaceAttributeCompartmentEditPartCN.VISUAL_ID:
-				return getInterfaceAttributes_7010SemanticChildren(view);
+				return getInterface_AttributeCompartment_CN_SemanticChildren(view);
 			case InterfaceOperationCompartmentEditPartCN.VISUAL_ID:
-				return getInterfaceOperations_7011SemanticChildren(view);
+				return getInterface_OperationCompartment_CN_SemanticChildren(view);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getPackage_ComponentDiagram_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
@@ -232,7 +232,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getComponent_2002SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getComponent_PackagedElementShape_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
@@ -252,7 +252,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getComponent_3070SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getComponent_PackagedElementShape_CCN_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
@@ -272,7 +272,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getComponent_3071SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getComponent_PackagedElementShape_CN_SemanticChildren(View view) {
 		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
@@ -292,7 +292,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getProperty_3079SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getProperty_Shape_SemanticChildren(View view) {
 		ICustomDiagramUpdater<UMLNodeDescriptor> customUpdater = new PropertyDiagramUpdater();
 		return customUpdater.getSemanticChildren(view);
 	}
@@ -300,7 +300,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getComponentPackagedelements_7001SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getComponent_StructureCompartment_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -332,7 +332,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getModelPackagedelements_7006SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getModel_PackagedElementCompartment_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -388,7 +388,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getPackagePackagedelements_7002SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getPackage_PackagedElementCompartment_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -444,7 +444,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getModelPackagedelements_7007SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getModel_PackagedElementCompartment_CN_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -500,7 +500,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getPackagePackagedelements_7005SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getPackage_PackagedElementCompartment_CN_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -556,7 +556,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getComponentPackagedelements_7003SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getComponent_StructureCompartment_CCN_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -588,7 +588,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getComponentPackagedelements_7004SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getComponent_StructureCompartment_CN_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -620,7 +620,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getInterfaceAttributes_7008SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getInterface_AttributeCompartment_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -644,7 +644,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getInterfaceOperations_7009SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getInterface_OperationCompartment_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -676,7 +676,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getInterfaceAttributes_7010SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getInterface_AttributeCompartment_CN_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -700,7 +700,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getInterfaceOperations_7011SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getInterface_OperationCompartment_CN_SemanticChildren(View view) {
 		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
@@ -738,71 +738,71 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		if (vid != null) {
 			switch (vid) {
 			case ComponentDiagramEditPart.VISUAL_ID:
-				return getPackage_1000ContainedLinks(view);
+				return getPackage_ComponentDiagram_ContainedLinks(view);
 			case DependencyNodeEditPart.VISUAL_ID:
-				return getDependency_3203ContainedLinks(view);
+				return getDependency_Shape_ContainedLinks(view);
 			case ComponentEditPart.VISUAL_ID:
-				return getComponent_2002ContainedLinks(view);
+				return getComponent_PackagedElementShape_ContainedLinks(view);
 			case ModelEditPart.VISUAL_ID:
-				return getModel_3202ContainedLinks(view);
+				return getModel_Shape_ContainedLinks(view);
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_3200ContainedLinks(view);
+				return getPackage_Shape_ContainedLinks(view);
 			case RectangleInterfaceEditPart.VISUAL_ID:
-				return getInterface_3205ContainedLinks(view);
+				return getInterface_ClassifierShape_ContainedLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_3201ContainedLinks(view);
+				return getComment_Shape_ContainedLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_3199ContainedLinks(view);
+				return getConstraint_Shape_ContainedLinks(view);
 			case DefaultNamedElementEditPart.VISUAL_ID:
-				return getNamedElement_3204ContainedLinks(view);
+				return getNamedElement_DefaultShape_ContainedLinks(view);
 			case InterfaceEditPart.VISUAL_ID:
-				return getInterface_2003ContainedLinks(view);
+				return getInterface_Shape_ContainedLinks(view);
 			case PortEditPart.VISUAL_ID:
-				return getPort_3069ContainedLinks(view);
+				return getPort_Shape_ContainedLinks(view);
 			case ModelEditPartCN.VISUAL_ID:
-				return getModel_3077ContainedLinks(view);
+				return getModel_Shape_CN_ContainedLinks(view);
 			case PackageEditPartCN.VISUAL_ID:
-				return getPackage_3076ContainedLinks(view);
+				return getPackage_Shape_CN_ContainedLinks(view);
 			case RectangleInterfaceEditPartCN.VISUAL_ID:
-				return getInterface_3078ContainedLinks(view);
+				return getInterface_ClassifierShape_CN_ContainedLinks(view);
 			case ComponentEditPartCN.VISUAL_ID:
-				return getComponent_3070ContainedLinks(view);
+				return getComponent_PackagedElementShape_CCN_ContainedLinks(view);
 			case ComponentEditPartPCN.VISUAL_ID:
-				return getComponent_3071ContainedLinks(view);
+				return getComponent_PackagedElementShape_CN_ContainedLinks(view);
 			case CommentEditPartPCN.VISUAL_ID:
-				return getComment_3074ContainedLinks(view);
+				return getComment_Shape_CN_ContainedLinks(view);
 			case ConstraintEditPartPCN.VISUAL_ID:
-				return getConstraint_3075ContainedLinks(view);
+				return getConstraint_Shape_CN_ContainedLinks(view);
 			case PropertyForInterfaceEditPart.VISUAL_ID:
-				return getProperty_1ContainedLinks(view);
+				return getProperty_InterfaceAttributeLabel_ContainedLinks(view);
 			case OperationForInterfaceEditPart.VISUAL_ID:
-				return getOperation_5ContainedLinks(view);
+				return getOperation_InterfaceOperationLabel_ContainedLinks(view);
 			case ReceptionInInterfaceEditPart.VISUAL_ID:
-				return getReception_6ContainedLinks(view);
+				return getReception_InterfaceReceptionLabel_ContainedLinks(view);
 			case InterfaceEditPartPCN.VISUAL_ID:
-				return getInterface_3072ContainedLinks(view);
+				return getInterface_Shape_CN_ContainedLinks(view);
 			case PropertyPartEditPartCN.VISUAL_ID:
-				return getProperty_3079ContainedLinks(view);
+				return getProperty_Shape_ContainedLinks(view);
 			case UsageEditPart.VISUAL_ID:
-				return getUsage_4001ContainedLinks(view);
+				return getUsage_Edge_ContainedLinks(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:
-				return getInterfaceRealization_4006ContainedLinks(view);
+				return getInterfaceRealization_Edge_ContainedLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
-				return getGeneralization_4003ContainedLinks(view);
+				return getGeneralization_Edge_ContainedLinks(view);
 			case SubstitutionEditPart.VISUAL_ID:
-				return getSubstitution_4012ContainedLinks(view);
+				return getSubstitution_Edge_ContainedLinks(view);
 			case ManifestationEditPart.VISUAL_ID:
-				return getManifestation_4014ContainedLinks(view);
+				return getManifestation_Edge_ContainedLinks(view);
 			case ComponentRealizationEditPart.VISUAL_ID:
-				return getComponentRealization_4007ContainedLinks(view);
+				return getComponentRealization_Edge_ContainedLinks(view);
 			case AbstractionEditPart.VISUAL_ID:
-				return getAbstraction_4013ContainedLinks(view);
+				return getAbstraction_Edge_ContainedLinks(view);
 			case DependencyEditPart.VISUAL_ID:
-				return getDependency_4010ContainedLinks(view);
+				return getDependency_Edge_ContainedLinks(view);
 			case DependencyBranchEditPart.VISUAL_ID:
-				return getDependency_4017ContainedLinks(view);
+				return getDependency_BranchEdge_ContainedLinks(view);
 			case ConnectorEditPart.VISUAL_ID:
-				return getConnector_4019ContainedLinks(view);
+				return getConnector_Edge_ContainedLinks(view);
 			}
 		}
 		return Collections.emptyList();
@@ -817,69 +817,69 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		if (vid != null) {
 			switch (vid) {
 			case DependencyNodeEditPart.VISUAL_ID:
-				return getDependency_3203IncomingLinks(view);
+				return getDependency_Shape_IncomingLinks(view);
 			case ComponentEditPart.VISUAL_ID:
-				return getComponent_2002IncomingLinks(view);
+				return getComponent_PackagedElementShape_IncomingLinks(view);
 			case ModelEditPart.VISUAL_ID:
-				return getModel_3202IncomingLinks(view);
+				return getModel_Shape_IncomingLinks(view);
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_3200IncomingLinks(view);
+				return getPackage_Shape_IncomingLinks(view);
 			case RectangleInterfaceEditPart.VISUAL_ID:
-				return getInterface_3205IncomingLinks(view);
+				return getInterface_ClassifierShape_IncomingLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_3201IncomingLinks(view);
+				return getComment_Shape_IncomingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_3199IncomingLinks(view);
+				return getConstraint_Shape_IncomingLinks(view);
 			case DefaultNamedElementEditPart.VISUAL_ID:
-				return getNamedElement_3204IncomingLinks(view);
+				return getNamedElement_DefaultShape_IncomingLinks(view);
 			case InterfaceEditPart.VISUAL_ID:
-				return getInterface_2003IncomingLinks(view);
+				return getInterface_Shape_IncomingLinks(view);
 			case PortEditPart.VISUAL_ID:
-				return getPort_3069IncomingLinks(view);
+				return getPort_Shape_IncomingLinks(view);
 			case ModelEditPartCN.VISUAL_ID:
-				return getModel_3077IncomingLinks(view);
+				return getModel_Shape_CN_IncomingLinks(view);
 			case PackageEditPartCN.VISUAL_ID:
-				return getPackage_3076IncomingLinks(view);
+				return getPackage_Shape_CN_IncomingLinks(view);
 			case RectangleInterfaceEditPartCN.VISUAL_ID:
-				return getInterface_3078IncomingLinks(view);
+				return getInterface_ClassifierShape_CN_IncomingLinks(view);
 			case ComponentEditPartCN.VISUAL_ID:
-				return getComponent_3070IncomingLinks(view);
+				return getComponent_PackagedElementShape_CCN_IncomingLinks(view);
 			case ComponentEditPartPCN.VISUAL_ID:
-				return getComponent_3071IncomingLinks(view);
+				return getComponent_PackagedElementShape_CN_IncomingLinks(view);
 			case CommentEditPartPCN.VISUAL_ID:
-				return getComment_3074IncomingLinks(view);
+				return getComment_Shape_CN_IncomingLinks(view);
 			case ConstraintEditPartPCN.VISUAL_ID:
-				return getConstraint_3075IncomingLinks(view);
+				return getConstraint_Shape_CN_IncomingLinks(view);
 			case PropertyForInterfaceEditPart.VISUAL_ID:
-				return getProperty_1IncomingLinks(view);
+				return getProperty_InterfaceAttributeLabel_IncomingLinks(view);
 			case OperationForInterfaceEditPart.VISUAL_ID:
-				return getOperation_5IncomingLinks(view);
+				return getOperation_InterfaceOperationLabel_IncomingLinks(view);
 			case ReceptionInInterfaceEditPart.VISUAL_ID:
-				return getReception_6IncomingLinks(view);
+				return getReception_InterfaceReceptionLabel_IncomingLinks(view);
 			case InterfaceEditPartPCN.VISUAL_ID:
-				return getInterface_3072IncomingLinks(view);
+				return getInterface_Shape_CN_IncomingLinks(view);
 			case PropertyPartEditPartCN.VISUAL_ID:
-				return getProperty_3079IncomingLinks(view);
+				return getProperty_Shape_IncomingLinks(view);
 			case UsageEditPart.VISUAL_ID:
-				return getUsage_4001IncomingLinks(view);
+				return getUsage_Edge_IncomingLinks(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:
-				return getInterfaceRealization_4006IncomingLinks(view);
+				return getInterfaceRealization_Edge_IncomingLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
-				return getGeneralization_4003IncomingLinks(view);
+				return getGeneralization_Edge_IncomingLinks(view);
 			case SubstitutionEditPart.VISUAL_ID:
-				return getSubstitution_4012IncomingLinks(view);
+				return getSubstitution_Edge_IncomingLinks(view);
 			case ManifestationEditPart.VISUAL_ID:
-				return getManifestation_4014IncomingLinks(view);
+				return getManifestation_Edge_IncomingLinks(view);
 			case ComponentRealizationEditPart.VISUAL_ID:
-				return getComponentRealization_4007IncomingLinks(view);
+				return getComponentRealization_Edge_IncomingLinks(view);
 			case AbstractionEditPart.VISUAL_ID:
-				return getAbstraction_4013IncomingLinks(view);
+				return getAbstraction_Edge_IncomingLinks(view);
 			case DependencyEditPart.VISUAL_ID:
-				return getDependency_4010IncomingLinks(view);
+				return getDependency_Edge_IncomingLinks(view);
 			case DependencyBranchEditPart.VISUAL_ID:
-				return getDependency_4017IncomingLinks(view);
+				return getDependency_BranchEdge_IncomingLinks(view);
 			case ConnectorEditPart.VISUAL_ID:
-				return getConnector_4019IncomingLinks(view);
+				return getConnector_Edge_IncomingLinks(view);
 			}
 		}
 		return Collections.emptyList();
@@ -894,1456 +894,1514 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		if (vid != null) {
 			switch (vid) {
 			case DependencyNodeEditPart.VISUAL_ID:
-				return getDependency_3203OutgoingLinks(view);
+				return getDependency_Shape_OutgoingLinks(view);
 			case ComponentEditPart.VISUAL_ID:
-				return getComponent_2002OutgoingLinks(view);
+				return getComponent_PackagedElementShape_OutgoingLinks(view);
 			case ModelEditPart.VISUAL_ID:
-				return getModel_3202OutgoingLinks(view);
+				return getModel_Shape_OutgoingLinks(view);
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_3200OutgoingLinks(view);
+				return getPackage_Shape_OutgoingLinks(view);
 			case RectangleInterfaceEditPart.VISUAL_ID:
-				return getInterface_3205OutgoingLinks(view);
+				return getInterface_ClassifierShape_OutgoingLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_3201OutgoingLinks(view);
+				return getComment_Shape_OutgoingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_3199OutgoingLinks(view);
+				return getConstraint_Shape_OutgoingLinks(view);
 			case DefaultNamedElementEditPart.VISUAL_ID:
-				return getNamedElement_3204OutgoingLinks(view);
+				return getNamedElement_DefaultShape_OutgoingLinks(view);
 			case InterfaceEditPart.VISUAL_ID:
-				return getInterface_2003OutgoingLinks(view);
+				return getInterface_Shape_OutgoingLinks(view);
 			case PortEditPart.VISUAL_ID:
-				return getPort_3069OutgoingLinks(view);
+				return getPort_Shape_OutgoingLinks(view);
 			case ModelEditPartCN.VISUAL_ID:
-				return getModel_3077OutgoingLinks(view);
+				return getModel_Shape_CN_OutgoingLinks(view);
 			case PackageEditPartCN.VISUAL_ID:
-				return getPackage_3076OutgoingLinks(view);
+				return getPackage_Shape_CN_OutgoingLinks(view);
 			case RectangleInterfaceEditPartCN.VISUAL_ID:
-				return getInterface_3078OutgoingLinks(view);
+				return getInterface_ClassifierShape_CN_OutgoingLinks(view);
 			case ComponentEditPartCN.VISUAL_ID:
-				return getComponent_3070OutgoingLinks(view);
+				return getComponent_PackagedElementShape_CCN_OutgoingLinks(view);
 			case ComponentEditPartPCN.VISUAL_ID:
-				return getComponent_3071OutgoingLinks(view);
+				return getComponent_PackagedElementShape_CN_OutgoingLinks(view);
 			case CommentEditPartPCN.VISUAL_ID:
-				return getComment_3074OutgoingLinks(view);
+				return getComment_Shape_CN_OutgoingLinks(view);
 			case ConstraintEditPartPCN.VISUAL_ID:
-				return getConstraint_3075OutgoingLinks(view);
+				return getConstraint_Shape_CN_OutgoingLinks(view);
 			case PropertyForInterfaceEditPart.VISUAL_ID:
-				return getProperty_1OutgoingLinks(view);
+				return getProperty_InterfaceAttributeLabel_OutgoingLinks(view);
 			case OperationForInterfaceEditPart.VISUAL_ID:
-				return getOperation_5OutgoingLinks(view);
+				return getOperation_InterfaceOperationLabel_OutgoingLinks(view);
 			case ReceptionInInterfaceEditPart.VISUAL_ID:
-				return getReception_6OutgoingLinks(view);
+				return getReception_InterfaceReceptionLabel_OutgoingLinks(view);
 			case InterfaceEditPartPCN.VISUAL_ID:
-				return getInterface_3072OutgoingLinks(view);
+				return getInterface_Shape_CN_OutgoingLinks(view);
 			case PropertyPartEditPartCN.VISUAL_ID:
-				return getProperty_3079OutgoingLinks(view);
+				return getProperty_Shape_OutgoingLinks(view);
 			case UsageEditPart.VISUAL_ID:
-				return getUsage_4001OutgoingLinks(view);
+				return getUsage_Edge_OutgoingLinks(view);
 			case InterfaceRealizationEditPart.VISUAL_ID:
-				return getInterfaceRealization_4006OutgoingLinks(view);
+				return getInterfaceRealization_Edge_OutgoingLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
-				return getGeneralization_4003OutgoingLinks(view);
+				return getGeneralization_Edge_OutgoingLinks(view);
 			case SubstitutionEditPart.VISUAL_ID:
-				return getSubstitution_4012OutgoingLinks(view);
+				return getSubstitution_Edge_OutgoingLinks(view);
 			case ManifestationEditPart.VISUAL_ID:
-				return getManifestation_4014OutgoingLinks(view);
+				return getManifestation_Edge_OutgoingLinks(view);
 			case ComponentRealizationEditPart.VISUAL_ID:
-				return getComponentRealization_4007OutgoingLinks(view);
+				return getComponentRealization_Edge_OutgoingLinks(view);
 			case AbstractionEditPart.VISUAL_ID:
-				return getAbstraction_4013OutgoingLinks(view);
+				return getAbstraction_Edge_OutgoingLinks(view);
 			case DependencyEditPart.VISUAL_ID:
-				return getDependency_4010OutgoingLinks(view);
+				return getDependency_Edge_OutgoingLinks(view);
 			case DependencyBranchEditPart.VISUAL_ID:
-				return getDependency_4017OutgoingLinks(view);
+				return getDependency_BranchEdge_OutgoingLinks(view);
 			case ConnectorEditPart.VISUAL_ID:
-				return getConnector_4019OutgoingLinks(view);
+				return getConnector_Edge_OutgoingLinks(view);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getPackage_1000ContainedLinks(View view) {
+	* @generated
+	*/
+	public List<UMLLinkDescriptor> getPackage_ComponentDiagram_ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_3203ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_2002ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_ContainedLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Connector_4019(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Connector_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getModel_3202ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getModel_Shape_ContainedLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPackage_3200ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPackage_Shape_ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3205ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_ClassifierShape_ContainedLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3201ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getComment_Shape_ContainedLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3199ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getConstraint_Shape_ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getNamedElement_3204ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getNamedElement_DefaultShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_2003ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_Shape_ContainedLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPort_3069ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPort_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getModel_3077ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getModel_Shape_CN_ContainedLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPackage_3076ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPackage_Shape_CN_ContainedLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3078ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_ClassifierShape_CN_ContainedLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_3070ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_CCN_ContainedLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Connector_4019(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Connector_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_3071ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_CN_ContainedLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Connector_4019(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Connector_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3074ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getComment_Shape_CN_ContainedLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3075ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getConstraint_Shape_CN_ContainedLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getProperty_1ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getProperty_InterfaceAttributeLabel_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getOperation_5ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getOperation_InterfaceOperationLabel_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getReception_6ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getReception_InterfaceReceptionLabel_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3072ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_Shape_CN_ContainedLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_4003(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getProperty_3079ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getProperty_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getUsage_4001ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getUsage_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterfaceRealization_4006ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getInterfaceRealization_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralization_4003ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getGeneralization_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getSubstitution_4012ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getSubstitution_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getManifestation_4014ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getManifestation_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponentRealization_4007ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getComponentRealization_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getAbstraction_4013ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getAbstraction_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_4010ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_4017ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_BranchEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConnector_4019ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getConnector_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_3203IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_Shape_IncomingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_2002IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_IncomingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getModel_3202IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getModel_Shape_IncomingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPackage_3200IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getPackage_Shape_IncomingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3205IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_ClassifierShape_IncomingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3201IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getComment_Shape_IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3199IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getConstraint_Shape_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getNamedElement_3204IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getNamedElement_DefaultShape_IncomingLinks(View view) {
 		NamedElement modelElement = (NamedElement) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_2003IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_Shape_IncomingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPort_3069IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getPort_Shape_IncomingLinks(View view) {
 		Port modelElement = (Port) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getModel_3077IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getModel_Shape_CN_IncomingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPackage_3076IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getPackage_Shape_CN_IncomingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3078IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_ClassifierShape_CN_IncomingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_3070IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_CCN_IncomingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_3071IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_CN_IncomingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3074IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getComment_Shape_CN_IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3075IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getConstraint_Shape_CN_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getProperty_1IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getProperty_InterfaceAttributeLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getOperation_5IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getOperation_InterfaceOperationLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getReception_6IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getReception_InterfaceReceptionLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3072IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_Shape_CN_IncomingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getProperty_3079IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getProperty_Shape_IncomingLinks(View view) {
 		Property modelElement = (Property) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getUsage_4001IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getUsage_Edge_IncomingLinks(View view) {
 		Usage modelElement = (Usage) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterfaceRealization_4006IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterfaceRealization_Edge_IncomingLinks(View view) {
 		InterfaceRealization modelElement = (InterfaceRealization) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralization_4003IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getGeneralization_Edge_IncomingLinks(View view) {
 		Generalization modelElement = (Generalization) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getSubstitution_4012IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getSubstitution_Edge_IncomingLinks(View view) {
 		Substitution modelElement = (Substitution) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getManifestation_4014IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getManifestation_Edge_IncomingLinks(View view) {
 		Manifestation modelElement = (Manifestation) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponentRealization_4007IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponentRealization_Edge_IncomingLinks(View view) {
 		ComponentRealization modelElement = (ComponentRealization) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getAbstraction_4013IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getAbstraction_Edge_IncomingLinks(View view) {
 		Abstraction modelElement = (Abstraction) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_4010IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_Edge_IncomingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_4017IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_BranchEdge_IncomingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConnector_4019IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getConnector_Edge_IncomingLinks(View view) {
 		Connector modelElement = (Connector) view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Usage_4001(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4012(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4014(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_BranchEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_3203OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_Shape_OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_2002OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_OutgoingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getModel_3202OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getModel_Shape_OutgoingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPackage_3200OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getPackage_Shape_OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3205OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_ClassifierShape_OutgoingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3201OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getComment_Shape_OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3199OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getConstraint_Shape_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getNamedElement_3204OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getNamedElement_DefaultShape_OutgoingLinks(View view) {
 		NamedElement modelElement = (NamedElement) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_2003OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_Shape_OutgoingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPort_3069OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getPort_Shape_OutgoingLinks(View view) {
 		Port modelElement = (Port) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getModel_3077OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getModel_Shape_CN_OutgoingLinks(View view) {
 		Model modelElement = (Model) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPackage_3076OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getPackage_Shape_CN_OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3078OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_ClassifierShape_CN_OutgoingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_3070OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_CCN_OutgoingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponent_3071OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponent_PackagedElementShape_CN_OutgoingLinks(View view) {
 		Component modelElement = (Component) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3074OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getComment_Shape_CN_OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3075OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getConstraint_Shape_CN_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getProperty_1OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getProperty_InterfaceAttributeLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getOperation_5OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getOperation_InterfaceOperationLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getReception_6OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getReception_InterfaceReceptionLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterface_3072OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterface_Shape_CN_OutgoingLinks(View view) {
 		Interface modelElement = (Interface) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Generalization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getProperty_3079OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getProperty_Shape_OutgoingLinks(View view) {
 		Property modelElement = (Property) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getUsage_4001OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getUsage_Edge_OutgoingLinks(View view) {
 		Usage modelElement = (Usage) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInterfaceRealization_4006OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getInterfaceRealization_Edge_OutgoingLinks(View view) {
 		InterfaceRealization modelElement = (InterfaceRealization) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralization_4003OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getGeneralization_Edge_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getSubstitution_4012OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getSubstitution_Edge_OutgoingLinks(View view) {
 		Substitution modelElement = (Substitution) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getManifestation_4014OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getManifestation_Edge_OutgoingLinks(View view) {
 		Manifestation modelElement = (Manifestation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComponentRealization_4007OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getComponentRealization_Edge_OutgoingLinks(View view) {
 		ComponentRealization modelElement = (ComponentRealization) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getAbstraction_4013OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getAbstraction_Edge_OutgoingLinks(View view) {
 		Abstraction modelElement = (Abstraction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_4010OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_Edge_OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDependency_4017OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getDependency_BranchEdge_OutgoingLinks(View view) {
 		Dependency modelElement = (Dependency) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConnector_4019OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getConnector_Edge_OutgoingLinks(View view) {
 		Connector modelElement = (Connector) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4001(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4012(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4014(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4013(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_Edge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Usage_4001(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Usage_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2366,7 +2424,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4001, UsageEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_Edge, UsageEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2374,7 +2432,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_InterfaceRealization_4006(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_InterfaceRealization_Edge(
+			Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2392,7 +2451,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.InterfaceRealization_4006, InterfaceRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.InterfaceRealization_Edge,
+					InterfaceRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2400,7 +2460,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_4003(Classifier container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_Edge(Classifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getGeneralizations().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2413,7 +2473,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			}
 			Classifier dst = link.getGeneral();
 			Classifier src = link.getSpecific();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4003, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_Edge,
+					GeneralizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2421,7 +2482,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Substitution_4012(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Substitution_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2444,7 +2505,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Substitution_4012, SubstitutionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Substitution_Edge,
+					SubstitutionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2452,7 +2514,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Manifestation_4014(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Manifestation_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2475,7 +2537,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Manifestation_4014, ManifestationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Manifestation_Edge,
+					ManifestationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2483,7 +2546,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ComponentRealization_4007(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_ComponentRealization_Edge(
+			Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2506,7 +2570,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ComponentRealization_4007, ComponentRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ComponentRealization_Edge,
+					ComponentRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2514,7 +2579,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Abstraction_4013(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Abstraction_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2537,7 +2602,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Abstraction_4013, AbstractionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Abstraction_Edge,
+					AbstractionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2545,7 +2611,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_4010(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2568,7 +2634,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4010, DependencyEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_Edge,
+					DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2576,7 +2643,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_4017(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Dependency_BranchEdge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2599,7 +2666,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4017, DependencyBranchEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_BranchEdge,
+					DependencyBranchEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2607,7 +2675,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Connector_4019(StructuredClassifier container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Connector_Edge(
+			StructuredClassifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getOwnedConnectors().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -2630,19 +2699,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			ConnectorEnd src = (ConnectorEnd) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Connector_4019, ConnectorEditPart.VISUAL_ID));
+			result.add(
+					new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Connector_Edge, ConnectorEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Usage_4001(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Usage_Edge(NamedElement target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Usage) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof Usage) {
 				continue;
 			}
 			Usage link = (Usage) setting.getEObject();
@@ -2655,19 +2727,21 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Usage_4001, UsageEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Usage_Edge, UsageEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_InterfaceRealization_4006(Interface target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(Interface target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getInterfaceRealization_Contract() || false == setting.getEObject() instanceof InterfaceRealization) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getInterfaceRealization_Contract()
+					|| false == setting.getEObject() instanceof InterfaceRealization) {
 				continue;
 			}
 			InterfaceRealization link = (InterfaceRealization) setting.getEObject();
@@ -2680,19 +2754,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.InterfaceRealization_4006, InterfaceRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.InterfaceRealization_Edge,
+					InterfaceRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_4003(Classifier target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_Edge(Classifier target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General() || false == setting.getEObject() instanceof Generalization) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General()
+					|| false == setting.getEObject() instanceof Generalization) {
 				continue;
 			}
 			Generalization link = (Generalization) setting.getEObject();
@@ -2700,19 +2777,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			Classifier src = link.getSpecific();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Generalization_4003, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Generalization_Edge,
+					GeneralizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Substitution_4012(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Substitution_Edge(NamedElement target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Substitution) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof Substitution) {
 				continue;
 			}
 			Substitution link = (Substitution) setting.getEObject();
@@ -2725,19 +2805,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Substitution_4012, SubstitutionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Substitution_Edge,
+					SubstitutionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Manifestation_4014(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Manifestation_Edge(NamedElement target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Manifestation) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof Manifestation) {
 				continue;
 			}
 			Manifestation link = (Manifestation) setting.getEObject();
@@ -2750,19 +2833,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Manifestation_4014, ManifestationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Manifestation_Edge,
+					ManifestationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ComponentRealization_4007(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_ComponentRealization_Edge(
+			NamedElement target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof ComponentRealization) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof ComponentRealization) {
 				continue;
 			}
 			ComponentRealization link = (ComponentRealization) setting.getEObject();
@@ -2775,19 +2861,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.ComponentRealization_4007, ComponentRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.ComponentRealization_Edge,
+					ComponentRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Abstraction_4013(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Abstraction_Edge(NamedElement target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Abstraction) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof Abstraction) {
 				continue;
 			}
 			Abstraction link = (Abstraction) setting.getEObject();
@@ -2800,47 +2889,55 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Abstraction_4013, AbstractionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Abstraction_Edge,
+					AbstractionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
+			Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4015, CommentAnnotatedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
+			Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4009, ConstraintConstrainedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.Constraint_ConstrainedElementEdge,
+						ConstraintConstrainedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_4010(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_Edge(NamedElement target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Dependency) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof Dependency) {
 				continue;
 			}
 			Dependency link = (Dependency) setting.getEObject();
@@ -2853,19 +2950,22 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4010, DependencyEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_Edge,
+					DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_4017(NamedElement target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Dependency_BranchEdge(NamedElement target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
-			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier() || false == setting.getEObject() instanceof Dependency) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getDependency_Supplier()
+					|| false == setting.getEObject() instanceof Dependency) {
 				continue;
 			}
 			Dependency link = (Dependency) setting.getEObject();
@@ -2878,7 +2978,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4017, DependencyBranchEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_BranchEdge,
+					DependencyBranchEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2886,7 +2987,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Usage_4001(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Usage_Edge(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -2924,7 +3025,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4001, UsageEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_Edge, UsageEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2932,7 +3033,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_InterfaceRealization_4006(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_InterfaceRealization_Edge(
+			NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -2965,7 +3067,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.InterfaceRealization_4006, InterfaceRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.InterfaceRealization_Edge,
+					InterfaceRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2973,7 +3076,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Generalization_4003(Classifier source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Generalization_Edge(Classifier source) {
 		Classifier container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3001,7 +3104,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_4003, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Generalization_Edge,
+					GeneralizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3009,7 +3113,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Substitution_4012(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Substitution_Edge(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3047,7 +3151,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Substitution_4012, SubstitutionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Substitution_Edge,
+					SubstitutionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3055,7 +3160,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Manifestation_4014(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Manifestation_Edge(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3093,7 +3198,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Manifestation_4014, ManifestationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Manifestation_Edge,
+					ManifestationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3101,7 +3207,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_ComponentRealization_4007(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_ComponentRealization_Edge(
+			NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3139,7 +3246,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ComponentRealization_4007, ComponentRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ComponentRealization_Edge,
+					ComponentRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3147,7 +3255,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Abstraction_4013(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Abstraction_Edge(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3185,7 +3293,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Abstraction_4013, AbstractionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Abstraction_Edge,
+					AbstractionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3193,11 +3302,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4015(Comment source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
+			Comment source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4015, CommentAnnotatedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge,
+					CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3205,11 +3316,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4009(Constraint source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
+			Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4009, ConstraintConstrainedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge,
+					ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3217,7 +3330,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_4010(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_Edge(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3255,7 +3368,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4010, DependencyEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_Edge,
+					DependencyEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -3263,7 +3377,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_4017(NamedElement source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Dependency_BranchEdge(NamedElement source) {
 		Package container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
@@ -3301,7 +3415,8 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4017, DependencyBranchEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_BranchEdge,
+					DependencyBranchEditPart.VISUAL_ID));
 		}
 		return result;
 	}

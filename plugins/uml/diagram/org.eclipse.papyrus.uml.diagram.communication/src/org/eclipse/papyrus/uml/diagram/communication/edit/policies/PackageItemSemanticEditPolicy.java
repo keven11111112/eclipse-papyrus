@@ -32,7 +32,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	public PackageItemSemanticEditPolicy() {
-		super(UMLElementTypes.Package_1000);
+		super(UMLElementTypes.Package_CommunicationDiagram);
 	}
 
 	/**
@@ -46,12 +46,12 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		}
 
 
-		if (UMLElementTypes.Interaction_8002 == requestElementType) {
+		if (UMLElementTypes.Interaction_Shape == requestElementType) {
 
 			return getGEFWrapper(new InteractionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.Diagram_8016 == requestElementType) {
+		if (UMLElementTypes.Diagram_ShortcutShape == requestElementType) {
 
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 

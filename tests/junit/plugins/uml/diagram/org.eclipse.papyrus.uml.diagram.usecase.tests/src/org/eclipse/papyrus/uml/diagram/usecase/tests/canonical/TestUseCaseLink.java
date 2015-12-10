@@ -40,7 +40,7 @@ public class TestUseCaseLink extends TestLink {
 	 */
 	@Test
 	public void testToManageDependency() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Dependency_4013,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLElementTypes.Dependency_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	
 	@Override
@@ -58,28 +58,28 @@ public class TestUseCaseLink extends TestLink {
 	 */
 	@Test
 	public void testToManageDependencyUseCase_Actor() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.Actor_2011,UMLElementTypes.Dependency_4013,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.Actor_Shape,UMLElementTypes.Dependency_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	@Test
 	public void testToManageAssociationUseCase_UseCase() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Association_4011,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLElementTypes.Association_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	@Test
 	public void testToManageAssociationUseCase_Actor() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.Actor_2011,UMLElementTypes.Association_4011,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.Actor_Shape,UMLElementTypes.Association_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	
 	@Test
 	public void testToManageAbstraction() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Abstraction_4015,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLElementTypes.Abstraction_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	@Test
 	public void testToManageUsage() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Usage_4016,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLElementTypes.Usage_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	@Test
 	public void testToManageRealization() {
-		testToManageLink(UMLElementTypes.UseCase_2013,UMLElementTypes.UseCase_2013,UMLElementTypes.Realization_4017,UMLElementTypes.Package_2016,true);
+		testToManageLink(UMLElementTypes.UseCase_Shape,UMLElementTypes.UseCase_Shape,UMLElementTypes.Realization_Edge,UMLElementTypes.Package_Shape,true);
 	}
 	
 }

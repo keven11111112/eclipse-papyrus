@@ -45,7 +45,7 @@ public class ContinuationStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		InteractionOperandEditPart operand = (InteractionOperandEditPart)compartment.getChildBySemanticHint("" + InteractionOperandEditPart.VISUAL_ID);
 		final CombinedFragment element = (CombinedFragment)cf.resolveSemanticElement();
@@ -56,7 +56,7 @@ public class ContinuationStereotypesTest extends BaseStereotypesTest {
 				element.setInteractionOperator(InteractionOperatorKind.ALT_LITERAL);
 			}
 		});
-		continuation = (ContinuationEditPart)createNode(UMLElementTypes.Continuation_3016, operand, SequenceUtil.getAbsoluteBounds(operand).getCenter(), null);
+		continuation = (ContinuationEditPart)createNode(UMLElementTypes.Continuation_Shape, operand, SequenceUtil.getAbsoluteBounds(operand).getCenter(), null);
 		assertNotNull(continuation);
 	}
 

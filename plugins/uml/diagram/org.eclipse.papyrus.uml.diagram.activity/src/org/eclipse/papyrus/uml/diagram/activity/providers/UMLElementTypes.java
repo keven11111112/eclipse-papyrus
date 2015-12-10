@@ -49,7 +49,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
+			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -57,949 +58,1138 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType Package_1000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Package_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Package_ActivityDiagram = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Package_ActivityDiagram"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_2001 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Activity_2001"); //$NON-NLS-1$
+	public static final IElementType Activity_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Activity_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Parameter_3001 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"); //$NON-NLS-1$
+	public static final IElementType Parameter_ParameterLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Parameter_ParameterLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_3002 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Constraint_3002"); //$NON-NLS-1$
+	public static final IElementType Constraint_PreconditionLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_PreconditionLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_3003 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Constraint_3003"); //$NON-NLS-1$
+	public static final IElementType Constraint_PostconditionLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_PostconditionLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialNode_3004 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004"); //$NON-NLS-1$
+	public static final IElementType InitialNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InitialNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActivityFinalNode_3005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005"); //$NON-NLS-1$
+	public static final IElementType ActivityFinalNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType FlowFinalNode_3006 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006"); //$NON-NLS-1$
+	public static final IElementType FlowFinalNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.FlowFinalNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OpaqueAction_3007 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007"); //$NON-NLS-1$
+	public static final IElementType OpaqueAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OpaqueAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3015 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"); //$NON-NLS-1$
+	public static final IElementType ValuePin_OpaqueActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_OpaqueActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3016 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_OpaqueActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_OpaqueActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3013 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"); //$NON-NLS-1$
+	public static final IElementType InputPin_OpaqueActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_OpaqueActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3014 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"); //$NON-NLS-1$
+	public static final IElementType OutputPin_OpaqueActionOutputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_OpaqueActionOutputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CallBehaviorAction_3008 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"); //$NON-NLS-1$
+	public static final IElementType CallBehaviorAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CallBehaviorAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3017 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3018 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3019 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3019"); //$NON-NLS-1$
+	public static final IElementType InputPin_CallBehaviorActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_CallBehaviorActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3020 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CallBehaviorActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_CallBehaviorActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CallOperationAction_3010 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"); //$NON-NLS-1$
+	public static final IElementType CallOperationAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CallOperationAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3021 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CallOperationActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3022 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CallOperationActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_CallOperationActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3023 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3023"); //$NON-NLS-1$
+	public static final IElementType InputPin_CallOperationActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_CallOperationActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3024 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CallOperationActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_CallOperationActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3025 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CallOperationActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_CallOperationActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3026 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CallOperationActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3027 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3027"); //$NON-NLS-1$
+	public static final IElementType InputPin_CallOperationActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_CallOperationActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_3011 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Constraint_3011"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_LocalPreconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_LocalPreconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_3012 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Constraint_3012"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_LocalPostconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DecisionNode_3038 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_LocalPreconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeConstraint_LocalPreconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType MergeNode_3039 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_LocalPostconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TimeConstraint_LocalPostconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ForkNode_3040 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040"); //$NON-NLS-1$
+	public static final IElementType IntervalConstraint_LocalPreconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.IntervalConstraint_LocalPreconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType JoinNode_3041 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041"); //$NON-NLS-1$
+	public static final IElementType IntervalConstraint_LocalPostconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.IntervalConstraint_LocalPostconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType SendObjectAction_3042 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042"); //$NON-NLS-1$
+	public static final IElementType Constraint_LocalPreconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_LocalPreconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3046 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046"); //$NON-NLS-1$
+	public static final IElementType Constraint_LocalPostconditionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_LocalPostconditionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3047 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047"); //$NON-NLS-1$
+	public static final IElementType DecisionNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DecisionNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3048 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3048"); //$NON-NLS-1$
+	public static final IElementType MergeNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.MergeNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3049 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049"); //$NON-NLS-1$
+	public static final IElementType ForkNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ForkNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3050 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050"); //$NON-NLS-1$
+	public static final IElementType JoinNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.JoinNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3051 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3051"); //$NON-NLS-1$
+	public static final IElementType DataStoreNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DataStoreNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType SendSignalAction_3052 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"); //$NON-NLS-1$
+	public static final IElementType SendObjectAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.SendObjectAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3053 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendObjectActionRequestShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_SendObjectActionRequestShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3054 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendObjectActionRequestShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionRequestShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3055 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3055"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendObjectActionRequestShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_SendObjectActionRequestShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3060 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendObjectActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_SendObjectActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3061 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendObjectActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3062 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3062"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendObjectActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_SendObjectActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActivityParameterNode_3059 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059"); //$NON-NLS-1$
+	public static final IElementType SendSignalAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.SendSignalAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType AcceptEventAction_3063 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendSignalActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3064 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendSignalActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_SendSignalActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType StructuredActivityNode_3065 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendSignalActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_SendSignalActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3188 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3188"); //$NON-NLS-1$
+	public static final IElementType ValuePin_SendSignalActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_SendSignalActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3189 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3189"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_SendSignalActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3190 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3190"); //$NON-NLS-1$
+	public static final IElementType InputPin_SendSignalActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_SendSignalActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3191 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3191"); //$NON-NLS-1$
+	public static final IElementType ActivityParameterNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActivityParameterNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3105 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"); //$NON-NLS-1$
+	public static final IElementType AcceptEventAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AcceptEventAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3192 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3192"); //$NON-NLS-1$
+	public static final IElementType OutputPin_AcceptEventActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_AcceptEventActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3193 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3193"); //$NON-NLS-1$
+	public static final IElementType ValueSpecificationAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValueSpecificationAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActivityPartition_3067 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ValueSpecificationActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ValueSpecificationActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InterruptibleActivityRegion_3068 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068"); //$NON-NLS-1$
+	public static final IElementType ConditionalNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ConditionalNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_3080 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Comment_3080"); //$NON-NLS-1$
+	public static final IElementType ExpansionRegion_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ExpansionRegion_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadSelfAction_3081 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081"); //$NON-NLS-1$
+	public static final IElementType ExpansionNode_InputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ExpansionNode_InputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3084 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3084"); //$NON-NLS-1$
+	public static final IElementType ExpansionNode_OutputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ExpansionNode_OutputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_3083 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Activity_3083"); //$NON-NLS-1$
+	public static final IElementType LoopNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.LoopNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType NamedElement_3085 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085"); //$NON-NLS-1$
+	public static final IElementType InputPin_LoopNodeVariableInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_LoopNodeVariableInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CreateObjectAction_3086 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086"); //$NON-NLS-1$
+	public static final IElementType ValuePin_LoopNodeVariableInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_LoopNodeVariableInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3087 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_LoopNodeVariableInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_LoopNodeVariableInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadStructuralFeatureAction_3088 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088"); //$NON-NLS-1$
+	public static final IElementType OutputPin_LoopNodeBodyOutputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_LoopNodeBodyOutputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3089 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"); //$NON-NLS-1$
+	public static final IElementType OutputPin_LoopNodeVariableShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_LoopNodeVariableShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3203 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3203"); //$NON-NLS-1$
+	public static final IElementType OutputPin_LoopNodeResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_LoopNodeResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3204 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionPin_3204"); //$NON-NLS-1$
+	public static final IElementType SequenceNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.SequenceNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3090 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"); //$NON-NLS-1$
+	public static final IElementType StructuredActivityNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StructuredActivityNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType AddStructuralFeatureValueAction_3091 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091"); //$NON-NLS-1$
+	public static final IElementType InputPin_StructuredActivityNodeInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3092 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3092"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StructuredActivityNodeInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3093 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3093"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StructuredActivityNodeInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_StructuredActivityNodeInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3181 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3181"); //$NON-NLS-1$
+	public static final IElementType OutputPin_StructuredActivityNodeOutputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_StructuredActivityNodeOutputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3182 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3182"); //$NON-NLS-1$
+	public static final IElementType ActivityPartition_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActivityPartition_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3183 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3183"); //$NON-NLS-1$
+	public static final IElementType InterruptibleActivityRegion_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InterruptibleActivityRegion_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3184 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3184"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3185 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3185"); //$NON-NLS-1$
+	public static final IElementType ReadSelfAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReadSelfAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3186 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3186"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadSelfActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReadSelfActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3187 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3187"); //$NON-NLS-1$
+	public static final IElementType Activity_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Activity_Shape_CN"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3094 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"); //$NON-NLS-1$
+	public static final IElementType CreateObjectAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CreateObjectAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestroyObjectAction_3095 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CreateObjectActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_CreateObjectActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3096 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3096"); //$NON-NLS-1$
+	public static final IElementType NamedElement_DefaultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.NamedElement_DefaultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3173 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3173"); //$NON-NLS-1$
+	public static final IElementType ReadStructuralFeatureAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReadStructuralFeatureAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3174 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3174"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadVariableAction_3097 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3098 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReadStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ReadStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType AddVariableValueAction_3099 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadStructuralFeatureActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReadStructuralFeatureActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3100 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3100"); //$NON-NLS-1$
+	public static final IElementType AddStructuralFeatureValueAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AddStructuralFeatureValueAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3101 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3101"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3175 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3175"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3176 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3176"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3177 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActoinInputPin_3177"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3178 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3178"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType BroadcastSignalAction_3102 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3103 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3103"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3179 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3179"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionValueShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionValueShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3180 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3180"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddStructuralFeatureValueActionInsertAtShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionInsertAtShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CentralBufferNode_3104 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104"); //$NON-NLS-1$
+	public static final IElementType OutputPin_AddStructuralFeatureValueActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_AddStructuralFeatureValueActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_3112 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"); //$NON-NLS-1$
+	public static final IElementType DestroyObjectAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DestroyObjectAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType StartObjectBehaviorAction_3113 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.StartObjectBehaviorAction_3113"); //$NON-NLS-1$
+	public static final IElementType InputPin_DestroyObjectActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3125 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3125"); //$NON-NLS-1$
+	public static final IElementType ValuePin_DestroyObjectActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3132 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3132"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_DestroyObjectActionTargetShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_DestroyObjectActionTargetShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3145 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3145"); //$NON-NLS-1$
+	public static final IElementType ReadVariableAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReadVariableAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3158 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3158"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadVariableActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReadVariableActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3133 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3133"); //$NON-NLS-1$
+	public static final IElementType AddVariableValueAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.AddVariableValueAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3146 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3146"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3159 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3159"); //$NON-NLS-1$
+	public static final IElementType InputPin_AddVariableValueActionValueShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionValueShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TestIdentityAction_3114 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.TestIdentityAction_3114"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3126 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3126"); //$NON-NLS-1$
+	public static final IElementType ValuePin_AddVariableValueActionValueShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionValueShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3134 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3134"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddVariableValueActionInsertAtShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionInsertAtShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3135 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3135"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_AddVariableValueActionValueShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionValueShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3147 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3147"); //$NON-NLS-1$
+	public static final IElementType BroadcastSignalAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.BroadcastSignalAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3148 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3148"); //$NON-NLS-1$
+	public static final IElementType InputPin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3160 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3160"); //$NON-NLS-1$
+	public static final IElementType ValuePin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3161 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3161"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_BroadcastSignalActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_BroadcastSignalActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClearStructuralFeatureAction_3115 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ClearStructuralFeatureAction_3115"); //$NON-NLS-1$
+	public static final IElementType CentralBufferNode_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CentralBufferNode_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3127 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3127"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3136 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3136"); //$NON-NLS-1$
+	public static final IElementType StartObjectBehaviorAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StartObjectBehaviorAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3149 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3149"); //$NON-NLS-1$
+	public static final IElementType OutputPin_StartObjectBehaviorActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_StartObjectBehaviorActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3162 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3162"); //$NON-NLS-1$
+	public static final IElementType InputPin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CreateLinkAction_3117 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CreateLinkAction_3117"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3137 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3137"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StartObjectBehaviorActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3151 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3151"); //$NON-NLS-1$
+	public static final IElementType InputPin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3163 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3163"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadLinkAction_3116 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReadLinkAction_3116"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StartObjectBehaviorActionArgumentShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionArgumentShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3128 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3128"); //$NON-NLS-1$
+	public static final IElementType TestIdentityAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.TestIdentityAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3138 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3138"); //$NON-NLS-1$
+	public static final IElementType OutputPin_TestIdentityActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_TestIdentityActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3150 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3150"); //$NON-NLS-1$
+	public static final IElementType InputPin_TestIdentityActionFirstShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_TestIdentityActionFirstShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3164 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3164"); //$NON-NLS-1$
+	public static final IElementType InputPin_TestIdentityActionSecondShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_TestIdentityActionSecondShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestroyLinkAction_3118 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.DestroyLinkAction_3118"); //$NON-NLS-1$
+	public static final IElementType ValuePin_TestIdentityActionFirstShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionFirstShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3139 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3139"); //$NON-NLS-1$
+	public static final IElementType ValuePin_TestIdentityActionSecondShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionSecondShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3152 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3152"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_TestIdentityActionFirstShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionFirstShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3165 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3165"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_TestIdentityActionSecondShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionSecondShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClearAssociationAction_3119 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ClearAssociationAction_3119"); //$NON-NLS-1$
+	public static final IElementType ClearStructuralFeatureAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ClearStructuralFeatureAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3140 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3140"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ClearStructuralFeatureActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ClearStructuralFeatureActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3153 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3153"); //$NON-NLS-1$
+	public static final IElementType InputPin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3166 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3166"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadExtentAction_3120 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReadExtentAction_3120"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ClearStructuralFeatureActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ClearStructuralFeatureActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3129 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3129"); //$NON-NLS-1$
+	public static final IElementType CreateLinkAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CreateLinkAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReclassifyObjectAction_3121 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReclassifyObjectAction_3121"); //$NON-NLS-1$
+	public static final IElementType InputPin_CreateLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_CreateLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3141 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3141"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CreateLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_CreateLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3154 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3154"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CreateLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3167 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3167"); //$NON-NLS-1$
+	public static final IElementType ReadLinkAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReadLinkAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReadIsClassifiedObjectAction_3122 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReadIsClassifiedObjectAction_3122"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadLinkActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReadLinkActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3130 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3130"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReadLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ReadLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3142 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3142"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReadLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ReadLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3155 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3155"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReadLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ReadLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3168 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3168"); //$NON-NLS-1$
+	public static final IElementType DestroyLinkAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.DestroyLinkAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ReduceAction_3123 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ReduceAction_3123"); //$NON-NLS-1$
+	public static final IElementType InputPin_DestroyLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_DestroyLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3131 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3131"); //$NON-NLS-1$
+	public static final IElementType ValuePin_DestroyLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_DestroyLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3143 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3143"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_DestroyLinkActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_DestroyLinkActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3156 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3156"); //$NON-NLS-1$
+	public static final IElementType ClearAssociationAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ClearAssociationAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3169 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3169"); //$NON-NLS-1$
+	public static final IElementType InputPin_ClearAssociationActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType StartClassifierBehaviorAction_3124 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.StartClassifierBehaviorAction_3124"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ClearAssociationActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3144 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3144"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ClearAssociationActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ClearAssociationActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3157 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3157"); //$NON-NLS-1$
+	public static final IElementType ReadExtentAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReadExtentAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3170 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3170"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadExtentActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReadExtentActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CreateLinkObjectAction_3198 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CreateLinkObjectAction_3198"); //$NON-NLS-1$
+	public static final IElementType ReclassifyObjectAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReclassifyObjectAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InputPin_3199 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.InputPin_3199"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValuePin_3200 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3200"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionInputPin_3201 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3201"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReclassifyObjectActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ReclassifyObjectActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3202 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3202"); //$NON-NLS-1$
+	public static final IElementType ReadIsClassifiedObjectAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReadIsClassifiedObjectAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ValueSpecificationAction_3076 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReadIsClassifiedObjectActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReadIsClassifiedObjectActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3077 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DataStoreNode_3078 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConditionalNode_3069 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReadIsClassifiedObjectActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ReadIsClassifiedObjectActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExpansionRegion_3070 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070"); //$NON-NLS-1$
+	public static final IElementType ReduceAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ReduceAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExpansionNode_3074 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"); //$NON-NLS-1$
+	public static final IElementType OutputPin_ReduceActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_ReduceActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExpansionNode_3075 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"); //$NON-NLS-1$
+	public static final IElementType InputPin_ReduceActionCollectionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_ReduceActionCollectionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType LoopNode_3071 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"); //$NON-NLS-1$
+	public static final IElementType ValuePin_ReduceActionCollectionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_ReduceActionCollectionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3109 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_ReduceActionCollectionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_ReduceActionCollectionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3110 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"); //$NON-NLS-1$
+	public static final IElementType StartClassifierBehaviorAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StartClassifierBehaviorAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType OutputPin_3111 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"); //$NON-NLS-1$
+	public static final IElementType InputPin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType SequenceNode_3073 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073"); //$NON-NLS-1$
+	public static final IElementType ValuePin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType IntervalConstraint_3032 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_StartClassifierBehaviorActionObjectShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_StartClassifierBehaviorActionObjectShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType IntervalConstraint_3033 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033"); //$NON-NLS-1$
+	public static final IElementType CreateLinkObjectAction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.CreateLinkObjectAction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_3034 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"); //$NON-NLS-1$
+	public static final IElementType InputPin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.InputPin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_3035 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035"); //$NON-NLS-1$
+	public static final IElementType ValuePin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ValuePin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_3036 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"); //$NON-NLS-1$
+	public static final IElementType ActionInputPin_CreateLinkObjectActionInputShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkObjectActionInputShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_3037 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037"); //$NON-NLS-1$
+	public static final IElementType OutputPin_CreateLinkObjectActionResultShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionLocalPrecondition_4001 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionLocalPrecondition_4001"); //$NON-NLS-1$
+	public static final IElementType Action_LocalPreconditionEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Action_LocalPreconditionEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionLocalPostcondition_4002 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ActionLocalPostcondition_4002"); //$NON-NLS-1$
+	public static final IElementType Action_LocalPostconditionEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Action_LocalPostconditionEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ObjectFlow_4003 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003"); //$NON-NLS-1$
+	public static final IElementType ObjectFlow_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ObjectFlow_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ControlFlow_4004 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004"); //$NON-NLS-1$
+	public static final IElementType ControlFlow_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ControlFlow_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ExceptionHandler_4005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005"); //$NON-NLS-1$
+	public static final IElementType ExceptionHandler_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ExceptionHandler_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CommentAnnotatedElement_4006 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.CommentAnnotatedElement_4006"); //$NON-NLS-1$
+	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintConstrainedElement_4007 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.activity.ConstraintConstrainedElement_4007"); //$NON-NLS-1$
+	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -1038,195 +1228,393 @@ public class UMLElementTypes {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-			elements.put(Activity_2001, UMLPackage.eINSTANCE.getActivity());
-			elements.put(Parameter_3001, UMLPackage.eINSTANCE.getParameter());
-			elements.put(Constraint_3002, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(Constraint_3003, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(InitialNode_3004, UMLPackage.eINSTANCE.getInitialNode());
-			elements.put(ActivityFinalNode_3005, UMLPackage.eINSTANCE.getActivityFinalNode());
-			elements.put(FlowFinalNode_3006, UMLPackage.eINSTANCE.getFlowFinalNode());
-			elements.put(OpaqueAction_3007, UMLPackage.eINSTANCE.getOpaqueAction());
-			elements.put(ValuePin_3015, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3016, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3013, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(OutputPin_3014, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction());
-			elements.put(ValuePin_3017, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3018, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3019, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(OutputPin_3020, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction());
-			elements.put(ActionInputPin_3021, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ValuePin_3022, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(InputPin_3023, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(OutputPin_3024, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(ValuePin_3025, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3026, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3027, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(DurationConstraint_3034, UMLPackage.eINSTANCE.getDurationConstraint());
-			elements.put(DurationConstraint_3035, UMLPackage.eINSTANCE.getDurationConstraint());
-			elements.put(TimeConstraint_3036, UMLPackage.eINSTANCE.getTimeConstraint());
-			elements.put(TimeConstraint_3037, UMLPackage.eINSTANCE.getTimeConstraint());
-			elements.put(IntervalConstraint_3032, UMLPackage.eINSTANCE.getIntervalConstraint());
-			elements.put(IntervalConstraint_3033, UMLPackage.eINSTANCE.getIntervalConstraint());
-			elements.put(Constraint_3011, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(Constraint_3012, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(DecisionNode_3038, UMLPackage.eINSTANCE.getDecisionNode());
-			elements.put(MergeNode_3039, UMLPackage.eINSTANCE.getMergeNode());
-			elements.put(ForkNode_3040, UMLPackage.eINSTANCE.getForkNode());
-			elements.put(JoinNode_3041, UMLPackage.eINSTANCE.getJoinNode());
-			elements.put(DataStoreNode_3078, UMLPackage.eINSTANCE.getDataStoreNode());
-			elements.put(SendObjectAction_3042, UMLPackage.eINSTANCE.getSendObjectAction());
-			elements.put(ValuePin_3046, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3047, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3048, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3049, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3050, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3051, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(SendSignalAction_3052, UMLPackage.eINSTANCE.getSendSignalAction());
-			elements.put(ActionInputPin_3053, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ValuePin_3054, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(InputPin_3055, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3060, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3061, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3062, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ActivityParameterNode_3059, UMLPackage.eINSTANCE.getActivityParameterNode());
-			elements.put(AcceptEventAction_3063, UMLPackage.eINSTANCE.getAcceptEventAction());
-			elements.put(OutputPin_3064, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(ValueSpecificationAction_3076, UMLPackage.eINSTANCE.getValueSpecificationAction());
-			elements.put(OutputPin_3077, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(ConditionalNode_3069, UMLPackage.eINSTANCE.getConditionalNode());
-			elements.put(ExpansionRegion_3070, UMLPackage.eINSTANCE.getExpansionRegion());
-			elements.put(ExpansionNode_3074, UMLPackage.eINSTANCE.getExpansionNode());
-			elements.put(ExpansionNode_3075, UMLPackage.eINSTANCE.getExpansionNode());
-			elements.put(LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode());
-			elements.put(InputPin_3105, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3192, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3193, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(OutputPin_3109, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(OutputPin_3110, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(OutputPin_3111, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode());
-			elements.put(StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode());
-			elements.put(InputPin_3188, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3189, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3190, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(OutputPin_3191, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(ActivityPartition_3067, UMLPackage.eINSTANCE.getActivityPartition());
-			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
-			elements.put(Comment_3080, UMLPackage.eINSTANCE.getComment());
-			elements.put(ReadSelfAction_3081, UMLPackage.eINSTANCE.getReadSelfAction());
-			elements.put(OutputPin_3084, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(Activity_3083, UMLPackage.eINSTANCE.getActivity());
-			elements.put(CreateObjectAction_3086, UMLPackage.eINSTANCE.getCreateObjectAction());
-			elements.put(OutputPin_3087, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(NamedElement_3085, UMLPackage.eINSTANCE.getNamedElement());
-			elements.put(ReadStructuralFeatureAction_3088, UMLPackage.eINSTANCE.getReadStructuralFeatureAction());
-			elements.put(InputPin_3089, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3203, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3204, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(OutputPin_3090, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(AddStructuralFeatureValueAction_3091, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
-			elements.put(InputPin_3092, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(InputPin_3093, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(InputPin_3181, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3182, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ValuePin_3183, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ValuePin_3184, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3185, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ActionInputPin_3186, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ActionInputPin_3187, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(OutputPin_3094, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(DestroyObjectAction_3095, UMLPackage.eINSTANCE.getDestroyObjectAction());
-			elements.put(InputPin_3096, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3173, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3174, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ReadVariableAction_3097, UMLPackage.eINSTANCE.getReadVariableAction());
-			elements.put(OutputPin_3098, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(AddVariableValueAction_3099, UMLPackage.eINSTANCE.getAddVariableValueAction());
-			elements.put(InputPin_3100, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(InputPin_3101, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3175, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ValuePin_3176, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3177, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ActionInputPin_3178, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(BroadcastSignalAction_3102, UMLPackage.eINSTANCE.getBroadcastSignalAction());
-			elements.put(InputPin_3103, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3179, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3180, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(CentralBufferNode_3104, UMLPackage.eINSTANCE.getCentralBufferNode());
-			elements.put(Constraint_3112, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(StartObjectBehaviorAction_3113, UMLPackage.eINSTANCE.getStartObjectBehaviorAction());
-			elements.put(OutputPin_3125, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(InputPin_3132, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3145, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3158, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(InputPin_3133, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3146, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3159, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(TestIdentityAction_3114, UMLPackage.eINSTANCE.getTestIdentityAction());
-			elements.put(OutputPin_3126, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(InputPin_3134, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(InputPin_3135, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3147, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ValuePin_3148, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3160, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ActionInputPin_3161, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ClearStructuralFeatureAction_3115, UMLPackage.eINSTANCE.getClearStructuralFeatureAction());
-			elements.put(OutputPin_3127, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(InputPin_3136, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3149, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3162, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(CreateLinkAction_3117, UMLPackage.eINSTANCE.getCreateLinkAction());
-			elements.put(InputPin_3137, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3151, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3163, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ReadLinkAction_3116, UMLPackage.eINSTANCE.getReadLinkAction());
-			elements.put(OutputPin_3128, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(InputPin_3138, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3150, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3164, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(DestroyLinkAction_3118, UMLPackage.eINSTANCE.getDestroyLinkAction());
-			elements.put(InputPin_3139, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3152, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3165, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ClearAssociationAction_3119, UMLPackage.eINSTANCE.getClearAssociationAction());
-			elements.put(InputPin_3140, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3153, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3166, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ReadExtentAction_3120, UMLPackage.eINSTANCE.getReadExtentAction());
-			elements.put(OutputPin_3129, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(ReclassifyObjectAction_3121, UMLPackage.eINSTANCE.getReclassifyObjectAction());
-			elements.put(InputPin_3141, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3154, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3167, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ReadIsClassifiedObjectAction_3122, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction());
-			elements.put(OutputPin_3130, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(InputPin_3142, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3155, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3168, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(ReduceAction_3123, UMLPackage.eINSTANCE.getReduceAction());
-			elements.put(OutputPin_3131, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(InputPin_3143, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3156, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3169, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(StartClassifierBehaviorAction_3124, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction());
-			elements.put(InputPin_3144, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3157, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3170, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(CreateLinkObjectAction_3198, UMLPackage.eINSTANCE.getCreateLinkObjectAction());
-			elements.put(InputPin_3199, UMLPackage.eINSTANCE.getInputPin());
-			elements.put(ValuePin_3200, UMLPackage.eINSTANCE.getValuePin());
-			elements.put(ActionInputPin_3201, UMLPackage.eINSTANCE.getActionInputPin());
-			elements.put(OutputPin_3202, UMLPackage.eINSTANCE.getOutputPin());
-			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
-			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
-			elements.put(ControlFlow_4004, UMLPackage.eINSTANCE.getControlFlow());
-			elements.put(ExceptionHandler_4005, UMLPackage.eINSTANCE.getExceptionHandler());
-			elements.put(CommentAnnotatedElement_4006, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-			elements.put(ConstraintConstrainedElement_4007, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
+			elements.put(Package_ActivityDiagram, UMLPackage.eINSTANCE.getPackage());
+
+			elements.put(Activity_Shape, UMLPackage.eINSTANCE.getActivity());
+
+			elements.put(Parameter_ParameterLabel, UMLPackage.eINSTANCE.getParameter());
+
+			elements.put(Constraint_PreconditionLabel, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(Constraint_PostconditionLabel, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(InitialNode_Shape, UMLPackage.eINSTANCE.getInitialNode());
+
+			elements.put(ActivityFinalNode_Shape, UMLPackage.eINSTANCE.getActivityFinalNode());
+
+			elements.put(FlowFinalNode_Shape, UMLPackage.eINSTANCE.getFlowFinalNode());
+
+			elements.put(OpaqueAction_Shape, UMLPackage.eINSTANCE.getOpaqueAction());
+
+			elements.put(ValuePin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_OpaqueActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(OutputPin_OpaqueActionOutputShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(CallBehaviorAction_Shape, UMLPackage.eINSTANCE.getCallBehaviorAction());
+
+			elements.put(ValuePin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_CallBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(OutputPin_CallBehaviorActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(CallOperationAction_Shape, UMLPackage.eINSTANCE.getCallOperationAction());
+
+			elements.put(ActionInputPin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ValuePin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(InputPin_CallOperationActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(OutputPin_CallOperationActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(ValuePin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_CallOperationActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(DurationConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(DurationConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(TimeConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getTimeConstraint());
+
+			elements.put(TimeConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getTimeConstraint());
+
+			elements.put(IntervalConstraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getIntervalConstraint());
+
+			elements.put(IntervalConstraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getIntervalConstraint());
+
+			elements.put(Constraint_LocalPreconditionShape, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(Constraint_LocalPostconditionShape, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(DecisionNode_Shape, UMLPackage.eINSTANCE.getDecisionNode());
+
+			elements.put(MergeNode_Shape, UMLPackage.eINSTANCE.getMergeNode());
+
+			elements.put(ForkNode_Shape, UMLPackage.eINSTANCE.getForkNode());
+
+			elements.put(JoinNode_Shape, UMLPackage.eINSTANCE.getJoinNode());
+
+			elements.put(DataStoreNode_Shape, UMLPackage.eINSTANCE.getDataStoreNode());
+
+			elements.put(SendObjectAction_Shape, UMLPackage.eINSTANCE.getSendObjectAction());
+
+			elements.put(ValuePin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_SendObjectActionRequestShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_SendObjectActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(SendSignalAction_Shape, UMLPackage.eINSTANCE.getSendSignalAction());
+
+			elements.put(ActionInputPin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ValuePin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(InputPin_SendSignalActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_SendSignalActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ActivityParameterNode_Shape, UMLPackage.eINSTANCE.getActivityParameterNode());
+
+			elements.put(AcceptEventAction_Shape, UMLPackage.eINSTANCE.getAcceptEventAction());
+
+			elements.put(OutputPin_AcceptEventActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(ValueSpecificationAction_Shape, UMLPackage.eINSTANCE.getValueSpecificationAction());
+
+			elements.put(OutputPin_ValueSpecificationActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(ConditionalNode_Shape, UMLPackage.eINSTANCE.getConditionalNode());
+
+			elements.put(ExpansionRegion_Shape, UMLPackage.eINSTANCE.getExpansionRegion());
+
+			elements.put(ExpansionNode_InputShape, UMLPackage.eINSTANCE.getExpansionNode());
+
+			elements.put(ExpansionNode_OutputShape, UMLPackage.eINSTANCE.getExpansionNode());
+
+			elements.put(LoopNode_Shape, UMLPackage.eINSTANCE.getLoopNode());
+
+			elements.put(InputPin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_LoopNodeVariableInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(OutputPin_LoopNodeBodyOutputShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(OutputPin_LoopNodeVariableShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(OutputPin_LoopNodeResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(SequenceNode_Shape, UMLPackage.eINSTANCE.getSequenceNode());
+
+			elements.put(StructuredActivityNode_Shape, UMLPackage.eINSTANCE.getStructuredActivityNode());
+
+			elements.put(InputPin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_StructuredActivityNodeInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(OutputPin_StructuredActivityNodeOutputShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(ActivityPartition_Shape, UMLPackage.eINSTANCE.getActivityPartition());
+
+			elements.put(InterruptibleActivityRegion_Shape, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
+
+			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
+
+			elements.put(ReadSelfAction_Shape, UMLPackage.eINSTANCE.getReadSelfAction());
+
+			elements.put(OutputPin_ReadSelfActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(Activity_Shape_CN, UMLPackage.eINSTANCE.getActivity());
+
+			elements.put(CreateObjectAction_Shape, UMLPackage.eINSTANCE.getCreateObjectAction());
+
+			elements.put(OutputPin_CreateObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(NamedElement_DefaultShape, UMLPackage.eINSTANCE.getNamedElement());
+
+			elements.put(ReadStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getReadStructuralFeatureAction());
+
+			elements.put(InputPin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ReadStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ReadStructuralFeatureActionObjectShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(OutputPin_ReadStructuralFeatureActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(AddStructuralFeatureValueAction_Shape,
+					UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
+
+			elements.put(InputPin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(InputPin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(InputPin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_AddStructuralFeatureValueActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ValuePin_AddStructuralFeatureValueActionValueShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ValuePin_AddStructuralFeatureValueActionInsertAtShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_AddStructuralFeatureValueActionObjectShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_AddStructuralFeatureValueActionValueShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_AddStructuralFeatureValueActionInsertAtShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(OutputPin_AddStructuralFeatureValueActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(DestroyObjectAction_Shape, UMLPackage.eINSTANCE.getDestroyObjectAction());
+
+			elements.put(InputPin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_DestroyObjectActionTargetShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ReadVariableAction_Shape, UMLPackage.eINSTANCE.getReadVariableAction());
+
+			elements.put(OutputPin_ReadVariableActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(AddVariableValueAction_Shape, UMLPackage.eINSTANCE.getAddVariableValueAction());
+
+			elements.put(InputPin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(InputPin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ValuePin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_AddVariableValueActionInsertAtShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_AddVariableValueActionValueShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(BroadcastSignalAction_Shape, UMLPackage.eINSTANCE.getBroadcastSignalAction());
+
+			elements.put(InputPin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_BroadcastSignalActionArgumentShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(CentralBufferNode_Shape, UMLPackage.eINSTANCE.getCentralBufferNode());
+
+			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(StartObjectBehaviorAction_Shape, UMLPackage.eINSTANCE.getStartObjectBehaviorAction());
+
+			elements.put(OutputPin_StartObjectBehaviorActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(InputPin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_StartObjectBehaviorActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(InputPin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_StartObjectBehaviorActionArgumentShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_StartObjectBehaviorActionArgumentShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(TestIdentityAction_Shape, UMLPackage.eINSTANCE.getTestIdentityAction());
+
+			elements.put(OutputPin_TestIdentityActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(InputPin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(InputPin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ValuePin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_TestIdentityActionFirstShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ActionInputPin_TestIdentityActionSecondShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ClearStructuralFeatureAction_Shape, UMLPackage.eINSTANCE.getClearStructuralFeatureAction());
+
+			elements.put(OutputPin_ClearStructuralFeatureActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(InputPin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ClearStructuralFeatureActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ClearStructuralFeatureActionObjectShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(CreateLinkAction_Shape, UMLPackage.eINSTANCE.getCreateLinkAction());
+
+			elements.put(InputPin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_CreateLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ReadLinkAction_Shape, UMLPackage.eINSTANCE.getReadLinkAction());
+
+			elements.put(OutputPin_ReadLinkActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(InputPin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ReadLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(DestroyLinkAction_Shape, UMLPackage.eINSTANCE.getDestroyLinkAction());
+
+			elements.put(InputPin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_DestroyLinkActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ClearAssociationAction_Shape, UMLPackage.eINSTANCE.getClearAssociationAction());
+
+			elements.put(InputPin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ClearAssociationActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ReadExtentAction_Shape, UMLPackage.eINSTANCE.getReadExtentAction());
+
+			elements.put(OutputPin_ReadExtentActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(ReclassifyObjectAction_Shape, UMLPackage.eINSTANCE.getReclassifyObjectAction());
+
+			elements.put(InputPin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ReclassifyObjectActionObjectShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ReadIsClassifiedObjectAction_Shape, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction());
+
+			elements.put(OutputPin_ReadIsClassifiedObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(InputPin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ReadIsClassifiedObjectActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ReadIsClassifiedObjectActionObjectShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(ReduceAction_Shape, UMLPackage.eINSTANCE.getReduceAction());
+
+			elements.put(OutputPin_ReduceActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(InputPin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_ReduceActionCollectionShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(StartClassifierBehaviorAction_Shape, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction());
+
+			elements.put(InputPin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_StartClassifierBehaviorActionObjectShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_StartClassifierBehaviorActionObjectShape,
+					UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(CreateLinkObjectAction_Shape, UMLPackage.eINSTANCE.getCreateLinkObjectAction());
+
+			elements.put(InputPin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getInputPin());
+
+			elements.put(ValuePin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getValuePin());
+
+			elements.put(ActionInputPin_CreateLinkObjectActionInputShape, UMLPackage.eINSTANCE.getActionInputPin());
+
+			elements.put(OutputPin_CreateLinkObjectActionResultShape, UMLPackage.eINSTANCE.getOutputPin());
+
+			elements.put(Action_LocalPreconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
+
+			elements.put(Action_LocalPostconditionEdge, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
+
+			elements.put(ObjectFlow_Edge, UMLPackage.eINSTANCE.getObjectFlow());
+
+			elements.put(ControlFlow_Edge, UMLPackage.eINSTANCE.getControlFlow());
+
+			elements.put(ExceptionHandler_Edge, UMLPackage.eINSTANCE.getExceptionHandler());
+
+			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
+			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 		}
 		return elements.get(type);
 	}
@@ -1245,383 +1633,383 @@ public class UMLElementTypes {
 		if (visualID != null) {
 			switch (visualID) {
 			case ActivityDiagramEditPart.VISUAL_ID:
-				return Package_1000;
+				return Package_ActivityDiagram;
 			case ActivityEditPart.VISUAL_ID:
-				return Activity_2001;
+				return Activity_Shape;
 			case ParameterEditPart.VISUAL_ID:
-				return Parameter_3001;
+				return Parameter_ParameterLabel;
 			case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
-				return Constraint_3002;
+				return Constraint_PreconditionLabel;
 			case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
-				return Constraint_3003;
+				return Constraint_PostconditionLabel;
 			case InitialNodeEditPart.VISUAL_ID:
-				return InitialNode_3004;
+				return InitialNode_Shape;
 			case ActivityFinalNodeEditPart.VISUAL_ID:
-				return ActivityFinalNode_3005;
+				return ActivityFinalNode_Shape;
 			case FlowFinalNodeEditPart.VISUAL_ID:
-				return FlowFinalNode_3006;
+				return FlowFinalNode_Shape;
 			case OpaqueActionEditPart.VISUAL_ID:
-				return OpaqueAction_3007;
+				return OpaqueAction_Shape;
 			case ValuePinInOpaqueActEditPart.VISUAL_ID:
-				return ValuePin_3015;
+				return ValuePin_OpaqueActionInputShape;
 			case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
-				return ActionInputPin_3016;
+				return ActionInputPin_OpaqueActionInputShape;
 			case InputPinInOpaqueActEditPart.VISUAL_ID:
-				return InputPin_3013;
+				return InputPin_OpaqueActionInputShape;
 			case OutputPinInOpaqueActEditPart.VISUAL_ID:
-				return OutputPin_3014;
+				return OutputPin_OpaqueActionOutputShape;
 			case CallBehaviorActionEditPart.VISUAL_ID:
-				return CallBehaviorAction_3008;
+				return CallBehaviorAction_Shape;
 			case ValuePinInCallBeActEditPart.VISUAL_ID:
-				return ValuePin_3017;
+				return ValuePin_CallBehaviorActionArgumentShape;
 			case ActionInputPinInCallBeActEditPart.VISUAL_ID:
-				return ActionInputPin_3018;
+				return ActionInputPin_CallBehaviorActionArgumentShape;
 			case InputPinInCallBeActEditPart.VISUAL_ID:
-				return InputPin_3019;
+				return InputPin_CallBehaviorActionArgumentShape;
 			case OutputPinInCallBeActEditPart.VISUAL_ID:
-				return OutputPin_3020;
+				return OutputPin_CallBehaviorActionResultShape;
 			case CallOperationActionEditPart.VISUAL_ID:
-				return CallOperationAction_3010;
+				return CallOperationAction_Shape;
 			case ActionInputPinInCallOpActEditPart.VISUAL_ID:
-				return ActionInputPin_3021;
+				return ActionInputPin_CallOperationActionArgumentShape;
 			case ValuePinInCallOpActEditPart.VISUAL_ID:
-				return ValuePin_3022;
+				return ValuePin_CallOperationActionArgumentShape;
 			case InputPinInCallOpActEditPart.VISUAL_ID:
-				return InputPin_3023;
+				return InputPin_CallOperationActionArgumentShape;
 			case OutputPinInCallOpActEditPart.VISUAL_ID:
-				return OutputPin_3024;
+				return OutputPin_CallOperationActionResultShape;
 			case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
-				return ValuePin_3025;
+				return ValuePin_CallOperationActionTargetShape;
 			case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-				return ActionInputPin_3026;
+				return ActionInputPin_CallOperationActionTargetShape;
 			case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-				return InputPin_3027;
+				return InputPin_CallOperationActionTargetShape;
 			case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				return DurationConstraint_3034;
+				return DurationConstraint_LocalPreconditionShape;
 			case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-				return DurationConstraint_3035;
+				return DurationConstraint_LocalPostconditionShape;
 			case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				return TimeConstraint_3036;
+				return TimeConstraint_LocalPreconditionShape;
 			case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-				return TimeConstraint_3037;
+				return TimeConstraint_LocalPostconditionShape;
 			case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				return IntervalConstraint_3032;
+				return IntervalConstraint_LocalPreconditionShape;
 			case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-				return IntervalConstraint_3033;
+				return IntervalConstraint_LocalPostconditionShape;
 			case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-				return Constraint_3011;
+				return Constraint_LocalPreconditionShape;
 			case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
-				return Constraint_3012;
+				return Constraint_LocalPostconditionShape;
 			case DecisionNodeEditPart.VISUAL_ID:
-				return DecisionNode_3038;
+				return DecisionNode_Shape;
 			case MergeNodeEditPart.VISUAL_ID:
-				return MergeNode_3039;
+				return MergeNode_Shape;
 			case ForkNodeEditPart.VISUAL_ID:
-				return ForkNode_3040;
+				return ForkNode_Shape;
 			case JoinNodeEditPart.VISUAL_ID:
-				return JoinNode_3041;
+				return JoinNode_Shape;
 			case DataStoreNodeEditPart.VISUAL_ID:
-				return DataStoreNode_3078;
+				return DataStoreNode_Shape;
 			case SendObjectActionEditPart.VISUAL_ID:
-				return SendObjectAction_3042;
+				return SendObjectAction_Shape;
 			case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
-				return ValuePin_3046;
+				return ValuePin_SendObjectActionRequestShape;
 			case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
-				return ActionInputPin_3047;
+				return ActionInputPin_SendObjectActionRequestShape;
 			case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
-				return InputPin_3048;
+				return InputPin_SendObjectActionRequestShape;
 			case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
-				return ValuePin_3049;
+				return ValuePin_SendObjectActionTargetShape;
 			case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-				return ActionInputPin_3050;
+				return ActionInputPin_SendObjectActionTargetShape;
 			case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-				return InputPin_3051;
+				return InputPin_SendObjectActionTargetShape;
 			case SendSignalActionEditPart.VISUAL_ID:
-				return SendSignalAction_3052;
+				return SendSignalAction_Shape;
 			case ActionInputPinInSendSigActEditPart.VISUAL_ID:
-				return ActionInputPin_3053;
+				return ActionInputPin_SendSignalActionArgumentShape;
 			case ValuePinInSendSigActEditPart.VISUAL_ID:
-				return ValuePin_3054;
+				return ValuePin_SendSignalActionArgumentShape;
 			case InputPinInSendSigActEditPart.VISUAL_ID:
-				return InputPin_3055;
+				return InputPin_SendSignalActionArgumentShape;
 			case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
-				return ValuePin_3060;
+				return ValuePin_SendSignalActionTargetShape;
 			case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-				return ActionInputPin_3061;
+				return ActionInputPin_SendSignalActionTargetShape;
 			case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-				return InputPin_3062;
+				return InputPin_SendSignalActionTargetShape;
 			case ActivityParameterNodeEditPart.VISUAL_ID:
-				return ActivityParameterNode_3059;
+				return ActivityParameterNode_Shape;
 			case AcceptEventActionEditPart.VISUAL_ID:
-				return AcceptEventAction_3063;
+				return AcceptEventAction_Shape;
 			case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
-				return OutputPin_3064;
+				return OutputPin_AcceptEventActionResultShape;
 			case ValueSpecificationActionEditPart.VISUAL_ID:
-				return ValueSpecificationAction_3076;
+				return ValueSpecificationAction_Shape;
 			case OutputPinInValSpecActEditPart.VISUAL_ID:
-				return OutputPin_3077;
+				return OutputPin_ValueSpecificationActionResultShape;
 			case ConditionalNodeEditPart.VISUAL_ID:
-				return ConditionalNode_3069;
+				return ConditionalNode_Shape;
 			case ExpansionRegionEditPart.VISUAL_ID:
-				return ExpansionRegion_3070;
+				return ExpansionRegion_Shape;
 			case ExpansionNodeAsInEditPart.VISUAL_ID:
-				return ExpansionNode_3074;
+				return ExpansionNode_InputShape;
 			case ExpansionNodeAsOutEditPart.VISUAL_ID:
-				return ExpansionNode_3075;
+				return ExpansionNode_OutputShape;
 			case LoopNodeEditPart.VISUAL_ID:
-				return LoopNode_3071;
+				return LoopNode_Shape;
 			case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				return InputPin_3105;
+				return InputPin_LoopNodeVariableInputShape;
 			case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				return ValuePin_3192;
+				return ValuePin_LoopNodeVariableInputShape;
 			case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				return ActionInputPin_3193;
+				return ActionInputPin_LoopNodeVariableInputShape;
 			case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
-				return OutputPin_3109;
+				return OutputPin_LoopNodeBodyOutputShape;
 			case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
-				return OutputPin_3110;
+				return OutputPin_LoopNodeVariableShape;
 			case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
-				return OutputPin_3111;
+				return OutputPin_LoopNodeResultShape;
 			case SequenceNodeEditPart.VISUAL_ID:
-				return SequenceNode_3073;
+				return SequenceNode_Shape;
 			case StructuredActivityNodeEditPart.VISUAL_ID:
-				return StructuredActivityNode_3065;
+				return StructuredActivityNode_Shape;
 			case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				return InputPin_3188;
+				return InputPin_StructuredActivityNodeInputShape;
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				return ValuePin_3189;
+				return ValuePin_StructuredActivityNodeInputShape;
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				return ActionInputPin_3190;
+				return ActionInputPin_StructuredActivityNodeInputShape;
 			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				return OutputPin_3191;
+				return OutputPin_StructuredActivityNodeOutputShape;
 			case ActivityPartitionEditPart.VISUAL_ID:
-				return ActivityPartition_3067;
+				return ActivityPartition_Shape;
 			case InterruptibleActivityRegionEditPart.VISUAL_ID:
-				return InterruptibleActivityRegion_3068;
+				return InterruptibleActivityRegion_Shape;
 			case CommentEditPartCN.VISUAL_ID:
-				return Comment_3080;
+				return Comment_Shape;
 			case ReadSelfActionEditPart.VISUAL_ID:
-				return ReadSelfAction_3081;
+				return ReadSelfAction_Shape;
 			case ReadSelfActionOutputPinEditPart.VISUAL_ID:
-				return OutputPin_3084;
+				return OutputPin_ReadSelfActionResultShape;
 			case ActivityEditPartCN.VISUAL_ID:
-				return Activity_3083;
+				return Activity_Shape_CN;
 			case CreateObjectActionEditPart.VISUAL_ID:
-				return CreateObjectAction_3086;
+				return CreateObjectAction_Shape;
 			case OutputPinInCreateObjectActionAsResultEditPart.VISUAL_ID:
-				return OutputPin_3087;
+				return OutputPin_CreateObjectActionResultShape;
 			case ShapeNamedElementEditPart.VISUAL_ID:
-				return NamedElement_3085;
+				return NamedElement_DefaultShape;
 			case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-				return ReadStructuralFeatureAction_3088;
+				return ReadStructuralFeatureAction_Shape;
 			case InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
-				return InputPin_3089;
+				return InputPin_ReadStructuralFeatureActionObjectShape;
 			case ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3203;
+				return ValuePin_ReadStructuralFeatureActionObjectShape;
 			case ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3204;
+				return ActionInputPin_ReadStructuralFeatureActionObjectShape;
 			case OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID:
-				return OutputPin_3090;
+				return OutputPin_ReadStructuralFeatureActionResultShape;
 			case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-				return AddStructuralFeatureValueAction_3091;
+				return AddStructuralFeatureValueAction_Shape;
 			case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3092;
+				return InputPin_AddStructuralFeatureValueActionObjectShape;
 			case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-				return InputPin_3093;
+				return InputPin_AddStructuralFeatureValueActionValueShape;
 			case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
-				return InputPin_3181;
+				return InputPin_AddStructuralFeatureValueActionInsertAtShape;
 			case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3182;
+				return ValuePin_AddStructuralFeatureValueActionObjectShape;
 			case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-				return ValuePin_3183;
+				return ValuePin_AddStructuralFeatureValueActionValueShape;
 			case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
-				return ValuePin_3184;
+				return ValuePin_AddStructuralFeatureValueActionInsertAtShape;
 			case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3185;
+				return ActionInputPin_AddStructuralFeatureValueActionObjectShape;
 			case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-				return ActionInputPin_3186;
+				return ActionInputPin_AddStructuralFeatureValueActionValueShape;
 			case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
-				return ActionInputPin_3187;
+				return ActionInputPin_AddStructuralFeatureValueActionInsertAtShape;
 			case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
-				return OutputPin_3094;
+				return OutputPin_AddStructuralFeatureValueActionResultShape;
 			case DestroyObjectActionEditPart.VISUAL_ID:
-				return DestroyObjectAction_3095;
+				return DestroyObjectAction_Shape;
 			case InputPinInDestroyObjectActionEditPart.VISUAL_ID:
-				return InputPin_3096;
+				return InputPin_DestroyObjectActionTargetShape;
 			case ValuePinInDestroyObjectActionEditPart.VISUAL_ID:
-				return ValuePin_3173;
+				return ValuePin_DestroyObjectActionTargetShape;
 			case ActionPinInDestroyObjectActionEditPart.VISUAL_ID:
-				return ActionInputPin_3174;
+				return ActionInputPin_DestroyObjectActionTargetShape;
 			case ReadVariableActionEditPart.VISUAL_ID:
-				return ReadVariableAction_3097;
+				return ReadVariableAction_Shape;
 			case OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID:
-				return OutputPin_3098;
+				return OutputPin_ReadVariableActionResultShape;
 			case AddVariableValueActionEditPart.VISUAL_ID:
-				return AddVariableValueAction_3099;
+				return AddVariableValueAction_Shape;
 			case InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
-				return InputPin_3100;
+				return InputPin_AddVariableValueActionInsertAtShape;
 			case InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
-				return InputPin_3101;
+				return InputPin_AddVariableValueActionValueShape;
 			case ValuePinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
-				return ValuePin_3175;
+				return ValuePin_AddVariableValueActionInsertAtShape;
 			case ValuePinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
-				return ValuePin_3176;
+				return ValuePin_AddVariableValueActionValueShape;
 			case ActionPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID:
-				return ActionInputPin_3177;
+				return ActionInputPin_AddVariableValueActionInsertAtShape;
 			case ActionPinInAddVariableValueActionAsValueEditPart.VISUAL_ID:
-				return ActionInputPin_3178;
+				return ActionInputPin_AddVariableValueActionValueShape;
 			case BroadcastSignalActionEditPart.VISUAL_ID:
-				return BroadcastSignalAction_3102;
+				return BroadcastSignalAction_Shape;
 			case InputPinInBroadcastSignalActionEditPart.VISUAL_ID:
-				return InputPin_3103;
+				return InputPin_BroadcastSignalActionArgumentShape;
 			case ValuePinInBroadcastSignalActionEditPart.VISUAL_ID:
-				return ValuePin_3179;
+				return ValuePin_BroadcastSignalActionArgumentShape;
 			case ActionPinInBroadcastSignalActionEditPart.VISUAL_ID:
-				return ActionInputPin_3180;
+				return ActionInputPin_BroadcastSignalActionArgumentShape;
 			case CentralBufferNodeEditPart.VISUAL_ID:
-				return CentralBufferNode_3104;
+				return CentralBufferNode_Shape;
 			case ConstraintEditPartCN.VISUAL_ID:
-				return Constraint_3112;
+				return Constraint_Shape;
 			case StartObjectBehavoiurActionEditPart.VISUAL_ID:
-				return StartObjectBehaviorAction_3113;
+				return StartObjectBehaviorAction_Shape;
 			case OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID:
-				return OutputPin_3125;
+				return OutputPin_StartObjectBehaviorActionResultShape;
 			case InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3132;
+				return InputPin_StartObjectBehaviorActionObjectShape;
 			case ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3145;
+				return ValuePin_StartObjectBehaviorActionObjectShape;
 			case ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3158;
+				return ActionInputPin_StartObjectBehaviorActionObjectShape;
 			case InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID:
-				return InputPin_3133;
+				return InputPin_StartObjectBehaviorActionArgumentShape;
 			case ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID:
-				return ValuePin_3146;
+				return ValuePin_StartObjectBehaviorActionArgumentShape;
 			case ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID:
-				return ActionInputPin_3159;
+				return ActionInputPin_StartObjectBehaviorActionArgumentShape;
 			case TestIdentityActionEditPart.VISUAL_ID:
-				return TestIdentityAction_3114;
+				return TestIdentityAction_Shape;
 			case OutputPinInTestIdentityActionEditPart.VISUAL_ID:
-				return OutputPin_3126;
+				return OutputPin_TestIdentityActionResultShape;
 			case InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID:
-				return InputPin_3134;
+				return InputPin_TestIdentityActionFirstShape;
 			case InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID:
-				return InputPin_3135;
+				return InputPin_TestIdentityActionSecondShape;
 			case ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID:
-				return ValuePin_3147;
+				return ValuePin_TestIdentityActionFirstShape;
 			case ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID:
-				return ValuePin_3148;
+				return ValuePin_TestIdentityActionSecondShape;
 			case ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID:
-				return ActionInputPin_3160;
+				return ActionInputPin_TestIdentityActionFirstShape;
 			case ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID:
-				return ActionInputPin_3161;
+				return ActionInputPin_TestIdentityActionSecondShape;
 			case ClearStructuralFeatureActionEditPart.VISUAL_ID:
-				return ClearStructuralFeatureAction_3115;
+				return ClearStructuralFeatureAction_Shape;
 			case OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID:
-				return OutputPin_3127;
+				return OutputPin_ClearStructuralFeatureActionResultShape;
 			case InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3136;
+				return InputPin_ClearStructuralFeatureActionObjectShape;
 			case ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3149;
+				return ValuePin_ClearStructuralFeatureActionObjectShape;
 			case ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3162;
+				return ActionInputPin_ClearStructuralFeatureActionObjectShape;
 			case CreateLinkActionEditPart.VISUAL_ID:
-				return CreateLinkAction_3117;
+				return CreateLinkAction_Shape;
 			case InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID:
-				return InputPin_3137;
+				return InputPin_CreateLinkActionInputShape;
 			case ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID:
-				return ValuePin_3151;
+				return ValuePin_CreateLinkActionInputShape;
 			case ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID:
-				return ActionInputPin_3163;
+				return ActionInputPin_CreateLinkActionInputShape;
 			case ReadLinkActionEditPart.VISUAL_ID:
-				return ReadLinkAction_3116;
+				return ReadLinkAction_Shape;
 			case OutputPinInReadLinkActionEditPart.VISUAL_ID:
-				return OutputPin_3128;
+				return OutputPin_ReadLinkActionResultShape;
 			case InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID:
-				return InputPin_3138;
+				return InputPin_ReadLinkActionInputShape;
 			case ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID:
-				return ValuePin_3150;
+				return ValuePin_ReadLinkActionInputShape;
 			case ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID:
-				return ActionInputPin_3164;
+				return ActionInputPin_ReadLinkActionInputShape;
 			case DestroyLinkActionEditPart.VISUAL_ID:
-				return DestroyLinkAction_3118;
+				return DestroyLinkAction_Shape;
 			case InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID:
-				return InputPin_3139;
+				return InputPin_DestroyLinkActionInputShape;
 			case ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID:
-				return ValuePin_3152;
+				return ValuePin_DestroyLinkActionInputShape;
 			case ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID:
-				return ActionInputPin_3165;
+				return ActionInputPin_DestroyLinkActionInputShape;
 			case ClearAssociationActionEditPart.VISUAL_ID:
-				return ClearAssociationAction_3119;
+				return ClearAssociationAction_Shape;
 			case InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3140;
+				return InputPin_ClearAssociationActionObjectShape;
 			case ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3153;
+				return ValuePin_ClearAssociationActionObjectShape;
 			case ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3166;
+				return ActionInputPin_ClearAssociationActionObjectShape;
 			case ReadExtentActionEditPart.VISUAL_ID:
-				return ReadExtentAction_3120;
+				return ReadExtentAction_Shape;
 			case OutputPinInReadExtentActionEditPart.VISUAL_ID:
-				return OutputPin_3129;
+				return OutputPin_ReadExtentActionResultShape;
 			case ReclassifyObjectActionEditPart.VISUAL_ID:
-				return ReclassifyObjectAction_3121;
+				return ReclassifyObjectAction_Shape;
 			case InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3141;
+				return InputPin_ReclassifyObjectActionObjectShape;
 			case ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3154;
+				return ValuePin_ReclassifyObjectActionObjectShape;
 			case ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3167;
+				return ActionInputPin_ReclassifyObjectActionObjectShape;
 			case ReadIsClassifiedObjectActionEditPart.VISUAL_ID:
-				return ReadIsClassifiedObjectAction_3122;
+				return ReadIsClassifiedObjectAction_Shape;
 			case OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID:
-				return OutputPin_3130;
+				return OutputPin_ReadIsClassifiedObjectActionResultShape;
 			case InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3142;
+				return InputPin_ReadIsClassifiedObjectActionObjectShape;
 			case ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3155;
+				return ValuePin_ReadIsClassifiedObjectActionObjectShape;
 			case ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3168;
+				return ActionInputPin_ReadIsClassifiedObjectActionObjectShape;
 			case ReduceActionEditPart.VISUAL_ID:
-				return ReduceAction_3123;
+				return ReduceAction_Shape;
 			case OutputPinInReduceActionEditPart.VISUAL_ID:
-				return OutputPin_3131;
+				return OutputPin_ReduceActionResultShape;
 			case InputPinInReduceActionAsCollectionEditPart.VISUAL_ID:
-				return InputPin_3143;
+				return InputPin_ReduceActionCollectionShape;
 			case ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID:
-				return ValuePin_3156;
+				return ValuePin_ReduceActionCollectionShape;
 			case ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID:
-				return ActionInputPin_3169;
+				return ActionInputPin_ReduceActionCollectionShape;
 			case StartClassifierBehaviorActionEditPart.VISUAL_ID:
-				return StartClassifierBehaviorAction_3124;
+				return StartClassifierBehaviorAction_Shape;
 			case InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
-				return InputPin_3144;
+				return InputPin_StartClassifierBehaviorActionObjectShape;
 			case ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
-				return ValuePin_3157;
+				return ValuePin_StartClassifierBehaviorActionObjectShape;
 			case ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
-				return ActionInputPin_3170;
+				return ActionInputPin_StartClassifierBehaviorActionObjectShape;
 			case CreateLinkObjectActionEditPart.VISUAL_ID:
-				return CreateLinkObjectAction_3198;
+				return CreateLinkObjectAction_Shape;
 			case InputPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
-				return InputPin_3199;
+				return InputPin_CreateLinkObjectActionInputShape;
 			case ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
-				return ValuePin_3200;
+				return ValuePin_CreateLinkObjectActionInputShape;
 			case ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
-				return ActionInputPin_3201;
+				return ActionInputPin_CreateLinkObjectActionInputShape;
 			case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
-				return OutputPin_3202;
+				return OutputPin_CreateLinkObjectActionResultShape;
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
-				return ActionLocalPrecondition_4001;
+				return Action_LocalPreconditionEdge;
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
-				return ActionLocalPostcondition_4002;
+				return Action_LocalPostconditionEdge;
 			case ObjectFlowEditPart.VISUAL_ID:
-				return ObjectFlow_4003;
+				return ObjectFlow_Edge;
 			case ControlFlowEditPart.VISUAL_ID:
-				return ControlFlow_4004;
+				return ControlFlow_Edge;
 			case ExceptionHandlerEditPart.VISUAL_ID:
-				return ExceptionHandler_4005;
+				return ExceptionHandler_Edge;
 			case CommentLinkEditPart.VISUAL_ID:
-				return CommentAnnotatedElement_4006;
+				return Comment_AnnotatedElementEdge;
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-				return ConstraintConstrainedElement_4007;
+				return Constraint_ConstrainedElementEdge;
 			}
 		}
 		return null;
@@ -1633,203 +2021,206 @@ public class UMLElementTypes {
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Package_1000);
-			KNOWN_ELEMENT_TYPES.add(Activity_2001);
-			KNOWN_ELEMENT_TYPES.add(Parameter_3001);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3002);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3003);
-			KNOWN_ELEMENT_TYPES.add(InitialNode_3004);
-			KNOWN_ELEMENT_TYPES.add(ActivityFinalNode_3005);
-			KNOWN_ELEMENT_TYPES.add(FlowFinalNode_3006);
-			KNOWN_ELEMENT_TYPES.add(OpaqueAction_3007);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3015);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3016);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3013);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3014);
-			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_3008);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3017);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3018);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3019);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3020);
-			KNOWN_ELEMENT_TYPES.add(CallOperationAction_3010);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3021);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3022);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3023);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3024);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3025);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3026);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3027);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3034);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3035);
-			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3036);
-			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3037);
-			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3032);
-			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3033);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3011);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3012);
-			KNOWN_ELEMENT_TYPES.add(DecisionNode_3038);
-			KNOWN_ELEMENT_TYPES.add(MergeNode_3039);
-			KNOWN_ELEMENT_TYPES.add(ForkNode_3040);
-			KNOWN_ELEMENT_TYPES.add(JoinNode_3041);
-			KNOWN_ELEMENT_TYPES.add(DataStoreNode_3078);
-			KNOWN_ELEMENT_TYPES.add(SendObjectAction_3042);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3046);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3047);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3048);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3049);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3050);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3051);
-			KNOWN_ELEMENT_TYPES.add(SendSignalAction_3052);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3053);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3054);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3055);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3060);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3061);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3062);
-			KNOWN_ELEMENT_TYPES.add(ActivityParameterNode_3059);
-			KNOWN_ELEMENT_TYPES.add(AcceptEventAction_3063);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3064);
-			KNOWN_ELEMENT_TYPES.add(ValueSpecificationAction_3076);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3077);
-			KNOWN_ELEMENT_TYPES.add(ConditionalNode_3069);
-			KNOWN_ELEMENT_TYPES.add(ExpansionRegion_3070);
-			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3074);
-			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3075);
-			KNOWN_ELEMENT_TYPES.add(LoopNode_3071);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3105);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3192);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3193);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3109);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3110);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3111);
-			KNOWN_ELEMENT_TYPES.add(SequenceNode_3073);
-			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_3065);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3188);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3189);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3190);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3191);
-			KNOWN_ELEMENT_TYPES.add(ActivityPartition_3067);
-			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
-			KNOWN_ELEMENT_TYPES.add(Comment_3080);
-			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_3081);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3084);
-			KNOWN_ELEMENT_TYPES.add(Activity_3083);
-			KNOWN_ELEMENT_TYPES.add(CreateObjectAction_3086);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3087);
-			KNOWN_ELEMENT_TYPES.add(NamedElement_3085);
-			KNOWN_ELEMENT_TYPES.add(ReadStructuralFeatureAction_3088);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3089);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3203);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3204);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3090);
-			KNOWN_ELEMENT_TYPES.add(AddStructuralFeatureValueAction_3091);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3092);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3093);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3181);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3182);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3183);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3184);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3185);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3186);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3187);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3094);
-			KNOWN_ELEMENT_TYPES.add(DestroyObjectAction_3095);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3096);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3173);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3174);
-			KNOWN_ELEMENT_TYPES.add(ReadVariableAction_3097);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3098);
-			KNOWN_ELEMENT_TYPES.add(AddVariableValueAction_3099);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3100);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3101);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3175);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3176);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3177);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3178);
-			KNOWN_ELEMENT_TYPES.add(BroadcastSignalAction_3102);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3103);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3179);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3180);
-			KNOWN_ELEMENT_TYPES.add(CentralBufferNode_3104);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3112);
-			KNOWN_ELEMENT_TYPES.add(StartObjectBehaviorAction_3113);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3125);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3132);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3145);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3158);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3133);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3146);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3159);
-			KNOWN_ELEMENT_TYPES.add(TestIdentityAction_3114);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3126);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3134);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3135);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3147);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3148);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3160);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3161);
-			KNOWN_ELEMENT_TYPES.add(ClearStructuralFeatureAction_3115);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3127);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3136);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3149);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3162);
-			KNOWN_ELEMENT_TYPES.add(CreateLinkAction_3117);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3137);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3151);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3163);
-			KNOWN_ELEMENT_TYPES.add(ReadLinkAction_3116);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3128);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3138);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3150);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3164);
-			KNOWN_ELEMENT_TYPES.add(DestroyLinkAction_3118);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3139);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3152);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3165);
-			KNOWN_ELEMENT_TYPES.add(ClearAssociationAction_3119);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3140);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3153);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3166);
-			KNOWN_ELEMENT_TYPES.add(ReadExtentAction_3120);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3129);
-			KNOWN_ELEMENT_TYPES.add(ReclassifyObjectAction_3121);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3141);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3154);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3167);
-			KNOWN_ELEMENT_TYPES.add(ReadIsClassifiedObjectAction_3122);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3130);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3142);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3155);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3168);
-			KNOWN_ELEMENT_TYPES.add(ReduceAction_3123);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3131);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3143);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3156);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3169);
-			KNOWN_ELEMENT_TYPES.add(StartClassifierBehaviorAction_3124);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3144);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3157);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3170);
-			KNOWN_ELEMENT_TYPES.add(CreateLinkObjectAction_3198);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3199);
-			KNOWN_ELEMENT_TYPES.add(ValuePin_3200);
-			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3201);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3202);
-			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
-			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
-			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
-			KNOWN_ELEMENT_TYPES.add(ControlFlow_4004);
-			KNOWN_ELEMENT_TYPES.add(ExceptionHandler_4005);
-			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4006);
-			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4007);
+			KNOWN_ELEMENT_TYPES.add(Package_ActivityDiagram);
+			KNOWN_ELEMENT_TYPES.add(Activity_Shape);
+			KNOWN_ELEMENT_TYPES.add(Parameter_ParameterLabel);
+			KNOWN_ELEMENT_TYPES.add(Constraint_PreconditionLabel);
+			KNOWN_ELEMENT_TYPES.add(Constraint_PostconditionLabel);
+			KNOWN_ELEMENT_TYPES.add(InitialNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(ActivityFinalNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(FlowFinalNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(OpaqueAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_OpaqueActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_OpaqueActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_OpaqueActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_OpaqueActionOutputShape);
+			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_CallBehaviorActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_CallBehaviorActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_CallBehaviorActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_CallBehaviorActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(CallOperationAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_CallOperationActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_CallOperationActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_CallOperationActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_CallOperationActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_CallOperationActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_CallOperationActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_CallOperationActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_LocalPreconditionShape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_LocalPostconditionShape);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_LocalPreconditionShape);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_LocalPostconditionShape);
+			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_LocalPreconditionShape);
+			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_LocalPostconditionShape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_LocalPreconditionShape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_LocalPostconditionShape);
+			KNOWN_ELEMENT_TYPES.add(DecisionNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(MergeNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(ForkNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(JoinNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(DataStoreNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(SendObjectAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_SendObjectActionRequestShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_SendObjectActionRequestShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_SendObjectActionRequestShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_SendObjectActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_SendObjectActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_SendObjectActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(SendSignalAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_SendSignalActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_SendSignalActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_SendSignalActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_SendSignalActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_SendSignalActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_SendSignalActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ActivityParameterNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(AcceptEventAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_AcceptEventActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(ValueSpecificationAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ValueSpecificationActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(ConditionalNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(ExpansionRegion_Shape);
+			KNOWN_ELEMENT_TYPES.add(ExpansionNode_InputShape);
+			KNOWN_ELEMENT_TYPES.add(ExpansionNode_OutputShape);
+			KNOWN_ELEMENT_TYPES.add(LoopNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_LoopNodeVariableInputShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_LoopNodeVariableInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_LoopNodeVariableInputShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_LoopNodeBodyOutputShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_LoopNodeVariableShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_LoopNodeResultShape);
+			KNOWN_ELEMENT_TYPES.add(SequenceNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_StructuredActivityNodeInputShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_StructuredActivityNodeInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_StructuredActivityNodeInputShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_StructuredActivityNodeOutputShape);
+			KNOWN_ELEMENT_TYPES.add(ActivityPartition_Shape);
+			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_Shape);
+			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
+			KNOWN_ELEMENT_TYPES.add(ReadSelfAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReadSelfActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(Activity_Shape_CN);
+			KNOWN_ELEMENT_TYPES.add(CreateObjectAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_CreateObjectActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_DefaultShape);
+			KNOWN_ELEMENT_TYPES.add(ReadStructuralFeatureAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ReadStructuralFeatureActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ReadStructuralFeatureActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ReadStructuralFeatureActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReadStructuralFeatureActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(AddStructuralFeatureValueAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_AddStructuralFeatureValueActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_AddStructuralFeatureValueActionValueShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_AddStructuralFeatureValueActionInsertAtShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_AddStructuralFeatureValueActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_AddStructuralFeatureValueActionValueShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_AddStructuralFeatureValueActionInsertAtShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_AddStructuralFeatureValueActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_AddStructuralFeatureValueActionValueShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_AddStructuralFeatureValueActionInsertAtShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_AddStructuralFeatureValueActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(DestroyObjectAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_DestroyObjectActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_DestroyObjectActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_DestroyObjectActionTargetShape);
+			KNOWN_ELEMENT_TYPES.add(ReadVariableAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReadVariableActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(AddVariableValueAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_AddVariableValueActionInsertAtShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_AddVariableValueActionValueShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_AddVariableValueActionInsertAtShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_AddVariableValueActionValueShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_AddVariableValueActionInsertAtShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_AddVariableValueActionValueShape);
+			KNOWN_ELEMENT_TYPES.add(BroadcastSignalAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_BroadcastSignalActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_BroadcastSignalActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_BroadcastSignalActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(CentralBufferNode_Shape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(StartObjectBehaviorAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_StartObjectBehaviorActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_StartObjectBehaviorActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_StartObjectBehaviorActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_StartObjectBehaviorActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_StartObjectBehaviorActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_StartObjectBehaviorActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_StartObjectBehaviorActionArgumentShape);
+			KNOWN_ELEMENT_TYPES.add(TestIdentityAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_TestIdentityActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_TestIdentityActionFirstShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_TestIdentityActionSecondShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_TestIdentityActionFirstShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_TestIdentityActionSecondShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_TestIdentityActionFirstShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_TestIdentityActionSecondShape);
+			KNOWN_ELEMENT_TYPES.add(ClearStructuralFeatureAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ClearStructuralFeatureActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ClearStructuralFeatureActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ClearStructuralFeatureActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ClearStructuralFeatureActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(CreateLinkAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_CreateLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_CreateLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_CreateLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ReadLinkAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReadLinkActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ReadLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ReadLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ReadLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(DestroyLinkAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_DestroyLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_DestroyLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_DestroyLinkActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ClearAssociationAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ClearAssociationActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ClearAssociationActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ClearAssociationActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ReadExtentAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReadExtentActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(ReclassifyObjectAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ReclassifyObjectActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ReclassifyObjectActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ReclassifyObjectActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ReadIsClassifiedObjectAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReadIsClassifiedObjectActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ReadIsClassifiedObjectActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ReadIsClassifiedObjectActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ReadIsClassifiedObjectActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ReduceAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_ReduceActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_ReduceActionCollectionShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_ReduceActionCollectionShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_ReduceActionCollectionShape);
+			KNOWN_ELEMENT_TYPES.add(StartClassifierBehaviorAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_StartClassifierBehaviorActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_StartClassifierBehaviorActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_StartClassifierBehaviorActionObjectShape);
+			KNOWN_ELEMENT_TYPES.add(CreateLinkObjectAction_Shape);
+			KNOWN_ELEMENT_TYPES.add(InputPin_CreateLinkObjectActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_CreateLinkObjectActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_CreateLinkObjectActionInputShape);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_CreateLinkObjectActionResultShape);
+			KNOWN_ELEMENT_TYPES.add(Action_LocalPreconditionEdge);
+			KNOWN_ELEMENT_TYPES.add(Action_LocalPostconditionEdge);
+			KNOWN_ELEMENT_TYPES.add(ObjectFlow_Edge);
+			KNOWN_ELEMENT_TYPES.add(ControlFlow_Edge);
+			KNOWN_ELEMENT_TYPES.add(ExceptionHandler_Edge);
+			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
 		}
+
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
 		if (!result) {
 			IElementType[] supertypes = elementType.getAllSuperTypes();
 			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 			}
 		}
+
 		return result;
 	}
 
@@ -1868,12 +2259,14 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
 		boolean result = subtype == supertype;
+
 		if (!result) {
 			IElementType[] supertypes = subtype.getAllSuperTypes();
 			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = supertype == supertypes[i];
 			}
 		}
+
 		return result;
 	}
 }

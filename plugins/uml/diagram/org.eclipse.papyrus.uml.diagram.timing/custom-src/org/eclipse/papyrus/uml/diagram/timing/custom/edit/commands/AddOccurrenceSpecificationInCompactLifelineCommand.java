@@ -106,7 +106,7 @@ public class AddOccurrenceSpecificationInCompactLifelineCommand extends Abstract
 		// create the View for the occurrence specification
 		final UMLViewProvider umlViewProvider = new UMLViewProvider();
 
-		final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_12(newOccurrenceSpecification, timelineCompartmentView, insertionIndexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+		final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_Shape(newOccurrenceSpecification, timelineCompartmentView, insertionIndexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 
 		final Location loc = NotationFactory.eINSTANCE.createLocation();
 		loc.setX(pt.x);

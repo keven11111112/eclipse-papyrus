@@ -24,8 +24,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantService;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -35,7 +34,6 @@ import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.core.IModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.DefaultModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.ModelingAssistantModelRegistry;
-import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.util.ProxyElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.SynchronizableGmfDiagramEditor;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
@@ -44,6 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.InducedRepresentationC
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -83,7 +82,7 @@ public class AssistantUsage extends AbstractEditorTest {
 	/**
 	 * 
 	 */
-	protected static final String CLASS_VISUALID = "2008";
+	protected static final String CLASS_VISUALID = ClassEditPart.VISUAL_ID;
 	/**
 	 * 
 	 */
@@ -102,9 +101,9 @@ public class AssistantUsage extends AbstractEditorTest {
 		Assert.assertNotNull("A usage contex has been defined for " + CLASS_DIAGRAM_TYPE, childrenListRepresentation);
 		Assert.assertNotNull("The class has been redefined", childrenListRepresentation.IDMap.get(CLASS_VISUALID));
 		Assert.assertNotNull("The compartment of class has been added", childrenListRepresentation.IDMap.get(IMPLEMENTED_INTERFACES_HINT));
-		List<String> the_2008_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
-		Assert.assertEquals("2008 can have a new compartment", 1, the_2008_Children.size());
-		Assert.assertEquals("2008 has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, the_2008_Children.get(0));
+		List<String> the_class_shape_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
+		Assert.assertEquals("class shape can have a new compartment", 1, the_class_shape_Children.size());
+		Assert.assertEquals("class shape has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, the_class_shape_Children.get(0));
 
 		Assert.assertNotNull("The Nested Interface has to be added", childrenListRepresentation.IDMap.get(NESTED_INTERFACE_LABEL));
 		List<String> the_IMPLEMENTED_INTERFACES_Children = childrenListRepresentation.parentChildrenRelation.get(IMPLEMENTED_INTERFACES_HINT);
@@ -129,13 +128,13 @@ public class AssistantUsage extends AbstractEditorTest {
 
 			// test in the notation
 			View classNotationView = classEditPart.getNotationView();
-			Assert.assertEquals("the Type of class editpart must be 2008", classNotationView.getType(), "2008");
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", classNotationView.getPersistedChildren().size(), 6);
+			Assert.assertEquals("the class editpart must be correct", classNotationView.getType(), ClassEditPart.VISUAL_ID);
+			Assert.assertEquals("the class editpart must contains 2 labels and 4 compartments", classNotationView.getPersistedChildren().size(), 6);
 			View compartment = (View) classNotationView.getPersistedChildren().get(5);
 			Assert.assertEquals("The last compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartment.getType());
 
 			// test in the editpart is created for this notation
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", classEditPart.getChildren().size(), 6);
+			Assert.assertEquals("the class editpart must contains 2 labels and 4 compartments", classEditPart.getChildren().size(), 6);
 			IGraphicalEditPart compartmentEdiPart = (IGraphicalEditPart) classEditPart.getChildren().get(5);
 			Assert.assertEquals("The last compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartmentEdiPart.getNotationView().getType());
 
@@ -149,31 +148,29 @@ public class AssistantUsage extends AbstractEditorTest {
 			Assert.assertNotNull("the assistant model must be loaded", result);
 			ModelingAssistantModelRegistry.getInstance().loadModels(result);
 			// try to create a label inside this compartment.
-			final IElementType interfaceLabelelementType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label");
 			List<?> types = ModelingAssistantService.getInstance().getTypesForPopupBar(classEditPart);
 			boolean founded = false;
 
 			// test the construction of the popupbar
 			for (Object object : types) {
-				if (object instanceof ProxyElementType) {
-					ProxyElementType proxyElementType = (ProxyElementType) object;
-					System.out.println(proxyElementType);
+				if (object instanceof ISpecializationType) {
+					ISpecializationType elementType = (ISpecializationType) object;
+					System.out.println(elementType);
 
 
-					if (("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label".equals(proxyElementType.getId()))
-							&& interfaceLabelelementType.equals(proxyElementType.resolveSemanticType())
-							&& interfaceLabelelementType.equals(proxyElementType.resolveVisualType())) {
+					if (("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label".equals(elementType.getId()))) {
 
 						// find the good short cut
 						founded = true;
 						// now construct the request and command to simulate the display inside popup bar
-						Request req = CreateViewRequestFactory.getCreateShapeRequest(proxyElementType,
+						Request req = CreateViewRequestFactory.getCreateShapeRequest(elementType,
 								classEditPart.getDiagramPreferencesHint());
 						EditPart targetEditpart = classEditPart.getTargetEditPart(req);
 						Assert.assertEquals("the request must be redirect to compartment", compartmentEdiPart, targetEditpart);
 						Command cmd = targetEditpart.getCommand(req);
 						Assert.assertNotNull("The command must not be null", cmd);
 						Assert.assertTrue("The command must be executable", cmd.canExecute());
+						break;
 					}
 				}
 			}

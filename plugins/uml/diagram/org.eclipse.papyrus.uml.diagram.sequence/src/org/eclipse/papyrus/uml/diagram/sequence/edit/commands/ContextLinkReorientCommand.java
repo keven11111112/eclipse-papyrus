@@ -72,7 +72,7 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Namespace && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintContext_8500(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraint_ContextEdge(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class ContextLinkReorientCommand extends EditElementCommand {
 		if (!(oldEnd instanceof Namespace && newEnd instanceof Namespace)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintContext_8500(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraint_ContextEdge(getOldSource(), getNewTarget());
 	}
 
 	/**

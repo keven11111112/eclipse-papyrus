@@ -779,159 +779,159 @@
    	<mapping type="UseCase" humanReadableType="UseCaseDiagram"/>
 			<mapping
 				humanReadableType="points"
-				type="7009">
+				type="UseCase_ExtensionPointCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="points"
-				type="7010">
+				type="UseCase_ClassifierExtensionPointCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="use cases"
-				type="7011">
+				type="Classifier_UseCaseCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="points"
-				type="7012">
+				type="UseCase_ExtensionPointCompartment_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="use cases"
-				type="7017">
+				type="Component_PackagedElementCompartment_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="points"
-				type="7014">
+				type="UseCase_ExtensionPointCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="use cases"
-				type="7015">
+				type="Component_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="PackageableElement"
-				type="7016">
+				type="Package_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="PackageableElement"
-				type="7013">
+				type="Package_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6030">
+				type="Include_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6031">
+				type="Extend_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6032">
+				type="Generalization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6008">
+				type="Association_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6033">
+				type="Association_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6010">
+				type="Dependency_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6034">
+				type="Dependency_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6011">
+				type="Abstraction_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6014">
+				type="Abstraction_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6012">
+				type="Usage_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6013">
+				type="Usage_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="6015">
+				type="Realization_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6035">
+				type="Realization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="0">
+				type="PackageMerge_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6036">
+				type="PackageImport_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6045">
+				type="UseCase_FloatingNameLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5031">
+				type="Actor_NameLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6027">
+				type="Actor_StereotypeLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6050">
+				type="Actor_FloatingNameLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5021">
+				type="Actor_NameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6028">
+				type="Actor_StereotypeLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6049">
+				type="Actor_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6046">
+				type="UseCase_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6051">
+				type="Component_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5014">
+				type="Actor_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="6029">
+				type="Actor_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6048">
+				type="Actor_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6038">
+				type="UseCase_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="6047">
+				type="Classifier_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="5032">
+				type="Diagram_NameLabel">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -940,8 +940,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.usecase.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="UseCase"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,2022,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Actor_Shape,Actor_ClassifierShape,UseCase_Shape,UseCase_ClassifierShape,Classifier_SubjectShape,Package_Shape,Constraint_Shape,Comment_Shape,NamedElement_DefaultShape,Diagram_ShortcutShape,ExtensionPoint_ExtensionPointLabel,ExtensionPoint_ClassifierExtensionPointLabel,UseCase_Shape_CCN,Component_Shape_CCN,Comment_Shape_CN,Constraint_Shape_CCN,Actor_Shape_CCN,Constraint_Shape_CN,Actor_Shape_CN,UseCase_Shape_CN,Component_Shape_CN,Package_Shape_CN"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Include_Edge,Extend_Edge,Generalization_Edge,Association_Edge,Constraint_ConstrainedElementEdge,Dependency_Edge,Comment_AnnotatedElementEdge,Abstraction_Edge,Usage_Edge,Realization_Edge,PackageMerge_Edge,PackageImport_Edge"/>
       </viewProvider>
    </extension>
 
@@ -953,16 +953,16 @@
             <method name="getType()" value="UseCase"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,2022,2019,3007,3008,3009,3016,3015,3017,3018,3010,3011,3012,3013,3014"/>
+            <method name="getType()" value="Actor_Shape,Actor_ClassifierShape,UseCase_Shape,UseCase_ClassifierShape,Classifier_SubjectShape,Package_Shape,Constraint_Shape,Comment_Shape,NamedElement_DefaultShape,Diagram_ShortcutShape,ExtensionPoint_ExtensionPointLabel,ExtensionPoint_ClassifierExtensionPointLabel,UseCase_Shape_CCN,Component_Shape_CCN,Comment_Shape_CN,Constraint_Shape_CCN,Actor_Shape_CCN,Constraint_Shape_CN,Actor_Shape_CN,UseCase_Shape_CN,Component_Shape_CN,Package_Shape_CN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4008,4009,4010,4011,4012,4013,4014,4015,4016,4017,4018,4019"/>
+            <method name="getType()" value="Include_Edge,Extend_Edge,Generalization_Edge,Association_Edge,Constraint_ConstrainedElementEdge,Dependency_Edge,Comment_AnnotatedElementEdge,Abstraction_Edge,Usage_Edge,Realization_Edge,PackageMerge_Edge,PackageImport_Edge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5014,6029,6037,5015,5016,5017,5019,5025,5026,6042,5027,6039,5032,5018,5030,5028,5029,6043,5031,6027,6041,5020,6044,5021,6028,6040,5022,5023,5024"/>
+            <method name="getType()" value="Actor_NameLabel,Actor_StereotypeLabel,Actor_QualifiedNameLabel,Actor_FloatingNameLabel,Actor_ClassifierNameLabel,UseCase_NameLabel,UseCase_FloatingNameLabel,UseCase_ClassifierNameLabel,Classifier_NameLabel,Classifier_FloatingNameLabel,Package_NameLabel,Constraint_NameLabel,Constraint_BodyLabel,Comment_BodyLabel,NamedElement_NameLabel,Diagram_NameLabel,UseCase_NameLabel_CCN,UseCase_FloatingNameLabel_CCN,Component_NameLabel_CCN,Comment_BodyLabel_CN,Constraint_NameLabel_CCN,Constraint_BodyLabel_CCN,Actor_NameLabel_CCN,Actor_StereotypeLabel_CCN,Actor_QualifiedNameLabel_CCN,Actor_FloatingNameLabel_CCN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN,Actor_NameLabel_CN,Actor_StereotypeLabel_CN,Actor_QualifiedNameLabel_CN,Actor_FloatingNameLabel_CN,UseCase_NameLabel_CN,UseCase_FloatingNameLabel_CN,Component_NameLabel_CN,Component_FloatingNameLabel,Package_NameLabel_CN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="7009,7010,7011,7012,7017,7014,7015,7016,7013"/>
+            <method name="getType()" value="UseCase_ExtensionPointCompartment,UseCase_ClassifierExtensionPointCompartment,Classifier_UseCaseCompartment,UseCase_ExtensionPointCompartment_CCN,Component_PackagedElementCompartment_CCN,UseCase_ExtensionPointCompartment_CN,Component_PackagedElementCompartment_CN,Package_PackagedElementCompartment_CN,Package_PackagedElementCompartment"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -973,20 +973,6 @@
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="models/usecaseDiagram.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="models/usecaseDiagram-notation.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
    <modelProvider
@@ -1005,7 +991,7 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="UseCase"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilier"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconciler"
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
@@ -1013,6 +999,12 @@
          diagramType="UseCase"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconcilerForCompartment"
          source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="UseCase"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.usecase.custom.migration.UseCaseReconciler_1_2_0"
+         source="1.1.0"
          target="1.2.0">
    </diagramReconciler>
 </extension>

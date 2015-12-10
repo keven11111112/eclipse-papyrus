@@ -63,7 +63,7 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3078";
+	public static final String VISUAL_ID = "Interface_ClassifierShape_CN";
 
 	/**
 	 * @generated
@@ -90,10 +90,14 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
+				new ShowHideClassifierContentsEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -164,6 +168,7 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -192,18 +197,21 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 			((RectangleInterfaceNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
 		if (childEditPart instanceof InterfaceAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceAttributeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
+
 		if (childEditPart instanceof InterfaceOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InterfaceOperationCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -299,6 +307,7 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -372,16 +381,20 @@ public class RectangleInterfaceEditPartCN extends RoundedCompartmentEditPart {
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_1)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPartCN.VISUAL_ID));
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_InterfaceAttributeLabel)) {
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_5)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPartCN.VISUAL_ID));
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_InterfaceOperationLabel)) {
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPartCN.VISUAL_ID));
 			}
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Reception_6)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPartCN.VISUAL_ID));
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Reception_InterfaceReceptionLabel)) {
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

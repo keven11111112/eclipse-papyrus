@@ -50,7 +50,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Node_2008, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Node_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToDevice() {
-		testToManageNode(UMLElementTypes.Device_16, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.Device_Shape_CCN, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Node_Shape_CCN, false);
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_21, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_Shape_CCN, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Node_Shape_CCN, false);
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToNode() {
-		testToManageNode(UMLElementTypes.Node_23, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.Node_Shape_CCN, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Node_Shape_CCN, false);
 	}
 
 	/**
@@ -92,6 +92,6 @@ public class TestDeploymentDiagramForNodeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToArtifact() {
-		testToManageNode(UMLElementTypes.Artifact_25, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Node_23, false);
+		testToManageNode(UMLElementTypes.Artifact_Shape_CCN, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Node_Shape_CCN, false);
 	}
 }

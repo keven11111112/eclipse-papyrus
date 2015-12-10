@@ -39,7 +39,7 @@ public class GraphicalAssociationBranchViewCommand extends CommonDeferredCreateC
 	 */
 	public GraphicalAssociationBranchViewCommand(TransactionalEditingDomain editingDomain, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor,
 			Object associationEndWrapper) {
-		super(editingDomain, ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, null);
+		super(editingDomain, ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(), sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, null);
 		this.associationEndWrapper = associationEndWrapper;
 	}
 

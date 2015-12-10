@@ -168,7 +168,7 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 		 * To do so, we ask to provide the main activity node with all required details.
 		 */
 		IAdaptable adapter = new SemanticAdapter(getDiagram().getElement(), null);
-		String semanticHint = ((IHintedType) UMLElementTypes.Activity_2001).getSemanticHint();
+		String semanticHint = ((IHintedType) UMLElementTypes.Activity_Shape).getSemanticHint();
 		// We already know that result is true. Provider is correctly initialized during the process.
 		ViewService.getInstance().provides(Node.class, adapter, getDiagram(), semanticHint, ViewUtil.APPEND, false, getPreferencesHint());
 		// initialize content

@@ -68,10 +68,10 @@ public class CustomInteractionItemSemanticEditPolicy extends InteractionItemSema
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
+		if (UMLElementTypes.DurationConstraint_Shape_CN == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationConstraintInMessageCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+		if (UMLElementTypes.DurationObservation_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
@@ -108,31 +108,31 @@ public class CustomInteractionItemSemanticEditPolicy extends InteractionItemSema
 	 */
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if (UMLElementTypes.Message_SynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if (UMLElementTypes.Message_AsynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if (UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if (UMLElementTypes.Message_CreateEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if (UMLElementTypes.Message_DeleteEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if (UMLElementTypes.Message_LostEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if (UMLElementTypes.Message_FoundEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
 			return null;
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -143,31 +143,31 @@ public class CustomInteractionItemSemanticEditPolicy extends InteractionItemSema
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.Message_4003 == req.getElementType()) {
+		if (UMLElementTypes.Message_SynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == req.getElementType()) {
+		if (UMLElementTypes.Message_AsynchEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == req.getElementType()) {
+		if (UMLElementTypes.Message_ReplyEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == req.getElementType()) {
+		if (UMLElementTypes.Message_CreateEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == req.getElementType()) {
+		if (UMLElementTypes.Message_DeleteEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == req.getElementType()) {
+		if (UMLElementTypes.Message_LostEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == req.getElementType()) {
+		if (UMLElementTypes.Message_FoundEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomMessage7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;

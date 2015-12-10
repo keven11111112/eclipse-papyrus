@@ -124,7 +124,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
-		ElementInitializers.getInstance().init_ConsiderIgnoreFragment_3007(newElement);
+		ElementInitializers.getInstance().init_ConsiderIgnoreFragment_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

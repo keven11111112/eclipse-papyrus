@@ -4,7 +4,8 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.statemachine"
       modelID="PapyrusUMLStateMachineDiagram"
@@ -54,7 +55,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
-          uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"
+          uniqueIdentifier="org.eclipse.papyrus.umldi.Package_StateMachineDiagram"
           definedExternally="true"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
@@ -95,6 +96,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Region_Shape"
             definedExternally="true"
             editHelperClassName="RegionEditHelper"/>
         <viewmap
@@ -138,7 +140,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.FinalState_Shape"
             displayName="FinalState"
             definedExternally="true"
             editHelperClassName="FinalStateEditHelper"/>
@@ -242,7 +244,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.State_6000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.State_Shape"
             displayName="State"
             definedExternally="true"
             editHelperClassName="StateEditHelper"/>
@@ -350,7 +352,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_InitialShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -462,7 +464,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_JoinShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -578,7 +580,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_ForkShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -691,7 +693,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_ChoiceShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -803,7 +805,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_JunctionShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -915,7 +917,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_ShallowHistoryShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -1027,7 +1029,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_DeepHistoryShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -1139,7 +1141,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_TerminateShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -1252,7 +1254,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_EntryPointShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -1367,7 +1369,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Pseudostate_ExitPointShape"
             displayName="Pseudostate"
             definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
@@ -1482,7 +1484,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ConnectionPointReference_Shape"
             displayName="ConnectionPointReference"
             definedExternally="true"
             editHelperClassName="ConnectionPointReferenceEditHelper"/>
@@ -1583,7 +1585,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_Shape"
             displayName="Comment"
             definedExternally="true"
             editHelperClassName="CommentEditHelper"/>
@@ -1647,7 +1649,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_Shape"
             displayName="Constraint"
             definedExternally="true"
             editHelperClassName="ConstraintEditHelper"/>
@@ -1732,7 +1734,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Transition_InternalTransitionLabel"
             displayName="InternalTransition"
             definedExternally="true"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
@@ -1780,7 +1782,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Behavior_EntryBehaviorLabel"
             displayName="EntryStateBehavior"
             definedExternally="true"
             editHelperClassName="EntryStateBehaviorEditHelper"/>
@@ -1820,7 +1822,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Behavior_DoActivityBehaviorLabel"
             displayName="DoActivityStateBehavior"
             definedExternally="true"
             editHelperClassName="DoActivityStateBehaviorEditHelper"/>
@@ -1860,7 +1862,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Behavior_ExitBehaviorLabel"
             displayName="ExitStateBehavior"
             definedExternally="true"
             editHelperClassName="ExitStateBehaviorEditHelper"/>
@@ -1900,6 +1902,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.StateMachine_Shape"
             definedExternally="true"
             editHelperClassName="StateMachineEditHelper"/>
         <viewmap
@@ -1992,7 +1995,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Transition_Edge"
             displayName="Transition"
             definedExternally="true"
             editHelperClassName="TransitionEditHelper"/>
@@ -2096,7 +2099,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Generalization_Edge"
             displayName="Generalization"
             definedExternally="true"
             editHelperClassName="GeneralizationEditHelper"/>
@@ -2154,6 +2157,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2174,6 +2178,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2194,6 +2199,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_ContextEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2828,4 +2834,219 @@
         iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
         externalNodeLabels="/0/@diagram/@childNodes.13/@labels.0"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:VisualIDOverride
+      genView="/0/@diagram"
+      visualID="Package_StateMachineDiagram">
+    <child
+        genView="/0/@diagram/@childNodes.16"
+        visualID="Transition_InternalTransitionLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.17"
+        visualID="Behavior_EntryBehaviorLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.18"
+        visualID="Behavior_DoActivityBehaviorLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.19"
+        visualID="Behavior_ExitBehaviorLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.11"
+        visualID="Pseudostate_EntryPointShape">
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.0"
+          visualID="Pseudostate_EntryPointFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.1"
+          visualID="Pseudostate_EntryPointStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.12"
+        visualID="Pseudostate_ExitPointShape">
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.0"
+          visualID="Pseudostate_ExitPointFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.1"
+          visualID="Pseudostate_ExitPointStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.13"
+        visualID="ConnectionPointReference_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.13/@labels.0"
+          visualID="ConnectionPointReference_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.13/@labels.1"
+          visualID="ConnectionPointReference_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.0"
+        visualID="Region_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.1"
+        visualID="FinalState_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.1/@labels.0"
+          visualID="FinalState_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.1/@labels.1"
+          visualID="FinalState_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.2"
+        visualID="State_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.2/@labels.0"
+          visualID="State_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.2/@labels.1"
+          visualID="State_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.3"
+        visualID="Pseudostate_InitialShape">
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.0"
+          visualID="Pseudostate_InitialFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.1"
+          visualID="Pseudostate_InitialStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.4"
+        visualID="Pseudostate_JoinShape">
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.0"
+          visualID="Pseudostate_JoinFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.1"
+          visualID="Pseudostate_JoinStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.5"
+        visualID="Pseudostate_ForkShape">
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.0"
+          visualID="Pseudostate_ForkFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.1"
+          visualID="Pseudostate_ForkStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.6"
+        visualID="Pseudostate_ChoiceShape">
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.0"
+          visualID="Pseudostate_ChoiceFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.1"
+          visualID="Pseudostate_ChoiceStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.7"
+        visualID="Pseudostate_JunctionShape">
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.0"
+          visualID="Pseudostate_JunctionFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.1"
+          visualID="Pseudostate_JunctionStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.8"
+        visualID="Pseudostate_ShallowHistoryShape">
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.0"
+          visualID="Pseudostate_ShallowHistoryFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.1"
+          visualID="Pseudostate_ShallowHistoryStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.9"
+        visualID="Pseudostate_DeepHistoryShape">
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.0"
+          visualID="Pseudostate_DeepHistoryFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.1"
+          visualID="Pseudostate_DeepHistoryStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.10"
+        visualID="Pseudostate_TerminateShape">
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.0"
+          visualID="Pseudostate_TerminateFloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.1"
+          visualID="Pseudostate_TerminateStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.14"
+        visualID="Comment_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.0"
+          visualID="Comment_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.15"
+        visualID="Constraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.15/@labels.0"
+          visualID="Constraint_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.15/@labels.1"
+          visualID="Constraint_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@compartments.0"
+        visualID="Region_SubvertexCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.1"
+        visualID="StateMachine_RegionCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.2"
+        visualID="State_RegionCompartment"/>
+    <child
+        genView="/0/@diagram/@topLevelNodes.0"
+        visualID="StateMachine_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
+          visualID="StateMachine_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.0"
+        visualID="Transition_Edge">
+      <child
+          genView="/0/@diagram/@links.0/@labels.0"
+          visualID="Transition_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.0/@labels.1"
+          visualID="Transition_GuardLabel"/>
+      <child
+          genView="/0/@diagram/@links.0/@labels.2"
+          visualID="Transition_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.1"
+        visualID="Generalization_Edge">
+      <child
+          genView="/0/@diagram/@links.1/@labels.0"
+          visualID="Generalization_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.2"
+        visualID="Comment_AnnotatedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.3"
+        visualID="Constraint_ConstrainedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.4"
+        visualID="Constraint_ContextEdge">
+      <child
+          genView="/0/@diagram/@links.4/@labels.0"
+          visualID="Constraint_KeywordLabel"/>
+    </child>
+  </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

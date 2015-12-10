@@ -39,19 +39,19 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
-	 */
-	public void init_StateMachine_2000(StateMachine instance) {
+	* @generated
+	*/
+	public void init_StateMachine_Shape(StateMachine instance) {
 		try {
-			Object value_0 = name_StateMachine_2000(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_StateMachine_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 			Region newInstance_1_0 = UMLFactory.eINSTANCE.createRegion();
 			instance.getRegions().add(newInstance_1_0);
-			Object value_1_0_0 = name_region_StateMachine_2000(newInstance_1_0);
-			if(value_1_0_0 != null) {
-				newInstance_1_0.setName((String)value_1_0_0);
+			Object value_1_0_0 = name_region_StateMachine_Shape(newInstance_1_0);
+			if (value_1_0_0 != null) {
+				newInstance_1_0.setName((String) value_1_0_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -61,11 +61,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Region_3000(Region instance) {
+	public void init_Region_Shape(Region instance) {
 		try {
-			Object value_0 = name_Region_3000(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_Region_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -75,11 +75,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_FinalState_5000(FinalState instance) {
+	public void init_FinalState_Shape(FinalState instance) {
 		try {
-			Object value_0 = name_FinalState_5000(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_FinalState_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -89,11 +89,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_State_6000(State instance) {
+	public void init_State_Shape(State instance) {
 		try {
-			Object value_0 = name_State_6000(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_State_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -103,16 +103,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_8000(Pseudostate instance) {
+	public void init_Pseudostate_InitialShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_8000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_InitialShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_8000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_InitialShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -122,16 +123,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_9000(Pseudostate instance) {
+	public void init_Pseudostate_JoinShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_9000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_JoinShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_9000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_JoinShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -141,16 +143,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_10000(Pseudostate instance) {
+	public void init_Pseudostate_ForkShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_10000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_ForkShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_10000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_ForkShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -160,16 +163,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_11000(Pseudostate instance) {
+	public void init_Pseudostate_ChoiceShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_11000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_ChoiceShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_11000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_ChoiceShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -179,16 +183,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_12000(Pseudostate instance) {
+	public void init_Pseudostate_JunctionShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_12000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_JunctionShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_12000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_JunctionShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -198,16 +203,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_13000(Pseudostate instance) {
+	public void init_Pseudostate_ShallowHistoryShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_13000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_ShallowHistoryShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_13000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_ShallowHistoryShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -217,16 +223,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_14000(Pseudostate instance) {
+	public void init_Pseudostate_DeepHistoryShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_14000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_DeepHistoryShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_14000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_DeepHistoryShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -236,16 +243,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_15000(Pseudostate instance) {
+	public void init_Pseudostate_TerminateShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_15000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_TerminateShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_15000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_TerminateShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -255,16 +263,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_16000(Pseudostate instance) {
+	public void init_Pseudostate_EntryPointShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_16000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_EntryPointShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_16000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_EntryPointShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -274,16 +283,17 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Pseudostate_17000(Pseudostate instance) {
+	public void init_Pseudostate_ExitPointShape(Pseudostate instance) {
 		try {
-			Object value_0 = kind_Pseudostate_17000(instance);
-			if(value_0 != null) {
+			Object value_0 = kind_Pseudostate_ExitPointShape(instance);
+			if (value_0 != null) {
+
 				value_0 = UMLAbstractExpression.performCast(value_0, UMLPackage.eINSTANCE.getPseudostateKind());
-				instance.setKind((PseudostateKind)value_0);
+				instance.setKind((PseudostateKind) value_0);
 			}
-			Object value_1 = name_Pseudostate_17000(instance);
-			if(value_1 != null) {
-				instance.setName((String)value_1);
+			Object value_1 = name_Pseudostate_ExitPointShape(instance);
+			if (value_1 != null) {
+				instance.setName((String) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -293,11 +303,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ConnectionPointReference_18000(ConnectionPointReference instance) {
+	public void init_ConnectionPointReference_Shape(ConnectionPointReference instance) {
 		try {
-			Object value_0 = name_ConnectionPointReference_18000(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_ConnectionPointReference_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -307,11 +317,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Comment_666(Comment instance) {
+	public void init_Comment_Shape(Comment instance) {
 		try {
-			Object value_0 = body_Comment_666(instance);
-			if(value_0 != null) {
-				instance.setBody((String)value_0);
+			Object value_0 = body_Comment_Shape(instance);
+			if (value_0 != null) {
+				instance.setBody((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -321,15 +331,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_668(Constraint instance) {
+	public void init_Constraint_Shape(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_668(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_Constraint_Shape(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
-			Object value_1 = specification_Constraint_668(instance);
-			if(value_1 != null) {
-				instance.setSpecification((ValueSpecification)value_1);
+			Object value_1 = specification_Constraint_Shape(instance);
+			if (value_1 != null) {
+				instance.setSpecification((ValueSpecification) value_1);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -339,11 +349,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Transition_680(Transition instance) {
+	public void init_Transition_InternalTransitionLabel(Transition instance) {
 		try {
-			Object value_0 = name_Transition_680(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_Transition_InternalTransitionLabel(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -353,11 +363,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Transition_7000(Transition instance) {
+	public void init_Transition_Edge(Transition instance) {
 		try {
-			Object value_0 = name_Transition_7000(instance);
-			if(value_0 != null) {
-				instance.setName((String)value_0);
+			Object value_0 = name_Transition_Edge(instance);
+			if (value_0 != null) {
+				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
@@ -367,203 +377,203 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_StateMachine_2000(StateMachine it) {
+	private String name_StateMachine_Shape(StateMachine it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_region_StateMachine_2000(Region it) {
+	private String name_region_StateMachine_Shape(Region it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Region_3000(Region it) {
+	private String name_Region_Shape(Region it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_FinalState_5000(FinalState it) {
+	private String name_FinalState_Shape(FinalState it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_State_6000(State it) {
+	private String name_State_Shape(State it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_8000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_InitialShape(Pseudostate it) {
 		return PseudostateKind.INITIAL_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_8000(Pseudostate it) {
+	private String name_Pseudostate_InitialShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_9000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_JoinShape(Pseudostate it) {
 		return PseudostateKind.JOIN_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_9000(Pseudostate it) {
+	private String name_Pseudostate_JoinShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_10000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_ForkShape(Pseudostate it) {
 		return PseudostateKind.FORK_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_10000(Pseudostate it) {
+	private String name_Pseudostate_ForkShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_11000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_ChoiceShape(Pseudostate it) {
 		return PseudostateKind.CHOICE_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_11000(Pseudostate it) {
+	private String name_Pseudostate_ChoiceShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_12000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_JunctionShape(Pseudostate it) {
 		return PseudostateKind.JUNCTION_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_12000(Pseudostate it) {
+	private String name_Pseudostate_JunctionShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_13000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_ShallowHistoryShape(Pseudostate it) {
 		return PseudostateKind.SHALLOW_HISTORY_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_13000(Pseudostate it) {
+	private String name_Pseudostate_ShallowHistoryShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_14000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_DeepHistoryShape(Pseudostate it) {
 		return PseudostateKind.DEEP_HISTORY_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_14000(Pseudostate it) {
+	private String name_Pseudostate_DeepHistoryShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_15000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_TerminateShape(Pseudostate it) {
 		return PseudostateKind.TERMINATE_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_15000(Pseudostate it) {
+	private String name_Pseudostate_TerminateShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_16000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_EntryPointShape(Pseudostate it) {
 		return PseudostateKind.ENTRY_POINT_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_16000(Pseudostate it) {
+	private String name_Pseudostate_EntryPointShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private PseudostateKind kind_Pseudostate_17000(Pseudostate it) {
+	private PseudostateKind kind_Pseudostate_ExitPointShape(Pseudostate it) {
 		return PseudostateKind.EXIT_POINT_LITERAL;
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Pseudostate_17000(Pseudostate it) {
+	private String name_Pseudostate_ExitPointShape(Pseudostate it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_ConnectionPointReference_18000(ConnectionPointReference it) {
+	private String name_ConnectionPointReference_Shape(ConnectionPointReference it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String body_Comment_666(Comment it) {
+	private String body_Comment_Shape(Comment it) {
 		return "";
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Constraint_668(Constraint it) {
+	private String name_Constraint_Shape(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private ValueSpecification specification_Constraint_668(Constraint it) {
+	private ValueSpecification specification_Constraint_Shape(Constraint it) {
 		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
 		literalString.setValue("");
 		return literalString;
@@ -572,14 +582,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Transition_680(Transition it) {
+	private String name_Transition_InternalTransitionLabel(Transition it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Transition_7000(Transition it) {
+	private String name_Transition_Edge(Transition it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
@@ -588,7 +598,7 @@ public class ElementInitializers {
 	 */
 	public static ElementInitializers getInstance() {
 		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
-		if(cached == null) {
+		if (cached == null) {
 			UMLDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
 		}
 		return cached;

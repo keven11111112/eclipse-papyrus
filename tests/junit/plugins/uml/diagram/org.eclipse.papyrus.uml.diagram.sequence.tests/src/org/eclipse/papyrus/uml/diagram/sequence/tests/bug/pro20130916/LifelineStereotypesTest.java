@@ -43,14 +43,14 @@ public class LifelineStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(400, 100), null);
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(400, 100), null);
 		Point start = SequenceUtil.getAbsoluteBounds(lifeline).getTop().translate(0, 50);
 		Point end = SequenceUtil.getAbsoluteBounds(lifeline2).getTop().translate(0, 50);
 		alignVertically(start, end);
-		link = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline2.getViewer(), start, lifeline, end, lifeline2);
+		link = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline2.getViewer(), start, lifeline, end, lifeline2);
 		assertNotNull("link", link);
 	}
 

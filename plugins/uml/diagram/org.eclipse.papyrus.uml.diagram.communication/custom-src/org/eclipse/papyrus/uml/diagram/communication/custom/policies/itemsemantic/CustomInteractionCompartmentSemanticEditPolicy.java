@@ -39,13 +39,13 @@ public class CustomInteractionCompartmentSemanticEditPolicy extends InteractionC
 	protected Command getCreateCommand(CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
 
-		if (UMLElementTypes.Lifeline_8001 == requestElementType) {
+		if (UMLElementTypes.Lifeline_Shape == requestElementType) {
 			return getGEFWrapper(new CustomLifelineCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TimeObservation_8006 == requestElementType) {
+		if (UMLElementTypes.TimeObservation_Shape == requestElementType) {
 			return getGEFWrapper(new CustomTimeObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DurationObservation_8007 == requestElementType) {
+		if (UMLElementTypes.DurationObservation_Shape == requestElementType) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 

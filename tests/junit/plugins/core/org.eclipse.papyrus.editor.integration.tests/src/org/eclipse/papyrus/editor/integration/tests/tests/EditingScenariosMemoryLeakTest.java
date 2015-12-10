@@ -71,7 +71,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 	public void testCreateNewElement() {
 		memory.add(editor.getModel());
 
-		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_2008, fixture.getDiagramEditPart().getDiagramPreferencesHint());
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_Shape, fixture.getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = fixture.getDiagramEditPart().getCommand(requestcreation);
 		fixture.execute(command);
 	}
@@ -154,7 +154,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 	//
 
 	org.eclipse.emf.common.command.Command getCreateClassInTableCommand() {
-		CreateElementRequest request = new CreateElementRequest(fixture.getEditingDomain(), editor.getModel(), UMLElementTypes.Class_2008);
+		CreateElementRequest request = new CreateElementRequest(fixture.getEditingDomain(), editor.getModel(), UMLElementTypes.Class_Shape);
 		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(editor.getModel());
 		org.eclipse.emf.common.command.Command create = GMFtoEMFCommandWrapper.wrap(edit.getEditCommand(request));
 		return TableMenuUtils.buildNattableCreationCommand(create, request);

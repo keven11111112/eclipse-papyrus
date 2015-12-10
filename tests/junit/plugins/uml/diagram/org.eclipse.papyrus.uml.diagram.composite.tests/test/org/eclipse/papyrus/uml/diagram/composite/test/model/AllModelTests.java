@@ -12,8 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.test.model;
 
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
@@ -23,7 +23,6 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 	CompositeDiagramElementTypeConfigurationTest.class,
 	CompositeDiagramGmfGenTest.class,
-	CompositeDiagramNotationElementTypeConfigurationTest.class
 })
 public class AllModelTests {
 }

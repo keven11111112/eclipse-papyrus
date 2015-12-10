@@ -35,7 +35,7 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 	}
 
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	protected ICreationCommand getDiagramCommandCreation() {
@@ -52,51 +52,51 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 
 	@Test
 	public void testToManageClassInPackage() {
-		testToManageNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Class_Shape_CN, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageDatatypeInPackage() {
-		testToManageNode(UMLElementTypes.DataType_3027, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManagePackageInPackage() {
-		testToManageNode(UMLElementTypes.Package_1012, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageStereoTypeInPackage() {
-		testToManageNode(UMLElementTypes.Stereotype_1023, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Stereotype_Shape_CN, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageProfileInPackage() {
-		testToManageNode(UMLElementTypes.Profile_1024, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Profile_Shape_CN, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageClassInProfile() {
-		testToManageNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Profile_1030, false);
+		testToManageNode(UMLElementTypes.Class_Shape_CN, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Profile_Shape, false);
 	}
 
 	@Test
 	public void testToManageDatatypeInProfile() {
-		testToManageNode(UMLElementTypes.DataType_3027, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Profile_1030, false);
+		testToManageNode(UMLElementTypes.DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Profile_Shape, false);
 	}
 
 	@Test
 	public void testToManagePackageInProfile() {
-		testToManageNode(UMLElementTypes.Package_1012, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Profile_1030, false);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Profile_Shape, false);
 	}
 
 	@Test
 	public void testToManageStereoTypeInProfile() {
-		testToManageNode(UMLElementTypes.Stereotype_1023, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Profile_1030, false);
+		testToManageNode(UMLElementTypes.Stereotype_Shape_CN, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Profile_Shape, false);
 	}
 
 	@Test
 	public void testToManageProfileInProfile() {
-		testToManageNode(UMLElementTypes.Profile_1024, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Profile_1030, false);
+		testToManageNode(UMLElementTypes.Profile_Shape_CN, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Profile_Shape, false);
 	}
 }

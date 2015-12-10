@@ -46,7 +46,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "1002";
+	public static final String VISUAL_ID = "Comment_Shape";
 
 	/**
 	 * @generated
@@ -72,10 +72,13 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -89,7 +92,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -116,6 +119,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -133,17 +137,18 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	public HTMLCornerBentFigure getPrimaryShape() {
-		return (HTMLCornerBentFigure)primaryShape;
+		return (HTMLCornerBentFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CommentBodyEditPart) {
-			((CommentBodyEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
+		if (childEditPart instanceof CommentBodyEditPart) {
+			((CommentBodyEditPart) childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -151,7 +156,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CommentBodyEditPart) {
+		if (childEditPart instanceof CommentBodyEditPart) {
 			return true;
 		}
 		return false;
@@ -162,7 +167,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -173,7 +178,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -207,6 +212,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -219,7 +225,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -232,7 +238,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -243,7 +249,7 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -261,8 +267,8 @@ public class CommentEditPart extends AbstractCommentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

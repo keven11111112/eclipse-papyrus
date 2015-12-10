@@ -47,7 +47,7 @@ public class CustomTimeObservationCreateCommandCN extends TimeObservationCreateC
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
 		Interaction owner = (Interaction) getElementToEdit();
 		owner.getNearestPackage().getPackagedElements().add(newElement);
-		ElementInitializers.getInstance().init_TimeObservation_8006(newElement);
+		ElementInitializers.getInstance().init_TimeObservation_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

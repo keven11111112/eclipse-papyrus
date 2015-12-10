@@ -79,7 +79,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
+			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -87,159 +88,190 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType Package_1000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Package_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Package_SequenceDiagram = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Package_SequenceDiagram"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interaction_2001 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Interaction_2001"); //$NON-NLS-1$
+	public static final IElementType Interaction_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Lifeline_3001 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Lifeline_3001"); //$NON-NLS-1$
+	public static final IElementType ConsiderIgnoreFragment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType BehaviorExecutionSpecification_3003 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_3003"); //$NON-NLS-1$
+	public static final IElementType CombinedFragment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateInvariant_3017 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_3017"); //$NON-NLS-1$
+	public static final IElementType InteractionOperand_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CombinedFragment_3018 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_3018"); //$NON-NLS-1$
+	public static final IElementType InteractionUse_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeConstraint_3019 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_3019"); //$NON-NLS-1$
+	public static final IElementType Continuation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservation_3020 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_3020"); //$NON-NLS-1$
+	public static final IElementType Lifeline_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_3021 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_3021"); //$NON-NLS-1$
+	public static final IElementType ActionExecutionSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DestructionOccurrenceSpecification_3022 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_3022"); //$NON-NLS-1$
+	public static final IElementType BehaviorExecutionSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActionExecutionSpecification_3006 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_3006"); //$NON-NLS-1$
+	public static final IElementType StateInvariant_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionUse_3002 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_3002"); //$NON-NLS-1$
+	public static final IElementType CombinedFragment_CoRegionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CombinedFragment_3004 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_3004"); //$NON-NLS-1$
+	public static final IElementType TimeConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType InteractionOperand_3005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_3005"); //$NON-NLS-1$
+	public static final IElementType TimeObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Continuation_3016 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Continuation_3016"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_3008 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Constraint_3008"); //$NON-NLS-1$
+	public static final IElementType DestructionOccurrenceSpecification_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_3009 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Comment_3009"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationConstraint_3023 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_3023"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservation_3024 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_3024"); //$NON-NLS-1$
+	public static final IElementType DurationConstraint_Shape_CN = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConsiderIgnoreFragment_3007 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_3007"); //$NON-NLS-1$
+	public static final IElementType DurationObservation_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4003 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4003"); //$NON-NLS-1$
+	public static final IElementType Message_SynchEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4004 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4004"); //$NON-NLS-1$
+	public static final IElementType Message_AsynchEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_AsynchEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4005"); //$NON-NLS-1$
+	public static final IElementType Message_ReplyEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_ReplyEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4006 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4006"); //$NON-NLS-1$
+	public static final IElementType Message_CreateEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_CreateEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4007 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4007"); //$NON-NLS-1$
+	public static final IElementType Message_DeleteEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_DeleteEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4008 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4008"); //$NON-NLS-1$
+	public static final IElementType Message_LostEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_LostEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_4009 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.Message_4009"); //$NON-NLS-1$
+	public static final IElementType Message_FoundEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Message_FoundEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CommentAnnotatedElement_4010 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.CommentAnnotatedElement_4010"); //$NON-NLS-1$
+	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintConstrainedElement_4011 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.ConstraintConstrainedElement_4011"); //$NON-NLS-1$
+	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType GeneralOrdering_4012 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_4012"); //$NON-NLS-1$
+	public static final IElementType GeneralOrdering_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintContext_8500 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.sequence.ConstraintContext_8500"); //$NON-NLS-1$
+	public static final IElementType Constraint_ContextEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -276,39 +308,72 @@ public class UMLElementTypes {
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if(elements == null) {
+		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
-			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
-			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
-			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
-			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
-			elements.put(Continuation_3016, UMLPackage.eINSTANCE.getContinuation());
-			elements.put(Lifeline_3001, UMLPackage.eINSTANCE.getLifeline());
-			elements.put(ActionExecutionSpecification_3006, UMLPackage.eINSTANCE.getActionExecutionSpecification());
-			elements.put(BehaviorExecutionSpecification_3003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
-			elements.put(StateInvariant_3017, UMLPackage.eINSTANCE.getStateInvariant());
-			elements.put(CombinedFragment_3018, UMLPackage.eINSTANCE.getCombinedFragment());
-			elements.put(TimeConstraint_3019, UMLPackage.eINSTANCE.getTimeConstraint());
-			elements.put(TimeObservation_3020, UMLPackage.eINSTANCE.getTimeObservation());
-			elements.put(DurationConstraint_3021, UMLPackage.eINSTANCE.getDurationConstraint());
-			elements.put(DestructionOccurrenceSpecification_3022, UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
-			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(Comment_3009, UMLPackage.eINSTANCE.getComment());
-			elements.put(DurationConstraint_3023, UMLPackage.eINSTANCE.getDurationConstraint());
-			elements.put(DurationObservation_3024, UMLPackage.eINSTANCE.getDurationObservation());
-			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
-			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
-			elements.put(Message_4005, UMLPackage.eINSTANCE.getMessage());
-			elements.put(Message_4006, UMLPackage.eINSTANCE.getMessage());
-			elements.put(Message_4007, UMLPackage.eINSTANCE.getMessage());
-			elements.put(Message_4008, UMLPackage.eINSTANCE.getMessage());
-			elements.put(Message_4009, UMLPackage.eINSTANCE.getMessage());
-			elements.put(CommentAnnotatedElement_4010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-			elements.put(ConstraintConstrainedElement_4011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-			elements.put(GeneralOrdering_4012, UMLPackage.eINSTANCE.getGeneralOrdering());
-			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
+
+			elements.put(Package_SequenceDiagram, UMLPackage.eINSTANCE.getPackage());
+
+			elements.put(Interaction_Shape, UMLPackage.eINSTANCE.getInteraction());
+
+			elements.put(ConsiderIgnoreFragment_Shape, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
+
+			elements.put(CombinedFragment_Shape, UMLPackage.eINSTANCE.getCombinedFragment());
+
+			elements.put(InteractionOperand_Shape, UMLPackage.eINSTANCE.getInteractionOperand());
+
+			elements.put(InteractionUse_Shape, UMLPackage.eINSTANCE.getInteractionUse());
+
+			elements.put(Continuation_Shape, UMLPackage.eINSTANCE.getContinuation());
+
+			elements.put(Lifeline_Shape, UMLPackage.eINSTANCE.getLifeline());
+
+			elements.put(ActionExecutionSpecification_Shape, UMLPackage.eINSTANCE.getActionExecutionSpecification());
+
+			elements.put(BehaviorExecutionSpecification_Shape,
+					UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
+
+			elements.put(StateInvariant_Shape, UMLPackage.eINSTANCE.getStateInvariant());
+
+			elements.put(CombinedFragment_CoRegionShape, UMLPackage.eINSTANCE.getCombinedFragment());
+
+			elements.put(TimeConstraint_Shape, UMLPackage.eINSTANCE.getTimeConstraint());
+
+			elements.put(TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation());
+
+			elements.put(DurationConstraint_Shape, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(DestructionOccurrenceSpecification_Shape,
+					UMLPackage.eINSTANCE.getDestructionOccurrenceSpecification());
+
+			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
+
+			elements.put(DurationConstraint_Shape_CN, UMLPackage.eINSTANCE.getDurationConstraint());
+
+			elements.put(DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation());
+
+			elements.put(Message_SynchEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_AsynchEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_ReplyEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_CreateEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_DeleteEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_LostEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Message_FoundEdge, UMLPackage.eINSTANCE.getMessage());
+
+			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
+			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
+			elements.put(GeneralOrdering_Edge, UMLPackage.eINSTANCE.getGeneralOrdering());
+
+			elements.put(Constraint_ContextEdge, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return elements.get(type);
 	}
@@ -324,70 +389,70 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static IElementType getElementType(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case PackageEditPart.VISUAL_ID:
-				return Package_1000;
+				return Package_SequenceDiagram;
 			case InteractionEditPart.VISUAL_ID:
-				return Interaction_2001;
+				return Interaction_Shape;
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return ConsiderIgnoreFragment_3007;
+				return ConsiderIgnoreFragment_Shape;
 			case CombinedFragmentEditPart.VISUAL_ID:
-				return CombinedFragment_3004;
+				return CombinedFragment_Shape;
 			case InteractionOperandEditPart.VISUAL_ID:
-				return InteractionOperand_3005;
+				return InteractionOperand_Shape;
 			case InteractionUseEditPart.VISUAL_ID:
-				return InteractionUse_3002;
+				return InteractionUse_Shape;
 			case ContinuationEditPart.VISUAL_ID:
-				return Continuation_3016;
+				return Continuation_Shape;
 			case LifelineEditPart.VISUAL_ID:
-				return Lifeline_3001;
+				return Lifeline_Shape;
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return ActionExecutionSpecification_3006;
+				return ActionExecutionSpecification_Shape;
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-				return BehaviorExecutionSpecification_3003;
+				return BehaviorExecutionSpecification_Shape;
 			case StateInvariantEditPart.VISUAL_ID:
-				return StateInvariant_3017;
+				return StateInvariant_Shape;
 			case CombinedFragment2EditPart.VISUAL_ID:
-				return CombinedFragment_3018;
+				return CombinedFragment_CoRegionShape;
 			case TimeConstraintEditPart.VISUAL_ID:
-				return TimeConstraint_3019;
+				return TimeConstraint_Shape;
 			case TimeObservationEditPart.VISUAL_ID:
-				return TimeObservation_3020;
+				return TimeObservation_Shape;
 			case DurationConstraintEditPart.VISUAL_ID:
-				return DurationConstraint_3021;
+				return DurationConstraint_Shape;
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-				return DestructionOccurrenceSpecification_3022;
+				return DestructionOccurrenceSpecification_Shape;
 			case ConstraintEditPart.VISUAL_ID:
-				return Constraint_3008;
+				return Constraint_Shape;
 			case CommentEditPart.VISUAL_ID:
-				return Comment_3009;
+				return Comment_Shape;
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return DurationConstraint_3023;
+				return DurationConstraint_Shape_CN;
 			case DurationObservationEditPart.VISUAL_ID:
-				return DurationObservation_3024;
+				return DurationObservation_Shape;
 			case MessageEditPart.VISUAL_ID:
-				return Message_4003;
+				return Message_SynchEdge;
 			case Message2EditPart.VISUAL_ID:
-				return Message_4004;
+				return Message_AsynchEdge;
 			case Message3EditPart.VISUAL_ID:
-				return Message_4005;
+				return Message_ReplyEdge;
 			case Message4EditPart.VISUAL_ID:
-				return Message_4006;
+				return Message_CreateEdge;
 			case Message5EditPart.VISUAL_ID:
-				return Message_4007;
+				return Message_DeleteEdge;
 			case Message6EditPart.VISUAL_ID:
-				return Message_4008;
+				return Message_LostEdge;
 			case Message7EditPart.VISUAL_ID:
-				return Message_4009;
+				return Message_FoundEdge;
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
-				return CommentAnnotatedElement_4010;
+				return Comment_AnnotatedElementEdge;
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-				return ConstraintConstrainedElement_4011;
+				return Constraint_ConstrainedElementEdge;
 			case GeneralOrderingEditPart.VISUAL_ID:
-				return GeneralOrdering_4012;
+				return GeneralOrdering_Edge;
 			case ContextLinkEditPart.VISUAL_ID:
-				return ConstraintContext_8500;
+				return Constraint_ContextEdge;
 			}
 		}
 		return null;
@@ -397,47 +462,50 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if(KNOWN_ELEMENT_TYPES == null) {
+		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Package_1000);
-			KNOWN_ELEMENT_TYPES.add(Interaction_2001);
-			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
-			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
-			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
-			KNOWN_ELEMENT_TYPES.add(InteractionUse_3002);
-			KNOWN_ELEMENT_TYPES.add(Continuation_3016);
-			KNOWN_ELEMENT_TYPES.add(Lifeline_3001);
-			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_3006);
-			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_3003);
-			KNOWN_ELEMENT_TYPES.add(StateInvariant_3017);
-			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3018);
-			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3019);
-			KNOWN_ELEMENT_TYPES.add(TimeObservation_3020);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3021);
-			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_3022);
-			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
-			KNOWN_ELEMENT_TYPES.add(Comment_3009);
-			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3023);
-			KNOWN_ELEMENT_TYPES.add(DurationObservation_3024);
-			KNOWN_ELEMENT_TYPES.add(Message_4003);
-			KNOWN_ELEMENT_TYPES.add(Message_4004);
-			KNOWN_ELEMENT_TYPES.add(Message_4005);
-			KNOWN_ELEMENT_TYPES.add(Message_4006);
-			KNOWN_ELEMENT_TYPES.add(Message_4007);
-			KNOWN_ELEMENT_TYPES.add(Message_4008);
-			KNOWN_ELEMENT_TYPES.add(Message_4009);
-			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_4010);
-			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_4011);
-			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_4012);
-			KNOWN_ELEMENT_TYPES.add(ConstraintContext_8500);
+			KNOWN_ELEMENT_TYPES.add(Package_SequenceDiagram);
+			KNOWN_ELEMENT_TYPES.add(Interaction_Shape);
+			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_Shape);
+			KNOWN_ELEMENT_TYPES.add(CombinedFragment_Shape);
+			KNOWN_ELEMENT_TYPES.add(InteractionOperand_Shape);
+			KNOWN_ELEMENT_TYPES.add(InteractionUse_Shape);
+			KNOWN_ELEMENT_TYPES.add(Continuation_Shape);
+			KNOWN_ELEMENT_TYPES.add(Lifeline_Shape);
+			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(StateInvariant_Shape);
+			KNOWN_ELEMENT_TYPES.add(CombinedFragment_CoRegionShape);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(DestructionOccurrenceSpecification_Shape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_Shape_CN);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_Shape);
+			KNOWN_ELEMENT_TYPES.add(Message_SynchEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_AsynchEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_ReplyEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_CreateEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_DeleteEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_LostEdge);
+			KNOWN_ELEMENT_TYPES.add(Message_FoundEdge);
+			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(GeneralOrdering_Edge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ContextEdge);
 		}
+
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-		if(!result) {
+
+		if (!result) {
 			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 			}
 		}
+
 		return result;
 	}
 
@@ -476,12 +544,14 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
 		boolean result = subtype == supertype;
-		if(!result) {
+
+		if (!result) {
 			IElementType[] supertypes = subtype.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = supertype == supertypes[i];
 			}
 		}
+
 		return result;
 	}
 }

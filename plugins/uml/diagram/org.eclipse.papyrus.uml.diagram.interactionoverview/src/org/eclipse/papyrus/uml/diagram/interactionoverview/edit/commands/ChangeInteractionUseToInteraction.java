@@ -34,7 +34,7 @@ public class ChangeInteractionUseToInteraction extends
 	protected Node createTargetCallBehaviorView(
 			CallBehaviorAction callBehaviorAction, View containerView, int index) {
 		CustomViewProvider viewProvider = new CustomViewProvider();
-		return viewProvider.createCallBehaviorAction_5000(callBehaviorAction, containerView, index, true, this.callBehaviorActionEditPart.getDiagramPreferencesHint());
+		return viewProvider.createCallBehaviorAction_InteractionShape(callBehaviorAction, containerView, index, true, this.callBehaviorActionEditPart.getDiagramPreferencesHint());
 	}
 
 }

@@ -86,12 +86,12 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
 	@Test
 	public void testConsiderIgnoreFragment() {
-		createNode(UMLElementTypes.ConsiderIgnoreFragment_3007, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
+		createNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CustomConsiderIgnoreFragmentEditPart cep = (CustomConsiderIgnoreFragmentEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
 
 		// add operand
-		createNode(UMLElementTypes.InteractionOperand_3005, cfp, new Point(30, 100), new Dimension(100, 100));
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(30, 100), new Dimension(100, 100));
 		assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
 
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
@@ -104,12 +104,12 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
 	@Test
 	public void testCombinedFragment() {
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
 
 		// add operand
-		createNode(UMLElementTypes.InteractionOperand_3005, cfp, new Point(30, 100), new Dimension(100, 100));
+		createNode(UMLElementTypes.InteractionOperand_Shape, cfp, new Point(30, 100), new Dimension(100, 100));
 		assertTrue(CREATION + TEST_THE_EXECUTION, cfp.getChildren().size() == 2);
 
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
@@ -121,7 +121,7 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 
 	@Test
 	public void testCombinedFragmentContinuation() throws CoreException {
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		final CombinedFragmentCombinedFragmentCompartmentEditPart cfp = (CombinedFragmentCombinedFragmentCompartmentEditPart)cep.getChildren().get(0);
 
@@ -130,7 +130,7 @@ public class TestCombinedFragmentKind_364710 extends TestTopNode {
 		
 		// add continuation
 		InteractionOperandEditPart op = (InteractionOperandEditPart)cfp.getChildren().get(0);
-		createNode(UMLElementTypes.Continuation_3016, op, new Point(1, 1), new Dimension(20, 60));
+		createNode(UMLElementTypes.Continuation_Shape, op, new Point(1, 1), new Dimension(20, 60));
 		assertTrue(CREATION + TEST_THE_EXECUTION, op.getChildren().size() == 2);
 		CustomContinuationEditPart ccep = (CustomContinuationEditPart)op.getChildren().get(1);
 		Continuation continuation = (Continuation) ccep.resolveSemanticElement();

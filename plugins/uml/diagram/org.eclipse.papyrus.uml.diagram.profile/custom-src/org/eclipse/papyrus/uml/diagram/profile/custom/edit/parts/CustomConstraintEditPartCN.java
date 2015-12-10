@@ -29,6 +29,6 @@ public class CustomConstraintEditPartCN extends ConstraintEditPartCN {
 
 	@Override
 	protected IElementType elementTypeOfToolAfterCreation() {
-		return UMLElementTypes.ConstraintContext_8500;
+		return UMLElementTypes.Constraint_ContextEdge;
 	}
 }

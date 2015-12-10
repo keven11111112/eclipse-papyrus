@@ -116,11 +116,11 @@ public class TestGuardVisibility_402966 extends AbstractNodeTest {
 
 	@Test
 	public void testPropertySheetPage() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(400, 100));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(400, 100));
 		assertNotNull(cf);
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		assertNotNull(compartment);
-		InteractionOperandEditPart operand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_3005, compartment, getAbsoluteCenter(compartment), null);
+		InteractionOperandEditPart operand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_Shape, compartment, getAbsoluteCenter(compartment), null);
 		assertNotNull(operand);
 		waitForComplete();
 		try {

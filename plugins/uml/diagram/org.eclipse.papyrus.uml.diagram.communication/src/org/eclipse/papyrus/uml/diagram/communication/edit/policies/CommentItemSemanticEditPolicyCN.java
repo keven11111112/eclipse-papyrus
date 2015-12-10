@@ -48,7 +48,7 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 	 * @generated
 	 */
 	public CommentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Comment_8005);
+		super(UMLElementTypes.Comment_Shape);
 	}
 
 	/**
@@ -104,21 +104,21 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_8009 == baseElementType) {
+		if (UMLElementTypes.Path_Edge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_8010 == baseElementType) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_8011 == baseElementType) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
 			return null;
 		}
 		return null;
@@ -144,21 +144,21 @@ public class CommentItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_8009 == baseElementType) {
+		if (UMLElementTypes.Path_Edge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_8010 == baseElementType) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_8011 == baseElementType) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}

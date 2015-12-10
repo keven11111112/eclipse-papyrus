@@ -58,7 +58,7 @@ public class ConditionalNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3069";
+	public static final String VISUAL_ID = "ConditionalNode_Shape";
 
 	/**
 	 * @generated
@@ -90,14 +90,19 @@ public class ConditionalNodeEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ConditionalNodeCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ConditionalNodeCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -110,6 +115,7 @@ public class ConditionalNodeEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -175,36 +181,50 @@ public class ConditionalNodeEditPart extends RoundedCompartmentEditPart {
 			((ConditionalNodeKeywordEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
 		if (childEditPart instanceof ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(
+					((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(
+					((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(
+					((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(
+					((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -221,19 +241,23 @@ public class ConditionalNodeEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer().remove(
+					((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -295,6 +319,7 @@ public class ConditionalNodeEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

@@ -26,8 +26,8 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode <em>Gen Node</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint <em>Gen Constraint</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode <em>Gen Node</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint <em>Gen Constraint</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenNodeConstraint()
@@ -44,7 +44,6 @@ public interface GenNodeConstraint extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Gen Node</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenNodeConstraint_GenNode()
 	 * @model
@@ -60,7 +59,6 @@ public interface GenNodeConstraint extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Gen Constraint</em>' reference.
 	 * @see #setGenConstraint(GenConstraint)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getGenNodeConstraint_GenConstraint()
@@ -73,9 +71,7 @@ public interface GenNodeConstraint extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint <em>Gen Constraint</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Gen Constraint</em>' reference.
+	 * @param value the new value of the '<em>Gen Constraint</em>' reference.
 	 * @see #getGenConstraint()
 	 * @generated
 	 */

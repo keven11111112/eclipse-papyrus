@@ -77,624 +77,644 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @generated
  */
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
+	/**
+	* @generated
+
+	*/
+	private IParser interaction_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser interactionName_5001Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInteractionName_5001Parser() {
-		if(interactionName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getInteraction_NameLabel_Parser() {
+		if (interaction_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("sd: {0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			interactionName_5001Parser = parser;
+			interaction_NameLabel_Parser = parser;
 		}
-		return interactionName_5001Parser;
+		return interaction_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private LifelineCustomParsers lifelineName_5002Parser;
+	private IParser interactionUse_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getLifelineName_5002Parser() {
-		if(lifelineName_5002Parser == null) {
-			lifelineName_5002Parser = new LifelineCustomParsers();
-		}
-		return lifelineName_5002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser stateInvariantName_5008Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getStateInvariantName_5008Parser() {
-		if(stateInvariantName_5008Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			stateInvariantName_5008Parser = parser;
-		}
-		return stateInvariantName_5008Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ConstraintParser stateInvariantLabel_5023Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getStateInvariantLabel_5023Parser() {
-		if(stateInvariantLabel_5023Parser == null) {
-			stateInvariantLabel_5023Parser = new ConstraintParser();
-		}
-		return stateInvariantLabel_5023Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private TimeConstraintParser timeConstraintLabel_5009Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeConstraintLabel_5009Parser() {
-		if(timeConstraintLabel_5009Parser == null) {
-			timeConstraintLabel_5009Parser = new TimeConstraintParser();
-		}
-		return timeConstraintLabel_5009Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser timeConstraintLabel_5013Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeConstraintLabel_5013Parser() {
-		if(timeConstraintLabel_5013Parser == null) {
-			timeConstraintLabel_5013Parser = new AppliedStereotypeParser();
-		}
-		return timeConstraintLabel_5013Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private TimeObservationParser timeObservationLabel_5010Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeObservationLabel_5010Parser() {
-		if(timeObservationLabel_5010Parser == null) {
-			timeObservationLabel_5010Parser = new TimeObservationParser();
-		}
-		return timeObservationLabel_5010Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser timeObservationLabel_5014Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getTimeObservationLabel_5014Parser() {
-		if(timeObservationLabel_5014Parser == null) {
-			timeObservationLabel_5014Parser = new AppliedStereotypeParser();
-		}
-		return timeObservationLabel_5014Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private TimeConstraintParser durationConstraintLabel_5011Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDurationConstraintLabel_5011Parser() {
-		if(durationConstraintLabel_5011Parser == null) {
-			durationConstraintLabel_5011Parser = new TimeConstraintParser();
-		}
-		return durationConstraintLabel_5011Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser durationConstraintLabel_5015Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDurationConstraintLabel_5015Parser() {
-		if(durationConstraintLabel_5015Parser == null) {
-			durationConstraintLabel_5015Parser = new AppliedStereotypeParser();
-		}
-		return durationConstraintLabel_5015Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser interactionUseName_5003Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getInteractionUseName_5003Parser() {
-		if(interactionUseName_5003Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getInteractionUse_NameLabel_Parser() {
+		if (interactionUse_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("Ref"); //$NON-NLS-1$
 			parser.setEditorPattern("Ref"); //$NON-NLS-1$
 			parser.setEditPattern("Ref"); //$NON-NLS-1$
-			interactionUseName_5003Parser = parser;
+			interactionUse_NameLabel_Parser = parser;
 		}
-		return interactionUseName_5003Parser;
+		return interactionUse_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private InteractionUseCustomParsers interactionUseName_5004Parser;
+	private InteractionUseCustomParsers interactionUse_TypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getInteractionUseName_5004Parser() {
-		if(interactionUseName_5004Parser == null) {
-			interactionUseName_5004Parser = new InteractionUseCustomParsers();
+	private IParser getInteractionUse_TypeLabel_Parser() {
+		if (interactionUse_TypeLabel_Parser == null) {
+			interactionUse_TypeLabel_Parser = new InteractionUseCustomParsers();
 		}
-		return interactionUseName_5004Parser;
+		return interactionUse_TypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser continuationName_5007Parser;
+	private IParser continuation_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getContinuationName_5007Parser() {
-		if(continuationName_5007Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getContinuation_NameLabel_Parser() {
+		if (continuation_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			continuationName_5007Parser = parser;
+			continuation_NameLabel_Parser = parser;
 		}
-		return continuationName_5007Parser;
+		return continuation_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser constraintName_5005Parser;
+	private LifelineCustomParsers lifeline_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintName_5005Parser() {
-		if(constraintName_5005Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getLifeline_NameLabel_Parser() {
+		if (lifeline_NameLabel_Parser == null) {
+			lifeline_NameLabel_Parser = new LifelineCustomParsers();
+		}
+		return lifeline_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser stateInvariant_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateInvariant_NameLabel_Parser() {
+		if (stateInvariant_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			constraintName_5005Parser = parser;
+			stateInvariant_NameLabel_Parser = parser;
 		}
-		return constraintName_5005Parser;
+		return stateInvariant_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ConstraintParser constraintLabel_5012Parser;
+	private ConstraintParser stateInvariant_ConstraintLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintLabel_5012Parser() {
-		if(constraintLabel_5012Parser == null) {
-			constraintLabel_5012Parser = new ConstraintParser();
+	private IParser getStateInvariant_ConstraintLabel_Parser() {
+		if (stateInvariant_ConstraintLabel_Parser == null) {
+			stateInvariant_ConstraintLabel_Parser = new ConstraintParser();
 		}
-		return constraintLabel_5012Parser;
+		return stateInvariant_ConstraintLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private CommentParser commentBody_5006Parser;
+	private TimeConstraintParser timeConstraint_ConstraintLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getCommentBody_5006Parser() {
-		if(commentBody_5006Parser == null) {
-			commentBody_5006Parser = new CommentParser();
+	private IParser getTimeConstraint_ConstraintLabel_Parser() {
+		if (timeConstraint_ConstraintLabel_Parser == null) {
+			timeConstraint_ConstraintLabel_Parser = new TimeConstraintParser();
 		}
-		return commentBody_5006Parser;
+		return timeConstraint_ConstraintLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private TimeConstraintParser durationConstraintLabel_5018Parser;
+	private AppliedStereotypeParser timeConstraint_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationConstraintLabel_5018Parser() {
-		if(durationConstraintLabel_5018Parser == null) {
-			durationConstraintLabel_5018Parser = new TimeConstraintParser();
+	private IParser getTimeConstraint_StereotypeLabel_Parser() {
+		if (timeConstraint_StereotypeLabel_Parser == null) {
+			timeConstraint_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return durationConstraintLabel_5018Parser;
+		return timeConstraint_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser durationConstraintLabel_5019Parser;
+	private TimeObservationParser timeObservation_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationConstraintLabel_5019Parser() {
-		if(durationConstraintLabel_5019Parser == null) {
-			durationConstraintLabel_5019Parser = new AppliedStereotypeParser();
+	private IParser getTimeObservation_NameLabel_Parser() {
+		if (timeObservation_NameLabel_Parser == null) {
+			timeObservation_NameLabel_Parser = new TimeObservationParser();
 		}
-		return durationConstraintLabel_5019Parser;
+		return timeObservation_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private DurationObservationParser durationObservationLabel_5016Parser;
+	private AppliedStereotypeParser timeObservation_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationObservationLabel_5016Parser() {
-		if(durationObservationLabel_5016Parser == null) {
-			durationObservationLabel_5016Parser = new DurationObservationParser();
+	private IParser getTimeObservation_StereotypeLabel_Parser() {
+		if (timeObservation_StereotypeLabel_Parser == null) {
+			timeObservation_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return durationObservationLabel_5016Parser;
+		return timeObservation_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser durationObservationLabel_5017Parser;
+	private TimeConstraintParser durationConstraint_BodyLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDurationObservationLabel_5017Parser() {
-		if(durationObservationLabel_5017Parser == null) {
-			durationObservationLabel_5017Parser = new AppliedStereotypeParser();
+	private IParser getDurationConstraint_BodyLabel_Parser() {
+		if (durationConstraint_BodyLabel_Parser == null) {
+			durationConstraint_BodyLabel_Parser = new TimeConstraintParser();
 		}
-		return durationObservationLabel_5017Parser;
+		return durationConstraint_BodyLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6001Parser;
+	private AppliedStereotypeParser durationConstraint_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6001Parser() {
-		if(messageName_6001Parser == null) {
-			messageName_6001Parser = new MessageCustomParser();
+	private IParser getDurationConstraint_StereotypeLabel_Parser() {
+		if (durationConstraint_StereotypeLabel_Parser == null) {
+			durationConstraint_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return messageName_6001Parser;
+		return durationConstraint_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6008Parser;
+	private IParser constraint_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6008Parser() {
-		if(messageLabel_6008Parser == null) {
-			messageLabel_6008Parser = new AppliedStereotypeParser();
+	private IParser getConstraint_NameLabel_Parser() {
+		if (constraint_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			constraint_NameLabel_Parser = parser;
 		}
-		return messageLabel_6008Parser;
+		return constraint_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6002Parser;
+	private ConstraintParser constraint_BodyLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6002Parser() {
-		if(messageName_6002Parser == null) {
-			messageName_6002Parser = new MessageCustomParser();
+	private IParser getConstraint_BodyLabel_Parser() {
+		if (constraint_BodyLabel_Parser == null) {
+			constraint_BodyLabel_Parser = new ConstraintParser();
 		}
-		return messageName_6002Parser;
+		return constraint_BodyLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6009Parser;
+	private CommentParser comment_BodyLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6009Parser() {
-		if(messageLabel_6009Parser == null) {
-			messageLabel_6009Parser = new AppliedStereotypeParser();
+	private IParser getComment_BodyLabel_Parser() {
+		if (comment_BodyLabel_Parser == null) {
+			comment_BodyLabel_Parser = new CommentParser();
 		}
-		return messageLabel_6009Parser;
+		return comment_BodyLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6003Parser;
+	private TimeConstraintParser durationConstraint_BodyLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6003Parser() {
-		if(messageName_6003Parser == null) {
-			messageName_6003Parser = new MessageCustomParser();
+	private IParser getDurationConstraint_BodyLabel_CN_Parser() {
+		if (durationConstraint_BodyLabel_CN_Parser == null) {
+			durationConstraint_BodyLabel_CN_Parser = new TimeConstraintParser();
 		}
-		return messageName_6003Parser;
+		return durationConstraint_BodyLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6010Parser;
+	private AppliedStereotypeParser durationConstraint_StereotypeLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6010Parser() {
-		if(messageLabel_6010Parser == null) {
-			messageLabel_6010Parser = new AppliedStereotypeParser();
+	private IParser getDurationConstraint_StereotypeLabel_CN_Parser() {
+		if (durationConstraint_StereotypeLabel_CN_Parser == null) {
+			durationConstraint_StereotypeLabel_CN_Parser = new AppliedStereotypeParser();
 		}
-		return messageLabel_6010Parser;
+		return durationConstraint_StereotypeLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6004Parser;
+	private DurationObservationParser durationObservation_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6004Parser() {
-		if(messageName_6004Parser == null) {
-			messageName_6004Parser = new MessageCustomParser();
+	private IParser getDurationObservation_NameLabel_Parser() {
+		if (durationObservation_NameLabel_Parser == null) {
+			durationObservation_NameLabel_Parser = new DurationObservationParser();
 		}
-		return messageName_6004Parser;
+		return durationObservation_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6011Parser;
+	private AppliedStereotypeParser durationObservation_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6011Parser() {
-		if(messageLabel_6011Parser == null) {
-			messageLabel_6011Parser = new AppliedStereotypeParser();
+	private IParser getDurationObservation_StereotypeLabel_Parser() {
+		if (durationObservation_StereotypeLabel_Parser == null) {
+			durationObservation_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return messageLabel_6011Parser;
+		return durationObservation_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6005Parser;
+	private MessageCustomParser message_SynchNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6005Parser() {
-		if(messageName_6005Parser == null) {
-			messageName_6005Parser = new MessageCustomParser();
+	private IParser getMessage_SynchNameLabel_Parser() {
+		if (message_SynchNameLabel_Parser == null) {
+			message_SynchNameLabel_Parser = new MessageCustomParser();
 		}
-		return messageName_6005Parser;
+		return message_SynchNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6012Parser;
+	private AppliedStereotypeParser message_SynchStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6012Parser() {
-		if(messageLabel_6012Parser == null) {
-			messageLabel_6012Parser = new AppliedStereotypeParser();
+	private IParser getMessage_SynchStereotypeLabel_Parser() {
+		if (message_SynchStereotypeLabel_Parser == null) {
+			message_SynchStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return messageLabel_6012Parser;
+		return message_SynchStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6006Parser;
+	private MessageCustomParser message_AsynchNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6006Parser() {
-		if(messageName_6006Parser == null) {
-			messageName_6006Parser = new MessageCustomParser();
+	private IParser getMessage_AsynchNameLabel_Parser() {
+		if (message_AsynchNameLabel_Parser == null) {
+			message_AsynchNameLabel_Parser = new MessageCustomParser();
 		}
-		return messageName_6006Parser;
+		return message_AsynchNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6013Parser;
+	private AppliedStereotypeParser message_AsynchStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6013Parser() {
-		if(messageLabel_6013Parser == null) {
-			messageLabel_6013Parser = new AppliedStereotypeParser();
+	private IParser getMessage_AsynchStereotypeLabel_Parser() {
+		if (message_AsynchStereotypeLabel_Parser == null) {
+			message_AsynchStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return messageLabel_6013Parser;
+		return message_AsynchStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private MessageCustomParser messageName_6007Parser;
+	private MessageCustomParser message_ReplyNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageName_6007Parser() {
-		if(messageName_6007Parser == null) {
-			messageName_6007Parser = new MessageCustomParser();
+	private IParser getMessage_ReplyNameLabel_Parser() {
+		if (message_ReplyNameLabel_Parser == null) {
+			message_ReplyNameLabel_Parser = new MessageCustomParser();
 		}
-		return messageName_6007Parser;
+		return message_ReplyNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser messageLabel_6014Parser;
+	private AppliedStereotypeParser message_ReplyStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getMessageLabel_6014Parser() {
-		if(messageLabel_6014Parser == null) {
-			messageLabel_6014Parser = new AppliedStereotypeParser();
+	private IParser getMessage_ReplyStereotypeLabel_Parser() {
+		if (message_ReplyStereotypeLabel_Parser == null) {
+			message_ReplyStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return messageLabel_6014Parser;
+		return message_ReplyStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser generalOrderingLabel_6015Parser;
+	private MessageCustomParser message_CreateNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getGeneralOrderingLabel_6015Parser() {
-		if(generalOrderingLabel_6015Parser == null) {
-			generalOrderingLabel_6015Parser = new AppliedStereotypeParser();
+	private IParser getMessage_CreateNameLabel_Parser() {
+		if (message_CreateNameLabel_Parser == null) {
+			message_CreateNameLabel_Parser = new MessageCustomParser();
 		}
-		return generalOrderingLabel_6015Parser;
+		return message_CreateNameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser message_CreateStereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_CreateStereotypeLabel_Parser() {
+		if (message_CreateStereotypeLabel_Parser == null) {
+			message_CreateStereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return message_CreateStereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private MessageCustomParser message_DeleteNameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_DeleteNameLabel_Parser() {
+		if (message_DeleteNameLabel_Parser == null) {
+			message_DeleteNameLabel_Parser = new MessageCustomParser();
+		}
+		return message_DeleteNameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser message_DeleteStereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_DeleteStereotypeLabel_Parser() {
+		if (message_DeleteStereotypeLabel_Parser == null) {
+			message_DeleteStereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return message_DeleteStereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private MessageCustomParser message_LostNameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_LostNameLabel_Parser() {
+		if (message_LostNameLabel_Parser == null) {
+			message_LostNameLabel_Parser = new MessageCustomParser();
+		}
+		return message_LostNameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser message_LostStereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_LostStereotypeLabel_Parser() {
+		if (message_LostStereotypeLabel_Parser == null) {
+			message_LostStereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return message_LostStereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private MessageCustomParser message_FoundNameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_FoundNameLabel_Parser() {
+		if (message_FoundNameLabel_Parser == null) {
+			message_FoundNameLabel_Parser = new MessageCustomParser();
+		}
+		return message_FoundNameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser message_FoundStereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessage_FoundStereotypeLabel_Parser() {
+		if (message_FoundStereotypeLabel_Parser == null) {
+			message_FoundStereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return message_FoundStereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser generalOrdering_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralOrdering_StereotypeLabel_Parser() {
+		if (generalOrdering_StereotypeLabel_Parser == null) {
+			generalOrdering_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return generalOrdering_StereotypeLabel_Parser;
 	}
 
 	/**
 	* @generated
 	*/
 	protected IParser getParser(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case InteractionNameEditPart.VISUAL_ID:
-				return getInteractionName_5001Parser();
+				return getInteraction_NameLabel_Parser();
+
 			case InteractionUseNameEditPart.VISUAL_ID:
-				return getInteractionUseName_5003Parser();
+				return getInteractionUse_NameLabel_Parser();
 			case InteractionUseName2EditPart.VISUAL_ID:
-				return getInteractionUseName_5004Parser();
+				return getInteractionUse_TypeLabel_Parser();
+
 			case ContinuationNameEditPart.VISUAL_ID:
-				return getContinuationName_5007Parser();
+				return getContinuation_NameLabel_Parser();
+
 			case LifelineNameEditPart.VISUAL_ID:
-				return getLifelineName_5002Parser();
+				return getLifeline_NameLabel_Parser();
+
 			case StateInvariantNameEditPart.VISUAL_ID:
-				return getStateInvariantName_5008Parser();
+				return getStateInvariant_NameLabel_Parser();
 			case StateInvariantLabelEditPart.VISUAL_ID:
-				return getStateInvariantLabel_5023Parser();
+				return getStateInvariant_ConstraintLabel_Parser();
+
 			case TimeConstraintLabelEditPart.VISUAL_ID:
-				return getTimeConstraintLabel_5009Parser();
+				return getTimeConstraint_ConstraintLabel_Parser();
 			case TimeConstraintAppliedStereotypeEditPart.VISUAL_ID:
-				return getTimeConstraintLabel_5013Parser();
+				return getTimeConstraint_StereotypeLabel_Parser();
+
 			case TimeObservationLabelEditPart.VISUAL_ID:
-				return getTimeObservationLabel_5010Parser();
+				return getTimeObservation_NameLabel_Parser();
 			case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
-				return getTimeObservationLabel_5014Parser();
+				return getTimeObservation_StereotypeLabel_Parser();
+
 			case DurationConstraintLabelEditPart.VISUAL_ID:
-				return getDurationConstraintLabel_5011Parser();
+				return getDurationConstraint_BodyLabel_Parser();
 			case DurationConstraintAppliedStereotypeEditPart.VISUAL_ID:
-				return getDurationConstraintLabel_5015Parser();
+				return getDurationConstraint_StereotypeLabel_Parser();
+
 			case ConstraintNameEditPart.VISUAL_ID:
-				return getConstraintName_5005Parser();
+				return getConstraint_NameLabel_Parser();
 			case Constraint2EditPart.VISUAL_ID:
-				return getConstraintLabel_5012Parser();
+				return getConstraint_BodyLabel_Parser();
+
 			case CommentBodyEditPart.VISUAL_ID:
-				return getCommentBody_5006Parser();
+				return getComment_BodyLabel_Parser();
+
 			case DurationConstraintInMessageLabelEditPart.VISUAL_ID:
-				return getDurationConstraintLabel_5018Parser();
+				return getDurationConstraint_BodyLabel_CN_Parser();
 			case DurationConstraintInMessageAppliedStereotypeEditPart.VISUAL_ID:
-				return getDurationConstraintLabel_5019Parser();
+				return getDurationConstraint_StereotypeLabel_CN_Parser();
+
 			case DurationObservationLabelEditPart.VISUAL_ID:
-				return getDurationObservationLabel_5016Parser();
+				return getDurationObservation_NameLabel_Parser();
 			case DurationObservationAppliedStereotypeEditPart.VISUAL_ID:
-				return getDurationObservationLabel_5017Parser();
+				return getDurationObservation_StereotypeLabel_Parser();
+
 			case MessageNameEditPart.VISUAL_ID:
-				return getMessageName_6001Parser();
+				return getMessage_SynchNameLabel_Parser();
 			case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6008Parser();
+				return getMessage_SynchStereotypeLabel_Parser();
+
 			case MessageName2EditPart.VISUAL_ID:
-				return getMessageName_6002Parser();
+				return getMessage_AsynchNameLabel_Parser();
 			case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6009Parser();
+				return getMessage_AsynchStereotypeLabel_Parser();
+
 			case MessageName3EditPart.VISUAL_ID:
-				return getMessageName_6003Parser();
+				return getMessage_ReplyNameLabel_Parser();
 			case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6010Parser();
+				return getMessage_ReplyStereotypeLabel_Parser();
+
 			case MessageName4EditPart.VISUAL_ID:
-				return getMessageName_6004Parser();
+				return getMessage_CreateNameLabel_Parser();
 			case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6011Parser();
+				return getMessage_CreateStereotypeLabel_Parser();
+
 			case MessageName5EditPart.VISUAL_ID:
-				return getMessageName_6005Parser();
+				return getMessage_DeleteNameLabel_Parser();
 			case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6012Parser();
+				return getMessage_DeleteStereotypeLabel_Parser();
+
 			case MessageName6EditPart.VISUAL_ID:
-				return getMessageName_6006Parser();
+				return getMessage_LostNameLabel_Parser();
 			case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6013Parser();
+				return getMessage_LostStereotypeLabel_Parser();
+
 			case MessageName7EditPart.VISUAL_ID:
-				return getMessageName_6007Parser();
+				return getMessage_FoundNameLabel_Parser();
 			case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
-				return getMessageLabel_6014Parser();
+				return getMessage_FoundStereotypeLabel_Parser();
+
 			case GeneralOrderingAppliedStereotypeEditPart.VISUAL_ID:
-				return getGeneralOrderingLabel_6015Parser();
+				return getGeneralOrdering_StereotypeLabel_Parser();
+
 			}
 		}
 		return null;
@@ -714,12 +734,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String)hint.getAdapter(String.class);
-		if(vid != null) {
+		String vid = (String) hint.getAdapter(String.class);
+		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View)hint.getAdapter(View.class);
-		if(view != null) {
+		View view = (View) hint.getAdapter(View.class);
+		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -730,9 +750,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
-		if(operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation)operation).getHint();
-			if(UMLElementTypes.getElement(hint) == null) {
+		if (operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation) operation).getHint();
+			if (UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -764,7 +784,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		 */
 		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-			if(IElementType.class.equals(adapter)) {
+			if (IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);

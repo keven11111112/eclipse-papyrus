@@ -36,7 +36,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	public PackageItemSemanticEditPolicy() {
-		super(UMLElementTypes.Package_1000);
+		super(UMLElementTypes.Package_SequenceDiagram);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Interaction_2001 == baseElementType) {
+		if (UMLElementTypes.Interaction_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}

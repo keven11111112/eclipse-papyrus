@@ -73,7 +73,8 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+	private static DiagramElementTypeImages elementTypeImages = new DiagramElementTypeImages(
+			UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -81,139 +82,164 @@ public class UMLElementTypes {
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
-	 * @generated
-	 */
-	public static final IElementType Package_1000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"); //$NON-NLS-1$
+	* @generated
+	*/
+	public static final IElementType Package_StateMachineDiagram = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Package_StateMachineDiagram"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType StateMachine_2000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.StateMachine_2000"); //$NON-NLS-1$
+	public static final IElementType StateMachine_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.StateMachine_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Region_3000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Region_3000"); //$NON-NLS-1$
+	public static final IElementType Region_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.Region_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType FinalState_5000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000"); //$NON-NLS-1$
+	public static final IElementType FinalState_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.FinalState_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType State_6000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.State_6000"); //$NON-NLS-1$
+	public static final IElementType State_Shape = getElementTypeByUniqueId("org.eclipse.papyrus.umldi.State_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_8000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_InitialShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_InitialShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_9000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_JoinShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_JoinShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_10000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_ForkShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_ForkShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_11000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_ChoiceShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_ChoiceShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_12000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_JunctionShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_JunctionShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_13000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_ShallowHistoryShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_ShallowHistoryShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_14000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_DeepHistoryShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_DeepHistoryShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_15000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_TerminateShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_TerminateShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_16000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_EntryPointShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_EntryPointShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Pseudostate_17000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"); //$NON-NLS-1$
+	public static final IElementType Pseudostate_ExitPointShape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Pseudostate_ExitPointShape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConnectionPointReference_18000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"); //$NON-NLS-1$
+	public static final IElementType ConnectionPointReference_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.ConnectionPointReference_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_666 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"); //$NON-NLS-1$
+	public static final IElementType Comment_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_668 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"); //$NON-NLS-1$
+	public static final IElementType Constraint_Shape = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_Shape"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Transition_680 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"); //$NON-NLS-1$
+	public static final IElementType Transition_InternalTransitionLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Transition_InternalTransitionLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Behavior_690 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"); //$NON-NLS-1$
+	public static final IElementType Behavior_EntryBehaviorLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Behavior_EntryBehaviorLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Behavior_691 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"); //$NON-NLS-1$
+	public static final IElementType Behavior_DoActivityBehaviorLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Behavior_DoActivityBehaviorLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Behavior_692 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"); //$NON-NLS-1$
+	public static final IElementType Behavior_ExitBehaviorLabel = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Behavior_ExitBehaviorLabel"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Transition_7000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"); //$NON-NLS-1$
+	public static final IElementType Transition_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Transition_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Generalization_19000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"); //$NON-NLS-1$
+	public static final IElementType Generalization_Edge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Generalization_Edge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CommentAnnotatedElement_667 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.CommentAnnotatedElement_667"); //$NON-NLS-1$
+	public static final IElementType Comment_AnnotatedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintConstrainedElement_670 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.ConstraintConstrainedElement_670"); //$NON-NLS-1$
+	public static final IElementType Constraint_ConstrainedElementEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintContext_8500 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.statemachine.ConstraintContext_8500"); //$NON-NLS-1$
+	public static final IElementType Constraint_ContextEdge = getElementTypeByUniqueId(
+			"org.eclipse.papyrus.umldi.Constraint_ContextEdge"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -250,35 +276,62 @@ public class UMLElementTypes {
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if(elements == null) {
+		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-			elements.put(StateMachine_2000, UMLPackage.eINSTANCE.getStateMachine());
-			elements.put(Region_3000, UMLPackage.eINSTANCE.getRegion());
-			elements.put(FinalState_5000, UMLPackage.eINSTANCE.getFinalState());
-			elements.put(State_6000, UMLPackage.eINSTANCE.getState());
-			elements.put(Pseudostate_8000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_9000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_10000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_11000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_12000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_13000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_14000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_15000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_16000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(Pseudostate_17000, UMLPackage.eINSTANCE.getPseudostate());
-			elements.put(ConnectionPointReference_18000, UMLPackage.eINSTANCE.getConnectionPointReference());
-			elements.put(Comment_666, UMLPackage.eINSTANCE.getComment());
-			elements.put(Constraint_668, UMLPackage.eINSTANCE.getConstraint());
-			elements.put(Transition_680, UMLPackage.eINSTANCE.getTransition());
-			elements.put(Behavior_690, UMLPackage.eINSTANCE.getBehavior());
-			elements.put(Behavior_691, UMLPackage.eINSTANCE.getBehavior());
-			elements.put(Behavior_692, UMLPackage.eINSTANCE.getBehavior());
-			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
-			elements.put(Generalization_19000, UMLPackage.eINSTANCE.getGeneralization());
-			elements.put(CommentAnnotatedElement_667, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-			elements.put(ConstraintConstrainedElement_670, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
+
+			elements.put(Package_StateMachineDiagram, UMLPackage.eINSTANCE.getPackage());
+
+			elements.put(StateMachine_Shape, UMLPackage.eINSTANCE.getStateMachine());
+
+			elements.put(Region_Shape, UMLPackage.eINSTANCE.getRegion());
+
+			elements.put(FinalState_Shape, UMLPackage.eINSTANCE.getFinalState());
+
+			elements.put(State_Shape, UMLPackage.eINSTANCE.getState());
+
+			elements.put(Pseudostate_InitialShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_JoinShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_ForkShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_ChoiceShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_JunctionShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_ShallowHistoryShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_DeepHistoryShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_TerminateShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_EntryPointShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(Pseudostate_ExitPointShape, UMLPackage.eINSTANCE.getPseudostate());
+
+			elements.put(ConnectionPointReference_Shape, UMLPackage.eINSTANCE.getConnectionPointReference());
+
+			elements.put(Comment_Shape, UMLPackage.eINSTANCE.getComment());
+
+			elements.put(Constraint_Shape, UMLPackage.eINSTANCE.getConstraint());
+
+			elements.put(Transition_InternalTransitionLabel, UMLPackage.eINSTANCE.getTransition());
+
+			elements.put(Behavior_EntryBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
+
+			elements.put(Behavior_DoActivityBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
+
+			elements.put(Behavior_ExitBehaviorLabel, UMLPackage.eINSTANCE.getBehavior());
+
+			elements.put(Transition_Edge, UMLPackage.eINSTANCE.getTransition());
+
+			elements.put(Generalization_Edge, UMLPackage.eINSTANCE.getGeneralization());
+
+			elements.put(Comment_AnnotatedElementEdge, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
+
+			elements.put(Constraint_ConstrainedElementEdge, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
+
+			elements.put(Constraint_ContextEdge, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
 		return elements.get(type);
 	}
@@ -294,62 +347,62 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static IElementType getElementType(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case PackageEditPart.VISUAL_ID:
-				return Package_1000;
+				return Package_StateMachineDiagram;
 			case StateMachineEditPart.VISUAL_ID:
-				return StateMachine_2000;
+				return StateMachine_Shape;
 			case RegionEditPart.VISUAL_ID:
-				return Region_3000;
+				return Region_Shape;
 			case FinalStateEditPart.VISUAL_ID:
-				return FinalState_5000;
+				return FinalState_Shape;
 			case StateEditPart.VISUAL_ID:
-				return State_6000;
+				return State_Shape;
 			case PseudostateInitialEditPart.VISUAL_ID:
-				return Pseudostate_8000;
+				return Pseudostate_InitialShape;
 			case PseudostateJoinEditPart.VISUAL_ID:
-				return Pseudostate_9000;
+				return Pseudostate_JoinShape;
 			case PseudostateForkEditPart.VISUAL_ID:
-				return Pseudostate_10000;
+				return Pseudostate_ForkShape;
 			case PseudostateChoiceEditPart.VISUAL_ID:
-				return Pseudostate_11000;
+				return Pseudostate_ChoiceShape;
 			case PseudostateJunctionEditPart.VISUAL_ID:
-				return Pseudostate_12000;
+				return Pseudostate_JunctionShape;
 			case PseudostateShallowHistoryEditPart.VISUAL_ID:
-				return Pseudostate_13000;
+				return Pseudostate_ShallowHistoryShape;
 			case PseudostateDeepHistoryEditPart.VISUAL_ID:
-				return Pseudostate_14000;
+				return Pseudostate_DeepHistoryShape;
 			case PseudostateTerminateEditPart.VISUAL_ID:
-				return Pseudostate_15000;
+				return Pseudostate_TerminateShape;
 			case PseudostateEntryPointEditPart.VISUAL_ID:
-				return Pseudostate_16000;
+				return Pseudostate_EntryPointShape;
 			case PseudostateExitPointEditPart.VISUAL_ID:
-				return Pseudostate_17000;
+				return Pseudostate_ExitPointShape;
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
-				return ConnectionPointReference_18000;
+				return ConnectionPointReference_Shape;
 			case CommentEditPart.VISUAL_ID:
-				return Comment_666;
+				return Comment_Shape;
 			case ConstraintEditPart.VISUAL_ID:
-				return Constraint_668;
+				return Constraint_Shape;
 			case InternalTransitionEditPart.VISUAL_ID:
-				return Transition_680;
+				return Transition_InternalTransitionLabel;
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-				return Behavior_690;
+				return Behavior_EntryBehaviorLabel;
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-				return Behavior_691;
+				return Behavior_DoActivityBehaviorLabel;
 			case ExitStateBehaviorEditPart.VISUAL_ID:
-				return Behavior_692;
+				return Behavior_ExitBehaviorLabel;
 			case TransitionEditPart.VISUAL_ID:
-				return Transition_7000;
+				return Transition_Edge;
 			case GeneralizationEditPart.VISUAL_ID:
-				return Generalization_19000;
+				return Generalization_Edge;
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
-				return CommentAnnotatedElement_667;
+				return Comment_AnnotatedElementEdge;
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-				return ConstraintConstrainedElement_670;
+				return Constraint_ConstrainedElementEdge;
 			case ContextLinkEditPart.VISUAL_ID:
-				return ConstraintContext_8500;
+				return Constraint_ContextEdge;
 			}
 		}
 		return null;
@@ -359,43 +412,46 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if(KNOWN_ELEMENT_TYPES == null) {
+		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
-			KNOWN_ELEMENT_TYPES.add(Package_1000);
-			KNOWN_ELEMENT_TYPES.add(StateMachine_2000);
-			KNOWN_ELEMENT_TYPES.add(Region_3000);
-			KNOWN_ELEMENT_TYPES.add(FinalState_5000);
-			KNOWN_ELEMENT_TYPES.add(State_6000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_8000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_9000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_10000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_11000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_12000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_13000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_14000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_15000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_16000);
-			KNOWN_ELEMENT_TYPES.add(Pseudostate_17000);
-			KNOWN_ELEMENT_TYPES.add(ConnectionPointReference_18000);
-			KNOWN_ELEMENT_TYPES.add(Comment_666);
-			KNOWN_ELEMENT_TYPES.add(Constraint_668);
-			KNOWN_ELEMENT_TYPES.add(Transition_680);
-			KNOWN_ELEMENT_TYPES.add(Behavior_690);
-			KNOWN_ELEMENT_TYPES.add(Behavior_691);
-			KNOWN_ELEMENT_TYPES.add(Behavior_692);
-			KNOWN_ELEMENT_TYPES.add(Transition_7000);
-			KNOWN_ELEMENT_TYPES.add(Generalization_19000);
-			KNOWN_ELEMENT_TYPES.add(CommentAnnotatedElement_667);
-			KNOWN_ELEMENT_TYPES.add(ConstraintConstrainedElement_670);
-			KNOWN_ELEMENT_TYPES.add(ConstraintContext_8500);
+			KNOWN_ELEMENT_TYPES.add(Package_StateMachineDiagram);
+			KNOWN_ELEMENT_TYPES.add(StateMachine_Shape);
+			KNOWN_ELEMENT_TYPES.add(Region_Shape);
+			KNOWN_ELEMENT_TYPES.add(FinalState_Shape);
+			KNOWN_ELEMENT_TYPES.add(State_Shape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_InitialShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_JoinShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_ForkShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_ChoiceShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_JunctionShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_ShallowHistoryShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_DeepHistoryShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_TerminateShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_EntryPointShape);
+			KNOWN_ELEMENT_TYPES.add(Pseudostate_ExitPointShape);
+			KNOWN_ELEMENT_TYPES.add(ConnectionPointReference_Shape);
+			KNOWN_ELEMENT_TYPES.add(Comment_Shape);
+			KNOWN_ELEMENT_TYPES.add(Constraint_Shape);
+			KNOWN_ELEMENT_TYPES.add(Transition_InternalTransitionLabel);
+			KNOWN_ELEMENT_TYPES.add(Behavior_EntryBehaviorLabel);
+			KNOWN_ELEMENT_TYPES.add(Behavior_DoActivityBehaviorLabel);
+			KNOWN_ELEMENT_TYPES.add(Behavior_ExitBehaviorLabel);
+			KNOWN_ELEMENT_TYPES.add(Transition_Edge);
+			KNOWN_ELEMENT_TYPES.add(Generalization_Edge);
+			KNOWN_ELEMENT_TYPES.add(Comment_AnnotatedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ConstrainedElementEdge);
+			KNOWN_ELEMENT_TYPES.add(Constraint_ContextEdge);
 		}
+
 		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
-		if(!result) {
+
+		if (!result) {
 			IElementType[] supertypes = elementType.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 			}
 		}
+
 		return result;
 	}
 
@@ -409,7 +465,8 @@ public class UMLElementTypes {
 		 */
 		@Override
 		public boolean isKnownElementType(IElementType elementType) {
-			return org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes.isKnownElementType(elementType);
+			return org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes
+					.isKnownElementType(elementType);
 		}
 
 		/**
@@ -425,7 +482,8 @@ public class UMLElementTypes {
 		 */
 		@Override
 		public ENamedElement getDefiningNamedElement(IAdaptable elementTypeAdapter) {
-			return org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes.getElement(elementTypeAdapter);
+			return org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes
+					.getElement(elementTypeAdapter);
 		}
 	};
 
@@ -434,12 +492,14 @@ public class UMLElementTypes {
 	 */
 	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
 		boolean result = subtype == supertype;
-		if(!result) {
+
+		if (!result) {
 			IElementType[] supertypes = subtype.getAllSuperTypes();
-			for(int i = 0; !result && (i < supertypes.length); i++) {
+			for (int i = 0; !result && (i < supertypes.length); i++) {
 				result = supertype == supertypes[i];
 			}
 		}
+
 		return result;
 	}
 }

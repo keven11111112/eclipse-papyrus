@@ -90,7 +90,7 @@ public class CustomGeneralOrderingCreateCommand extends GeneralOrderingCreateCom
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralOrdering_4012(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralOrdering_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	@Override

@@ -26,7 +26,7 @@ public class DiagramSemanticEditPolicy extends SemanticEditPolicy {
 
 	protected Command getCreateCommand(final CreateElementRequest req) {
 
-		final IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.Package_1000);
+		final IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(UMLElementTypes.Package_ActivityDiagram);
 		if (commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -35,7 +35,7 @@ public class DiagramSemanticEditPolicy extends SemanticEditPolicy {
 		// End of user code
 
 		if (ElementTypes.ACTIVITY == req.getElementType()) {
-			final CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), UMLElementTypes.Activity_2001);
+			final CreateElementRequest createRequest = new CreateElementRequest(req.getContainer(), UMLElementTypes.Activity_Shape);
 			return new ICommandProxy(commandService.getEditCommand(createRequest));
 		}
 		return UnexecutableCommand.INSTANCE;

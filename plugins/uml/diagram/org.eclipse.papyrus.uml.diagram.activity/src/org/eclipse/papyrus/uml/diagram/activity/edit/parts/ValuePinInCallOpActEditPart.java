@@ -59,7 +59,7 @@ public class ValuePinInCallOpActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3022";
+	public static final String VISUAL_ID = "ValuePin_CallOperationActionArgumentShape";
 
 	/**
 	 * @generated
@@ -86,7 +86,9 @@ public class ValuePinInCallOpActEditPart extends AbstractPinEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
@@ -116,6 +118,7 @@ public class ValuePinInCallOpActEditPart extends AbstractPinEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -222,6 +225,7 @@ public class ValuePinInCallOpActEditPart extends AbstractPinEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**

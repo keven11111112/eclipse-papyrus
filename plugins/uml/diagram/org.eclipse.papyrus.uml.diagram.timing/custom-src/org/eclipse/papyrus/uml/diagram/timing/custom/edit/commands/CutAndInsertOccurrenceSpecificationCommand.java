@@ -97,9 +97,9 @@ public class CutAndInsertOccurrenceSpecificationCommand extends AbstractTransact
 
 		final Node occurrenceSpecificationView;
 		if (this.destruction) {
-			occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_27(newOccurrenceSpecification, timelineCompartmentView, indexInCompartment + 1, true, PreferencesHint.USE_DEFAULTS);
+			occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_Shape(newOccurrenceSpecification, timelineCompartmentView, indexInCompartment + 1, true, PreferencesHint.USE_DEFAULTS);
 		} else {
-			occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_12(newOccurrenceSpecification, timelineCompartmentView, indexInCompartment + 1, true, PreferencesHint.USE_DEFAULTS);
+			occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_Shape(newOccurrenceSpecification, timelineCompartmentView, indexInCompartment + 1, true, PreferencesHint.USE_DEFAULTS);
 		}
 		final Location loc = NotationFactory.eINSTANCE.createLocation();
 		final Point pt = new Point(this.location);
@@ -113,7 +113,7 @@ public class CutAndInsertOccurrenceSpecificationCommand extends AbstractTransact
 			OccurrenceSpecificationUtils.deleteEverythingAfter(newOccurrenceSpecification, occurrenceSpecificationView);
 		} else {
 			// create a VerticalLine View to link the two StateInvariants
-			umlViewProvider.createNode_39(null, timelineCompartmentView, indexInCompartment + 2, true, PreferencesHint.USE_DEFAULTS);
+			umlViewProvider.createNode_StateInvariantTransitionShape(null, timelineCompartmentView, indexInCompartment + 2, true, PreferencesHint.USE_DEFAULTS);
 
 			// get first state invariant id
 			final String id = StateInvariantUtils.getStateInvariantId(firstStateInvariant);

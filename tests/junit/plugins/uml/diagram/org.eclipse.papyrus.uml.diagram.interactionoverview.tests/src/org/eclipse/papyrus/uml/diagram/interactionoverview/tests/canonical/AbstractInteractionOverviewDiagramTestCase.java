@@ -212,7 +212,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	protected CustomActivityEditPartTN createActivity(final Point location, final Dimension dimension) {
-		createView(UMLElementTypes.Activity_2001, location, dimension, getDiagramEditPart());
+		createView(UMLElementTypes.Activity_Shape, location, dimension, getDiagramEditPart());
 		List<?> diagramChildren = getDiagramEditPart().getChildren();
 		int diagramChildrenAmount = diagramChildren.size();
 		CustomActivityEditPartTN activityEditPartTN = (CustomActivityEditPartTN) diagramChildren.get(diagramChildrenAmount - 1);

@@ -38,7 +38,7 @@ public class DurationObservationStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		durationObservation = (DurationObservationEditPart)createNode(UMLElementTypes.DurationObservation_3024, getRootEditPart(), new Point(100, 100), null);
+		durationObservation = (DurationObservationEditPart)createNode(UMLElementTypes.DurationObservation_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(durationObservation);
 	}
 

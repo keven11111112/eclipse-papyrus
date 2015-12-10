@@ -48,7 +48,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_3001, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -68,48 +68,48 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 
 	@Test
 	public void testToManageActionExecution() {
-		testToManageChildNode(UMLElementTypes.ActionExecutionSpecification_3006, lifelineProvider);
+		testToManageChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineProvider);
 	}
 
 	@Test
 	public void testToManageBehaviorExecution() {
-		testToManageChildNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifelineProvider);
+		testToManageChildNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifelineProvider);
 	}
 
 	@Test
 	public void testToManageDestructionOccurrence() {
-		testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_3022, lifelineProvider);
+		testToManageChildNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifelineProvider);
 	}
 
 	@Test
 	public void testToManageCoRegion() {
 		semanticChild = false;
-		testToManageChildNode(UMLElementTypes.CombinedFragment_3018, lifelineProvider);
+		testToManageChildNode(UMLElementTypes.CombinedFragment_CoRegionShape, lifelineProvider);
 		semanticChild = true;
 	}
 
 	@Test
 	public void testToManageStateInvariant() {
 		semanticChild = false;
-		testToManageChildNode(UMLElementTypes.StateInvariant_3017, lifelineProvider);
+		testToManageChildNode(UMLElementTypes.StateInvariant_Shape, lifelineProvider);
 		semanticChild = true;
 	}
 
 
 	@Test
 	public void testToManageTimeConstraint() {
-		createChildNode(UMLElementTypes.ActionExecutionSpecification_3006, lifelineProvider);
+		createChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineProvider);
 		semanticChild = false;
-		testToManageChildNode(UMLElementTypes.TimeConstraint_3019, executionProvider);
+		testToManageChildNode(UMLElementTypes.TimeConstraint_Shape, executionProvider);
 		semanticChild = true;
 	}
 
 	@Test
 	public void testToManageDurationConstraint() {
-		createChildNode(UMLElementTypes.ActionExecutionSpecification_3006, lifelineProvider);
+		createChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifelineProvider);
 		semanticChild = false;
 
-		testToCreateChildNode(UMLElementTypes.ActionExecutionSpecification_3006, executionProvider);
+		testToCreateChildNode(UMLElementTypes.ActionExecutionSpecification_Shape, executionProvider);
 		{
 			//DESTROY SEMANTIC+ VIEW
 			IChildTestProvider provider = executionProvider;
@@ -133,7 +133,7 @@ public class TestSequenceDiagramChildNode extends TestChildNode {
 		getEMFCommandStack().undo();
 
 		// the node and the UML element are present
-		testViewDeletion(UMLElementTypes.ActionExecutionSpecification_3006, executionProvider);
+		testViewDeletion(UMLElementTypes.ActionExecutionSpecification_Shape, executionProvider);
 
 		semanticChild = true;
 	}

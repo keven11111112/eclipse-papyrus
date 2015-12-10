@@ -49,7 +49,7 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		List<IElementType> types = getTypesForPopupBar(usecase);
 
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.BranchPoint")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.BranchPoint"), hasID("org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3007")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.BranchPoint"), hasID("org.eclipse.papyrus.umldi.ExtensionPoint_ExtensionPointLabel")))));
 	}
 
 	@Test
@@ -59,9 +59,9 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 
 		// Both visual presentations of a use case (as ellipse and as classifier) for the WebScenario stereotype
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.WebScenario")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.umldi.UseCase_Shape")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.WebScenario")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.umldi.UseCase_ClassifierShape")))));
 	}
 
 	@Test
@@ -70,9 +70,9 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		List<IElementType> types = getRelTypesOnSource(usecase);
 
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.Web")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Web"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Association_4011")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Web"), hasID("org.eclipse.papyrus.umldi.Association_Edge")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.Import")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Import"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Import"), hasID("org.eclipse.papyrus.umldi.Dependency_Edge")))));
 	}
 
 	@Test
@@ -81,9 +81,9 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		List<IElementType> types = getRelTypesOnTarget(usecase);
 
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.Import")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Import"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Import"), hasID("org.eclipse.papyrus.umldi.Dependency_Edge")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.Web")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Web"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Association_4011")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Web"), hasID("org.eclipse.papyrus.umldi.Association_Edge")))));
 	}
 
 	@Test
@@ -93,45 +93,45 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		List<IElementType> types = getRelTypesOnSourceAndTarget(usecase, actor);
 
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.Web")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Web"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Association_4011")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Web"), hasID("org.eclipse.papyrus.umldi.Association_Edge")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.Import")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Import"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.Import"), hasID("org.eclipse.papyrus.umldi.Dependency_Edge")))));
 	}
 
 	@Test
 	public void targetForConnectionFromSource() {
 		IAdaptable usecase = getEditPartSurrogate(getUseCase("WebScenario1"));
-		List<IElementType> types = getTypesForTarget(usecase, getProxyType("org.eclipse.papyrus.example.j2ee.Web", "org.eclipse.papyrus.uml.diagram.usecase.Association_4011"));
+		List<IElementType> types = getTypesForTarget(usecase, getProxyType("org.eclipse.papyrus.example.j2ee.Web", "org.eclipse.papyrus.umldi.Association_Edge"));
 
 		// A couple of use case presentations (ellipse and classifier)
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.WebScenario")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.umldi.UseCase_Shape")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.WebScenario")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.umldi.UseCase_ClassifierShape")))));
 
 		// A couple of actor presentations (stick-man and classifier)
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.User")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Actor_2011")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.umldi.Actor_Shape")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.User")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Actor_2012")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.umldi.Actor_ClassifierShape")))));
 	}
 
 	@Test
 	public void sourceForConnectionToTarget() {
 		IAdaptable actor = getEditPartSurrogate(getActor("User1"));
-		List<IElementType> types = getTypesForTarget(actor, getProxyType("org.eclipse.papyrus.example.j2ee.Import", "org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013"));
+		List<IElementType> types = getTypesForTarget(actor, getProxyType("org.eclipse.papyrus.example.j2ee.Import", "org.eclipse.papyrus.umldi.Dependency_Edge"));
 
 		// A couple of use case presentations (ellipse and classifier)
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.WebScenario")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.umldi.UseCase_Shape")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.WebScenario")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.WebScenario"), hasID("org.eclipse.papyrus.umldi.UseCase_ClassifierShape")))));
 
 		// A couple of actor presentations (stick-man and classifier)
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.User")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Actor_2011")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.umldi.Actor_Shape")))));
 		assertThat(types, hasItem(both(hasID("org.eclipse.papyrus.example.j2ee.User")).and(
-				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.uml.diagram.usecase.Actor_2012")))));
+				isProxyType(hasID("org.eclipse.papyrus.example.j2ee.User"), hasID("org.eclipse.papyrus.umldi.Actor_ClassifierShape")))));
 	}
 
 	@Test
@@ -139,8 +139,8 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		IAdaptable usecase = getEditPartSurrogate(getUseCase("WebScenario1"));
 		List<IElementType> types = getRelTypesOnSource(usecase);
 
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Association_4019"))));
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Association_BranchEdge"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Dependency_BranchEdge"))));
 	}
 
 	@Test
@@ -148,8 +148,8 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		IAdaptable actor = getEditPartSurrogate(getActor("User1"));
 		List<IElementType> types = getRelTypesOnTarget(actor);
 
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Association_4019"))));
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Association_BranchEdge"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Dependency_BranchEdge"))));
 	}
 
 	@Test
@@ -158,24 +158,24 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		IAdaptable actor = getEditPartSurrogate(getActor("User1"));
 		List<IElementType> types = getRelTypesOnSourceAndTarget(usecase, actor);
 
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Association_4019"))));
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Association_BranchEdge"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Dependency_BranchEdge"))));
 	}
 
 	@Test
 	public void excludedTargetForConnectionFromSource() {
 		IAdaptable usecase = getEditPartSurrogate(getUseCase("WebScenario1"));
-		List<IElementType> types = getTypesForTarget(usecase, getProxyType("org.eclipse.papyrus.example.j2ee.Web", "org.eclipse.papyrus.uml.diagram.usecase.Association_4011"));
+		List<IElementType> types = getTypesForTarget(usecase, getProxyType("org.eclipse.papyrus.example.j2ee.Web", "org.eclipse.papyrus.umldi.Association_Edge"));
 
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Association_2015"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Association_Shape"))));
 	}
 
 	@Test
 	public void excludedSourceForConnectionToTarget() {
 		IAdaptable actor = getEditPartSurrogate(getActor("User1"));
-		List<IElementType> types = getTypesForTarget(actor, getProxyType("org.eclipse.papyrus.example.j2ee.Import", "org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013"));
+		List<IElementType> types = getTypesForTarget(actor, getProxyType("org.eclipse.papyrus.example.j2ee.Import", "org.eclipse.papyrus.umldi.Dependency_Edge"));
 
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Dependency_Shape"))));
 	}
 
 	@Test
@@ -183,7 +183,7 @@ public class GenericModelingAssistantIntegrationTest extends AbstractModelingAss
 		IAdaptable diagram = getDiagramEditPartSurrogate();
 		List<IElementType> types = getTypesForPopupBar(diagram);
 
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Association_2015"))));
-		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Association_Shape"))));
+		assertThat(types, not(hasItem(specializes("org.eclipse.papyrus.umldi.Dependency_Shape"))));
 	}
 }

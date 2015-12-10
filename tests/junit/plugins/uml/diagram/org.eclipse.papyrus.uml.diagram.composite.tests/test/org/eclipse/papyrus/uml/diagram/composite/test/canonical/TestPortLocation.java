@@ -27,36 +27,36 @@ public class TestPortLocation extends org.eclipse.papyrus.uml.diagram.tests.cano
 
 	@Test
 	public void testStateMachinePortLocation() {
-		testPortLocation(UMLElementTypes.StateMachine_2063);
+		testPortLocation(UMLElementTypes.StateMachine_Shape);
 	}
 
 	@Test
 	public void testProtocolStateMachinePortLocation() {
-		testPortLocation(UMLElementTypes.ProtocolStateMachine_2062);
+		testPortLocation(UMLElementTypes.ProtocolStateMachine_Shape);
 	}
 
 	@Test
 	public void testInteractionItemPortLocation() {
-		testPortLocation(UMLElementTypes.Interaction_2061);
+		testPortLocation(UMLElementTypes.Interaction_Shape);
 	}
 
 	@Test
 	public void testClassPortLocation() {
-		testPortLocation(UMLElementTypes.Class_2073);
+		testPortLocation(UMLElementTypes.Class_Shape);
 	}
 
 	@Test
 	public void testClassPartPortLocation() {
-		testPortLocation(UMLElementTypes.Class_2073, ClassCompositeCompartmentEditPart.VISUAL_ID, UMLElementTypes.Property_3070);
+		testPortLocation(UMLElementTypes.Class_Shape, ClassCompositeCompartmentEditPart.VISUAL_ID, UMLElementTypes.Property_Shape);
 	}
 
 	@Test
 	public void testActivityPortLocation() {
-		testPortLocation(UMLElementTypes.Activity_2060);
+		testPortLocation(UMLElementTypes.Activity_Shape);
 	}
 
 	@Override
 	protected IElementType getPortType() {
-		return UMLElementTypes.Port_3069;
+		return UMLElementTypes.Port_Shape;
 	}
 }

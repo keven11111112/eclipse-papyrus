@@ -91,6 +91,7 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			case PapyrusgmfgenextensionPackage.CUSTOM_DIAGRAM_UPDATER_SINGLETON: return createCustomDiagramUpdaterSingleton();
 			case PapyrusgmfgenextensionPackage.SPECIFIC_NODE_PLATE: return createSpecificNodePlate();
 			case PapyrusgmfgenextensionPackage.GEN_VISUAL_TYPE_PROVIDER: return createGenVisualTypeProvider();
+			case PapyrusgmfgenextensionPackage.VISUAL_ID_OVERRIDE: return createVisualIDOverride();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -344,6 +345,16 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public GenVisualTypeProvider createGenVisualTypeProvider() {
 		GenVisualTypeProviderImpl genVisualTypeProvider = new GenVisualTypeProviderImpl();
 		return genVisualTypeProvider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VisualIDOverride createVisualIDOverride() {
+		VisualIDOverrideImpl visualIDOverride = new VisualIDOverrideImpl();
+		return visualIDOverride;
 	}
 
 	/**

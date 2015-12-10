@@ -17,76 +17,77 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ActivityCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ClassCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CollaborationCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ComponentCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DataTypeOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeviceCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DeviceCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.EnumerationEnumerationLiteralCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ExecutionEnvironmentCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.FunctionBehaviorCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.InteractionCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.NodeCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.NodeCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.OpaqueBehaviorCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ProtocolStateMachineCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.StateMachineCompositeCompartmentEditPartCN;
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
  */
 public class CompositeReconcilerForCompartment extends ReconcilerForCompartment {
 
+	private static final String DataTypeAttributeCompartmentEditPart_VISUAL_ID = "7033";
+	private static final String DataTypeOperationCompartmentEditPart_VISUAL_ID = "7034";
+	private static final String DataTypeAttributeCompartmentEditPartCN_VISUAL_ID = "7036";
+	private static final String DataTypeOperationCompartmentEditPartCN_VISUAL_ID = "7037";
+	private static final String EnumerationEnumerationLiteralCompartmentEditPart_VISUAL_ID = "7048";
+	private static final String EnumerationEnumerationLiteralCompartmentEditPartCN_VISUAL_ID = "7049";
+	private static final String ActivityCompositeCompartmentEditPartCN_VISUAL_ID = "7050";
+	private static final String InteractionCompositeCompartmentEditPartCN_VISUAL_ID = "7051";
+	private static final String ProtocolStateMachineCompositeCompartmentEditPartCN_VISUAL_ID = "7052";
+	private static final String StateMachineCompositeCompartmentEditPartCN_VISUAL_ID = "7053";
+	private static final String FunctionBehaviorCompositeCompartmentEditPartCN_VISUAL_ID = "7054";
+	private static final String OpaqueBehaviorCompositeCompartmentEditPartCN_VISUAL_ID = "7055";
+	private static final String ComponentCompositeCompartmentEditPartCN_VISUAL_ID = "7056";
+	private static final String DeviceCompositeCompartmentEditPartCN_VISUAL_ID = "7057";
+	private static final String ExecutionEnvironmentCompositeCompartmentEditPartCN_VISUAL_ID = "7058";
+	private static final String NodeCompositeCompartmentEditPartCN_VISUAL_ID = "7059";
+	private static final String ClassCompositeCompartmentEditPartCN_VISUAL_ID = "7060";
+	private static final String CollaborationCompositeCompartmentEditPartCN_VISUAL_ID = "7061";
+	private static final String ActivityCompositeCompartmentEditPart_VISUAL_ID = "7063";
+	private static final String InteractionCompositeCompartmentEditPart_VISUAL_ID = "7064";
+	private static final String ProtocolStateMachineCompositeCompartmentEditPart_VISUAL_ID = "7065";
+	private static final String StateMachineCompositeCompartmentEditPart_VISUAL_ID = "7066";
+	private static final String FunctionBehaviorCompositeCompartmentEditPart_VISUAL_ID = "7067";
+	private static final String OpaqueBehaviorCompositeCompartmentEditPart_VISUAL_ID = "7068";
+	private static final String ComponentCompositeCompartmentEditPart_VISUAL_ID = "7069";
+	private static final String DeviceCompositeCompartmentEditPart_VISUAL_ID = "7070";
+	private static final String ExecutionEnvironmentCompositeCompartmentEditPart_VISUAL_ID = "7071";
+	private static final String NodeCompositeCompartmentEditPart_VISUAL_ID = "7072";
+	private static final String ClassCompositeCompartmentEditPart_VISUAL_ID = "7073";
+	private static final String CollaborationCompositeCompartmentEditPart_VISUAL_ID = "7075";
+	private static final String PropertyPartCompartmentEditPartCN_VISUAL_ID = "7077";
+
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
-			DataTypeAttributeCompartmentEditPart.VISUAL_ID,
-			DataTypeOperationCompartmentEditPart.VISUAL_ID,
-			DataTypeAttributeCompartmentEditPartCN.VISUAL_ID,
-			DataTypeOperationCompartmentEditPartCN.VISUAL_ID,
-			EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID,
-			EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID,
-			ActivityCompositeCompartmentEditPartCN.VISUAL_ID,
-			InteractionCompositeCompartmentEditPartCN.VISUAL_ID,
-			ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID,
-			StateMachineCompositeCompartmentEditPartCN.VISUAL_ID,
-			FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID,
-			OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID,
-			ComponentCompositeCompartmentEditPartCN.VISUAL_ID,
-			DeviceCompositeCompartmentEditPartCN.VISUAL_ID,
-			ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID,
-			NodeCompositeCompartmentEditPartCN.VISUAL_ID,
-			ClassCompositeCompartmentEditPartCN.VISUAL_ID,
-			CollaborationCompositeCompartmentEditPartCN.VISUAL_ID,
-			ActivityCompositeCompartmentEditPart.VISUAL_ID,
-			InteractionCompositeCompartmentEditPart.VISUAL_ID,
-			ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID,
-			StateMachineCompositeCompartmentEditPart.VISUAL_ID,
-			FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID,
-			OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID,
-			ComponentCompositeCompartmentEditPart.VISUAL_ID,
-			DeviceCompositeCompartmentEditPart.VISUAL_ID,
-			ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID,
-			NodeCompositeCompartmentEditPart.VISUAL_ID,
-			ClassCompositeCompartmentEditPart.VISUAL_ID,
-			CollaborationCompositeCompartmentEditPart.VISUAL_ID,
-			PropertyPartCompartmentEditPartCN.VISUAL_ID);
+			DataTypeAttributeCompartmentEditPart_VISUAL_ID,
+			DataTypeOperationCompartmentEditPart_VISUAL_ID,
+			DataTypeAttributeCompartmentEditPartCN_VISUAL_ID,
+			DataTypeOperationCompartmentEditPartCN_VISUAL_ID,
+			EnumerationEnumerationLiteralCompartmentEditPart_VISUAL_ID,
+			EnumerationEnumerationLiteralCompartmentEditPartCN_VISUAL_ID,
+			ActivityCompositeCompartmentEditPartCN_VISUAL_ID,
+			InteractionCompositeCompartmentEditPartCN_VISUAL_ID,
+			ProtocolStateMachineCompositeCompartmentEditPartCN_VISUAL_ID,
+			StateMachineCompositeCompartmentEditPartCN_VISUAL_ID,
+			FunctionBehaviorCompositeCompartmentEditPartCN_VISUAL_ID,
+			OpaqueBehaviorCompositeCompartmentEditPartCN_VISUAL_ID,
+			ComponentCompositeCompartmentEditPartCN_VISUAL_ID,
+			DeviceCompositeCompartmentEditPartCN_VISUAL_ID,
+			ExecutionEnvironmentCompositeCompartmentEditPartCN_VISUAL_ID,
+			NodeCompositeCompartmentEditPartCN_VISUAL_ID,
+			ClassCompositeCompartmentEditPartCN_VISUAL_ID,
+			CollaborationCompositeCompartmentEditPartCN_VISUAL_ID,
+			ActivityCompositeCompartmentEditPart_VISUAL_ID,
+			InteractionCompositeCompartmentEditPart_VISUAL_ID,
+			ProtocolStateMachineCompositeCompartmentEditPart_VISUAL_ID,
+			StateMachineCompositeCompartmentEditPart_VISUAL_ID,
+			FunctionBehaviorCompositeCompartmentEditPart_VISUAL_ID,
+			OpaqueBehaviorCompositeCompartmentEditPart_VISUAL_ID,
+			ComponentCompositeCompartmentEditPart_VISUAL_ID,
+			DeviceCompositeCompartmentEditPart_VISUAL_ID,
+			ExecutionEnvironmentCompositeCompartmentEditPart_VISUAL_ID,
+			NodeCompositeCompartmentEditPart_VISUAL_ID,
+			ClassCompositeCompartmentEditPart_VISUAL_ID,
+			CollaborationCompositeCompartmentEditPart_VISUAL_ID,
+			PropertyPartCompartmentEditPartCN_VISUAL_ID);
 
 	/**
 	 * Gets the compartments visual id.

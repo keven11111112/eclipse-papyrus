@@ -144,16 +144,16 @@ public class SysMLDiagramUpdater {
 			return getConnector_link_uml_connector_IncomingLink(view);
 		}
 		if (id.equals(CommentEditPart.VISUAL_ID)) {
-			return getComment_2109IncomingLinks(view);
+			return getComment_Shape_IncomingLinks(view);
 		}
 		if (id.equals(CommentEditPartCN.VISUAL_ID)) {
-			return getComment_3097IncomingLinks(view);
+			return getComment_Shape_CN_IncomingLinks(view);
 		}
 		if (id.equals(ConstraintEditPart.VISUAL_ID)) {
-			return getConstraint_2114IncomingLinks(view);
+			return getConstraint_Shape_IncomingLinks(view);
 		}
 		if (id.equals(ConstraintEditPartCN.VISUAL_ID)) {
-			return getConstraint_3120IncomingLinks(view);
+			return getConstraint_Shape_CN_IncomingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -186,16 +186,16 @@ public class SysMLDiagramUpdater {
 			return getConnector_link_uml_connector_OutgoingLink(view);
 		}
 		if (id.equals(CommentEditPart.VISUAL_ID)) {
-			return getComment_2109OutgoingLinks(view);
+			return getComment_Shape_OutgoingLinks(view);
 		}
 		if (id.equals(CommentEditPartCN.VISUAL_ID)) {
-			return getComment_3097OutgoingLinks(view);
+			return getComment_Shape_CN_OutgoingLinks(view);
 		}
 		if (id.equals(ConstraintEditPart.VISUAL_ID)) {
-			return getConstraint_2114OutgoingLinks(view);
+			return getConstraint_Shape_OutgoingLinks(view);
 		}
 		if (id.equals(ConstraintEditPartCN.VISUAL_ID)) {
-			return getConstraint_3120OutgoingLinks(view);
+			return getConstraint_Shape_CN_OutgoingLinks(view);
 		}
 		return Collections.emptyList();
 	}
@@ -204,8 +204,8 @@ public class SysMLDiagramUpdater {
 		Connector modelElement = (Connector) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
 
@@ -222,8 +222,8 @@ public class SysMLDiagramUpdater {
 		Dependency modelElement = (Dependency) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
 	}
@@ -236,72 +236,72 @@ public class SysMLDiagramUpdater {
 	}
 
 
-	private static List<UpdaterLinkDescriptor> getComment_3097IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getComment_Shape_CN_IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getComment_3097OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getComment_Shape_CN_OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getComment_2109IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getComment_Shape_IncomingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getComment_2109OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getComment_Shape_OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getConstraint_2114IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getConstraint_Shape_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getConstraint_2114OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getConstraint_Shape_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getConstraint_3120IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getConstraint_Shape_CN_IncomingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
 	}
 
 
-	private static List<UpdaterLinkDescriptor> getConstraint_3120OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getConstraint_Shape_CN_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		return result;
 	}
 
@@ -310,8 +310,8 @@ public class SysMLDiagramUpdater {
 		final CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -333,8 +333,8 @@ public class SysMLDiagramUpdater {
 		final Property modelElement = (Property) view.getElement();
 		final CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		final LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetsLinks_Connector_link_uml_connector(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetsLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
@@ -356,44 +356,44 @@ public class SysMLDiagramUpdater {
 		return result;
 	}
 
-	private static Collection<? extends UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(final Element target, final CrossReferenceAdapter crossReferencer) {
+	private static Collection<? extends UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(final Element target, final CrossReferenceAdapter crossReferencer) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4002, CommentAnnotatedElementEditPart.VISUAL_ID));
+				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
 	}
 
 
-	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(Comment source) {
+	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(Comment source) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4002, CommentAnnotatedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
-	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(Element target, CrossReferenceAdapter crossReferencer) {
+	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4003, ConstraintConstrainedElementEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ConstrainedElementEdge, ConstraintConstrainedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
 	}
 
 
-	private static Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(Constraint source) {
+	private static Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4003, ConstraintConstrainedElementEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -441,7 +441,7 @@ public class SysMLDiagramUpdater {
 					continue;
 				}
 				final ConnectableElement src = current.getRole();
-				result.add(new UpdaterLinkDescriptor(src, target, connector, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Connector_4013, null));
+				result.add(new UpdaterLinkDescriptor(src, target, connector, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Connector_Edge, null));
 			}
 		}
 		return result;
@@ -470,7 +470,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UpdaterLinkDescriptor(src, target, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_4010, null));
+			result.add(new UpdaterLinkDescriptor(src, target, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_Edge, null));
 		}
 		return result;
 	}
@@ -513,7 +513,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UpdaterLinkDescriptor(src, dst, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_4010, null));
+			result.add(new UpdaterLinkDescriptor(src, dst, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_Edge, null));
 		}
 		return result;
 	}

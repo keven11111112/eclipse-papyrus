@@ -41,7 +41,7 @@ public class TimeObservationStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		timeObservation = (TimeObservationEditPart)createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), new Point(100, 100), null);
+		timeObservation = (TimeObservationEditPart)createNode(UMLElementTypes.TimeObservation_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(timeObservation);
 	}
 

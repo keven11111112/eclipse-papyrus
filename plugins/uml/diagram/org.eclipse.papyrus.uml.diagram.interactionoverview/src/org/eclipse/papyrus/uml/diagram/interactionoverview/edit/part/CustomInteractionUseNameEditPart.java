@@ -30,7 +30,7 @@ public class CustomInteractionUseNameEditPart extends CallBehaviorActionNameEdit
 	@Override
 	public IParser getParser() {
 		if (customParser == null) {
-			customParser = UMLParserProvider.getParser(UMLElementTypes.CallBehaviorAction_3008, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionNameEditPart.VISUAL_ID));
+			customParser = UMLParserProvider.getParser(UMLElementTypes.CallBehaviorAction_Shape, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionNameEditPart.VISUAL_ID));
 		}
 		return customParser;
 	}

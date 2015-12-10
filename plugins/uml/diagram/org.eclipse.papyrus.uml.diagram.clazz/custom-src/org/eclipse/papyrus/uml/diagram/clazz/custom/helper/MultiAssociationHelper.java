@@ -171,11 +171,11 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 				}
 			}
 			// descriptor for the branch
-			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4019, ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(),
+			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_BranchEdge, ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(),
 					((IGraphicalEditPart) associationNodeEditPart).getDiagramPreferencesHint());
 			// the editpart exist -> only creation of the branch
 			if (sourceEditPart != null) {
-				CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), new SemanticAdapter(null,
+				CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(), new SemanticAdapter(null,
 						associationNodeEditPart.getModel()), new SemanticAdapter(null, sourceEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor, null);
 				aBranchCommand.setElement(association);
 				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
@@ -190,7 +190,7 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 						associationNodeEditPart.getLocation().y + index * 100));
 				((CompoundCommand) command).add(new ICommandProxy(setBoundsCommand));
 				// Creation of the branch
-				CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), new SemanticAdapter(null,
+				CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(), new SemanticAdapter(null,
 						associationNodeEditPart.getModel()), (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), associationNodeEditPart.getViewer(), ((IGraphicalEditPart) associationNodeEditPart).getDiagramPreferencesHint(),
 						viewBranchDescriptor, null);
 				aBranchCommand.setElement(association);
@@ -232,12 +232,12 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 				}
 			}
 			// descriptor for the branch
-			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4019, ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), diagramPreferencesHint);
+			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_BranchEdge, ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(), diagramPreferencesHint);
 			// the editpart exist -> only creation of the branch
 			if (sourceEditPart != null) {
 				GraphicalAssociationBranchViewCommand aBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null, sourceEditPart.getModel()),
 						sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor, currentEnd);
-				// CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(),
+				// CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BranchEdge).getSemanticHint(),
 				// (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null, sourceEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor, null);
 				aBranchCommand.setElement(association);
 				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
@@ -253,7 +253,7 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 				// Creation of the branch
 				GraphicalAssociationBranchViewCommand aBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), (IAdaptable) nodeCreationCommand.getCommandResult()
 						.getReturnValue(), viewer, diagramPreferencesHint, viewBranchDescriptor, currentEnd);
-				// CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(),
+				// CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BrachEdge).getSemanticHint(),
 				// (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, viewBranchDescriptor, null);
 				aBranchCommand.setElement(association);
 				((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));
@@ -370,7 +370,7 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 			// ---------------------------------------------------------
 			// 3. set a new end association in the UML model
 			// 3.1 creation of the property
-			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3005, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
+			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_SignalAttributeLabel, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement);
 			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
 			propertyCreateCommand.setReuseParentTransaction(true);
@@ -384,18 +384,18 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 			((CompoundCommand) command).add(new ICommandProxy(nodeCreation));
 			// 4. reconstruction of the old link by taking in account the old
 			// connection
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4019, ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_BranchEdge, ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
 			// 5. reconstruction of the first branch between old source to node
 			ICommand firstBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null, associationViewSource), sourceEditPart.getViewer(),
 					((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, sourceEnd);
-			// ICommand firstBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new
+			// ICommand firstBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BrachEdge).getSemanticHint(), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new
 			// SemanticAdapter(null, associationViewSource), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			((GraphicalAssociationBranchViewCommand) firstBranchCommand).setElement(association);
 			((CompoundCommand) command).add(new ICommandProxy(firstBranchCommand));
 			// 6. reconstruction of the second branch between node to old target
 			ICommand secondBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null, associationViewTarget), sourceEditPart.getViewer(),
 					((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, targetEnd);
-			// ICommand secondBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new
+			// ICommand secondBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BrachEdge).getSemanticHint(), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new
 			// SemanticAdapter(null, associationViewTarget), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			((GraphicalAssociationBranchViewCommand) secondBranchCommand).setElement(association);
 			((CompoundCommand) command).add(new ICommandProxy(secondBranchCommand));
@@ -405,13 +405,13 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 				// third branch node and target
 				thirdBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null, targetEditPart.getModel()), sourceEditPart.getViewer(),
 						((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, request);
-				// thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
+				// thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BrachEdge).getSemanticHint(), (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
 				// targetEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			} else {
 				// third branch source and node
 				thirdBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), new SemanticAdapter(null, sourceEditPart.getModel()), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), sourceEditPart.getViewer(),
 						((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, request);
-				// thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()),
+				// thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BrachEdge).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()),
 				// (IAdaptable)nodeCreation.getCommandResult().getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			}
 			((GraphicalAssociationBranchViewCommand) thirdBranchCommand).setElement(association);
@@ -453,16 +453,16 @@ public class MultiAssociationHelper extends org.eclipse.papyrus.uml.diagram.comm
 			}
 			// System.err.println("step init, can execute?" + command.canExecute());
 			// 0. add semantic
-			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3005, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
+			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_SignalAttributeLabel, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement);
 			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
 			((CompoundCommand) command).add(new ICommandProxy(propertyCreateCommand));
 			// System.err.println("0. add semantic, can execute?" + command.canExecute());
 			// 1. add the branch graphically
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4019, ((IHintedType) UMLElementTypes.Association_4019).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_BranchEdge, ((IHintedType) UMLElementTypes.Association_BranchEdge).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
 			GraphicalAssociationBranchViewCommand aBranchCommand = new GraphicalAssociationBranchViewCommand(getEditingDomain(), new SemanticAdapter(null, sourceEditPart.getModel()), new SemanticAdapter(null, targetEditPart.getModel()),
 					sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, request);
-			// CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_4019).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()),
+			// CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Association_BrachEdge).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()),
 			// new SemanticAdapter(null, targetEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			aBranchCommand.setElement(association);
 			((CompoundCommand) command).add(new ICommandProxy(aBranchCommand));

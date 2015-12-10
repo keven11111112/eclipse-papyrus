@@ -35,19 +35,19 @@ public class TestInteractionUse extends AbstractInteractionOverviewDiagramTestCa
 
 	@Test
 	public void testCreateInteractionUse() {
-		createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
+		createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 	}
 
 	@Test
 	public void testDeleteInteractionUse() {
-		final CustomInteractionUseEditPartCN interactionUse = (CustomInteractionUseEditPartCN)createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
+		final CustomInteractionUseEditPartCN interactionUse = (CustomInteractionUseEditPartCN)createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 		testDelete(interactionUse);
 	}
 
 	@Test
 	public void testDropLifeline() {
 		// create a Lifeline and hide its View, so as to be able to drop it after that
-		final UMLNodeEditPart interactionUseEditPart = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
+		final UMLNodeEditPart interactionUseEditPart = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 		final CallBehaviorAction callBehaviorAction = (CallBehaviorAction)((View)interactionUseEditPart.getModel()).getElement();
 		assertNotNull("The CallBehavior should not be null", callBehaviorAction);
 		testHide(interactionUseEditPart);
@@ -57,9 +57,9 @@ public class TestInteractionUse extends AbstractInteractionOverviewDiagramTestCa
 
 	@Test
 	public void testCreateThreeInteractions() {
-		final UMLNodeEditPart interactionUse1 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
-		final UMLNodeEditPart interactionUse2 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
-		final UMLNodeEditPart interactionUse3 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
+		final UMLNodeEditPart interactionUse1 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
+		final UMLNodeEditPart interactionUse2 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
+		final UMLNodeEditPart interactionUse3 = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 		assertEquals("The diagram should only contain the 3 interactionUse", 3, getDefaultActivityCompartment().getChildren().size());
 		assertTrue("The first interaction should be found in the diagram", getDefaultActivityCompartment().getChildren().contains(interactionUse1));
 		assertTrue("The second interaction should be found in the diagram", getDefaultActivityCompartment().getChildren().contains(interactionUse2));
@@ -68,7 +68,7 @@ public class TestInteractionUse extends AbstractInteractionOverviewDiagramTestCa
 
 	@Test
 	public void testEditInteractionName() {
-		final UMLNodeEditPart interactionUse = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_3008);
+		final UMLNodeEditPart interactionUse = createChildNodeInTopNode(UMLElementTypes.CallBehaviorAction_Shape);
 		final CustomInteractionUseNameEditPart callBehaviorNameEditPart = (CustomInteractionUseNameEditPart)EditPartUtils.findFirstChildEditPartWithId(interactionUse, CustomInteractionUseNameEditPart.VISUAL_ID);
 		final NamedElement namedElement = ((CallBehaviorAction)interactionUse.getUMLElement()).getBehavior();
 		testSetNameWithDirectEditRequest(callBehaviorNameEditPart, namedElement);

@@ -1171,6 +1171,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.eclipse.papyrus.umldi.Package_ActivityDiagram"
           definedExternally="true"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
@@ -1196,7 +1197,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Parameter_ParameterLabel"
             displayName="Parameter"
             definedExternally="true">
           <metamodelType
@@ -1243,6 +1244,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_PreconditionLabel"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
@@ -1295,6 +1297,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_PostconditionLabel"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
@@ -1346,7 +1349,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InitialNode_Shape"
             displayName="InitialNode"
             definedExternally="true">
           <metamodelType
@@ -1436,7 +1439,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActivityFinalNode_Shape"
             displayName="ActivityFinalNode"
             definedExternally="true">
           <metamodelType
@@ -1532,7 +1535,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.FlowFinalNode_Shape"
             displayName="FlowFinalNode"
             definedExternally="true">
           <metamodelType
@@ -1628,7 +1631,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OpaqueAction_Shape"
             displayName="OpaqueAction"
             definedExternally="true">
           <metamodelType
@@ -1735,7 +1738,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_OpaqueActionInputShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -1840,7 +1843,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_OpaqueActionInputShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -1945,7 +1948,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_OpaqueActionInputShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -2036,7 +2039,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_OpaqueActionOutputShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -2126,7 +2129,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.CallBehaviorAction_Shape"
             displayName="CallBehaviorAction"
             definedExternally="true">
           <metamodelType
@@ -2229,7 +2232,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_CallBehaviorActionArgumentShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -2338,7 +2341,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_CallBehaviorActionArgumentShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -2447,7 +2450,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_CallBehaviorActionArgumentShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -2542,7 +2545,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_CallBehaviorActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -2636,7 +2639,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.CallOperationAction_Shape"
             displayName="CallOperationAction"
             definedExternally="true">
           <metamodelType
@@ -2739,7 +2742,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionArgumentShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -2849,7 +2852,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_CallOperationActionArgumentShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -2959,7 +2962,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_CallOperationActionArgumentShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -3055,7 +3058,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_CallOperationActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -3150,7 +3153,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_CallOperationActionTargetShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -3260,7 +3263,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_CallOperationActionTargetShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -3370,7 +3373,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_CallOperationActionTargetShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -3464,7 +3467,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.DurationConstraint_LocalPreconditionShape"
             displayName="DurationConstraint"
             definedExternally="true">
           <metamodelType
@@ -3566,7 +3569,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.DurationConstraint_LocalPostconditionShape"
             displayName="DurationConstraint"
             definedExternally="true">
           <metamodelType
@@ -3668,7 +3671,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.TimeConstraint_LocalPreconditionShape"
             displayName="TimeConstraint"
             definedExternally="true">
           <metamodelType
@@ -3770,7 +3773,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.TimeConstraint_LocalPostconditionShape"
             displayName="TimeConstraint"
             definedExternally="true">
           <metamodelType
@@ -3872,7 +3875,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.IntervalConstraint_LocalPreconditionShape"
             displayName="IntervalConstraint"
             definedExternally="true">
           <metamodelType
@@ -3974,7 +3977,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.IntervalConstraint_LocalPostconditionShape"
             displayName="IntervalConstraint"
             definedExternally="true">
           <metamodelType
@@ -4076,6 +4079,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_LocalPreconditionShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
@@ -4176,6 +4180,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_LocalPostconditionShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
@@ -4276,7 +4281,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.DecisionNode_Shape"
             displayName="DecisionNode"
             definedExternally="true">
           <metamodelType
@@ -4384,7 +4389,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.MergeNode_Shape"
             displayName="MergeNode"
             definedExternally="true">
           <metamodelType
@@ -4474,7 +4479,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ForkNode_Shape"
             displayName="ForkNode"
             definedExternally="true">
           <metamodelType
@@ -4569,7 +4574,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.JoinNode_Shape"
             displayName="JoinNode"
             definedExternally="true">
           <metamodelType
@@ -4678,7 +4683,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.DataStoreNode_Shape"
             displayName="DataStoreNode"
             definedExternally="true">
           <metamodelType
@@ -4782,7 +4787,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.SendObjectAction_Shape"
             displayName="SendObjectAction"
             definedExternally="true">
           <metamodelType
@@ -4889,7 +4894,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_SendObjectActionRequestShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -4995,7 +5000,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionRequestShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -5101,7 +5106,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_SendObjectActionRequestShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -5193,7 +5198,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_SendObjectActionTargetShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -5299,7 +5304,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_SendObjectActionTargetShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -5405,7 +5410,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_SendObjectActionTargetShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -5496,7 +5501,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.SendSignalAction_Shape"
             displayName="SendSignalAction"
             definedExternally="true">
           <metamodelType
@@ -5599,7 +5604,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionArgumentShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -5705,7 +5710,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_SendSignalActionArgumentShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -5811,7 +5816,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_SendSignalActionArgumentShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -5903,7 +5908,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_SendSignalActionTargetShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -6009,7 +6014,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_SendSignalActionTargetShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -6115,7 +6120,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_SendSignalActionTargetShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -6207,7 +6212,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActivityParameterNode_Shape"
             displayName="ActivityParameterNode"
             definedExternally="true">
           <metamodelType
@@ -6319,7 +6324,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.AcceptEventAction_Shape"
             displayName="AcceptEventAction"
             definedExternally="true">
           <metamodelType
@@ -6452,7 +6457,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_AcceptEventActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -6542,7 +6547,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValueSpecificationAction_Shape"
             displayName="ValueSpecificationAction"
             definedExternally="true">
           <metamodelType
@@ -6649,7 +6654,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ValueSpecificationActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -6740,7 +6745,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ConditionalNode_Shape"
             displayName="ConditionalNode"
             definedExternally="true">
           <metamodelType
@@ -6808,7 +6813,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ExpansionRegion_Shape"
             displayName="ExpansionRegion"
             definedExternally="true">
           <metamodelType
@@ -6876,7 +6881,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ExpansionNode_InputShape"
             displayName="ExpansionNode"
             definedExternally="true">
           <metamodelType
@@ -6931,7 +6936,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ExpansionNode_OutputShape"
             displayName="ExpansionNode"
             definedExternally="true">
           <metamodelType
@@ -6986,7 +6991,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.LoopNode_Shape"
             displayName="LoopNode"
             definedExternally="true">
           <metamodelType
@@ -7053,7 +7058,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_LoopNodeVariableInputShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -7140,7 +7145,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3192"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_LoopNodeVariableInputShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -7243,7 +7248,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3193"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_LoopNodeVariableInputShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -7346,7 +7351,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_LoopNodeBodyOutputShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -7437,7 +7442,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_LoopNodeVariableShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -7528,7 +7533,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_LoopNodeResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -7620,7 +7625,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.SequenceNode_Shape"
             displayName="SequenceNode"
             definedExternally="true">
           <metamodelType
@@ -7688,7 +7693,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.StructuredActivityNode_Shape"
             displayName="StructuredActivityNode"
             definedExternally="true">
           <metamodelType
@@ -7754,6 +7759,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_StructuredActivityNodeInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -7842,6 +7848,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_StructuredActivityNodeInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -7941,6 +7948,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_StructuredActivityNodeInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -8043,6 +8051,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_StructuredActivityNodeOutputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
@@ -8131,7 +8140,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActivityPartition_Shape"
             displayName="ActivityPartition"
             definedExternally="true">
           <metamodelType
@@ -8225,7 +8234,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InterruptibleActivityRegion_Shape"
             displayName="InterruptibleActivityRegion"
             definedExternally="true">
           <metamodelType
@@ -8262,7 +8271,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Comment_3080"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_Shape"
             displayName="Comment"
             definedExternally="true">
           <metamodelType
@@ -8334,7 +8343,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReadSelfAction_Shape"
             displayName="ReadSelfAction"
             definedExternally="true">
           <metamodelType
@@ -8441,6 +8450,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReadSelfActionResultShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
@@ -8530,6 +8540,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Activity_Shape_CN"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.72/@elementType"/>
@@ -8635,7 +8646,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.CreateObjectAction_Shape"
             displayName="CreateObjectAction"
             definedExternally="true">
           <metamodelType
@@ -8742,7 +8753,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_CreateObjectActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -8825,7 +8836,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.NamedElement_DefaultShape"
             displayName="ShapeNamedElement"
             definedExternally="true"/>
         <viewmap
@@ -8887,7 +8898,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReadStructuralFeatureAction_Shape"
             displayName="ReadStructuralFeatureAction"
             definedExternally="true">
           <metamodelType
@@ -8994,7 +9005,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ReadStructuralFeatureActionObjectShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -9082,7 +9093,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3203"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ReadStructuralFeatureActionObjectShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -9185,7 +9196,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionPin_3204"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ReadStructuralFeatureActionObjectShape"
             displayName="ActionPin"
             definedExternally="true">
           <metamodelType
@@ -9286,7 +9297,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReadStructuralFeatureActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -9372,7 +9383,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.AddStructuralFeatureValueAction_Shape"
             displayName="AddStructuralFeatureValueAction"
             definedExternally="true">
           <metamodelType
@@ -9479,7 +9490,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionObjectShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -9571,7 +9582,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionValueShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -9663,7 +9674,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3181"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_AddStructuralFeatureValueActionInsertAtShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -9755,7 +9766,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3182"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionObjectShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -9860,7 +9871,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3183"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionValueShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -9965,7 +9976,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3184"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_AddStructuralFeatureValueActionInsertAtShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -10070,7 +10081,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3185"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionObjectShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -10175,7 +10186,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3186"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionValueShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -10280,7 +10291,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3187"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_AddStructuralFeatureValueActionInsertAtShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -10385,7 +10396,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_AddStructuralFeatureValueActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -10475,7 +10486,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.DestroyObjectAction_Shape"
             displayName="DestroyObjectAction"
             definedExternally="true">
           <metamodelType
@@ -10582,7 +10593,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_DestroyObjectActionTargetShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -10672,7 +10683,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3173"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_DestroyObjectActionTargetShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -10775,7 +10786,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3174"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_DestroyObjectActionTargetShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -10877,7 +10888,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReadVariableAction_Shape"
             displayName="ReadVariableAction"
             definedExternally="true">
           <metamodelType
@@ -10983,7 +10994,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReadVariableActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -11070,7 +11081,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.AddVariableValueAction_Shape"
             displayName="AddVariableValueAction"
             definedExternally="true">
           <metamodelType
@@ -11177,7 +11188,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionInsertAtShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -11269,7 +11280,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_AddVariableValueActionValueShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -11361,7 +11372,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3175"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionInsertAtShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -11466,7 +11477,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3176"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_AddVariableValueActionValueShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -11571,7 +11582,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActoinInputPin_3177"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionInsertAtShape"
             displayName="ActoinInputPin"
             definedExternally="true">
           <metamodelType
@@ -11676,7 +11687,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3178"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_AddVariableValueActionValueShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -11780,7 +11791,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.BroadcastSignalAction_Shape"
             displayName="BroadcastSignalAction"
             definedExternally="true">
           <metamodelType
@@ -11887,7 +11898,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_BroadcastSignalActionArgumentShape"
             displayName="InputPin"
             definedExternally="true">
           <metamodelType
@@ -11993,7 +12004,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3179"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_BroadcastSignalActionArgumentShape"
             displayName="ValuePin"
             definedExternally="true">
           <metamodelType
@@ -12099,7 +12110,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3180"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_BroadcastSignalActionArgumentShape"
             displayName="ActionInputPin"
             definedExternally="true">
           <metamodelType
@@ -12202,7 +12213,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.CentralBufferNode_Shape"
             displayName="CentralBufferNode"
             definedExternally="true">
           <metamodelType
@@ -12298,7 +12309,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_Shape"
             displayName="Constraint"
             definedExternally="true">
           <metamodelType
@@ -12390,6 +12401,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.StartObjectBehaviorAction_Shape"
             displayName="StartObjectBehaviourAction"
             definedExternally="true">
           <metamodelType
@@ -12494,6 +12506,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_StartObjectBehaviorActionResultShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
@@ -12581,6 +12594,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -12669,6 +12683,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -12771,6 +12786,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -12873,6 +12889,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_StartObjectBehaviorActionArgumentShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -12961,6 +12978,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_StartObjectBehaviorActionArgumentShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -13062,6 +13080,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_StartObjectBehaviorActionArgumentShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -13163,6 +13182,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.TestIdentityAction_Shape"
             displayName="TestIdentityAction"
             definedExternally="true">
           <metamodelType
@@ -13265,6 +13285,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_TestIdentityActionResultShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
@@ -13348,6 +13369,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_TestIdentityActionFirstShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -13432,6 +13454,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_TestIdentityActionSecondShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -13516,6 +13539,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionFirstShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -13613,6 +13637,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_TestIdentityActionSecondShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -13710,6 +13735,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionFirstShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -13807,6 +13833,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_TestIdentityActionSecondShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -13904,6 +13931,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ClearStructuralFeatureAction_Shape"
             displayName="ClearStructuralFeatureAction"
             definedExternally="true">
           <metamodelType
@@ -14008,6 +14036,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ClearStructuralFeatureActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -14096,6 +14125,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ClearStructuralFeatureActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -14184,6 +14214,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ClearStructuralFeatureActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -14285,6 +14316,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ClearStructuralFeatureActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -14386,6 +14418,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.CreateLinkAction_Shape"
             displayName="CreateLinkAction"
             definedExternally="true">
           <metamodelType
@@ -14488,6 +14521,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_CreateLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -14576,6 +14610,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_CreateLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -14677,6 +14712,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -14778,6 +14814,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReadLinkAction_Shape"
             displayName="ReadLinkAction"
             definedExternally="true">
           <metamodelType
@@ -14880,6 +14917,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReadLinkActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -14968,6 +15006,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ReadLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -15056,6 +15095,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ReadLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -15157,6 +15197,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ReadLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -15258,6 +15299,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.DestroyLinkAction_Shape"
             displayName="DestroyLinkAction"
             definedExternally="true">
           <metamodelType
@@ -15359,6 +15401,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_DestroyLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -15447,6 +15490,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_DestroyLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -15548,6 +15592,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_DestroyLinkActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -15644,6 +15689,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ClearAssociationAction_Shape"
             displayName="ClearAssotiationAction"
             definedExternally="true">
           <metamodelType
@@ -15745,6 +15791,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ClearAssociationActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -15833,6 +15880,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ClearAssociationActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -15934,6 +15982,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ClearAssociationActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -16030,6 +16079,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReadExtentAction_Shape"
             displayName="ReadExtentAction"
             definedExternally="true">
           <metamodelType
@@ -16132,6 +16182,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReadExtentActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -16215,6 +16266,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReclassifyObjectAction_Shape"
             displayName="ReclassifyObjectAction"
             definedExternally="true">
           <metamodelType
@@ -16317,6 +16369,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ReclassifyObjectActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -16405,6 +16458,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ReclassifyObjectActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -16506,6 +16560,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ReclassifyObjectActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -16602,6 +16657,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReadIsClassifiedObjectAction_Shape"
             displayName="ReadIsClassifiedObjectAction"
             definedExternally="true">
           <metamodelType
@@ -16704,6 +16760,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReadIsClassifiedObjectActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -16792,6 +16849,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ReadIsClassifiedObjectActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -16880,6 +16938,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ReadIsClassifiedObjectActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -16981,6 +17040,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ReadIsClassifiedObjectActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -17077,6 +17137,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ReduceAction_Shape"
             displayName="ReduceAction"
             definedExternally="true">
           <metamodelType
@@ -17179,6 +17240,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_ReduceActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -17267,6 +17329,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_ReduceActionCollectionShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -17355,6 +17418,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_ReduceActionCollectionShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -17456,6 +17520,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_ReduceActionCollectionShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -17552,6 +17617,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.StartClassifierBehaviorAction_Shape"
             displayName="StartClassifierBehaviourAction"
             definedExternally="true">
           <metamodelType
@@ -17653,6 +17719,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_StartClassifierBehaviorActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -17741,6 +17808,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_StartClassifierBehaviorActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -17842,6 +17910,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_StartClassifierBehaviorActionObjectShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -17938,6 +18007,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.CreateLinkObjectAction_Shape"
             displayName="CreateLinkObjectAction"
             definedExternally="true">
           <metamodelType
@@ -18044,6 +18114,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.InputPin_CreateLinkObjectActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
@@ -18131,6 +18202,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ValuePin_CreateLinkObjectActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
@@ -18231,6 +18303,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ActionInputPin_CreateLinkObjectActionInputShape"
             definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
@@ -18332,6 +18405,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.OutputPin_CreateLinkObjectActionResultShape"
             displayName="OutputPin"
             definedExternally="true">
           <metamodelType
@@ -18421,7 +18495,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Activity_Shape"
             displayName="Activity"
             definedExternally="true">
           <metamodelType
@@ -18525,6 +18599,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Action_LocalPreconditionEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
@@ -18547,6 +18622,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Action_LocalPostconditionEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
@@ -18569,7 +18645,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ObjectFlow_Edge"
             displayName="ObjectFlow"
             definedExternally="true">
           <metamodelType
@@ -18779,7 +18855,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ControlFlow_Edge"
             displayName="ControlFlow"
             definedExternally="true">
           <metamodelType
@@ -18925,7 +19001,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ExceptionHandler_Edge"
             displayName="ExceptionHandler"
             definedExternally="true">
           <metamodelType
@@ -18992,6 +19068,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -19010,7 +19087,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ConstraintConstrainedElement_4007"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -21257,4 +21334,2085 @@
         name="BaseActivityContentCompartment"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.BaseActivityContentCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:VisualIDOverride
+      genView="/0/@diagram"
+      visualID="Package_ActivityDiagram">
+    <child
+        genView="/0/@diagram/@childNodes.0"
+        visualID="Parameter_ParameterLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.1"
+        visualID="Constraint_PreconditionLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.2"
+        visualID="Constraint_PostconditionLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.7"
+        visualID="ValuePin_OpaqueActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.0"
+          visualID="ValuePin_OpaqueActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.1"
+          visualID="ValuePin_OpaqueActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.2"
+          visualID="ValuePin_OpaqueActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.8"
+        visualID="ActionInputPin_OpaqueActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.0"
+          visualID="ActionInputPin_OpaqueActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.1"
+          visualID="ActionInputPin_OpaqueActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.2"
+          visualID="ActionInputPin_OpaqueActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.9"
+        visualID="InputPin_OpaqueActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.0"
+          visualID="InputPin_OpaqueActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.1"
+          visualID="InputPin_OpaqueActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.10"
+        visualID="OutputPin_OpaqueActionOutputShape">
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.0"
+          visualID="OutputPin_OpaqueActionOutputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.1"
+          visualID="OutputPin_OpaqueActionOutputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.12"
+        visualID="ValuePin_CallBehaviorActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.0"
+          visualID="ValuePin_CallBehaviorActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.1"
+          visualID="ValuePin_CallBehaviorActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.2"
+          visualID="ValuePin_CallBehaviorActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.13"
+        visualID="ActionInputPin_CallBehaviorActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.13/@labels.0"
+          visualID="ActionInputPin_CallBehaviorActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.13/@labels.1"
+          visualID="ActionInputPin_CallBehaviorActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.13/@labels.2"
+          visualID="ActionInputPin_CallBehaviorActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.14"
+        visualID="InputPin_CallBehaviorActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.0"
+          visualID="InputPin_CallBehaviorActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.1"
+          visualID="InputPin_CallBehaviorActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.15"
+        visualID="OutputPin_CallBehaviorActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.15/@labels.0"
+          visualID="OutputPin_CallBehaviorActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.15/@labels.1"
+          visualID="OutputPin_CallBehaviorActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.17"
+        visualID="ActionInputPin_CallOperationActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.17/@labels.0"
+          visualID="ActionInputPin_CallOperationActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.17/@labels.1"
+          visualID="ActionInputPin_CallOperationActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.17/@labels.2"
+          visualID="ActionInputPin_CallOperationActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.18"
+        visualID="ValuePin_CallOperationActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.18/@labels.0"
+          visualID="ValuePin_CallOperationActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.18/@labels.1"
+          visualID="ValuePin_CallOperationActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.18/@labels.2"
+          visualID="ValuePin_CallOperationActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.19"
+        visualID="InputPin_CallOperationActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.19/@labels.0"
+          visualID="InputPin_CallOperationActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.19/@labels.1"
+          visualID="InputPin_CallOperationActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.20"
+        visualID="OutputPin_CallOperationActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.20/@labels.0"
+          visualID="OutputPin_CallOperationActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.20/@labels.1"
+          visualID="OutputPin_CallOperationActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.21"
+        visualID="ValuePin_CallOperationActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.21/@labels.0"
+          visualID="ValuePin_CallOperationActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.21/@labels.1"
+          visualID="ValuePin_CallOperationActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.21/@labels.2"
+          visualID="ValuePin_CallOperationActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.22"
+        visualID="ActionInputPin_CallOperationActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.22/@labels.0"
+          visualID="ActionInputPin_CallOperationActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.22/@labels.1"
+          visualID="ActionInputPin_CallOperationActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.22/@labels.2"
+          visualID="ActionInputPin_CallOperationActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.23"
+        visualID="InputPin_CallOperationActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.23/@labels.0"
+          visualID="InputPin_CallOperationActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.23/@labels.1"
+          visualID="InputPin_CallOperationActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.38"
+        visualID="ValuePin_SendObjectActionRequestShape">
+      <child
+          genView="/0/@diagram/@childNodes.38/@labels.0"
+          visualID="ValuePin_SendObjectActionRequestNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.38/@labels.1"
+          visualID="ValuePin_SendObjectActionRequestValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.38/@labels.2"
+          visualID="ValuePin_SendObjectActionRequestStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.39"
+        visualID="ActionInputPin_SendObjectActionRequestShape">
+      <child
+          genView="/0/@diagram/@childNodes.39/@labels.0"
+          visualID="ActionInputPin_SendObjectActionRequestNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.39/@labels.1"
+          visualID="ActionInputPin_SendObjectActionRequestValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.39/@labels.2"
+          visualID="ActionInputPin_SendObjectActionRequestStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.40"
+        visualID="InputPin_SendObjectActionRequestShape">
+      <child
+          genView="/0/@diagram/@childNodes.40/@labels.0"
+          visualID="InputPin_SendObjectActionRequestNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.40/@labels.1"
+          visualID="InputPin_SendObjectActionRequestStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.41"
+        visualID="ValuePin_SendObjectActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.41/@labels.0"
+          visualID="ValuePin_SendObjectActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.41/@labels.1"
+          visualID="ValuePin_SendObjectActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.41/@labels.2"
+          visualID="ValuePin_SendObjectActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.42"
+        visualID="ActionInputPin_SendObjectActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.42/@labels.0"
+          visualID="ActionInputPin_SendObjectActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.42/@labels.1"
+          visualID="ActionInputPin_SendObjectActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.42/@labels.2"
+          visualID="ActionInputPin_SendObjectActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.43"
+        visualID="InputPin_SendObjectActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.43/@labels.0"
+          visualID="InputPin_SendObjectActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.43/@labels.1"
+          visualID="InputPin_SendObjectActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.45"
+        visualID="ActionInputPin_SendSignalActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.45/@labels.0"
+          visualID="ActionInputPin_SendSignalActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.45/@labels.1"
+          visualID="ActionInputPin_SendSignalActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.45/@labels.2"
+          visualID="ActionInputPin_SendSignalActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.46"
+        visualID="ValuePin_SendSignalActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.46/@labels.0"
+          visualID="ValuePin_SendSignalActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.46/@labels.1"
+          visualID="ValuePin_SendSignalActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.46/@labels.2"
+          visualID="ValuePin_SendSignalActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.47"
+        visualID="InputPin_SendSignalActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.47/@labels.0"
+          visualID="InputPin_SendSignalActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.47/@labels.1"
+          visualID="InputPin_SendSignalActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.48"
+        visualID="ValuePin_SendSignalActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.48/@labels.0"
+          visualID="ValuePin_SendSignalActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.48/@labels.1"
+          visualID="ValuePin_SendSignalActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.48/@labels.2"
+          visualID="ValuePin_SendSignalActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.49"
+        visualID="ActionInputPin_SendSignalActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.49/@labels.0"
+          visualID="ActionInputPin_SendSignalActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.49/@labels.1"
+          visualID="ActionInputPin_SendSignalActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.49/@labels.2"
+          visualID="ActionInputPin_SendSignalActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.50"
+        visualID="InputPin_SendSignalActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.50/@labels.0"
+          visualID="InputPin_SendSignalActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.50/@labels.1"
+          visualID="InputPin_SendSignalActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.51"
+        visualID="ActivityParameterNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.51/@labels.0"
+          visualID="ActivityParameterNode_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.51/@labels.1"
+          visualID="ActivityParameterNode_StreamLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.51/@labels.2"
+          visualID="ActivityParameterNode_ExceptionLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.53"
+        visualID="OutputPin_AcceptEventActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.53/@labels.0"
+          visualID="OutputPin_AcceptEventActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.53/@labels.1"
+          visualID="OutputPin_AcceptEventActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.55"
+        visualID="OutputPin_ValueSpecificationActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.55/@labels.0"
+          visualID="OutputPin_ValueSpecificationActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.55/@labels.1"
+          visualID="OutputPin_ValueSpecificationActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.58"
+        visualID="ExpansionNode_InputShape"/>
+    <child
+        genView="/0/@diagram/@childNodes.59"
+        visualID="ExpansionNode_OutputShape"/>
+    <child
+        genView="/0/@diagram/@childNodes.61"
+        visualID="InputPin_LoopNodeVariableInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.61/@labels.0"
+          visualID="InputPin_LoopNodeVariableInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.61/@labels.1"
+          visualID="InputPin_LoopNodeVariableInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.62"
+        visualID="ValuePin_LoopNodeVariableInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.62/@labels.0"
+          visualID="ValuePin_LoopNodeVariableInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.62/@labels.1"
+          visualID="ValuePin_LoopNodeVariableInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.62/@labels.2"
+          visualID="ValuePin_LoopNodeVariableInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.63"
+        visualID="ActionInputPin_LoopNodeVariableInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.63/@labels.0"
+          visualID="ActionInputPin_LoopNodeVariableInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.63/@labels.1"
+          visualID="ActionInputPin_LoopNodeVariableInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.63/@labels.2"
+          visualID="ActionInputPin_LoopNodeVariableInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.64"
+        visualID="OutputPin_LoopNodeBodyOutputShape">
+      <child
+          genView="/0/@diagram/@childNodes.64/@labels.0"
+          visualID="OutputPin_LoopNodeBodyOutputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.64/@labels.1"
+          visualID="OutputPin_LoopNodeBodyOutputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.65"
+        visualID="OutputPin_LoopNodeVariableShape">
+      <child
+          genView="/0/@diagram/@childNodes.65/@labels.0"
+          visualID="OutputPin_LoopNodeVariableNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.65/@labels.1"
+          visualID="OutputPin_LoopNodeVariableStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.66"
+        visualID="OutputPin_LoopNodeResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.66/@labels.0"
+          visualID="OutputPin_LoopNodeResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.66/@labels.1"
+          visualID="OutputPin_LoopNodeResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.69"
+        visualID="InputPin_StructuredActivityNodeInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.69/@labels.0"
+          visualID="InputPin_StructuredActivityNodeInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.69/@labels.1"
+          visualID="InputPin_StructuredActivityNodeInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.70"
+        visualID="ValuePin_StructuredActivityNodeInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.70/@labels.0"
+          visualID="ValuePin_StructuredActivityNodeInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.70/@labels.1"
+          visualID="ValuePin_StructuredActivityNodeInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.70/@labels.2"
+          visualID="ValuePin_StructuredActivityNodeInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.71"
+        visualID="ActionInputPin_StructuredActivityNodeInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.71/@labels.0"
+          visualID="ActionInputPin_StructuredActivityNodeInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.71/@labels.1"
+          visualID="ActionInputPin_StructuredActivityNodeInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.71/@labels.2"
+          visualID="ActionInputPin_StructuredActivityNodeInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.72"
+        visualID="OutputPin_StructuredActivityNodeOutputShape">
+      <child
+          genView="/0/@diagram/@childNodes.72/@labels.0"
+          visualID="OutputPin_StructuredActivityNodeOutputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.72/@labels.1"
+          visualID="OutputPin_StructuredActivityNodeOutputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.77"
+        visualID="OutputPin_ReadSelfActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.77/@labels.0"
+          visualID="OutputPin_ReadSelfActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.77/@labels.1"
+          visualID="OutputPin_ReadSelfActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.80"
+        visualID="OutputPin_CreateObjectActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.80/@labels.0"
+          visualID="OutputPin_CreateObjectActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.80/@labels.1"
+          visualID="OutputPin_CreateObjectActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.83"
+        visualID="InputPin_ReadStructuralFeatureActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.83/@labels.0"
+          visualID="InputPin_ReadStructuralFeatureActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.83/@labels.1"
+          visualID="InputPin_ReadStructuralFeatureActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.84"
+        visualID="ValuePin_ReadStructuralFeatureActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.84/@labels.0"
+          visualID="ValuePin_ReadStructuralFeatureActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.84/@labels.1"
+          visualID="ValuePin_ReadStructuralFeatureActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.84/@labels.2"
+          visualID="ValuePin_ReadStructuralFeatureActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.85"
+        visualID="ActionInputPin_ReadStructuralFeatureActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.85/@labels.0"
+          visualID="ActionInputPin_ReadStructuralFeatureActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.85/@labels.1"
+          visualID="ActionInputPin_ReadStructuralFeatureActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.85/@labels.2"
+          visualID="ActionInputPin_ReadStructuralFeatureActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.86"
+        visualID="OutputPin_ReadStructuralFeatureActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.86/@labels.0"
+          visualID="OutputPin_ReadStructuralFeatureActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.86/@labels.1"
+          visualID="OutputPin_ReadStructuralFeatureActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.88"
+        visualID="InputPin_AddStructuralFeatureValueActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.88/@labels.0"
+          visualID="InputPin_AddStructuralFeatureValueActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.88/@labels.1"
+          visualID="InputPin_AddStructuralFeatureValueActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.89"
+        visualID="InputPin_AddStructuralFeatureValueActionValueShape">
+      <child
+          genView="/0/@diagram/@childNodes.89/@labels.0"
+          visualID="InputPin_AddStructuralFeatureValueActionValueNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.89/@labels.1"
+          visualID="InputPin_AddStructuralFeatureValueActionValueStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.90"
+        visualID="InputPin_AddStructuralFeatureValueActionInsertAtShape">
+      <child
+          genView="/0/@diagram/@childNodes.90/@labels.0"
+          visualID="InputPin_AddStructuralFeatureValueActionInsertAtNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.90/@labels.1"
+          visualID="InputPin_AddStructuralFeatureValueActionInsertAtStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.91"
+        visualID="ValuePin_AddStructuralFeatureValueActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.91/@labels.0"
+          visualID="ValuePin_AddStructuralFeatureValueActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.91/@labels.1"
+          visualID="ValuePin_AddStructuralFeatureValueActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.91/@labels.2"
+          visualID="ValuePin_AddStructuralFeatureValueActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.92"
+        visualID="ValuePin_AddStructuralFeatureValueActionValueShape">
+      <child
+          genView="/0/@diagram/@childNodes.92/@labels.0"
+          visualID="ValuePin_AddStructuralFeatureValueActionValueNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.92/@labels.1"
+          visualID="ValuePin_AddStructuralFeatureValueActionValueValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.92/@labels.2"
+          visualID="ValuePin_AddStructuralFeatureValueActionValueStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.93"
+        visualID="ValuePin_AddStructuralFeatureValueActionInsertAtShape">
+      <child
+          genView="/0/@diagram/@childNodes.93/@labels.0"
+          visualID="ValuePin_AddStructuralFeatureValueActionInsertAtNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.93/@labels.1"
+          visualID="ValuePin_AddStructuralFeatureValueActionInsertAtValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.93/@labels.2"
+          visualID="ValuePin_AddStructuralFeatureValueActionInsertAtStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.94"
+        visualID="ActionInputPin_AddStructuralFeatureValueActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.94/@labels.0"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.94/@labels.1"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.94/@labels.2"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.95"
+        visualID="ActionInputPin_AddStructuralFeatureValueActionValueShape">
+      <child
+          genView="/0/@diagram/@childNodes.95/@labels.0"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionValueNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.95/@labels.1"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionValueValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.95/@labels.2"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionValueStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.96"
+        visualID="ActionInputPin_AddStructuralFeatureValueActionInsertAtShape">
+      <child
+          genView="/0/@diagram/@childNodes.96/@labels.0"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionInsertAtNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.96/@labels.1"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionInsertAtValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.96/@labels.2"
+          visualID="ActionInputPin_AddStructuralFeatureValueActionInsertAtStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.97"
+        visualID="OutputPin_AddStructuralFeatureValueActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.97/@labels.0"
+          visualID="OutputPin_AddStructuralFeatureValueActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.97/@labels.1"
+          visualID="OutputPin_AddStructuralFeatureValueActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.99"
+        visualID="InputPin_DestroyObjectActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.99/@labels.0"
+          visualID="InputPin_DestroyObjectActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.99/@labels.1"
+          visualID="InputPin_DestroyObjectActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.100"
+        visualID="ValuePin_DestroyObjectActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.100/@labels.0"
+          visualID="ValuePin_DestroyObjectActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.100/@labels.1"
+          visualID="ValuePin_DestroyObjectActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.100/@labels.2"
+          visualID="ValuePin_DestroyObjectActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.101"
+        visualID="ActionInputPin_DestroyObjectActionTargetShape">
+      <child
+          genView="/0/@diagram/@childNodes.101/@labels.0"
+          visualID="ActionInputPin_DestroyObjectActionTargetNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.101/@labels.1"
+          visualID="ActionInputPin_DestroyObjectActionTargetValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.101/@labels.2"
+          visualID="ActionInputPin_DestroyObjectActionTargetStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.103"
+        visualID="OutputPin_ReadVariableActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.103/@labels.0"
+          visualID="OutputPin_ReadVariableActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.103/@labels.1"
+          visualID="OutputPin_ReadVariableActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.105"
+        visualID="InputPin_AddVariableValueActionInsertAtShape">
+      <child
+          genView="/0/@diagram/@childNodes.105/@labels.0"
+          visualID="InputPin_AddVariableValueActionInsertAtNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.105/@labels.1"
+          visualID="InputPin_AddVariableValueActionInsertAtStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.106"
+        visualID="InputPin_AddVariableValueActionValueShape">
+      <child
+          genView="/0/@diagram/@childNodes.106/@labels.0"
+          visualID="InputPin_AddVariableValueActionValueNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.106/@labels.1"
+          visualID="InputPin_AddVariableValueActionValueStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.107"
+        visualID="ValuePin_AddVariableValueActionInsertAtShape">
+      <child
+          genView="/0/@diagram/@childNodes.107/@labels.0"
+          visualID="ValuePin_AddVariableValueActionInsertAtNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.107/@labels.1"
+          visualID="ValuePin_AddVariableValueActionInsertAtValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.107/@labels.2"
+          visualID="ValuePin_AddVariableValueActionInsertAtStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.108"
+        visualID="ValuePin_AddVariableValueActionValueShape">
+      <child
+          genView="/0/@diagram/@childNodes.108/@labels.0"
+          visualID="ValuePin_AddVariableValueActionValueNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.108/@labels.1"
+          visualID="ValuePin_AddVariableValueActionValueValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.108/@labels.2"
+          visualID="ValuePin_AddVariableValueActionValueStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.109"
+        visualID="ActionInputPin_AddVariableValueActionInsertAtShape">
+      <child
+          genView="/0/@diagram/@childNodes.109/@labels.0"
+          visualID="ActionInputPin_AddVariableValueActionInsertAtNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.109/@labels.1"
+          visualID="ActionInputPin_AddVariableValueActionInsertAtValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.109/@labels.2"
+          visualID="ActionInputPin_AddVariableValueActionInsertAtStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.110"
+        visualID="ActionInputPin_AddVariableValueActionValueShape">
+      <child
+          genView="/0/@diagram/@childNodes.110/@labels.0"
+          visualID="ActionInputPin_AddVariableValueActionValueNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.110/@labels.1"
+          visualID="ActionInputPin_AddVariableValueActionValueValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.110/@labels.2"
+          visualID="ActionInputPin_AddVariableValueActionValueStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.112"
+        visualID="InputPin_BroadcastSignalActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.112/@labels.0"
+          visualID="InputPin_BroadcastSignalActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.112/@labels.1"
+          visualID="InputPin_BroadcastSignalActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.112/@labels.2"
+          visualID="InputPin_BroadcastSignalActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.113"
+        visualID="ValuePin_BroadcastSignalActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.113/@labels.0"
+          visualID="ValuePin_BroadcastSignalActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.113/@labels.1"
+          visualID="ValuePin_BroadcastSignalActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.113/@labels.2"
+          visualID="ValuePin_BroadcastSignalActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.114"
+        visualID="ActionInputPin_BroadcastSignalActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.114/@labels.0"
+          visualID="ActionInputPin_BroadcastSignalActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.114/@labels.1"
+          visualID="ActionInputPin_BroadcastSignalActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.114/@labels.2"
+          visualID="ActionInputPin_BroadcastSignalActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.118"
+        visualID="OutputPin_StartObjectBehaviorActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.118/@labels.0"
+          visualID="OutputPin_StartObjectBehaviorActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.118/@labels.1"
+          visualID="OutputPin_StartObjectBehaviorActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.119"
+        visualID="InputPin_StartObjectBehaviorActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.119/@labels.0"
+          visualID="InputPin_StartObjectBehaviorActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.119/@labels.1"
+          visualID="InputPin_StartObjectBehaviorActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.120"
+        visualID="ValuePin_StartObjectBehaviorActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.120/@labels.0"
+          visualID="ValuePin_StartObjectBehaviorActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.120/@labels.1"
+          visualID="ValuePin_StartObjectBehaviorActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.120/@labels.2"
+          visualID="ValuePin_StartObjectBehaviorActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.121"
+        visualID="ActionInputPin_StartObjectBehaviorActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.121/@labels.0"
+          visualID="ActionInputPin_StartObjectBehaviorActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.121/@labels.1"
+          visualID="ActionInputPin_StartObjectBehaviorActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.121/@labels.2"
+          visualID="ActionInputPin_StartObjectBehaviorActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.122"
+        visualID="InputPin_StartObjectBehaviorActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.122/@labels.0"
+          visualID="InputPin_StartObjectBehaviorActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.122/@labels.1"
+          visualID="InputPin_StartObjectBehaviorActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.123"
+        visualID="ValuePin_StartObjectBehaviorActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.123/@labels.0"
+          visualID="ValuePin_StartObjectBehaviorActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.123/@labels.1"
+          visualID="ValuePin_StartObjectBehaviorActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.123/@labels.2"
+          visualID="ValuePin_StartObjectBehaviorActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.124"
+        visualID="ActionInputPin_StartObjectBehaviorActionArgumentShape">
+      <child
+          genView="/0/@diagram/@childNodes.124/@labels.0"
+          visualID="ActionInputPin_StartObjectBehaviorActionArgumentNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.124/@labels.1"
+          visualID="ActionInputPin_StartObjectBehaviorActionArgumentValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.124/@labels.2"
+          visualID="ActionInputPin_StartObjectBehaviorActionArgumentStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.126"
+        visualID="OutputPin_TestIdentityActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.126/@labels.0"
+          visualID="OutputPin_TestIdentityActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.126/@labels.1"
+          visualID="OutputPin_TestIdentityActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.127"
+        visualID="InputPin_TestIdentityActionFirstShape">
+      <child
+          genView="/0/@diagram/@childNodes.127/@labels.0"
+          visualID="InputPin_TestIdentityActionFirstNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.127/@labels.1"
+          visualID="InputPin_TestIdentityActionFirstStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.128"
+        visualID="InputPin_TestIdentityActionSecondShape">
+      <child
+          genView="/0/@diagram/@childNodes.128/@labels.0"
+          visualID="InputPin_TestIdentityActionSecondNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.128/@labels.1"
+          visualID="InputPin_TestIdentityActionSecondStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.129"
+        visualID="ValuePin_TestIdentityActionFirstShape">
+      <child
+          genView="/0/@diagram/@childNodes.129/@labels.0"
+          visualID="ValuePin_TestIdentityActionFirstNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.129/@labels.1"
+          visualID="ValuePin_TestIdentityActionFirstValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.129/@labels.2"
+          visualID="ValuePin_TestIdentityActionFirstStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.130"
+        visualID="ValuePin_TestIdentityActionSecondShape">
+      <child
+          genView="/0/@diagram/@childNodes.130/@labels.0"
+          visualID="ValuePin_TestIdentityActionSecondNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.130/@labels.1"
+          visualID="ValuePin_TestIdentityActionSecondValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.130/@labels.2"
+          visualID="ValuePin_TestIdentityActionSecondStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.131"
+        visualID="ActionInputPin_TestIdentityActionFirstShape">
+      <child
+          genView="/0/@diagram/@childNodes.131/@labels.0"
+          visualID="ActionInputPin_TestIdentityActionFirstNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.131/@labels.1"
+          visualID="ActionInputPin_TestIdentityActionFirstValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.131/@labels.2"
+          visualID="ActionInputPin_TestIdentityActionFirstStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.132"
+        visualID="ActionInputPin_TestIdentityActionSecondShape">
+      <child
+          genView="/0/@diagram/@childNodes.132/@labels.0"
+          visualID="ActionInputPin_TestIdentityActionSecondNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.132/@labels.1"
+          visualID="ActionInputPin_TestIdentityActionSecondValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.132/@labels.2"
+          visualID="ActionInputPin_TestIdentityActionSecondStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.134"
+        visualID="OutputPin_ClearStructuralFeatureActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.134/@labels.0"
+          visualID="OutputPin_ClearStructuralFeatureActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.134/@labels.1"
+          visualID="OutputPin_ClearStructuralFeatureActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.135"
+        visualID="InputPin_ClearStructuralFeatureActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.135/@labels.0"
+          visualID="InputPin_ClearStructuralFeatureActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.135/@labels.1"
+          visualID="InputPin_ClearStructuralFeatureActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.136"
+        visualID="ValuePin_ClearStructuralFeatureActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.136/@labels.0"
+          visualID="ValuePin_ClearStructuralFeatureActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.136/@labels.1"
+          visualID="ValuePin_ClearStructuralFeatureActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.136/@labels.2"
+          visualID="ValuePin_ClearStructuralFeatureActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.137"
+        visualID="ActionInputPin_ClearStructuralFeatureActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.137/@labels.0"
+          visualID="ActionInputPin_ClearStructuralFeatureActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.137/@labels.1"
+          visualID="ActionInputPin_ClearStructuralFeatureActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.137/@labels.2"
+          visualID="ActionInputPin_ClearStructuralFeatureActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.139"
+        visualID="InputPin_CreateLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.139/@labels.0"
+          visualID="InputPin_CreateLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.139/@labels.1"
+          visualID="InputPin_CreateLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.140"
+        visualID="ValuePin_CreateLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.140/@labels.0"
+          visualID="ValuePin_CreateLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.140/@labels.1"
+          visualID="ValuePin_CreateLinkActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.140/@labels.2"
+          visualID="ValuePin_CreateLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.141"
+        visualID="ActionInputPin_CreateLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.141/@labels.0"
+          visualID="ActionInputPin_CreateLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.141/@labels.1"
+          visualID="ActionInputPin_CreateLinkActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.141/@labels.2"
+          visualID="ActionInputPin_CreateLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.143"
+        visualID="OutputPin_ReadLinkActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.143/@labels.0"
+          visualID="OutputPin_ReadLinkActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.143/@labels.1"
+          visualID="OutputPin_ReadLinkActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.144"
+        visualID="InputPin_ReadLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.144/@labels.0"
+          visualID="InputPin_ReadLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.144/@labels.1"
+          visualID="InputPin_ReadLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.145"
+        visualID="ValuePin_ReadLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.145/@labels.0"
+          visualID="ValuePin_ReadLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.145/@labels.1"
+          visualID="ValuePin_ReadLinkActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.145/@labels.2"
+          visualID="ValuePin_ReadLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.146"
+        visualID="ActionInputPin_ReadLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.146/@labels.0"
+          visualID="ActionInputPin_ReadLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.146/@labels.1"
+          visualID="ActionInputPin_ReadLinkActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.146/@labels.2"
+          visualID="ActionInputPin_ReadLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.148"
+        visualID="InputPin_DestroyLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.148/@labels.0"
+          visualID="InputPin_DestroyLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.148/@labels.1"
+          visualID="InputPin_DestroyLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.149"
+        visualID="ValuePin_DestroyLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.149/@labels.0"
+          visualID="ValuePin_DestroyLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.149/@labels.1"
+          visualID="ValuePin_DestroyLinkActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.149/@labels.2"
+          visualID="ValuePin_DestroyLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.150"
+        visualID="ActionInputPin_DestroyLinkActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.150/@labels.0"
+          visualID="ActionInputPin_DestroyLinkActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.150/@labels.1"
+          visualID="ActionInputPin_DestroyLinkActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.150/@labels.2"
+          visualID="ActionInputPin_DestroyLinkActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.152"
+        visualID="InputPin_ClearAssociationActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.152/@labels.0"
+          visualID="InputPin_ClearAssociationActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.152/@labels.1"
+          visualID="InputPin_ClearAssociationActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.153"
+        visualID="ValuePin_ClearAssociationActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.153/@labels.0"
+          visualID="ValuePin_ClearAssociationActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.153/@labels.1"
+          visualID="ValuePin_ClearAssociationActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.153/@labels.2"
+          visualID="ValuePin_ClearAssociationActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.154"
+        visualID="ActionInputPin_ClearAssociationActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.154/@labels.0"
+          visualID="ActionInputPin_ClearAssociationActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.154/@labels.1"
+          visualID="ActionInputPin_ClearAssociationActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.154/@labels.2"
+          visualID="ActionInputPin_ClearAssociationActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.156"
+        visualID="OutputPin_ReadExtentActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.156/@labels.0"
+          visualID="OutputPin_ReadExtentActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.156/@labels.1"
+          visualID="OutputPin_ReadExtentActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.158"
+        visualID="InputPin_ReclassifyObjectActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.158/@labels.0"
+          visualID="InputPin_ReclassifyObjectActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.158/@labels.1"
+          visualID="InputPin_ReclassifyObjectActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.159"
+        visualID="ValuePin_ReclassifyObjectActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.159/@labels.0"
+          visualID="ValuePin_ReclassifyObjectActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.159/@labels.1"
+          visualID="ValuePin_ReclassifyObjectActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.159/@labels.2"
+          visualID="ValuePin_ReclassifyObjectActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.160"
+        visualID="ActionInputPin_ReclassifyObjectActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.160/@labels.0"
+          visualID="ActionInputPin_ReclassifyObjectActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.160/@labels.1"
+          visualID="ActionInputPin_ReclassifyObjectActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.160/@labels.2"
+          visualID="ActionInputPin_ReclassifyObjectActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.162"
+        visualID="OutputPin_ReadIsClassifiedObjectActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.162/@labels.0"
+          visualID="OutputPin_ReadIsClassifiedObjectActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.162/@labels.1"
+          visualID="OutputPin_ReadIsClassifiedObjectActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.163"
+        visualID="InputPin_ReadIsClassifiedObjectActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.163/@labels.0"
+          visualID="InputPin_ReadIsClassifiedObjectActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.163/@labels.1"
+          visualID="InputPin_ReadIsClassifiedObjectActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.164"
+        visualID="ValuePin_ReadIsClassifiedObjectActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.164/@labels.0"
+          visualID="ValuePin_ReadIsClassifiedObjectActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.164/@labels.1"
+          visualID="ValuePin_ReadIsClassifiedObjectActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.164/@labels.2"
+          visualID="ValuePin_ReadIsClassifiedObjectActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.165"
+        visualID="ActionInputPin_ReadIsClassifiedObjectActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.165/@labels.0"
+          visualID="ActionInputPin_ReadIsClassifiedObjectActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.165/@labels.1"
+          visualID="ActionInputPin_ReadIsClassifiedObjectActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.165/@labels.2"
+          visualID="ActionInputPin_ReadIsClassifiedObjectActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.167"
+        visualID="OutputPin_ReduceActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.167/@labels.0"
+          visualID="OutputPin_ReduceActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.167/@labels.1"
+          visualID="OutputPin_ReduceActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.168"
+        visualID="InputPin_ReduceActionCollectionShape">
+      <child
+          genView="/0/@diagram/@childNodes.168/@labels.0"
+          visualID="InputPin_ReduceActionCollectionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.168/@labels.1"
+          visualID="InputPin_ReduceActionCollectionStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.169"
+        visualID="ValuePin_ReduceActionCollectionShape">
+      <child
+          genView="/0/@diagram/@childNodes.169/@labels.0"
+          visualID="ValuePin_ReduceActionCollectionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.169/@labels.1"
+          visualID="ValuePin_ReduceActionCollectionValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.169/@labels.2"
+          visualID="ValuePin_ReduceActionCollectionStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.170"
+        visualID="ActionInputPin_ReduceActionCollectionShape">
+      <child
+          genView="/0/@diagram/@childNodes.170/@labels.0"
+          visualID="ActionInputPin_ReduceActionCollectionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.170/@labels.1"
+          visualID="ActionInputPin_ReduceActionCollectionValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.170/@labels.2"
+          visualID="ActionInputPin_ReduceActionCollectionStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.172"
+        visualID="InputPin_StartClassifierBehaviorActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.172/@labels.0"
+          visualID="InputPin_StartClassifierBehaviorActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.172/@labels.1"
+          visualID="InputPin_StartClassifierBehaviorActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.173"
+        visualID="ValuePin_StartClassifierBehaviorActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.173/@labels.0"
+          visualID="ValuePin_StartClassifierBehaviorActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.173/@labels.1"
+          visualID="ValuePin_StartClassifierBehaviorActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.173/@labels.2"
+          visualID="ValuePin_StartClassifierBehaviorActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.174"
+        visualID="ActionInputPin_StartClassifierBehaviorActionObjectShape">
+      <child
+          genView="/0/@diagram/@childNodes.174/@labels.0"
+          visualID="ActionInputPin_StartClassifierBehaviorActionObjectNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.174/@labels.1"
+          visualID="ActionInputPin_StartClassifierBehaviorActionObjectValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.174/@labels.2"
+          visualID="ActionInputPin_StartClassifierBehaviorActionObjectStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.176"
+        visualID="InputPin_CreateLinkObjectActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.176/@labels.0"
+          visualID="InputPin_CreateLinkObjectActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.176/@labels.1"
+          visualID="InputPin_CreateLinkObjectActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.177"
+        visualID="ValuePin_CreateLinkObjectActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.177/@labels.0"
+          visualID="ValuePin_CreateLinkObjectActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.177/@labels.1"
+          visualID="ValuePin_CreateLinkObjectActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.177/@labels.2"
+          visualID="ValuePin_CreateLinkObjectActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.178"
+        visualID="ActionInputPin_CreateLinkObjectActionInputShape">
+      <child
+          genView="/0/@diagram/@childNodes.178/@labels.0"
+          visualID="ActionInputPin_CreateLinkObjectActionInputNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.178/@labels.1"
+          visualID="ActionInputPin_CreateLinkObjectActionInputValueLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.178/@labels.2"
+          visualID="ActionInputPin_CreateLinkObjectActionInputStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.179"
+        visualID="OutputPin_CreateLinkObjectActionResultShape">
+      <child
+          genView="/0/@diagram/@childNodes.179/@labels.0"
+          visualID="OutputPin_CreateLinkObjectActionResultNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.179/@labels.1"
+          visualID="OutputPin_CreateLinkObjectActionResultStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.3"
+        visualID="InitialNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.0"
+          visualID="InitialNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.1"
+          visualID="InitialNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.4"
+        visualID="ActivityFinalNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.0"
+          visualID="ActivityFinalNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.1"
+          visualID="ActivityFinalNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.5"
+        visualID="FlowFinalNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.0"
+          visualID="FlowFinalNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.1"
+          visualID="FlowFinalNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.6"
+        visualID="OpaqueAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.0"
+          visualID="OpaqueAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.1"
+          visualID="OpaqueAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.11"
+        visualID="CallBehaviorAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.0"
+          visualID="CallBehaviorAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.1"
+          visualID="CallBehaviorAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.16"
+        visualID="CallOperationAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.16/@labels.0"
+          visualID="CallOperationAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.16/@labels.1"
+          visualID="CallOperationAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.24"
+        visualID="DurationConstraint_LocalPreconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.24/@labels.0"
+          visualID="DurationConstraint_LocalPreconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.24/@labels.1"
+          visualID="DurationConstraint_LocalPreconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.25"
+        visualID="DurationConstraint_LocalPostconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.25/@labels.0"
+          visualID="DurationConstraint_LocalPostconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.25/@labels.1"
+          visualID="DurationConstraint_LocalPostconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.26"
+        visualID="TimeConstraint_LocalPreconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.26/@labels.0"
+          visualID="TimeConstraint_LocalPreconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.26/@labels.1"
+          visualID="TimeConstraint_LocalPreconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.27"
+        visualID="TimeConstraint_LocalPostconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.27/@labels.0"
+          visualID="TimeConstraint_LocalPostconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.27/@labels.1"
+          visualID="TimeConstraint_LocalPostconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.28"
+        visualID="IntervalConstraint_LocalPreconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.28/@labels.0"
+          visualID="IntervalConstraint_LocalPreconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.28/@labels.1"
+          visualID="IntervalConstraint_LocalPreconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.29"
+        visualID="IntervalConstraint_LocalPostconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.29/@labels.0"
+          visualID="IntervalConstraint_LocalPostconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.29/@labels.1"
+          visualID="IntervalConstraint_LocalPostconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.30"
+        visualID="Constraint_LocalPreconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.30/@labels.0"
+          visualID="Constraint_LocalPreconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.30/@labels.1"
+          visualID="Constraint_LocalPreconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.31"
+        visualID="Constraint_LocalPostconditionShape">
+      <child
+          genView="/0/@diagram/@childNodes.31/@labels.0"
+          visualID="Constraint_LocalPostconditionNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.31/@labels.1"
+          visualID="Constraint_LocalPostconditionBodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.32"
+        visualID="DecisionNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.32/@labels.0"
+          visualID="DecisionNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.32/@labels.1"
+          visualID="DecisionNode_DecisionInputLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.32/@labels.2"
+          visualID="DecisionNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.33"
+        visualID="MergeNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.33/@labels.0"
+          visualID="MergeNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.33/@labels.1"
+          visualID="MergeNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.34"
+        visualID="ForkNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.34/@labels.0"
+          visualID="ForkNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.34/@labels.1"
+          visualID="ForkNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.35"
+        visualID="JoinNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.35/@labels.0"
+          visualID="JoinNode_FloatingNameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.35/@labels.1"
+          visualID="JoinNode_JoinSpecLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.35/@labels.2"
+          visualID="JoinNode_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.36"
+        visualID="DataStoreNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.36/@labels.0"
+          visualID="DataStoreNode_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.36/@labels.1"
+          visualID="DataStoreNode_SelectionLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.36/@labels.2"
+          visualID="DataStoreNode_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.37"
+        visualID="SendObjectAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.37/@labels.0"
+          visualID="SendObjectAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.37/@labels.1"
+          visualID="SendObjectAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.44"
+        visualID="SendSignalAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.44/@labels.0"
+          visualID="SendSignalAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.44/@labels.1"
+          visualID="SendSignalAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.52"
+        visualID="AcceptEventAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.52/@labels.0"
+          visualID="AcceptEventAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.52/@labels.1"
+          visualID="AcceptEventAction_TriggerLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.52/@labels.2"
+          visualID="AcceptEventAction_StereotypeLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.52/@labels.3"
+          visualID="AcceptEventAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.54"
+        visualID="ValueSpecificationAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.54/@labels.0"
+          visualID="ValueSpecificationAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.54/@labels.1"
+          visualID="ValueSpecificationAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.56"
+        visualID="ConditionalNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.56/@labels.0"
+          visualID="ConditionalNode_KeywordLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.57"
+        visualID="ExpansionRegion_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.57/@labels.0"
+          visualID="ExpansionRegion_KeywordLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.60"
+        visualID="LoopNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.60/@labels.0"
+          visualID="LoopNode_KeywordLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.67"
+        visualID="SequenceNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.67/@labels.0"
+          visualID="SequenceNode_KeywordLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.68"
+        visualID="StructuredActivityNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.68/@labels.0"
+          visualID="StructuredActivityNode_KeywordLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.73"
+        visualID="ActivityPartition_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.73/@labels.0"
+          visualID="ActivityPartition_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.73/@labels.1"
+          visualID="ActivityPartition_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.74"
+        visualID="InterruptibleActivityRegion_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.75"
+        visualID="Comment_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.75/@labels.0"
+          visualID="Comment_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.76"
+        visualID="ReadSelfAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.76/@labels.0"
+          visualID="ReadSelfAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.76/@labels.1"
+          visualID="ReadSelfAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.78"
+        visualID="Activity_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.78/@labels.0"
+          visualID="Activity_NameLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.78/@labels.1"
+          visualID="Activity_KeywordLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.79"
+        visualID="CreateObjectAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.79/@labels.0"
+          visualID="CreateObjectAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.79/@labels.1"
+          visualID="CreateObjectAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.81"
+        visualID="NamedElement_DefaultShape">
+      <child
+          genView="/0/@diagram/@childNodes.81/@labels.0"
+          visualID="NamedElement_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.82"
+        visualID="ReadStructuralFeatureAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.82/@labels.0"
+          visualID="ReadStructuralFeatureAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.82/@labels.1"
+          visualID="ReadStructuralFeatureAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.87"
+        visualID="AddStructuralFeatureValueAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.87/@labels.0"
+          visualID="AddStructuralFeatureValueAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.87/@labels.1"
+          visualID="AddStructuralFeatureValueAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.98"
+        visualID="DestroyObjectAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.98/@labels.0"
+          visualID="DestroyObjectAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.98/@labels.1"
+          visualID="DestroyObjectAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.102"
+        visualID="ReadVariableAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.102/@labels.0"
+          visualID="ReadVariableAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.102/@labels.1"
+          visualID="ReadVariableAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.104"
+        visualID="AddVariableValueAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.104/@labels.0"
+          visualID="AddVariableValueAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.104/@labels.1"
+          visualID="AddVariableValueAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.111"
+        visualID="BroadcastSignalAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.111/@labels.0"
+          visualID="BroadcastSignalAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.111/@labels.1"
+          visualID="BroadcastSignalAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.115"
+        visualID="CentralBufferNode_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.115/@labels.0"
+          visualID="CentralBufferNode_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.115/@labels.1"
+          visualID="CentralBufferNode_SelectionLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.115/@labels.2"
+          visualID="CentralBufferNode_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.116"
+        visualID="Constraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.116/@labels.0"
+          visualID="Constraint_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.116/@labels.1"
+          visualID="Constraint_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.117"
+        visualID="StartObjectBehaviorAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.117/@labels.0"
+          visualID="StartObjectBehaviorAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.117/@labels.1"
+          visualID="StartObjectBehaviorAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.125"
+        visualID="TestIdentityAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.125/@labels.0"
+          visualID="TestIdentityAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.125/@labels.1"
+          visualID="TestIdentityAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.133"
+        visualID="ClearStructuralFeatureAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.133/@labels.0"
+          visualID="ClearStructuralFeatureAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.133/@labels.1"
+          visualID="ClearStructuralFeatureAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.138"
+        visualID="CreateLinkAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.138/@labels.0"
+          visualID="CreateLinkAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.138/@labels.1"
+          visualID="CreateLinkAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.142"
+        visualID="ReadLinkAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.142/@labels.0"
+          visualID="ReadLinkAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.142/@labels.1"
+          visualID="ReadLinkAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.147"
+        visualID="DestroyLinkAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.147/@labels.0"
+          visualID="DestroyLinkAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.147/@labels.1"
+          visualID="DestroyLinkAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.151"
+        visualID="ClearAssociationAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.151/@labels.0"
+          visualID="ClearAssociationAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.151/@labels.1"
+          visualID="ClearAssociationAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.155"
+        visualID="ReadExtentAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.155/@labels.0"
+          visualID="ReadExtentAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.155/@labels.1"
+          visualID="ReadExtentAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.157"
+        visualID="ReclassifyObjectAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.157/@labels.0"
+          visualID="ReclassifyObjectAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.157/@labels.1"
+          visualID="ReclassifyObjectAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.161"
+        visualID="ReadIsClassifiedObjectAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.161/@labels.0"
+          visualID="ReadIsClassifiedObjectAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.161/@labels.1"
+          visualID="ReadIsClassifiedObjectAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.166"
+        visualID="ReduceAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.166/@labels.0"
+          visualID="ReduceAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.166/@labels.1"
+          visualID="ReduceAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.171"
+        visualID="StartClassifierBehaviorAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.171/@labels.0"
+          visualID="StartClassifierBehaviorAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.171/@labels.1"
+          visualID="StartClassifierBehaviorAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.175"
+        visualID="CreateLinkObjectAction_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.175/@labels.0"
+          visualID="CreateLinkObjectAction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.175/@labels.1"
+          visualID="CreateLinkObjectAction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@compartments.0"
+        visualID="Activity_ParameterCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.1"
+        visualID="Activity_PreconditionCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.2"
+        visualID="Activity_PostconditionCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.3"
+        visualID="Activity_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.4"
+        visualID="ConditionalNode_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.5"
+        visualID="ExpansionRegion_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.6"
+        visualID="LoopNode_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.7"
+        visualID="SequenceNode_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.8"
+        visualID="StructuredActivityNode_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.9"
+        visualID="ActivityPartition_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.10"
+        visualID="InterruptibleActivityRegion_ActivityNodeCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.11"
+        visualID="Activity_ParameterCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@compartments.12"
+        visualID="Activity_PreconditionCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@compartments.13"
+        visualID="Activity_PostconditionCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@compartments.14"
+        visualID="Activity_ActivityNodeCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@topLevelNodes.0"
+        visualID="Activity_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
+          visualID="Activity_NameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.1"
+          visualID="Activity_KeywordLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.0"
+        visualID="Action_LocalPreconditionEdge"/>
+    <child
+        genView="/0/@diagram/@links.1"
+        visualID="Action_LocalPostconditionEdge"/>
+    <child
+        genView="/0/@diagram/@links.2"
+        visualID="ObjectFlow_Edge">
+      <child
+          genView="/0/@diagram/@links.2/@labels.0"
+          visualID="ObjectFlow_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.1"
+          visualID="ObjectFlow_WeightLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.2"
+          visualID="ObjectFlow_SelectionLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.3"
+          visualID="ObjectFlow_TransformationLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.4"
+          visualID="ObjectFlow_KeywordLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.5"
+          visualID="ObjectFlow_GuardLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.6"
+          visualID="ObjectFlow_StereotypeLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.7"
+          visualID="ObjectFlow_IconLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.3"
+        visualID="ControlFlow_Edge">
+      <child
+          genView="/0/@diagram/@links.3/@labels.0"
+          visualID="ControlFlow_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.1"
+          visualID="ControlFlow_WeightLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.2"
+          visualID="ControlFlow_GuardLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.3"
+          visualID="ControlFlow_StereotypeLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.4"
+          visualID="ControlFlow_IconLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.4"
+        visualID="ExceptionHandler_Edge">
+      <child
+          genView="/0/@diagram/@links.4/@labels.0"
+          visualID="ExceptionHandler_TypeLabel"/>
+      <child
+          genView="/0/@diagram/@links.4/@labels.1"
+          visualID="ExceptionHandler_IconLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.5"
+        visualID="Comment_AnnotatedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.6"
+        visualID="Constraint_ConstrainedElementEdge"/>
+  </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

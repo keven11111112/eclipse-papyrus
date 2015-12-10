@@ -14,6 +14,7 @@
  */
 package aspects.xpt.diagram.updater
 
+import aspects.xpt.Common
 import aspects.xpt.editor.VisualIDRegistry
 import com.google.inject.Inject
 import com.google.inject.Singleton
@@ -28,7 +29,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater
-import xpt.Common
 import xpt.Common_qvto
 import xpt.GenModelUtils_qvto
 import xpt.diagram.updater.UpdaterLinkType
@@ -345,4 +345,14 @@ import xpt.diagram.updater.Utils_qvto
 		«stopLinkProcessing(inLoop)»
 	}
 	'''
+
+	override def getSemanticChildrenMethodName(GenContainerBase it) '''get«stringUniqueIdentifier()»_SemanticChildren'''
+	
+	override protected def linkGetterName(GenCommonBase it, UpdaterLinkType linkType) '''get«stringUniqueIdentifier()»_«linkType.linkMethodSuffix»Links'''
+	
+	override def getConnectedLinksByTypeMethodName(GenLink it, UpdaterLinkType linkType) '''get«linkType.linkMethodSuffix»«getConnectedLinksByTypeMethodFragment(modelFacet)»_«stringVisualID»'''
+	
+	override def dispatch getConnectedLinksByTypeMethodFragment(TypeLinkModelFacet it) '''TypeModelFacetLinks'''
+	
+	override def dispatch getConnectedLinksByTypeMethodFragment(FeatureLinkModelFacet it) '''FeatureModelFacetLinks'''
 }

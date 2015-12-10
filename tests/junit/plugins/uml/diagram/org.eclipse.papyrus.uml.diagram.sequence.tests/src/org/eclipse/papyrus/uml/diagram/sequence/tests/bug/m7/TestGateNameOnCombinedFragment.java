@@ -79,7 +79,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 
 	private void testGateName(String gateNamePrefix, boolean lifelineCovered, boolean messageFromLifeline2CombinedFragment) {
 		//1. Create CombinedFragment
-		CombinedFragmentEditPart cfEditPart = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 200), null);
+		CombinedFragmentEditPart cfEditPart = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 200), null);
 		assertNotNull("CombinedFragment creation", cfEditPart);
 
 		//2. Create Lifeline
@@ -91,7 +91,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		} else {
 			lifelineLocation.x = cfBounds.getRight().x + 100;
 		}
-		LifelineEditPart lifelineEp = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), lifelineLocation, null);
+		LifelineEditPart lifelineEp = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), lifelineLocation, null);
 		assertNotNull("Lifeline Creation", lifelineEp);
 
 		//3. Check covered.
@@ -117,7 +117,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 			target = lifelineEp;
 			targetLocation = SequenceUtil.getAbsoluteBounds(lifelineEp).getCenter().setY(startLocation.y);
 		}
-		AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, cfEditPart.getViewer(), startLocation, source, targetLocation, target);
+		AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, cfEditPart.getViewer(), startLocation, source, targetLocation, target);
 		assertNotNull("Message creation between Lifeline and CombinedFragment", messageEditPart);
 
 		//5. Check Gate name
@@ -226,7 +226,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 
 	private void testFixedGateName(String gateName, boolean lifelineCovered, boolean messageFromLifeline2Gate) {
 		//1. Create CombinedFragment
-		CombinedFragmentEditPart cfEditPart = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 200), null);
+		CombinedFragmentEditPart cfEditPart = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 200), null);
 		assertNotNull("CombinedFragment creation", cfEditPart);
 		//1.1 Create Gate on CombinedFragment
 		Rectangle cfBounds = SequenceUtil.getAbsoluteBounds(cfEditPart);
@@ -244,7 +244,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 		} else {
 			lifelineLocation.x = cfBounds.getRight().x + 100;
 		}
-		LifelineEditPart lifelineEp = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), lifelineLocation, null);
+		LifelineEditPart lifelineEp = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), lifelineLocation, null);
 		assertNotNull("Lifeline Creation", lifelineEp);
 
 		//3. Check covered.
@@ -270,7 +270,7 @@ public class TestGateNameOnCombinedFragment extends AbstractNodeTest {
 			target = lifelineEp;
 			targetLocation = SequenceUtil.getAbsoluteBounds(lifelineEp).getCenter().setY(startLocation.y);
 		}
-		AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, cfEditPart.getViewer(), startLocation, source, targetLocation, target);
+		AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, cfEditPart.getViewer(), startLocation, source, targetLocation, target);
 		assertNotNull("Message creation between Lifeline and Gate of CombinedFragment", messageEditPart);
 
 		//5. Check Gate name

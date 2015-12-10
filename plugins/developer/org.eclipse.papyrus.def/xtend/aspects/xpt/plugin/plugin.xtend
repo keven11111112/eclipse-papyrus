@@ -1,5 +1,6 @@
 package aspects.xpt.plugin
 
+import aspects.xpt.Common
 import aspects.xpt.editor.palette.Utils_qvto
 import com.google.inject.Inject
 import com.google.inject.Singleton
@@ -17,7 +18,6 @@ import org.eclipse.gmf.codegen.gmfgen.ToolEntry
 import org.eclipse.gmf.codegen.gmfgen.ToolGroup
 import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
-import xpt.Common
 import xpt.editor.extensions
 import xpt.plugin.pluginUtils
 
@@ -208,7 +208,7 @@ import xpt.plugin.pluginUtils
 	def compartmentToTypeMap(GenCompartment it) '''
 		<mapping
 			humanReadableType="«title.replaceAll('Compartment', '')»"
-			type="«visualID»">
+			type="«stringVisualID»">
 		</mapping>
 	'''
 
@@ -220,14 +220,14 @@ import xpt.plugin.pluginUtils
 	
 	def linkLabelToTypeMap(GenLinkLabel it)'''
 	«««	it is used on a LabelVisibilityPreference...
-		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels != null && v.linkLabels.contains(it) && v.role != null], visualID)»	
+		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels != null && v.linkLabels.contains(it) && v.role != null], stringVisualID)»	
 	'''
 	
 	def externalNodeLabelToTypeMap(GenExternalNodeLabel it)'''
-		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.externalNodeLabels != null && v.externalNodeLabels.contains(it) && v.role != null],visualID)»	
+		«LabelVisibilityPreferenceToTypeMap(it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.externalNodeLabels != null && v.externalNodeLabels.contains(it) && v.role != null],stringVisualID)»	
 	'''
 	
-	def LabelVisibilityPreferenceToTypeMap(Iterator<LabelVisibilityPreference> it, int visualID)'''
+	def LabelVisibilityPreferenceToTypeMap(Iterator<LabelVisibilityPreference> it, String visualID)'''
 	«var List<LabelVisibilityPreference> links = it.toList»
 	«IF links.size != 0»
 		<mapping
@@ -245,7 +245,7 @@ import xpt.plugin.pluginUtils
 				«IF "FloatingLabelEditPart".equals(extendedObject.name) »
 					<mapping
 						humanReadableType="Floating Label"
-						type="«visualID»">
+						type="«stringVisualID»">
 					</mapping>
 				«ENDIF»
 	«ENDFOR»

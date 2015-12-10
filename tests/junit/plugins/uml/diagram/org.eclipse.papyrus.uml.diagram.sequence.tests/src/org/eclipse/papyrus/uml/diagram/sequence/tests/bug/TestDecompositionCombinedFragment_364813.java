@@ -147,9 +147,9 @@ public class TestDecompositionCombinedFragment_364813 extends TestTopNode {
 
 	@Test
 	public void testCover() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(240, 200));
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(80, 120), new Dimension(200, 200));
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(200, 120), new Dimension(200, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(240, 200));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(80, 120), new Dimension(200, 200));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(200, 120), new Dimension(200, 200));
 
 		Interaction interaction = (Interaction) getRootSemanticModel();
 		CustomLifelineEditPart lifeline1 = (CustomLifelineEditPart) getRootEditPart().getChildren().get(0);
@@ -160,8 +160,8 @@ public class TestDecompositionCombinedFragment_364813 extends TestTopNode {
 
 		waitForComplete();
 		new PopupUtil(houseKeeper).addDialogCloseHandler();
-		createNode(UMLElementTypes.Lifeline_3001, lifeline1, new Point(100, 120), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, lifeline1, new Point(200, 120), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, lifeline1, new Point(100, 120), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, lifeline1, new Point(200, 120), new Dimension(62, 200));
 
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getChildren().size() == 3);
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getChildren().get(1) instanceof LifelineEditPart);

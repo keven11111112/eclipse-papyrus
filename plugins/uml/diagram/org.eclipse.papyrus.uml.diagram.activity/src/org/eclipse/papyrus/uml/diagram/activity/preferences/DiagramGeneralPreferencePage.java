@@ -69,10 +69,13 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 		notificationsGroup.setLayoutData(gridData);
 		notificationsGroup.setText(CustomMessages.DiagramsPreferencePage_notificationGroup_label);
 		Composite composite = new Composite(notificationsGroup, SWT.NONE);
-		confirmPinSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_PIN_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmPinSyncFromParameter_label, composite);
+		confirmPinSyncFromParameter = new BooleanFieldEditor(
+				IActivityPreferenceConstants.PREF_CONFIRM_PIN_SYNC_FROM_PARAMETER,
+				CustomMessages.DiagramsPreferencePage_confirmPinSyncFromParameter_label, composite);
 		addField(confirmPinSyncFromParameter);
-		confirmActivityParameterNodeSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label,
-				composite);
+		confirmActivityParameterNodeSyncFromParameter = new BooleanFieldEditor(
+				IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER,
+				CustomMessages.DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label, composite);
 		addField(confirmActivityParameterNodeSyncFromParameter);
 	}
 
@@ -85,6 +88,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 */
 	public static void initSpecificDefaults(IPreferenceStore preferenceStore) {
 		preferenceStore.setDefault(IActivityPreferenceConstants.PREF_CONFIRM_PIN_SYNC_FROM_PARAMETER, true);
-		preferenceStore.setDefault(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER, true);
+		preferenceStore.setDefault(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER,
+				true);
 	}
 }

@@ -56,7 +56,7 @@ public class ElementToDefaultNamedElementShape extends AbstractTransactionalComm
 		// creation of the node
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
 		View container = (View) elementEditPart.getNotationView().eContainer();
-		Node packageview = umlViewProvider.createNamedElement_2022(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
+		Node packageview = umlViewProvider.createNamedElement_DefaultShape(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
 		packageview.setLayoutConstraint(((Node) elementEditPart.getNotationView()).getLayoutConstraint());
 		// copy of all eannotations
 		Iterator<EAnnotation> iter = elementEditPart.getNotationView().getEAnnotations().iterator();

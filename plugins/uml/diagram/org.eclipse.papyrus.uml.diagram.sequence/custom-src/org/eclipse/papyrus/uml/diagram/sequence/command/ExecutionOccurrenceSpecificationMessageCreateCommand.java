@@ -81,11 +81,11 @@ public class ExecutionOccurrenceSpecificationMessageCreateCommand extends EditEl
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = getRequest().getElementType();
 		MessageSort messageSort = null;
-		if (UMLElementTypes.Message_4003 == elementType) {
+		if (UMLElementTypes.Message_SynchEdge == elementType) {
 			messageSort = MessageSort.SYNCH_CALL_LITERAL;
-		} else if (UMLElementTypes.Message_4004 == elementType) {
+		} else if (UMLElementTypes.Message_AsynchEdge == elementType) {
 			messageSort = MessageSort.ASYNCH_CALL_LITERAL;
-		} else if (UMLElementTypes.Message_4005 == elementType) {
+		} else if (UMLElementTypes.Message_ReplyEdge == elementType) {
 			messageSort = MessageSort.REPLY_LITERAL;
 		} else {
 			return CommandResult.newCancelledCommandResult();

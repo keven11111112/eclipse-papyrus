@@ -96,19 +96,19 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	// private final static int MAX_CHILD_EXECUTION_DEPTH = 4;
 	// force location of time/duration elements and ES
-	private static final String TIME_CONSTRAINT_HINT = ((IHintedType) UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+	private static final String TIME_CONSTRAINT_HINT = ((IHintedType) UMLElementTypes.TimeConstraint_Shape).getSemanticHint();
 
-	private static final String TIME_OBSERVATION_HINT = ((IHintedType) UMLElementTypes.TimeObservation_3020).getSemanticHint();
+	private static final String TIME_OBSERVATION_HINT = ((IHintedType) UMLElementTypes.TimeObservation_Shape).getSemanticHint();
 
-	private static final String DURATION_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType) UMLElementTypes.DurationConstraint_3021).getSemanticHint();
+	private static final String DURATION_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType) UMLElementTypes.DurationConstraint_Shape).getSemanticHint();
 
-	private static final String ACTION_EXECUTION_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.ActionExecutionSpecification_3006).getSemanticHint();
+	private static final String ACTION_EXECUTION_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.ActionExecutionSpecification_Shape).getSemanticHint();
 
-	private static final String BEHAVIOR_EXECUTION_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint();
+	private static final String BEHAVIOR_EXECUTION_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_Shape).getSemanticHint();
 
-	private static final String CO_REGION_HINT = ((IHintedType) UMLElementTypes.CombinedFragment_3018).getSemanticHint();
+	private static final String CO_REGION_HINT = ((IHintedType) UMLElementTypes.CombinedFragment_CoRegionShape).getSemanticHint();
 
-	private static final String DESTRUCTION_OCCURANCE_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
+	private static final String DESTRUCTION_OCCURANCE_SPECIFICATION_HINT = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_Shape).getSemanticHint();
 	
 	@Override
 	public EditPart getTargetEditPart(Request request) {
@@ -274,11 +274,11 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		Rectangle constraint = (Rectangle) super.getConstraintFor(request);
 		if (request instanceof CreateViewAndElementRequest) {
 			CreateViewAndElementRequest req = (CreateViewAndElementRequest) request;
-			IHintedType type = (IHintedType) UMLElementTypes.Lifeline_3001;
+			IHintedType type = (IHintedType) UMLElementTypes.Lifeline_Shape;
 			if (type.getSemanticHint().equals(req.getViewAndElementDescriptor().getSemanticHint())) {
 				constraint.y = 0; // fix layout offset
 			}
-			String destructionHint = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_3022).getSemanticHint();
+			String destructionHint = ((IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_Shape).getSemanticHint();
 			if (destructionHint.equals(req.getViewAndElementDescriptor().getSemanticHint()) && constraint.width < 0 && constraint.height < 0) {
 				constraint.width = constraint.height = DESTRUCTION_INIT_SIZE;// set initial size, same as DestructionOccurrenceSpecificationPreferencePage
 			}

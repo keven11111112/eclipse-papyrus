@@ -30,7 +30,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4002";
+	public static final String VISUAL_ID = "Action_LocalPostconditionEdge";
 
 	/**
 	 * @generated
@@ -79,6 +79,7 @@ public class ActionLocalPostconditionEditPart extends ConnectionEditPart impleme
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

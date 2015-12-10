@@ -38,31 +38,31 @@ public class CustomInteractionInteractionCompartmentItemSemanticEditPolicy exten
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.ConsiderIgnoreFragment_3007 == req.getElementType()) {
+		if (UMLElementTypes.ConsiderIgnoreFragment_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomConsiderIgnoreFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.CombinedFragment_3004 == req.getElementType()) {
+		if (UMLElementTypes.CombinedFragment_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomCombinedFragmentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Lifeline_3001 == req.getElementType()) {
+		if (UMLElementTypes.Lifeline_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomLifelineCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.InteractionUse_3002 == req.getElementType()) {
+		if (UMLElementTypes.InteractionUse_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomInteractionUseCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Constraint_3008 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.Comment_3009 == req.getElementType()) {
+		if (UMLElementTypes.Comment_Shape == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TimeObservation_3020 == req.getElementType()) {
+		if (UMLElementTypes.TimeObservation_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomTimeObservationCreateCommand(req));
 		}
-		if (UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+		if (UMLElementTypes.DurationObservation_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DurationConstraint_3021 == req.getElementType()) {
+		if (UMLElementTypes.DurationConstraint_Shape == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);

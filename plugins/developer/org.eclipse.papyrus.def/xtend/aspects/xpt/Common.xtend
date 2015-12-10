@@ -13,7 +13,9 @@
 package aspects.xpt;
 
 import com.google.inject.Singleton
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
+import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride
 
 @Singleton class Common extends xpt.Common {
 	override copyright(GenEditorGenerator it) 
@@ -25,5 +27,18 @@ import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator
  	«ENDIF»
 	'''
 
+	def String stringVisualID(GenCommonBase it) {
+		if (it.eResource.allContents.filter(typeof (VisualIDOverride)).exists(v|v.genView == it))
+			it.eResource.allContents.filter(typeof (VisualIDOverride)).findFirst(v|v.genView == it).visualID
+		else
+			it.visualID.toString
+	}
+
+	def String stringUniqueIdentifier(GenCommonBase it) {
+		if (it.eResource.allContents.filter(typeof (VisualIDOverride)).exists(v|v.genView == it))
+			it.eResource.allContents.filter(typeof (VisualIDOverride)).findFirst(v|v.genView == it).visualID
+		else
+			it.uniqueIdentifier
+	}
 }
 

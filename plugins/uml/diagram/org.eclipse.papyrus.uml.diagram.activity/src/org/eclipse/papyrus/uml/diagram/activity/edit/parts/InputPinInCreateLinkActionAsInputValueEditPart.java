@@ -46,7 +46,7 @@ public class InputPinInCreateLinkActionAsInputValueEditPart extends AbstractPinE
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3137";
+	public static final String VISUAL_ID = "InputPin_CreateLinkActionInputShape";
 
 	/**
 	 * @generated
@@ -73,7 +73,9 @@ public class InputPinInCreateLinkActionAsInputValueEditPart extends AbstractPinE
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -148,6 +150,7 @@ public class InputPinInCreateLinkActionAsInputValueEditPart extends AbstractPinE
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -207,6 +210,7 @@ public class InputPinInCreateLinkActionAsInputValueEditPart extends AbstractPinE
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -265,6 +269,7 @@ public class InputPinInCreateLinkActionAsInputValueEditPart extends AbstractPinE
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(InputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID));
 	}
 }

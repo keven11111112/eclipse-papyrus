@@ -48,11 +48,12 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
-	 */
-	public void init_Component_2002(Component instance) {
+	* @generated
+	*/
+	public void init_Component_PackagedElementShape(Component instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -64,9 +65,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Model_3202(Model instance) {
+	public void init_Model_Shape(Model instance) {
 		try {
-			Object value_0 = name_Model_3202(instance);
+			Object value_0 = name_Model_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -78,7 +79,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Package_3200(Package instance) {
+	public void init_Package_Shape(Package instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getPackage(), null).evaluate(instance);
 			if (value_0 != null) {
@@ -92,9 +93,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Interface_3205(Interface instance) {
+	public void init_Interface_ClassifierShape(Interface instance) {
 		try {
-			Object value_0 = name_Interface_3205(instance);
+			Object value_0 = name_Interface_ClassifierShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -106,9 +107,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Comment_3201(Comment instance) {
+	public void init_Comment_Shape(Comment instance) {
 		try {
-			Object value_0 = body_Comment_3201(instance);
+			Object value_0 = body_Comment_Shape(instance);
 			if (value_0 != null) {
 				instance.setBody((String) value_0);
 			}
@@ -120,13 +121,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3199(Constraint instance) {
+	public void init_Constraint_Shape(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3199(instance);
+			Object value_0 = name_Constraint_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
-			Object value_1 = specification_Constraint_3199(instance);
+			Object value_1 = specification_Constraint_Shape(instance);
 			if (value_1 != null) {
 				instance.setSpecification((ValueSpecification) value_1);
 			}
@@ -138,9 +139,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Interface_2003(Interface instance) {
+	public void init_Interface_Shape(Interface instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInterface(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInterface(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -152,13 +154,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Port_3069(Port instance) {
+	public void init_Port_Shape(Port instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getPort(), null).evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			instance.setAggregation(AggregationKind.COMPOSITE_LITERAL);
+
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
 		}
@@ -167,9 +170,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Model_3077(Model instance) {
+	public void init_Model_Shape_CN(Model instance) {
 		try {
-			Object value_0 = name_Model_3077(instance);
+			Object value_0 = name_Model_Shape_CN(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -181,7 +184,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Package_3076(Package instance) {
+	public void init_Package_Shape_CN(Package instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getPackage(), null).evaluate(instance);
 			if (value_0 != null) {
@@ -195,9 +198,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Interface_3078(Interface instance) {
+	public void init_Interface_ClassifierShape_CN(Interface instance) {
 		try {
-			Object value_0 = name_Interface_3078(instance);
+			Object value_0 = name_Interface_ClassifierShape_CN(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -209,9 +212,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Component_3070(Component instance) {
+	public void init_Component_PackagedElementShape_CCN(Component instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -223,9 +227,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Component_3071(Component instance) {
+	public void init_Component_PackagedElementShape_CN(Component instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getComponent(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -237,9 +242,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Comment_3074(Comment instance) {
+	public void init_Comment_Shape_CN(Comment instance) {
 		try {
-			Object value_0 = body_Comment_3074(instance);
+			Object value_0 = body_Comment_Shape_CN(instance);
 			if (value_0 != null) {
 				instance.setBody((String) value_0);
 			}
@@ -251,13 +256,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3075(Constraint instance) {
+	public void init_Constraint_Shape_CN(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3075(instance);
+			Object value_0 = name_Constraint_Shape_CN(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
-			Object value_1 = specification_Constraint_3075(instance);
+			Object value_1 = specification_Constraint_Shape_CN(instance);
 			if (value_1 != null) {
 				instance.setSpecification((ValueSpecification) value_1);
 			}
@@ -269,9 +274,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Property_1(Property instance) {
+	public void init_Property_InterfaceAttributeLabel(Property instance) {
 		try {
-			Object value_0 = name_Property_1(instance);
+			Object value_0 = name_Property_InterfaceAttributeLabel(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -283,9 +288,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Operation_5(Operation instance) {
+	public void init_Operation_InterfaceOperationLabel(Operation instance) {
 		try {
-			Object value_0 = name_Operation_5(instance);
+			Object value_0 = name_Operation_InterfaceOperationLabel(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -297,9 +302,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Reception_6(Reception instance) {
+	public void init_Reception_InterfaceReceptionLabel(Reception instance) {
 		try {
-			Object value_0 = name_Reception_6(instance);
+			Object value_0 = name_Reception_InterfaceReceptionLabel(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -311,9 +316,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Interface_3072(Interface instance) {
+	public void init_Interface_Shape_CN(Interface instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInterface(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInterface(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -325,9 +331,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Property_3079(Property instance) {
+	public void init_Property_Shape(Property instance) {
 		try {
-			Object value_0 = name_Property_3079(instance);
+			Object value_0 = name_Property_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -339,7 +345,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Usage_4001(Usage instance) {
+	public void init_Usage_Edge(Usage instance) {
 		try {
 			Object value_0 = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getUsage(), null).evaluate(instance);
 			if (value_0 != null) {
@@ -353,9 +359,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InterfaceRealization_4006(InterfaceRealization instance) {
+	public void init_InterfaceRealization_Edge(InterfaceRealization instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(4, UMLPackage.eINSTANCE.getInterfaceRealization(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(4, UMLPackage.eINSTANCE.getInterfaceRealization(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -367,9 +374,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Substitution_4012(Substitution instance) {
+	public void init_Substitution_Edge(Substitution instance) {
 		try {
-			Object value_0 = name_Substitution_4012(instance);
+			Object value_0 = name_Substitution_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -381,9 +388,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Manifestation_4014(Manifestation instance) {
+	public void init_Manifestation_Edge(Manifestation instance) {
 		try {
-			Object value_0 = name_Manifestation_4014(instance);
+			Object value_0 = name_Manifestation_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -395,9 +402,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ComponentRealization_4007(ComponentRealization instance) {
+	public void init_ComponentRealization_Edge(ComponentRealization instance) {
 		try {
-			Object value_0 = name_ComponentRealization_4007(instance);
+			Object value_0 = name_ComponentRealization_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -409,9 +416,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Abstraction_4013(Abstraction instance) {
+	public void init_Abstraction_Edge(Abstraction instance) {
 		try {
-			Object value_0 = name_Abstraction_4013(instance);
+			Object value_0 = name_Abstraction_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -423,9 +430,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Dependency_4010(Dependency instance) {
+	public void init_Dependency_Edge(Dependency instance) {
 		try {
-			Object value_0 = name_Dependency_4010(instance);
+			Object value_0 = name_Dependency_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -437,9 +444,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Dependency_4017(Dependency instance) {
+	public void init_Dependency_BranchEdge(Dependency instance) {
 		try {
-			Object value_0 = name_Dependency_4017(instance);
+			Object value_0 = name_Dependency_BranchEdge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -451,9 +458,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Connector_4019(Connector instance) {
+	public void init_Connector_Edge(Connector instance) {
 		try {
-			Object value_0 = name_Connector_4019(instance);
+			Object value_0 = name_Connector_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -465,21 +472,21 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Model_3202(Model it) {
+	private String name_Model_Shape(Model it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Interface_3205(Interface it) {
+	private String name_Interface_ClassifierShape(Interface it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String body_Comment_3201(Comment it) {
+	private String body_Comment_Shape(Comment it) {
 		// Comment body init
 		return "";
 	}
@@ -487,14 +494,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Constraint_3199(Constraint it) {
+	private String name_Constraint_Shape(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private ValueSpecification specification_Constraint_3199(Constraint it) {
+	private ValueSpecification specification_Constraint_Shape(Constraint it) {
 		// Constraint specification init
 		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
 		value.setValue("");
@@ -504,21 +511,21 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Model_3077(Model it) {
+	private String name_Model_Shape_CN(Model it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Interface_3078(Interface it) {
+	private String name_Interface_ClassifierShape_CN(Interface it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String body_Comment_3074(Comment it) {
+	private String body_Comment_Shape_CN(Comment it) {
 		// Comment body init
 		return "";
 	}
@@ -526,14 +533,14 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Constraint_3075(Constraint it) {
+	private String name_Constraint_Shape_CN(Constraint it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private ValueSpecification specification_Constraint_3075(Constraint it) {
+	private ValueSpecification specification_Constraint_Shape_CN(Constraint it) {
 		// Constraint specification init
 		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
 		value.setValue("");
@@ -543,77 +550,77 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private String name_Property_1(Property it) {
+	private String name_Property_InterfaceAttributeLabel(Property it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Operation_5(Operation it) {
+	private String name_Operation_InterfaceOperationLabel(Operation it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Reception_6(Reception it) {
+	private String name_Reception_InterfaceReceptionLabel(Reception it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Property_3079(Property it) {
+	private String name_Property_Shape(Property it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Substitution_4012(Substitution it) {
+	private String name_Substitution_Edge(Substitution it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Manifestation_4014(Manifestation it) {
+	private String name_Manifestation_Edge(Manifestation it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_ComponentRealization_4007(ComponentRealization it) {
+	private String name_ComponentRealization_Edge(ComponentRealization it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Abstraction_4013(Abstraction it) {
+	private String name_Abstraction_Edge(Abstraction it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Dependency_4010(Dependency it) {
+	private String name_Dependency_Edge(Dependency it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Dependency_4017(Dependency it) {
+	private String name_Dependency_BranchEdge(Dependency it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 
 	/**
 	 * @generated
 	 */
-	private String name_Connector_4019(Connector it) {
+	private String name_Connector_Edge(Connector it) {
 		return NamedElementUtil.getDefaultNameWithIncrement(it, it.getOwner().eContents());
 	}
 

@@ -75,7 +75,7 @@ public class CustomConsiderIgnoreFragmentCreateCommand extends ConsiderIgnoreFra
 	@SuppressWarnings("unchecked")
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
-		ElementInitializers.getInstance().init_ConsiderIgnoreFragment_3007(newElement);
+		ElementInitializers.getInstance().init_ConsiderIgnoreFragment_Shape(newElement);
 		// START GENERATED NOT CODE
 		EObject elementToEdit = getElementToEdit();
 		InteractionFragment owner = null;

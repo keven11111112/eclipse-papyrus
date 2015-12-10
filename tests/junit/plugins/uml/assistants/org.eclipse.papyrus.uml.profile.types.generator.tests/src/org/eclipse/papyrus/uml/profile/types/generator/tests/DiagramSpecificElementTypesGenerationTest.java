@@ -32,6 +32,8 @@ import org.eclipse.papyrus.infra.types.IconEntry;
 import org.eclipse.papyrus.infra.types.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorEditPartTN;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -46,7 +48,7 @@ import com.google.common.collect.ImmutableSet;
  * Test cases for diagram-specific element types generation for UML profiles.
  */
 @PluginResource("/resources/j2ee.profile.uml")
-@BaseElementTypes("org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet")
+@BaseElementTypes("org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet")
 public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTest {
 
 	@ClassRule
@@ -83,7 +85,7 @@ public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTe
 			List<String> specializedTypeIDs = next.getSpecializedTypesID();
 			assertThat(specializedTypeIDs.size(), is(2));
 			assertThat(specializedTypeIDs.get(0), is(semanticParentID));
-			assertThat(specializedTypeIDs.get(1), regexContains("Actor_\\d{4}$")); // a visual ID
+			assertThat(specializedTypeIDs.get(1), regexContains("Actor_")); // a visual ID
 		}
 	}
 
@@ -92,7 +94,7 @@ public class DiagramSpecificElementTypesGenerationTest extends AbstractPapyrusTe
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
 		List<SpecializationTypeConfiguration> types = fixture.assertAllSpecializationTypes(userActor);
 		Set<String> hints = ImmutableSet.copyOf(transform(types, EMFFunctions.getFeature(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION__HINT, String.class)));
-		assertThat(hints, hasItems("2011", "2012"));
+		assertThat(hints, hasItems(ActorEditPartTN.VISUAL_ID, ActorAsRectangleEditPartTN.VISUAL_ID));
 	}
 
 	@Test

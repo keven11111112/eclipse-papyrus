@@ -71,7 +71,7 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_8009(container, getLink(), getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistPath_Edge(container, getLink(), getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class CustomMessageReorientCommand extends MessageReorientCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_8009(container, getLink(), getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistPath_Edge(container, getLink(), getOldSource(), getNewTarget());
 	}
 
 	/**

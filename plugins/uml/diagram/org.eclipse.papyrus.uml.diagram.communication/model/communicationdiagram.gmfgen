@@ -4,7 +4,8 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.communication"
       modelID="PapyrusUMLCommunicationDiagram"
@@ -25,7 +26,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
-          uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Package_1000"/>
+          uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Package_CommunicationDiagram"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
@@ -51,7 +52,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Lifeline_8001"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Lifeline_Shape"
             displayName="Lifeline"
             editHelperClassName="LifelineEditHelper"/>
         <viewmap
@@ -151,7 +152,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Constraint_8004"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Constraint_Shape"
             displayName="Constraint"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
@@ -230,7 +231,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Comment_8005"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Comment_Shape"
             displayName="Comment"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
@@ -293,7 +294,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.TimeObservation_8006"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.TimeObservation_Shape"
             displayName="TimeObservation"
             editHelperClassName="TimeObservationEditHelper"/>
         <viewmap
@@ -397,7 +398,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.DurationObservation_8007"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.DurationObservation_Shape"
             displayName="DurationObservation"
             editHelperClassName="DurationObservationEditHelper"/>
         <viewmap
@@ -500,6 +501,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Interaction_Shape"
             displayName="Interaction"
             editHelperClassName="InteractionEditHelper"/>
         <viewmap
@@ -602,7 +604,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Diagram_8016"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Diagram_ShortcutShape"
             displayName="ShortCutDiagram"
             editHelperClassName="ShortCutDiagramEditHelper"/>
         <viewmap
@@ -653,7 +655,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Message_8009"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Path_Edge"
             displayName="Message"
             editHelperClassName="MessageEditHelper"/>
         <viewmap
@@ -762,7 +764,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.CommentAnnotatedElement_8010"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Comment_AnnotatedElementEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -782,7 +784,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.ConstraintConstrainedElement_8011"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.Constraint_ConstrainedElementEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -802,7 +804,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.DurationObservationEvent_8012"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.DurationObservation_EventEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -822,7 +824,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.TimeObservationEvent_8013"/>
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.communication.TimeObservation_EventEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -1150,4 +1152,97 @@
         name="UMLConnectionNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:VisualIDOverride
+      genView="/0/@diagram"
+      visualID="Package_CommunicationDiagram">
+    <child
+        genView="/0/@diagram/@childNodes.0"
+        visualID="Lifeline_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.0/@labels.0"
+          visualID="Lifeline_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.0/@labels.1"
+          visualID="Lifeline_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.1"
+        visualID="Constraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.1/@labels.0"
+          visualID="Constraint_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.1/@labels.1"
+          visualID="Constraint_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.2"
+        visualID="Comment_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.2/@labels.0"
+          visualID="Comment_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.3"
+        visualID="TimeObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.0"
+          visualID="TimeObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.1"
+          visualID="TimeObservation_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.4"
+        visualID="DurationObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.0"
+          visualID="DurationObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.1"
+          visualID="DurationObservation_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@compartments.0"
+        visualID="Interaction_SubfragmentCompartment"/>
+    <child
+        genView="/0/@diagram/@topLevelNodes.0"
+        visualID="Interaction_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
+          visualID="Interaction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.1"
+          visualID="Interaction_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.1"
+        visualID="Diagram_ShortcutShape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.1/@labels.0"
+          visualID="Diagram_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.0"
+        visualID="Path_Edge">
+      <child
+          genView="/0/@diagram/@links.0/@labels.0"
+          visualID="Path_MessageLabel"/>
+      <child
+          genView="/0/@diagram/@links.0/@labels.1"
+          visualID="Path_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.1"
+        visualID="Comment_AnnotatedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.2"
+        visualID="Constraint_ConstrainedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.3"
+        visualID="DurationObservation_EventEdge"/>
+    <child
+        genView="/0/@diagram/@links.4"
+        visualID="TimeObservation_EventEdge"/>
+  </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

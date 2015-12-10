@@ -121,22 +121,22 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 
 	@Test
 	public void testMessageSync_4003_Action() {
-		selectActionExecution(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4003, UMLElementTypes.ActionExecutionSpecification_3006);
+		selectActionExecution(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testMessageSync_4003_Behavior() {
-		selectBehaviorExecution(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4003, UMLElementTypes.BehaviorExecutionSpecification_3003);
+		selectBehaviorExecution(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testMessageReply_4005_Action() {
-		selectActionExecution(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4005, UMLElementTypes.ActionExecutionSpecification_3006);
+		selectActionExecution(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testMessageReply_4005_Behavior() {
-		selectBehaviorExecution(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4005, UMLElementTypes.BehaviorExecutionSpecification_3003);
+		selectBehaviorExecution(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	public void createLink(IElementType linkType, EditPart source, EditPart target, Point sourcePoint, Point targetPoint) {

@@ -46,6 +46,6 @@ public class TestClassDiagramContextLink extends TestContextLink {
 
 	@Test
 	public void testToManageContextLink() {
-		manageContextLink(UMLElementTypes.Constraint_2011, UMLElementTypes.Class_2008, UMLElementTypes.ConstraintContext_8500, UMLElementTypes.Package_2007);
+		manageContextLink(UMLElementTypes.Constraint_PackagedElementShape, UMLElementTypes.Class_Shape, UMLElementTypes.Constraint_ContextEdge, UMLElementTypes.Package_Shape);
 	}
 }

@@ -118,7 +118,7 @@ public class CustomDurationObservationCreateCommand extends DurationObservationC
 		}
 		Package owner = (Package) container;
 		owner.getPackagedElements().add(newElement);
-		ElementInitializers.getInstance().init_DurationObservation_3024(newElement);
+		ElementInitializers.getInstance().init_DurationObservation_Shape(newElement);
 		// assign the occurrence specification
 		Object paramOcc1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 		List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOcc1);

@@ -178,6 +178,10 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 				return createGenVisualTypeProviderAdapter();
 			}
 			@Override
+			public Adapter caseVisualIDOverride(VisualIDOverride object) {
+				return createVisualIDOverrideAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -544,6 +548,20 @@ public class PapyrusgmfgenextensionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createGenVisualTypeProviderAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride <em>Visual ID Override</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride
+	 * @generated
+	 */
+	public Adapter createVisualIDOverrideAdapter() {
 		return null;
 	}
 

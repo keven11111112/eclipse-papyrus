@@ -127,7 +127,7 @@ public class CustomDurationConstraintEditPart extends DurationConstraintEditPart
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		IHintedType type = (IHintedType) UMLElementTypes.CommentAnnotatedElement_4010;
+		IHintedType type = (IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge;
 		if (request instanceof CreateConnectionViewRequest) {
 			String hint = ((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint();
 			if (hint.equals(type.getSemanticHint())) {

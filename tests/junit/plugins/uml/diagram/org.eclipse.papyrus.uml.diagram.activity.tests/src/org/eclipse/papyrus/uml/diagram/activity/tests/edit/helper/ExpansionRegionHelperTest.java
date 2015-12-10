@@ -70,7 +70,7 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testExpansionNodeCreateCommand() throws Exception {
-		CreateElementRequest expansionNodeCreateRequest = initCreateElementRequest(UMLElementTypes.ExpansionNode_3074, UMLPackage.eINSTANCE.getExpansionRegion_InputElement());
+		CreateElementRequest expansionNodeCreateRequest = initCreateElementRequest(UMLElementTypes.ExpansionNode_InputShape, UMLPackage.eINSTANCE.getExpansionRegion_InputElement());
 		ICommand command = myHelperInstance.getCreateCommand(expansionNodeCreateRequest);
 		commonExpansionRegionCreateChildTest(command);
 		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand) command;
@@ -84,7 +84,7 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testExpansionRegionContainmentChildCreateCommand() throws Exception {
-		CreateElementRequest expansionRegionContainmentCreateRequest = initCreateElementRequest(UMLElementTypes.StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
+		CreateElementRequest expansionRegionContainmentCreateRequest = initCreateElementRequest(UMLElementTypes.StructuredActivityNode_Shape, UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
 		ICommand command = myHelperInstance.getCreateCommand(expansionRegionContainmentCreateRequest);
 		commonExpansionRegionCreateChildTest(command);
 		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand) command;
@@ -93,7 +93,7 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 
 	@Test
 	public void testExpansionRegionBadCreateCommand() throws Exception {
-		CreateElementRequest badCreateCommandRequest = initCreateElementRequest(UMLElementTypes.ExpansionNode_3074, UMLPackage.eINSTANCE.getStructuredActivityNode_Edge());
+		CreateElementRequest badCreateCommandRequest = initCreateElementRequest(UMLElementTypes.ExpansionNode_InputShape, UMLPackage.eINSTANCE.getStructuredActivityNode_Edge());
 		ICommand command = myHelperInstance.getCreateCommand(badCreateCommandRequest);
 		assertFalse(command.canExecute());
 	}

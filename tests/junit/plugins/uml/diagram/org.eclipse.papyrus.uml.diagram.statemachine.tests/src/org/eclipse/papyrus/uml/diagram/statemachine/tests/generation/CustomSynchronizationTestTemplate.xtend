@@ -28,7 +28,7 @@ class CustomSynchronizationTestTemplate extends SynchronizationTestTemplate {
     def customCreateSemanticElement(Class class_) '''
     	@Override
     	protected «'org.eclipse.emf.ecore.EObject'.imported» createSemanticElement(«'org.eclipse.gmf.runtime.emf.type.core.IElementType'.imported» elementType, EObject container) {
-    		if (elementType.equals(«class_.umlElementTypes».StateMachine_2000)) {
+    		if (elementType.equals(«class_.umlElementTypes».StateMachine_Shape)) {
     			// Return the already existing state machine
     			return container;
     		}

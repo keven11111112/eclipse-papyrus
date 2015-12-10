@@ -91,7 +91,7 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if (REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4006)) {
+		if (REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_CreateEdge)) {
 			return getHost();
 		}
 		return super.getTargetEditPart(request);
@@ -105,7 +105,7 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 	 */
 	@Override
 	public Command getCommand(Request request) {
-		if (REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4006)) {
+		if (REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_CreateEdge)) {
 			return getMessageCreateAndLifelineCommands((CreateConnectionRequest) request);
 		} else if (REQ_CONNECTION_START.equals(request.getType()) && request instanceof CreateConnectionRequest) {
 			// Fixed bug about mapping source location for creating a Gate.
@@ -123,7 +123,7 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		Command command = super.getConnectionCompleteCommand(request);
-		if (command != null && command.canExecute() && REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4008)) {
+		if (command != null && command.canExecute() && REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_LostEdge)) {
 			EditPart sourceEditPart = request.getSourceEditPart();
 			EObject source = ViewUtil.resolveSemanticElement((View) sourceEditPart.getModel());
 			// ignore CoRegion
@@ -189,10 +189,10 @@ public class InteractionGraphicalNodeEditPolicy extends GatesHolderGraphicalNode
 		IGraphicalEditPart container = iep.getChildBySemanticHint("" + InteractionInteractionCompartmentEditPart.VISUAL_ID);
 		CompoundCommand cc = new CompoundCommand(DiagramUIMessages.Command_CreateRelationship_Label);
 		// 1. Create a Lifeline.
-		CreateViewAndOptionallyElementCommand createOtherEndCmd = new CreateViewAndOptionallyElementCommand(UMLElementTypes.Lifeline_3001, container, request.getLocation(), iep.getDiagramPreferencesHint());
+		CreateViewAndOptionallyElementCommand createOtherEndCmd = new CreateViewAndOptionallyElementCommand(UMLElementTypes.Lifeline_Shape, container, request.getLocation(), iep.getDiagramPreferencesHint());
 		cc.add(new ICommandProxy(createOtherEndCmd));
 		// 2. Create message to the Lifeline.
-		ICommand connectionCmd = new CreateMessageCreateWithLifelineCommand(request, UMLElementTypes.Message_4006, request.getSourceEditPart(), createOtherEndCmd.getResult(), iep.getViewer());
+		ICommand connectionCmd = new CreateMessageCreateWithLifelineCommand(request, UMLElementTypes.Message_CreateEdge, request.getSourceEditPart(), createOtherEndCmd.getResult(), iep.getViewer());
 		cc.add(new ICommandProxy(connectionCmd));
 		return cc;
 	}

@@ -34,7 +34,7 @@ public class ChangeInteractionToInteractionUseCommand extends
 	protected Node createTargetCallBehaviorView(
 			CallBehaviorAction callBehaviorAction, View containerView, int index) {
 		InheritedActivityDiagramViewProvider viewProvider = new InheritedActivityDiagramViewProvider();
-		return viewProvider.createCallBehaviorAction_3008(callBehaviorAction, containerView, index, true, this.callBehaviorActionEditPart.getDiagramPreferencesHint());
+		return viewProvider.createCallBehaviorAction_Shape(callBehaviorAction, containerView, index, true, this.callBehaviorActionEditPart.getDiagramPreferencesHint());
 	}
 
 }

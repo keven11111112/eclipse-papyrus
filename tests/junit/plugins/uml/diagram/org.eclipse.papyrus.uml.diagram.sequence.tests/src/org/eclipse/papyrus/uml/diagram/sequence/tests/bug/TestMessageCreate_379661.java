@@ -69,8 +69,8 @@ public class TestMessageCreate_379661 extends TestLink {
 
 	@Test
 	public void testHeaderAnchor() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(150, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
@@ -79,7 +79,7 @@ public class TestMessageCreate_379661 extends TestLink {
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
 
-		createLink(UMLElementTypes.Message_4006, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), bounds.getCenter());
+		createLink(UMLElementTypes.Message_CreateEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), bounds.getCenter());
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 
@@ -95,8 +95,8 @@ public class TestMessageCreate_379661 extends TestLink {
 
 	@Test
 	public void testVerticalBarAnchor() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(150, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
@@ -105,7 +105,7 @@ public class TestMessageCreate_379661 extends TestLink {
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
 
-		createLink(UMLElementTypes.Message_4006, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), bounds.getCenter());
+		createLink(UMLElementTypes.Message_CreateEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), bounds.getCenter());
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 
@@ -120,8 +120,8 @@ public class TestMessageCreate_379661 extends TestLink {
 
 	@Test
 	public void testMove() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(150, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
@@ -130,7 +130,7 @@ public class TestMessageCreate_379661 extends TestLink {
 		Rectangle bounds = fig.getBounds().getCopy();
 		fig.translateToAbsolute(bounds);
 
-		createLink(UMLElementTypes.Message_4006, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), bounds.getCenter());
+		createLink(UMLElementTypes.Message_CreateEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1), bounds.getCenter());
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 

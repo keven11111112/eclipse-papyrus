@@ -12,23 +12,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.reconciler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -49,23 +48,6 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 	public ICommand getReconcileCommand(Diagram diagram) {
 		return new UpdateCompartmentsCommand(diagram);
 	}
-
-	/** The copier util to copy a decorationNode as a compartment. */
-	Copier copierAsCompartment = new Copier() {
-
-		private static final long serialVersionUID = 1L;
-
-		protected EObject createCopy(EObject eObject) {
-			// Copier the decoration node as a compartment
-			if (eObject instanceof DecorationNode && isCompartment((View) eObject)) {
-				return EcoreUtil.create(NotationPackage.Literals.BASIC_COMPARTMENT);
-			}
-
-			EClass eClass = getTarget(eObject);
-			return eClass == null ? null : EcoreUtil.create(eClass);
-		}
-	};
-
 
 	/**
 	 * Gets the compartments visual id which needs to migrate from DecorationNode to BasicCompartment.
@@ -106,19 +88,33 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 		 *             the execution exception
 		 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 		 */
+		@SuppressWarnings("unchecked")
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 			TreeIterator<EObject> allContentIterator = diagram.eAllContents();
-
+			List<DecorationNode> oldComparments = new ArrayList<DecorationNode>();
+			
 			while (allContentIterator.hasNext()) {
 				EObject eObject = allContentIterator.next();
-
 				if (eObject instanceof DecorationNode && isCompartment((View) eObject)) {
-					BasicCompartment compartment = (BasicCompartment) copierAsCompartment.copy(eObject);
-					EcoreUtil.replace(eObject, compartment);
+					oldComparments.add((DecorationNode)eObject);
 				}
 			}
+			
+			for(DecorationNode oldCompartment : oldComparments) {
+				BasicCompartment newCompartment = NotationFactory.eINSTANCE.createBasicCompartment();
+				newCompartment.setType(oldCompartment.getType());
+				newCompartment.setVisible(oldCompartment.isVisible());
+				newCompartment.setMutable(oldCompartment.isMutable());
+				newCompartment.setLayoutConstraint(oldCompartment.getLayoutConstraint());
+				newCompartment.getStyles().addAll(oldCompartment.getStyles());
+				newCompartment.getPersistedChildren().addAll(oldCompartment.getPersistedChildren());
+				if (oldCompartment.isSetElement())
+					newCompartment.setElement(oldCompartment.getElement());
+				EcoreUtil.replace(oldCompartment, newCompartment);
+			}
+
 			return CommandResult.newOKCommandResult();
 		}
 
@@ -188,13 +184,7 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 	 * @return true, if is compartment
 	 */
 	protected boolean isCompartment(View view) {
-		boolean value = false;
-		for (String compartment : getCompartmentsVisualID()) {
-			value = compartment.equals(((View) view).getType());
-			if (value == true)
-				break;
-		}
-		return value;
+		return getCompartmentsVisualID().contains(view.getType());
 	}
 
 }

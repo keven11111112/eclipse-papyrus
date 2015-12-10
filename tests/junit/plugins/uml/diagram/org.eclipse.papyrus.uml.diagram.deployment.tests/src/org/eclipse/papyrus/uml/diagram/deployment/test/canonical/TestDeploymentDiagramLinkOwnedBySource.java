@@ -53,6 +53,6 @@ public class TestDeploymentDiagramLinkOwnedBySource extends TestLinkOwnedBySourc
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Node_2008, UMLElementTypes.Node_2008, UMLElementTypes.Generalization_4003, UMLElementTypes.Package_2009, false);
+		testToManageLink(UMLElementTypes.Node_Shape, UMLElementTypes.Node_Shape, UMLElementTypes.Generalization_Edge, UMLElementTypes.Package_Shape, false);
 	}
 }

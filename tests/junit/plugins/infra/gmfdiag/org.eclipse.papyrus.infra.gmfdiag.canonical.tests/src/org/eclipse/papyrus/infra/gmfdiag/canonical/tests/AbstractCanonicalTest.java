@@ -54,13 +54,11 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
 import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
-import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.gmfgen.GenLink;
 import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode;
-import org.eclipse.gmf.codegen.gmfgen.util.GMFGenSwitch;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -95,6 +93,9 @@ import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.AnnotationRule;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
+import org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage;
+import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride;
+import org.eclipse.papyrus.papyrusgmfgenextension.util.PapyrusgmfgenextensionSwitch;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
@@ -758,45 +759,28 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 		try {
 			URI classdiagram = URI.createPlatformPluginURI(String.format("/%s/model/classdiagram.gmfgen", UMLDiagramEditorPlugin.ID), true);
-			GenEditorGenerator editor = UML2Util.load(rset, classdiagram, GMFGenPackage.eINSTANCE.getGenEditorGenerator());
-
-			GMFGenSwitch<Class<? extends View>> typeSwitch = new GMFGenSwitch<Class<? extends View>>() {
-
-				@Override
-				public Class<? extends View> caseGenDiagram(GenDiagram object) {
-					Class<? extends View> result = Diagram.class;
-					String visualID = Integer.toString(object.getVisualID());
-					map.put(visualID, result);
-					return result;
-				}
+			VisualIDOverride ov = UML2Util.load(rset, classdiagram, PapyrusgmfgenextensionPackage.eINSTANCE.getVisualIDOverride());
+			PapyrusgmfgenextensionSwitch<Class<? extends View>> typeSwitch = new PapyrusgmfgenextensionSwitch<Class<? extends View>>() {
 
 				@Override
-				public Class<? extends View> caseGenTopLevelNode(GenTopLevelNode object) {
-					Class<? extends View> result = Node.class;
-					String visualID = Integer.toString(object.getVisualID());
-					map.put(visualID, result);
-					return result;
-				}
-
-				@Override
-				public Class<? extends View> caseGenChildNode(GenChildNode object) {
-					Class<? extends View> result = Node.class;
-					String visualID = Integer.toString(object.getVisualID());
-					map.put(visualID, result);
-					return result;
-				}
-
-				@Override
-				public Class<? extends View> caseGenLink(GenLink object) {
-					Class<? extends View> result = Edge.class;
-					String visualID = Integer.toString(object.getVisualID());
-					map.put(visualID, result);
+				public Class<? extends View> caseVisualIDOverride(VisualIDOverride object) {
+					Class<? extends View> result = null;
+					GenCommonBase base = object.getGenView();
+					if (base instanceof GenDiagram)
+						result = Diagram.class;
+					else if (base instanceof GenTopLevelNode)
+						result = Node.class;
+					else if (base instanceof GenChildNode)
+						result = Node.class;
+					else if (base instanceof GenLink)
+						result = Edge.class;
+					if (result != null)
+						map.put(object.getVisualID(), result);
 					return result;
 				}
 			};
 
-			map.put(editor.getModelID(), Diagram.class);
-			for (Iterator<? extends EObject> iter = editor.eAllContents(); iter.hasNext();) {
+			for (Iterator<? extends EObject> iter = ov.eAllContents(); iter.hasNext();) {
 				typeSwitch.doSwitch(iter.next());
 			}
 		} finally {

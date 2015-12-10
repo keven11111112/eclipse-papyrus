@@ -103,7 +103,7 @@ public class LifelineCreateCommandCN extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_Lifeline_8001(newElement);
+		ElementInitializers.getInstance().init_Lifeline_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

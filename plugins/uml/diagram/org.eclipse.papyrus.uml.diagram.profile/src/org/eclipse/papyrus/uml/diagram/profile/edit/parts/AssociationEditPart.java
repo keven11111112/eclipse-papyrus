@@ -31,7 +31,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4001";
+	public static final String VISUAL_ID = "Association_Edge";
 
 	/**
 	 * @generated
@@ -47,7 +47,8 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -55,23 +56,26 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
-			((AssociationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
+			((AssociationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
-		if(childEditPart instanceof AssociationNameEditPart) {
-			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if (childEditPart instanceof AssociationNameEditPart) {
+			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
-		if(childEditPart instanceof AssociationRoleTargetEditPart) {
-			((AssociationRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+		if (childEditPart instanceof AssociationRoleTargetEditPart) {
+			((AssociationRoleTargetEditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 		}
-		if(childEditPart instanceof AssociationRoleSourceEditPart) {
-			((AssociationRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if (childEditPart instanceof AssociationRoleSourceEditPart) {
+			((AssociationRoleSourceEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
-		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
-			((AssociationMultiplicitySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+		if (childEditPart instanceof AssociationMultiplicitySourceEditPart) {
+			((AssociationMultiplicitySourceEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicitySourceLabel());
 		}
-		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
-			((AssociationMultiplicityTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+		if (childEditPart instanceof AssociationMultiplicityTargetEditPart) {
+			((AssociationMultiplicityTargetEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 		}
 		return false;
 	}
@@ -81,7 +85,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -91,22 +95,22 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
+		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationNameEditPart) {
+		if (childEditPart instanceof AssociationNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationRoleTargetEditPart) {
+		if (childEditPart instanceof AssociationRoleTargetEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationRoleSourceEditPart) {
+		if (childEditPart instanceof AssociationRoleSourceEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplicitySourceEditPart) {
+		if (childEditPart instanceof AssociationMultiplicitySourceEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationMultiplicityTargetEditPart) {
+		if (childEditPart instanceof AssociationMultiplicityTargetEditPart) {
 			return true;
 		}
 		return false;
@@ -117,7 +121,7 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -141,6 +145,6 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 	 */
 	@Override
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 }

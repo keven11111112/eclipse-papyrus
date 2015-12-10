@@ -4,7 +4,8 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.sequence"
       modelID="PapyrusUMLSequenceDiagram"
@@ -86,6 +87,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Package_SequenceDiagram"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
@@ -117,6 +119,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.ConsiderIgnoreFragment_Shape"
             editHelperClassName="ConsiderIgnoreFragmentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -165,6 +168,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_Shape"
             editHelperClassName="CombinedFragmentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -217,6 +221,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.InteractionOperand_Shape"
             editHelperClassName="InteractionOperandEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -267,6 +272,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.InteractionUse_Shape"
             editHelperClassName="InteractionUseEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -352,6 +358,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Continuation_Shape"
             editHelperClassName="ContinuationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -412,6 +419,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Lifeline_Shape"
             editHelperClassName="LifelineEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -501,6 +509,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.ActionExecutionSpecification_Shape"
             editHelperClassName="ActionExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -547,6 +556,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.BehaviorExecutionSpecification_Shape"
             editHelperClassName="BehaviorExecutionSpecificationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -594,6 +604,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.StateInvariant_Shape"
             editHelperClassName="StateInvariantEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -667,6 +678,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.CombinedFragment_CoRegionShape"
             metamodelType="/0/@diagram/@childNodes.1/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -711,6 +723,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.TimeConstraint_Shape"
             editHelperClassName="TimeConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -808,6 +821,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.TimeObservation_Shape"
             editHelperClassName="TimeObservationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -890,6 +904,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape"
             editHelperClassName="DurationConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -988,6 +1003,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DestructionOccurrenceSpecification_Shape"
             editHelperClassName="DestructionEventEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1032,6 +1048,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Constraint_Shape"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1117,6 +1134,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Comment_Shape"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1187,6 +1205,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DurationConstraint_Shape_CN"
             metamodelType="/0/@diagram/@childNodes.12/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1295,6 +1314,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.DurationObservation_Shape"
             editHelperClassName="DurationObservationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1389,6 +1409,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Interaction_Shape"
             editHelperClassName="InteractionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1460,6 +1481,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_SynchEdge"
             editHelperClassName="MessageEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1558,6 +1580,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_AsynchEdge"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1655,6 +1678,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_ReplyEdge"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1752,6 +1776,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_CreateEdge"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1850,6 +1875,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_DeleteEdge"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1947,6 +1973,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_LostEdge"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2045,6 +2072,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Message_FoundEdge"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2142,7 +2170,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Comment_AnnotatedElementEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart.AnnotatedLinkDescriptor"/>
@@ -2166,7 +2195,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ConstrainedElementEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AnnotatedLinkEditPart.AnnotatedLinkDescriptor"/>
@@ -2191,6 +2221,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.GeneralOrdering_Edge"
             editHelperClassName="GeneralOrderingEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2256,7 +2287,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.sequence.Constraint_ContextEdge"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.sequence.figures.CustomContextLinkFigure"/>
@@ -7557,4 +7589,233 @@
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:VisualIDOverride
+      genView="/0/@diagram"
+      visualID="Package_SequenceDiagram">
+    <child
+        genView="/0/@diagram/@childNodes.4"
+        visualID="Continuation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.0"
+          visualID="Continuation_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.8"
+        visualID="StateInvariant_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.0"
+          visualID="StateInvariant_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.1"
+          visualID="StateInvariant_ConstraintLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.10"
+        visualID="TimeConstraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.0"
+          visualID="TimeConstraint_ConstraintLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.1"
+          visualID="TimeConstraint_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.11"
+        visualID="TimeObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.0"
+          visualID="TimeObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.1"
+          visualID="TimeObservation_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.12"
+        visualID="DurationConstraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.0"
+          visualID="DurationConstraint_BodyLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.12/@labels.1"
+          visualID="DurationConstraint_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.13"
+        visualID="DestructionOccurrenceSpecification_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.0"
+        visualID="ConsiderIgnoreFragment_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.1"
+        visualID="CombinedFragment_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.2"
+        visualID="InteractionOperand_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.3"
+        visualID="InteractionUse_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.0"
+          visualID="InteractionUse_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.1"
+          visualID="InteractionUse_TypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.5"
+        visualID="Lifeline_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.0"
+          visualID="Lifeline_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.6"
+        visualID="ActionExecutionSpecification_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.7"
+        visualID="BehaviorExecutionSpecification_Shape"/>
+    <child
+        genView="/0/@diagram/@childNodes.9"
+        visualID="CombinedFragment_CoRegionShape"/>
+    <child
+        genView="/0/@diagram/@childNodes.14"
+        visualID="Constraint_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.0"
+          visualID="Constraint_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.14/@labels.1"
+          visualID="Constraint_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.15"
+        visualID="Comment_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.15/@labels.0"
+          visualID="Comment_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.16"
+        visualID="DurationConstraint_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.16/@labels.0"
+          visualID="DurationConstraint_BodyLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.16/@labels.1"
+          visualID="DurationConstraint_StereotypeLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.17"
+        visualID="DurationObservation_Shape">
+      <child
+          genView="/0/@diagram/@childNodes.17/@labels.0"
+          visualID="DurationObservation_NameLabel"/>
+      <child
+          genView="/0/@diagram/@childNodes.17/@labels.1"
+          visualID="DurationObservation_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@compartments.0"
+        visualID="Interaction_SubfragmentCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.1"
+        visualID="CombinedFragment_SubfragmentCompartment"/>
+    <child
+        genView="/0/@diagram/@topLevelNodes.0"
+        visualID="Interaction_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
+          visualID="Interaction_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.0"
+        visualID="Message_SynchEdge">
+      <child
+          genView="/0/@diagram/@links.0/@labels.0"
+          visualID="Message_SynchNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.0/@labels.1"
+          visualID="Message_SynchStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.1"
+        visualID="Message_AsynchEdge">
+      <child
+          genView="/0/@diagram/@links.1/@labels.0"
+          visualID="Message_AsynchNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.1/@labels.1"
+          visualID="Message_AsynchStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.2"
+        visualID="Message_ReplyEdge">
+      <child
+          genView="/0/@diagram/@links.2/@labels.0"
+          visualID="Message_ReplyNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.2/@labels.1"
+          visualID="Message_ReplyStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.3"
+        visualID="Message_CreateEdge">
+      <child
+          genView="/0/@diagram/@links.3/@labels.0"
+          visualID="Message_CreateNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.1"
+          visualID="Message_CreateStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.4"
+        visualID="Message_DeleteEdge">
+      <child
+          genView="/0/@diagram/@links.4/@labels.0"
+          visualID="Message_DeleteNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.4/@labels.1"
+          visualID="Message_DeleteStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.5"
+        visualID="Message_LostEdge">
+      <child
+          genView="/0/@diagram/@links.5/@labels.0"
+          visualID="Message_LostNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.5/@labels.1"
+          visualID="Message_LostStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.6"
+        visualID="Message_FoundEdge">
+      <child
+          genView="/0/@diagram/@links.6/@labels.0"
+          visualID="Message_FoundNameLabel"/>
+      <child
+          genView="/0/@diagram/@links.6/@labels.1"
+          visualID="Message_FoundStereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.7"
+        visualID="Comment_AnnotatedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.8"
+        visualID="Constraint_ConstrainedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.9"
+        visualID="GeneralOrdering_Edge">
+      <child
+          genView="/0/@diagram/@links.9/@labels.0"
+          visualID="GeneralOrdering_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.10"
+        visualID="Constraint_ContextEdge">
+      <child
+          genView="/0/@diagram/@links.10/@labels.0"
+          visualID="Constraint_KeywordLabel"/>
+    </child>
+  </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

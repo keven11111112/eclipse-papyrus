@@ -89,7 +89,7 @@ public class AssociationClassViewCreateCommand extends AbstractCustomCommand {
 		CreateElementRequestAdapter requestAdapter = createConnectionViewAndElementRequest.getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 		CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		setNode(viewProvider.createAssociationClass_2013(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint));
+		setNode(viewProvider.createAssociationClass_Shape(createElementRequest.getNewElement(), this.containerView, -1, true, preferenceHint));
 		// this.node = factory.createView(new
 		// SemanticAdapter(createElementRequest.getNewElement()),
 		// this.containerView, ((IHintedType)

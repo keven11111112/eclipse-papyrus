@@ -31,6 +31,9 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
@@ -64,7 +67,7 @@ public class ReadVariableActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3097";
+	public static final String VISUAL_ID = "ReadVariableAction_Shape";
 
 	/**
 	 * @generated
@@ -91,16 +94,21 @@ public class ReadVariableActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadVariableActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadVariableActionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -176,12 +184,15 @@ public class ReadVariableActionEditPart extends RoundedCompartmentEditPart {
 			((ReadVariableActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInReadVariableActionAsResultEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((OutputPinInReadVariableActionAsResultEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -193,7 +204,8 @@ public class ReadVariableActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInReadVariableActionAsResultEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInReadVariableActionAsResultEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((OutputPinInReadVariableActionAsResultEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -266,6 +278,7 @@ public class ReadVariableActionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -350,14 +363,16 @@ public class ReadVariableActionEditPart extends RoundedCompartmentEditPart {
 				Variable newVariable = (Variable) _varaible;
 				Type type = newVariable.getType();
 				if (type != null) {
-					cmdSetResultType = SetCommand.create(getEditingDomain(), result, UMLPackage.Literals.TYPED_ELEMENT__TYPE, type);
+					cmdSetResultType = SetCommand.create(getEditingDomain(), result,
+							UMLPackage.Literals.TYPED_ELEMENT__TYPE, type);
 				}
 				try {
 					if (cmdSetResultType != null) {
 						if (cmdSetResultType.canExecute()) {
 							CommandStack commandStack = getEditingDomain().getCommandStack();
 							if (commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack) commandStack).execute(cmdSetResultType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+								((TransactionalCommandStack) commandStack).execute(cmdSetResultType,
+										Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 							} else {
 								commandStack.execute(cmdSetResultType);
 							}

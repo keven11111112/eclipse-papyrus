@@ -740,7 +740,7 @@ mapping Notation::Shape::shapeToLifelineShape() : UMLDI::LifelineShape
 	labels->forEach(label) {
 		var id := label.eAnnotations.details->any(key='org.eclipse.papyrus.uml.diagram.timing.StateDefinitionViewID').value;
 		var si := self.element.oclAsType(UML::Lifeline).coveredBy->any(oclIsKindOf(UML::StateInvariant) and
-			eAnnotations.details->any(key='org.eclipse.papyrus.uml.diagram.timing.StateInvariantStateDefinitionId').value = id);
+			self.eAnnotations.details->any(key='org.eclipse.papyrus.uml.diagram.timing.StateInvariantStateDefinitionId').value = id);
 		var constLabel = label.map nodeToConstraintLabel();
 		constLabel.umlModelElement := si;
 		constraintLabel += constLabel;

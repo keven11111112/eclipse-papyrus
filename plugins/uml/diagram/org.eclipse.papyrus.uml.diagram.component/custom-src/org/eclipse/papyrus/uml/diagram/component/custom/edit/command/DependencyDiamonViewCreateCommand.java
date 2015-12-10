@@ -90,7 +90,7 @@ public class DependencyDiamonViewCreateCommand extends AbstractTransactionalComm
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		node = viewProvider.createDependency_3203(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
+		node = viewProvider.createDependency_Shape(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint);
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);

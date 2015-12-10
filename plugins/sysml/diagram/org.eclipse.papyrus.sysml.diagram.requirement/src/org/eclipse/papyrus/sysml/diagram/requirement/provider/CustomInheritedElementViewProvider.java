@@ -36,7 +36,7 @@ public class CustomInheritedElementViewProvider extends InheritedClassDiagramVie
 	}
 
 	@Override
-	public Node createClass_2008(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createClass_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());

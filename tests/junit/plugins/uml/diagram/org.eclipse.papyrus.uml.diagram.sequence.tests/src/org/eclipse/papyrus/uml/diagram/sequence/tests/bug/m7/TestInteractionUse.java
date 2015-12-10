@@ -65,12 +65,12 @@ public class TestInteractionUse extends AbstractNodeTest {
 	 */
 	@Test
 	public void testInteractionUseCoveredBy_389538() {
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		Lifeline lf = (Lifeline) lifeline.resolveSemanticElement();
 		
 		assertTrue("Lifeline coveredby should be empty: ", lf.getCoveredBys().isEmpty());
 		
-		InteractionUseEditPart interactionUse = (InteractionUseEditPart) createNode(UMLElementTypes.InteractionUse_3002, getRootEditPart(), new Point(90, 120), new Dimension(100, 60));
+		InteractionUseEditPart interactionUse = (InteractionUseEditPart) createNode(UMLElementTypes.InteractionUse_Shape, getRootEditPart(), new Point(90, 120), new Dimension(100, 60));
 		InteractionUse iu = (InteractionUse) interactionUse.resolveSemanticElement();
 
 		assertTrue("Lifeline coveredby should contain InteractionUse: ", lf.getCoveredBys().contains(iu));
@@ -97,7 +97,7 @@ public class TestInteractionUse extends AbstractNodeTest {
 	@FailingTest
 	@Test
 	public void testInteractionUseInCombinedFragment_402971() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(500, 200));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(500, 200));
 		assertNotNull(cf);
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		assertNotNull(compartment);
@@ -110,7 +110,7 @@ public class TestInteractionUse extends AbstractNodeTest {
 		for(int x = r.x + width; x < r.right();) {
 			int y = r.y + height + 10;
 			Point location = new Point(x, y);
-			InteractionUseEditPart interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_3002, operand, location, null);
+			InteractionUseEditPart interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_Shape, operand, location, null);
 			assertNotNull(interactionUse);
 			Rectangle bounds = getAbsoluteBounds(interactionUse);
 			assertTrue("InteractionUse should be at " + location.toString() + ", but " + bounds.getLocation().toString(), location.equals(bounds.getLocation()));

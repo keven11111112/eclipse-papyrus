@@ -30,7 +30,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4011";
+	public static final String VISUAL_ID = "CommunicationPath_Edge";
 
 	/**
 	 * @generated
@@ -45,7 +45,8 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 	}
 
@@ -53,11 +54,12 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CommunicationPathNameEditPart) {
-			((CommunicationPathNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if (childEditPart instanceof CommunicationPathNameEditPart) {
+			((CommunicationPathNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
-		if(childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
-			((CommunicationPathAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
+			((CommunicationPathAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -66,7 +68,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -76,10 +78,10 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CommunicationPathNameEditPart) {
+		if (childEditPart instanceof CommunicationPathNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
+		if (childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -89,7 +91,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -111,6 +113,6 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart impleme
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 }

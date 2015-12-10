@@ -44,7 +44,7 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends AbstractPinEditPart
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3109";
+	public static final String VISUAL_ID = "OutputPin_LoopNodeBodyOutputShape";
 
 	/**
 	 * @generated
@@ -71,7 +71,9 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends AbstractPinEditPart
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -145,6 +147,7 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends AbstractPinEditPart
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -202,6 +205,7 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends AbstractPinEditPart
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -260,6 +264,7 @@ public class OutputPinInLoopNodeAsBodyOutputEditPart extends AbstractPinEditPart
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID));
 	}
 }

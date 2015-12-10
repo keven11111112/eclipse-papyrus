@@ -99,7 +99,7 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 			return false;
 		}
 
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_8009(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreatePath_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	/**

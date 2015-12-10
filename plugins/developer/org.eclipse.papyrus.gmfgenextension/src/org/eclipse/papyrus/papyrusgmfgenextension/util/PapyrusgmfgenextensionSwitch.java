@@ -255,6 +255,12 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PapyrusgmfgenextensionPackage.VISUAL_ID_OVERRIDE: {
+				VisualIDOverride visualIDOverride = (VisualIDOverride)theEObject;
+				T result = caseVisualIDOverride(visualIDOverride);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -631,6 +637,21 @@ public class PapyrusgmfgenextensionSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseGenVisualTypeProvider(GenVisualTypeProvider object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Visual ID Override</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Visual ID Override</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVisualIDOverride(VisualIDOverride object) {
 		return null;
 	}
 

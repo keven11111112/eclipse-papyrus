@@ -36,7 +36,7 @@ import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
 public class DestructionOccurrenceSpecificationCreationTool extends CreationTool {
 
 	public DestructionOccurrenceSpecificationCreationTool() {
-		super(UMLElementTypes.DestructionOccurrenceSpecification_27);
+		super(UMLElementTypes.DestructionOccurrenceSpecification_Shape);
 		setDefaultCursor(Cursors.CROSS);
 		setDisabledCursor(Cursors.NO);
 	}

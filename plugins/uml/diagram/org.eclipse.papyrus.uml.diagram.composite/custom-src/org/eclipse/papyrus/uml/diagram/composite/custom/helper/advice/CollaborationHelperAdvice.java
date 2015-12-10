@@ -132,7 +132,7 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 				if (currentChildObject instanceof View) {
 					View currentChildView = (View) currentChildObject;
 
-					if ((((IHintedType) UMLElementTypes.ConnectableElement_3115).getSemanticHint().equals(currentChildView.getType())) && (currentChildView.getElement() == role)) {
+					if ((((IHintedType) UMLElementTypes.ConnectableElement_CollaborationRoleShape).getSemanticHint().equals(currentChildView.getType())) && (currentChildView.getElement() == role)) {
 						viewsToDelete.add(currentChildView);
 					}
 				}

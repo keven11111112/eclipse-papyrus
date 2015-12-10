@@ -45,7 +45,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3173";
+	public static final String VISUAL_ID = "ValuePin_DestroyObjectActionTargetShape";
 
 	/**
 	 * @generated
@@ -72,7 +72,9 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
@@ -147,6 +149,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -209,6 +212,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -267,6 +271,7 @@ public class ValuePinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ValuePinInDestroyObjectActionLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(ValuePinInDestroyObjectActionLabelEditPart.VISUAL_ID));
 	}
 }

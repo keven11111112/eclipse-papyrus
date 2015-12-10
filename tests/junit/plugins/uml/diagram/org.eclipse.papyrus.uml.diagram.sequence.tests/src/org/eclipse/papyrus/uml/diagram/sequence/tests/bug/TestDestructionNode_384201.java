@@ -69,11 +69,11 @@ public class TestDestructionNode_384201 extends TestTopNode {
 	@InvalidTest("DestructionOccurrenceSpecification is nonresizable")
 	@Test
 	public void testResizeNorth() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
-		createNode(UMLElementTypes.DestructionOccurrenceSpecification_3022, lifeline1, new Point(131, 150), new Dimension(20, 20));
+		createNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifeline1, new Point(131, 150), new Dimension(20, 20));
 		DestructionOccurrenceSpecificationEditPart dsep = (DestructionOccurrenceSpecificationEditPart)lifeline1.getChildren().get(1);
 		resize(dsep, getAbsoluteBounds(dsep).getTop(), PositionConstants.NORTH, new Dimension(0, 20));
 		resize(dsep, getAbsoluteBounds(dsep).getTop(), PositionConstants.NORTH, new Dimension(0, -20));
@@ -83,11 +83,11 @@ public class TestDestructionNode_384201 extends TestTopNode {
 	@InvalidTest("DestructionOccurrenceSpecification is nonresizable")
 	@Test
 	public void testResizeWest() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
-		createNode(UMLElementTypes.DestructionOccurrenceSpecification_3022, lifeline1, new Point(131, 150), new Dimension(20, 20));
+		createNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifeline1, new Point(131, 150), new Dimension(20, 20));
 		DestructionOccurrenceSpecificationEditPart dsep = (DestructionOccurrenceSpecificationEditPart)lifeline1.getChildren().get(1);
 		resize(dsep, getAbsoluteBounds(dsep).getLeft(), PositionConstants.WEST, new Dimension(20, 0));
 		resize(dsep, getAbsoluteBounds(dsep).getLeft(), PositionConstants.WEST, new Dimension(-20, 0));
@@ -96,11 +96,11 @@ public class TestDestructionNode_384201 extends TestTopNode {
 	@InvalidTest("DestructionOccurrenceSpecification is nonresizable")
 	@Test
 	public void testResizeEast() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
-		createNode(UMLElementTypes.DestructionOccurrenceSpecification_3022, lifeline1, new Point(131, 150), new Dimension(20, 20));
+		createNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifeline1, new Point(131, 150), new Dimension(20, 20));
 		DestructionOccurrenceSpecificationEditPart dsep = (DestructionOccurrenceSpecificationEditPart)lifeline1.getChildren().get(1);
 		resize(dsep, getAbsoluteBounds(dsep).getRight(), PositionConstants.EAST, new Dimension(20, 0));
 		resize(dsep, getAbsoluteBounds(dsep).getRight(), PositionConstants.EAST, new Dimension(-20, 0));

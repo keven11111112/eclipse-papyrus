@@ -33,6 +33,12 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseEditPartTN;
 import org.eclipse.papyrus.uml.profile.types.generator.tests.BaseElementTypes;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
@@ -53,7 +59,7 @@ import com.google.common.collect.Sets;
  * Test cases for diagram-specific diagram assistants generation for UML profiles.
  */
 @PluginResource("/resources/j2ee.profile.uml")
-@BaseElementTypes("org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet")
+@BaseElementTypes("org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet")
 public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest {
 
 	@ClassRule
@@ -79,16 +85,16 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 	public void distinctPopupHintsGenerated() {
 		Pair<Stereotype, Class> branchPoint = fixture.getMetaclassExtension("BranchPoint", "ExtensionPoint");
 		List<PopupAssistant> popups = fixture.assertAllPopupAssistants(branchPoint);
-		Set<Integer> hints = ImmutableSet.copyOf(transform(popups, visualIDFunction()));
-		assertThat(hints, hasItems(3007, 3008));
+		Set<String> hints = ImmutableSet.copyOf(transform(popups, visualIDFunction()));
+		assertThat(hints, hasItems(ExtensionPointEditPart.VISUAL_ID, ExtensionPointInRectangleEditPart.VISUAL_ID));
 	}
 
 	@Test
 	public void distinctConnectionHintsGenerated() {
 		Pair<Stereotype, Class> webAssociation = fixture.getMetaclassExtension("Web", "Association");
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(webAssociation);
-		Set<Integer> hints = ImmutableSet.copyOf(transform(connections, visualIDFunction()));
-		assertThat(hints, hasItems(4011));
+		Set<String> hints = ImmutableSet.copyOf(transform(connections, visualIDFunction()));
+		assertThat(hints, hasItems(AssociationEditPart.VISUAL_ID));
 	}
 
 
@@ -99,11 +105,11 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 		List<PopupAssistant> popups = fixture.assertAllPopupAssistants(branchPoint);
 
 		Pair<Stereotype, Class> webScenarioUseCase = fixture.getMetaclassExtension("WebScenario", "UseCase");
-		ElementTypeFilter filter2013 = fixture.assertMetaclassFilter(webScenarioUseCase, 2013);
-		ElementTypeFilter filter2014 = fixture.assertMetaclassFilter(webScenarioUseCase, 2014);
+		ElementTypeFilter usecaseFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseEditPartTN.VISUAL_ID);
+		ElementTypeFilter usecaseAsRectangleFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseAsRectangleEditPartTN.VISUAL_ID);
 
 		assertThat(transform(popups, EMFFunctions.getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
-				hasItems(includes(filter2013), includes(filter2014)));
+				hasItems(includes(usecaseFilter), includes(usecaseAsRectangleFilter)));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -113,12 +119,12 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(webAssociation);
 
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
-		ElementTypeFilter filter2011 = fixture.assertMetaclassFilter(userActor, 2011);
+		ElementTypeFilter actorFilter = fixture.assertMetaclassFilter(userActor, ActorEditPartTN.VISUAL_ID);
 		Pair<Stereotype, Class> webScenarioUseCase = fixture.getMetaclassExtension("WebScenario", "UseCase");
-		ElementTypeFilter filter2013 = fixture.assertMetaclassFilter(webScenarioUseCase, 2013);
+		ElementTypeFilter usecaseFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseEditPartTN.VISUAL_ID);
 
 		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
-				hasItems(includes(filter2011), includes(filter2013)));
+				hasItems(includes(actorFilter), includes(usecaseFilter)));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -128,12 +134,12 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(webAssociation);
 
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
-		ElementTypeFilter filter2011 = fixture.assertMetaclassFilter(userActor, 2011);
+		ElementTypeFilter actorFilter = fixture.assertMetaclassFilter(userActor, ActorEditPartTN.VISUAL_ID);
 		Pair<Stereotype, Class> webScenarioUseCase = fixture.getMetaclassExtension("WebScenario", "UseCase");
-		ElementTypeFilter filter2013 = fixture.assertMetaclassFilter(webScenarioUseCase, 2013);
+		ElementTypeFilter usecaseFilter = fixture.assertMetaclassFilter(webScenarioUseCase, UseCaseEditPartTN.VISUAL_ID);
 
 		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
-				hasItems(includes(filter2011), includes(filter2013)));
+				hasItems(includes(actorFilter), includes(usecaseFilter)));
 	}
 
 	//
@@ -142,24 +148,15 @@ public class DiagramSpecificAssistantsGenerationTest extends AbstractPapyrusTest
 
 	static Function<String, String> suffixFunction() {
 		return new Function<String, String>() {
-			final Pattern suffix = Pattern.compile("[._]([0-9a-zA-Z]+)$");
-
 			@Override
 			public String apply(String input) {
-				Matcher m = suffix.matcher(input);
-				return m.find() ? m.group(1) : null;
+				return input.substring(input.indexOf('_')+1);
 			}
 		};
 	}
 
-	static Function<EObject, Integer> visualIDFunction() {
-		Function<String, Integer> parse = new Function<String, Integer>() {
-			@Override
-			public Integer apply(String input) {
-				return Integer.valueOf(input);
-			}
-		};
-		return Functions.compose(parse, Functions.compose(suffixFunction(), EMFFunctions.getFeature(AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE_ID, String.class)));
+	static Function<EObject, String> visualIDFunction() {
+		return Functions.compose(suffixFunction(), EMFFunctions.getFeature(AssistantPackage.Literals.ASSISTANT__ELEMENT_TYPE_ID, String.class));
 	}
 
 	static org.hamcrest.Matcher<Filter> includes(final Filter filter) {

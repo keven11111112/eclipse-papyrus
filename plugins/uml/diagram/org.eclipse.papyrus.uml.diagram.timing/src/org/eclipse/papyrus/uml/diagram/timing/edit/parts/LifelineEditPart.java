@@ -40,7 +40,7 @@ public class LifelineEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "40";
+	public static final String VISUAL_ID = "Lifeline_Shape";
 
 	/**
 	 * @generated
@@ -66,7 +66,9 @@ public class LifelineEditPart extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -81,7 +83,7 @@ public class LifelineEditPart extends NodeEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -108,6 +110,7 @@ public class LifelineEditPart extends NodeEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -125,7 +128,7 @@ public class LifelineEditPart extends NodeEditPart {
 	 */
 	@Override
 	public LifelineFigure getPrimaryShape() {
-		return (LifelineFigure)primaryShape;
+		return (LifelineFigure) primaryShape;
 	}
 
 	/**
@@ -148,6 +151,7 @@ public class LifelineEditPart extends NodeEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -168,7 +172,7 @@ public class LifelineEditPart extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -179,7 +183,7 @@ public class LifelineEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -197,8 +201,8 @@ public class LifelineEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 }

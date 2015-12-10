@@ -65,26 +65,26 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 
 	@Test
 	public void testResizeActionExecutionNorth() {
-		resizeNorth(UMLElementTypes.ActionExecutionSpecification_3006);
+		resizeNorth(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testResizeBehaviorExecutionNorth() {
-		resizeNorth(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		resizeNorth(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testResizeActionExecutionSouth() {
-		resizeSouth(UMLElementTypes.ActionExecutionSpecification_3006);
+		resizeSouth(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testResizeBehaviorExecutionSouth() {
-		resizeSouth(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		resizeSouth(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	protected void resizeNorth(IElementType elementType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
@@ -98,7 +98,7 @@ public class TestExecutionSpecificationDimension_384572 extends TestTopNode {
 	}
 
 	protected void resizeSouth(IElementType elementType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart) getRootEditPart().getChildren().get(0);
 		waitForComplete();
 

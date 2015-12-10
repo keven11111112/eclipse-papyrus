@@ -59,7 +59,7 @@ public class DestroyLinkActionEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3118";
+	public static final String VISUAL_ID = "DestroyLinkAction_Shape";
 
 	/**
 	 * @generated
@@ -86,16 +86,21 @@ public class DestroyLinkActionEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.DestroyLinkActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.DestroyLinkActionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -170,6 +175,7 @@ public class DestroyLinkActionEditPart extends RoundedCompartmentEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -198,24 +204,31 @@ public class DestroyLinkActionEditPart extends RoundedCompartmentEditPart {
 			((DestroyLinkActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInDestroyLinkActionAsInputValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((InputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInDestroyLinkActionAsInputValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((ValuePinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInDestroyLinkActionAsInputValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((ActionInputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -227,15 +240,18 @@ public class DestroyLinkActionEditPart extends RoundedCompartmentEditPart {
 			return true;
 		}
 		if (childEditPart instanceof InputPinInDestroyLinkActionAsInputValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((InputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInDestroyLinkActionAsInputValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((ValuePinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionInputPinInDestroyLinkActionAsInputValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionInputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((ActionInputPinInDestroyLinkActionAsInputValueEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -308,6 +324,7 @@ public class DestroyLinkActionEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

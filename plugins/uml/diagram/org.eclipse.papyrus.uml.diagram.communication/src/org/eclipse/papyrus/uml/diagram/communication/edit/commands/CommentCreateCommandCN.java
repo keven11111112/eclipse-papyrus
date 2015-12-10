@@ -103,7 +103,7 @@ public class CommentCreateCommandCN extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_Comment_8005(newElement);
+		ElementInitializers.getInstance().init_Comment_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

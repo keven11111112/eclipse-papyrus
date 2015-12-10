@@ -979,7 +979,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object obj : relationshipTypes) {
-				if (UMLElementTypes.Message_4006.equals(obj)) {
+				if (UMLElementTypes.Message_CreateEdge.equals(obj)) {
 					return LifelineMessageCreateHelper.getCreateMessageAnchor(this, request, ((CreateUnspecifiedTypeConnectionRequest) request).getLocation().getCopy());
 				}
 			}

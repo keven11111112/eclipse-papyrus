@@ -29,7 +29,7 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4016";
+	public static final String VISUAL_ID = "AssociationClass_TetherEdge";
 
 	/**
 	 * @generated
@@ -67,6 +67,6 @@ public class AssociationClassDashedLinkEditPart extends ConnectionEditPart imple
 	 */
 	@Override
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

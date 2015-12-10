@@ -184,13 +184,15 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return null;
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry
+				.getModelID(containerView);
 		if (!ComponentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return null;
 		}
 		String containerVisualID;
 		if (ComponentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ComponentDiagramEditPart.VISUAL_ID;
@@ -400,13 +402,15 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry
+				.getModelID(containerView);
 		if (!ComponentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (ComponentDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ComponentDiagramEditPart.VISUAL_ID;
@@ -889,7 +893,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			// unrecognized id is always bad
+			//unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);
@@ -949,7 +953,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
-
 		/**
 		 * @generated
 		 */
@@ -971,7 +974,8 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
+					domainElement);
 		}
 
 		/**
@@ -979,7 +983,8 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry.checkNodeVisualID(containerView,
+					domainElement, candidate);
 		}
 
 		/**

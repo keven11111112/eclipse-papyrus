@@ -42,6 +42,13 @@ import org.eclipse.papyrus.infra.gmfdiag.css.tests.Activator;
 import org.eclipse.papyrus.junit.framework.classification.NotImplemented;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceAttributeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceOperationCompartmentEditPart;
 import org.eclipse.uml2.uml.NamedElement;
 import org.junit.After;
 import org.junit.Assert;
@@ -58,19 +65,19 @@ import org.junit.Test;
  */
 public class CSSCompartmentsTests extends AbstractPapyrusTest {
 
-	public static final String CLASS_ATTRIBUTE_COMPARTMENT_TYPE = "7017"; //$NON-NLS-1$
+	public static final String CLASS_ATTRIBUTE_COMPARTMENT_TYPE = ClassAttributeCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
-	public static final String CLASS_OPERATION_COMPARTMENT_TYPE = "7018"; //$NON-NLS-1$
+	public static final String CLASS_OPERATION_COMPARTMENT_TYPE = ClassOperationCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
-	public static final String CLASS_CLASSIFIER_COMPARTMENT_TYPE = "7019"; //$NON-NLS-1$
+	public static final String CLASS_CLASSIFIER_COMPARTMENT_TYPE = ClassNestedClassifierCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
-	public static final String INTERFACE_ATTRIBUTE_COMPARTMENT_TYPE = "7006"; //$NON-NLS-1$
+	public static final String INTERFACE_ATTRIBUTE_COMPARTMENT_TYPE = InterfaceAttributeCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
-	public static final String INTERFACE_OPERATION_COMPARTMENT_TYPE = "7007"; //$NON-NLS-1$
+	public static final String INTERFACE_OPERATION_COMPARTMENT_TYPE = InterfaceOperationCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
-	public static final String INTERFACE_INTERFACEIFIER_COMPARTMENT_TYPE = "7008"; //$NON-NLS-1$
+	public static final String INTERFACE_INTERFACEIFIER_COMPARTMENT_TYPE = InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
-	public static final String ENUMERATION_LITERAL_COMPARTMENT_TYPE = "7015"; //$NON-NLS-1$
+	public static final String ENUMERATION_LITERAL_COMPARTMENT_TYPE = EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID; //$NON-NLS-1$
 
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();

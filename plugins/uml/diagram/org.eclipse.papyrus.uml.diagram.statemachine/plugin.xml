@@ -158,8 +158,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000,19000,667,670,8500"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="StateMachine_Shape,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
       </viewProvider>
    </extension>
 
@@ -171,16 +171,16 @@
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2000,3000,5000,6000,8000,9000,10000,11000,12000,13000,14000,15000,16000,17000,18000,666,668,680,690,691,692"/>
+            <method name="getType()" value="StateMachine_Shape,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="7000,19000,667,670,8500"/>
+            <method name="getType()" value="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="2001,5001,5002,6001,19003,8001,8002,9001,9002,10001,10002,11001,11002,12001,12002,13001,13002,14001,14002,15001,15002,16001,16002,17001,17002,18001,18002,6666,6668,6669"/>
+            <method name="getType()" value="StateMachine_NameLabel,FinalState_FloatingNameLabel,FinalState_StereotypeLabel,State_NameLabel,State_FloatingNameLabel,Pseudostate_InitialFloatingNameLabel,Pseudostate_InitialStereotypeLabel,Pseudostate_JoinFloatingNameLabel,Pseudostate_JoinStereotypeLabel,Pseudostate_ForkFloatingNameLabel,Pseudostate_ForkStereotypeLabel,Pseudostate_ChoiceFloatingNameLabel,Pseudostate_ChoiceStereotypeLabel,Pseudostate_JunctionFloatingNameLabel,Pseudostate_JunctionStereotypeLabel,Pseudostate_ShallowHistoryFloatingNameLabel,Pseudostate_ShallowHistoryStereotypeLabel,Pseudostate_DeepHistoryFloatingNameLabel,Pseudostate_DeepHistoryStereotypeLabel,Pseudostate_TerminateFloatingNameLabel,Pseudostate_TerminateStereotypeLabel,Pseudostate_EntryPointFloatingNameLabel,Pseudostate_EntryPointStereotypeLabel,Pseudostate_ExitPointFloatingNameLabel,Pseudostate_ExitPointStereotypeLabel,ConnectionPointReference_NameLabel,ConnectionPointReference_StereotypeLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="3002,2002,6002"/>
+            <method name="getType()" value="Region_SubvertexCompartment,StateMachine_RegionCompartment,State_RegionCompartment"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -214,8 +214,6 @@
       <binding context="org.eclipse.papyrus.uml.diagram.statemachine.TypeContext">
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
-      
-      
    </extension>
 	   
 	   
@@ -294,57 +292,27 @@
       </creationCommand>
    </extension>
 
-<extension
-      point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-   <editpartProvider
-         class="org.eclipse.papyrus.uml.diagram.statemachine.custom.providers.CustomUMLEditPartProvider">
-      <Priority
-            name="Highest">
-      </Priority>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Diagram"
-            id="generated-diagram">
-         <method
-               name="getType()"
-               value="PapyrusUMLStateMachineDiagram">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-nodes">
-         <method
-               name="getType()"
-               value="2000,3000,4000">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Edge"
-            id="generated-links">
-         <method
-               name="getType()">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-labels">
-         <method
-               name="getType()"
-               value="2001,3001">
-         </method>
-      </object>
-      <object
-            class="org.eclipse.gmf.runtime.notation.Node"
-            id="generated-compartments">
-         <method
-               name="getType()"
-               value="3002,2002,4002">
-         </method>
-      </object>
-      <context
-            views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
-      </context>
-   </editpartProvider>
-</extension>
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.statemachine.custom.providers.CustomUMLEditPartProvider">
+         <Priority name="Highest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="StateMachine_Shape,Region_Shape,FinalState_Shape,State_Shape,Pseudostate_InitialShape,Pseudostate_JoinShape,Pseudostate_ForkShape,Pseudostate_ChoiceShape,Pseudostate_JunctionShape,Pseudostate_ShallowHistoryShape,Pseudostate_DeepHistoryShape,Pseudostate_TerminateShape,Pseudostate_EntryPointShape,Pseudostate_ExitPointShape,ConnectionPointReference_Shape,Comment_Shape,Constraint_Shape,Transition_InternalTransitionLabel,Behavior_EntryBehaviorLabel,Behavior_DoActivityBehaviorLabel,Behavior_ExitBehaviorLabel"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="Transition_Edge,Generalization_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="StateMachine_NameLabel,FinalState_FloatingNameLabel,FinalState_StereotypeLabel,State_NameLabel,State_FloatingNameLabel,Pseudostate_InitialFloatingNameLabel,Pseudostate_InitialStereotypeLabel,Pseudostate_JoinFloatingNameLabel,Pseudostate_JoinStereotypeLabel,Pseudostate_ForkFloatingNameLabel,Pseudostate_ForkStereotypeLabel,Pseudostate_ChoiceFloatingNameLabel,Pseudostate_ChoiceStereotypeLabel,Pseudostate_JunctionFloatingNameLabel,Pseudostate_JunctionStereotypeLabel,Pseudostate_ShallowHistoryFloatingNameLabel,Pseudostate_ShallowHistoryStereotypeLabel,Pseudostate_DeepHistoryFloatingNameLabel,Pseudostate_DeepHistoryStereotypeLabel,Pseudostate_TerminateFloatingNameLabel,Pseudostate_TerminateStereotypeLabel,Pseudostate_EntryPointFloatingNameLabel,Pseudostate_EntryPointStereotypeLabel,Pseudostate_ExitPointFloatingNameLabel,Pseudostate_ExitPointStereotypeLabel,ConnectionPointReference_NameLabel,ConnectionPointReference_StereotypeLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="Region_SubvertexCompartment,StateMachine_RegionCompartment,State_RegionCompartment"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
 
 
 
@@ -776,79 +744,79 @@
    	<mapping type="PapyrusUMLStateMachineDiagram" humanReadableType="StateMachineDiagram"/>
 			<mapping
 				humanReadableType="Region"
-				type="3002">
+				type="Region_SubvertexCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="StateMachine"
-				type="2002">
+				type="StateMachine_RegionCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="State"
-				type="6002">
+				type="State_RegionCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="5001">
+				type="FinalState_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="19003">
+				type="State_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="8001">
+				type="Pseudostate_InitialFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="9001">
+				type="Pseudostate_JoinFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="10001">
+				type="Pseudostate_ForkFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="11001">
+				type="Pseudostate_ChoiceFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="12001">
+				type="Pseudostate_JunctionFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="13001">
+				type="Pseudostate_ShallowHistoryFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="14001">
+				type="Pseudostate_DeepHistoryFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="15001">
+				type="Pseudostate_TerminateFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="16001">
+				type="Pseudostate_EntryPointFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="16002">
+				type="Pseudostate_EntryPointStereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="17001">
+				type="Pseudostate_ExitPointFloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="17002">
+				type="Pseudostate_ExitPointStereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="18001">
+				type="ConnectionPointReference_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="18002">
+				type="ConnectionPointReference_StereotypeLabel">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -876,6 +844,12 @@
          diagramType="PapyrusUMLStateMachineDiagram"
          reconcilerClass="org.eclipse.papyrus.uml.diagram.statemachine.custom.migration.StateMachineReconcilerForCompartment"
          source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLStateMachineDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.statemachine.custom.migration.StateMachineReconciler_1_2_0"
+         source="1.1.0"
          target="1.2.0">
    </diagramReconciler>
 </extension>

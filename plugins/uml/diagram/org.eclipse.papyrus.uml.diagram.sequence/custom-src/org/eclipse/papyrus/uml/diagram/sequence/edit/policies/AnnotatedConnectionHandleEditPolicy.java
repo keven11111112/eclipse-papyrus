@@ -54,7 +54,7 @@ public class AnnotatedConnectionHandleEditPolicy extends SequenceConnectionHandl
 
 				@Override
 				protected CreateConnectionRequest createTargetRequest() {
-					IHintedType type = (IHintedType) UMLElementTypes.CommentAnnotatedElement_4010;
+					IHintedType type = (IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge;
 					return new CreateConnectionViewRequest(new ConnectionViewDescriptor(type, type.getSemanticHint(), getPreferencesHint()));
 				}
 			});

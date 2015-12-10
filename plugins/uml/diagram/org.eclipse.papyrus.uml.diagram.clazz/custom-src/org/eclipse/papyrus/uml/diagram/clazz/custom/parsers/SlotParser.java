@@ -17,12 +17,12 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.InstanceValue;
@@ -88,8 +88,9 @@ public class SlotParser implements IParser {
 	 */
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final Slot slot = ((Slot) ((EObjectAdapter) element).getRealObject());
+		EObject e = element.getAdapter(EObject.class);
+		if (e != null) {
+			final Slot slot = (Slot) e;
 			if (slot.getDefiningFeature() == null) {
 				return "<UNDEFINED>";
 			}

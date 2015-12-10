@@ -152,7 +152,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testLifeline() {
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		View view = lifeline.getNotationView();
 		LifelineNameEditPart nameEditPart = (LifelineNameEditPart) lifeline.getChildBySemanticHint("" + LifelineNameEditPart.VISUAL_ID);
@@ -192,7 +192,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testCombinedFragment() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(cf);
 		testElementIcon(cf.getPrimaryShape().getHeaderLabel(), cf.getNotationView(), true);
 	}
@@ -207,7 +207,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testInteractionOperand() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(cf);
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart) cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		assertNotNull(compartment);
@@ -219,7 +219,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testInteractionUse() {
-		InteractionUseEditPart interactionUse = (InteractionUseEditPart) createNode(UMLElementTypes.InteractionUse_3002, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
+		InteractionUseEditPart interactionUse = (InteractionUseEditPart) createNode(UMLElementTypes.InteractionUse_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(interactionUse);
 		InteractionUseNameEditPart editPart = (InteractionUseNameEditPart) interactionUse.getChildBySemanticHint("" + InteractionUseNameEditPart.VISUAL_ID);
 		assertNotNull(editPart);
@@ -228,9 +228,9 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testStateInvariant() {
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		StateInvariantEditPart stateInvariant = (StateInvariantEditPart) createNode(UMLElementTypes.StateInvariant_3017, lifeline, getAbsoluteCenter(lifeline), null);
+		StateInvariantEditPart stateInvariant = (StateInvariantEditPart) createNode(UMLElementTypes.StateInvariant_Shape, lifeline, getAbsoluteCenter(lifeline), null);
 		assertNotNull(stateInvariant);
 		StateInvariantNameEditPart editPart = (StateInvariantNameEditPart) stateInvariant.getChildBySemanticHint("" + StateInvariantNameEditPart.VISUAL_ID);
 		assertNotNull(editPart);
@@ -239,7 +239,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testComment() {
-		CommentEditPart comment = (CommentEditPart) createNode(UMLElementTypes.Comment_3009, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
+		CommentEditPart comment = (CommentEditPart) createNode(UMLElementTypes.Comment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
 		assertNotNull(comment);
 		CommentBodyEditPart editPart = (CommentBodyEditPart) comment.getChildBySemanticHint("" + CommentBodyEditPart.VISUAL_ID);
 		assertNotNull(editPart);
@@ -248,7 +248,7 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testConstraint() {
-		ConstraintEditPart constraint = (ConstraintEditPart) createNode(UMLElementTypes.Constraint_3008, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
+		ConstraintEditPart constraint = (ConstraintEditPart) createNode(UMLElementTypes.Constraint_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
 		assertNotNull(constraint);
 		Constraint2EditPart editPart = (Constraint2EditPart) constraint.getChildBySemanticHint("" + Constraint2EditPart.VISUAL_ID);
 		assertNotNull(editPart);

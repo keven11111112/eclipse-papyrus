@@ -147,15 +147,15 @@ public class AssociationClassHelper extends ElementHelper {
 			targetAdapter = new SemanticAdapter(null, endEditPart[1].getModel());
 		}
 		// create association link
-		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.AssociationClass_4017, ((IHintedType) UMLElementTypes.AssociationClass_4017).getSemanticHint(), diagramPreferencesHint);
+		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.AssociationClass_Edge, ((IHintedType) UMLElementTypes.AssociationClass_Edge).getSemanticHint(), diagramPreferencesHint);
 		// Creation of the associationLink
-		CustomDeferredCreateConnectionViewCommand associationcClassLinkCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.AssociationClass_4017).getSemanticHint(), sourceAdapter, targetAdapter, viewer,
+		CustomDeferredCreateConnectionViewCommand associationcClassLinkCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.AssociationClass_Edge).getSemanticHint(), sourceAdapter, targetAdapter, viewer,
 				diagramPreferencesHint, viewDescriptor, null);
 		associationcClassLinkCommand.setElement(associationClass);
 		cc.compose(associationcClassLinkCommand);
 		// creation of the dashedLine
-		ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016, ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(), diagramPreferencesHint);
-		CustomDeferredCreateConnectionViewCommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint(), ((IAdaptable) associationcClassLinkCommand.getCommandResult()
+		ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.AssociationClass_TetherEdge, ((IHintedType) UMLElementTypes.AssociationClass_TetherEdge).getSemanticHint(), diagramPreferencesHint);
+		CustomDeferredCreateConnectionViewCommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.AssociationClass_TetherEdge).getSemanticHint(), ((IAdaptable) associationcClassLinkCommand.getCommandResult()
 				.getReturnValue()), ((IAdaptable) associationClassNodeCreationCommand.getCommandResult().getReturnValue()), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
 		dashedLineCmd.setElement(associationClass);
 		cc.compose(dashedLineCmd);
@@ -192,8 +192,8 @@ public class AssociationClassHelper extends ElementHelper {
 		// and associationClass Node
 		// target
 		IAdaptable associationClassLinkViewAdapter = (IAdaptable) (createConnectionViewAndElementRequest.getNewObject());
-		String semanticHint = ((IHintedType) UMLElementTypes.Link_4016).getSemanticHint();
-		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Link_4016, semanticHint, sourceEditPart.getDiagramPreferencesHint());
+		String semanticHint = ((IHintedType) UMLElementTypes.AssociationClass_TetherEdge).getSemanticHint();
+		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.AssociationClass_TetherEdge, semanticHint, sourceEditPart.getDiagramPreferencesHint());
 		ICommand dashedLineCmd = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), semanticHint, associationClassLinkViewAdapter, null, sourceEditPart.getViewer(),
 				sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, assCommand);
 		command = command.chain(new ICommandProxy(dashedLineCmd));

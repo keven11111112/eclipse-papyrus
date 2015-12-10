@@ -59,7 +59,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3115";
+	public static final String VISUAL_ID = "ClearStructuralFeatureAction_Shape";
 
 	/**
 	 * @generated
@@ -86,16 +86,21 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ClearStructuralFeatureActionCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ClearStructuralFeatureActionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -171,6 +176,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -199,30 +205,40 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 			((ClearStructuralFeatureActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInClearStructuralFeatureActionEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInClearStructuralFeatureActionEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((OutputPinInClearStructuralFeatureActionEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof InputPinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((InputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ValuePinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((ValuePinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		// Papyrus Gencode :Affixed Pin locator for Actions
+
+		//Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(
+					((ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -234,19 +250,23 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInClearStructuralFeatureActionEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInClearStructuralFeatureActionEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((OutputPinInClearStructuralFeatureActionEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof InputPinInClearStructuralFeatureActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((InputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ValuePinInClearStructuralFeatureActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((ValuePinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure());
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((ActionInputPinInClearStructuralFeatureActionAsObjectEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -319,6 +339,7 @@ public class ClearStructuralFeatureActionEditPart extends RoundedCompartmentEdit
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

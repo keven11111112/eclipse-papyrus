@@ -106,15 +106,15 @@ public class MultiDependencyHelper extends ElementHelper {
 				}
 			}
 			// descriptor for the branch
-			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4017, ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), diagramPreferencesHint);
+			ConnectionViewDescriptor viewBranchDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_BranchEdge, ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), diagramPreferencesHint);
 			// the editpart exist -> only creation of the branch
 			if (sourceEditPart != null) {
 				CustomDeferredCreateConnectionViewCommand aBranchCommand = null;
 				if (constructSource) {
-					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()), (IAdaptable) nodeCreation
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()), (IAdaptable) nodeCreation
 							.getCommandResult().getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor, null);
 				} else {
-					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
 							sourceEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewBranchDescriptor, null);
 				}
 				aBranchCommand.setElement(dependency);
@@ -131,10 +131,10 @@ public class MultiDependencyHelper extends ElementHelper {
 				// Creation of the branch
 				CustomDeferredCreateConnectionViewCommand aBranchCommand = null;
 				if (constructSource) {
-					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(),
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(),
 							(IAdaptable) nodeCreation.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, viewBranchDescriptor, null);
 				} else {
-					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(),
+					aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(),
 							(IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, viewBranchDescriptor, null);
 				}
 				aBranchCommand.setElement(dependency);
@@ -187,8 +187,8 @@ public class MultiDependencyHelper extends ElementHelper {
 			feature = UMLPackage.eINSTANCE.getDependency_Client();
 		}
 		// 0. add the branch graphically
-		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4017, ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
-		CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()),
+		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_BranchEdge, ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
+		CustomDeferredCreateConnectionViewCommand aBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()),
 				new SemanticAdapter(null, targetEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 		aBranchCommand.setElement(dependency);
 		command = new CompoundCommand();
@@ -338,14 +338,14 @@ public class MultiDependencyHelper extends ElementHelper {
 			// ---------------------------------------------------------
 			// 4. reconstruction of the old link by taking in account the old
 			// connection
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4017, ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_BranchEdge, ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint());
 			// 5. reconstruction of the first branch between old source to node
-			ICommand firstBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), new SemanticAdapter(null, dependencyViewSource), (IAdaptable) nodeCreation
+			ICommand firstBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), new SemanticAdapter(null, dependencyViewSource), (IAdaptable) nodeCreation
 					.getCommandResult().getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			((CustomDeferredCreateConnectionViewCommand) firstBranchCommand).setElement(dependency);
 			((CompoundCommand) command).add(new ICommandProxy(firstBranchCommand));
 			// 6. reconstruction of the second branch between node to old target
-			ICommand secondBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(
+			ICommand secondBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(
 					null, dependencyViewTarget), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			((CustomDeferredCreateConnectionViewCommand) secondBranchCommand).setElement(dependency);
 			((CompoundCommand) command).add(new ICommandProxy(secondBranchCommand));
@@ -353,11 +353,11 @@ public class MultiDependencyHelper extends ElementHelper {
 			ICommand thirdBranchCommand = null;
 			if (dependencyView.equals((sourceEditPart.getModel()))) {
 				// third branch node and target
-				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
+				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), (IAdaptable) nodeCreation.getCommandResult().getReturnValue(), new SemanticAdapter(null,
 						targetEditPart.getModel()), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			} else {
 				// // third branch source and node
-				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()), (IAdaptable) nodeCreation
+				thirdBranchCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.Dependency_BranchEdge).getSemanticHint(), new SemanticAdapter(null, sourceEditPart.getModel()), (IAdaptable) nodeCreation
 						.getCommandResult().getReturnValue(), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), viewDescriptor, null);
 			}
 			((CustomDeferredCreateConnectionViewCommand) thirdBranchCommand).setElement(dependency);

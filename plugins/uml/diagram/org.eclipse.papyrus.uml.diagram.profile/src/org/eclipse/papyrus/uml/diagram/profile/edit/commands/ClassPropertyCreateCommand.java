@@ -103,7 +103,7 @@ public class ClassPropertyCreateCommand extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_Property_3002(newElement);
+		ElementInitializers.getInstance().init_Property_ClassAttributeLabel(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -84,7 +84,7 @@ public class CustomTimeObservationCreateCommand extends EditElementCommand {
 		}
 		Package owner = (Package) container;
 		owner.getPackagedElements().add(newElement);
-		ElementInitializers.getInstance().init_TimeObservation_3020(newElement);
+		ElementInitializers.getInstance().init_TimeObservation_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

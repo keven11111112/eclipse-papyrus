@@ -13,6 +13,7 @@
  */
 package aspects.xpt.diagram.editpolicies
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import metamodel.MetaModel
@@ -23,9 +24,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
 import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
 import plugin.Activator
-import xpt.Common
 import xpt.OclMigrationProblems_qvto
-import xpt.diagram.editpolicies.Utils_qvto
 import xpt.editor.VisualIDRegistry
 import xpt.providers.ElementTypes
 
@@ -37,7 +36,7 @@ import xpt.providers.ElementTypes
 	@Inject extension VisualIDRegistry
 	@Inject ElementTypes xptElementTypes;
 	@Inject extension OclMigrationProblems_qvto;
-	@Inject extension Utils_qvto
+	@Inject extension xpt.diagram.editpolicies.Utils_qvto
 	@Inject MetaModel xptMetaModel;
 
 	override BaseItemSemanticEditPolicy(GenDiagram it) '''
@@ -337,7 +336,7 @@ if («featureBoundComparator(it, getContainerVariable(modelFacet), modelFacet.get
 
 	override canCreate(GenLink it) '''
 «generatedMemberComment()»
-public boolean canCreate«getUniqueIdentifier()»(
+public boolean canCreate«stringUniqueIdentifier()»(
 «IF !it.sansDomain»
 «canCreateParameters(it.modelFacet)»
 «ENDIF»
@@ -345,7 +344,7 @@ public boolean canCreate«getUniqueIdentifier()»(
 	«IF !it.sansDomain»
 	«checkEMFConstraints(it.modelFacet)»
 	«ENDIF»
-	return canExist«getUniqueIdentifier()»(
+	return canExist«stringUniqueIdentifier()»(
 	«IF !it.sansDomain»
 	«canCreateValues(it.modelFacet)»
 	«ENDIF»
@@ -397,7 +396,7 @@ public boolean canCreate«getUniqueIdentifier()»(
 */
 	override canExist(GenLink it) '''
 		«generatedMemberComment()»
-			public boolean canExist«getUniqueIdentifier()»(
+			public boolean canExist«stringUniqueIdentifier()»(
 		«IF !it.sansDomain»
 			«canExistParameters(it.modelFacet)»
 		«ENDIF»

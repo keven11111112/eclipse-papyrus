@@ -33,7 +33,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4003";
+	public static final String VISUAL_ID = "ObjectFlow_Edge";
 
 	/**
 	 * @generated
@@ -49,7 +49,8 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(InterruptibleEdgeEditPolicy.INTERRUPTIBLE_ICON_POLICY, new InterruptibleEdgeEditPolicy());
 	}
 
@@ -58,7 +59,8 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
-			((ObjectFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ObjectFlowAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

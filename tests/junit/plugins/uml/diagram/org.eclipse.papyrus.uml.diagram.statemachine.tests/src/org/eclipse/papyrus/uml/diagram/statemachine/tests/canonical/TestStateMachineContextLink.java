@@ -56,7 +56,7 @@ public class TestStateMachineContextLink extends TestContextLink {
 
 	@Test
 	public void testToManageContextLink() {
-		manageContextLink(UMLElementTypes.Constraint_668, UMLElementTypes.State_6000, UMLElementTypes.ConstraintContext_8500, UMLElementTypes.StateMachine_2000);
+		manageContextLink(UMLElementTypes.Constraint_Shape, UMLElementTypes.State_Shape, UMLElementTypes.Constraint_ContextEdge, UMLElementTypes.StateMachine_Shape);
 	}
 
 	@Override

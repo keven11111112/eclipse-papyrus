@@ -80,7 +80,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateComponentRealization_4007(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateComponentRealization_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class ComponentRealizationCreateCommand extends EditElementCommand {
 				.add(getSource());
 		newElement.getSuppliers()
 				.add(getTarget());
-		ElementInitializers.getInstance().init_ComponentRealization_4007(newElement);
+		ElementInitializers.getInstance().init_ComponentRealization_Edge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

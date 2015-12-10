@@ -275,8 +275,22 @@ public class ModelingAssistantUtil {
 		return (type instanceof IProxyElementType) ? ((IProxyElementType) type).resolveVisualType() : (type instanceof IHintedType) ? (IHintedType) type : null;
 	}
 
+	/**
+	 * Determines if the passed hint is a visualID
+	 * There is now no reliable way for testing if a semantic hint represents a visual id  
+	 * @param hint
+	 * @return
+	 * @deprecated This function should not be relied on. Other ways of determining 
+	 * if an element type represents a visual element should be used
+	 */
 	public static boolean isVisualID(String hint) {
-		return VISUAL_ID_PATTERN.matcher(Strings.nullToEmpty(hint)).matches();
+		hint = Strings.nullToEmpty(hint);
+		return VISUAL_ID_PATTERN.matcher(hint).matches() ||
+				hint.contains("Diagram") || 
+				hint.contains("Shape") || 
+				hint.contains("Edge") || 
+				hint.contains("Compartment") || 
+				hint.contains("Label");
 	}
 
 	/**

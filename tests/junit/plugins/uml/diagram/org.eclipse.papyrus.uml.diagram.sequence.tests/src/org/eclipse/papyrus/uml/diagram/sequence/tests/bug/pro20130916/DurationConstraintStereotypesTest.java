@@ -38,7 +38,7 @@ public class DurationConstraintStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		durationConstraint = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_3021, getRootEditPart(), new Point(100, 100), null);
+		durationConstraint = (DurationConstraintEditPart)createNode(UMLElementTypes.DurationConstraint_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(durationConstraint);
 	}
 

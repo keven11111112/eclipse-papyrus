@@ -54,7 +54,7 @@ public class TimeObservationEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "16";
+	public static final String VISUAL_ID = "TimeObservation_Shape";
 
 	/**
 	 * @generated
@@ -80,7 +80,9 @@ public class TimeObservationEditPart extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
 		installEditPolicy(FirstEventRefreshEditPolicy.VIEW_REFRESH_ROLE, new FirstEventRefreshEditPolicy());
@@ -96,17 +98,17 @@ public class TimeObservationEditPart extends NodeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case TimeObservationNameEditPart.VISUAL_ID:
 					case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
 						return new BorderItemSelectionEditPolicy() {
 
 							@Override
 							protected List<?> createSelectionHandles() {
-								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 								mh.setBorder(null);
 								return Collections.singletonList(mh);
 							}
@@ -114,7 +116,7 @@ public class TimeObservationEditPart extends NodeEditPart {
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -148,7 +150,7 @@ public class TimeObservationEditPart extends NodeEditPart {
 	 */
 	@Override
 	public VerticalMarkFigure getPrimaryShape() {
-		return (VerticalMarkFigure)primaryShape;
+		return (VerticalMarkFigure) primaryShape;
 	}
 
 	/**
@@ -156,11 +158,11 @@ public class TimeObservationEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
+		if (borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if(borderItemEditPart instanceof TimeObservationNameEditPart) {
+		} else if (borderItemEditPart instanceof TimeObservationNameEditPart) {
 			IBorderItemLocator locator = new LabelInCompartmentLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -188,6 +190,7 @@ public class TimeObservationEditPart extends NodeEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -208,7 +211,7 @@ public class TimeObservationEditPart extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -219,7 +222,7 @@ public class TimeObservationEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -237,8 +240,8 @@ public class TimeObservationEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

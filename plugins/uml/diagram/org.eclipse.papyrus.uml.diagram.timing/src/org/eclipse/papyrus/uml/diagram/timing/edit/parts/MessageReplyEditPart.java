@@ -29,7 +29,7 @@ public class MessageReplyEditPart extends ConnectionEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "41";
+	public static final String VISUAL_ID = "Message_ReplyEdge";
 
 	/**
 	 * @generated
@@ -45,18 +45,20 @@ public class MessageReplyEditPart extends ConnectionEditPart implements ITreeBra
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageReplyNameLabelEditPart) {
-			((MessageReplyNameLabelEditPart)childEditPart).setLabel(getPrimaryShape().getMessageLabel());
+		if (childEditPart instanceof MessageReplyNameLabelEditPart) {
+			((MessageReplyNameLabelEditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabel());
 		}
-		if(childEditPart instanceof MessageReplyAppliedStereotypeEditPart) {
-			((MessageReplyAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof MessageReplyAppliedStereotypeEditPart) {
+			((MessageReplyAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -66,7 +68,7 @@ public class MessageReplyEditPart extends ConnectionEditPart implements ITreeBra
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -76,10 +78,10 @@ public class MessageReplyEditPart extends ConnectionEditPart implements ITreeBra
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageReplyNameLabelEditPart) {
+		if (childEditPart instanceof MessageReplyNameLabelEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof MessageReplyAppliedStereotypeEditPart) {
+		if (childEditPart instanceof MessageReplyAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -90,7 +92,7 @@ public class MessageReplyEditPart extends ConnectionEditPart implements ITreeBra
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -114,6 +116,6 @@ public class MessageReplyEditPart extends ConnectionEditPart implements ITreeBra
 	 */
 	@Override
 	public MessageReplyFigure getPrimaryShape() {
-		return (MessageReplyFigure)getFigure();
+		return (MessageReplyFigure) getFigure();
 	}
 }

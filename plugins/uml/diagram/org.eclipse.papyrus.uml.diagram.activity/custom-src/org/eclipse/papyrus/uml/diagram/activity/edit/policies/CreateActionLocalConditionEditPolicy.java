@@ -38,8 +38,8 @@ import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 public class CreateActionLocalConditionEditPolicy extends AbstractEditPolicy {
 
 	/** The list of element types this action handles */
-	public static final List<IElementType> LOCAL_CONDITION_TYPES = Arrays.asList(UMLElementTypes.Constraint_3011, UMLElementTypes.Constraint_3012, UMLElementTypes.IntervalConstraint_3032, UMLElementTypes.IntervalConstraint_3033,
-			UMLElementTypes.DurationConstraint_3034, UMLElementTypes.DurationConstraint_3035, UMLElementTypes.TimeConstraint_3036, UMLElementTypes.TimeConstraint_3037);
+	public static final List<IElementType> LOCAL_CONDITION_TYPES = Arrays.asList(UMLElementTypes.Constraint_LocalPreconditionShape, UMLElementTypes.Constraint_LocalPostconditionShape, UMLElementTypes.IntervalConstraint_LocalPreconditionShape, UMLElementTypes.IntervalConstraint_LocalPostconditionShape,
+			UMLElementTypes.DurationConstraint_LocalPreconditionShape, UMLElementTypes.DurationConstraint_LocalPostconditionShape, UMLElementTypes.TimeConstraint_LocalPreconditionShape, UMLElementTypes.TimeConstraint_LocalPostconditionShape);
 
 	public CreateActionLocalConditionEditPolicy() {
 		super();

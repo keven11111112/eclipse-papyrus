@@ -187,7 +187,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 * @return true if creation to or from an occurrence specification
 	 */
 	private boolean isCreatedNearOccurrenceSpecification(String requestHint) {
-		String generalOrderingHint = ((IHintedType) UMLElementTypes.GeneralOrdering_4012).getSemanticHint();
+		String generalOrderingHint = ((IHintedType) UMLElementTypes.GeneralOrdering_Edge).getSemanticHint();
 		return generalOrderingHint.equals(requestHint);
 	}
 
@@ -200,19 +200,19 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	 */
 	protected boolean isMessageHint(String requestHint) {
 		List<String> messageHints = new ArrayList<String>(7);
-		String messageHint = ((IHintedType) UMLElementTypes.Message_4003).getSemanticHint();
+		String messageHint = ((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4004).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_AsynchEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4005).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_ReplyEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4006).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_CreateEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4007).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_DeleteEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4008).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_LostEdge).getSemanticHint();
 		messageHints.add(messageHint);
-		messageHint = ((IHintedType) UMLElementTypes.Message_4009).getSemanticHint();
+		messageHint = ((IHintedType) UMLElementTypes.Message_FoundEdge).getSemanticHint();
 		messageHints.add(messageHint);
 		return messageHints.contains(requestHint);
 	}
@@ -303,7 +303,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			}
 		}
 		// prevent uphill message (leave margin for horizontal messages)
-		boolean messageCreate = ((IHintedType) UMLElementTypes.Message_4006).getSemanticHint().equals(requestHint);
+		boolean messageCreate = ((IHintedType) UMLElementTypes.Message_CreateEdge).getSemanticHint().equals(requestHint);
 		if (sourcePoint == null || sourcePoint.y >= targetPoint.y + MARGIN) {
 			if (!messageCreate && !isLostFoundMessage(requestHint)) {
 				return UnexecutableCommand.INSTANCE;
@@ -316,7 +316,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// prevent uphill message (for reply message)
 		if (request instanceof CreateConnectionViewAndElementRequest) {
 			ConnectionViewAndElementDescriptor desc = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor();
-			String replyHint = ((IHintedType) UMLElementTypes.Message_4005).getSemanticHint();
+			String replyHint = ((IHintedType) UMLElementTypes.Message_ReplyEdge).getSemanticHint();
 			if (replyHint.equals(desc.getSemanticHint()) && request.getSourceEditPart() instanceof IGraphicalEditPart) {
 				Rectangle srcBounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) request.getSourceEditPart());
 				int bottom = srcBounds.getBottom().y;
@@ -340,12 +340,12 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			request.getExtendedData().put(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER, ((CustomCombinedFragment2EditPart) targetEditPart).getAttachedLifeline());
 		}
 		// update bendpoints for self link message.
-		if (connectionFeedback != null && ((IHintedType) UMLElementTypes.Message_4004).getSemanticHint().equals(requestHint)) {
+		if (connectionFeedback != null && ((IHintedType) UMLElementTypes.Message_AsynchEdge).getSemanticHint().equals(requestHint)) {
 			updateConnectionBendpoints(request, command);
 		}
 		// change constraint of the target lifeline after added a Create Message
 		if (request.getTargetEditPart() instanceof LifelineEditPart && !(request.getSourceEditPart().equals(request.getTargetEditPart()))) {
-			if (requestHint.equals((((IHintedType) UMLElementTypes.Message_4006).getSemanticHint()))) {
+			if (requestHint.equals((((IHintedType) UMLElementTypes.Message_CreateEdge).getSemanticHint()))) {
 				CustomLifelineEditPart target = (CustomLifelineEditPart) request.getTargetEditPart();
 				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, sourcePoint.getCopy());
 			}
@@ -449,7 +449,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	}
 
 	private boolean isLostFoundMessage(String requestHint) {
-		if (((IHintedType) UMLElementTypes.Message_4008).getSemanticHint().equals(requestHint) || ((IHintedType) UMLElementTypes.Message_4009).getSemanticHint().equals(requestHint)) {
+		if (((IHintedType) UMLElementTypes.Message_LostEdge).getSemanticHint().equals(requestHint) || ((IHintedType) UMLElementTypes.Message_FoundEdge).getSemanticHint().equals(requestHint)) {
 			return true;
 		}
 		return false;
@@ -588,10 +588,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			EditPart host = getHost();
 			if (request instanceof CreateConnectionRequest) {
 				if (host instanceof InteractionEditPart) {
-					if (REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4008)) {
+					if (REQ_CONNECTION_END.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_LostEdge)) {
 						return host;
 					}
-					if (REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_4009)) {
+					if (REQ_CONNECTION_START.equals(request.getType()) && isCreateConnectionRequest(request, UMLElementTypes.Message_FoundEdge)) {
 						return host;
 					}
 					InteractionEditPart interactionPart = (InteractionEditPart) host;

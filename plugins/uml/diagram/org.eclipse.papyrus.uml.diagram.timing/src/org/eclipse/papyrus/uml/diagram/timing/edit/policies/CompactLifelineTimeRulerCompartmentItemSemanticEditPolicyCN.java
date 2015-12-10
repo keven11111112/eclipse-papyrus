@@ -25,7 +25,7 @@ public class CompactLifelineTimeRulerCompartmentItemSemanticEditPolicyCN extends
 	 * @generated
 	 */
 	public CompactLifelineTimeRulerCompartmentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Lifeline_20);
+		super(UMLElementTypes.Lifeline_CompactShape);
 	}
 
 	/**

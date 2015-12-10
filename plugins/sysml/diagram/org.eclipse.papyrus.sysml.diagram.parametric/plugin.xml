@@ -434,19 +434,9 @@
 		<!-- Load the ViewProvider on following SemanticHint related to IElementType(s) used in the palette (also used for legacy elements) -->
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="UML::Comment, UML::Constraint"></context>
 		
-		<!-- 
-			"2109" = COMMENT
-			"3097" = COMMENT_CN
-			"2114" = CONSTRAINT								
-			"3120" = CONSTRAINT_CN
-		  -->			
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2109, 3097, 2114, 3120"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Comment_Shape, Comment_Shape_CN, Constraint_Shape, Constraint_Shape_CN"></context>
 		
-		<!-- 
-			"4002" = COMMENT_ANNOTATED_ELEMENT
-			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
-		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002, 4003"></context>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Comment_AnnotatedElementEdge, Constraint_ConstrainedElementEdge"></context>
         
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
@@ -512,42 +502,24 @@
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.parametric.provider.InheritedCompositeDiagramEditPartProvider">
 		<Priority name="Low"></Priority>
 		
-		<!-- 
-			The semantic hints given here are used in case the provider is not already loaded.
-			As soon as the provider is loaded its provides method is used.
-			"2109" = COMMENT
-			"5192" = COMMENT_LABEL_BODY_HINT
-			"3097" = COMMENT_CN
-			"5150" = COMMENT_CN_LABEL_BODY_HINT
-			"2114" = CONSTRAINT
-			"5197" = CONSTRAINT_LABEL_NAME_HINT
-			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
-			"3120" = CONSTRAINT_CN
-			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
-			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT
-		 -->			
 		<object id="COMMENT" class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2109, 5192"></method>
+			<method name="getType()" value="Comment_Shape, Comment_BodyLabel"></method>
 		</object>
 		<object id="COMMENT_CN" class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3097, 5150"></method>
+			<method name="getType()" value="Comment_Shape_CN, Comment_BodyLabel_CN"></method>
 		</object>
 		<object id="CONSTRAINT" class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2114, 5197, 6039"></method>
+			<method name="getType()" value="Constraint_Shape, Constraint_NameLabel, Constraint_BodyLabel"></method>
 		</object>
 		<object id="CONSTRAINT_CN" class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3120, 6048, 6049"></method>
+			<method name="getType()" value="Constraint_Shape_CN, Constraint_NameLabel_CN, Constraint_BodyLabel_CN"></method>
 		</object>
 
-		<!-- 	
-			"4002" = COMMENT_ANNOTATED_ELEMENT
-			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
-		  -->
 		<object id="COMMENT_ANNOTATED_ELEMENT" class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4002"></method>
+			<method name="getType()" value="Comment_AnnotatedElementEdge"></method>
 		</object>
 		<object id="CONSTRAINT_CONSTRAINED_ELEMENT" class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4003"></method>
+			<method name="getType()" value="Constraint_ConstrainedElementEdge"></method>
 		</object>
 
 		<context views="COMMENT, COMMENT_CN, CONSTRAINT, CONSTRAINT_CN"></context>
@@ -628,20 +600,20 @@
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
    <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.parametric.ContextLink"
-            name="ContextLink"
+            id="org.eclipse.papyrus.sysml.diagram.parametric.Constraint_ContextEdge"
+            name="Constraint Context Edge"
             kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="8500"/>
+            <param name="semanticHint" value="Constraint_ContextEdge"/>
       </specializationType>
    </metamodel>
    <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
       <specializationType
-            id="org.eclipse.papyrus.uml.diagram.parametric.ContextLinkAppliedStereotype"
-            name="ContextLinkAppliedStereotype"
+            id="org.eclipse.papyrus.sysml.diagram.parametric.Constraint_KeywordLabel"
+            name="Constraint Keyword Label"
             kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="8501"/>
+            <param name="semanticHint" value="Constraint_KeywordLabel"/>
       </specializationType>
    </metamodel>
 </extension>  
@@ -713,4 +685,32 @@
             diagramType="Parametric">
       </visualTypeProvider>
    </extension>
+
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="Parametric"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="Parametric"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconcilerForCompartment"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="Parametric"
+         reconcilerClass="org.eclipse.papyrus.sysml.diagram.parametric.migration.ParametricReconciler_1_2_0"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
+   <diagramReconciler
+         diagramType="Parametric"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconciler_1_2_0"
+         source="undefined"
+         target="1.2.0">
+   </diagramReconciler>
+</extension>
 </plugin>

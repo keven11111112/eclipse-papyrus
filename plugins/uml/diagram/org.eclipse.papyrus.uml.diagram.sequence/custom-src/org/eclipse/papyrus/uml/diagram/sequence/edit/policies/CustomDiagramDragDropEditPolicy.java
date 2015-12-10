@@ -326,7 +326,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	private IUndoableOperation doDropConnectableElement(DropObjectsRequest dropRequest, final ConnectableElement droppedObject) {
 		Point location = dropRequest.getLocation();
-		CreateViewRequest createShapeRequest = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_3001, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		CreateViewRequest createShapeRequest = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_Shape, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		createShapeRequest.setLocation(location);
 		ViewDescriptor viewDescriptor = createShapeRequest.getViewDescriptors().get(0);
 		CreateElementRequestAdapter elementAdapter = (CreateElementRequestAdapter) viewDescriptor.getElementAdapter();

@@ -19,7 +19,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class GeneralOrderingCreationTool extends AbstractTwoPointCreationTool {
 
 	public GeneralOrderingCreationTool() {
-		super(UMLElementTypes.GeneralOrdering_67);
+		super(UMLElementTypes.GeneralOrdering_Shape);
 	}
 
 	@Override

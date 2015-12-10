@@ -69,7 +69,7 @@ public class DiagramShortCutHelper extends ElementHelper {
 		CompositeCommand cc = new CompositeCommand("dropDiagramShortCut"); //$NON-NLS-1$
 		// creation of the node DiagramShortCut
 		IAdaptable elementAdapter = new EObjectAdapter(diagram);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.Diagram_8016).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.Diagram_ShortcutShape).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		DiagramShortCutCreationViewCommand nodeCreationCommand = new DiagramShortCutCreationViewCommand(getEditingDomain(), descriptor, (containerView));
 		cc.compose(nodeCreationCommand);
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "drop", (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$

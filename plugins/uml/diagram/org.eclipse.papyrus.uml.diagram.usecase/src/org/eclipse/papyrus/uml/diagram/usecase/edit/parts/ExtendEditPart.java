@@ -29,7 +29,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4009";
+	public static final String VISUAL_ID = "Extend_Edge";
 
 	/**
 	 * @generated
@@ -45,15 +45,16 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ExtendAppliedStereotypeEditPart) {
-			((ExtendAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof ExtendAppliedStereotypeEditPart) {
+			((ExtendAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -63,7 +64,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -73,7 +74,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ExtendAppliedStereotypeEditPart) {
+		if (childEditPart instanceof ExtendAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -84,7 +85,7 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -108,6 +109,6 @@ public class ExtendEditPart extends UMLConnectionNodeEditPart implements ITreeBr
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

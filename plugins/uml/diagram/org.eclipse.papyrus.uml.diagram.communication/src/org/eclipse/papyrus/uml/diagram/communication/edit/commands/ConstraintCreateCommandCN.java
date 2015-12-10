@@ -103,7 +103,7 @@ public class ConstraintCreateCommandCN extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_Constraint_8004(newElement);
+		ElementInitializers.getInstance().init_Constraint_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

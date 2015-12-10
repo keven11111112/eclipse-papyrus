@@ -31,7 +31,7 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 	 * @generated
 	 */
 	public TimingDiagramEditPartFactoryItemSemanticEditPolicy() {
-		super(UMLElementTypes.Package_1);
+		super(UMLElementTypes.Package_TimingDiagram);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class TimingDiagramEditPartFactoryItemSemanticEditPolicy extends UMLBaseI
 		}
 
 
-		if (UMLElementTypes.Interaction_2 == requestElementType) {
+		if (UMLElementTypes.Interaction_Shape == requestElementType) {
 
 			return getGEFWrapper(new InteractionCreateCommandTN(req, DiagramUtils.getDiagramFrom(getHost())));
 

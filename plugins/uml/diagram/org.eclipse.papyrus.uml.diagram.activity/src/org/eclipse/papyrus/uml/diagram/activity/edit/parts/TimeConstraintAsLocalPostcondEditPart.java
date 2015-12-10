@@ -50,7 +50,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3037";
+	public static final String VISUAL_ID = "TimeConstraint_LocalPostconditionShape";
 
 	/**
 	 * @generated
@@ -76,11 +76,15 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ActivityDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY,
+				new ActivityDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -93,6 +97,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -148,9 +153,11 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 			return true;
 		}
 		if (childEditPart instanceof TimeConstraintAsLocalPostcondBodyEditPart) {
-			((TimeConstraintAsLocalPostcondBodyEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+			((TimeConstraintAsLocalPostcondBodyEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -217,6 +224,7 @@ public class TimeConstraintAsLocalPostcondEditPart extends AbstractConstraintEdi
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

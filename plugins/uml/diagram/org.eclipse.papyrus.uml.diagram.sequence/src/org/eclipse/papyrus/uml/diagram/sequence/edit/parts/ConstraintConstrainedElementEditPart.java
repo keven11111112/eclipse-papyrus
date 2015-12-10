@@ -28,7 +28,7 @@ public class ConstraintConstrainedElementEditPart extends AnnotatedLinkEditPart 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4011";
+	public static final String VISUAL_ID = "Constraint_ConstrainedElementEdge";
 
 	/**
 	 * @generated
@@ -65,6 +65,6 @@ public class ConstraintConstrainedElementEditPart extends AnnotatedLinkEditPart 
 	 */
 	@Override
 	public AnnotatedLinkEditPart.AnnotatedLinkDescriptor getPrimaryShape() {
-		return (AnnotatedLinkEditPart.AnnotatedLinkDescriptor)getFigure();
+		return (AnnotatedLinkEditPart.AnnotatedLinkDescriptor) getFigure();
 	}
 }

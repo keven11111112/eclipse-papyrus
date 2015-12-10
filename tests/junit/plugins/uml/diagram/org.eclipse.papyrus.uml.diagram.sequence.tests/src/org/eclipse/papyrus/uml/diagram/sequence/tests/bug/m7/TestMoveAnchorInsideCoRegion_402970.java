@@ -48,12 +48,12 @@ public class TestMoveAnchorInsideCoRegion_402970 extends AbstractNodeTest {
 
 	@Test
 	public void testMoveMessageDown() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(100, 300));
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(100, 300));
-		CombinedFragment2EditPart coRegion = (CombinedFragment2EditPart)createNode(UMLElementTypes.CombinedFragment_3018, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), new Dimension(50, 100));
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 300));
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(100, 300));
+		CombinedFragment2EditPart coRegion = (CombinedFragment2EditPart)createNode(UMLElementTypes.CombinedFragment_CoRegionShape, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), new Dimension(50, 100));
 		Point startLocation = getAbsoluteBounds(coRegion).getCenter().getTranslated(0, -30);
 		Point endLocation = getAbsoluteBounds(lifeline2).getCenter().setY(startLocation.y);
-		Message2EditPart messagePart = (Message2EditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), startLocation, coRegion, endLocation, lifeline2);
+		Message2EditPart messagePart = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, coRegion, endLocation, lifeline2);
 		waitForComplete();
 		Point sourceLoc = SequenceUtil.getAbsoluteEdgeExtremity(messagePart, true);
 		Point targetLoc = SequenceUtil.getAbsoluteEdgeExtremity(messagePart, false);

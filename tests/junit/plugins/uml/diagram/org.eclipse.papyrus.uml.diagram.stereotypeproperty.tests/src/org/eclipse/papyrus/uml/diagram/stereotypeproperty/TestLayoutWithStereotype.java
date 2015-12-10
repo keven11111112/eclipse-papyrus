@@ -78,13 +78,13 @@ public class TestLayoutWithStereotype extends AbstractPapyrusTestCase {
 	@InvalidTest("Works on Windows, Fails on Linux")
 	@Test
 	public void testLayoutOnClass() {
-		testToCreateANodeWithoutStereotype(UMLElementTypes.Class_2008);
+		testToCreateANodeWithoutStereotype(UMLElementTypes.Class_Shape);
 	}
 
 	@InvalidTest("Works on Windows, Fails on Linux")
 	@Test
 	public void testLayoutStereotypeApplicationOnClass() {
-		testToCreateANodeWithStereotype(UMLElementTypes.Class_2008);
+		testToCreateANodeWithStereotype(UMLElementTypes.Class_Shape);
 	}
 
 	/**

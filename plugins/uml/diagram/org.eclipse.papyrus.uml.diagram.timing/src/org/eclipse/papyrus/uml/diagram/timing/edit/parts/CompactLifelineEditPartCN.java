@@ -52,7 +52,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "20";
+	public static final String VISUAL_ID = "Lifeline_CompactShape";
 
 	/**
 	 * @generated
@@ -79,11 +79,14 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomCompactLifelineItemSemanticEditPolicyCN());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(TimeRulerVisibilityRefreshEditPolicy.ROLE, new TimeRulerVisibilityRefreshEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -99,7 +102,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -126,6 +129,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -143,29 +147,32 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	public CompactLifelineFigure getPrimaryShape() {
-		return (CompactLifelineFigure)primaryShape;
+		return (CompactLifelineFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CompactLifelineNameEditPart) {
-			((CompactLifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getLifelineLabelFigure());
+		if (childEditPart instanceof CompactLifelineNameEditPart) {
+			((CompactLifelineNameEditPart) childEditPart).setLabel(getPrimaryShape().getLifelineLabelFigure());
 			return true;
 		}
-		if(childEditPart instanceof CompactLifelineCompartmentEditPartCN) {
+
+		if (childEditPart instanceof CompactLifelineCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimelineContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((CompactLifelineCompartmentEditPartCN)childEditPart).getFigure());
+			pane.add(((CompactLifelineCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
+
+		if (childEditPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((CompactLifelineTimeRulerCompartmentEditPartCN)childEditPart).getFigure());
+			pane.add(((CompactLifelineTimeRulerCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -173,17 +180,17 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CompactLifelineNameEditPart) {
+		if (childEditPart instanceof CompactLifelineNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof CompactLifelineCompartmentEditPartCN) {
+		if (childEditPart instanceof CompactLifelineCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimelineContainerFigure();
-			pane.remove(((CompactLifelineCompartmentEditPartCN)childEditPart).getFigure());
+			pane.remove(((CompactLifelineCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
+		if (childEditPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
-			pane.remove(((CompactLifelineTimeRulerCompartmentEditPartCN)childEditPart).getFigure());
+			pane.remove(((CompactLifelineTimeRulerCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -194,7 +201,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -205,7 +212,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -216,10 +223,10 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof CompactLifelineCompartmentEditPartCN) {
+		if (editPart instanceof CompactLifelineCompartmentEditPartCN) {
 			return getPrimaryShape().getTimelineContainerFigure();
 		}
-		if(editPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
+		if (editPart instanceof CompactLifelineTimeRulerCompartmentEditPartCN) {
 			return getPrimaryShape().getTimeRulerContainerFigure();
 		}
 		return getContentPane();
@@ -245,6 +252,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -257,7 +265,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -270,7 +278,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -281,7 +289,7 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -299,8 +307,8 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -317,11 +325,13 @@ public class CompactLifelineEditPartCN extends LifelineEditPart {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Node_24)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(CompactLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID));
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Node_FreeTimeRulerShape)) {
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(CompactLifelineTimeRulerCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

@@ -55,7 +55,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "1023";
+	public static final String VISUAL_ID = "Stereotype_Shape_CN";
 
 	/**
 	 * @generated
@@ -82,13 +82,17 @@ public class StereotypeEditPartCN extends ClassEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
-		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY,
+				new ShowHideClassifierContentsEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -102,7 +106,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -130,12 +134,14 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 		//set the figure active when the feature of the of a class is true
-		if(resolveSemanticElement() != null) {
-			if(resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute) && ((EAttribute)(event.getFeature())).getName().equals("isActive")) {
-				((ClassFigure)getFigure()).setActive(event.getNewBooleanValue());
+		if (resolveSemanticElement() != null) {
+			if (resolveSemanticElement().equals(event.getNotifier()) && (event.getFeature() instanceof EAttribute)
+					&& ((EAttribute) (event.getFeature())).getName().equals("isActive")) {
+				((ClassFigure) getFigure()).setActive(event.getNewBooleanValue());
 				refreshVisuals();
 			}
 		}
+
 	}
 
 	/**
@@ -153,29 +159,32 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	public StereotypeFigure getPrimaryShape() {
-		return (StereotypeFigure)primaryShape;
+		return (StereotypeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof StereotypeNameEditPartCN) {
-			((StereotypeNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof StereotypeNameEditPartCN) {
+			((StereotypeNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof StereotypeAttributeCompartmentEditPartCN) {
+
+		if (childEditPart instanceof StereotypeAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((StereotypeAttributeCompartmentEditPartCN)childEditPart).getFigure());
+			pane.add(((StereotypeAttributeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof StereotypeOperationCompartmentEditPartCN) {
+
+		if (childEditPart instanceof StereotypeOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((StereotypeOperationCompartmentEditPartCN)childEditPart).getFigure());
+			pane.add(((StereotypeOperationCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -183,17 +192,17 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof StereotypeNameEditPartCN) {
+		if (childEditPart instanceof StereotypeNameEditPartCN) {
 			return true;
 		}
-		if(childEditPart instanceof StereotypeAttributeCompartmentEditPartCN) {
+		if (childEditPart instanceof StereotypeAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((StereotypeAttributeCompartmentEditPartCN)childEditPart).getFigure());
+			pane.remove(((StereotypeAttributeCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof StereotypeOperationCompartmentEditPartCN) {
+		if (childEditPart instanceof StereotypeOperationCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			pane.remove(((StereotypeOperationCompartmentEditPartCN)childEditPart).getFigure());
+			pane.remove(((StereotypeOperationCompartmentEditPartCN) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -204,7 +213,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -215,7 +224,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -226,10 +235,10 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof StereotypeAttributeCompartmentEditPartCN) {
+		if (editPart instanceof StereotypeAttributeCompartmentEditPartCN) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if(editPart instanceof StereotypeOperationCompartmentEditPartCN) {
+		if (editPart instanceof StereotypeOperationCompartmentEditPartCN) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
 		return getContentPane();
@@ -255,6 +264,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -267,7 +277,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -280,7 +290,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -291,7 +301,7 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -309,8 +319,8 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -327,14 +337,17 @@ public class StereotypeEditPartCN extends ClassEditPart {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3002)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(StereotypeAttributeCompartmentEditPartCN.VISUAL_ID));
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor()
+					.getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_ClassAttributeLabel)) {
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(StereotypeAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3020)) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(StereotypeOperationCompartmentEditPartCN.VISUAL_ID));
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_ClassOperationLabel)) {
+				return getChildBySemanticHint(
+						UMLVisualIDRegistry.getType(StereotypeOperationCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

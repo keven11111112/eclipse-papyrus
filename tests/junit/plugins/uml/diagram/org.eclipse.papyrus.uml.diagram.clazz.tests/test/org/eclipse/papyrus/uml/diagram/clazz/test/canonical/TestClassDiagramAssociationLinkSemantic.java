@@ -49,19 +49,19 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 
 	@Test
 	public void testAssociationLink() {
-		IGraphicalEditPart source = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 0);
-		IGraphicalEditPart target = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 1);
+		IGraphicalEditPart source = createChild(UMLElementTypes.Class_Shape, getDiagramEditPart(), 0);
+		IGraphicalEditPart target = createChild(UMLElementTypes.Class_Shape, getDiagramEditPart(), 1);
 		Association association = createAssociation(source, target);
 		checkAssociationSemantic(source, target, association);
 	}
 
 	@Test
 	public void testAssociationLinkReorient() {
-		IGraphicalEditPart source = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 0);
-		IGraphicalEditPart target = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 1);
+		IGraphicalEditPart source = createChild(UMLElementTypes.Class_Shape, getDiagramEditPart(), 0);
+		IGraphicalEditPart target = createChild(UMLElementTypes.Class_Shape, getDiagramEditPart(), 1);
 		Association association = createAssociation(source, target);
 		checkAssociationSemantic(source, target, association);
-		IGraphicalEditPart newSource = createChild(UMLElementTypes.Class_2008, getDiagramEditPart(), 2);
+		IGraphicalEditPart newSource = createChild(UMLElementTypes.Class_Shape, getDiagramEditPart(), 2);
 		IElementEditService service = ElementEditServiceUtils.getCommandProvider(association);
 		ReorientRelationshipRequest req = new ReorientRelationshipRequest(getEditingDomain(), association, newSource.resolveSemanticElement(), source.resolveSemanticElement(), ReorientRequest.REORIENT_SOURCE);
 		ICommand cmd = service.getEditCommand(req);
@@ -116,7 +116,7 @@ public class TestClassDiagramAssociationLinkSemantic extends AbstractPapyrusTest
 	}
 
 	private Association createAssociation(IGraphicalEditPart source, IGraphicalEditPart target) {
-		createLink(UMLElementTypes.Association_4001, source, target);
+		createLink(UMLElementTypes.Association_Edge, source, target);
 		return findAssociation(source);
 	}
 

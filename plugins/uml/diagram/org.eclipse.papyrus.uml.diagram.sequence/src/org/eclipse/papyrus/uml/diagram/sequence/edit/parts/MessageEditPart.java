@@ -35,7 +35,7 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4003";
+	public static final String VISUAL_ID = "Message_SynchEdge";
 
 	/**
 	 * @generated
@@ -53,7 +53,8 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_ROLE, new MessageConnectionEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageItemSemanticEditPolicy());
 	}
@@ -62,11 +63,12 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageNameEditPart) {
-			((MessageNameEditPart)childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
+		if (childEditPart instanceof MessageNameEditPart) {
+			((MessageNameEditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
 		}
-		if(childEditPart instanceof MessageSyncAppliedStereotypeEditPart) {
-			((MessageSyncAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof MessageSyncAppliedStereotypeEditPart) {
+			((MessageSyncAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -76,7 +78,7 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -86,10 +88,10 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageNameEditPart) {
+		if (childEditPart instanceof MessageNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof MessageSyncAppliedStereotypeEditPart) {
+		if (childEditPart instanceof MessageSyncAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -100,7 +102,7 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -124,6 +126,6 @@ public class MessageEditPart extends AbstractMessageEditPart implements ITreeBra
 	 */
 	@Override
 	public MessageSync getPrimaryShape() {
-		return (MessageSync)getFigure();
+		return (MessageSync) getFigure();
 	}
 }

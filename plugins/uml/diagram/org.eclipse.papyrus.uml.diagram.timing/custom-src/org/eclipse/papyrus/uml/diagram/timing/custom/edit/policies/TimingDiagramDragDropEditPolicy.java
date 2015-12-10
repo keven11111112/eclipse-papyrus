@@ -184,7 +184,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 						// create the View for the state definition
 						final UMLViewProvider umlViewProvider = new UMLViewProvider();
-						final Node stateDefinitionView = umlViewProvider.createNode_9(null, stateDefinitionCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+						final Node stateDefinitionView = umlViewProvider.createNode_StateDefinitionShape(null, stateDefinitionCompartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 						// restore the same id
 						StateDefinitionUtils.setStateDefinitionViewID(stateDefinitionView, stateDefinitionId);
 						// set the name on the View
@@ -225,7 +225,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						if (fragment instanceof StateInvariant) {
 							if (!firstStateInvariant && lifelineType == LifelineType.full) {
 								// add a vertical line
-								umlViewProvider.createNode_39(null, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+								umlViewProvider.createNode_StateInvariantTransitionShape(null, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 							}
 							final StateInvariant stateInvariant = (StateInvariant) fragment;
 							final String stateInvariantName = StateInvariantUtils.getInnerStateInvariantName(stateInvariant);
@@ -242,16 +242,16 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 							// create the View for the state invariant
 							if (lifelineType == LifelineType.full) {
-								umlViewProvider.createStateInvariant_11(stateInvariant, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+								umlViewProvider.createStateInvariant_FullShape(stateInvariant, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 							} else if (lifelineType == LifelineType.compact) {
-								umlViewProvider.createStateInvariant_28(stateInvariant, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+								umlViewProvider.createStateInvariant_CompactShape(stateInvariant, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 							}
 							firstStateInvariant = false;
 							previousStateInvariantName = stateInvariantName;
 						} else if (fragment instanceof DestructionOccurrenceSpecification) {
 							final DestructionOccurrenceSpecification destructionOccurrenceSpecification = (DestructionOccurrenceSpecification) fragment;
 							// create the View for the occurrence specification
-							final Node occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_27(destructionOccurrenceSpecification, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+							final Node occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_Shape(destructionOccurrenceSpecification, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 
 							final Location loc = NotationFactory.eINSTANCE.createLocation();
 							loc.setX(x);
@@ -261,7 +261,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						} else if (fragment instanceof MessageOccurrenceSpecification) {
 							final MessageOccurrenceSpecification occurrenceSpecification = (MessageOccurrenceSpecification) fragment;
 							// create the View for the occurrence specification
-							final Node occurrenceSpecificationView = umlViewProvider.createMessageOccurrenceSpecification_13(occurrenceSpecification, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+							final Node occurrenceSpecificationView = umlViewProvider.createMessageOccurrenceSpecification_Shape(occurrenceSpecification, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 
 							final Location loc = NotationFactory.eINSTANCE.createLocation();
 							loc.setX(x);
@@ -271,7 +271,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						} else if (fragment instanceof OccurrenceSpecification) {
 							final OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification) fragment;
 							// create the View for the occurrence specification
-							final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_12(occurrenceSpecification, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
+							final Node occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_Shape(occurrenceSpecification, compartmentView, -1, true, PreferencesHint.USE_DEFAULTS);
 
 							final Location loc = NotationFactory.eINSTANCE.createLocation();
 							loc.setX(x);

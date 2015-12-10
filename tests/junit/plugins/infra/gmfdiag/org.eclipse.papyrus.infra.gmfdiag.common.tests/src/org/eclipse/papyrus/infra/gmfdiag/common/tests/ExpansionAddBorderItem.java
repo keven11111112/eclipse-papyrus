@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegis
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -72,7 +73,7 @@ public class ExpansionAddBorderItem extends AbstractEditorTest {
 	/**
 	 * 
 	 */
-	protected static final String CLASS_VISUALID = "2008";
+	protected static final String CLASS_VISUALID = ClassEditPart.VISUAL_ID;
 	/**
 	 * 
 	 */
@@ -92,9 +93,9 @@ public class ExpansionAddBorderItem extends AbstractEditorTest {
 		Assert.assertNotNull("The class has been redefined", childrenListRepresentation.IDMap.get(CLASS_VISUALID));
 
 		Assert.assertNotNull("The BorderItem of class has been added", childrenListRepresentation.IDMap.get(INTERFACE_BORDER_ITEM));
-		List<String> the_2008_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
-		Assert.assertEquals("2008 can have a new compartment", 1, the_2008_Children.size());
-		Assert.assertEquals("2008 has to contain " + INTERFACE_BORDER_ITEM, INTERFACE_BORDER_ITEM, the_2008_Children.get(0));
+		List<String> the_class_shape_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
+		Assert.assertEquals("Class shape can have a new compartment", 1, the_class_shape_Children.size());
+		Assert.assertEquals("Class shape has to contain " + INTERFACE_BORDER_ITEM, INTERFACE_BORDER_ITEM, the_class_shape_Children.get(0));
 
 		// the model is valid
 		// now launch a class diagram

@@ -22,13 +22,12 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionFactory
  * @model kind="package"
  * @generated
@@ -38,7 +37,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNAME = "papyrusgmfgenextension";
@@ -47,7 +45,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension";
@@ -56,7 +53,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	String eNS_PREFIX = "papyrusgmfgenextension";
@@ -65,7 +61,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	PapyrusgmfgenextensionPackage eINSTANCE = org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl.init();
@@ -74,7 +69,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl <em>Commented Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCommentedElement()
 	 * @generated
@@ -85,7 +79,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -95,7 +88,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Commented Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -105,7 +97,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl <em>Extended Gen View</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExtendedGenView()
 	 * @generated
@@ -116,7 +107,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -126,7 +116,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -136,7 +125,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -146,7 +134,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Gen Views</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -156,7 +143,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Prop Refresh Hook</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -166,7 +152,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -176,7 +161,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Super Owned Edit Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -186,7 +170,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Extended Gen View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -196,7 +179,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl <em>External Hook</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExternalHook()
 	 * @generated
@@ -207,7 +189,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -217,7 +198,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -227,7 +207,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>External Hook</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -237,7 +216,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl <em>Property Refresh Hook</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getPropertyRefreshHook()
 	 * @generated
@@ -248,7 +226,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -258,7 +235,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -268,7 +244,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Triggering Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -278,7 +253,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Action</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -288,7 +262,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Property Refresh Hook</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -298,7 +271,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl <em>Specific Locator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificLocator()
 	 * @generated
@@ -309,7 +281,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -319,7 +290,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -329,7 +299,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen Child Side Affixed Node</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -339,7 +308,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Specific Locator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -349,7 +317,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusExtensionRootNodeImpl <em>Papyrus Extension Root Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusExtensionRootNodeImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getPapyrusExtensionRootNode()
 	 * @generated
@@ -360,7 +327,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -370,7 +336,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Extension Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -380,7 +345,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Papyrus Extension Root Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -390,7 +354,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl <em>Alternate Canvas</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAlternateCanvas()
 	 * @generated
@@ -401,7 +364,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -411,7 +373,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Domain Diagram Element</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -421,7 +382,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Alternate Top Level Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -431,7 +391,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Alternate Link Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -441,7 +400,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Diagram</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -451,7 +409,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Alternate Canvas</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -461,7 +418,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenTopLevelNodeImpl <em>Alternate Gen Top Level Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenTopLevelNodeImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAlternateGenTopLevelNode()
 	 * @generated
@@ -472,7 +428,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -482,7 +437,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen Top Level Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -492,7 +446,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Type Model Facet</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -502,7 +455,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Alternate Gen Top Level Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -512,7 +464,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenLinkImpl <em>Alternate Gen Link</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenLinkImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAlternateGenLink()
 	 * @generated
@@ -523,7 +474,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -533,7 +483,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen Link Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -543,7 +492,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Type Model Facet</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -553,7 +501,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Alternate Gen Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -563,7 +510,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl <em>Mutating Canvas</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getMutatingCanvas()
 	 * @generated
@@ -574,7 +520,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -584,7 +529,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Alternate Canvases</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -594,7 +538,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Mutating Canvas</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -604,7 +547,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl <em>Owned Editpart</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getOwnedEditpart()
 	 * @generated
@@ -615,7 +557,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -625,7 +566,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -635,7 +575,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -645,7 +584,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Owned Editpart</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -655,7 +593,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl <em>Specific Diagram Updater</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificDiagramUpdater()
 	 * @generated
@@ -666,7 +603,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -676,7 +612,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -686,7 +621,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen Node</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -696,7 +630,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Specific Diagram Updater</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -706,7 +639,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl <em>Gen Node Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenNodeConstraint()
 	 * @generated
@@ -717,7 +649,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -727,7 +658,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen Node</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -737,7 +667,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen Constraint</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -747,7 +676,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Gen Node Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -757,7 +685,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl <em>Specific Locator External Label</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificLocatorExternalLabel()
 	 * @generated
@@ -768,7 +695,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -778,7 +704,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Classpath</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -788,7 +713,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen External Node Label</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -798,7 +722,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Specific Locator External Label</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -808,7 +731,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl <em>Additional Edit Part Candies</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAdditionalEditPartCandies()
 	 * @generated
@@ -819,7 +741,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -829,7 +750,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Base Edit Helper Package</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -839,7 +759,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Additional Edit Part Candies</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -849,7 +768,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl <em>Edit Part Using Delete Service</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getEditPartUsingDeleteService()
 	 * @generated
@@ -860,7 +778,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -870,7 +787,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -880,7 +796,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -890,7 +805,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Edit Part Using Delete Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -900,7 +814,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingReorientServiceImpl <em>Edit Part Using Reorient Service</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingReorientServiceImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getEditPartUsingReorientService()
 	 * @generated
@@ -911,7 +824,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -921,7 +833,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -931,7 +842,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -941,7 +851,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Edit Part Using Reorient Service</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -951,7 +860,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl <em>Label Visibility Preference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelVisibilityPreference()
 	 * @generated
@@ -962,7 +870,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -972,7 +879,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Role</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -982,7 +888,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon Path Role</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -992,7 +897,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Link Labels</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1002,7 +906,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>External Node Labels</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1012,7 +915,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1022,7 +924,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Label Visibility Preference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1032,7 +933,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl <em>Compartment Visibility Preference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCompartmentVisibilityPreference()
 	 * @generated
@@ -1043,7 +943,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1053,7 +952,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1063,7 +961,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Compartments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1073,7 +970,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Compartment Visibility Preference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1083,7 +979,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentTitleVisibilityPreferenceImpl <em>Compartment Title Visibility Preference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentTitleVisibilityPreferenceImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCompartmentTitleVisibilityPreference()
 	 * @generated
@@ -1094,7 +989,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1104,7 +998,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Visible By Default</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1114,7 +1007,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Compartments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1124,7 +1016,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Compartment Title Visibility Preference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1134,7 +1025,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
 	 * @generated
@@ -1145,7 +1035,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1155,7 +1044,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Gen View</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1165,7 +1053,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Constrained By Reference Compartment Item Semantic Edit Policy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1175,7 +1062,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl <em>Generate Using Element Type Creation Command</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenerateUsingElementTypeCreationCommand()
 	 * @generated
@@ -1186,7 +1072,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1196,7 +1081,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Generate Using Element Type Creation Command</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1206,7 +1090,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl <em>Custom Diagram Updater Singleton</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCustomDiagramUpdaterSingleton()
 	 * @generated
@@ -1217,7 +1100,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1227,7 +1109,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Singleton Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1237,7 +1118,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Custom Diagram Updater Singleton</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1247,7 +1127,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl <em>Specific Node Plate</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificNodePlate()
 	 * @generated
@@ -1258,7 +1137,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1268,7 +1146,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Edit Parts</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1278,7 +1155,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1288,7 +1164,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Node Plate Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1298,7 +1173,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Specific Node Plate</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1308,7 +1182,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl <em>Gen Visual Type Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenVisualTypeProvider()
 	 * @generated
@@ -1319,7 +1192,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Comment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1329,7 +1201,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The feature id for the '<em><b>Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -1339,18 +1210,62 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * The number of structural features of the '<em>Gen Visual Type Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int GEN_VISUAL_TYPE_PROVIDER_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.VisualIDOverrideImpl <em>Visual ID Override</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.VisualIDOverrideImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getVisualIDOverride()
+	 * @generated
+	 */
+	int VISUAL_ID_OVERRIDE = 25;
+
+	/**
+	 * The feature id for the '<em><b>Gen View</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUAL_ID_OVERRIDE__GEN_VIEW = 0;
+
+	/**
+	 * The feature id for the '<em><b>Visual ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUAL_ID_OVERRIDE__VISUAL_ID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Child</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUAL_ID_OVERRIDE__CHILD = 2;
+
+	/**
+	 * The number of structural features of the '<em>Visual ID Override</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VISUAL_ID_OVERRIDE_FEATURE_COUNT = 3;
 
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Extended Gen View</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
 	 * @generated
@@ -1361,7 +1276,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getGenView <em>Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen View</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getGenView()
 	 * @see #getExtendedGenView()
@@ -1373,7 +1287,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#isIsAbstract <em>Is Abstract</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Is Abstract</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#isIsAbstract()
 	 * @see #getExtendedGenView()
@@ -1385,7 +1298,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperGenViews <em>Super Gen Views</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Super Gen Views</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperGenViews()
 	 * @see #getExtendedGenView()
@@ -1397,7 +1309,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getPropRefreshHook <em>Prop Refresh Hook</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Prop Refresh Hook</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getPropRefreshHook()
 	 * @see #getExtendedGenView()
@@ -1409,7 +1320,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getName()
 	 * @see #getExtendedGenView()
@@ -1421,7 +1331,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperOwnedEditPart <em>Super Owned Edit Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Super Owned Edit Part</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView#getSuperOwnedEditPart()
 	 * @see #getExtendedGenView()
@@ -1433,7 +1342,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement <em>Commented Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Commented Element</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement
 	 * @generated
@@ -1444,7 +1352,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement#getComment <em>Comment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Comment</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CommentedElement#getComment()
 	 * @see #getCommentedElement()
@@ -1456,7 +1363,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook <em>Property Refresh Hook</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Property Refresh Hook</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook
 	 * @generated
@@ -1467,7 +1373,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook#getTriggeringCondition <em>Triggering Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Triggering Condition</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook#getTriggeringCondition()
 	 * @see #getPropertyRefreshHook()
@@ -1479,7 +1384,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook#getAction <em>Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Action</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PropertyRefreshHook#getAction()
 	 * @see #getPropertyRefreshHook()
@@ -1491,7 +1395,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook <em>External Hook</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>External Hook</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook
 	 * @generated
@@ -1502,7 +1405,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook#getClasspath <em>Classpath</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Classpath</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ExternalHook#getClasspath()
 	 * @see #getExternalHook()
@@ -1514,7 +1416,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator <em>Specific Locator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Specific Locator</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator
 	 * @generated
@@ -1525,7 +1426,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode <em>Gen Child Side Affixed Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen Child Side Affixed Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator#getGenChildSideAffixedNode()
 	 * @see #getSpecificLocator()
@@ -1537,7 +1437,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode <em>Papyrus Extension Root Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Papyrus Extension Root Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode
 	 * @generated
@@ -1548,7 +1447,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode#getExtensionNodes <em>Extension Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Extension Nodes</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusExtensionRootNode#getExtensionNodes()
 	 * @see #getPapyrusExtensionRootNode()
@@ -1560,7 +1458,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas <em>Alternate Canvas</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Alternate Canvas</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas
 	 * @generated
@@ -1571,7 +1468,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement <em>Domain Diagram Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Domain Diagram Element</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDomainDiagramElement()
 	 * @see #getAlternateCanvas()
@@ -1583,7 +1479,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateTopLevelNodes <em>Alternate Top Level Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Alternate Top Level Nodes</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateTopLevelNodes()
 	 * @see #getAlternateCanvas()
@@ -1595,7 +1490,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateLinkNodes <em>Alternate Link Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Alternate Link Nodes</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getAlternateLinkNodes()
 	 * @see #getAlternateCanvas()
@@ -1607,7 +1501,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDiagram <em>Diagram</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Diagram</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas#getDiagram()
 	 * @see #getAlternateCanvas()
@@ -1619,7 +1512,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode <em>Alternate Gen Top Level Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Alternate Gen Top Level Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode
 	 * @generated
@@ -1630,7 +1522,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode#getGenTopLevelNode <em>Gen Top Level Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Gen Top Level Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode#getGenTopLevelNode()
 	 * @see #getAlternateGenTopLevelNode()
@@ -1642,7 +1533,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode#getTypeModelFacet <em>Type Model Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Type Model Facet</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode#getTypeModelFacet()
 	 * @see #getAlternateGenTopLevelNode()
@@ -1654,7 +1544,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink <em>Alternate Gen Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Alternate Gen Link</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink
 	 * @generated
@@ -1665,7 +1554,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink#getGenLinkNode <em>Gen Link Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Gen Link Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink#getGenLinkNode()
 	 * @see #getAlternateGenLink()
@@ -1677,7 +1565,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink#getTypeModelFacet <em>Type Model Facet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Type Model Facet</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink#getTypeModelFacet()
 	 * @see #getAlternateGenLink()
@@ -1689,7 +1576,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas <em>Mutating Canvas</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Mutating Canvas</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas
 	 * @generated
@@ -1700,7 +1586,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas#getAlternateCanvases <em>Alternate Canvases</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Alternate Canvases</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.MutatingCanvas#getAlternateCanvases()
 	 * @see #getMutatingCanvas()
@@ -1712,7 +1597,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart <em>Owned Editpart</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Owned Editpart</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart
 	 * @generated
@@ -1723,7 +1607,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName()
 	 * @see #getOwnedEditpart()
@@ -1735,7 +1618,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater <em>Specific Diagram Updater</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Specific Diagram Updater</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater
 	 * @generated
@@ -1746,7 +1628,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenNode <em>Gen Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Gen Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater#getGenNode()
 	 * @see #getSpecificDiagramUpdater()
@@ -1758,7 +1639,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint <em>Gen Node Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Gen Node Constraint</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint
 	 * @generated
@@ -1769,7 +1649,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode <em>Gen Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen Node</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenNode()
 	 * @see #getGenNodeConstraint()
@@ -1781,7 +1660,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint <em>Gen Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference '<em>Gen Constraint</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenNodeConstraint#getGenConstraint()
 	 * @see #getGenNodeConstraint()
@@ -1793,7 +1671,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel <em>Specific Locator External Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Specific Locator External Label</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel
 	 * @generated
@@ -1804,7 +1681,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel <em>Gen External Node Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen External Node Label</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel()
 	 * @see #getSpecificLocatorExternalLabel()
@@ -1816,7 +1692,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies <em>Additional Edit Part Candies</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Additional Edit Part Candies</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies
 	 * @generated
@@ -1827,7 +1702,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Base Edit Helper Package</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies#getBaseEditHelperPackage()
 	 * @see #getAdditionalEditPartCandies()
@@ -1839,7 +1713,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService <em>Edit Part Using Delete Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Edit Part Using Delete Service</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService
 	 * @generated
@@ -1850,7 +1723,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getName()
 	 * @see #getEditPartUsingDeleteService()
@@ -1862,7 +1734,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getGenView <em>Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen View</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingDeleteService#getGenView()
 	 * @see #getEditPartUsingDeleteService()
@@ -1874,7 +1745,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService <em>Edit Part Using Reorient Service</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Edit Part Using Reorient Service</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService
 	 * @generated
@@ -1885,7 +1755,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService#getName()
 	 * @see #getEditPartUsingReorientService()
@@ -1897,7 +1766,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService#getGenView <em>Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen View</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.EditPartUsingReorientService#getGenView()
 	 * @see #getEditPartUsingReorientService()
@@ -1909,7 +1777,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference <em>Label Visibility Preference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Label Visibility Preference</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
 	 * @generated
@@ -1920,7 +1787,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getRole <em>Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Role</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getRole()
 	 * @see #getLabelVisibilityPreference()
@@ -1932,7 +1798,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getIconPathRole <em>Icon Path Role</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Icon Path Role</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getIconPathRole()
 	 * @see #getLabelVisibilityPreference()
@@ -1944,7 +1809,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getLinkLabels <em>Link Labels</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Link Labels</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getLinkLabels()
 	 * @see #getLabelVisibilityPreference()
@@ -1956,7 +1820,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getExternalNodeLabels <em>External Node Labels</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>External Node Labels</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#getExternalNodeLabels()
 	 * @see #getLabelVisibilityPreference()
@@ -1968,7 +1831,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference#isVisibleByDefault()
 	 * @see #getLabelVisibilityPreference()
@@ -1980,7 +1842,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference <em>Compartment Visibility Preference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Compartment Visibility Preference</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference
 	 * @generated
@@ -1991,7 +1852,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault()
 	 * @see #getCompartmentVisibilityPreference()
@@ -2003,7 +1863,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#getCompartments <em>Compartments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Compartments</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#getCompartments()
 	 * @see #getCompartmentVisibilityPreference()
@@ -2015,7 +1874,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference <em>Compartment Title Visibility Preference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Compartment Title Visibility Preference</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference
 	 * @generated
@@ -2026,7 +1884,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Visible By Default</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference#isVisibleByDefault()
 	 * @see #getCompartmentTitleVisibilityPreference()
@@ -2038,7 +1895,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference#getCompartments <em>Compartments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Compartments</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CompartmentTitleVisibilityPreference#getCompartments()
 	 * @see #getCompartmentTitleVisibilityPreference()
@@ -2050,7 +1906,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Constrained By Reference Compartment Item Semantic Edit Policy</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy
 	 * @generated
@@ -2061,7 +1916,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy#getGenView <em>Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Gen View</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.ConstrainedByReferenceCompartmentItemSemanticEditPolicy#getGenView()
 	 * @see #getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
@@ -2073,7 +1927,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand <em>Generate Using Element Type Creation Command</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Generate Using Element Type Creation Command</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
 	 * @generated
@@ -2084,7 +1937,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton <em>Custom Diagram Updater Singleton</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Custom Diagram Updater Singleton</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 	 * @generated
@@ -2095,7 +1947,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton#getSingletonPath <em>Singleton Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Singleton Path</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton#getSingletonPath()
 	 * @see #getCustomDiagramUpdaterSingleton()
@@ -2107,7 +1958,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate <em>Specific Node Plate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Specific Node Plate</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate
 	 * @generated
@@ -2118,7 +1968,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getEditParts <em>Edit Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the reference list '<em>Edit Parts</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getEditParts()
 	 * @see #getSpecificNodePlate()
@@ -2130,7 +1979,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getName()
 	 * @see #getSpecificNodePlate()
@@ -2142,7 +1990,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName <em>Node Plate Qualified Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Node Plate Qualified Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate#getNodePlateQualifiedName()
 	 * @see #getSpecificNodePlate()
@@ -2154,7 +2001,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider <em>Gen Visual Type Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Gen Visual Type Provider</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider
 	 * @generated
@@ -2165,7 +2011,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the attribute '<em>Class Name</em>'.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.GenVisualTypeProvider#getClassName()
 	 * @see #getGenVisualTypeProvider()
@@ -2174,10 +2019,52 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EAttribute getGenVisualTypeProvider_ClassName();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride <em>Visual ID Override</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Visual ID Override</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride
+	 * @generated
+	 */
+	EClass getVisualIDOverride();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride#getGenView <em>Gen View</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Gen View</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride#getGenView()
+	 * @see #getVisualIDOverride()
+	 * @generated
+	 */
+	EReference getVisualIDOverride_GenView();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride#getVisualID <em>Visual ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visual ID</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride#getVisualID()
+	 * @see #getVisualIDOverride()
+	 * @generated
+	 */
+	EAttribute getVisualIDOverride_VisualID();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride#getChild <em>Child</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Child</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride#getChild()
+	 * @see #getVisualIDOverride()
+	 * @generated
+	 */
+	EReference getVisualIDOverride_Child();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -2187,13 +2074,12 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
@@ -2201,7 +2087,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl <em>Extended Gen View</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExtendedGenViewImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExtendedGenView()
 		 * @generated
@@ -2212,7 +2097,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference EXTENDED_GEN_VIEW__GEN_VIEW = eINSTANCE.getExtendedGenView_GenView();
@@ -2221,7 +2105,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Is Abstract</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute EXTENDED_GEN_VIEW__IS_ABSTRACT = eINSTANCE.getExtendedGenView_IsAbstract();
@@ -2230,7 +2113,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Super Gen Views</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference EXTENDED_GEN_VIEW__SUPER_GEN_VIEWS = eINSTANCE.getExtendedGenView_SuperGenViews();
@@ -2239,7 +2121,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Prop Refresh Hook</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference EXTENDED_GEN_VIEW__PROP_REFRESH_HOOK = eINSTANCE.getExtendedGenView_PropRefreshHook();
@@ -2248,7 +2129,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute EXTENDED_GEN_VIEW__NAME = eINSTANCE.getExtendedGenView_Name();
@@ -2257,7 +2137,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Super Owned Edit Part</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute EXTENDED_GEN_VIEW__SUPER_OWNED_EDIT_PART = eINSTANCE.getExtendedGenView_SuperOwnedEditPart();
@@ -2266,7 +2145,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl <em>Commented Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CommentedElementImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCommentedElement()
 		 * @generated
@@ -2277,7 +2155,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute COMMENTED_ELEMENT__COMMENT = eINSTANCE.getCommentedElement_Comment();
@@ -2286,7 +2163,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl <em>Property Refresh Hook</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PropertyRefreshHookImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getPropertyRefreshHook()
 		 * @generated
@@ -2297,7 +2173,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Triggering Condition</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY_REFRESH_HOOK__TRIGGERING_CONDITION = eINSTANCE.getPropertyRefreshHook_TriggeringCondition();
@@ -2306,7 +2181,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute PROPERTY_REFRESH_HOOK__ACTION = eINSTANCE.getPropertyRefreshHook_Action();
@@ -2315,7 +2189,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl <em>External Hook</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ExternalHookImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getExternalHook()
 		 * @generated
@@ -2326,7 +2199,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Classpath</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute EXTERNAL_HOOK__CLASSPATH = eINSTANCE.getExternalHook_Classpath();
@@ -2335,7 +2207,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl <em>Specific Locator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificLocator()
 		 * @generated
@@ -2346,7 +2217,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen Child Side Affixed Node</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference SPECIFIC_LOCATOR__GEN_CHILD_SIDE_AFFIXED_NODE = eINSTANCE.getSpecificLocator_GenChildSideAffixedNode();
@@ -2355,7 +2225,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusExtensionRootNodeImpl <em>Papyrus Extension Root Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusExtensionRootNodeImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getPapyrusExtensionRootNode()
 		 * @generated
@@ -2366,7 +2235,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Extension Nodes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PAPYRUS_EXTENSION_ROOT_NODE__EXTENSION_NODES = eINSTANCE.getPapyrusExtensionRootNode_ExtensionNodes();
@@ -2375,7 +2243,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl <em>Alternate Canvas</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateCanvasImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAlternateCanvas()
 		 * @generated
@@ -2386,7 +2253,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Domain Diagram Element</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_CANVAS__DOMAIN_DIAGRAM_ELEMENT = eINSTANCE.getAlternateCanvas_DomainDiagramElement();
@@ -2395,7 +2261,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Alternate Top Level Nodes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_CANVAS__ALTERNATE_TOP_LEVEL_NODES = eINSTANCE.getAlternateCanvas_AlternateTopLevelNodes();
@@ -2404,7 +2269,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Alternate Link Nodes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_CANVAS__ALTERNATE_LINK_NODES = eINSTANCE.getAlternateCanvas_AlternateLinkNodes();
@@ -2413,7 +2277,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Diagram</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_CANVAS__DIAGRAM = eINSTANCE.getAlternateCanvas_Diagram();
@@ -2422,7 +2285,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenTopLevelNodeImpl <em>Alternate Gen Top Level Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenTopLevelNodeImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAlternateGenTopLevelNode()
 		 * @generated
@@ -2433,7 +2295,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen Top Level Node</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_GEN_TOP_LEVEL_NODE__GEN_TOP_LEVEL_NODE = eINSTANCE.getAlternateGenTopLevelNode_GenTopLevelNode();
@@ -2442,7 +2303,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type Model Facet</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_GEN_TOP_LEVEL_NODE__TYPE_MODEL_FACET = eINSTANCE.getAlternateGenTopLevelNode_TypeModelFacet();
@@ -2451,7 +2311,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenLinkImpl <em>Alternate Gen Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AlternateGenLinkImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAlternateGenLink()
 		 * @generated
@@ -2462,7 +2321,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen Link Node</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_GEN_LINK__GEN_LINK_NODE = eINSTANCE.getAlternateGenLink_GenLinkNode();
@@ -2471,7 +2329,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Type Model Facet</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ALTERNATE_GEN_LINK__TYPE_MODEL_FACET = eINSTANCE.getAlternateGenLink_TypeModelFacet();
@@ -2480,7 +2337,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl <em>Mutating Canvas</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.MutatingCanvasImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getMutatingCanvas()
 		 * @generated
@@ -2491,7 +2347,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Alternate Canvases</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference MUTATING_CANVAS__ALTERNATE_CANVASES = eINSTANCE.getMutatingCanvas_AlternateCanvases();
@@ -2500,7 +2355,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl <em>Owned Editpart</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.OwnedEditpartImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getOwnedEditpart()
 		 * @generated
@@ -2511,7 +2365,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute OWNED_EDITPART__NAME = eINSTANCE.getOwnedEditpart_Name();
@@ -2520,7 +2373,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl <em>Specific Diagram Updater</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificDiagramUpdaterImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificDiagramUpdater()
 		 * @generated
@@ -2531,7 +2383,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen Node</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference SPECIFIC_DIAGRAM_UPDATER__GEN_NODE = eINSTANCE.getSpecificDiagramUpdater_GenNode();
@@ -2540,7 +2391,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl <em>Gen Node Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenNodeConstraintImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenNodeConstraint()
 		 * @generated
@@ -2551,7 +2401,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen Node</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference GEN_NODE_CONSTRAINT__GEN_NODE = eINSTANCE.getGenNodeConstraint_GenNode();
@@ -2560,7 +2409,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen Constraint</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference GEN_NODE_CONSTRAINT__GEN_CONSTRAINT = eINSTANCE.getGenNodeConstraint_GenConstraint();
@@ -2569,7 +2417,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl <em>Specific Locator External Label</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificLocatorExternalLabelImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificLocatorExternalLabel()
 		 * @generated
@@ -2580,7 +2427,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen External Node Label</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL = eINSTANCE.getSpecificLocatorExternalLabel_GenExternalNodeLabel();
@@ -2589,7 +2435,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl <em>Additional Edit Part Candies</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAdditionalEditPartCandies()
 		 * @generated
@@ -2600,7 +2445,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Base Edit Helper Package</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE = eINSTANCE.getAdditionalEditPartCandies_BaseEditHelperPackage();
@@ -2609,7 +2453,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl <em>Edit Part Using Delete Service</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingDeleteServiceImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getEditPartUsingDeleteService()
 		 * @generated
@@ -2620,7 +2463,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute EDIT_PART_USING_DELETE_SERVICE__NAME = eINSTANCE.getEditPartUsingDeleteService_Name();
@@ -2629,7 +2471,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference EDIT_PART_USING_DELETE_SERVICE__GEN_VIEW = eINSTANCE.getEditPartUsingDeleteService_GenView();
@@ -2638,7 +2479,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingReorientServiceImpl <em>Edit Part Using Reorient Service</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.EditPartUsingReorientServiceImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getEditPartUsingReorientService()
 		 * @generated
@@ -2649,7 +2489,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute EDIT_PART_USING_REORIENT_SERVICE__NAME = eINSTANCE.getEditPartUsingReorientService_Name();
@@ -2658,7 +2497,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference EDIT_PART_USING_REORIENT_SERVICE__GEN_VIEW = eINSTANCE.getEditPartUsingReorientService_GenView();
@@ -2667,7 +2505,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl <em>Label Visibility Preference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.LabelVisibilityPreferenceImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getLabelVisibilityPreference()
 		 * @generated
@@ -2678,7 +2515,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Role</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LABEL_VISIBILITY_PREFERENCE__ROLE = eINSTANCE.getLabelVisibilityPreference_Role();
@@ -2687,7 +2523,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Icon Path Role</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LABEL_VISIBILITY_PREFERENCE__ICON_PATH_ROLE = eINSTANCE.getLabelVisibilityPreference_IconPathRole();
@@ -2696,7 +2531,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Link Labels</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference LABEL_VISIBILITY_PREFERENCE__LINK_LABELS = eINSTANCE.getLabelVisibilityPreference_LinkLabels();
@@ -2705,7 +2539,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>External Node Labels</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference LABEL_VISIBILITY_PREFERENCE__EXTERNAL_NODE_LABELS = eINSTANCE.getLabelVisibilityPreference_ExternalNodeLabels();
@@ -2714,7 +2547,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Visible By Default</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute LABEL_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = eINSTANCE.getLabelVisibilityPreference_VisibleByDefault();
@@ -2723,7 +2555,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl <em>Compartment Visibility Preference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentVisibilityPreferenceImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCompartmentVisibilityPreference()
 		 * @generated
@@ -2734,7 +2565,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Visible By Default</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute COMPARTMENT_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = eINSTANCE.getCompartmentVisibilityPreference_VisibleByDefault();
@@ -2743,7 +2573,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Compartments</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference COMPARTMENT_VISIBILITY_PREFERENCE__COMPARTMENTS = eINSTANCE.getCompartmentVisibilityPreference_Compartments();
@@ -2752,7 +2581,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentTitleVisibilityPreferenceImpl <em>Compartment Title Visibility Preference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CompartmentTitleVisibilityPreferenceImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCompartmentTitleVisibilityPreference()
 		 * @generated
@@ -2763,7 +2591,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Visible By Default</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute COMPARTMENT_TITLE_VISIBILITY_PREFERENCE__VISIBLE_BY_DEFAULT = eINSTANCE.getCompartmentTitleVisibilityPreference_VisibleByDefault();
@@ -2772,7 +2599,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Compartments</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference COMPARTMENT_TITLE_VISIBILITY_PREFERENCE__COMPARTMENTS = eINSTANCE.getCompartmentTitleVisibilityPreference_Compartments();
@@ -2781,7 +2607,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl <em>Constrained By Reference Compartment Item Semantic Edit Policy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.ConstrainedByReferenceCompartmentItemSemanticEditPolicyImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getConstrainedByReferenceCompartmentItemSemanticEditPolicy()
 		 * @generated
@@ -2792,7 +2617,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Gen View</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference CONSTRAINED_BY_REFERENCE_COMPARTMENT_ITEM_SEMANTIC_EDIT_POLICY__GEN_VIEW = eINSTANCE.getConstrainedByReferenceCompartmentItemSemanticEditPolicy_GenView();
@@ -2801,7 +2625,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl <em>Generate Using Element Type Creation Command</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenerateUsingElementTypeCreationCommandImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenerateUsingElementTypeCreationCommand()
 		 * @generated
@@ -2812,7 +2635,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl <em>Custom Diagram Updater Singleton</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.CustomDiagramUpdaterSingletonImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getCustomDiagramUpdaterSingleton()
 		 * @generated
@@ -2823,7 +2645,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Singleton Path</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute CUSTOM_DIAGRAM_UPDATER_SINGLETON__SINGLETON_PATH = eINSTANCE.getCustomDiagramUpdaterSingleton_SingletonPath();
@@ -2832,7 +2653,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl <em>Specific Node Plate</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.SpecificNodePlateImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getSpecificNodePlate()
 		 * @generated
@@ -2843,7 +2663,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Edit Parts</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference SPECIFIC_NODE_PLATE__EDIT_PARTS = eINSTANCE.getSpecificNodePlate_EditParts();
@@ -2852,7 +2671,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SPECIFIC_NODE_PLATE__NAME = eINSTANCE.getSpecificNodePlate_Name();
@@ -2861,7 +2679,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Node Plate Qualified Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute SPECIFIC_NODE_PLATE__NODE_PLATE_QUALIFIED_NAME = eINSTANCE.getSpecificNodePlate_NodePlateQualifiedName();
@@ -2870,7 +2687,6 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl <em>Gen Visual Type Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.GenVisualTypeProviderImpl
 		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getGenVisualTypeProvider()
 		 * @generated
@@ -2881,11 +2697,44 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME = eINSTANCE.getGenVisualTypeProvider_ClassName();
 
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.VisualIDOverrideImpl <em>Visual ID Override</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.VisualIDOverrideImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getVisualIDOverride()
+		 * @generated
+		 */
+		EClass VISUAL_ID_OVERRIDE = eINSTANCE.getVisualIDOverride();
+
+		/**
+		 * The meta object literal for the '<em><b>Gen View</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUAL_ID_OVERRIDE__GEN_VIEW = eINSTANCE.getVisualIDOverride_GenView();
+
+		/**
+		 * The meta object literal for the '<em><b>Visual ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VISUAL_ID_OVERRIDE__VISUAL_ID = eINSTANCE.getVisualIDOverride_VisualID();
+
+		/**
+		 * The meta object literal for the '<em><b>Child</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VISUAL_ID_OVERRIDE__CHILD = eINSTANCE.getVisualIDOverride_Child();
+
 	}
 
-} // PapyrusgmfgenextensionPackage
+} //PapyrusgmfgenextensionPackage

@@ -87,7 +87,7 @@ public class LollipopToRectangleCommand extends AbstractTransactionalCommand {
 		// creation of the node
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
 		View container = (View) elementEditPart.getNotationView().eContainer();
-		Node interfaceView = umlViewProvider.createInterface_3205(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
+		Node interfaceView = umlViewProvider.createInterface_ClassifierShape(elementEditPart.resolveSemanticElement(), container, -1, true, elementEditPart.getDiagramPreferencesHint());
 		interfaceView.setLayoutConstraint(((Node) elementEditPart.getNotationView()).getLayoutConstraint());
 		if (interfaceView.getLayoutConstraint() instanceof Bounds) {
 			((Bounds) interfaceView.getLayoutConstraint()).setWidth(200);

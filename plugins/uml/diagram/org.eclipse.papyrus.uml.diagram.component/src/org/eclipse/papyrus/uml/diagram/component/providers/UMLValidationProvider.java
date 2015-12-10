@@ -40,7 +40,6 @@ public class UMLValidationProvider {
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -70,7 +69,8 @@ public class UMLValidationProvider {
 			return false;
 		}
 		if (object instanceof View) {
-			return constraintsActive && ComponentDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+			return constraintsActive
+					&& ComponentDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}

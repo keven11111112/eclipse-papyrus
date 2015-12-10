@@ -47,7 +47,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3026";
+	public static final String VISUAL_ID = "PrimitiveType_Shape_CN";
 
 	/**
 	 * @generated
@@ -73,11 +73,14 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -91,7 +94,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -118,6 +121,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -135,17 +139,18 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	public PrimitiveTypeFigure getPrimaryShape() {
-		return (PrimitiveTypeFigure)primaryShape;
+		return (PrimitiveTypeFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof PrimitiveTypeNameEditPartCN) {
-			((PrimitiveTypeNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof PrimitiveTypeNameEditPartCN) {
+			((PrimitiveTypeNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -153,7 +158,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof PrimitiveTypeNameEditPartCN) {
+		if (childEditPart instanceof PrimitiveTypeNameEditPartCN) {
 			return true;
 		}
 		return false;
@@ -164,7 +169,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -175,7 +180,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -209,6 +214,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -221,7 +227,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -234,7 +240,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -245,7 +251,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -263,8 +269,8 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

@@ -13,9 +13,12 @@
  */
 package aspects.xpt.diagram.views
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.gmf.codegen.gmfgen.GenLabel
+import xpt.diagram.Utils_qvto
 import xpt.diagram.ViewmapAttributesUtils_qvto
 
 /**
@@ -23,8 +26,9 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
  * in order to have consistent naming between Xtend files migrated from _qvto helpers and xpt templates
  */
 @Singleton class ViewStyles extends xpt.diagram.views.ViewStyles{
-
+	@Inject extension Common;
 	@Inject extension ViewmapAttributesUtils_qvto;
+	@Inject extension Utils_qvto;
 
 
 
@@ -36,4 +40,15 @@ import xpt.diagram.ViewmapAttributesUtils_qvto
 		«ENDIF»
 	'''
 
+	override def offset(GenLabel it, String viewVar, int x, int y) '''
+		«val location = stringUniqueIdentifier.toFirstLower+'_Location'»
+		org.eclipse.gmf.runtime.notation.Location «location» = (org.eclipse.gmf.runtime.notation.Location) «viewVar».getLayoutConstraint();
+		«IF it.getDiagram().isPixelMapMode()»
+			«location».setX(«x»);
+			«location».setY(«y»);
+		«ELSE»
+			«location».setX(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«x»));
+			«location».setY(org.eclipse.gmf.runtime.diagram.ui.util.MeasurementUnitHelper.getMapMode(«viewVar».getDiagram().getMeasurementUnit()).DPtoLP(«y»));
+		«ENDIF»
+	'''
 }

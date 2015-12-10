@@ -190,7 +190,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @return
 	 */
 	private AbstractExecutionSpecificationEditPart createExecutionSpecification(LifelineEditPart lifeline, Point location, Dimension size) {
-		return (AbstractExecutionSpecificationEditPart) createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, location, size);
+		return (AbstractExecutionSpecificationEditPart) createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, location, size);
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 * @return
 	 */
 	private LifelineEditPart createLifeline(String name, Point location, Dimension size) {
-		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), location, size);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), location, size);
 		if (name != null) {
 			rename(lifeline, name);
 		}
@@ -284,7 +284,7 @@ public class TestExecutionSpecificationPosition_395462 extends AbstractNodeTest 
 	 */
 	private LifelineEditPart createLifeline(LifelineEditPart lifeline, Point location, final Property property) {
 		// CREATION
-		IElementType type = UMLElementTypes.Lifeline_3001;
+		IElementType type = UMLElementTypes.Lifeline_Shape;
 		CreateViewRequest createReq = CreateViewRequestFactory.getCreateShapeRequest(type, getRootEditPart().getDiagramPreferencesHint());
 		createReq.setLocation(location);
 		Command command = lifeline.getCommand(createReq);

@@ -58,17 +58,17 @@ public class TestCombinedFragmentChildNode extends TestChildNode {
 
 	@Test
 	public void testToManageOperand() {
-		testToManageChildNode(UMLElementTypes.InteractionOperand_3005, combinedFragmentProvider);
+		testToManageChildNode(UMLElementTypes.InteractionOperand_Shape, combinedFragmentProvider);
 	}
 
 	@Test
 	public void testToManageContinuation() {
-		testToManageChildNode(UMLElementTypes.Continuation_3016, operandProvider);
+		testToManageChildNode(UMLElementTypes.Continuation_Shape, operandProvider);
 	}
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.CombinedFragment_3004, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.CombinedFragment_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override

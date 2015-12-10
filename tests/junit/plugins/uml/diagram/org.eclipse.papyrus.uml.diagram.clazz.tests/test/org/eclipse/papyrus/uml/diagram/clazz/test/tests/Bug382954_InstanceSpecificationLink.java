@@ -53,7 +53,7 @@ public class Bug382954_InstanceSpecificationLink extends AbstractPapyrusTest {
 		NamedElement targetLink = modelSetFixture.getModel().getMember("c");
 
 		// Create the command with the creation request and service edit
-		CreateRelationshipRequest relationshipRequest = new CreateRelationshipRequest(modelSetFixture.getModel(), sourceLink, targetLink, UMLElementTypes.InstanceSpecification_4021);
+		CreateRelationshipRequest relationshipRequest = new CreateRelationshipRequest(modelSetFixture.getModel(), sourceLink, targetLink, UMLElementTypes.InstanceSpecification_Edge);
 		IElementEditService editService = ElementEditServiceUtils.getCommandProvider(modelSetFixture.getModel());
 		ICommand editCommand = editService.getEditCommand(relationshipRequest);
 

@@ -80,7 +80,7 @@ public class DependencyBranchCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDependency_4017(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDependency_BranchEdge(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class DependencyBranchCreateCommand extends EditElementCommand {
 				.add(getSource());
 		newElement.getSuppliers()
 				.add(getTarget());
-		ElementInitializers.getInstance().init_Dependency_4017(newElement);
+		ElementInitializers.getInstance().init_Dependency_BranchEdge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

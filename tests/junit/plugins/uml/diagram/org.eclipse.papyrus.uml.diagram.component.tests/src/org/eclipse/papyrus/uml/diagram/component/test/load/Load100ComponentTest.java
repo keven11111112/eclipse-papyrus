@@ -62,7 +62,7 @@ public class Load100ComponentTest extends AbstractPapyrusTestCase {
 	@Test
 	public void testLoad100Component() {
 		for(int i = 0; i < 100; i++) {
-			testToCreateANode(UMLElementTypes.Component_2002);
+			testToCreateANode(UMLElementTypes.Component_PackagedElementShape);
 		}
 	}
 }

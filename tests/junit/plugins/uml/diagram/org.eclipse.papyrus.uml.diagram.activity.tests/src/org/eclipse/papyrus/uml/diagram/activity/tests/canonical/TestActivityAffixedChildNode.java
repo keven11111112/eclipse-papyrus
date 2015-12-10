@@ -28,7 +28,7 @@ public  class TestActivityAffixedChildNode extends AbstractTestActivityAffixedCh
 	 */
 	@Test
 	public void testToManageActivityParameterNode() {
-		testToManageChildNode(UMLElementTypes.ActivityParameterNode_3059,5);
+		testToManageChildNode(UMLElementTypes.ActivityParameterNode_Shape,5);
 	}
 
 	@Override

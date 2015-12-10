@@ -73,7 +73,7 @@ public class CustomPortCreateCommand extends org.eclipse.papyrus.uml.diagram.com
 		StructuredClassifier owner = (StructuredClassifier) ((Property) getElementToEdit()).getType();
 		owner.getOwnedAttributes().add(newElement);
 
-		ElementInitializers.getInstance().init_Port_3069(newElement);
+		ElementInitializers.getInstance().init_Port_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

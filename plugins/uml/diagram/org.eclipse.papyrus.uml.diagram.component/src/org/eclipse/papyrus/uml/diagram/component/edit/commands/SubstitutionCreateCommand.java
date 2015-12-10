@@ -80,7 +80,7 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateSubstitution_4012(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateSubstitution_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 				.add(getSource());
 		newElement.getSuppliers()
 				.add(getTarget());
-		ElementInitializers.getInstance().init_Substitution_4012(newElement);
+		ElementInitializers.getInstance().init_Substitution_Edge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

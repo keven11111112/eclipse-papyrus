@@ -284,7 +284,7 @@ public abstract class AbstractNodeTest extends TestTopNode {
 		request.setTargetEditPart(sourceEditPart);
 		request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(startLocation, sourceEditPart));
 		Command command = null;
-		if(UMLElementTypes.GeneralOrdering_4012 == elementType) {
+		if(UMLElementTypes.GeneralOrdering_Edge == elementType) {
 			LifelineEditPart lifelinePart = sourceEditPart instanceof ConnectionEditPart ? SequenceUtil.getParentLifelinePart(((ConnectionEditPart)sourceEditPart).getSource()) : SequenceUtil.getParentLifelinePart(sourceEditPart);
 			assertNotNull(lifelinePart);
 			Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), lifelinePart);
@@ -316,7 +316,7 @@ public abstract class AbstractNodeTest extends TestTopNode {
 		assertNotNull("Can not find connecting end at " + endLocation, targetEditPart);
 		request.setTargetEditPart(targetEditPart);
 		request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentContainerAt(endLocation, targetEditPart));
-		if(UMLElementTypes.GeneralOrdering_4012 == elementType) {
+		if(UMLElementTypes.GeneralOrdering_Edge == elementType) {
 			LifelineEditPart lifelinePart = targetEditPart instanceof ConnectionEditPart ? SequenceUtil.getParentLifelinePart(((ConnectionEditPart)targetEditPart).getTarget()) : SequenceUtil.getParentLifelinePart(targetEditPart);
 			assertNotNull(lifelinePart);
 			Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), lifelinePart);

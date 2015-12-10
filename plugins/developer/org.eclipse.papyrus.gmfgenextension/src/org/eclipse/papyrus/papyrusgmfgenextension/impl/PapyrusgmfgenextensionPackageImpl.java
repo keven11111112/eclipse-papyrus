@@ -51,6 +51,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocator;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel;
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate;
+import org.eclipse.papyrus.papyrusgmfgenextension.VisualIDOverride;
 
 /**
  * <!-- begin-user-doc -->
@@ -233,6 +234,13 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass genVisualTypeProviderEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass visualIDOverrideEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -942,6 +950,42 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVisualIDOverride() {
+		return visualIDOverrideEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVisualIDOverride_GenView() {
+		return (EReference)visualIDOverrideEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getVisualIDOverride_VisualID() {
+		return (EAttribute)visualIDOverrideEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVisualIDOverride_Child() {
+		return (EReference)visualIDOverrideEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PapyrusgmfgenextensionFactory getPapyrusgmfgenextensionFactory() {
 		return (PapyrusgmfgenextensionFactory)getEFactoryInstance();
 	}
@@ -1060,6 +1104,11 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		genVisualTypeProviderEClass = createEClass(GEN_VISUAL_TYPE_PROVIDER);
 		createEAttribute(genVisualTypeProviderEClass, GEN_VISUAL_TYPE_PROVIDER__CLASS_NAME);
+
+		visualIDOverrideEClass = createEClass(VISUAL_ID_OVERRIDE);
+		createEReference(visualIDOverrideEClass, VISUAL_ID_OVERRIDE__GEN_VIEW);
+		createEAttribute(visualIDOverrideEClass, VISUAL_ID_OVERRIDE__VISUAL_ID);
+		createEReference(visualIDOverrideEClass, VISUAL_ID_OVERRIDE__CHILD);
 	}
 
 	/**
@@ -1216,6 +1265,11 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		initEClass(genVisualTypeProviderEClass, GenVisualTypeProvider.class, "GenVisualTypeProvider", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenVisualTypeProvider_ClassName(), ecorePackage.getEString(), "className", "UMLVisualTypeProvider", 0, 1, GenVisualTypeProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(visualIDOverrideEClass, VisualIDOverride.class, "VisualIDOverride", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVisualIDOverride_GenView(), theGMFGenPackage.getGenCommonBase(), null, "genView", null, 1, 1, VisualIDOverride.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getVisualIDOverride_VisualID(), theEcorePackage.getEString(), "visualID", null, 1, 1, VisualIDOverride.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getVisualIDOverride_Child(), this.getVisualIDOverride(), null, "child", null, 0, -1, VisualIDOverride.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

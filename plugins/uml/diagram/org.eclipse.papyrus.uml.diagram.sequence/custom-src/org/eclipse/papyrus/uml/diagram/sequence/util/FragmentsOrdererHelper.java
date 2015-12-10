@@ -65,12 +65,12 @@ public class FragmentsOrdererHelper {
 
 	private static final List<String> INTERACTION_FRAGMENT_HINTS = new ArrayList<String>();
 	static {
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.ActionExecutionSpecification_3006).getSemanticHint());
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_3003).getSemanticHint());
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.CombinedFragment_3004).getSemanticHint());
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.CombinedFragment_3018).getSemanticHint());
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.InteractionUse_3002).getSemanticHint());
-		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.StateInvariant_3017).getSemanticHint());
+		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.ActionExecutionSpecification_Shape).getSemanticHint());
+		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.BehaviorExecutionSpecification_Shape).getSemanticHint());
+		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.CombinedFragment_Shape).getSemanticHint());
+		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.CombinedFragment_CoRegionShape).getSemanticHint());
+		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.InteractionUse_Shape).getSemanticHint());
+		INTERACTION_FRAGMENT_HINTS.add(((IHintedType) UMLElementTypes.StateInvariant_Shape).getSemanticHint());
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class FragmentsOrdererHelper {
 			return true;
 		}
 		// PartDecomposition
-		else if (parentEditPart instanceof LifelineEditPart && ((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint().equals(semanticHint)) {
+		else if (parentEditPart instanceof LifelineEditPart && ((IHintedType) UMLElementTypes.Lifeline_Shape).getSemanticHint().equals(semanticHint)) {
 			return true;
 		}
 		return false;

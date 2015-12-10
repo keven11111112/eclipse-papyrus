@@ -45,9 +45,9 @@ import org.junit.Test;
 public class TestExecutionEndsWithMessageOccurrenceSpecification extends AbstractNodeTest {
 
 	private AbstractExecutionSpecificationEditPart createExecutionSpecificationWithLifeline(Point lifelineLocation, Dimension executionSize) {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), lifelineLocation, null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), lifelineLocation, null);
 		assertNotNull("create ExecutionSpecification's Lifeline", lifeline);
-		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, getAbsoluteBounds(lifeline).getCenter(), executionSize);
+		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteBounds(lifeline).getCenter(), executionSize);
 		assertNotNull("create ExecutionSpecification", es);
 		return es;
 	}
@@ -88,7 +88,7 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 		AbstractExecutionSpecificationEditPart execution2 = createExecutionSpecificationWithLifeline(new Point(300, 100), null);
 		//1. create message: execution1.start ----message----> execution2
 		ExecutionSpecificationEndEditPart source = findEndEditPart(execution1, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution = (ExecutionSpecification)execution1.resolveSemanticElement();
@@ -121,7 +121,7 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 		AbstractExecutionSpecificationEditPart execution2 = createExecutionSpecificationWithLifeline(new Point(300, 100), null);
 		//1. create message: execution1 ----message----> execution2.start
 		ExecutionSpecificationEndEditPart target = findEndEditPart(execution2, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getCenter(), execution1, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getCenter(), execution1, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution = (ExecutionSpecification)execution2.resolveSemanticElement();
@@ -155,10 +155,10 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 	public void testReconnectSourceToChildExecution() {
 		AbstractExecutionSpecificationEditPart execution1 = createExecutionSpecificationWithLifeline(new Point(100, 100), new Dimension(16, 80));
 		AbstractExecutionSpecificationEditPart execution2 = createExecutionSpecificationWithLifeline(new Point(300, 100), new Dimension(16, 150));
-		AbstractExecutionSpecificationEditPart execution3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, execution1.getParent(), SequenceUtil.getAbsoluteBounds(execution1).getCenter(), null);
+		AbstractExecutionSpecificationEditPart execution3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, execution1.getParent(), SequenceUtil.getAbsoluteBounds(execution1).getCenter(), null);
 		//1. create message: execution1.start ----message----> execution2
 		ExecutionSpecificationEndEditPart source = findEndEditPart(execution1, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution = (ExecutionSpecification)execution1.resolveSemanticElement();
@@ -176,10 +176,10 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 	public void testReconnectTargetToChildExecution() {
 		AbstractExecutionSpecificationEditPart execution1 = createExecutionSpecificationWithLifeline(new Point(100, 100), new Dimension(16, 100));
 		AbstractExecutionSpecificationEditPart execution2 = createExecutionSpecificationWithLifeline(new Point(300, 100), new Dimension(16, 80));
-		AbstractExecutionSpecificationEditPart execution3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, execution1.getParent(), SequenceUtil.getAbsoluteBounds(execution1).getCenter(), null);
+		AbstractExecutionSpecificationEditPart execution3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, execution1.getParent(), SequenceUtil.getAbsoluteBounds(execution1).getCenter(), null);
 		//1. create message: execution2 ----message----> execution1.start
 		ExecutionSpecificationEndEditPart target = findEndEditPart(execution1, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2, SequenceUtil.getAbsoluteBounds(execution1).getTop(), target);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2, SequenceUtil.getAbsoluteBounds(execution1).getTop(), target);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution = (ExecutionSpecification)execution1.resolveSemanticElement();
@@ -200,7 +200,7 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 		//1. create message: execution1.start ----message----> execution2.start
 		ExecutionSpecificationEndEditPart source = findEndEditPart(execution1, true);
 		ExecutionSpecificationEndEditPart target = findEndEditPart(execution2, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution1 = (ExecutionSpecification)execution1.resolveSemanticElement();
@@ -226,7 +226,7 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 		//1. create message: execution1.start ----message----> execution2.start
 		ExecutionSpecificationEndEditPart source = findEndEditPart(execution1, true);
 		ExecutionSpecificationEndEditPart target = findEndEditPart(execution2, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution1 = (ExecutionSpecification)execution1.resolveSemanticElement();
@@ -251,7 +251,7 @@ public class TestExecutionEndsWithMessageOccurrenceSpecification extends Abstrac
 		//1. create message: execution1.start ----message----> execution2.start
 		ExecutionSpecificationEndEditPart source = findEndEditPart(execution1, true);
 		ExecutionSpecificationEndEditPart target = findEndEditPart(execution2, true);
-		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
+		AbstractMessageEditPart message = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, execution1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), source, SequenceUtil.getAbsoluteBounds(execution2).getTop(), target);
 		assertNotNull("Message", message);
 		Message umlMsg = (Message)message.resolveSemanticElement();
 		ExecutionSpecification umlExecution1 = (ExecutionSpecification)execution1.resolveSemanticElement();

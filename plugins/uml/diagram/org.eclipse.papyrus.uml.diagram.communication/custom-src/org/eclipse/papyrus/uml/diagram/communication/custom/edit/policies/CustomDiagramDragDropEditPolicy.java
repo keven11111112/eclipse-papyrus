@@ -191,8 +191,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (!(graphicalParentObject instanceof Interaction)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_8005,
-				(IHintedType) UMLElementTypes.CommentAnnotatedElement_8010);
+		return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape,
+				(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (!(graphicalParentObject instanceof Interaction)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_8004,
-				(IHintedType) UMLElementTypes.ConstraintConstrainedElement_8011);
+		return getDropConstraintCommand((Constraint) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Constraint_Shape,
+				(IHintedType) UMLElementTypes.Constraint_ConstrainedElementEdge);
 	}
 
 	/**
@@ -525,7 +525,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	private IUndoableOperation dropConnectableElement(DropObjectsRequest dropRequest, ConnectableElement droppedObject) {
 		// Let's actually create a lifeline representing this connectable
 		Point location = dropRequest.getLocation();
-		CreateViewRequest createShapeRequest = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_8001, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		CreateViewRequest createShapeRequest = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Lifeline_Shape, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		createShapeRequest.setLocation(location);
 		ViewDescriptor viewDescriptor = createShapeRequest.getViewDescriptors().get(0);
 		CreateElementRequestAdapter elementAdapter = (CreateElementRequestAdapter) viewDescriptor.getElementAdapter();

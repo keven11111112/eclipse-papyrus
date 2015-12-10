@@ -98,7 +98,7 @@ public class SelectAndCreateSlotsCommand extends AbstractCommand {
 			Property property = (Property) propertyObject;
 			// Creates the slot
 			TransactionalEditingDomain domain = (TransactionalEditingDomain) EMFHelper.resolveEditingDomain(targetEditPart);
-			CreateElementRequest createElementRequest = new CreateElementRequest(domain, specification, UMLElementTypes.Slot_3030);
+			CreateElementRequest createElementRequest = new CreateElementRequest(domain, specification, UMLElementTypes.Slot_SlotLabel);
 
 			ICommand slotCreationCommand;
 

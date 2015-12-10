@@ -47,6 +47,6 @@ public class TestComponentDiagramCommentLink extends TestCommentLink {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageLink(UMLElementTypes.Comment_3201, UMLElementTypes.Package_3200, UMLElementTypes.CommentAnnotatedElement_4015, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Comment_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.Comment_AnnotatedElementEdge, UMLElementTypes.Package_Shape, true);
 	}
 }

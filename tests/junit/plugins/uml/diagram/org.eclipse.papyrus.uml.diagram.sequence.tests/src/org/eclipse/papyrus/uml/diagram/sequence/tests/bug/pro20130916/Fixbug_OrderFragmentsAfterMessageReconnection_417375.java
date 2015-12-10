@@ -48,12 +48,12 @@ public class Fixbug_OrderFragmentsAfterMessageReconnection_417375 extends Abstra
 
 	@Test
 	public void test() {
-		EditPart lifeline1 = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(100, 500));
-		EditPart lifeline2 = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(100, 500));
+		EditPart lifeline1 = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 500));
+		EditPart lifeline2 = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(100, 500));
 
 		final Interaction interaction = (Interaction)getRootEditPart().resolveSemanticElement();
 
-		ActionExecutionSpecificationEditPart execution1 = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline1, new Point(131, 200), new Dimension(16, 150));
+		ActionExecutionSpecificationEditPart execution1 = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, new Point(131, 200), new Dimension(16, 150));
 		ActionExecutionSpecification actionES = (ActionExecutionSpecification)execution1.resolveSemanticElement();
 		waitForComplete();
 		//validate after create action
@@ -63,7 +63,7 @@ public class Fixbug_OrderFragmentsAfterMessageReconnection_417375 extends Abstra
 		actualList.add(actionES.getFinish());
 		validateOrders(interaction.getFragments(), actualList);
 
-		BehaviorExecutionSpecificationEditPart execution2 = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline1, new Point(148, 230), new Dimension(16, 80));
+		BehaviorExecutionSpecificationEditPart execution2 = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(148, 230), new Dimension(16, 80));
 		BehaviorExecutionSpecification behaviorES = (BehaviorExecutionSpecification)execution2.resolveSemanticElement();
 		waitForComplete();
 		//validate after create behavior
@@ -78,7 +78,7 @@ public class Fixbug_OrderFragmentsAfterMessageReconnection_417375 extends Abstra
 
 		Point endLocation = SequenceUtil.getAbsoluteBounds(execution2).getCenter().getCopy().getTranslated(0, 20);
 		Point startLocation = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart)lifeline2).getCenter().setY(endLocation.y - 1);
-		AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), startLocation, lifeline2, endLocation, execution2);
+		AbstractMessageEditPart messageEditPart = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline2, endLocation, execution2);
 		Message message = (Message)messageEditPart.resolveSemanticElement();
 		waitForComplete();
 		//validate after create message

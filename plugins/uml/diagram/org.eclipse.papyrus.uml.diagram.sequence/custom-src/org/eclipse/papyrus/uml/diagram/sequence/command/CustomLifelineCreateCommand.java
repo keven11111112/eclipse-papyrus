@@ -110,7 +110,7 @@ public class CustomLifelineCreateCommand extends LifelineCreateCommand {
 			interactionOwner = (Interaction) getElementToEdit();
 		}
 		interactionOwner.getLifelines().add(newElement);
-		ElementInitializers.getInstance().init_Lifeline_3001(newElement);
+		ElementInitializers.getInstance().init_Lifeline_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

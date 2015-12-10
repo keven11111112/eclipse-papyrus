@@ -108,9 +108,9 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 
 	/** Creates 3 state definitions in the default Lifeline */
 	protected void createThreeStateDefinitionsInDefaultFullLifeline() {
-		createView(UMLElementTypes.Node_9, this.stateDefinitionCompartment);
-		createView(UMLElementTypes.Node_9, this.stateDefinitionCompartment);
-		createView(UMLElementTypes.Node_9, this.stateDefinitionCompartment);
+		createView(UMLElementTypes.Node_StateDefinitionShape, this.stateDefinitionCompartment);
+		createView(UMLElementTypes.Node_StateDefinitionShape, this.stateDefinitionCompartment);
+		createView(UMLElementTypes.Node_StateDefinitionShape, this.stateDefinitionCompartment);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 */
 	protected StateDefinitionEditPart createStateDefinition(final FullLifelineEditPartCN parentLifelineEditPart) {
 		final FullLifelineStateDefinitionCompartmentEditPartCN compartment = (FullLifelineStateDefinitionCompartmentEditPartCN)EditPartUtils.findFirstChildEditPartWithId(parentLifelineEditPart, FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID);
-		final View stateDefinitionView = createView(UMLElementTypes.Node_9, compartment);
+		final View stateDefinitionView = createView(UMLElementTypes.Node_StateDefinitionShape, compartment);
 		assertNotNull("The StateDefinition View should be created", stateDefinitionView);
 		return (StateDefinitionEditPart)findChildEditPartAssociatedToView(compartment, stateDefinitionView);
 	}
@@ -151,7 +151,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	protected FullLifelineEditPartCN createFullLifeline(final InteractionEditPartTN parentInteractionEditPart) {
 		final EditPart compartment = EditPartUtils.findFirstChildEditPartWithId(parentInteractionEditPart, InteractionCompartmentEditPartTN.VISUAL_ID);
 		assertNotNull("The compartment must not be null", compartment);
-		final View view = createView(UMLElementTypes.Lifeline_19, compartment);
+		final View view = createView(UMLElementTypes.Lifeline_FullShape, compartment);
 		assertNotNull("The FullLifeline View should be created", view);
 		return (FullLifelineEditPartCN)findChildEditPartAssociatedToView(compartment, view);
 	}
@@ -173,7 +173,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	protected CompactLifelineEditPartCN createCompactLifeline(final InteractionEditPartTN parentInteractionEditPart) {
 		final EditPart compartment = EditPartUtils.findFirstChildEditPartWithId(parentInteractionEditPart, InteractionCompartmentEditPartTN.VISUAL_ID);
 		assertNotNull("The compartment must not be null", compartment);
-		final View view = createView(UMLElementTypes.Lifeline_20, compartment);
+		final View view = createView(UMLElementTypes.Lifeline_CompactShape, compartment);
 		assertNotNull("The CompactLifeline View should be created", view);
 		return (CompactLifelineEditPartCN)findChildEditPartAssociatedToView(compartment, view);
 	}
@@ -188,7 +188,7 @@ public class AbstractTimingDiagramTestCase extends AbstractPapyrusTestCase {
 	 * @return the created Interaction's EditPart
 	 */
 	protected InteractionEditPartTN createInteraction(final Point location, final Dimension dimension) {
-		createView(UMLElementTypes.Interaction_2, location, dimension, getDiagramEditPart());
+		createView(UMLElementTypes.Interaction_Shape, location, dimension, getDiagramEditPart());
 		final InteractionEditPartTN interactionEditPart = (InteractionEditPartTN)EditPartUtils.findFirstChildEditPartWithId(getDiagramEditPart(), InteractionEditPartTN.VISUAL_ID);
 		assertNotNull("The interaction EditPart was not found under the diagram EditPart", interactionEditPart);
 		final InteractionCompartmentEditPartTN interactionCompartment = (InteractionCompartmentEditPartTN)EditPartUtils.findFirstChildEditPartWithId(interactionEditPart, InteractionCompartmentEditPartTN.VISUAL_ID);

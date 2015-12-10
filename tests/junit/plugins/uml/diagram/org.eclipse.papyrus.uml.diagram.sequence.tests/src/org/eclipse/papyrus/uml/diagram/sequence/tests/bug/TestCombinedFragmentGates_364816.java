@@ -71,19 +71,19 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 
 	@Test
 	public void testMessageAsyc_Gate() {
-		installEnvironment(UMLElementTypes.Lifeline_3001, UMLElementTypes.CombinedFragment_3004);
+		installEnvironment(UMLElementTypes.Lifeline_Shape, UMLElementTypes.CombinedFragment_Shape);
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)target;
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
 
 		// prepare link and gate
-		createLink(UMLElementTypes.Message_4004, source, target, getAbsoluteCenter(source), getLeft(target));
+		createLink(UMLElementTypes.Message_AsynchEdge, source, target, getAbsoluteCenter(source), getLeft(target));
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof Message2EditPart);
 		assertTrue(CREATION + INITIALIZATION_TEST, cf.getCfragmentGates().size() == 1);
 
 		// check reuse of gate
 		new PopupUtil(houseKeeper).addDialogCloseHandler();
-		createLink(UMLElementTypes.Message_4004, source, target, getAbsoluteCenter(source).translate(0, 40), getLeft(target).translate(0, 40));
+		createLink(UMLElementTypes.Message_AsynchEdge, source, target, getAbsoluteCenter(source).translate(0, 40), getLeft(target).translate(0, 40));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 2);
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof Message2EditPart);
@@ -105,21 +105,21 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 
 	@Test
 	public void testMessageFound_Gate() {
-		installEnvironment(UMLElementTypes.Lifeline_3001, UMLElementTypes.CombinedFragment_3004);
+		installEnvironment(UMLElementTypes.Lifeline_Shape, UMLElementTypes.CombinedFragment_Shape);
 		source = (GraphicalEditPart)source.getParent().getParent(); //interaction
 
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)target;
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
 
 		// prepare link and gate
-		createLink(UMLElementTypes.Message_4009, source, target, new Point(0, 0), getLeft(target));
+		createLink(UMLElementTypes.Message_FoundEdge, source, target, new Point(0, 0), getLeft(target));
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof Message7EditPart);
 		assertTrue(CREATION + INITIALIZATION_TEST, cf.getCfragmentGates().size() == 1);
 
 		// check reuse of gate
 		new PopupUtil(houseKeeper).addDialogCloseHandler();
-		createLink(UMLElementTypes.Message_4009, source, target, new Point(0, 20), getLeft(target).translate(0, 40));
+		createLink(UMLElementTypes.Message_FoundEdge, source, target, new Point(0, 20), getLeft(target).translate(0, 40));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 2);
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof Message7EditPart);
@@ -141,21 +141,21 @@ public class TestCombinedFragmentGates_364816 extends TestLink {
 
 	@Test
 	public void testMessageLost_Gate() {
-		installEnvironment(UMLElementTypes.CombinedFragment_3004, UMLElementTypes.Lifeline_3001);
+		installEnvironment(UMLElementTypes.CombinedFragment_Shape, UMLElementTypes.Lifeline_Shape);
 		target = (GraphicalEditPart)target.getParent().getParent(); //interaction
 
 		CombinedFragmentEditPart cep = (CombinedFragmentEditPart)source;
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
 
 		// prepare link and gate
-		createLink(UMLElementTypes.Message_4008, source, target, getLeft(source), new Point(0, 150));
+		createLink(UMLElementTypes.Message_LostEdge, source, target, getLeft(source), new Point(0, 150));
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().size() == 1);
 		assertTrue(CREATION + INITIALIZATION_TEST, source.getSourceConnections().get(0) instanceof Message6EditPart);
 		assertTrue(CREATION + INITIALIZATION_TEST, cf.getCfragmentGates().size() == 1);
 
 		// check reuse of gate
 		new PopupUtil(houseKeeper).addDialogCloseHandler();
-		createLink(UMLElementTypes.Message_4008, source, target, getLeft(source), new Point(0, 200));
+		createLink(UMLElementTypes.Message_LostEdge, source, target, getLeft(source), new Point(0, 200));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 2);
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().get(1) instanceof Message6EditPart);

@@ -69,13 +69,13 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 	@Test
 	public void testStereotypeApplicationOnClass() {
-		testToCreateANode(UMLElementTypes.Class_2008);
+		testToCreateANode(UMLElementTypes.Class_Shape);
 
 	}
 
 	@Test
 	public void testStereotypeApplicationOnPackage() {
-		testToCreateAPackage(UMLElementTypes.Package_2007);
+		testToCreateAPackage(UMLElementTypes.Package_Shape);
 
 	}
 

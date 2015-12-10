@@ -87,7 +87,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		View viewObject = (View) getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.INSTANCE
-				.getPackage_1000SemanticChildren(viewObject);
+				.getPackage_CommunicationDiagram_SemanticChildren(viewObject);
 		for (UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -121,7 +121,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
 		List<UMLNodeDescriptor> childDescriptors =
 				UMLDiagramUpdater.INSTANCE
-						.getPackage_1000SemanticChildren((View) getHost().getModel());
+						.getPackage_CommunicationDiagram_SemanticChildren((View) getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
@@ -248,7 +248,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ModelEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getPackage_1000ContainedLinks(view));
+						.getPackage_CommunicationDiagram_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -256,7 +256,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case InteractionEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getInteraction_8002ContainedLinks(view));
+						.getInteraction_Shape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -264,7 +264,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ShortCutDiagramEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getDiagram_8016ContainedLinks(view));
+						.getDiagram_ShortcutShape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -272,7 +272,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case LifelineEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getLifeline_8001ContainedLinks(view));
+						.getLifeline_Shape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -280,7 +280,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ConstraintEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getConstraint_8004ContainedLinks(view));
+						.getConstraint_Shape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -288,7 +288,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case CommentEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getComment_8005ContainedLinks(view));
+						.getComment_Shape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -296,7 +296,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case TimeObservationEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getTimeObservation_8006ContainedLinks(view));
+						.getTimeObservation_Shape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -304,7 +304,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case DurationObservationEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getDurationObservation_8007ContainedLinks(view));
+						.getDurationObservation_Shape_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
@@ -312,7 +312,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case MessageEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE
-						.getMessage_8009ContainedLinks(view));
+						.getPath_Edge_ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

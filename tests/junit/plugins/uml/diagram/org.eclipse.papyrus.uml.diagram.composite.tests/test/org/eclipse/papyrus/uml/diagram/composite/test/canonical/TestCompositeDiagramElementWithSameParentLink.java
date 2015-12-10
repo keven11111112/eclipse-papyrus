@@ -90,7 +90,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		parentType = UMLElementTypes.Class_2073;
+		parentType = UMLElementTypes.Class_Shape;
 	}
 
 
@@ -162,7 +162,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	@Test
 	public void testToManagePortConnector() {
 		initConfLinkOwnedByParent();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Connector_4013, UMLElementTypes.Class_2073, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Connector_Edge, UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -171,7 +171,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	@Test
 	public void testToManagePortUsage() {
 		initConfLinkOwnedByDiagram();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Usage_4008, UMLElementTypes.Class_2073, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	@Test
 	public void testToManagePortAbstraction() {
 		initConfLinkOwnedByDiagram();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Abstraction_4007, UMLElementTypes.Class_2073, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Class_Shape, true);
 	}
 
 
@@ -189,7 +189,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	 */
 	@Test
 	public void testToManagePortGeneralization() {
-		testImpossibleToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Generalization_4015);
+		testImpossibleToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Generalization_Edge);
 	}
 
 	/**
@@ -198,7 +198,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	@Test
 	@InteractiveTest
 	public void testToDeployment() {
-		testToManageLink(UMLElementTypes.Node_3084, UMLElementTypes.DeploymentSpecification_3092, UMLElementTypes.Deployment_4009, UMLElementTypes.Class_2073, true);
+		testToManageLink(UMLElementTypes.Node_Shape_CN, UMLElementTypes.DeploymentSpecification_Shape_CN, UMLElementTypes.Deployment_Edge, UMLElementTypes.Class_Shape, true);
 	}
 
 }

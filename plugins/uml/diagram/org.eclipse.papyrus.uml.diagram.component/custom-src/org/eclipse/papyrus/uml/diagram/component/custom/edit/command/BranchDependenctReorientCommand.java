@@ -51,7 +51,7 @@ public class BranchDependenctReorientCommand extends DependencyBranchReorientCom
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4017(container, getLink(), getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_BranchEdge(container, getLink(), getNewSource(), target);
 
 	}
 
@@ -69,7 +69,7 @@ public class BranchDependenctReorientCommand extends DependencyBranchReorientCom
 			return false;
 		}
 		Package container = (Package) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4017(container, getLink(), source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_BranchEdge(container, getLink(), source, getNewTarget());
 
 	}
 }

@@ -25,7 +25,7 @@ public class CommentAnnotatedElementItemSemanticEditPolicy extends UMLBaseItemSe
 	 * @generated
 	 */
 	public CommentAnnotatedElementItemSemanticEditPolicy() {
-		super(UMLElementTypes.CommentAnnotatedElement_8010);
+		super(UMLElementTypes.Comment_AnnotatedElementEdge);
 	}
 
 	/**

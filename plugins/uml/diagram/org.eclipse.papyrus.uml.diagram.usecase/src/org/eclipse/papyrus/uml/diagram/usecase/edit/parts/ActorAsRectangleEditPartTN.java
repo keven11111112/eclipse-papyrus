@@ -41,7 +41,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "2012";
+	public static final String VISUAL_ID = "Actor_ClassifierShape";
 
 	/**
 	 * @generated
@@ -67,7 +67,9 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -77,11 +79,12 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
+
 		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				if(child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
-					if(child instanceof ITextAwareEditPart) {
+				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
+					if (child instanceof ITextAwareEditPart) {
 						return new UMLTextSelectionEditPolicy();
 					}
 				}
@@ -106,17 +109,19 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	public ActorAsRectangleFigure getPrimaryShape() {
-		return (ActorAsRectangleFigure)primaryShape;
+		return (ActorAsRectangleFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActorAsRectangleNameEditPartTN) {
-			((ActorAsRectangleNameEditPartTN)childEditPart).setLabel(getPrimaryShape().getActorAsRectangleFigure_name());
+		if (childEditPart instanceof ActorAsRectangleNameEditPartTN) {
+			((ActorAsRectangleNameEditPartTN) childEditPart)
+					.setLabel(getPrimaryShape().getActorAsRectangleFigure_name());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -124,7 +129,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActorAsRectangleNameEditPartTN) {
+		if (childEditPart instanceof ActorAsRectangleNameEditPartTN) {
 			return true;
 		}
 		return false;
@@ -135,7 +140,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -146,7 +151,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -180,6 +185,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -192,7 +198,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -205,7 +211,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -216,7 +222,7 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -234,8 +240,8 @@ public class ActorAsRectangleEditPartTN extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -80,9 +81,9 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 		List<PopupAssistant> popups = fixture.assertAllPopupAssistants(finderOperation);
 
 		Pair<Stereotype, Class> beanClass = fixture.getMetaclassExtension("Bean", "Class");
-		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(beanClass, 0);
+		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(beanClass, null);
 		Pair<Stereotype, Class> accessControlledInterface = fixture.getMetaclassExtension("AccessControlled", "Interface");
-		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, 0);
+		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, null);
 
 		assertThat(transform(popups, EMFFunctions.getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterInterface)));
@@ -95,9 +96,9 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(webAssociation);
 
 		Pair<Stereotype, Class> beanClass = fixture.getMetaclassExtension("Bean", "Class");
-		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(beanClass, 0);
+		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(beanClass, null);
 		Pair<Stereotype, Class> accessControlledInterface = fixture.getMetaclassExtension("AccessControlled", "Interface");
-		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, 0);
+		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, null);
 
 		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterInterface)));
@@ -110,9 +111,9 @@ public class BasicAssistantsGenerationTest extends AbstractPapyrusTest {
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(webAssociation);
 
 		Pair<Stereotype, Class> beanClass = fixture.getMetaclassExtension("Bean", "Class");
-		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(beanClass, 0);
+		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(beanClass, null);
 		Pair<Stereotype, Class> accessControlledInterface = fixture.getMetaclassExtension("AccessControlled", "Interface");
-		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, 0);
+		ElementTypeFilter filterInterface = fixture.assertMetaclassFilter(accessControlledInterface, null);
 
 		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterInterface)));

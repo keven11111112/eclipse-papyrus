@@ -46,7 +46,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3002";
+	public static final String VISUAL_ID = "InteractionUse_Shape";
 
 	/**
 	 * @generated
@@ -72,7 +72,9 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionUseItemSemanticEditPolicy());
@@ -88,6 +90,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -99,7 +102,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -129,21 +132,22 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	public InteractionUseRectangleFigure getPrimaryShape() {
-		return (InteractionUseRectangleFigure)primaryShape;
+		return (InteractionUseRectangleFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InteractionUseNameEditPart) {
-			((InteractionUseNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
+		if (childEditPart instanceof InteractionUseNameEditPart) {
+			((InteractionUseNameEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
-		if(childEditPart instanceof InteractionUseName2EditPart) {
-			((InteractionUseName2EditPart)childEditPart).setLabel(getPrimaryShape().getCenterLabel());
+		if (childEditPart instanceof InteractionUseName2EditPart) {
+			((InteractionUseName2EditPart) childEditPart).setLabel(getPrimaryShape().getCenterLabel());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -151,10 +155,10 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InteractionUseNameEditPart) {
+		if (childEditPart instanceof InteractionUseNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof InteractionUseName2EditPart) {
+		if (childEditPart instanceof InteractionUseName2EditPart) {
 			return true;
 		}
 		return false;
@@ -165,7 +169,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -176,7 +180,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -209,6 +213,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -220,7 +225,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -233,7 +238,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -244,7 +249,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -262,8 +267,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

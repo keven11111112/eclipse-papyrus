@@ -260,9 +260,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		if(ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_2005, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
+			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_Shape, (IHintedType)UMLElementTypes.Constraint_ConstrainedElementEdge);
 		} else if(ConstraintEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_56, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
+			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_Shape_CN, (IHintedType)UMLElementTypes.Constraint_ConstrainedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -282,9 +282,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 
 		if(CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_2001, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
+			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_Shape, (IHintedType)UMLElementTypes.Comment_AnnotatedElementEdge);
 		} else if(CommentEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_54, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
+			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_Shape_CN, (IHintedType)UMLElementTypes.Comment_AnnotatedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

@@ -67,7 +67,7 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 		while (regions.hasNext()) {
 			Region region = regions.next();
 			IAdaptable regionAdaptable = new SemanticAdapter(region, null);
-			String semanticHint = ((IHintedType) UMLElementTypes.Region_3000).getSemanticHint();
+			String semanticHint = ((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint();
 			if (compartmentView != null) {
 				Node regionNode = ViewService.getInstance().createNode(regionAdaptable, compartmentView, semanticHint, -1, prefHints);
 				// add region specifics

@@ -61,7 +61,7 @@ public interface ViewInfo {
 	 *
 	 * @return the visual id
 	 */
-	int getVisualID();
+	String getVisualID();
 
 	/**
 	 * Gets the children.
@@ -100,7 +100,7 @@ public interface ViewInfo {
 	 *            the new visual id
 	 */
 	// @unused
-	void setVisualID(int visualID);
+	void setVisualID(String visualID);
 
 	/**
 	 * Sets the children.
@@ -138,7 +138,7 @@ public interface ViewInfo {
 	 *
 	 * @return true, if successful
 	 */
-	boolean addNode(int parentVisualID, ViewInfo info);
+	boolean addNode(String parentVisualID, ViewInfo info);
 
 	/**
 	 * True if this view info can be selected to be filtered.

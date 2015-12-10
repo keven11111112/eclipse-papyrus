@@ -81,7 +81,7 @@ public class CustomCombinedFragmentCreateCommand extends CombinedFragmentCreateC
 		} else if (elementToEdit instanceof Interaction) {
 			((Interaction) elementToEdit).getFragments().add(newElement);
 		}
-		ElementInitializers.getInstance().init_CombinedFragment_3004(newElement);
+		ElementInitializers.getInstance().init_CombinedFragment_Shape(newElement);
 		Set<InteractionFragment> coveredInteractionFragments = (Set<InteractionFragment>) getRequest().getParameters().get(SequenceRequestConstant.COVERED_INTERACTIONFRAGMENTS);
 		CustomInteractionOperandCreateCommand.createInteractionOperand(newElement, coveredInteractionFragments);
 		doConfigure(newElement, monitor, info);

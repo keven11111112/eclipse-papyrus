@@ -25,7 +25,7 @@ public class ConnectorDurationObservationItemSemanticEditPolicy extends UMLBaseI
 	 * @generated
 	 */
 	public ConnectorDurationObservationItemSemanticEditPolicy() {
-		super(UMLElementTypes.DurationObservationEvent_8012);
+		super(UMLElementTypes.DurationObservation_EventEdge);
 	}
 
 	/**

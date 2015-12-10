@@ -75,7 +75,7 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 * @generated
 	 */
 	public LifelineItemSemanticEditPolicy() {
-		super(UMLElementTypes.Lifeline_3001);
+		super(UMLElementTypes.Lifeline_Shape);
 	}
 
 	/**
@@ -102,49 +102,49 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.ActionExecutionSpecification_3006 == baseElementType) {
+		if (UMLElementTypes.ActionExecutionSpecification_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ActionExecutionSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.BehaviorExecutionSpecification_3003 == baseElementType) {
+		if (UMLElementTypes.BehaviorExecutionSpecification_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new BehaviorExecutionSpecificationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.StateInvariant_3017 == baseElementType) {
+		if (UMLElementTypes.StateInvariant_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new StateInvariantCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.CombinedFragment_3018 == baseElementType) {
+		if (UMLElementTypes.CombinedFragment_CoRegionShape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CombinedFragment2CreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TimeConstraint_3019 == baseElementType) {
+		if (UMLElementTypes.TimeConstraint_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new TimeConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TimeObservation_3020 == baseElementType) {
+		if (UMLElementTypes.TimeObservation_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new TimeObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DurationConstraint_3021 == baseElementType) {
+		if (UMLElementTypes.DurationConstraint_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new DurationConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.DestructionOccurrenceSpecification_3022 == baseElementType) {
+		if (UMLElementTypes.DestructionOccurrenceSpecification_Shape == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
@@ -200,52 +200,52 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_4003 == baseElementType) {
+		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == baseElementType) {
+		if (UMLElementTypes.Message_AsynchEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == baseElementType) {
+		if (UMLElementTypes.Message_ReplyEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == baseElementType) {
+		if (UMLElementTypes.Message_CreateEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == baseElementType) {
+		if (UMLElementTypes.Message_DeleteEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == baseElementType) {
+		if (UMLElementTypes.Message_LostEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == baseElementType) {
+		if (UMLElementTypes.Message_FoundEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4010 == baseElementType) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
 			return null;
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4011 == baseElementType) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
 			return null;
 		}
 		return null;
@@ -272,55 +272,55 @@ public class LifelineItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_4003 == baseElementType) {
+		if (UMLElementTypes.Message_SynchEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4004 == baseElementType) {
+		if (UMLElementTypes.Message_AsynchEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message2CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4005 == baseElementType) {
+		if (UMLElementTypes.Message_ReplyEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message3CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4006 == baseElementType) {
+		if (UMLElementTypes.Message_CreateEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message4CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4007 == baseElementType) {
+		if (UMLElementTypes.Message_DeleteEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message5CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4008 == baseElementType) {
+		if (UMLElementTypes.Message_LostEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message6CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.Message_4009 == baseElementType) {
+		if (UMLElementTypes.Message_FoundEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new Message7CreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_4010 == baseElementType) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_4011 == baseElementType) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}

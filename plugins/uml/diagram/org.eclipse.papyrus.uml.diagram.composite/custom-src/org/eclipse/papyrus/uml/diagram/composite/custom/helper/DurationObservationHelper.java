@@ -118,7 +118,7 @@ public class DurationObservationHelper extends ElementHelper {
 		// 2. creation of the node DurationObservation
 
 		IAdaptable elementAdapter = new EObjectAdapter(durationObservation);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.DurationObservation_2093).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.DurationObservation_Shape).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (containerView));
 		cc.compose(nodeCreationCommand);
 
@@ -134,13 +134,13 @@ public class DurationObservationHelper extends ElementHelper {
 			sourceEventAdapter = (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue();
 
 			// used in the creation command of each event
-			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.DurationObservationEvent_4019, ((IHintedType) UMLElementTypes.DurationObservationEvent_4019).getSemanticHint(), diagramPreferencesHint);
+			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.DurationObservation_EventEdge, ((IHintedType) UMLElementTypes.DurationObservation_EventEdge).getSemanticHint(), diagramPreferencesHint);
 
 			// 3. creation of the dashed line between the associationClass link
 			if (endEditPart[0] != null) {
 
 				targetEvent0Adapter = new SemanticAdapter(null, endEditPart[0].getModel());
-				CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.DurationObservationEvent_4019).getSemanticHint(), (sourceEventAdapter),
+				CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.DurationObservation_EventEdge).getSemanticHint(), (sourceEventAdapter),
 						(targetEvent0Adapter), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
 				dashedLineCmd.setElement(durationObservation);
 				cc.compose(dashedLineCmd);
@@ -149,7 +149,7 @@ public class DurationObservationHelper extends ElementHelper {
 
 			if ((nbEvents == 2) && endEditPart[1] != null) {
 				targetEvent1Adapter = new SemanticAdapter(null, endEditPart[1].getModel());
-				CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.DurationObservationEvent_4019).getSemanticHint(), (sourceEventAdapter),
+				CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.DurationObservation_EventEdge).getSemanticHint(), (sourceEventAdapter),
 						(targetEvent1Adapter), viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
 				dashedLineCmd.setElement(durationObservation);
 				cc.compose(dashedLineCmd);

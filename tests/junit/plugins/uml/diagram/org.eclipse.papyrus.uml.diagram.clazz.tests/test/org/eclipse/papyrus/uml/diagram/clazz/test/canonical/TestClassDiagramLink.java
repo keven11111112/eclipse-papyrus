@@ -53,7 +53,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageDependency() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.Dependency_4008, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Component_Shape, UMLElementTypes.Component_Shape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageAssociation() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Association_4001, UMLElementTypes.Package_2007, true,"srcMulA_cla");
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Association_Edge, UMLElementTypes.Package_Shape, true,"srcMulA_cla");
 	}
 
 	//test generatlization
@@ -74,7 +74,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageRealization() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Realization_4005, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Realization_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageAbstraction() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Abstraction_4006, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageUsage() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Usage_4007, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class TestClassDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageInformationFlow() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.InformationFlow_4026, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.InformationFlow_Edge, UMLElementTypes.Package_Shape, true);
 	}
 	//test Element import
 	//testPackageImport

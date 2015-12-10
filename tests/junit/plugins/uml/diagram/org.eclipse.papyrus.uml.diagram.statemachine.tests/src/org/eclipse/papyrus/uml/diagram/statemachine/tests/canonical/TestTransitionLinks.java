@@ -42,12 +42,12 @@ public class TestTransitionLinks extends TestStateMachineLink {
 
 	@Test
 	public void testEntryPointTransitionLink() {
-		testChildPseudostateTransitionLink(UMLElementTypes.Pseudostate_16000);
+		testChildPseudostateTransitionLink(UMLElementTypes.Pseudostate_EntryPointShape);
 	}
 
 	@Test
 	public void testExitPointTransitionLink() {
-		testChildPseudostateTransitionLink(UMLElementTypes.Pseudostate_17000);
+		testChildPseudostateTransitionLink(UMLElementTypes.Pseudostate_ExitPointShape);
 	}
 
 	private void testChildPseudostateTransitionLink(IElementType elementType) {
@@ -83,7 +83,7 @@ public class TestTransitionLinks extends TestStateMachineLink {
 	 */
 	@Test
 	public void testTransitionLinkCannotBeStarted() {
-		ckeckCannotStartConnectionCommand(UMLElementTypes.Transition_7000, CommentEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID);
+		ckeckCannotStartConnectionCommand(UMLElementTypes.Transition_Edge, CommentEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID);
 	}
 
 	@Test
@@ -106,7 +106,7 @@ public class TestTransitionLinks extends TestStateMachineLink {
 	}
 
 	private TransitionEditPart checkTransitionLink(IGraphicalEditPart source, IGraphicalEditPart target, int expectedConnections) {
-		Command endCommand = createLinkCommand(source, target, UMLElementTypes.Transition_7000);
+		Command endCommand = createLinkCommand(source, target, UMLElementTypes.Transition_Edge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 		executeOnUIThread(endCommand);

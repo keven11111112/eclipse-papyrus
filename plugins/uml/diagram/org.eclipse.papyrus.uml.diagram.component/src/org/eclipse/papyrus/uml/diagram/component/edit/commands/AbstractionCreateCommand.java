@@ -80,7 +80,7 @@ public class AbstractionCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAbstraction_4013(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAbstraction_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class AbstractionCreateCommand extends EditElementCommand {
 				.add(getSource());
 		newElement.getSuppliers()
 				.add(getTarget());
-		ElementInitializers.getInstance().init_Abstraction_4013(newElement);
+		ElementInitializers.getInstance().init_Abstraction_Edge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

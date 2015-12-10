@@ -119,7 +119,7 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		} else {
 			return CommandResult.newErrorCommandResult("The active policy restricts the addition of this element");
 		}
-		ElementInitializers.getInstance().init_DurationObservation_3024(newElement);
+		ElementInitializers.getInstance().init_DurationObservation_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

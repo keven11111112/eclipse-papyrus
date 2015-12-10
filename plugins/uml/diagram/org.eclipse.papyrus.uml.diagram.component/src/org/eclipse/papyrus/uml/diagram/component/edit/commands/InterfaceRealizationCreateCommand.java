@@ -81,7 +81,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateInterfaceRealization_4006(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateInterfaceRealization_Edge(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -100,7 +100,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 				.add(getSource());
 		newElement.setContract(
 				getTarget());
-		ElementInitializers.getInstance().init_InterfaceRealization_4006(newElement);
+		ElementInitializers.getInstance().init_InterfaceRealization_Edge(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

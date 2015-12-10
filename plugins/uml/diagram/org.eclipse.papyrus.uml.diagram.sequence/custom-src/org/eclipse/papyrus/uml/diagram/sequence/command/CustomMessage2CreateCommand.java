@@ -87,7 +87,7 @@ public class CustomMessage2CreateCommand extends Message2CreateCommand {
 				return false;
 			}
 		}
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4004(getContainer(), getSource(), getTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_AsynchEdge(getContainer(), getSource(), getTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canExist(MessageSort.ASYNCH_CALL_LITERAL, getSource(), getTarget());

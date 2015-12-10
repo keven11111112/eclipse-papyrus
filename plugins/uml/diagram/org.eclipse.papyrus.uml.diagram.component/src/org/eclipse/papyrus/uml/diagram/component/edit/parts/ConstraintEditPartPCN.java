@@ -47,7 +47,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3075";
+	public static final String VISUAL_ID = "Constraint_Shape_CN";
 
 	/**
 	 * @generated
@@ -73,9 +73,12 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -118,6 +121,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -150,6 +154,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 			((ConstraintSpecificationEditPartPCN) childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -216,6 +221,7 @@ public class ConstraintEditPartPCN extends AbstractConstraintEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

@@ -78,7 +78,7 @@ public final class TimeRulerUtils {
 	public static Node createFreeTimeRuler(final View view) {
 		final View timeRulerCompartmentView = ViewUtils.findTimeRulerCompartmentView(view);
 		final UMLViewProvider umlViewProvider = new UMLViewProvider();
-		return umlViewProvider.createNode_24(null, timeRulerCompartmentView, 0, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		return umlViewProvider.createNode_FreeTimeRulerShape(null, timeRulerCompartmentView, 0, true, UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 	}
 
 	/**

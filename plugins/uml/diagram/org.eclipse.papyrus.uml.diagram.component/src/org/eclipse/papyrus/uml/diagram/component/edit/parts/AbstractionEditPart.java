@@ -33,7 +33,7 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4013";
+	public static final String VISUAL_ID = "Abstraction_Edge";
 
 	/**
 	 * @generated
@@ -49,7 +49,8 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
@@ -62,7 +63,8 @@ public class AbstractionEditPart extends UMLConnectionNodeEditPart implements IT
 			((AbstractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof AbstractionAppliedStereotypeEditPart) {
-			((AbstractionAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((AbstractionAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

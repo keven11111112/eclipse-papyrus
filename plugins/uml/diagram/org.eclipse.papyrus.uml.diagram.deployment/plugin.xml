@@ -529,8 +529,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.deployment.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLDeploymentDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,2013,49,36,16,44,21,46,23,42,25,28,40,54,56,2014,2015,2016"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4005,4008,4009,4001,4002,4003,4004,4010,4011"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Dependency_Shape,Model_Shape,Package_Shape,Constraint_Shape,Comment_Shape,ExecutionEnvironment_Shape,Device_Shape,Artifact_Shape,Node_Shape,NamedElement_DefaultShape,DeploymentSpecification_Shape,Model_Shape_CN,Package_Shape_CN,Device_Shape_CCN,Device_Shape_CN,ExecutionEnvironment_Shape_CCN,ExecutionEnvironment_Shape_CN,Node_Shape_CCN,Node_Shape_CN,Artifact_Shape_CCN,Artifact_Shape_ACN,Artifact_Shape_CN,Comment_Shape_CN,Constraint_Shape_CN,DeploymentSpecification_Shape_CCN,DeploymentSpecification_Shape_CN,DeploymentSpecification_Shape_ACN"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Deployment_Edge,Manifestation_Edge,Generalization_Edge,Dependency_Edge,Dependency_BranchEdge,CommunicationPath_Edge"/>
       </viewProvider>
    </extension>
 
@@ -542,16 +542,16 @@
             <method name="getType()" value="PapyrusUMLDeploymentDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2011,2010,2009,2005,2001,2002,2003,2006,2008,2012,2013,49,36,16,44,21,46,23,42,25,28,40,54,56,2014,2015,2016"/>
+            <method name="getType()" value="Dependency_Shape,Model_Shape,Package_Shape,Constraint_Shape,Comment_Shape,ExecutionEnvironment_Shape,Device_Shape,Artifact_Shape,Node_Shape,NamedElement_DefaultShape,DeploymentSpecification_Shape,Model_Shape_CN,Package_Shape_CN,Device_Shape_CCN,Device_Shape_CN,ExecutionEnvironment_Shape_CCN,ExecutionEnvironment_Shape_CN,Node_Shape_CCN,Node_Shape_CN,Artifact_Shape_CCN,Artifact_Shape_ACN,Artifact_Shape_CN,Comment_Shape_CN,Constraint_Shape_CN,DeploymentSpecification_Shape_CCN,DeploymentSpecification_Shape_CN,DeploymentSpecification_Shape_ACN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4005,4008,4009,4001,4002,4003,4004,4010,4011"/>
+            <method name="getType()" value="Link_DescriptorEdge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Deployment_Edge,Manifestation_Edge,Generalization_Edge,Dependency_Edge,Dependency_BranchEdge,CommunicationPath_Edge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="7,48,35,2,3,1,5,6,8,61,9,53,62,63,50,37,20,45,22,47,24,43,27,59,29,60,41,55,57,58,64,65,66,67,68,69"/>
+            <method name="getType()" value="Dependency_MultiNameLabel,Model_NameLabel,Package_NameLabel,Constraint_NameLabel,Constraint_BodyLabel,Comment_BodyLabel,ExecutionEnvironment_NameLabel,Device_NameLabel,Artifact_NameLabel,Artifact_FloatingNameLabel,Node_NameLabel,NamedElement_NameLabel,DeploymentSpecification_NameLabel,DeploymentSpecification_FloatingNameLabel,Model_NameLabel_CN,Package_NameLabel_CN,Device_NameLabel_CCN,Device_NameLabel_CN,ExecutionEnvironment_NameLabel_CCN,ExecutionEnvironment_NameLabel_CN,Node_NameLabel_CCN,Node_NameLabel_CN,Artifact_NameLabel_CCN,Artifact_FloatingNameLabel_CCN,Artifact_NameLabel_ACN,Artifact_FloatingNameLabel_ACN,Artifact_NameLabel_CN,Comment_BodyLabel_CN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN,DeploymentSpecification_NameLabel_CCN,DeploymentSpecification_FloatingNameLabel_CCN,DeploymentSpecification_NameLabel_CN,DeploymentSpecification_FloatingNameLabel_CN,DeploymentSpecification_NameLabel_ACN,DeploymentSpecification_FloatingNameLabel_ACN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="51,38,17,18,19,26,52,39,30,31,32,33,34"/>
+            <method name="getType()" value="Model_PackagedElementCompartment,Package_PackagedElementCompartment,Device_NestedNodeCompartment,ExecutionEnvironment_NestedNodeCompartment,Node_NestedNodeCompartment,Artifact_NestedArtifactCompartment,Model_PackagedElementCompartment_CN,Package_PackagedElementCompartment_CN,Device_NestedNodeCompartment_CN,ExecutionEnvironment_NestedNodeCompartment_CN,Node_NestedNodeCompartment_CN,Artifact_NestedArtifactCompartment_CCN,Artifact_NestedArtifactCompartment_ACN"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
@@ -612,111 +612,111 @@
    	<mapping type="PapyrusUMLDeploymentDiagram" humanReadableType="DeploymentDiagram"/>
 			<mapping
 				humanReadableType="Model"
-				type="51">
+				type="Model_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="PackageableElement"
-				type="38">
+				type="Package_PackagedElementCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="DeviceComposite"
-				type="17">
+				type="Device_NestedNodeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="ExecutionEnvironmentComposite"
-				type="18">
+				type="ExecutionEnvironment_NestedNodeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="Composite"
-				type="19">
+				type="Node_NestedNodeCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="ArtifactComposite"
-				type="26">
+				type="Artifact_NestedArtifactCompartment">
 			</mapping>
 			<mapping
 				humanReadableType="Model"
-				type="52">
+				type="Model_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="PackageableElement"
-				type="39">
+				type="Package_PackagedElementCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="DeviceComposite"
-				type="30">
+				type="Device_NestedNodeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="ExecutionEnvironmentComposite"
-				type="31">
+				type="ExecutionEnvironment_NestedNodeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Composite"
-				type="32">
+				type="Node_NestedNodeCompartment_CN">
 			</mapping>
 			<mapping
 				humanReadableType="ArtifactComposite"
-				type="33">
+				type="Artifact_NestedArtifactCompartment_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="ArtifactComposite"
-				type="34">
+				type="Artifact_NestedArtifactCompartment_ACN">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="13">
+				type="Deployment_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="14">
+				type="Deployment_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="10">
+				type="Manifestation_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="11">
+				type="Manifestation_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="4">
+				type="Generalization_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Name"
-				type="12">
+				type="Dependency_NameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Stereotype"
-				type="15">
+				type="Dependency_StereotypeLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="59">
+				type="Artifact_FloatingNameLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="60">
+				type="Artifact_FloatingNameLabel_ACN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="65">
+				type="DeploymentSpecification_FloatingNameLabel_CCN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="67">
+				type="DeploymentSpecification_FloatingNameLabel_CN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="69">
+				type="DeploymentSpecification_FloatingNameLabel_ACN">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="61">
+				type="Artifact_FloatingNameLabel">
 			</mapping>
 			<mapping
 				humanReadableType="Floating Label"
-				type="63">
+				type="DeploymentSpecification_FloatingNameLabel">
 			</mapping>
    </diagramMappings>
 </extension>
@@ -735,7 +735,7 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="PapyrusUMLDeploymentDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.deployment.custom.migration.DeploymentReconcilier"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.deployment.custom.migration.DeploymentReconciler"
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
@@ -745,20 +745,12 @@
          source="undefined"
          target="1.2.0">
    </diagramReconciler>
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/DeploymentDiagram.elementtypesconfigurations">
-   </elementTypeSet>
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/DeploymentDiagram-notation.elementtypesconfigurations">
-   </elementTypeSet>
+   <diagramReconciler
+         diagramType="PapyrusUMLDeploymentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.deployment.custom.migration.DeploymentReconciler_1_2_0"
+         source="1.1.0"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
       <?gmfgen generated="true"?>

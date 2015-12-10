@@ -33,7 +33,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4012";
+	public static final String VISUAL_ID = "Substitution_Edge";
 
 	/**
 	 * @generated
@@ -49,7 +49,8 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
@@ -62,7 +63,8 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 			((SubstitutionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
-			((SubstitutionAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((SubstitutionAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

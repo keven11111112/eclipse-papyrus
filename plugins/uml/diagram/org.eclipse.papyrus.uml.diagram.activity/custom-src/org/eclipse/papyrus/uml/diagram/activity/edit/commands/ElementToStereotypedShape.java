@@ -51,7 +51,7 @@ public class ElementToStereotypedShape extends RecordingCommand {
 	protected void doExecute() {
 		// creation of the node
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
-		Node packageview = umlViewProvider.createNamedElement_3085(elementEditPart.resolveSemanticElement(), (View) elementEditPart.getNotationView().eContainer(), -1, true, elementEditPart.getDiagramPreferencesHint());
+		Node packageview = umlViewProvider.createNamedElement_DefaultShape(elementEditPart.resolveSemanticElement(), (View) elementEditPart.getNotationView().eContainer(), -1, true, elementEditPart.getDiagramPreferencesHint());
 		packageview.setLayoutConstraint(((Node) elementEditPart.getNotationView()).getLayoutConstraint());
 		// copy of all eannotations
 		Iterator<EAnnotation> iter = elementEditPart.getNotationView().getEAnnotations().iterator();

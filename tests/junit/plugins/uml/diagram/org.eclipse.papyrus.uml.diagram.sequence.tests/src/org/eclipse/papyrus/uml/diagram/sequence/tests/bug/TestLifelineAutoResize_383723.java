@@ -98,7 +98,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 	@Test
 	public void testManualSize() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
@@ -121,7 +121,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 	@Test
 	public void testAutoSize() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
@@ -144,7 +144,7 @@ public class TestLifelineAutoResize_383723 extends TestTopNode {
 
 	@Test
 	public void testPropertyChanged() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 

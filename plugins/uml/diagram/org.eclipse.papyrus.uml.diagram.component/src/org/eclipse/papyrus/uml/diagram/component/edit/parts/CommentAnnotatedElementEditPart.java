@@ -29,7 +29,7 @@ public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart i
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4015";
+	public static final String VISUAL_ID = "Comment_AnnotatedElementEdge";
 
 	/**
 	 * @generated

@@ -103,7 +103,7 @@ public class PortCreateCommand extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_Port_3069(newElement);
+		ElementInitializers.getInstance().init_Port_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

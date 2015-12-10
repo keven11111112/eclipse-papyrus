@@ -62,6 +62,8 @@ import com.google.common.collect.Lists;
 public class ModelGenFixture extends ResourceSetFixture {
 	private static final String UML_ELEMENT_TYPES = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet";
 
+	private static final String UMLDI_ELEMENT_TYPES = "org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet";
+
 	protected final String prefix = "org.eclipse.papyrus.test";
 
 	private String baseElementTypesSet = UML_ELEMENT_TYPES;
@@ -138,7 +140,8 @@ public class ModelGenFixture extends ResourceSetFixture {
 
 	protected String getElementTypeID(org.eclipse.uml2.uml.Class metaclass) {
 		String metaclassName = getValidJavaIdentifier(metaclass.getName());
-		return baseElementTypesSet.equals(UML_ELEMENT_TYPES) ? "org.eclipse.papyrus.uml." + metaclassName : baseElementTypesSet.replaceFirst("\\w+$", metaclassName);
+		return baseElementTypesSet.equals(UML_ELEMENT_TYPES) ? "org.eclipse.papyrus.uml." + metaclassName : 
+			   baseElementTypesSet.equals(UMLDI_ELEMENT_TYPES) ? "org.eclipse.papyrus.umldi." + metaclassName : baseElementTypesSet.replaceFirst("\\w+$", metaclassName);
 	}
 
 	public ElementTypeConfiguration getElementTypeConfiguration(String id) {

@@ -48,7 +48,7 @@ public class TestUseCaseTopNode extends TestSpecificTopNode {
 	@Test
 	public void testToManagePackage() {
 
-		testToManageTopNode(UMLElementTypes.Package_2016, UMLElementTypes.Package_2016);
+		testToManageTopNode(UMLElementTypes.Package_Shape, UMLElementTypes.Package_Shape);
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class TestUseCaseTopNode extends TestSpecificTopNode {
 	 */
 	@Test
 	public void testToManageActor() {
-		testToManageTopNode(UMLElementTypes.Actor_2011, UMLElementTypes.Package_2016);
+		testToManageTopNode(UMLElementTypes.Actor_Shape, UMLElementTypes.Package_Shape);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class TestUseCaseTopNode extends TestSpecificTopNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageTopNode(UMLElementTypes.Comment_2018, UMLElementTypes.Package_2016);
+		testToManageTopNode(UMLElementTypes.Comment_Shape, UMLElementTypes.Package_Shape);
 	}
 
 
@@ -73,7 +73,7 @@ public class TestUseCaseTopNode extends TestSpecificTopNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageTopNode(UMLElementTypes.Constraint_2017, UMLElementTypes.Package_2016);
+		testToManageTopNode(UMLElementTypes.Constraint_Shape, UMLElementTypes.Package_Shape);
 	}
 
 	/**
@@ -81,144 +81,144 @@ public class TestUseCaseTopNode extends TestSpecificTopNode {
 	 */
 	@Test
 	public void testToManageSubjectActivity() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getActivity());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getActivity());
 	}
 
 
 	@Test
 	public void testToManageSubjectActor() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getActor());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getActor());
 	}
 
 
 	@Test
 	public void testToManageSubjectArtifact() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getArtifact());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getArtifact());
 	}
 
 
 	// @Test
 	// public void testToManageSubjectAssociation() {
-	// testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getAssociation());
+	// testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getAssociation());
 	// }
 
 
 	// @Test
 	// public void testToManageSubjectAssociationClass() {
-	// testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getAssociationClass());
+	// testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getAssociationClass());
 	// }
 
 
 	@Test
 	public void testToManageSubjectClass() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getClass_());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getClass_());
 	}
 
 
 	@Test
 	public void testToManageSubjectCollaboration() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getCollaboration());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getCollaboration());
 	}
 
 
 	// @Test
 	// public void testToManageSubjectCommunicationPath() {
-	// testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getCommunicationPath());
+	// testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getCommunicationPath());
 	// }
 
 	@Test
 	public void testToManageSubjectComponent() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getComponent());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getComponent());
 	}
 
 	@Test
 	public void testToManageSubjectDatatype() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getDataType());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getDataType());
 	}
 
 
 	@Test
 	public void testToManageSubjectDeployementSpecification() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getDeploymentSpecification());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getDeploymentSpecification());
 	}
 
 	@Test
 	public void testToManageSubjectDevice() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getDevice());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getDevice());
 	}
 
 	@Test
 	public void testToManageSubjectEnumeration() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getEnumeration());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getEnumeration());
 	}
 
 	@Test
 	public void testToManageSubjectExecutionEnvironment() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getExecutionEnvironment());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getExecutionEnvironment());
 	}
 
 	// @Test
 	// public void testToManageSubjectExtension() {
-	// testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getExtension());
+	// testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getExtension());
 	// }
 
 	@Test
 	public void testToManageSubjectFunctionBehavior() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getFunctionBehavior());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getFunctionBehavior());
 	}
 
 	@Test
 	public void testToManageSubjectInformationItem() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getInformationItem());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getInformationItem());
 	}
 
 	@Test
 	public void testToManageSubjectInteraction() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getInteraction());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getInteraction());
 	}
 
 	@Test
 	public void testToManageSubjectInterface() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getInterface());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getInterface());
 	}
 
 	@Test
 	public void testToManageSubjectNode() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getNode());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getNode());
 	}
 
 	@Test
 	public void testToManageSubjectOpaqueBehavior() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getOpaqueBehavior());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getOpaqueBehavior());
 	}
 
 	@Test
 	public void testToManageSubjectPrimitiveType() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getPrimitiveType());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getPrimitiveType());
 	}
 
 	@Test
 	public void testToManageSubjectProtocolStateMachine() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getProtocolStateMachine());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getProtocolStateMachine());
 	}
 
 	@Test
 	public void testToManageSubjectSignal() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getSignal());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getSignal());
 	}
 
 	@Test
 	public void testToManageSubjectStateMachine() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getStateMachine());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getStateMachine());
 	}
 
 	@Test
 	public void testToManageSubjectStereotype() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getStereotype());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getStereotype());
 	}
 
 	@Test
 	public void testToManageSubjectUsecase() {
-		testToManageSpecificTopNode(UMLElementTypes.Classifier_2015, UMLElementTypes.Package_2016, UMLPackage.eINSTANCE.getUseCase());
+		testToManageSpecificTopNode(UMLElementTypes.Classifier_SubjectShape, UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getUseCase());
 	}
 }

@@ -44,12 +44,12 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		final CreateElementRequest semanticRequest = new CreateElementRequest(UMLElementTypes.Classifier_2015);
+		final CreateElementRequest semanticRequest = new CreateElementRequest(UMLElementTypes.Classifier_SubjectShape);
 		semanticRequest.setParameter(CreateEditBasedElementCommand.ECLASS_HINT, UMLPackage.eINSTANCE.getClass_());
 
 		final ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(
 				new CreateElementRequestAdapter(semanticRequest),
-				Node.class, ((IHintedType) UMLElementTypes.Classifier_2015).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
+				Node.class, ((IHintedType) UMLElementTypes.Classifier_SubjectShape).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
 		final CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
 		return requestcreation;
 	}
@@ -79,19 +79,19 @@ public class TestUseCaseChildNodeForClassSubject extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToManageUseCaseForClassSubject() {
-		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
+		testToManageNode(UMLElementTypes.UseCase_Shape_CCN, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_SubjectShape, false);
 	}
 
 	@Test
 	@InteractiveTest
 	public void testToManageUseCaseForComponentSubject() {
-		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
+		testToManageNode(UMLElementTypes.UseCase_Shape_CCN, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_SubjectShape, false);
 	}
 
 	@Test
 	@InteractiveTest
 	public void testToManageUseCaseForInterfaceSubject() {
-		testToManageNode(UMLElementTypes.UseCase_3009, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_2015, false);
+		testToManageNode(UMLElementTypes.UseCase_Shape_CCN, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Classifier_SubjectShape, false);
 	}
 
 	@Override

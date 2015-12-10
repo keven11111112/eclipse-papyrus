@@ -73,7 +73,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageClassUsage() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageClassDependency() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageClassAbstraction() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Abstraction_4007, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageClassRealization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Realization_4006, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Realization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	// Activity
@@ -106,7 +106,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageActivityUsage() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Activity_Shape, UMLElementTypes.Activity_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -116,7 +116,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageActivityDependency() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Activity_Shape, UMLElementTypes.Activity_Shape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageActivityAbstraction() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Abstraction_4007, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Activity_Shape, UMLElementTypes.Activity_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageActivityRealization() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Realization_4006, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Activity_Shape, UMLElementTypes.Activity_Shape, UMLElementTypes.Realization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -142,7 +142,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageStateMachineUsage() {
-		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.StateMachine_Shape, UMLElementTypes.StateMachine_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -151,7 +151,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageStateMachineDependency() {
-		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.StateMachine_Shape, UMLElementTypes.StateMachine_Shape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -159,7 +159,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageStateMachineAbstraction() {
-		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Abstraction_4007, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.StateMachine_Shape, UMLElementTypes.StateMachine_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -167,7 +167,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageStateMachineRealization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Realization_4006, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Realization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -177,7 +177,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageCollaborationUsage() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Collaboration_Shape, UMLElementTypes.Collaboration_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -186,7 +186,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageCollaborationDependency() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Collaboration_Shape, UMLElementTypes.Collaboration_Shape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -194,7 +194,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageCollaborationAbstraction() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Abstraction_4007, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Collaboration_Shape, UMLElementTypes.Collaboration_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManageCollaborationRealization() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Realization_4006, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Collaboration_Shape, UMLElementTypes.Collaboration_Shape, UMLElementTypes.Realization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -211,7 +211,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToRealization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Realization_4006, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Realization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToManifestation() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Manifestation_4012, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Manifestation_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToAbstraction() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Abstraction_4007, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -235,7 +235,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	 */
 	@Test
 	public void testToUsage() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 
@@ -245,7 +245,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	@Test
 	@InteractiveTest
 	public void testToInformationFlow() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.InformationFlow_4021, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.InformationFlow_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 

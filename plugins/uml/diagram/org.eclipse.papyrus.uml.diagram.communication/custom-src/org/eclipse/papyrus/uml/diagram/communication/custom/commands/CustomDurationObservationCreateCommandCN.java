@@ -51,7 +51,7 @@ public class CustomDurationObservationCreateCommandCN extends DurationObservatio
 		Interaction owner = (Interaction) getElementToEdit();
 		owner.getNearestPackage().getPackagedElements().add(newElement);
 
-		ElementInitializers.getInstance().init_DurationObservation_8007(newElement);
+		ElementInitializers.getInstance().init_DurationObservation_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

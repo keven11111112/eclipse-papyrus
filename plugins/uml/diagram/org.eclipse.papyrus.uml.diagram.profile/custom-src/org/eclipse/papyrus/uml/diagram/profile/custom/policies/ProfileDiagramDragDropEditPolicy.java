@@ -296,11 +296,11 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 			return UnexecutableCommand.INSTANCE;
 		}
 		if (CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_1002,
-					(IHintedType) UMLElementTypes.CommentAnnotatedElement_1022);
+			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape,
+					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 		} else if (CommentEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
-			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_1007,
-					(IHintedType) UMLElementTypes.CommentAnnotatedElement_1022);
+			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_Shape_CN,
+					(IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}

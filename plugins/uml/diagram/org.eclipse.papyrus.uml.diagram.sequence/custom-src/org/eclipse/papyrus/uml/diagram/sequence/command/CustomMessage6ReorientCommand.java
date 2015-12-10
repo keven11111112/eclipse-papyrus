@@ -50,7 +50,7 @@ public class CustomMessage6ReorientCommand extends Message6ReorientCommand {
 			return false;
 		}
 		Interaction container = (Interaction) getLink().eContainer();
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_4008(container, getLink(), getNewSource(), target)) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistMessage_LostEdge(container, getLink(), getNewSource(), target)) {
 			return false;
 		}
 		return MessageConnectionHelper.canReorientSource(getLink(), getNewSource());

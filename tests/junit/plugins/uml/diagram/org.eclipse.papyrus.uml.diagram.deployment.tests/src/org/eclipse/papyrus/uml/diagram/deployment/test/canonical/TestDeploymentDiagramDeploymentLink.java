@@ -58,22 +58,22 @@ public class TestDeploymentDiagramDeploymentLink extends TestWithoutReconnectAMu
 
 	@Test
 	public void testToManageDeployment() {
-		testToManageLink(UMLElementTypes.Artifact_2006, UMLElementTypes.Node_2008, UMLElementTypes.Deployment_4001, UMLElementTypes.Package_2009, false);
+		testToManageLink(UMLElementTypes.Artifact_Shape, UMLElementTypes.Node_Shape, UMLElementTypes.Deployment_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testUnexecutableNodeArtifactDeployment() {
-		testUnexecutableLink(UMLElementTypes.Node_2008, UMLElementTypes.Artifact_2006, UMLElementTypes.Deployment_4001);
+		testUnexecutableLink(UMLElementTypes.Node_Shape, UMLElementTypes.Artifact_Shape, UMLElementTypes.Deployment_Edge);
 	}
 
 	@Test
 	public void testUnexecutableNodeNodeDeployment() {
-		testUnexecutableLink(UMLElementTypes.Node_2008, UMLElementTypes.Node_2008, UMLElementTypes.Deployment_4001);
+		testUnexecutableLink(UMLElementTypes.Node_Shape, UMLElementTypes.Node_Shape, UMLElementTypes.Deployment_Edge);
 	}
 
 	@Test
 	public void testUnexecutableArtifactArtifactDeployment() {
-		testUnexecutableLink(UMLElementTypes.Artifact_2006, UMLElementTypes.Artifact_2006, UMLElementTypes.Deployment_4001);
+		testUnexecutableLink(UMLElementTypes.Artifact_Shape, UMLElementTypes.Artifact_Shape, UMLElementTypes.Deployment_Edge);
 	}
 
 	@Override

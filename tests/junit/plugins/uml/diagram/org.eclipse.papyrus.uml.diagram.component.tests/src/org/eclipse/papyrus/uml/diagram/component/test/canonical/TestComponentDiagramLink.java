@@ -58,7 +58,7 @@ public class TestComponentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageAbstraction() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.Abstraction_4013, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class TestComponentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageDependency() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_Shape, true);
 
 	}
 
@@ -77,7 +77,7 @@ public class TestComponentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageManifestation() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.Manifestation_4014, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Manifestation_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class TestComponentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageUsage() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Interface_3205, UMLElementTypes.Usage_4001, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class TestComponentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Interface_3205, UMLElementTypes.InterfaceRealization_4006, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.InterfaceRealization_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class TestComponentDiagramLink extends TestLink {
 	@Test
 	@FailingTest
 	public void testToManageComponentRealization() {
-		testToManageLink(UMLElementTypes.Component_2002, UMLElementTypes.Component_2002, UMLElementTypes.ComponentRealization_4007, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.Component_PackagedElementShape, UMLElementTypes.ComponentRealization_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class TestComponentDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageInterfaceAbstraction() {
-		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Abstraction_4013, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class TestComponentDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageInterfaceDependency() {
-		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Dependency_4010, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Dependency_Edge, UMLElementTypes.Package_Shape, true);
 
 	}
 
@@ -129,7 +129,7 @@ public class TestComponentDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageInterfaceManifestation() {
-		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Manifestation_4014, UMLElementTypes.Package_3200, false);
+		testToManageLink(UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Manifestation_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class TestComponentDiagramLink extends TestLink {
 	 */
 	@Test
 	public void testToManageInterfaceUsage() {
-		testToManageLink(UMLElementTypes.Interface_3205, UMLElementTypes.Interface_3205, UMLElementTypes.Usage_4001, UMLElementTypes.Package_3200, true);
+		testToManageLink(UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Interface_ClassifierShape, UMLElementTypes.Usage_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**

@@ -65,7 +65,7 @@ public class Load400ClassTest extends AbstractPapyrusTestCase {
 	@Test
 	public void testLoad400Class() {
 		for(int i = 0; i < 400; i++) {
-			testToCreateANode(UMLElementTypes.Class_2008);
+			testToCreateANode(UMLElementTypes.Class_Shape);
 		}
 	}
 }

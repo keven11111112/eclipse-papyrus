@@ -79,12 +79,12 @@ public class TestLayoutWithStereotypeOnEclipseHIPPInstance extends AbstractPapyr
 
 	@Test
 	public void testLayoutOnClass() {
-		testToCreateANodeWithoutStereotype(UMLElementTypes.Class_2008);
+		testToCreateANodeWithoutStereotype(UMLElementTypes.Class_Shape);
 	}
 
 	@Test
 	public void testLayoutStereotypeApplicationOnClass() {
-		testToCreateANodeWithStereotype(UMLElementTypes.Class_2008);
+		testToCreateANodeWithStereotype(UMLElementTypes.Class_Shape);
 	}
 
 	/**

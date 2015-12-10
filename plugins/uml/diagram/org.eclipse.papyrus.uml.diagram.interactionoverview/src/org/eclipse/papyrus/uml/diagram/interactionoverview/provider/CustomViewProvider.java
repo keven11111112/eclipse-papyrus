@@ -59,13 +59,13 @@ public class CustomViewProvider extends AbstractViewProvider {
 		// /////////////////////////////////////////////////////////////////////
 
 		final IElementType elementType = (IElementType) op.getSemanticAdapter().getAdapter(IElementType.class);
-		if (elementType == UMLElementTypes.CallBehaviorAction_5000) {
+		if (elementType == UMLElementTypes.CallBehaviorAction_InteractionShape) {
 
 			if (ElementTypes.ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT.equals(containerGraphicalType)) {
 				return true;
 			}
 		}
-		if (elementType == UMLElementTypes.CallBehaviorAction_As_InteractionUse_5005) {
+		if (elementType == UMLElementTypes.CallBehaviorAction_InteractionUseShape) {
 			if (ElementTypes.ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT.equals(containerGraphicalType)) {
 				return true;
 			}
@@ -83,21 +83,21 @@ public class CustomViewProvider extends AbstractViewProvider {
 			visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
-		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
-			return createCallBehaviorAction_5000(domainElement, containerView, index, persisted, preferencesHint);
+		case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+			return createCallBehaviorAction_InteractionShape(domainElement, containerView, index, persisted, preferencesHint);
 		case CallBehaviorActionEditPart.VISUAL_ID:
-		case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:
-			return createCallBehaviorAction_As_InteractionUse_5005(domainElement, containerView, index, persisted, preferencesHint);
+		case CustomInteractionUseEditPartCN.VISUAL_ID:
+			return createCallBehaviorAction_InteractionUseShape(domainElement, containerView, index, persisted, preferencesHint);
 			// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		}
 		return null;
 
 	}
 
-	public Node createCallBehaviorAction_5000(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
+	public Node createCallBehaviorAction_InteractionShape(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
 		final Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		CallBehaviorUtil.setCallBehaviorActionType((CallBehaviorAction) domainElement, CallBehaviorActionType.snapshot);
@@ -110,10 +110,10 @@ public class CustomViewProvider extends AbstractViewProvider {
 		return node;
 	}
 
-	public Node createCallBehaviorAction_As_InteractionUse_5005(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
+	public Node createCallBehaviorAction_InteractionUseShape(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
 		final Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(CustomInteractionUseEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		CallBehaviorUtil.setCallBehaviorActionType((CallBehaviorAction) domainElement, CallBehaviorActionType.use);
@@ -124,11 +124,11 @@ public class CustomViewProvider extends AbstractViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CallBehaviorAction");
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "CallBehaviorAction");
 		createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionNameEditPart.VISUAL_ID));
-		Node label6020 = createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionFloatingNameEditPart.VISUAL_ID));
-		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6020 = (Location) label6020.getLayoutConstraint();
-		location6020.setX(0);
-		location6020.setY(5);
+		Node callBehaviorAction_FloatingNameLabel = createLabel(node, UMLVisualIDRegistry.getType(CallBehaviorActionFloatingNameEditPart.VISUAL_ID));
+		callBehaviorAction_FloatingNameLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location callBehaviorAction_FloatingNameLabel_Location = (Location) callBehaviorAction_FloatingNameLabel.getLayoutConstraint();
+		callBehaviorAction_FloatingNameLabel_Location.setX(0);
+		callBehaviorAction_FloatingNameLabel_Location.setY(5);
 		return node;
 	}
 	

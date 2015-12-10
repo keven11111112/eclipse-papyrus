@@ -44,7 +44,7 @@ public class TestComponentDiagramComponentChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Component_2002, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Component_PackagedElementShape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class TestComponentDiagramComponentChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePropertyPart() {
-		testToManageNodeWithMask(UMLElementTypes.Property_3079, UMLPackage.eINSTANCE.getProperty(), UMLElementTypes.Component_2002, false, "Attribute", 0);
+		testToManageNodeWithMask(UMLElementTypes.Property_Shape, UMLPackage.eINSTANCE.getProperty(), UMLElementTypes.Component_PackagedElementShape, false, "Attribute", 0);
 	}
 
 	/**
@@ -72,13 +72,13 @@ public class TestComponentDiagramComponentChildNode extends TestChildNode {
 	@Test
 	public void testToManagePort() {
 		setTestAffixedNode(true);
-		testToManageNode(UMLElementTypes.Port_3069, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Component_2002, false, 4, 0, 1, 1, true, null, 0);
+		testToManageNode(UMLElementTypes.Port_Shape, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Component_PackagedElementShape, false, 4, 0, 1, 1, true, null, 0);
 		setTestAffixedNode(false);
 	}
 
 	@FailingTest
 	@Test
 	public void testToManageComponent() {
-		testToManageNode(UMLElementTypes.Component_3070, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Component_2002, true, 0, 0, 1, 1, false, "Component", 0);
+		testToManageNode(UMLElementTypes.Component_PackagedElementShape_CCN, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Component_PackagedElementShape, true, 0, 0, 1, 1, false, "Component", 0);
 	}
 }

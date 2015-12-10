@@ -36,7 +36,7 @@ public class CustomMessageNameItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 * Instantiates a new custom message name item semantic edit policy.
 	 */
 	public CustomMessageNameItemSemanticEditPolicy() {
-		super(UMLElementTypes.Message_8009);
+		super(UMLElementTypes.Path_Edge);
 	}
 
 	/**

@@ -81,848 +81,880 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
-	private IParser dependencyName_7Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDependencyName_7Parser() {
-		if(dependencyName_7Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			dependencyName_7Parser = parser;
-		}
-		return dependencyName_7Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser modelName_48Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getModelName_48Parser() {
-		if(modelName_48Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			modelName_48Parser = parser;
-		}
-		return modelName_48Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser packageName_35Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getPackageName_35Parser() {
-		if(packageName_35Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			packageName_35Parser = parser;
-		}
-		return packageName_35Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser constraintName_2Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConstraintName_2Parser() {
-		if(constraintName_2Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			constraintName_2Parser = parser;
-		}
-		return constraintName_2Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ConstraintParser constraintSpecification_3Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConstraintSpecification_3Parser() {
-		if(constraintSpecification_3Parser == null) {
-			constraintSpecification_3Parser = new ConstraintParser();
-		}
-		return constraintSpecification_3Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private CommentParser commentBody_1Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getCommentBody_1Parser() {
-		if(commentBody_1Parser == null) {
-			commentBody_1Parser = new CommentParser();
-		}
-		return commentBody_1Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser executionEnvironmentName_5Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getExecutionEnvironmentName_5Parser() {
-		if(executionEnvironmentName_5Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			executionEnvironmentName_5Parser = parser;
-		}
-		return executionEnvironmentName_5Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser deviceName_6Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDeviceName_6Parser() {
-		if(deviceName_6Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			deviceName_6Parser = parser;
-		}
-		return deviceName_6Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser artifactName_8Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getArtifactName_8Parser() {
-		if(artifactName_8Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_8Parser = parser;
-		}
-		return artifactName_8Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser artifactName_61Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getArtifactName_61Parser() {
-		if(artifactName_61Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_61Parser = parser;
-		}
-		return artifactName_61Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser nodeName_9Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getNodeName_9Parser() {
-		if(nodeName_9Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			nodeName_9Parser = parser;
-		}
-		return nodeName_9Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser namedElementName_53Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getNamedElementName_53Parser() {
-		if(namedElementName_53Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			namedElementName_53Parser = parser;
-		}
-		return namedElementName_53Parser;
-	}
-
-	/**
 	* @generated
 	*/
-	private IParser deploymentSpecificationName_62Parser;
+	private IParser dependency_MultiNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_62Parser() {
-		if(deploymentSpecificationName_62Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getDependency_MultiNameLabel_Parser() {
+		if (dependency_MultiNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_62Parser = parser;
+			dependency_MultiNameLabel_Parser = parser;
 		}
-		return deploymentSpecificationName_62Parser;
+		return dependency_MultiNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentSpecificationName_63Parser;
+	private IParser model_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_63Parser() {
-		if(deploymentSpecificationName_63Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getModel_NameLabel_Parser() {
+		if (model_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_63Parser = parser;
+			model_NameLabel_Parser = parser;
 		}
-		return deploymentSpecificationName_63Parser;
+		return model_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser modelName_50Parser;
+	private IParser package_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getModelName_50Parser() {
-		if(modelName_50Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPackage_NameLabel_Parser() {
+		if (package_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			modelName_50Parser = parser;
+			package_NameLabel_Parser = parser;
 		}
-		return modelName_50Parser;
+		return package_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser packageName_37Parser;
+	private IParser constraint_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPackageName_37Parser() {
-		if(packageName_37Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getConstraint_NameLabel_Parser() {
+		if (constraint_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			packageName_37Parser = parser;
+			constraint_NameLabel_Parser = parser;
 		}
-		return packageName_37Parser;
+		return constraint_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deviceName_20Parser;
+	private ConstraintParser constraint_BodyLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeviceName_20Parser() {
-		if(deviceName_20Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getConstraint_BodyLabel_Parser() {
+		if (constraint_BodyLabel_Parser == null) {
+			constraint_BodyLabel_Parser = new ConstraintParser();
+		}
+		return constraint_BodyLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private CommentParser comment_BodyLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getComment_BodyLabel_Parser() {
+		if (comment_BodyLabel_Parser == null) {
+			comment_BodyLabel_Parser = new CommentParser();
+		}
+		return comment_BodyLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser executionEnvironment_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getExecutionEnvironment_NameLabel_Parser() {
+		if (executionEnvironment_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deviceName_20Parser = parser;
+			executionEnvironment_NameLabel_Parser = parser;
 		}
-		return deviceName_20Parser;
+		return executionEnvironment_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deviceName_45Parser;
+	private IParser device_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeviceName_45Parser() {
-		if(deviceName_45Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getDevice_NameLabel_Parser() {
+		if (device_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deviceName_45Parser = parser;
+			device_NameLabel_Parser = parser;
 		}
-		return deviceName_45Parser;
+		return device_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser executionEnvironmentName_22Parser;
+	private IParser artifact_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getExecutionEnvironmentName_22Parser() {
-		if(executionEnvironmentName_22Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_NameLabel_Parser() {
+		if (artifact_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			executionEnvironmentName_22Parser = parser;
+			artifact_NameLabel_Parser = parser;
 		}
-		return executionEnvironmentName_22Parser;
+		return artifact_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser executionEnvironmentName_47Parser;
+	private IParser artifact_FloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getExecutionEnvironmentName_47Parser() {
-		if(executionEnvironmentName_47Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_FloatingNameLabel_Parser() {
+		if (artifact_FloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			executionEnvironmentName_47Parser = parser;
+			artifact_FloatingNameLabel_Parser = parser;
 		}
-		return executionEnvironmentName_47Parser;
+		return artifact_FloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser nodeName_24Parser;
+	private IParser node_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getNodeName_24Parser() {
-		if(nodeName_24Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getNode_NameLabel_Parser() {
+		if (node_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			nodeName_24Parser = parser;
+			node_NameLabel_Parser = parser;
 		}
-		return nodeName_24Parser;
+		return node_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser nodeName_43Parser;
+	private IParser namedElement_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getNodeName_43Parser() {
-		if(nodeName_43Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getNamedElement_NameLabel_Parser() {
+		if (namedElement_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			nodeName_43Parser = parser;
+			namedElement_NameLabel_Parser = parser;
 		}
-		return nodeName_43Parser;
+		return namedElement_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser artifactName_27Parser;
+	private IParser deploymentSpecification_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getArtifactName_27Parser() {
-		if(artifactName_27Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getDeploymentSpecification_NameLabel_Parser() {
+		if (deploymentSpecification_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_27Parser = parser;
+			deploymentSpecification_NameLabel_Parser = parser;
 		}
-		return artifactName_27Parser;
+		return deploymentSpecification_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser artifactName_59Parser;
+	private IParser deploymentSpecification_FloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getArtifactName_59Parser() {
-		if(artifactName_59Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getDeploymentSpecification_FloatingNameLabel_Parser() {
+		if (deploymentSpecification_FloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_59Parser = parser;
+			deploymentSpecification_FloatingNameLabel_Parser = parser;
 		}
-		return artifactName_59Parser;
+		return deploymentSpecification_FloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser artifactName_29Parser;
+	private IParser model_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getArtifactName_29Parser() {
-		if(artifactName_29Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getModel_NameLabel_CN_Parser() {
+		if (model_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_29Parser = parser;
+			model_NameLabel_CN_Parser = parser;
 		}
-		return artifactName_29Parser;
+		return model_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser artifactName_60Parser;
+	private IParser package_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getArtifactName_60Parser() {
-		if(artifactName_60Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPackage_NameLabel_CN_Parser() {
+		if (package_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_60Parser = parser;
+			package_NameLabel_CN_Parser = parser;
 		}
-		return artifactName_60Parser;
+		return package_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser artifactName_41Parser;
+	private IParser device_NameLabel_CCN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getArtifactName_41Parser() {
-		if(artifactName_41Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getDevice_NameLabel_CCN_Parser() {
+		if (device_NameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			artifactName_41Parser = parser;
+			device_NameLabel_CCN_Parser = parser;
 		}
-		return artifactName_41Parser;
+		return device_NameLabel_CCN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private CommentParser commentBody_55Parser;
+	private IParser device_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getCommentBody_55Parser() {
-		if(commentBody_55Parser == null) {
-			commentBody_55Parser = new CommentParser();
-		}
-		return commentBody_55Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser constraintName_57Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getConstraintName_57Parser() {
-		if(constraintName_57Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getDevice_NameLabel_CN_Parser() {
+		if (device_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			constraintName_57Parser = parser;
+			device_NameLabel_CN_Parser = parser;
 		}
-		return constraintName_57Parser;
+		return device_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ConstraintParser constraintSpecification_58Parser;
+	private IParser executionEnvironment_NameLabel_CCN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintSpecification_58Parser() {
-		if(constraintSpecification_58Parser == null) {
-			constraintSpecification_58Parser = new ConstraintParser();
-		}
-		return constraintSpecification_58Parser;
-	}
-
-	/**
-	* @generated
-	*/
-	private IParser deploymentSpecificationName_64Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDeploymentSpecificationName_64Parser() {
-		if(deploymentSpecificationName_64Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getExecutionEnvironment_NameLabel_CCN_Parser() {
+		if (executionEnvironment_NameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_64Parser = parser;
+			executionEnvironment_NameLabel_CCN_Parser = parser;
 		}
-		return deploymentSpecificationName_64Parser;
+		return executionEnvironment_NameLabel_CCN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentSpecificationName_65Parser;
+	private IParser executionEnvironment_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_65Parser() {
-		if(deploymentSpecificationName_65Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getExecutionEnvironment_NameLabel_CN_Parser() {
+		if (executionEnvironment_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_65Parser = parser;
+			executionEnvironment_NameLabel_CN_Parser = parser;
 		}
-		return deploymentSpecificationName_65Parser;
+		return executionEnvironment_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentSpecificationName_66Parser;
+	private IParser node_NameLabel_CCN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_66Parser() {
-		if(deploymentSpecificationName_66Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getNode_NameLabel_CCN_Parser() {
+		if (node_NameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_66Parser = parser;
+			node_NameLabel_CCN_Parser = parser;
 		}
-		return deploymentSpecificationName_66Parser;
+		return node_NameLabel_CCN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentSpecificationName_67Parser;
+	private IParser node_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_67Parser() {
-		if(deploymentSpecificationName_67Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getNode_NameLabel_CN_Parser() {
+		if (node_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_67Parser = parser;
+			node_NameLabel_CN_Parser = parser;
 		}
-		return deploymentSpecificationName_67Parser;
+		return node_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentSpecificationName_68Parser;
+	private IParser artifact_NameLabel_CCN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_68Parser() {
-		if(deploymentSpecificationName_68Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_NameLabel_CCN_Parser() {
+		if (artifact_NameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_68Parser = parser;
+			artifact_NameLabel_CCN_Parser = parser;
 		}
-		return deploymentSpecificationName_68Parser;
+		return artifact_NameLabel_CCN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentSpecificationName_69Parser;
+	private IParser artifact_FloatingNameLabel_CCN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentSpecificationName_69Parser() {
-		if(deploymentSpecificationName_69Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_FloatingNameLabel_CCN_Parser() {
+		if (artifact_FloatingNameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentSpecificationName_69Parser = parser;
+			artifact_FloatingNameLabel_CCN_Parser = parser;
 		}
-		return deploymentSpecificationName_69Parser;
+		return artifact_FloatingNameLabel_CCN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser deploymentName_13Parser;
+	private IParser artifact_NameLabel_ACN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentName_13Parser() {
-		if(deploymentName_13Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_NameLabel_ACN_Parser() {
+		if (artifact_NameLabel_ACN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			deploymentName_13Parser = parser;
+			artifact_NameLabel_ACN_Parser = parser;
 		}
-		return deploymentName_13Parser;
+		return artifact_NameLabel_ACN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser deploymentName_14Parser;
+	private IParser artifact_FloatingNameLabel_ACN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDeploymentName_14Parser() {
-		if(deploymentName_14Parser == null) {
-			deploymentName_14Parser = new AppliedStereotypeParser();
-		}
-		return deploymentName_14Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser manifestationName_10Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getManifestationName_10Parser() {
-		if(manifestationName_10Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_FloatingNameLabel_ACN_Parser() {
+		if (artifact_FloatingNameLabel_ACN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			manifestationName_10Parser = parser;
+			artifact_FloatingNameLabel_ACN_Parser = parser;
 		}
-		return manifestationName_10Parser;
+		return artifact_FloatingNameLabel_ACN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser manifestationName_11Parser;
+	private IParser artifact_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getManifestationName_11Parser() {
-		if(manifestationName_11Parser == null) {
-			manifestationName_11Parser = new AppliedStereotypeParser();
-		}
-		return manifestationName_11Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private AppliedStereotypeParser generalizationIsSubstitutable_4Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getGeneralizationIsSubstitutable_4Parser() {
-		if(generalizationIsSubstitutable_4Parser == null) {
-			generalizationIsSubstitutable_4Parser = new AppliedStereotypeParser();
-		}
-		return generalizationIsSubstitutable_4Parser;
-	}
-
-	/**
-	 * @generated
-	 */
-	private IParser dependencyName_12Parser;
-
-	/**
-	 * @generated
-	 */
-	private IParser getDependencyName_12Parser() {
-		if(dependencyName_12Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getArtifact_NameLabel_CN_Parser() {
+		if (artifact_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			dependencyName_12Parser = parser;
+			artifact_NameLabel_CN_Parser = parser;
 		}
-		return dependencyName_12Parser;
+		return artifact_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser dependencyName_15Parser;
+	private CommentParser comment_BodyLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getDependencyName_15Parser() {
-		if(dependencyName_15Parser == null) {
-			dependencyName_15Parser = new AppliedStereotypeParser();
+	private IParser getComment_BodyLabel_CN_Parser() {
+		if (comment_BodyLabel_CN_Parser == null) {
+			comment_BodyLabel_CN_Parser = new CommentParser();
 		}
-		return dependencyName_15Parser;
+		return comment_BodyLabel_CN_Parser;
 	}
 
 	/**
-	* @generated
-	*/
-	private IParser communicationPathName_6001Parser;
+	 * @generated
+	 */
+	private IParser constraint_NameLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getCommunicationPathName_6001Parser() {
-		if(communicationPathName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getConstraint_NameLabel_CN_Parser() {
+		if (constraint_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			communicationPathName_6001Parser = parser;
+			constraint_NameLabel_CN_Parser = parser;
 		}
-		return communicationPathName_6001Parser;
+		return constraint_NameLabel_CN_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser communicationPathName_6002Parser;
+	private ConstraintParser constraint_BodyLabel_CN_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getCommunicationPathName_6002Parser() {
-		if(communicationPathName_6002Parser == null) {
-			communicationPathName_6002Parser = new AppliedStereotypeParser();
+	private IParser getConstraint_BodyLabel_CN_Parser() {
+		if (constraint_BodyLabel_CN_Parser == null) {
+			constraint_BodyLabel_CN_Parser = new ConstraintParser();
 		}
-		return communicationPathName_6002Parser;
+		return constraint_BodyLabel_CN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecification_NameLabel_CCN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecification_NameLabel_CCN_Parser() {
+		if (deploymentSpecification_NameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecification_NameLabel_CCN_Parser = parser;
+		}
+		return deploymentSpecification_NameLabel_CCN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecification_FloatingNameLabel_CCN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecification_FloatingNameLabel_CCN_Parser() {
+		if (deploymentSpecification_FloatingNameLabel_CCN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecification_FloatingNameLabel_CCN_Parser = parser;
+		}
+		return deploymentSpecification_FloatingNameLabel_CCN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecification_NameLabel_CN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecification_NameLabel_CN_Parser() {
+		if (deploymentSpecification_NameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecification_NameLabel_CN_Parser = parser;
+		}
+		return deploymentSpecification_NameLabel_CN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecification_FloatingNameLabel_CN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecification_FloatingNameLabel_CN_Parser() {
+		if (deploymentSpecification_FloatingNameLabel_CN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecification_FloatingNameLabel_CN_Parser = parser;
+		}
+		return deploymentSpecification_FloatingNameLabel_CN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecification_NameLabel_ACN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecification_NameLabel_ACN_Parser() {
+		if (deploymentSpecification_NameLabel_ACN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecification_NameLabel_ACN_Parser = parser;
+		}
+		return deploymentSpecification_NameLabel_ACN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deploymentSpecification_FloatingNameLabel_ACN_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeploymentSpecification_FloatingNameLabel_ACN_Parser() {
+		if (deploymentSpecification_FloatingNameLabel_ACN_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deploymentSpecification_FloatingNameLabel_ACN_Parser = parser;
+		}
+		return deploymentSpecification_FloatingNameLabel_ACN_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser deployment_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeployment_NameLabel_Parser() {
+		if (deployment_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			deployment_NameLabel_Parser = parser;
+		}
+		return deployment_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser deployment_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDeployment_StereotypeLabel_Parser() {
+		if (deployment_StereotypeLabel_Parser == null) {
+			deployment_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return deployment_StereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser manifestation_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getManifestation_NameLabel_Parser() {
+		if (manifestation_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			manifestation_NameLabel_Parser = parser;
+		}
+		return manifestation_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser manifestation_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getManifestation_StereotypeLabel_Parser() {
+		if (manifestation_StereotypeLabel_Parser == null) {
+			manifestation_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return manifestation_StereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser generalization_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralization_StereotypeLabel_Parser() {
+		if (generalization_StereotypeLabel_Parser == null) {
+			generalization_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return generalization_StereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser dependency_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependency_NameLabel_Parser() {
+		if (dependency_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			dependency_NameLabel_Parser = parser;
+		}
+		return dependency_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser dependency_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependency_StereotypeLabel_Parser() {
+		if (dependency_StereotypeLabel_Parser == null) {
+			dependency_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return dependency_StereotypeLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser communicationPath_NameLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommunicationPath_NameLabel_Parser() {
+		if (communicationPath_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			communicationPath_NameLabel_Parser = parser;
+		}
+		return communicationPath_NameLabel_Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser communicationPath_StereotypeLabel_Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCommunicationPath_StereotypeLabel_Parser() {
+		if (communicationPath_StereotypeLabel_Parser == null) {
+			communicationPath_StereotypeLabel_Parser = new AppliedStereotypeParser();
+		}
+		return communicationPath_StereotypeLabel_Parser;
 	}
 
 	/**
 	* @generated
 	*/
 	protected IParser getParser(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case MultiDependencyLabelEditPart.VISUAL_ID:
-				return getDependencyName_7Parser();
+				return getDependency_MultiNameLabel_Parser();
+
 			case ModelNameEditPart.VISUAL_ID:
-				return getModelName_48Parser();
+				return getModel_NameLabel_Parser();
+
 			case PackageNameEditPart.VISUAL_ID:
-				return getPackageName_35Parser();
+				return getPackage_NameLabel_Parser();
+
 			case ConstraintNameEditPart.VISUAL_ID:
-				return getConstraintName_2Parser();
+				return getConstraint_NameLabel_Parser();
 			case ConstraintSpecificationEditPart.VISUAL_ID:
-				return getConstraintSpecification_3Parser();
+				return getConstraint_BodyLabel_Parser();
+
 			case CommentBodyEditPart.VISUAL_ID:
-				return getCommentBody_1Parser();
+				return getComment_BodyLabel_Parser();
+
 			case ExecutionEnvironmentNameEditPart.VISUAL_ID:
-				return getExecutionEnvironmentName_5Parser();
+				return getExecutionEnvironment_NameLabel_Parser();
+
 			case DeviceNameEditPart.VISUAL_ID:
-				return getDeviceName_6Parser();
+				return getDevice_NameLabel_Parser();
+
 			case ArtifactNameEditPart.VISUAL_ID:
-				return getArtifactName_8Parser();
+				return getArtifact_NameLabel_Parser();
 			case ArtifactFloatingLabelEditPart.VISUAL_ID:
-				return getArtifactName_61Parser();
+				return getArtifact_FloatingNameLabel_Parser();
+
 			case NodeNameEditPart.VISUAL_ID:
-				return getNodeName_9Parser();
+				return getNode_NameLabel_Parser();
+
 			case DefaultNamedElementNameEditPart.VISUAL_ID:
-				return getNamedElementName_53Parser();
+				return getNamedElement_NameLabel_Parser();
+
 			case DeploymentSpecificationNameEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_62Parser();
+				return getDeploymentSpecification_NameLabel_Parser();
 			case DeploymentSpecificationFloatingLabelEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_63Parser();
+				return getDeploymentSpecification_FloatingNameLabel_Parser();
+
 			case ModelNameEditPartCN.VISUAL_ID:
-				return getModelName_50Parser();
+				return getModel_NameLabel_CN_Parser();
+
 			case PackageNameEditPartCN.VISUAL_ID:
-				return getPackageName_37Parser();
+				return getPackage_NameLabel_CN_Parser();
+
 			case DeviceNameEditPartCN.VISUAL_ID:
-				return getDeviceName_20Parser();
+				return getDevice_NameLabel_CCN_Parser();
+
 			case NestedDeviceNameEditPartCN.VISUAL_ID:
-				return getDeviceName_45Parser();
+				return getDevice_NameLabel_CN_Parser();
+
 			case ExecutionEnvironmentNameEditPartCN.VISUAL_ID:
-				return getExecutionEnvironmentName_22Parser();
+				return getExecutionEnvironment_NameLabel_CCN_Parser();
+
 			case NestedExecutionEnvironmentNameEditPartCN.VISUAL_ID:
-				return getExecutionEnvironmentName_47Parser();
+				return getExecutionEnvironment_NameLabel_CN_Parser();
+
 			case NodeNameEditPartCN.VISUAL_ID:
-				return getNodeName_24Parser();
+				return getNode_NameLabel_CCN_Parser();
+
 			case NestedNodeNameEditPart.VISUAL_ID:
-				return getNodeName_43Parser();
+				return getNode_NameLabel_CN_Parser();
+
 			case ArtifactNameEditPartCN.VISUAL_ID:
-				return getArtifactName_27Parser();
+				return getArtifact_NameLabel_CCN_Parser();
 			case ArtifactFloatingLabelEditPartCN.VISUAL_ID:
-				return getArtifactName_59Parser();
+				return getArtifact_FloatingNameLabel_CCN_Parser();
+
 			case ArtifactNameEditPartACN.VISUAL_ID:
-				return getArtifactName_29Parser();
+				return getArtifact_NameLabel_ACN_Parser();
 			case ArtifactFloatingLabelEditPartACN.VISUAL_ID:
-				return getArtifactName_60Parser();
+				return getArtifact_FloatingNameLabel_ACN_Parser();
+
 			case NestedArtifactNameEditPart.VISUAL_ID:
-				return getArtifactName_41Parser();
+				return getArtifact_NameLabel_CN_Parser();
+
 			case CommentBodyEditPartCN.VISUAL_ID:
-				return getCommentBody_55Parser();
+				return getComment_BodyLabel_CN_Parser();
+
 			case ConstraintNameEditPartCN.VISUAL_ID:
-				return getConstraintName_57Parser();
+				return getConstraint_NameLabel_CN_Parser();
 			case ConstraintSpecificationEditPartCN.VISUAL_ID:
-				return getConstraintSpecification_58Parser();
+				return getConstraint_BodyLabel_CN_Parser();
+
 			case DeploymentSpecAsClassifierNameEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_64Parser();
+				return getDeploymentSpecification_NameLabel_CCN_Parser();
 			case DeploymentSpecAsClassifierFloatingLabelEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_65Parser();
+				return getDeploymentSpecification_FloatingNameLabel_CCN_Parser();
+
 			case DeploymentSpecAsPackageableElNameEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_66Parser();
+				return getDeploymentSpecification_NameLabel_CN_Parser();
 			case DeploymentSpecAsPackageableElFloatingLabelEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_67Parser();
+				return getDeploymentSpecification_FloatingNameLabel_CN_Parser();
+
 			case DeploymentSpecAsNestedArtifactNameEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_68Parser();
+				return getDeploymentSpecification_NameLabel_ACN_Parser();
 			case DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID:
-				return getDeploymentSpecificationName_69Parser();
+				return getDeploymentSpecification_FloatingNameLabel_ACN_Parser();
+
 			case DeploymentNameEditPart.VISUAL_ID:
-				return getDeploymentName_13Parser();
+				return getDeployment_NameLabel_Parser();
 			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
-				return getDeploymentName_14Parser();
+				return getDeployment_StereotypeLabel_Parser();
+
 			case ManifestationNameEditPart.VISUAL_ID:
-				return getManifestationName_10Parser();
+				return getManifestation_NameLabel_Parser();
 			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
-				return getManifestationName_11Parser();
+				return getManifestation_StereotypeLabel_Parser();
+
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
-				return getGeneralizationIsSubstitutable_4Parser();
+				return getGeneralization_StereotypeLabel_Parser();
+
 			case DependencyNameEditPart.VISUAL_ID:
-				return getDependencyName_12Parser();
+				return getDependency_NameLabel_Parser();
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
-				return getDependencyName_15Parser();
+				return getDependency_StereotypeLabel_Parser();
+
 			case CommunicationPathNameEditPart.VISUAL_ID:
-				return getCommunicationPathName_6001Parser();
+				return getCommunicationPath_NameLabel_Parser();
 			case CommunicationPathAppliedStereotypeEditPart.VISUAL_ID:
-				return getCommunicationPathName_6002Parser();
+				return getCommunicationPath_StereotypeLabel_Parser();
+
 			}
 		}
 		return null;
@@ -942,12 +974,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String)hint.getAdapter(String.class);
-		if(vid != null) {
+		String vid = (String) hint.getAdapter(String.class);
+		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View)hint.getAdapter(View.class);
-		if(view != null) {
+		View view = (View) hint.getAdapter(View.class);
+		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -958,9 +990,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
-		if(operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation)operation).getHint();
-			if(UMLElementTypes.getElement(hint) == null) {
+		if (operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation) operation).getHint();
+			if (UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -992,7 +1024,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		 */
 		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-			if(IElementType.class.equals(adapter)) {
+			if (IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);

@@ -49,9 +49,9 @@ public class TestOrderingFragments_403233 extends AbstractNodeTest {
 
 	@Test
 	public void testOrderingAfterCreateExecutions() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), null);
-		AbstractExecutionSpecificationEditPart executionPart1 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, getAbsoluteBounds(lifeline).getCenter(), null);
-		AbstractExecutionSpecificationEditPart executionPart2 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, getAbsoluteBounds(executionPart1).getCenter().getTranslated(0, -100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), null);
+		AbstractExecutionSpecificationEditPart executionPart1 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteBounds(lifeline).getCenter(), null);
+		AbstractExecutionSpecificationEditPart executionPart2 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteBounds(executionPart1).getCenter().getTranslated(0, -100), null);
 		ExecutionSpecification execution1 = (ExecutionSpecification)executionPart1.resolveSemanticElement();
 		ExecutionSpecification execution2 = (ExecutionSpecification)executionPart2.resolveSemanticElement();
 		validOrderWithPosition(execution1, getAbsoluteBounds(executionPart1).y, execution2, getAbsoluteBounds(executionPart2).y);

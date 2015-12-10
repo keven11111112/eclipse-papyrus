@@ -26,16 +26,16 @@ public class ElementInitializers extends org.eclipse.papyrus.uml.diagram.activit
 		return cached;
 	}
 
-	public void init_CallBehaviorAction_5000(final CallBehaviorAction instance) {
+	public void init_CallBehaviorAction_InteractionShape(final CallBehaviorAction instance) {
 		try {
-			final Object value_0 = name_CallBehaviorAction_5000(instance);
+			final Object value_0 = name_CallBehaviorAction_InteractionShape(instance);
 			instance.setName((String) value_0);
 		} catch (final RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
 		}
 	}
 
-	private String name_CallBehaviorAction_5000(final CallBehaviorAction self) {
+	private String name_CallBehaviorAction_InteractionShape(final CallBehaviorAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 }

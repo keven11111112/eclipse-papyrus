@@ -49,7 +49,7 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	@Test
 	@Ignore
 	public void testToManageCallbehaviorAction() {
-		testToManageNode(UMLElementTypes.CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.CallBehaviorAction_Shape, UMLPackage.eINSTANCE.getCallBehaviorAction(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	@Ignore
 	@Test
 	public void testToManageCallOperationAction() {
-		testToManageNode(UMLElementTypes.CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.CallOperationAction_Shape, UMLPackage.eINSTANCE.getCallOperationAction(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	@Ignore
 	@Test
 	public void testToManageSendSignalAction() {
-		testToManageNode(UMLElementTypes.SendSignalAction_3052, UMLPackage.eINSTANCE.getSendSignalAction(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.SendSignalAction_Shape, UMLPackage.eINSTANCE.getSendSignalAction(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	/**
@@ -75,7 +75,7 @@ public class TestActivityDiagramChildWithOtherCreationNode extends AbstractTestA
 	 */
 	@Test
 	public void testToManageSendObjectAction() {
-		testToManageNode(UMLElementTypes.SendObjectAction_3042, UMLPackage.eINSTANCE.getSendObjectAction(), UMLElementTypes.StructuredActivityNode_3065, false);
+		testToManageNode(UMLElementTypes.SendObjectAction_Shape, UMLPackage.eINSTANCE.getSendObjectAction(), UMLElementTypes.StructuredActivityNode_Shape, false);
 	}
 
 	/**

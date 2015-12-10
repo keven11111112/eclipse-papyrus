@@ -45,7 +45,7 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3075";
+	public static final String VISUAL_ID = "ExpansionNode_OutputShape";
 
 	/**
 	 * @generated
@@ -72,7 +72,9 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -146,6 +148,7 @@ public class ExpansionNodeAsOutEditPart extends AbstractBorderItemEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**

@@ -99,8 +99,15 @@ class UMLElementTypes {
         type.isDiagramSpecific && !suppressSemanticSuperElementTypes
     }
     
+	// TODO: there should be another way to determine that an IElementType represents a diagram element
     private def isVisualID(String string) {
-        !string.nullOrEmpty && VISUAL_ID_PATTERN.matcher(string).matches
+        !string.nullOrEmpty && (VISUAL_ID_PATTERN.matcher(string).matches ||
+        	string.contains("Diagram") ||
+        	string.contains("Shape") ||
+        	string.contains("Edge") ||
+        	string.contains("Label") ||
+        	string.contains("Compartment")
+        )
     }
     
     def getDiagramSpecificElementTypes(Class metaclass) {

@@ -172,7 +172,7 @@ public class TestLifelineLabelCustomize_383722 extends TestTopNode {
 	}
 
 	protected LifelineEditPart setupLifeline() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 

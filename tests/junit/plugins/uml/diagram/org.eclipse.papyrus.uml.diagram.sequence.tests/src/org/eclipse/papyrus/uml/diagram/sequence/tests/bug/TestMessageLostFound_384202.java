@@ -74,14 +74,14 @@ public class TestMessageLostFound_384202 extends TestLink {
 
 	@Test
 	public void testMessageFound() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 
 		waitForComplete();
 		source = (GraphicalEditPart)getRootEditPart().getParent();
 
-		createLink(UMLElementTypes.Message_4009, source, lifeline1, getAbsoluteCenter(source), getAbsoluteCenter(lifeline1)); // new Point(100,0)
+		createLink(UMLElementTypes.Message_FoundEdge, source, lifeline1, getAbsoluteCenter(source), getAbsoluteCenter(lifeline1)); // new Point(100,0)
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
 
@@ -96,14 +96,14 @@ public class TestMessageLostFound_384202 extends TestLink {
 
 	@Test
 	public void testMessageLost() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 
 		waitForComplete();
 		target = (GraphicalEditPart)getRootEditPart().getParent();
 
-		createLink(UMLElementTypes.Message_4008, lifeline1, target, getAbsoluteCenter(lifeline1), getAbsoluteCenter(target)); // getAbsoluteBounds(target).getBottomRight());
+		createLink(UMLElementTypes.Message_LostEdge, lifeline1, target, getAbsoluteCenter(lifeline1), getAbsoluteCenter(target)); // getAbsoluteBounds(target).getBottomRight());
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 
@@ -118,20 +118,20 @@ public class TestMessageLostFound_384202 extends TestLink {
 
 	@Test
 	public void testGeneralOrderingOnExecution() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
-		createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline1, new Point(131, 140), new Dimension(20, 60));
-		createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline2, new Point(331, 200), new Dimension(20, 60));
+		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(131, 140), new Dimension(20, 60));
+		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline2, new Point(331, 200), new Dimension(20, 60));
 		waitForComplete();
 
 		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1.getChildren().get(1);
 		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2.getChildren().get(1);
 
-		createLink(UMLElementTypes.GeneralOrdering_4012, source, target, getAbsoluteBounds(source).getTop(), getAbsoluteBounds(target).getTop());
+		createLink(UMLElementTypes.GeneralOrdering_Edge, source, target, getAbsoluteBounds(source).getTop(), getAbsoluteBounds(target).getTop());
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
 
@@ -147,18 +147,18 @@ public class TestMessageLostFound_384202 extends TestLink {
 
 	@Test
 	public void testGeneralOrderingOnMessage() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(400, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(400, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		final LifelineEditPart lifeline3 = (LifelineEditPart)getRootEditPart().getChildren().get(2);
 		final LifelineEditPart lifeline4 = (LifelineEditPart)getRootEditPart().getChildren().get(3);
 		waitForComplete();
 
-		createLink(UMLElementTypes.Message_4004, lifeline1, lifeline2, getAbsoluteCenter(lifeline1).translate(0, -20), getAbsoluteCenter(lifeline2).translate(0, -20));
-		createLink(UMLElementTypes.Message_4004, lifeline3, lifeline4, getAbsoluteCenter(lifeline3).translate(0, 20), getAbsoluteCenter(lifeline4).translate(0, 20));
+		createLink(UMLElementTypes.Message_AsynchEdge, lifeline1, lifeline2, getAbsoluteCenter(lifeline1).translate(0, -20), getAbsoluteCenter(lifeline2).translate(0, -20));
+		createLink(UMLElementTypes.Message_AsynchEdge, lifeline3, lifeline4, getAbsoluteCenter(lifeline3).translate(0, 20), getAbsoluteCenter(lifeline4).translate(0, 20));
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline1.getSourceConnections().size() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline3.getSourceConnections().size() == 1);
@@ -166,7 +166,7 @@ public class TestMessageLostFound_384202 extends TestLink {
 		AbstractMessageEditPart s = (AbstractMessageEditPart)lifeline1.getSourceConnections().get(0);
 		AbstractMessageEditPart t = (AbstractMessageEditPart)lifeline3.getSourceConnections().get(0);
 
-		createLink(UMLElementTypes.GeneralOrdering_4012, lifeline1, lifeline3, getAbsoluteEdgeExtremity(s, true), getAbsoluteEdgeExtremity(t, true));
+		createLink(UMLElementTypes.GeneralOrdering_Edge, lifeline1, lifeline3, getAbsoluteEdgeExtremity(s, true), getAbsoluteEdgeExtremity(t, true));
 		waitForComplete();
 
 		assertTrue(CREATION + TEST_THE_EXECUTION, lifeline3.getTargetConnections().size() == 1);

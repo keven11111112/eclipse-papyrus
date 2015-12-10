@@ -33,7 +33,7 @@ public class CompositeStructureDiagramEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "1000";
+	public static final String VISUAL_ID = "Package_CompositeStructureDiagram";
 
 	/**
 	 * @generated
@@ -47,8 +47,10 @@ public class CompositeStructureDiagramEditPart extends PapyrusDiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());

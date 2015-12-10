@@ -74,7 +74,7 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 		IEclipsePreferences store = InstanceScope.INSTANCE.getNode(PREF_STORE);
 		store.putBoolean(COMBINED_FRAGMENT_KEY, true);
 
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CustomCombinedFragmentEditPart cep = (CustomCombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		CombinedFragment cf = (CombinedFragment)cep.resolveSemanticElement();
 		WrappingLabel label = cep.getTitleLabel();
@@ -90,7 +90,7 @@ public class TestCombinedFragmentName_382951 extends TestTopNode {
 		IEclipsePreferences store = InstanceScope.INSTANCE.getNode(PREF_STORE);
 		store.putBoolean(CONSIDER_FRAGMENT_KEY, false);
 
-		createNode(UMLElementTypes.ConsiderIgnoreFragment_3007, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
+		createNode(UMLElementTypes.ConsiderIgnoreFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(100, 100));
 		CustomConsiderIgnoreFragmentEditPart cep = (CustomConsiderIgnoreFragmentEditPart)getRootEditPart().getChildren().get(0);
 		ConsiderIgnoreFragment cf = (ConsiderIgnoreFragment)cep.resolveSemanticElement();
 		WrappingLabel label = cep.getTitleLabel();

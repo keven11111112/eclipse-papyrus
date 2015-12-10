@@ -690,30 +690,11 @@
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramViewProvider">
 		<Priority name="Low"/>
 		
-		<!-- 
-			"2005" = MODEL
-			"3024" = MODEL_CN
-			"2007" = PACKAGE
-			"3009" = PACKAGE_CN
-			"2001" = INSTANCE_SPECIFICATION
-			"3020" = INSTANCE_SPECIFICATION_CN
-			"2011" = CONSTRAINT
-			"3029" = CONSTRAINT_CN
-			"2012" = COMMENT
-			"3028" = COMMENT_CN
-		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2005, 3024, 2007, 3009, 2001, 3020, 2011, 3029, 2012, 3028"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Model_Shape, Model_Shape_CN, Package_Shape, Package_Shape_CN, InstanceSpecification_Shape, InstanceSpecification_Shape_CN, Constraint_Shape, Constraint_Shape_CN, Comment_Shape, Comment_Shape_CN"/>
 		
-		<!-- 
-			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
-		  -->	  
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="3030"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Slot_SlotLabel"/>
 		
-		<!-- 
-			"4013" = COMMENT_ANNOTATED_ELEMENT
-			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
-		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013, 4014"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Comment_AnnotatedElementEdge, Constraint_ConstrainedElementEdge"/>
 		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
@@ -799,111 +780,72 @@
 	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedClassDiagramEditPartProvider">
 		<Priority name="Low"/>
-		<!-- 
-			The semantic hints given here are used in case the provider is not already loaded.
-			As soon as the provider is loaded its provides method is used.		
-			"2005" = MODEL
-			"5020" = MODEL_LABEL_NAME_TN_HINT
-			"7009" = MODEL_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
-			"3024" = MODEL_CN
-			"5052" = MODEL_CN_LABEL_NAME_HINT
-			"7030" = MODEL_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
-			"2007" = PACKAGE
-			"5026" = PACKAGE_LABEL_NAME_HINT
-			"7016" = PACKAGE_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
-			"3009" = PACKAGE_CN
-			"5017" = PACKAGE_CN_LABEL_NAME_HINT
-			"7010" = PACKAGE_CN_COMPARTMENT_PACKAGEABLE_ELEMENT_HINT
-			"2001" = INSTANCE_SPECIFICATION
-			"5002" = INSTANCE_SPECIFICATION_LABEL_NAME_HINT
-			"7001" = INSTANCE_SPECIFICATION_COMPARTMENT_SLOT_HINT
-			"3020" = INSTANCE_SPECIFICATION_CN
-			"5040" = INSTANCE_SPECIFICATION_CN_LABEL_NAME_HINT
-			"7035" = INSTANCE_SPECIFICATION_CN_COMPARTMENT_SLOT_HINT
-			"2011" = CONSTRAINT
-			"5037" = CONSTRAINT_LABEL_NAME_HINT
-			"5159" = CONSTRAINT_LABEL_BODY_HINT
-			"3029" = CONSTRAINT_CN
-			"5064" = CONSTRAINT_CN_LABEL_NAME_HINT
-			"5160" = CONSTRAINT_CN_LABEL_BODY_HINT
-			"2012" = COMMENT
-			"5038" = COMMENT_LABEL_BODY_HINT
-			"3028" = COMMENT_CN
-			"5063" = COMMENT_CN_LABEL_BODY_HINT
-		  -->
 		<object
 			id="MODEL"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2005, 5020, 7009"/>
+			<method name="getType()" value="Model_Shape, Model_NameLabel, Model_PackagedElementCompartment"/>
 		</object>
 		<object
 			id="MODEL_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3024, 5052, 7030"/>
+			<method name="getType()" value="Model_Shape_CN, Model_NameLabel_CN, Model_PackagedElementCompartment_CN"/>
 		</object>
 		<object
 			id="PACKAGE"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2007, 5026, 7016"/>
+			<method name="getType()" value="Package_Shape, Package_NameLabel, Package_PackagedElementCompartment"/>
 		</object>
 		<object
 			id="PACKAGE_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3009, 5017, 7010"/>
+			<method name="getType()" value="Package_Shape_CN, Package_NameLabel_CN, Package_PackagedElementCompartment_CN"/>
 		</object>
 		<object
 			id="INSTANCE_SPECIFICATION"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2001, 5002, 7001"/>
+			<method name="getType()" value="InstanceSpecification_Shape, InstanceSpecification_NameLabel, InstanceSpecification_SlotCompartment"/>
 		</object>
 		<object
 			id="INSTANCE_SPECIFICATION_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3020, 5040, 7035"/>
+			<method name="getType()" value="InstanceSpecification_Shape_CN, InstanceSpecification_NameLabel_CN, InstanceSpecification_SlotCompartment_CN"/>
 		</object>
 		<object
 			id="CONSTRAINT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2011, 5037, 5159"/>
+			<method name="getType()" value="Constraint_Shape, Constraint_NameLabel, Constraint_BodyLabel"/>
 		</object>
 		<object
 			id="CONSTRAINT_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3029, 5064, 5160"/>
+			<method name="getType()" value="Constraint_Shape_CN, Constraint_NameLabel_CN, Constraint_FloatingNameLabel_CN"/>
 		</object>
 		<object
 			id="COMMENT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2012, 5038"/>
+			<method name="getType()" value="Comment_Shape, Comment_BodyLabel"/>
 		</object>
 		<object
 			id="COMMENT_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3028, 5063"/>
+			<method name="getType()" value="Comment_Shape_CN, Comment_BodyLabel_CN"/>
 		</object>
 		
-		<!-- 	
-			"3030" = INSTANCE_SPECIFICATION_SLOT_CLN
-		  -->
 		<object
 			id="INSTANCE_SPECIFICATION_SLOT_CLN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3030"/>
+			<method name="getType()" value="Slot_SlotLabel"/>
 		</object>
 		
-		<!-- 	
-			"4013" = COMMENT_ANNOTATED_ELEMENT
-			"4014" = CONSTRAINT_CONSTRAINED_ELEMENT
-		  -->
 		<object
 			id="COMMENT_ANNOTATED_ELEMENT"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4013"/>
+			<method name="getType()" value="Comment_AnnotatedElementEdge"/>
 		</object>
 		<object
 			id="CONSTRAINT_CONSTRAINED_ELEMENT"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4014"/>
+			<method name="getType()" value="Constraint_ConstrainedElementEdge"/>
 		</object>
 		
 		<context views="MODEL, MODEL_CN, PACKAGE, PACKAGE_CN, INSTANCE_SPECIFICATION, INSTANCE_SPECIFICATION_CN, CONSTRAINT, CONSTRAINT_CN, COMMENT, COMMENT_CN"/>

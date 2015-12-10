@@ -65,7 +65,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3059";
+	public static final String VISUAL_ID = "ActivityParameterNode_Shape";
 
 	/**
 	 * @generated
@@ -92,12 +92,16 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
-		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new ActivityParameterMaskEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY,
+				new ActivityParameterMaskEditPolicy());
 		installEditPolicy(ShowHideStreamLabelEditPolicy.KEY, new ShowHideStreamLabelEditPolicy());
 		installEditPolicy(ShowHideExceptionEditPolicy.KEY, new ShowHideExceptionEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -125,6 +129,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -195,6 +200,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 			((ParameterNodeNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -246,7 +252,8 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof ActivityParameterNodeStreamLabelEditPart || borderItemEditPart instanceof ActivityParameterNodeExceptionLabelEditPart) {
+		if (borderItemEditPart instanceof ActivityParameterNodeStreamLabelEditPart
+				|| borderItemEditPart instanceof ActivityParameterNodeExceptionLabelEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -279,6 +286,7 @@ public class ActivityParameterNodeEditPart extends RoundedBorderNamedElementEdit
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**

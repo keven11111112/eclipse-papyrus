@@ -37,7 +37,7 @@ import org.eclipse.ui.IViewPart;
  */
 public class AddExternalNodeFloatingLabelDisplayBehavior extends Action {
 
-	public static final String FIGURE_VIEWMAP_PATH = "org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel";//"org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"; //$NON-NLS-1$
+	public static final String FIGURE_VIEWMAP_PATH = "org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel";// "org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"; //$NON-NLS-1$
 
 	public static final String LABEL_POLICY_CLASS = "org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy"; //$NON-NLS-1$
 
@@ -49,7 +49,7 @@ public class AddExternalNodeFloatingLabelDisplayBehavior extends Action {
 
 	public static final String DEFAULT_EDITPOLICY_NAME_SUFFIX = "FloatingLabelItemSemanticEditPolicy"; //$NON-NLS-1$
 
-	//	public static final String DEFAULT_WRAPPING_LABEL_CLASS = "org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"; //$NON-NLS-1$
+	// public static final String DEFAULT_WRAPPING_LABEL_CLASS = "org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"; //$NON-NLS-1$
 
 	public static final String DEFAULT_PARSER_PATTERN = ""; //$NON-NLS-1$
 

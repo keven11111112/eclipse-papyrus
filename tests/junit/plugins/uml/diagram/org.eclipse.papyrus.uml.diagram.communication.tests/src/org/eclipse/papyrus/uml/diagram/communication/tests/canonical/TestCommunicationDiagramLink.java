@@ -53,7 +53,7 @@ public class TestCommunicationDiagramLink extends TestLink {
 	@Test
 	@InvalidTest
 	public void testToMessage() {
-	testToManageLink(UMLElementTypes.Lifeline_8001, UMLElementTypes.Lifeline_8001, UMLElementTypes.Message_8009, UMLElementTypes.Interaction_8002, false);
+	testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Path_Edge, UMLElementTypes.Interaction_Shape, false);
 	}
 
 }

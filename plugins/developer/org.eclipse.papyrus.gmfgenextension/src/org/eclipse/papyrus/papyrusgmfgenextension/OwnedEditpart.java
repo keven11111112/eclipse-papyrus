@@ -22,7 +22,7 @@ package org.eclipse.papyrus.papyrusgmfgenextension;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getOwnedEditpart()
@@ -38,7 +38,6 @@ public interface OwnedEditpart extends ExternalHook {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getOwnedEditpart_Name()
@@ -51,9 +50,7 @@ public interface OwnedEditpart extends ExternalHook {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.OwnedEditpart#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */

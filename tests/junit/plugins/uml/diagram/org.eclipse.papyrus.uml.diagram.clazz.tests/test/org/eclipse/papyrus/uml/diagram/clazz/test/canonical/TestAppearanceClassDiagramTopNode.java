@@ -50,7 +50,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageComponent() {
-		testAppearance(UMLElementTypes.Component_2002);
+		testAppearance(UMLElementTypes.Component_Shape);
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageInstanceSpecification() {
-		testAppearance(UMLElementTypes.InstanceSpecification_2001);
+		testAppearance(UMLElementTypes.InstanceSpecification_Shape);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageSignal() {
-		testAppearance(UMLElementTypes.Signal_2003);
+		testAppearance(UMLElementTypes.Signal_Shape);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageModel() {
-		testAppearance(UMLElementTypes.Model_2005);
+		testAppearance(UMLElementTypes.Model_Shape);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageEnumeration() {
-		testAppearance(UMLElementTypes.Enumeration_2006);
+		testAppearance(UMLElementTypes.Enumeration_Shape);
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageIPackage() {
-		testAppearance(UMLElementTypes.Package_2007);
+		testAppearance(UMLElementTypes.Package_Shape);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageClass() {
-		testAppearance(UMLElementTypes.Class_2008);
+		testAppearance(UMLElementTypes.Class_Shape);
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManagePrimitiveType() {
-		testAppearance(UMLElementTypes.PrimitiveType_2009);
+		testAppearance(UMLElementTypes.PrimitiveType_Shape);
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageDataType() {
-		testAppearance(UMLElementTypes.DataType_2010);
+		testAppearance(UMLElementTypes.DataType_Shape);
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testAppearance(UMLElementTypes.Constraint_2011);
+		testAppearance(UMLElementTypes.Constraint_PackagedElementShape);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageComment() {
-		testAppearance(UMLElementTypes.Comment_2012);
+		testAppearance(UMLElementTypes.Comment_Shape);
 	}
 
 	/**
@@ -138,7 +138,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageInformationItem() {
-		testAppearance(UMLElementTypes.InformationItem_2099);
+		testAppearance(UMLElementTypes.InformationItem_Shape);
 	}
 	
 	/**
@@ -146,7 +146,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageInterface() {
-		testAppearance(UMLElementTypes.Interface_2004);
+		testAppearance(UMLElementTypes.Interface_Shape);
 	}
 	
 	/**
@@ -154,7 +154,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageTimeObservation() {
-		testAppearance(UMLElementTypes.TimeObservation_2096);
+		testAppearance(UMLElementTypes.TimeObservation_Shape);
 	}
 	
 	/**
@@ -162,7 +162,7 @@ public class TestAppearanceClassDiagramTopNode extends AbstractAppearanceNodeTes
 	 */
 	@Test
 	public void testToManageDurationObservation() {
-		testAppearance(UMLElementTypes.DurationObservation_2095);
+		testAppearance(UMLElementTypes.DurationObservation_Shape);
 	}
 
 

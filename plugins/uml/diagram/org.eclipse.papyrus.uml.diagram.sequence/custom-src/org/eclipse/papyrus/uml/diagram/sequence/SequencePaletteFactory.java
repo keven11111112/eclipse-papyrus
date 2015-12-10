@@ -97,56 +97,56 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 	@Override
 	public Tool createTool(String toolId) {
 		if (toolId.equals(CREATECOMBINEDFRAGMENTTOOL)) {
-			return createCombinedFragment5CreationTool();
+			return createCombinedFragmentCreationTool();
 		}
 		// add
 		if (toolId.equals(CREATECONSIDERIGNOREFRAGMENTTOOL)) {
 			return createConsiderIgnoreFragmentCreationTool();
 		}
 		if (toolId.equals(CREATECOMMENTTOOL)) {
-			return createComment9CreationTool();
+			return createCommentCreationTool();
 		}
 		if (toolId.equals(CREATECONSTRAINTTOOL)) {
-			return createConstraint10CreationTool();
+			return createConstraintCreationTool();
 		}
 		if (toolId.equals(CREATEDURATIONOBSERVATIONTOOL)) {
-			return createDurationObservation12CreationTool();
+			return createDurationObservationCreationTool();
 		}
 		if (toolId.equals(CREATETIMEOBSERVATIONTOOL)) {
-			return createTimeObservation14CreationTool();
+			return createTimeObservationCreationTool();
 		}
 		if (toolId.equals(CREATEDURATIONCONSTRAINTTOOL)) {
-			return createDurationConstraint15CreationTool();
+			return createDurationConstraintCreationTool();
 		}
 		if (toolId.equals(CREATEDESTRUCTIONEVENTTOOL)) {
-			return createDestructionEvent16CreationTool();
+			return createDestructionEventCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGESYNCTOOL)) {
-			return createMessageSync1CreationTool();
+			return createMessageSyncCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGEASYNCTOOL)) {
-			return createMessageAsync2CreationTool();
+			return createMessageAsyncCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGEREPLYTOOL)) {
-			return createMessageReply3CreationTool();
+			return createMessageReplyCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGECREATETOOL)) {
-			return createMessageCreate4CreationTool();
+			return createMessageCreateCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGEDELETETOOL)) {
-			return createMessageDelete5CreationTool();
+			return createMessageDeleteCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGELOSTTOOL)) {
-			return createMessageLost6CreationTool();
+			return createMessageLostCreationTool();
 		}
 		if (toolId.equals(CREATEMESSAGEFOUNDTOOL)) {
-			return createMessageFound7CreationTool();
+			return createMessageFoundCreationTool();
 		}
 		if (toolId.equals(CREATEGENERALORDERINGTOOL)) {
-			return createGeneralOrdering8CreationTool();
+			return createGeneralOrderingCreationTool();
 		}
 		if (toolId.equals(CREATEANNOTATEDLINKTOOL)) {
-			return createAnnotatedLink9CreationTool();
+			return createAnnotatedLinkCreationTool();
 		}
 		if (toolId.equals(CREATEGATETOOL)) {
 			return createGateTool();
@@ -179,24 +179,24 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		return null;
 	}
 
-	private Tool createCombinedFragment5CreationTool() {
+	private Tool createCombinedFragmentCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
-		// types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
-		types.add(UMLElementTypes.CombinedFragment_3004);
+		// types.add(UMLElementTypes.ConsiderIgnoreFragment_Shape);
+		types.add(UMLElementTypes.CombinedFragment_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 
 	private Tool createConsiderIgnoreFragmentCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		types.add(UMLElementTypes.ConsiderIgnoreFragment_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 
-	private Tool createComment9CreationTool() {
+	private Tool createCommentCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Comment_3009);
+		types.add(UMLElementTypes.Comment_Shape);
 		// Tool tool = new AspectUnspecifiedTypeCreationTool(types){
 		// protected Command getCommand() {
 		// if (!antiScroll){
@@ -214,9 +214,9 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 
-	private Tool createConstraint10CreationTool() {
+	private Tool createConstraintCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Constraint_3008);
+		types.add(UMLElementTypes.Constraint_Shape);
 		// Tool tool = new AspectUnspecifiedTypeCreationTool(types){
 		// protected Command getCommand() {
 		// if (!antiScroll){
@@ -234,9 +234,9 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 
-	private Tool createDurationObservation12CreationTool() {
+	private Tool createDurationObservationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.DurationObservation_3024);
+		types.add(UMLElementTypes.DurationObservation_Shape);
 		// use DurationCreationTool
 		// Tool tool = new DurationCreationTool(types);
 		// AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types);
@@ -246,9 +246,9 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 
-	private Tool createTimeObservation14CreationTool() {
+	private Tool createTimeObservationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.TimeObservation_3020);
+		types.add(UMLElementTypes.TimeObservation_Shape);
 		// AspectUnspecifiedTypeCreationTool tool = new AspectUnspecifiedTypeCreationTool(types){
 		// protected Command getCommand() {
 		// if (!antiScroll){
@@ -268,10 +268,10 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 
-	private Tool createDurationConstraint15CreationTool() {
+	private Tool createDurationConstraintCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.DurationConstraint_3021);
-		// types.add(UMLElementTypes.DurationConstraint_3023);
+		types.add(UMLElementTypes.DurationConstraint_Shape);
+		// types.add(UMLElementTypes.DurationConstraint_Shape_CN);
 		// use DurationCreationTool
 		// Tool tool = new DurationCreationTool(types);
 		// Disable old DurationConstraint creation.
@@ -279,75 +279,75 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		return tool;
 	}
 
-	private Tool createDestructionEvent16CreationTool() {
+	private Tool createDestructionEventCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.DestructionOccurrenceSpecification_3022);
+		types.add(UMLElementTypes.DestructionOccurrenceSpecification_Shape);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
 
-	private Tool createMessageSync1CreationTool() {
+	private Tool createMessageSyncCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4003);
+		types.add(UMLElementTypes.Message_SynchEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createMessageAsync2CreationTool() {
+	private Tool createMessageAsyncCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4004);
+		types.add(UMLElementTypes.Message_AsynchEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createMessageReply3CreationTool() {
+	private Tool createMessageReplyCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4005);
+		types.add(UMLElementTypes.Message_ReplyEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createMessageCreate4CreationTool() {
+	private Tool createMessageCreateCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_CreateEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createMessageDelete5CreationTool() {
+	private Tool createMessageDeleteCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4007);
+		types.add(UMLElementTypes.Message_DeleteEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createMessageLost6CreationTool() {
+	private Tool createMessageLostCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4008);
+		types.add(UMLElementTypes.Message_LostEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createMessageFound7CreationTool() {
+	private Tool createMessageFoundCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.Message_FoundEdge);
 		Tool tool = new MessageConnectionTool(types);
 		return tool;
 	}
 
-	private Tool createGeneralOrdering8CreationTool() {
+	private Tool createGeneralOrderingCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.GeneralOrdering_4012);
+		types.add(UMLElementTypes.GeneralOrdering_Edge);
 		Tool tool = new AspectUnspecifiedTypeConnectionToolEx(types);
 		return tool;
 	}
 
-	private Tool createAnnotatedLink9CreationTool() {
+	private Tool createAnnotatedLinkCreationTool() {
 		AspectUnspecifiedTypeConnectionToolEx tool = new AspectUnspecifiedTypeConnectionToolEx(null) {
 
 			@Override
 			protected CreateConnectionRequest createTargetRequest() {
-				IHintedType type = (IHintedType) UMLElementTypes.CommentAnnotatedElement_4010;
+				IHintedType type = (IHintedType) UMLElementTypes.Comment_AnnotatedElementEdge;
 				return new CreateConnectionViewRequest(new ConnectionViewDescriptor(type, type.getSemanticHint(), getPreferencesHint()));
 			}
 

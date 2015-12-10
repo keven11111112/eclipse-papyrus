@@ -130,11 +130,11 @@ public class UMLVisualIDRegistry extends org.eclipse.papyrus.uml.diagram.activit
 			if (UMLPackage.eINSTANCE.getFlowFinalNode().isSuperTypeOf(domainElement.eClass())) {
 				return FlowFinalNodeEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCallBehaviorAction().isSuperTypeOf(domainElement.eClass()) && isInteractionUse_3008(containerView, (CallBehaviorAction) domainElement)) {
+			if (UMLPackage.eINSTANCE.getCallBehaviorAction().isSuperTypeOf(domainElement.eClass()) && isCallBehaviorAction_Shape(containerView, (CallBehaviorAction) domainElement)) {
 				return CallBehaviorActionEditPart.VISUAL_ID;
 			}
-			if (UMLPackage.eINSTANCE.getCallBehaviorAction().isSuperTypeOf(domainElement.eClass()) && isInteraction_5000(containerView, (CallBehaviorAction) domainElement)) {
-				return CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID;
+			if (UMLPackage.eINSTANCE.getCallBehaviorAction().isSuperTypeOf(domainElement.eClass()) && isCallBehaviorAction_InteractionShape(containerView, (CallBehaviorAction) domainElement)) {
+				return CallBehaviorActionAsInteractionEditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
 				return DecisionNodeEditPart.VISUAL_ID;
@@ -183,7 +183,7 @@ public class UMLVisualIDRegistry extends org.eclipse.papyrus.uml.diagram.activit
 		return null;
 	}
 
-	private static boolean isInteractionUse_3008(final View containerView, final CallBehaviorAction domainElement) {
+	private static boolean isCallBehaviorAction_Shape(final View containerView, final CallBehaviorAction domainElement) {
 
 		return CallBehaviorUtil.getCallBehaviorType(domainElement) == CallBehaviorUtil.CallBehaviorActionType.use;
 	}
@@ -192,7 +192,7 @@ public class UMLVisualIDRegistry extends org.eclipse.papyrus.uml.diagram.activit
 	 * @generated
 	 */
 
-	private static boolean isInteraction_5000(final View containerView, final CallBehaviorAction domainElement) {
+	private static boolean isCallBehaviorAction_InteractionShape(final View containerView, final CallBehaviorAction domainElement) {
 
 		return CallBehaviorUtil.getCallBehaviorType(domainElement) == CallBehaviorUtil.CallBehaviorActionType.snapshot;
 	}

@@ -31,7 +31,7 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "8009";
+	public static final String VISUAL_ID = "Path_Edge";
 
 	/**
 	 * @generated
@@ -47,7 +47,8 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomMessageItemSemanticEditPolicy());
 	}
 
@@ -55,11 +56,11 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageNameEditPart) {
-			((MessageNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureMessageCreateLabelFigure());
+		if (childEditPart instanceof MessageNameEditPart) {
+			((MessageNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureMessageCreateLabelFigure());
 		}
-		if(childEditPart instanceof AppliedStereotypeMessageEditPart) {
-			((AppliedStereotypeMessageEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AppliedStereotypeMessageEditPart) {
+			((AppliedStereotypeMessageEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -69,7 +70,7 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -79,10 +80,10 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageNameEditPart) {
+		if (childEditPart instanceof MessageNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AppliedStereotypeMessageEditPart) {
+		if (childEditPart instanceof AppliedStereotypeMessageEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +94,7 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -116,6 +117,6 @@ public class MessageEditPart extends ConnectionEditPart implements ITreeBranchEd
 	 * @generated
 	 */
 	public MessageFigure getPrimaryShape() {
-		return (MessageFigure)getFigure();
+		return (MessageFigure) getFigure();
 	}
 }

@@ -81,7 +81,7 @@ public class GateGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			 */
 			String semanticHint = viewRequest.getConnectionViewAndElementDescriptor().getSemanticHint();
 			// Ignore CoRegion.
-			if (!(sourceEP instanceof CombinedFragment2EditPart) && (((IHintedType) (UMLElementTypes.Message_4004)).getSemanticHint().equals(semanticHint) || ((IHintedType) (UMLElementTypes.Message_4005)).getSemanticHint().equals(semanticHint))) {
+			if (!(sourceEP instanceof CombinedFragment2EditPart) && (((IHintedType) (UMLElementTypes.Message_AsynchEdge)).getSemanticHint().equals(semanticHint) || ((IHintedType) (UMLElementTypes.Message_ReplyEdge)).getSemanticHint().equals(semanticHint))) {
 				if (source instanceof CombinedFragment || source instanceof Interaction || source instanceof InteractionUse) {
 					CompoundCommand cc = new CompoundCommand("Redirect to Gate");
 					Point location = null;

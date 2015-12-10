@@ -76,7 +76,7 @@ public class CallBehaviorUtil {
 	}
 
 	public static boolean isCallBehaviorActionEditPart(final String visualID) {
-		return CallBehaviorActionEditPart.VISUAL_ID.equals(visualID) || CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID.equals(visualID);
+		return CallBehaviorActionEditPart.VISUAL_ID.equals(visualID) || CallBehaviorActionAsInteractionEditPart.VISUAL_ID.equals(visualID);
 	}
 
 	public static boolean isCallBehaviorActionEditPart(final EditPart editPart) {

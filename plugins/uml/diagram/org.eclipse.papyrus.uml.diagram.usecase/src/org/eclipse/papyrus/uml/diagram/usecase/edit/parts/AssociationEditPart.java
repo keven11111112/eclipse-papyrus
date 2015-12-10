@@ -29,7 +29,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4011";
+	public static final String VISUAL_ID = "Association_Edge";
 
 	/**
 	 * @generated
@@ -45,18 +45,20 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationNameEditPart) {
-			((AssociationNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
+		if (childEditPart instanceof AssociationNameEditPart) {
+			((AssociationNameEditPart) childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
-		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
-			((AssociationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
+			((AssociationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -66,7 +68,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -76,10 +78,10 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof AssociationNameEditPart) {
+		if (childEditPart instanceof AssociationNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AssociationAppliedStereotypeEditPart) {
+		if (childEditPart instanceof AssociationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -90,7 +92,7 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -114,6 +116,6 @@ public class AssociationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure)getFigure();
+		return (AssociationFigure) getFigure();
 	}
 }

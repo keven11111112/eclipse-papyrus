@@ -175,7 +175,7 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		// Fixed bug about creating MessageSync on same Execution.
 		INodeEditPart sourceEditPart = getSourceEditPart(request.getSourceEditPart());
 		if (request instanceof CreateConnectionViewRequest) {
-			if (((IHintedType) UMLElementTypes.Message_4003).getSemanticHint().equals(((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint())) {
+			if (((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint().equals(((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint())) {
 				if (targetEP == sourceEditPart) {
 					return UnexecutableCommand.INSTANCE;
 				} else if (targetEP instanceof AbstractExecutionSpecificationEditPart && getHost() instanceof ExecutionSpecificationEndEditPart) {
@@ -234,9 +234,9 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 		}
 		IHintedType elementType = null;
 		if(target instanceof ActionExecutionSpecification) {
-			elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_3006;
+			elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_Shape;
 		} else if(target instanceof BehaviorExecutionSpecification) {
-			elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003;
+			elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_Shape;
 		}
 		if (elementType == null) {
 			return null;
@@ -245,7 +245,7 @@ public class ExecutionSpecificationEndGraphicalNodeEditPolicy extends GraphicalN
 			return null;
 		}
 		CreateConnectionViewRequest viewRequest = (CreateConnectionViewRequest) request;
-		if (false == ((IHintedType) UMLElementTypes.Message_4003).getSemanticHint().equals(((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint())) {
+		if (false == ((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint().equals(((CreateConnectionViewRequest) request).getConnectionViewDescriptor().getSemanticHint())) {
 			return null;
 		}
 		InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(request.getLocation(), getHost());

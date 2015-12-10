@@ -16,11 +16,13 @@
  */
 package aspects.xpt.providers
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenChildLabelNode
 import org.eclipse.gmf.codegen.gmfgen.GenChildNode
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.gmf.codegen.gmfgen.GenCompartment
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
 import org.eclipse.gmf.codegen.gmfgen.GenLabel
@@ -32,7 +34,6 @@ import org.eclipse.gmf.codegen.gmfgen.MetamodelType
 import org.eclipse.gmf.codegen.gmfgen.NotationType
 import org.eclipse.gmf.codegen.gmfgen.SpecializationType
 import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
-import xpt.Common
 import xpt.Common_qvto
 import xpt.diagram.Utils_qvto
 import xpt.diagram.ViewmapAttributesUtils_qvto
@@ -257,7 +258,7 @@ import xpt.editor.VisualIDRegistry
 					switch(visualID) {
 					«FOR n : getAllNodes()»
 						«xptVisualIDRegistry.caseVisualID(n)»
-							return create«n.uniqueIdentifier»(domainElement, containerView, index, persisted, preferencesHint);
+							return create«n.stringUniqueIdentifier»(domainElement, containerView, index, persisted, preferencesHint);
 					«ENDFOR»
 					}
 				}
@@ -274,7 +275,7 @@ import xpt.editor.VisualIDRegistry
 					switch (vid) {
 					«FOR link : links»
 						«xptVisualIDRegistry.caseVisualID(link)»
-							return create«link.uniqueIdentifier»(«IF isTypeLink(link)» getSemanticElement(semanticAdapter), «ENDIF»containerView, index, persisted, preferencesHint);
+							return create«link.stringUniqueIdentifier»(«IF isTypeLink(link)» getSemanticElement(semanticAdapter), «ENDIF»containerView, index, persisted, preferencesHint);
 					«ENDFOR»
 					}
 				}
@@ -344,7 +345,7 @@ import xpt.editor.VisualIDRegistry
 	
 	override dispatch createNodeMethod(GenNode it) '''
 		«generatedMemberComment»
-		public org.eclipse.gmf.runtime.notation.Node create«uniqueIdentifier»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+		public org.eclipse.gmf.runtime.notation.Node create«stringUniqueIdentifier»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 			«IF canUseShapeStyle(viewmap)»
 			org.eclipse.gmf.runtime.notation.Shape node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
 			«ELSE»
@@ -383,7 +384,7 @@ import xpt.editor.VisualIDRegistry
 		// Location as layoutConstraint, no children
 	override dispatch createNodeMethod(GenChildLabelNode it) '''
 		«generatedMemberComment»
-		public org.eclipse.gmf.runtime.notation.Node create«uniqueIdentifier»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+		public org.eclipse.gmf.runtime.notation.Node create«stringUniqueIdentifier»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 			org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
 			node.setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());«/* [artem] XXX not sure, why LabelNode needs location */»
 			«xptViewStyles.addLinkedDiagramStyle(it, 'node.getStyles()')»
@@ -401,7 +402,7 @@ import xpt.editor.VisualIDRegistry
 	
 		override createEdgeMethod(GenLink it) '''
 	«generatedMemberComment»
-	public org.eclipse.gmf.runtime.notation.Edge create«uniqueIdentifier»(«IF isTypeLink(it)»org.eclipse.emf.ecore.EObject domainElement, «ENDIF»org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
+	public org.eclipse.gmf.runtime.notation.Edge create«stringUniqueIdentifier»(«IF isTypeLink(it)»org.eclipse.emf.ecore.EObject domainElement, «ENDIF»org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 	«IF isFixedForeground(viewmap)»
 		org.eclipse.gmf.runtime.notation.Edge edge = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createEdge();
 		edge.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createRoutingStyle());
@@ -461,7 +462,7 @@ import xpt.editor.VisualIDRegistry
 	}
 	'''
 	override initLabel(GenLabel it, String nodeVar, String prefStoreVar) '''
-		«var String labelVar = 'label' + it.visualID»
+		«var String labelVar = it.stringUniqueIdentifier.toFirstLower»
 		org.eclipse.gmf.runtime.notation.Node «labelVar» = createLabel(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)»);
 		«IF it.modelFacet !=null»
 		«xptViewStyles.addTextStyle(it.modelFacet, labelVar + '.getStyles()')»
@@ -472,6 +473,23 @@ import xpt.editor.VisualIDRegistry
 			«xptViewStyles.offset(it, labelVar)»
 		«ENDIF»
 		«initializeStyles(it, labelVar, prefStoreVar, false, false, false)»
+	'''
+
+	override def initCompartment(GenCompartment it, String nodeVar, String prefStoreVar) '''
+		«var String compartmentVar= it.stringUniqueIdentifier.toFirstLower»
+		«IF it.styles.notEmpty || isStoringChildPositions(it.layoutType)»org.eclipse.gmf.runtime.notation.Node «compartmentVar» = «ENDIF»createCompartment(«nodeVar», «xptVisualIDRegistry.typeMethodCall(it)», «canCollapse», «needsTitle», «listLayout», «listLayout»);
+		«xptViewStyles.addCustomStyles(it, compartmentVar + '.getStyles()')»
+		«IF isStoringChildPositions(it.layoutType)»
+			«IF viewmap.canUseShapeStyle()»
+				«compartmentVar».add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShapeStyle());
+			«ELSE /* Intentionally not adding Description style, as it deemed to be useless for compartments (can't avoid for ShapeStyle - benefits of a single style overwheight drawbacks of Description presence) */»
+				«xptViewStyles.addFontLineFillStylesConditionally(it.viewmap, compartmentVar + '.getStyles()')»
+			«ENDIF»
+			«compartmentVar».setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createBounds());
+			«initializeStyles(it, compartmentVar, prefStoreVar, !viewmap.isFixedForeground(), !viewmap.isFixedBackground(), !viewmap.isFixedFont())»
+		«ELSE»
+			«initializeStyles(it, compartmentVar, prefStoreVar, false, false, false)»
+		«ENDIF»
 	'''
 	 
 override additions(GenDiagram it)'''

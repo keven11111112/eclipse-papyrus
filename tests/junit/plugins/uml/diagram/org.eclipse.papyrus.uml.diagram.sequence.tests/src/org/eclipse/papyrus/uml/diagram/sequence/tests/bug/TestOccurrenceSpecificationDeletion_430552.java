@@ -69,23 +69,23 @@ public class TestOccurrenceSpecificationDeletion_430552 extends TestLink {
 
 	@Test
 	public void testGeneralOrderingDeletion() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete();
 
-		createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline1, new Point(131, 140), new Dimension(20, 60));
-		createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline2, new Point(331, 200), new Dimension(20, 60));
-		createNode(UMLElementTypes.DestructionOccurrenceSpecification_3022, lifeline1, getAbsoluteBounds(lifeline1).getBottom(), null);
+		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline1, new Point(131, 140), new Dimension(20, 60));
+		createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline2, new Point(331, 200), new Dimension(20, 60));
+		createNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifeline1, getAbsoluteBounds(lifeline1).getBottom(), null);
 		waitForComplete();
 
 		IGraphicalEditPart source = (IGraphicalEditPart)lifeline1.getChildren().get(1);
 		IGraphicalEditPart target = (IGraphicalEditPart)lifeline2.getChildren().get(1);
 		IGraphicalEditPart target2 = (IGraphicalEditPart)lifeline1.getChildren().get(2);
 
-		createLink(UMLElementTypes.GeneralOrdering_4012, source, target, getAbsoluteBounds(source).getTop(), getAbsoluteBounds(target).getTop());
-		createLink(UMLElementTypes.GeneralOrdering_4012, target, target2, getAbsoluteBounds(target).getBottom(), getAbsoluteBounds(target2).getTop());
+		createLink(UMLElementTypes.GeneralOrdering_Edge, source, target, getAbsoluteBounds(source).getTop(), getAbsoluteBounds(target).getTop());
+		createLink(UMLElementTypes.GeneralOrdering_Edge, target, target2, getAbsoluteBounds(target).getBottom(), getAbsoluteBounds(target2).getTop());
 		waitForComplete();
 		assertTrue(CREATION + TEST_THE_EXECUTION, source.getSourceConnections().size() == 1);
 		assertTrue(CREATION + TEST_THE_EXECUTION, target.getSourceConnections().size() == 1);

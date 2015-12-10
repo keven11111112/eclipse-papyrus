@@ -37,7 +37,7 @@ public class TestComponentDiagramConnector extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Component_2002, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Component_PackagedElementShape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -52,14 +52,14 @@ public class TestComponentDiagramConnector extends TestChildNode {
 
 	@Test
 	public void testToManagePropertyPortConnection() {
-		testToManageNodeWithMask(UMLElementTypes.Property_3079, UMLPackage.eINSTANCE.getProperty(), UMLElementTypes.Component_2002, false, "Attribute", 0);
+		testToManageNodeWithMask(UMLElementTypes.Property_Shape, UMLPackage.eINSTANCE.getProperty(), UMLElementTypes.Component_PackagedElementShape, false, "Attribute", 0);
 		setTestAffixedNode(true);
-		testToManageNode(UMLElementTypes.Port_3069, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Component_2002, false, 4, 0, 1, 1, true, null, 0);
+		testToManageNode(UMLElementTypes.Port_Shape, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Component_PackagedElementShape, false, 4, 0, 1, 1, true, null, 0);
 		GraphicalEditPart parent = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
-		GraphicalEditPart source = (GraphicalEditPart) parent.getChildBySemanticHint(((IHintedType) UMLElementTypes.Port_3069).getSemanticHint());
+		GraphicalEditPart source = (GraphicalEditPart) parent.getChildBySemanticHint(((IHintedType) UMLElementTypes.Port_Shape).getSemanticHint());
 		GraphicalEditPart targetCompartment = (GraphicalEditPart) parent.getChildren().get(2);
 		GraphicalEditPart target = (GraphicalEditPart) targetCompartment.getChildren().get(0);
-		Command command = target.getCommand(createConnectionViewRequest(UMLElementTypes.Connector_4019, source, target));
+		Command command = target.getCommand(createConnectionViewRequest(UMLElementTypes.Connector_Edge, source, target));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);

@@ -44,7 +44,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_2073, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToProperty() {
-		testToManageNodeWithMask(UMLElementTypes.Property_3070, UMLPackage.eINSTANCE.getProperty(), UMLElementTypes.Class_2073, false, "Attribute", 0);
+		testToManageNodeWithMask(UMLElementTypes.Property_Shape, UMLPackage.eINSTANCE.getProperty(), UMLElementTypes.Class_Shape, false, "Attribute", 0);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToCollaborationUse() {
-		testToManageNode(UMLElementTypes.CollaborationUse_3071, UMLPackage.eINSTANCE.getCollaborationUse(), UMLElementTypes.Class_2073, false);
+		testToManageNode(UMLElementTypes.CollaborationUse_Shape, UMLPackage.eINSTANCE.getCollaborationUse(), UMLElementTypes.Class_Shape, false);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToActivity() {
-		testToManageNode(UMLElementTypes.Activity_3072, UMLPackage.eINSTANCE.getActivity(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Activity_Shape_CN, UMLPackage.eINSTANCE.getActivity(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToInteraction() {
-		testToManageNode(UMLElementTypes.Interaction_3073, UMLPackage.eINSTANCE.getInteraction(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Interaction_Shape_CN, UMLPackage.eINSTANCE.getInteraction(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToProtocolStateMachine() {
-		testToManageNode(UMLElementTypes.ProtocolStateMachine_3074, UMLPackage.eINSTANCE.getProtocolStateMachine(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.ProtocolStateMachine_Shape_CN, UMLPackage.eINSTANCE.getProtocolStateMachine(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToStateMachine() {
-		testToManageNode(UMLElementTypes.StateMachine_3075, UMLPackage.eINSTANCE.getStateMachine(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.StateMachine_Shape_CN, UMLPackage.eINSTANCE.getStateMachine(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToFunctionBehavior() {
-		testToManageNode(UMLElementTypes.FunctionBehavior_3076, UMLPackage.eINSTANCE.getFunctionBehavior(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.FunctionBehavior_Shape_CN, UMLPackage.eINSTANCE.getFunctionBehavior(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToOpaqueBehavior() {
-		testToManageNode(UMLElementTypes.OpaqueBehavior_3077, UMLPackage.eINSTANCE.getOpaqueBehavior(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.OpaqueBehavior_Shape_CN, UMLPackage.eINSTANCE.getOpaqueBehavior(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToComponent() {
-		testToManageNode(UMLElementTypes.Component_3081, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Component_Shape_CN, UMLPackage.eINSTANCE.getComponent(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -143,7 +143,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToDevice() {
-		testToManageNode(UMLElementTypes.Device_3082, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Device_Shape_CN, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_3083, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Class_2073, false);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_Shape_CN, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Class_Shape, false);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToNode() {
-		testToManageNode(UMLElementTypes.Node_3084, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Node_Shape_CN, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToClass() {
-		testToManageNode(UMLElementTypes.Class_3085, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Class_Shape_CN, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToCollaboration() {
-		testToManageNode(UMLElementTypes.Collaboration_3086, UMLPackage.eINSTANCE.getCollaboration(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Collaboration_Shape_CN, UMLPackage.eINSTANCE.getCollaboration(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -188,7 +188,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToInterface() {
-		testToManageNode(UMLElementTypes.Interface_3087, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Interface_Shape_CN, UMLPackage.eINSTANCE.getInterface(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToPrimitiveType() {
-		testToManageNode(UMLElementTypes.PrimitiveType_3078, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.PrimitiveType_Shape_CN, UMLPackage.eINSTANCE.getPrimitiveType(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToEnumeration() {
-		testToManageNode(UMLElementTypes.Enumeration_3079, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Enumeration_Shape_CN, UMLPackage.eINSTANCE.getEnumeration(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToDataType() {
-		testToManageNode(UMLElementTypes.DataType_3080, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.DataType_Shape_CN, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToActor() {
-		testToManageNode(UMLElementTypes.Actor_3091, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Actor_Shape_CN, UMLPackage.eINSTANCE.getActor(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToDeploymentSpecification() {
-		testToManageNode(UMLElementTypes.DeploymentSpecification_3092, UMLPackage.eINSTANCE.getDeploymentSpecification(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.DeploymentSpecification_Shape_CN, UMLPackage.eINSTANCE.getDeploymentSpecification(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -242,7 +242,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToArtifact() {
-		testToManageNode(UMLElementTypes.Artifact_3093, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Artifact_Shape_CN, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -251,7 +251,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToInformationItem() {
-		testToManageNode(UMLElementTypes.InformationItem_3094, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.InformationItem_Shape_CN, UMLPackage.eINSTANCE.getInformationItem(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -260,7 +260,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToSignal() {
-		testToManageNode(UMLElementTypes.Signal_3095, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.Signal_Shape_CN, UMLPackage.eINSTANCE.getSignal(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToUseCase() {
-		testToManageNode(UMLElementTypes.UseCase_3096, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.UseCase_Shape_CN, UMLPackage.eINSTANCE.getUseCase(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -277,7 +277,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToComment() {
-		testToManageNode(UMLElementTypes.Comment_3097, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Class_2073, false);
+		testToManageNode(UMLElementTypes.Comment_Shape_CN, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Class_Shape, false);
 	}
 
 	/**
@@ -286,7 +286,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToDurationConstraint() {
-		testToManageNode(UMLElementTypes.DurationConstraint_3116, UMLPackage.eINSTANCE.getDurationConstraint(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.DurationConstraint_Shape_CN, UMLPackage.eINSTANCE.getDurationConstraint(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -295,7 +295,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToTimeConstraint() {
-		testToManageNode(UMLElementTypes.TimeConstraint_3117, UMLPackage.eINSTANCE.getTimeConstraint(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.TimeConstraint_Shape_CN, UMLPackage.eINSTANCE.getTimeConstraint(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -304,7 +304,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToIntervalConstraint() {
-		testToManageNode(UMLElementTypes.IntervalConstraint_3118, UMLPackage.eINSTANCE.getIntervalConstraint(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.IntervalConstraint_Shape_CN, UMLPackage.eINSTANCE.getIntervalConstraint(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -313,7 +313,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	@InteractiveTest
 	public void testToInteractionConstraint() {
-		testToManageNode(UMLElementTypes.InteractionConstraint_3119, UMLPackage.eINSTANCE.getInteractionConstraint(), UMLElementTypes.Class_2073, true);
+		testToManageNode(UMLElementTypes.InteractionConstraint_Shape_CN, UMLPackage.eINSTANCE.getInteractionConstraint(), UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -321,7 +321,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_3120, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Class_2073, false);
+		testToManageNode(UMLElementTypes.Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Class_Shape, false);
 	}
 
 	/**
@@ -330,7 +330,7 @@ public class TestCompositeDiagramCompositeChildNode extends TestChildNode {
 	@Test
 	public void testToPort() {
 		setTestAffixedNode(true);
-		testToManageNode(UMLElementTypes.Port_3069, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Class_2073, false, 4, 0, 1, 1, true, null, 0);
+		testToManageNode(UMLElementTypes.Port_Shape, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Class_Shape, false, 4, 0, 1, 1, true, null, 0);
 		setTestAffixedNode(false);
 	}
 

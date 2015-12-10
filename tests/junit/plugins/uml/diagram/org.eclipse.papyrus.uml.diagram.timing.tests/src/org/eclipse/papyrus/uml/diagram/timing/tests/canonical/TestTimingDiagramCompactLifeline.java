@@ -86,9 +86,9 @@ public class TestTimingDiagramCompactLifeline extends AbstractTimingDiagramTestC
 	public void create3LifelinesTest() {
 		final EditPart interactionCompartment = getDefaultInteractionCompartment();
 		assertNotNull("The interaction compartment was not found", interactionCompartment);
-		createView(UMLElementTypes.Lifeline_20, interactionCompartment);
-		createView(UMLElementTypes.Lifeline_20, interactionCompartment);
-		createView(UMLElementTypes.Lifeline_20, interactionCompartment);
+		createView(UMLElementTypes.Lifeline_CompactShape, interactionCompartment);
+		createView(UMLElementTypes.Lifeline_CompactShape, interactionCompartment);
+		createView(UMLElementTypes.Lifeline_CompactShape, interactionCompartment);
 		assertEquals("The interaction compartment should only contain the 3 lifelines", 3, interactionCompartment.getChildren().size());
 		final List<? extends EditPart> editParts = EditPartUtils.findChildEditPartsWithId(interactionCompartment, CompactLifelineEditPartCN.VISUAL_ID);
 		assertEquals("The interaction compartment should contain 3 lifelines", 3, editParts.size());

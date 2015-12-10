@@ -93,7 +93,7 @@ public class TestCompositeDiagramElementWithDifferentParentLink extends TestLink
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		parentType = UMLElementTypes.Class_2073;
+		parentType = UMLElementTypes.Class_Shape;
 	}
 
 
@@ -157,7 +157,7 @@ public class TestCompositeDiagramElementWithDifferentParentLink extends TestLink
 	 */
 	@Test
 	public void testToManagePortConnector() {
-		testImpossibleToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Connector_4013);
+		testImpossibleToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Connector_Edge);
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class TestCompositeDiagramElementWithDifferentParentLink extends TestLink
 	@Test
 	public void testToManagePortUsage() {
 		initConfLinkOwnedByParent();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Usage_4008, UMLElementTypes.Class_2073, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Class_Shape, true);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class TestCompositeDiagramElementWithDifferentParentLink extends TestLink
 	@Test
 	public void testToManagePortAbstraction() {
 		initConfLinkOwnedByParent();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Abstraction_4007, UMLElementTypes.Class_2073, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Class_Shape, true);
 	}
 
 
@@ -184,7 +184,7 @@ public class TestCompositeDiagramElementWithDifferentParentLink extends TestLink
 	 */
 	@Test
 	public void testToManagePortGeneralization() {
-		testImpossibleToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Generalization_4015);
+		testImpossibleToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Generalization_Edge);
 	}
 
 }

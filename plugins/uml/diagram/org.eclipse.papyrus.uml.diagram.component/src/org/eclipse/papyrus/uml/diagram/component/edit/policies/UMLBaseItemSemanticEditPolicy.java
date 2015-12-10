@@ -167,7 +167,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+			ICommand command = editPolicyCommand instanceof ICommandProxy
+					? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -269,7 +270,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
+	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request,
+			IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -282,7 +284,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
+	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request,
+			IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -345,6 +348,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
+
 	}
 
 	/**
@@ -386,7 +390,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
 		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() //$NON-NLS-1$
+					|| nextView.getElement() != view.getElement()) {
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -416,123 +421,129 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateUsage_4001(Package container, NamedElement source, NamedElement target) {
-			return canExistUsage_4001(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateUsage_Edge(Package container, NamedElement source, NamedElement target) {
+			return canExistUsage_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateInterfaceRealization_4006(Package container, NamedElement source, Interface target) {
-			return canExistInterfaceRealization_4006(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateInterfaceRealization_Edge(Package container, NamedElement source, Interface target) {
+			return canExistInterfaceRealization_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateGeneralization_4003(Classifier container, Classifier source, Classifier target) {
-			return canExistGeneralization_4003(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateGeneralization_Edge(Classifier container, Classifier source, Classifier target) {
+			return canExistGeneralization_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateSubstitution_4012(Package container, NamedElement source, NamedElement target) {
-			return canExistSubstitution_4012(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateSubstitution_Edge(Package container, NamedElement source, NamedElement target) {
+			return canExistSubstitution_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateManifestation_4014(Package container, NamedElement source, NamedElement target) {
-			return canExistManifestation_4014(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateManifestation_Edge(Package container, NamedElement source, NamedElement target) {
+			return canExistManifestation_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateComponentRealization_4007(Package container, NamedElement source, NamedElement target) {
-			return canExistComponentRealization_4007(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateComponentRealization_Edge(Package container, NamedElement source, NamedElement target) {
+			return canExistComponentRealization_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateAbstraction_4013(Package container, NamedElement source, NamedElement target) {
-			return canExistAbstraction_4013(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateAbstraction_Edge(Package container, NamedElement source, NamedElement target) {
+			return canExistAbstraction_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateLink_4016() {
-			return canExistLink_4016();
+		* @generated
+		*/
+		public boolean canCreateLink_DescriptorEdge() {
+			return canExistLink_DescriptorEdge();
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateCommentAnnotatedElement_4015(Comment source, Element target) {
+		* @generated
+		*/
+		public boolean canCreateComment_AnnotatedElementEdge(Comment source, Element target) {
 			if (source != null) {
 				if (source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-			return canExistCommentAnnotatedElement_4015(source, target);
+
+			return canExistComment_AnnotatedElementEdge(source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateConstraintConstrainedElement_4009(Constraint source, Element target) {
+		* @generated
+		*/
+		public boolean canCreateConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			if (source != null) {
 				if (source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
-			return canExistConstraintConstrainedElement_4009(source, target);
+
+			return canExistConstraint_ConstrainedElementEdge(source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4010(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateDependency_Edge(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateDependency_4017(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4017(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateDependency_BranchEdge(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_BranchEdge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateLink_4018() {
-			return canExistLink_4018();
+		* @generated
+		*/
+		public boolean canCreateLink_InterfacePortEdge() {
+			return canExistLink_InterfacePortEdge();
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canCreateConnector_4019(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
-			return canExistConnector_4019(container, null, source, target);
+		* @generated
+		*/
+		public boolean canCreateConnector_Edge(StructuredClassifier container, ConnectorEnd source,
+				ConnectorEnd target) {
+			return canExistConnector_Edge(container, null, source, target);
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistUsage_4001(Package container, Usage linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistUsage_Edge(Package container, Usage linkInstance, NamedElement source,
+				NamedElement target) {
 			try {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+							UMLPackage.eINSTANCE.getNamedElement());
+					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env)
+							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -540,8 +551,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+							UMLPackage.eINSTANCE.getNamedElement());
+					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getNamedElement(), env)
+							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -554,15 +567,18 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistInterfaceRealization_4006(Package container, InterfaceRealization linkInstance, NamedElement source, Interface target) {
+		* @generated
+		*/
+		public boolean canExistInterfaceRealization_Edge(Package container, InterfaceRealization linkInstance,
+				NamedElement source, Interface target) {
 			try {
 				if (source == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getInterface()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+							UMLPackage.eINSTANCE.getInterface());
+					Object sourceVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getNamedElement(), env)
+							.evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if (false == sourceVal instanceof Boolean || !((Boolean) sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -570,8 +586,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if (target == null) {
 					return true;
 				} else {
-					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getInterface(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Map<String, EClassifier> env = Collections.<String, EClassifier>singletonMap("oppositeEnd", //$NON-NLS-1$
+							UMLPackage.eINSTANCE.getNamedElement());
+					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getInterface(), env)
+							.evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if (false == targetVal instanceof Boolean || !((Boolean) targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -584,86 +602,94 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistGeneralization_4003(Classifier container, Generalization linkInstance, Classifier source, Classifier target) {
+		* @generated
+		*/
+		public boolean canExistGeneralization_Edge(Classifier container, Generalization linkInstance, Classifier source,
+				Classifier target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistSubstitution_4012(Package container, Substitution linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistSubstitution_Edge(Package container, Substitution linkInstance, NamedElement source,
+				NamedElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistManifestation_4014(Package container, Manifestation linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistManifestation_Edge(Package container, Manifestation linkInstance, NamedElement source,
+				NamedElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistComponentRealization_4007(Package container, ComponentRealization linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistComponentRealization_Edge(Package container, ComponentRealization linkInstance,
+				NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistAbstraction_4013(Package container, Abstraction linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistAbstraction_Edge(Package container, Abstraction linkInstance, NamedElement source,
+				NamedElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistLink_4016() {
+		* @generated
+		*/
+		public boolean canExistLink_DescriptorEdge() {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistCommentAnnotatedElement_4015(Comment source, Element target) {
+		* @generated
+		*/
+		public boolean canExistComment_AnnotatedElementEdge(Comment source, Element target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistConstraintConstrainedElement_4009(Constraint source, Element target) {
+		* @generated
+		*/
+		public boolean canExistConstraint_ConstrainedElementEdge(Constraint source, Element target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistDependency_4010(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistDependency_Edge(Package container, Dependency linkInstance, NamedElement source,
+				NamedElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistDependency_4017(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
+		* @generated
+		*/
+		public boolean canExistDependency_BranchEdge(Package container, Dependency linkInstance, NamedElement source,
+				NamedElement target) {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistLink_4018() {
+		* @generated
+		*/
+		public boolean canExistLink_InterfacePortEdge() {
 			return true;
 		}
 
 		/**
-		 * @generated
-		 */
-		public boolean canExistConnector_4019(StructuredClassifier container, Connector linkInstance, ConnectorEnd source, ConnectorEnd target) {
+		* @generated
+		*/
+		public boolean canExistConnector_Edge(StructuredClassifier container, Connector linkInstance,
+				ConnectorEnd source, ConnectorEnd target) {
 			return true;
 		}
 	}

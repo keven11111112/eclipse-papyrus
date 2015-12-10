@@ -42,7 +42,7 @@ import org.junit.Test;
  * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=461717
  */
 @PluginResource("/resources/j2ee.profile.uml")
-@BaseElementTypes("org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet")
+@BaseElementTypes("org.eclipse.papyrus.umldi.service.types.UMLDIElementTypeSet")
 @GenOptions(SUPPRESS_SEMANTIC_SUPERTYPE)
 public class DiagramSpecificElementTypesGenerationBug461717Test extends AbstractPapyrusTest {
 
@@ -70,7 +70,7 @@ public class DiagramSpecificElementTypesGenerationBug461717Test extends Abstract
 
 			List<String> specializedTypeIDs = next.getSpecializedTypesID();
 			assertThat(specializedTypeIDs.size(), is(1));
-			assertThat(specializedTypeIDs.get(0), regexContains("Actor_\\d{4}$")); // a visual ID
+			assertThat(specializedTypeIDs.get(0), regexContains("Actor_")); // a visual ID
 		}
 	}
 
@@ -97,7 +97,7 @@ public class DiagramSpecificElementTypesGenerationBug461717Test extends Abstract
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
 		List<ApplyStereotypeAdviceConfiguration> advices = fixture.assertAllApplyStereotypeAdvices(userActor);
 		for (ApplyStereotypeAdviceConfiguration advice : advices) {
-			String visualID = advice.getIdentifier().substring(advice.getIdentifier().lastIndexOf('_') + 1);
+			String visualID = advice.getIdentifier().substring(advice.getIdentifier().indexOf('_') + 1);
 			assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(userActor, visualID)));
 			assertThat(advice.getStereotypesToApply(), not(isEmpty()));
 			assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("j2ee"));

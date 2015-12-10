@@ -30,7 +30,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4001";
+	public static final String VISUAL_ID = "Action_LocalPreconditionEdge";
 
 	/**
 	 * @generated
@@ -79,6 +79,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
+
 		}
 	}
 }

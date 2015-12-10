@@ -25,7 +25,7 @@ public class FullLifelineStateDefinitionCompartmentItemSemanticEditPolicyCN exte
 	 * @generated
 	 */
 	public FullLifelineStateDefinitionCompartmentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Lifeline_19);
+		super(UMLElementTypes.Lifeline_FullShape);
 	}
 
 	/**

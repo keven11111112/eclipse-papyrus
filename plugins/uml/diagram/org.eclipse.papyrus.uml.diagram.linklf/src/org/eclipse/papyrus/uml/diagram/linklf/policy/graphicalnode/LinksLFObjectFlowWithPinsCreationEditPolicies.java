@@ -97,7 +97,7 @@ public class LinksLFObjectFlowWithPinsCreationEditPolicies extends LinksLFGraphi
 	 * @return semantic hint
 	 */
 	private static String getObjectFlowHint() {
-		IHintedType objectFlowType = (IHintedType) UMLElementTypes.ObjectFlow_4003;
+		IHintedType objectFlowType = (IHintedType) UMLElementTypes.ObjectFlow_Edge;
 		return objectFlowType.getSemanticHint();
 	}
 

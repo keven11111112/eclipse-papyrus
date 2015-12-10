@@ -66,7 +66,7 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 	public void checkConstraintLink(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
 
-		createNode(UMLElementTypes.Constraint_3008, getRootEditPart(), new Point(200, 400), new Dimension(100, 50));
+		createNode(UMLElementTypes.Constraint_Shape, getRootEditPart(), new Point(200, 400), new Dimension(100, 50));
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target));
 		waitForComplete();
 
@@ -79,7 +79,7 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 		}
 
 		ConstraintEditPart constraintEditPart = (ConstraintEditPart)getRootEditPart().getChildren().get(2);
-		createLink(UMLElementTypes.ConstraintConstrainedElement_4011, constraintEditPart, linkEndPoint, getAbsoluteCenter(constraintEditPart), getAbsoluteCenter(linkEndPoint));
+		createLink(UMLElementTypes.Constraint_ConstrainedElementEdge, constraintEditPart, linkEndPoint, getAbsoluteCenter(constraintEditPart), getAbsoluteCenter(linkEndPoint));
 
 		Constraint constraint = (Constraint)constraintEditPart.resolveSemanticElement();
 		assertTrue(CREATION + TEST_THE_EXECUTION, constraint.getConstrainedElements().get(0) instanceof MessageEnd);
@@ -94,27 +94,27 @@ public class TestMessageEndConstraint_364817 extends TestLink {
 
 	@Test
 	public void testMessageAsync_4004() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4004, null);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_AsynchEdge, null);
 	}
 
 	@Test
 	public void testMessageSync_4003() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4003, UMLElementTypes.ActionExecutionSpecification_3006);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testMessageReply_4005() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4005, UMLElementTypes.ActionExecutionSpecification_3006);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testMessageDelete_4007() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4007, null);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_DeleteEdge, null);
 	}
 
 	@Test
 	public void testMessageCreate_4006() {
-		checkConstraintLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4006, null);
+		checkConstraintLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_CreateEdge, null);
 	}
 
 	public void createLink(IElementType linkType, EditPart source, EditPart target, Point sourcePoint, Point targetPoint) {

@@ -92,7 +92,7 @@ public class CustomContinuationCreateCommand extends ContinuationCreateCommand {
 		// Continuations are always global in the enclosing InteractionFragment
 		// (e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
 		newElement.getCovereds().addAll(owner.getCovereds());
-		ElementInitializers.getInstance().init_Continuation_3016(newElement);
+		ElementInitializers.getInstance().init_Continuation_Shape(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

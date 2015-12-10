@@ -58,7 +58,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Generalization_4002, UMLElementTypes.Package_2007, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Generalization_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Interface_2004, UMLElementTypes.InterfaceRealization_4003, UMLElementTypes.Package_2007, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Interface_Shape, UMLElementTypes.InterfaceRealization_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.Substitution_4004, UMLElementTypes.Package_2007, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Substitution_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManageElementImport() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.ElementImport_4009, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.ElementImport_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	/**
@@ -90,13 +90,13 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 	 */
 	@Test
 	public void testToManagePackageImport() {
-		testToManageLink(UMLElementTypes.Package_2007, UMLElementTypes.Package_2007, UMLElementTypes.PackageImport_4010, UMLElementTypes.Package_2007, true);
+		testToManageLink(UMLElementTypes.Package_Shape, UMLElementTypes.Package_Shape, UMLElementTypes.PackageImport_Edge, UMLElementTypes.Package_Shape, true);
 	}
 
 	@TargetConfigurator(CreateRedefinableTemplateSignature.class)
 	@Test
 	public void testToManageTemplateBinding() {
-		testToManageLink(UMLElementTypes.Class_2008, UMLElementTypes.Class_2008, UMLElementTypes.TemplateBinding_4015, UMLElementTypes.Package_2007, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.TemplateBinding_Edge, UMLElementTypes.Package_Shape, false);
 	}
 
 	// test comment link
@@ -110,7 +110,7 @@ public class TestClassDiagramLinkOwnedBySource extends TestLinkOwnedBySource {
 
 	public static class CreateRedefinableTemplateSignature implements FixtureEditPartConfigurator {
 		public Command configureFixtureEditPart(IGraphicalEditPart editPart, IElementType elementType, boolean isSource) {
-			CreateViewRequest request = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.RedefinableTemplateSignature_3015, editPart.getDiagramPreferencesHint());
+			CreateViewRequest request = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.RedefinableTemplateSignature_Shape, editPart.getDiagramPreferencesHint());
 			return editPart.getCommand(request);
 		}
 	}

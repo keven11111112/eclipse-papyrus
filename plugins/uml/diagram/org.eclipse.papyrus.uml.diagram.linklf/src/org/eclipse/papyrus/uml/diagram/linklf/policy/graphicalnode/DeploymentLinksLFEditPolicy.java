@@ -42,7 +42,7 @@ public class DeploymentLinksLFEditPolicy extends LinksLFGraphicalNodeEditPolicy 
 				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
 
-				if (UMLElementTypes.Dependency_4010.equals(createElementRequest.getElementType())) {
+				if (UMLElementTypes.Dependency_BranchEdge.equals(createElementRequest.getElementType())) {
 					MultiDependencyHelper multiDependencyHelper = new MultiDependencyHelper(getEditingDomain());
 					return multiDependencyHelper.getCommand(((CreateConnectionViewAndElementRequest) request), c);
 

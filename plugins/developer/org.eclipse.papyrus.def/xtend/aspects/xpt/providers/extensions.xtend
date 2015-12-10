@@ -12,15 +12,19 @@
  */
 package aspects.xpt.providers
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.gmf.codegen.gmfgen.MetamodelType
+import org.eclipse.gmf.codegen.gmfgen.NotationType
+import org.eclipse.gmf.codegen.gmfgen.SpecializationType
 import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
 import parsers.ParserProvider
-import xpt.Common
 import xpt.diagram.Utils_qvto
-import xpt.providers.EditPartProvider
-import xpt.providers.IconProvider
+import xpt.diagram.edithelpers.EditHelper
+import xpt.diagram.edithelpers.EditHelperAdvice
 import xpt.providers.ShortcutsDecoratorProvider
 
 @Singleton class extensions extends xpt.providers.extensions {
@@ -28,11 +32,13 @@ import xpt.providers.ShortcutsDecoratorProvider
 	@Inject extension Utils_qvto;
 
 	@Inject ViewProvider viewProvider;
-	@Inject IconProvider iconProvider;
-	@Inject EditPartProvider editPartProvider;
+	@Inject xpt.providers.IconProvider iconProvider;
+	@Inject xpt.providers.EditPartProvider editPartProvider;
 	@Inject ParserProvider labelParsers;
 	@Inject ShortcutsDecoratorProvider shorcutProvider;
 	@Inject VisualTypeProvider visualTypeProvider;
+	@Inject EditHelper editHelper;
+	@Inject EditHelperAdvice editHelperAdvice;
 	
 	override extensions(GenDiagram it) '''
 		«extraLineBreak»
@@ -173,7 +179,46 @@ import xpt.providers.ShortcutsDecoratorProvider
 //
 //	'''
 
+	override def commaSeparatedVisualIDs(Iterable<? extends GenCommonBase> list) '''«FOR gcb : list SEPARATOR ','»«gcb.stringUniqueIdentifier»«ENDFOR»'''
 
+	override def dispatch elementType(MetamodelType it) '''
+		«tripleSpace(2)»<metamodel nsURI="«getMetaClass().genPackage.getEcorePackage.nsURI»">
+		«tripleSpace(3)»<metamodelType
+		«tripleSpace(5)»id="«uniqueIdentifier»"
+				«IF null != displayName»
+		«tripleSpace(5)»name="%metatype.name.«diagramElement.stringUniqueIdentifier»"
+				«ENDIF»
+		«tripleSpace(5)»kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+		«tripleSpace(5)»eclass="«getMetaClass().ecoreClass.name»"
+		«tripleSpace(5)»edithelper="«editHelper.qualifiedClassName(it)»">
+		«tripleSpace(4)»<param name="semanticHint" value="«diagramElement.stringVisualID»"/>
+		«tripleSpace(3)»</metamodelType>
+		«tripleSpace(2)»</metamodel>
+	'''
 
+	override def specializationType(SpecializationType it) '''
+		«tripleSpace(3)»<specializationType
+		«tripleSpace(5)»id="«uniqueIdentifier»"
+			«IF null != displayName»
+		«tripleSpace(5)»name="%metatype.name.«diagramElement.stringUniqueIdentifier»"
+			«ENDIF»
+		«tripleSpace(5)»kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"«IF editHelperAdviceClassName != null»
+		«tripleSpace(5)»edithelperadvice="«editHelperAdvice.qualifiedClassName(it)»"«ENDIF»>
+		«tripleSpace(4)»<specializes id="«IF (null == metamodelType)»org.eclipse.gmf.runtime.emf.type.core.null«ELSE»«metamodelType.
+				uniqueIdentifier»«ENDIF»"/>
+		«tripleSpace(4)»<param name="semanticHint" value="«diagramElement.stringVisualID»"/>
+		«tripleSpace(3)»</specializationType>
+	'''
 
+	override def dispatch elementType(NotationType it) '''
+		«tripleSpace(2)»<specializationType
+		«tripleSpace(4)»id="«uniqueIdentifier»"
+			«IF null != displayName»
+		«tripleSpace(4)»name="%metatype.name.«diagramElement.stringUniqueIdentifier»"
+			«ENDIF»
+		«tripleSpace(4)»kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+		«tripleSpace(3)»<specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+		«tripleSpace(3)»<param name="semanticHint" value="«diagramElement.stringVisualID»"/>
+		«tripleSpace(2)»</specializationType>
+	'''
 }

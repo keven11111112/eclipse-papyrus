@@ -57,7 +57,7 @@ public class TestCompositeDiagramChildLabel extends TestChildLabel {
 	@Test
 	@FailingTest
 	public void testToProperty() {
-	testToManageTopNodeWithMask(UMLElementTypes.DataType_2068,UMLElementTypes.Property_3101, DataTypeAttributeCompartmentEditPart.VISUAL_ID,null);
+	testToManageTopNodeWithMask(UMLElementTypes.DataType_Shape,UMLElementTypes.Property_AttributeLabel, DataTypeAttributeCompartmentEditPart.VISUAL_ID,null);
 	}
 	/**
 	* Test to manage Operation.
@@ -65,7 +65,7 @@ public class TestCompositeDiagramChildLabel extends TestChildLabel {
 	@Test
 	@FailingTest
 	public void testToOperation() {
-	testToManageTopNodeWithMask(UMLElementTypes.DataType_2068,UMLElementTypes.Operation_3102, DataTypeOperationCompartmentEditPart.VISUAL_ID,null);
+	testToManageTopNodeWithMask(UMLElementTypes.DataType_Shape,UMLElementTypes.Operation_OperationLabel, DataTypeOperationCompartmentEditPart.VISUAL_ID,null);
 	}
 	/**
 	* Test to manage EnumerationLiteral.
@@ -73,7 +73,7 @@ public class TestCompositeDiagramChildLabel extends TestChildLabel {
 	@Test
 	@FailingTest
 	public void testToEnumerationLiteral() {
-	testToManageTopNode(UMLElementTypes.Enumeration_2067,UMLElementTypes.EnumerationLiteral_3066, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID,null);
+	testToManageTopNode(UMLElementTypes.Enumeration_Shape,UMLElementTypes.EnumerationLiteral_LiteralLabel, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID,null);
 	}
 
 	

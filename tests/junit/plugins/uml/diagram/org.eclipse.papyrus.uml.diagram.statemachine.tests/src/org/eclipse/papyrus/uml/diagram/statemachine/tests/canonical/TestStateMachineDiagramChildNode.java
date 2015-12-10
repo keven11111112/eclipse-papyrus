@@ -70,77 +70,77 @@ public class TestStateMachineDiagramChildNode extends AbstractSMTestChildNode {
 	@Test
 	@InvalidTest
 	public void testToRegion() {
-		testToManageNode(UMLElementTypes.Region_3000, UMLPackage.eINSTANCE.getRegion(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Region_Shape, UMLPackage.eINSTANCE.getRegion(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage FinalState.
 	*/
 	@Test
 	public void testToFinalState() {
-		testToManageNode(UMLElementTypes.FinalState_5000, UMLPackage.eINSTANCE.getFinalState(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.FinalState_Shape, UMLPackage.eINSTANCE.getFinalState(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage State.
 	*/
 	@Test
 	public void testToState() {
-		testToManageNode(UMLElementTypes.State_6000, UMLPackage.eINSTANCE.getState(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.State_Shape, UMLPackage.eINSTANCE.getState(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate8000() {
-		testToManageNode(UMLElementTypes.Pseudostate_8000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_InitialShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate9000() {
-		testToManageNode(UMLElementTypes.Pseudostate_9000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_JoinShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate10000() {
-		testToManageNode(UMLElementTypes.Pseudostate_10000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_ForkShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate1100() {
-		testToManageNode(UMLElementTypes.Pseudostate_11000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_ChoiceShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate12000() {
-		testToManageNode(UMLElementTypes.Pseudostate_12000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_JunctionShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate13000() {
-		testToManageNode(UMLElementTypes.Pseudostate_13000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_ShallowHistoryShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate14000() {
-		testToManageNode(UMLElementTypes.Pseudostate_14000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_DeepHistoryShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Pseudostate.
 	*/
 	@Test
 	public void testToPseudostate15000() {
-		testToManageNode(UMLElementTypes.Pseudostate_15000, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Pseudostate_TerminateShape, UMLPackage.eINSTANCE.getPseudostate(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Comment.
@@ -148,7 +148,7 @@ public class TestStateMachineDiagramChildNode extends AbstractSMTestChildNode {
 	@Test
 	@InvalidTest
 	public void testToComment() {
-		testToManageNode(UMLElementTypes.Comment_666, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Comment_Shape, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Region_Shape, false);
 	}
 	/**
 	* Test to manage Constraint.
@@ -156,6 +156,6 @@ public class TestStateMachineDiagramChildNode extends AbstractSMTestChildNode {
 	@Test
 	@InvalidTest
 	public void testToConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_668, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Region_3000, false);
+		testToManageNode(UMLElementTypes.Constraint_Shape, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Region_Shape, false);
 	}
 }

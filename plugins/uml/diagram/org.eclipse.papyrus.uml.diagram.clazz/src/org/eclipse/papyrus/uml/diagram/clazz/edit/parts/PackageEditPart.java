@@ -55,7 +55,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "2007";
+	public static final String VISUAL_ID = "Package_Shape";
 
 	/**
 	 * @generated
@@ -82,15 +82,20 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PackageCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
-		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY,
+				new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -104,17 +109,17 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
+				View childView = (View) child.getModel();
 				String vid = UMLVisualIDRegistry.getVisualID(childView);
-				if(vid != null) {
-					switch(vid) {
+				if (vid != null) {
+					switch (vid) {
 					case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 					case TemplateSignatureEditPart.VISUAL_ID:
 						return new BorderItemResizableEditPolicy();
 					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -141,6 +146,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -158,35 +164,41 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	public PackageFigure getPrimaryShape() {
-		return (PackageFigure)primaryShape;
+		return (PackageFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof PackageNameEditPart) {
-			((PackageNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof PackageNameEditPart) {
+			((PackageNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
+
+		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((PackagePackageableElementCompartmentEditPart)childEditPart).getFigure());
+			pane.add(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
+
 		//Papyrus Gencode :precise the locator for a template signature
-		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer()
+					.add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
 		//Papyrus Gencode :precise the locator for a template signature
-		if(childEditPart instanceof TemplateSignatureEditPart) {
+		if (childEditPart instanceof TemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TemplateSignatureEditPart) childEditPart).getFigure(),
+					locator);
 			return true;
 		}
+
 		return false;
 	}
 
@@ -194,20 +206,22 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof PackageNameEditPart) {
+		if (childEditPart instanceof PackageNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
+		if (childEditPart instanceof PackagePackageableElementCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			pane.remove(((PackagePackageableElementCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((PackagePackageableElementCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof TemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TemplateSignatureEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof TemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer()
+					.remove(((TemplateSignatureEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -218,7 +232,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -229,7 +243,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -240,10 +254,10 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
+		if (editPart instanceof PackagePackageableElementCompartmentEditPart) {
 			return getPrimaryShape().getPackageableElementFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -269,6 +283,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
@@ -281,7 +296,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -294,7 +309,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -305,7 +320,7 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -323,8 +338,8 @@ public class PackageEditPart extends org.eclipse.papyrus.uml.diagram.common.edit
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

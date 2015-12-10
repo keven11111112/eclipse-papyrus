@@ -14,18 +14,20 @@
 package aspects.xpt.providers
 
 import aspects.xpt.CodeStyle
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import xpt.Common
 import xpt.diagram.Utils_qvto
+import xpt.editor.VisualIDRegistry
 
 @Singleton class ElementTypes extends xpt.providers.ElementTypes {
 	@Inject extension Common;
 	@Inject extension Utils_qvto;
 
 	@Inject CodeStyle xptCodeStyle;
+	@Inject VisualIDRegistry xptVisualIDRegistry;
 
 	override def getElement(GenDiagram it) '''
 		«generatedMemberComment('Returns \'type\' of the ecore object associated with the hint.\n')»
@@ -33,12 +35,12 @@ import xpt.diagram.Utils_qvto
 			Object type = hint.getAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType.class);
 			if (elements == null) {
 				elements = new java.util.IdentityHashMap<org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.emf.ecore.ENamedElement>();
-				«IF domainDiagramElement != null»«bindUniqueIdentifierToNamedElement(domainDiagramElement, getUniqueIdentifier())»«ENDIF»
+				«IF domainDiagramElement != null»«bindUniqueIdentifierToNamedElement(domainDiagramElement, stringUniqueIdentifier())»«ENDIF»
 				«FOR node : getAllNodes()»
-					«IF node.modelFacet != null»«bindUniqueIdentifierToNamedElement(node.modelFacet, node.getUniqueIdentifier())»«ENDIF»
+					«IF node.modelFacet != null»«bindUniqueIdentifierToNamedElement(node.modelFacet, node.stringUniqueIdentifier())»«ENDIF»
 				«ENDFOR»
 				«FOR link : it.links»
-					«IF link.modelFacet != null»«bindUniqueIdentifierToNamedElement(link.modelFacet, link.getUniqueIdentifier())»«ENDIF»
+					«IF link.modelFacet != null»«bindUniqueIdentifierToNamedElement(link.modelFacet, link.stringUniqueIdentifier())»«ENDIF»
 				«ENDFOR»
 			}
 			return elements.get(type);
@@ -110,7 +112,7 @@ import xpt.diagram.Utils_qvto
 	override def elementTypeField(GenCommonBase it) '''
 		«IF null != elementType»
 			«generatedMemberComment»
-			public static final org.eclipse.gmf.runtime.emf.type.core.IElementType «getUniqueIdentifier()» = getElementTypeByUniqueId("«elementType.
+			public static final org.eclipse.gmf.runtime.emf.type.core.IElementType «stringUniqueIdentifier» = getElementTypeByUniqueId("«elementType.
 			uniqueIdentifier»"); «nonNLS(1)»
 		«ENDIF»
 	'''
@@ -138,5 +140,18 @@ import xpt.diagram.Utils_qvto
 				return «qualifiedClassName(it)».getElement(elementTypeAdapter);
 			}
 		}; 
+	'''
+
+	override def accessElementType(GenCommonBase it) '''«it.diagram.elementTypesQualifiedClassName».«stringUniqueIdentifier»'''
+
+	override def caseElementType(GenCommonBase it) '''
+		«xptVisualIDRegistry.caseVisualID(it)»
+			return «stringUniqueIdentifier()»;
+	'''
+
+	override def addKnownElementType(GenCommonBase it) '''
+		«IF null != elementType»
+			KNOWN_ELEMENT_TYPES.add(«stringUniqueIdentifier()»);
+		«ENDIF»
 	'''
 }

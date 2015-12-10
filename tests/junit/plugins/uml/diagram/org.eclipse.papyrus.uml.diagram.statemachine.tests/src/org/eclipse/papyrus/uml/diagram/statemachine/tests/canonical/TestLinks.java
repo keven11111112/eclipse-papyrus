@@ -43,7 +43,7 @@ public class TestLinks extends TestStateMachineLink {
 		IGraphicalEditPart constraint = createChild(ConstraintEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart state = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(constraint, state, UMLElementTypes.ConstraintConstrainedElement_670);
+		Command endCommand = createLinkCommand(constraint, state, UMLElementTypes.Constraint_ConstrainedElementEdge);
 
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
@@ -60,7 +60,7 @@ public class TestLinks extends TestStateMachineLink {
 		IGraphicalEditPart constraint = createChild(ConstraintEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart state = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(constraint, state, UMLElementTypes.ConstraintContext_8500);
+		Command endCommand = createLinkCommand(constraint, state, UMLElementTypes.Constraint_ContextEdge);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 
@@ -76,7 +76,7 @@ public class TestLinks extends TestStateMachineLink {
 		IGraphicalEditPart comment = createChild(CommentEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 		IGraphicalEditPart state = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(comment, state, UMLElementTypes.CommentAnnotatedElement_667);
+		Command endCommand = createLinkCommand(comment, state, UMLElementTypes.Comment_AnnotatedElementEdge);
 
 		executeOnUIThread(endCommand);
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
@@ -90,7 +90,7 @@ public class TestLinks extends TestStateMachineLink {
 	 */
 	@Test
 	public void testCommentLinkCannotBeStarted() {
-		IElementType link = UMLElementTypes.CommentAnnotatedElement_667;
+		IElementType link = UMLElementTypes.Comment_AnnotatedElementEdge;
 		ckeckCannotStartConnectionCommand(link,
 				PseudostateChoiceEditPart.VISUAL_ID,
 				PseudostateEntryPointEditPart.VISUAL_ID,
@@ -105,7 +105,7 @@ public class TestLinks extends TestStateMachineLink {
 	 */
 	@Test
 	public void testConstraintContextLinkCannotBeStarted() {
-		IElementType link = UMLElementTypes.ConstraintContext_8500;
+		IElementType link = UMLElementTypes.Constraint_ContextEdge;
 		ckeckCannotStartConnectionCommand(link,
 				PseudostateShallowHistoryEditPart.VISUAL_ID,
 				CommentEditPart.VISUAL_ID,
@@ -119,7 +119,7 @@ public class TestLinks extends TestStateMachineLink {
 	 */
 	@Test
 	public void testConstraintConstrainedElementLinkCannotBeStarted() {
-		IElementType link = UMLElementTypes.ConstraintConstrainedElement_670;
+		IElementType link = UMLElementTypes.Constraint_ConstrainedElementEdge;
 		ckeckCannotStartConnectionCommand(link,
 				PseudostateExitPointEditPart.VISUAL_ID,
 				CommentEditPart.VISUAL_ID,
@@ -142,7 +142,7 @@ public class TestLinks extends TestStateMachineLink {
 		}
 		Assert.assertNotNull(commentEP2);
 
-		Command endCommand = createLinkCommand(commentEP1, pseudostateEP, UMLElementTypes.CommentAnnotatedElement_667);
+		Command endCommand = createLinkCommand(commentEP1, pseudostateEP, UMLElementTypes.Comment_AnnotatedElementEdge);
 
 		executeOnUIThread(endCommand);
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
@@ -181,7 +181,7 @@ public class TestLinks extends TestStateMachineLink {
 		}
 		Assert.assertNotNull(constraintEP2);
 
-		Command endCommand = createLinkCommand(constraintEP1, finalStateEP, UMLElementTypes.ConstraintConstrainedElement_670);
+		Command endCommand = createLinkCommand(constraintEP1, finalStateEP, UMLElementTypes.Constraint_ConstrainedElementEdge);
 
 		executeOnUIThread(endCommand);
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
@@ -222,7 +222,7 @@ public class TestLinks extends TestStateMachineLink {
 		}
 		Assert.assertNotNull(constraintEP2);
 
-		Command endCommand = createLinkCommand(constraintEP1, stateEP, UMLElementTypes.ConstraintContext_8500);
+		Command endCommand = createLinkCommand(constraintEP1, stateEP, UMLElementTypes.Constraint_ContextEdge);
 
 		executeOnUIThread(endCommand);
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());

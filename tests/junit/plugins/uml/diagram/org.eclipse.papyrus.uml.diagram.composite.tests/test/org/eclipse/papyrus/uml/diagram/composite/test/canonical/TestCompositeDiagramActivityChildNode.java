@@ -43,7 +43,7 @@ public class TestCompositeDiagramActivityChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Activity_2060, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Activity_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class TestCompositeDiagramActivityChildNode extends TestChildNode {
 	@Test
 	public void testToParameter() {
 		setTestAffixedNode(true);
-		testToManageNode(UMLElementTypes.Parameter_3088, UMLPackage.eINSTANCE.getParameter(), UMLElementTypes.Activity_2060, false, 4, 0, 1, 1, false, null, 0);
+		testToManageNode(UMLElementTypes.Parameter_Shape, UMLPackage.eINSTANCE.getParameter(), UMLElementTypes.Activity_Shape, false, 4, 0, 1, 1, false, null, 0);
 		setTestAffixedNode(false);
 	}
 

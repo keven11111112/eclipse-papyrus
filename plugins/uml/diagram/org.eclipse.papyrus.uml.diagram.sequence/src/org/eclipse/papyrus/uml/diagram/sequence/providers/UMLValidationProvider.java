@@ -46,7 +46,6 @@ public class UMLValidationProvider {
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
-
 			@Override
 			public void run() {
 				try {
@@ -57,7 +56,7 @@ public class UMLValidationProvider {
 				}
 			}
 		};
-		if(editingDomain != null) {
+		if (editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
@@ -72,11 +71,11 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
-		if(shouldConstraintsBePrivate() && !constraintsActive) {
+		if (shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
-		if(object instanceof View) {
-			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View)object));
+		if (object instanceof View) {
+			return constraintsActive && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
 		}
 		return true;
 	}
@@ -107,8 +106,8 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public boolean selects(Object object) {
-			if(isInDefaultEditorContext(object) && object instanceof View) {
-				final String id = UMLVisualIDRegistry.getVisualID((View)object);
+			if (isInDefaultEditorContext(object) && object instanceof View) {
+				final String id = UMLVisualIDRegistry.getVisualID((View) object);
 				boolean result = false;
 				result = result || LifelineEditPart.VISUAL_ID.equals(id);
 				return result;
@@ -164,7 +163,7 @@ public class UMLValidationProvider {
 		 */
 		CtxSwitchStrategy(IBatchValidator validator) {
 			this.defaultStrategy = validator.getDefaultTraversalStrategy();
-			this.contextSwitchingIdentifiers = new String[]{ LifelineEditPart.VISUAL_ID };
+			this.contextSwitchingIdentifiers = new String[] { LifelineEditPart.VISUAL_ID };
 			Arrays.sort(this.contextSwitchingIdentifiers);
 		}
 
@@ -189,7 +188,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public boolean isClientContextChanged() {
-			if(preFetchedNextTarget == null) {
+			if (preFetchedNextTarget == null) {
 				preFetchedNextTarget = next();
 				prepareNextClientContext(preFetchedNextTarget);
 			}
@@ -202,7 +201,7 @@ public class UMLValidationProvider {
 		@Override
 		public EObject next() {
 			EObject nextTarget = preFetchedNextTarget;
-			if(nextTarget == null) {
+			if (nextTarget == null) {
 				nextTarget = defaultStrategy.next();
 			}
 			this.preFetchedNextTarget = null;
@@ -221,11 +220,13 @@ public class UMLValidationProvider {
 		 * @generated
 		 */
 		private void prepareNextClientContext(EObject nextTarget) {
-			if(nextTarget != null && currentTarget != null) {
-				if(nextTarget instanceof View) {
-					final String id = UMLVisualIDRegistry.getVisualID((View)nextTarget);
-					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : null;
-					if((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId) || (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
+			if (nextTarget != null && currentTarget != null) {
+				if (nextTarget instanceof View) {
+					final String id = UMLVisualIDRegistry.getVisualID((View) nextTarget);
+					String nextSemanticId = (id != null && Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0)
+							? id : null;
+					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
+							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
 						this.ctxChanged = true;
 					}
 					currentSemanticCtxId = nextSemanticId;
@@ -250,7 +251,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			Interaction context = (Interaction)ctx.getTarget();
+			Interaction context = (Interaction) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
 		}
 	}
@@ -265,7 +266,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			InteractionOperand context = (InteractionOperand)ctx.getTarget();
+			InteractionOperand context = (InteractionOperand) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
 		}
 	}
@@ -282,7 +283,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			Node context = (Node)ctx.getTarget();
+			Node context = (Node) ctx.getTarget();
 			return UMLValidationHelper.validateFragmentsOrder(context, ctx);
 		}
 	}

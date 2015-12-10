@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 /**
  * Block Definition Diagram Reconciler from 0.9.1 to 1.0.0
  */
-public class BDDReconcilier extends DiagramReconciler {
+public class BDDReconciler extends DiagramReconciler {
 
 	@Override
 	public ICommand getReconcileCommand(Diagram diagram) {

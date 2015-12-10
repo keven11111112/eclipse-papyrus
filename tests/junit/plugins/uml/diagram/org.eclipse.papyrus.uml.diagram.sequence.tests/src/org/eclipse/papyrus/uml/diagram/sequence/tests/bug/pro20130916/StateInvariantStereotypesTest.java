@@ -39,8 +39,8 @@ public class StateInvariantStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
-		stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_3017, lifeline, new Point(131, 150), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
+		stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_Shape, lifeline, new Point(131, 150), null);
 		assertNotNull(stateInvariant);
 	}
 

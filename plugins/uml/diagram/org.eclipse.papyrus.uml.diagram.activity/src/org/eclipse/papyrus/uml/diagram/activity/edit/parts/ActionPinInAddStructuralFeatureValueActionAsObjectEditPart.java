@@ -46,7 +46,7 @@ public class ActionPinInAddStructuralFeatureValueActionAsObjectEditPart extends 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3185";
+	public static final String VISUAL_ID = "ActionInputPin_AddStructuralFeatureValueActionObjectShape";
 
 	/**
 	 * @generated
@@ -73,7 +73,9 @@ public class ActionPinInAddStructuralFeatureValueActionAsObjectEditPart extends 
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -149,6 +151,7 @@ public class ActionPinInAddStructuralFeatureValueActionAsObjectEditPart extends 
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -211,6 +214,7 @@ public class ActionPinInAddStructuralFeatureValueActionAsObjectEditPart extends 
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -269,6 +273,7 @@ public class ActionPinInAddStructuralFeatureValueActionAsObjectEditPart extends 
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
 	}
 }

@@ -110,8 +110,8 @@ public class DependencyBranchDeletion implements IObjectActionDelegate {
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
 			PreferencesHint preferencesHint = ((GraphicalEditPart) ((ConnectionEditPart) (sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_4008, ((IHintedType) UMLElementTypes.Dependency_4008).getSemanticHint(), preferencesHint);
-			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType) UMLElementTypes.Dependency_4008).getSemanticHint(), new SemanticAdapter(null,
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Dependency_Edge, ((IHintedType) UMLElementTypes.Dependency_Edge).getSemanticHint(), preferencesHint);
+			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType) UMLElementTypes.Dependency_Edge).getSemanticHint(), new SemanticAdapter(null,
 					(((ConnectionEditPart) (targetList.get(0))).getSource()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart) (sourceList.get(0))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(dependency);
 			command.add(new ICommandProxy(binaryCommand));

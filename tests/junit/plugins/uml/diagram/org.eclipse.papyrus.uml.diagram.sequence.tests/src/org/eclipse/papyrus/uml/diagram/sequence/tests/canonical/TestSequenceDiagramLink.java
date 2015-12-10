@@ -53,65 +53,65 @@ public class TestSequenceDiagramLink extends TestLink {
 	
 	@Test
 	public void testToManageGeneralOrdering() {
-		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.GeneralOrdering_4012, executionProvider, false);
+		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.GeneralOrdering_Edge, executionProvider, false);
 	}
 
 	@Test
 	public void testToManageMessageSync_4003() {
-		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4003, executionProvider, false);
+		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, executionProvider, false);
 	}
 
 	@Test
 	public void testToManageMessageReply_4005() {
-		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4005, executionProvider, false);
+		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, executionProvider, false);
 	}
 
 	@Test
 	public void testToManageMessageFound_4009() {
-		installEnvironment(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, lifelineProvider);
+		installEnvironment(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, lifelineProvider);
 		source = (GraphicalEditPart)source.getParent().getParent();
-		testToCreateALink(UMLElementTypes.Message_4009, lifelineProvider);
+		testToCreateALink(UMLElementTypes.Message_FoundEdge, lifelineProvider);
 
-		testDestroy(UMLElementTypes.Message_4009, lifelineProvider);
+		testDestroy(UMLElementTypes.Message_FoundEdge, lifelineProvider);
 		getEMFCommandStack().undo();
-		testViewDeletion(UMLElementTypes.Message_4009, lifelineProvider);
+		testViewDeletion(UMLElementTypes.Message_FoundEdge, lifelineProvider);
 	}
 
 	@Test
 	public void testToManageMessageLost_4008() {
-		installEnvironment(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, lifelineProvider);
+		installEnvironment(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, lifelineProvider);
 
 		target = (GraphicalEditPart)target.getParent().getParent();
-		testToCreateALink(UMLElementTypes.Message_4008, lifelineProvider);
+		testToCreateALink(UMLElementTypes.Message_LostEdge, lifelineProvider);
 
-		testDestroy(UMLElementTypes.Message_4008, lifelineProvider);
+		testDestroy(UMLElementTypes.Message_LostEdge, lifelineProvider);
 		getEMFCommandStack().undo();
-		testViewDeletion(UMLElementTypes.Message_4008, lifelineProvider);
+		testViewDeletion(UMLElementTypes.Message_LostEdge, lifelineProvider);
 	}
 
 	@Test
 	public void testToManageCommentLink() {
-		testToManageLink(UMLElementTypes.Comment_3009, UMLElementTypes.Lifeline_3001, UMLElementTypes.CommentAnnotatedElement_4010, lifelineProvider, true);
+		testToManageLink(UMLElementTypes.Comment_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Comment_AnnotatedElementEdge, lifelineProvider, true);
 	}
 
 	@Test
 	public void testToManageConstraintLink() {
-		testToManageLink(UMLElementTypes.Constraint_3008, UMLElementTypes.Lifeline_3001, UMLElementTypes.ConstraintConstrainedElement_4011, lifelineProvider, true);
+		testToManageLink(UMLElementTypes.Constraint_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Constraint_ConstrainedElementEdge, lifelineProvider, true);
 	}
 
 	@Test
 	public void testToManageMessageAsync_4004() {
-		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4004, lifelineProvider, true);
+		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_AsynchEdge, lifelineProvider, true);
 	}
 
 	@Test
 	public void testToManageMessageDelete_4007() {
-		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4007, lifelineProvider, true);
+		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_DeleteEdge, lifelineProvider, true);
 	}
 
 	@Test
 	public void testToManageMessageCreate_4006() {
-		testToManageLink(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4006, lifelineProvider, false);
+		testToManageLink(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_CreateEdge, lifelineProvider, false);
 	}
 
 	@Override
@@ -179,7 +179,7 @@ public class TestSequenceDiagramLink extends TestLink {
 		}
 
 		public void setUp() {
-			IElementType childNodeType = UMLElementTypes.ActionExecutionSpecification_3006;
+			IElementType childNodeType = UMLElementTypes.ActionExecutionSpecification_Shape;
 			source = createSubNode(source, childNodeType, getChildLocation(source));
 			sourcePlayer = createSubNode(sourcePlayer, childNodeType, getChildLocation(sourcePlayer));
 

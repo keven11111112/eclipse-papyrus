@@ -42,10 +42,10 @@ public class CustomMessageOccurrenceSpecificationItemSemanticEditPolicy extends 
 	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType elementType = req.getElementType();
-		if (UMLElementTypes.TimeConstraint_15 == elementType) {
+		if (UMLElementTypes.TimeConstraint_Shape == elementType) {
 			return getGEFWrapper(new TimeConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
-		if (UMLElementTypes.TimeObservation_16 == elementType) {
+		if (UMLElementTypes.TimeObservation_Shape == elementType) {
 			return getGEFWrapper(new TimeObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);

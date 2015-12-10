@@ -16,20 +16,22 @@
  */
 package aspects.xpt.providers
 
-import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenLink
-import org.eclipse.gmf.codegen.gmfgen.GenNodeimport org.eclipse.gmf.codegen.gmfgen.GenFeatureValueSpec
-import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
-import org.eclipse.emf.codegen.ecore.genmodel.GenClass
-import java.util.List
-import org.eclipse.gmf.codegen.gmfgen.GenLanguage
+import aspects.xpt.Common
 import com.google.inject.Inject
+import com.google.inject.Singleton
+import java.util.List
 import metamodel.MetaModel
+import org.eclipse.emf.codegen.ecore.genmodel.GenClass
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
+import org.eclipse.gmf.codegen.gmfgen.GenFeatureSeqInitializer
+import org.eclipse.gmf.codegen.gmfgen.GenFeatureValueSpec
+import org.eclipse.gmf.codegen.gmfgen.GenLanguage
+import org.eclipse.gmf.codegen.gmfgen.GenLink
+import org.eclipse.gmf.codegen.gmfgen.GenNode
+import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
+import plugin.Activator
 import xpt.expressions.AbstractExpression
 import xpt.providers.ElementInitializers_qvto
-import aspects.xpt.Common
-import org.eclipse.gmf.codegen.gmfgen.GenFeatureSeqInitializer
-import plugin.Activator
 
 /**
  * XXX should generate this class only when there is initialization logic defined in the model
@@ -102,7 +104,7 @@ import plugin.Activator
 
 	override dispatch CharSequence initMethod(GenFeatureSeqInitializer it, GenCommonBase diagramElement) '''
 		«generatedMemberComment»
-		public void init_«diagramElement.getUniqueIdentifier()»(«xptMetaModel.QualifiedClassName(elementClass)» instance) {
+		public void init_«diagramElement.stringUniqueIdentifier()»(«xptMetaModel.QualifiedClassName(elementClass)» instance) {
 			try {
 				«FOR i : it.initializers»
 					«performInit(i, diagramElement, 'instance', elementClass, <Integer>newLinkedList(initializers.indexOf(i)))»
@@ -111,5 +113,11 @@ import plugin.Activator
 				«xptActivator.qualifiedClassName(diagramElement.getDiagram().editorGen.plugin)».getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
 			}
 		}
+	'''
+
+	override def initMethodCall(GenCommonBase linkOrNode, TypeModelFacet modelFacet, String newElementVar) '''
+		«IF modelFacet.modelElementInitializer != null»
+			«elementInitializersInstanceCall(linkOrNode)».init_«linkOrNode.stringUniqueIdentifier»(«newElementVar»);
+		«ENDIF»
 	'''
 }

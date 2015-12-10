@@ -56,10 +56,10 @@ public class InheritedCompositeDiagramViewProvider extends UMLViewProvider {
 				// Cannot use createEdge from super class as it never take the graphical type (semanticHint) into account.
 				// createdEdge = super.createEdge(semanticAdapter, containerView, domainElementGraphicalType, index, persisted, preferencesHint);
 				if (ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createCommentAnnotatedElement_4002(containerView, index, persisted, preferencesHint);
+					createdEdge = createComment_AnnotatedElementEdge(containerView, index, persisted, preferencesHint);
 				}
 				if (ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createConstraintConstrainedElement_4003(containerView, index, persisted, preferencesHint);
+					createdEdge = createConstraint_ConstrainedElementEdge(containerView, index, persisted, preferencesHint);
 				}
 			}
 		}

@@ -60,14 +60,14 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		switch (UMLVisualIDRegistry.getVisualID(elementTypeHint)) {
 		case MessageEditPart.VISUAL_ID:
-			return customCreateMessage_8009(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			return customCreatePath_Edge(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 	}
 
 	/**
-	 * Custom create message_8009.
+	 * Custom create Path_Edge.
 	 * this method adds a customization to set the semantic element of the connection label to the domainElement which is a uml message in our case
 	 *
 	 * @param domainElement
@@ -83,7 +83,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	 * @return the edge
 	 */
 	@SuppressWarnings("unchecked")
-	public Edge customCreateMessage_8009(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge customCreatePath_Edge(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE.createRelativeBendpoints();
@@ -105,18 +105,18 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
 		// }
 		PreferenceInitializerForElementHelper.initRountingFromPrefs(edge, prefStore, "Message"); //$NON-NLS-1$
-		Node label6001 = createLabel(edge, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
-		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6001 = (Location) label6001.getLayoutConstraint();
-		location6001.setX(1);
-		location6001.setY(-23);
+		Node path_MessageLabel = createLabel(edge, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
+		path_MessageLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location path_MessageLabel_Location = (Location) path_MessageLabel.getLayoutConstraint();
+		path_MessageLabel_Location.setX(1);
+		path_MessageLabel_Location.setY(-23);
 		// added to set the element of the connection label to the domainElement which is a uml message in our case
-		label6001.setElement(domainElement);
-		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeMessageEditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6012 = (Location) label6012.getLayoutConstraint();
-		location6012.setX(1);
-		location6012.setY(-53);
+		path_MessageLabel.setElement(domainElement);
+		Node path_StereotypeLabel = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeMessageEditPart.VISUAL_ID));
+		path_StereotypeLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location path_StereotypeLabel_Location = (Location) path_StereotypeLabel.getLayoutConstraint();
+		path_StereotypeLabel_Location.setX(1);
+		path_StereotypeLabel_Location.setY(-53);
 		return edge;
 	}
 }

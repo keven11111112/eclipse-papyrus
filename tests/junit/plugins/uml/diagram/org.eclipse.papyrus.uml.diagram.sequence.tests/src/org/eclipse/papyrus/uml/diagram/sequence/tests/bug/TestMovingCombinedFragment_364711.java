@@ -66,9 +66,9 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 
 	@Test
 	public void testMovingRight() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 20));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 20));
 		final LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), SequenceUtil.getAbsoluteBounds(lifelineEP).getCenter().getTranslated(-210, 70));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), SequenceUtil.getAbsoluteBounds(lifelineEP).getCenter().getTranslated(-210, 70));
 		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete(); // wait for updating covered field
 
@@ -98,9 +98,9 @@ public class TestMovingCombinedFragment_364711 extends TestTopNode {
 
 	@Test
 	public void testMovingLeft() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(70, 20));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(70, 20));
 		final LifelineEditPart lifelineEP = (LifelineEditPart)getRootEditPart().getChildren().get(0);
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), SequenceUtil.getAbsoluteBounds(lifelineEP).getCenter().getTranslated(-2, 70));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), SequenceUtil.getAbsoluteBounds(lifelineEP).getCenter().getTranslated(-2, 70));
 		final CombinedFragmentEditPart cep = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(1);
 		waitForComplete(); // wait for updating covered field
 

@@ -40,19 +40,19 @@ public class GeneralOrderingStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(source);
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
 		Point sourcePoint = getAbsoluteBounds(source).getTop().translate(0, 50);
 		Point targetPoint = getAbsoluteBounds(target).getTop().translate(0, 50);
-		Message2EditPart message1 = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), sourcePoint, targetPoint);
+		Message2EditPart message1 = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), sourcePoint, targetPoint);
 		assertNotNull(message1);
-		Message2EditPart message2 = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), sourcePoint.getTranslated(0, 50), targetPoint.getTranslated(0, 50));
+		Message2EditPart message2 = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), sourcePoint.getTranslated(0, 50), targetPoint.getTranslated(0, 50));
 		assertNotNull(message2);
 		sourcePoint = SequenceUtil.getAbsoluteEdgeExtremity(message1, true);
 		targetPoint = SequenceUtil.getAbsoluteEdgeExtremity(message2, false);
-		generalOrdering = (GeneralOrderingEditPart)createLink(UMLElementTypes.GeneralOrdering_4012, source.getViewer(), sourcePoint, targetPoint);
+		generalOrdering = (GeneralOrderingEditPart)createLink(UMLElementTypes.GeneralOrdering_Edge, source.getViewer(), sourcePoint, targetPoint);
 		assertNotNull(generalOrdering);
 	}
 

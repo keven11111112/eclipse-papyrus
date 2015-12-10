@@ -110,7 +110,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			Iterator iter = req.getViewDescriptors().iterator();
 			while (iter.hasNext()) {
 				CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor) iter.next();
-				if (((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
+				if (((IHintedType) UMLElementTypes.Lifeline_Shape).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 					cmd = (new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand(editingDomain, viewDescriptor))).chain(cmd);
 				}
 			}
@@ -787,7 +787,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	protected Rectangle getBoundsOffest(CreateViewRequest request, Rectangle bounds, CreateViewRequest.ViewDescriptor viewDescriptor) {
 		int translate = request.getViewDescriptors().indexOf(viewDescriptor) * 10;
 		Rectangle target = bounds.getCopy().translate(translate, translate);
-		if (((IHintedType) UMLElementTypes.Lifeline_3001).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
+		if (((IHintedType) UMLElementTypes.Lifeline_Shape).getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 			target.setY(LifelineHeadUtil.computeLifelineVerticalPosition(getHost()));
 		}
 		return target;
@@ -798,7 +798,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		super.showSizeOnDropFeedback(request);
 		if (request instanceof CreateAspectUnspecifiedTypeRequest) {
 			CreateAspectUnspecifiedTypeRequest req = (CreateAspectUnspecifiedTypeRequest) request;
-			if (req.getElementTypes().contains(UMLElementTypes.CombinedFragment_3004) || req.getElementTypes().contains(UMLElementTypes.ConsiderIgnoreFragment_3007)) {
+			if (req.getElementTypes().contains(UMLElementTypes.CombinedFragment_Shape) || req.getElementTypes().contains(UMLElementTypes.ConsiderIgnoreFragment_Shape)) {
 				Rectangle rect = new Rectangle(request.getLocation(), request.getSize());
 				if (!coveredLifelines.isEmpty()) {
 					for (LifelineEditPart lifeline : coveredLifelines) {

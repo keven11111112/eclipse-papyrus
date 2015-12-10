@@ -112,7 +112,7 @@ public class RestoreDurationConstraintLinkCommand extends AbstractTransactionalC
 			sourceLocation = bounds.getTop();
 		}
 		EditPart targetEditPart = null;
-		CreateConnectionViewRequest request = CreateViewRequestFactory.getCreateConnectionRequest(UMLElementTypes.CommentAnnotatedElement_4010, diagramPreferenceHint);
+		CreateConnectionViewRequest request = CreateViewRequestFactory.getCreateConnectionRequest(UMLElementTypes.Comment_AnnotatedElementEdge, diagramPreferenceHint);
 		request.setLocation(sourceLocation);
 		request.setType(AnnotatedLinkStartEditPolicy.REQ_ANNOTATED_LINK_START);
 		request.setSourceEditPart(sourceEditPart);

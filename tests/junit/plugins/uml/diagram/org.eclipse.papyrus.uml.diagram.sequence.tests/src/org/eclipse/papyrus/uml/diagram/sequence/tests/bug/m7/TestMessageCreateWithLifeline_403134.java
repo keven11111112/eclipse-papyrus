@@ -44,10 +44,10 @@ public class TestMessageCreateWithLifeline_403134 extends AbstractNodeTest {
 
 	@Test
 	public void test() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		Point fromLocation = getAbsoluteBounds(lifeline).getTop().translate(0, 50);
-		EditPart editPart = createLink(UMLElementTypes.Message_4006, lifeline.getViewer(), fromLocation, fromLocation.getTranslated(100, 0));
+		EditPart editPart = createLink(UMLElementTypes.Message_CreateEdge, lifeline.getViewer(), fromLocation, fromLocation.getTranslated(100, 0));
 		//check result
 		assertNotNull("editpart not found", editPart);
 		assertTrue("not a messageCreate editpart", editPart instanceof Message4EditPart);

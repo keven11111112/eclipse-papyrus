@@ -39,7 +39,7 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentItemSemanticEditPo
 	 */
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (UMLElementTypes.InteractionOperand_3005 == req.getElementType()) {
+		if (UMLElementTypes.InteractionOperand_Shape == req.getElementType()) {
 			CombinedFragment combinedFragment = getAssociatedCombinedFragment(req.getContainer());
 			if (combinedFragment == null) {
 				return UnexecutableCommand.INSTANCE;

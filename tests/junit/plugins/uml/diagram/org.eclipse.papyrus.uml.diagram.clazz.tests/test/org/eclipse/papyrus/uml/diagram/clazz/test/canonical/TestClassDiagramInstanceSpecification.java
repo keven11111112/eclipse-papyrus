@@ -38,7 +38,7 @@ public class TestClassDiagramInstanceSpecification extends TestInstanceSpecifica
 
 	@Test
 	public void testInstanceSpecification() {
-		testInstanceSpecification(UMLElementTypes.Class_2008, UMLElementTypes.Association_4001, UMLElementTypes.InstanceSpecification_2001, UMLElementTypes.InstanceSpecification_4021);
+		testInstanceSpecification(UMLElementTypes.Class_Shape, UMLElementTypes.Association_Edge, UMLElementTypes.InstanceSpecification_Shape, UMLElementTypes.InstanceSpecification_Edge);
 	}
 
 	@Override

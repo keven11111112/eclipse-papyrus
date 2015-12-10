@@ -60,7 +60,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3069";
+	public static final String VISUAL_ID = "Port_Shape";
 
 	/**
 	 * @generated
@@ -87,9 +87,12 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeIconlDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeIconlDisplayEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PortLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
@@ -164,6 +167,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -223,6 +227,7 @@ public class PortEditPart extends RoundedBorderNamedElementEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**

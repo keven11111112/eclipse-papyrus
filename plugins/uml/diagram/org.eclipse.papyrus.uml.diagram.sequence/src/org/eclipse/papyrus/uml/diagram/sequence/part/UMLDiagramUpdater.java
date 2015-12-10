@@ -111,71 +111,171 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_1000SemanticChildren(view);
+				return getPackage_SequenceDiagram_SemanticChildren(view);
 			case InteractionEditPart.VISUAL_ID:
-				return getInteraction_2001SemanticChildren(view);
+				return getInteraction_Shape_SemanticChildren(view);
 			case InteractionOperandEditPart.VISUAL_ID:
-				return getInteractionOperand_3005SemanticChildren(view);
+				return getInteractionOperand_Shape_SemanticChildren(view);
 			case LifelineEditPart.VISUAL_ID:
-				return getLifeline_3001SemanticChildren(view);
+				return getLifeline_Shape_SemanticChildren(view);
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-				return getInteractionInteractionCompartment_7001SemanticChildren(view);
+				return getInteraction_SubfragmentCompartment_SemanticChildren(view);
 			case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-				return getCombinedFragmentCombinedFragmentCompartment_7004SemanticChildren(view);
+				return getCombinedFragment_SubfragmentCompartment_SemanticChildren(view);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated NOT remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
-	 */
-	public static List<UMLNodeDescriptor> getInteraction_2001SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getPackage_SequenceDiagram_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
+			return Collections.emptyList();
 		}
-		Interaction modelElement = (Interaction)view.getElement();
-		List result = new LinkedList();
-		// remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
+		Package modelElement = (Package) view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (InteractionEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getInteractionOperand_3005SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	public List<UMLNodeDescriptor> getInteractionOperand_Shape_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		InteractionOperand modelElement = (InteractionOperand)view.getElement();
+		InteractionOperand modelElement = (InteractionOperand) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
-			InteractionFragment childElement = (InteractionFragment)it.next();
+		for (Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
+			InteractionFragment childElement = (InteractionFragment) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InteractionUseEditPart.VISUAL_ID.equals(visualID)) {
+			if (InteractionUseEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(CombinedFragmentEditPart.VISUAL_ID.equals(visualID)) {
+			if (CombinedFragmentEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
-			InteractionFragment childElement = (InteractionFragment)it.next();
+		for (Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
+			InteractionFragment childElement = (InteractionFragment) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ContinuationEditPart.VISUAL_ID.equals(visualID)) {
+			if (ContinuationEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLNodeDescriptor> getInteraction_SubfragmentCompartment_SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		Interaction modelElement = (Interaction) containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
+			InteractionFragment childElement = (InteractionFragment) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (CombinedFragmentEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if (InteractionUseEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getLifelines().iterator(); it.hasNext();) {
+			Lifeline childElement = (Lifeline) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (LifelineEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
+			Constraint childElement = (Constraint) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (ConstraintEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
+			Comment childElement = (Comment) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (CommentEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLNodeDescriptor> getCombinedFragment_SubfragmentCompartment_SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		CombinedFragment modelElement = (CombinedFragment) containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getOperands().iterator(); it.hasNext();) {
+			InteractionOperand childElement = (InteractionOperand) it.next();
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (InteractionOperandEditPart.VISUAL_ID.equals(visualID)) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
+	 */
+	public static List<UMLNodeDescriptor> getInteraction_Shape_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Interaction modelElement = (Interaction) view.getElement();
+		List result = new LinkedList();
+		// remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
 		return result;
 	}
 
@@ -183,38 +283,38 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 * @generated NOT (update at each lifeline modification) Added code for manage ExecutionSpecification, handle TimeConstraintEditPart and
 	 *            DurationConstraintEditPart children, handle TimeObservationEditPart children
 	 */
-	public static List<UMLNodeDescriptor> getLifeline_3001SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	public static List<UMLNodeDescriptor> getLifeline_Shape_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
-		Lifeline modelElement = (Lifeline)view.getElement();
+		Lifeline modelElement = (Lifeline) view.getElement();
 		List<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		// Added code for manage ExecutionSpecification
-		if(modelElement instanceof Lifeline) {
-			if((modelElement).getCoveredBys().size() > 0) {
+		if (modelElement instanceof Lifeline) {
+			if ((modelElement).getCoveredBys().size() > 0) {
 				Interaction interaction = modelElement.getInteraction();
-				for(Iterator values = interaction.getFragments().iterator(); values.hasNext();) {
-					EObject nextValue = (EObject)values.next();
+				for (Iterator values = interaction.getFragments().iterator(); values.hasNext();) {
+					EObject nextValue = (EObject) values.next();
 					String visualID = UMLVisualIDRegistry.getNodeVisualID(view, nextValue);
-					if(BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(visualID)) {
-						BehaviorExecutionSpecification be = (BehaviorExecutionSpecification)nextValue;
-						if(be.getCovereds().size() > 0 && be.getCovereds().get(0) == modelElement) {
+					if (BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(visualID)) {
+						BehaviorExecutionSpecification be = (BehaviorExecutionSpecification) nextValue;
+						if (be.getCovereds().size() > 0 && be.getCovereds().get(0) == modelElement) {
 							// result.add(nextValue);
 							result.add(new UMLNodeDescriptor(be, visualID));
 						}
-					} else if(ActionExecutionSpecificationEditPart.VISUAL_ID.equals(visualID)) {
-						ActionExecutionSpecification ae = (ActionExecutionSpecification)nextValue;
-						if(ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
+					} else if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(visualID)) {
+						ActionExecutionSpecification ae = (ActionExecutionSpecification) nextValue;
+						if (ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
 							result.add(new UMLNodeDescriptor(ae, visualID));
 						}
-					} else if(StateInvariantEditPart.VISUAL_ID.equals(visualID)) {
-						StateInvariant ae = (StateInvariant)nextValue;
-						if(ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
+					} else if (StateInvariantEditPart.VISUAL_ID.equals(visualID)) {
+						StateInvariant ae = (StateInvariant) nextValue;
+						if (ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
 							result.add(new UMLNodeDescriptor(ae, visualID));
 						}
-					} else if(CombinedFragment2EditPart.VISUAL_ID.equals(visualID)) {
-						CombinedFragment ae = (CombinedFragment)nextValue;
-						if(ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
+					} else if (CombinedFragment2EditPart.VISUAL_ID.equals(visualID)) {
+						CombinedFragment ae = (CombinedFragment) nextValue;
+						if (ae.getCovereds().size() > 0 && ae.getCovereds().get(0) == modelElement) {
 							result.add(new UMLNodeDescriptor(ae, visualID));
 						}
 					}
@@ -229,20 +329,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 		 * UMLNodeDescriptor(childElement, visualID)); continue; } }
 		 */
 		// handle TimeConstraintEditPart and DurationConstraintEditPart children
-		if(modelElement instanceof Lifeline) {
-			for(InteractionFragment covering : modelElement.getCoveredBys()) {
-				for(TimeConstraint childElement : TimeConstraintHelper.getTimeConstraintsOn(covering)) {
+		if (modelElement instanceof Lifeline) {
+			for (InteractionFragment covering : modelElement.getCoveredBys()) {
+				for (TimeConstraint childElement : TimeConstraintHelper.getTimeConstraintsOn(covering)) {
 					// block from generated code
 					String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-					if(TimeConstraintEditPart.VISUAL_ID.equals(visualID)) {
+					if (TimeConstraintEditPart.VISUAL_ID.equals(visualID)) {
 						result.add(new UMLNodeDescriptor(childElement, visualID));
 						continue;
 					}
 				}
-				for(DurationConstraint childElement : DurationConstraintHelper.getDurationConstraintsOn(covering)) {
+				for (DurationConstraint childElement : DurationConstraintHelper.getDurationConstraintsOn(covering)) {
 					// block from generated code
 					String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-					if(DurationConstraintEditPart.VISUAL_ID.equals(visualID)) {
+					if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) {
 						result.add(new UMLNodeDescriptor(childElement, visualID));
 						continue;
 					}
@@ -250,116 +350,16 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 			}
 		}
 		// handle TimeObservationEditPart children
-		if(modelElement instanceof Lifeline) {
-			for(InteractionFragment covering : modelElement.getCoveredBys()) {
-				for(TimeObservation childElement : TimeObservationHelper.getTimeObservations(covering)) {
+		if (modelElement instanceof Lifeline) {
+			for (InteractionFragment covering : modelElement.getCoveredBys()) {
+				for (TimeObservation childElement : TimeObservationHelper.getTimeObservations(covering)) {
 					// block from generated code
 					String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-					if(TimeObservationEditPart.VISUAL_ID.equals(visualID)) {
+					if (TimeObservationEditPart.VISUAL_ID.equals(visualID)) {
 						result.add(new UMLNodeDescriptor(childElement, visualID));
 						continue;
 					}
 				}
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getInteractionInteractionCompartment_7001SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
-			return Collections.emptyList();
-		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
-			return Collections.emptyList();
-		}
-		Interaction modelElement = (Interaction)containerView.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getFragments().iterator(); it.hasNext();) {
-			InteractionFragment childElement = (InteractionFragment)it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(CombinedFragmentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(InteractionUseEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getLifelines().iterator(); it.hasNext();) {
-			Lifeline childElement = (Lifeline)it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(LifelineEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
-			Constraint childElement = (Constraint)it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConstraintEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
-			Comment childElement = (Comment)it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(CommentEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getCombinedFragmentCombinedFragmentCompartment_7004SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
-			return Collections.emptyList();
-		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
-			return Collections.emptyList();
-		}
-		CombinedFragment modelElement = (CombinedFragment)containerView.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getOperands().iterator(); it.hasNext();) {
-			InteractionOperand childElement = (InteractionOperand)it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InteractionOperandEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.emptyList();
-		}
-		Package modelElement = (Package)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
-			PackageableElement childElement = (PackageableElement)it.next();
-			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InteractionEditPart.VISUAL_ID.equals(visualID)) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
 			}
 		}
 		return result;
@@ -370,64 +370,64 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getContainedLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_1000ContainedLinks(view);
+				return getPackage_SequenceDiagram_ContainedLinks(view);
 			case InteractionEditPart.VISUAL_ID:
-				return getInteraction_2001ContainedLinks(view);
+				return getInteraction_Shape_ContainedLinks(view);
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return getConsiderIgnoreFragment_3007ContainedLinks(view);
+				return getConsiderIgnoreFragment_Shape_ContainedLinks(view);
 			case CombinedFragmentEditPart.VISUAL_ID:
-				return getCombinedFragment_3004ContainedLinks(view);
+				return getCombinedFragment_Shape_ContainedLinks(view);
 			case InteractionOperandEditPart.VISUAL_ID:
-				return getInteractionOperand_3005ContainedLinks(view);
+				return getInteractionOperand_Shape_ContainedLinks(view);
 			case InteractionUseEditPart.VISUAL_ID:
-				return getInteractionUse_3002ContainedLinks(view);
+				return getInteractionUse_Shape_ContainedLinks(view);
 			case ContinuationEditPart.VISUAL_ID:
-				return getContinuation_3016ContainedLinks(view);
+				return getContinuation_Shape_ContainedLinks(view);
 			case LifelineEditPart.VISUAL_ID:
-				return getLifeline_3001ContainedLinks(view);
+				return getLifeline_Shape_ContainedLinks(view);
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return getActionExecutionSpecification_3006ContainedLinks(view);
+				return getActionExecutionSpecification_Shape_ContainedLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-				return getBehaviorExecutionSpecification_3003ContainedLinks(view);
+				return getBehaviorExecutionSpecification_Shape_ContainedLinks(view);
 			case StateInvariantEditPart.VISUAL_ID:
-				return getStateInvariant_3017ContainedLinks(view);
+				return getStateInvariant_Shape_ContainedLinks(view);
 			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_3018ContainedLinks(view);
+				return getCombinedFragment_CoRegionShape_ContainedLinks(view);
 			case TimeConstraintEditPart.VISUAL_ID:
-				return getTimeConstraint_3019ContainedLinks(view);
+				return getTimeConstraint_Shape_ContainedLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
-				return getTimeObservation_3020ContainedLinks(view);
+				return getTimeObservation_Shape_ContainedLinks(view);
 			case DurationConstraintEditPart.VISUAL_ID:
-				return getDurationConstraint_3021ContainedLinks(view);
+				return getDurationConstraint_Shape_ContainedLinks(view);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-				return getDestructionOccurrenceSpecification_3022ContainedLinks(view);
+				return getDestructionOccurrenceSpecification_Shape_ContainedLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_3008ContainedLinks(view);
+				return getConstraint_Shape_ContainedLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_3009ContainedLinks(view);
+				return getComment_Shape_ContainedLinks(view);
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return getDurationConstraint_3023ContainedLinks(view);
+				return getDurationConstraint_Shape_CN_ContainedLinks(view);
 			case DurationObservationEditPart.VISUAL_ID:
-				return getDurationObservation_3024ContainedLinks(view);
+				return getDurationObservation_Shape_ContainedLinks(view);
 			case MessageEditPart.VISUAL_ID:
-				return getMessage_4003ContainedLinks(view);
+				return getMessage_SynchEdge_ContainedLinks(view);
 			case Message2EditPart.VISUAL_ID:
-				return getMessage_4004ContainedLinks(view);
+				return getMessage_AsynchEdge_ContainedLinks(view);
 			case Message3EditPart.VISUAL_ID:
-				return getMessage_4005ContainedLinks(view);
+				return getMessage_ReplyEdge_ContainedLinks(view);
 			case Message4EditPart.VISUAL_ID:
-				return getMessage_4006ContainedLinks(view);
+				return getMessage_CreateEdge_ContainedLinks(view);
 			case Message5EditPart.VISUAL_ID:
-				return getMessage_4007ContainedLinks(view);
+				return getMessage_DeleteEdge_ContainedLinks(view);
 			case Message6EditPart.VISUAL_ID:
-				return getMessage_4008ContainedLinks(view);
+				return getMessage_LostEdge_ContainedLinks(view);
 			case Message7EditPart.VISUAL_ID:
-				return getMessage_4009ContainedLinks(view);
+				return getMessage_FoundEdge_ContainedLinks(view);
 			case GeneralOrderingEditPart.VISUAL_ID:
-				return getGeneralOrdering_4012ContainedLinks(view);
+				return getGeneralOrdering_Edge_ContainedLinks(view);
 			}
 		}
 		return Collections.emptyList();
@@ -438,62 +438,62 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getIncomingLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case InteractionEditPart.VISUAL_ID:
-				return getInteraction_2001IncomingLinks(view);
+				return getInteraction_Shape_IncomingLinks(view);
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return getConsiderIgnoreFragment_3007IncomingLinks(view);
+				return getConsiderIgnoreFragment_Shape_IncomingLinks(view);
 			case CombinedFragmentEditPart.VISUAL_ID:
-				return getCombinedFragment_3004IncomingLinks(view);
+				return getCombinedFragment_Shape_IncomingLinks(view);
 			case InteractionOperandEditPart.VISUAL_ID:
-				return getInteractionOperand_3005IncomingLinks(view);
+				return getInteractionOperand_Shape_IncomingLinks(view);
 			case InteractionUseEditPart.VISUAL_ID:
-				return getInteractionUse_3002IncomingLinks(view);
+				return getInteractionUse_Shape_IncomingLinks(view);
 			case ContinuationEditPart.VISUAL_ID:
-				return getContinuation_3016IncomingLinks(view);
+				return getContinuation_Shape_IncomingLinks(view);
 			case LifelineEditPart.VISUAL_ID:
-				return getLifeline_3001IncomingLinks(view);
+				return getLifeline_Shape_IncomingLinks(view);
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return getActionExecutionSpecification_3006IncomingLinks(view);
+				return getActionExecutionSpecification_Shape_IncomingLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-				return getBehaviorExecutionSpecification_3003IncomingLinks(view);
+				return getBehaviorExecutionSpecification_Shape_IncomingLinks(view);
 			case StateInvariantEditPart.VISUAL_ID:
-				return getStateInvariant_3017IncomingLinks(view);
+				return getStateInvariant_Shape_IncomingLinks(view);
 			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_3018IncomingLinks(view);
+				return getCombinedFragment_CoRegionShape_IncomingLinks(view);
 			case TimeConstraintEditPart.VISUAL_ID:
-				return getTimeConstraint_3019IncomingLinks(view);
+				return getTimeConstraint_Shape_IncomingLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
-				return getTimeObservation_3020IncomingLinks(view);
+				return getTimeObservation_Shape_IncomingLinks(view);
 			case DurationConstraintEditPart.VISUAL_ID:
-				return getDurationConstraint_3021IncomingLinks(view);
+				return getDurationConstraint_Shape_IncomingLinks(view);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-				return getDestructionOccurrenceSpecification_3022IncomingLinks(view);
+				return getDestructionOccurrenceSpecification_Shape_IncomingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_3008IncomingLinks(view);
+				return getConstraint_Shape_IncomingLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_3009IncomingLinks(view);
+				return getComment_Shape_IncomingLinks(view);
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return getDurationConstraint_3023IncomingLinks(view);
+				return getDurationConstraint_Shape_CN_IncomingLinks(view);
 			case DurationObservationEditPart.VISUAL_ID:
-				return getDurationObservation_3024IncomingLinks(view);
+				return getDurationObservation_Shape_IncomingLinks(view);
 			case MessageEditPart.VISUAL_ID:
-				return getMessage_4003IncomingLinks(view);
+				return getMessage_SynchEdge_IncomingLinks(view);
 			case Message2EditPart.VISUAL_ID:
-				return getMessage_4004IncomingLinks(view);
+				return getMessage_AsynchEdge_IncomingLinks(view);
 			case Message3EditPart.VISUAL_ID:
-				return getMessage_4005IncomingLinks(view);
+				return getMessage_ReplyEdge_IncomingLinks(view);
 			case Message4EditPart.VISUAL_ID:
-				return getMessage_4006IncomingLinks(view);
+				return getMessage_CreateEdge_IncomingLinks(view);
 			case Message5EditPart.VISUAL_ID:
-				return getMessage_4007IncomingLinks(view);
+				return getMessage_DeleteEdge_IncomingLinks(view);
 			case Message6EditPart.VISUAL_ID:
-				return getMessage_4008IncomingLinks(view);
+				return getMessage_LostEdge_IncomingLinks(view);
 			case Message7EditPart.VISUAL_ID:
-				return getMessage_4009IncomingLinks(view);
+				return getMessage_FoundEdge_IncomingLinks(view);
 			case GeneralOrderingEditPart.VISUAL_ID:
-				return getGeneralOrdering_4012IncomingLinks(view);
+				return getGeneralOrdering_Edge_IncomingLinks(view);
 			}
 		}
 		return Collections.emptyList();
@@ -504,1302 +504,1357 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	 */
 	public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case InteractionEditPart.VISUAL_ID:
-				return getInteraction_2001OutgoingLinks(view);
+				return getInteraction_Shape_OutgoingLinks(view);
 			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return getConsiderIgnoreFragment_3007OutgoingLinks(view);
+				return getConsiderIgnoreFragment_Shape_OutgoingLinks(view);
 			case CombinedFragmentEditPart.VISUAL_ID:
-				return getCombinedFragment_3004OutgoingLinks(view);
+				return getCombinedFragment_Shape_OutgoingLinks(view);
 			case InteractionOperandEditPart.VISUAL_ID:
-				return getInteractionOperand_3005OutgoingLinks(view);
+				return getInteractionOperand_Shape_OutgoingLinks(view);
 			case InteractionUseEditPart.VISUAL_ID:
-				return getInteractionUse_3002OutgoingLinks(view);
+				return getInteractionUse_Shape_OutgoingLinks(view);
 			case ContinuationEditPart.VISUAL_ID:
-				return getContinuation_3016OutgoingLinks(view);
+				return getContinuation_Shape_OutgoingLinks(view);
 			case LifelineEditPart.VISUAL_ID:
-				return getLifeline_3001OutgoingLinks(view);
+				return getLifeline_Shape_OutgoingLinks(view);
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return getActionExecutionSpecification_3006OutgoingLinks(view);
+				return getActionExecutionSpecification_Shape_OutgoingLinks(view);
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
-				return getBehaviorExecutionSpecification_3003OutgoingLinks(view);
+				return getBehaviorExecutionSpecification_Shape_OutgoingLinks(view);
 			case StateInvariantEditPart.VISUAL_ID:
-				return getStateInvariant_3017OutgoingLinks(view);
+				return getStateInvariant_Shape_OutgoingLinks(view);
 			case CombinedFragment2EditPart.VISUAL_ID:
-				return getCombinedFragment_3018OutgoingLinks(view);
+				return getCombinedFragment_CoRegionShape_OutgoingLinks(view);
 			case TimeConstraintEditPart.VISUAL_ID:
-				return getTimeConstraint_3019OutgoingLinks(view);
+				return getTimeConstraint_Shape_OutgoingLinks(view);
 			case TimeObservationEditPart.VISUAL_ID:
-				return getTimeObservation_3020OutgoingLinks(view);
+				return getTimeObservation_Shape_OutgoingLinks(view);
 			case DurationConstraintEditPart.VISUAL_ID:
-				return getDurationConstraint_3021OutgoingLinks(view);
+				return getDurationConstraint_Shape_OutgoingLinks(view);
 			case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-				return getDestructionOccurrenceSpecification_3022OutgoingLinks(view);
+				return getDestructionOccurrenceSpecification_Shape_OutgoingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_3008OutgoingLinks(view);
+				return getConstraint_Shape_OutgoingLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_3009OutgoingLinks(view);
+				return getComment_Shape_OutgoingLinks(view);
 			case DurationConstraintInMessageEditPart.VISUAL_ID:
-				return getDurationConstraint_3023OutgoingLinks(view);
+				return getDurationConstraint_Shape_CN_OutgoingLinks(view);
 			case DurationObservationEditPart.VISUAL_ID:
-				return getDurationObservation_3024OutgoingLinks(view);
+				return getDurationObservation_Shape_OutgoingLinks(view);
 			case MessageEditPart.VISUAL_ID:
-				return getMessage_4003OutgoingLinks(view);
+				return getMessage_SynchEdge_OutgoingLinks(view);
 			case Message2EditPart.VISUAL_ID:
-				return getMessage_4004OutgoingLinks(view);
+				return getMessage_AsynchEdge_OutgoingLinks(view);
 			case Message3EditPart.VISUAL_ID:
-				return getMessage_4005OutgoingLinks(view);
+				return getMessage_ReplyEdge_OutgoingLinks(view);
 			case Message4EditPart.VISUAL_ID:
-				return getMessage_4006OutgoingLinks(view);
+				return getMessage_CreateEdge_OutgoingLinks(view);
 			case Message5EditPart.VISUAL_ID:
-				return getMessage_4007OutgoingLinks(view);
+				return getMessage_DeleteEdge_OutgoingLinks(view);
 			case Message6EditPart.VISUAL_ID:
-				return getMessage_4008OutgoingLinks(view);
+				return getMessage_LostEdge_OutgoingLinks(view);
 			case Message7EditPart.VISUAL_ID:
-				return getMessage_4009OutgoingLinks(view);
+				return getMessage_FoundEdge_OutgoingLinks(view);
 			case GeneralOrderingEditPart.VISUAL_ID:
-				return getGeneralOrdering_4012OutgoingLinks(view);
+				return getGeneralOrdering_Edge_OutgoingLinks(view);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getPackage_1000ContainedLinks(View view) {
+	* @generated
+	*/
+	public List<UMLLinkDescriptor> getPackage_SequenceDiagram_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteraction_2001ContainedLinks(View view) {
-		Interaction modelElement = (Interaction)view.getElement();
+	public List<UMLLinkDescriptor> getInteraction_Shape_ContainedLinks(View view) {
+		Interaction modelElement = (Interaction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getLifeline_3001ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getConsiderIgnoreFragment_Shape_ContainedLinks(View view) {
+		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getCombinedFragment_Shape_ContainedLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getInteractionOperand_Shape_ContainedLinks(View view) {
+		InteractionOperand modelElement = (InteractionOperand) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getInteractionUse_Shape_ContainedLinks(View view) {
+		InteractionUse modelElement = (InteractionUse) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getContinuation_Shape_ContainedLinks(View view) {
+		Continuation modelElement = (Continuation) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getLifeline_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehaviorExecutionSpecification_3003ContainedLinks(View view) {
-		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification)view.getElement();
+	public List<UMLLinkDescriptor> getActionExecutionSpecification_Shape_ContainedLinks(View view) {
+		ActionExecutionSpecification modelElement = (ActionExecutionSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getStateInvariant_3017ContainedLinks(View view) {
-		StateInvariant modelElement = (StateInvariant)view.getElement();
+	public List<UMLLinkDescriptor> getBehaviorExecutionSpecification_Shape_ContainedLinks(View view) {
+		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_3018ContainedLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment)view.getElement();
+	public List<UMLLinkDescriptor> getStateInvariant_Shape_ContainedLinks(View view) {
+		StateInvariant modelElement = (StateInvariant) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTimeConstraint_3019ContainedLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+	public List<UMLLinkDescriptor> getCombinedFragment_CoRegionShape_ContainedLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTimeObservation_3020ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getTimeConstraint_Shape_ContainedLinks(View view) {
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List<UMLLinkDescriptor> getTimeObservation_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_3021ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+	public List<UMLLinkDescriptor> getDurationConstraint_Shape_ContainedLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_3022ContainedLinks(View view) {
-		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification)view.getElement();
+	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_Shape_ContainedLinks(View view) {
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getActionExecutionSpecification_3006ContainedLinks(View view) {
-		ActionExecutionSpecification modelElement = (ActionExecutionSpecification)view.getElement();
+	public List<UMLLinkDescriptor> getConstraint_Shape_ContainedLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteractionUse_3002ContainedLinks(View view) {
-		InteractionUse modelElement = (InteractionUse)view.getElement();
+	public List<UMLLinkDescriptor> getComment_Shape_ContainedLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_3004ContainedLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment)view.getElement();
+	public List<UMLLinkDescriptor> getDurationConstraint_Shape_CN_ContainedLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteractionOperand_3005ContainedLinks(View view) {
-		InteractionOperand modelElement = (InteractionOperand)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getContinuation_3016ContainedLinks(View view) {
-		Continuation modelElement = (Continuation)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getConstraint_3008ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getComment_3009ContainedLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_3023ContainedLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getDurationObservation_3024ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getDurationObservation_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConsiderIgnoreFragment_3007ContainedLinks(View view) {
-		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getMessage_4003ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_SynchEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4004ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_AsynchEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4005ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_ReplyEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4006ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_CreateEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4007ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_DeleteEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4008ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_LostEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4009ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getMessage_FoundEdge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralOrdering_4012ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getGeneralOrdering_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteraction_2001IncomingLinks(View view) {
-		Interaction modelElement = (Interaction)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getInteraction_Shape_IncomingLinks(View view) {
+		Interaction modelElement = (Interaction) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getLifeline_3001IncomingLinks(View view) {
-		Lifeline modelElement = (Lifeline)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getConsiderIgnoreFragment_Shape_IncomingLinks(View view) {
+		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehaviorExecutionSpecification_3003IncomingLinks(View view) {
-		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getCombinedFragment_Shape_IncomingLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getStateInvariant_3017IncomingLinks(View view) {
-		StateInvariant modelElement = (StateInvariant)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getInteractionOperand_Shape_IncomingLinks(View view) {
+		InteractionOperand modelElement = (InteractionOperand) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_3018IncomingLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getInteractionUse_Shape_IncomingLinks(View view) {
+		InteractionUse modelElement = (InteractionUse) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTimeConstraint_3019IncomingLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getContinuation_Shape_IncomingLinks(View view) {
+		Continuation modelElement = (Continuation) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTimeObservation_3020IncomingLinks(View view) {
-		TimeObservation modelElement = (TimeObservation)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getLifeline_Shape_IncomingLinks(View view) {
+		Lifeline modelElement = (Lifeline) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_3021IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getActionExecutionSpecification_Shape_IncomingLinks(View view) {
+		ActionExecutionSpecification modelElement = (ActionExecutionSpecification) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_3022IncomingLinks(View view) {
-		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getBehaviorExecutionSpecification_Shape_IncomingLinks(View view) {
+		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_GeneralOrdering_4012(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getActionExecutionSpecification_3006IncomingLinks(View view) {
-		ActionExecutionSpecification modelElement = (ActionExecutionSpecification)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getStateInvariant_Shape_IncomingLinks(View view) {
+		StateInvariant modelElement = (StateInvariant) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteractionUse_3002IncomingLinks(View view) {
-		InteractionUse modelElement = (InteractionUse)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getCombinedFragment_CoRegionShape_IncomingLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_3004IncomingLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getTimeConstraint_Shape_IncomingLinks(View view) {
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteractionOperand_3005IncomingLinks(View view) {
-		InteractionOperand modelElement = (InteractionOperand)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getTimeObservation_Shape_IncomingLinks(View view) {
+		TimeObservation modelElement = (TimeObservation) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getContinuation_3016IncomingLinks(View view) {
-		Continuation modelElement = (Continuation)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getDurationConstraint_Shape_IncomingLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3008IncomingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_Shape_IncomingLinks(View view) {
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_GeneralOrdering_Edge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3009IncomingLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getConstraint_Shape_IncomingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_3023IncomingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getComment_Shape_IncomingLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationObservation_3024IncomingLinks(View view) {
-		DurationObservation modelElement = (DurationObservation)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getDurationConstraint_Shape_CN_IncomingLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConsiderIgnoreFragment_3007IncomingLinks(View view) {
-		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getDurationObservation_Shape_IncomingLinks(View view) {
+		DurationObservation modelElement = (DurationObservation) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4003IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_SynchEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4004IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_AsynchEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4005IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_ReplyEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4006IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_CreateEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4007IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_DeleteEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4008IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_LostEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4009IncomingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getMessage_FoundEdge_IncomingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralOrdering_4012IncomingLinks(View view) {
-		GeneralOrdering modelElement = (GeneralOrdering)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getGeneralOrdering_Edge_IncomingLinks(View view) {
+		GeneralOrdering modelElement = (GeneralOrdering) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_SynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_AsynchEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_ReplyEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_CreateEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_DeleteEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_LostEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_FoundEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteraction_2001OutgoingLinks(View view) {
-		Interaction modelElement = (Interaction)view.getElement();
+	public List<UMLLinkDescriptor> getInteraction_Shape_OutgoingLinks(View view) {
+		Interaction modelElement = (Interaction) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getLifeline_3001OutgoingLinks(View view) {
-		Lifeline modelElement = (Lifeline)view.getElement();
+	public List<UMLLinkDescriptor> getConsiderIgnoreFragment_Shape_OutgoingLinks(View view) {
+		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehaviorExecutionSpecification_3003OutgoingLinks(View view) {
-		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification)view.getElement();
+	public List<UMLLinkDescriptor> getCombinedFragment_Shape_OutgoingLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getStateInvariant_3017OutgoingLinks(View view) {
-		StateInvariant modelElement = (StateInvariant)view.getElement();
+	public List<UMLLinkDescriptor> getInteractionOperand_Shape_OutgoingLinks(View view) {
+		InteractionOperand modelElement = (InteractionOperand) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_3018OutgoingLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment)view.getElement();
+	public List<UMLLinkDescriptor> getInteractionUse_Shape_OutgoingLinks(View view) {
+		InteractionUse modelElement = (InteractionUse) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTimeConstraint_3019OutgoingLinks(View view) {
-		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+	public List<UMLLinkDescriptor> getContinuation_Shape_OutgoingLinks(View view) {
+		Continuation modelElement = (Continuation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTimeObservation_3020OutgoingLinks(View view) {
-		TimeObservation modelElement = (TimeObservation)view.getElement();
+	public List<UMLLinkDescriptor> getLifeline_Shape_OutgoingLinks(View view) {
+		Lifeline modelElement = (Lifeline) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_3021OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+	public List<UMLLinkDescriptor> getActionExecutionSpecification_Shape_OutgoingLinks(View view) {
+		ActionExecutionSpecification modelElement = (ActionExecutionSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_3022OutgoingLinks(View view) {
-		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification)view.getElement();
+	public List<UMLLinkDescriptor> getBehaviorExecutionSpecification_Shape_OutgoingLinks(View view) {
+		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_GeneralOrdering_4012(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getActionExecutionSpecification_3006OutgoingLinks(View view) {
-		ActionExecutionSpecification modelElement = (ActionExecutionSpecification)view.getElement();
+	public List<UMLLinkDescriptor> getStateInvariant_Shape_OutgoingLinks(View view) {
+		StateInvariant modelElement = (StateInvariant) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteractionUse_3002OutgoingLinks(View view) {
-		InteractionUse modelElement = (InteractionUse)view.getElement();
+	public List<UMLLinkDescriptor> getCombinedFragment_CoRegionShape_OutgoingLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getCombinedFragment_3004OutgoingLinks(View view) {
-		CombinedFragment modelElement = (CombinedFragment)view.getElement();
+	public List<UMLLinkDescriptor> getTimeConstraint_Shape_OutgoingLinks(View view) {
+		TimeConstraint modelElement = (TimeConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getInteractionOperand_3005OutgoingLinks(View view) {
-		InteractionOperand modelElement = (InteractionOperand)view.getElement();
+	public List<UMLLinkDescriptor> getTimeObservation_Shape_OutgoingLinks(View view) {
+		TimeObservation modelElement = (TimeObservation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getContinuation_3016OutgoingLinks(View view) {
-		Continuation modelElement = (Continuation)view.getElement();
+	public List<UMLLinkDescriptor> getDurationConstraint_Shape_OutgoingLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_3008OutgoingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+	public List<UMLLinkDescriptor> getDestructionOccurrenceSpecification_Shape_OutgoingLinks(View view) {
+		DestructionOccurrenceSpecification modelElement = (DestructionOccurrenceSpecification) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_GeneralOrdering_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_3009OutgoingLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
+	public List<UMLLinkDescriptor> getConstraint_Shape_OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationConstraint_3023OutgoingLinks(View view) {
-		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+	public List<UMLLinkDescriptor> getComment_Shape_OutgoingLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getDurationObservation_3024OutgoingLinks(View view) {
-		DurationObservation modelElement = (DurationObservation)view.getElement();
+	public List<UMLLinkDescriptor> getDurationConstraint_Shape_CN_OutgoingLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConsiderIgnoreFragment_3007OutgoingLinks(View view) {
-		ConsiderIgnoreFragment modelElement = (ConsiderIgnoreFragment)view.getElement();
+	public List<UMLLinkDescriptor> getDurationObservation_Shape_OutgoingLinks(View view) {
+		DurationObservation modelElement = (DurationObservation) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4003OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_SynchEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4004OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_AsynchEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4005OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_ReplyEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4006OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_CreateEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4007OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_DeleteEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4008OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_LostEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getMessage_4009OutgoingLinks(View view) {
-		Message modelElement = (Message)view.getElement();
+	public List<UMLLinkDescriptor> getMessage_FoundEdge_OutgoingLinks(View view) {
+		Message modelElement = (Message) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralOrdering_4012OutgoingLinks(View view) {
-		GeneralOrdering modelElement = (GeneralOrdering)view.getElement();
+	public List<UMLLinkDescriptor> getGeneralOrdering_Edge_OutgoingLinks(View view) {
+		GeneralOrdering modelElement = (GeneralOrdering) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_SynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_AsynchEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_ReplyEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_CreateEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_DeleteEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_LostEdge(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_FoundEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4003(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_SynchEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!MessageEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!MessageEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_SynchEdge,
+					MessageEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1807,25 +1862,26 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4004(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_AsynchEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message2EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message2EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_AsynchEdge,
+					Message2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1833,25 +1889,26 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4005(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_ReplyEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message3EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message3EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_ReplyEdge,
+					Message3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1859,25 +1916,26 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4006(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_CreateEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message4EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message4EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_CreateEdge,
+					Message4EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1885,25 +1943,26 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4007(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_DeleteEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message5EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message5EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_DeleteEdge,
+					Message5EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1911,25 +1970,26 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4008(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_LostEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message6EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message6EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_LostEdge,
+					Message6EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1937,25 +1997,26 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_4009(Interaction container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Message_FoundEdge(Interaction container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message7EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message7EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_FoundEdge,
+					Message7EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1963,221 +2024,254 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_GeneralOrdering_4012(InteractionFragment container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_GeneralOrdering_Edge(
+			InteractionFragment container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getGeneralOrderings().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof GeneralOrdering) {
+		for (Iterator<?> links = container.getGeneralOrderings().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof GeneralOrdering) {
 				continue;
 			}
-			GeneralOrdering link = (GeneralOrdering)linkObject;
-			if(!GeneralOrderingEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			GeneralOrdering link = (GeneralOrdering) linkObject;
+			if (!GeneralOrderingEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			OccurrenceSpecification dst = link.getAfter();
 			OccurrenceSpecification src = link.getBefore();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_Edge,
+					GeneralOrderingEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4003(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_SynchEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			Message link = (Message)setting.getEObject();
-			if(!MessageEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!MessageEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_SynchEdge,
+					MessageEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4004(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_AsynchEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			Message link = (Message)setting.getEObject();
-			if(!Message2EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!Message2EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_AsynchEdge,
+					Message2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4005(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_ReplyEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			Message link = (Message)setting.getEObject();
-			if(!Message3EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!Message3EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_ReplyEdge,
+					Message3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4006(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_CreateEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			Message link = (Message)setting.getEObject();
-			if(!Message4EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!Message4EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_CreateEdge,
+					Message4EditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4007(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_DeleteEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			Message link = (Message)setting.getEObject();
-			if(!Message5EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!Message5EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_DeleteEdge,
+					Message5EditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4008(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_LostEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			Message link = (Message)setting.getEObject();
-			if(!Message6EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
-				continue;
-			}
-			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_4009(Element target, CrossReferenceAdapter crossReferencer) {
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement() || false == setting.getEObject() instanceof Message) {
-				continue;
-			}
-			Message link = (Message)setting.getEObject();
-			if(!Message7EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!Message6EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Element src = link.getOwner();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_LostEdge,
+					Message6EditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Message_FoundEdge(Element target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4010, CommentAnnotatedElementEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(Element target, CrossReferenceAdapter crossReferencer) {
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4011, ConstraintConstrainedElementEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_GeneralOrdering_4012(OccurrenceSpecification target, CrossReferenceAdapter crossReferencer) {
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralOrdering_After() || false == setting.getEObject() instanceof GeneralOrdering) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getElement_OwnedElement()
+					|| false == setting.getEObject() instanceof Message) {
 				continue;
 			}
-			GeneralOrdering link = (GeneralOrdering)setting.getEObject();
-			if(!GeneralOrderingEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) setting.getEObject();
+			if (!Message7EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+				continue;
+			}
+			Element src = link.getOwner();
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Message_FoundEdge,
+					Message7EditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
+			Element target, CrossReferenceAdapter crossReferencer) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
+			Element target, CrossReferenceAdapter crossReferencer) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.Constraint_ConstrainedElementEdge,
+						ConstraintConstrainedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_GeneralOrdering_Edge(
+			OccurrenceSpecification target, CrossReferenceAdapter crossReferencer) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralOrdering_After()
+					|| false == setting.getEObject() instanceof GeneralOrdering) {
+				continue;
+			}
+			GeneralOrdering link = (GeneralOrdering) setting.getEObject();
+			if (!GeneralOrderingEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			OccurrenceSpecification src = link.getBefore();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.GeneralOrdering_Edge,
+					GeneralOrderingEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_Context_8500(Namespace target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(Namespace target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_Context()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintContext_8500, ContextLinkEditPart.VISUAL_ID));
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_Context()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ContextEdge,
+						ContextLinkEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -2186,40 +2280,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4003(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_SynchEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!MessageEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!MessageEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4003, MessageEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_SynchEdge,
+					MessageEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2227,40 +2322,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4004(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_AsynchEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message2EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message2EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4004, Message2EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_AsynchEdge,
+					Message2EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2268,40 +2364,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4005(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_ReplyEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message3EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message3EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4005, Message3EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_ReplyEdge,
+					Message3EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2309,40 +2406,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4006(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_CreateEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message4EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message4EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_CreateEdge,
+					Message4EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2350,40 +2448,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4007(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_DeleteEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message5EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message5EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4007, Message5EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_DeleteEdge,
+					Message5EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2391,40 +2490,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4008(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_LostEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message6EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message6EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_LostEdge,
+					Message6EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2432,40 +2532,41 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_4009(Element source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Message_FoundEdge(Element source) {
 		Interaction container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Interaction) {
-				container = (Interaction)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Interaction) {
+				container = (Interaction) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Message) {
+		for (Iterator<?> links = container.getMessages().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Message) {
 				continue;
 			}
-			Message link = (Message)linkObject;
-			if(!Message7EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Message link = (Message) linkObject;
+			if (!Message7EditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
-			if(false == theTarget instanceof Element) {
+			if (false == theTarget instanceof Element) {
 				continue;
 			}
-			Element dst = (Element)theTarget;
+			Element dst = (Element) theTarget;
 			Element src = link.getOwner();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_FoundEdge,
+					Message7EditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2473,11 +2574,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(Comment source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
+			Comment source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
-			Element destination = (Element)destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4010, CommentAnnotatedElementEditPart.VISUAL_ID));
+		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge,
+					CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2485,11 +2588,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(Constraint source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
+			Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
-			Element destination = (Element)destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4011, ConstraintConstrainedElementEditPart.VISUAL_ID));
+		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge,
+					ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2497,35 +2602,37 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_GeneralOrdering_4012(OccurrenceSpecification source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_GeneralOrdering_Edge(
+			OccurrenceSpecification source) {
 		InteractionFragment container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof InteractionFragment) {
-				container = (InteractionFragment)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof InteractionFragment) {
+				container = (InteractionFragment) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getGeneralOrderings().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof GeneralOrdering) {
+		for (Iterator<?> links = container.getGeneralOrderings().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof GeneralOrdering) {
 				continue;
 			}
-			GeneralOrdering link = (GeneralOrdering)linkObject;
-			if(!GeneralOrderingEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			GeneralOrdering link = (GeneralOrdering) linkObject;
+			if (!GeneralOrderingEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			OccurrenceSpecification dst = link.getAfter();
 			OccurrenceSpecification src = link.getBefore();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_4012, GeneralOrderingEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.GeneralOrdering_Edge,
+					GeneralOrderingEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2533,13 +2640,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(Constraint source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(
+			Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Namespace destination = source.getContext();
-		if(destination == null) {
+		if (destination == null) {
 			return result;
 		}
-		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintContext_8500, ContextLinkEditPart.VISUAL_ID));
+		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ContextEdge,
+				ContextLinkEditPart.VISUAL_ID));
 		return result;
 	}
 }

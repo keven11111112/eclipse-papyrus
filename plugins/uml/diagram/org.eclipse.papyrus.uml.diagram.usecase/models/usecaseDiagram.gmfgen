@@ -4,7 +4,8 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel"
-    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension">
+    xmlns:papyrusgmfgenextension="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension"
+    xsi:schemaLocation="http://www.eclipse.org/papyrus/2009/papyrusgmfgenextension ../../org.eclipse.papyrus.gmfgenextension/model/papyrusGmfgenExtension.ecore">
   <gmfgen:GenEditorGenerator
       packageNamePrefix="org.eclipse.papyrus.uml.diagram.usecase"
       modelID="UseCase"
@@ -26,6 +27,7 @@
           href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
+          uniqueIdentifier="org.eclipse.papyrus.umldi.Package_UseCaseDiagram"
           definedExternally="true"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
@@ -50,6 +52,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ExtensionPoint_ExtensionPointLabel"
             definedExternally="true"
             editHelperClassName="ExtensionPointEditHelper"/>
         <viewmap
@@ -98,6 +101,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.ExtensionPoint_ClassifierExtensionPointLabel"
             definedExternally="true"
             metamodelType="/0/@diagram/@childNodes.0/@elementType"/>
         <viewmap
@@ -146,6 +150,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.UseCase_Shape_CCN"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
@@ -244,6 +249,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Component_Shape_CCN"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.4/@elementType"/>
         <viewmap
@@ -312,6 +318,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_Shape_CN"
             definedExternally="true"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
@@ -375,6 +382,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_Shape_CCN"
             definedExternally="true"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
@@ -456,6 +464,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Actor_Shape_CCN"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
         <viewmap
@@ -590,6 +599,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_Shape_CN"
             definedExternally="true"
             metamodelType="/0/@diagram/@childNodes.5/@elementType"/>
         <viewmap
@@ -672,6 +682,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Actor_Shape_CN"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
         <viewmap
@@ -808,6 +819,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.UseCase_Shape_CN"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
@@ -906,6 +918,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Component_Shape_CN"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.4/@elementType"/>
         <viewmap
@@ -1000,6 +1013,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Package_Shape_CN"
             definedExternally="true"
             metamodelType="/0/@diagram/@elementType"/>
         <viewmap
@@ -1069,6 +1083,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Actor_Shape"
             definedExternally="true"
             editHelperClassName="ActorEditHelper"/>
         <viewmap
@@ -1202,6 +1217,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Actor_ClassifierShape"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.0/@elementType"/>
         <viewmap
@@ -1263,6 +1279,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.UseCase_Shape"
             definedExternally="true"
             editHelperClassName="UseCaseEditHelper"/>
         <viewmap
@@ -1359,6 +1376,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.UseCase_ClassifierShape"
             definedExternally="true"
             metamodelType="/0/@diagram/@topLevelNodes.2/@elementType"/>
         <viewmap
@@ -1422,6 +1440,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Classifier_SubjectShape"
             definedExternally="true"
             editHelperClassName="SubjectEditHelper"/>
         <viewmap
@@ -1514,6 +1533,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Package_Shape"
             definedExternally="true"
             metamodelType="/0/@diagram/@elementType"/>
         <viewmap
@@ -1582,6 +1602,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_Shape"
             definedExternally="true"
             metamodelType="/0/@diagram/@childNodes.5/@elementType"/>
         <viewmap
@@ -1661,6 +1682,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_Shape"
             definedExternally="true"
             metamodelType="/0/@diagram/@childNodes.4/@elementType"/>
         <viewmap
@@ -1722,7 +1744,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.usecase.DefaultNamedElement_2022"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.NamedElement_DefaultShape"
             displayName="DefaultNamedElement"
             definedExternally="true"
             editHelperClassName="DefaultNamedElementEditHelper"/>
@@ -1782,6 +1804,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Diagram_ShortcutShape"
             displayName="ShortCutDiagram"
             definedExternally="true"
             editHelperClassName="ShortCutDiagramEditHelper"/>
@@ -1827,6 +1850,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Include_Edge"
             definedExternally="true"
             editHelperClassName="IncludeEditHelper"/>
         <viewmap
@@ -1896,6 +1920,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Extend_Edge"
             definedExternally="true"
             editHelperClassName="ExtendEditHelper"/>
         <viewmap
@@ -1965,6 +1990,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Generalization_Edge"
             definedExternally="true"
             editHelperClassName="GeneralizationEditHelper"/>
         <viewmap
@@ -2019,6 +2045,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Association_Edge"
             definedExternally="true"
             editHelperClassName="AssociationEditHelper"/>
         <viewmap
@@ -2104,7 +2131,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.usecase.ConstraintConstrainedElement_4012"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Constraint_ConstrainedElementEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2125,6 +2152,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Dependency_Edge"
             definedExternally="true"
             editHelperClassName="DependencyEditHelper"/>
         <viewmap
@@ -2209,7 +2237,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            uniqueIdentifier="org.eclipse.papyrus.uml.diagram.usecase.CommentAnnotatedElement_4014"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Comment_AnnotatedElementEdge"
             definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2230,6 +2258,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Abstraction_Edge"
             definedExternally="true"
             editHelperClassName="AbstractionEditHelper"/>
         <viewmap
@@ -2313,6 +2342,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Usage_Edge"
             definedExternally="true"
             editHelperClassName="UsageEditHelper"/>
         <viewmap
@@ -2396,6 +2426,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.Realization_Edge"
             definedExternally="true"
             editHelperClassName="RealizationEditHelper"/>
         <viewmap
@@ -2478,6 +2509,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.PackageMerge_Edge"
             definedExternally="true"
             editHelperClassName="PackageMergeEditHelper"/>
         <viewmap
@@ -2527,6 +2559,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.umldi.PackageImport_Edge"
             definedExternally="true"
             editHelperClassName="PackageImportEditHelper"/>
         <viewmap
@@ -3246,4 +3279,329 @@
         name="PackageEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
+  <papyrusgmfgenextension:VisualIDOverride
+      genView="/0/@diagram"
+      visualID="Package_UseCaseDiagram">
+    <child
+        genView="/0/@diagram/@childNodes.0"
+        visualID="ExtensionPoint_ExtensionPointLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.1"
+        visualID="ExtensionPoint_ClassifierExtensionPointLabel"/>
+    <child
+        genView="/0/@diagram/@childNodes.2"
+        visualID="UseCase_Shape_CCN">
+      <child
+          genView="/0/@diagram/@childNodes.2/@labels.0"
+          visualID="UseCase_NameLabel_CCN"/>
+      <child
+          genView="/0/@diagram/@childNodes.2/@labels.1"
+          visualID="UseCase_FloatingNameLabel_CCN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.3"
+        visualID="Component_Shape_CCN">
+      <child
+          genView="/0/@diagram/@childNodes.3/@labels.0"
+          visualID="Component_NameLabel_CCN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.4"
+        visualID="Comment_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.4/@labels.0"
+          visualID="Comment_BodyLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.5"
+        visualID="Constraint_Shape_CCN">
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.0"
+          visualID="Constraint_NameLabel_CCN"/>
+      <child
+          genView="/0/@diagram/@childNodes.5/@labels.1"
+          visualID="Constraint_BodyLabel_CCN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.6"
+        visualID="Actor_Shape_CCN">
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.0"
+          visualID="Actor_NameLabel_CCN"/>
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.1"
+          visualID="Actor_StereotypeLabel_CCN"/>
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.2"
+          visualID="Actor_QualifiedNameLabel_CCN"/>
+      <child
+          genView="/0/@diagram/@childNodes.6/@labels.3"
+          visualID="Actor_FloatingNameLabel_CCN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.7"
+        visualID="Constraint_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.0"
+          visualID="Constraint_NameLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.7/@labels.1"
+          visualID="Constraint_BodyLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.8"
+        visualID="Actor_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.0"
+          visualID="Actor_NameLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.1"
+          visualID="Actor_StereotypeLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.2"
+          visualID="Actor_QualifiedNameLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.8/@labels.3"
+          visualID="Actor_FloatingNameLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.9"
+        visualID="UseCase_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.0"
+          visualID="UseCase_NameLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.9/@labels.1"
+          visualID="UseCase_FloatingNameLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.10"
+        visualID="Component_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.0"
+          visualID="Component_NameLabel_CN"/>
+      <child
+          genView="/0/@diagram/@childNodes.10/@labels.1"
+          visualID="Component_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@childNodes.11"
+        visualID="Package_Shape_CN">
+      <child
+          genView="/0/@diagram/@childNodes.11/@labels.0"
+          visualID="Package_NameLabel_CN"/>
+    </child>
+    <child
+        genView="/0/@diagram/@compartments.0"
+        visualID="UseCase_ExtensionPointCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.1"
+        visualID="UseCase_ClassifierExtensionPointCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.2"
+        visualID="Classifier_UseCaseCompartment"/>
+    <child
+        genView="/0/@diagram/@compartments.3"
+        visualID="UseCase_ExtensionPointCompartment_CCN"/>
+    <child
+        genView="/0/@diagram/@compartments.4"
+        visualID="Component_PackagedElementCompartment_CCN"/>
+    <child
+        genView="/0/@diagram/@compartments.5"
+        visualID="UseCase_ExtensionPointCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@compartments.6"
+        visualID="Component_PackagedElementCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@compartments.7"
+        visualID="Package_PackagedElementCompartment_CN"/>
+    <child
+        genView="/0/@diagram/@compartments.8"
+        visualID="Package_PackagedElementCompartment"/>
+    <child
+        genView="/0/@diagram/@topLevelNodes.0"
+        visualID="Actor_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.0"
+          visualID="Actor_NameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.1"
+          visualID="Actor_StereotypeLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.2"
+          visualID="Actor_QualifiedNameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.0/@labels.3"
+          visualID="Actor_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.1"
+        visualID="Actor_ClassifierShape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.1/@labels.0"
+          visualID="Actor_ClassifierNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.2"
+        visualID="UseCase_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.2/@labels.0"
+          visualID="UseCase_NameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.2/@labels.1"
+          visualID="UseCase_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.3"
+        visualID="UseCase_ClassifierShape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.3/@labels.0"
+          visualID="UseCase_ClassifierNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.4"
+        visualID="Classifier_SubjectShape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.4/@labels.0"
+          visualID="Classifier_NameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.4/@labels.1"
+          visualID="Classifier_FloatingNameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.5"
+        visualID="Package_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.5/@labels.0"
+          visualID="Package_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.6"
+        visualID="Constraint_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.6/@labels.0"
+          visualID="Constraint_NameLabel"/>
+      <child
+          genView="/0/@diagram/@topLevelNodes.6/@labels.1"
+          visualID="Constraint_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.7"
+        visualID="Comment_Shape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.7/@labels.0"
+          visualID="Comment_BodyLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.8"
+        visualID="NamedElement_DefaultShape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.8/@labels.0"
+          visualID="NamedElement_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@topLevelNodes.9"
+        visualID="Diagram_ShortcutShape">
+      <child
+          genView="/0/@diagram/@topLevelNodes.9/@labels.0"
+          visualID="Diagram_NameLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.0"
+        visualID="Include_Edge">
+      <child
+          genView="/0/@diagram/@links.0/@labels.0"
+          visualID="Include_KeywordLabel"/>
+      <child
+          genView="/0/@diagram/@links.0/@labels.1"
+          visualID="Include_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.1"
+        visualID="Extend_Edge">
+      <child
+          genView="/0/@diagram/@links.1/@labels.0"
+          visualID="Extend_KeywordLabel"/>
+      <child
+          genView="/0/@diagram/@links.1/@labels.1"
+          visualID="Extend_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.2"
+        visualID="Generalization_Edge">
+      <child
+          genView="/0/@diagram/@links.2/@labels.0"
+          visualID="Generalization_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.3"
+        visualID="Association_Edge">
+      <child
+          genView="/0/@diagram/@links.3/@labels.0"
+          visualID="Association_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.3/@labels.1"
+          visualID="Association_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.4"
+        visualID="Constraint_ConstrainedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.5"
+        visualID="Dependency_Edge">
+      <child
+          genView="/0/@diagram/@links.5/@labels.0"
+          visualID="Dependency_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.5/@labels.1"
+          visualID="Dependency_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.6"
+        visualID="Comment_AnnotatedElementEdge"/>
+    <child
+        genView="/0/@diagram/@links.7"
+        visualID="Abstraction_Edge">
+      <child
+          genView="/0/@diagram/@links.7/@labels.0"
+          visualID="Abstraction_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.7/@labels.1"
+          visualID="Abstraction_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.8"
+        visualID="Usage_Edge">
+      <child
+          genView="/0/@diagram/@links.8/@labels.0"
+          visualID="Usage_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.8/@labels.1"
+          visualID="Usage_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.9"
+        visualID="Realization_Edge">
+      <child
+          genView="/0/@diagram/@links.9/@labels.0"
+          visualID="Realization_NameLabel"/>
+      <child
+          genView="/0/@diagram/@links.9/@labels.1"
+          visualID="Realization_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.10"
+        visualID="PackageMerge_Edge">
+      <child
+          genView="/0/@diagram/@links.10/@labels.0"
+          visualID="PackageMerge_StereotypeLabel"/>
+    </child>
+    <child
+        genView="/0/@diagram/@links.11"
+        visualID="PackageImport_Edge">
+      <child
+          genView="/0/@diagram/@links.11/@labels.0"
+          visualID="PackageImport_StereotypeLabel"/>
+    </child>
+  </papyrusgmfgenextension:VisualIDOverride>
 </xmi:XMI>

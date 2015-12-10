@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.InducedRepresentationC
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.junit.Assert;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
@@ -66,7 +67,7 @@ public class ExpansionAddCompartmentWithKind extends AbstractEditorTest {
 	/**
 	 * 
 	 */
-	protected static final String CLASS_VISUALID = "2008";
+	protected static final String CLASS_VISUALID = ClassEditPart.VISUAL_ID;
 	/**
 	 * 
 	 */
@@ -85,9 +86,9 @@ public class ExpansionAddCompartmentWithKind extends AbstractEditorTest {
 		Assert.assertNotNull("A usage contex has been defined for " + CLASS_DIAGRAM_TYPE, childrenListRepresentation);
 		Assert.assertNotNull("The class has been redefined", childrenListRepresentation.IDMap.get(CLASS_VISUALID));
 		Assert.assertNotNull("The compartment of class has been added", childrenListRepresentation.IDMap.get(IMPLEMENTED_INTERFACES_HINT));
-		List<String> the_2008_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
-		Assert.assertEquals("2008 can have a new compartment", 1, the_2008_Children.size());
-		Assert.assertEquals("2008 has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, the_2008_Children.get(0));
+		List<String> the_class_shape_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
+		Assert.assertEquals("Class shape can have a new compartment", 1, the_class_shape_Children.size());
+		Assert.assertEquals("Class shape has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, the_class_shape_Children.get(0));
 
 		// the model is valid
 		// now launch a class diagram
@@ -107,13 +108,13 @@ public class ExpansionAddCompartmentWithKind extends AbstractEditorTest {
 
 			// test in the notation
 			View classNotationView = classEditPart.getNotationView();
-			Assert.assertEquals("the Type of class editpart must be 2008", classNotationView.getType(), "2008");
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", classNotationView.getPersistedChildren().size(), 6);
+			Assert.assertEquals("the Type of class editpart must be correct", classNotationView.getType(), ClassEditPart.VISUAL_ID);
+			Assert.assertEquals("the class editpart must contain 2 labels and 4 compartments", classNotationView.getPersistedChildren().size(), 6);
 			View compartment = (View) classNotationView.getPersistedChildren().get(5);
 			Assert.assertEquals("The last compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartment.getType());
 
 			// test in the editpart is created for this notation
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", classEditPart.getChildren().size(), 6);
+			Assert.assertEquals("the class editpart must contain 2 labels and 4 compartments", classEditPart.getChildren().size(), 6);
 			IGraphicalEditPart compartmentEdiPart = (IGraphicalEditPart) classEditPart.getChildren().get(5);
 			if (compartmentEdiPart.getNotationView().equals(compartment)) {
 				Assert.assertEquals("The last compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartmentEdiPart.getNotationView().getType());

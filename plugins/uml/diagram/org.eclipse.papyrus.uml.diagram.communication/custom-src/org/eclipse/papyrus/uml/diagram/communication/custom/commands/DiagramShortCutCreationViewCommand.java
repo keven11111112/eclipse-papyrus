@@ -69,7 +69,7 @@ public class DiagramShortCutCreationViewCommand extends AbstractTransactionalCom
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
 		EObject eObject = (EObject) (viewDescriptor.getElementAdapter()).getAdapter(EObject.class);
-		View view = umlViewProvider.createDiagram_8016(eObject, containerView, -1, viewDescriptor.isPersisted(), viewDescriptor.getPreferencesHint());
+		View view = umlViewProvider.createDiagram_ShortcutShape(eObject, containerView, -1, viewDescriptor.isPersisted(), viewDescriptor.getPreferencesHint());
 		Assert.isNotNull(view, "failed to create a view"); //$NON-NLS-1$
 		viewDescriptor.setView(view);
 		return CommandResult.newOKCommandResult(viewDescriptor);

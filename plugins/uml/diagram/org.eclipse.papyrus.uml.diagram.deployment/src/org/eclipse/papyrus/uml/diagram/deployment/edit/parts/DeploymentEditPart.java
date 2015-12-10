@@ -30,7 +30,7 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4001";
+	public static final String VISUAL_ID = "Deployment_Edge";
 
 	/**
 	 * @generated
@@ -46,7 +46,8 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 	}
 
@@ -54,11 +55,12 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DeploymentNameEditPart) {
-			((DeploymentNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof DeploymentNameEditPart) {
+			((DeploymentNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
-		if(childEditPart instanceof DeploymentAppliedStereotypeEditPart) {
-			((DeploymentAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof DeploymentAppliedStereotypeEditPart) {
+			((DeploymentAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -68,7 +70,7 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,10 +80,10 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof DeploymentNameEditPart) {
+		if (childEditPart instanceof DeploymentNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof DeploymentAppliedStereotypeEditPart) {
+		if (childEditPart instanceof DeploymentAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -92,7 +94,7 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -116,6 +118,6 @@ public class DeploymentEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

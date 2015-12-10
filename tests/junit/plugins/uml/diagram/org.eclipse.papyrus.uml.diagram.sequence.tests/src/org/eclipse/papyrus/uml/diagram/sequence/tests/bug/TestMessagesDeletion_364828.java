@@ -110,7 +110,7 @@ public class TestMessagesDeletion_364828 extends TestLink {
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, delCommand != UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, delCommand.canExecute() == true);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(delCommand));
-		int fragmentsAfterMessageDeletion = (linkType.equals(UMLElementTypes.Message_4007)) ? 1 : 0;
+		int fragmentsAfterMessageDeletion = (linkType.equals(UMLElementTypes.Message_DeleteEdge)) ? 1 : 0;
 		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getMessageEndCount(interaction.getFragments()) == fragmentsAfterMessageDeletion);
 
 		getEMFCommandStack().undo();
@@ -133,27 +133,27 @@ public class TestMessagesDeletion_364828 extends TestLink {
 
 	@Test
 	public void testMessageAsync_4004() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4004, lifelineProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_AsynchEdge, lifelineProvider);
 	}
 
 	@Test
 	public void testMessageSync_4003() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4003, executionProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_SynchEdge, executionProvider);
 	}
 
 	@Test
 	public void testMessageReply_4005() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4005, executionProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_ReplyEdge, executionProvider);
 	}
 
 	@Test
 	public void testMessageDelete_4007() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4007, lifelineProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_DeleteEdge, lifelineProvider);
 	}
 
 	@Test
 	public void testMessageCreate_4006() {
-		deleteMessageEvents(UMLElementTypes.Lifeline_3001, UMLElementTypes.Lifeline_3001, UMLElementTypes.Message_4006, lifelineProvider);
+		deleteMessageEvents(UMLElementTypes.Lifeline_Shape, UMLElementTypes.Lifeline_Shape, UMLElementTypes.Message_CreateEdge, lifelineProvider);
 	}
 
 	protected ILinkTestProvider executionProvider = new ILinkTestProvider() {
@@ -204,7 +204,7 @@ public class TestMessagesDeletion_364828 extends TestLink {
 		}
 
 		public void setUp() {
-			IElementType childNodeType = UMLElementTypes.ActionExecutionSpecification_3006;
+			IElementType childNodeType = UMLElementTypes.ActionExecutionSpecification_Shape;
 			source = createSubNode(source, childNodeType, getChildLocation(source));
 			sourcePlayer = createSubNode(sourcePlayer, childNodeType, getChildLocation(sourcePlayer));
 

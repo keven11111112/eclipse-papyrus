@@ -92,7 +92,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPart {
 
-	public static final String VISUAL_ID = "999999";
+	public static final String VISUAL_ID = "MessageEnd_Shape";
 
 	private static final int DEFAULT_SIZE = 16;
 
@@ -415,7 +415,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		protected Command getConnectionAndRelationshipCreateCommand(CreateConnectionViewAndElementRequest request) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
-			if (((IHintedType) UMLElementTypes.GeneralOrdering_4012).getSemanticHint().equals(requestHint)) {
+			if (((IHintedType) UMLElementTypes.GeneralOrdering_Edge).getSemanticHint().equals(requestHint)) {
 				if (getHost() instanceof MessageEndEditPart) {
 					List<OccurrenceSpecification> events = new ArrayList<OccurrenceSpecification>(2);
 					final MessageOccurrenceSpecification messageEnd = (MessageOccurrenceSpecification) ((MessageEndEditPart) getHost()).resolveSemanticElement();
@@ -431,7 +431,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		protected Command getConnectionAndRelationshipCompleteCommand(CreateConnectionViewAndElementRequest request) {
 			Map<String, Object> extendedData = request.getExtendedData();
 			String requestHint = request.getConnectionViewAndElementDescriptor().getSemanticHint();
-			if (((IHintedType) UMLElementTypes.GeneralOrdering_4012).getSemanticHint().equals(requestHint)) {
+			if (((IHintedType) UMLElementTypes.GeneralOrdering_Edge).getSemanticHint().equals(requestHint)) {
 				if (getHost() instanceof MessageEndEditPart) {
 					List<OccurrenceSpecification> events = new ArrayList<OccurrenceSpecification>(2);
 					final MessageOccurrenceSpecification messageEnd = (MessageOccurrenceSpecification) ((MessageEndEditPart) getHost()).resolveSemanticElement();
@@ -496,20 +496,20 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 		}
 
 		protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-			if (UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+			if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			} else if (UMLElementTypes.GeneralOrdering_Edge == req.getElementType()) {
 				return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 			}
 			return null;
 		}
 
 		protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-			if (UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+			if (UMLElementTypes.Constraint_ConstrainedElementEdge == req.getElementType()) {
 				return getGEFWrapper(new ConstraintConstrainedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+			} else if (UMLElementTypes.Comment_AnnotatedElementEdge == req.getElementType()) {
 				return getGEFWrapper(new CommentAnnotatedElementCreateCommandEx(req, req.getSource(), req.getTarget()));
-			} else if (UMLElementTypes.GeneralOrdering_4012 == req.getElementType()) {
+			} else if (UMLElementTypes.GeneralOrdering_Edge == req.getElementType()) {
 				return getGEFWrapper(new GeneralOrderingCreateCommand(req, req.getSource(), req.getTarget()));
 			}
 			return null;
@@ -658,7 +658,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			List types = ((CreateUnspecifiedTypeConnectionRequest) request).getElementTypes();
-			if (types.contains(UMLElementTypes.CommentAnnotatedElement_4010) || types.contains(UMLElementTypes.ConstraintConstrainedElement_4011) || types.contains(UMLElementTypes.GeneralOrdering_4012)) {
+			if (types.contains(UMLElementTypes.Comment_AnnotatedElementEdge) || types.contains(UMLElementTypes.Constraint_ConstrainedElementEdge) || types.contains(UMLElementTypes.GeneralOrdering_Edge)) {
 				return super.getTargetEditPart(request);
 			}
 		} else if (request instanceof ReconnectRequest) {
@@ -668,7 +668,7 @@ public class MessageEndEditPart extends GraphicalEditPart implements INodeEditPa
 			}
 		} else if (AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_END.equals(request.getType()) || AnnotatedLinkEndEditPolicy.REQ_ANNOTATED_LINK_REORIENT_END.equals(request.getType())) {
 			return super.getTargetEditPart(request);
-		} else if (request instanceof CreateUnspecifiedTypeRequest && ((CreateUnspecifiedTypeRequest) request).getElementTypes().contains(UMLElementTypes.TimeConstraint_3019)) {
+		} else if (request instanceof CreateUnspecifiedTypeRequest && ((CreateUnspecifiedTypeRequest) request).getElementTypes().contains(UMLElementTypes.TimeConstraint_Shape)) {
 			return super.getTargetEditPart(request);
 		}
 		if (RequestConstants.REQ_SELECTION == request.getType() && isSelectable()) {

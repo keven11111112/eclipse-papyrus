@@ -479,7 +479,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object obj : relationshipTypes) {
-				if (UMLElementTypes.Message_4003.equals(obj)) {
+				if (UMLElementTypes.Message_SynchEdge.equals(obj)) {
 					// Sync Message
 					if (!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
 						return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
@@ -499,7 +499,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 		else if (request instanceof CreateConnectionViewRequest) {
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			ConnectionViewDescriptor viewDesc = ((CreateConnectionViewRequest) request).getConnectionViewDescriptor();
-			if (((IHintedType) UMLElementTypes.Message_4003).getSemanticHint().equals(viewDesc.getSemanticHint())) {
+			if (((IHintedType) UMLElementTypes.Message_SynchEdge).getSemanticHint().equals(viewDesc.getSemanticHint())) {
 				// Sync Message
 				if (!createRequest.getTargetEditPart().equals(createRequest.getSourceEditPart())) {
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.TOP);
@@ -567,7 +567,7 @@ public abstract class AbstractExecutionSpecificationEditPart extends RoundedComp
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object obj : relationshipTypes) {
-				if (UMLElementTypes.Message_4005.equals(obj)) {
+				if (UMLElementTypes.Message_ReplyEdge.equals(obj)) {
 					// Reply Message
 					return new AnchorHelper.FixedAnchorEx(getFigure(), PositionConstants.BOTTOM);
 				}

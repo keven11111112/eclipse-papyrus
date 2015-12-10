@@ -38,7 +38,7 @@ public class ActivityContentCompartmentCreationEditPolicy extends GroupCreationE
 				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
 				// Only take Port element type into account
-				if ((elementTypes.size() == 1) && ((IElementType) (elementTypes.get(0)) == UMLElementTypes.ActivityParameterNode_3059)) {
+				if ((elementTypes.size() == 1) && ((IElementType) (elementTypes.get(0)) == UMLElementTypes.ActivityParameterNode_Shape)) {
 					// If the target is a compartment replace by its parent edit
 					// part
 					if ((getHost() instanceof ShapeCompartmentEditPart)) {

@@ -41,7 +41,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 	}
 
 	@Override
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_4001(Package container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Association_Edge(Package container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		for (Iterator<?> links = container.getPackagedElements().iterator(); links.hasNext();) {
 			EObject linkObject = (EObject) links.next();
@@ -64,41 +64,41 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type) theSource;
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4001, AssociationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_Edge, AssociationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	@Override
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_4001(Type target, CrossReferenceAdapter crossReferencer) {
-		return new TypeModelFacetLinksRetriever_Association_4001(target) {
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Association_Edge(Type target, CrossReferenceAdapter crossReferencer) {
+		return new TypeModelFacetLinksRetriever_Association_Edge(target) {
 
 			@Override
 			protected boolean check(Type source, Type target) {
 				return getRoot() == target;
 			}
-		}.getTypeModelFacetLinks_Association_4001();
+		}.getTypeModelFacetLinks_Association_Edge();
 	}
 
 	@Override
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_4001(Type source) {
-		return new TypeModelFacetLinksRetriever_Association_4001(source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Association_Edge(Type source) {
+		return new TypeModelFacetLinksRetriever_Association_Edge(source) {
 
 			@Override
 			protected boolean check(Type source, Type target) {
 				return getRoot() == source;
 			}
-		}.getTypeModelFacetLinks_Association_4001();
+		}.getTypeModelFacetLinks_Association_Edge();
 	}
 
-	private abstract static class TypeModelFacetLinksRetriever_Association_4001 {
+	private abstract static class TypeModelFacetLinksRetriever_Association_Edge {
 		private final Type myRoot;
 
-		public TypeModelFacetLinksRetriever_Association_4001(Type root) {
+		public TypeModelFacetLinksRetriever_Association_Edge(Type root) {
 			myRoot = root;
 		}
 
-		public Collection<UMLLinkDescriptor> getTypeModelFacetLinks_Association_4001() {
+		public Collection<UMLLinkDescriptor> getTypeModelFacetLinks_Association_Edge() {
 			Package container = null;
 			// Find container element for the link.
 			// Climb up by containment hierarchy starting from the source
@@ -138,7 +138,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				if (!check(src, dst)) {
 					continue;
 				}
-				result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_4001, AssociationEditPart.VISUAL_ID));
+				result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Association_Edge, AssociationEditPart.VISUAL_ID));
 			}
 			return result;
 		}

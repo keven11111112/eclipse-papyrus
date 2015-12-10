@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes;
 public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	public ShortCutDiagramItemSemanticEditPolicy() {
-		super(UMLElementTypes.Diagram_8016);
+		super(UMLElementTypes.Diagram_ShortcutShape);
 	}
 
 	@Override

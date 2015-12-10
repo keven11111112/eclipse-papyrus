@@ -158,7 +158,7 @@ public class SysMLDiagramUpdater {
 			return getAssociation_link_sysml_association_IncomingLink(view);
 		}
 		if (id.equals(PackageEditPart.VISUAL_ID) || id.equals(PackageEditPartCN.VISUAL_ID)) {
-			return getPackage_2007IncomingLinks(view);
+			return getPackage_Shape_IncomingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
 			return getActor_shape_uml_actor_as_classifier_IncomingLinks(view);
@@ -185,10 +185,10 @@ public class SysMLDiagramUpdater {
 			return getReception_shape_uml_reception_as_label_IncomingLinks(view);
 		}
 		if (id.equals(InstanceSpecificationEditPart.VISUAL_ID) || id.equals(InstanceSpecificationEditPartCN.VISUAL_ID)) {
-			return getInstanceSpecification_2001IncomingLinks(view);
+			return getInstanceSpecification_Shape_IncomingLinks(view);
 		}
 		if (id.equals(SlotEditPart.VISUAL_ID)) {
-			return getSlot_2001IncomingLinks(view);
+			return getSlot_SlotLabel_IncomingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
 			return getDependency_link_uml_dependency_IncomingLinks(view);
@@ -280,7 +280,7 @@ public class SysMLDiagramUpdater {
 			return getAssociation_link_sysml_association_OutgoingLink(view);
 		}
 		if (id.equals(PackageEditPart.VISUAL_ID) || id.equals(PackageEditPartCN.VISUAL_ID)) {
-			return getPackage_2007OutgoingLinks(view);
+			return getPackage_Shape_OutgoingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
 			return getActor_shape_uml_actor_as_classifier_OutgoingLinks(view);
@@ -307,10 +307,10 @@ public class SysMLDiagramUpdater {
 			return getReception_shape_uml_reception_as_label_OutgoingLinks(view);
 		}
 		if (id.equals(InstanceSpecificationEditPart.VISUAL_ID) || id.equals(InstanceSpecificationEditPartCN.VISUAL_ID)) {
-			return getInstanceSpecification_2001OutgoingLinks(view);
+			return getInstanceSpecification_Shape_OutgoingLinks(view);
 		}
 		if (id.equals(SlotEditPart.VISUAL_ID)) {
-			return getSlot_2001OutgoingLinks(view);
+			return getSlot_SlotLabel_OutgoingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
 			return getDependency_link_uml_dependency_OutgoingLinks(view);
@@ -385,8 +385,8 @@ public class SysMLDiagramUpdater {
 		Constraint modelElement = (Constraint) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
@@ -395,7 +395,7 @@ public class SysMLDiagramUpdater {
 	private static List<UpdaterLinkDescriptor> getConstraint_OutgoingLinks(View view) {
 		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
 		return result;
@@ -405,15 +405,15 @@ public class SysMLDiagramUpdater {
 		Comment modelElement = (Comment) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	private static List<UpdaterLinkDescriptor> getComment_OutgoingLinks(View view) {
 		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
@@ -446,27 +446,27 @@ public class SysMLDiagramUpdater {
 	}
 
 	private static List<UpdaterLinkDescriptor> getDimension_shape_sysml_dimension_as_classifier_OutgoingLinks(View view) {
-		return getInstanceSpecification_2001IncomingLinks(view);
+		return getInstanceSpecification_Shape_IncomingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getDimension_shape_sysml_dimension_as_classifier_IncomingLinks(View view) {
-		return getInstanceSpecification_2001OutgoingLinks(view);
+		return getInstanceSpecification_Shape_OutgoingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getUnit_shape_sysml_unit_as_classifier_OutgoingLinks(View view) {
-		return getInstanceSpecification_2001IncomingLinks(view);
+		return getInstanceSpecification_Shape_IncomingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getUnit_shape_sysml_unit_as_classifier_IncomingLinks(View view) {
-		return getInstanceSpecification_2001OutgoingLinks(view);
+		return getInstanceSpecification_Shape_OutgoingLinks(view);
 	}
 
 	private static List<UpdaterLinkDescriptor> getPrimitiveType_shape_uml_primitivetype_as_classifier_IncomingLinks(View view) {
 		PrimitiveType modelElement = (PrimitiveType) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
@@ -490,8 +490,8 @@ public class SysMLDiagramUpdater {
 		EnumerationLiteral modelElement = (EnumerationLiteral) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
@@ -509,8 +509,8 @@ public class SysMLDiagramUpdater {
 		Enumeration modelElement = (Enumeration) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
@@ -532,8 +532,8 @@ public class SysMLDiagramUpdater {
 		DataType modelElement = (DataType) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
@@ -555,8 +555,8 @@ public class SysMLDiagramUpdater {
 		Usage modelElement = (Usage) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
@@ -574,8 +574,8 @@ public class SysMLDiagramUpdater {
 		InterfaceRealization modelElement = (InterfaceRealization) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
@@ -617,13 +617,13 @@ public class SysMLDiagramUpdater {
 		Interface modelElement = (Interface) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferencer));
-		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4003(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -673,8 +673,8 @@ public class SysMLDiagramUpdater {
 		Dependency modelElement = (Dependency) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		return result;
@@ -692,8 +692,8 @@ public class SysMLDiagramUpdater {
 		Generalization modelElement = (Generalization) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -701,31 +701,31 @@ public class SysMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
-	private static List<UpdaterLinkDescriptor> getSlot_2001IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getSlot_SlotLabel_IncomingLinks(View view) {
 		Slot modelElement = (Slot) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getSlot_2001OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getSlot_SlotLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
-	private static List<UpdaterLinkDescriptor> getInstanceSpecification_2001IncomingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getInstanceSpecification_Shape_IncomingLinks(View view) {
 		InstanceSpecification modelElement = (InstanceSpecification) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
 	}
 
-	private static List<UpdaterLinkDescriptor> getInstanceSpecification_2001OutgoingLinks(View view) {
+	private static List<UpdaterLinkDescriptor> getInstanceSpecification_Shape_OutgoingLinks(View view) {
 		InstanceSpecification modelElement = (InstanceSpecification) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement));
@@ -737,8 +737,8 @@ public class SysMLDiagramUpdater {
 		Reception modelElement = (Reception) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
@@ -756,8 +756,8 @@ public class SysMLDiagramUpdater {
 		Operation modelElement = (Operation) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
@@ -804,7 +804,7 @@ public class SysMLDiagramUpdater {
 		return getProperty_OutgoingLinks(view);
 	}
 
-	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_InterfaceRealization_4003(Interface target, CrossReferenceAdapter crossReferencer) {
+	private static Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_InterfaceRealization_Edge(Interface target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
@@ -819,7 +819,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			BehavioredClassifier container = (BehavioredClassifier) link.eContainer();
-			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.InterfaceRealization_4003, InterfaceRealizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.InterfaceRealization_Edge, InterfaceRealizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -828,8 +828,8 @@ public class SysMLDiagramUpdater {
 		Property modelElement = (Property) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		return result;
@@ -848,8 +848,8 @@ public class SysMLDiagramUpdater {
 		Signal modelElement = (Signal) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
@@ -872,8 +872,8 @@ public class SysMLDiagramUpdater {
 		Actor modelElement = (Actor) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
@@ -890,18 +890,18 @@ public class SysMLDiagramUpdater {
 		return result;
 	}
 
-	public static List<UpdaterLinkDescriptor> getPackage_2007IncomingLinks(View view) {
+	public static List<UpdaterLinkDescriptor> getPackage_Shape_IncomingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
-	public static List<UpdaterLinkDescriptor> getPackage_2007OutgoingLinks(View view) {
+	public static List<UpdaterLinkDescriptor> getPackage_Shape_OutgoingLinks(View view) {
 		Package modelElement = (Package) view.getElement();
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Usage_link_uml_usage(modelElement));
@@ -918,8 +918,8 @@ public class SysMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Generalization_link_uml_generalization(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -942,8 +942,8 @@ public class SysMLDiagramUpdater {
 		result.addAll(getIncomingTypeModelFacetLinks_Association_link_sysml_association(modelElement));
 		result.addAll(getIncomingTypeModelFacetLinks_Dependency_link_uml_dependency(modelElement, crossReferencer));
 		result.addAll(getIncomingTypeModelFacetLinks_Usage_link_uml_usage(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
@@ -974,7 +974,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4008, null));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_Edge, null));
 		}
 		return result;
 	}
@@ -991,7 +991,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Interface dst = link.getContract();
-			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.InterfaceRealization_4003, null));
+			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.InterfaceRealization_Edge, null));
 		}
 		return result;
 	}
@@ -1013,7 +1013,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UpdaterLinkDescriptor(src, target, link, UMLElementTypes.Usage_4007, null));
+			result.add(new UpdaterLinkDescriptor(src, target, link, UMLElementTypes.Usage_Edge, null));
 		}
 		return result;
 	}
@@ -1021,11 +1021,11 @@ public class SysMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(Comment source) {
+	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(Comment source) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UpdaterLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_4013, CommentAnnotatedElementEditPart.VISUAL_ID));
+			result.add(new UpdaterLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1033,11 +1033,11 @@ public class SysMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(Constraint source) {
+	private static Collection<UpdaterLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(Constraint source) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
 			Element destination = (Element) destinations.next();
-			result.add(new UpdaterLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_4014, ConstraintConstrainedElementEditPart.VISUAL_ID));
+			result.add(new UpdaterLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge, ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1045,12 +1045,12 @@ public class SysMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4013(Element target, CrossReferenceAdapter crossReferencer) {
+	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_4013, CommentAnnotatedElementEditPart.VISUAL_ID));
+				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1059,12 +1059,12 @@ public class SysMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4014(Element target, CrossReferenceAdapter crossReferencer) {
+	private static Collection<UpdaterLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UpdaterLinkDescriptor> result = new LinkedList<UpdaterLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
 		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_4014, ConstraintConstrainedElementEditPart.VISUAL_ID));
+				result.add(new UpdaterLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ConstrainedElementEdge, ConstraintConstrainedElementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1109,7 +1109,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4007, null));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_Edge, null));
 		}
 		return result;
 	}
@@ -1152,7 +1152,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UpdaterLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4008, null));
+			result.add(new UpdaterLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_Edge, null));
 		}
 		return result;
 	}
@@ -1169,7 +1169,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Classifier dst = link.getGeneral();
-			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_4002, null));
+			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_Edge, null));
 		}
 		return result;
 	}
@@ -1189,7 +1189,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Classifier container = (Classifier) link.eContainer();
-			result.add(new UpdaterLinkDescriptor(container, target, link, UMLElementTypes.Generalization_4002, null));
+			result.add(new UpdaterLinkDescriptor(container, target, link, UMLElementTypes.Generalization_Edge, null));
 		}
 		return result;
 	}

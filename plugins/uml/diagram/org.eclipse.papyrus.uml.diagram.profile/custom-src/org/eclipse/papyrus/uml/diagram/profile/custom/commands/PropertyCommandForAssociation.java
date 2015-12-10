@@ -58,7 +58,7 @@ public class PropertyCommandForAssociation extends ClassPropertyCreateCommand {
 			newElement.setName(((Type) type).getName());
 		}
 		owner.getOwnedEnds().add(newElement);
-		ElementInitializers.getInstance().init_Property_3002(newElement);
+		ElementInitializers.getInstance().init_Property_ClassAttributeLabel(newElement);
 		if (type != null && type instanceof Type) {
 			newElement.setName(((Type) type).getName());
 		}

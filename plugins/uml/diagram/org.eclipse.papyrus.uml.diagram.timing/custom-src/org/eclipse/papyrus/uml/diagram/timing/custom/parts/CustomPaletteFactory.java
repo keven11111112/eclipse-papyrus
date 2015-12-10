@@ -120,19 +120,19 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 	}
 
 	private static Tool createTimeObservationCreationTool() {
-		return createNewTimeTool(UMLElementTypes.TimeObservation_16);
+		return createNewTimeTool(UMLElementTypes.TimeObservation_Shape);
 	}
 
 	private static Tool createTimeConstraintCreationTool() {
-		return createNewTimeTool(UMLElementTypes.TimeConstraint_15);
+		return createNewTimeTool(UMLElementTypes.TimeConstraint_Shape);
 	}
 
 	private static Tool createDurationObservationCreationTool() {
-		return createNewDurationTool(UMLElementTypes.DurationObservation_17);
+		return createNewDurationTool(UMLElementTypes.DurationObservation_Shape);
 	}
 
 	private static Tool createDurationConstraintCreationTool() {
-		return createNewDurationTool(UMLElementTypes.DurationConstraint_18);
+		return createNewDurationTool(UMLElementTypes.DurationConstraint_Shape);
 	}
 
 	private static Tool createNewTimeTool(final IElementType elementType) {
@@ -177,7 +177,7 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 	/** Overloaded to only let StateDefinitions be created in the StateDefinition compartment. */
 	private static Tool createStateDefinitionCreationTool() {
 		final List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Node_9);
+		types.add(UMLElementTypes.Node_StateDefinitionShape);
 
 		final Tool tool = new AspectUnspecifiedTypeCreationTool(types) {
 
@@ -193,27 +193,27 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 	}
 
 	private static Tool createSyncMessageCreationTool() {
-		return new SpecificTypeCreationTool(UMLElementTypes.Message_3, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
+		return new SpecificTypeCreationTool(UMLElementTypes.Message_SynchEdge, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
 	}
 
 	private static Tool createAsyncMessageCreationTool() {
-		return new SpecificTypeCreationTool(UMLElementTypes.Message_4, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
+		return new SpecificTypeCreationTool(UMLElementTypes.Message_AsynchEdge, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
 	}
 
 	private static Tool createReplyMessageCreationTool() {
-		return new SpecificTypeCreationTool(UMLElementTypes.Message_41, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
+		return new SpecificTypeCreationTool(UMLElementTypes.Message_ReplyEdge, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
 	}
 
 	private static Tool createCreateMessageCreationTool() {
-		return new SpecificTypeCreationTool(UMLElementTypes.Message_44, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
+		return new SpecificTypeCreationTool(UMLElementTypes.Message_CreateEdge, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
 	}
 
 	private static Tool createDeleteMessageCreationTool() {
-		return new SpecificTypeCreationTool(UMLElementTypes.Message_47, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
+		return new SpecificTypeCreationTool(UMLElementTypes.Message_DeleteEdge, MessageUtils.getAllowedMessageTargets(), MessageUtils.getAllowedMessageTargets());
 	}
 
 	private static Tool createLostMessageCreationTool() {
-		return new AspectUnspecifiedTypeConnectionTool(Collections.singletonList(UMLElementTypes.Message_50)) {
+		return new AspectUnspecifiedTypeConnectionTool(Collections.singletonList(UMLElementTypes.Message_LostEdge)) {
 
 			@Override
 			protected Command getCommand() {
@@ -255,7 +255,7 @@ public class CustomPaletteFactory extends UMLPaletteFactory {
 	}
 
 	private static Tool createFoundMessageCreationTool() {
-		return new AspectUnspecifiedTypeConnectionTool(Collections.singletonList(UMLElementTypes.Message_53)) {
+		return new AspectUnspecifiedTypeConnectionTool(Collections.singletonList(UMLElementTypes.Message_FoundEdge)) {
 
 			@Override
 			protected Command getCommand() {

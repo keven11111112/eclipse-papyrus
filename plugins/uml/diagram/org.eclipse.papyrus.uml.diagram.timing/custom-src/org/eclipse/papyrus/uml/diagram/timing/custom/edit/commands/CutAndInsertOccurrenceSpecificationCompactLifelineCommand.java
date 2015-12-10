@@ -121,9 +121,9 @@ public class CutAndInsertOccurrenceSpecificationCompactLifelineCommand extends A
 
 		final Node occurrenceSpecificationView;
 		if (this.destruction) {
-			occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_27(newOccurrenceSpecification, timelineCompartmentView, insertionIndexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+			occurrenceSpecificationView = umlViewProvider.createDestructionOccurrenceSpecification_Shape(newOccurrenceSpecification, timelineCompartmentView, insertionIndexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 		} else {
-			occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_12(newOccurrenceSpecification, timelineCompartmentView, insertionIndexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+			occurrenceSpecificationView = umlViewProvider.createOccurrenceSpecification_Shape(newOccurrenceSpecification, timelineCompartmentView, insertionIndexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 		}
 
 		final Location loc = NotationFactory.eINSTANCE.createLocation();

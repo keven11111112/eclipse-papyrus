@@ -32,7 +32,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3022";
+	public static final String VISUAL_ID = "DestructionOccurrenceSpecification_Shape";
 
 	/**
 	 * @generated
@@ -59,10 +59,13 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DestructionEventComponentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DestructionOccurrenceSpecificationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new DestructionOccurrenceSpecificationItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -76,7 +79,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -106,7 +109,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 * @generated
 	 */
 	public DestructionEventFigure getPrimaryShape() {
-		return (DestructionEventFigure)primaryShape;
+		return (DestructionEventFigure) primaryShape;
 	}
 
 	/**
@@ -123,8 +126,8 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if(result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy)result;
+		if (result instanceof ResizableEditPolicy) {
+			ResizableEditPolicy ep = (ResizableEditPolicy) result;
 			ep.setResizeDirections(PositionConstants.NONE);
 		}
 		return result;
@@ -146,6 +149,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -165,7 +169,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -176,7 +180,7 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -194,8 +198,8 @@ public class DestructionOccurrenceSpecificationEditPart extends AbstractBorderIt
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 }

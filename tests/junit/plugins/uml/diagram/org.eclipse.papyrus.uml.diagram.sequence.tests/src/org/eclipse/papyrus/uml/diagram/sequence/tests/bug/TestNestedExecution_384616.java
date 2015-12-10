@@ -71,16 +71,16 @@ public class TestNestedExecution_384616 extends TestTopNode {
 
 	@Test
 	public void testActionExecutionSpecification() {
-		manageActions(UMLElementTypes.ActionExecutionSpecification_3006);
+		manageActions(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testBehaviorExecutionSpecification() {
-		manageActions(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		manageActions(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	protected void manageActions(IElementType elementType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 

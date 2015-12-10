@@ -46,7 +46,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManageInterface() {
-		testRedefinableTemplateSignature(UMLElementTypes.Interface_2004);
+		testRedefinableTemplateSignature(UMLElementTypes.Interface_Shape);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManageClass() {
-		testRedefinableTemplateSignature(UMLElementTypes.Class_2008);
+		testRedefinableTemplateSignature(UMLElementTypes.Class_Shape);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManageSignal() {
-		testRedefinableTemplateSignature(UMLElementTypes.Signal_2003);
+		testRedefinableTemplateSignature(UMLElementTypes.Signal_Shape);
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManageDataType() {
-		testRedefinableTemplateSignature(UMLElementTypes.DataType_2010);
+		testRedefinableTemplateSignature(UMLElementTypes.DataType_Shape);
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManagePrimitiveType() {
-		testRedefinableTemplateSignature(UMLElementTypes.PrimitiveType_2009);
+		testRedefinableTemplateSignature(UMLElementTypes.PrimitiveType_Shape);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManageEnumeration() {
-		testRedefinableTemplateSignature(UMLElementTypes.Enumeration_2006);
+		testRedefinableTemplateSignature(UMLElementTypes.Enumeration_Shape);
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	 */
 	@Test
 	public void testToManageComponent() {
-		testRedefinableTemplateSignature(UMLElementTypes.Component_2002);
+		testRedefinableTemplateSignature(UMLElementTypes.Component_Shape);
 	}
 
 	protected void testRedefinableTemplateSignature(IElementType container) {
@@ -102,7 +102,7 @@ public class TestRedefinableTemplateSignature extends AbstractPapyrusTestCase {
 	}
 
 	protected IElementType getTemplateableSignature() {
-		return UMLElementTypes.RedefinableTemplateSignature_3015;
+		return UMLElementTypes.RedefinableTemplateSignature_Shape;
 	}
 
 	protected void createAffixedChildNode(IElementType container, IElementType child) {

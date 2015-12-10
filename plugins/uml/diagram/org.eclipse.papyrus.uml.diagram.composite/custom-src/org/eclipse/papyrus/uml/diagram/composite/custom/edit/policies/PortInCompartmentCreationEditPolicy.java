@@ -42,7 +42,7 @@ public class PortInCompartmentCreationEditPolicy extends DefaultCreationEditPoli
 				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
 				// Only take Port or Parameter element type into account
-				if ((elementTypes.size() == 1) && (((IElementType) (elementTypes.get(0)) == UMLElementTypes.Port_3069) || ((IElementType) (elementTypes.get(0)) == UMLElementTypes.Parameter_3088))) {
+				if ((elementTypes.size() == 1) && (((IElementType) (elementTypes.get(0)) == UMLElementTypes.Port_Shape) || ((IElementType) (elementTypes.get(0)) == UMLElementTypes.Parameter_Shape))) {
 					// If the target is a compartment replace by its parent edit part
 					if ((getHost() instanceof ShapeCompartmentEditPart)) {
 						return getHost().getParent();

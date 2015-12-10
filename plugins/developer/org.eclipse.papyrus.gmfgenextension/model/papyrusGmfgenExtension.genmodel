@@ -102,5 +102,10 @@
     <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//GenVisualTypeProvider">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//GenVisualTypeProvider/className"/>
     </genClasses>
+    <genClasses ecoreClass="papyrusGmfgenExtension.ecore#//VisualIDOverride">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//VisualIDOverride/genView"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute papyrusGmfgenExtension.ecore#//VisualIDOverride/visualID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference papyrusGmfgenExtension.ecore#//VisualIDOverride/child"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

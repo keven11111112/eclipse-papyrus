@@ -30,7 +30,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4019";
+	public static final String VISUAL_ID = "PackageImport_Edge";
 
 	/**
 	 * @generated
@@ -46,15 +46,17 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypePackageImportLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypePackageImportLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
-			((PackageImportAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
+			((PackageImportAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -64,7 +66,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -74,7 +76,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
+		if (childEditPart instanceof PackageImportAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -85,7 +87,7 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -109,6 +111,6 @@ public class PackageImportEditPart extends UMLConnectionNodeEditPart implements 
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

@@ -71,7 +71,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageGeneralization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Generalization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 
@@ -80,7 +80,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testClassToCollaborationGeneralization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Collaboration_2075, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Collaboration_Shape, UMLElementTypes.Generalization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testCollaborationToClassGeneralization() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Collaboration_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Generalization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	@Test
 	@InvalidTest
 	public void testToComponentRealization() {
-		testToManageLink(UMLElementTypes.Component_2069, UMLElementTypes.Interface_2076, UMLElementTypes.ComponentRealization_4004, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Component_Shape, UMLElementTypes.Interface_Shape, UMLElementTypes.ComponentRealization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, true);
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageActivitySubstitution() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Activity_Shape, UMLElementTypes.Activity_Shape, UMLElementTypes.Substitution_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -113,7 +113,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageStateMachineSubstitution() {
-		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.StateMachine_Shape, UMLElementTypes.StateMachine_Shape, UMLElementTypes.Substitution_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageCollaborationSubstitution() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Collaboration_Shape, UMLElementTypes.Collaboration_Shape, UMLElementTypes.Substitution_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Substitution_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToManageClassSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Class_Shape, UMLElementTypes.Substitution_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 
@@ -147,7 +147,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 */
 	@Test
 	public void testToInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Interface_2076, UMLElementTypes.InterfaceRealization_4005, UMLElementTypes.Package_1000, false);
+		testToManageLink(UMLElementTypes.Class_Shape, UMLElementTypes.Interface_Shape, UMLElementTypes.InterfaceRealization_Edge, UMLElementTypes.Package_CompositeStructureDiagram, false);
 	}
 
 }

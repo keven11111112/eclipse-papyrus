@@ -56,7 +56,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageComponent() {
-		testEdition(UMLElementTypes.Component_2002);
+		testEdition(UMLElementTypes.Component_Shape);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageInstanceSpecification() {
-		testEdition(UMLElementTypes.InstanceSpecification_2001);
+		testEdition(UMLElementTypes.InstanceSpecification_Shape);
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageSignal() {
-		testEdition(UMLElementTypes.Signal_2003);
+		testEdition(UMLElementTypes.Signal_Shape);
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageModel() {
-		testEdition(UMLElementTypes.Model_2005);
+		testEdition(UMLElementTypes.Model_Shape);
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageEnumeration() {
-		testEdition(UMLElementTypes.Enumeration_2006);
+		testEdition(UMLElementTypes.Enumeration_Shape);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageIPackage() {
-		testEdition(UMLElementTypes.Package_2007);
+		testEdition(UMLElementTypes.Package_Shape);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageClass() {
-		testEdition(UMLElementTypes.Class_2008);
+		testEdition(UMLElementTypes.Class_Shape);
 	}
 
 	/**
@@ -112,7 +112,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManagePrimitiveType() {
-		testEdition(UMLElementTypes.PrimitiveType_2009);
+		testEdition(UMLElementTypes.PrimitiveType_Shape);
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageDataType() {
-		testEdition(UMLElementTypes.DataType_2010);
+		testEdition(UMLElementTypes.DataType_Shape);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	@Test
 	@ExpectedDirectEditor(DEFAULT_DIRECT_EDITOR | EXTENDED_DIRECT_EDITOR)
 	public void testToManageConstraint() {
-		testEdition(UMLElementTypes.Constraint_2011);
+		testEdition(UMLElementTypes.Constraint_PackagedElementShape);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageComment() {
-		testEdition(UMLElementTypes.Comment_2012);
+		testEdition(UMLElementTypes.Comment_Shape);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageInformationItem() {
-		testEdition(UMLElementTypes.InformationItem_2099);
+		testEdition(UMLElementTypes.InformationItem_Shape);
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageInterface() {
-		testEdition(UMLElementTypes.Interface_2004);
+		testEdition(UMLElementTypes.Interface_Shape);
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageTimeObservation() {
-		testEdition(UMLElementTypes.TimeObservation_2096);
+		testEdition(UMLElementTypes.TimeObservation_Shape);
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class TestEditableClassDiagramTopNode extends AbstractEditableNodeTest {
 	 */
 	@Test
 	public void testToManageDurationObservation() {
-		testEdition(UMLElementTypes.DurationObservation_2095);
+		testEdition(UMLElementTypes.DurationObservation_Shape);
 	}
 
 

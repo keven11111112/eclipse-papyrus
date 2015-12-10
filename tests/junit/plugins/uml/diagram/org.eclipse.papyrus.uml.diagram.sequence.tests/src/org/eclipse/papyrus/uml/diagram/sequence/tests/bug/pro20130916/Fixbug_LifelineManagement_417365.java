@@ -113,9 +113,9 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 	 */
 	protected void prepareDiagram() {
 		//Create Lifelines
-		lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(100, 800));
-		lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(100, 800));
-		lifeline3 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(500, 100), null);
+		lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 800));
+		lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(100, 800));
+		lifeline3 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(500, 100), null);
 
 		int y = 120;
 		//Create message from Interaction to Lifeline1.
@@ -123,63 +123,63 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 		Rectangle interactionBounds = SequenceUtil.getAbsoluteBounds(interaction);
 		Rectangle lifeline1Bounds = SequenceUtil.getAbsoluteBounds(lifeline1);
 		Point pt = lifeline1Bounds.getCenter();
-		message1 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), new Point(0, y - 1), interaction, new Point(pt.x, y), lifeline1);
+		message1 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), new Point(0, y - 1), interaction, new Point(pt.x, y), lifeline1);
 
 		//Create ExecutionSpecification on lifeline1 and Lifeline2
 		y += 20;
-		AbstractExecutionSpecificationEditPart execution1 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline1, new Point(pt.x, y), null);
-		AbstractExecutionSpecificationEditPart execution2 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline2, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y), null);
+		AbstractExecutionSpecificationEditPart execution1 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, new Point(pt.x, y), null);
+		AbstractExecutionSpecificationEditPart execution2 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline2, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y), null);
 
 		//Create Message between execution1 and execution2.
-		message2 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4003, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), execution1, SequenceUtil.getAbsoluteBounds(execution2).getTop(), execution2);
-		message3 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getBottom(), execution2, SequenceUtil.getAbsoluteBounds(execution1).getBottom(), execution1);
+		message2 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution1).getTop(), execution1, SequenceUtil.getAbsoluteBounds(execution2).getTop(), execution2);
+		message3 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getBottom(), execution2, SequenceUtil.getAbsoluteBounds(execution1).getBottom(), execution1);
 
 		//Create Message from execution2 to Lifeline3
 		y = SequenceUtil.getAbsoluteBounds(execution2).getCenter().y;
-		message4 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y + 1), lifeline3);
+		message4 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y + 1), lifeline3);
 
-		lifeline4 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(650, 100), new Dimension(70, 100));
+		lifeline4 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(650, 100), new Dimension(70, 100));
 		//Create Message Create from lifeline3 to lifeline4
 		y += 20;
-		message5 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4006, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y), lifeline3, SequenceUtil.getAbsoluteBounds(lifeline4).getTop(), lifeline4);
+		message5 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_CreateEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y), lifeline3, SequenceUtil.getAbsoluteBounds(lifeline4).getTop(), lifeline4);
 
 		//Create message  from interaction to lifeline4
 		y += 40;
-		//message6 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), interactionBounds.getRight().setY(y).translate(0, -1), interaction, SequenceUtil.getAbsoluteBounds(lifeline4).getCenter().setY(y), lifeline4);
-		message6 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), new Point(interactionBounds.right(), y - 1), interaction, SequenceUtil.getAbsoluteBounds(lifeline4).getCenter().setY(y), lifeline4);
+		//message6 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), interactionBounds.getRight().setY(y).translate(0, -1), interaction, SequenceUtil.getAbsoluteBounds(lifeline4).getCenter().setY(y), lifeline4);
+		message6 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), new Point(interactionBounds.right(), y - 1), interaction, SequenceUtil.getAbsoluteBounds(lifeline4).getCenter().setY(y), lifeline4);
 		
 		 
 		//Create message found and message lost
 		y += 20;
-		message7 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4009, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y).getTranslated(-80, 0), interaction, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y), lifeline3);
+		message7 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_FoundEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y).getTranslated(-80, 0), interaction, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y), lifeline3);
 		y += 20;
-		message8 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4008, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y), lifeline3, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y).getTranslated(250, 1), interaction);
+		message8 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_LostEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y), lifeline3, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y).getTranslated(250, 1), interaction);
 
 		//Create CombinedFragment
-		CombinedFragmentEditPart combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(50, 300), new Dimension(500, 200));
+		CombinedFragmentEditPart combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(50, 300), new Dimension(500, 200));
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragment.getChildBySemanticHint(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID + "");
 		InteractionOperandEditPart firstOperand = (InteractionOperandEditPart)compartment.getPrimaryChildEditPart();
-		InteractionOperandEditPart secondOperand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_3005, compartment, SequenceUtil.getAbsoluteBounds(combinedFragment).getCenter(), null);
+		InteractionOperandEditPart secondOperand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_Shape, compartment, SequenceUtil.getAbsoluteBounds(combinedFragment).getCenter(), null);
 
 		//create message in firstOperand
 		y = SequenceUtil.getAbsoluteBounds(firstOperand).getCenter().y;
-		AbstractExecutionSpecificationEditPart execution3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline1, new Point(pt.x, y), null);
-		AbstractExecutionSpecificationEditPart execution4 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline2, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y), null);
+		AbstractExecutionSpecificationEditPart execution3 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, new Point(pt.x, y), null);
+		AbstractExecutionSpecificationEditPart execution4 = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline2, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y), null);
 		//Create Message between execution1 and execution2.
-		message9 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4003, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution3).getTop(), execution3, SequenceUtil.getAbsoluteBounds(execution4).getTop(), execution4);
-		message10 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution4).getBottom(), execution4, SequenceUtil.getAbsoluteBounds(execution3).getBottom(), execution3);
+		message9 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution3).getTop(), execution3, SequenceUtil.getAbsoluteBounds(execution4).getTop(), execution4);
+		message10 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution4).getBottom(), execution4, SequenceUtil.getAbsoluteBounds(execution3).getBottom(), execution3);
 
 		//create message in secondOperand
 		y = SequenceUtil.getAbsoluteBounds(secondOperand).getCenter().y;
-		message11 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline1).getCenter().setY(y), lifeline1, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y + 1), lifeline2);
-		//message11 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), new Point(SequenceUtil.getAbsoluteBounds(lifeline1).right(), y), lifeline1, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y + 1), lifeline2);
+		message11 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(lifeline1).getCenter().setY(y), lifeline1, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y + 1), lifeline2);
+		//message11 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), new Point(SequenceUtil.getAbsoluteBounds(lifeline1).right(), y), lifeline1, SequenceUtil.getAbsoluteBounds(lifeline2).getCenter().setY(y + 1), lifeline2);
 
 		//Create message between Interaction and CombinedFragment
 		y = SequenceUtil.getAbsoluteBounds(combinedFragment).getLeft().y;
-		message12 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), new Point(0, y - 1), interaction, SequenceUtil.getAbsoluteBounds(combinedFragment).getLeft(), combinedFragment);
+		message12 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), new Point(0, y - 1), interaction, SequenceUtil.getAbsoluteBounds(combinedFragment).getLeft(), combinedFragment);
 
 		y = SequenceUtil.getAbsoluteBounds(combinedFragment).getRight().y;
-		message13 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), new Point(interactionBounds.right(), y - 1), interaction, SequenceUtil.getAbsoluteBounds(combinedFragment).getRight(), combinedFragment);
+		message13 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), new Point(interactionBounds.right(), y - 1), interaction, SequenceUtil.getAbsoluteBounds(combinedFragment).getRight(), combinedFragment);
 
 		waitForComplete();
 		validateMessageHorizontally();

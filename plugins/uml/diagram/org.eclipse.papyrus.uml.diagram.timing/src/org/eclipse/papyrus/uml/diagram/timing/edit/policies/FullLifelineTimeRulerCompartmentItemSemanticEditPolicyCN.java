@@ -25,7 +25,7 @@ public class FullLifelineTimeRulerCompartmentItemSemanticEditPolicyCN extends UM
 	 * @generated
 	 */
 	public FullLifelineTimeRulerCompartmentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Lifeline_19);
+		super(UMLElementTypes.Lifeline_FullShape);
 	}
 
 	/**

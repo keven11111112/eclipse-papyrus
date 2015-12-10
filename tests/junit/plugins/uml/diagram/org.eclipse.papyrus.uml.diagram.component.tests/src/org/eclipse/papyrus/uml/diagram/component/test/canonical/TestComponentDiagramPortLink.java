@@ -46,7 +46,7 @@ public class TestComponentDiagramPortLink extends TestLinkWithParent {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		parentType = UMLElementTypes.Component_2002;
+		parentType = UMLElementTypes.Component_PackagedElementShape;
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class TestComponentDiagramPortLink extends TestLinkWithParent {
 	 */
 	@Test
 	public void testToManagePortConnector() {
-		testImpossibleToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Connector_4019);
+		testImpossibleToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Connector_Edge);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class TestComponentDiagramPortLink extends TestLinkWithParent {
 	@Test
 	public void testToManagePortUsage() {
 		initConfLinkOwnedByParent();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Usage_4001, UMLElementTypes.Component_2002, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Usage_Edge, UMLElementTypes.Component_PackagedElementShape, true);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class TestComponentDiagramPortLink extends TestLinkWithParent {
 	@Test
 	public void testToManagePortAbstraction() {
 		initConfLinkOwnedByParent();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Abstraction_4013, UMLElementTypes.Component_2002, true);
+		testToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Abstraction_Edge, UMLElementTypes.Component_PackagedElementShape, true);
 	}
 
 
@@ -100,7 +100,7 @@ public class TestComponentDiagramPortLink extends TestLinkWithParent {
 	 */
 	@Test
 	public void testToManagePortGeneralization() {
-		testImpossibleToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Generalization_4003);
+		testImpossibleToManageLink(UMLElementTypes.Port_Shape, UMLElementTypes.Port_Shape, UMLElementTypes.Generalization_Edge);
 	}
 
 	private void initConfLinkOwnedByParent() {

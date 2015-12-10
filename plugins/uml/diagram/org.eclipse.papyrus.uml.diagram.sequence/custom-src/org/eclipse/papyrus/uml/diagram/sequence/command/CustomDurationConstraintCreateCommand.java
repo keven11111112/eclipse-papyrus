@@ -106,7 +106,7 @@ public class CustomDurationConstraintCreateCommand extends DurationConstraintCre
 		// get the Lifeline parent as owner
 		Namespace owner = getNamespace(getElementToEdit());
 		owner.getOwnedRules().add(newElement);
-		ElementInitializers.getInstance().init_DurationConstraint_3021(newElement);
+		ElementInitializers.getInstance().init_DurationConstraint_Shape(newElement);
 		// assign the occurrence specification
 		Object paramOccurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
 		List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOccurrence1);

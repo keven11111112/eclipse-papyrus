@@ -34,65 +34,94 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public EditPart createEditPart(EditPart context, Object model) {
-		if(model instanceof View) {
-			View view = (View)model;
-			switch(UMLVisualIDRegistry.getVisualID(view)) {
+		if (model instanceof View) {
+			View view = (View) model;
+			switch (UMLVisualIDRegistry.getVisualID(view)) {
+
 			case ModelEditPart.VISUAL_ID:
 				return new ModelEditPart(view);
+
 			case InteractionEditPart.VISUAL_ID:
 				return new InteractionEditPart(view);
+
 			case InteractionNameEditPart.VISUAL_ID:
 				return new InteractionNameEditPart(view);
+
 			case InteractionFloatingLabelEditPart.VISUAL_ID:
 				return new InteractionFloatingLabelEditPart(view);
+
 			case ShortCutDiagramEditPart.VISUAL_ID:
 				return new ShortCutDiagramEditPart(view);
+
 			case DiagramNameEditPart.VISUAL_ID:
 				return new DiagramNameEditPart(view);
+
 			case LifelineEditPartCN.VISUAL_ID:
 				return new LifelineEditPartCN(view);
+
 			case LifelineNameEditPart.VISUAL_ID:
 				return new LifelineNameEditPart(view);
+
 			case LifelineFloatingLabelEditPartCN.VISUAL_ID:
 				return new LifelineFloatingLabelEditPartCN(view);
+
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new ConstraintEditPartCN(view);
+
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return new ConstraintNameEditPartCN(view);
+
 			case ConstraintBodyEditPartCN.VISUAL_ID:
 				return new ConstraintBodyEditPartCN(view);
+
 			case CommentEditPartCN.VISUAL_ID:
 				return new CommentEditPartCN(view);
+
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return new CommentBodyEditPartCN(view);
+
 			case TimeObservationEditPartCN.VISUAL_ID:
 				return new TimeObservationEditPartCN(view);
+
 			case TimeObservationNameEditPartCN.VISUAL_ID:
 				return new TimeObservationNameEditPartCN(view);
+
 			case TimeObservationStereotypeLabelEditPartCN.VISUAL_ID:
 				return new TimeObservationStereotypeLabelEditPartCN(view);
+
 			case DurationObservationEditPartCN.VISUAL_ID:
 				return new DurationObservationEditPartCN(view);
+
 			case DurationObservationLabelEditPartCN.VISUAL_ID:
 				return new DurationObservationLabelEditPartCN(view);
+
 			case DurationObservationStereotypeLabelEditPartCN.VISUAL_ID:
 				return new DurationObservationStereotypeLabelEditPartCN(view);
+
 			case InteractionCompartmentEditPart.VISUAL_ID:
 				return new InteractionCompartmentEditPart(view);
+
 			case MessageEditPart.VISUAL_ID:
 				return new MessageEditPart(view);
+
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
+
 			case AppliedStereotypeMessageEditPart.VISUAL_ID:
 				return new AppliedStereotypeMessageEditPart(view);
+
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
+
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
+
 			case ConnectorDurationObservationEditPart.VISUAL_ID:
 				return new ConnectorDurationObservationEditPart(view);
+
 			case ConnectorTimeObservationEditPart.VISUAL_ID:
 				return new ConnectorTimeObservationEditPart(view);
+
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -110,10 +139,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
+		if (source.getFigure() instanceof IMultilineEditableFigure) {
+			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
 		} else {
 			return CellEditorLocatorAccess.INSTANCE.getTextCellEditorLocator(source);
+
 		}
 	}
 
@@ -145,15 +175,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 * @generated
 		 */
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text)celleditor.getControl();
+			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
 			rect.x = getMultilineEditableFigure().getEditionLocation().x;
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
-			if(getMultilineEditableFigure().getText().length() > 0) {
+			if (getMultilineEditableFigure().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
-			if(!rect.equals(new Rectangle(text.getBounds()))) {
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

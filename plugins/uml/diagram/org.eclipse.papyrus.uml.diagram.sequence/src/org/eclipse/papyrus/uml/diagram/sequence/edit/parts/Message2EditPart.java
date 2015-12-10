@@ -35,7 +35,7 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4004";
+	public static final String VISUAL_ID = "Message_AsynchEdge";
 
 	/**
 	 * @generated
@@ -53,7 +53,8 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_ROLE, new MessageConnectionEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_BENDPOINTS_ROLE, new MessageConnectionLineSegEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Message2ItemSemanticEditPolicy());
 	}
@@ -62,11 +63,12 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageName2EditPart) {
-			((MessageName2EditPart)childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
+		if (childEditPart instanceof MessageName2EditPart) {
+			((MessageName2EditPart) childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
 		}
-		if(childEditPart instanceof MessageAsyncAppliedStereotypeEditPart) {
-			((MessageAsyncAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof MessageAsyncAppliedStereotypeEditPart) {
+			((MessageAsyncAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -76,7 +78,7 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -86,10 +88,10 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof MessageName2EditPart) {
+		if (childEditPart instanceof MessageName2EditPart) {
 			return true;
 		}
-		if(childEditPart instanceof MessageAsyncAppliedStereotypeEditPart) {
+		if (childEditPart instanceof MessageAsyncAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -100,7 +102,7 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -124,6 +126,6 @@ public class Message2EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	@Override
 	public MessageAsync getPrimaryShape() {
-		return (MessageAsync)getFigure();
+		return (MessageAsync) getFigure();
 	}
 }

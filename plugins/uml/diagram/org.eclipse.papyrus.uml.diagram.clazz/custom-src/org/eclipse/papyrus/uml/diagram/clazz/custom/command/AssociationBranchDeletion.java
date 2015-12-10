@@ -105,8 +105,8 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 			sourceList.remove(selectedElement);
 			targetList.remove(selectedElement);
 			PreferencesHint preferencesHint = ((GraphicalEditPart) ((ConnectionEditPart) (sourceList.get(0))).getTarget()).getDiagramPreferencesHint();
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_4001, ((IHintedType) UMLElementTypes.Association_4001).getSemanticHint(), preferencesHint);
-			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType) UMLElementTypes.Association_4001).getSemanticHint(), new SemanticAdapter(null,
+			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.Association_Edge, ((IHintedType) UMLElementTypes.Association_Edge).getSemanticHint(), preferencesHint);
+			CustomDeferredCreateConnectionViewCommand binaryCommand = new CustomDeferredCreateConnectionViewCommand(domain, ((IHintedType) UMLElementTypes.Association_Edge).getSemanticHint(), new SemanticAdapter(null,
 					(((ConnectionEditPart) (sourceList.get(0))).getTarget()).getModel()), new SemanticAdapter(null, (((ConnectionEditPart) (sourceList.get(1))).getTarget()).getModel()), sourceList.get(0).getViewer(), preferencesHint, viewDescriptor, null);
 			binaryCommand.setElement(association);
 			command.add(new ICommandProxy(binaryCommand));

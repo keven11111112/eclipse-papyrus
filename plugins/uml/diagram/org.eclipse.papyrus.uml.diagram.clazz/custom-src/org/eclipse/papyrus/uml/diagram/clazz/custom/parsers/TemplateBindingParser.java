@@ -16,12 +16,12 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -77,8 +77,9 @@ public class TemplateBindingParser implements IParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		String out = "";
-		if (element instanceof EObjectAdapter) {
-			final TemplateBinding binding = ((TemplateBinding) ((EObjectAdapter) element).getRealObject());
+		EObject e = element.getAdapter(EObject.class);
+		if (e != null) {
+			final TemplateBinding binding = (TemplateBinding) e;
 			Iterator<TemplateParameterSubstitution> bindIter = binding.getParameterSubstitutions().iterator();
 			while (bindIter.hasNext()) {
 				TemplateParameterSubstitution substitution = bindIter.next();

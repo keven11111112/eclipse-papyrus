@@ -28,7 +28,7 @@ public class CommentAnnotatedElementEditPart extends AnnotatedLinkEditPart imple
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4010";
+	public static final String VISUAL_ID = "Comment_AnnotatedElementEdge";
 
 	/**
 	 * @generated
@@ -65,6 +65,6 @@ public class CommentAnnotatedElementEditPart extends AnnotatedLinkEditPart imple
 	 */
 	@Override
 	public AnnotatedLinkEditPart.AnnotatedLinkDescriptor getPrimaryShape() {
-		return (AnnotatedLinkEditPart.AnnotatedLinkDescriptor)getFigure();
+		return (AnnotatedLinkEditPart.AnnotatedLinkDescriptor) getFigure();
 	}
 }

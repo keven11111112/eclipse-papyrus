@@ -108,7 +108,7 @@ public class TimeObservationHelper extends ElementHelper {
 
 		// 2. creation of the node TimeObservation
 		IAdaptable elementAdapter = new EObjectAdapter(timeObservation);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.TimeObservation_8006).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) UMLElementTypes.TimeObservation_Shape).getSemanticHint(), ViewUtil.APPEND, true, diagramPreferencesHint);
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, (containerView));
 		cc.compose(nodeCreationCommand);
 
@@ -123,12 +123,12 @@ public class TimeObservationHelper extends ElementHelper {
 			sourceEventAdapter = (IAdaptable) nodeCreationCommand.getCommandResult().getReturnValue();
 
 			// used in the creation command of the event
-			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.TimeObservationEvent_8013, ((IHintedType) UMLElementTypes.TimeObservationEvent_8013).getSemanticHint(), diagramPreferencesHint);
+			ConnectionViewDescriptor dashedLineViewDescriptor = new ConnectionViewDescriptor(UMLElementTypes.TimeObservation_EventEdge, ((IHintedType) UMLElementTypes.TimeObservation_EventEdge).getSemanticHint(), diagramPreferencesHint);
 
 			// 3. creation of the dashed line between the associationClass link
 
 			targetEventAdapter = new SemanticAdapter(null, endEditPart.getModel());
-			CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.TimeObservationEvent_8013).getSemanticHint(), (sourceEventAdapter), (targetEventAdapter),
+			CommonDeferredCreateConnectionViewCommand dashedLineCmd = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType) UMLElementTypes.TimeObservation_EventEdge).getSemanticHint(), (sourceEventAdapter), (targetEventAdapter),
 					viewer, diagramPreferencesHint, dashedLineViewDescriptor, null);
 			dashedLineCmd.setElement(timeObservation);
 			cc.compose(dashedLineCmd);

@@ -17,20 +17,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
  */
 public class StateMachineReconcilerForCompartment extends ReconcilerForCompartment {
 
+	private static final String RegionCompartmentEditPart_VISUAL_ID = "3002";
+	private static final String StateMachineCompartmentEditPart_VISUAL_ID = "2002";
+	private static final String StateCompartmentEditPart_VISUAL_ID = "6002";
+
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
-			RegionCompartmentEditPart.VISUAL_ID,
-			StateMachineCompartmentEditPart.VISUAL_ID,
-			StateCompartmentEditPart.VISUAL_ID);
+			RegionCompartmentEditPart_VISUAL_ID,
+			StateMachineCompartmentEditPart_VISUAL_ID,
+			StateCompartmentEditPart_VISUAL_ID);
 
 	/**
 	 * Gets the compartments visual id.

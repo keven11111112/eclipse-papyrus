@@ -29,7 +29,7 @@ public class DependencyBranchEditPart extends UMLConnectionNodeEditPart implemen
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4017";
+	public static final String VISUAL_ID = "Dependency_BranchEdge";
 
 	/**
 	 * @generated

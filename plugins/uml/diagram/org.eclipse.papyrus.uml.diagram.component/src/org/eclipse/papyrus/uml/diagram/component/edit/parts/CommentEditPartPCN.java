@@ -48,7 +48,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3074";
+	public static final String VISUAL_ID = "Comment_Shape_CN";
 
 	/**
 	 * @generated
@@ -74,9 +74,12 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PapyrusReflowableShapeEditPolicy());
@@ -120,6 +123,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -148,6 +152,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 			((CommentBodyEditPartPCN) childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -211,6 +216,7 @@ public class CommentEditPartPCN extends AbstractCommentEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**

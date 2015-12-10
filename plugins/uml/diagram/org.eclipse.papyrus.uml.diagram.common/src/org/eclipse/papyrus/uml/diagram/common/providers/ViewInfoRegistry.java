@@ -132,7 +132,7 @@ public class ViewInfoRegistry {
 	 * @param visualID
 	 * @return
 	 */
-	public ViewInfo getViewInfoForVisualIDForEditor(String editorID, int visualID) {
+	public ViewInfo getViewInfoForVisualIDForEditor(String editorID, String visualID) {
 		if (editorID == null || editorID.length() <= 0) {
 			return null;
 		}
@@ -143,8 +143,8 @@ public class ViewInfoRegistry {
 		return findViewInfoByVisualIDInChildren(headViewInfo, visualID);
 	}
 
-	protected ViewInfo findViewInfoByVisualIDInChildren(ViewInfo viewInfo, int visualID) {
-		if (viewInfo.getVisualID() == visualID) {
+	protected ViewInfo findViewInfoByVisualIDInChildren(ViewInfo viewInfo, String visualID) {
+		if (viewInfo.getVisualID().equals(visualID)) {
 			return viewInfo;
 		}
 		ViewInfo foundViewInfo = null;
@@ -227,7 +227,7 @@ public class ViewInfoRegistry {
 			BaseViewInfo baseViewInfo = (BaseViewInfo) Platform.getAdapterManager().getAdapter(object, BaseViewInfo.class);
 			if (baseViewInfo != null && ViewInfo.Head != baseViewInfo.getType() && ViewInfo.None != baseViewInfo.getType()) {
 				baseViewInfo.rootViewInfo = rootViewInfo;
-				headViewInfo.addNode(Integer.valueOf(baseViewInfo.parent), baseViewInfo);
+				headViewInfo.addNode(baseViewInfo.parent, baseViewInfo);
 			}
 		}
 		return true;

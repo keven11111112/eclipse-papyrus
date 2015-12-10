@@ -90,7 +90,7 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testLifelineTooltip() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		final Package model = getPackage();
 		getDiagramCommandStack().execute(new ICommandProxy(new AbstractTransactionalCommand(getEditingDomain(), "", Collections.singletonList(file)) {
@@ -119,9 +119,9 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testActionExecutionSpecification() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		ActionExecutionSpecificationEditPart aes = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, getAbsoluteCenter(lifeline), null);
+		ActionExecutionSpecificationEditPart aes = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteCenter(lifeline), null);
 		assertNotNull(aes);
 		String name = "TestActionExecutionSpecification";
 		changeName(getEditingDomain(), (NamedElement)aes.resolveSemanticElement(), name);
@@ -130,9 +130,9 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testBehaviorExecutionSpecification() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		BehaviorExecutionSpecificationEditPart bes = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline, getAbsoluteCenter(lifeline), null);
+		BehaviorExecutionSpecificationEditPart bes = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline, getAbsoluteCenter(lifeline), null);
 		assertNotNull(bes);
 		String name = "TestBehaviorExecutionSpecification";
 		changeName(getEditingDomain(), (NamedElement)bes.resolveSemanticElement(), name);
@@ -141,7 +141,7 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testCombinedFragment() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
 		assertNotNull(cf);
 		String name = "Test Combined Fragment";
 		CombinedFragment elt = (CombinedFragment)cf.resolveSemanticElement();
@@ -151,14 +151,14 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testInteractionOperand() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(100, 100), new Dimension(200, 100));
 		assertNotNull(cf);
 		String cfName = "Test Combined Fragment";
 		CombinedFragment elt = (CombinedFragment)cf.resolveSemanticElement();
 		changeName(getEditingDomain(), elt, cfName);
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		assertNotNull(compartment);
-		InteractionOperandEditPart operand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_3005, compartment, getAbsoluteCenter(compartment), null);
+		InteractionOperandEditPart operand = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_Shape, compartment, getAbsoluteCenter(compartment), null);
 		assertNotNull(operand);
 		String name = "Test Interaction Operand";
 		changeName(getEditingDomain(), (NamedElement)operand.resolveSemanticElement(), name);
@@ -167,15 +167,15 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testSynchronousMessage() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline1);
-		ActionExecutionSpecificationEditPart source = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), null);
+		ActionExecutionSpecificationEditPart source = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), null);
 		assertNotNull(source);
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(lifeline2);
-		ActionExecutionSpecificationEditPart target = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline2, getAbsoluteBounds(lifeline2).getTop().translate(0, 50), null);
+		ActionExecutionSpecificationEditPart target = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline2, getAbsoluteBounds(lifeline2).getTop().translate(0, 50), null);
 		assertNotNull(target);
-		MessageEditPart message = (MessageEditPart)createLink(UMLElementTypes.Message_4003, lifeline1.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
+		MessageEditPart message = (MessageEditPart)createLink(UMLElementTypes.Message_SynchEdge, lifeline1.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
 		assertNotNull(message);
 		String name = "Test Synchronous Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -184,11 +184,11 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testAsynchronousMessage() {
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(source);
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		String name = "Test Asynchronous Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -197,11 +197,11 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testCreateMessage() {
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(source);
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message4EditPart message = (Message4EditPart)createLink(UMLElementTypes.Message_4006, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		Message4EditPart message = (Message4EditPart)createLink(UMLElementTypes.Message_CreateEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		String name = "Test Create Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -210,15 +210,15 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testReplyMessage() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(lifeline1);
-		ActionExecutionSpecificationEditPart source = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), null);
+		ActionExecutionSpecificationEditPart source = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline1, getAbsoluteBounds(lifeline1).getTop().translate(0, 50), null);
 		assertNotNull(source);
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline2);
-		ActionExecutionSpecificationEditPart target = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline2, getAbsoluteBounds(lifeline2).getTop().translate(0, 150), null);
+		ActionExecutionSpecificationEditPart target = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline2, getAbsoluteBounds(lifeline2).getTop().translate(0, 150), null);
 		assertNotNull(target);
-		Message3EditPart message = (Message3EditPart)createLink(UMLElementTypes.Message_4005, source.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
+		Message3EditPart message = (Message3EditPart)createLink(UMLElementTypes.Message_ReplyEdge, source.getViewer(), getAbsoluteCenter(source), getAbsoluteCenter(target));
 		assertNotNull(message);
 		String name = "Test Reply Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -227,11 +227,11 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testFoundMessage() {
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
 		Point targetLocation = getAbsoluteBounds(target).getTop().translate(0, 50);
 		Point sourceLocation = targetLocation.getTranslated(-100, 0);
-		Message7EditPart message = (Message7EditPart)createLink(UMLElementTypes.Message_4009, target.getViewer(), sourceLocation, targetLocation);
+		Message7EditPart message = (Message7EditPart)createLink(UMLElementTypes.Message_FoundEdge, target.getViewer(), sourceLocation, targetLocation);
 		assertNotNull(message);
 		String name = "Test Found Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -240,11 +240,11 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testLostMessage() {
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(source);
 		Point sourceLocation = getAbsoluteBounds(source).getTop().translate(0, 50);
 		Point targetLocation = sourceLocation.getTranslated(100, 0);
-		Message6EditPart message = (Message6EditPart)createLink(UMLElementTypes.Message_4008, source.getViewer(), sourceLocation, targetLocation);
+		Message6EditPart message = (Message6EditPart)createLink(UMLElementTypes.Message_LostEdge, source.getViewer(), sourceLocation, targetLocation);
 		assertNotNull(message);
 		String name = "Test Lost Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -253,11 +253,11 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testDeleteMessage() {
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(source);
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message5EditPart message = (Message5EditPart)createLink(UMLElementTypes.Message_4007, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		Message5EditPart message = (Message5EditPart)createLink(UMLElementTypes.Message_DeleteEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		String name = "Test Delete Message";
 		changeName(getEditingDomain(), (NamedElement)message.resolveSemanticElement(), name);
@@ -266,11 +266,11 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testMessageOccurrenceSpecification() {
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(source);
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
+		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
 		MessageEndEditPart messageEnd = (MessageEndEditPart)message.getChildBySemanticHint(MessageEndEditPart.VISUAL_ID);
 		assertNotNull(messageEnd);
@@ -281,9 +281,9 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testExecutionOccurrenceSpecification() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		ActionExecutionSpecificationEditPart es = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, getAbsoluteCenter(lifeline), null);
+		ActionExecutionSpecificationEditPart es = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, getAbsoluteCenter(lifeline), null);
 		assertNotNull(es);
 		ExecutionSpecificationEndEditPart esEnd = (ExecutionSpecificationEndEditPart)es.getChildren().get(0);
 		assertNotNull(esEnd);
@@ -294,7 +294,7 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testInteractionUse() {
-		InteractionUseEditPart interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_3002, getRootEditPart(), new Point(300, 200), new Dimension(200, 100));
+		InteractionUseEditPart interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_Shape, getRootEditPart(), new Point(300, 200), new Dimension(200, 100));
 		assertNotNull(interactionUse);
 		String name = "Test Interaction Use";
 		NamedElement element = (NamedElement)interactionUse.resolveSemanticElement();
@@ -325,10 +325,10 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testStateInvariant() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		Rectangle r = getAbsoluteBounds(lifeline);
-		StateInvariantEditPart stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_3017, lifeline, r.getCenter(), null);
+		StateInvariantEditPart stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_Shape, lifeline, r.getCenter(), null);
 		assertNotNull(stateInvariant);
 		String name = "Test State Invariant";
 		changeName(getEditingDomain(), (NamedElement)stateInvariant.resolveSemanticElement(), name);
@@ -337,38 +337,38 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 
 	@Test
 	public void testDestructionEvent() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		DestructionOccurrenceSpecificationEditPart destructionEvent = (DestructionOccurrenceSpecificationEditPart)createNode(UMLElementTypes.DestructionOccurrenceSpecification_3022, lifeline, getAbsoluteCenter(lifeline), null);
+		DestructionOccurrenceSpecificationEditPart destructionEvent = (DestructionOccurrenceSpecificationEditPart)createNode(UMLElementTypes.DestructionOccurrenceSpecification_Shape, lifeline, getAbsoluteCenter(lifeline), null);
 		assertNotNull(destructionEvent);
 		checkTooltip(destructionEvent.getFigure().getToolTip(), "Destruction Event", "");
 	}
 
 	@Test
 	public void testGeneralOrdering() {
-		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart source = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(source);
-		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
+		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
 		Point sourcePoint = getAbsoluteBounds(source).getTop().translate(0, 50);
 		Point targetPoint = getAbsoluteBounds(target).getTop().translate(0, 50);
-		Message2EditPart message1 = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), sourcePoint, targetPoint);
+		Message2EditPart message1 = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), sourcePoint, targetPoint);
 		assertNotNull(message1);
-		Message2EditPart message2 = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), sourcePoint.getTranslated(0, 50), targetPoint.getTranslated(0, 50));
+		Message2EditPart message2 = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, source.getViewer(), sourcePoint.getTranslated(0, 50), targetPoint.getTranslated(0, 50));
 		assertNotNull(message2);
 		sourcePoint = SequenceUtil.getAbsoluteEdgeExtremity(message1, true);
 		targetPoint = SequenceUtil.getAbsoluteEdgeExtremity(message2, false);
-		GeneralOrderingEditPart generalOrdering = (GeneralOrderingEditPart)createLink(UMLElementTypes.GeneralOrdering_4012, source.getViewer(), sourcePoint, targetPoint);
+		GeneralOrderingEditPart generalOrdering = (GeneralOrderingEditPart)createLink(UMLElementTypes.GeneralOrdering_Edge, source.getViewer(), sourcePoint, targetPoint);
 		assertNotNull(generalOrdering);
 		checkTooltip(generalOrdering.getFigure().getToolTip(), "General Ordering", "");
 	}
 
 	@Test
 	public void testCoRegion() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		Rectangle r = getAbsoluteBounds(lifeline);
-		CombinedFragment2EditPart coRegion = (CombinedFragment2EditPart)createNode(UMLElementTypes.CombinedFragment_3018, lifeline, r.getCenter(), null);
+		CombinedFragment2EditPart coRegion = (CombinedFragment2EditPart)createNode(UMLElementTypes.CombinedFragment_CoRegionShape, lifeline, r.getCenter(), null);
 		assertNotNull(coRegion);
 		String name = "Test CoRegion";
 		changeName(getEditingDomain(), (NamedElement)coRegion.resolveSemanticElement(), name);

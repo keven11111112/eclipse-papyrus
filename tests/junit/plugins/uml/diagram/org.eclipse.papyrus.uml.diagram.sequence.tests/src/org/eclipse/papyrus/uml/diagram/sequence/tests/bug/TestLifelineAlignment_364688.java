@@ -65,9 +65,9 @@ public class TestLifelineAlignment_364688 extends TestLink {
 
 	@Test
 	public void testAlignment() {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(20, 20), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 150), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(20, 20), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(150, 150), new Dimension(62, 200));
 
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		final LifelineEditPart lifeline2 = (LifelineEditPart)getRootEditPart().getChildren().get(1);
@@ -77,7 +77,7 @@ public class TestLifelineAlignment_364688 extends TestLink {
 		assertTrue(ALIGNMENT + TEST_THE_EXECUTION, getAbsoluteBounds(lifeline3).y == getAbsoluteBounds(lifeline2).y);
 		waitForComplete();
 
-		createLink(UMLElementTypes.Message_4006, lifeline2, lifeline3);
+		createLink(UMLElementTypes.Message_CreateEdge, lifeline2, lifeline3);
 		assertTrue(ALIGNMENT + TEST_THE_EXECUTION, getAbsoluteBounds(lifeline1).y == getAbsoluteBounds(lifeline2).y);
 		assertTrue(ALIGNMENT + TEST_THE_EXECUTION, getAbsoluteBounds(lifeline3).y > getAbsoluteBounds(lifeline2).y);
 	}

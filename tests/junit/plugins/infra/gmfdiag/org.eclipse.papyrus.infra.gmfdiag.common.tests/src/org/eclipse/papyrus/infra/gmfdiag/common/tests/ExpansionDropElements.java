@@ -111,7 +111,7 @@ public class ExpansionDropElements extends AbstractEditorTest {
 			Assert.assertNotNull("MyClass must have a nested Interface called --MyNestedInterface--", nestedInterface);
 
 			// try to drop on my class
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", myclassEditPart.getChildren().size(), 6);
+			Assert.assertEquals("the class editpart must contain 2 labels and 4 compartments", myclassEditPart.getChildren().size(), 6);
 			IGraphicalEditPart compartmentEdiPartMyClass = (IGraphicalEditPart) myclassEditPart.getChildren().get(5);
 			Assert.assertEquals("the compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartmentEdiPartMyClass.getNotationView().getType());
 
@@ -168,7 +168,7 @@ public class ExpansionDropElements extends AbstractEditorTest {
 			Assert.assertNotNull("MyClass must have a nested Interface called --MyNestedInterface--", nestedInterface);
 
 			// try to drop on my class
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", myclassEditPart.getChildren().size(), 6);
+			Assert.assertEquals("the class editpart must contains 2 labels and 4 compartments", myclassEditPart.getChildren().size(), 6);
 			IGraphicalEditPart compartmentEdiPartMyOtherClass = (IGraphicalEditPart) myOtherclassEditPart.getChildren().get(5);
 			Assert.assertEquals("the compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartmentEdiPartMyOtherClass.getNotationView().getType());
 

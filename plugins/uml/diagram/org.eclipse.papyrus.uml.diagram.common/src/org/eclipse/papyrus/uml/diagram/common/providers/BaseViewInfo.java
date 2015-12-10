@@ -48,7 +48,7 @@ public class BaseViewInfo implements ViewInfo {
 	private Collection<ViewInfo> children = null;
 
 	/** Temporary storage of ViewInfo elements to be added. */
-	private static Map<Integer, Collection<ViewInfo>> toAdd = null;
+	private static Map<String, Collection<ViewInfo>> toAdd = null;
 
 	/** Identifier of the IElementType this ViewInfo represents. */
 	// @unused
@@ -83,7 +83,7 @@ public class BaseViewInfo implements ViewInfo {
 	 * @param label
 	 *            the label
 	 */
-	public BaseViewInfo(int visualID, int type, String label) {
+	public BaseViewInfo(String visualID, int type, String label) {
 		this(visualID, type, label, null, null);
 	}
 
@@ -101,8 +101,8 @@ public class BaseViewInfo implements ViewInfo {
 	 * @param parent
 	 *            the parent
 	 */
-	public BaseViewInfo(int visualID, int type, String label, Collection<ViewInfo> children, ViewInfo parent) {
-		this.visualID = String.valueOf(visualID);
+	public BaseViewInfo(String visualID, int type, String label, Collection<ViewInfo> children, ViewInfo parent) {
+		this.visualID = visualID;
 		this.typeViewInfo = type;
 		this.label = label;
 		this.children = children;
@@ -170,8 +170,8 @@ public class BaseViewInfo implements ViewInfo {
 	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#getVisualID()
 	 */
 	@Override
-	public int getVisualID() {
-		return Integer.valueOf(visualID);
+	public String getVisualID() {
+		return visualID;
 	}
 
 	/**
@@ -195,9 +195,9 @@ public class BaseViewInfo implements ViewInfo {
 	 *
 	 * @return the to add
 	 */
-	protected static Map<Integer, Collection<ViewInfo>> getToAdd() {
+	protected static Map<String, Collection<ViewInfo>> getToAdd() {
 		if (toAdd == null) {
-			toAdd = new HashMap<Integer, Collection<ViewInfo>>();
+			toAdd = new HashMap<String, Collection<ViewInfo>>();
 		}
 		return toAdd;
 	}
@@ -237,11 +237,11 @@ public class BaseViewInfo implements ViewInfo {
 	}
 
 	/**
-	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setVisualID(int)
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#setVisualID(String)
 	 */
 	@Override
-	public void setVisualID(int visualID) {
-		this.visualID = String.valueOf(visualID);
+	public void setVisualID(String visualID) {
+		this.visualID = visualID;
 	}
 
 	/**
@@ -277,10 +277,10 @@ public class BaseViewInfo implements ViewInfo {
 	 * needs not exist yet in the hierarchy. Orphan nodes are stored in a
 	 * temporary storage, that is revisited when a new node is added.
 	 *
-	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#addNode(int, es.cv.gvcase.mdt.common.provider.ViewInfo)
+	 * @see es.cv.gvcase.mdt.common.provider.ViewInfo#addNode(String, es.cv.gvcase.mdt.common.provider.ViewInfo)
 	 */
 	@Override
-	public boolean addNode(int parentVisualID, ViewInfo info) {
+	public boolean addNode(String parentVisualID, ViewInfo info) {
 		if (isAlreadyContained(info)) {
 			return true;
 		}
@@ -343,8 +343,8 @@ public class BaseViewInfo implements ViewInfo {
 	 * @param info
 	 *            the info
 	 */
-	private void addPendentNode(int parentID, ViewInfo info) {
-		Map<Integer, Collection<ViewInfo>> toAdd = getToAdd();
+	private void addPendentNode(String parentID, ViewInfo info) {
+		Map<String, Collection<ViewInfo>> toAdd = getToAdd();
 		if (toAdd.containsKey(parentID) == false) {
 			toAdd.put(parentID, new ArrayList<ViewInfo>());
 		}
@@ -361,8 +361,8 @@ public class BaseViewInfo implements ViewInfo {
 	 *            the info
 	 */
 	private void revisePendentNodes(ViewInfo info) {
-		int parentVisualID = info.getVisualID();
-		Map<Integer, Collection<ViewInfo>> toAdd = getToAdd();
+		String parentVisualID = info.getVisualID();
+		Map<String, Collection<ViewInfo>> toAdd = getToAdd();
 		if (toAdd.containsKey(parentVisualID)) {
 			for (ViewInfo viewInfo : toAdd.get(parentVisualID)) {
 				if (info.getChildren().contains(viewInfo) == false && info != viewInfo && isAlreadyContained(viewInfo) == false) {
@@ -386,11 +386,11 @@ public class BaseViewInfo implements ViewInfo {
 	 *
 	 * @return true, if successful
 	 */
-	protected boolean internalAddNode(int parentVisualID, ViewInfo info) {
+	protected boolean internalAddNode(String parentVisualID, ViewInfo info) {
 		if (info == null) {
 			return true;
 		}
-		if (getVisualID() == parentVisualID) {
+		if (getVisualID().equals(parentVisualID)) {
 			if (getChildren().contains(info) == false && this != info) {
 				getChildren().add(info);
 			}

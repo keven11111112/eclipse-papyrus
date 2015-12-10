@@ -14,15 +14,17 @@
  */
 package aspects.xpt.navigator
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import org.eclipse.emf.codegen.util.CodeGenUtil
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenNavigator
 import org.eclipse.gmf.codegen.gmfgen.GenNavigatorReferenceType
-import xpt.Common
+import xpt.CodeStyle
 import xpt.Common_qvto
 import xpt.editor.VisualIDRegistry
-import xpt.navigator.Utils_qvtoimport xpt.CodeStyle
+import xpt.navigator.Utils_qvto
 
 @Singleton class NavigatorContentProvider extends xpt.navigator.NavigatorContentProvider {
 	@Inject extension Common;
@@ -379,12 +381,11 @@ private Object[] getViewChildrenFor«it.editPartClassName»(org.eclipse.gmf.runtim
 	return result.toArray();
 }
 '''
-//END: PapyrusGenCode
 
+override def String i18nKeyForGroup(String groupName, GenCommonBase contextElement) {
+	return 'NavigatorGroupName.' + (if(null != contextElement) contextElement.stringUniqueIdentifier else 'File') + '.' +
+		CodeGenUtil::validJavaIdentifier(groupName)
+}
 
-
-
-
-
-
+//END: PapyrusGenCod
 }

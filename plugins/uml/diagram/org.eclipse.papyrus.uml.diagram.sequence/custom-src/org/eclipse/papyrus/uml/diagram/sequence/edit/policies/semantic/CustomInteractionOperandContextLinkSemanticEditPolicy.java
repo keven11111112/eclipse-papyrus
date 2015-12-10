@@ -41,7 +41,7 @@ public class CustomInteractionOperandContextLinkSemanticEditPolicy extends Custo
 
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (UMLElementTypes.ConstraintContext_8500 == req.getElementType()) {
+		if (UMLElementTypes.Constraint_ContextEdge == req.getElementType()) {
 			return getGEFWrapper(new CustomContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
@@ -53,7 +53,7 @@ public class CustomInteractionOperandContextLinkSemanticEditPolicy extends Custo
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
 			for (Object obj : relationshipTypes) {
-				if (UMLElementTypes.ConstraintContext_8500.equals(obj)) {
+				if (UMLElementTypes.Constraint_ContextEdge.equals(obj)) {
 					Point location = ((DropRequest) request).getLocation();
 					EditPart host = getHost();
 					if (isEnterAnchorArea(host, location)) {

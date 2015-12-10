@@ -42,7 +42,7 @@ public class TestImportMetaClass extends TestTopNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -63,11 +63,11 @@ public class TestImportMetaClass extends TestTopNode {
 	@Test
 	public void testImportMetaClass() {
 		// create Stereotype
-		GraphicalEditPart stereotypeEditPart = createNodeOnDiagram(UMLElementTypes.Stereotype_1026, new Point(100, 100), 1);
+		GraphicalEditPart stereotypeEditPart = createNodeOnDiagram(UMLElementTypes.Stereotype_Shape, new Point(100, 100), 1);
 		// import metaclass
 		GraphicalEditPart metaClassEditPart = createMetaclassOnDiagram(new Point(100, 300), 2);
 		// create a extension link between stereotype and metaclass
-		createALink(UMLElementTypes.Extension_1013, stereotypeEditPart, metaClassEditPart);
+		createALink(UMLElementTypes.Extension_Edge, stereotypeEditPart, metaClassEditPart);
 		// test enable for delete metaclass from model
 		testEnableForDeleteFromModel(metaClassEditPart);
 		// delete metaclass from diagram
@@ -88,7 +88,7 @@ public class TestImportMetaClass extends TestTopNode {
 	}
 
 	private GraphicalEditPart createMetaclassOnDiagram(Point loc, int childrenDiagramEditPartId) {
-		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_1031, getDiagramEditPart().getDiagramPreferencesHint());
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_MetaclassShape, getDiagramEditPart().getDiagramPreferencesHint());
 		Profile parentProfile = MetaclassHelper.getParentProfile(getDiagramEditPart());
 		List<Object> importedElements = Arrays.asList(new UMLMetaclassContentProvider(parentProfile).getElements());
 		List<Object> forDialogSetup = new ArrayList<Object>();

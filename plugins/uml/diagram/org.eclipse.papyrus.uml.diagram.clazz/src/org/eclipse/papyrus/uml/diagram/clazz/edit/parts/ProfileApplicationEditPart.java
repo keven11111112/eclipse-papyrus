@@ -31,7 +31,7 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4012";
+	public static final String VISUAL_ID = "ProfileApplication_Edge";
 
 	/**
 	 * @generated
@@ -47,7 +47,8 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -69,6 +70,6 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure)getFigure();
+		return (DashedEdgeFigure) getFigure();
 	}
 }

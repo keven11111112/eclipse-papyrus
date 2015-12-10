@@ -108,13 +108,15 @@ public class UMLVisualIDRegistry {
 		if (domainElement == null) {
 			return null;
 		}
-		String containerModelID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry
+				.getModelID(containerView);
 		if (!ActivityDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return null;
 		}
 		String containerVisualID;
 		if (ActivityDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ActivityDiagramEditPart.VISUAL_ID;
@@ -163,65 +165,83 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case CallOperationActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3021((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_CallOperationActionArgumentShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInCallOpActEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3022((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_CallOperationActionArgumentShape((ValuePin) domainElement)) {
 					return ValuePinInCallOpActEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3023((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_CallOperationActionArgumentShape((InputPin) domainElement)) {
 					return InputPinInCallOpActEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInCallOpActEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3025((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_CallOperationActionTargetShape((ValuePin) domainElement)) {
 					return ValuePinInCallOpActAsTargetEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3026((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_CallOperationActionTargetShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3027((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_CallOperationActionTargetShape((InputPin) domainElement)) {
 					return InputPinInCallOpActAsTargetEditPart.VISUAL_ID;
 				}
 				break;
 			case SendObjectActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3046((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_SendObjectActionRequestShape((ValuePin) domainElement)) {
 					return ValuePinInSendObjActAsReqEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3047((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_SendObjectActionRequestShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3048((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_SendObjectActionRequestShape((InputPin) domainElement)) {
 					return InputPinInSendObjActAsReqEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3049((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_SendObjectActionTargetShape((ValuePin) domainElement)) {
 					return ValuePinInSendObjActAsTargetEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3050((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_SendObjectActionTargetShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3051((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_SendObjectActionTargetShape((InputPin) domainElement)) {
 					return InputPinInSendObjActAsTargetEditPart.VISUAL_ID;
 				}
 				break;
 			case SendSignalActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3053((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_SendSignalActionArgumentShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInSendSigActEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3054((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_SendSignalActionArgumentShape((ValuePin) domainElement)) {
 					return ValuePinInSendSigActEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3055((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_SendSignalActionArgumentShape((InputPin) domainElement)) {
 					return InputPinInSendSigActEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3060((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_SendSignalActionTargetShape((ValuePin) domainElement)) {
 					return ValuePinInSendSigActAsTargetEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3061((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_SendSignalActionTargetShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3062((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_SendSignalActionTargetShape((InputPin) domainElement)) {
 					return InputPinInSendSigActAsTargetEditPart.VISUAL_ID;
 				}
 				break;
@@ -236,13 +256,16 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ConditionalNodeEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3188((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StructuredActivityNodeInputShape((InputPin) domainElement)) {
 					return InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3189((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StructuredActivityNodeInputShape((ValuePin) domainElement)) {
 					return ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3190((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StructuredActivityNodeInputShape((ActionInputPin) domainElement)) {
 					return ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
@@ -250,19 +273,24 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ExpansionRegionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass()) && isExpansionNode_3074((ExpansionNode) domainElement)) {
+				if (UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass())
+						&& isExpansionNode_InputShape((ExpansionNode) domainElement)) {
 					return ExpansionNodeAsInEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass()) && isExpansionNode_3075((ExpansionNode) domainElement)) {
+				if (UMLPackage.eINSTANCE.getExpansionNode().isSuperTypeOf(domainElement.eClass())
+						&& isExpansionNode_OutputShape((ExpansionNode) domainElement)) {
 					return ExpansionNodeAsOutEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3188((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StructuredActivityNodeInputShape((InputPin) domainElement)) {
 					return InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3189((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StructuredActivityNodeInputShape((ValuePin) domainElement)) {
 					return ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3190((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StructuredActivityNodeInputShape((ActionInputPin) domainElement)) {
 					return ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
@@ -270,7 +298,8 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case LoopNodeEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3105((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_LoopNodeVariableInputShape((InputPin) domainElement)) {
 					return InputPinInLoopNodeAsVariableEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())) {
@@ -279,24 +308,30 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())) {
 					return ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass()) && isOutputPin_3109((OutputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
+						&& isOutputPin_LoopNodeBodyOutputShape((OutputPin) domainElement)) {
 					return OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass()) && isOutputPin_3110((OutputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
+						&& isOutputPin_LoopNodeVariableShape((OutputPin) domainElement)) {
 					return OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass()) && isOutputPin_3111((OutputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
+						&& isOutputPin_LoopNodeResultShape((OutputPin) domainElement)) {
 					return OutputPinInLoopNodeAsResultEditPart.VISUAL_ID;
 				}
 				break;
 			case SequenceNodeEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3188((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StructuredActivityNodeInputShape((InputPin) domainElement)) {
 					return InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3189((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StructuredActivityNodeInputShape((ValuePin) domainElement)) {
 					return ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3190((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StructuredActivityNodeInputShape((ActionInputPin) domainElement)) {
 					return ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
@@ -304,16 +339,19 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case StructuredActivityNodeEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3189((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StructuredActivityNodeInputShape((ValuePin) domainElement)) {
 					return ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3190((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StructuredActivityNodeInputShape((ActionInputPin) domainElement)) {
 					return ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3188((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StructuredActivityNodeInputShape((InputPin) domainElement)) {
 					return InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID;
 				}
 				break;
@@ -333,45 +371,59 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ReadStructuralFeatureActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3089((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ReadStructuralFeatureActionObjectShape((InputPin) domainElement)) {
 					return InputPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInReadStructuralFeatureAsResultEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3203((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ReadStructuralFeatureActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3204((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ReadStructuralFeatureActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionPinInReadStructuralFeatureAsObjectEditPart.VISUAL_ID;
 				}
 				break;
 			case AddStructuralFeatureValueActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3092((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_AddStructuralFeatureValueActionObjectShape((InputPin) domainElement)) {
 					return InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3093((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_AddStructuralFeatureValueActionValueShape((InputPin) domainElement)) {
 					return InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3181((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_AddStructuralFeatureValueActionInsertAtShape((InputPin) domainElement)) {
 					return InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3182((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_AddStructuralFeatureValueActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3183((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_AddStructuralFeatureValueActionValueShape((ValuePin) domainElement)) {
 					return ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3184((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_AddStructuralFeatureValueActionInsertAtShape((ValuePin) domainElement)) {
 					return ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3185((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_AddStructuralFeatureValueActionObjectShape(
+								(ActionInputPin) domainElement)) {
 					return ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3186((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_AddStructuralFeatureValueActionValueShape((ActionInputPin) domainElement)) {
 					return ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3187((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_AddStructuralFeatureValueActionInsertAtShape(
+								(ActionInputPin) domainElement)) {
 					return ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
@@ -379,49 +431,62 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case DestroyObjectActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3096((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_DestroyObjectActionTargetShape((InputPin) domainElement)) {
 					return InputPinInDestroyObjectActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3173((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_DestroyObjectActionTargetShape((ValuePin) domainElement)) {
 					return ValuePinInDestroyObjectActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3174((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_DestroyObjectActionTargetShape((ActionInputPin) domainElement)) {
 					return ActionPinInDestroyObjectActionEditPart.VISUAL_ID;
 				}
 				break;
 			case ReadVariableActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass()) && isOutputPin_3098((OutputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
+						&& isOutputPin_ReadVariableActionResultShape((OutputPin) domainElement)) {
 					return OutputPinInReadVariableActionAsResultEditPart.VISUAL_ID;
 				}
 				break;
 			case AddVariableValueActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3100((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_AddVariableValueActionInsertAtShape((InputPin) domainElement)) {
 					return InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3101((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_AddVariableValueActionValueShape((InputPin) domainElement)) {
 					return InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3175((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_AddVariableValueActionInsertAtShape((ValuePin) domainElement)) {
 					return ValuePinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3176((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_AddVariableValueActionValueShape((ValuePin) domainElement)) {
 					return ValuePinInAddVariableValueActionAsValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3177((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_AddVariableValueActionInsertAtShape((ActionInputPin) domainElement)) {
 					return ActionPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3178((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_AddVariableValueActionValueShape((ActionInputPin) domainElement)) {
 					return ActionPinInAddVariableValueActionAsValueEditPart.VISUAL_ID;
 				}
 				break;
 			case BroadcastSignalActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3103((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_BroadcastSignalActionArgumentShape((InputPin) domainElement)) {
 					return InputPinInBroadcastSignalActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3179((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_BroadcastSignalActionArgumentShape((ValuePin) domainElement)) {
 					return ValuePinInBroadcastSignalActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3180((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_BroadcastSignalActionArgumentShape((ActionInputPin) domainElement)) {
 					return ActionPinInBroadcastSignalActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -429,22 +494,28 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3132((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StartObjectBehaviorActionObjectShape((InputPin) domainElement)) {
 					return InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3145((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StartObjectBehaviorActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3158((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StartObjectBehaviorActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3133((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StartObjectBehaviorActionArgumentShape((InputPin) domainElement)) {
 					return InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3146((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StartObjectBehaviorActionArgumentShape((ValuePin) domainElement)) {
 					return ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3159((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StartObjectBehaviorActionArgumentShape((ActionInputPin) domainElement)) {
 					return ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID;
 				}
 				break;
@@ -452,22 +523,28 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInTestIdentityActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3134((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_TestIdentityActionFirstShape((InputPin) domainElement)) {
 					return InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3135((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_TestIdentityActionSecondShape((InputPin) domainElement)) {
 					return InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3147((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_TestIdentityActionFirstShape((ValuePin) domainElement)) {
 					return ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3148((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_TestIdentityActionSecondShape((ValuePin) domainElement)) {
 					return ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3160((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_TestIdentityActionFirstShape((ActionInputPin) domainElement)) {
 					return ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3161((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_TestIdentityActionSecondShape((ActionInputPin) domainElement)) {
 					return ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID;
 				}
 				break;
@@ -475,24 +552,30 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3136((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ClearStructuralFeatureActionObjectShape((InputPin) domainElement)) {
 					return InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3149((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ClearStructuralFeatureActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3162((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ClearStructuralFeatureActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID;
 				}
 				break;
 			case CreateLinkActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3137((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_CreateLinkActionInputShape((InputPin) domainElement)) {
 					return InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3151((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_CreateLinkActionInputShape((ValuePin) domainElement)) {
 					return ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3163((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_CreateLinkActionInputShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
 				break;
@@ -500,35 +583,44 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInReadLinkActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3138((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ReadLinkActionInputShape((InputPin) domainElement)) {
 					return InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3150((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ReadLinkActionInputShape((ValuePin) domainElement)) {
 					return ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3164((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ReadLinkActionInputShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
 				break;
 			case DestroyLinkActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3139((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_DestroyLinkActionInputShape((InputPin) domainElement)) {
 					return InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3152((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_DestroyLinkActionInputShape((ValuePin) domainElement)) {
 					return ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3165((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_DestroyLinkActionInputShape((ActionInputPin) domainElement)) {
 					return ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID;
 				}
 				break;
 			case ClearAssociationActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3140((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ClearAssociationActionObjectShape((InputPin) domainElement)) {
 					return InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3153((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ClearAssociationActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3166((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ClearAssociationActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID;
 				}
 				break;
@@ -538,13 +630,16 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case ReclassifyObjectActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3141((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ReclassifyObjectActionObjectShape((InputPin) domainElement)) {
 					return InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3154((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ReclassifyObjectActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3167((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ReclassifyObjectActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID;
 				}
 				break;
@@ -552,13 +647,16 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3142((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ReadIsClassifiedObjectActionObjectShape((InputPin) domainElement)) {
 					return InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3155((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ReadIsClassifiedObjectActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3168((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ReadIsClassifiedObjectActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID;
 				}
 				break;
@@ -566,24 +664,30 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())) {
 					return OutputPinInReduceActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3143((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_ReduceActionCollectionShape((InputPin) domainElement)) {
 					return InputPinInReduceActionAsCollectionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3156((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_ReduceActionCollectionShape((ValuePin) domainElement)) {
 					return ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3169((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_ReduceActionCollectionShape((ActionInputPin) domainElement)) {
 					return ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID;
 				}
 				break;
 			case StartClassifierBehaviorActionEditPart.VISUAL_ID:
-				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3144((InputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isInputPin_StartClassifierBehaviorActionObjectShape((InputPin) domainElement)) {
 					return InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3157((ValuePin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
+						&& isValuePin_StartClassifierBehaviorActionObjectShape((ValuePin) domainElement)) {
 					return ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3170((ActionInputPin) domainElement)) {
+				if (UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass())
+						&& isActionInputPin_StartClassifierBehaviorActionObjectShape((ActionInputPin) domainElement)) {
 					return ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID;
 				}
 				break;
@@ -635,28 +739,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCallOperationAction().isSuperTypeOf(domainElement.eClass())) {
 					return CallOperationActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
@@ -752,7 +864,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -779,7 +892,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -802,28 +916,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCallOperationAction().isSuperTypeOf(domainElement.eClass())) {
 					return CallOperationActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
@@ -898,7 +1020,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
 					return ConstraintEditPartCN.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -907,7 +1030,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getDestroyLinkAction().isSuperTypeOf(domainElement.eClass())) {
 					return DestroyLinkActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -975,28 +1099,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 					return ReadSelfActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1038,7 +1170,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1065,7 +1198,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -1133,28 +1267,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 					return ReadSelfActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1196,7 +1338,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1223,7 +1366,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -1291,28 +1435,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 					return ReadSelfActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1354,7 +1506,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1381,7 +1534,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -1449,28 +1603,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 					return ReadSelfActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1512,7 +1674,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1539,7 +1702,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -1610,28 +1774,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getActivityPartition().isSuperTypeOf(domainElement.eClass())) {
 					return ActivityPartitionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1673,7 +1845,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1700,7 +1873,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -1768,28 +1942,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getReadSelfAction().isSuperTypeOf(domainElement.eClass())) {
 					return ReadSelfActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getCreateObjectAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1831,7 +2013,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -1858,7 +2041,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -1896,28 +2080,36 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getCallOperationAction().isSuperTypeOf(domainElement.eClass())) {
 					return CallOperationActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3034((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPreconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass()) && isDurationConstraint_3035((DurationConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isDurationConstraint_LocalPostconditionShape((DurationConstraint) domainElement)) {
 					return DurationConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3036((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPreconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass()) && isTimeConstraint_3037((TimeConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isTimeConstraint_LocalPostconditionShape((TimeConstraint) domainElement)) {
 					return TimeConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3032((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPreconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass()) && isIntervalConstraint_3033((IntervalConstraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isIntervalConstraint_LocalPostconditionShape((IntervalConstraint) domainElement)) {
 					return IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3011((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPreconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPrecondEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012((Constraint) domainElement)) {
+				if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+						&& isConstraint_LocalPostconditionShape((Constraint) domainElement)) {
 					return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
@@ -2013,7 +2205,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getClearStructuralFeatureAction().isSuperTypeOf(domainElement.eClass())) {
 					return ClearStructuralFeatureActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkAction_3117((CreateLinkAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkAction_Shape((CreateLinkAction) domainElement)) {
 					return CreateLinkActionEditPart.VISUAL_ID;
 				}
 				if (UMLPackage.eINSTANCE.getReadLinkAction().isSuperTypeOf(domainElement.eClass())) {
@@ -2040,7 +2233,8 @@ public class UMLVisualIDRegistry {
 				if (UMLPackage.eINSTANCE.getStartClassifierBehaviorAction().isSuperTypeOf(domainElement.eClass())) {
 					return StartClassifierBehaviorActionEditPart.VISUAL_ID;
 				}
-				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass()) && isCreateLinkObjectAction_3198((CreateLinkObjectAction) domainElement)) {
+				if (UMLPackage.eINSTANCE.getCreateLinkObjectAction().isSuperTypeOf(domainElement.eClass())
+						&& isCreateLinkObjectAction_Shape((CreateLinkObjectAction) domainElement)) {
 					return CreateLinkObjectActionEditPart.VISUAL_ID;
 				}
 				break;
@@ -2053,13 +2247,15 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, String nodeVisualID) {
-		String containerModelID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getModelID(containerView);
+		String containerModelID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry
+				.getModelID(containerView);
 		if (!ActivityDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		String containerVisualID;
 		if (ActivityDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(containerView);
+			containerVisualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = ActivityDiagramEditPart.VISUAL_ID;
@@ -2824,7 +3020,8 @@ public class UMLVisualIDRegistry {
 				if (StructuredActivityNodeKeywordEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID.equals(nodeVisualID)) {
@@ -2841,40 +3038,50 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				if (InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
 			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
 			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
 			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
-				if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
-				if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -2890,7 +3097,8 @@ public class UMLVisualIDRegistry {
 				}
 				break;
 			case InterruptibleActivityRegionEditPart.VISUAL_ID:
-				if (InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -2956,7 +3164,8 @@ public class UMLVisualIDRegistry {
 				if (OutputPinInCreateObjectActionAsResultLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInCreateObjectActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -2989,7 +3198,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInReadStructuralFeatureAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInReadStructuralFeatureAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3000,7 +3210,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3011,7 +3222,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInReadStructuralFeatureAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInReadStructuralFeatureAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3065,7 +3277,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3073,7 +3286,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3081,7 +3295,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3092,7 +3307,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3103,7 +3319,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3114,7 +3331,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3125,7 +3343,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3136,7 +3355,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3147,7 +3367,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3155,7 +3376,8 @@ public class UMLVisualIDRegistry {
 				if (OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3180,7 +3402,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3191,7 +3414,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInDestroyObjectActionValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3202,7 +3426,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInDestroyObjectActionValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3221,7 +3446,8 @@ public class UMLVisualIDRegistry {
 				if (OutputPinInReadVariableActionAsResultLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInReadVariableActionAsResultAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3255,7 +3481,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInAddVariableValueActionAsInsertAtLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3263,7 +3490,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInAddVariableValueActionAsValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3274,7 +3502,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInAddVariableValueActionAsInsertAtValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3285,7 +3514,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInAddVariableValueActionAsValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3296,7 +3526,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInAddVariableValueActionAsInsertAtValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInAddVariableValueActionAsInsertAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3307,7 +3538,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInAddVariableValueActionAsValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInAddVariableValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3335,7 +3567,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3346,7 +3579,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3357,7 +3591,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInBroadcastSignalActionValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInBroadcastSignalActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3421,7 +3656,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInStartObjectBehaviorActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3432,7 +3668,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInStartObjectBehaviorActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3443,7 +3680,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInStartObjectBehaviorActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInStartObjectBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3451,7 +3689,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInStartObjectBehaviorActionAsArgumentLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3462,7 +3701,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInStartObjectBehaviorActionAsArgumentValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3473,7 +3713,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInStartObjectBehaviorActionAsArgumentValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInStartObjectBehaviorActionAsArgumentAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3570,7 +3811,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInTestIdentityActionAsSecondValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInTestIdentityActionAsSecondAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3598,7 +3840,8 @@ public class UMLVisualIDRegistry {
 				if (OutputPinInClearStructuralFeatureActionLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (OutputPinInClearStructuralFeatureActionAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInClearStructuralFeatureActionAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3606,7 +3849,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInClearStructuralFeatureActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3617,7 +3861,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInClearStructuralFeatureActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInClearStructuralFeatureActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3628,7 +3873,8 @@ public class UMLVisualIDRegistry {
 				if (ActionInputPinInClearStructuralFeatureActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionInputPinInClearStructFeatActAsObjectAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionInputPinInClearStructFeatActAsObjectAppliedStereotypeEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3653,7 +3899,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInCreateLinkActionAsInputValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3664,7 +3911,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInCreateLinkActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3675,7 +3923,8 @@ public class UMLVisualIDRegistry {
 				if (ActionInputPinInCreateLinkActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionInputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionInputPinInCreateLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3733,7 +3982,8 @@ public class UMLVisualIDRegistry {
 				if (ActionInputPinInReadLinkActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionInputPinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionInputPinInReadLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3758,7 +4008,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInDestroyLinkActionAsInputValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3769,7 +4020,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInDestroyLinkActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3780,7 +4032,8 @@ public class UMLVisualIDRegistry {
 				if (ActionInputPinInDestroyLinkActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionInputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionInputPinInDestroyLinkActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3805,7 +4058,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3816,7 +4070,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInClearAssociationActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3827,7 +4082,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInClearAssociationActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInClearAssociationActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3871,7 +4127,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInReclassifyObjectActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3882,7 +4139,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInReclassifyObjectActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3893,7 +4151,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInReclassifyObjectActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInReclassifyObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3921,7 +4180,8 @@ public class UMLVisualIDRegistry {
 				if (OutputPinInReadIsClassifiedObjectActionLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (OutputPinInReadIsClassifiedObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (OutputPinInReadIsClassifiedObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3929,7 +4189,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInReadIsClassifiedObjectActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3940,7 +4201,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInReadIsClassifiedObjectActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -3951,7 +4213,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInReadIsClassifiedObjectActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInReadIsClassifiedObjectActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4034,7 +4297,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInStartClassifierBehaviorActionAsObjectLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4045,7 +4309,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInStartClassifierBehaviorActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4056,7 +4321,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInStartClassifierBehaviorActionAsObjectValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4084,7 +4350,8 @@ public class UMLVisualIDRegistry {
 				if (InputPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4095,7 +4362,8 @@ public class UMLVisualIDRegistry {
 				if (ValuePinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -4106,7 +4374,8 @@ public class UMLVisualIDRegistry {
 				if (ActionPinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID.equals(nodeVisualID)) {
 					return true;
 				}
-				if (ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+				if (ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID
+						.equals(nodeVisualID)) {
 					return true;
 				}
 				break;
@@ -5647,762 +5916,911 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
+	* @generated
+	*/
+	private static boolean isActionInputPin_CallOperationActionArgumentShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_CallOperationActionArgumentShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_CallOperationActionArgumentShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_CallOperationActionTargetShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_CallOperationActionTargetShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(4, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_CallOperationActionTargetShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3021(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isDurationConstraint_LocalPreconditionShape(DurationConstraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getDurationConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3022(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isDurationConstraint_LocalPostconditionShape(DurationConstraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getDurationConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3023(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isTimeConstraint_LocalPreconditionShape(TimeConstraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getTimeConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3025(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isTimeConstraint_LocalPostconditionShape(TimeConstraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(9, UMLPackage.eINSTANCE.getTimeConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3026(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(4, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isIntervalConstraint_LocalPreconditionShape(IntervalConstraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getIntervalConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3027(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isIntervalConstraint_LocalPostconditionShape(IntervalConstraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getIntervalConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isConstraint_3011(Constraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
+	private static boolean isConstraint_LocalPreconditionShape(Constraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isConstraint_3012(Constraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
+	private static boolean isConstraint_LocalPostconditionShape(Constraint domainElement) {
+		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getConstraint(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3046(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_SendObjectActionRequestShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3047(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_SendObjectActionRequestShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3048(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_SendObjectActionRequestShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3049(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_SendObjectActionTargetShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3050(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_SendObjectActionTargetShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3051(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_SendObjectActionTargetShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3053(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_SendSignalActionArgumentShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3054(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_SendSignalActionArgumentShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3055(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(22, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_SendSignalActionArgumentShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(22, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3060(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(23, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_SendSignalActionTargetShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(23, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3061(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(24, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_SendSignalActionTargetShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(24, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3062(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(25, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_SendSignalActionTargetShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(25, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isExpansionNode_3074(ExpansionNode domainElement) {
-		Object result = UMLOCLFactory.getExpression(26, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
+	private static boolean isExpansionNode_InputShape(ExpansionNode domainElement) {
+		Object result = UMLOCLFactory.getExpression(26, UMLPackage.eINSTANCE.getExpansionNode(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isExpansionNode_3075(ExpansionNode domainElement) {
-		Object result = UMLOCLFactory.getExpression(27, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
+	private static boolean isExpansionNode_OutputShape(ExpansionNode domainElement) {
+		Object result = UMLOCLFactory.getExpression(27, UMLPackage.eINSTANCE.getExpansionNode(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3105(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(153, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_LoopNodeVariableInputShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(153, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isOutputPin_3109(OutputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(150, UMLPackage.eINSTANCE.getOutputPin(), null).evaluate(domainElement);
+	private static boolean isOutputPin_LoopNodeBodyOutputShape(OutputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(150, UMLPackage.eINSTANCE.getOutputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isOutputPin_3110(OutputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(149, UMLPackage.eINSTANCE.getOutputPin(), null).evaluate(domainElement);
+	private static boolean isOutputPin_LoopNodeVariableShape(OutputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(149, UMLPackage.eINSTANCE.getOutputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isOutputPin_3111(OutputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(148, UMLPackage.eINSTANCE.getOutputPin(), null).evaluate(domainElement);
+	private static boolean isOutputPin_LoopNodeResultShape(OutputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(148, UMLPackage.eINSTANCE.getOutputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3188(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(147, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_StructuredActivityNodeInputShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(147, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3189(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(152, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_StructuredActivityNodeInputShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(152, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3190(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(151, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_StructuredActivityNodeInputShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(151, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3089(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(157, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ReadStructuralFeatureActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(157, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3203(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(156, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ReadStructuralFeatureActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(156, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3204(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(158, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ReadStructuralFeatureActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(158, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3092(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(139, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_AddStructuralFeatureValueActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(139, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3093(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(145, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_AddStructuralFeatureValueActionValueShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(145, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3181(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(142, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_AddStructuralFeatureValueActionInsertAtShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(142, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3182(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(138, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_AddStructuralFeatureValueActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(138, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3183(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(144, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_AddStructuralFeatureValueActionValueShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(144, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3184(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(141, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_AddStructuralFeatureValueActionInsertAtShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(141, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3185(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(140, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_AddStructuralFeatureValueActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(140, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3186(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(146, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_AddStructuralFeatureValueActionValueShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(146, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3187(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(143, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_AddStructuralFeatureValueActionInsertAtShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(143, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3096(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(127, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_DestroyObjectActionTargetShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(127, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3173(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(126, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_DestroyObjectActionTargetShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(126, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3174(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(128, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_DestroyObjectActionTargetShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(128, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isOutputPin_3098(OutputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(32, UMLPackage.eINSTANCE.getOutputPin(), null).evaluate(domainElement);
+	private static boolean isOutputPin_ReadVariableActionResultShape(OutputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(32, UMLPackage.eINSTANCE.getOutputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3100(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(133, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_AddVariableValueActionInsertAtShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(133, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3101(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(130, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_AddVariableValueActionValueShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(130, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3175(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(134, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_AddVariableValueActionInsertAtShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(134, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3176(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(131, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_AddVariableValueActionValueShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(131, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3177(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(132, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_AddVariableValueActionInsertAtShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(132, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3178(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(129, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_AddVariableValueActionValueShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(129, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3103(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(135, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_BroadcastSignalActionArgumentShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(135, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3179(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(137, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_BroadcastSignalActionArgumentShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(137, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3180(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(136, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_BroadcastSignalActionArgumentShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(136, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3132(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(88, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_StartObjectBehaviorActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(88, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3145(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(90, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_StartObjectBehaviorActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(90, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3158(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(92, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_StartObjectBehaviorActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(92, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3133(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(87, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_StartObjectBehaviorActionArgumentShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(87, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3146(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(89, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_StartObjectBehaviorActionArgumentShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(89, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3159(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(91, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_StartObjectBehaviorActionArgumentShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(91, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3134(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(93, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_TestIdentityActionFirstShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(93, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3135(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(94, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_TestIdentityActionSecondShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(94, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3147(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(95, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_TestIdentityActionFirstShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(95, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3148(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(96, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_TestIdentityActionSecondShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(96, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3160(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(97, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_TestIdentityActionFirstShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(97, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3161(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(98, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_TestIdentityActionSecondShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(98, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3136(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(99, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ClearStructuralFeatureActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(99, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3149(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(100, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ClearStructuralFeatureActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(100, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3162(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(101, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ClearStructuralFeatureActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(101, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isCreateLinkAction_3117(CreateLinkAction domainElement) {
-		Object result = UMLOCLFactory.getExpression(154, UMLPackage.eINSTANCE.getCreateLinkAction(), null).evaluate(domainElement);
+	private static boolean isCreateLinkAction_Shape(CreateLinkAction domainElement) {
+		Object result = UMLOCLFactory.getExpression(154, UMLPackage.eINSTANCE.getCreateLinkAction(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3137(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(102, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_CreateLinkActionInputShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(102, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3151(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(103, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_CreateLinkActionInputShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(103, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3163(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(104, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_CreateLinkActionInputShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(104, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3138(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(105, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ReadLinkActionInputShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(105, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3150(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(106, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ReadLinkActionInputShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(106, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3164(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(107, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ReadLinkActionInputShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(107, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3139(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(108, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_DestroyLinkActionInputShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(108, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3152(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(109, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_DestroyLinkActionInputShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(109, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3165(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(110, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_DestroyLinkActionInputShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(110, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3140(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(111, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ClearAssociationActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(111, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3153(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(112, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ClearAssociationActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(112, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3166(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(113, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ClearAssociationActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(113, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3141(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(115, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ReclassifyObjectActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(115, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3154(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(116, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ReclassifyObjectActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(116, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3167(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(114, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ReclassifyObjectActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(114, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3142(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(119, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ReadIsClassifiedObjectActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(119, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3155(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(117, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ReadIsClassifiedObjectActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(117, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3168(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(118, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ReadIsClassifiedObjectActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(118, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3143(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(120, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_ReduceActionCollectionShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(120, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3156(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(121, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_ReduceActionCollectionShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(121, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3169(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(122, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_ReduceActionCollectionShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(122, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isInputPin_3144(InputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(124, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
+	private static boolean isInputPin_StartClassifierBehaviorActionObjectShape(InputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(124, UMLPackage.eINSTANCE.getInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isValuePin_3157(ValuePin domainElement) {
-		Object result = UMLOCLFactory.getExpression(125, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
+	private static boolean isValuePin_StartClassifierBehaviorActionObjectShape(ValuePin domainElement) {
+		Object result = UMLOCLFactory.getExpression(125, UMLPackage.eINSTANCE.getValuePin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isActionInputPin_3170(ActionInputPin domainElement) {
-		Object result = UMLOCLFactory.getExpression(123, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
+	private static boolean isActionInputPin_StartClassifierBehaviorActionObjectShape(ActionInputPin domainElement) {
+		Object result = UMLOCLFactory.getExpression(123, UMLPackage.eINSTANCE.getActionInputPin(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static boolean isCreateLinkObjectAction_3198(CreateLinkObjectAction domainElement) {
-		Object result = UMLOCLFactory.getExpression(155, UMLPackage.eINSTANCE.getCreateLinkObjectAction(), null).evaluate(domainElement);
+	private static boolean isCreateLinkObjectAction_Shape(CreateLinkObjectAction domainElement) {
+		Object result = UMLOCLFactory.getExpression(155, UMLPackage.eINSTANCE.getCreateLinkObjectAction(), null)
+				.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
@@ -6411,7 +6829,7 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 		if (candidate == null) {
-			// unrecognized id is always bad
+			//unrecognized id is always bad
 			return false;
 		}
 		String basic = getNodeVisualID(containerView, domainElement);
@@ -6607,7 +7025,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
-
 		/**
 		 * @generated
 		 */
@@ -6629,7 +7046,8 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public String getNodeVisualID(View containerView, EObject domainElement) {
-			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getNodeVisualID(containerView,
+					domainElement);
 		}
 
 		/**
@@ -6637,7 +7055,8 @@ public class UMLVisualIDRegistry {
 		 */
 		@Override
 		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
-			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
+			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.checkNodeVisualID(containerView,
+					domainElement, candidate);
 		}
 
 		/**
@@ -6656,52 +7075,4 @@ public class UMLVisualIDRegistry {
 			return org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};
-
-	/**
-	 * @generated
-	 */
-	private static boolean isIntervalConstraint_3032(IntervalConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isIntervalConstraint_3033(IntervalConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isDurationConstraint_3034(DurationConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getDurationConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isDurationConstraint_3035(DurationConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getDurationConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isTimeConstraint_3036(TimeConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getTimeConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isTimeConstraint_3037(TimeConstraint domainElement) {
-		Object result = UMLOCLFactory.getExpression(9, UMLPackage.eINSTANCE.getTimeConstraint(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
-	}
 }

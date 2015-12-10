@@ -33,7 +33,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -53,26 +53,26 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 
 	@Test
 	public void testToManageClass() {
-		testToManageNode(UMLElementTypes.Class_2008, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Class_Shape, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManagePackage() {
-		testToManageNode(UMLElementTypes.Package_2007, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Package_Shape, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageDataType() {
-		testToManageNode(UMLElementTypes.DataType_2010, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.DataType_Shape, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageStereoType() {
-		testToManageNode(UMLElementTypes.Stereotype_1026, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Stereotype_Shape, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_Shape, false);
 	}
 
 	@Test
 	public void testToManageProfile() {
-		testToManageNode(UMLElementTypes.Profile_1030, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Package_2007, false);
+		testToManageNode(UMLElementTypes.Profile_Shape, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Package_Shape, false);
 	}
 }

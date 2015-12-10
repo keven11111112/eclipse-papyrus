@@ -17,40 +17,41 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartACN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ArtifactCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ExecutionEnvironmentCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelPackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelPackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeCompositeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.NodeCompositeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
  */
 public class DeploymentReconcilerForCompartment extends ReconcilerForCompartment {
 
+	private static final String ModelPackageableElementCompartmentEditPart_VISUAL_ID = "51";
+	private static final String PackagePackageableElementCompartmentEditPart_VISUAL_ID = "38";
+	private static final String DeviceCompositeCompartmentEditPart_VISUAL_ID = "17";
+	private static final String ExecutionEnvironmentCompositeCompartmentEditPart_VISUAL_ID = "18";
+	private static final String NodeCompositeCompartmentEditPart_VISUAL_ID = "19";
+	private static final String ArtifactCompositeCompartmentEditPart_VISUAL_ID = "26";
+	private static final String ModelPackageableElementCompartmentEditPartCN_VISUAL_ID = "52";
+	private static final String PackagePackageableElementCompartmentEditPartCN_VISUAL_ID = "39";
+	private static final String DeviceCompositeCompartmentEditPartCN_VISUAL_ID = "30";
+	private static final String ExecutionEnvironmentCompositeCompartmentEditPartCN_VISUAL_ID = "31";
+	private static final String NodeCompositeCompartmentEditPartCN_VISUAL_ID = "32";
+	private static final String ArtifactCompositeCompartmentEditPartCN_VISUAL_ID = "33";
+	private static final String ArtifactCompositeCompartmentEditPartACN_VISUAL_ID = "34";
+
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
-			ModelPackageableElementCompartmentEditPart.VISUAL_ID,
-			PackagePackageableElementCompartmentEditPart.VISUAL_ID,
-			DeviceCompositeCompartmentEditPart.VISUAL_ID,
-			ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID,
-			NodeCompositeCompartmentEditPart.VISUAL_ID,
-			ArtifactCompositeCompartmentEditPart.VISUAL_ID,
-			ModelPackageableElementCompartmentEditPartCN.VISUAL_ID,
-			PackagePackageableElementCompartmentEditPartCN.VISUAL_ID,
-			DeviceCompositeCompartmentEditPartCN.VISUAL_ID,
-			ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID,
-			NodeCompositeCompartmentEditPartCN.VISUAL_ID,
-			ArtifactCompositeCompartmentEditPartCN.VISUAL_ID,
-			ArtifactCompositeCompartmentEditPartACN.VISUAL_ID);
+			ModelPackageableElementCompartmentEditPart_VISUAL_ID,
+			PackagePackageableElementCompartmentEditPart_VISUAL_ID,
+			DeviceCompositeCompartmentEditPart_VISUAL_ID,
+			ExecutionEnvironmentCompositeCompartmentEditPart_VISUAL_ID,
+			NodeCompositeCompartmentEditPart_VISUAL_ID,
+			ArtifactCompositeCompartmentEditPart_VISUAL_ID,
+			ModelPackageableElementCompartmentEditPartCN_VISUAL_ID,
+			PackagePackageableElementCompartmentEditPartCN_VISUAL_ID,
+			DeviceCompositeCompartmentEditPartCN_VISUAL_ID,
+			ExecutionEnvironmentCompositeCompartmentEditPartCN_VISUAL_ID,
+			NodeCompositeCompartmentEditPartCN_VISUAL_ID,
+			ArtifactCompositeCompartmentEditPartCN_VISUAL_ID,
+			ArtifactCompositeCompartmentEditPartACN_VISUAL_ID);
 
 	/**
 	 * Gets the compartments visual id.

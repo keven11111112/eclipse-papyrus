@@ -30,7 +30,7 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4019";
+	public static final String VISUAL_ID = "Connector_Edge";
 
 	/**
 	 * @generated
@@ -46,7 +46,8 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -54,7 +55,8 @@ public class ConnectorEditPart extends UMLConnectionNodeEditPart implements ITre
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConnectorAppliedStereotypeEditPart) {
-			((ConnectorAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ConnectorAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		if (childEditPart instanceof ConnectorNameEditPart) {
 			((ConnectorNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());

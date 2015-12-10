@@ -97,38 +97,38 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	@Override
 	public List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_1000SemanticChildren(view);
+				return getPackage_StateMachineDiagram_SemanticChildren(view);
 			case StateMachineEditPart.VISUAL_ID:
-				return getStateMachine_2000SemanticChildren(view);
+				return getStateMachine_Shape_SemanticChildren(view);
 			case StateEditPart.VISUAL_ID:
-				return getState_6000SemanticChildren(view);
+				return getState_Shape_SemanticChildren(view);
 			case RegionCompartmentEditPart.VISUAL_ID:
-				return getRegionRegionCompartment_3002SemanticChildren(view);
+				return getRegion_SubvertexCompartment_SemanticChildren(view);
 			case StateMachineCompartmentEditPart.VISUAL_ID:
-				return getStateMachineStateMachineCompartment_2002SemanticChildren(view);
+				return getStateMachine_RegionCompartment_SemanticChildren(view);
 			case StateCompartmentEditPart.VISUAL_ID:
-				return getStateStateCompartment_6002SemanticChildren(view);
+				return getState_RegionCompartment_SemanticChildren(view);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLNodeDescriptor> getPackage_1000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	* @generated
+	*/
+	public List<UMLNodeDescriptor> getPackage_StateMachineDiagram_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		Package modelElement = (Package)view.getElement();
+		Package modelElement = (Package) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
-			PackageableElement childElement = (PackageableElement)it.next();
+		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
+			PackageableElement childElement = (PackageableElement) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(StateMachineEditPart.VISUAL_ID.equals(visualID)) {
+			if (StateMachineEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -139,20 +139,20 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getStateMachine_2000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	public List<UMLNodeDescriptor> getStateMachine_Shape_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StateMachine modelElement = (StateMachine)view.getElement();
+		StateMachine modelElement = (StateMachine) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
-			Pseudostate childElement = (Pseudostate)it.next();
+		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
+			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
+			if (PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -163,65 +163,65 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getState_6000SemanticChildren(View view) {
-		if(!view.isSetElement()) {
+	public List<UMLNodeDescriptor> getState_Shape_SemanticChildren(View view) {
+		if (!view.isSetElement()) {
 			return Collections.emptyList();
 		}
-		State modelElement = (State)view.getElement();
+		State modelElement = (State) view.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		{
 			Behavior childElement = modelElement.getEntry();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(EntryStateBehaviorEditPart.VISUAL_ID.equals(visualID)) {
+			if (EntryStateBehaviorEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			Behavior childElement = modelElement.getDoActivity();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(DoActivityStateBehaviorStateEditPart.VISUAL_ID.equals(visualID)) {
+			if (DoActivityStateBehaviorStateEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
 		{
 			Behavior childElement = modelElement.getExit();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ExitStateBehaviorEditPart.VISUAL_ID.equals(visualID)) {
+			if (ExitStateBehaviorEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 			}
 		}
-		for(Iterator<?> it = modelElement.getIncomings().iterator(); it.hasNext();) {
-			Transition childElement = (Transition)it.next();
+		for (Iterator<?> it = modelElement.getIncomings().iterator(); it.hasNext();) {
+			Transition childElement = (Transition) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(InternalTransitionEditPart.VISUAL_ID.equals(visualID)) {
+			if (InternalTransitionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
-			Region childElement = (Region)it.next();
+		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(RegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
-			Pseudostate childElement = (Pseudostate)it.next();
+		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
+			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
+			if (PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getConnections().iterator(); it.hasNext();) {
-			ConnectionPointReference childElement = (ConnectionPointReference)it.next();
+		for (Iterator<?> it = modelElement.getConnections().iterator(); it.hasNext();) {
+			ConnectionPointReference childElement = (ConnectionPointReference) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConnectionPointReferenceEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConnectionPointReferenceEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -232,7 +232,7 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getRegionRegionCompartment_3002SemanticChildren(View view) {
+	public List<UMLNodeDescriptor> getRegion_SubvertexCompartment_SemanticChildren(View view) {
 		ICustomDiagramUpdater<UMLNodeDescriptor> customUpdater = new RegionCompartmentDiagramUpdater();
 		return customUpdater.getSemanticChildren(view);
 	}
@@ -240,32 +240,32 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getStateMachineStateMachineCompartment_2002SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+	public List<UMLNodeDescriptor> getStateMachine_RegionCompartment_SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		StateMachine modelElement = (StateMachine)containerView.getElement();
+		StateMachine modelElement = (StateMachine) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
-			Region childElement = (Region)it.next();
+		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(RegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
-			Pseudostate childElement = (Pseudostate)it.next();
+		for (Iterator<?> it = modelElement.getConnectionPoints().iterator(); it.hasNext();) {
+			Pseudostate childElement = (Pseudostate) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
+			if (PseudostateEntryPointEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
+			if (PseudostateExitPointEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -276,28 +276,28 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public List<UMLNodeDescriptor> getStateStateCompartment_6002SemanticChildren(View view) {
-		if(false == view.eContainer() instanceof View) {
+	public List<UMLNodeDescriptor> getState_RegionCompartment_SemanticChildren(View view) {
+		if (false == view.eContainer() instanceof View) {
 			return Collections.emptyList();
 		}
-		View containerView = (View)view.eContainer();
-		if(!containerView.isSetElement()) {
+		View containerView = (View) view.eContainer();
+		if (!containerView.isSetElement()) {
 			return Collections.emptyList();
 		}
-		State modelElement = (State)containerView.getElement();
+		State modelElement = (State) containerView.getElement();
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
-			Region childElement = (Region)it.next();
+		for (Iterator<?> it = modelElement.getRegions().iterator(); it.hasNext();) {
+			Region childElement = (Region) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(RegionEditPart.VISUAL_ID.equals(visualID)) {
+			if (RegionEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
-		for(Iterator<?> it = modelElement.getConnections().iterator(); it.hasNext();) {
-			ConnectionPointReference childElement = (ConnectionPointReference)it.next();
+		for (Iterator<?> it = modelElement.getConnections().iterator(); it.hasNext();) {
+			ConnectionPointReference childElement = (ConnectionPointReference) it.next();
 			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(ConnectionPointReferenceEditPart.VISUAL_ID.equals(visualID)) {
+			if (ConnectionPointReferenceEditPart.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -311,56 +311,56 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	@Override
 	public List<UMLLinkDescriptor> getContainedLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case PackageEditPart.VISUAL_ID:
-				return getPackage_1000ContainedLinks(view);
+				return getPackage_StateMachineDiagram_ContainedLinks(view);
 			case StateMachineEditPart.VISUAL_ID:
-				return getStateMachine_2000ContainedLinks(view);
+				return getStateMachine_Shape_ContainedLinks(view);
 			case RegionEditPart.VISUAL_ID:
-				return getRegion_3000ContainedLinks(view);
+				return getRegion_Shape_ContainedLinks(view);
 			case FinalStateEditPart.VISUAL_ID:
-				return getFinalState_5000ContainedLinks(view);
+				return getFinalState_Shape_ContainedLinks(view);
 			case StateEditPart.VISUAL_ID:
-				return getState_6000ContainedLinks(view);
+				return getState_Shape_ContainedLinks(view);
 			case PseudostateInitialEditPart.VISUAL_ID:
-				return getPseudostate_8000ContainedLinks(view);
+				return getPseudostate_InitialShape_ContainedLinks(view);
 			case PseudostateJoinEditPart.VISUAL_ID:
-				return getPseudostate_9000ContainedLinks(view);
+				return getPseudostate_JoinShape_ContainedLinks(view);
 			case PseudostateForkEditPart.VISUAL_ID:
-				return getPseudostate_10000ContainedLinks(view);
+				return getPseudostate_ForkShape_ContainedLinks(view);
 			case PseudostateChoiceEditPart.VISUAL_ID:
-				return getPseudostate_11000ContainedLinks(view);
+				return getPseudostate_ChoiceShape_ContainedLinks(view);
 			case PseudostateJunctionEditPart.VISUAL_ID:
-				return getPseudostate_12000ContainedLinks(view);
+				return getPseudostate_JunctionShape_ContainedLinks(view);
 			case PseudostateShallowHistoryEditPart.VISUAL_ID:
-				return getPseudostate_13000ContainedLinks(view);
+				return getPseudostate_ShallowHistoryShape_ContainedLinks(view);
 			case PseudostateDeepHistoryEditPart.VISUAL_ID:
-				return getPseudostate_14000ContainedLinks(view);
+				return getPseudostate_DeepHistoryShape_ContainedLinks(view);
 			case PseudostateTerminateEditPart.VISUAL_ID:
-				return getPseudostate_15000ContainedLinks(view);
+				return getPseudostate_TerminateShape_ContainedLinks(view);
 			case PseudostateEntryPointEditPart.VISUAL_ID:
-				return getPseudostate_16000ContainedLinks(view);
+				return getPseudostate_EntryPointShape_ContainedLinks(view);
 			case PseudostateExitPointEditPart.VISUAL_ID:
-				return getPseudostate_17000ContainedLinks(view);
+				return getPseudostate_ExitPointShape_ContainedLinks(view);
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
-				return getConnectionPointReference_18000ContainedLinks(view);
+				return getConnectionPointReference_Shape_ContainedLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_666ContainedLinks(view);
+				return getComment_Shape_ContainedLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_668ContainedLinks(view);
+				return getConstraint_Shape_ContainedLinks(view);
 			case InternalTransitionEditPart.VISUAL_ID:
-				return getTransition_680ContainedLinks(view);
+				return getTransition_InternalTransitionLabel_ContainedLinks(view);
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_690ContainedLinks(view);
+				return getBehavior_EntryBehaviorLabel_ContainedLinks(view);
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-				return getBehavior_691ContainedLinks(view);
+				return getBehavior_DoActivityBehaviorLabel_ContainedLinks(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_692ContainedLinks(view);
+				return getBehavior_ExitBehaviorLabel_ContainedLinks(view);
 			case TransitionEditPart.VISUAL_ID:
-				return getTransition_7000ContainedLinks(view);
+				return getTransition_Edge_ContainedLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
-				return getGeneralization_19000ContainedLinks(view);
+				return getGeneralization_Edge_ContainedLinks(view);
 			}
 		}
 		return Collections.emptyList();
@@ -372,54 +372,54 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	@Override
 	public List<UMLLinkDescriptor> getIncomingLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case StateMachineEditPart.VISUAL_ID:
-				return getStateMachine_2000IncomingLinks(view);
+				return getStateMachine_Shape_IncomingLinks(view);
 			case RegionEditPart.VISUAL_ID:
-				return getRegion_3000IncomingLinks(view);
+				return getRegion_Shape_IncomingLinks(view);
 			case FinalStateEditPart.VISUAL_ID:
-				return getFinalState_5000IncomingLinks(view);
+				return getFinalState_Shape_IncomingLinks(view);
 			case StateEditPart.VISUAL_ID:
-				return getState_6000IncomingLinks(view);
+				return getState_Shape_IncomingLinks(view);
 			case PseudostateInitialEditPart.VISUAL_ID:
-				return getPseudostate_8000IncomingLinks(view);
+				return getPseudostate_InitialShape_IncomingLinks(view);
 			case PseudostateJoinEditPart.VISUAL_ID:
-				return getPseudostate_9000IncomingLinks(view);
+				return getPseudostate_JoinShape_IncomingLinks(view);
 			case PseudostateForkEditPart.VISUAL_ID:
-				return getPseudostate_10000IncomingLinks(view);
+				return getPseudostate_ForkShape_IncomingLinks(view);
 			case PseudostateChoiceEditPart.VISUAL_ID:
-				return getPseudostate_11000IncomingLinks(view);
+				return getPseudostate_ChoiceShape_IncomingLinks(view);
 			case PseudostateJunctionEditPart.VISUAL_ID:
-				return getPseudostate_12000IncomingLinks(view);
+				return getPseudostate_JunctionShape_IncomingLinks(view);
 			case PseudostateShallowHistoryEditPart.VISUAL_ID:
-				return getPseudostate_13000IncomingLinks(view);
+				return getPseudostate_ShallowHistoryShape_IncomingLinks(view);
 			case PseudostateDeepHistoryEditPart.VISUAL_ID:
-				return getPseudostate_14000IncomingLinks(view);
+				return getPseudostate_DeepHistoryShape_IncomingLinks(view);
 			case PseudostateTerminateEditPart.VISUAL_ID:
-				return getPseudostate_15000IncomingLinks(view);
+				return getPseudostate_TerminateShape_IncomingLinks(view);
 			case PseudostateEntryPointEditPart.VISUAL_ID:
-				return getPseudostate_16000IncomingLinks(view);
+				return getPseudostate_EntryPointShape_IncomingLinks(view);
 			case PseudostateExitPointEditPart.VISUAL_ID:
-				return getPseudostate_17000IncomingLinks(view);
+				return getPseudostate_ExitPointShape_IncomingLinks(view);
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
-				return getConnectionPointReference_18000IncomingLinks(view);
+				return getConnectionPointReference_Shape_IncomingLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_666IncomingLinks(view);
+				return getComment_Shape_IncomingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_668IncomingLinks(view);
+				return getConstraint_Shape_IncomingLinks(view);
 			case InternalTransitionEditPart.VISUAL_ID:
-				return getTransition_680IncomingLinks(view);
+				return getTransition_InternalTransitionLabel_IncomingLinks(view);
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_690IncomingLinks(view);
+				return getBehavior_EntryBehaviorLabel_IncomingLinks(view);
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-				return getBehavior_691IncomingLinks(view);
+				return getBehavior_DoActivityBehaviorLabel_IncomingLinks(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_692IncomingLinks(view);
+				return getBehavior_ExitBehaviorLabel_IncomingLinks(view);
 			case TransitionEditPart.VISUAL_ID:
-				return getTransition_7000IncomingLinks(view);
+				return getTransition_Edge_IncomingLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
-				return getGeneralization_19000IncomingLinks(view);
+				return getGeneralization_Edge_IncomingLinks(view);
 			}
 		}
 		return Collections.emptyList();
@@ -431,751 +431,790 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	@Override
 	public List<UMLLinkDescriptor> getOutgoingLinks(View view) {
 		String vid = UMLVisualIDRegistry.getVisualID(view);
-		if(vid != null) {
-			switch(vid) {
+		if (vid != null) {
+			switch (vid) {
 			case StateMachineEditPart.VISUAL_ID:
-				return getStateMachine_2000OutgoingLinks(view);
+				return getStateMachine_Shape_OutgoingLinks(view);
 			case RegionEditPart.VISUAL_ID:
-				return getRegion_3000OutgoingLinks(view);
+				return getRegion_Shape_OutgoingLinks(view);
 			case FinalStateEditPart.VISUAL_ID:
-				return getFinalState_5000OutgoingLinks(view);
+				return getFinalState_Shape_OutgoingLinks(view);
 			case StateEditPart.VISUAL_ID:
-				return getState_6000OutgoingLinks(view);
+				return getState_Shape_OutgoingLinks(view);
 			case PseudostateInitialEditPart.VISUAL_ID:
-				return getPseudostate_8000OutgoingLinks(view);
+				return getPseudostate_InitialShape_OutgoingLinks(view);
 			case PseudostateJoinEditPart.VISUAL_ID:
-				return getPseudostate_9000OutgoingLinks(view);
+				return getPseudostate_JoinShape_OutgoingLinks(view);
 			case PseudostateForkEditPart.VISUAL_ID:
-				return getPseudostate_10000OutgoingLinks(view);
+				return getPseudostate_ForkShape_OutgoingLinks(view);
 			case PseudostateChoiceEditPart.VISUAL_ID:
-				return getPseudostate_11000OutgoingLinks(view);
+				return getPseudostate_ChoiceShape_OutgoingLinks(view);
 			case PseudostateJunctionEditPart.VISUAL_ID:
-				return getPseudostate_12000OutgoingLinks(view);
+				return getPseudostate_JunctionShape_OutgoingLinks(view);
 			case PseudostateShallowHistoryEditPart.VISUAL_ID:
-				return getPseudostate_13000OutgoingLinks(view);
+				return getPseudostate_ShallowHistoryShape_OutgoingLinks(view);
 			case PseudostateDeepHistoryEditPart.VISUAL_ID:
-				return getPseudostate_14000OutgoingLinks(view);
+				return getPseudostate_DeepHistoryShape_OutgoingLinks(view);
 			case PseudostateTerminateEditPart.VISUAL_ID:
-				return getPseudostate_15000OutgoingLinks(view);
+				return getPseudostate_TerminateShape_OutgoingLinks(view);
 			case PseudostateEntryPointEditPart.VISUAL_ID:
-				return getPseudostate_16000OutgoingLinks(view);
+				return getPseudostate_EntryPointShape_OutgoingLinks(view);
 			case PseudostateExitPointEditPart.VISUAL_ID:
-				return getPseudostate_17000OutgoingLinks(view);
+				return getPseudostate_ExitPointShape_OutgoingLinks(view);
 			case ConnectionPointReferenceEditPart.VISUAL_ID:
-				return getConnectionPointReference_18000OutgoingLinks(view);
+				return getConnectionPointReference_Shape_OutgoingLinks(view);
 			case CommentEditPart.VISUAL_ID:
-				return getComment_666OutgoingLinks(view);
+				return getComment_Shape_OutgoingLinks(view);
 			case ConstraintEditPart.VISUAL_ID:
-				return getConstraint_668OutgoingLinks(view);
+				return getConstraint_Shape_OutgoingLinks(view);
 			case InternalTransitionEditPart.VISUAL_ID:
-				return getTransition_680OutgoingLinks(view);
+				return getTransition_InternalTransitionLabel_OutgoingLinks(view);
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_690OutgoingLinks(view);
+				return getBehavior_EntryBehaviorLabel_OutgoingLinks(view);
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-				return getBehavior_691OutgoingLinks(view);
+				return getBehavior_DoActivityBehaviorLabel_OutgoingLinks(view);
 			case ExitStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_692OutgoingLinks(view);
+				return getBehavior_ExitBehaviorLabel_OutgoingLinks(view);
 			case TransitionEditPart.VISUAL_ID:
-				return getTransition_7000OutgoingLinks(view);
+				return getTransition_Edge_OutgoingLinks(view);
 			case GeneralizationEditPart.VISUAL_ID:
-				return getGeneralization_19000OutgoingLinks(view);
+				return getGeneralization_Edge_OutgoingLinks(view);
 			}
 		}
 		return Collections.emptyList();
 	}
 
 	/**
-	 * @generated
-	 */
-	public List<UMLLinkDescriptor> getPackage_1000ContainedLinks(View view) {
+	* @generated
+	*/
+	public List<UMLLinkDescriptor> getPackage_StateMachineDiagram_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getStateMachine_2000ContainedLinks(View view) {
-		StateMachine modelElement = (StateMachine)view.getElement();
+	public List<UMLLinkDescriptor> getStateMachine_Shape_ContainedLinks(View view) {
+		StateMachine modelElement = (StateMachine) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getRegion_3000ContainedLinks(View view) {
-		Region modelElement = (Region)view.getElement();
+	public List<UMLLinkDescriptor> getRegion_Shape_ContainedLinks(View view) {
+		Region modelElement = (Region) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getFinalState_5000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getFinalState_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getState_6000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getState_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_8000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_InitialShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_9000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_JoinShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_10000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_ForkShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_11000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_ChoiceShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_12000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_JunctionShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_13000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_ShallowHistoryShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_14000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_DeepHistoryShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_15000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_TerminateShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_16000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_EntryPointShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_17000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getPseudostate_ExitPointShape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConnectionPointReference_18000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getConnectionPointReference_Shape_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_666ContainedLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
+	public List<UMLLinkDescriptor> getComment_Shape_ContainedLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_668ContainedLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+	public List<UMLLinkDescriptor> getConstraint_Shape_ContainedLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTransition_680ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getTransition_InternalTransitionLabel_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_690ContainedLinks(View view) {
-		Behavior modelElement = (Behavior)view.getElement();
+	public List<UMLLinkDescriptor> getBehavior_EntryBehaviorLabel_ContainedLinks(View view) {
+		Behavior modelElement = (Behavior) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_691ContainedLinks(View view) {
-		Behavior modelElement = (Behavior)view.getElement();
+	public List<UMLLinkDescriptor> getBehavior_DoActivityBehaviorLabel_ContainedLinks(View view) {
+		Behavior modelElement = (Behavior) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_692ContainedLinks(View view) {
-		Behavior modelElement = (Behavior)view.getElement();
+	public List<UMLLinkDescriptor> getBehavior_ExitBehaviorLabel_ContainedLinks(View view) {
+		Behavior modelElement = (Behavior) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTransition_7000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getTransition_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralization_19000ContainedLinks(View view) {
+	public List<UMLLinkDescriptor> getGeneralization_Edge_ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getStateMachine_2000IncomingLinks(View view) {
-		StateMachine modelElement = (StateMachine)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getStateMachine_Shape_IncomingLinks(View view) {
+		StateMachine modelElement = (StateMachine) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Generalization_19000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Generalization_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getRegion_3000IncomingLinks(View view) {
-		Region modelElement = (Region)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getRegion_Shape_IncomingLinks(View view) {
+		Region modelElement = (Region) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getFinalState_5000IncomingLinks(View view) {
-		FinalState modelElement = (FinalState)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getFinalState_Shape_IncomingLinks(View view) {
+		FinalState modelElement = (FinalState) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getState_6000IncomingLinks(View view) {
-		State modelElement = (State)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getState_Shape_IncomingLinks(View view) {
+		State modelElement = (State) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_8000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_InitialShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_9000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_JoinShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_10000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_ForkShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_11000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_ChoiceShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_12000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_JunctionShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_13000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_ShallowHistoryShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_14000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_DeepHistoryShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_15000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_TerminateShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_16000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_EntryPointShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_17000IncomingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getPseudostate_ExitPointShape_IncomingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConnectionPointReference_18000IncomingLinks(View view) {
-		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getConnectionPointReference_Shape_IncomingLinks(View view) {
+		ConnectionPointReference modelElement = (ConnectionPointReference) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_Transition_7000(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingTypeModelFacetLinks_Transition_Edge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_666IncomingLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getComment_Shape_IncomingLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_668IncomingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getConstraint_Shape_IncomingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTransition_680IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getTransition_InternalTransitionLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_690IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getBehavior_EntryBehaviorLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_691IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getBehavior_DoActivityBehaviorLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_692IncomingLinks(View view) {
+	public List<UMLLinkDescriptor> getBehavior_ExitBehaviorLabel_IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTransition_7000IncomingLinks(View view) {
-		Transition modelElement = (Transition)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getTransition_Edge_IncomingLinks(View view) {
+		Transition modelElement = (Transition) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_Context_8500(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralization_19000IncomingLinks(View view) {
-		Generalization modelElement = (Generalization)view.getElement();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(view.eResource().getResourceSet());
+	public List<UMLLinkDescriptor> getGeneralization_Edge_IncomingLinks(View view) {
+		Generalization modelElement = (Generalization) view.getElement();
+		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter
+				.getCrossReferenceAdapter(view.eResource().getResourceSet());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement, crossReferencer));
-		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement, crossReferencer));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement, crossReferencer));
+		result.addAll(
+				getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement, crossReferencer));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getStateMachine_2000OutgoingLinks(View view) {
-		StateMachine modelElement = (StateMachine)view.getElement();
+	public List<UMLLinkDescriptor> getStateMachine_Shape_OutgoingLinks(View view) {
+		StateMachine modelElement = (StateMachine) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getContainedTypeModelFacetLinks_Generalization_19000(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_Generalization_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getRegion_3000OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getRegion_Shape_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getFinalState_5000OutgoingLinks(View view) {
-		FinalState modelElement = (FinalState)view.getElement();
+	public List<UMLLinkDescriptor> getFinalState_Shape_OutgoingLinks(View view) {
+		FinalState modelElement = (FinalState) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getState_6000OutgoingLinks(View view) {
-		State modelElement = (State)view.getElement();
+	public List<UMLLinkDescriptor> getState_Shape_OutgoingLinks(View view) {
+		State modelElement = (State) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_8000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_InitialShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_9000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_JoinShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_10000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_ForkShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_11000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_ChoiceShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_12000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_JunctionShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_13000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_ShallowHistoryShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_14000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_DeepHistoryShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_15000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_TerminateShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_16000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_EntryPointShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getPseudostate_17000OutgoingLinks(View view) {
-		Pseudostate modelElement = (Pseudostate)view.getElement();
+	public List<UMLLinkDescriptor> getPseudostate_ExitPointShape_OutgoingLinks(View view) {
+		Pseudostate modelElement = (Pseudostate) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConnectionPointReference_18000OutgoingLinks(View view) {
-		ConnectionPointReference modelElement = (ConnectionPointReference)view.getElement();
+	public List<UMLLinkDescriptor> getConnectionPointReference_Shape_OutgoingLinks(View view) {
+		ConnectionPointReference modelElement = (ConnectionPointReference) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_Transition_7000(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Transition_Edge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getComment_666OutgoingLinks(View view) {
-		Comment modelElement = (Comment)view.getElement();
+	public List<UMLLinkDescriptor> getComment_Shape_OutgoingLinks(View view) {
+		Comment modelElement = (Comment) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_667(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getConstraint_668OutgoingLinks(View view) {
-		Constraint modelElement = (Constraint)view.getElement();
+	public List<UMLLinkDescriptor> getConstraint_Shape_OutgoingLinks(View view) {
+		Constraint modelElement = (Constraint) view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTransition_680OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getTransition_InternalTransitionLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_690OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getBehavior_EntryBehaviorLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_691OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getBehavior_DoActivityBehaviorLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getBehavior_692OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getBehavior_ExitBehaviorLabel_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getTransition_7000OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getTransition_Edge_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public List<UMLLinkDescriptor> getGeneralization_19000OutgoingLinks(View view) {
+	public List<UMLLinkDescriptor> getGeneralization_Edge_OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Transition_7000(Region container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Transition_Edge(Region container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getTransitions().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Transition) {
+		for (Iterator<?> links = container.getTransitions().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Transition) {
 				continue;
 			}
-			Transition link = (Transition)linkObject;
-			if(!TransitionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Transition link = (Transition) linkObject;
+			if (!TransitionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_Edge,
+					TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1183,75 +1222,118 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_19000(Classifier container) {
+	protected Collection<UMLLinkDescriptor> getContainedTypeModelFacetLinks_Generalization_Edge(Classifier container) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getGeneralizations().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Generalization) {
+		for (Iterator<?> links = container.getGeneralizations().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Generalization) {
 				continue;
 			}
-			Generalization link = (Generalization)linkObject;
-			if(!GeneralizationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Generalization link = (Generalization) linkObject;
+			if (!GeneralizationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Classifier dst = link.getGeneral();
-			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_Edge,
+					GeneralizationEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Transition_7000(Vertex target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Transition_Edge(Vertex target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getTransition_Target() || false == setting.getEObject() instanceof Transition) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getTransition_Target()
+					|| false == setting.getEObject() instanceof Transition) {
 				continue;
 			}
-			Transition link = (Transition)setting.getEObject();
-			if(!TransitionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Transition link = (Transition) setting.getEObject();
+			if (!TransitionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Vertex src = link.getSource();
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Transition_Edge,
+					TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_19000(Classifier target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingTypeModelFacetLinks_Generalization_Edge(Classifier target,
+			CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General() || false == setting.getEObject() instanceof Generalization) {
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getGeneralization_General()
+					|| false == setting.getEObject() instanceof Generalization) {
 				continue;
 			}
-			Generalization link = (Generalization)setting.getEObject();
-			if(!GeneralizationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Generalization link = (Generalization) setting.getEObject();
+			if (!GeneralizationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
-			if(false == link.eContainer() instanceof Classifier) {
+			if (false == link.eContainer() instanceof Classifier) {
 				continue;
 			}
-			Classifier container = (Classifier)link.eContainer();
-			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_19000, GeneralizationEditPart.VISUAL_ID));
+			Classifier container = (Classifier) link.eContainer();
+			result.add(new UMLLinkDescriptor(container, target, link, UMLElementTypes.Generalization_Edge,
+					GeneralizationEditPart.VISUAL_ID));
+
 		}
 		return result;
 	}
 
 	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_667(Element target, CrossReferenceAdapter crossReferencer) {
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
+			Element target, CrossReferenceAdapter crossReferencer) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.CommentAnnotatedElement_667, CommentAnnotatedElementEditPart.VISUAL_ID));
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getComment_AnnotatedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.Comment_AnnotatedElementEdge, CommentAnnotatedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
+			Element target, CrossReferenceAdapter crossReferencer) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target,
+						UMLElementTypes.Constraint_ConstrainedElementEdge,
+						ConstraintConstrainedElementEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	  * @generated
+	  */
+	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ContextEdge(Namespace target,
+			CrossReferenceAdapter crossReferencer) {
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
+		for (EStructuralFeature.Setting setting : settings) {
+			if (setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_Context()) {
+				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.Constraint_ContextEdge,
+						ContextLinkEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -1260,63 +1342,36 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(Element target, CrossReferenceAdapter crossReferencer) {
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_ConstrainedElement()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintConstrainedElement_670, ConstraintConstrainedElementEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getIncomingFeatureModelFacetLinks_Constraint_Context_8500(Namespace target, CrossReferenceAdapter crossReferencer) {
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		Collection<EStructuralFeature.Setting> settings = crossReferencer.getInverseReferences(target);
-		for(EStructuralFeature.Setting setting : settings) {
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getConstraint_Context()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ConstraintContext_8500, ContextLinkEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Transition_7000(Vertex source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingTypeModelFacetLinks_Transition_Edge(Vertex source) {
 		Region container = null;
 		// Find container element for the link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
-			if(element instanceof Region) {
-				container = (Region)element;
+		for (EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if (element instanceof Region) {
+				container = (Region) element;
 			}
 		}
-		if(container == null) {
+		if (container == null) {
 			return Collections.emptyList();
 		}
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> links = container.getTransitions().iterator(); links.hasNext();) {
-			EObject linkObject = (EObject)links.next();
-			if(false == linkObject instanceof Transition) {
+		for (Iterator<?> links = container.getTransitions().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject) links.next();
+			if (false == linkObject instanceof Transition) {
 				continue;
 			}
-			Transition link = (Transition)linkObject;
-			if(!TransitionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
+			Transition link = (Transition) linkObject;
+			if (!TransitionEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			Vertex dst = link.getTarget();
 			Vertex src = link.getSource();
-			if(src != source) {
+			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_7000, TransitionEditPart.VISUAL_ID));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Transition_Edge,
+					TransitionEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1324,11 +1379,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_667(Comment source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElementEdge(
+			Comment source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
-			Element destination = (Element)destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.CommentAnnotatedElement_667, CommentAnnotatedElementEditPart.VISUAL_ID));
+		for (Iterator<?> destinations = source.getAnnotatedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Comment_AnnotatedElementEdge,
+					CommentAnnotatedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1336,11 +1393,13 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_670(Constraint source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElementEdge(
+			Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		for(Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
-			Element destination = (Element)destinations.next();
-			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintConstrainedElement_670, ConstraintConstrainedElementEditPart.VISUAL_ID));
+		for (Iterator<?> destinations = source.getConstrainedElements().iterator(); destinations.hasNext();) {
+			Element destination = (Element) destinations.next();
+			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ConstrainedElementEdge,
+					ConstraintConstrainedElementEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -1348,13 +1407,15 @@ public class UMLDiagramUpdater implements DiagramUpdater {
 	/**
 	 * @generated
 	 */
-	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_Context_8500(Constraint source) {
+	protected Collection<UMLLinkDescriptor> getOutgoingFeatureModelFacetLinks_Constraint_ContextEdge(
+			Constraint source) {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		Namespace destination = source.getContext();
-		if(destination == null) {
+		if (destination == null) {
 			return result;
 		}
-		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ConstraintContext_8500, ContextLinkEditPart.VISUAL_ID));
+		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.Constraint_ContextEdge,
+				ContextLinkEditPart.VISUAL_ID));
 		return result;
 	}
 }

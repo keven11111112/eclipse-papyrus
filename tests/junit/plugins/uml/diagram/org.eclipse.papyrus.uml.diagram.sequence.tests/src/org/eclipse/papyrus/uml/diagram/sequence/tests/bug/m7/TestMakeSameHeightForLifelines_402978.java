@@ -56,9 +56,9 @@ public class TestMakeSameHeightForLifelines_402978 extends AbstractNodeTest {
 	@InvalidTest("Platform-specific failure")
 	@Test
 	public void testLifelinesSameSizeHeight() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(80, 100));
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(80, 100));
 		assertNotNull("lifeline1", lifeline1);
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), new Dimension(80, 200));
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), new Dimension(80, 200));
 		assertNotNull("lifeline2", lifeline2);
 		StructuredSelection selection = new StructuredSelection(new Object[]{ lifeline2, lifeline1 });
 		lifeline1.getViewer().setSelection(selection);
@@ -74,9 +74,9 @@ public class TestMakeSameHeightForLifelines_402978 extends AbstractNodeTest {
 	@InvalidTest("Platform-specific failure")
 	@Test
 	public void testLifelinesSameSizeBoth() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), new Dimension(80, 200));
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), new Dimension(80, 200));
 		assertNotNull("lifeline1", lifeline1);
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(80, 300));
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(80, 300));
 		assertNotNull("lifeline2", lifeline2);
 		StructuredSelection selection = new StructuredSelection(new Object[]{ lifeline2, lifeline1 });
 		lifeline1.getViewer().setSelection(selection);

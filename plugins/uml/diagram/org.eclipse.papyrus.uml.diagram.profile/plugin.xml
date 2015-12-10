@@ -382,8 +382,8 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.profile.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLProfileDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2014,2015,1026,2008,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3010,3028,1007,1027,1024,1012,1028,3025,3027"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014,8500"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Dependency_Shape,Association_Shape,Stereotype_Shape,Class_Shape,Class_MetaclassShape,Comment_Shape,Constraint_PackagedElementShape,Model_Shape,Profile_Shape,Package_Shape,Enumeration_Shape,PrimitiveType_Shape,DataType_Shape,Diagram_ShortcutShape,PrimitiveType_Shape_CN,Operation_DataTypeOperationLabel,EnumerationLiteral_LiteralLabel,Property_DataTypeAttributeLabel,Property_ClassAttributeLabel,Operation_ClassOperationLabel,Stereotype_Shape_CN,Class_Shape_CN,Class_MetaclassShape_CN,Comment_Shape_CN,Model_Shape_CN,Profile_Shape_CN,Package_Shape_CN,Constraint_PackagedElementShape_CN,Enumeration_Shape_CN,DataType_Shape_CN"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Extension_Edge,Association_Edge,ProfileApplication_Edge,Association_BranchEdge,Generalization_Edge,Dependency_Edge,Dependency_BranchEdge,ElementImport_Edge,PackageImport_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
       </viewProvider>
    </extension>
 
@@ -395,71 +395,39 @@
             <method name="getType()" value="PapyrusUMLProfileDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2014,2015,1026,2008,1031,1002,1014,2005,1030,2007,2006,2009,2010,2016,3026,3019,1037,3018,3002,3020,1023,3010,3028,1007,1027,1024,1012,1028,3025,3027"/>
+            <method name="getType()" value="Dependency_Shape,Association_Shape,Stereotype_Shape,Class_Shape,Class_MetaclassShape,Comment_Shape,Constraint_PackagedElementShape,Model_Shape,Profile_Shape,Package_Shape,Enumeration_Shape,PrimitiveType_Shape,DataType_Shape,Diagram_ShortcutShape,PrimitiveType_Shape_CN,Operation_DataTypeOperationLabel,EnumerationLiteral_LiteralLabel,Property_DataTypeAttributeLabel,Property_ClassAttributeLabel,Operation_ClassOperationLabel,Stereotype_Shape_CN,Class_Shape_CN,Class_MetaclassShape_CN,Comment_Shape_CN,Model_Shape_CN,Profile_Shape_CN,Package_Shape_CN,Constraint_PackagedElementShape_CN,Enumeration_Shape_CN,DataType_Shape_CN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014,8500"/>
+            <method name="getType()" value="Extension_Edge,Association_Edge,ProfileApplication_Edge,Association_BranchEdge,Generalization_Edge,Dependency_Edge,Dependency_BranchEdge,ElementImport_Edge,PackageImport_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="1,1034,5029,1084,3,1015,5063,5020,1047,5026,5023,5032,5035,2,5058,1046,5014,5062,1008,1056,1050,1010,1059,5064,5055,5061"/>
+            <method name="getType()" value="Dependency_MultiNameLabel,Stereotype_NameLabel,Class_NameLabel,Class_MetaclassNameLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel,Model_NameLabel,Profile_NameLabel,Package_NameLabel,Enumeration_NameLabel,PrimitiveType_NameLabel,DataType_NameLabel,Diagram_NameLabel,PrimitiveType_NameLabel_CN,Stereotype_NameLabel_CN,Class_NameLabel_CN,Class_MetaclassNameLabel_CN,Comment_BodyLabel_CN,Model_NameLabel_CN,Profile_NameLabel_CN,Package_NameLabel_CN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN,Enumeration_NameLabel_CN,DataType_NameLabel_CN"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
-            <method name="getType()" value="1005,11,1042,1051,1071,1052,1019,1053,1057,1058,1062,1063,1067,1069,1068,1070,7017,7011,7018,7012"/>
+            <method name="getType()" value="Package_PackagedElementCompartment,Package_PackagedElementCompartment_CN,Profile_PackagedElementCompartment,Profile_PackagedElementCompartment_CN,Stereotype_AttributeCompartment,Stereotype_AttributeCompartment_CN,Stereotype_OperationCompartment,Stereotype_OperationCompartment_CN,Model_PackagedElementCompartment,Model_PackagedElementCompartment_CN,Enumeration_LiteralCompartment_CN,Enumeration_LiteralCompartment,DataType_AttributeCompartment,DataType_AttributeCompartment_CN,DataType_OperationCompartment,DataType_OperationCompartment_CN,Class_AttributeCompartment,Class_AttributeCompartment_CN,Class_OperationCompartment,Class_OperationCompartment_CN"/>
          </object>
          <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
    </extension>
-   <extension
-         id="ep-provider"
-         point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-      <editpartProvider
-            class="org.eclipse.papyrus.uml.diagram.profile.custom.providers.CustomUMLEditPartProvider">
-         <Priority
-               name="Highest">
-         </Priority>
-         <object
-               class="org.eclipse.gmf.runtime.notation.Diagram"
-               id="generated-diagram">
-            <method
-                  name="getType()"
-                  value="PapyrusUMLProfileDiagram">
-            </method>
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <editpartProvider class="org.eclipse.papyrus.uml.diagram.profile.custom.providers.CustomUMLEditPartProvider">
+         <Priority name="Highest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="PapyrusUMLProfileDiagram"/>
          </object>
-         <object
-               class="org.eclipse.gmf.runtime.notation.Node"
-               id="generated-nodes">
-            <method
-                  name="getType()"
-                  value="2014,2015,1026,1031,1002,1014,2005,1030,2007,2006,2010,2016,3019,1037,3018,3002,3020,1023,3028,1007,1027,1024,1012,1028,3025,3027">
-            </method>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="Dependency_Shape,Association_Shape,Stereotype_Shape,Class_Shape,Class_MetaclassShape,Comment_Shape,Constraint_PackagedElementShape,Model_Shape,Profile_Shape,Package_Shape,Enumeration_Shape,PrimitiveType_Shape,DataType_Shape,Diagram_ShortcutShape,PrimitiveType_Shape_CN,Operation_DataTypeOperationLabel,EnumerationLiteral_LiteralLabel,Property_DataTypeAttributeLabel,Property_ClassAttributeLabel,Operation_ClassOperationLabel,Stereotype_Shape_CN,Class_Shape_CN,Class_MetaclassShape_CN,Comment_Shape_CN,Model_Shape_CN,Profile_Shape_CN,Package_Shape_CN,Constraint_PackagedElementShape_CN,Enumeration_Shape_CN,DataType_Shape_CN"/>
          </object>
-         <object
-               class="org.eclipse.gmf.runtime.notation.Edge"
-               id="generated-links">
-            <method
-                  name="getType()"
-                  value="1013,4001,1045,4019,4002,4008,4018,1064,1065,1022,4014">
-            </method>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="Extension_Edge,Association_Edge,ProfileApplication_Edge,Association_BranchEdge,Generalization_Edge,Dependency_Edge,Dependency_BranchEdge,ElementImport_Edge,PackageImport_Edge,Comment_AnnotatedElementEdge,Constraint_ConstrainedElementEdge,Constraint_ContextEdge"/>
          </object>
-         <object
-               class="org.eclipse.gmf.runtime.notation.Node"
-               id="generated-labels">
-            <method
-                  name="getType()"
-                  value="1,1034,1084,3,1015,5020,1047,5026,5023,5035,2,1046,5062,1008,1056,1050,1010,1059,5055,5061">
-            </method>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="Dependency_MultiNameLabel,Stereotype_NameLabel,Class_NameLabel,Class_MetaclassNameLabel,Comment_BodyLabel,Constraint_NameLabel,Constraint_BodyLabel,Model_NameLabel,Profile_NameLabel,Package_NameLabel,Enumeration_NameLabel,PrimitiveType_NameLabel,DataType_NameLabel,Diagram_NameLabel,PrimitiveType_NameLabel_CN,Stereotype_NameLabel_CN,Class_NameLabel_CN,Class_MetaclassNameLabel_CN,Comment_BodyLabel_CN,Model_NameLabel_CN,Profile_NameLabel_CN,Package_NameLabel_CN,Constraint_NameLabel_CN,Constraint_BodyLabel_CN,Enumeration_NameLabel_CN,DataType_NameLabel_CN"/>
          </object>
-         <object
-               class="org.eclipse.gmf.runtime.notation.Node"
-               id="generated-compartments">
-            <method
-                  name="getType()"
-                  value="1005,11,1042,1051,1071,1052,1019,1053,1057,1058,1062,1063,1067,1069,1068,1070">
-            </method>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="Package_PackagedElementCompartment,Package_PackagedElementCompartment_CN,Profile_PackagedElementCompartment,Profile_PackagedElementCompartment_CN,Stereotype_AttributeCompartment,Stereotype_AttributeCompartment_CN,Stereotype_OperationCompartment,Stereotype_OperationCompartment_CN,Model_PackagedElementCompartment,Model_PackagedElementCompartment_CN,Enumeration_LiteralCompartment_CN,Enumeration_LiteralCompartment,DataType_AttributeCompartment,DataType_AttributeCompartment_CN,DataType_OperationCompartment,DataType_OperationCompartment_CN,Class_AttributeCompartment,Class_AttributeCompartment_CN,Class_OperationCompartment,Class_OperationCompartment_CN"/>
          </object>
-         <context
-               views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments">
-         </context>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
       </editpartProvider>
    </extension>
    
@@ -790,177 +758,148 @@
       </Priority>
    </editpolicyProvider>
 </extension>
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-		<diagramMappings diagramID="PapyrusUMLProfileDiagram">
-			<mapping type="PapyrusUMLProfileDiagram" humanReadableType="ProfileDiagram"/>
-			
-	<mapping
-		humanReadableType="packaged elements"
-		type="1005">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="11">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="1042">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="1051">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="1071">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="1052">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="1019">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="1053">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="1057">
-	</mapping>
-
-	<mapping
-		humanReadableType="packaged elements"
-		type="1058">
-	</mapping>
-
-	<mapping
-		humanReadableType="literals"
-		type="1062">
-	</mapping>
-
-	<mapping
-		humanReadableType="literals"
-		type="1063">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="1067">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="1069">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="1068">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="1070">
-	</mapping>
-
-			
-	
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6001">
-	</mapping>
-
-	<mapping
-		humanReadableType="Name"
-		type="6002">
-	</mapping>
-
-	<mapping
-		humanReadableType="TargetRole"
-		type="6003">
-	</mapping>
-
-	<mapping
-		humanReadableType="SourceRole"
-		type="6005">
-	</mapping>
-
-	<mapping
-		humanReadableType="SourceMultiplicity"
-		type="6033">
-	</mapping>
-
-	<mapping
-		humanReadableType="TargetMultiplicity"
-		type="6034">
-	</mapping>
-
-
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6007">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6026">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6027">
-	</mapping>
-
-
-	
-
-	
-	<mapping
-		humanReadableType="Alias"
-		type="6020">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6021">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6022">
-	</mapping>
-
-
-	
-
-	
-
-	
-
-		</diagramMappings>
-	</extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="PapyrusUMLProfileDiagram">
+   	<mapping type="PapyrusUMLProfileDiagram" humanReadableType="ProfileDiagram"/>
+			<mapping
+				humanReadableType="packaged elements"
+				type="Package_PackagedElementCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="Package_PackagedElementCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="Profile_PackagedElementCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="Profile_PackagedElementCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="Stereotype_AttributeCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="Stereotype_AttributeCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="Stereotype_OperationCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="Stereotype_OperationCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="Model_PackagedElementCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="packaged elements"
+				type="Model_PackagedElementCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="literals"
+				type="Enumeration_LiteralCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="literals"
+				type="Enumeration_LiteralCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="DataType_AttributeCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="DataType_AttributeCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="DataType_OperationCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="DataType_OperationCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="Class_AttributeCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="Class_AttributeCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="Class_OperationCompartment">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="Class_OperationCompartment_CN">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Association_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="Association_NameLabel">
+			</mapping>
+			<mapping
+				humanReadableType="TargetRole"
+				type="Association_TargetRoleLabel">
+			</mapping>
+			<mapping
+				humanReadableType="SourceRole"
+				type="Association_SourceRoleLabel">
+			</mapping>
+			<mapping
+				humanReadableType="SourceMultiplicity"
+				type="Association_SourceMultiplicityLabel">
+			</mapping>
+			<mapping
+				humanReadableType="TargetMultiplicity"
+				type="Association_TargetMultiplicityLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Generalization_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="Dependency_NameLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Dependency_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Alias"
+				type="ElementImport_AliasLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="ElementImport_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="PackageImport_StereotypeLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="Constraint_KeywordLabel">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="Diagram_NameLabel">
+			</mapping>
+   </diagramMappings>
+</extension>
 	<extension
       point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
    <ParserProvider
@@ -969,13 +908,6 @@
             name="Medium">
       </Priority>
    </ParserProvider>
-</extension>
-<extension
-      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
-   <elementTypeSet
-   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
-         path="model/profilediagram.elementtypesconfigurations">
-   </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.assistant.modelProviders">
@@ -1016,5 +948,14 @@
             diagramType="PapyrusUMLProfileDiagram">
          </visualTypeProvider>
    </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLProfileDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.profile.custom.migration.ProfileReconciler_1_2_0"
+         source="1.1.0"
+         target="1.2.0">
+   </diagramReconciler>
+</extension>
 
 </plugin>

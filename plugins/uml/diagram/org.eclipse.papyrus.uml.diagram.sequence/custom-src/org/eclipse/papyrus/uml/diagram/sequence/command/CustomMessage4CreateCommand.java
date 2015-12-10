@@ -70,7 +70,7 @@ public class CustomMessage4CreateCommand extends Message4CreateCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4006(getContainer(), getSource(), getTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_CreateEdge(getContainer(), getSource(), getTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canExist(MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget());

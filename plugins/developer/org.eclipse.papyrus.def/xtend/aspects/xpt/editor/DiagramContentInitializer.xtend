@@ -1,9 +1,10 @@
 package aspects.xpt.editor
 
+import aspects.xpt.Common
 import com.google.inject.Inject
 import com.google.inject.Singleton
+import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import xpt.Common
 
 @Singleton class DiagramContentInitializer extends xpt.editor.DiagramContentInitializer {
 	@Inject extension Common;
@@ -23,5 +24,7 @@ import xpt.Common
 			return null;
 		}
 	'''
+
+	override def createChildrenMethodName(GenContainerBase it) '''create«it.stringUniqueIdentifier»_Children'''
 
 }

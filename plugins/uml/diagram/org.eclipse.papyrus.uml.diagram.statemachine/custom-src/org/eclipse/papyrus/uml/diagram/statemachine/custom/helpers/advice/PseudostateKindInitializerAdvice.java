@@ -55,34 +55,34 @@ public class PseudostateKindInitializerAdvice extends AbstractEditHelperAdvice {
 
 	protected PseudostateKind getPseudostateKindForType(IElementType type) {
 		List<IElementType> superTypes = Arrays.asList(type.getAllSuperTypes());
-		if (UMLElementTypes.Pseudostate_8000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_8000)) {
+		if (UMLElementTypes.Pseudostate_InitialShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_InitialShape)) {
 			return PseudostateKind.INITIAL_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_9000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_9000)) {
+		if (UMLElementTypes.Pseudostate_JoinShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_JoinShape)) {
 			return PseudostateKind.JOIN_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_10000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_10000)) {
+		if (UMLElementTypes.Pseudostate_ForkShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_ForkShape)) {
 			return PseudostateKind.FORK_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_11000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_11000)) {
+		if (UMLElementTypes.Pseudostate_ChoiceShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_ChoiceShape)) {
 			return PseudostateKind.CHOICE_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_12000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_12000)) {
+		if (UMLElementTypes.Pseudostate_JunctionShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_JunctionShape)) {
 			return PseudostateKind.JUNCTION_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_13000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_13000)) {
+		if (UMLElementTypes.Pseudostate_ShallowHistoryShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_ShallowHistoryShape)) {
 			return PseudostateKind.SHALLOW_HISTORY_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_14000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_14000)) {
+		if (UMLElementTypes.Pseudostate_DeepHistoryShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_DeepHistoryShape)) {
 			return PseudostateKind.DEEP_HISTORY_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_15000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_15000)) {
+		if (UMLElementTypes.Pseudostate_TerminateShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_TerminateShape)) {
 			return PseudostateKind.TERMINATE_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_16000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_16000)) {
+		if (UMLElementTypes.Pseudostate_EntryPointShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_EntryPointShape)) {
 			return PseudostateKind.ENTRY_POINT_LITERAL;
 		}
-		if (UMLElementTypes.Pseudostate_17000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_17000)) {
+		if (UMLElementTypes.Pseudostate_ExitPointShape.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_ExitPointShape)) {
 			return PseudostateKind.EXIT_POINT_LITERAL;
 		}
 		return null;

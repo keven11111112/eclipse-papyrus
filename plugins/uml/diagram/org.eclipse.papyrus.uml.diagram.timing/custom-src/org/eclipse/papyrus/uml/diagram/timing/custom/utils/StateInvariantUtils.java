@@ -102,7 +102,7 @@ public final class StateInvariantUtils {
 
 		// create the View for the new state invariant
 		final UMLViewProvider umlViewProvider = new UMLViewProvider();
-		final Node stateInvariantNode = umlViewProvider.createStateInvariant_11(newStateInvariant, timelineCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+		final Node stateInvariantNode = umlViewProvider.createStateInvariant_FullShape(newStateInvariant, timelineCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 		return stateInvariantNode;
 	}
 
@@ -131,7 +131,7 @@ public final class StateInvariantUtils {
 
 		// create the View for the new state invariant
 		final UMLViewProvider umlViewProvider = new UMLViewProvider();
-		final Node stateInvariantNode = umlViewProvider.createStateInvariant_28(newStateInvariant, lifelineCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
+		final Node stateInvariantNode = umlViewProvider.createStateInvariant_CompactShape(newStateInvariant, lifelineCompartmentView, indexInCompartment, true, PreferencesHint.USE_DEFAULTS);
 		return stateInvariantNode;
 	}
 

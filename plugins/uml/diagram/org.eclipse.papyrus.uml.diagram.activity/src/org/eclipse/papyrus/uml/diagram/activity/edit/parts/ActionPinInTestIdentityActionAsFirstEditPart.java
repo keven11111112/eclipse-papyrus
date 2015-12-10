@@ -44,7 +44,7 @@ public class ActionPinInTestIdentityActionAsFirstEditPart extends AbstractPinEdi
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3160";
+	public static final String VISUAL_ID = "ActionInputPin_TestIdentityActionFirstShape";
 
 	/**
 	 * @generated
@@ -71,7 +71,9 @@ public class ActionPinInTestIdentityActionAsFirstEditPart extends AbstractPinEdi
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -146,6 +148,7 @@ public class ActionPinInTestIdentityActionAsFirstEditPart extends AbstractPinEdi
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -208,6 +211,7 @@ public class ActionPinInTestIdentityActionAsFirstEditPart extends AbstractPinEdi
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -266,6 +270,7 @@ public class ActionPinInTestIdentityActionAsFirstEditPart extends AbstractPinEdi
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActionPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(ActionPinInTestIdentityActionAsFirstLabelEditPart.VISUAL_ID));
 	}
 }

@@ -86,7 +86,7 @@ public class AssociationDiamonViewCreateCommand extends AbstractCustomCommand {
 		// ((IHintedType) UMLElementTypes.Dependency_2014)
 		// .getSemanticHint(), -1, true, preferenceHint);
 		UMLViewProvider viewProvider = new UMLViewProvider();
-		setNode(viewProvider.createAssociation_2015(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint));
+		setNode(viewProvider.createAssociation_Shape(((EObject) semanticApdater.getAdapter(EObject.class)), this.containerView, -1, true, preferenceHint));
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		notationLocation.setX(location.x);

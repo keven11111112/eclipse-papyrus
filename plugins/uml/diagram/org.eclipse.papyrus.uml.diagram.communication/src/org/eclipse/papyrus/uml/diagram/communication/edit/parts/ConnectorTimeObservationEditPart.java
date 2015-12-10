@@ -27,7 +27,7 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "8013";
+	public static final String VISUAL_ID = "TimeObservation_EventEdge";
 
 	/**
 	 * @generated
@@ -62,6 +62,6 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure)getFigure();
+		return (SimpleDashedEdgeFigure) getFigure();
 	}
 }

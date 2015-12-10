@@ -35,7 +35,7 @@ public class CompactLifelineCompartmentItemSemanticEditPolicyCN extends UMLBaseI
 	 * @generated
 	 */
 	public CompactLifelineCompartmentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Lifeline_20);
+		super(UMLElementTypes.Lifeline_CompactShape);
 	}
 
 	/**
@@ -49,47 +49,47 @@ public class CompactLifelineCompartmentItemSemanticEditPolicyCN extends UMLBaseI
 		}
 
 
-		if (UMLElementTypes.StateInvariant_28 == requestElementType) {
+		if (UMLElementTypes.StateInvariant_CompactShape == requestElementType) {
 
 			return getGEFWrapper(new CompactStateInvariantCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.OccurrenceSpecification_12 == requestElementType) {
+		if (UMLElementTypes.OccurrenceSpecification_Shape == requestElementType) {
 
 			return getGEFWrapper(new OccurrenceSpecificationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.MessageOccurrenceSpecification_13 == requestElementType) {
+		if (UMLElementTypes.MessageOccurrenceSpecification_Shape == requestElementType) {
 
 			return getGEFWrapper(new MessageOccurrenceSpecificationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.DestructionOccurrenceSpecification_27 == requestElementType) {
+		if (UMLElementTypes.DestructionOccurrenceSpecification_Shape == requestElementType) {
 
 			return getGEFWrapper(new DestructionOccurrenceSpecificationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.DurationConstraint_18 == requestElementType) {
+		if (UMLElementTypes.DurationConstraint_Shape == requestElementType) {
 
 			return getGEFWrapper(new DurationConstraintCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.DurationObservation_17 == requestElementType) {
+		if (UMLElementTypes.DurationObservation_Shape == requestElementType) {
 
 			return getGEFWrapper(new DurationObservationCreateCommandCN(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.TimeConstraint_15 == requestElementType) {
+		if (UMLElementTypes.TimeConstraint_Shape == requestElementType) {
 
 			return getGEFWrapper(new TimeConstraintCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.TimeObservation_16 == requestElementType) {
+		if (UMLElementTypes.TimeObservation_Shape == requestElementType) {
 
 			return getGEFWrapper(new TimeObservationCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
-		if (UMLElementTypes.GeneralOrdering_67 == requestElementType) {
+		if (UMLElementTypes.GeneralOrdering_Shape == requestElementType) {
 
 			return getGEFWrapper(new GeneralOrderingCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 

@@ -59,15 +59,15 @@ public class CustomCompactLifelineCompartmentItemSemanticEditPolicyCN extends Co
 	@Override
 	protected Command getCreateCommand(final CreateElementRequest req) {
 		final IElementType requestElementType = req.getElementType();
-		if (requestElementType == UMLElementTypes.TimeObservation_16) {
+		if (requestElementType == UMLElementTypes.TimeObservation_Shape) {
 			return getGEFWrapper(new CustomTimeObservationCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.TimeConstraint_15) {
+		} else if (requestElementType == UMLElementTypes.TimeConstraint_Shape) {
 			return getGEFWrapper(new CustomTimeConstraintCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.DurationObservation_17) {
+		} else if (requestElementType == UMLElementTypes.DurationObservation_Shape) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.DurationConstraint_18) {
+		} else if (requestElementType == UMLElementTypes.DurationConstraint_Shape) {
 			return getGEFWrapper(new CustomDurationConstraintCreateCommand(req));
-		} else if (requestElementType == UMLElementTypes.GeneralOrdering_67) {
+		} else if (requestElementType == UMLElementTypes.GeneralOrdering_Shape) {
 			return getGEFWrapper(new CustomGeneralOrderingCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

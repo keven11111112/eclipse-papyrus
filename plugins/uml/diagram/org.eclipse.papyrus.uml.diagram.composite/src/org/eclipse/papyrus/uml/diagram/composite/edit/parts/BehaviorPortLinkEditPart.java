@@ -30,7 +30,7 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4022";
+	public static final String VISUAL_ID = "Port_BehaviorEdge";
 
 	/**
 	 * @generated
@@ -66,6 +66,6 @@ public class BehaviorPortLinkEditPart extends ConnectionEditPart implements ITre
 	 * @generated
 	 */
 	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx)getFigure();
+		return (PolylineConnectionEx) getFigure();
 	}
 }

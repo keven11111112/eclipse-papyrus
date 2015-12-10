@@ -115,7 +115,7 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends C
 				// ICommandProxy commandProxy = (ICommandProxy)createCommand;
 				// CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
 				//
-				// IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
+				// IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_Shape;
 				// if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
 				// //fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
 				// //to relocate both its bounds and combined fragment bounds when operand is added to combined fragment
@@ -137,7 +137,7 @@ public class CustomCombinedFragmentCombinedFragmentCompartmentEditPart extends C
 					compositeCommand.add(command);
 				}
 				for (ViewDescriptor viewDescriptor : request.getViewDescriptors()) {
-					IHintedType type = (IHintedType) UMLElementTypes.InteractionOperand_3005;
+					IHintedType type = (IHintedType) UMLElementTypes.InteractionOperand_Shape;
 					if (type.getSemanticHint().equals(viewDescriptor.getSemanticHint())) {
 						// fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
 						// to relocate both its bounds and combined fragment bounds when operand is added to combined fragment

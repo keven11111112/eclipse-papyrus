@@ -82,11 +82,11 @@ public class ElementInitializers {
 	}
 
 	/**
-	 * @generated
-	 */
-	public void init_Activity_2001(Activity instance) {
+	* @generated
+	*/
+	public void init_Activity_Shape(Activity instance) {
 		try {
-			Object value_0 = name_Activity_2001(instance);
+			Object value_0 = name_Activity_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -98,9 +98,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Parameter_3001(Parameter instance) {
+	public void init_Parameter_ParameterLabel(Parameter instance) {
 		try {
-			Object value_0 = name_Parameter_3001(instance);
+			Object value_0 = name_Parameter_ParameterLabel(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -112,9 +112,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3002(Constraint instance) {
+	public void init_Constraint_PreconditionLabel(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3002(instance);
+			Object value_0 = name_Constraint_PreconditionLabel(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -126,9 +126,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3003(Constraint instance) {
+	public void init_Constraint_PostconditionLabel(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3003(instance);
+			Object value_0 = name_Constraint_PostconditionLabel(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -140,9 +140,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InitialNode_3004(InitialNode instance) {
+	public void init_InitialNode_Shape(InitialNode instance) {
 		try {
-			Object value_0 = name_InitialNode_3004(instance);
+			Object value_0 = name_InitialNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -154,9 +154,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActivityFinalNode_3005(ActivityFinalNode instance) {
+	public void init_ActivityFinalNode_Shape(ActivityFinalNode instance) {
 		try {
-			Object value_0 = name_ActivityFinalNode_3005(instance);
+			Object value_0 = name_ActivityFinalNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -168,9 +168,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_FlowFinalNode_3006(FlowFinalNode instance) {
+	public void init_FlowFinalNode_Shape(FlowFinalNode instance) {
 		try {
-			Object value_0 = name_FlowFinalNode_3006(instance);
+			Object value_0 = name_FlowFinalNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -182,9 +182,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OpaqueAction_3007(OpaqueAction instance) {
+	public void init_OpaqueAction_Shape(OpaqueAction instance) {
 		try {
-			Object value_0 = name_OpaqueAction_3007(instance);
+			Object value_0 = name_OpaqueAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -196,9 +196,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3015(ValuePin instance) {
+	public void init_ValuePin_OpaqueActionInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3015(instance);
+			Object value_0 = name_ValuePin_OpaqueActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -210,9 +210,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3016(ActionInputPin instance) {
+	public void init_ActionInputPin_OpaqueActionInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3016(instance);
+			Object value_0 = name_ActionInputPin_OpaqueActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -224,9 +224,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3013(InputPin instance) {
+	public void init_InputPin_OpaqueActionInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3013(instance);
+			Object value_0 = name_InputPin_OpaqueActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -238,9 +238,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3014(OutputPin instance) {
+	public void init_OutputPin_OpaqueActionOutputShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3014(instance);
+			Object value_0 = name_OutputPin_OpaqueActionOutputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -252,9 +252,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_CallBehaviorAction_3008(CallBehaviorAction instance) {
+	public void init_CallBehaviorAction_Shape(CallBehaviorAction instance) {
 		try {
-			Object value_0 = name_CallBehaviorAction_3008(instance);
+			Object value_0 = name_CallBehaviorAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -266,9 +266,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3017(ValuePin instance) {
+	public void init_ValuePin_CallBehaviorActionArgumentShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3017(instance);
+			Object value_0 = name_ValuePin_CallBehaviorActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -280,9 +280,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3018(ActionInputPin instance) {
+	public void init_ActionInputPin_CallBehaviorActionArgumentShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3018(instance);
+			Object value_0 = name_ActionInputPin_CallBehaviorActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -294,9 +294,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3019(InputPin instance) {
+	public void init_InputPin_CallBehaviorActionArgumentShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3019(instance);
+			Object value_0 = name_InputPin_CallBehaviorActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -308,9 +308,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3020(OutputPin instance) {
+	public void init_OutputPin_CallBehaviorActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3020(instance);
+			Object value_0 = name_OutputPin_CallBehaviorActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -322,9 +322,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_CallOperationAction_3010(CallOperationAction instance) {
+	public void init_CallOperationAction_Shape(CallOperationAction instance) {
 		try {
-			Object value_0 = name_CallOperationAction_3010(instance);
+			Object value_0 = name_CallOperationAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -336,9 +336,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3021(ActionInputPin instance) {
+	public void init_ActionInputPin_CallOperationActionArgumentShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3021(instance);
+			Object value_0 = name_ActionInputPin_CallOperationActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -350,9 +350,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3022(ValuePin instance) {
+	public void init_ValuePin_CallOperationActionArgumentShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3022(instance);
+			Object value_0 = name_ValuePin_CallOperationActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -364,9 +364,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3023(InputPin instance) {
+	public void init_InputPin_CallOperationActionArgumentShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3023(instance);
+			Object value_0 = name_InputPin_CallOperationActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -378,9 +378,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3024(OutputPin instance) {
+	public void init_OutputPin_CallOperationActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3024(instance);
+			Object value_0 = name_OutputPin_CallOperationActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -392,9 +392,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3025(ValuePin instance) {
+	public void init_ValuePin_CallOperationActionTargetShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3025(instance);
+			Object value_0 = name_ValuePin_CallOperationActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -406,9 +406,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3026(ActionInputPin instance) {
+	public void init_ActionInputPin_CallOperationActionTargetShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3026(instance);
+			Object value_0 = name_ActionInputPin_CallOperationActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -420,9 +420,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3027(InputPin instance) {
+	public void init_InputPin_CallOperationActionTargetShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3027(instance);
+			Object value_0 = name_InputPin_CallOperationActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -434,15 +434,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_DurationConstraint_3034(DurationConstraint instance) {
+	public void init_DurationConstraint_LocalPreconditionShape(DurationConstraint instance) {
 		try {
-			Object value_0 = name_DurationConstraint_3034(instance);
+			Object value_0 = name_DurationConstraint_LocalPreconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			DurationInterval newInstance_1_0 = UMLFactory.eINSTANCE.createDurationInterval();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_DurationConstraint_3034(newInstance_1_0);
+			Object value_1_0_0 = name_specification_DurationConstraint_LocalPreconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -454,15 +454,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_DurationConstraint_3035(DurationConstraint instance) {
+	public void init_DurationConstraint_LocalPostconditionShape(DurationConstraint instance) {
 		try {
-			Object value_0 = name_DurationConstraint_3035(instance);
+			Object value_0 = name_DurationConstraint_LocalPostconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			DurationInterval newInstance_1_0 = UMLFactory.eINSTANCE.createDurationInterval();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_DurationConstraint_3035(newInstance_1_0);
+			Object value_1_0_0 = name_specification_DurationConstraint_LocalPostconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -474,15 +474,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_TimeConstraint_3036(TimeConstraint instance) {
+	public void init_TimeConstraint_LocalPreconditionShape(TimeConstraint instance) {
 		try {
-			Object value_0 = name_TimeConstraint_3036(instance);
+			Object value_0 = name_TimeConstraint_LocalPreconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			TimeInterval newInstance_1_0 = UMLFactory.eINSTANCE.createTimeInterval();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_TimeConstraint_3036(newInstance_1_0);
+			Object value_1_0_0 = name_specification_TimeConstraint_LocalPreconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -494,15 +494,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_TimeConstraint_3037(TimeConstraint instance) {
+	public void init_TimeConstraint_LocalPostconditionShape(TimeConstraint instance) {
 		try {
-			Object value_0 = name_TimeConstraint_3037(instance);
+			Object value_0 = name_TimeConstraint_LocalPostconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			TimeInterval newInstance_1_0 = UMLFactory.eINSTANCE.createTimeInterval();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_TimeConstraint_3037(newInstance_1_0);
+			Object value_1_0_0 = name_specification_TimeConstraint_LocalPostconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -514,15 +514,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_IntervalConstraint_3032(IntervalConstraint instance) {
+	public void init_IntervalConstraint_LocalPreconditionShape(IntervalConstraint instance) {
 		try {
-			Object value_0 = name_IntervalConstraint_3032(instance);
+			Object value_0 = name_IntervalConstraint_LocalPreconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			Interval newInstance_1_0 = UMLFactory.eINSTANCE.createInterval();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_IntervalConstraint_3032(newInstance_1_0);
+			Object value_1_0_0 = name_specification_IntervalConstraint_LocalPreconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -534,15 +534,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_IntervalConstraint_3033(IntervalConstraint instance) {
+	public void init_IntervalConstraint_LocalPostconditionShape(IntervalConstraint instance) {
 		try {
-			Object value_0 = name_IntervalConstraint_3033(instance);
+			Object value_0 = name_IntervalConstraint_LocalPostconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			Interval newInstance_1_0 = UMLFactory.eINSTANCE.createInterval();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_IntervalConstraint_3033(newInstance_1_0);
+			Object value_1_0_0 = name_specification_IntervalConstraint_LocalPostconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -554,15 +554,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3011(Constraint instance) {
+	public void init_Constraint_LocalPreconditionShape(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3011(instance);
+			Object value_0 = name_Constraint_LocalPreconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			OpaqueExpression newInstance_1_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_Constraint_3011(newInstance_1_0);
+			Object value_1_0_0 = name_specification_Constraint_LocalPreconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -574,15 +574,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3012(Constraint instance) {
+	public void init_Constraint_LocalPostconditionShape(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3012(instance);
+			Object value_0 = name_Constraint_LocalPostconditionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 			OpaqueExpression newInstance_1_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
 			instance.setSpecification(newInstance_1_0);
-			Object value_1_0_0 = name_specification_Constraint_3012(newInstance_1_0);
+			Object value_1_0_0 = name_specification_Constraint_LocalPostconditionShape(newInstance_1_0);
 			if (value_1_0_0 != null) {
 				newInstance_1_0.setName((String) value_1_0_0);
 			}
@@ -594,9 +594,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_DecisionNode_3038(DecisionNode instance) {
+	public void init_DecisionNode_Shape(DecisionNode instance) {
 		try {
-			Object value_0 = name_DecisionNode_3038(instance);
+			Object value_0 = name_DecisionNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -608,9 +608,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_MergeNode_3039(MergeNode instance) {
+	public void init_MergeNode_Shape(MergeNode instance) {
 		try {
-			Object value_0 = name_MergeNode_3039(instance);
+			Object value_0 = name_MergeNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -622,9 +622,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ForkNode_3040(ForkNode instance) {
+	public void init_ForkNode_Shape(ForkNode instance) {
 		try {
-			Object value_0 = name_ForkNode_3040(instance);
+			Object value_0 = name_ForkNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -636,9 +636,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_JoinNode_3041(JoinNode instance) {
+	public void init_JoinNode_Shape(JoinNode instance) {
 		try {
-			Object value_0 = name_JoinNode_3041(instance);
+			Object value_0 = name_JoinNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -650,9 +650,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_DataStoreNode_3078(DataStoreNode instance) {
+	public void init_DataStoreNode_Shape(DataStoreNode instance) {
 		try {
-			Object value_0 = name_DataStoreNode_3078(instance);
+			Object value_0 = name_DataStoreNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -664,9 +664,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_SendObjectAction_3042(SendObjectAction instance) {
+	public void init_SendObjectAction_Shape(SendObjectAction instance) {
 		try {
-			Object value_0 = name_SendObjectAction_3042(instance);
+			Object value_0 = name_SendObjectAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -678,9 +678,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3046(ValuePin instance) {
+	public void init_ValuePin_SendObjectActionRequestShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3046(instance);
+			Object value_0 = name_ValuePin_SendObjectActionRequestShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -692,9 +692,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3047(ActionInputPin instance) {
+	public void init_ActionInputPin_SendObjectActionRequestShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3047(instance);
+			Object value_0 = name_ActionInputPin_SendObjectActionRequestShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -706,9 +706,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3048(InputPin instance) {
+	public void init_InputPin_SendObjectActionRequestShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3048(instance);
+			Object value_0 = name_InputPin_SendObjectActionRequestShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -720,9 +720,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3049(ValuePin instance) {
+	public void init_ValuePin_SendObjectActionTargetShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3049(instance);
+			Object value_0 = name_ValuePin_SendObjectActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -734,9 +734,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3050(ActionInputPin instance) {
+	public void init_ActionInputPin_SendObjectActionTargetShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3050(instance);
+			Object value_0 = name_ActionInputPin_SendObjectActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -748,9 +748,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3051(InputPin instance) {
+	public void init_InputPin_SendObjectActionTargetShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3051(instance);
+			Object value_0 = name_InputPin_SendObjectActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -762,9 +762,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_SendSignalAction_3052(SendSignalAction instance) {
+	public void init_SendSignalAction_Shape(SendSignalAction instance) {
 		try {
-			Object value_0 = name_SendSignalAction_3052(instance);
+			Object value_0 = name_SendSignalAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -776,9 +776,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3053(ActionInputPin instance) {
+	public void init_ActionInputPin_SendSignalActionArgumentShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3053(instance);
+			Object value_0 = name_ActionInputPin_SendSignalActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -790,9 +790,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3054(ValuePin instance) {
+	public void init_ValuePin_SendSignalActionArgumentShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3054(instance);
+			Object value_0 = name_ValuePin_SendSignalActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -804,9 +804,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3055(InputPin instance) {
+	public void init_InputPin_SendSignalActionArgumentShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3055(instance);
+			Object value_0 = name_InputPin_SendSignalActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -818,9 +818,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3060(ValuePin instance) {
+	public void init_ValuePin_SendSignalActionTargetShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3060(instance);
+			Object value_0 = name_ValuePin_SendSignalActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -832,9 +832,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3061(ActionInputPin instance) {
+	public void init_ActionInputPin_SendSignalActionTargetShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3061(instance);
+			Object value_0 = name_ActionInputPin_SendSignalActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -846,9 +846,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3062(InputPin instance) {
+	public void init_InputPin_SendSignalActionTargetShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3062(instance);
+			Object value_0 = name_InputPin_SendSignalActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -860,13 +860,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActivityParameterNode_3059(ActivityParameterNode instance) {
+	public void init_ActivityParameterNode_Shape(ActivityParameterNode instance) {
 		try {
-			Object value_0 = name_ActivityParameterNode_3059(instance);
+			Object value_0 = name_ActivityParameterNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
-			Object value_1 = isControlType_ActivityParameterNode_3059(instance);
+			Object value_1 = isControlType_ActivityParameterNode_Shape(instance);
 			if (value_1 != null) {
 				instance.setIsControlType(((Boolean) value_1).booleanValue());
 			}
@@ -878,9 +878,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_AcceptEventAction_3063(AcceptEventAction instance) {
+	public void init_AcceptEventAction_Shape(AcceptEventAction instance) {
 		try {
-			Object value_0 = name_AcceptEventAction_3063(instance);
+			Object value_0 = name_AcceptEventAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -892,9 +892,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3064(OutputPin instance) {
+	public void init_OutputPin_AcceptEventActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3064(instance);
+			Object value_0 = name_OutputPin_AcceptEventActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -906,9 +906,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValueSpecificationAction_3076(ValueSpecificationAction instance) {
+	public void init_ValueSpecificationAction_Shape(ValueSpecificationAction instance) {
 		try {
-			Object value_0 = name_ValueSpecificationAction_3076(instance);
+			Object value_0 = name_ValueSpecificationAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -920,9 +920,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3077(OutputPin instance) {
+	public void init_OutputPin_ValueSpecificationActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3077(instance);
+			Object value_0 = name_OutputPin_ValueSpecificationActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -934,9 +934,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ConditionalNode_3069(ConditionalNode instance) {
+	public void init_ConditionalNode_Shape(ConditionalNode instance) {
 		try {
-			Object value_0 = name_ConditionalNode_3069(instance);
+			Object value_0 = name_ConditionalNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -948,9 +948,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ExpansionRegion_3070(ExpansionRegion instance) {
+	public void init_ExpansionRegion_Shape(ExpansionRegion instance) {
 		try {
-			Object value_0 = name_ExpansionRegion_3070(instance);
+			Object value_0 = name_ExpansionRegion_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -962,9 +962,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ExpansionNode_3074(ExpansionNode instance) {
+	public void init_ExpansionNode_InputShape(ExpansionNode instance) {
 		try {
-			Object value_0 = name_ExpansionNode_3074(instance);
+			Object value_0 = name_ExpansionNode_InputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -976,9 +976,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ExpansionNode_3075(ExpansionNode instance) {
+	public void init_ExpansionNode_OutputShape(ExpansionNode instance) {
 		try {
-			Object value_0 = name_ExpansionNode_3075(instance);
+			Object value_0 = name_ExpansionNode_OutputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -990,9 +990,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_LoopNode_3071(LoopNode instance) {
+	public void init_LoopNode_Shape(LoopNode instance) {
 		try {
-			Object value_0 = name_LoopNode_3071(instance);
+			Object value_0 = name_LoopNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1004,9 +1004,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3109(OutputPin instance) {
+	public void init_InputPin_LoopNodeVariableInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3109(instance);
+			Object value_0 = name_InputPin_LoopNodeVariableInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1018,9 +1018,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3110(OutputPin instance) {
+	public void init_ValuePin_LoopNodeVariableInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_OutputPin_3110(instance);
+			Object value_0 = name_ValuePin_LoopNodeVariableInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1032,9 +1032,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3111(OutputPin instance) {
+	public void init_ActionInputPin_LoopNodeVariableInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3111(instance);
+			Object value_0 = name_ActionInputPin_LoopNodeVariableInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1046,9 +1046,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_SequenceNode_3073(SequenceNode instance) {
+	public void init_OutputPin_LoopNodeBodyOutputShape(OutputPin instance) {
 		try {
-			Object value_0 = name_SequenceNode_3073(instance);
+			Object value_0 = name_OutputPin_LoopNodeBodyOutputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1060,9 +1060,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_StructuredActivityNode_3065(StructuredActivityNode instance) {
+	public void init_OutputPin_LoopNodeVariableShape(OutputPin instance) {
 		try {
-			Object value_0 = name_StructuredActivityNode_3065(instance);
+			Object value_0 = name_OutputPin_LoopNodeVariableShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1074,9 +1074,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3188(InputPin instance) {
+	public void init_OutputPin_LoopNodeResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3188(instance);
+			Object value_0 = name_OutputPin_LoopNodeResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1088,9 +1088,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3189(ValuePin instance) {
+	public void init_SequenceNode_Shape(SequenceNode instance) {
 		try {
-			Object value_0 = name_ValuePin_3189(instance);
+			Object value_0 = name_SequenceNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1102,9 +1102,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3190(ActionInputPin instance) {
+	public void init_StructuredActivityNode_Shape(StructuredActivityNode instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3190(instance);
+			Object value_0 = name_StructuredActivityNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1116,9 +1116,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3191(OutputPin instance) {
+	public void init_InputPin_StructuredActivityNodeInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3191(instance);
+			Object value_0 = name_InputPin_StructuredActivityNodeInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1130,9 +1130,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3105(InputPin instance) {
+	public void init_ValuePin_StructuredActivityNodeInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_InputPin_3105(instance);
+			Object value_0 = name_ValuePin_StructuredActivityNodeInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1144,9 +1144,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3192(ValuePin instance) {
+	public void init_ActionInputPin_StructuredActivityNodeInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ValuePin_3192(instance);
+			Object value_0 = name_ActionInputPin_StructuredActivityNodeInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1158,9 +1158,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3193(ActionInputPin instance) {
+	public void init_OutputPin_StructuredActivityNodeOutputShape(OutputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3193(instance);
+			Object value_0 = name_OutputPin_StructuredActivityNodeOutputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1172,9 +1172,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActivityPartition_3067(ActivityPartition instance) {
+	public void init_ActivityPartition_Shape(ActivityPartition instance) {
 		try {
-			Object value_0 = name_ActivityPartition_3067(instance);
+			Object value_0 = name_ActivityPartition_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1186,9 +1186,10 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Comment_3080(Comment instance) {
+	public void init_Comment_Shape(Comment instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression(28, UMLPackage.eINSTANCE.getComment(), null).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(28, UMLPackage.eINSTANCE.getComment(), null)
+					.evaluate(instance);
 			if (value_0 != null) {
 				instance.setBody((String) value_0);
 			}
@@ -1200,9 +1201,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReadSelfAction_3081(ReadSelfAction instance) {
+	public void init_ReadSelfAction_Shape(ReadSelfAction instance) {
 		try {
-			Object value_0 = name_ReadSelfAction_3081(instance);
+			Object value_0 = name_ReadSelfAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1214,9 +1215,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3084(OutputPin instance) {
+	public void init_OutputPin_ReadSelfActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3084(instance);
+			Object value_0 = name_OutputPin_ReadSelfActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1228,9 +1229,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Activity_3083(Activity instance) {
+	public void init_Activity_Shape_CN(Activity instance) {
 		try {
-			Object value_0 = name_Activity_3083(instance);
+			Object value_0 = name_Activity_Shape_CN(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1242,9 +1243,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_CreateObjectAction_3086(CreateObjectAction instance) {
+	public void init_CreateObjectAction_Shape(CreateObjectAction instance) {
 		try {
-			Object value_0 = name_CreateObjectAction_3086(instance);
+			Object value_0 = name_CreateObjectAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1256,9 +1257,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3087(OutputPin instance) {
+	public void init_OutputPin_CreateObjectActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3087(instance);
+			Object value_0 = name_OutputPin_CreateObjectActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1270,9 +1271,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReadStructuralFeatureAction_3088(ReadStructuralFeatureAction instance) {
+	public void init_ReadStructuralFeatureAction_Shape(ReadStructuralFeatureAction instance) {
 		try {
-			Object value_0 = name_ReadStructuralFeatureAction_3088(instance);
+			Object value_0 = name_ReadStructuralFeatureAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1284,9 +1285,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3089(InputPin instance) {
+	public void init_InputPin_ReadStructuralFeatureActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3089(instance);
+			Object value_0 = name_InputPin_ReadStructuralFeatureActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1298,9 +1299,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3203(ValuePin instance) {
+	public void init_ValuePin_ReadStructuralFeatureActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3203(instance);
+			Object value_0 = name_ValuePin_ReadStructuralFeatureActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1312,9 +1313,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3204(ActionInputPin instance) {
+	public void init_ActionInputPin_ReadStructuralFeatureActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3204(instance);
+			Object value_0 = name_ActionInputPin_ReadStructuralFeatureActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1326,9 +1327,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3090(OutputPin instance) {
+	public void init_OutputPin_ReadStructuralFeatureActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3090(instance);
+			Object value_0 = name_OutputPin_ReadStructuralFeatureActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1340,9 +1341,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_AddStructuralFeatureValueAction_3091(AddStructuralFeatureValueAction instance) {
+	public void init_AddStructuralFeatureValueAction_Shape(AddStructuralFeatureValueAction instance) {
 		try {
-			Object value_0 = name_AddStructuralFeatureValueAction_3091(instance);
+			Object value_0 = name_AddStructuralFeatureValueAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1354,9 +1355,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3092(InputPin instance) {
+	public void init_InputPin_AddStructuralFeatureValueActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3092(instance);
+			Object value_0 = name_InputPin_AddStructuralFeatureValueActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1368,9 +1369,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3093(InputPin instance) {
+	public void init_InputPin_AddStructuralFeatureValueActionValueShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3093(instance);
+			Object value_0 = name_InputPin_AddStructuralFeatureValueActionValueShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1382,9 +1383,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3181(InputPin instance) {
+	public void init_InputPin_AddStructuralFeatureValueActionInsertAtShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3181(instance);
+			Object value_0 = name_InputPin_AddStructuralFeatureValueActionInsertAtShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1396,9 +1397,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3182(ValuePin instance) {
+	public void init_ValuePin_AddStructuralFeatureValueActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3182(instance);
+			Object value_0 = name_ValuePin_AddStructuralFeatureValueActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1410,9 +1411,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3183(ValuePin instance) {
+	public void init_ValuePin_AddStructuralFeatureValueActionValueShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3183(instance);
+			Object value_0 = name_ValuePin_AddStructuralFeatureValueActionValueShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1424,9 +1425,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3184(ValuePin instance) {
+	public void init_ValuePin_AddStructuralFeatureValueActionInsertAtShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3184(instance);
+			Object value_0 = name_ValuePin_AddStructuralFeatureValueActionInsertAtShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1438,9 +1439,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3185(ActionInputPin instance) {
+	public void init_ActionInputPin_AddStructuralFeatureValueActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3185(instance);
+			Object value_0 = name_ActionInputPin_AddStructuralFeatureValueActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1452,9 +1453,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3186(ActionInputPin instance) {
+	public void init_ActionInputPin_AddStructuralFeatureValueActionValueShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3186(instance);
+			Object value_0 = name_ActionInputPin_AddStructuralFeatureValueActionValueShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1466,9 +1467,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3187(ActionInputPin instance) {
+	public void init_ActionInputPin_AddStructuralFeatureValueActionInsertAtShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3187(instance);
+			Object value_0 = name_ActionInputPin_AddStructuralFeatureValueActionInsertAtShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1480,9 +1481,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3094(OutputPin instance) {
+	public void init_OutputPin_AddStructuralFeatureValueActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3094(instance);
+			Object value_0 = name_OutputPin_AddStructuralFeatureValueActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1494,9 +1495,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_DestroyObjectAction_3095(DestroyObjectAction instance) {
+	public void init_DestroyObjectAction_Shape(DestroyObjectAction instance) {
 		try {
-			Object value_0 = name_DestroyObjectAction_3095(instance);
+			Object value_0 = name_DestroyObjectAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1508,9 +1509,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3096(InputPin instance) {
+	public void init_InputPin_DestroyObjectActionTargetShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3096(instance);
+			Object value_0 = name_InputPin_DestroyObjectActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1522,9 +1523,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3173(ValuePin instance) {
+	public void init_ValuePin_DestroyObjectActionTargetShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3173(instance);
+			Object value_0 = name_ValuePin_DestroyObjectActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1536,9 +1537,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3174(ActionInputPin instance) {
+	public void init_ActionInputPin_DestroyObjectActionTargetShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3174(instance);
+			Object value_0 = name_ActionInputPin_DestroyObjectActionTargetShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1550,9 +1551,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReadVariableAction_3097(ReadVariableAction instance) {
+	public void init_ReadVariableAction_Shape(ReadVariableAction instance) {
 		try {
-			Object value_0 = name_ReadVariableAction_3097(instance);
+			Object value_0 = name_ReadVariableAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1564,9 +1565,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3098(OutputPin instance) {
+	public void init_OutputPin_ReadVariableActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3098(instance);
+			Object value_0 = name_OutputPin_ReadVariableActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1578,9 +1579,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_AddVariableValueAction_3099(AddVariableValueAction instance) {
+	public void init_AddVariableValueAction_Shape(AddVariableValueAction instance) {
 		try {
-			Object value_0 = name_AddVariableValueAction_3099(instance);
+			Object value_0 = name_AddVariableValueAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1592,9 +1593,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3100(InputPin instance) {
+	public void init_InputPin_AddVariableValueActionInsertAtShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3100(instance);
+			Object value_0 = name_InputPin_AddVariableValueActionInsertAtShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1606,9 +1607,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3101(InputPin instance) {
+	public void init_InputPin_AddVariableValueActionValueShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3101(instance);
+			Object value_0 = name_InputPin_AddVariableValueActionValueShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1620,9 +1621,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3175(ValuePin instance) {
+	public void init_ValuePin_AddVariableValueActionInsertAtShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3175(instance);
+			Object value_0 = name_ValuePin_AddVariableValueActionInsertAtShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1634,9 +1635,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3176(ValuePin instance) {
+	public void init_ValuePin_AddVariableValueActionValueShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3176(instance);
+			Object value_0 = name_ValuePin_AddVariableValueActionValueShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1648,9 +1649,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3177(ActionInputPin instance) {
+	public void init_ActionInputPin_AddVariableValueActionInsertAtShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3177(instance);
+			Object value_0 = name_ActionInputPin_AddVariableValueActionInsertAtShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1662,9 +1663,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3178(ActionInputPin instance) {
+	public void init_ActionInputPin_AddVariableValueActionValueShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3178(instance);
+			Object value_0 = name_ActionInputPin_AddVariableValueActionValueShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1676,9 +1677,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_BroadcastSignalAction_3102(BroadcastSignalAction instance) {
+	public void init_BroadcastSignalAction_Shape(BroadcastSignalAction instance) {
 		try {
-			Object value_0 = name_BroadcastSignalAction_3102(instance);
+			Object value_0 = name_BroadcastSignalAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1690,9 +1691,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3103(InputPin instance) {
+	public void init_InputPin_BroadcastSignalActionArgumentShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3103(instance);
+			Object value_0 = name_InputPin_BroadcastSignalActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1704,9 +1705,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3179(ValuePin instance) {
+	public void init_ValuePin_BroadcastSignalActionArgumentShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3179(instance);
+			Object value_0 = name_ValuePin_BroadcastSignalActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1718,9 +1719,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3180(ActionInputPin instance) {
+	public void init_ActionInputPin_BroadcastSignalActionArgumentShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3180(instance);
+			Object value_0 = name_ActionInputPin_BroadcastSignalActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1732,9 +1733,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_CentralBufferNode_3104(CentralBufferNode instance) {
+	public void init_CentralBufferNode_Shape(CentralBufferNode instance) {
 		try {
-			Object value_0 = name_CentralBufferNode_3104(instance);
+			Object value_0 = name_CentralBufferNode_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1746,13 +1747,13 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_Constraint_3112(Constraint instance) {
+	public void init_Constraint_Shape(Constraint instance) {
 		try {
-			Object value_0 = name_Constraint_3112(instance);
+			Object value_0 = name_Constraint_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
-			Object value_1 = specification_Constraint_3112(instance);
+			Object value_1 = specification_Constraint_Shape(instance);
 			if (value_1 != null) {
 				instance.setSpecification((ValueSpecification) value_1);
 			}
@@ -1764,9 +1765,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_StartObjectBehaviorAction_3113(StartObjectBehaviorAction instance) {
+	public void init_StartObjectBehaviorAction_Shape(StartObjectBehaviorAction instance) {
 		try {
-			Object value_0 = name_StartObjectBehaviorAction_3113(instance);
+			Object value_0 = name_StartObjectBehaviorAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1778,9 +1779,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3125(OutputPin instance) {
+	public void init_OutputPin_StartObjectBehaviorActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3125(instance);
+			Object value_0 = name_OutputPin_StartObjectBehaviorActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1792,9 +1793,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3132(InputPin instance) {
+	public void init_InputPin_StartObjectBehaviorActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3132(instance);
+			Object value_0 = name_InputPin_StartObjectBehaviorActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1806,9 +1807,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3145(ValuePin instance) {
+	public void init_ValuePin_StartObjectBehaviorActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3145(instance);
+			Object value_0 = name_ValuePin_StartObjectBehaviorActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1820,9 +1821,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3158(ActionInputPin instance) {
+	public void init_ActionInputPin_StartObjectBehaviorActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3158(instance);
+			Object value_0 = name_ActionInputPin_StartObjectBehaviorActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1834,9 +1835,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3133(InputPin instance) {
+	public void init_InputPin_StartObjectBehaviorActionArgumentShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3133(instance);
+			Object value_0 = name_InputPin_StartObjectBehaviorActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1848,9 +1849,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3146(ValuePin instance) {
+	public void init_ValuePin_StartObjectBehaviorActionArgumentShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3146(instance);
+			Object value_0 = name_ValuePin_StartObjectBehaviorActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1862,9 +1863,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3159(ActionInputPin instance) {
+	public void init_ActionInputPin_StartObjectBehaviorActionArgumentShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3159(instance);
+			Object value_0 = name_ActionInputPin_StartObjectBehaviorActionArgumentShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1876,9 +1877,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_TestIdentityAction_3114(TestIdentityAction instance) {
+	public void init_TestIdentityAction_Shape(TestIdentityAction instance) {
 		try {
-			Object value_0 = name_TestIdentityAction_3114(instance);
+			Object value_0 = name_TestIdentityAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1890,9 +1891,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3126(OutputPin instance) {
+	public void init_OutputPin_TestIdentityActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3126(instance);
+			Object value_0 = name_OutputPin_TestIdentityActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1904,9 +1905,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3134(InputPin instance) {
+	public void init_InputPin_TestIdentityActionFirstShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3134(instance);
+			Object value_0 = name_InputPin_TestIdentityActionFirstShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1918,9 +1919,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3135(InputPin instance) {
+	public void init_InputPin_TestIdentityActionSecondShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3135(instance);
+			Object value_0 = name_InputPin_TestIdentityActionSecondShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1932,9 +1933,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3147(ValuePin instance) {
+	public void init_ValuePin_TestIdentityActionFirstShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3147(instance);
+			Object value_0 = name_ValuePin_TestIdentityActionFirstShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1946,9 +1947,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3148(ValuePin instance) {
+	public void init_ValuePin_TestIdentityActionSecondShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3148(instance);
+			Object value_0 = name_ValuePin_TestIdentityActionSecondShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1960,9 +1961,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3160(ActionInputPin instance) {
+	public void init_ActionInputPin_TestIdentityActionFirstShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3160(instance);
+			Object value_0 = name_ActionInputPin_TestIdentityActionFirstShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1974,9 +1975,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3161(ActionInputPin instance) {
+	public void init_ActionInputPin_TestIdentityActionSecondShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3161(instance);
+			Object value_0 = name_ActionInputPin_TestIdentityActionSecondShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -1988,9 +1989,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ClearStructuralFeatureAction_3115(ClearStructuralFeatureAction instance) {
+	public void init_ClearStructuralFeatureAction_Shape(ClearStructuralFeatureAction instance) {
 		try {
-			Object value_0 = name_ClearStructuralFeatureAction_3115(instance);
+			Object value_0 = name_ClearStructuralFeatureAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2002,9 +2003,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3127(OutputPin instance) {
+	public void init_OutputPin_ClearStructuralFeatureActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3127(instance);
+			Object value_0 = name_OutputPin_ClearStructuralFeatureActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2016,9 +2017,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3136(InputPin instance) {
+	public void init_InputPin_ClearStructuralFeatureActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3136(instance);
+			Object value_0 = name_InputPin_ClearStructuralFeatureActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2030,9 +2031,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3149(ValuePin instance) {
+	public void init_ValuePin_ClearStructuralFeatureActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3149(instance);
+			Object value_0 = name_ValuePin_ClearStructuralFeatureActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2044,9 +2045,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3162(ActionInputPin instance) {
+	public void init_ActionInputPin_ClearStructuralFeatureActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3162(instance);
+			Object value_0 = name_ActionInputPin_ClearStructuralFeatureActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2058,9 +2059,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_CreateLinkAction_3117(CreateLinkAction instance) {
+	public void init_CreateLinkAction_Shape(CreateLinkAction instance) {
 		try {
-			Object value_0 = name_CreateLinkAction_3117(instance);
+			Object value_0 = name_CreateLinkAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2072,9 +2073,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3137(InputPin instance) {
+	public void init_InputPin_CreateLinkActionInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3137(instance);
+			Object value_0 = name_InputPin_CreateLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2086,9 +2087,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3151(ValuePin instance) {
+	public void init_ValuePin_CreateLinkActionInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3151(instance);
+			Object value_0 = name_ValuePin_CreateLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2100,9 +2101,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3163(ActionInputPin instance) {
+	public void init_ActionInputPin_CreateLinkActionInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3163(instance);
+			Object value_0 = name_ActionInputPin_CreateLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2114,9 +2115,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReadLinkAction_3116(ReadLinkAction instance) {
+	public void init_ReadLinkAction_Shape(ReadLinkAction instance) {
 		try {
-			Object value_0 = name_ReadLinkAction_3116(instance);
+			Object value_0 = name_ReadLinkAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2128,9 +2129,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3128(OutputPin instance) {
+	public void init_OutputPin_ReadLinkActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3128(instance);
+			Object value_0 = name_OutputPin_ReadLinkActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2142,9 +2143,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3138(InputPin instance) {
+	public void init_InputPin_ReadLinkActionInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3138(instance);
+			Object value_0 = name_InputPin_ReadLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2156,9 +2157,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3150(ValuePin instance) {
+	public void init_ValuePin_ReadLinkActionInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3150(instance);
+			Object value_0 = name_ValuePin_ReadLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2170,9 +2171,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3164(ActionInputPin instance) {
+	public void init_ActionInputPin_ReadLinkActionInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3164(instance);
+			Object value_0 = name_ActionInputPin_ReadLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2184,9 +2185,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_DestroyLinkAction_3118(DestroyLinkAction instance) {
+	public void init_DestroyLinkAction_Shape(DestroyLinkAction instance) {
 		try {
-			Object value_0 = name_DestroyLinkAction_3118(instance);
+			Object value_0 = name_DestroyLinkAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2198,9 +2199,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3139(InputPin instance) {
+	public void init_InputPin_DestroyLinkActionInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3139(instance);
+			Object value_0 = name_InputPin_DestroyLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2212,9 +2213,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3152(ValuePin instance) {
+	public void init_ValuePin_DestroyLinkActionInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3152(instance);
+			Object value_0 = name_ValuePin_DestroyLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2226,9 +2227,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3165(ActionInputPin instance) {
+	public void init_ActionInputPin_DestroyLinkActionInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3165(instance);
+			Object value_0 = name_ActionInputPin_DestroyLinkActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2240,9 +2241,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ClearAssociationAction_3119(ClearAssociationAction instance) {
+	public void init_ClearAssociationAction_Shape(ClearAssociationAction instance) {
 		try {
-			Object value_0 = name_ClearAssociationAction_3119(instance);
+			Object value_0 = name_ClearAssociationAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2254,9 +2255,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3140(InputPin instance) {
+	public void init_InputPin_ClearAssociationActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3140(instance);
+			Object value_0 = name_InputPin_ClearAssociationActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2268,9 +2269,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3153(ValuePin instance) {
+	public void init_ValuePin_ClearAssociationActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3153(instance);
+			Object value_0 = name_ValuePin_ClearAssociationActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2282,9 +2283,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3166(ActionInputPin instance) {
+	public void init_ActionInputPin_ClearAssociationActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3166(instance);
+			Object value_0 = name_ActionInputPin_ClearAssociationActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2296,9 +2297,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReadExtentAction_3120(ReadExtentAction instance) {
+	public void init_ReadExtentAction_Shape(ReadExtentAction instance) {
 		try {
-			Object value_0 = name_ReadExtentAction_3120(instance);
+			Object value_0 = name_ReadExtentAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2310,9 +2311,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3129(OutputPin instance) {
+	public void init_OutputPin_ReadExtentActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3129(instance);
+			Object value_0 = name_OutputPin_ReadExtentActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2324,9 +2325,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReclassifyObjectAction_3121(ReclassifyObjectAction instance) {
+	public void init_ReclassifyObjectAction_Shape(ReclassifyObjectAction instance) {
 		try {
-			Object value_0 = name_ReclassifyObjectAction_3121(instance);
+			Object value_0 = name_ReclassifyObjectAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2338,9 +2339,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3141(InputPin instance) {
+	public void init_InputPin_ReclassifyObjectActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3141(instance);
+			Object value_0 = name_InputPin_ReclassifyObjectActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2352,9 +2353,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3154(ValuePin instance) {
+	public void init_ValuePin_ReclassifyObjectActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3154(instance);
+			Object value_0 = name_ValuePin_ReclassifyObjectActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2366,9 +2367,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3167(ActionInputPin instance) {
+	public void init_ActionInputPin_ReclassifyObjectActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3167(instance);
+			Object value_0 = name_ActionInputPin_ReclassifyObjectActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2380,9 +2381,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReadIsClassifiedObjectAction_3122(ReadIsClassifiedObjectAction instance) {
+	public void init_ReadIsClassifiedObjectAction_Shape(ReadIsClassifiedObjectAction instance) {
 		try {
-			Object value_0 = name_ReadIsClassifiedObjectAction_3122(instance);
+			Object value_0 = name_ReadIsClassifiedObjectAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2394,9 +2395,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3130(OutputPin instance) {
+	public void init_OutputPin_ReadIsClassifiedObjectActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3130(instance);
+			Object value_0 = name_OutputPin_ReadIsClassifiedObjectActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2408,9 +2409,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3142(InputPin instance) {
+	public void init_InputPin_ReadIsClassifiedObjectActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3142(instance);
+			Object value_0 = name_InputPin_ReadIsClassifiedObjectActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2422,9 +2423,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3155(ValuePin instance) {
+	public void init_ValuePin_ReadIsClassifiedObjectActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3155(instance);
+			Object value_0 = name_ValuePin_ReadIsClassifiedObjectActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2436,9 +2437,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3168(ActionInputPin instance) {
+	public void init_ActionInputPin_ReadIsClassifiedObjectActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3168(instance);
+			Object value_0 = name_ActionInputPin_ReadIsClassifiedObjectActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2450,9 +2451,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ReduceAction_3123(ReduceAction instance) {
+	public void init_ReduceAction_Shape(ReduceAction instance) {
 		try {
-			Object value_0 = name_ReduceAction_3123(instance);
+			Object value_0 = name_ReduceAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2464,9 +2465,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3131(OutputPin instance) {
+	public void init_OutputPin_ReduceActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3131(instance);
+			Object value_0 = name_OutputPin_ReduceActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2478,9 +2479,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3143(InputPin instance) {
+	public void init_InputPin_ReduceActionCollectionShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3143(instance);
+			Object value_0 = name_InputPin_ReduceActionCollectionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2492,9 +2493,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3156(ValuePin instance) {
+	public void init_ValuePin_ReduceActionCollectionShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3156(instance);
+			Object value_0 = name_ValuePin_ReduceActionCollectionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2506,9 +2507,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3169(ActionInputPin instance) {
+	public void init_ActionInputPin_ReduceActionCollectionShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3169(instance);
+			Object value_0 = name_ActionInputPin_ReduceActionCollectionShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2520,9 +2521,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_StartClassifierBehaviorAction_3124(StartClassifierBehaviorAction instance) {
+	public void init_StartClassifierBehaviorAction_Shape(StartClassifierBehaviorAction instance) {
 		try {
-			Object value_0 = name_StartClassifierBehaviorAction_3124(instance);
+			Object value_0 = name_StartClassifierBehaviorAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2534,9 +2535,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3144(InputPin instance) {
+	public void init_InputPin_StartClassifierBehaviorActionObjectShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3144(instance);
+			Object value_0 = name_InputPin_StartClassifierBehaviorActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2548,9 +2549,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3157(ValuePin instance) {
+	public void init_ValuePin_StartClassifierBehaviorActionObjectShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3157(instance);
+			Object value_0 = name_ValuePin_StartClassifierBehaviorActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2562,9 +2563,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3170(ActionInputPin instance) {
+	public void init_ActionInputPin_StartClassifierBehaviorActionObjectShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3170(instance);
+			Object value_0 = name_ActionInputPin_StartClassifierBehaviorActionObjectShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2576,9 +2577,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_CreateLinkObjectAction_3198(CreateLinkObjectAction instance) {
+	public void init_CreateLinkObjectAction_Shape(CreateLinkObjectAction instance) {
 		try {
-			Object value_0 = name_CreateLinkObjectAction_3198(instance);
+			Object value_0 = name_CreateLinkObjectAction_Shape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2590,9 +2591,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_InputPin_3199(InputPin instance) {
+	public void init_InputPin_CreateLinkObjectActionInputShape(InputPin instance) {
 		try {
-			Object value_0 = name_InputPin_3199(instance);
+			Object value_0 = name_InputPin_CreateLinkObjectActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2604,9 +2605,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ValuePin_3200(ValuePin instance) {
+	public void init_ValuePin_CreateLinkObjectActionInputShape(ValuePin instance) {
 		try {
-			Object value_0 = name_ValuePin_3200(instance);
+			Object value_0 = name_ValuePin_CreateLinkObjectActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2618,9 +2619,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ActionInputPin_3201(ActionInputPin instance) {
+	public void init_ActionInputPin_CreateLinkObjectActionInputShape(ActionInputPin instance) {
 		try {
-			Object value_0 = name_ActionInputPin_3201(instance);
+			Object value_0 = name_ActionInputPin_CreateLinkObjectActionInputShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2632,9 +2633,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_OutputPin_3202(OutputPin instance) {
+	public void init_OutputPin_CreateLinkObjectActionResultShape(OutputPin instance) {
 		try {
-			Object value_0 = name_OutputPin_3202(instance);
+			Object value_0 = name_OutputPin_CreateLinkObjectActionResultShape(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
@@ -2646,23 +2647,1355 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public void init_ObjectFlow_4003(ObjectFlow instance) {
+	public void init_ObjectFlow_Edge(ObjectFlow instance) {
 		try {
-			Object value_0 = name_ObjectFlow_4003(instance);
+			Object value_0 = name_ObjectFlow_Edge(instance);
 			if (value_0 != null) {
 				instance.setName((String) value_0);
 			}
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Activity_Shape(Activity it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Parameter_ParameterLabel(Parameter it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_PreconditionLabel(Constraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_PostconditionLabel(Constraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InitialNode_Shape(InitialNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActivityFinalNode_Shape(ActivityFinalNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_FlowFinalNode_Shape(FlowFinalNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OpaqueAction_Shape(OpaqueAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_OpaqueActionInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_OpaqueActionInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_OpaqueActionInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_OpaqueActionOutputShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CallBehaviorAction_Shape(CallBehaviorAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_CallBehaviorActionArgumentShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_CallBehaviorActionArgumentShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_CallBehaviorActionArgumentShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_CallBehaviorActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CallOperationAction_Shape(CallOperationAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_CallOperationActionArgumentShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_CallOperationActionArgumentShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_CallOperationActionArgumentShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_CallOperationActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_CallOperationActionTargetShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_CallOperationActionTargetShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_CallOperationActionTargetShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DurationConstraint_LocalPreconditionShape(DurationConstraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_DurationConstraint_LocalPreconditionShape(DurationInterval it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DurationConstraint_LocalPostconditionShape(DurationConstraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_DurationConstraint_LocalPostconditionShape(DurationInterval it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TimeConstraint_LocalPreconditionShape(TimeConstraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_TimeConstraint_LocalPreconditionShape(TimeInterval it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TimeConstraint_LocalPostconditionShape(TimeConstraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_TimeConstraint_LocalPostconditionShape(TimeInterval it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_IntervalConstraint_LocalPreconditionShape(IntervalConstraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_IntervalConstraint_LocalPreconditionShape(Interval it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_IntervalConstraint_LocalPostconditionShape(IntervalConstraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_IntervalConstraint_LocalPostconditionShape(Interval it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_LocalPreconditionShape(Constraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_Constraint_LocalPreconditionShape(OpaqueExpression it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_LocalPostconditionShape(Constraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_Constraint_LocalPostconditionShape(OpaqueExpression it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DecisionNode_Shape(DecisionNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_MergeNode_Shape(MergeNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ForkNode_Shape(ForkNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_JoinNode_Shape(JoinNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DataStoreNode_Shape(DataStoreNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_SendObjectAction_Shape(SendObjectAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_SendObjectActionRequestShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_SendObjectActionRequestShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_SendObjectActionRequestShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_SendObjectActionTargetShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_SendObjectActionTargetShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_SendObjectActionTargetShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_SendSignalAction_Shape(SendSignalAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_SendSignalActionArgumentShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_SendSignalActionArgumentShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_SendSignalActionArgumentShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_SendSignalActionTargetShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_SendSignalActionTargetShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_SendSignalActionTargetShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActivityParameterNode_Shape(ActivityParameterNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private Boolean isControlType_ActivityParameterNode_Shape(ActivityParameterNode it) {
+		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_AcceptEventAction_Shape(AcceptEventAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_AcceptEventActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValueSpecificationAction_Shape(ValueSpecificationAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ValueSpecificationActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ConditionalNode_Shape(ConditionalNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ExpansionRegion_Shape(ExpansionRegion it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ExpansionNode_InputShape(ExpansionNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ExpansionNode_OutputShape(ExpansionNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_LoopNode_Shape(LoopNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_LoopNodeVariableInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_LoopNodeVariableInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_LoopNodeVariableInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_LoopNodeBodyOutputShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_LoopNodeVariableShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_LoopNodeResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_SequenceNode_Shape(SequenceNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_StructuredActivityNode_Shape(StructuredActivityNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_StructuredActivityNodeInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_StructuredActivityNodeInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_StructuredActivityNodeInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_StructuredActivityNodeOutputShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActivityPartition_Shape(ActivityPartition it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadSelfAction_Shape(ReadSelfAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReadSelfActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Activity_Shape_CN(Activity it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CreateObjectAction_Shape(CreateObjectAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_CreateObjectActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadStructuralFeatureAction_Shape(ReadStructuralFeatureAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ReadStructuralFeatureActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ReadStructuralFeatureActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ReadStructuralFeatureActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReadStructuralFeatureActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_AddStructuralFeatureValueAction_Shape(AddStructuralFeatureValueAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_AddStructuralFeatureValueActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_AddStructuralFeatureValueActionValueShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_AddStructuralFeatureValueActionInsertAtShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_AddStructuralFeatureValueActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_AddStructuralFeatureValueActionValueShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_AddStructuralFeatureValueActionInsertAtShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_AddStructuralFeatureValueActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_AddStructuralFeatureValueActionValueShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_AddStructuralFeatureValueActionInsertAtShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_AddStructuralFeatureValueActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DestroyObjectAction_Shape(DestroyObjectAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_DestroyObjectActionTargetShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_DestroyObjectActionTargetShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_DestroyObjectActionTargetShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadVariableAction_Shape(ReadVariableAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReadVariableActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_AddVariableValueAction_Shape(AddVariableValueAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_AddVariableValueActionInsertAtShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_AddVariableValueActionValueShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_AddVariableValueActionInsertAtShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_AddVariableValueActionValueShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_AddVariableValueActionInsertAtShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_AddVariableValueActionValueShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_BroadcastSignalAction_Shape(BroadcastSignalAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_BroadcastSignalActionArgumentShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_BroadcastSignalActionArgumentShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_BroadcastSignalActionArgumentShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CentralBufferNode_Shape(CentralBufferNode it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_Shape(Constraint it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_Shape(Constraint it) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_StartObjectBehaviorAction_Shape(StartObjectBehaviorAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_StartObjectBehaviorActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_StartObjectBehaviorActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_StartObjectBehaviorActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_StartObjectBehaviorActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_StartObjectBehaviorActionArgumentShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_StartObjectBehaviorActionArgumentShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_StartObjectBehaviorActionArgumentShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TestIdentityAction_Shape(TestIdentityAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_TestIdentityActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_TestIdentityActionFirstShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_TestIdentityActionSecondShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_TestIdentityActionFirstShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_TestIdentityActionSecondShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_TestIdentityActionFirstShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_TestIdentityActionSecondShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ClearStructuralFeatureAction_Shape(ClearStructuralFeatureAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ClearStructuralFeatureActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ClearStructuralFeatureActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ClearStructuralFeatureActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ClearStructuralFeatureActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CreateLinkAction_Shape(CreateLinkAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_CreateLinkActionInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_CreateLinkActionInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_CreateLinkActionInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadLinkAction_Shape(ReadLinkAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReadLinkActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ReadLinkActionInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ReadLinkActionInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ReadLinkActionInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DestroyLinkAction_Shape(DestroyLinkAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_DestroyLinkActionInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_DestroyLinkActionInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_DestroyLinkActionInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ClearAssociationAction_Shape(ClearAssociationAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ClearAssociationActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ClearAssociationActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ClearAssociationActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadExtentAction_Shape(ReadExtentAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReadExtentActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReclassifyObjectAction_Shape(ReclassifyObjectAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ReclassifyObjectActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ReclassifyObjectActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ReclassifyObjectActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReadIsClassifiedObjectAction_Shape(ReadIsClassifiedObjectAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReadIsClassifiedObjectActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ReadIsClassifiedObjectActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ReadIsClassifiedObjectActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ReadIsClassifiedObjectActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ReduceAction_Shape(ReduceAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_ReduceActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_ReduceActionCollectionShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_ReduceActionCollectionShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_ReduceActionCollectionShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_StartClassifierBehaviorAction_Shape(StartClassifierBehaviorAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_StartClassifierBehaviorActionObjectShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_StartClassifierBehaviorActionObjectShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_StartClassifierBehaviorActionObjectShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CreateLinkObjectAction_Shape(CreateLinkObjectAction it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InputPin_CreateLinkObjectActionInputShape(InputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValuePin_CreateLinkObjectActionInputShape(ValuePin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActionInputPin_CreateLinkObjectActionInputShape(ActionInputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OutputPin_CreateLinkObjectActionResultShape(OutputPin it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ObjectFlow_Edge(ObjectFlow it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ControlFlow_Edge(ControlFlow it) {
+		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	public void init_ControlFlow_4004(ControlFlow instance) {
+	public void init_ControlFlow_Edge(ControlFlow instance) {
 		try {
-			Object value_0 = name_ControlFlow_4004(instance);
+			Object value_0 = name_ControlFlow_Edge(instance);
 			instance.setName((String) value_0);
 			// Initialize the guard to true
 			LiteralBoolean lBoolean = UMLFactory.eINSTANCE.createLiteralBoolean();
@@ -2675,1338 +4008,6 @@ public class ElementInitializers {
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Activity_2001(Activity it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Parameter_3001(Parameter it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Constraint_3002(Constraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Constraint_3003(Constraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InitialNode_3004(InitialNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActivityFinalNode_3005(ActivityFinalNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_FlowFinalNode_3006(FlowFinalNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OpaqueAction_3007(OpaqueAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3015(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3016(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3013(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3014(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CallBehaviorAction_3008(CallBehaviorAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3017(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3018(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3019(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3020(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CallOperationAction_3010(CallOperationAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3021(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3022(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3023(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3024(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3025(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3026(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3027(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_DurationConstraint_3034(DurationInterval it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DurationConstraint_3034(DurationConstraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DurationConstraint_3035(DurationConstraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_DurationConstraint_3035(DurationInterval it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_TimeConstraint_3036(TimeConstraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_TimeConstraint_3036(TimeInterval it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_TimeConstraint_3037(TimeConstraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_TimeConstraint_3037(TimeInterval it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_IntervalConstraint_3032(IntervalConstraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_IntervalConstraint_3032(Interval it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_IntervalConstraint_3033(IntervalConstraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_IntervalConstraint_3033(Interval it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Constraint_3011(Constraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_Constraint_3011(OpaqueExpression it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Constraint_3012(Constraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_specification_Constraint_3012(OpaqueExpression it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DecisionNode_3038(DecisionNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_MergeNode_3039(MergeNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ForkNode_3040(ForkNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_JoinNode_3041(JoinNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DataStoreNode_3078(DataStoreNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_SendObjectAction_3042(SendObjectAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3046(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3047(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3048(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3049(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3050(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3051(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_SendSignalAction_3052(SendSignalAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3053(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3054(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3055(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3060(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3061(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3062(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActivityParameterNode_3059(ActivityParameterNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private Boolean isControlType_ActivityParameterNode_3059(ActivityParameterNode it) {
-		return true;
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_AcceptEventAction_3063(AcceptEventAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3064(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValueSpecificationAction_3076(ValueSpecificationAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3077(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ConditionalNode_3069(ConditionalNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ExpansionRegion_3070(ExpansionRegion it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ExpansionNode_3074(ExpansionNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ExpansionNode_3075(ExpansionNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_LoopNode_3071(LoopNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3109(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3110(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3111(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_SequenceNode_3073(SequenceNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_StructuredActivityNode_3065(StructuredActivityNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3188(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3189(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3190(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3191(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3105(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3192(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3193(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActivityPartition_3067(ActivityPartition it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReadSelfAction_3081(ReadSelfAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3084(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Activity_3083(Activity it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CreateObjectAction_3086(CreateObjectAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3087(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReadStructuralFeatureAction_3088(ReadStructuralFeatureAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3089(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3203(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3204(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3090(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_AddStructuralFeatureValueAction_3091(AddStructuralFeatureValueAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3092(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3093(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3181(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3182(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3183(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3184(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3185(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3186(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3187(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3094(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DestroyObjectAction_3095(DestroyObjectAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3096(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3173(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3174(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReadVariableAction_3097(ReadVariableAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3098(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_AddVariableValueAction_3099(AddVariableValueAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3100(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3101(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3175(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3176(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3177(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3178(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_BroadcastSignalAction_3102(BroadcastSignalAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3103(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3179(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3180(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CentralBufferNode_3104(CentralBufferNode it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_Constraint_3112(Constraint it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private ValueSpecification specification_Constraint_3112(Constraint it) {
-		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
-		literalString.setValue("");
-		return literalString;
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_StartObjectBehaviorAction_3113(StartObjectBehaviorAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3125(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3132(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3145(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3158(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3133(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3146(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3159(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_TestIdentityAction_3114(TestIdentityAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3126(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3134(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3135(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3147(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3148(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3160(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3161(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ClearStructuralFeatureAction_3115(ClearStructuralFeatureAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3127(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3136(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3149(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3162(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CreateLinkAction_3117(CreateLinkAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3137(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3151(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3163(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReadLinkAction_3116(ReadLinkAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3128(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3138(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3150(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3164(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_DestroyLinkAction_3118(DestroyLinkAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3139(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3152(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3165(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ClearAssociationAction_3119(ClearAssociationAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3140(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3153(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3166(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReadExtentAction_3120(ReadExtentAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3129(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReclassifyObjectAction_3121(ReclassifyObjectAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3141(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3154(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3167(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReadIsClassifiedObjectAction_3122(ReadIsClassifiedObjectAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3130(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3142(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3155(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3168(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ReduceAction_3123(ReduceAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3131(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3143(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3156(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3169(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_StartClassifierBehaviorAction_3124(StartClassifierBehaviorAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3144(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3157(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3170(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_CreateLinkObjectAction_3198(CreateLinkObjectAction it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_InputPin_3199(InputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ValuePin_3200(ValuePin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ActionInputPin_3201(ActionInputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_OutputPin_3202(OutputPin it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ObjectFlow_4003(ObjectFlow it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
-	}
-
-	/**
-	 * @generated
-	 */
-	private String name_ControlFlow_4004(ControlFlow it) {
-		return LabelHelper.INSTANCE.findName(it.eContainer(), it);
 	}
 
 	/**

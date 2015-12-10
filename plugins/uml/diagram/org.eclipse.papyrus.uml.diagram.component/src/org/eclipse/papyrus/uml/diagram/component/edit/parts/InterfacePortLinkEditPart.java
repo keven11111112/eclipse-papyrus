@@ -28,7 +28,7 @@ public class InterfacePortLinkEditPart extends ConnectionEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4018";
+	public static final String VISUAL_ID = "Link_InterfacePortEdge";
 
 	/**
 	 * @generated

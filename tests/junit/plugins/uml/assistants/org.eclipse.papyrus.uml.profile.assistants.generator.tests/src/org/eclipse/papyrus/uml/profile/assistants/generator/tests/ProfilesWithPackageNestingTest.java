@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -79,9 +80,9 @@ public class ProfilesWithPackageNestingTest extends AbstractPapyrusTest {
 		Pair<Stereotype, Class> s11Class = fixture.getMetaclassExtension("S1_1", "Class");
 		List<PopupAssistant> popups = fixture.assertAllPopupAssistants(s11Class);
 
-		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(s11Class, 0);
+		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(s11Class, null);
 		Pair<Stereotype, Class> s21Class = fixture.getMetaclassExtension("S2_1", "Class");
-		ElementTypeFilter filterClass2 = fixture.assertMetaclassFilter(s21Class, 0);
+		ElementTypeFilter filterClass2 = fixture.assertMetaclassFilter(s21Class, null);
 
 		assertThat(transform(popups, EMFFunctions.getFeature(AssistantPackage.Literals.POPUP_ASSISTANT__FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterClass2)));
@@ -94,9 +95,9 @@ public class ProfilesWithPackageNestingTest extends AbstractPapyrusTest {
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(s12Generalization);
 
 		Pair<Stereotype, Class> s11Class = fixture.getMetaclassExtension("S1_1", "Class");
-		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(s11Class, 0);
+		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(s11Class, null);
 		Pair<Stereotype, Class> s21Class = fixture.getMetaclassExtension("S2_1", "Class");
-		ElementTypeFilter filterClass2 = fixture.assertMetaclassFilter(s21Class, 0);
+		ElementTypeFilter filterClass2 = fixture.assertMetaclassFilter(s21Class, null);
 
 		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__SOURCE_FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterClass2)));
@@ -109,9 +110,9 @@ public class ProfilesWithPackageNestingTest extends AbstractPapyrusTest {
 		List<ConnectionAssistant> connections = fixture.assertAllConnectionAssistants(s12Generalization);
 
 		Pair<Stereotype, Class> s11Class = fixture.getMetaclassExtension("S1_1", "Class");
-		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(s11Class, 0);
+		ElementTypeFilter filterClass = fixture.assertMetaclassFilter(s11Class, null);
 		Pair<Stereotype, Class> s21Class = fixture.getMetaclassExtension("S2_1", "Class");
-		ElementTypeFilter filterClass2 = fixture.assertMetaclassFilter(s21Class, 0);
+		ElementTypeFilter filterClass2 = fixture.assertMetaclassFilter(s21Class, null);
 
 		assertThat(transform(connections, EMFFunctions.getFeature(AssistantPackage.Literals.CONNECTION_ASSISTANT__TARGET_FILTER, Filter.class)), //
 				hasItems(includes(filterClass), includes(filterClass2)));

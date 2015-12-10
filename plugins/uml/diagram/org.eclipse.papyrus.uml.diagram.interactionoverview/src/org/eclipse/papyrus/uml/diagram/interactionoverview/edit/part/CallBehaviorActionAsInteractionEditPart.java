@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 
 public class CallBehaviorActionAsInteractionEditPart extends CallBehaviorActionEditPart {
 
-	public static final String INTERACTION_VISUAL_ID = "5000";
+	public static final String VISUAL_ID = "CallBehaviorAction_InteractionShape";
 
 	public CallBehaviorActionAsInteractionEditPart(final View view) {
 		super(view);

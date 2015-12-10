@@ -29,8 +29,8 @@ import org.eclipse.gmf.codegen.gmfgen.GenCompartment;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}</li>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#getCompartments <em>Compartments</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#getCompartments <em>Compartments</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getCompartmentVisibilityPreference()
@@ -47,7 +47,6 @@ public interface CompartmentVisibilityPreference extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Visible By Default</em>' attribute.
 	 * @see #setVisibleByDefault(boolean)
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getCompartmentVisibilityPreference_VisibleByDefault()
@@ -60,9 +59,7 @@ public interface CompartmentVisibilityPreference extends CommentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.papyrusgmfgenextension.CompartmentVisibilityPreference#isVisibleByDefault <em>Visible By Default</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Visible By Default</em>' attribute.
+	 * @param value the new value of the '<em>Visible By Default</em>' attribute.
 	 * @see #isVisibleByDefault()
 	 * @generated
 	 */
@@ -77,7 +74,6 @@ public interface CompartmentVisibilityPreference extends CommentedElement {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Compartments</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getCompartmentVisibilityPreference_Compartments()
 	 * @model

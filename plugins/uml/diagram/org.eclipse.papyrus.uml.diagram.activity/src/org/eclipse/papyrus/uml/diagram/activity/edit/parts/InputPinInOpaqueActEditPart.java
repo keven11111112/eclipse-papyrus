@@ -57,7 +57,7 @@ public class InputPinInOpaqueActEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3013";
+	public static final String VISUAL_ID = "InputPin_OpaqueActionInputShape";
 
 	/**
 	 * @generated
@@ -84,7 +84,9 @@ public class InputPinInOpaqueActEditPart extends AbstractPinEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -113,6 +115,7 @@ public class InputPinInOpaqueActEditPart extends AbstractPinEditPart {
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -215,6 +218,7 @@ public class InputPinInOpaqueActEditPart extends AbstractPinEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**

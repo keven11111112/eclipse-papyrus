@@ -92,7 +92,7 @@ public class LifelineMessageDeleteHelper {
  			}
  		}
  		// Create new DOS at coords from request
- 		IHintedType hintType = (IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_3022;
+ 		IHintedType hintType = (IHintedType) UMLElementTypes.DestructionOccurrenceSpecification_Shape;
 		InteractionFragment ift = SequenceUtil.findInteractionFragmentContainerAt(location, hostEP);
 		CreateElementAndNodeCommand createDosCommand = new CreateElementAndNodeCommand(editingDomain, lifelineEP, lifeline, hintType, location);
 		createDosCommand.putCreateElementRequestParameter(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);

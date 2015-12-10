@@ -59,7 +59,7 @@ public class TestCompositeDiagramDropOntoChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_2073, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class TestCompositeDiagramDropOntoChildNode extends TestChildNode {
 	@Test
 	public void dropAssociationOntoPart_bug470823() {
 		// first, create a part in the diagram
-		testToCreateANode(UMLElementTypes.Property_3070, 0, 0, 1, 1, true, "Attribute", 0);
+		testToCreateANode(UMLElementTypes.Property_Shape, 0, 0, 1, 1, true, "Attribute", 0);
 		EditPart partEditPart = (EditPart) getContainerEditPart().getChildren().get((getContainerEditPart().getChildren().size() - 1));
 
 		// then, create an association between two classes

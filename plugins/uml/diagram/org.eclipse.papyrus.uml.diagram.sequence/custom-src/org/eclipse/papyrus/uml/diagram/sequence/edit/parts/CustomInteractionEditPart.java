@@ -473,7 +473,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	 */
 	@Override
 	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_4009, Message7EditPart.VISUAL_ID, Message7EditPart.class);
+		ConnectionAnchor sourceAnchor = createAnchor(request, UMLElementTypes.Message_FoundEdge, Message7EditPart.VISUAL_ID, Message7EditPart.class);
 		if (sourceAnchor == null) {
 			sourceAnchor = super.getSourceConnectionAnchor(request);
 		}
@@ -505,11 +505,11 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	 */
 	@Override
 	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_4008, Message6EditPart.VISUAL_ID, Message6EditPart.class);
+		ConnectionAnchor targetAnchor = createAnchor(request, UMLElementTypes.Message_LostEdge, Message6EditPart.VISUAL_ID, Message6EditPart.class);
 		if (targetAnchor == null) {
 			// Enabled to find Anchor for MessageCreate, this would be useful when showing feedbacks.
 			// Fixed bug: https://bugs.eclipse.org/bugs/show_bug.cgi?id=403134
-			targetAnchor = createAnchor(request, UMLElementTypes.Message_4006, Message4EditPart.VISUAL_ID, Message4EditPart.class);
+			targetAnchor = createAnchor(request, UMLElementTypes.Message_CreateEdge, Message4EditPart.VISUAL_ID, Message4EditPart.class);
 		}
 		if (targetAnchor == null) {
 			targetAnchor = super.getTargetConnectionAnchor(request);

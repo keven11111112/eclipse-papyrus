@@ -166,7 +166,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 	@Override
 	public Command getCommand(Request request) {
 		if (REQ_CONNECTION_END.equals(request.getType())) {
-			if (isCreatingMessage(request, UMLElementTypes.Message_4004) || isCreatingMessage(request, UMLElementTypes.Message_4005) || isCreatingMessage(request, UMLElementTypes.Message_4009)) {
+			if (isCreatingMessage(request, UMLElementTypes.Message_AsynchEdge) || isCreatingMessage(request, UMLElementTypes.Message_ReplyEdge) || isCreatingMessage(request, UMLElementTypes.Message_FoundEdge)) {
 				return getConnectionEndWithGateCommand((CreateConnectionRequest) request);
 			}
 		}
@@ -192,7 +192,7 @@ public class GatesHolderGraphicalNodeEditPolicy extends SequenceGraphicalNodeEdi
 		EditPart sourceEditPart = request.getSourceEditPart();
 		IAdaptable sourceViewAdapter = sourceEditPart;
 		// Ignore message found.
-		if (!isCreatingMessage(request, UMLElementTypes.Message_4009)) {
+		if (!isCreatingMessage(request, UMLElementTypes.Message_FoundEdge)) {
 			if (sourceEditPart instanceof CombinedFragmentEditPart || sourceEditPart instanceof InteractionEditPart || sourceEditPart instanceof InteractionUseEditPart) {
 				IGraphicalEditPart ep = (IGraphicalEditPart) sourceEditPart;
 				Point location = request.getLocation();

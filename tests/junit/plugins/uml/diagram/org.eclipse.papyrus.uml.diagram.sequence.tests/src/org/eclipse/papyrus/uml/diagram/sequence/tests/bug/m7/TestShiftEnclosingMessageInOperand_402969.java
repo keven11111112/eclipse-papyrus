@@ -51,17 +51,17 @@ public class TestShiftEnclosingMessageInOperand_402969 extends AbstractNodeTest 
 
 	@Test
 	public void testResizeOperand() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 100), new Dimension(80, 300));
-		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(400, 100), new Dimension(80, 300));
-		CombinedFragmentEditPart combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(150, 150), new Dimension(380, 100));
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 100), new Dimension(80, 300));
+		LifelineEditPart lifeline2 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(400, 100), new Dimension(80, 300));
+		CombinedFragmentEditPart combinedFragment = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(150, 150), new Dimension(380, 100));
 		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)combinedFragment.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		IGraphicalEditPart operand1 = compartment.getChildBySemanticHint(InteractionOperandEditPart.VISUAL_ID + "");
-		InteractionOperandEditPart operand2 = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_3005, compartment, getAbsoluteBounds(compartment).getCenter(), new Dimension(100, 200));
+		InteractionOperandEditPart operand2 = (InteractionOperandEditPart)createNode(UMLElementTypes.InteractionOperand_Shape, compartment, getAbsoluteBounds(compartment).getCenter(), new Dimension(100, 200));
 		Rectangle operandBounds = getAbsoluteBounds(operand2);
 		int offset = 10;
 		Point startLocation = getAbsoluteBounds(lifeline1).getCenter().setY(operandBounds.y + offset);
 		Point endLocation = getAbsoluteBounds(lifeline2).getCenter().setY(operandBounds.y + offset);
-		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), startLocation, lifeline1, endLocation, lifeline2);
+		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_AsynchEdge, lifeline1.getViewer(), startLocation, lifeline1, endLocation, lifeline2);
 		checkMessageEnclosing(message, operandBounds);
 		resize(operand1, operandBounds.getTop(), PositionConstants.SOUTH, new Dimension(0, offset * 2));
 		Rectangle newOperandBounds = getAbsoluteBounds(operand2);

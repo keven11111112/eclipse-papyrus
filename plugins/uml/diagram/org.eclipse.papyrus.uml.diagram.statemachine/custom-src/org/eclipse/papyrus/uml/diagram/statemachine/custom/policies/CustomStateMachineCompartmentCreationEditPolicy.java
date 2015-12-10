@@ -54,7 +54,7 @@ public class CustomStateMachineCompartmentCreationEditPolicy extends CreationEdi
 				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
 				for (Iterator<?> iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
 					IElementType elementType = (IElementType) iter.next();
-					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Region_3000).getSemanticHint())) {
+					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint())) {
 						// starting point is the existing region compartment on
 						// which mouse was moving
 						View existingRegionCompartmentView = (View) getHost().getModel();
@@ -84,7 +84,7 @@ public class CustomStateMachineCompartmentCreationEditPolicy extends CreationEdi
 			// If we are creating any regions, and there are already existing regions, redirect
 			// to the last existing region
 			for (CreateViewRequest.ViewDescriptor descriptor : create.getViewDescriptors()) {
-				if (((IHintedType) UMLElementTypes.Region_3000).getSemanticHint().equals(descriptor.getSemanticHint())) {
+				if (((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint().equals(descriptor.getSemanticHint())) {
 					RegionEditPart existingRegion = Iterables.getLast(Iterables.filter(getHost().getChildren(), RegionEditPart.class), null);
 					if (existingRegion != null) {
 						RegionCompartmentEditPart compartment = Iterables.getFirst(Iterables.filter(existingRegion.getChildren(), RegionCompartmentEditPart.class), null);

@@ -75,7 +75,7 @@ public class CustomDestructionOccurrenceSpecificationCreateCommand extends Destr
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest) getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 		DestructionOccurrenceSpecification destructionSpecification = CommandHelper.doCreateDestructionOccurrenceSpecification((Lifeline) getElementToEdit(), modelContainer);
-		ElementInitializers.getInstance().init_DestructionOccurrenceSpecification_3022(destructionSpecification);
+		ElementInitializers.getInstance().init_DestructionOccurrenceSpecification_Shape(destructionSpecification);
 		doConfigure(destructionSpecification, monitor, info);
 		((CreateElementRequest) getRequest()).setNewElement(destructionSpecification);
 		return CommandResult.newOKCommandResult(destructionSpecification);

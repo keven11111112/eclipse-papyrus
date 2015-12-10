@@ -127,7 +127,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 					region = stateMachine.getRegions().get(0);
 				}
 				IAdaptable regionAdaptable = new SemanticAdapter(region, null);
-				String semanticHint = ((IHintedType) UMLElementTypes.Region_3000).getSemanticHint();
+				String semanticHint = ((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint();
 				if (compartmentView != null) {
 					Node regionNode = ViewService.getInstance().createNode(regionAdaptable, compartmentView, semanticHint, -1, getPreferenceHint());
 					if (regionNode.getLayoutConstraint() == null) {
@@ -156,7 +156,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 				org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package) owner;
 				pack.getPackagedElements().add(stateMachine);
 			}
-			ElementInitializers.getInstance().init_StateMachine_2000(stateMachine);
+			ElementInitializers.getInstance().init_StateMachine_Shape(stateMachine);
 		}
 	}
 }

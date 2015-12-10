@@ -46,7 +46,7 @@ public class ActionPinInClearAssociationActionAsObjectEditPart extends AbstractP
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3166";
+	public static final String VISUAL_ID = "ActionInputPin_ClearAssociationActionObjectShape";
 
 	/**
 	 * @generated
@@ -73,7 +73,9 @@ public class ActionPinInClearAssociationActionAsObjectEditPart extends AbstractP
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
@@ -149,6 +151,7 @@ public class ActionPinInClearAssociationActionAsObjectEditPart extends AbstractP
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
@@ -211,6 +214,7 @@ public class ActionPinInClearAssociationActionAsObjectEditPart extends AbstractP
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -269,6 +273,7 @@ public class ActionPinInClearAssociationActionAsObjectEditPart extends AbstractP
 	 */
 	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActionPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID));
+		return getChildBySemanticHint(
+				UMLVisualIDRegistry.getType(ActionPinInClearAssociationActionAsObjectLabelEditPart.VISUAL_ID));
 	}
 }

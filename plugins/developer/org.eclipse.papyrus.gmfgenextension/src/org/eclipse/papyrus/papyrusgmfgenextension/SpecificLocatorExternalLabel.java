@@ -25,13 +25,13 @@ import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
  * This class is used to precise itw own locator used for the border item, like port or template.
  * 
  * for example, in the case of templateSignature of ClassEditPart in the method protected boolean addFixedChild(EditPart childEditPart):
- * replacement of the general BorderItemLocator is needed in order to constrain the movement.
+ * replacement of the general BorderItemLocator is needed in order to constrain the movement. 
  * 
  * if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
- * // BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NORTH);
- * BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);
- * getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
- * return true;
+ *    // BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NORTH);
+ *    BorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);
+ *    getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+ *    return true;
  * }
  * <!-- end-model-doc -->
  *
@@ -39,7 +39,7 @@ import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel <em>Gen External Node Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.papyrusgmfgenextension.SpecificLocatorExternalLabel#getGenExternalNodeLabel <em>Gen External Node Label</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocatorExternalLabel()
@@ -56,7 +56,6 @@ public interface SpecificLocatorExternalLabel extends ExternalHook {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Gen External Node Label</em>' reference list.
 	 * @see org.eclipse.papyrus.papyrusgmfgenextension.PapyrusgmfgenextensionPackage#getSpecificLocatorExternalLabel_GenExternalNodeLabel()
 	 * @model

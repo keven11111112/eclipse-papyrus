@@ -71,26 +71,26 @@ public class TestParentBarAutoresize_385603 extends TestTopNode {
 
 	@Test
 	public void testActionExecutionSpecificationUp() {
-		moveUp(UMLElementTypes.ActionExecutionSpecification_3006);
+		moveUp(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testActionExecutionSpecificationDown() {
-		moveDown(UMLElementTypes.ActionExecutionSpecification_3006);
+		moveDown(UMLElementTypes.ActionExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testBehaviorExecutionSpecificationDown() {
-		moveDown(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		moveDown(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	@Test
 	public void testBehaviorExecutionSpecificationUp() {
-		moveUp(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		moveUp(UMLElementTypes.BehaviorExecutionSpecification_Shape);
 	}
 
 	private void moveUp(IElementType elementType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 300));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 300));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 
@@ -126,7 +126,7 @@ public class TestParentBarAutoresize_385603 extends TestTopNode {
 	}
 
 	private void moveDown(IElementType elementType) {
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 300));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(62, 300));
 		final LifelineEditPart lifeline1 = (LifelineEditPart)getRootEditPart().getChildren().get(0);
 		waitForComplete();
 

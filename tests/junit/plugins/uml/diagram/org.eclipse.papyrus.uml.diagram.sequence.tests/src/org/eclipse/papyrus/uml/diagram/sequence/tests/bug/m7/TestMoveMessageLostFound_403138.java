@@ -49,10 +49,10 @@ public class TestMoveMessageLostFound_403138 extends AbstractNodeTest {
 
 	@Test
 	public void testMoveMessageFound() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(100, 300));
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(300, 100), new Dimension(100, 300));
 		Point endLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 50);
 		Point startLocation = endLocation.getTranslated(-200, 0);
-		Message7EditPart messageFound = (Message7EditPart)createLink(UMLElementTypes.Message_4009, lifeline1.getViewer(), startLocation, endLocation);
+		Message7EditPart messageFound = (Message7EditPart)createLink(UMLElementTypes.Message_FoundEdge, lifeline1.getViewer(), startLocation, endLocation);
 		waitForComplete();
 		Point sourceLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, true);
 		Point targetLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, false);
@@ -80,10 +80,10 @@ public class TestMoveMessageLostFound_403138 extends AbstractNodeTest {
 
 	@Test
 	public void testMoveMessageLost() {
-		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(75, 200));
+		LifelineEditPart lifeline1 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(75, 200));
 		Point startLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 50);
 		Point endLocation = startLocation.getTranslated(100, 0);
-		Message6EditPart messageFound = (Message6EditPart)createLink(UMLElementTypes.Message_4008, lifeline1.getViewer(), startLocation, endLocation);
+		Message6EditPart messageFound = (Message6EditPart)createLink(UMLElementTypes.Message_LostEdge, lifeline1.getViewer(), startLocation, endLocation);
 		waitForComplete();
 		Point sourceLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, true);
 		Point targetLoc = SequenceUtil.getAbsoluteEdgeExtremity(messageFound, false);

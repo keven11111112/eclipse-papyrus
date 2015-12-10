@@ -65,21 +65,21 @@ public class TestCommunicationDiagramChildNode extends TestChildNode {
 	*/
 	@Test
 	public void testToLifeline() {
-		testToManageNode(UMLElementTypes.Lifeline_8001, UMLPackage.eINSTANCE.getLifeline(), UMLElementTypes.Interaction_8002, false);
+		testToManageNode(UMLElementTypes.Lifeline_Shape, UMLPackage.eINSTANCE.getLifeline(), UMLElementTypes.Interaction_Shape, false);
 	}
 	/**
 	* Test to manage Constraint.
 	*/
 	@Test
 	public void testToConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_8004, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Interaction_8002, false);
+		testToManageNode(UMLElementTypes.Constraint_Shape, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Interaction_Shape, false);
 	}
 	/**
 	* Test to manage Comment.
 	*/
 	@Test
 	public void testToComment() {
-		testToManageNode(UMLElementTypes.Comment_8005, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Interaction_8002, false);
+		testToManageNode(UMLElementTypes.Comment_Shape, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Interaction_Shape, false);
 	}
 	/**
 	* Test to manage TimeObservation.
@@ -87,7 +87,7 @@ public class TestCommunicationDiagramChildNode extends TestChildNode {
 	@Test
 	@FailingTest
 	public void testToTimeObservation() {
-		testToManageNode(UMLElementTypes.TimeObservation_8006, UMLPackage.eINSTANCE.getTimeObservation(), UMLElementTypes.Interaction_8002, false);
+		testToManageNode(UMLElementTypes.TimeObservation_Shape, UMLPackage.eINSTANCE.getTimeObservation(), UMLElementTypes.Interaction_Shape, false);
 	}
 	/**
 	* Test to manage DurationObservation.
@@ -95,7 +95,7 @@ public class TestCommunicationDiagramChildNode extends TestChildNode {
 	@Test
 	@FailingTest
 	public void testToDurationObservation() {
-		testToManageNode(UMLElementTypes.DurationObservation_8007, UMLPackage.eINSTANCE.getDurationObservation(), UMLElementTypes.Interaction_8002, false);
+		testToManageNode(UMLElementTypes.DurationObservation_Shape, UMLPackage.eINSTANCE.getDurationObservation(), UMLElementTypes.Interaction_Shape, false);
 	}
 	
 	@Override

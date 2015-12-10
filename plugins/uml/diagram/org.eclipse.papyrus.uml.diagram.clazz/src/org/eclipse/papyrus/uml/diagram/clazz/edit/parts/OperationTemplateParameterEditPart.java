@@ -67,6 +67,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirect
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.parsers.ParserUtil;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateParameterFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.OperationTemplateParamaterDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.TemplateParamaterDisplayEditPolicy;
@@ -92,12 +93,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class OperationTemplateParameterEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart, IControlParserForDirectEdit {
+public class OperationTemplateParameterEditPart extends CompartmentEditPart
+		implements ITextAwareEditPart, IPrimaryEditPart, IControlParserForDirectEdit {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3035";
+	public static final String VISUAL_ID = "OperationTemplateParameter_TemplateParameterLabel";
 
 	/**
 	 * @generated
@@ -145,7 +147,7 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	public DragTracker getDragTracker(Request request) {
-		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
+		if (request instanceof SelectionRequest && ((SelectionRequest) request).getLastButtonPressed() == 3) {
 			return null;
 		}
 		return new DragEditPartsTrackerEx(this);
@@ -161,19 +163,20 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY, new OperationTemplateParamaterDisplayEditPolicy());
+		installEditPolicy(TemplateParamaterDisplayEditPolicy.TEMPLATE_PARAMETER_DISPLAY,
+				new OperationTemplateParamaterDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getText();
-		} else if(figure instanceof ILabelFigure) {
-			return ((ILabelFigure)figure).getText();
+		if (figure instanceof WrappingLabel) {
+			return ((WrappingLabel) figure).getText();
+		} else if (figure instanceof ILabelFigure) {
+			return ((ILabelFigure) figure).getText();
 		} else {
-			return ((Label)figure).getText();
+			return ((Label) figure).getText();
 		}
 	}
 
@@ -181,12 +184,12 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setText(text);
-		} else if(figure instanceof ILabelFigure) {
-			((ILabelFigure)figure).setText(text);
+		if (figure instanceof WrappingLabel) {
+			((WrappingLabel) figure).setText(text);
+		} else if (figure instanceof ILabelFigure) {
+			((ILabelFigure) figure).setText(text);
 		} else {
-			((Label)figure).setText(text);
+			((Label) figure).setText(text);
 		}
 	}
 
@@ -194,12 +197,12 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getIcon();
-		} else if(figure instanceof ILabelFigure) {
-			return ((ILabelFigure)figure).getIcon();
+		if (figure instanceof WrappingLabel) {
+			return ((WrappingLabel) figure).getIcon();
+		} else if (figure instanceof ILabelFigure) {
+			return ((ILabelFigure) figure).getIcon();
 		} else {
-			return ((Label)figure).getIcon();
+			return ((Label) figure).getIcon();
 		}
 	}
 
@@ -207,12 +210,12 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if(figure instanceof WrappingLabel) {
-			((WrappingLabel)figure).setIcon(icon);
-		} else if(figure instanceof ILabelFigure) {
-			((ILabelFigure)figure).setIcon(icon);
+		if (figure instanceof WrappingLabel) {
+			((WrappingLabel) figure).setIcon(icon);
+		} else if (figure instanceof ILabelFigure) {
+			((ILabelFigure) figure).setIcon(icon);
 		} else {
-			((Label)figure).setIcon(icon);
+			((Label) figure).setIcon(icon);
 		}
 	}
 
@@ -271,10 +274,11 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	protected String getLabelText() {
 		String text = null;
 		EObject parserElement = getParserElement();
-		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+		if (parserElement != null && getParser() != null) {
+			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this),
+					getParserOptions().intValue());
 		}
-		if(text == null || text.length() == 0) {
+		if (text == null || text.length() == 0) {
 			text = defaultText;
 		}
 		return text;
@@ -287,12 +291,12 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
+		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
 		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -301,10 +305,11 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	public String getEditText() {
-		if(getParserElement() == null || getParser() == null) {
+		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
+		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this),
+				getParserOptions().intValue());
 	}
 
 	/**
@@ -323,22 +328,28 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 
 			@Override
 			public String isValid(final Object value) {
-				if(value instanceof String) {
+				if (value instanceof String) {
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
+								.runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
-							@Override
-							public void run() {
-								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
-							}
-						});
+									@Override
+									public void run() {
+										setResult(
+												parser.isValidEditString(
+														ParserUtil.getParserAdapter(getParserElement(),
+																OperationTemplateParameterEditPart.this),
+														(String) value));
+									}
+								});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
 				}
+
 				// shouldn't get here
 				return null;
 			}
@@ -350,10 +361,10 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
-		if(getParserElement() == null || getParser() == null) {
+		if (getParserElement() == null || getParser() == null) {
 			return null;
 		}
-		return getParser().getCompletionProcessor(new EObjectAdapter(getParserElement()));
+		return getParser().getCompletionProcessor(ParserUtil.getParserAdapter(getParserElement(), this));
 	}
 
 	/**
@@ -369,8 +380,9 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	public IParser getParser() {
-		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.OperationTemplateParameter_3035, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart.VISUAL_ID));
+		if (parser == null) {
+			parser = ParserUtil.getParser(UMLElementTypes.OperationTemplateParameter_TemplateParameterLabel,
+					getParserElement(), this, VISUAL_ID);
 		}
 		return parser;
 	}
@@ -379,8 +391,10 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected DirectEditManager getManager() {
-		if(manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+		if (manager == null) {
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+					UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -409,8 +423,8 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
+		if (getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
@@ -418,8 +432,8 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void performDirectEdit(char initialCharacter) {
-		if(getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager)getManager()).show(initialCharacter);
+		if (getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager) getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
 		}
@@ -430,46 +444,58 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
-		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
+
+		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
-		switch(directEditionMode) {
+		switch (directEditionMode) {
 		case IDirectEdition.NO_DIRECT_EDITION:
 			// no direct edition mode => does nothing
 			return;
 		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
 			updateExtendedEditorConfiguration();
-			if(configuration == null || configuration.getLanguage() == null) {
+			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if(configuration instanceof ICustomDirectEditorConfiguration) {
-					setManager(((ICustomDirectEditorConfiguration)configuration).createDirectEditManager(this));
+				if (configuration instanceof ICustomDirectEditorConfiguration) {
+					setManager(((ICustomDirectEditorConfiguration) configuration).createDirectEditManager(this));
 					initializeDirectEditManager(theRequest);
 					return;
-				} else if(configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
+				} else if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
-				} else if(configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
-				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()));
+				} else if (configuration instanceof IDirectEditorConfiguration) {
+					dialog = new ExtendedDirectEditionDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
 				final Dialog finalDialog = dialog;
-				if(Window.OK == dialog.open()) {
+
+				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog)finalDialog).getValue());
+							configuration.postEditAction(resolveSemanticElement(),
+									((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -491,12 +517,13 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				@Override
 				public void run() {
-					if(isActive() && isEditable()) {
-						if(request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character)request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+					if (isActive() && isEditable()) {
+						if (request.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
 							performDirectEdit();
@@ -527,12 +554,12 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	protected void refreshLabel() {
 		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if(maskLabelPolicy == null) {
+		if (maskLabelPolicy == null) {
 			maskLabelPolicy = getEditPolicy(IndirectMaskLabelEditPolicy.INDRIRECT_MASK_MANAGED_LABEL);
 		}
-		if(maskLabelPolicy == null) {
-			View view = (View)getModel();
-			if(view.isVisible()) {
+		if (maskLabelPolicy == null) {
+			View view = (View) getModel();
+			if (view.isVisible()) {
 				setLabelTextHelper(getFigure(), getLabelText());
 				setLabelIconHelper(getFigure(), getLabelIcon());
 			} else {
@@ -541,12 +568,12 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 			}
 		}
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if(pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)pdEditPolicy).refreshFeedback();
+		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
 		}
 		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if(sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy)sfEditPolicy).refreshFeedback();
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
 		}
 	}
 
@@ -554,15 +581,15 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void refreshUnderline() {
-		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextUnderline(style.isUnderline());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if (style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
 		}
-		if(resolveSemanticElement() instanceof Feature) {
-			if(((Feature)resolveSemanticElement()).isStatic()) {
-				((WrappingLabel)getFigure()).setTextUnderline(true);
+		if (resolveSemanticElement() instanceof Feature) {
+			if (((Feature) resolveSemanticElement()).isStatic()) {
+				((WrappingLabel) getFigure()).setTextUnderline(true);
 			} else {
-				((WrappingLabel)getFigure()).setTextUnderline(false);
+				((WrappingLabel) getFigure()).setTextUnderline(false);
 			}
 		}
 	}
@@ -571,9 +598,9 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel)getFigure()).setTextStrikeThrough(style.isStrikeThrough());
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if (style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel) getFigure()).setTextStrikeThrough(style.isStrikeThrough());
 		}
 	}
 
@@ -582,9 +609,10 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	protected void refreshFont() {
-		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
-		if(style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
+		if (style != null) {
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -602,11 +630,11 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	protected void addSemanticListeners() {
-		if(getParser() instanceof ISemanticParser) {
+		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser)getParser()).getSemanticElementsBeingParsed(element);
-			for(int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter("SemanticModel" + i, this, (EObject)parserElements.get(i)); //$NON-NLS-1$
+			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
+			for (int i = 0; i < parserElements.size(); i++) {
+				addListenerFilter("SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
 			}
 		} else {
 			super.addSemanticListeners();
@@ -618,8 +646,8 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	protected void removeSemanticListeners() {
-		if(parserElements != null) {
-			for(int i = 0; i < parserElements.size(); i++) {
+		if (parserElements != null) {
+			for (int i = 0; i < parserElements.size(); i++) {
 				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
 			}
 		} else {
@@ -632,7 +660,7 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 */
 	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
-		if(accessibleEP == null) {
+		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
 				@Override
@@ -658,13 +686,14 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	public int getDirectEditionType() {
-		if(checkExtendedEditor()) {
+		if (checkExtendedEditor()) {
 			initExtendedEditorConfiguration();
 			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
 		}
-		if(checkDefaultEdition()) {
+		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
+
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -676,7 +705,7 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected boolean checkExtendedEditor() {
-		if(resolveSemanticElement() != null) {
+		if (resolveSemanticElement() != null) {
 			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement(), this);
 		}
 		return false;
@@ -698,12 +727,15 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
-		if(configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-			if(languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
+		if (configuration == null) {
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			if (languagePreferred != null && !languagePreferred.equals("")) {
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
+						this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+						resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -714,10 +746,13 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
-		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
+					this);
+		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
 	}
@@ -736,12 +771,15 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 
 				@Override
 				public void run() {
-					if(isActive() && isEditable()) {
-						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character)theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+					if (isActive() && isEditable()) {
+						if (theRequest.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest)theRequest;
+						} else if ((theRequest instanceof DirectEditRequest)
+								&& (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
 							performDirectEdit();
@@ -778,31 +816,34 @@ public class OperationTemplateParameterEditPart extends CompartmentEditPart impl
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
-		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
-			Integer c = (Integer)event.getNewValue();
+		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			Integer c = (Integer) event.getNewValue();
 			setFontColor(DiagramColorRegistry.getInstance().getColor(c));
-		} else if(NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_Underline().equals(feature)) {
 			refreshUnderline();
-		} else if(NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if(NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
-			if(getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
+			if (getParser() != null && getParser().isAffectingEvent(event, getParserOptions().intValue())) {
 				refreshLabel();
 			}
-			if(getParser() instanceof ISemanticParser) {
-				ISemanticParser modelParser = (ISemanticParser)getParser();
-				if(modelParser.areSemanticElementsAffected(null, event)) {
+			if (getParser() instanceof ISemanticParser) {
+				ISemanticParser modelParser = (ISemanticParser) getParser();
+				if (modelParser.areSemanticElementsAffected(null, event)) {
 					removeSemanticListeners();
-					if(resolveSemanticElement() != null) {
+					if (resolveSemanticElement() != null) {
 						addSemanticListeners();
 					}
 					refreshLabel();
 				}
 			}
 		}
-		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
+		if (UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);

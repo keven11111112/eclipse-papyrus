@@ -246,19 +246,9 @@
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedCompositeDiagramViewProvider">
 		<Priority name="Low"/>
 		
-		<!-- 
-			"2114" = CONSTRAINT
-			"3097" = COMMENT_CN
-			"2109" = COMMENT
-			"3120" = CONSTRAINT_CN
-		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2114, 3097, 2109, 3120"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Constraint_Shape, Comment_Shape_CN, Comment_Shape, Constraint_Shape_CN"/>
 		
-		<!-- 
-			"4002" = COMMENT_ANNOTATED_ELEMENT
-			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
-		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002, 4003"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="Comment_AnnotatedElementEdge, Constraint_ConstrainedElementEdge"/>
 		
 		<!-- Additional descriptors provided in case the semantic hint is is not provided -->	
 		
@@ -324,55 +314,37 @@
 	<!-- EditPartProvider for inherited elements (from CompositeDiagram) -->
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedCompositeDiagramEditPartProvider">
 		<Priority name="Low"/>
-		<!-- 
-			The semantic hints given here are used in case the provider is not already loaded.
-			As soon as the provider is loaded its provides method is used.		
-			"2114" = CONSTRAINT
-			"5197" = CONSTRAINT_LABEL_NAME_HINT
-			"6039" = CONSTRAINT_LABEL_SPECIFICATION_HINT
-			"3097" = COMMENT_CN
-			"5150" = COMMENT_CN_LABEL_BODY_HINT
-			"2109" = COMMENT
-			"5192" = COMMENT_LABEL_BODY_HINT
-			"3120" = CONSTRAINT_CN
-			"6048" = CONSTRAINT_CN_LABEL_NAME_HINT
-			"6049" = CONSTRAINT_CN_LABEL_SPECIFICATION_HINT
-		  -->
 		<object
 			id="CONSTRAINT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2114, 5197, 6039"/>
+			<method name="getType()" value="Constraint_Shape, Constraint_NameLabel, Constraint_BodyLabel"/>
 		</object>
 		<object
 			id="COMMENT_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3097, 5150"/>
+			<method name="getType()" value="Comment_Shape_CN, Comment_BodyLabel_CN"/>
 		</object>
 		<object
 			id="COMMENT"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2109, 5192"/>
+			<method name="getType()" value="Comment_Shape, Comment_BodyLabel"/>
 		</object>
 		<object
 			id="CONSTRAINT_CN"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3120, 6048, 6049"/>
+			<method name="getType()" value="Constraint_Shape_CN, Constraint_NameLabel_CN, Constraint_BodyLabel_CN"/>
 		</object>
 		
 		
-		<!-- 	
-			"4002" = COMMENT_ANNOTATED_ELEMENT
-			"4003" = CONSTRAINT_CONSTRAINED_ELEMENT
-		  -->
 		<object
 			id="COMMENT_ANNOTATED_ELEMENT"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4002"/>
+			<method name="getType()" value="Comment_AnnotatedElementEdge"/>
 		</object>
 		<object
 			id="CONSTRAINT_CONSTRAINED_ELEMENT"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4003"/>
+			<method name="getType()" value="Constraint_ConstrainedElementEdge"/>
 		</object>
 		
 		<context views="CONSTRAINT, COMMENT_CN, COMMENT, CONSTRAINT_CN"/>

@@ -54,7 +54,7 @@ public class TestCommentLink extends AbstractPapyrusTestCase {
 		IGraphicalEditPart comment = createChild(CommentEditPartCN.VISUAL_ID, getActivityCompartmentEditPart());
 
 		List<IElementType> types = new LinkedList<IElementType>();
-		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		types.add(UMLElementTypes.Comment_AnnotatedElementEdge);
 
 		AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest req =
 				new AspectUnspecifiedTypeConnectionTool(types).

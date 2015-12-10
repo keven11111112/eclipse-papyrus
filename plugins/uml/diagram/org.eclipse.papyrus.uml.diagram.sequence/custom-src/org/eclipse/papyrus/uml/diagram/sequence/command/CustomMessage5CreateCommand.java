@@ -86,7 +86,7 @@ public class CustomMessage5CreateCommand extends Message5CreateCommand {
 				return false;
 			}
 		}
-		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4007(getContainer(), getSource(), getTarget())) {
+		if (!UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_DeleteEdge(getContainer(), getSource(), getTarget())) {
 			return false;
 		}
 		return MessageConnectionHelper.canExist(MessageSort.DELETE_MESSAGE_LITERAL, getSource(), getTarget());

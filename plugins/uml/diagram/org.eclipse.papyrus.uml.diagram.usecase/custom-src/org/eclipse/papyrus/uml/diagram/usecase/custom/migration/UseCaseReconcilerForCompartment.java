@@ -17,32 +17,33 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases2EditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases3EditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentUsecasesEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsInComponentEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsInPackageEditPart;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsInRectangleEditPart;
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
  */
 public class UseCaseReconcilerForCompartment extends ReconcilerForCompartment {
 
+	private static final String UseCasePointsEditPartTN_VISUAL_ID = "7009";
+	private static final String UseCasePointsInRectangleEditPart_VISUAL_ID = "7010";
+	private static final String SubjectComponentUsecasesEditPart_VISUAL_ID = "7011";
+	private static final String UseCasePointsInComponentEditPart_VISUAL_ID = "7012";
+	private static final String ComponentUsecases2EditPart_VISUAL_ID = "7017";
+	private static final String UseCasePointsInPackageEditPart_VISUAL_ID = "7014";
+	private static final String ComponentUsecases3EditPart_VISUAL_ID = "7015";
+	private static final String PackagePackageableElementCompartment2EditPart_VISUAL_ID = "7016";
+	private static final String PackagePackageableElementCompartmentEditPart_VISUAL_ID = "7013";
+
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
-			UseCasePointsEditPartTN.VISUAL_ID,
-			UseCasePointsInRectangleEditPart.VISUAL_ID,
-			SubjectComponentUsecasesEditPart.VISUAL_ID,
-			UseCasePointsInComponentEditPart.VISUAL_ID,
-			ComponentUsecases2EditPart.VISUAL_ID,
-			UseCasePointsInPackageEditPart.VISUAL_ID,
-			ComponentUsecases3EditPart.VISUAL_ID,
-			PackagePackageableElementCompartment2EditPart.VISUAL_ID,
-			PackagePackageableElementCompartmentEditPart.VISUAL_ID);
+			UseCasePointsEditPartTN_VISUAL_ID,
+			UseCasePointsInRectangleEditPart_VISUAL_ID,
+			SubjectComponentUsecasesEditPart_VISUAL_ID,
+			UseCasePointsInComponentEditPart_VISUAL_ID,
+			ComponentUsecases2EditPart_VISUAL_ID,
+			UseCasePointsInPackageEditPart_VISUAL_ID,
+			ComponentUsecases3EditPart_VISUAL_ID,
+			PackagePackageableElementCompartment2EditPart_VISUAL_ID,
+			PackagePackageableElementCompartmentEditPart_VISUAL_ID);
 
 	/**
 	 * Gets the compartments visual id.

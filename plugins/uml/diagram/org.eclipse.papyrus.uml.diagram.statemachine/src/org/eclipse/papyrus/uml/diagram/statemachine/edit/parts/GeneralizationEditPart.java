@@ -29,7 +29,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "19000";
+	public static final String VISUAL_ID = "Generalization_Edge";
 
 	/**
 	 * @generated
@@ -45,15 +45,16 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof GeneralizationStereotypeEditPart) {
-			((GeneralizationStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof GeneralizationStereotypeEditPart) {
+			((GeneralizationStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -63,7 +64,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -73,7 +74,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof GeneralizationStereotypeEditPart) {
+		if (childEditPart instanceof GeneralizationStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -84,7 +85,7 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -108,6 +109,6 @@ public class GeneralizationEditPart extends UMLConnectionNodeEditPart implements
 	 */
 	@Override
 	public GeneralizationFigure getPrimaryShape() {
-		return (GeneralizationFigure)getFigure();
+		return (GeneralizationFigure) getFigure();
 	}
 }

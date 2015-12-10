@@ -38,12 +38,13 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class LoopNodeStructuredActivityNodeContentCompartmentEditPart extends ShapeCompartmentWithoutScrollbarsEditPart {
+public class LoopNodeStructuredActivityNodeContentCompartmentEditPart
+		extends ShapeCompartmentWithoutScrollbarsEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "7010";
+	public static final String VISUAL_ID = "LoopNode_ActivityNodeCompartment";
 
 	/**
 	 * @generated
@@ -78,8 +79,9 @@ public class LoopNodeStructuredActivityNodeContentCompartmentEditPart extends Sh
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ActivityGroupCustomDragAndDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityCompartmentCreationEditPolicy());
@@ -100,6 +102,7 @@ public class LoopNodeStructuredActivityNodeContentCompartmentEditPart extends Sh
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
+
 		return super.getTargetEditPart(request);
 	}
 
@@ -109,7 +112,10 @@ public class LoopNodeStructuredActivityNodeContentCompartmentEditPart extends Sh
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

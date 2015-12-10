@@ -62,7 +62,7 @@ public class Load500NodeTest extends AbstractPapyrusTestCase {
 	@Test
 	public void testLoad10Node() {
 		for(int i = 0; i < 500; i++) {
-			testToCreateANode(UMLElementTypes.Node_2008);
+			testToCreateANode(UMLElementTypes.Node_Shape);
 		}
 	}
 }

@@ -103,7 +103,7 @@ public class TimeObservationCreateCommandCN extends EditElementCommand {
 		}
 
 
-		ElementInitializers.getInstance().init_TimeObservation_8006(newElement);
+		ElementInitializers.getInstance().init_TimeObservation_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

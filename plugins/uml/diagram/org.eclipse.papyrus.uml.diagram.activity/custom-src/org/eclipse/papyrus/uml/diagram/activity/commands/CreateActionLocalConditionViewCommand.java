@@ -65,7 +65,7 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 *
 	 * @param conditionType
 	 *            the type of the local condition : precondition
-	 *            (Constraint_3011) or postcondition (Constraint_3012)
+	 *            (Constraint_LocalPreconditionShape) or postcondition (Constraint_LocalPostconditionShape)
 	 * @param graphicalParent
 	 *            the parent edit part which graphically contains the condition
 	 * @param containerAction
@@ -87,7 +87,7 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 *            the action which owns the local condition to create
 	 * @param conditionType
 	 *            the type of the local condition : precondition
-	 *            (Constraint_3011) or postcondition (Constraint_3012)
+	 *            (Constraint_LocalPreconditionShape) or postcondition (Constraint_LocalPostconditionShape)
 	 * @return the command to create model element or null
 	 */
 	private static ICommandProxy getElementCreationCommand(EObject containerAction, IHintedType conditionType, EditPart part) {
@@ -113,22 +113,22 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 * @return link type or null
 	 */
 	private IHintedType getLinkType() {
-		if (UMLElementTypes.Constraint_3011.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPrecondition_4001;
-		} else if (UMLElementTypes.Constraint_3012.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPostcondition_4002;
-		} else if (UMLElementTypes.IntervalConstraint_3032.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPrecondition_4001;
-		} else if (UMLElementTypes.IntervalConstraint_3033.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPostcondition_4002;
-		} else if (UMLElementTypes.DurationConstraint_3034.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPrecondition_4001;
-		} else if (UMLElementTypes.DurationConstraint_3035.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPostcondition_4002;
-		} else if (UMLElementTypes.TimeConstraint_3036.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPrecondition_4001;
-		} else if (UMLElementTypes.TimeConstraint_3037.equals(type)) {
-			return (IHintedType) UMLElementTypes.ActionLocalPostcondition_4002;
+		if (UMLElementTypes.Constraint_LocalPreconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPreconditionEdge;
+		} else if (UMLElementTypes.Constraint_LocalPostconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPostconditionEdge;
+		} else if (UMLElementTypes.IntervalConstraint_LocalPreconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPreconditionEdge;
+		} else if (UMLElementTypes.IntervalConstraint_LocalPostconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPostconditionEdge;
+		} else if (UMLElementTypes.DurationConstraint_LocalPreconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPreconditionEdge;
+		} else if (UMLElementTypes.DurationConstraint_LocalPostconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPostconditionEdge;
+		} else if (UMLElementTypes.TimeConstraint_LocalPreconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPreconditionEdge;
+		} else if (UMLElementTypes.TimeConstraint_LocalPostconditionShape.equals(type)) {
+			return (IHintedType) UMLElementTypes.Action_LocalPostconditionEdge;
 		} else {
 			return null;
 		}

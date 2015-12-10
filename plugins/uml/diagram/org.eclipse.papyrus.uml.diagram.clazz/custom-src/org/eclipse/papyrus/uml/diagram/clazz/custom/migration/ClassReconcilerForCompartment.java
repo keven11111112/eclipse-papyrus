@@ -16,93 +16,97 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassNestedClassifierCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassNestedClassifierCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentNestedClassifierCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentNestedClassifierCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ComponentOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationSlotCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelPackageableElementCompartmentEditPartTN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeOperationCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeOperationCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RedefinableTemplateSignatureTemplateParameterCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalAttributeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalAttributeCompartmentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TemplateSignatureTemplateParameterCompartmentEditPart;
 
 /**
  * Diagram Reconciler for compartment from 1.1.0 to 1.2.0
  */
 public class ClassReconcilerForCompartment extends ReconcilerForCompartment {
 
+	private static final String ClassAttributeCompartmentEditPart_VISUAL_ID = "7017";
+	private static final String ClassOperationCompartmentEditPart_VISUAL_ID = "7018";
+	private static final String ClassNestedClassifierCompartmentEditPart_VISUAL_ID = "7019";
+	private static final String ComponentAttributeCompartmentEditPart_VISUAL_ID = "7002";
+	private static final String ComponentOperationCompartmentEditPart_VISUAL_ID = "7003";
+	private static final String ComponentNestedClassifierCompartmentEditPart_VISUAL_ID = "7004";
+	private static final String SignalAttributeCompartmentEditPart_VISUAL_ID = "7005";
+	private static final String InterfaceAttributeCompartmentEditPart_VISUAL_ID = "7006";
+	private static final String InterfaceOperationCompartmentEditPart_VISUAL_ID = "7007";
+	private static final String InterfaceNestedClassifierCompartmentEditPart_VISUAL_ID = "7008";
+	private static final String PrimitiveTypeAttributeCompartmentEditPart_VISUAL_ID = "7039";
+	private static final String PrimitiveTypeOperationCompartmentEditPart_VISUAL_ID = "7040";
+	private static final String DataTypeAttributeCompartmentEditPart_VISUAL_ID = "7020";
+	private static final String DataTypeOperationCompartmentEditPart_VISUAL_ID = "7021";
+	private static final String ModelPackageableElementCompartmentEditPartTN_VISUAL_ID = "7009";
+	private static final String PackagePackageableElementCompartmentEditPart_VISUAL_ID = "7016";
+	private static final String EnumerationEnumerationLiteralCompartmentEditPart_VISUAL_ID = "7015";
+	private static final String InstanceSpecificationSlotCompartmentEditPart_VISUAL_ID = "7001";
+	private static final String AssociationClassAttributeCompartmentEditPart_VISUAL_ID = "7034";
+	private static final String AssociationClassOperationCompartmentEditPart_VISUAL_ID = "7036";
+	private static final String AssociationClassNestedClassifierCompartmentEditPart_VISUAL_ID = "7037";
+	private static final String RedefinableTemplateSignatureTemplateParameterCompartmentEditPart_VISUAL_ID = "7014";
+	private static final String TemplateSignatureTemplateParameterCompartmentEditPart_VISUAL_ID = "7038";
+	private static final String ClassAttributeCompartmentEditPartCN_VISUAL_ID = "7011";
+	private static final String ClassOperationCompartmentEditPartCN_VISUAL_ID = "7012";
+	private static final String ClassNestedClassifierCompartmentEditPartCN_VISUAL_ID = "7013";
+	private static final String ComponentAttributeCompartmentEditPartCN_VISUAL_ID = "7023";
+	private static final String ComponentOperationCompartmentEditPartCN_VISUAL_ID = "7024";
+	private static final String ComponentNestedClassifierCompartmentEditPartCN_VISUAL_ID = "7025";
+	private static final String SignalAttributeCompartmentEditPartCN_VISUAL_ID = "7026";
+	private static final String InterfaceAttributeCompartmentEditPartCN_VISUAL_ID = "7027";
+	private static final String InterfaceOperationCompartmentEditPartCN_VISUAL_ID = "7028";
+	private static final String InterfaceNestedClassifierCompartmentEditPartCN_VISUAL_ID = "7029";
+	private static final String PrimitiveTypeAttributeCompartmentEditPartCN_VISUAL_ID = "7041";
+	private static final String PrimitiveTypeOperationCompartmentEditPartCN_VISUAL_ID = "7042";
+	private static final String DataTypeAttributeCompartmentEditPartCN_VISUAL_ID = "7032";
+	private static final String DataTypeOperationCompartmentEditPartCN_VISUAL_ID = "7033";
+	private static final String ModelPackageableElementCompartmentEditPartCN_VISUAL_ID = "7030";
+	private static final String PackagePackageableElementCompartmentEditPartCN_VISUAL_ID = "7010";
+	private static final String EnumerationEnumerationLiteralCompartmentEditPartCN_VISUAL_ID = "7031";
+	private static final String InstanceSpecificationSlotCompartmentEditPartCN_VISUAL_ID = "7035";
+	
 	/** The compartments visual id. */
 	private List<String> compartmentsVisualID = Arrays.asList(
-			ClassAttributeCompartmentEditPartCN.VISUAL_ID,
-			ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID,
-			ComponentAttributeCompartmentEditPartCN.VISUAL_ID,
-			ComponentOperationCompartmentEditPartCN.VISUAL_ID,
-			ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID,
-			SignalAttributeCompartmentEditPartCN.VISUAL_ID,
-			InterfaceAttributeCompartmentEditPartCN.VISUAL_ID,
-			InterfaceOperationCompartmentEditPartCN.VISUAL_ID,
-			InterfaceNestedClassifierCompartmentEditPartCN.VISUAL_ID,
-			PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID,
-			PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID,
-			DataTypeAttributeCompartmentEditPartCN.VISUAL_ID,
-			DataTypeOperationCompartmentEditPartCN.VISUAL_ID,
-			ModelPackageableElementCompartmentEditPartCN.VISUAL_ID,
-			EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID,
-			InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID,
-			InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID,
-			ClassAttributeCompartmentEditPart.VISUAL_ID,
-			ClassOperationCompartmentEditPart.VISUAL_ID,
-			ClassNestedClassifierCompartmentEditPart.VISUAL_ID,
-			ComponentAttributeCompartmentEditPart.VISUAL_ID,
-			ComponentOperationCompartmentEditPart.VISUAL_ID,
-			ComponentNestedClassifierCompartmentEditPart.VISUAL_ID,
-			InterfaceAttributeCompartmentEditPart.VISUAL_ID,
-			InterfaceOperationCompartmentEditPart.VISUAL_ID,
-			InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID,
-			PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID,
-			PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID,
-			DataTypeAttributeCompartmentEditPart.VISUAL_ID,
-			DataTypeOperationCompartmentEditPart.VISUAL_ID,
-			AssociationClassAttributeCompartmentEditPart.VISUAL_ID,
-			InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID,
-			SignalAttributeCompartmentEditPart.VISUAL_ID,
-			ModelPackageableElementCompartmentEditPartTN.VISUAL_ID,
-			PackagePackageableElementCompartmentEditPart.VISUAL_ID,
-			EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID,
-			AssociationClassOperationCompartmentEditPart.VISUAL_ID,
-			AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID,
-			RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID,
-			TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID);
+			ClassAttributeCompartmentEditPart_VISUAL_ID,
+			ClassOperationCompartmentEditPart_VISUAL_ID,
+			ClassNestedClassifierCompartmentEditPart_VISUAL_ID,
+			ComponentAttributeCompartmentEditPart_VISUAL_ID,
+			ComponentOperationCompartmentEditPart_VISUAL_ID,
+			ComponentNestedClassifierCompartmentEditPart_VISUAL_ID,
+			SignalAttributeCompartmentEditPart_VISUAL_ID,
+			InterfaceAttributeCompartmentEditPart_VISUAL_ID,
+			InterfaceOperationCompartmentEditPart_VISUAL_ID,
+			InterfaceNestedClassifierCompartmentEditPart_VISUAL_ID,
+			PrimitiveTypeAttributeCompartmentEditPart_VISUAL_ID,
+			PrimitiveTypeOperationCompartmentEditPart_VISUAL_ID,
+			DataTypeAttributeCompartmentEditPart_VISUAL_ID,
+			DataTypeOperationCompartmentEditPart_VISUAL_ID,
+			ModelPackageableElementCompartmentEditPartTN_VISUAL_ID,
+			PackagePackageableElementCompartmentEditPart_VISUAL_ID,
+			EnumerationEnumerationLiteralCompartmentEditPart_VISUAL_ID,
+			InstanceSpecificationSlotCompartmentEditPart_VISUAL_ID,
+			AssociationClassAttributeCompartmentEditPart_VISUAL_ID,
+			AssociationClassOperationCompartmentEditPart_VISUAL_ID,
+			AssociationClassNestedClassifierCompartmentEditPart_VISUAL_ID,
+			RedefinableTemplateSignatureTemplateParameterCompartmentEditPart_VISUAL_ID,
+			TemplateSignatureTemplateParameterCompartmentEditPart_VISUAL_ID,
+			ClassAttributeCompartmentEditPartCN_VISUAL_ID,
+			ClassOperationCompartmentEditPartCN_VISUAL_ID,
+			ClassNestedClassifierCompartmentEditPartCN_VISUAL_ID,
+			ComponentAttributeCompartmentEditPartCN_VISUAL_ID,
+			ComponentOperationCompartmentEditPartCN_VISUAL_ID,
+			ComponentNestedClassifierCompartmentEditPartCN_VISUAL_ID,
+			SignalAttributeCompartmentEditPartCN_VISUAL_ID,
+			InterfaceAttributeCompartmentEditPartCN_VISUAL_ID,
+			InterfaceOperationCompartmentEditPartCN_VISUAL_ID,
+			InterfaceNestedClassifierCompartmentEditPartCN_VISUAL_ID,
+			PrimitiveTypeAttributeCompartmentEditPartCN_VISUAL_ID,
+			PrimitiveTypeOperationCompartmentEditPartCN_VISUAL_ID,
+			DataTypeAttributeCompartmentEditPartCN_VISUAL_ID,
+			DataTypeOperationCompartmentEditPartCN_VISUAL_ID,
+			ModelPackageableElementCompartmentEditPartCN_VISUAL_ID,
+			PackagePackageableElementCompartmentEditPartCN_VISUAL_ID,
+			EnumerationEnumerationLiteralCompartmentEditPartCN_VISUAL_ID,
+			InstanceSpecificationSlotCompartmentEditPartCN_VISUAL_ID);
 
 	/**
 	 * Gets the compartments visual id.

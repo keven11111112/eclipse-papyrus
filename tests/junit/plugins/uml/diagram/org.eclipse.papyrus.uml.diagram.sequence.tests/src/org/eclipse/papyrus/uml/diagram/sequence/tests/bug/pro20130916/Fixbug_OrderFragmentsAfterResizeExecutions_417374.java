@@ -43,11 +43,11 @@ public class Fixbug_OrderFragmentsAfterResizeExecutions_417374 extends AbstractN
 
 	@Test
 	public void test() {
-		EditPart lifeline = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(100, 500));
+		EditPart lifeline = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), new Dimension(100, 500));
 
 		Interaction interaction = (Interaction)getRootEditPart().resolveSemanticElement();
 
-		ActionExecutionSpecificationEditPart execution1 = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, new Point(131, 200), new Dimension(16, 150));
+		ActionExecutionSpecificationEditPart execution1 = (ActionExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, new Point(131, 200), new Dimension(16, 150));
 		ActionExecutionSpecification actionES = (ActionExecutionSpecification)execution1.resolveSemanticElement();
 		waitForComplete();
 		//validate after create action
@@ -57,7 +57,7 @@ public class Fixbug_OrderFragmentsAfterResizeExecutions_417374 extends AbstractN
 		actualList.add(actionES.getFinish());
 		validateOrders(interaction.getFragments(), actualList);
 
-		BehaviorExecutionSpecificationEditPart execution2 = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline, new Point(148, 230), new Dimension(16, 80));
+		BehaviorExecutionSpecificationEditPart execution2 = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline, new Point(148, 230), new Dimension(16, 80));
 		BehaviorExecutionSpecification behaviorES = (BehaviorExecutionSpecification)execution2.resolveSemanticElement();
 		waitForComplete();
 		//validate after create behavior

@@ -26,7 +26,7 @@ public class ConnectionPointReferenceInStateHelperAdvice extends AbstractEditHel
 	@Override
 	protected ICommand getBeforeCreateCommand(CreateElementRequest request) {
 		IElementType type = request.getElementType();
-		if (type == null || type != UMLElementTypes.ConnectionPointReference_18000) {
+		if (type == null || type != UMLElementTypes.ConnectionPointReference_Shape) {
 			return null;
 		}
 		State state = (State) request.getContainer();

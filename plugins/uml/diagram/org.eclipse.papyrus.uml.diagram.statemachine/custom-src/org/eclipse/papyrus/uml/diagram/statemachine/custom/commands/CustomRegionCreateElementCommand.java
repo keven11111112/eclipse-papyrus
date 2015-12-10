@@ -94,7 +94,7 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 		if (adaptableForDropped == null) {
 			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
 
-			createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_3000);
+			createElementRequest = new CreateElementRequest(getEditingDomain(), ownerView, UMLElementTypes.Region_Shape);
 
 			// create a new UML region
 			if (ownerView.getElement() instanceof StateMachine) {
@@ -105,7 +105,7 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 				umlState.getRegions().add(umlRegion);
 			}
 
-			ElementInitializers.getInstance().init_Region_3000(umlRegion);
+			ElementInitializers.getInstance().init_Region_Shape(umlRegion);
 
 			doConfigure(umlRegion, monitor, info);
 
@@ -113,7 +113,7 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 		}
 
 		// create a view for the new region on the stateMachineCompartment
-		String semanticHint = ((IHintedType) UMLElementTypes.Region_3000).getSemanticHint();
+		String semanticHint = ((IHintedType) UMLElementTypes.Region_Shape).getSemanticHint();
 		View newRegion = ViewService.getInstance().createNode(adaptableForDropped, compartment, semanticHint, -1, prefHints);
 
 		// add region specific annotation

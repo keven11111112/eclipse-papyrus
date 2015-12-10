@@ -32,7 +32,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4015";
+	public static final String VISUAL_ID = "TemplateBinding_Edge";
 
 	/**
 	 * @generated
@@ -48,7 +48,8 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
@@ -56,11 +57,12 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof BindingSubstitutionEditPart) {
-			((BindingSubstitutionEditPart)childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
+		if (childEditPart instanceof BindingSubstitutionEditPart) {
+			((BindingSubstitutionEditPart) childEditPart).setLabel(getPrimaryShape().getBindingSubstitutionFigure());
 		}
-		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
-			((AppliedStereotypeTemplateBindingEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+			((AppliedStereotypeTemplateBindingEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -70,7 +72,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +82,10 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof BindingSubstitutionEditPart) {
+		if (childEditPart instanceof BindingSubstitutionEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
+		if (childEditPart instanceof AppliedStereotypeTemplateBindingEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +96,7 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -118,6 +120,6 @@ public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	public TemplateBindingFigure getPrimaryShape() {
-		return (TemplateBindingFigure)getFigure();
+		return (TemplateBindingFigure) getFigure();
 	}
 }

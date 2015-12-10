@@ -33,7 +33,7 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4014";
+	public static final String VISUAL_ID = "Manifestation_Edge";
 
 	/**
 	 * @generated
@@ -49,7 +49,8 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
@@ -62,7 +63,8 @@ public class ManifestationEditPart extends UMLConnectionNodeEditPart implements 
 			((ManifestationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof ManifestationAppliedStereotypeEditPart) {
-			((ManifestationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ManifestationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

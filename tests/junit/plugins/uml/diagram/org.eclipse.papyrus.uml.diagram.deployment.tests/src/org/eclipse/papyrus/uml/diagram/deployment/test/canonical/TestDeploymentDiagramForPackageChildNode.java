@@ -43,7 +43,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
-		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2009, getDiagramEditPart().getDiagramPreferencesHint());
+		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_Shape, getDiagramEditPart().getDiagramPreferencesHint());
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManagePackage() {
-		testToManageNode(UMLElementTypes.Package_36, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageModel() {
-		testToManageNode(UMLElementTypes.Model_49, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Model_Shape_CN, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageNode() {
-		testToManageNode(UMLElementTypes.Node_42, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Node_Shape_CN, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageArtifact() {
-		testToManageNode(UMLElementTypes.Artifact_40, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Artifact_Shape_CN, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageDevice() {
-		testToManageNode(UMLElementTypes.Device_44, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Device_Shape_CN, UMLPackage.eINSTANCE.getDevice(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_46, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_Shape_CN, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageComment() {
-		testToManageNode(UMLElementTypes.Comment_54, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Comment_Shape_CN, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToManageConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_56, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToModel() {
-		testToManageNode(UMLElementTypes.Model_49, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Model_Shape_CN, UMLPackage.eINSTANCE.getModel(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToPackage() {
-		testToManageNode(UMLElementTypes.Package_36, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Package_Shape_CN, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToExecutionEnvironment() {
-		testToManageNode(UMLElementTypes.ExecutionEnvironment_46, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.ExecutionEnvironment_Shape_CN, UMLPackage.eINSTANCE.getExecutionEnvironment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToNode() {
-		testToManageNode(UMLElementTypes.Node_42, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Node_Shape_CN, UMLPackage.eINSTANCE.getNode(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToArtifact3() {
-		testToManageNode(UMLElementTypes.Artifact_40, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Artifact_Shape_CN, UMLPackage.eINSTANCE.getArtifact(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToComment() {
-		testToManageNode(UMLElementTypes.Comment_54, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Comment_Shape_CN, UMLPackage.eINSTANCE.getComment(), UMLElementTypes.Package_Shape_CN, true);
 	}
 
 	/**
@@ -173,6 +173,6 @@ public class TestDeploymentDiagramForPackageChildNode extends TestChildNode {
 	 */
 	@Test
 	public void testToConstraint() {
-		testToManageNode(UMLElementTypes.Constraint_56, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_36, true);
+		testToManageNode(UMLElementTypes.Constraint_Shape_CN, UMLPackage.eINSTANCE.getConstraint(), UMLElementTypes.Package_Shape_CN, true);
 	}
 }

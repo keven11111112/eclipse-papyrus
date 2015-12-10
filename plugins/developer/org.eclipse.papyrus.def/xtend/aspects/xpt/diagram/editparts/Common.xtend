@@ -14,16 +14,16 @@
 package aspects.xpt.diagram.editparts
 
 import aspects.xpt.QualifiedClassNameProvider
+import com.google.inject.Inject
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
-import com.google.inject.Inject
 
 //Documentation: PapyrusGenCode
 //This template has been modified in order to remove canonical ediPolicies
 
 @Singleton class Common extends xpt.diagram.editparts.Common {
-	@Inject extension xpt.Common;
+	@Inject extension aspects.xpt.Common;
 	
 	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
 
@@ -52,6 +52,7 @@ import com.google.inject.Inject
 
 	override def visualIDConstant(GenCommonBase it) '''
 		«generatedMemberComment»
-		public static final String VISUAL_ID = "«visualID»";
+		public static final String VISUAL_ID = "«stringVisualID»";
 	'''
+
 }

@@ -53,8 +53,8 @@ import org.eclipse.uml2.uml.ValuePin;
 public class CustomUMLViewProvider extends UMLViewProvider {
 
 	@Override
-	public Edge createControlFlow_4004(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Edge edge = super.createControlFlow_4004(domainElement, containerView, index, persisted, preferencesHint);
+	public Edge createControlFlow_Edge(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Edge edge = super.createControlFlow_Edge(domainElement, containerView, index, persisted, preferencesHint);
 		/*
 		 * Withdraw the view create for ControlFlowInterruptibleFigure
 		 * This implementation do the following:
@@ -76,8 +76,8 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Edge createObjectFlow_4003(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Edge edge = super.createObjectFlow_4003(domainElement, containerView, index, persisted, preferencesHint);
+	public Edge createObjectFlow_Edge(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Edge edge = super.createObjectFlow_Edge(domainElement, containerView, index, persisted, preferencesHint);
 		/*
 		 * Withdraw the view create for ControlFlowInterruptibleFigure
 		 * This implementation do the following:
@@ -237,24 +237,24 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 
 
 	@Override
-	public Node createOpaqueAction_3007(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = super.createOpaqueAction_3007(domainElement, containerView, index, persisted, preferencesHint);
+	public Node createOpaqueAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createOpaqueAction_Shape(domainElement, containerView, index, persisted, preferencesHint);
 		adaptActionHeight(node, domainElement);
 		createPins(domainElement, node, persisted, preferencesHint);
 		return node;
 	}
 
 	@Override
-	public Node createCallBehaviorAction_3008(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = super.createCallBehaviorAction_3008(domainElement, containerView, index, persisted, preferencesHint);
+	public Node createCallBehaviorAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createCallBehaviorAction_Shape(domainElement, containerView, index, persisted, preferencesHint);
 		adaptActionHeight(node, domainElement);
 		createPins(domainElement, node, persisted, preferencesHint);
 		return node;
 	}
 
 	@Override
-	public Node createCallOperationAction_3010(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Node node = super.createCallOperationAction_3010(domainElement, containerView, index, persisted, preferencesHint);
+	public Node createCallOperationAction_Shape(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = super.createCallOperationAction_Shape(domainElement, containerView, index, persisted, preferencesHint);
 		adaptActionHeight(node, domainElement);
 		createPins(domainElement, node, persisted, preferencesHint);
 		return node;
@@ -284,59 +284,59 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 			int index = 0;
 			for (InputPin pin : ((OpaqueAction) domainElement).getInputValues()) {
 				if (pin instanceof ValuePin) {
-					createValuePin_3015(pin, node, index, persisted, preferencesHint);
+					createValuePin_OpaqueActionInputShape(pin, node, index, persisted, preferencesHint);
 				} else if (pin instanceof ActionInputPin) {
-					createActionInputPin_3016(pin, node, index, persisted, preferencesHint);
+					createActionInputPin_OpaqueActionInputShape(pin, node, index, persisted, preferencesHint);
 				} else {
-					createInputPin_3013(pin, node, index, persisted, preferencesHint);
+					createInputPin_OpaqueActionInputShape(pin, node, index, persisted, preferencesHint);
 				}
 				index++;
 			}
 			index = 0;
 			for (OutputPin pin : ((OpaqueAction) domainElement).getOutputValues()) {
-				createOutputPin_3014(pin, node, index, persisted, preferencesHint);
+				createOutputPin_OpaqueActionOutputShape(pin, node, index, persisted, preferencesHint);
 			}
 		} else if (domainElement instanceof CallBehaviorAction) {
 			// pins of a call behavior action : arguments and results
 			int index = 0;
 			for (InputPin pin : ((CallBehaviorAction) domainElement).getArguments()) {
 				if (pin instanceof ValuePin) {
-					createValuePin_3017(pin, node, index, persisted, preferencesHint);
+					createValuePin_CallBehaviorActionArgumentShape(pin, node, index, persisted, preferencesHint);
 				} else if (pin instanceof ActionInputPin) {
-					createActionInputPin_3018(pin, node, index, persisted, preferencesHint);
+					createActionInputPin_CallBehaviorActionArgumentShape(pin, node, index, persisted, preferencesHint);
 				} else {
-					createInputPin_3019(pin, node, index, persisted, preferencesHint);
+					createInputPin_CallBehaviorActionArgumentShape(pin, node, index, persisted, preferencesHint);
 				}
 				index++;
 			}
 			index = 0;
 			for (OutputPin pin : ((CallBehaviorAction) domainElement).getResults()) {
-				createOutputPin_3020(pin, node, index, persisted, preferencesHint);
+				createOutputPin_CallBehaviorActionResultShape(pin, node, index, persisted, preferencesHint);
 			}
 		} else if (domainElement instanceof CallOperationAction) {
 			// pins of a call operation action : arguments, target and results
 			int index = 0;
 			for (InputPin pin : ((CallOperationAction) domainElement).getArguments()) {
 				if (pin instanceof ValuePin) {
-					createValuePin_3022(pin, node, index, persisted, preferencesHint);
+					createValuePin_CallOperationActionArgumentShape(pin, node, index, persisted, preferencesHint);
 				} else if (pin instanceof ActionInputPin) {
-					createActionInputPin_3021(pin, node, index, persisted, preferencesHint);
+					createActionInputPin_CallOperationActionArgumentShape(pin, node, index, persisted, preferencesHint);
 				} else {
-					createInputPin_3023(pin, node, index, persisted, preferencesHint);
+					createInputPin_CallOperationActionArgumentShape(pin, node, index, persisted, preferencesHint);
 				}
 				index++;
 			}
 			InputPin target = ((CallOperationAction) domainElement).getTarget();
 			if (target instanceof ValuePin) {
-				createValuePin_3025(target, node, index, persisted, preferencesHint);
+				createValuePin_CallOperationActionTargetShape(target, node, index, persisted, preferencesHint);
 			} else if (target instanceof ActionInputPin) {
-				createActionInputPin_3026(target, node, index, persisted, preferencesHint);
+				createActionInputPin_CallOperationActionTargetShape(target, node, index, persisted, preferencesHint);
 			} else if (target != null) {
-				createInputPin_3027(target, node, index, persisted, preferencesHint);
+				createInputPin_CallOperationActionTargetShape(target, node, index, persisted, preferencesHint);
 			}
 			index = 0;
 			for (OutputPin pin : ((CallOperationAction) domainElement).getResults()) {
-				createOutputPin_3024(pin, node, index, persisted, preferencesHint);
+				createOutputPin_CallOperationActionResultShape(pin, node, index, persisted, preferencesHint);
 			}
 		}
 	}

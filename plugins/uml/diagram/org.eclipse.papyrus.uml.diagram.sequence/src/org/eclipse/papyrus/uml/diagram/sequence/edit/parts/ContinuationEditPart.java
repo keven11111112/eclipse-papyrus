@@ -45,7 +45,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "3016";
+	public static final String VISUAL_ID = "Continuation_Shape";
 
 	/**
 	 * @generated
@@ -72,7 +72,9 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContinuationItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -88,7 +90,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -118,17 +120,18 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	public ContinuationFigure getPrimaryShape() {
-		return (ContinuationFigure)primaryShape;
+		return (ContinuationFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ContinuationNameEditPart) {
-			((ContinuationNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
+		if (childEditPart instanceof ContinuationNameEditPart) {
+			((ContinuationNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
+
 		return false;
 	}
 
@@ -136,7 +139,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ContinuationNameEditPart) {
+		if (childEditPart instanceof ContinuationNameEditPart) {
 			return true;
 		}
 		return false;
@@ -147,7 +150,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -158,7 +161,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -196,6 +199,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
+
 	}
 
 	/**
@@ -207,7 +211,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -220,7 +224,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -231,7 +235,7 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -249,8 +253,8 @@ public class ContinuationEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 

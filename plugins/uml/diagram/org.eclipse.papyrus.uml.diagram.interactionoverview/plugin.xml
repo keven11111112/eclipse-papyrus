@@ -85,22 +85,17 @@
         <viewProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.InheritedActivityDiagramViewProvider">
             <Priority name="Low"/>
 
-            <!-- "3005" = ACTIVITY_FINAL_NODE_CN "3008" = CALL_BEHAVIOR_ACTION_CN "3080" = COMMENT_CN "3069" = CONDITIONAL_NODE_CN "3038" = DECISION_NODE_CN "3006" 
-                = FLOW_FINAL_NODE_CN "3040" = FORK_NODE_CN "3004" = INITIAL_NODE_CN "3041" = JOIN_NODE_CN "3071" = LOOP_NODE_CN "3039" = MERGE_NODE_CN "3085" = SHAPE_NAMED_ELEMENT_CN 
-                "2001" = ACTIVITY "3073" = SEQUENCE_NODE_CN "3112" = CONSTRAINT_CN -->
             <context
                 viewClass="org.eclipse.gmf.runtime.notation.Node"
-                semanticHints="3005, 3008, 3080, 3069, 3038, 3006, 3040, 3004, 3041, 3071, 3039, 3085, 2001, 3073, 3112"/>
+                semanticHints="ActivityFinalNode_Shape, CallBehaviorAction_Shape, Comment_Shape, ConditionalNode_Shape, DecisionNode_Shape, FlowFinalNode_Shape, ForkNode_Shape, InitialNode_Shape, JoinNode_Shape, LoopNode_Shape, MergeNode_Shape, NamedElement_DefaultShape, Activity_Shape, SequenceNode_Shape, Constraint_Shape"/>
 
-            <!-- "3001" = ACTIVITY_PARAMETER_CLN "3002" = ACTIVITY_CONSTRAINT_CLN "3003" = ACTIVITY_CONSTRAINT_CLN -->
             <context
                 viewClass="org.eclipse.gmf.runtime.notation.Node"
-                semanticHints="3001, 3002, 3003"/>
+                semanticHints="Parameter_ParameterLabel, Constraint_PreconditionLabel, Constraint_PostconditionLabel"/>
 
-            <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW -->
             <context
                 viewClass="org.eclipse.gmf.runtime.notation.Edge"
-                semanticHints="4006, 4004"/>
+                semanticHints="Comment_AnnotatedElementEdge, ControlFlow_Edge"/>
 
             <object
                 id="elementtype.node"
@@ -108,7 +103,7 @@
 
                 <method
                     name="getSemanticHint()"
-                    value="3005, 3008, 3080, 3069, 3038, 3006, 3040, 3004, 3041, 3071, 3039, 3085, 2001, 3073, 3112">
+                    value="ActivityFinalNode_Shape, CallBehaviorAction_Shape, Comment_Shape, ConditionalNode_Shape, DecisionNode_Shape, FlowFinalNode_Shape, ForkNode_Shape, InitialNode_Shape, JoinNode_Shape, LoopNode_Shape, MergeNode_Shape, NamedElement_DefaultShape, Activity_Shape, SequenceNode_Shape, Constraint_Shape">
                 </method>
             </object>
             <context
@@ -121,7 +116,7 @@
 
                 <method
                     name="getSemanticHint()"
-                    value="4006, 4004">
+                    value="Comment_AnnotatedElementEdge, ControlFlow_Edge">
                 </method>
             </object>
             <context
@@ -302,17 +297,15 @@
            </Priority>
            <context
                 viewClass="org.eclipse.gmf.runtime.notation.Node"
-                semanticHints="5000, 5005"/>
+                semanticHints="CallBehaviorAction_InteractionShape, CallBehaviorAction_InteractionUseShape"/>
 
-            <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW -->
-            
             <object
                 id="elementtype.node"
                 class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
 
                 <method
                     name="getSemanticHint()"
-                    value="5000">
+                    value="CallBehaviorAction_InteractionShape">
                 </method>
             </object>
             <object
@@ -321,7 +314,7 @@
 
                 <method
                     name="getSemanticHint()"
-                    value="5005">
+                    value="CallBehaviorAction_InteractionUseShape">
                 </method>
             </object>
             <context
@@ -350,161 +343,147 @@
         <!-- EditPartProvider for inherited elements (from ActivityDiagram) -->
         <editpartProvider class="org.eclipse.papyrus.uml.diagram.interactionoverview.provider.InheritedActivityDiagramEditPartProvider">
             <Priority name="Low"/>
-            <!-- The semantic hints given here are used in case the provider is not already loaded. As soon as the provider is loaded its provides method is used. 
-                "3005" = ACTIVITY_FINAL_NODE_CN "5081" = ACTIVITY_FINAL_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3008" = CALL_BEHAVIOR_ACTION_CN "5004" = CALL_BEHAVIOR_ACTION_CN_LABEL_NAME_HINT 
-                "3080" = COMMENT_CN "5138" = COMMENT_CN_LABEL_BODY_LABEL_HINT "3069" = CONDITIONAL_NODE_CN "5119" = CONDITIONAL_NODE_CN_LABEL_KEYWORD_HINT "7008" = CONDITIONAL_NODE_CN_COMPARTMENT_STRUCTURED_ACTIVITY_NODE_CONTENT_HINT 
-                "3038" = DECISION_NODE_CN "5043" = DECISION_NODE_CN_LABEL_DECISION_INPUT_HINT "5098" = DECISION_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3006" = FLOW_FINAL_NODE_CN 
-                "5082" = FLOW_FINAL_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3040" = FORK_NODE_CN "5100" = FORK_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3004" = INITIAL_NODE_CN "5080" 
-                = INITIAL_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3041" = JOIN_NODE_CN "5042" = JOIN_NODE_CN_LABEL_JOIN_SPEC_HINT "5101" = JOIN_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT 
-                "3071" = LOOP_NODE_CN "5121" = LOOP_NODE_CN_LABEL_KEYWORD_HINT "7010" = LOOP_NODE_CN_COMPARTMENT_STRUCTURED_ACTIVITY_NODE_CONTENT_HINT "3039" = MERGE_NODE_CN "5099" 
-                = MERGE_NODE_CN_LABEL_APPLIED_STEREOTYPE_HINT "3085" = SHAPE_NAMED_ELEMENT_CN "5129" = SHAPE_NAMED_ELEMENT_CN_LABEL_NAME_HINT "2001" = ACTIVITY "5001" = ACTIVITY_LABEL_NAME_HINT 
-                "5002" = ACTIVITY_LABEL_IS_SINGLE_EXECUTION_HINT "7001" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_PARAMETER_HINT "7002" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_PRECONDITION_HINT 
-                "7003" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_POST_CONDTION_HINT "7004" = ACTIVITY_COMPARTMENT_ACTIVITY_FIGURE_CONTENT_HINT "3073" = SEQUENCE_NODE_CN "5123" = SEQUENCE_NODE_CN_LABEL_KEYWORD_HINT 
-                "7012" = SEQUENCE_NODE_CN_COMPARTMENT_STRUCTURED_ACTIVITY_NODE_CONTENT_HINT "3112" = CONSTRAINT_CN "5189" = CONSTRAINT_CN_LABEL_NAME_HINT "5190" = CONSTRAINT_CN_LABEL_BODY_HINT -->
             <object
                 id="ACTIVITY_FINAL_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3005, 5081"/>
+                    value="ActivityFinalNode_Shape, ActivityFinalNode_StereotypeLabel"/>
             </object>
             <object
                 id="CALL_BEHAVIOR_ACTION_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3008, 5004"/>
+                    value="CallBehaviorAction_Shape, CallBehaviorAction_NameLabel"/>
             </object>
             <object
                 id="COMMENT_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3080, 5138"/>
+                    value="Comment_Shape, Comment_BodyLabel"/>
             </object>
             <object
                 id="CONDITIONAL_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3069, 5119, 7008"/>
+                    value="ConditionalNode_Shape, ConditionalNode_KeywordLabel, ConditionalNode_ActivityNodeCompartment"/>
             </object>
             <object
                 id="DECISION_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3038, 5043, 5098"/>
+                    value="DecisionNode_Shape, DecisionNode_DecisionInputLabel, DecisionNode_StereotypeLabel"/>
             </object>
             <object
                 id="FLOW_FINAL_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3006, 5082"/>
+                    value="FlowFinalNode_Shape, FlowFinalNode_StereotypeLabel"/>
             </object>
             <object
                 id="FORK_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3040, 5100"/>
+                    value="ForkNode_Shape, ForkNode_StereotypeLabel"/>
             </object>
             <object
                 id="INITIAL_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3004, 5080"/>
+                    value="InitialNode_Shape, InitialNode_StereotypeLabel"/>
             </object>
             <object
                 id="JOIN_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3041, 5042, 5101"/>
+                    value="JoinNode_Shape, JoinNode_JoinSpecLabel, JoinNode_StereotypeLabel"/>
             </object>
             <object
                 id="LOOP_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3071, 5121, 7010"/>
+                    value="LoopNode_Shape, LoopNode_KeywordLabel, LoopNode_ActivityNodeCompartment"/>
             </object>
             <object
                 id="MERGE_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3039, 5099"/>
+                    value="MergeNode_Shape, MergeNode_StereotypeLabel"/>
             </object>
             <object
                 id="SHAPE_NAMED_ELEMENT_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3085, 5129"/>
+                    value="NamedElement_DefaultShape, NamedElement_NameLabel"/>
             </object>
             <object
                 id="ACTIVITY"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="5001, 5002, 7001, 7002, 7003, 7004"/>
+                    value="Activity_NameLabel, Activity_KeywordLabel, Activity_ParameterCompartment, Activity_PreconditionCompartment, Activity_PostconditionCompartment, Activity_ActivityNodeCompartment"/>
             </object>
             <object
                 id="SEQUENCE_NODE_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3073, 5123, 7012"/>
+                    value="SequenceNode_Shape, SequenceNode_KeywordLabel, SequenceNode_ActivityNodeCompartment"/>
             </object>
             <object
                 id="CONSTRAINT_CN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3112, 5189, 5190"/>
+                    value="Constraint_Shape, Constraint_NameLabel, Constraint_BodyLabel"/>
             </object>
 
-            <!-- "3001" = ACTIVITY_PARAMETER_CLN "3002" = ACTIVITY_CONSTRAINT_CLN "3003" = ACTIVITY_CONSTRAINT_CLN -->
             <object
                 id="ACTIVITY_PARAMETER_CLN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3001"/>
+                    value="Parameter_ParameterLabel"/>
             </object>
             <object
                 id="ACTIVITY_CONSTRAINT_CLN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3002"/>
+                    value="Constraint_PreconditionLabel"/>
             </object>
             <object
                 id="ACTIVITY_CONSTRAINT_CLN"
                 class="org.eclipse.gmf.runtime.notation.Node">
                 <method
                     name="getType()"
-                    value="3003"/>
+                    value="Constraint_PostconditionLabel"/>
             </object>
 
-            <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW "6003" = CONTROL_FLOW_LABEL_NAME_HINT "6004" = CONTROL_FLOW_LABEL_WEIGHT_HINT "6009" = 
-                CONTROL_FLOW_LABEL_GUARD_HINT "6011" = CONTROL_FLOW_LABEL_APPLIED_STEREOTYPE_HINT "6013" = CONTROL_FLOW_LABEL_INTERRUPTIBLE_ICON_HINT -->
             <object
                 id="COMMENT_ANNOTATED_ELEMENT"
                 class="org.eclipse.gmf.runtime.notation.Edge">
                 <method
                     name="getType()"
-                    value="4006"/>
+                    value="Comment_AnnotatedElementEdge"/>
             </object>
             <object
                 id="CONTROL_FLOW"
                 class="org.eclipse.gmf.runtime.notation.Edge">
                 <method
                     name="getType()"
-                    value="4004, 6003, 6004, 6009, 6011, 6013"/>
+                    value="ControlFlow_Edge, ControlFlow_NameLabel, ControlFlow_WeightLabel, ControlFlow_GuardLabel, ControlFlow_StereotypeLabel, ControlFlow_IconLabel"/>
             </object>
 
             <context
@@ -524,8 +503,7 @@
 			<object
 	     		class="org.eclipse.gmf.runtime.notation.Node"
 		    	id="ACTIVITY">
-		    	<!-- 2001 = ActivityEditPartTN -->
-			    <method name="getType()" value="2001"/>
+			    <method name="getType()" value="Activity_Shape"/>
 		   </object>
 		   <context views="ACTIVITY"/>
 	   </editpartProvider>
@@ -732,11 +710,18 @@
       point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
    <diagramReconciler
          diagramType="PapyrusUMLInteractionOverviewDiagram"
-         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconcilier"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconciler"
          source="undefined"
          target="1.1.0">
    </diagramReconciler>
+   <diagramReconciler
+         diagramType="PapyrusUMLInteractionOverviewDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.interactionoverview.migration.InteractionOverviewReconciler_1_2_0"
+         source="1.1.0"
+         target="1.2.0">
+   </diagramReconciler>
 </extension>
+
    <extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
       <?gmfgen generated="true"?>
       <visualTypeProvider

@@ -28,7 +28,7 @@ public class CommentLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4006";
+	public static final String VISUAL_ID = "Comment_AnnotatedElementEdge";
 
 	/**
 	 * @generated

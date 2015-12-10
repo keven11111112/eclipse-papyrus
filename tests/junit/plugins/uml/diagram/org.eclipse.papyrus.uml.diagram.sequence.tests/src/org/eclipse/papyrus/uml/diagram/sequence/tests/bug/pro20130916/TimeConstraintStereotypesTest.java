@@ -44,10 +44,10 @@ public class TimeConstraintStereotypesTest extends BaseStereotypesTest {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		EditPart lifeline = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
-		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_3006, lifeline, new Point(131, 100), null);
+		EditPart lifeline = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
+		AbstractExecutionSpecificationEditPart es = (AbstractExecutionSpecificationEditPart)createNode(UMLElementTypes.ActionExecutionSpecification_Shape, lifeline, new Point(131, 100), null);
 		Point location = SequenceUtil.getAbsoluteBounds(es).getTop().getCopy();
-		timeObservation = (TimeObservationEditPart)createNode(UMLElementTypes.TimeObservation_3020, getRootEditPart(), location, null);
+		timeObservation = (TimeObservationEditPart)createNode(UMLElementTypes.TimeObservation_Shape, getRootEditPart(), location, null);
 		assertNotNull(timeObservation);
 	}
 

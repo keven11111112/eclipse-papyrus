@@ -33,7 +33,7 @@ public class TimingDiagramEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "1";
+	public static final String VISUAL_ID = "Package_TimingDiagram";
 
 	/**
 	 * @generated
@@ -48,8 +48,10 @@ public class TimingDiagramEditPart extends PapyrusDiagramEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomTimingDiagramCreationEditPolicy());

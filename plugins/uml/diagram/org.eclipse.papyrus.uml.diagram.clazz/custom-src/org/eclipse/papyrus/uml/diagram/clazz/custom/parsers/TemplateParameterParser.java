@@ -16,12 +16,12 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.parsers;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
@@ -60,8 +60,9 @@ public class TemplateParameterParser implements IParser {
 	@Override
 	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
 		ICommand command = UnexecutableCommand.INSTANCE;
-		if (element instanceof EObjectAdapter) {
-			final TemplateParameter templateParam = ((TemplateParameter) ((EObjectAdapter) element).getRealObject());
+		EObject e = element.getAdapter(EObject.class);
+		if (e != null) {
+			final TemplateParameter templateParam = (TemplateParameter) e;
 			if (newString.contains("<UNDEFINED>")) {
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -77,8 +78,9 @@ public class TemplateParameterParser implements IParser {
 
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final TemplateParameter templateParam = ((TemplateParameter) ((EObjectAdapter) element).getRealObject());
+		EObject e = element.getAdapter(EObject.class);
+		if (e != null) {
+			final TemplateParameter templateParam = (TemplateParameter) e;
 			if (templateParam.getParameteredElement() == null) {
 				return "<UNDEFINED>";
 			}

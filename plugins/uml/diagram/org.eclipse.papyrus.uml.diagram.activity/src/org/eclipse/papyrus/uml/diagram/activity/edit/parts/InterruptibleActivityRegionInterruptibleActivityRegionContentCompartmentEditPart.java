@@ -38,12 +38,13 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 /**
  * @generated
  */
-public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart extends ShapeCompartmentWithoutScrollbarsEditPart {
+public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart
+		extends ShapeCompartmentWithoutScrollbarsEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "7007";
+	public static final String VISUAL_ID = "InterruptibleActivityRegion_ActivityNodeCompartment";
 
 	/**
 	 * @generated
@@ -78,12 +79,13 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new
-		// org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ActivityGroupCustomDragAndDropEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new InterruptibleActivityRegionCompartmentCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new InterruptibleActivityRegionCompartmentCreationEditPolicy());
 	}
 
 	/**
@@ -101,6 +103,7 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
+
 		return super.getTargetEditPart(request);
 	}
 
@@ -110,7 +113,10 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
+				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
+				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);

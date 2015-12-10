@@ -52,7 +52,7 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 * @generated
 	 */
 	public MessageItemSemanticEditPolicy() {
-		super(UMLElementTypes.Message_8009);
+		super(UMLElementTypes.Path_Edge);
 	}
 
 	/**
@@ -100,23 +100,23 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_8009 == baseElementType) {
+		if (UMLElementTypes.Path_Edge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_8010 == baseElementType) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
 			return null;
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_8011 == baseElementType) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
 			return null;
 		}
-		if (UMLElementTypes.DurationObservationEvent_8012 == baseElementType) {
+		if (UMLElementTypes.DurationObservation_EventEdge == baseElementType) {
 			return null;
 		}
-		if (UMLElementTypes.TimeObservationEvent_8013 == baseElementType) {
+		if (UMLElementTypes.TimeObservation_EventEdge == baseElementType) {
 			return null;
 		}
 		return null;
@@ -142,35 +142,35 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Message_8009 == baseElementType) {
+		if (UMLElementTypes.Path_Edge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new MessageCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_8010 == baseElementType) {
+		if (UMLElementTypes.Comment_AnnotatedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.ConstraintConstrainedElement_8011 == baseElementType) {
+		if (UMLElementTypes.Constraint_ConstrainedElementEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.DurationObservationEvent_8012 == baseElementType) {
+		if (UMLElementTypes.DurationObservation_EventEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req,
 					req.getSource(), req.getTarget()));
 		}
-		if (UMLElementTypes.TimeObservationEvent_8013 == baseElementType) {
+		if (UMLElementTypes.TimeObservation_EventEdge == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
 			}

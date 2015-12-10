@@ -72,12 +72,13 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmentEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
+public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmentEditPart
+		implements ITextAwareEditPart, IControlParserForDirectEdit {
 
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "5202";
+	public static final String VISUAL_ID = "StartClassifierBehaviorAction_NameLabel";
 
 	/**
 	 * @generated
@@ -233,7 +234,7 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 		if (parserElement == null) {
 			return null;
 		}
-		List<View> views = org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (View view : views) {
 			if (AppearanceHelper.showElementIcon(view)) {
 				return UMLElementTypes.getImage(parserElement.eClass());
@@ -249,7 +250,8 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
+			text = getParser().getPrintString(ParserUtil.getParserAdapter(getParserElement(), this),
+					getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -281,7 +283,8 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
 		}
-		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this), getParserOptions().intValue());
+		return getParser().getEditString(ParserUtil.getParserAdapter(getParserElement(), this),
+				getParserOptions().intValue());
 	}
 
 	/**
@@ -304,18 +307,23 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 					final EObject element = getParserElement();
 					final IParser parser = getParser();
 					try {
-						IParserEditStatus valid = (IParserEditStatus) getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
+						IParserEditStatus valid = (IParserEditStatus) getEditingDomain()
+								.runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
-							@Override
-							public void run() {
-								setResult(parser.isValidEditString(ParserUtil.getParserAdapter(getParserElement(), StartClassifierBehaviorActionNameEditPart.this), (String) value));
-							}
-						});
+									@Override
+									public void run() {
+										setResult(parser.isValidEditString(
+												ParserUtil.getParserAdapter(getParserElement(),
+														StartClassifierBehaviorActionNameEditPart.this),
+												(String) value));
+									}
+								});
 						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
 				}
+
 				// shouldn't get here
 				return null;
 			}
@@ -347,7 +355,8 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	@Override
 	public IParser getParser() {
 		if (parser == null) {
-			parser = ParserUtil.getParser(UMLElementTypes.StartClassifierBehaviorAction_3124, getParserElement(), this, VISUAL_ID);
+			parser = ParserUtil.getParser(UMLElementTypes.StartClassifierBehaviorAction_Shape, getParserElement(), this,
+					VISUAL_ID);
 		}
 		return parser;
 	}
@@ -357,7 +366,9 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+					UMLEditPartFactory.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
@@ -407,7 +418,9 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	 */
 	@Override
 	protected void performDirectEditRequest(Request request) {
+
 		final Request theRequest = request;
+
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
 			directEditionMode = getDirectEditionType();
 		}
@@ -419,7 +432,9 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 			updateExtendedEditorConfiguration();
 			if (configuration == null || configuration.getLanguage() == null) {
 				// Create default edit manager
-				setManager(new MultilineLabelDirectEditManager(this, MultilineLabelDirectEditManager.getTextCellEditorClass(this), UMLEditPartFactory.getTextCellEditorLocator(this)));
+				setManager(new MultilineLabelDirectEditManager(this,
+						MultilineLabelDirectEditManager.getTextCellEditorClass(this),
+						UMLEditPartFactory.getTextCellEditorLocator(this)));
 				performDefaultDirectEditorEdit(theRequest);
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
@@ -429,24 +444,32 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 					initializeDirectEditManager(theRequest);
 					return;
 				} else if (configuration instanceof IPopupEditorConfiguration) {
-					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration).createPopupEditorHelper(this);
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
 					helper.showEditor();
 					return;
 				} else if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
+					dialog = ((IAdvancedEditorConfiguration) configuration).createDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()));
 				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
+					dialog = new ExtendedDirectEditionDialog(
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(),
+							configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
 				final Dialog finalDialog = dialog;
+
 				if (Window.OK == dialog.open()) {
 					TransactionalEditingDomain domain = getEditingDomain();
 					RecordingCommand command = new RecordingCommand(domain, "Edit Label") {
 
 						@Override
 						protected void doExecute() {
-							configuration.postEditAction(resolveSemanticElement(), ((ILabelEditorDialog) finalDialog).getValue());
+							configuration.postEditAction(resolveSemanticElement(),
+									((ILabelEditorDialog) finalDialog).getValue());
+
 						}
 					};
 					domain.getCommandStack().execute(command);
@@ -468,12 +491,13 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 		// initialize the direct edit manager
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
-
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if (request.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) request.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
 						} else {
 							performDirectEdit();
@@ -561,7 +585,8 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			FontData fontData = new FontData(style.getFontName(), style.getFontHeight(),
+					(style.isBold() ? SWT.BOLD : SWT.NORMAL) | (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
 			setFont(fontData);
 		}
 	}
@@ -642,6 +667,7 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 		if (checkDefaultEdition()) {
 			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
 		}
+
 		// not a named element. no specific editor => do nothing
 		return IDirectEdition.NO_DIRECT_EDITION;
 	}
@@ -676,11 +702,14 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+					IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
+						this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement(), this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE,
+						resolveSemanticElement(), this);
 			}
 		}
 	}
@@ -691,9 +720,12 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("") && !languagePreferred.equals(configuration.getLanguage())) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(), this);
+		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(
+				IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& !languagePreferred.equals(configuration.getLanguage())) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement(),
+					this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -714,10 +746,13 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 				@Override
 				public void run() {
 					if (isActive() && isEditable()) {
-						if (theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+						if (theRequest.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
 							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest) && (getEditText().equals(getLabelText()))) {
+						} else if ((theRequest instanceof DirectEditRequest)
+								&& (getEditText().equals(getLabelText()))) {
 							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
 							performDirectEdit(editRequest.getLocation());
 						} else {
@@ -763,7 +798,9 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 			refreshUnderline();
 		} else if (NotationPackage.eINSTANCE.getFontStyle_StrikeThrough().equals(feature)) {
 			refreshStrikeThrough();
-		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature) || NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
+		} else if (NotationPackage.eINSTANCE.getFontStyle_FontHeight().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_FontName().equals(feature)
+				|| NotationPackage.eINSTANCE.getFontStyle_Bold().equals(feature)
 				|| NotationPackage.eINSTANCE.getFontStyle_Italic().equals(feature)) {
 			refreshFont();
 		} else {
@@ -781,7 +818,8 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 				}
 			}
 		}
-		if (event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation) event.getNewValue()).getSource())) {
+		if (event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON
+				.equals(((EAnnotation) event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
 		super.handleNotificationEvent(event);
@@ -815,6 +853,7 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	 */
 	protected void addOwnerElementListeners() {
 		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent().getModel()));
+
 	}
 
 	/**
@@ -824,6 +863,7 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	public void deactivate() {
 		removeOwnerElementListeners();
 		super.deactivate();
+
 	}
 
 	/**
@@ -831,5 +871,6 @@ public class StartClassifierBehaviorActionNameEditPart extends PapyrusCompartmen
 	 */
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
+
 	}
 }

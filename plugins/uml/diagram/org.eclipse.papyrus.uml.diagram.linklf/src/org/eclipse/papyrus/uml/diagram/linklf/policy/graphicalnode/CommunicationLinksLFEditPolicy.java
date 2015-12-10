@@ -82,7 +82,7 @@ public class CommunicationLinksLFEditPolicy extends LinksLFGraphicalNodeEditPoli
 				// case of Message
 				CreateElementRequestAdapter requestAdapter = ((CreateConnectionViewAndElementRequest) request).getConnectionViewAndElementDescriptor().getCreateElementRequestAdapter();
 				CreateRelationshipRequest createElementRequest = (CreateRelationshipRequest) requestAdapter.getAdapter(CreateRelationshipRequest.class);
-				if (org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes.Message_8009.equals(createElementRequest.getElementType())) {
+				if (org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes.Path_Edge.equals(createElementRequest.getElementType())) {
 					EditPart sourceEditPart = ((CreateConnectionViewAndElementRequest) request).getSourceEditPart();
 					EditPart targetEditPart = ((CreateConnectionViewAndElementRequest) request).getTargetEditPart();
 					MessageHelper messageHelper = new MessageHelper(getEditingDomain());

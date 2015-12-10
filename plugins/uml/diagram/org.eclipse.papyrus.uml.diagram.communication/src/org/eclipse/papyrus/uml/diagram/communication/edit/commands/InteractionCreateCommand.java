@@ -107,7 +107,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 		childHolder.getPackagedElements()
 				.add(newElement);
 
-		ElementInitializers.getInstance().init_Interaction_8002(newElement);
+		ElementInitializers.getInstance().init_Interaction_Shape(newElement);
 
 		doConfigure(newElement, monitor, info);
 

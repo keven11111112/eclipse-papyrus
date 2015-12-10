@@ -25,7 +25,7 @@ public class TimeRulerCompartmentItemSemanticEditPolicyCN extends UMLBaseItemSem
 	 * @generated
 	 */
 	public TimeRulerCompartmentItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Interaction_2);
+		super(UMLElementTypes.Interaction_Shape);
 	}
 
 	/**

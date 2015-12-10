@@ -72,7 +72,7 @@ public class GeneralOrderingReorientCommand extends EditElementCommand {
 			return false;
 		}
 		InteractionFragment container = (InteractionFragment) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralOrdering_4012(container, getLink(), getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralOrdering_Edge(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -87,7 +87,7 @@ public class GeneralOrderingReorientCommand extends EditElementCommand {
 			return false;
 		}
 		InteractionFragment container = (InteractionFragment) getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralOrdering_4012(container, getLink(), source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralOrdering_Edge(container, getLink(), source, getNewTarget());
 	}
 
 	/**

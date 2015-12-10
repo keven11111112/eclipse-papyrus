@@ -96,9 +96,9 @@ public class InnerPortViewProvider extends CustomAbstractViewProvider implements
 		if (visualID != null) {
 			switch (visualID) {
 			case BehaviorPortEditPart.VISUAL_ID:
-				return umlViewProvider.createPort_3121(domainElement, containerView, index, persisted, preferencesHint);
+				return umlViewProvider.createPort_BehaviorShape(domainElement, containerView, index, persisted, preferencesHint);
 			case PortEditPart.VISUAL_ID:
-				return umlViewProvider.createPort_3069(domainElement, containerView, index, persisted, preferencesHint);
+				return umlViewProvider.createPort_Shape(domainElement, containerView, index, persisted, preferencesHint);
 			}
 		}
 		return null;

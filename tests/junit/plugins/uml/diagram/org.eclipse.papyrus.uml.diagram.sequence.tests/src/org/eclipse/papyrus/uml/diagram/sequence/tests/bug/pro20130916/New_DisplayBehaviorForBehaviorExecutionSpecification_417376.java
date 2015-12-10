@@ -121,9 +121,9 @@ public class New_DisplayBehaviorForBehaviorExecutionSpecification_417376 extends
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		EditPart lifeline = createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		EditPart lifeline = createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull("lifeline", lifeline);
-		behaviorExecutionSpecificationEditPart = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_3003, lifeline, new Point(131, 150), null);
+		behaviorExecutionSpecificationEditPart = (BehaviorExecutionSpecificationEditPart)createNode(UMLElementTypes.BehaviorExecutionSpecification_Shape, lifeline, new Point(131, 150), null);
 		assertNotNull("execution", behaviorExecutionSpecificationEditPart);
 		EObject element = behaviorExecutionSpecificationEditPart.resolveSemanticElement();
 		assertNotNull("element", element);

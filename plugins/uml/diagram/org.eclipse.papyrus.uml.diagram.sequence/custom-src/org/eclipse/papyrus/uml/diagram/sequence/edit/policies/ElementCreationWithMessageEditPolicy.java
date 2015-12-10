@@ -91,9 +91,9 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 						}
 						// IHintedType elementType = null;
 						// if(sourceEditPart instanceof ActionExecutionSpecificationEditPart) {
-						// elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_3006;
+						// elementType = (IHintedType)UMLElementTypes.ActionExecutionSpecification_Shape;
 						// } else if(request.getSourceEditPart() instanceof BehaviorExecutionSpecificationEditPart) {
-						// elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_3003;
+						// elementType = (IHintedType)UMLElementTypes.BehaviorExecutionSpecification_Shape;
 						// }
 						//
 						//
@@ -117,17 +117,17 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 	}
 
 	private static String getSyncMessageHint() {
-		IHintedType message = (IHintedType) UMLElementTypes.Message_4003;
+		IHintedType message = (IHintedType) UMLElementTypes.Message_SynchEdge;
 		return message.getSemanticHint();
 	}
 
 	private static String getReplyMessageHint() {
-		IHintedType message = (IHintedType) UMLElementTypes.Message_4005;
+		IHintedType message = (IHintedType) UMLElementTypes.Message_ReplyEdge;
 		return message.getSemanticHint();
 	}
 
 	private static String getDeleteMessageHint() {
-		IHintedType message = (IHintedType) UMLElementTypes.Message_4007;
+		IHintedType message = (IHintedType) UMLElementTypes.Message_DeleteEdge;
 		return message.getSemanticHint();
 	}
 
@@ -146,7 +146,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 				Object type = request.getType();
 				if (REQ_CONNECTION_END.equals(type)) {
 					Point location = ((CreateConnectionRequest) request).getLocation().getCopy();
-					if (isCreateConnectionRequest(request, UMLElementTypes.Message_4006) && isLocatedOnLifelineHeader(lifeline, location)) {
+					if (isCreateConnectionRequest(request, UMLElementTypes.Message_CreateEdge) && isLocatedOnLifelineHeader(lifeline, location)) {
 						return host;
 					}
 					return getTargetEditPart(request, lifeline, location);
@@ -174,7 +174,7 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 		EditPart childEditPart = getChildEditPart(lifeline, location);
 		if (childEditPart instanceof CustomLifelineEditPart) {
 			CustomLifelineEditPart childLifeline = (CustomLifelineEditPart) childEditPart;
-			if (isCreateConnectionRequest(request, UMLElementTypes.Message_4006) && isLocatedOnLifelineHeader(childLifeline, location)) {
+			if (isCreateConnectionRequest(request, UMLElementTypes.Message_CreateEdge) && isLocatedOnLifelineHeader(childLifeline, location)) {
 				return childEditPart;
 			} else if (request instanceof ReconnectRequest && (UMLVisualIDRegistry.getVisualID((View) ((ReconnectRequest) request).getConnectionEditPart().getModel()).equals(Message4EditPart.VISUAL_ID) && isLocatedOnLifelineHeader(childLifeline, location))) {
 				return childEditPart;

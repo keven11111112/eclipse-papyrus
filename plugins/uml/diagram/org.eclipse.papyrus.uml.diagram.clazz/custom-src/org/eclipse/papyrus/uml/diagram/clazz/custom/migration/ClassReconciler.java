@@ -78,12 +78,54 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalFloatingNameEditPa
 /**
  * Class Diagram Reconciler from 1.0.0 to 1.1.0
  */
-public class ClassReconcilier extends DiagramReconciler {
+public class ClassReconciler extends DiagramReconciler {
 
-	final String CONTAINMENT_LINK_OLD_VISUAL_ID = "4022"; //$NON-NLS-1$
-	final String CONTAINMENT_LINK_NEW_VISUAL_ID = ContainmentLinkEditPart.VISUAL_ID;
-	final String CONTAINMENT_LINK_AFFIXEDNODE_OLD_VISUAL_ID = "3032"; //$NON-NLS-1$
+	private final static String CONTAINMENT_LINK_OLD_VISUAL_ID = "4022"; //$NON-NLS-1$
+	private final static String CONTAINMENT_LINK_NEW_VISUAL_ID = "4023";
+	private final static String CONTAINMENT_LINK_AFFIXEDNODE_OLD_VISUAL_ID = "3032"; //$NON-NLS-1$
 
+	private final static String ClassEditPart_VISUAL_ID = "2008";
+	private final static String ClassFloatingNameEditPart_VISUAL_ID = "8510";
+	private final static String AssociationClassEditPart_VISUAL_ID = "2013";
+	private final static String AssociationClassFloatingNameEditPart_VISUAL_ID = "8504";
+	private final static String AssociationNodeEditPart_VISUAL_ID = "2015";
+	private final static String AssociationFloatingNameEditPart_VISUAL_ID = "8521";
+	private final static String ClassEditPartCN_VISUAL_ID = "3010";
+	private final static String ClassFloatingNameEditPartCN_VISUAL_ID = "8518";
+	private final static String ComponentEditPart_VISUAL_ID = "2002";
+	private final static String ComponentFloatingNameEditPart_VISUAL_ID = "8503";
+	private final static String ComponentEditPartCN_VISUAL_ID = "3021";
+	private final static String ComponentFloatingNameEditPartCN_VISUAL_ID = "8513";
+	private final static String DataTypeEditPart_VISUAL_ID = "2010";
+	private final static String DataTypeFloatingNameEditPart_VISUAL_ID = "8502";
+	private final static String DataTypeEditPartCN_VISUAL_ID = "3027";
+	private final static String DataTypeFloatingNameEditPartCN_VISUAL_ID = "8520";
+	private final static String DependencyNodeEditPart_VISUAL_ID = "2014";
+	private final static String DependencyFloatingNameEditPart_VISUAL_ID = "8522";
+	private final static String EnumerationEditPart_VISUAL_ID = "2006";
+	private final static String EnumerationFloatingNameEditPart_VISUAL_ID = "8508";
+	private final static String EnumerationEditPartCN_VISUAL_ID = "3025";
+	private final static String EnumerationFloatingNameEditPartCN_VISUAL_ID = "8516";
+	private final static String InformationItemEditPart_VISUAL_ID = "2099";
+	private final static String InformationItemFloatingNameEditPart_VISUAL_ID = "8512";
+	private final static String InformationItemEditPartCN_VISUAL_ID = "3040";
+	private final static String InformationItemFloatingNameEditPartCN_VISUAL_ID = "8517";
+	private final static String InstanceSpecificationEditPart_VISUAL_ID = "2001";
+	private final static String InstanceSpecificationFloatingNameEditPart_VISUAL_ID = "8505";
+	private final static String InstanceSpecificationEditPartCN_VISUAL_ID = "3020";
+	private final static String InstanceSpecificationFloatingNameEditPartCN_VISUAL_ID = "8509";
+	private final static String InterfaceEditPart_VISUAL_ID = "2004";
+	private final static String InterfaceFloatingNameEditPart_VISUAL_ID = "8507";
+	private final static String InterfaceEditPartCN_VISUAL_ID = "3023";
+	private final static String InterfaceFloatingNameEditPartCN_VISUAL_ID = "8515";
+	private final static String PrimitiveTypeEditPart_VISUAL_ID = "2009";
+	private final static String PrimitiveTypeFloatingNameEditPart_VISUAL_ID = "8511";
+	private final static String PrimitiveTypeEditPartCN_VISUAL_ID = "3026";
+	private final static String PrimitiveTypeFloatingNameEditPartCN_VISUAL_ID = "8519";
+	private final static String SignalEditPart_VISUAL_ID = "2003";
+	private final static String SignalFloatingNameEditPart_VISUAL_ID = "8506";
+	private final static String SignalEditPartCN_VISUAL_ID = "3022";
+	private final static String SignalFloatingNameEditPartCN_VISUAL_ID = "8514";
 
 	@Override
 	public ICommand getReconcileCommand(Diagram diagram) {
@@ -103,27 +145,27 @@ public class ClassReconcilier extends DiagramReconciler {
 	 */
 	private Map<String, String> getFloatingLabelMap() {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put(String.valueOf(ClassEditPart.VISUAL_ID), String.valueOf(ClassFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(AssociationClassEditPart.VISUAL_ID), String.valueOf(AssociationClassFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(AssociationNodeEditPart.VISUAL_ID), String.valueOf(AssociationFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(ClassEditPartCN.VISUAL_ID), String.valueOf(ClassFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(ComponentEditPart.VISUAL_ID), String.valueOf(ComponentFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(ComponentEditPartCN.VISUAL_ID), String.valueOf(ComponentFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(DataTypeEditPart.VISUAL_ID), String.valueOf(DataTypeFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(DataTypeEditPartCN.VISUAL_ID), String.valueOf(DataTypeFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(DependencyNodeEditPart.VISUAL_ID), String.valueOf(DependencyFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(EnumerationEditPart.VISUAL_ID), String.valueOf(EnumerationFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(EnumerationEditPartCN.VISUAL_ID), String.valueOf(EnumerationFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(InformationItemEditPart.VISUAL_ID), String.valueOf(InformationItemFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(InformationItemEditPartCN.VISUAL_ID), String.valueOf(InformationItemFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(InstanceSpecificationEditPart.VISUAL_ID), String.valueOf(InstanceSpecificationFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(InstanceSpecificationEditPartCN.VISUAL_ID), String.valueOf(InstanceSpecificationFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(InterfaceEditPart.VISUAL_ID), String.valueOf(InterfaceFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(InterfaceEditPartCN.VISUAL_ID), String.valueOf(InterfaceFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(PrimitiveTypeEditPart.VISUAL_ID), String.valueOf(PrimitiveTypeFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(PrimitiveTypeEditPartCN.VISUAL_ID), String.valueOf(PrimitiveTypeFloatingNameEditPartCN.VISUAL_ID));
-		map.put(String.valueOf(SignalEditPart.VISUAL_ID), String.valueOf(SignalFloatingNameEditPart.VISUAL_ID));
-		map.put(String.valueOf(SignalEditPartCN.VISUAL_ID), String.valueOf(SignalFloatingNameEditPartCN.VISUAL_ID));
+		map.put(ClassEditPart_VISUAL_ID, ClassFloatingNameEditPart_VISUAL_ID);
+		map.put(AssociationClassEditPart_VISUAL_ID, AssociationClassFloatingNameEditPart_VISUAL_ID);
+		map.put(AssociationNodeEditPart_VISUAL_ID, AssociationFloatingNameEditPart_VISUAL_ID);
+		map.put(ClassEditPartCN_VISUAL_ID, ClassFloatingNameEditPartCN_VISUAL_ID);
+		map.put(ComponentEditPart_VISUAL_ID, ComponentFloatingNameEditPart_VISUAL_ID);
+		map.put(ComponentEditPartCN_VISUAL_ID, ComponentFloatingNameEditPartCN_VISUAL_ID);
+		map.put(DataTypeEditPart_VISUAL_ID, DataTypeFloatingNameEditPart_VISUAL_ID);
+		map.put(DataTypeEditPartCN_VISUAL_ID, DataTypeFloatingNameEditPartCN_VISUAL_ID);
+		map.put(DependencyNodeEditPart_VISUAL_ID, DependencyFloatingNameEditPart_VISUAL_ID);
+		map.put(EnumerationEditPart_VISUAL_ID, EnumerationFloatingNameEditPart_VISUAL_ID);
+		map.put(EnumerationEditPartCN_VISUAL_ID, EnumerationFloatingNameEditPartCN_VISUAL_ID);
+		map.put(InformationItemEditPart_VISUAL_ID, InformationItemFloatingNameEditPart_VISUAL_ID);
+		map.put(InformationItemEditPartCN_VISUAL_ID, InformationItemFloatingNameEditPartCN_VISUAL_ID);
+		map.put(InstanceSpecificationEditPart_VISUAL_ID, InstanceSpecificationFloatingNameEditPart_VISUAL_ID);
+		map.put(InstanceSpecificationEditPartCN_VISUAL_ID, InstanceSpecificationFloatingNameEditPartCN_VISUAL_ID);
+		map.put(InterfaceEditPart_VISUAL_ID, InterfaceFloatingNameEditPart_VISUAL_ID);
+		map.put(InterfaceEditPartCN_VISUAL_ID, InterfaceFloatingNameEditPartCN_VISUAL_ID);
+		map.put(PrimitiveTypeEditPart_VISUAL_ID, PrimitiveTypeFloatingNameEditPart_VISUAL_ID);
+		map.put(PrimitiveTypeEditPartCN_VISUAL_ID, PrimitiveTypeFloatingNameEditPartCN_VISUAL_ID);
+		map.put(SignalEditPart_VISUAL_ID, SignalFloatingNameEditPart_VISUAL_ID);
+		map.put(SignalEditPartCN_VISUAL_ID, SignalFloatingNameEditPartCN_VISUAL_ID);
 
 		return map;
 	}

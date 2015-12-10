@@ -33,7 +33,7 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
-	public static final String VISUAL_ID = "4007";
+	public static final String VISUAL_ID = "ComponentRealization_Edge";
 
 	/**
 	 * @generated
@@ -49,7 +49,8 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+				new AppliedStereotypeLinkLabelDisplayEditPolicy());
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
@@ -62,7 +63,8 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 			((ComponentRealizationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		if (childEditPart instanceof ComponentRealizationAppliedStereotypeEditPart) {
-			((ComponentRealizationAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			((ComponentRealizationAppliedStereotypeEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}

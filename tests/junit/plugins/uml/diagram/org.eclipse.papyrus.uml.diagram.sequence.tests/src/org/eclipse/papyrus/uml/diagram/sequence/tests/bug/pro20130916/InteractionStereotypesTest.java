@@ -50,20 +50,20 @@ public class InteractionStereotypesTest extends BaseStereotypesTest {
 		interaction = (InteractionEditPart)getRootEditPart().getParent();
 		assertNotNull(interaction);
 
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(150, 100), null);
 		Rectangle lifelineBounds = getAbsoluteBounds(lifeline);
 		//1. messageWithGate
 		Point endLocation = lifelineBounds.getTop().translate(0, 100);
 		Point startLocation = new Point(0, endLocation.y);
-		messageWithGate = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_4004, interaction.getViewer(), startLocation, interaction, endLocation, lifeline);
+		messageWithGate = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_AsynchEdge, interaction.getViewer(), startLocation, interaction, endLocation, lifeline);
 		assertNotNull("messageWithGate", messageWithGate);
 
 		//2. messagefound
-		messageFound = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_4009, lifeline.getViewer(), endLocation.getTranslated(-100, 50), endLocation.getTranslated(0, 50));
+		messageFound = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_FoundEdge, lifeline.getViewer(), endLocation.getTranslated(-100, 50), endLocation.getTranslated(0, 50));
 		assertNotNull("messageFound", messageFound);
 
 		//3. messageLost
-		messageLost = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_4008, lifeline.getViewer(), endLocation.getTranslated(0, -50), endLocation.getTranslated(100, -50));
+		messageLost = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_LostEdge, lifeline.getViewer(), endLocation.getTranslated(0, -50), endLocation.getTranslated(100, -50));
 		assertNotNull("messageLost", messageLost);
 	}
 

@@ -79,696 +79,714 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
-	 * @generated
-	 */
-	private IParser stateMachineName_2001Parser;
+	* @generated
+	*/
+	private IParser stateMachine_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStateMachineName_2001Parser() {
-		if(stateMachineName_2001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getStateMachine_NameLabel_Parser() {
+		if (stateMachine_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			stateMachineName_2001Parser = parser;
+			stateMachine_NameLabel_Parser = parser;
 		}
-		return stateMachineName_2001Parser;
+		return stateMachine_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser finalStateName_5001Parser;
+	private IParser finalState_FloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getFinalStateName_5001Parser() {
-		if(finalStateName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getFinalState_FloatingNameLabel_Parser() {
+		if (finalState_FloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			finalStateName_5001Parser = parser;
+			finalState_FloatingNameLabel_Parser = parser;
 		}
-		return finalStateName_5001Parser;
+		return finalState_FloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser finalStateName_5002Parser;
+	private AppliedStereotypeParser finalState_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getFinalStateName_5002Parser() {
-		if(finalStateName_5002Parser == null) {
-			finalStateName_5002Parser = new AppliedStereotypeParser();
+	private IParser getFinalState_StereotypeLabel_Parser() {
+		if (finalState_StereotypeLabel_Parser == null) {
+			finalState_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return finalStateName_5002Parser;
+		return finalState_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser stateName_6001Parser;
+	private IParser state_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStateName_6001Parser() {
-		if(stateName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getState_NameLabel_Parser() {
+		if (state_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			stateName_6001Parser = parser;
+			state_NameLabel_Parser = parser;
 		}
-		return stateName_6001Parser;
+		return state_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser stateName_19003Parser;
+	private IParser state_FloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getStateName_19003Parser() {
-		if(stateName_19003Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getState_FloatingNameLabel_Parser() {
+		if (state_FloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			stateName_19003Parser = parser;
+			state_FloatingNameLabel_Parser = parser;
 		}
-		return stateName_19003Parser;
+		return state_FloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_8001Parser;
+	private IParser pseudostate_InitialFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_8001Parser() {
-		if(pseudostateName_8001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_InitialFloatingNameLabel_Parser() {
+		if (pseudostate_InitialFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_8001Parser = parser;
+			pseudostate_InitialFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_8001Parser;
+		return pseudostate_InitialFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_8002Parser;
+	private AppliedStereotypeParser pseudostate_InitialStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_8002Parser() {
-		if(pseudostateName_8002Parser == null) {
-			pseudostateName_8002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_InitialStereotypeLabel_Parser() {
+		if (pseudostate_InitialStereotypeLabel_Parser == null) {
+			pseudostate_InitialStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_8002Parser;
+		return pseudostate_InitialStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_9001Parser;
+	private IParser pseudostate_JoinFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_9001Parser() {
-		if(pseudostateName_9001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_JoinFloatingNameLabel_Parser() {
+		if (pseudostate_JoinFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_9001Parser = parser;
+			pseudostate_JoinFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_9001Parser;
+		return pseudostate_JoinFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_9002Parser;
+	private AppliedStereotypeParser pseudostate_JoinStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_9002Parser() {
-		if(pseudostateName_9002Parser == null) {
-			pseudostateName_9002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_JoinStereotypeLabel_Parser() {
+		if (pseudostate_JoinStereotypeLabel_Parser == null) {
+			pseudostate_JoinStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_9002Parser;
+		return pseudostate_JoinStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_10001Parser;
+	private IParser pseudostate_ForkFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_10001Parser() {
-		if(pseudostateName_10001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_ForkFloatingNameLabel_Parser() {
+		if (pseudostate_ForkFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_10001Parser = parser;
+			pseudostate_ForkFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_10001Parser;
+		return pseudostate_ForkFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_10002Parser;
+	private AppliedStereotypeParser pseudostate_ForkStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_10002Parser() {
-		if(pseudostateName_10002Parser == null) {
-			pseudostateName_10002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_ForkStereotypeLabel_Parser() {
+		if (pseudostate_ForkStereotypeLabel_Parser == null) {
+			pseudostate_ForkStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_10002Parser;
+		return pseudostate_ForkStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_11001Parser;
+	private IParser pseudostate_ChoiceFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_11001Parser() {
-		if(pseudostateName_11001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_ChoiceFloatingNameLabel_Parser() {
+		if (pseudostate_ChoiceFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_11001Parser = parser;
+			pseudostate_ChoiceFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_11001Parser;
+		return pseudostate_ChoiceFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_11002Parser;
+	private AppliedStereotypeParser pseudostate_ChoiceStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_11002Parser() {
-		if(pseudostateName_11002Parser == null) {
-			pseudostateName_11002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_ChoiceStereotypeLabel_Parser() {
+		if (pseudostate_ChoiceStereotypeLabel_Parser == null) {
+			pseudostate_ChoiceStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_11002Parser;
+		return pseudostate_ChoiceStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_12001Parser;
+	private IParser pseudostate_JunctionFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_12001Parser() {
-		if(pseudostateName_12001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_JunctionFloatingNameLabel_Parser() {
+		if (pseudostate_JunctionFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_12001Parser = parser;
+			pseudostate_JunctionFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_12001Parser;
+		return pseudostate_JunctionFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_12002Parser;
+	private AppliedStereotypeParser pseudostate_JunctionStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_12002Parser() {
-		if(pseudostateName_12002Parser == null) {
-			pseudostateName_12002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_JunctionStereotypeLabel_Parser() {
+		if (pseudostate_JunctionStereotypeLabel_Parser == null) {
+			pseudostate_JunctionStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_12002Parser;
+		return pseudostate_JunctionStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_13001Parser;
+	private IParser pseudostate_ShallowHistoryFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_13001Parser() {
-		if(pseudostateName_13001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_ShallowHistoryFloatingNameLabel_Parser() {
+		if (pseudostate_ShallowHistoryFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_13001Parser = parser;
+			pseudostate_ShallowHistoryFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_13001Parser;
+		return pseudostate_ShallowHistoryFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_13002Parser;
+	private AppliedStereotypeParser pseudostate_ShallowHistoryStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_13002Parser() {
-		if(pseudostateName_13002Parser == null) {
-			pseudostateName_13002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_ShallowHistoryStereotypeLabel_Parser() {
+		if (pseudostate_ShallowHistoryStereotypeLabel_Parser == null) {
+			pseudostate_ShallowHistoryStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_13002Parser;
+		return pseudostate_ShallowHistoryStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_14001Parser;
+	private IParser pseudostate_DeepHistoryFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_14001Parser() {
-		if(pseudostateName_14001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_DeepHistoryFloatingNameLabel_Parser() {
+		if (pseudostate_DeepHistoryFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_14001Parser = parser;
+			pseudostate_DeepHistoryFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_14001Parser;
+		return pseudostate_DeepHistoryFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_14002Parser;
+	private AppliedStereotypeParser pseudostate_DeepHistoryStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_14002Parser() {
-		if(pseudostateName_14002Parser == null) {
-			pseudostateName_14002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_DeepHistoryStereotypeLabel_Parser() {
+		if (pseudostate_DeepHistoryStereotypeLabel_Parser == null) {
+			pseudostate_DeepHistoryStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_14002Parser;
+		return pseudostate_DeepHistoryStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_15001Parser;
+	private IParser pseudostate_TerminateFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_15001Parser() {
-		if(pseudostateName_15001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_TerminateFloatingNameLabel_Parser() {
+		if (pseudostate_TerminateFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_15001Parser = parser;
+			pseudostate_TerminateFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_15001Parser;
+		return pseudostate_TerminateFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_15002Parser;
+	private AppliedStereotypeParser pseudostate_TerminateStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_15002Parser() {
-		if(pseudostateName_15002Parser == null) {
-			pseudostateName_15002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_TerminateStereotypeLabel_Parser() {
+		if (pseudostate_TerminateStereotypeLabel_Parser == null) {
+			pseudostate_TerminateStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_15002Parser;
+		return pseudostate_TerminateStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_16001Parser;
+	private IParser pseudostate_EntryPointFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_16001Parser() {
-		if(pseudostateName_16001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_EntryPointFloatingNameLabel_Parser() {
+		if (pseudostate_EntryPointFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_16001Parser = parser;
+			pseudostate_EntryPointFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_16001Parser;
+		return pseudostate_EntryPointFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_16002Parser;
+	private AppliedStereotypeParser pseudostate_EntryPointStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_16002Parser() {
-		if(pseudostateName_16002Parser == null) {
-			pseudostateName_16002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_EntryPointStereotypeLabel_Parser() {
+		if (pseudostate_EntryPointStereotypeLabel_Parser == null) {
+			pseudostate_EntryPointStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_16002Parser;
+		return pseudostate_EntryPointStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser pseudostateName_17001Parser;
+	private IParser pseudostate_ExitPointFloatingNameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_17001Parser() {
-		if(pseudostateName_17001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getPseudostate_ExitPointFloatingNameLabel_Parser() {
+		if (pseudostate_ExitPointFloatingNameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			pseudostateName_17001Parser = parser;
+			pseudostate_ExitPointFloatingNameLabel_Parser = parser;
 		}
-		return pseudostateName_17001Parser;
+		return pseudostate_ExitPointFloatingNameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser pseudostateName_17002Parser;
+	private AppliedStereotypeParser pseudostate_ExitPointStereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getPseudostateName_17002Parser() {
-		if(pseudostateName_17002Parser == null) {
-			pseudostateName_17002Parser = new AppliedStereotypeParser();
+	private IParser getPseudostate_ExitPointStereotypeLabel_Parser() {
+		if (pseudostate_ExitPointStereotypeLabel_Parser == null) {
+			pseudostate_ExitPointStereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return pseudostateName_17002Parser;
+		return pseudostate_ExitPointStereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser connectionPointReferenceName_18001Parser;
+	private IParser connectionPointReference_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConnectionPointReferenceName_18001Parser() {
-		if(connectionPointReferenceName_18001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getConnectionPointReference_NameLabel_Parser() {
+		if (connectionPointReference_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			connectionPointReferenceName_18001Parser = parser;
+			connectionPointReference_NameLabel_Parser = parser;
 		}
-		return connectionPointReferenceName_18001Parser;
+		return connectionPointReference_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser connectionPointReferenceName_18002Parser;
+	private AppliedStereotypeParser connectionPointReference_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConnectionPointReferenceName_18002Parser() {
-		if(connectionPointReferenceName_18002Parser == null) {
-			connectionPointReferenceName_18002Parser = new AppliedStereotypeParser();
+	private IParser getConnectionPointReference_StereotypeLabel_Parser() {
+		if (connectionPointReference_StereotypeLabel_Parser == null) {
+			connectionPointReference_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return connectionPointReferenceName_18002Parser;
+		return connectionPointReference_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private CommentParser commentBody_6666Parser;
+	private CommentParser comment_BodyLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getCommentBody_6666Parser() {
-		if(commentBody_6666Parser == null) {
-			commentBody_6666Parser = new CommentParser();
+	private IParser getComment_BodyLabel_Parser() {
+		if (comment_BodyLabel_Parser == null) {
+			comment_BodyLabel_Parser = new CommentParser();
 		}
-		return commentBody_6666Parser;
+		return comment_BodyLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser constraintName_6668Parser;
+	private IParser constraint_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintName_6668Parser() {
-		if(constraintName_6668Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getConstraint_NameLabel_Parser() {
+		if (constraint_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			constraintName_6668Parser = parser;
+			constraint_NameLabel_Parser = parser;
 		}
-		return constraintName_6668Parser;
+		return constraint_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ConstraintParser constraintSpecification_6669Parser;
+	private ConstraintParser constraint_BodyLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getConstraintSpecification_6669Parser() {
-		if(constraintSpecification_6669Parser == null) {
-			constraintSpecification_6669Parser = new ConstraintParser();
+	private IParser getConstraint_BodyLabel_Parser() {
+		if (constraint_BodyLabel_Parser == null) {
+			constraint_BodyLabel_Parser = new ConstraintParser();
 		}
-		return constraintSpecification_6669Parser;
+		return constraint_BodyLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private InternalTransitionParser transition_680Parser;
+	private InternalTransitionParser transition_InternalTransitionLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTransition_680Parser() {
-		if(transition_680Parser == null) {
-			transition_680Parser = new InternalTransitionParser();
+	private IParser getTransition_InternalTransitionLabel_Parser() {
+		if (transition_InternalTransitionLabel_Parser == null) {
+			transition_InternalTransitionLabel_Parser = new InternalTransitionParser();
 		}
-		return transition_680Parser;
+		return transition_InternalTransitionLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private EntryStateBehaviorParser behavior_690Parser;
+	private EntryStateBehaviorParser behavior_EntryBehaviorLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getBehavior_690Parser() {
-		if(behavior_690Parser == null) {
-			behavior_690Parser = new EntryStateBehaviorParser();
+	private IParser getBehavior_EntryBehaviorLabel_Parser() {
+		if (behavior_EntryBehaviorLabel_Parser == null) {
+			behavior_EntryBehaviorLabel_Parser = new EntryStateBehaviorParser();
 		}
-		return behavior_690Parser;
+		return behavior_EntryBehaviorLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private DoActivityStateBehaviorParser behavior_691Parser;
+	private DoActivityStateBehaviorParser behavior_DoActivityBehaviorLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getBehavior_691Parser() {
-		if(behavior_691Parser == null) {
-			behavior_691Parser = new DoActivityStateBehaviorParser();
+	private IParser getBehavior_DoActivityBehaviorLabel_Parser() {
+		if (behavior_DoActivityBehaviorLabel_Parser == null) {
+			behavior_DoActivityBehaviorLabel_Parser = new DoActivityStateBehaviorParser();
 		}
-		return behavior_691Parser;
+		return behavior_DoActivityBehaviorLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private ExitStateBehaviorParser behavior_692Parser;
+	private ExitStateBehaviorParser behavior_ExitBehaviorLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getBehavior_692Parser() {
-		if(behavior_692Parser == null) {
-			behavior_692Parser = new ExitStateBehaviorParser();
+	private IParser getBehavior_ExitBehaviorLabel_Parser() {
+		if (behavior_ExitBehaviorLabel_Parser == null) {
+			behavior_ExitBehaviorLabel_Parser = new ExitStateBehaviorParser();
 		}
-		return behavior_692Parser;
+		return behavior_ExitBehaviorLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser transitionName_7001Parser;
+	private IParser transition_NameLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTransitionName_7001Parser() {
-		if(transitionName_7001Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+	private IParser getTransition_NameLabel_Parser() {
+		if (transition_NameLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			transitionName_7001Parser = parser;
+			transition_NameLabel_Parser = parser;
 		}
-		return transitionName_7001Parser;
+		return transition_NameLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private TransitionPropertiesParser transitionGuard_7002Parser;
+	private TransitionPropertiesParser transition_GuardLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTransitionGuard_7002Parser() {
-		if(transitionGuard_7002Parser == null) {
-			transitionGuard_7002Parser = new TransitionPropertiesParser();
+	private IParser getTransition_GuardLabel_Parser() {
+		if (transition_GuardLabel_Parser == null) {
+			transition_GuardLabel_Parser = new TransitionPropertiesParser();
 		}
-		return transitionGuard_7002Parser;
+		return transition_GuardLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser transitionName_7003Parser;
+	private AppliedStereotypeParser transition_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getTransitionName_7003Parser() {
-		if(transitionName_7003Parser == null) {
-			transitionName_7003Parser = new AppliedStereotypeParser();
+	private IParser getTransition_StereotypeLabel_Parser() {
+		if (transition_StereotypeLabel_Parser == null) {
+			transition_StereotypeLabel_Parser = new AppliedStereotypeParser();
 		}
-		return transitionName_7003Parser;
+		return transition_StereotypeLabel_Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser generalizationIsSubstitutable_19002Parser;
+	private IParser generalization_StereotypeLabel_Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getGeneralizationIsSubstitutable_19002Parser() {
-		if(generalizationIsSubstitutable_19002Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable() };
+	private IParser getGeneralization_StereotypeLabel_Parser() {
+		if (generalization_StereotypeLabel_Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE.getGeneralization_IsSubstitutable() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			parser.setViewPattern("<<{0}>>"); //$NON-NLS-1$
 			parser.setEditorPattern("<<{0}>>"); //$NON-NLS-1$
 			parser.setEditPattern("<<{0}>>"); //$NON-NLS-1$
-			generalizationIsSubstitutable_19002Parser = parser;
+			generalization_StereotypeLabel_Parser = parser;
 		}
-		return generalizationIsSubstitutable_19002Parser;
+		return generalization_StereotypeLabel_Parser;
 	}
 
 	/**
 	* @generated
 	*/
 	protected IParser getParser(String visualID) {
-		if(visualID != null) {
-			switch(visualID) {
+		if (visualID != null) {
+			switch (visualID) {
 			case StateMachineNameEditPart.VISUAL_ID:
-				return getStateMachineName_2001Parser();
+				return getStateMachine_NameLabel_Parser();
+
 			case FinalStateFloatingLabelEditPart.VISUAL_ID:
-				return getFinalStateName_5001Parser();
+				return getFinalState_FloatingNameLabel_Parser();
 			case FinalStateStereotypeEditPart.VISUAL_ID:
-				return getFinalStateName_5002Parser();
+				return getFinalState_StereotypeLabel_Parser();
+
 			case StateNameEditPart.VISUAL_ID:
-				return getStateName_6001Parser();
+				return getState_NameLabel_Parser();
 			case StateFloatingLabelEditPart.VISUAL_ID:
-				return getStateName_19003Parser();
+				return getState_FloatingNameLabel_Parser();
+
 			case PseudostateInitialFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_8001Parser();
+				return getPseudostate_InitialFloatingNameLabel_Parser();
 			case PseudostateInitialStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_8002Parser();
+				return getPseudostate_InitialStereotypeLabel_Parser();
+
 			case PseudostateJoinFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_9001Parser();
+				return getPseudostate_JoinFloatingNameLabel_Parser();
 			case PseudostateJoinStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_9002Parser();
+				return getPseudostate_JoinStereotypeLabel_Parser();
+
 			case PseudostateForkNameEditPart.VISUAL_ID:
-				return getPseudostateName_10001Parser();
+				return getPseudostate_ForkFloatingNameLabel_Parser();
 			case PseudostateForkStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_10002Parser();
+				return getPseudostate_ForkStereotypeLabel_Parser();
+
 			case PseudostateChoiceFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_11001Parser();
+				return getPseudostate_ChoiceFloatingNameLabel_Parser();
 			case PseudostateChoiceStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_11002Parser();
+				return getPseudostate_ChoiceStereotypeLabel_Parser();
+
 			case PseudostateJunctionFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_12001Parser();
+				return getPseudostate_JunctionFloatingNameLabel_Parser();
 			case PseudostateJunctionStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_12002Parser();
+				return getPseudostate_JunctionStereotypeLabel_Parser();
+
 			case PseudostateShallowHistoryFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_13001Parser();
+				return getPseudostate_ShallowHistoryFloatingNameLabel_Parser();
 			case PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_13002Parser();
+				return getPseudostate_ShallowHistoryStereotypeLabel_Parser();
+
 			case PseudostateDeepHistoryFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_14001Parser();
+				return getPseudostate_DeepHistoryFloatingNameLabel_Parser();
 			case PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_14002Parser();
+				return getPseudostate_DeepHistoryStereotypeLabel_Parser();
+
 			case PseudostateTerminateFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_15001Parser();
+				return getPseudostate_TerminateFloatingNameLabel_Parser();
 			case PseudostateTerminateStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_15002Parser();
+				return getPseudostate_TerminateStereotypeLabel_Parser();
+
 			case PseudostateEntryPointFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_16001Parser();
+				return getPseudostate_EntryPointFloatingNameLabel_Parser();
 			case PseudostateEntryPointStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_16002Parser();
+				return getPseudostate_EntryPointStereotypeLabel_Parser();
+
 			case PseudostateExitPointFloatingLabelEditPart.VISUAL_ID:
-				return getPseudostateName_17001Parser();
+				return getPseudostate_ExitPointFloatingNameLabel_Parser();
 			case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
-				return getPseudostateName_17002Parser();
+				return getPseudostate_ExitPointStereotypeLabel_Parser();
+
 			case ConnectionPointReferenceNameEditPart.VISUAL_ID:
-				return getConnectionPointReferenceName_18001Parser();
+				return getConnectionPointReference_NameLabel_Parser();
 			case ConnectionPointReferenceStereotypeEditPart.VISUAL_ID:
-				return getConnectionPointReferenceName_18002Parser();
+				return getConnectionPointReference_StereotypeLabel_Parser();
+
 			case CommentBodyEditPart.VISUAL_ID:
-				return getCommentBody_6666Parser();
+				return getComment_BodyLabel_Parser();
+
 			case ConstraintNameLabelEditPart.VISUAL_ID:
-				return getConstraintName_6668Parser();
+				return getConstraint_NameLabel_Parser();
 			case ConstraintBodyEditPart.VISUAL_ID:
-				return getConstraintSpecification_6669Parser();
+				return getConstraint_BodyLabel_Parser();
+
 			case InternalTransitionEditPart.VISUAL_ID:
-				return getTransition_680Parser();
+				return getTransition_InternalTransitionLabel_Parser();
 			case EntryStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_690Parser();
+				return getBehavior_EntryBehaviorLabel_Parser();
 			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-				return getBehavior_691Parser();
+				return getBehavior_DoActivityBehaviorLabel_Parser();
 			case ExitStateBehaviorEditPart.VISUAL_ID:
-				return getBehavior_692Parser();
+				return getBehavior_ExitBehaviorLabel_Parser();
 			case TransitionNameEditPart.VISUAL_ID:
-				return getTransitionName_7001Parser();
+				return getTransition_NameLabel_Parser();
 			case TransitionGuardEditPart.VISUAL_ID:
-				return getTransitionGuard_7002Parser();
+				return getTransition_GuardLabel_Parser();
 			case TransitionStereotypeEditPart.VISUAL_ID:
-				return getTransitionName_7003Parser();
+				return getTransition_StereotypeLabel_Parser();
+
 			case GeneralizationStereotypeEditPart.VISUAL_ID:
-				return getGeneralizationIsSubstitutable_19002Parser();
+				return getGeneralization_StereotypeLabel_Parser();
+
 			}
 		}
 		return null;
@@ -788,12 +806,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String)hint.getAdapter(String.class);
-		if(vid != null) {
+		String vid = (String) hint.getAdapter(String.class);
+		if (vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View)hint.getAdapter(View.class);
-		if(view != null) {
+		View view = (View) hint.getAdapter(View.class);
+		if (view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -804,9 +822,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
-		if(operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation)operation).getHint();
-			if(UMLElementTypes.getElement(hint) == null) {
+		if (operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation) operation).getHint();
+			if (UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -838,7 +856,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		 */
 		@Override
 		public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-			if(IElementType.class.equals(adapter)) {
+			if (IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);

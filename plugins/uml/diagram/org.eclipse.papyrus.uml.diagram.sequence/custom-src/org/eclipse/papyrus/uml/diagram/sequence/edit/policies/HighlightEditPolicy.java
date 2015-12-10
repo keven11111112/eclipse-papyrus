@@ -46,9 +46,9 @@ public class HighlightEditPolicy extends GraphicalEditPolicy {
 
 	public static final String HIGHLIGHT_ROLE = "Highlight Edit Policy";
 
-	private static final String DURATION_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType) UMLElementTypes.DurationConstraint_3021).getSemanticHint();
+	private static final String DURATION_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType) UMLElementTypes.DurationConstraint_Shape).getSemanticHint();
 
-	private static final String TIME_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType) UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+	private static final String TIME_CONSTRAINT_ON_LIFELINE_HINT = ((IHintedType) UMLElementTypes.TimeConstraint_Shape).getSemanticHint();
 
 	protected Indicator sourceIndicator;
 

@@ -17,7 +17,7 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.figures.InteractionUs
 
 public class CustomInteractionUseEditPartCN extends CallBehaviorActionEditPart {
 
-	public static final String INTERACTIONUSE_VISUAL_ID = "5005";
+	public static final String VISUAL_ID = "CallBehaviorAction_InteractionUseShape";
 	
 	public CustomInteractionUseEditPartCN(final View view) {
 		super(view);

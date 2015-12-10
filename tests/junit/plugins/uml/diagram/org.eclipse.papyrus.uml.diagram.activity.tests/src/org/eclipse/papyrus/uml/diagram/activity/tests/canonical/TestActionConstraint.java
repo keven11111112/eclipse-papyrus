@@ -57,7 +57,7 @@ public class TestActionConstraint extends AbstractPapyrusTestCase {
 	public void testLocalPreCondConstraintInAction() {
 		IGraphicalEditPart opaqueEP = createChild(OpaqueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		
-		IElementType constraintAsPrecondType = UMLElementTypes.Constraint_3011;
+		IElementType constraintAsPrecondType = UMLElementTypes.Constraint_LocalPreconditionShape;
 		
 		Command command = opaqueEP.getCommand(constraintRequest(constraintAsPrecondType));
 		Assert.assertNotNull(command);
@@ -126,7 +126,7 @@ public class TestActionConstraint extends AbstractPapyrusTestCase {
 	
 	private EReference findContainmentFeatureByType(IElementType type) {
 		EReference result = null;
-		if (UMLElementTypes.Constraint_3011 == type) {
+		if (UMLElementTypes.Constraint_LocalPreconditionShape == type) {
 			result = UMLPackage.eINSTANCE.getAction_LocalPrecondition();
 		}
 		Assert.assertNotNull("Containment feature for " + type + " type was not found", result);

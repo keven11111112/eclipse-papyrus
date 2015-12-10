@@ -65,17 +65,17 @@ public class TestNestedCombinedFragment_364795 extends TestTopNode {
 	@Test
 	public void testCover() {
 		// create parent combined fragment
-		createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(10, 80), new Dimension(300, 200));
+		createNode(UMLElementTypes.CombinedFragment_Shape, getRootEditPart(), new Point(10, 80), new Dimension(300, 200));
 		waitForComplete(); // wait for updating covered field
 		CombinedFragmentEditPart parentCFP = (CombinedFragmentEditPart)getRootEditPart().getChildren().get(0);
 		InteractionOperandEditPart oep = (InteractionOperandEditPart)((GraphicalEditPart)parentCFP.getChildren().get(0)).getChildren().get(0);
 
 		// create child combined fragment
-		createNode(UMLElementTypes.CombinedFragment_3004, oep, new Point(90, 90), new Dimension(200, 100));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(120, 20), new Dimension(62, 240));
-		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(200, 20), new Dimension(62, 240));
+		createNode(UMLElementTypes.CombinedFragment_Shape, oep, new Point(90, 90), new Dimension(200, 100));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(120, 20), new Dimension(62, 240));
+		createNode(UMLElementTypes.Lifeline_Shape, getRootEditPart(), new Point(200, 20), new Dimension(62, 240));
 		//the first child would be Guard now.
-		CombinedFragmentEditPart childCFP = (CombinedFragmentEditPart)oep.getChildBySemanticHint("3004");
+		CombinedFragmentEditPart childCFP = (CombinedFragmentEditPart)oep.getChildBySemanticHint(CombinedFragmentEditPart.VISUAL_ID);
 		final CombinedFragment parentCF = (CombinedFragment)parentCFP.resolveSemanticElement();
 		final CombinedFragment childCF = (CombinedFragment)childCFP.resolveSemanticElement();
 

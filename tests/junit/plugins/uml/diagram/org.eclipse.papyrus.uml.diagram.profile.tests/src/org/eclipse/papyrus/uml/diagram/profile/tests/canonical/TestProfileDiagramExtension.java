@@ -60,7 +60,7 @@ public class TestProfileDiagramExtension extends AbstractPapyrusTestCase {
 	@Test
 	public void testDestroyExtensionProperty() {
 		// create Stereotype
-		GraphicalEditPart stereotypeEditPart = createNodeOnDiagram(UMLElementTypes.Stereotype_1026, new Point(100, 100), 1);
+		GraphicalEditPart stereotypeEditPart = createNodeOnDiagram(UMLElementTypes.Stereotype_Shape, new Point(100, 100), 1);
 		EObject stereotypeObject = ((View) stereotypeEditPart.getModel()).getElement();
 		Assert.assertTrue("Expected StereotypeImpl.", stereotypeObject instanceof Stereotype);
 		Stereotype stereotypeElement = (Stereotype) stereotypeObject;
@@ -71,7 +71,7 @@ public class TestProfileDiagramExtension extends AbstractPapyrusTestCase {
 		int linksAtStart = 1;
 		checkLinksCount(linksAtStart);
 		// create a extension link between stereotype and metaclass
-		createLink(UMLElementTypes.Extension_1013, stereotypeEditPart, metaClassEditPart);
+		createLink(UMLElementTypes.Extension_Edge, stereotypeEditPart, metaClassEditPart);
 		checkLinksCount(linksAtStart + 1);
 		Assert.assertEquals("Expected just one stereotype owned attr.", 1, stereotypeElement.getOwnedAttributes().size());
 		Property extensionProperty = stereotypeElement.getOwnedAttributes().get(0);
@@ -114,7 +114,7 @@ public class TestProfileDiagramExtension extends AbstractPapyrusTestCase {
 	}
 
 	private GraphicalEditPart createMetaclassOnDiagram(Point loc, int childrensCount) {
-		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_1031, getDiagramEditPart().getDiagramPreferencesHint());
+		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Class_MetaclassShape, getDiagramEditPart().getDiagramPreferencesHint());
 		Profile parentProfile = MetaclassHelper.getParentProfile(getDiagramEditPart());
 		List<Object> importedElements = Arrays.asList(new UMLMetaclassContentProvider(parentProfile).getElements());
 		List<Object> forDialogSetup = new ArrayList<Object>();
