@@ -7,6 +7,7 @@ Export-Package: org.eclipse.papyrus.infra.nattable,
  org.eclipse.papyrus.infra.nattable.command,
  org.eclipse.papyrus.infra.nattable.comparator,
  org.eclipse.papyrus.infra.nattable.configuration,
+ org.eclipse.papyrus.infra.nattable.contentprovider,
  org.eclipse.papyrus.infra.nattable.converter,
  org.eclipse.papyrus.infra.nattable.copy,
  org.eclipse.papyrus.infra.nattable.dataprovider,
@@ -70,7 +71,9 @@ Require-Bundle: org.eclipse.papyrus.infra.widgets;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.services.decoration;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.2.0"
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

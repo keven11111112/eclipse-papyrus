@@ -136,6 +136,14 @@ public class Messages extends NLS {
 	public static String AxisManagerFactory_TheClassCantBeInstanciated;
 
 	public static String CompositeAxisManager_AddAxisCommand;
+	
+	public static String ConfigurePastePage_firstColumnTitle;
+	
+	public static String ConfigurePastePage_secondColumnTitle;
+	
+	public static String ConfigurePastePage_thirdColumnTitle;
+	
+	public static String ConfigurePastePage_fourthColumnTitle;
 
 	public static String DeleteNatTableContextAdvice_DestroyNattableCommand;
 

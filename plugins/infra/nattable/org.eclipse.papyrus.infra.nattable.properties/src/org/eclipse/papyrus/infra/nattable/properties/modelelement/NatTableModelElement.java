@@ -30,6 +30,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
+import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnAxisIdentifierContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnContainmentFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.ColumnElementTypeIdContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.ContextFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.RowAxisIdentifierContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.RowContainmentFeatureContentProvider;
+import org.eclipse.papyrus.infra.nattable.contentprovider.RowElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -71,14 +78,7 @@ import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteEObjectE
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectDetachedModeObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.observable.RowPasteObjectPostActionsObservableValue;
 import org.eclipse.papyrus.infra.nattable.properties.provider.AxisIdentifierLabelProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnAxisIdentifierContentProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnContainmentFeatureContentProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.ColumnPostActionIdsProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.ContextFeatureContentProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.RowAxisIdentifierContentProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.RowContainmentFeatureContentProvider;
-import org.eclipse.papyrus.infra.nattable.properties.provider.RowElementTypeIdContentProvider;
 import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsProvider;
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
@@ -382,7 +382,7 @@ public class NatTableModelElement extends EMFModelElement {
 			} else
 
 			// feature row label property
-				if (Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
+			if (Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_ICON.equals(propertyPath)) {
 				value = new RowFeatureLabelDisplayIconObservableValue(table);
 			} else if (Constants.ROW_FEATURE_LABEL_CONFIGURATION_DISPLAY_LABEL.equals(propertyPath)) {
 				value = new RowFeatureLabelDisplayLabelObservableValue(table);
@@ -493,7 +493,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 			// paste row EObject
 			else if (Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
-				res = new RowContainmentFeatureContentProvider(getEditedTable()).getElements().length != 0;
+				res = new RowContainmentFeatureContentProvider(getEditedTable(), getEditedTable().getContext().eClass()).getElements().length != 0;
 			} else if (Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
 				res = new RowElementTypeIdContentProvider(this.tableModelManager).getElements().length != 0;
 			} else if (Constants.ROW_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
@@ -505,7 +505,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 				// paste column EObject
 			} else if (Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
-				res = new ColumnContainmentFeatureContentProvider(getEditedTable()).getElements().length != 0;
+				res = new ColumnContainmentFeatureContentProvider(getEditedTable(), getEditedTable().getContext().eClass()).getElements().length != 0;
 			} else if (Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
 				res = new ColumnElementTypeIdContentProvider(this.tableModelManager).getElements().length != 0;
 			} else if (Constants.COLUMN_PASTED_OBJECT_DETACHED_MODE_FEATURE.equals(propertyPath)) {
@@ -534,9 +534,9 @@ public class NatTableModelElement extends EMFModelElement {
 			Table table = getEditedTable();
 			provider = new ContextFeatureContentProvider(table, getRoot(table.getContext()));
 		} else if (Constants.ROW_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
-			provider = new RowContainmentFeatureContentProvider(getEditedTable());
+			provider = new RowContainmentFeatureContentProvider(getEditedTable(), getEditedTable().getContext().eClass());
 		} else if (Constants.COLUMN_PASTED_EOBJECT_CONTAINMENT_FEATURE.equals(propertyPath)) {
-			provider = new ColumnContainmentFeatureContentProvider(getEditedTable());
+			provider = new ColumnContainmentFeatureContentProvider(getEditedTable(), getEditedTable().getContext().eClass());
 		} else if (Constants.ROW_PASTED_EOBJECT_ID.equals(propertyPath)) {
 			provider = new RowElementTypeIdContentProvider(this.tableModelManager);
 		} else if (Constants.COLUMN_PASTED_EOBJECT_ID.equals(propertyPath)) {
@@ -555,7 +555,7 @@ public class NatTableModelElement extends EMFModelElement {
 		}
 		return super.getContentProvider(propertyPath);
 	}
-	
+
 	/**
 	 *
 	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isUnique(java.lang.String)
@@ -631,12 +631,12 @@ public class NatTableModelElement extends EMFModelElement {
 				}
 			};
 		}
-		
+
 		if (Constants.COLUMN_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath) || Constants.ROW_PASTED_EOBJECT_AXIS_IDENTIFIER_FEATURE.equals(propertyPath)) {
 			provider = new AxisIdentifierLabelProvider(tableModelManager);
 		}
-		
-		if(null == provider){
+
+		if (null == provider) {
 			provider = super.getLabelProvider(propertyPath);
 		}
 		return provider;

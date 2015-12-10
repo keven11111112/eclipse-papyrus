@@ -1,5 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2013 CEA LIST.
+ *
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,26 +8,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nicolas FAUVERGUe (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.properties.provider;
+package org.eclipse.papyrus.infra.nattable.contentprovider;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
-/**
- * The content provider for the row axis identifier.
- */
-public class RowAxisIdentifierContentProvider extends AbstractAxisIdentifierContentProvider {
+
+public class ColumnElementTypeIdContentProvider extends AbstractElementTypeIdContentProvider {
 
 	/**
+	 *
 	 * Constructor.
 	 *
 	 * @param tableManager
-	 *            the table manager to get the column axis.
 	 */
-	public RowAxisIdentifierContentProvider(final INattableModelManager tableManager) {
-		super(tableManager, false);
+	public ColumnElementTypeIdContentProvider(final INattableModelManager tableManager) {
+		super(tableManager, true);
 	}
 
 }

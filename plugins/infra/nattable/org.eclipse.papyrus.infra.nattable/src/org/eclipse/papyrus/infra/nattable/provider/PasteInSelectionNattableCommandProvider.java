@@ -189,7 +189,11 @@ public class PasteInSelectionNattableCommandProvider extends AbstractPasteInSele
 		for (int insertedElementIndex = createdElements.size() - 1; insertedElementIndex >= 0; insertedElementIndex--) {
 			final InsertedElementInNattable currentInsertedElement = createdElements.get(insertedElementIndex);
 			if (-1 != currentInsertedElement.getIndexInParent()) {
-				addCommand.append(MoveCommand.create(contextEditingDomain, currentInsertedElement.getContext(), currentInsertedElement.getContainementFeature(), currentInsertedElement.getCreatedElements(), currentInsertedElement.getIndexInParent()));
+				int addedIndex = 0;
+				for(Object createdElement : currentInsertedElement.getCreatedElements()){
+					addCommand.append(MoveCommand.create(contextEditingDomain, currentInsertedElement.getContext(), currentInsertedElement.getContainementFeature(), createdElement, currentInsertedElement.getIndexInParent()+addedIndex));
+					addedIndex++;
+				}
 			}
 		}
 

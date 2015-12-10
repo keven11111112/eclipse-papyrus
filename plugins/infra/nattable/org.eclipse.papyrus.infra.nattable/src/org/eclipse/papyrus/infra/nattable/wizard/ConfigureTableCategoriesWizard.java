@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.ne - Bug 455060
  *   
  *****************************************************************************/
 
@@ -22,15 +23,17 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.jface.dialogs.IPageChangedListener;
+import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ViewerComparator;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.osgi.util.NLS;
@@ -41,7 +44,6 @@ import org.eclipse.papyrus.infra.nattable.model.factory.IAxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
@@ -59,7 +61,7 @@ import org.eclipse.papyrus.infra.nattable.utils.LabelProviderContextElementWrapp
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StringComparator;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
-import org.eclipse.papyrus.infra.nattable.wizard.pages.ConfigurePasteForCategoriesWizardPage;
+import org.eclipse.papyrus.infra.nattable.wizard.pages.ConfigurePastePage;
 import org.eclipse.papyrus.infra.nattable.wizard.pages.SelectCategoriesWizardPage;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
@@ -71,10 +73,9 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 /**
- * @author VL222926
- *         This wizard allows to configure the categories to listen in the table And the paste action for each categories
+ * This wizard allows to configure the categories to listen in the table And the paste action for each categories
  */
-public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
+public class ConfigureTableCategoriesWizard extends AbstractTableWizard implements IPageChangedListener {
 
 	/**
 	 * the page used to choose the categories
@@ -84,7 +85,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	/**
 	 * the page used to configure the paste
 	 */
-	private ConfigurePasteForCategoriesWizardPage pastePage;
+	private ConfigurePastePage pastePage;
 
 	/**
 	 * the nattable model manager
@@ -102,11 +103,12 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	private List<Object> initialSelection;
 
 	/**
-	 *
 	 * Constructor.
 	 *
+	 * @param manager
+	 *            The nattable model manager.
 	 */
-	public ConfigureTableCategoriesWizard(INattableModelManager manager) {
+	public ConfigureTableCategoriesWizard(final INattableModelManager manager) {
 		this.manager = manager;
 		this.natTable = (NatTable) ((IAdaptable) manager).getAdapter(NatTable.class);
 		setWindowTitle("Configure Categories");
@@ -114,13 +116,14 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
+	 * Create the selector content provider.
 	 * 
 	 * @param selector
 	 *            the reference selector
 	 * @return
-	 *         the content provider to use for the selector
+	 * 		the content provider to use for the selector
 	 */
-	protected IStaticContentProvider createSelectorContentProvider(ReferenceSelector selector) {
+	protected IStaticContentProvider createSelectorContentProvider(final ReferenceSelector selector) {
 		final IAxisManager editedAxisManager = this.manager.getColumnAxisManager();
 		IStaticContentProvider provider = editedAxisManager.createPossibleAxisContentProvider(true);
 		Assert.isNotNull(provider);
@@ -136,17 +139,17 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 			@Override
 			public boolean isValidValue(Object element) {
 				// EMF dependency, must not be done here, it should be better with a new content provider service
-				return (element instanceof EReference && ((EReference) element).isMany() && element != EcorePackage.eINSTANCE.getEModelElement_EAnnotations())
-						|| (element instanceof EOperation && ((EOperation)element).isMany());
+				return element instanceof EReference && ((EReference) element).isMany() && element != EcorePackage.eINSTANCE.getEModelElement_EAnnotations();
 			}
 		};
 
 	}
 
 	/**
+	 * Create the reference selector.
 	 * 
 	 * @return
-	 *         the created and initialized reference selector
+	 * 		the created and initialized reference selector
 	 */
 	protected ReferenceSelector createReferenceSelector() {
 		ReferenceSelector selector = new ReferenceSelector(false) {
@@ -174,9 +177,10 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
+	 * This allows to create the first page corresponding to the categories selection.
 	 * 
 	 * @return
-	 *         the page to use to select the categories to listen in the table
+	 * 		the page to use to select the categories to listen in the table
 	 */
 	protected SelectCategoriesWizardPage createSelectCategoriesPage() {
 		this.categoriesPage = new SelectCategoriesWizardPage(createReferenceSelector());
@@ -187,33 +191,35 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
+	 * This allows to create the second page corresponding to the paste configurations.
 	 * 
 	 * @return
-	 *         the paste page used to configure the paste
+	 * 		the paste page used to configure the paste
 	 */
-	protected ConfigurePasteForCategoriesWizardPage createConfigurePastePage() {
-		this.pastePage = new ConfigurePasteForCategoriesWizardPage(createReferenceSelector());
+	protected ConfigurePastePage createConfigurePastePage() {
 		final LabelProviderService serv = this.natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		this.pastePage.setLabelProvider(new ITreeItemWrappedObjectLabelProvider(serv.getLabelProvider(), this.natTable));
-		this.pastePage.setInitialElementSelections(this.initialSelection);
+		this.pastePage = new ConfigurePastePage("Paste Configuration", manager, new ITreeItemWrappedObjectLabelProvider(serv.getLabelProvider(), this.natTable), serv.getLabelProvider(), createSelectorContentProvider(null)); //$NON-NLS-1$
 		return this.pastePage;
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.Wizard#addPages()
-	 *
 	 */
 	@Override
 	public void addPages() {
 		super.addPages();
 		addPage(createSelectCategoriesPage());
-		// addPage(createConfigurePastePage());
+		addPage(createConfigurePastePage());
+
+		// Add a listener to manage the page changing
+		final WizardDialog dialog = (WizardDialog) getContainer();
+		dialog.addPageChangedListener(this);
 	}
 
 	/**
-	 * 
 	 * The label provider to use for the selected elements viewer
-	 *
 	 */
 	private static class ITreeItemWrappedObjectLabelProvider implements ILabelProvider {
 
@@ -222,17 +228,25 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		 */
 		private ILabelProvider wrappedLabelprovider;
 
+		/**
+		 * The nattable to manage.
+		 */
 		private NatTable natTable;
 
-		private LabelProviderContextElementWrapper wrapper;
-		
 		/**
-		 * 
+		 * The wrapper label provider context.
+		 */
+		private LabelProviderContextElementWrapper wrapper;
+
+		/**
 		 * Constructor.
 		 *
 		 * @param wrappedProvider
+		 *            The wrapped provider.
+		 * @param natTable
+		 *            The nattable to manage.
 		 */
-		public ITreeItemWrappedObjectLabelProvider(ILabelProvider wrappedProvider, NatTable natTable) {
+		public ITreeItemWrappedObjectLabelProvider(final ILabelProvider wrappedProvider, final NatTable natTable) {
 			this.wrappedLabelprovider = wrappedProvider;
 			this.natTable = natTable;
 			wrapper = new LabelProviderContextElementWrapper();
@@ -240,18 +254,19 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		}
 
 		/**
+		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
-		 *
-		 * @param arg0
 		 */
 		@Override
-		public void addListener(ILabelProviderListener arg0) {
+		public void addListener(final ILabelProviderListener arg0) {
 			// nothing to do
 		}
 
 		/**
+		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-		 *
 		 */
 		@Override
 		public void dispose() {
@@ -259,49 +274,47 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		}
 
 		/**
+		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
-		 *
-		 * @param arg0
-		 * @param arg1
-		 * @return
 		 */
 		@Override
-		public boolean isLabelProperty(Object arg0, String arg1) {
+		public boolean isLabelProperty(final Object arg0, final String arg1) {
 			return false;
 		}
 
 		/**
+		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
-		 *
-		 * @param arg0
 		 */
 		@Override
-		public void removeListener(ILabelProviderListener arg0) {
+		public void removeListener(final ILabelProviderListener arg0) {
 			// nothing to do
 		}
 
 		/**
+		 * 
+		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
-		 *
-		 * @param arg0
-		 * @return
 		 */
 		@Override
-		public Image getImage(Object arg0) {
+		public Image getImage(final Object arg0) {
+			Object current = arg0;
 			if (arg0 instanceof ITreeItemAxis) {
-				arg0 = ((ITreeItemAxis) arg0).getElement();
+				current = ((ITreeItemAxis) arg0).getElement();
 			}
-			return wrappedLabelprovider.getImage(arg0);
+			return wrappedLabelprovider.getImage(current);
 		}
 
 		/**
+		 * {@inheritDoc}
+		 * 
 		 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-		 *
-		 * @param arg0
-		 * @return
 		 */
 		@Override
-		public String getText(Object arg0) {
+		public String getText(final Object arg0) {
 			Assert.isTrue(arg0 instanceof ITreeItemAxis);
 			ITreeItemAxis axis = (ITreeItemAxis) arg0;
 			Object element = axis.getElement();
@@ -326,9 +339,10 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
+	 * This allows to create the initial selection corresponding to the table to edit.
 	 * 
 	 * @return
-	 *         the initial selection to use in the wizard page
+	 * 		the initial selection to use in the wizard page
 	 */
 	protected List<Object> createInitialSelection() {
 		Table table = this.manager.getTable();
@@ -380,28 +394,36 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
-	 *
-	 * @return
 	 */
 	@Override
 	public boolean performFinish() {
 		Table table = manager.getTable();
-		List<ITreeItemAxis> configureCategoriesResult = new ArrayList<ITreeItemAxis>();
+		final List<ITreeItemAxis> configureCategoriesResult = new ArrayList<ITreeItemAxis>();
+		final Map<ITreeItemAxis, PasteEObjectConfiguration> pasteConfigurations = pastePage.getPasteConfigurations();
 		for (Object curr : initialSelection) {
 			configureCategoriesResult.add((ITreeItemAxis) curr);
 		}
-		Command cmd = getConfigureCategoriesCommand(configureCategoriesResult);
-		EditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
+		final Command cmd = getConfigureCategoriesCommand(configureCategoriesResult, pasteConfigurations);
+		final EditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		domain.getCommandStack().execute(cmd);
 		return true;
 	}
 
-	private ILabelProviderConfiguration getLabelConfigurationForTreeFillingConfiguration(Table table, final IAxis axis) {
+	/**
+	 * Get the label provider configuration for the tree filling configuration.
+	 * 
+	 * @param table
+	 *            The table.
+	 * @return The label provider configuration.
+	 */
+	private ILabelProviderConfiguration getLabelConfigurationForTreeFillingConfiguration(final Table table) {
 		TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 		for (IAxisConfiguration tmp : conf.getOwnedAxisConfigurations()) {
 			if (tmp instanceof TreeFillingConfiguration) {
-				if(((TreeFillingConfiguration) tmp).getAxisUsedAsAxisProvider().eClass().equals(axis.eClass()) && null != ((TreeFillingConfiguration) tmp).getLabelProvider()){
+				if (((TreeFillingConfiguration) tmp).getLabelProvider() != null) {
 					return ((TreeFillingConfiguration) tmp).getLabelProvider();
 				}
 			}
@@ -409,15 +431,27 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		return null;
 	}
 
-	private String getLabelProviderContextForTreeFillingConfiguration(Table table, final IAxis axis) {
-		if(axis.eClass().equals(NattableaxisPackage.eINSTANCE.getEOperationAxis()) || axis.eClass().equals(NattableaxisPackage.eINSTANCE.getEOperationTreeItemAxis())){
-			return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_OPERATION_CONFIGURATION_CONTEXT;
-		}
+	/**
+	 * Get the label provider context for the tree filling configuration.
+	 * 
+	 * @param table
+	 *            The table.
+	 * @return The label provider context as string.
+	 */
+	private String getLabelProviderContextForTreeFillingConfiguration(final Table table) {
 		return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_FEATURE_CONFIGURATION_CONTEXT;
 	}
 
-
-	protected Command getConfigureCategoriesCommand(final List<ITreeItemAxis> userSelection) {
+	/**
+	 * This allows to get the command that configure the categories.
+	 * 
+	 * @param userSelection
+	 *            The list of tree item axis choosen by the user.
+	 * @param pasteConfigurations
+	 *            The paste configurations by tree item axis modified by user.
+	 * @return The command.
+	 */
+	protected Command getConfigureCategoriesCommand(final List<ITreeItemAxis> userSelection, final Map<ITreeItemAxis, PasteEObjectConfiguration> pasteConfigurations) {
 		return new RecordingCommand(TableEditingDomainUtils.getTableEditingDomain(manager.getTable())) {
 
 			@Override
@@ -435,6 +469,10 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 						int wantedDepth = Integer.valueOf((String) depthItem.getElement());
 						if (depthItem.getChildren().isEmpty()) {
 							// we do nothing if there is no child, in standard usecase, it is only possible when wantedDepth==0;
+							
+							if (null != pasteConfigurations.get(depthItem)) {
+								createdPasteEObjectConfiguration.add(pasteConfigurations.get(depthItem));
+							}
 							continue;
 						}
 
@@ -443,38 +481,45 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 
 							// 1. try to find existing conf
 							TreeFillingConfiguration newConf = findExistingTreeFillingConfiguration(table, representation, wantedDepth, categoryItem.getElement());
-							if (null == newConf || EMFHelper.isReadOnly(newConf)) {
+							if (null == newConf || EMFHelper.isReadOnly(newConf) || null != pasteConfigurations.get(categoryItem)) {
 								PasteEObjectConfiguration copiedEObjectConfiguration = null;
-								if(null != newConf){
+								if (null != pasteConfigurations.get(categoryItem)) {
+									copiedEObjectConfiguration = pasteConfigurations.get(categoryItem);
+								} else if (null != newConf) {
 									PasteEObjectConfiguration existingPasteConfiguration = newConf.getPasteConfiguration();
 									copiedEObjectConfiguration = EcoreUtil.copy(existingPasteConfiguration);
-									if(null != copiedEObjectConfiguration){
-										createdPasteEObjectConfiguration.add(copiedEObjectConfiguration);
-									}
 								}
+								if (null != copiedEObjectConfiguration) {
+									createdPasteEObjectConfiguration.add(copiedEObjectConfiguration);
+								}
+
 								// we create new TreeFillingConfiguration
 								newConf = NattableaxisconfigurationFactory.eINSTANCE.createTreeFillingConfiguration();
 								newConf.setDepth(wantedDepth);
-								IAxis axis = IAxisFactory.createAxisForTypedElement(categoryItem.getElement(), representation, categoryItem.getAlias());
+								IAxis axis = IAxisFactory.createAxisForFeature(categoryItem.getElement(), representation, categoryItem.getAlias());
 								newConf.setAxisUsedAsAxisProvider(axis);
-								newConf.setLabelProvider(getLabelConfigurationForTreeFillingConfiguration(table, axis));
-								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table, axis));
+								newConf.setLabelProvider(getLabelConfigurationForTreeFillingConfiguration(table));
+								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table));
 								// Manage the paste configuration
 								newConf.setPasteConfiguration(copiedEObjectConfiguration);
 							} else {
 
-								// update the alias if required
-								String oldAlias = newConf.getAxisUsedAsAxisProvider().getAlias();
-								String newAlias = categoryItem.getAlias();
-								if ((oldAlias != null && !oldAlias.equals(newAlias)) || (newAlias != null && !newAlias.equals(oldAlias))) {
-									newConf.getAxisUsedAsAxisProvider().setAlias(newAlias);
+								if (null != newConf) {
+									// update the alias if required
+									String oldAlias = newConf.getAxisUsedAsAxisProvider().getAlias();
+									String newAlias = categoryItem.getAlias();
+									if ((oldAlias != null && !oldAlias.equals(newAlias)) || (newAlias != null && !newAlias.equals(oldAlias))) {
+										newConf.getAxisUsedAsAxisProvider().setAlias(newAlias);
+									}
+
+									if (null != newConf.getPasteConfiguration()) {
+										createdPasteEObjectConfiguration.add(newConf.getPasteConfiguration());
+									}
 								}
 							}
 
 
 							createdFillingConfiguration.add(newConf);
-
-							// TODO : manage paste
 						}
 					}
 
@@ -508,15 +553,20 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
+	 * This allows to find the exiting tree filling configuration corresponding to the properties in parameters.
 	 * 
 	 * @param table
+	 *            The table.
 	 * @param representedAxisManager
+	 *            The axis manager.
 	 * @param depth
+	 *            The wanted depth.
 	 * @param representedObject
-	 * @return
+	 *            The represented object to search.
+	 * @return The corresponding tree filling configuration.
 	 */
 	// TODO : move me
-	public static final TreeFillingConfiguration findExistingTreeFillingConfiguration(Table table, AxisManagerRepresentation representedAxisManager, int depth, Object representedObject) {
+	public static final TreeFillingConfiguration findExistingTreeFillingConfiguration(final Table table, final AxisManagerRepresentation representedAxisManager, final int depth, final Object representedObject) {
 		List<TreeFillingConfiguration> existingConf = FillingConfigurationUtils.getTreeFillingConfigurationForDepth(table, representedAxisManager, depth);
 		for (TreeFillingConfiguration treeFillingConfiguration : existingConf) {
 			if (treeFillingConfiguration.getAxisUsedAsAxisProvider().getElement().equals(representedObject)) {
@@ -527,11 +577,12 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
+	 * Get the axis manager representation for rows.
 	 * 
 	 * @param table
 	 *            the table
 	 * @return
-	 *         the axis manager representation for rows
+	 * 		the axis manager representation for rows
 	 */
 	private static final List<AxisManagerRepresentation> getRowAxisManagerRepresentations(Table table) {
 		AbstractHeaderAxisConfiguration tmp = HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
@@ -540,6 +591,17 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		return conf.getAxisManagers();
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.dialogs.IPageChangedListener#pageChanged(org.eclipse.jface.dialogs.PageChangedEvent)
+	 */
+	@Override
+	public void pageChanged(final PageChangedEvent event) {
+		if (event.getSelectedPage().equals(pastePage)) {
+			// If the changed page is the paste configurations page, set it the selection potentially modified in the previous page
+			this.pastePage.setInitialElementSelections(this.initialSelection);
+		}
+	}
 
 }

@@ -7,17 +7,17 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *  Nicolas FAUVERGUe (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.properties.provider;
+package org.eclipse.papyrus.infra.nattable.contentprovider;
 
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 
 /**
- * The content provider for the column axis identifier.
+ * The content provider for the row axis identifier.
  */
-public class ColumnAxisIdentifierContentProvider extends AbstractAxisIdentifierContentProvider {
+public class RowAxisIdentifierContentProvider extends AbstractAxisIdentifierContentProvider {
 
 	/**
 	 * Constructor.
@@ -25,8 +25,8 @@ public class ColumnAxisIdentifierContentProvider extends AbstractAxisIdentifierC
 	 * @param tableManager
 	 *            the table manager to get the column axis.
 	 */
-	public ColumnAxisIdentifierContentProvider(final INattableModelManager tableManager) {
-		super(tableManager, true);
+	public RowAxisIdentifierContentProvider(final INattableModelManager tableManager) {
+		super(tableManager, false);
 	}
 
 }
