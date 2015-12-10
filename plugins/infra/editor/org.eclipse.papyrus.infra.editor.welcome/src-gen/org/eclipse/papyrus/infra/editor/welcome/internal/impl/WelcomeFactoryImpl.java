@@ -75,6 +75,10 @@ public class WelcomeFactoryImpl extends EFactoryImpl implements WelcomeFactory {
 			return createWelcomePage();
 		case WelcomePackage.WELCOME_SECTION:
 			return createWelcomeSection();
+		case WelcomePackage.SASH_COLUMN:
+			return createSashColumn();
+		case WelcomePackage.SASH_ROW:
+			return createSashRow();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -114,6 +118,30 @@ public class WelcomeFactoryImpl extends EFactoryImpl implements WelcomeFactory {
 	public WelcomeSection createWelcomeSection() {
 		WelcomeSectionImpl welcomeSection = new WelcomeSectionImpl();
 		return welcomeSection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public SashColumn createSashColumn() {
+		SashColumnImpl sashColumn = new SashColumnImpl();
+		return sashColumn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public SashRow createSashRow() {
+		SashRowImpl sashRow = new SashRowImpl();
+		return sashRow;
 	}
 
 	/**

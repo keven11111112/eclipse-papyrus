@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.papyrus.infra.editor.welcome.SashColumn;
+import org.eclipse.papyrus.infra.editor.welcome.SashRow;
 import org.eclipse.papyrus.infra.editor.welcome.Welcome;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeFactory;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
@@ -58,6 +60,22 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 	 * @generated
 	 */
 	private EClass welcomeSectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass sashColumnEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass sashRowEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -192,6 +210,17 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getWelcomePage_SashColumn() {
+		return (EReference) welcomePageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EOperation getWelcomePage__GetVisibleSections() {
 		return welcomePageEClass.getEOperations().get(0);
 	}
@@ -205,6 +234,28 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 	@Override
 	public EOperation getWelcomePage__GetSection__String() {
 		return welcomePageEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EOperation getWelcomePage__GetSashColumn__int() {
+		return welcomePageEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EOperation getWelcomePage__GetSashRow__int_int() {
+		return welcomePageEClass.getEOperations().get(3);
 	}
 
 	/**
@@ -269,6 +320,105 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getSashColumn() {
+		return sashColumnEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSashColumn_X() {
+		return (EAttribute) sashColumnEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getSashColumn_SashRow() {
+		return (EReference) sashColumnEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getSashColumn_Page() {
+		return (EReference) sashColumnEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EOperation getSashColumn__GetSashRow__int() {
+		return sashColumnEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getSashRow() {
+		return sashRowEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getSashRow_Y() {
+		return (EAttribute) sashRowEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getSashRow_Page() {
+		return (EReference) sashRowEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getSashRow_Column() {
+		return (EReference) sashRowEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public WelcomeFactory getWelcomeFactory() {
 		return (WelcomeFactory) getEFactoryInstance();
 	}
@@ -302,14 +452,28 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 		welcomePageEClass = createEClass(WELCOME_PAGE);
 		createEReference(welcomePageEClass, WELCOME_PAGE__SECTION);
 		createEReference(welcomePageEClass, WELCOME_PAGE__VISIBLE_SECTION);
+		createEReference(welcomePageEClass, WELCOME_PAGE__SASH_COLUMN);
 		createEOperation(welcomePageEClass, WELCOME_PAGE___GET_VISIBLE_SECTIONS);
 		createEOperation(welcomePageEClass, WELCOME_PAGE___GET_SECTION__STRING);
+		createEOperation(welcomePageEClass, WELCOME_PAGE___GET_SASH_COLUMN__INT);
+		createEOperation(welcomePageEClass, WELCOME_PAGE___GET_SASH_ROW__INT_INT);
 
 		welcomeSectionEClass = createEClass(WELCOME_SECTION);
 		createEAttribute(welcomeSectionEClass, WELCOME_SECTION__IDENTIFIER);
 		createEAttribute(welcomeSectionEClass, WELCOME_SECTION__HIDDEN);
 		createEReference(welcomeSectionEClass, WELCOME_SECTION__PAGE);
 		createEOperation(welcomeSectionEClass, WELCOME_SECTION___IS_IDENTIFIED_BY__STRING);
+
+		sashColumnEClass = createEClass(SASH_COLUMN);
+		createEAttribute(sashColumnEClass, SASH_COLUMN__X);
+		createEReference(sashColumnEClass, SASH_COLUMN__SASH_ROW);
+		createEReference(sashColumnEClass, SASH_COLUMN__PAGE);
+		createEOperation(sashColumnEClass, SASH_COLUMN___GET_SASH_ROW__INT);
+
+		sashRowEClass = createEClass(SASH_ROW);
+		createEAttribute(sashRowEClass, SASH_ROW__Y);
+		createEReference(sashRowEClass, SASH_ROW__PAGE);
+		createEReference(sashRowEClass, SASH_ROW__COLUMN);
 	}
 
 	/**
@@ -357,11 +521,20 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 				!IS_DERIVED, IS_ORDERED);
 		initEReference(getWelcomePage_VisibleSection(), this.getWelcomeSection(), null, "visibleSection", null, 0, -1, WelcomePage.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
 				IS_ORDERED);
+		initEReference(getWelcomePage_SashColumn(), this.getSashColumn(), this.getSashColumn_Page(), "sashColumn", null, 0, -1, WelcomePage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, !IS_ORDERED);
 
 		initEOperation(getWelcomePage__GetVisibleSections(), this.getWelcomeSection(), "getVisibleSections", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		EOperation op = initEOperation(getWelcomePage__GetSection__String(), this.getWelcomeSection(), "getSection", 0, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theTypesPackage.getString(), "identifier", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getWelcomePage__GetSashColumn__int(), this.getSashColumn(), "getSashColumn", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theTypesPackage.getInteger(), "index", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getWelcomePage__GetSashRow__int_int(), this.getSashRow(), "getSashRow", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theTypesPackage.getInteger(), "column", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theTypesPackage.getInteger(), "row", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(welcomeSectionEClass, WelcomeSection.class, "WelcomeSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getWelcomeSection_Identifier(), theTypesPackage.getString(), "identifier", null, 1, -1, WelcomeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -371,6 +544,22 @@ public class WelcomePackageImpl extends EPackageImpl implements WelcomePackage {
 
 		op = initEOperation(getWelcomeSection__IsIdentifiedBy__String(), theTypesPackage.getBoolean(), "isIdentifiedBy", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theTypesPackage.getString(), "identifier", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(sashColumnEClass, SashColumn.class, "SashColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSashColumn_X(), theTypesPackage.getInteger(), "x", null, 0, 1, SashColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSashColumn_SashRow(), this.getSashRow(), this.getSashRow_Column(), "sashRow", null, 0, -1, SashColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+		initEReference(getSashColumn_Page(), this.getWelcomePage(), this.getWelcomePage_SashColumn(), "page", null, 1, 1, SashColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
+
+		op = initEOperation(getSashColumn__GetSashRow__int(), this.getSashRow(), "getSashRow", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, theTypesPackage.getInteger(), "index", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(sashRowEClass, SashRow.class, "SashRow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(getSashRow_Y(), theTypesPackage.getInteger(), "y", null, 0, 1, SashRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSashRow_Page(), this.getWelcomePage(), null, "page", null, 1, 1, SashRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSashRow_Column(), this.getSashColumn(), this.getSashColumn_SashRow(), "column", null, 1, 1, SashRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				!IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

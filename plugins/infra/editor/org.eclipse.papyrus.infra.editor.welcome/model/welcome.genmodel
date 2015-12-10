@@ -47,10 +47,19 @@
           createChild="true" ecoreFeature="ecore:EReference welcome.ecore#//WelcomePage/section"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="true" propertySortChoices="true"
           ecoreFeature="ecore:EReference welcome.ecore#//WelcomePage/visibleSection"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference welcome.ecore#//WelcomePage/sashColumn"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="welcome.ecore#//WelcomePage/getVisibleSections"
           cacheAdapterScope="Resource"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="welcome.ecore#//WelcomePage/getSection">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="welcome.ecore#//WelcomePage/getSection/identifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="welcome.ecore#//WelcomePage/getSashColumn">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="welcome.ecore#//WelcomePage/getSashColumn/index"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="welcome.ecore#//WelcomePage/getSashRow">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="welcome.ecore#//WelcomePage/getSashRow/column"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="welcome.ecore#//WelcomePage/getSashRow/row"/>
       </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="welcome.ecore#//WelcomeSection">
@@ -61,6 +70,23 @@
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="welcome.ecore#//WelcomeSection/isIdentifiedBy">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="welcome.ecore#//WelcomeSection/isIdentifiedBy/identifier"/>
       </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="welcome.ecore#//SashColumn">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute welcome.ecore#//SashColumn/x"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference welcome.ecore#//SashColumn/sashRow"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference welcome.ecore#//SashColumn/page"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="welcome.ecore#//SashColumn/getSashRow">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="welcome.ecore#//SashColumn/getSashRow/index"/>
+      </genOperations>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="welcome.ecore#//SashRow">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute welcome.ecore#//SashRow/y"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference welcome.ecore#//SashRow/page"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
+          ecoreFeature="ecore:EReference welcome.ecore#//SashRow/column"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

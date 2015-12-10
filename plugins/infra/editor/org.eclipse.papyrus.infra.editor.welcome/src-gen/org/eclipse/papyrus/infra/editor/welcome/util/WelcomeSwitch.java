@@ -106,6 +106,22 @@ public class WelcomeSwitch<T> extends Switch<T> {
 			}
 			return result;
 		}
+		case WelcomePackage.SASH_COLUMN: {
+			SashColumn sashColumn = (SashColumn) theEObject;
+			T result = caseSashColumn(sashColumn);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case WelcomePackage.SASH_ROW: {
+			SashRow sashRow = (SashRow) theEObject;
+			T result = caseSashRow(sashRow);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -159,6 +175,40 @@ public class WelcomeSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseWelcomeSection(WelcomeSection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sash Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sash Column</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSashColumn(SashColumn object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sash Row</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sash Row</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSashRow(SashRow object) {
 		return null;
 	}
 

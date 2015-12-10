@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSections <em>Section</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getVisibleSections <em>Visible Section</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumns <em>Sash Column</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePackage#getWelcomePage()
@@ -99,6 +100,36 @@ public interface WelcomePage extends EObject {
 	WelcomeSection createVisibleSection();
 
 	/**
+	 * Returns the value of the '<em><b>Sash Column</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.editor.welcome.SashColumn}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.editor.welcome.SashColumn#getPage <em>Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sash Column</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Sash Column</em>' containment reference list.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePackage#getWelcomePage_SashColumn()
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashColumn#getPage
+	 * @model opposite="page" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<SashColumn> getSashColumns();
+
+	/**
+	 * Creates a new {@link org.eclipse.papyrus.infra.editor.welcome.SashColumn} and appends it to the '<em><b>Sash Column</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return The new {@link org.eclipse.papyrus.infra.editor.welcome.SashColumn}.
+	 * @see #getSashColumns()
+	 * @generated
+	 */
+	SashColumn createSashColumn();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -106,5 +137,23 @@ public interface WelcomePage extends EObject {
 	 * @generated
 	 */
 	WelcomeSection getSection(String identifier);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @model required="true" ordered="false" indexDataType="org.eclipse.uml2.types.Integer" indexRequired="true" indexOrdered="false"
+	 * @generated
+	 */
+	SashColumn getSashColumn(int index);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @model required="true" ordered="false" columnDataType="org.eclipse.uml2.types.Integer" columnRequired="true" columnOrdered="false" rowDataType="org.eclipse.uml2.types.Integer" rowRequired="true" rowOrdered="false"
+	 * @generated
+	 */
+	SashRow getSashRow(int column, int row);
 
 } // WelcomePage

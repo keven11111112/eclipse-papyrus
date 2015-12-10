@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.papyrus.infra.editor.welcome.SashColumn;
+import org.eclipse.papyrus.infra.editor.welcome.SashRow;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
@@ -46,6 +48,7 @@ import org.eclipse.uml2.common.util.CacheAdapter;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePageImpl#getSections <em>Section</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePageImpl#getVisibleSections <em>Visible Section</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePageImpl#getSashColumns <em>Sash Column</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +64,17 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 	 * @ordered
 	 */
 	protected EList<WelcomeSection> sections;
+
+	/**
+	 * The cached value of the '{@link #getSashColumns() <em>Sash Column</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getSashColumns()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SashColumn> sashColumns;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,8 +175,57 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 	 * @generated
 	 */
 	@Override
+	public EList<SashColumn> getSashColumns() {
+		if (sashColumns == null) {
+			sashColumns = new EObjectContainmentWithInverseEList<SashColumn>(SashColumn.class, this, WelcomePackage.WELCOME_PAGE__SASH_COLUMN, WelcomePackage.SASH_COLUMN__PAGE);
+		}
+		return sashColumns;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public SashColumn createSashColumn() {
+		SashColumn newSashColumn = (SashColumn) create(WelcomePackage.Literals.SASH_COLUMN);
+		getSashColumns().add(newSashColumn);
+		return newSashColumn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public WelcomeSection getSection(String identifier) {
 		return WelcomePageOperations.getSection(this, identifier);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public SashColumn getSashColumn(int index) {
+		return WelcomePageOperations.getSashColumn(this, index);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public SashRow getSashRow(int column, int row) {
+		return WelcomePageOperations.getSashRow(this, column, row);
 	}
 
 	/**
@@ -177,6 +240,8 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 		switch (featureID) {
 		case WelcomePackage.WELCOME_PAGE__SECTION:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSections()).basicAdd(otherEnd, msgs);
+		case WelcomePackage.WELCOME_PAGE__SASH_COLUMN:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSashColumns()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -192,6 +257,8 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 		switch (featureID) {
 		case WelcomePackage.WELCOME_PAGE__SECTION:
 			return ((InternalEList<?>) getSections()).basicRemove(otherEnd, msgs);
+		case WelcomePackage.WELCOME_PAGE__SASH_COLUMN:
+			return ((InternalEList<?>) getSashColumns()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -209,6 +276,8 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 			return getSections();
 		case WelcomePackage.WELCOME_PAGE__VISIBLE_SECTION:
 			return getVisibleSections();
+		case WelcomePackage.WELCOME_PAGE__SASH_COLUMN:
+			return getSashColumns();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -231,6 +300,10 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 			getVisibleSections().clear();
 			getVisibleSections().addAll((Collection<? extends WelcomeSection>) newValue);
 			return;
+		case WelcomePackage.WELCOME_PAGE__SASH_COLUMN:
+			getSashColumns().clear();
+			getSashColumns().addAll((Collection<? extends SashColumn>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -250,6 +323,9 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 		case WelcomePackage.WELCOME_PAGE__VISIBLE_SECTION:
 			getVisibleSections().clear();
 			return;
+		case WelcomePackage.WELCOME_PAGE__SASH_COLUMN:
+			getSashColumns().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -267,6 +343,8 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 			return sections != null && !sections.isEmpty();
 		case WelcomePackage.WELCOME_PAGE__VISIBLE_SECTION:
 			return !getVisibleSections().isEmpty();
+		case WelcomePackage.WELCOME_PAGE__SASH_COLUMN:
+			return sashColumns != null && !sashColumns.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -282,6 +360,10 @@ public class WelcomePageImpl extends MinimalEObjectImpl.Container implements Wel
 		switch (operationID) {
 		case WelcomePackage.WELCOME_PAGE___GET_SECTION__STRING:
 			return getSection((String) arguments.get(0));
+		case WelcomePackage.WELCOME_PAGE___GET_SASH_COLUMN__INT:
+			return getSashColumn((Integer) arguments.get(0));
+		case WelcomePackage.WELCOME_PAGE___GET_SASH_ROW__INT_INT:
+			return getSashRow((Integer) arguments.get(0), (Integer) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

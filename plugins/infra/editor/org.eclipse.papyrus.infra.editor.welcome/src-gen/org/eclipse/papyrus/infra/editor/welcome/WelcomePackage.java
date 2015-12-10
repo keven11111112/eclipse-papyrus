@@ -146,6 +146,16 @@ public interface WelcomePackage extends EPackage {
 	int WELCOME_PAGE__VISIBLE_SECTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Sash Column</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int WELCOME_PAGE__SASH_COLUMN = 2;
+
+	/**
 	 * The number of structural features of the '<em>Page</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -153,7 +163,7 @@ public interface WelcomePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WELCOME_PAGE_FEATURE_COUNT = 2;
+	int WELCOME_PAGE_FEATURE_COUNT = 3;
 
 	/**
 	 * The operation id for the '<em>Get Visible Sections</em>' operation.
@@ -176,6 +186,26 @@ public interface WelcomePackage extends EPackage {
 	int WELCOME_PAGE___GET_SECTION__STRING = 1;
 
 	/**
+	 * The operation id for the '<em>Get Sash Column</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int WELCOME_PAGE___GET_SASH_COLUMN__INT = 2;
+
+	/**
+	 * The operation id for the '<em>Get Sash Row</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int WELCOME_PAGE___GET_SASH_ROW__INT_INT = 3;
+
+	/**
 	 * The number of operations of the '<em>Page</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,7 +213,7 @@ public interface WelcomePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WELCOME_PAGE_OPERATION_COUNT = 2;
+	int WELCOME_PAGE_OPERATION_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomeSectionImpl <em>Section</em>}' class.
@@ -258,6 +288,139 @@ public interface WelcomePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashColumnImpl <em>Sash Column</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashColumnImpl
+	 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePackageImpl#getSashColumn()
+	 * @generated
+	 */
+	int SASH_COLUMN = 3;
+
+	/**
+	 * The feature id for the '<em><b>X</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_COLUMN__X = 0;
+
+	/**
+	 * The feature id for the '<em><b>Sash Row</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_COLUMN__SASH_ROW = 1;
+
+	/**
+	 * The feature id for the '<em><b>Page</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_COLUMN__PAGE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Sash Column</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_COLUMN_FEATURE_COUNT = 3;
+
+	/**
+	 * The operation id for the '<em>Get Sash Row</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_COLUMN___GET_SASH_ROW__INT = 0;
+
+	/**
+	 * The number of operations of the '<em>Sash Column</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_COLUMN_OPERATION_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashRowImpl <em>Sash Row</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashRowImpl
+	 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePackageImpl#getSashRow()
+	 * @generated
+	 */
+	int SASH_ROW = 4;
+
+	/**
+	 * The feature id for the '<em><b>Y</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_ROW__Y = 0;
+
+	/**
+	 * The feature id for the '<em><b>Page</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_ROW__PAGE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Column</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_ROW__COLUMN = 2;
+
+	/**
+	 * The number of structural features of the '<em>Sash Row</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_ROW_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Sash Row</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SASH_ROW_OPERATION_COUNT = 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.editor.welcome.Welcome <em>Welcome</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -316,6 +479,18 @@ public interface WelcomePackage extends EPackage {
 	EReference getWelcomePage_VisibleSection();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumns <em>Sash Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the containment reference list '<em>Sash Column</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumns()
+	 * @see #getWelcomePage()
+	 * @generated
+	 */
+	EReference getWelcomePage_SashColumn();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getVisibleSections() <em>Get Visible Sections</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -336,6 +511,28 @@ public interface WelcomePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getWelcomePage__GetSection__String();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumn(int) <em>Get Sash Column</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the '<em>Get Sash Column</em>' operation.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumn(int)
+	 * @generated
+	 */
+	EOperation getWelcomePage__GetSashColumn__int();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashRow(int, int) <em>Get Sash Row</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the '<em>Get Sash Row</em>' operation.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashRow(int, int)
+	 * @generated
+	 */
+	EOperation getWelcomePage__GetSashRow__int_int();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomeSection <em>Section</em>}'.
@@ -394,6 +591,111 @@ public interface WelcomePackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getWelcomeSection__IsIdentifiedBy__String();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.editor.welcome.SashColumn <em>Sash Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Sash Column</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashColumn
+	 * @generated
+	 */
+	EClass getSashColumn();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.editor.welcome.SashColumn#getX <em>X</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>X</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashColumn#getX()
+	 * @see #getSashColumn()
+	 * @generated
+	 */
+	EAttribute getSashColumn_X();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.editor.welcome.SashColumn#getSashRows <em>Sash Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the containment reference list '<em>Sash Row</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashColumn#getSashRows()
+	 * @see #getSashColumn()
+	 * @generated
+	 */
+	EReference getSashColumn_SashRow();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.editor.welcome.SashColumn#getPage <em>Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the container reference '<em>Page</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashColumn#getPage()
+	 * @see #getSashColumn()
+	 * @generated
+	 */
+	EReference getSashColumn_Page();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.editor.welcome.SashColumn#getSashRow(int) <em>Get Sash Row</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the '<em>Get Sash Row</em>' operation.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashColumn#getSashRow(int)
+	 * @generated
+	 */
+	EOperation getSashColumn__GetSashRow__int();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.editor.welcome.SashRow <em>Sash Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Sash Row</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashRow
+	 * @generated
+	 */
+	EClass getSashRow();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.editor.welcome.SashRow#getY <em>Y</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Y</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashRow#getY()
+	 * @see #getSashRow()
+	 * @generated
+	 */
+	EAttribute getSashRow_Y();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.editor.welcome.SashRow#getPage <em>Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Page</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashRow#getPage()
+	 * @see #getSashRow()
+	 * @generated
+	 */
+	EReference getSashRow_Page();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.papyrus.infra.editor.welcome.SashRow#getColumn <em>Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the container reference '<em>Column</em>'.
+	 * @see org.eclipse.papyrus.infra.editor.welcome.SashRow#getColumn()
+	 * @see #getSashRow()
+	 * @generated
+	 */
+	EReference getSashRow_Column();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -465,6 +767,14 @@ public interface WelcomePackage extends EPackage {
 		 */
 		EReference WELCOME_PAGE__VISIBLE_SECTION = eINSTANCE.getWelcomePage_VisibleSection();
 		/**
+		 * The meta object literal for the '<em><b>Sash Column</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference WELCOME_PAGE__SASH_COLUMN = eINSTANCE.getWelcomePage_SashColumn();
+		/**
 		 * The meta object literal for the '<em><b>Get Visible Sections</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -480,6 +790,22 @@ public interface WelcomePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation WELCOME_PAGE___GET_SECTION__STRING = eINSTANCE.getWelcomePage__GetSection__String();
+		/**
+		 * The meta object literal for the '<em><b>Get Sash Column</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EOperation WELCOME_PAGE___GET_SASH_COLUMN__INT = eINSTANCE.getWelcomePage__GetSashColumn__int();
+		/**
+		 * The meta object literal for the '<em><b>Get Sash Row</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EOperation WELCOME_PAGE___GET_SASH_ROW__INT_INT = eINSTANCE.getWelcomePage__GetSashRow__int_int();
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomeSectionImpl <em>Section</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -522,6 +848,82 @@ public interface WelcomePackage extends EPackage {
 		 * @generated
 		 */
 		EOperation WELCOME_SECTION___IS_IDENTIFIED_BY__STRING = eINSTANCE.getWelcomeSection__IsIdentifiedBy__String();
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashColumnImpl <em>Sash Column</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashColumnImpl
+		 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePackageImpl#getSashColumn()
+		 * @generated
+		 */
+		EClass SASH_COLUMN = eINSTANCE.getSashColumn();
+		/**
+		 * The meta object literal for the '<em><b>X</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute SASH_COLUMN__X = eINSTANCE.getSashColumn_X();
+		/**
+		 * The meta object literal for the '<em><b>Sash Row</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference SASH_COLUMN__SASH_ROW = eINSTANCE.getSashColumn_SashRow();
+		/**
+		 * The meta object literal for the '<em><b>Page</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference SASH_COLUMN__PAGE = eINSTANCE.getSashColumn_Page();
+		/**
+		 * The meta object literal for the '<em><b>Get Sash Row</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EOperation SASH_COLUMN___GET_SASH_ROW__INT = eINSTANCE.getSashColumn__GetSashRow__int();
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashRowImpl <em>Sash Row</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.SashRowImpl
+		 * @see org.eclipse.papyrus.infra.editor.welcome.internal.impl.WelcomePackageImpl#getSashRow()
+		 * @generated
+		 */
+		EClass SASH_ROW = eINSTANCE.getSashRow();
+		/**
+		 * The meta object literal for the '<em><b>Y</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute SASH_ROW__Y = eINSTANCE.getSashRow_Y();
+		/**
+		 * The meta object literal for the '<em><b>Page</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference SASH_ROW__PAGE = eINSTANCE.getSashRow_Page();
+		/**
+		 * The meta object literal for the '<em><b>Column</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference SASH_ROW__COLUMN = eINSTANCE.getSashRow_Column();
 
 	}
 

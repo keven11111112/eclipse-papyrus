@@ -45,6 +45,7 @@ public class WelcomeTests extends TestSuite {
 		TestSuite suite = new WelcomeTests("welcome Tests"); //$NON-NLS-1$
 		suite.addTestSuite(WelcomePageTest.class);
 		suite.addTestSuite(WelcomeSectionTest.class);
+		suite.addTestSuite(SashColumnTest.class);
 		return suite;
 	}
 

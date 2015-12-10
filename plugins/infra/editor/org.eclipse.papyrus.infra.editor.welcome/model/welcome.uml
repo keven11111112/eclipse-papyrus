@@ -19,6 +19,10 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VinvkJnZEeWGtMqIodd43w"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Vio9sJnZEeWGtMqIodd43w" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Xd6bsJ94EeWcy-hbAbG1yg" name="sashColumn" type="_KrrfUJ94EeWcy-hbAbG1yg" aggregation="composite" association="_Xd08IJ94EeWcy-hbAbG1yg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bB3DkJ94EeWcy-hbAbG1yg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bB44wJ94EeWcy-hbAbG1yg" value="*"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_MgdEIJncEeWGtMqIodd43w" name="getVisibleSections" visibility="protected">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_UWM4YJncEeWGtMqIodd43w" type="_cX-6UJnYEeWGtMqIodd43w" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_WB0ssJncEeWGtMqIodd43w"/>
@@ -33,6 +37,21 @@
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ffi8oJniEeWGtMqIodd43w"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ffkKwJniEeWGtMqIodd43w" value="1"/>
         </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_CLmfMJ95EeWcy-hbAbG1yg" name="getSashColumn">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_CLmfMZ95EeWcy-hbAbG1yg" name="index" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_CLmfMp95EeWcy-hbAbG1yg" type="_KrrfUJ94EeWcy-hbAbG1yg" direction="return"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_FjlusJ95EeWcy-hbAbG1yg" name="getSashRow">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_FjlusZ95EeWcy-hbAbG1yg" name="column" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_GwowoJ95EeWcy-hbAbG1yg" name="row" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Fjlusp95EeWcy-hbAbG1yg" type="_jZYvMJ94EeWcy-hbAbG1yg" direction="return"/>
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_cX-6UJnYEeWGtMqIodd43w" name="WelcomeSection">
@@ -71,6 +90,43 @@
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_LwSS0ZnZEeWGtMqIodd43w" type="_MfwdYJnYEeWGtMqIodd43w" association="_LwREsJnZEeWGtMqIodd43w"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KrrfUJ94EeWcy-hbAbG1yg" name="SashColumn">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_M5uEMJ94EeWcy-hbAbG1yg" name="x" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PqHvQJ94EeWcy-hbAbG1yg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PqZcEJ94EeWcy-hbAbG1yg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Xd7CwJ94EeWcy-hbAbG1yg" name="page" type="_MfwdYJnYEeWGtMqIodd43w" association="_Xd08IJ94EeWcy-hbAbG1yg"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_oCfoUZ94EeWcy-hbAbG1yg" name="sashRow" type="_jZYvMJ94EeWcy-hbAbG1yg" aggregation="composite" association="_oCfBQJ94EeWcy-hbAbG1yg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qxK1EJ94EeWcy-hbAbG1yg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qxMDMJ94EeWcy-hbAbG1yg" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_syxgcJ94EeWcy-hbAbG1yg" name="getSashRow">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yYJ0kJ94EeWcy-hbAbG1yg" name="index" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_07es8J94EeWcy-hbAbG1yg" type="_jZYvMJ94EeWcy-hbAbG1yg" direction="return"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Xd08IJ94EeWcy-hbAbG1yg" memberEnd="_Xd6bsJ94EeWcy-hbAbG1yg _Xd7CwJ94EeWcy-hbAbG1yg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Xd3_cJ94EeWcy-hbAbG1yg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Xd4mgJ94EeWcy-hbAbG1yg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_jZYvMJ94EeWcy-hbAbG1yg" name="SashRow">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_jZYvMZ94EeWcy-hbAbG1yg" name="y" visibility="public">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_jZYvMp94EeWcy-hbAbG1yg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_jZYvM594EeWcy-hbAbG1yg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_jZYvNJ94EeWcy-hbAbG1yg" name="page" type="_MfwdYJnYEeWGtMqIodd43w"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_oChdgJ94EeWcy-hbAbG1yg" name="column" type="_KrrfUJ94EeWcy-hbAbG1yg" association="_oCfBQJ94EeWcy-hbAbG1yg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_oCfBQJ94EeWcy-hbAbG1yg" memberEnd="_oCfoUZ94EeWcy-hbAbG1yg _oChdgJ94EeWcy-hbAbG1yg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_oCfBQZ94EeWcy-hbAbG1yg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_oCfoUJ94EeWcy-hbAbG1yg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_fUBCgI0zEeWQ4s2Ri_ucLw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fUC3sI0zEeWQ4s2Ri_ucLw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -87,4 +143,6 @@
   <Ecore:EPackage xmi:id="_vYgZ0I0zEeWQ4s2Ri_ucLw" base_Package="_fNSvcI0zEeWQ4s2Ri_ucLw" nsPrefix="welcome" basePackage="org.eclipse.papyrus.infra.editor" prefix="Welcome"/>
   <Ecore:EClass xmi:id="_6DadUI0zEeWQ4s2Ri_ucLw" base_Class="_g3K3UI0zEeWQ4s2Ri_ucLw"/>
   <Ecore:EOperation xmi:id="_aKd9EJncEeWGtMqIodd43w" base_Operation="_MgdEIJncEeWGtMqIodd43w" visibility="None"/>
+  <Ecore:EAttribute xmi:id="_RVxYwJ94EeWcy-hbAbG1yg" isUnsettable="true" base_Property="_M5uEMJ94EeWcy-hbAbG1yg"/>
+  <Ecore:EAttribute xmi:id="_jZbLcJ94EeWcy-hbAbG1yg" isUnsettable="true" base_Property="_jZYvMZ94EeWcy-hbAbG1yg"/>
 </xmi:XMI>

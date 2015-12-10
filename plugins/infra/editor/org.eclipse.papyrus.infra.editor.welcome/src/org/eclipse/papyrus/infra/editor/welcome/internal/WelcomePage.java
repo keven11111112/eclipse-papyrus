@@ -169,7 +169,7 @@ public class WelcomePage implements ICloseablePart {
 		sections = new ArrayList<>();
 
 		welcomeLayout = new WelcomeLayout(parent, toolkit, service);
-		welcomeLayout.createSections(tabs);
+		welcomeLayout.createTabs(tabs);
 
 		// Now, filter the sections in each tab for only those referenced
 		// by the views that we want to present

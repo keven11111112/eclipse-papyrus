@@ -18,6 +18,8 @@ import java.util.ListIterator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.papyrus.infra.editor.welcome.SashColumn;
+import org.eclipse.papyrus.infra.editor.welcome.SashRow;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
@@ -34,6 +36,8 @@ import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getVisibleSections() <em>Get Visible Sections</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSection(java.lang.String) <em>Get Section</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumn(int) <em>Get Sash Column</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashRow(int, int) <em>Get Sash Row</em>}</li>
  * </ul>
  *
  * @generated
@@ -77,6 +81,34 @@ public class WelcomePageOperations {
 				.filter(s -> s.isIdentifiedBy(identifier))
 				.findFirst()
 				.orElse(null);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	public static SashColumn getSashColumn(WelcomePage welcomePage, int index) {
+		SashColumn result = null;
+		EList<SashColumn> columns = welcomePage.getSashColumns();
+
+		if ((index >= 0) && (index < columns.size())) {
+			result = columns.get(index);
+		}
+
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	public static SashRow getSashRow(WelcomePage welcomePage, int column, int row) {
+		SashColumn sashColumn = welcomePage.getSashColumn(column);
+		return (sashColumn == null) ? null : sashColumn.getSashRow(row);
 	}
 
 	//

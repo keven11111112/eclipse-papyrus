@@ -15,12 +15,15 @@ package org.eclipse.papyrus.infra.editor.welcome.tests;
 import static org.eclipse.papyrus.infra.editor.welcome.tests.WelcomeMatchers.identifiedBy;
 import static org.hamcrest.CoreMatchers.both;
 import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Arrays;
 
+import org.eclipse.papyrus.infra.editor.welcome.SashColumn;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeFactory;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
@@ -42,6 +45,8 @@ import junit.textui.TestRunner;
  * The following operations are tested:
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSection(java.lang.String) <em>Get Section</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumn(int) <em>Get Sash Column</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashRow(int, int) <em>Get Sash Row</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,6 +125,16 @@ public class WelcomePageTest extends TestCase {
 		createSection("b", "c", "d");
 		createSection(true, "e", "f");
 		createSection("g");
+
+		WelcomePage fixture = getFixture();
+		fixture.createSashColumn().setX(1);
+		fixture.createSashColumn().setX(2);
+		fixture.createSashColumn().setX(3);
+
+		SashColumn col1 = fixture.getSashColumns().get(1);
+		col1.createSashRow().setY(1);
+		col1.createSashRow().setY(2);
+		col1.createSashRow().setY(3);
 	}
 
 	protected WelcomeSection createSection(WelcomePage page, boolean hidden, String... id) {
@@ -180,6 +195,38 @@ public class WelcomePageTest extends TestCase {
 		assertThat(getFixture().getSection("a"), identifiedBy("a")); // trivial
 		assertThat(getFixture().getSection("c"), identifiedBy("b")); // less so
 		assertThat(getFixture().getSection("f"), identifiedBy("e")); // hidden
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumn(int) <em>Get Sash Column</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashColumn(int)
+	 * @generated NOT
+	 */
+	public void testGetSashColumn__int() {
+		assertThat(getFixture().getSashColumn(-1), nullValue());
+		assertThat(getFixture().getSashColumn(3), nullValue());
+		assertThat(getFixture().getSashColumn(1), notNullValue());
+		assertThat(getFixture().getSashColumn(1).getX(), is(2));
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashRow(int, int) <em>Get Sash Row</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.editor.welcome.WelcomePage#getSashRow(int, int)
+	 * @generated NOT
+	 */
+	public void testGetSashRow__int_int() {
+		assertThat(getFixture().getSashRow(-1, 0), nullValue());
+		assertThat(getFixture().getSashRow(3, 0), nullValue());
+		assertThat(getFixture().getSashRow(1, -1), nullValue());
+		assertThat(getFixture().getSashRow(1, 3), nullValue());
+		assertThat(getFixture().getSashRow(1, 1), notNullValue());
+		assertThat(getFixture().getSashRow(1, 1).getY(), is(2));
 	}
 
 } // WelcomePageTest

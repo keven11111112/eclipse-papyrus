@@ -64,6 +64,26 @@ public interface WelcomeFactory extends EFactory {
 	WelcomeSection createWelcomeSection();
 
 	/**
+	 * Returns a new object of class '<em>Sash Column</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Sash Column</em>'.
+	 * @generated
+	 */
+	SashColumn createSashColumn();
+
+	/**
+	 * Returns a new object of class '<em>Sash Row</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Sash Row</em>'.
+	 * @generated
+	 */
+	SashRow createSashRow();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
