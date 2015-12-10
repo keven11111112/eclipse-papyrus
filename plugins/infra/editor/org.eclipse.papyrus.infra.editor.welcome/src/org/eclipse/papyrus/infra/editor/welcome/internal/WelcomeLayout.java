@@ -189,6 +189,10 @@ class WelcomeLayout {
 		final int columns = (tabs.size() + (tabs.size() % rows)) / rows;
 		final int lastTab = tabs.size() - 1;
 
+		if ((rows == 0) || (columns == 0)) {
+			return; // Nothing to present
+		}
+
 		columnSashes = new Sash[columns - 1]; // Sashes between columns
 		rowSashes = new Sash[columns][rows - 1]; // Sashes between rows
 
