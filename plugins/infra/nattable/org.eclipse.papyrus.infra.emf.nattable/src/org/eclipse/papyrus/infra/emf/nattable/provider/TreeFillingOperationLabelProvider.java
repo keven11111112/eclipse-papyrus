@@ -30,7 +30,7 @@ public class TreeFillingOperationLabelProvider extends EMFEOperationHeaderLabelP
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#accept(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFEOperationHeaderLabelProvider#accept(java.lang.Object)
 	 */
 	@Override
 	public boolean accept(final Object element) {

@@ -51,14 +51,17 @@
          </labelProviderContext>
       </labelProvider>
       <labelProvider
-            priority="1401"
+            priority="1450"
             provider="org.eclipse.papyrus.infra.emf.nattable.provider.EMFEOperationHeaderLabelProvider">
          <labelProviderContext
-               context="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
+               context="org.eclipse.papyrus.infra.nattable.header.labelprovider">
+         </labelProviderContext>
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider">
          </labelProviderContext>
       </labelProvider>
       <labelProvider
-            priority="1301"
+            priority="1350"
             provider="org.eclipse.papyrus.infra.emf.nattable.provider.TreeFillingOperationLabelProvider">
          <labelProviderContext
                context="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">

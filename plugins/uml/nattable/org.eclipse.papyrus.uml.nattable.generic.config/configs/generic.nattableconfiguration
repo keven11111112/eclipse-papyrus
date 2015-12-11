@@ -7,8 +7,10 @@
   </rowHeaderAxisConfiguration>
   <columnHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration">
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration"/>
+    <ownedLabelConfigurations xsi:type="nattablelabelprovider:OperationLabelProviderConfiguration"/>
     <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.feature.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
     <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.property.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
+    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.operation.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.1"/>
   </columnHeaderAxisConfiguration>
   <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider"/>
   <rowAxisProviders xsi:type="nattableaxisprovider:MasterObjectAxisProvider" description="This axis provider contains the object dropped by the user into the table" name="DroppedElementAxisProvider"/>

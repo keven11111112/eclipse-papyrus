@@ -967,6 +967,10 @@
           id="org.eclipse.papyrus.infra.nattable.header.feature.labelprovider">
     </context>
     <context
+          description="Context for operation in the header of the axis"
+          id="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider">
+    </context>
+    <context
           description="Context for the body of the table"
           id="org.eclipse.papyrus.infra.nattable.body.labelprovider">
     </context>

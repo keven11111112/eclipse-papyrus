@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.emf.nattable.provider;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
@@ -48,7 +49,7 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 			if (object instanceof IAxis) {
 				object = ((IAxis) object).getElement();
 			}
-			return object instanceof EObject && !(object instanceof EStructuralFeature);
+			return object instanceof EObject && !(object instanceof EStructuralFeature) && !(object instanceof EOperation);
 		}
 		return false;
 	}

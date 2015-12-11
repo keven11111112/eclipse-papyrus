@@ -225,7 +225,7 @@ public class EMFEOperationHeaderLabelProvider extends EMFEObjectHeaderLabelProvi
 				final Iterator<EParameter> parameters = operation.getEParameters().iterator();
 				while (parameters.hasNext()) {
 					final EParameter parameter = parameters.next();
-					returnedValueBuilder.append(parameter.getEType());
+					returnedValueBuilder.append(parameter.getEType().getName());
 					returnedValueBuilder.append(" "); //$NON-NLS-1$
 					returnedValueBuilder.append(parameter.getName());
 					if (parameters.hasNext()) {

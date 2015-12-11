@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.infra.nattable.model.factory.IAxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation;
@@ -134,7 +136,8 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 			@Override
 			public boolean isValidValue(Object element) {
 				// EMF dependency, must not be done here, it should be better with a new content provider service
-				return element instanceof EReference && ((EReference) element).isMany() && element != EcorePackage.eINSTANCE.getEModelElement_EAnnotations();
+				return (element instanceof EReference && ((EReference) element).isMany() && element != EcorePackage.eINSTANCE.getEModelElement_EAnnotations())
+						|| (element instanceof EOperation && ((EOperation)element).isMany());
 			}
 		};
 
@@ -394,11 +397,11 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		return true;
 	}
 
-	private ILabelProviderConfiguration getLabelConfigurationForTreeFillingConfiguration(Table table) {
+	private ILabelProviderConfiguration getLabelConfigurationForTreeFillingConfiguration(Table table, final IAxis axis) {
 		TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 		for (IAxisConfiguration tmp : conf.getOwnedAxisConfigurations()) {
 			if (tmp instanceof TreeFillingConfiguration) {
-				if (((TreeFillingConfiguration) tmp).getLabelProvider() != null) {
+				if(((TreeFillingConfiguration) tmp).getAxisUsedAsAxisProvider().eClass().equals(axis.eClass()) && null != ((TreeFillingConfiguration) tmp).getLabelProvider()){
 					return ((TreeFillingConfiguration) tmp).getLabelProvider();
 				}
 			}
@@ -406,7 +409,10 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		return null;
 	}
 
-	private String getLabelProviderContextForTreeFillingConfiguration(Table table) {
+	private String getLabelProviderContextForTreeFillingConfiguration(Table table, final IAxis axis) {
+		if(axis.eClass().equals(NattableaxisPackage.eINSTANCE.getEOperationAxis()) || axis.eClass().equals(NattableaxisPackage.eINSTANCE.getEOperationTreeItemAxis())){
+			return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_OPERATION_CONFIGURATION_CONTEXT;
+		}
 		return Constants.HEADER_LABEL_PROVIDER_TREE_FILLING_FEATURE_CONFIGURATION_CONTEXT;
 	}
 
@@ -449,10 +455,10 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 								// we create new TreeFillingConfiguration
 								newConf = NattableaxisconfigurationFactory.eINSTANCE.createTreeFillingConfiguration();
 								newConf.setDepth(wantedDepth);
-								IAxis axis = IAxisFactory.createAxisForFeature(categoryItem.getElement(), representation, categoryItem.getAlias());
+								IAxis axis = IAxisFactory.createAxisForTypedElement(categoryItem.getElement(), representation, categoryItem.getAlias());
 								newConf.setAxisUsedAsAxisProvider(axis);
-								newConf.setLabelProvider(getLabelConfigurationForTreeFillingConfiguration(table));
-								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table));
+								newConf.setLabelProvider(getLabelConfigurationForTreeFillingConfiguration(table, axis));
+								newConf.setLabelProviderContext(getLabelProviderContextForTreeFillingConfiguration(table, axis));
 								// Manage the paste configuration
 								newConf.setPasteConfiguration(copiedEObjectConfiguration);
 							} else {

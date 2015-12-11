@@ -10,7 +10,7 @@
   <rowHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration" indexStyle="NUMERIC" displayIndex="false">
     <styles xsi:type="nattablestyle:IntValueStyle" name="rowLabelWidth" intValue="250"/>
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayIsDerived="false" displayType="false" displayMultiplicity="false"/>
-    <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayIsDerived="false" displayType="false" displayMultiplicity="false"/>
+    <ownedLabelConfigurations xsi:type="nattablelabelprovider:OperationLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
     <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:TreeFillingConfiguration" depth="1" labelProvider="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
       <axisUsedAsAxisProvider xsi:type="nattableaxis:EStructuralFeatureAxis" alias="">
         <element xsi:type="ecore:EReference" href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View/element"/>
@@ -18,19 +18,21 @@
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:TreeFillingConfiguration" depth="2" labelProvider="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
       <axisUsedAsAxisProvider xsi:type="nattableaxis:EOperationAxis">
-        <element xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotypes"/>
+        <element xsi:type="ecore:EOperation" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/getAppliedStereotypes"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:TreeFillingConfiguration" depth="3" labelProvider="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
       <axisUsedAsAxisProvider xsi:type="nattableaxis:EOperationAxis" alias="">
-        <element xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier/getAllAttributes"/>
+        <element xsi:type="ecore:EOperation" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/getAllAttributes"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
-    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.display.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.1" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.1 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.2"/>
+    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.display.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.1 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.2"/>
   </rowHeaderAxisConfiguration>
   <columnHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration" displayIndex="false">
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration"/>
+    <ownedLabelConfigurations xsi:type="nattablelabelprovider:OperationLabelProviderConfiguration"/>
     <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.display.properties.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0"/>
+    <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.operation.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.operation.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.1"/>
   </columnHeaderAxisConfiguration>
   <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="This axis provider provides available columns according to the columns of the table ( features of the object displayed on the other axis)" name="Stereotype display properties axis provider">
     <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.0" alias="Name Depth" element="stereotype_display_properties:/nameDepth">
