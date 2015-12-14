@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests;
 
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRequirementsWithNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
@@ -90,6 +91,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,
+
+		// Bug 481020 : Delete a requirement containing a nested requirement
+		DeleteRequirementsWithNestedClassifier.class,
 
 		ContentsAndExpandWithCategories_0_1_2_Tests.class,
 		ContentsAndExpandWithoutCategories_H0_H1_H2_Tests.class,
@@ -171,8 +175,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_H1_V1_MultiColumns_Test.class,
 		PasteWithCategories_V1_V3_H1_MultiColumns_Test.class,
 		PasteWithCategories_V1_V3_V1_MultiColumns_Test.class,
-		
-		//validation marker test
+
+		// validation marker test
 		ValidationMarkerInTableHeaderTest.class,
 })
 public class AllTests {
