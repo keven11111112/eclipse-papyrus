@@ -26,6 +26,7 @@ public class Messages extends NLS {
 	public static String CreateJavaValidationPluginHandler_CreateNewPlugin;
 	public static String CreateJavaValidationPluginHandler_DependencyAdded;
 	public static String CreateJavaValidationPluginHandler_DependencyAddedMsg;
+	public static String CreateJavaValidationPluginHandler_DSMLDependencyAddedMsg;
 	public static String CreateJavaValidationPluginHandler_ExceptionDuringPluginGeneration;
 	public static String CreateJavaValidationPluginHandler_GenerateIntoExisting;
 	public static String CreateJavaValidationPluginHandler_SelectExisting;

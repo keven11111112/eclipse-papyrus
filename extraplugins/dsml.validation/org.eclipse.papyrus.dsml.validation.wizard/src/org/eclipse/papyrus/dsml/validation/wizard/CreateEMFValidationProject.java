@@ -13,7 +13,6 @@
 package org.eclipse.papyrus.dsml.validation.wizard;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -39,10 +38,12 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 	private JavaContentGenerator generateAllJava;
 
 
-	private Profile selectedProfile;
+	protected Profile selectedProfile;
 
-	private EPackage definition = null;
+	protected EPackage definition = null;
 
+	protected IProject createdProject;
+	
 	/**
 	 *
 	 * Constructor.
@@ -56,6 +57,7 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 		this.constraintsManager = constraintsExtractor;
 		this.selectedProfile = selectedProfile;
 		this.definition = definition;
+		createdProject = null;
 	}
 
 	@Override
@@ -72,34 +74,26 @@ public class CreateEMFValidationProject extends NewPluginProjectWizard {
 	}
 
 	/**
+	 * @return The project created by this wizard
+	 */
+	public IProject getProject() {
+		return createdProject;
+	}
+	
+	/**
 	 * run the dialog
 	 */
-	public void openDialog() {
+	public int openDialog() {
 		WizardDialog dialog = new WizardDialog(Display.getDefault().getActiveShell(), this);
-		dialog.open();
+		return dialog.open();
 	}
 
 	@Override
 	public boolean performFinish() {
 		boolean result = super.performFinish();
 		if (result) {
-			IProject project = this.fMainPage.getProjectHandle();
-			try {
-
-				// generate java code
-				generateAllJava = new JavaContentGenerator(project, selectedProfile);
-				generateAllJava.run();
-				// generate plugin + extension point
-				ValidationPluginGenerator.instance.generate(project, constraintsManager, definition);
-
-
-				project.refreshLocal(IResource.DEPTH_INFINITE, null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			createdProject = this.fMainPage.getProjectHandle();
 		}
-
 		return result;
 	}
-
 }
