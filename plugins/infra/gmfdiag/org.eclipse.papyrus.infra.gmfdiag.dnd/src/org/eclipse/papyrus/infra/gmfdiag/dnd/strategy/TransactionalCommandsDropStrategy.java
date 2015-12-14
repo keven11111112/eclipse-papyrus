@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
  *
  * @author Camille Letavernier
  */
-public abstract class TransactionalCommandsDropStrategy extends AbstractDropStrategy implements MultipleDropStrategy {
+public abstract class TransactionalCommandsDropStrategy extends TransactionalDropStrategy {
 
 	protected boolean isTransactional(EditPart targetEditPart) {
 		return getTransactionalEditingDomain(targetEditPart) != null;
