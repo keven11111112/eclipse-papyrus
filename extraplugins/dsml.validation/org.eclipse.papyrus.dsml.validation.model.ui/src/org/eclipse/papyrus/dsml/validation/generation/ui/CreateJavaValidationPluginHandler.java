@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.dsml.validation.model.elements.impl.ConstraintManagerImpl;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
+import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.papyrus.dsml.validation.wizard.CreateEMFValidationProject;
 import org.eclipse.papyrus.dsml.validation.wizard.JavaContentGenerator;
 import org.eclipse.papyrus.dsml.validation.wizard.ValidationPluginGenerator;
@@ -98,14 +99,14 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 			constraintsManager = new ConstraintManagerImpl(profileSelection);
 			EPackage definition = null;
 
-			IProject existingProject = null;
+			IProject hostingProject = null;		// project that is hosting the profile
 			URI uri = profileSelection.eResource().getURI();
 
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 			if (uri.segmentCount() >= 2) {
-				existingProject = root.getProject(uri.segment(1));
+				hostingProject = root.getProject(uri.segment(1));
 			}
-			IProject hostingProject = existingProject;
+			IProject targetProject = null;
 			Shell shell = Display.getDefault().getActiveShell();
 
 			boolean isPlugin = false;
@@ -121,7 +122,7 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 			}
 		
 			int question = 0;
-			if ((existingProject != null) && existingProject.exists() && isPlugin) {
+			if ((hostingProject != null) && hostingProject.exists() && isPlugin) {
 				MessageDialog dialog = new MessageDialog(shell,
 						Messages.CreateJavaValidationPluginHandler_ChoosePluginGeneration, null,
 						Messages.CreateJavaValidationPluginHandler_HowtoGeneratePlugin, MessageDialog.QUESTION,
@@ -136,6 +137,8 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 				question = dialog.open();
 			}
 
+			boolean verboseDependency = true;
+
 			if ((question == 1) || (question == 2)) {
 				if (question == 1) {
 					// get object which represents the workspace
@@ -145,46 +148,61 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 					dialog.setTitle(Messages.CreateJavaValidationPluginHandler_SelectExisting);
 				
 					if (dialog.open() == Window.OK) {
-						existingProject = (IProject) dialog.getResult()[0];
-					}
-					else {
-						existingProject = null;
+						targetProject = (IProject) dialog.getResult()[0];
 					}
 				}
-
-				if (existingProject != null) {
-					// generate java code
-					JavaContentGenerator generateAllJava = new JavaContentGenerator(existingProject, profileSelection);
-					generateAllJava.run();
-					// generate plugin + extension point
-					try {
-						ValidationPluginGenerator.instance.generate(existingProject, constraintsManager, definition);
-						addDependencyToHostingProject(shell, hostingProject);
-					} catch (Exception e) {
-						Activator.log.error(e);
-						MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_ExceptionDuringPluginGeneration, Messages.CreateJavaValidationPluginHandler_CheckErrorLog);
-					}
+				else {
+					targetProject = hostingProject;
 				}
 			}
 			else if (question == 0) {
 
+				CreateEMFValidationProject wizard = new CreateEMFValidationProject(profileSelection, constraintsManager, definition);
+				if (wizard.openDialog() == Window.OK) {
+					targetProject = wizard.getProject();
+				}
+				// don't create a dialog for added dependency (since the project is new, this information is not useful)
+				verboseDependency = false;
+			}
+			if (targetProject != null) {
+				// generate java code
+				JavaContentGenerator generateAllJava = new JavaContentGenerator(targetProject, profileSelection);
 				try {
-					addDependencyToHostingProject(shell, hostingProject);
+					generateAllJava.run();
+					// generate plugin + extension point
+					ValidationPluginGenerator.instance.generate(targetProject, constraintsManager, definition);
+					addDependencyToProject(shell, hostingProject, ValidationPluginGenerator.UML_DSML_VALIDATION_PROFILE_PLUGIN, true);
+					if (Utils.isStaticProfile()) {
+						// add dependency to existing project (project hosting the static profile)
+						addDependencyToProject(shell, targetProject, hostingProject.getName(), verboseDependency);
+					}
 				} catch (Exception e) {
 					Activator.log.error(e);
 					MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_ExceptionDuringPluginGeneration, Messages.CreateJavaValidationPluginHandler_CheckErrorLog);
 				}
-				CreateEMFValidationProject wizard = new CreateEMFValidationProject(profileSelection, constraintsManager, definition);
-				wizard.openDialog();
 			}
 		}
 		return null;
 	}
 
-	public void addDependencyToHostingProject(Shell shell, IProject hostingProject) throws CoreException, IOException {
-		if (ValidationPluginGenerator.instance.addDSMLdependency(hostingProject)) {
-			MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_DependencyAdded,
-					String.format(Messages.CreateJavaValidationPluginHandler_DependencyAddedMsg, hostingProject.getName()));							
+	/**
+	 * @param shell An active shell
+	 * @param dependingProject the project that will host the validation constraints
+	 * @param dependsOnPlugin the name of the plugin on which it depends
+	 * @param verbose if true, create a shell message
+	 * @throws CoreException
+	 * @throws IOException
+	 */
+	public void addDependencyToProject(Shell shell, IProject dependingProject, String dependsOnPlugin, boolean verbose) throws CoreException, IOException {
+		if (ValidationPluginGenerator.instance.addDependency(dependingProject, dependsOnPlugin)) {
+			if (verbose) {
+				String message = Messages.CreateJavaValidationPluginHandler_DependencyAddedMsg;
+				if (dependsOnPlugin.equals(ValidationPluginGenerator.UML_DSML_VALIDATION_PROFILE_PLUGIN)) {
+					message += " " + Messages.CreateJavaValidationPluginHandler_DSMLDependencyAddedMsg; //$NON-NLS-1$
+				}
+				MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_DependencyAdded,
+						String.format(message, dependsOnPlugin, dependingProject.getName()));
+			}
 		}
 	}
 	

@@ -33,6 +33,21 @@ import org.eclipse.uml2.uml.Stereotype;
 public class ValidationRuleImpl implements IValidationRule {
 
 	/**
+	 * 
+	 */
+	private static final String CONSTRAINT_POSTFIX = "Constraint";
+
+	/**
+	 * 
+	 */
+	private static final String DPT = ".";
+
+	/**
+	 * 
+	 */
+	private static final String CONSTRAINT_PKG = "constraints";
+
+	/**
 	 * Attributes of stereotype ValidationRule
 	 */
 	private static final String SA_TARGET = "target"; //$NON-NLS-1$
@@ -103,11 +118,11 @@ public class ValidationRuleImpl implements IValidationRule {
 			id = (String) getStereoAttribValue(SA_ID);
 		}
 		else {
-			String qname = constraint.getQualifiedName().replace("::", ".");
+			String qname = constraint.getQualifiedName().replace("::", DPT);
 			id = qname;
 		}
 
-		implementingClass = parentCategory.getID() + "." + this.getName() + "Constraint";
+		implementingClass = CONSTRAINT_PKG + DPT + this.getName() + CONSTRAINT_POSTFIX;
 
 		// unused
 		// this.contextID = parentCategory.getID();

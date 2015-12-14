@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.MessageHandling;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.NameBasedMsgMode;
+import org.eclipse.papyrus.dsml.validation.generator.xtend.Generate;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsCategory;
@@ -106,7 +107,7 @@ public class ValidationPluginGenerator {
 
 	// A generated plugin will depend on the validation profile, since it typically contains the profile as well.
 	// [well, that's not always the case]
-	private static final String UML_VALIDATION_PROFILE_PLUGIN = "org.eclipse.papyrus.dsml.validation"; //$NON-NLS-1$
+	public static final String UML_DSML_VALIDATION_PROFILE_PLUGIN = "org.eclipse.papyrus.dsml.validation"; //$NON-NLS-1$
 
 	/**
 	 * singleton
@@ -126,13 +127,13 @@ public class ValidationPluginGenerator {
 	 * @throws CoreException
 	 * @throws IOException
 	 */
-	public boolean addDSMLdependency(IProject project) throws CoreException, IOException {
+	public boolean addDependency(IProject project, String pluginName) throws CoreException, IOException {
 
-		if ((project != null) && project.exists()) {
+		if ((project != null) && project.exists() && !pluginName.equals(project.getName())) {
 			ManifestEditor manifest = new ManifestEditor(project);
 			manifest.init();
-			if (manifest.initOk() && !manifest.hasDependency(UML_VALIDATION_PROFILE_PLUGIN)) {
-				manifest.addDependency(UML_VALIDATION_PROFILE_PLUGIN);
+			if (manifest.initOk() && !manifest.hasDependency(pluginName)) {
+				manifest.addDependency(pluginName);
 				manifest.save();
 				return true;
 			}
@@ -161,7 +162,7 @@ public class ValidationPluginGenerator {
 
 		// prepare the plugin
 		editor = new PluginEditor(project);
-		editor.registerSourceFolder(JavaContentGenerator.srcFolder);
+		editor.registerSourceFolder(Generate.SRC);
 		// it's possible that editor.getManifestEditor() logs an exception due to resource out of sync.
 		String pluginID = editor.getSymbolicBundleName();
 		if (editor.getBundleName() == null) {
