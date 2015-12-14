@@ -205,6 +205,10 @@ public class WelcomePage implements ICloseablePart {
 		welcomeLayout.resetLayoutModel();
 	}
 
+	void layout() {
+		welcomeLayout.layout();
+	}
+
 	@Override
 	public void addPropertyListener(IPropertyListener listener) {
 		propertyListeners.addIfAbsent(listener);

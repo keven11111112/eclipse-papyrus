@@ -53,6 +53,12 @@
             id="org.eclipse.papyrus.infra.editor.welcome.resetWelcomePage"
             name="%cmd.resetWelcome.name">
       </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.infra.editor.welcome.internal.commands.SaveDefaultWelcomePageHandler"
+            description="%cmd.setDefaultWelcome.desc"
+            id="org.eclipse.papyrus.infra.editor.welcome.setAsDefaultWelcomePage"
+            name="%cmd.setDefaultWelcome.name">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -82,6 +88,12 @@
                commandId="org.eclipse.papyrus.infra.editor.welcome.resetWelcomePage"
                style="push"
                tooltip="%cmd.resetWelcome.tip">
+            <visibleWhen checkEnabled="true"/>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.editor.welcome.setAsDefaultWelcomePage"
+               style="push"
+               tooltip="%cmd.setDefaultWelcome.tip">
             <visibleWhen checkEnabled="true"/>
          </command>
       </menuContribution>
@@ -114,6 +126,12 @@
                tooltip="%cmd.resetWelcome.tip">
             <visibleWhen checkEnabled="true"/>
          </command>
+         <command
+               commandId="org.eclipse.papyrus.infra.editor.welcome.setAsDefaultWelcomePage"
+               style="push"
+               tooltip="%cmd.setDefaultWelcome.tip">
+            <visibleWhen checkEnabled="true"/>
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -130,7 +148,7 @@
          point="org.eclipse.ui.preferencePages">
       <page
             category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
-            class="org.eclipse.papyrus.views.properties/org.eclipse.papyrus.views.properties.preferences.Preferences"
+            class="org.eclipse.papyrus.infra.editor.welcome.internal.preferences.WelcomeContentPreferencePage"
             id="org.eclipse.papyrus.infra.editor.welcome.content"
             name="%prefpage.welcome.name">
       </page>

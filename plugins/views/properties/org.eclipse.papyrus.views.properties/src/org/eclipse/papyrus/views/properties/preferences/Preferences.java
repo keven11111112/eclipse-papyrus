@@ -88,6 +88,8 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 		self.setLayout(new GridLayout(1, false));
 		self.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
+		createHeaderContents(self);
+
 		Label label = new Label(self, SWT.NONE);
 		label.setText(Messages.Preferences_Contexts);
 
@@ -122,8 +124,32 @@ public class Preferences extends PreferencePage implements IWorkbenchPreferenceP
 			checkboxes.put(context, checkbox);
 		}
 
+		createFooterContents(self);
+
 		contextState.snapshot();
 		return null;
+	}
+
+	/**
+	 * Overridden by subclasses to create optional header content above the
+	 * list of context check-boxes.
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 */
+	protected void createHeaderContents(Composite parent) {
+		// Pass
+	}
+
+	/**
+	 * Overridden by subclasses to create optional footer content below the
+	 * list of context check-boxes.
+	 * 
+	 * @param parent
+	 *            the parent composite
+	 */
+	protected void createFooterContents(Composite parent) {
+		// Pass
 	}
 
 	protected Comparator<? super Context> contextOrdering() {

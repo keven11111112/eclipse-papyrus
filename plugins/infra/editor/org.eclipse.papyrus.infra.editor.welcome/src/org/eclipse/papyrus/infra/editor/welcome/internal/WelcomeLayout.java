@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.editor.welcome.internal;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static org.eclipse.papyrus.infra.editor.welcome.internal.WelcomeModelManager.become;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ import java.util.stream.Stream;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.TransactionHelper;
@@ -39,6 +42,7 @@ import org.eclipse.papyrus.infra.editor.welcome.SashColumn;
 import org.eclipse.papyrus.infra.editor.welcome.SashRow;
 import org.eclipse.papyrus.infra.editor.welcome.Welcome;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeFactory;
+import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
 import org.eclipse.papyrus.infra.editor.welcome.internal.dnd.WelcomeSectionTransfer;
@@ -72,7 +76,6 @@ import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
-import org.eclipse.uml2.common.util.UML2Util;
 
 /**
  * @author damus
@@ -564,23 +567,32 @@ class WelcomeLayout {
 	void resetLayoutModel() {
 		Welcome welcome = welcomeService.getWelcome();
 		Resource res = welcomeService.getWelcomeResource();
+		ModelSet modelSet = (ModelSet) res.getResourceSet();
+		Resource sashResource = SashModelUtils.getSashModel(modelSet).getResource();
+		Resource welcomeResource = Activator.getDefault().getWelcomeModelManager().getWelcomeResource(modelSet);
+
 		boolean[] recompute = { false };
 
 		try {
 			TransactionHelper.run(EMFHelper.resolveEditingDomain(welcome), () -> {
-				if (welcome.eResource() != res) {
-					// Move it
-					res.getContents().add(welcome);
+				Welcome defaultWelcome = (Welcome) EcoreUtil.getObjectByType(welcomeResource.getContents(), WelcomePackage.Literals.WELCOME);
+
+				if (res == sashResource) {
+					// Move it back to the default resource
+					if (defaultWelcome != null) {
+						EcoreUtil.replace(defaultWelcome, welcome);
+					} else {
+						res.getContents().add(welcome);
+					}
 				}
 
-				WelcomePage page = welcome.getWelcomePage();
-				if (page != null) {
-					new UML2Util() {
-						{
-							destroy(page);
-							recompute[0] = true;
-						}
-					};
+				if (!EcoreUtil.equals(defaultWelcome, welcome)) {
+					recompute[0] = true;
+
+					// We need to keep the identity of the welcome object to maintain
+					// the reference from the sash model page, so make it look like the
+					// default welcome
+					become(welcome, defaultWelcome);
 				}
 			});
 		} catch (Exception e) {
@@ -588,10 +600,7 @@ class WelcomeLayout {
 		}
 
 		if (recompute[0]) {
-			sort(tabs);
-			layoutSashes();
-			layoutTabSections();
-			parent.layout();
+			layout();
 		}
 	}
 
@@ -599,6 +608,13 @@ class WelcomeLayout {
 		if (deferredLayoutUpdate.get() == null) {
 			new DeferredLayoutUpdate().post();
 		}
+	}
+
+	void layout() {
+		sort(tabs);
+		layoutSashes();
+		layoutTabSections();
+		parent.layout();
 	}
 
 	//

@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.editor.welcome.internal;
 
+import java.nio.file.Paths;
+
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
@@ -34,10 +36,10 @@ public class Activator extends AbstractUIPlugin {
 
 	public static LogHelper log;
 
-	/**
-	 * The constructor
-	 */
+	private WelcomeModelManager welcomeModelManager;
+
 	public Activator() {
+		super();
 	}
 
 	@Override
@@ -45,10 +47,14 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		welcomeModelManager = new WelcomeModelManager(Paths.get(getStateLocation().toOSString()));
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		welcomeModelManager = null;
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -76,5 +82,9 @@ public class Activator extends AbstractUIPlugin {
 
 	protected ImageDescriptor getImageDescriptor(String path) {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
+	public WelcomeModelManager getWelcomeModelManager() {
+		return welcomeModelManager;
 	}
 }

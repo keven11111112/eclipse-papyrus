@@ -16,22 +16,18 @@ package org.eclipse.papyrus.infra.editor.welcome.internal;
 import static java.util.Spliterators.spliteratorUnknownSize;
 import static java.util.stream.StreamSupport.stream;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Spliterator;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.ResourceLocator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -58,9 +54,9 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
 import org.eclipse.papyrus.infra.editor.welcome.Welcome;
-import org.eclipse.papyrus.infra.editor.welcome.WelcomeFactory;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomePackage;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -69,11 +65,12 @@ import org.eclipse.swt.widgets.Display;
 public class WelcomePageService implements IWelcomePageService {
 
 	private ServicesRegistry services;
+	private ModelSet modelSet;
 	private ISashWindowsContainer sashContainer;
 	private IPageManager pageManager;
 	private EditorLifecycleManager editorManager;
 
-	private WelcomeLocator welcomeLocator;
+	private WelcomeModelManager welcomeManager;
 
 	private IPageLifeCycleEventsListener sashListener;
 	private EditorLifecycleEventListener editorListener;
@@ -96,7 +93,10 @@ public class WelcomePageService implements IWelcomePageService {
 
 	@Override
 	public void startService() throws ServiceException {
-		welcomeLocator = new WelcomeLocator(services.getService(ModelSet.class));
+		welcomeManager = Activator.getDefault().getWelcomeModelManager();
+		modelSet = services.getService(ModelSet.class);
+		welcomeManager.connect(modelSet);
+		welcomeManager.onWelcomeChanged(this::handleWelcomeChanged);
 
 		pageManager = services.getService(IPageManager.class);
 
@@ -111,11 +111,12 @@ public class WelcomePageService implements IWelcomePageService {
 	public void disposeService() throws ServiceException {
 		uninstallPageRemovalValidator();
 
-		if (welcomeLocator != null) {
-			welcomeLocator.dispose();
-			welcomeLocator = null;
+		if (welcomeManager != null) {
+			welcomeManager.disconnect(modelSet);
+			welcomeManager = null;
 		}
 
+		modelSet = null;
 		pageManager = null;
 
 		if (editorManager != null) {
@@ -164,9 +165,24 @@ public class WelcomePageService implements IWelcomePageService {
 
 	@Override
 	public void resetWelcomePage() {
-		if (welcomePage instanceof IAdaptable) {
-			((IAdaptable) welcomePage).getAdapter(WelcomePage.class).reset();
+		getWelcomePage().ifPresent(WelcomePage::reset);
+	}
+
+	Optional<WelcomePage> getWelcomePage() {
+		return Optional.ofNullable(PlatformHelper.getAdapter(welcomePage, WelcomePage.class));
+	}
+
+	@Override
+	public void saveWelcomePageAsDefault() throws CoreException {
+		try {
+			welcomeManager.createDefaultWelcomeResource(getWelcome());
+		} catch (IOException e) {
+			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to set default welcome page", e));
 		}
+	}
+
+	void handleWelcomeChanged(Welcome welcome) {
+		getWelcomePage().ifPresent(WelcomePage::layout);
 	}
 
 	void checkWelcomePage() {
@@ -177,21 +193,29 @@ public class WelcomePageService implements IWelcomePageService {
 					openWelcomePage();
 				}
 
-				if (welcomePage instanceof IAdaptable) {
-					((IAdaptable) welcomePage).getAdapter(WelcomePage.class).fireCanCloseChanged();
-				}
+				getWelcomePage().ifPresent(WelcomePage::fireCanCloseChanged);
 			}
 		});
 	}
 
 	@Override
 	public Welcome getWelcome() {
-		return welcomeLocator.getWelcome();
+		Welcome override = getWelcomeOverride();
+		return (override != null) ? override : welcomeManager.getWelcome(modelSet);
 	}
 
 	@Override
 	public Resource getWelcomeResource() {
-		return welcomeLocator.getWelcomeResource();
+		Welcome override = getWelcomeOverride();
+		return (override != null) ? override.eResource() : welcomeManager.getWelcomeResource(modelSet);
+	}
+
+	/** Get the welcome model stored in the editor's sash resource, if any. */
+	private Welcome getWelcomeOverride() {
+		Resource sashResource = SashModelUtils.getSashModel(modelSet).getResource();
+		return (sashResource == null)
+				? null
+				: (Welcome) EcoreUtil.getObjectByType(sashResource.getContents(), WelcomePackage.Literals.WELCOME);
 	}
 
 	Object getModel() {
@@ -243,7 +267,6 @@ public class WelcomePageService implements IWelcomePageService {
 	}
 
 	private SashModel getSashModel() {
-		ModelSet modelSet = (ModelSet) getWelcomeResource().getResourceSet();
 		// Resource may have been unloaded and removed
 		SashWindowsMngr sashMngr = (modelSet == null) ? null : SashModelUtils.getSashWindowsMngr(modelSet);
 		return (sashMngr == null) ? null : sashMngr.getSashModel();
@@ -312,6 +335,10 @@ public class WelcomePageService implements IWelcomePageService {
 			sashContainer.addPageLifeCycleListener(sashListener);
 
 			welcomePage = IPageUtils.lookupModelPage(sashContainer, getModel());
+			if (welcomePage == null) {
+				// Maybe we have a left-over override that we're not using?
+				welcomePage = IPageUtils.lookupModelPage(sashContainer, welcomeManager.getWelcome(modelSet));
+			}
 			checkWelcomePage();
 
 			initializeActivePages();
@@ -329,126 +356,6 @@ public class WelcomePageService implements IWelcomePageService {
 			sashListener = null;
 		}
 
-	}
-
-	private static class WelcomeLocator extends ResourceLocator {
-		private final Resource welcomeResource;
-		private final Welcome welcome;
-
-		WelcomeLocator(ModelSet modelSet) {
-			super(modelSet);
-
-			// TODO: Store this resource in the workspace metadata area for custom default layout
-			welcomeResource = new ResourceImpl(URI.createURI("papyrus.welcome:dynamic")) {
-				@Override
-				public ResourceSet getResourceSet() {
-					// Yes, this is a violation of the opposite constraint
-					return modelSet;
-				}
-
-				@Override
-				public NotificationChain basicSetResourceSet(ResourceSet resourceSet, NotificationChain notifications) {
-					throw new UnsupportedOperationException("setResourceSet");
-				}
-			};
-
-			org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel sashModel = SashModelUtils.getSashModel(modelSet);
-			Resource sashRes = (sashModel == null) ? null : sashModel.getResource();
-			Welcome sashWelcome = (sashRes == null) ? null : (Welcome) EcoreUtil.getObjectByType(sashRes.getContents(), WelcomePackage.Literals.WELCOME);
-
-			if (sashWelcome != null) {
-				// The user has customized this one
-				welcome = sashWelcome;
-			} else {
-				// Create the empty prototype
-				welcome = WelcomeFactory.eINSTANCE.createWelcome();
-				welcomeResource.getContents().add(welcome);
-			}
-		}
-
-		@Override
-		public Resource getResource(URI uri, boolean loadOnDemand) {
-			Resource result;
-
-			if (uri.equals(welcomeResource.getURI())) {
-				// The welcome resource is always implicitly loaded
-				result = welcomeResource;
-			} else {
-				result = basicGetResource(uri, loadOnDemand);
-			}
-
-			return result;
-		}
-
-		// More or less copied from EMF
-		@Override
-		protected Resource basicGetResource(URI uri, boolean loadOnDemand) {
-			Map<URI, Resource> map = resourceSet.getURIResourceMap();
-			if (map != null) {
-				Resource resource = map.get(uri);
-				if (resource != null) {
-					if (loadOnDemand && !resource.isLoaded()) {
-						demandLoadHelper(resource);
-					}
-					return resource;
-				}
-			}
-
-			URIConverter theURIConverter = resourceSet.getURIConverter();
-			URI normalizedURI = theURIConverter.normalize(uri);
-			for (Resource resource : resourceSet.getResources()) {
-				if (theURIConverter.normalize(resource.getURI()).equals(normalizedURI)) {
-					if (loadOnDemand && !resource.isLoaded()) {
-						demandLoadHelper(resource);
-					}
-
-					if (map != null) {
-						map.put(uri, resource);
-					}
-					return resource;
-				}
-			}
-
-			Resource delegatedResource = delegatedGetResource(uri, loadOnDemand);
-			if (delegatedResource != null) {
-				if (map != null) {
-					map.put(uri, delegatedResource);
-				}
-				return delegatedResource;
-			}
-
-			if (loadOnDemand) {
-				Resource resource = demandCreateResource(uri);
-				if (resource == null) {
-					throw new IllegalArgumentException(String.format("Cannot create a resource for '%s'; a registered resource factory is needed", uri));
-				}
-
-				demandLoadHelper(resource);
-
-				if (map != null) {
-					map.put(uri, resource);
-				}
-				return resource;
-			}
-
-			return null;
-
-		}
-
-		@Override
-		public void dispose() {
-			super.dispose();
-
-			welcomeResource.unload();
-		}
-
-		Welcome getWelcome() {
-			return welcome;
-		}
-
-		Resource getWelcomeResource() {
-			return welcomeResource;
-		}
 	}
 
 	private class CloseValidator extends AdapterImpl implements PageRemovalValidator {

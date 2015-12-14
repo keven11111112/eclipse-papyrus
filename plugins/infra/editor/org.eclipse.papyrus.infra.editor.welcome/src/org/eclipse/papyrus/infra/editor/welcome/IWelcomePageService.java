@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.infra.editor.welcome;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -48,7 +49,25 @@ public interface IWelcomePageService extends IService {
 	 */
 	void resetWelcomePage();
 
+	/**
+	 * Saves the current Welcome Page layout as the default layout.
+	 * 
+	 * @throws CoreException
+	 *             on failure to save the new default layout
+	 */
+	void saveWelcomePageAsDefault() throws CoreException;
+
+	/**
+	 * Obtains the resource that stores the {@linkplain #getWelcome() Welcome model}.
+	 * 
+	 * @return the Welcome resource
+	 */
 	Resource getWelcomeResource();
 
+	/**
+	 * Obtains the Welcome model for the current editor.
+	 * 
+	 * @return the Welcome model
+	 */
 	Welcome getWelcome();
 }
