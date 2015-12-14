@@ -14,6 +14,7 @@ package org.eclipse.papyrus.codegen;
 
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.util.Generator;
+import org.eclipse.gmf.codegen.xtend.ui.handlers.GeneratorWithXtend2;
 import org.eclipse.gmf.internal.codegen.popup.actions.ExecuteTemplatesOperation;
 
 /**
@@ -30,7 +31,7 @@ public class PapyrusExecuteTemplatesOperation extends ExecuteTemplatesOperation 
 	@Override
 	protected Generator createGenerator() {
 		GenEditorGenerator genModel = getGenModel();
-		return new PapyrusGenerator(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null));
+		return new GeneratorWithXtend2(genModel, new PapyrusCodegenEmitters(!genModel.isDynamicTemplates(), genModel.getTemplateDirectory(), genModel.getModelAccess() != null));
 	}
 
 }

@@ -33,11 +33,11 @@ import xpt.providers.ElementTypes
 	@Inject VisualIDRegistry visualIDs
 	@Inject ElementTypes elementTypes
 	
-	def getPackageName(GenDiagram it) '''«it.providersPackageName»'''
+	def packageName(GenDiagram it) '''«it.providersPackageName»'''
 	
-	def getClassName(GenDiagram it) '''«GenVisualTypeProvider.getClassName(it)»'''
+	def className(GenDiagram it) '''«GenVisualTypeProvider.getClassName(it)»'''
 	
-	def getQualifiedClassName(GenDiagram it) '''«packageName».«className»'''
+	def qualifiedClassName(GenDiagram it) '''«packageName(it)».«className(it)»'''
 	
 	protected def constructor(GenDiagram it) '''
 		«generatedMemberComment»
@@ -65,7 +65,7 @@ import xpt.providers.ElementTypes
 	protected def getNodeType(GenDiagram it) '''
 		«generatedMemberComment»
 		«overrideI»
-		public String getNodeType(View parentView, EObject element) {
+		public String getNodeType(org.eclipse.gmf.runtime.notation.View parentView, org.eclipse.emf.ecore.EObject element) {
 			int result = «visualIDs.getNodeVisualIDMethodCall(it)»(parentView, element);
 			return (result < 0) ? null : Integer.toString(result);
 		}
@@ -74,7 +74,7 @@ import xpt.providers.ElementTypes
 	protected def getLinkType(GenDiagram it) '''
 		«generatedMemberComment»
 		«overrideI»
-		public String getLinkType(Diagram diagram, EObject element) {
+		public String getLinkType(org.eclipse.gmf.runtime.notation.Diagram diagram, org.eclipse.emf.ecore.EObject element) {
 			int result = «visualIDs.getLinkWithClassVisualIDMethodCall(it)»(element);
 			return (result < 0) ? null : Integer.toString(result);
 		}

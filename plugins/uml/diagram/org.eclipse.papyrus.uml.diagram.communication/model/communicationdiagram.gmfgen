@@ -1067,6 +1067,16 @@
           uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.ShortcutDiagramParser"/>
     </labelParsers>
+    <extensions
+        name="Custom templates"
+        rootInput="PapyrusUMLCommunicationDiagram">
+      <invocations
+          xsi:type="gmfgen:GenTemplateInvocation"
+          description="VisualTypeProvider"
+          templateFqn="aspects::xpt::providers::VisualTypeProvider::VisualTypeProvider"
+          inputs="/0/@extensions.0"
+          oclExpression="self.diagram"/>
+    </extensions>
   </gmfgen:GenEditorGenerator>
   <papyrusgmfgenextension:PapyrusExtensionRootNode
       comment="Papyrus specific extension for GMFGen">

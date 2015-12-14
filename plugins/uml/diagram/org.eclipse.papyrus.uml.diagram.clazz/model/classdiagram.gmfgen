@@ -1115,7 +1115,7 @@
           compartments="/0/@diagram/@compartments.39"
           graphicalNodeEditPolicyClassName="RedefinableTemplateSignatureGraphicalNodeEditPolicy"
           createCommandClassName="RedefinableTemplateSignatureCreateCommand"
-          containers="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.26 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.13 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.34 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.9 /0/@diagram/@childNodes.28 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.4"
+          containers="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.26 /0/@diagram/@topLevelNodes.5 /0/@diagram/@topLevelNodes.13 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.34 /0/@diagram/@topLevelNodes.6 /0/@diagram/@topLevelNodes.9 /0/@diagram/@childNodes.28 /0/@diagram/@topLevelNodes.11 /0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.33 /0/@diagram/@topLevelNodes.8 /0/@diagram/@topLevelNodes.12"
           preferredSideName="EAST">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -8878,6 +8878,16 @@
           xsi:type="gmfgen:LoadResourceAction"
           qualifiedClassName="org.eclipse.papyrus.uml.diagram.clazz.part.LoadResourceAction"/>
     </contextMenus>
+    <extensions
+        name="Custom templates"
+        rootInput="PapyrusUMLClassDiagram">
+      <invocations
+          xsi:type="gmfgen:GenTemplateInvocation"
+          description="VisualTypeProvider"
+          templateFqn="aspects::xpt::providers::VisualTypeProvider::VisualTypeProvider"
+          inputs="/0/@extensions.0"
+          oclExpression="self.diagram"/>
+    </extensions>
   </gmfgen:GenEditorGenerator>
   <papyrusgmfgenextension:PapyrusExtensionRootNode
       comment="&quot;Required Comment&quot;">

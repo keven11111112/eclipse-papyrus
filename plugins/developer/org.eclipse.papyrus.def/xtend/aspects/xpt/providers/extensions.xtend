@@ -144,7 +144,7 @@ import xpt.providers.ShortcutsDecoratorProvider
 		«tripleSpace(1)»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.visualTypeProviders">
 		«tripleSpace(2)»«xmlGeneratedTag»
 		«tripleSpace(2)»<visualTypeProvider
-		«tripleSpace(4)»class="«visualTypeProvider.getQualifiedClassName(it)»"
+		«tripleSpace(4)»class="«visualTypeProvider.qualifiedClassName(it)»"
 		«tripleSpace(4)»diagramType="«editorGen.modelID»">
 		«tripleSpace(3)»</visualTypeProvider>
 		«tripleSpace(1)»</extension>

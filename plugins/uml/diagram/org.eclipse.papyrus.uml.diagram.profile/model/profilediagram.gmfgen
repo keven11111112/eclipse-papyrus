@@ -2860,21 +2860,33 @@
           <metaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/context"/>
         </modelFacet>
-        <labels visualID="8501" 
-        	editPartClassName="ContextLinkAppliedStereotypeEditPart" readOnly="true">
-          	<diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-          	<viewmap xsi:type="gmfgen:ParentAssignedViewmap" 
-          		getterName="getAppliedStereotypeLabel" 
-          		figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
-            	<attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
-          	</viewmap>
-          	<behaviour
+        <labels
+            visualID="8501"
+            editPartClassName="ContextLinkAppliedStereotypeEditPart"
+            readOnly="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getAppliedStereotypeLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                y="60"/>
+          </viewmap>
+          <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NoSemanticParserEditPolicy"/>
-          	<modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="/0/@labelParsers/@implementations.1" viewPattern="&lt;&lt;{0}>>" editorPattern="&lt;&lt;{0}>>" editPattern="&lt;&lt;{0}>>">
-            	<metaFeatures href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          	</modelFacet>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1"
+              viewPattern="&lt;&lt;{0}>>"
+              editorPattern="&lt;&lt;{0}>>"
+              editPattern="&lt;&lt;{0}>>">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
         </labels>
       </links>
       <compartments
@@ -3701,6 +3713,16 @@
       <items
           xsi:type="gmfgen:LoadResourceAction"/>
     </contextMenus>
+    <extensions
+        name="Custom templates"
+        rootInput="PapyrusUMLProfileDiagram">
+      <invocations
+          xsi:type="gmfgen:GenTemplateInvocation"
+          description="VisualTypeProvider"
+          templateFqn="aspects::xpt::providers::VisualTypeProvider::VisualTypeProvider"
+          inputs="/0/@extensions.0"
+          oclExpression="self.diagram"/>
+    </extensions>
   </gmfgen:GenEditorGenerator>
   <papyrusgmfgenextension:PapyrusExtensionRootNode
       comment="Papyrus specific extension for GMFGen">

@@ -8188,6 +8188,15 @@
 		<contextMenus context="/0/@diagram">
 			<items xsi:type="gmfgen:LoadResourceAction" />
 		</contextMenus>
+		<extensions
+			name="Custom templates"
+			rootInput="CompositeStructure">
+			<invocations xsi:type="gmfgen:GenTemplateInvocation"
+				description="VisualTypeProvider"
+				templateFqn="aspects::xpt::providers::VisualTypeProvider::VisualTypeProvider"
+				inputs="/0/@extensions.0"
+				oclExpression="self.diagram"/>
+		</extensions>
 	</gmfgen:GenEditorGenerator>
 	<papyrusgmfgenextension:PapyrusExtensionRootNode
 		comment="Papyrus specific extension for GMFGen">
