@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
@@ -428,7 +429,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 			if (elementToDestroy != null && elementToDestroy instanceof EObject) {
 				final DestroyElementRequest request = new DestroyElementRequest(getContextEditingDomain(), (EObject) elementToDestroy, false);
 				final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(elementToDestroy);
-				return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+				return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(provider.getEditCommand(request)), Collections.singleton(elementToDestroy));
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

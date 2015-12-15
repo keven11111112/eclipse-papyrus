@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -425,17 +426,23 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	@Override
 	public Command getDestroyAxisCommand(TransactionalEditingDomain domain, Collection<Object> objectToDestroy) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
+		final Collection<Object> objectsToRemove = new ArrayList<Object>(objectToDestroy.size());
 		final CompositeCommand compositeCommand = new CompositeCommand("Destroy IAxis Command"); //$NON-NLS-1$
 		for (final IAxis current : getRepresentedContentProvider().getAxis()) {
 			if (current.getManager() == this.representedAxisManager) {
 				if (objectToDestroy.contains(current) || objectToDestroy.contains(current.getElement())) {
 					final DestroyElementRequest request = new DestroyElementRequest(domain, current, false);
 					compositeCommand.add(provider.getEditCommand(request));
+					if(current instanceof IAxis){
+						objectsToRemove.add(current.getElement());
+					}else{
+						objectsToRemove.add(current);
+					}
 				}
 			}
 		}
 		if (!compositeCommand.isEmpty()) {
-			return new GMFtoEMFCommandWrapper(compositeCommand);
+			return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(compositeCommand), objectsToRemove);
 		}
 		return null;
 
@@ -628,7 +635,15 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	public void destroyAxis(final List<Integer> axisPositions) {
 		final List<Object> toDestroy = getElements(axisPositions);
 		TransactionalEditingDomain domain = getTableEditingDomain();
-		final Command cmd = getDestroyAxisCommand(domain, toDestroy);
+		final Collection<Object> objectsToRemove = new ArrayList<Object>(toDestroy.size());
+		for(final Object objectToDestroy : toDestroy){
+			if(objectToDestroy instanceof IAxis){
+				objectsToRemove.add(((IAxis) objectToDestroy).getElement());
+			}else{
+				objectsToRemove.add(objectToDestroy);
+			}
+		}
+		final Command cmd = new RemoveCommandWrapper(getDestroyAxisCommand(domain, toDestroy), objectsToRemove);
 		domain.getCommandStack().execute(cmd);
 	}
 
@@ -721,4 +736,134 @@ public abstract class AbstractAxisManager implements IAxisManager {
 		}
 		return columnAxisProvider == getRepresentedContentProvider();
 	}
+	
+	/**
+	 * This allows to manage the managed objects during the add command.
+	 * 
+	 * @author Nicolas FAUVERGUE
+	 */
+	protected class AddCommandWrapper extends CommandWrapper{
+		
+		/**
+		 * The objects to add in the managed objects list.
+		 */
+		private Collection<Object> objectsToAdd;
+		
+		/**
+		 * Constructor.
+		 *
+		 * @param command The command to wrap.
+		 * @param objectsToAdd The objects to add.
+		 */
+		public AddCommandWrapper(final Command command, final Collection<Object> objectsToAdd) {
+			super(command);
+			this.objectsToAdd = objectsToAdd;
+			
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#execute()
+		 */
+		@Override
+		public void execute() {
+			super.execute();
+			if(null != managedObject){
+				managedObject.addAll(objectsToAdd);
+			}
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#undo()
+		 */
+		@Override
+		public void undo() {
+			super.undo();
+			if(null != managedObject){
+				managedObject.removeAll(objectsToAdd);
+			}
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#redo()
+		 */
+		@Override
+		public void redo() {
+			super.redo();
+			if(null != managedObject){
+				managedObject.addAll(objectsToAdd);
+			}
+		}
+	}
+	
+	/**
+	 * This allows to manage the managed objects during the remove command.
+	 * 
+	 * @author Nicolas FAUVERGUE
+	 */
+	protected class RemoveCommandWrapper extends CommandWrapper{
+		
+		/**
+		 * The objects to remove in the managed objects list.
+		 */
+		private Collection<Object> objectsToRemove;
+		
+		/**
+		 * Constructor.
+		 *
+		 * @param command The command to wrap.
+		 * @param objectsToRemove The objects to remove.
+		 */
+		public RemoveCommandWrapper(final Command command, final Collection<Object> objectsToRemove) {
+			super(command);
+			if(null != managedObject){
+				this.objectsToRemove = objectsToRemove;
+			}
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#execute()
+		 */
+		@Override
+		public void execute() {
+			super.execute();
+			if(null != managedObject){
+				managedObject.removeAll(objectsToRemove);
+			}
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#undo()
+		 */
+		@Override
+		public void undo() {
+			super.undo();
+			if(null != managedObject){
+				managedObject.addAll(objectsToRemove);
+			}
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.emf.common.command.CommandWrapper#redo()
+		 */
+		@Override
+		public void redo() {
+			super.redo();
+			if(null != managedObject){
+				managedObject.removeAll(objectsToRemove);
+			}
+		}
+	}
+	
 }

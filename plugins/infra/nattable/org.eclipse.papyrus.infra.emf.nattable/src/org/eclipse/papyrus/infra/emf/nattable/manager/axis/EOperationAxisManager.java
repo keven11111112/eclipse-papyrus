@@ -83,7 +83,7 @@ public class EOperationAxisManager extends EObjectAxisManager {
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd) {
 		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
 		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+			return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd), objectToAdd);
 		}
 		return null;
 	}
@@ -102,7 +102,7 @@ public class EOperationAxisManager extends EObjectAxisManager {
 	public Command getAddAxisCommand(final TransactionalEditingDomain domain, final Collection<Object> objectToAdd, final int index) {
 		final Collection<IAxis> toAdd = getAxisToAdd(objectToAdd);
 		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index);
+			return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd, index), objectToAdd);
 		}
 		return null;
 	}
@@ -121,7 +121,6 @@ public class EOperationAxisManager extends EObjectAxisManager {
 				newAxis.setElement((EOperation) current);
 				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
-				managedObject.add(current);
 			}
 		}
 		return toAdd;
