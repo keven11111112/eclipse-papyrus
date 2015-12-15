@@ -10,6 +10,7 @@
  *   Christian W. Damus (CEA) - Target EObject must be the diagnostic's first data element
  *   Benoit Maggi (CEA LIST)  - Add an unique id as source for diagnostic
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 446865
+ *   Ed Willink, Klaas Gadeyne, A. Radermacher - Remove hard-coded UML dependency - Bug 408215 
  *****************************************************************************/
 
 
@@ -28,17 +29,14 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.ModelValidationService;
-import org.eclipse.uml2.uml.LiteralInteger;
-import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
-import org.eclipse.uml2.uml.MultiplicityElement;
-import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.uml2.uml.util.UMLValidator;
 
 
 /**
@@ -51,7 +49,12 @@ import org.eclipse.uml2.uml.util.UMLValidator;
  * bug 405160 - avoid "false" errors by using the UMLValidator instead of EObjectValidator as base class
  */
 public class EValidatorAdapter
-		extends UMLValidator {
+	implements EValidator {
+	
+	/**
+	 * The eValidator from the EMF EValidator Registry.
+	 */
+	protected final EValidator registeredValidator;
 
 	/**
 	 * Model Validation Service interface for batch validation of EMF elements.
@@ -62,15 +65,23 @@ public class EValidatorAdapter
 	 * Initializes me.
 	 */
 	public EValidatorAdapter() {
+		this((EValidator) EValidator.Registry.INSTANCE.get(EcorePackage.eINSTANCE));
+	}
+	
+	/**
+	 * Constructor.
+	 *
+	 * @param registeredValidator a validator to which the adapter will delegate validation requests 
+	 */
+	public EValidatorAdapter(EValidator registeredValidator) {
 		super();
-
+		this.registeredValidator = registeredValidator;
 		batchValidator = ModelValidationService.getInstance().newValidator(
 				EvaluationMode.BATCH);
 		batchValidator.setIncludeLiveConstraints(true);
 		batchValidator.setReportSuccesses(false);
 	}
 
-	@Override
 	public boolean validate(EObject eObject, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return validate(eObject.eClass(), eObject, diagnostics, context);
@@ -79,11 +90,10 @@ public class EValidatorAdapter
 	/**
 	 * Implements validation by delegation to the EMF validation framework.
 	 */
-	@Override
 	public boolean validate(EClass eClass, EObject eObject,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// first, do whatever the basic EcoreValidator does
-		super.validate(eClass, eObject, diagnostics, context);
+		registeredValidator.validate(eClass, eObject, diagnostics, context);
 
 		return batchValidate(eObject, diagnostics, context);
 	}
@@ -110,7 +120,6 @@ public class EValidatorAdapter
 				appendDiagnostics(status, diagnostics);
 			}
 		}
-
 		return status.isOK();
 	}
 
@@ -118,46 +127,9 @@ public class EValidatorAdapter
 	 * Direct validation of {@link EDataType}s is not supported by the EMF
 	 * validation framework; they are validated indirectly via the {@link EObject}s that hold their values.
 	 */
-	@Override
 	public boolean validate(EDataType eDataType, Object value,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return super.validate(eDataType, value, diagnostics, context);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.uml2.uml.util.UMLValidator#validateMultiplicityElement_validateUpperGeLower(org.eclipse.uml2.uml.MultiplicityElement, org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 */
-	@Override
-	public boolean validateMultiplicityElement_validateUpperGeLower(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		boolean result = false;
-		if (canCompareUpperGeLower(multiplicityElement)) {
-			result = super.validateMultiplicityElement_validateUpperGeLower(multiplicityElement, diagnostics, context);
-		}
-
-		return result;
-	}
-
-	/**
-	 * This allows to define if the multiplicity element can compare the lower and the upper values (depending to the type of ValueSpecifications).
-	 * 
-	 * @param eObject
-	 *            The {@link EObject} to check.
-	 * @return <code>true</code> if the lower and upper can be compared (or if this is not a MultiplicityElement), <code>false</code> otherwise.
-	 */
-	protected boolean canCompareUpperGeLower(final EObject eObject) {
-		boolean result = true;
-		if (eObject instanceof MultiplicityElement) {
-			final MultiplicityElement multiplicityElement = (MultiplicityElement) eObject;
-			ValueSpecification lower = multiplicityElement.getLowerValue();
-			ValueSpecification upper = multiplicityElement.getUpperValue();	
-			if (!((lower instanceof LiteralInteger || lower instanceof LiteralUnlimitedNatural || lower == null)
-					&& (upper instanceof LiteralInteger || upper instanceof LiteralUnlimitedNatural || upper == null))) {
-				result = false;
-			}
-		}
-		return result;
+		return registeredValidator.validate(eDataType, value, diagnostics, context);
 	}
 
 	/**

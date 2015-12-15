@@ -22,10 +22,12 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
 import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -35,7 +37,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class UMLDiagnostician extends EcoreDiagnostician {
 
 	public UMLDiagnostician() {
-		super(new OCLEValidatorAdapter());
+		super(new OCLEValidatorAdapter((EValidator) EValidator.Registry.INSTANCE.get(UMLPackage.eINSTANCE)));
 		validateStereotype = false;
 	}
 
@@ -132,5 +134,4 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 	}
 
 	protected boolean validateStereotype;
-
 }

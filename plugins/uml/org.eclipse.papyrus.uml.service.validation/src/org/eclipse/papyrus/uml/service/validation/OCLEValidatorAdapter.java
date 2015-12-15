@@ -8,6 +8,7 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Christian W. Damus (CEA) - Target EObject must be the diagnostic's first data element
+ *   Ed Willink, Klaas Gadeyne, A. Radermacher - Bug 408215 
  *
  *****************************************************************************/
 
@@ -16,10 +17,13 @@ package org.eclipse.papyrus.uml.service.validation;
 
 import java.util.Map;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateValidator;
@@ -43,68 +47,58 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 public class OCLEValidatorAdapter
 		extends EValidatorAdapter {
 
+	/**
+	 * Constructor.
+	 *
+	 */
+	public OCLEValidatorAdapter(EValidator registeredValidator) {
+		super(registeredValidator);
+	}
+	
 	// Overridden to invoke OCLDelegateValidator
 	@Override
 	public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (eObject.eIsProxy()) {
-			if (context != null && context.get(ROOT_OBJECT) != null) {
+			if (context != null && context.get(EObjectValidator.ROOT_OBJECT) != null) {
 				if (diagnostics != null) {
-					diagnostics.add(createDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
-							EOBJECT__EVERY_PROXY_RESOLVES, "_UI_UnresolvedProxy_diagnostic",
-							new Object[] {
-									getFeatureLabel(eObject.eContainmentFeature(), context),
-									getObjectLabel(eObject.eContainer(), context),
-									getObjectLabel(eObject, context) },
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
+							EObjectValidator.EOBJECT__EVERY_PROXY_RESOLVES,
+							// create message
+							EcorePlugin.INSTANCE.getString("_UI_UnresolvedProxy_diagnostic", //$NON-NLS-1$
+								new Object[] {
+										EObjectValidator.getFeatureLabel(eObject.eContainmentFeature(), context),
+										EObjectValidator.getObjectLabel(eObject.eContainer(), context),
+										EObjectValidator.getObjectLabel(eObject, context) }
+							),
 							new Object[] {
 									eObject.eContainer(),
 									eObject.eContainmentFeature(),
-									eObject },
-							context));
+									eObject }
+							));
 				}
 			}
-		} else if (eClass.eContainer() == getEPackage()) {
-			validate(eClass.getClassifierID(), eObject, diagnostics, context);
-		} else {
-			new OCLDelegateValidator(this) {
+		}
+		else if (EValidator.Registry.INSTANCE.get(eClass.eContainer()) == registeredValidator) {
+			if (eObject instanceof InstanceSpecification) {
+				UMLOCLEValidator.INSTANCE.validateInstanceSpecification((InstanceSpecification) eObject, diagnostics, context);
+			}
+			else if (eObject instanceof OpaqueAction) {
+				UMLOCLEValidator.INSTANCE.validateOpaqueAction((OpaqueAction) eObject, diagnostics, context);
+			}
+			else if (eObject instanceof OpaqueBehavior) {
+				return UMLOCLEValidator.INSTANCE.validateOpaqueBehavior((OpaqueBehavior) eObject, diagnostics, context);
+			}
+			else if (eObject instanceof OpaqueExpression) {
+				return UMLOCLEValidator.INSTANCE.validateOpaqueExpression((OpaqueExpression) eObject, diagnostics, context);
+			}
+			registeredValidator.validate(eClass, eObject, diagnostics, context);
+		}
+		else {
+			new OCLDelegateValidator(EObjectValidator.INSTANCE) {
 				// Ensure that the class loader for this class will be used downstream.
 			}.validate(eClass, eObject, diagnostics, context);
 		}
+		
 		return batchValidate(eObject, diagnostics, context);
-	}
-
-	@Override
-	public boolean validateInstanceSpecification(InstanceSpecification instanceSpecification,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!super.validateInstanceSpecification(instanceSpecification, diagnostics, context)) {
-			return false;
-		}
-		return UMLOCLEValidator.INSTANCE.validateInstanceSpecification(instanceSpecification, diagnostics, context);
-	}
-
-	@Override
-	public boolean validateOpaqueAction(OpaqueAction opaqueAction,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!super.validateOpaqueAction(opaqueAction, diagnostics, context)) {
-			return false;
-		}
-		return UMLOCLEValidator.INSTANCE.validateOpaqueAction(opaqueAction, diagnostics, context);
-	}
-
-	@Override
-	public boolean validateOpaqueBehavior(OpaqueBehavior opaqueBehavior,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!super.validateOpaqueBehavior(opaqueBehavior, diagnostics, context)) {
-			return false;
-		}
-		return UMLOCLEValidator.INSTANCE.validateOpaqueBehavior(opaqueBehavior, diagnostics, context);
-	}
-
-	@Override
-	public boolean validateOpaqueExpression(OpaqueExpression opaqueExpression,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!super.validateOpaqueExpression(opaqueExpression, diagnostics, context)) {
-			return false;
-		}
-		return UMLOCLEValidator.INSTANCE.validateOpaqueExpression(opaqueExpression, diagnostics, context);
 	}
 }

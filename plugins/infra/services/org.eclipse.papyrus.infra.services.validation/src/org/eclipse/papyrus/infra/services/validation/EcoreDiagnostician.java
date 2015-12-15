@@ -7,7 +7,8 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * CoPatrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
+ * Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
+ * Ed Willink, Klaas Gadeyne, A. Radermacher - Remove hard-coded UML dependency - Bug 408215 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.validation;
@@ -19,19 +20,22 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 /**
- * this is a generic diagnostician to validate Ecore model in papyrus
+ * This is a generic diagnostician to validate Ecore model in Papyrus
  *
  */
 public class EcoreDiagnostician extends Diagnostician implements IPapyrusDiagnostician {
 
 	protected AdapterFactory adapterFactory;
 	protected IProgressMonitor progressMonitor;
-
+	protected EValidatorAdapter validatorAdapter;
+	
 	/**
 	 * Create diagnostician with custom validator (that must subclass ECore validator)
 	 *
@@ -43,15 +47,13 @@ public class EcoreDiagnostician extends Diagnostician implements IPapyrusDiagnos
 	}
 
 	public EcoreDiagnostician() {
-		validatorAdapter = new EValidatorAdapter();
+		validatorAdapter = new EValidatorAdapter((EValidator) EValidator.Registry.INSTANCE.get(EcorePackage.eINSTANCE));
 	}
 
 	public void initialize(final AdapterFactory adapterFactory, final IProgressMonitor progressMonitor) {
 		this.adapterFactory = adapterFactory;
 		this.progressMonitor = progressMonitor;
 	}
-
-	protected EValidatorAdapter validatorAdapter;
 
 	@Override
 	public String getObjectLabel(EObject eObject) {
@@ -81,6 +83,4 @@ public class EcoreDiagnostician extends Diagnostician implements IPapyrusDiagnos
 		}
 		return result;
 	}
-
-
 }
