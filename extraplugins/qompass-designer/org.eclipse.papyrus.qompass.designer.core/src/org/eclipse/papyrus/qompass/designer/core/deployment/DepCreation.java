@@ -1,18 +1,21 @@
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.FCM.AutoIndex;
 import org.eclipse.papyrus.FCM.AutoIndexPerNode;
 import org.eclipse.papyrus.FCM.ConfigurationProperty;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.CopyAttributeValue;
 import org.eclipse.papyrus.FCM.InteractionComponent;
-import org.eclipse.papyrus.FCM.RuleApplication;
+import org.eclipse.papyrus.FCM.util.FCMUtil;
 import org.eclipse.papyrus.qompass.designer.core.CORBAtypeNames;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Log;
@@ -25,6 +28,7 @@ import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralInteger;
@@ -84,27 +88,22 @@ public class DepCreation {
 
 		Slot slot = is.createSlot();
 		slot.setDefiningFeature(attribute);
-		// For primitive types, the UML type does not provide sufficient
-		// information to decide
-		// whether it is a string or a numerical value. In case of the C++
-		// profile, primitive
-		// UML types denote a language specific type, but we want to avoid C++
-		// specific code, if
+		// For primitive types, the UML type does not provide sufficient information to decide
+		// whether it is a string or a numerical value. In case of the C++ profile, primitive
+		// UML types denote a language specific type, but we want to avoid C++ specific code, if
 		// possible.
-		// => pragmatic solution: use LiteralString as default, unless a check
-		// for some known numerical
-		// primitive types holds (in particular the UML as well as Qompass CORBA
-		// types)
-		// In addition, string values are not automatically quoted, i.e. it is
-		// possible to enter e.g.
-		// a float value as a string expression (it also means that a "real"
-		// string value must be quoted
+		// => pragmatic solution: use LiteralString as default, unless a check for some known numerical
+		// primitive types holds (in particular the UML as well as Qompass CORBA types)
+		// In addition, string values are not automatically quoted, i.e. it is possible to enter e.g.
+		// a float value as a string expression (it also means that a "real" string value must be quoted
 		// by the user).
 		Type type = attribute.getType();
 		if (type != null) {
 			String name = type.getName();
 			String qname = type.getQualifiedName();
-			if (name.equals("Integer") || qname.equals(CORBAtypeNames.Octet) //$NON-NLS-1$
+			if (type instanceof Enumeration) {
+				slot.createValue(valueFor + attribute.getName(), type, UMLPackage.eINSTANCE.getInstanceValue());
+			} else if (name.equals("Integer") || qname.equals(CORBAtypeNames.Octet) //$NON-NLS-1$
 					|| qname.equals(CORBAtypeNames.Long)
 					|| qname.equals(CORBAtypeNames.UnsignedLong)
 					|| qname.equals(CORBAtypeNames.Short)
@@ -160,15 +159,13 @@ public class DepCreation {
 	 */
 	public static InstanceSpecification createDepPlan(Package cdp,
 			Class typeOrImplem, String name, boolean createSlotsForConfigValues)
-			throws TransformationException
-	{
+					throws TransformationException {
 		return createDepPlan(cdp, typeOrImplem, name, createSlotsForConfigValues, new Stack<Classifier>());
 	}
 
 	public static InstanceSpecification createDepPlan(Package cdp,
 			Class typeOrImplem, String name, boolean createSlotsForConfigValues, Stack<Classifier> visitedClassifiers)
-			throws TransformationException
-	{
+					throws TransformationException {
 		// create an instance specification for the composite
 		if (visitedClassifiers.contains(typeOrImplem)) {
 			String path = ""; //$NON-NLS-1$
@@ -206,25 +203,20 @@ public class DepCreation {
 					singletonAttr.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 				}
 
-				is = (InstanceSpecification)
-						cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
+				is = (InstanceSpecification) cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
 				// create slot within main instance
 				createSlot(mainInstance, is, singletonAttr);
-			}
-			else if (pe instanceof InstanceSpecification) {
+			} else if (pe instanceof InstanceSpecification) {
 				// exists already, return it without recursing into its sub-specifications
 				return (InstanceSpecification) pe;
-			}
-			else {
+			} else {
 				// unlikely case that a packaged element with the name
 				// <singletonISname> exists already, but is not an instance specification
 				throw new TransformationException(String.format(
 						Messages.DepCreation_SingletonExistsAlready, name));
 			}
-		}
-		else {
-			is = (InstanceSpecification)
-					cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
+		} else {
+			is = (InstanceSpecification) cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
 		}
 
 		if (name.equals(DeployConstants.MAIN_INSTANCE)) {
@@ -257,9 +249,9 @@ public class DepCreation {
 
 		is.getClassifiers().add(implementation);
 		// add connector and container implementations
-		RuleApplication ruleApplication = UMLUtil.getStereotypeApplication(implementation, RuleApplication.class);
-		if ((ruleApplication != null) && (createSlotsForConfigValues)) {
-			for (ContainerRule rule : ruleApplication.getContainerRule()) {
+		if (createSlotsForConfigValues) {
+			EList<ContainerRule> rules = FCMUtil.getAllContainerRules(implementation);
+			for (ContainerRule rule : rules) {
 				addConfigurationOfContainer(rule, is);
 			}
 		}
@@ -312,16 +304,14 @@ public class DepCreation {
 							createSlot(is, partIS, attribute);
 						}
 					}
-				}
-				else if (StereotypeUtil.isApplied(attribute, ConfigurationProperty.class)
+				} else if (StereotypeUtil.isApplied(attribute, ConfigurationProperty.class)
 						&& createSlotsForConfigValues) {
 					// is a configuration property, create slot
 					// TODO: implicit assumption that configuration attributes
 					// are not components
 					createSlotForConfigProp(is, attribute);
 				}
-			}
-			else if (type instanceof Class) {
+			} else if (type instanceof Class) {
 				// no composition - only create slot, if a singleton
 				// (otherwise, it's not clear with which instance the slot
 				// should be associated)
@@ -356,10 +346,15 @@ public class DepCreation {
 		for (Property attribute : ConfigUtils.getConfigAttributes(rule)) {
 			Type type = attribute.getType();
 			if ((StereotypeUtil.isApplied(attribute, ConfigurationProperty.class))
-					&& (type instanceof Class)) {
-				Class aggregateOrInterceptor = DepUtils.chooseImplementation(
-						(Class) type, new BasicEList<InstanceSpecification>(),
-						null);
+					&& (type instanceof Classifier)) {
+				Classifier aggregateOrInterceptor;
+				if (type instanceof Class) {
+					aggregateOrInterceptor = DepUtils.chooseImplementation(
+							(Class) type, new BasicEList<InstanceSpecification>(),
+							null);
+				} else {
+					aggregateOrInterceptor = (Classifier) type;
+				}
 				// is a configuration property, create slot
 				if (first) {
 					// add contExtImpl to list of classifiers that the instance
@@ -398,7 +393,7 @@ public class DepCreation {
 	 */
 	public static InstanceSpecification createPlatformInstances(
 			Package platform, Class implementation, String name)
-			throws TransformationException {
+					throws TransformationException {
 		// create an instance specification for the composite
 		InstanceSpecification is = null;
 		is = (InstanceSpecification) platform.createPackagedElement(name,
@@ -457,10 +452,27 @@ public class DepCreation {
 	 *            the main instance of the deployment plan
 	 */
 	public static void initAutoValues(InstanceSpecification is) {
+		Collection<InstanceSpecification> isList = new ArrayList<InstanceSpecification>();
+		isList.add(is);
+		initAutoValues(isList);
+	}
+
+	/**
+	 * Initialize the automatic values within a deployment plan - and the update
+	 * eventual copies of these values.
+	 *
+	 * @param is
+	 *            the main instance of the deployment plan
+	 */
+	public static void initAutoValues(Collection<InstanceSpecification> isList) {
 		map = new HashMap<Object, Integer>();
-		initAutoValuesHelper(is);
+		for (InstanceSpecification is : isList) {
+			initAutoValuesHelper(is);
+		}
 		Stack<InstanceSpecification> isStack = new Stack<InstanceSpecification>();
-		copyAutoValues(isStack, is);
+		for (InstanceSpecification is : isList) {
+			copyAutoValues(isStack, is);
+		}
 	}
 
 	/**
@@ -502,8 +514,7 @@ public class DepCreation {
 				// recursion in case of values that are instance values
 				for (ValueSpecification vs : slot.getValues()) {
 					if (vs instanceof InstanceValue) {
-						InstanceSpecification subIS = ((InstanceValue) vs)
-								.getInstance();
+						InstanceSpecification subIS = ((InstanceValue) vs).getInstance();
 						initAutoValues(subIS);
 					}
 				}
@@ -512,7 +523,16 @@ public class DepCreation {
 	}
 
 	/**
-	 * Initialize the automatic values within a deployment plan.
+	 * Copy automatic values within a deployment plan.
+	 * Attributes can apply the CopyAttributeValue stereotype. The stereotype can point
+	 * to another attribute (source). If the other attribute has a configuration value, it gets
+	 * copied.
+	 * The function takes into account that the source attribute might be in a component that is
+	 * instantiated several times with different configuration values. The attribute that gets the
+	 * copy must use the "nearest" value which means that there must be a common composite that
+	 * contains both attribute (indirectly).
+	 * The main use case is that connector fragments need to have common configuration attributes
+	 * (e-g- server fragment has automatic index value, client fragment needs to copy this value)
 	 *
 	 * @param is
 	 *            the main instance of the deployment plan

@@ -68,11 +68,8 @@ class StaticCppToOO implements IOOTrafo {
 
 	protected LazyCopier copier
 
-	protected Class bootloader // why required?
-
 	def override init(LazyCopier copier, Class bootloader) {
 		this.copier = copier
-		this.bootloader = bootloader
 	}
 
 	override addPortOperations(Class implementation) {

@@ -395,14 +395,18 @@ public class BootLoaderGen {
 		m_bootLoader.getOwnedConnectors().clear();
 	}
 
-	public void addInit(InstanceSpecification mainInstance) {
+	/**
+	 * add the initialize operation. Must be called after a set of addInstance invocations
+	 * @param mainInstance
+	 */
+	public void addInit(String language) {
 		// TODO: use template
 		Operation init = m_bootLoader.createOwnedOperation(INIT_OP_NAME, null, null);
 		OpaqueBehavior initBehavior = (OpaqueBehavior)
 				m_bootLoader.createOwnedBehavior(INIT_OP_NAME, UMLPackage.eINSTANCE.getOpaqueBehavior());
 		init.getMethods().add(initBehavior);
 
-		initBehavior.getLanguages().add(DepUtils.getTargetLanguage(mainInstance));
+		initBehavior.getLanguages().add(language);
 		String code = m_initCode + "\n"; //$NON-NLS-1$
 		if (m_initCodeCConfig.length() > 0) {
 			code += "\n// instance configuration\n" + //$NON-NLS-1$

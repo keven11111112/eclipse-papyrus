@@ -58,36 +58,6 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class ConnectorReification {
 
 	/**
-	 * Return an instance specification that corresponds to a part. This
-	 * function is useful in the connector context, since it allows to retrieve
-	 * the instance specification that is reference by a connection end-point
-	 * (which points to the part).
-	 *
-	 * @param system
-	 *            the instance specification for the assembly
-	 * @param part
-	 *            the part within a class
-	 * @return The instance specification for the passed part
-	 */
-	/*
-	 * public static InstanceSpecification getInstanceForPart(
-	 * InstanceSpecification system, Property part) {
-	 * for (Slot slot : system.getSlots()) {
-	 * if (slot.getDefiningFeature() == part) {
-	 * for (ValueSpecification value : slot.getValues()) {
-	 * // instances are accessible via ValueSpecification subclass
-	 * // InstanceValue
-	 * if (value instanceof InstanceValue) {
-	 * return (((InstanceValue) value).getInstance());
-	 * }
-	 * }
-	 * }
-	 * }
-	 * return null;
-	 * }
-	 */
-
-	/**
 	 * Find a port that would match a connection
 	 *
 	 * @param connectorType
@@ -111,25 +81,26 @@ public class ConnectorReification {
 	}
 
 	/**
-	 *
+	 * Reify a connector already represented in form of a part (useful for n-ary connectors)
+	 * 
 	 * @param copier
+	 *            a lazy copier
 	 * @param tmComponent
+	 *            containing composite in target target model
 	 * @param smConnectorPart
 	 *            Part representing the connector
 	 * @param tmIS
-	 *            target instance specification (required for choosing the right implementatioN)
-	 * @param args
-	 *            Acceleo arguments passed during instantiation
+	 *            target instance specification of the composite passed as 2nd parameter
+	 *            (required for obtaining node allocation and choosing the right implementation.
+	 *            Main use: decide whether a distributed implementation of an interaction component needs to be used)
 	 * @return The created part within tmComponent that represents the reified
 	 *         connector
 	 * @throws TransformationException
 	 */
 	public static Property reifyConnector(LazyCopier copier, Class tmComponent,
-			Property smConnectorPart, InstanceSpecification tmIS, Object[] args)
-			throws TransformationException {
-		// 1st step: create part for the connector without actually changing the type.
-		// the objective is to enable the user to perform this step optionally, if the
-		// connector needs n-ary connections.
+			Property smConnectorPart, InstanceSpecification tmIS)
+					throws TransformationException {
+
 		if (!(smConnectorPart.getType() instanceof Class)) {
 			// can not happen since caller checks whether type is stereotyped as ConnectorComp
 			// which extends class
@@ -146,8 +117,8 @@ public class ConnectorReification {
 
 		if (binding != null) {
 			TemplateUtils.adaptActualsToTargetModel(copier, binding);
-			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
-			connectorImplem = ti.bindNamedElement(connectorImplemTemplate);
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding);
+			connectorImplem = ti.bindElement(connectorImplemTemplate);
 		} else {
 			// no binding, class is not a template => copy as it is
 			connectorImplem = copier.getCopy(connectorImplemTemplate);
@@ -171,17 +142,15 @@ public class ConnectorReification {
 	 * @param smConnector
 	 *            connector element within the source model
 	 * @param tmIS
-	 *            target model instance specification of the composite in which the reified connector
-	 *            (the part typed with the instantiated interaction component) should be created.
-	 *            The instance is only used to find a suitable implementation.
-	 * @param args
-	 *            additional arguments for the Acceleo transformation
+	 *            target instance specification of the composite passed as 2nd parameter
+	 *            (required for obtaining node allocation and choosing the right implementation.
+	 *            Main use: decide whether a distributed implementation of an interaction component needs to be used)
 	 * @return the created part within tmComponent
 	 * @throws TransformationException
 	 */
 	public static Property reifyConnector(LazyCopier copier, Class tmComponent,
-			String name, Connector smConnector, InstanceSpecification tmIS, Object[] args)
-			throws TransformationException {
+			String name, Connector smConnector, InstanceSpecification tmIS)
+					throws TransformationException {
 
 		org.eclipse.papyrus.FCM.Connector fcmConn = UMLUtil.getStereotypeApplication(smConnector, org.eclipse.papyrus.FCM.Connector.class);
 
@@ -194,7 +163,7 @@ public class ConnectorReification {
 		Class connectorImplemTemplate = DepUtils.chooseImplementation(connType.getBase_Class(), AllocUtils.getAllNodes(tmIS), null);
 
 		// ---- obtain binding & instantiate template type ...
-		TemplateBinding binding = ConnectorBinding.obtainBinding(tmComponent,
+		binding = ConnectorBinding.obtainBinding(tmComponent,
 				smConnector, connectorImplemTemplate, true);
 		Class connectorImplem;
 
@@ -204,8 +173,8 @@ public class ConnectorReification {
 			// the bound package is set within container transformations and is (by default) restored to "null" afterwards.
 			// TODO: TemplateInstantiation should do this automatically
 			copier.pushPackageTemplate();
-			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
-			connectorImplem = ti.bindNamedElement(connectorImplemTemplate);
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding);
+			connectorImplem = ti.bindElement(connectorImplemTemplate);
 			copier.popPackageTemplate();
 		} else {
 			// no binding, class is not a template => copy as it is
@@ -217,8 +186,7 @@ public class ConnectorReification {
 					String.format(Messages.ConnectorReification_CouldNotBind, connectorImplemTemplate.getName()));
 		}
 
-		Property tmConnectorPart = tmComponent.createOwnedAttribute(name,
-				connectorImplemTemplate);
+		Property tmConnectorPart = tmComponent.createOwnedAttribute(name, connectorImplemTemplate);
 		// copy id, but prefix it with "p" (for part)
 		LazyCopier.copyID(smConnector, tmConnectorPart, "p"); //$NON-NLS-1$
 		tmConnectorPart.setIsComposite(true);
@@ -237,8 +205,7 @@ public class ConnectorReification {
 			// the new connector connects the existing end with an end of the
 			// reified connector (the newly created property.)
 
-			// --- first end, connected with the existing end (of another
-			// non-connector part)
+			// --- first end, connected with the existing end (of another non-connector part)
 			ConnectorEnd tmEnd1 = tmConnector.createEnd();
 			Property smPartWithPort = smEnd.getPartWithPort();
 			Property tmPartWithPort = copier.getCopy(smPartWithPort);
@@ -254,8 +221,7 @@ public class ConnectorReification {
 			// TODO: check whether filter condition is unique? (first returned by getConnectorPort is "good" one)
 			if (tmRole instanceof Port) {
 				tmEnd2.setRole(getConnectorPort(connectorImplem, (Port) tmRole, (tmPartWithPort != null)));
-			}
-			else {
+			} else {
 				throw new TransformationException(
 						Messages.ConnectorReification_RequiresUseOfPorts);
 			}
@@ -268,6 +234,8 @@ public class ConnectorReification {
 		return tmConnectorPart;
 	}
 
+	public static TemplateBinding binding;
+	
 	/**
 	 * Simple helper function
 	 *
@@ -289,35 +257,6 @@ public class ConnectorReification {
 	}
 
 	/**
-	 * Check, if a delegation connection targets a part that is deployed on a
-	 * certain node.
-	 *
-	 * @param connection
-	 *            a delegation connection
-	 * @param owner
-	 *            the owning instance specification (instance specification for
-	 *            composite containing the part that is targeted by the
-	 *            connection)
-	 * @param node
-	 * @return
-	 */
-	/*
-	 * public static boolean delegationForNode(Connector connection,
-	 * InstanceSpecification owner, Node node) {
-	 * InstanceSpecification instanceOfPart = getInstanceForPart(owner,
-	 * ConnectorUtils.connEndNotPart(connection, null)
-	 * .getPartWithPort());
-	 *
-	 * if (instanceOfPart != null) {
-	 * return (!ConnectorUtils.isAssembly(connection) && (AllocUtils
-	 * .getNode(instanceOfPart) == node));
-	 * } else {
-	 * return false;
-	 * }
-	 * }
-	 */
-
-	/**
 	 * Components can contain additional ports that are inherited via the
 	 * container extension. These ports should typically be connected with
 	 * additional ports of the (reified) connector. This connection is based on
@@ -330,18 +269,13 @@ public class ConnectorReification {
 	 *            the part associated with the reifiedConnector
 	 */
 	static void connectContainerPorts(Class composite, Property reifiedConnector) {
-		// This function is based on the assumption that the additional ports of
-		// the reified
-		// connector need to be connected with a port of a component that is
-		// already
-		// connected via the "normal" connectors (explicitly modeled by the
-		// user).
-		// For instance, in case of ACCORD-calls, the server component provides
-		// the additional
+		// This function is based on the assumption that the additional ports of the reified
+		// connector need to be connected with a port of a component that is already
+		// connected via the "normal" connectors (explicitly modeled by the user).
+		// For instance, in case of ACCORD-calls, the server component provides the additional
 		// RTU port via its container.
 
-		// Create a subset of connectors that are connected with the
-		// reified connector
+		// Create a subset of connectors that are connected with the reified connector
 		EList<Connector> connSubset = new BasicEList<Connector>();
 		for (Connector connector : composite.getOwnedConnectors()) {
 			if (ConnectorUtil.connectsPart(connector, reifiedConnector)) {

@@ -16,7 +16,6 @@ package org.eclipse.papyrus.qompass.designer.core.deployment;
 
 import java.util.Stack;
 
-import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
@@ -39,54 +38,58 @@ public class Deploy {
 
 	/**
 	 * distribute an instance, its contained sub-instances and the referenced
-	 * classifiers to a certain node
+	 * classifiers to a certain target node
 	 *
-	 * @param copy
+	 * @param copier
+	 *            lazy copier from intermediate to target model
+	 * @param gatherConfigData
+	 *            an implementation that is able to gather configuration data (e.g. information about dependencies to external libraries) that will be used for project configuration
 	 * @param node
+	 *            the instance specification of the target node
 	 * @param nodeIndex
+	 *            the index of the target node (used for bootloader generation)
 	 * @param numberOfNodes
-	 * @param instance
+	 *            the total number of indexes (used for bootloader generation)
 	 * @throws TransformationException
 	 */
-	public Deploy(LazyCopier copy, ILangProjectSupport langSupport, InstanceSpecification node,
+	public Deploy(LazyCopier copier, GatherConfigData gatherConfigData, InstanceSpecification node,
 			int nodeIndex, int numberOfNodes)
-			throws TransformationException
-	{
-		bootLoaderGen = new BootLoaderGen(copy, nodeIndex, numberOfNodes);
+					throws TransformationException {
+		bootLoaderGen = new BootLoaderGen(copier, nodeIndex, numberOfNodes);
+		bootLoaderGen.addCreateConnections();
+
 		this.node = node;
 
 		// change to flat copy eventually later (not yet working)
 		depInstance = new PartialCopy();
 
-		depInstance.init(copy, bootLoaderGen, node);
+		depInstance.init(copier, bootLoaderGen, node);
 
 		// set a copy listener in order to assure that indirectly added classes
 		// are taken into account as well
-		this.copy = copy;
-		copy.preCopyListeners.add(new GatherConfigData(langSupport));
+		this.copier = copier;
+		copier.preCopyListeners.add(gatherConfigData);
 	}
 
+	public void finalize(String language)  {
+		bootLoaderGen.addInit(language);
+	}
 
 	/**
 	 * distribute an instance, its contained sub-instances and the referenced
 	 * classifiers to a certain node
-	 *
-	 * @param copier
-	 * @param node
-	 * @param nodeIndex
-	 * @param numberOfNodes
+	 * 
 	 * @param instance
+	 *            the specification of the instance to distribute
+	 * @return the instance specification in the target model
 	 * @throws TransformationException
 	 */
 	public InstanceSpecification distributeToNode(InstanceSpecification instance)
-			throws TransformationException
-	{
+			throws TransformationException {
 		Stack<Slot> slotPath = new Stack<Slot>();
-		InstanceSpecification newRootIS = distributeToNode(false, slotPath, instance);
+		InstanceSpecification newIS = distributeToNode(false, slotPath, instance);
 
-		bootLoaderGen.addCreateConnections();
-		bootLoaderGen.addInit(instance);
-		return newRootIS;
+		return newIS;
 	}
 
 	/**
@@ -145,8 +148,7 @@ public class Deploy {
 						distributeToNode(allocAll, slotPath, containedInstance);
 						slotPath.pop();
 					}
-				}
-				else if (allocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
+				} else if (allocAll || AllocUtils.getAllNodes(containedInstance).contains(node)) {
 					slotPath.push(slot);
 					// bootLoaderGen.instanceConfig(slotPath, instance);
 					bootLoaderGen.addInstance(slotPath, containedInstance, null, node);
@@ -182,5 +184,5 @@ public class Deploy {
 
 	protected InstanceDeployer depInstance;
 
-	protected LazyCopier copy;
+	protected LazyCopier copier;
 }

@@ -42,6 +42,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
+import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.transformations.connector.ConnectorReification;
 import org.eclipse.papyrus.qompass.designer.core.transformations.container.ContainerTrafo;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
@@ -338,7 +339,7 @@ public class MainModelTrafo {
 			StructuralFeature smPartDF = slot.getDefiningFeature();
 			if (StereotypeUtil.isApplied(smPartDF.getType(), InteractionComponent.class)) {
 				if (smPartDF instanceof Property) {
-					Property tmPart = ConnectorReification.reifyConnector(copy, tmComponent, (Property) smPartDF, tmIS, null);
+					Property tmPart = ConnectorReification.reifyConnector(copy, tmComponent, (Property) smPartDF, tmIS);
 					// update value specification (to the one just created)
 					Type type = tmPart.getType();
 					InstanceSpecification tmPartIS = EcoreUtil.copy(DepUtils.getInstance(slot));
@@ -403,7 +404,7 @@ public class MainModelTrafo {
 					// => Reify the connector within the target component, i.e. create a new part and
 					// additional connections for it.
 					Property connectorPart = ConnectorReification.reifyConnector(copy, tmComponent,
-							UMLTool.varName(smConnector), smConnector, tmIS, null);
+							UMLTool.varName(smConnector), smConnector, tmIS);
 
 					if (connectorPart == null) {
 						continue;
@@ -417,15 +418,18 @@ public class MainModelTrafo {
 					InstanceSpecification tmReifiedConnectorIS = DepCreation.createDepPlan(
 							tmCDP, (Class) connectorPart.getType(),
 							instName + "." + smConnector.getName(), false); //$NON-NLS-1$
-
+					
 					// copy slots from the source deployment plan that are related to connector configuration
 					InstanceSpecification smConnectorIS = DepUtils.getNamedSubInstance(smIS, smConnector.getName());
 					if (smConnectorIS != null) {
 						// use putPair instead of put only - see bug 426748, avoid that classifier attribute points
 						// to two classifiers (bound and unbound)
 						copy.putPair(smConnectorIS, tmReifiedConnectorIS);
+						// problem: the defining feature of the slot points to the original connector which we don't
+						// want to copy (would have to be done in context of template binding)
+						TemplateInstantiation ti = new TemplateInstantiation(copy, ConnectorReification.binding);
 						for (Slot smSlot : smConnectorIS.getSlots()) {
-							copy.getCopy(smSlot);
+							ti.bindElement(smSlot);
 						}
 					}
 

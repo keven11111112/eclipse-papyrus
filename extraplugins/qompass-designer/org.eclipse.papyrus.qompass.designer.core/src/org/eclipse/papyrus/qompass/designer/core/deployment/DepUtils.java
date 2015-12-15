@@ -136,8 +136,8 @@ public class DepUtils {
 	 *            a component type or implementation (class, optionally abstract)
 	 * @param nodes
 	 *            a set of instance specification representing nodes on which this component will be allocated
-	 * @param interactive
-	 *            boolean indicating whether the choice should be done interactively
+	 * @param chooser
+	 *            A chooser for an implementation in case of multiple candidates
 	 * @return a suitable implementation
 	 */
 	public static Class chooseImplementation(Class componentType, EList<InstanceSpecification> nodes, ImplementationChooser chooser) {
@@ -206,6 +206,15 @@ public class DepUtils {
 		return dp.getMainInstance();
 	}
 
+	/**
+	 * Check whether an instance specification is a top-level instance, i.e. not referenced
+	 * by another one.
+	 * @param is an instance specification
+	 */
+	public static boolean isTopLevelInstance(InstanceSpecification is) {
+		return getReferencingSlots(is).size() == 0;
+	}
+	
 	/**
 	 * Apply the stereotype deployment plan and set the mainInstance value
 	 *
@@ -375,7 +384,6 @@ public class DepUtils {
 	public static EList<Slot> getReferencingSlots(InstanceSpecification is) {
 		EList<Slot> list = new BasicEList<Slot>();
 		for (Setting setting : UML2Util.getNonNavigableInverseReferences(is)) {
-			// no trigger is referencing the event any more, delete call event
 			EObject eObj = setting.getEObject();
 			if (eObj instanceof ValueSpecification) {
 				ValueSpecification vs = (ValueSpecification) eObj;

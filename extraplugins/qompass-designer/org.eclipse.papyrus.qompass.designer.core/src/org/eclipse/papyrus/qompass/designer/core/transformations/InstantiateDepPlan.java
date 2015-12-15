@@ -15,6 +15,8 @@
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -47,6 +49,7 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.Deploy;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DeployConstants;
+import org.eclipse.papyrus.qompass.designer.core.deployment.GatherConfigData;
 import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerationOptions;
@@ -105,8 +108,6 @@ public class InstantiateDepPlan {
 	protected IProject project;
 
 	protected IProject genProject;
-	
-	protected boolean modelIsObjectOriented = true;
 
 	public void instantiate(Configuration configuration,
 			IProgressMonitor monitor, IProject project, int genOptions) {
@@ -169,10 +170,7 @@ public class InstantiateDepPlan {
 	private void instantiate(IProgressMonitor monitor, int genOptions) {
 		try {
 			initialize(monitor, genOptions);
-			executeTransformation();
-		} catch (AcceleoException e) {
-			displayError(Messages.InstantiateDepPlan_AcceleoErrors,
-					Messages.InstantiateDepPlan_AcceleoErrorsCheckLog);
+			executeTransformationNew();
 		} catch (final TransformationException e) {
 			printAndDisplayErrorMessage(e,
 					Messages.InstantiateDepPlan_TransformationException, false);
@@ -193,8 +191,82 @@ public class InstantiateDepPlan {
 		RuleManagement.setConfiguration(configuration);
 	}
 
+	protected void executeTransformationNew() throws Exception {
+		ModelManagement intermediateModelManagement = null;
+
+		// 1a: create a new model (and applies same profiles / imports)
+		Model existingModel = srcModelComponentDeploymentPlan.getModel();
+		TransformationContext.sourceRoot = existingModel;
+
+		intermediateModelManagement = createTargetModel(existingModel,
+				existingModel.getName(), true);
+
+		// get the temporary model
+		Model intermediateModel = intermediateModelManagement.getModel();
+
+		// create a package for global enumerations that are used by Acceleo code
+		EnumService.createEnumPackage(intermediateModel);
+
+		// create a lazy copier towards the intermediate model
+		LazyCopier intermediateModelCopier = new LazyCopier(existingModel, intermediateModel, false, true);
+		// add pre-copy and post-copy listeners to the copier
+		intermediateModelCopier.preCopyListeners.add(FilterTemplate.getInstance());
+
+		// 1b: reify the connectors "into" the new model
+		monitor.subTask(Messages.InstantiateDepPlan_InfoExpandingConnectors);
+
+		// obtain the component deployment plan in target model
+		Package intermediateModelComponentDeploymentPlan = (Package) intermediateModelCopier
+				.shallowCopy(srcModelComponentDeploymentPlan);
+		intermediateModelCopier.createShallowContainer(srcModelComponentDeploymentPlan);
+
+		AbstractContainerTrafo.init();
+		InstanceConfigurator.onNodeModel = false;
+		MainModelTrafo mainModelTrafo = new MainModelTrafo(intermediateModelCopier,
+				intermediateModelComponentDeploymentPlan);
+
+		Map<InstanceSpecification, InstanceSpecification> instanceMap =
+				new HashMap<InstanceSpecification, InstanceSpecification>();
+		for (PackageableElement pe : srcModelComponentDeploymentPlan.getPackagedElements()) {
+			if (pe instanceof InstanceSpecification) {
+				InstanceSpecification instance = (InstanceSpecification) pe;
+				// check whether a top level instance and not an instance specification of a connector. The latter
+				// is added, since interaction components might have configuration parameters that appear in the
+				// deployment plan. Since the container transformation is not executed at this moment, the interaction is
+				// not represented by a part yet.
+				if (DepUtils.isTopLevelInstance(instance) && !Utils.isInteractionComponent(DepUtils.getClassifier(instance))) {
+					InstanceSpecification newInstance = mainModelTrafo.transformInstance(instance, null);
+
+					// --------------------------------------------------------------------
+					checkProgressStatus();
+					// --------------------------------------------------------------------
+
+					TransformationUtil.applyInstanceConfigurators(newInstance);
+
+					FlattenInteractionComponents.getInstance().flattenAssembly(
+							newInstance, null);
+					TransformationUtil.propagateAllocation(newInstance);
+					instanceMap.put(instance, newInstance);
+				}
+			}
+		}
+
+		if (!generateCACOnly) {
+			deployOnNodes(instanceMap, existingModel, intermediateModel);
+		}
+		
+		intermediateModelManagement.saveModel(project, TEMP_MODEL_FOLDER,
+				TEMP_MODEL_POSTFIX);
+
+		// --------------------------------------------------------------------
+		checkProgressStatus();
+		// --------------------------------------------------------------------
+
+		intermediateModelManagement.dispose();
+	}
+
+	@Deprecated
 	protected void executeTransformation() throws Exception {
-		modelIsObjectOriented = true;
 		ModelManagement intermediateModelManagement = null;
 
 		InstanceSpecification mainInstance = DepUtils
@@ -269,28 +341,27 @@ public class InstantiateDepPlan {
 		// --------------------------------------------------------------------
 
 		if (!generateCACOnly) {
-			deployOnNodes(mainInstance, existingModel, intermediateModel,
-					newMainInstance);
+			// deployOnNodes(mainInstance, existingModel, intermediateModel,
+			// newMainInstance);
 		}
 
 		intermediateModelManagement.dispose();
 	}
 
-	private void deployOnNodes(InstanceSpecification mainInstance,
-			Model existingModel, Model tmpModel, InstanceSpecification newRootIS)
-			throws TransformationException, InterruptedException {
+	private void deployOnNodes(Map<InstanceSpecification, InstanceSpecification> instanceMap,
+			Model existingModel, Model tmpModel)
+					throws TransformationException, InterruptedException {
 
 		// not deploy on each node
-		DepCreation.initAutoValues(newRootIS);
+		DepCreation.initAutoValues(instanceMap.values());
 
-		EList<InstanceSpecification> nodes = AllocUtils.getAllNodes(newRootIS);
+		EList<InstanceSpecification> nodes = AllocUtils.getAllNodes(instanceMap.values());
 		if (nodes.size() > 0) {
 			InstanceConfigurator.onNodeModel = true;
 			for (int nodeIndex = 0; nodeIndex < nodes.size(); nodeIndex++) {
 				InstanceSpecification node = nodes.get(nodeIndex);
 
-				deployNode(mainInstance, existingModel, tmpModel, newRootIS,
-						nodes, nodeIndex, node);
+				deployNode(instanceMap, existingModel, tmpModel, nodes, nodeIndex, node);
 			}
 		} else {
 			throw new TransformationException(
@@ -298,12 +369,10 @@ public class InstantiateDepPlan {
 		}
 	}
 
-	private void deployNode(InstanceSpecification mainInstance,
+	private void deployNode(Map<InstanceSpecification, InstanceSpecification> instanceMap,
 			Model existingModel, Model tmpModel,
-			InstanceSpecification newRootIS,
-			EList<InstanceSpecification> nodes, int nodeIndex,
-			InstanceSpecification node) throws TransformationException,
-			InterruptedException {
+			EList<InstanceSpecification> nodes, int nodeIndex, InstanceSpecification node)
+					throws TransformationException, InterruptedException {
 		ModelManagement genModelManagement = createTargetModel(existingModel,
 				MapUtil.rootModelName, false);
 		Model generatedModel = genModelManagement.getModel();
@@ -326,25 +395,38 @@ public class InstantiateDepPlan {
 				Messages.InstantiateDepPlan_InfoDeployingForNode,
 				node.getName()));
 
-		ILangProjectSupport langSupport = configureLanguageSupport(mainInstance,
+		if (instanceMap.isEmpty()) {
+			return;
+		}
+		// get first language (restricted to single target language, acceptable?)
+		String targetLanguage = DepUtils.getTargetLanguage(instanceMap.keySet().iterator().next());
+		ILangProjectSupport projectSupport = configureLanguageSupport(targetLanguage,
 				existingModel, node);
-		if (langSupport == null) {
+		if (projectSupport == null) {
 			return;
 		}
 
-		Deploy deployment = new Deploy(targetCopy, langSupport, node,
+		GatherConfigData gatherConfigData = new GatherConfigData(projectSupport);
+		Deploy deployment = new Deploy(targetCopy, gatherConfigData, node,
 				nodeIndex, nodes.size());
-		InstanceSpecification nodeRootIS = deployment
-				.distributeToNode(newRootIS);
-		TransformationUtil.updateDerivedInterfaces(nodeRootIS);
 
+		for (InstanceSpecification topLevelInstance : instanceMap.keySet()) {
+			InstanceSpecification newTopLevelInstance = instanceMap.get(topLevelInstance);
+			InstanceSpecification nodeRootIS = deployment.distributeToNode(newTopLevelInstance);
+			TransformationUtil.updateDerivedInterfaces(nodeRootIS);
+		}
+		deployment.finalize(targetLanguage);
+		if ((generationOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
+			projectSupport.setSettings(genProject, gatherConfigData.getSettings());
+		}
+	
 		// --------------------------------------------------------------------
 		checkProgressStatus();
 		// --------------------------------------------------------------------
 
 		removeDerivedInterfacesInRoot(generatedModel);
 
-		ExecuteOOTrafo.transform(targetCopy, deployment.getBootloader(), generatedModel, modelIsObjectOriented);
+		ExecuteOOTrafo.transform(targetCopy, deployment.getBootloader(), generatedModel);
 
 		// --------------------------------------------------------------------
 		checkProgressStatus();
@@ -353,12 +435,11 @@ public class InstantiateDepPlan {
 		destroyDeploymentPlanFolder(generatedModel);
 
 		if (generateCode) {
-			ILangCodegen codegen = LanguageCodegen.getGenerator(DepUtils.getTargetLanguage(mainInstance));
+			ILangCodegen codegen = LanguageCodegen.getGenerator(targetLanguage);
 			GenerateCode codeGenerator = new GenerateCode(genProject, codegen, genModelManagement,
 					monitor);
 			boolean option = (generationOptions & GenerationOptions.ONLY_CHANGED) != 0;
-			codeGenerator.generate(node, DepUtils.getTargetLanguage(mainInstance),
-					option);
+			codeGenerator.generate(node, targetLanguage, option);
 		}
 
 		genModelManagement.dispose();
@@ -373,25 +454,20 @@ public class InstantiateDepPlan {
 	 * @throws TransformationException
 	 */
 	private ILangProjectSupport configureLanguageSupport(
-			InstanceSpecification mainInstance, Model existingModel,
+			String targetLanguage, Model existingModel,
 			InstanceSpecification node) throws TransformationException {
-		ILangProjectSupport langSupport = LanguageProjectSupport.getProjectSupport(DepUtils.getTargetLanguage(mainInstance));
-		AbstractSettings settings = langSupport.initialConfigurationData();
+		ILangProjectSupport projectSupport = LanguageProjectSupport.getProjectSupport(targetLanguage);
+		AbstractSettings settings = projectSupport.initialConfigurationData();
 		settings.targetOS = getTargetOS(node);
-		
+
 		String modelName = getModelName(existingModel, node);
 		genProject = ProjectManagement.getNamedProject(modelName);
 		if ((genProject == null) || !genProject.exists()) {
-			genProject = langSupport.createProject(modelName);
-			if (genProject == null) {
-				return null;
-			}
-			langSupport.setSettings(genProject, settings);
+			genProject = projectSupport.createProject(modelName);
+			// project is new, force re-write of settings
+			generationOptions |= GenerationOptions.REWRITE_SETTINGS;
 		}
-		else if ((generationOptions & GenerationOptions.REWRITE_SETTINGS) != 0) {
-			langSupport.setSettings(genProject, settings);
-		}
-		return langSupport;
+		return projectSupport;
 	}
 
 	protected String getTargetOS(InstanceSpecification node) {

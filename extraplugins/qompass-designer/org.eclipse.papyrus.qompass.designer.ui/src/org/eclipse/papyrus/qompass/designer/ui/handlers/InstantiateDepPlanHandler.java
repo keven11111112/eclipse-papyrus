@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.FCM.Configuration;
-import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.transformations.InstantiateDepPlan;
 import org.eclipse.papyrus.qompass.designer.ui.dialogs.GenerationOptionsDialog;
@@ -31,7 +30,6 @@ import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -47,11 +45,8 @@ public class InstantiateDepPlanHandler extends CmdHandler {
 	@Override
 	public boolean isEnabled() {
 		updateSelectedEObject();
-		if (selectedEObject instanceof Element) {
-			if (StereotypeUtil.isApplied((Element) selectedEObject, DeploymentPlan.class) ||
-					StereotypeUtil.isApplied((Element) selectedEObject, Configuration.class)) {
-				return true;
-			}
+		if ((selectedEObject instanceof Package) || (selectedEObject instanceof Class)) {
+			return true;
 		}
 		return false;
 	}

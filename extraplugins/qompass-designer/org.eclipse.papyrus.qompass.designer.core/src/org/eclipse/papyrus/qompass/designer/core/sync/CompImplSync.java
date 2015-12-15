@@ -159,7 +159,8 @@ public class CompImplSync {
 	public static void updatePorts(Class implementation) {
 		for (Port port : PortUtils.getAllPorts(implementation)) {
 			org.eclipse.papyrus.FCM.Port fcmPort = UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
-			if (fcmPort != null) {
+			// verify if in same eResource (= editable)
+			if ((fcmPort != null) && (port.eResource() == implementation.eResource())) {
 				fcmPort.update();
 			}
 		}

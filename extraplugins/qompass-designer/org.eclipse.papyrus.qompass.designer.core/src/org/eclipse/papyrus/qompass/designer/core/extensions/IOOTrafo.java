@@ -32,8 +32,6 @@ import org.eclipse.uml2.uml.Class;
  * 3. add an implementation for the getcnx_q operation for a port
  * with a required interface (the operation itself has been added before)
  *
- * TODO: C++ specific, support different "component to OO" mappings
- *
  * Problems: need to align bootloader creation with this mapping, since
  * the bootloader may be responsible for instantiation
  * 
@@ -42,20 +40,22 @@ import org.eclipse.uml2.uml.Class;
  * creation resulting in the corruption of list iterators (ConcurrentAccess
  * exception)
  *
- * TODO: keep only transform & deleteConn operation? (why has addGetPortOperation
- * 
- * New considerations: could the OO trafo be seens as a specific form of the
+ * New considerations: could the OO trafo be seen as a specific form of the
  * LwContainerTrafo?
  * [if yes, would that be useful?] Problem: it's not only a merge and operation
  * interception, but additional operation(s) for ports. But, it might well
  * be based on similar mechanisms as in merging in a template + Java code instead
  * of Java code only. Also possible: still have OOTrafo, but there is a collaboration
  * between the OO trafo and a LW container rule.
- *
- *
  */
 public interface IOOTrafo {
 
+	/**
+	 * Initialize the transformation. Pass the copier and the bootloader to the
+	 * transformation in case it is needed by an implementation of this interface.
+	 * @param copier an instance of the lazy copier that copies from source (intermediate) model to the OO model.
+	 * @param bootloader
+	 */
 	public void init(LazyCopier copier, Class bootloader);
 	
 	/**

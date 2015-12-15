@@ -132,7 +132,23 @@ public class ExecuteOOTrafo {
 		}
 	}
 
+	/**
+	 * Transform a component model into an object oriented model.
+	 * 
+	 * @param copier a copier
+	 * @param bootloader the generated bootloader
+	 * @param genModel the model to generate into
+	 * @param OOmodel ignored.
+	 * @throws TransformationException
+	 * @deprecated use variant with ignored parameter
+	 */
+	@Deprecated
 	public static void transform(LazyCopier copier, Class bootloader, Model genModel, boolean OOmodel)
+			throws TransformationException {
+		transform(copier, bootloader, genModel);
+	}
+	
+	public static void transform(LazyCopier copier, Class bootloader, Model genModel)
 			throws TransformationException {
 		String ooTransformation = DepUtils.getOOTransformationFromPackage(genModel);
 		if (ooTransformation == null) {

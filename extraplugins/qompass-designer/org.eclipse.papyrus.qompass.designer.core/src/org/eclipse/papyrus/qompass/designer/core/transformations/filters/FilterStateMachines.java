@@ -28,10 +28,10 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 
-
+/**
+ * This filter copies the effect of transitions to the class level.
+ */
 public class FilterStateMachines implements PreCopyListener {
-
-	private static final String UML_PRIMITIVE_TYPES_BOOLEAN = "PrimitiveTypes::Boolean"; //$NON-NLS-1$
 
 	public static FilterStateMachines getInstance() {
 		if (instance == null) {

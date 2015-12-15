@@ -25,10 +25,10 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * Template instantiation is implemented by means of a PostCopyListener that
+ * Specific tweaking of template instantiation is implemented by means of a PostCopyListener that
  * evaluates the template stereotype.
+ * Chiefly used for text templates
  */
-
 public class PostTemplateInstantiationListener implements PostCopyListener {
 
 	public static PostTemplateInstantiationListener getInstance() {
@@ -38,7 +38,7 @@ public class PostTemplateInstantiationListener implements PostCopyListener {
 		return postTemplateInstantiationListener;
 	}
 
-	public void init(LazyCopier copy, TemplateBinding binding, Object[] args) {
+	public void init(LazyCopier copy, TemplateBinding binding) {
 		this.binding = binding;
 	}
 

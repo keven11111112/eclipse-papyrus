@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.InterceptionRule;
@@ -31,6 +32,7 @@ import org.eclipse.papyrus.qompass.designer.core.extensions.InstanceConfigurator
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TextTemplateBinding;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier.CopyStatus;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
@@ -47,6 +49,8 @@ import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateSignature;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.profile.standard.Create;
+import org.eclipse.uml2.uml.profile.standard.Destroy;
 
 /**
  * A light-weight container transformation. Unlike the standard component-based transformation, this trafo does add a new class.
@@ -57,12 +61,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  */
 public class LWContainerTrafo extends AbstractContainerTrafo {
-
-	public final String interceptor =
-			"[import org::eclipse::papyrus::qompass::designer::core::acceleo::utils_cpp/]\n" + //$NON-NLS-1$
-					"[template public dummy(operation : Operation)]\n" + //$NON-NLS-1$
-					"[returnCppCall()/];\n" + //$NON-NLS-1$
-					"[/template]\n"; //$NON-NLS-1$
 
 	public final String origOpPrefix = "orig_"; //$NON-NLS-1$
 
@@ -110,9 +108,10 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		// => clarify, how container handles super-classes, i.e. if it inherits ports as well (from a container of the abstract component) or not (not trivial at all!)
 		// TODO: don't copy derived operations
 
+		this.smClass = smClass;
 		this.tmClass = tmClass;
 		// create a copy of all operations
-		operations = new BasicEList<Operation>(smClass.getAllOperations());
+		operations = new BasicEList<Operation>(smClass.getOperations());
 	}
 
 	public void createInstance() {
@@ -140,7 +139,9 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		// create interception code
 		// TODO: this is Java/C++ specific!
 		OpaqueBehavior b = (OpaqueBehavior) tmClass.createOwnedBehavior(operation.getName(), UMLPackage.eINSTANCE.getOpaqueBehavior());
-		String body = TextTemplateBinding.bind(interceptor, copiedOperation);
+		// TODO: this is defined in modellibs.core, no dependency
+		// String body = CppUtils.cppCall(copiedOperation);
+		String body = "testBody";
 		// TODO: solution is specific to C++
 		b.getLanguages().add("C/C++"); //$NON-NLS-1$
 		b.getBodies().add(body);
@@ -197,10 +198,44 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 			}
 		}
 
-		// execute after expansion before, since the TransformationContext.templateBinding variable remains set
-		// to the same values (TODO: calculate it properly)
-		for (Operation interceptionOperation : smContainerRule.getBase_Class().getAllOperations()) {
-			expandInterceptorExtension(smContainerRule, interceptionOperation);
+		boolean hasConstructor = isOperationStereotypeApplied(Create.class);
+		boolean hasDestructor = isOperationStereotypeApplied(Destroy.class);
+
+		// register relation to facilitate connector copy
+		copier.setPackageTemplate(smContainerRule.getBase_Class(), tmClass);
+		// reset status to in-progress. Otherwise, the copier will not properly add new
+		// elements.
+		copier.setStatus(tmClass, CopyStatus.INPROGRESS);
+
+		for (Operation templateOperation : smContainerRule.getBase_Class().getOperations()) {
+			// Need a specific treatment of Constructor/destructor: if original class has a
+			// constructor, must add to all constructors, if it has none, copy constructor
+			boolean templateIsConstructor = StereotypeUtil.isApplied(templateOperation, Create.class);
+			boolean templateIsDestructor = StereotypeUtil.isApplied(templateOperation, Destroy.class);
+			
+			boolean needsMerge = (templateIsConstructor && hasConstructor) || (templateIsDestructor && hasDestructor);
+			if (needsMerge || StereotypeUtil.isApplied(templateOperation, InterceptionRule.class)) {
+				// operation is an interceptor: add its content to the methods of the
+				// original class
+				expandInterceptorExtension(smContainerRule, templateOperation);
+			}
+			else {
+				// normal operation. Copy from container to class
+				Operation newOperation = copier.getCopy(templateOperation);
+				if (StereotypeUtil.isApplied(templateOperation, Template.class)) {
+					String opBody = getBody(templateOperation);
+					// operation is not an interceptor, assume binding with class itself
+					TransformationContext.classifier = tmClass;
+					opBody = TextTemplateBinding.bind(opBody, smClass, null);
+					setBody(newOperation, opBody);
+				}
+				if (templateIsConstructor) {
+					newOperation.setName(tmClass.getName());
+				}
+				else if (templateIsConstructor) {
+					newOperation.setName("~" + tmClass.getName());		
+				}
+			}
 		}
 
 		for (Property part : smContainerRule.getBase_Class().getAllAttributes()) {
@@ -225,8 +260,6 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 				else {
 					Property extensionPart =
 							expandAggregationExtension(part.getName(), extOrInterceptor, tmComponent);
-					// register relation to facilitate connector copy
-					copier.setPackageTemplate(smContainerRule.getBase_Class(), tmClass);
 					copier.put(part, extensionPart);
 					copier.setPackageTemplate(null, null);
 				}
@@ -248,6 +281,15 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 		// copy.setPackageTemplate(null, null);
 	}
 
+	protected boolean isOperationStereotypeApplied(java.lang.Class<? extends EObject> stereotype) {
+		for (Operation op : tmClass.getOwnedOperations()) {
+			if (StereotypeUtil.isApplied(op,  stereotype)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	/**
 	 * This container expansion does not create a new composite. Instead, it
 	 * adds the extension as a part to the copied application component. The
@@ -280,7 +322,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 			TemplateBinding binding = TemplateUtils.fixedBinding(copier.target, smContainerExtImpl, tmComponent);
 			Object[] args = new Object[] {};
 			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
-			tmContainerExtImpl = ti.bindNamedElement(smContainerExtImpl);
+			tmContainerExtImpl = ti.bindElement(smContainerExtImpl);
 		}
 
 		return tmContainerExtImpl;
@@ -288,6 +330,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 
 	/**
 	 * Expand an interceptor definition between the container and the executor.
+	 * Can be called several times with different interception operations (which will then be concatenated)
 	 *
 	 * @throws TransformationException
 	 */
@@ -296,18 +339,19 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 	{
 		for (Operation smOperation : operations) {
 			Operation tmOperation = copier.getCopy(smOperation);
-			String interceptionBody = ""; //$NON-NLS-1$
-			for (Behavior behavior : interceptionOperationInRule.getMethods()) {
-				if (behavior instanceof OpaqueBehavior) {
-					EList<String> bodies = ((OpaqueBehavior) behavior).getBodies();
-					if (bodies.size() > 0) {
-						// always take first
-						interceptionBody = bodies.get(0);
-					}
-				}
+			String interceptionBody = getBody(interceptionOperationInRule);
+			if (StereotypeUtil.isApplied(interceptionOperationInRule, Create.class) !=
+				StereotypeUtil.isApplied(smOperation, Create.class)) {
+					// if the intercepting operation is a constructor, the intercepted operation must also be a constructor  
+					continue;
+			}
+			if (StereotypeUtil.isApplied(interceptionOperationInRule, Destroy.class) !=
+					StereotypeUtil.isApplied(smOperation, Destroy.class)) {
+					// if the intercepting operation is a destructor, the intercepted operation must also be a destructor  
+					continue;
 			}
 			if (StereotypeUtil.isApplied(interceptionOperationInRule, Template.class)) {
-				// pass operation in source model, since this enables acceleo code to check
+				// pass operation in source model, since this enables Xtend code to check
 				// for markers on model
 				interceptionBody = TextTemplateBinding.bind(interceptionBody, smOperation, null);
 			}
@@ -322,24 +366,43 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 					interceptionOpInClass = tmOperation;
 					interceptionOpMap.put(tmOperation, interceptionOpInClass);
 				}
-				for (Behavior behavior : interceptionOpInClass.getMethods()) {
-					if (behavior instanceof OpaqueBehavior) {
-						EList<String> bodies = ((OpaqueBehavior) behavior).getBodies();
-						if (bodies.size() > 0) {
-							// always take first
-							String newBody = interceptionBody + "\n" + //$NON-NLS-1$
-									bodies.get(0);
-							((OpaqueBehavior) behavior).getBodies().set(0, newBody);
-						}
-					}
-				}
+				String newBody = interceptionBody + "\n" + //$NON-NLS-1$
+						getBody(interceptionOpInClass);
+				setBody(interceptionOpInClass, newBody);
 			}
 		}
 		return null;
 	}
 
+	public static String getBody(Operation op) {
+		for (Behavior behavior : op.getMethods()) {
+			if (behavior instanceof OpaqueBehavior) {
+				EList<String> bodies = ((OpaqueBehavior) behavior).getBodies();
+				if (bodies.size() > 0) {
+					// always take first
+					return bodies.get(0);
+				}
+			}
+		}
+		return "";			 //$NON-NLS-1$
+	}
+	
+	public static void setBody(Operation op, String body) {
+		for (Behavior behavior : op.getMethods()) {
+			if (behavior instanceof OpaqueBehavior) {
+				EList<String> bodies = ((OpaqueBehavior) behavior).getBodies();
+				if (bodies.size() > 0) {
+					// always take first
+					bodies.set(0, body);
+					break;
+				}
+			}
+		}
+	}
+	
 	// protected InstanceSpecification tmClassIS;
-
+	protected Class smClass;
+	
 	protected EList<Operation> operations;
 
 	protected Map<Operation, Operation> interceptionOpMap;

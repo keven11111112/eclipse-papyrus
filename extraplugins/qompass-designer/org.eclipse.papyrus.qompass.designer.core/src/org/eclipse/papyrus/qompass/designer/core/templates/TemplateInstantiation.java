@@ -110,7 +110,6 @@ public class TemplateInstantiation {
 		}
 
 		this.binding = binding;
-		this.args = args;
 
 		// register a combination of formal/actual in the hashmap
 		// => copy will replace actual with formal
@@ -130,12 +129,12 @@ public class TemplateInstantiation {
 		if (!copier.preCopyListeners.contains(PreTemplateInstantiationListener.getInstance())) {
 			copier.preCopyListeners.add(PreTemplateInstantiationListener.getInstance());
 		}
-		PreTemplateInstantiationListener.getInstance().init(copier, binding, args);
+		PreTemplateInstantiationListener.getInstance().init(copier, binding);
 		// 2b. special treatment for elements stereotyped with template parameter
 		if (!copier.postCopyListeners.contains(PostTemplateInstantiationListener.getInstance())) {
 			copier.postCopyListeners.add(PostTemplateInstantiationListener.getInstance());
 		}
-		PostTemplateInstantiationListener.getInstance().init(copier, binding, args);
+		PostTemplateInstantiationListener.getInstance().init(copier, binding);
 
 		if (!copier.postCopyListeners.contains(FixTemplateSync.getInstance())) {
 			copier.postCopyListeners.add(FixTemplateSync.getInstance());
@@ -178,8 +177,6 @@ public class TemplateInstantiation {
 
 	TemplateSignature signature;
 
-	Object[] args;
-
 	/**
 	 * Bind a named element. Besides of binding the passed element, this
 	 * operation will bind all elements that are referenced (required) by the
@@ -196,11 +193,9 @@ public class TemplateInstantiation {
 	 *            i.e. for which template instantiation should be performed.
 	 * @param binding
 	 *            The binding between the bound package and the package template
-	 * @param args
-	 *            Acceleo arguments
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends NamedElement> T bindNamedElement(T namedElement) throws TransformationException {
+	public <T extends Element> T bindElement(T namedElement) throws TransformationException {
 		if (namedElement == null) {
 			// user should never see this exception
 			throw new TransformationException(Messages.TemplateInstantiation_TemplateIsNull);
@@ -245,8 +240,8 @@ public class TemplateInstantiation {
 				TemplateSignature signatureOfNE = TemplateUtils.getSignature((TemplateableElement) namedElement);
 				if ((signatureOfNE != null) && (signature != signatureOfNE)) {
 					TemplateBinding subBinding = TemplateUtils.getSubBinding(copier.target, (TemplateableElement) namedElement, binding);
-					TemplateInstantiation ti = new TemplateInstantiation(copier, subBinding, args);
-					NamedElement ret = ti.bindNamedElement(namedElement);
+					TemplateInstantiation ti = new TemplateInstantiation(copier, subBinding);
+					Element ret = ti.bindElement(namedElement);
 					return (T) ret;
 				}
 			}

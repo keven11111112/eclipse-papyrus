@@ -381,7 +381,7 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 				org.eclipse.papyrus.FCM.Connector fcmConn = StUtils.getConnector(connector);
 				if (fcmConn != null) {
 					ConnectorReification.reifyConnector(copier, tmContainerImpl,
-							UMLTool.varName(connector), connector, executorIS, null);
+							UMLTool.varName(connector), connector, executorIS);
 				}
 				else {
 					copier.remove(connector);
@@ -425,9 +425,8 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 			// template signature and instantiate container extension via the
 			// template binding mechanism, use executor component as actual
 			TemplateBinding binding = TemplateUtils.fixedBinding(copier.target, smContainerExtImpl, actual);
-			Object[] args = new Object[] {};
-			TemplateInstantiation ti = new TemplateInstantiation(copier, binding, args);
-			tmContainerExtImpl = ti.bindNamedElement(smContainerExtImpl);
+			TemplateInstantiation ti = new TemplateInstantiation(copier, binding);
+			tmContainerExtImpl = ti.bindElement(smContainerExtImpl);
 		}
 
 		// --------------------------------------------------
@@ -551,10 +550,9 @@ public class ContainerTrafo extends AbstractContainerTrafo {
 
 			// pass target component and port to interceptor (not clean, define
 			// suitable template signature as for instance in methodCall_comp
-			Object[] args = new Object[] { executorIS, port };
 			TransformationContext.instance = executorIS;
 			TransformationContext.port = port;
-			connectorPart = ConnectorReification.reifyConnector(copier, tmContainerImpl, UMLTool.varName(interceptionConnector), interceptionConnector, executorIS, args);
+			connectorPart = ConnectorReification.reifyConnector(copier, tmContainerImpl, UMLTool.varName(interceptionConnector), interceptionConnector, executorIS);
 			connectorParts.add(connectorPart);
 			TransformationContext.port = null;
 			portInfo.put(connectorPart, port);

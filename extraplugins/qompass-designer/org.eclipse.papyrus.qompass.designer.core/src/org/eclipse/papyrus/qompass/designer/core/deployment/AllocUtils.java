@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.qompass.designer.core.deployment;
 
+import java.util.Collection;
 import java.util.Iterator;
 
 import org.eclipse.core.runtime.IStatus;
@@ -69,6 +70,20 @@ public class AllocUtils {
 		return nodeList;
 	}
 
+	/**
+	 * Retrieve a list of nodes to which the set of passed instance is allocated to *or*
+	 * to which one of the contained instances is allocated to (recursively)
+	 *
+	 * @param instanceList a list of instances
+	 * @return a list of nodes
+	 */
+	public static EList<InstanceSpecification> getAllNodes(Collection<InstanceSpecification> instances) {
+		EList<InstanceSpecification> nodeList = new UniqueEList<InstanceSpecification>();
+		for (InstanceSpecification instance : instances) {
+			nodeList.addAll(getAllNodes(instance));
+		}
+		return nodeList;
+	}
 	/**
 	 * Retrieve a list of nodes to which the instance is allocated to *or*
 	 * to which one of the contained instances is allocated to (recursively)

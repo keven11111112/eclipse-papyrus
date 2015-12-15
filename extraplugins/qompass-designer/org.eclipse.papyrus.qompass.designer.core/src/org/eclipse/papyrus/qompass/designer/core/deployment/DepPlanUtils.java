@@ -35,7 +35,6 @@ import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.StructuralFeature;
@@ -172,59 +171,6 @@ public class DepPlanUtils {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * create a deployment plan, i.e. a set of instances
-	 * Automatic choice of implementations (otherwise leave unassigned)
-	 *
-	 * @param composite
-	 *            System composite
-	 */
-	public static InstanceSpecification createDepPlan(Package cdp, Classifier composite, String name) {
-		// create an instance specification for the composite
-		InstanceSpecification is = (InstanceSpecification)
-				cdp.createPackagedElement(name, UMLPackage.eINSTANCE.getInstanceSpecification());
-
-		if (name == DeployConstants.MAIN_INSTANCE) {
-			setMainInstance(cdp, is);
-		}
-
-		Class implementation = null;
-
-		if (Utils.isCompImpl(composite)) {
-			// implementation is known => must be able to do this.
-			if (composite instanceof Class) {
-				implementation = (Class) composite;
-			}
-		} else {
-			// TODO: really need that? (better indicate to user that he needs to choose?)
-			// need hint on type level (if we want to avoid loosing information)
-			implementation = autoChooseImplementation(composite);
-		}
-
-		if (!(implementation instanceof Class)) {
-			return is;
-		}
-		// else implementation is instance of Class (and not null)
-
-		is.getClassifiers().add(implementation);
-		/*
-		 * if (hasStereotype (composite), containerImplementation) {
-		 * is.getClassifiers ().add (containerImplem);
-		 * }
-		 */
-
-		for (Property part : Utils.getParts(implementation)) {
-			if (part instanceof Port) {
-				continue;
-			}
-			InstanceSpecification partIS =
-					createDepPlan(cdp, (Classifier) part.getType(), name + DeployConstants.SEP_CHAR + part.getName());
-
-			createSlot(cdp, is, partIS, part);
-		}
-		return is;
 	}
 
 	/**

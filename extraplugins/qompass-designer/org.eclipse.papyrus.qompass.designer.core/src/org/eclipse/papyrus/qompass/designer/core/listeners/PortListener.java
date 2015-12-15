@@ -66,7 +66,7 @@ public class PortListener implements IPapyrusListener {
 						// of provided and required interfaces.
 						CompTypeSync.syncPort((Class) port.getOwner(), port);
 					} else if (ne.getName().equals("type")) {
-						CompTypeSync.syncPort((Class) port.getOwner(), port);
+						// CompTypeSync.syncPort((Class) port.getOwner(), port);
 					}
 				}
 			}
