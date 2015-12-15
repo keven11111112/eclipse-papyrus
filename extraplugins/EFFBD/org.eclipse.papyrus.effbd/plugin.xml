@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="resource/EffbViewPoint.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.effbd.command.CreateEFFBModelCommand"
+            icon="icons/effbd32.png"
+            id="EFFB"
+            label="EFFB">
+      </diagramCategory>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel
+            model="resource/EFFB.creationmenumodel">
+      </menuCreationModel>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.effbd.elementTypeSet"
+            path="resource/EFFB.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.effbd.graphicalelementTypeSet"
+            path="resource/GraphicalEFFB.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+  <modeldeclaration file="resource/effbd.custom"/>
+</extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
+      <diagramexpansion
+            model="resource/EFFBD.expansionmodel">
+      </diagramexpansion>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+      <ParserProvider
+            class="org.eclipse.papyrus.effbd.provider.EFFBParserProvider">
+         <Priority
+               name="High">
+         </Priority>
+      </ParserProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Enhanced Function Flow Block"
+            iconpath="icons/effbd16.png"
+            name="Enhanced Function Flow Block (EFFB)"
+            path="platform:/plugin/org.eclipse.papyrus.effbd/resource/EFFB.profile.uml">
+      </profile>
+   </extension>
+
+</plugin>

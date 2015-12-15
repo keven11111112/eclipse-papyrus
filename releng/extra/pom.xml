@@ -40,6 +40,7 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.sysml14.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.effbd.feature</module>
 		<module>../../features/papyrus-example-features/org.eclipse.papyrus.example.feature</module>
 		<module>../../features/papyrus-example-features/org.eclipse.papyrus.training.library.feature</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
@@ -214,9 +215,11 @@
         <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm</module>
         <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm</module>
         <module>../../extraplugins/layout/org.eclipse.papyrus.layout.subeditor.gmf</module>
-        
         <module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
-        <module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
+        <module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module> 
+        
+        	<!-- Papyrus EFFBD -->
+          <module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
 		
 				<!-- Papyrus Sysml 1.4 -->
 		<module>../../extraplugins/sysml14/org.eclipse.papyrus.sysml14</module>
