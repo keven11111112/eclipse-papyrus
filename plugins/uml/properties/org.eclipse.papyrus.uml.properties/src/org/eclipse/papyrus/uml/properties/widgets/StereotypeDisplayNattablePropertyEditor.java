@@ -18,13 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
-import org.eclipse.papyrus.infra.emf.nattable.selection.EObjectSelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
-import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -45,48 +39,21 @@ public class StereotypeDisplayNattablePropertyEditor extends NattablePropertyEdi
 	}
 
 	/**
-	 * This allow to create the table widget.
+	 * {@inheritDoc}
 	 * 
-	 * @param sourceElement
-	 *            The source Element.
-	 * @param feature
-	 *            The feature.
-	 * @param rows
-	 *            The rows of the table.
+	 * @see org.eclipse.papyrus.uml.properties.widgets.NattablePropertyEditor#configureTreeTable(org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature,
+	 *      java.util.Collection)
 	 */
-	protected void createTableWidget(final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
-
-		// Create the table
-		final Table table = createTable(sourceElement, feature, rows);
-		if (null == table) {
-			displayError("Cannot initialize the table"); //$NON-NLS-1$
-			return;
-		}
-
-		// Create the widget
-		nattableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new EObjectSelectionExtractor());
-		natTableWidget = nattableManager.createNattable(self, SWT.NONE, null);
-		if (nattableManager instanceof TreeNattableModelManager) {
-			// Bug 470252 : This allow to remove the 'view' rows
-			if (null != rows && !rows.isEmpty()) {
-				final RowHideShowLayer layer = nattableManager.getBodyLayerStack().getRowHideShowLayer();
-				for (int cpt = 0; cpt < rows.size(); cpt++) {
-					// Remove the views rows
-					natTableWidget.doCommand(new RowHideCommand(layer, 0));
-				}
+	@Override
+	protected void configureTreeTable(TreeNattableModelManager nattableManager, final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
+		super.configureTreeTable(nattableManager, sourceElement, feature, rows);
+		// Bug 470252 : This allow to remove the 'view' rows
+		if (null != rows && !rows.isEmpty()) {
+			final RowHideShowLayer layer = nattableManager.getBodyLayerStack().getRowHideShowLayer();
+			for (int cpt = 0; cpt < rows.size(); cpt++) {
+				// Remove the views rows
+				natTableWidget.doCommand(new RowHideCommand(layer, 0));
 			}
-			((TreeNattableModelManager) nattableManager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		}
-
-		self.addDisposeListener(getDisposeListener());
-		natTableWidget.setBackground(self.getBackground());
-		
-		// Adapt the group to the table prefered size (with sub of removed rows size)
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.minimumHeight = natTableWidget.getPreferredHeight()-(rows.size()*70);
-		self.setLayoutData(data);
-
-		natTableWidget.layout();
-		self.layout();
 	}
 }

@@ -87,17 +87,17 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 * The nattable widget.
 	 */
 	protected NatTable natTableWidget = null;
-	
+
 	/**
 	 * The nattable manager.
 	 */
 	protected INattableModelManager nattableManager = null;
-	
+
 	/**
 	 * The dispose listener.
 	 */
 	private DisposeListener nattableDisposeListener = null;
-	
+
 	/**
 	 * The data source listener.
 	 */
@@ -118,7 +118,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		fillLayout.marginWidth = 10;
 		self.setLayout(fillLayout);
 	}
-	
+
 	/**
 	 * Set the table URI.
 	 * 
@@ -160,9 +160,9 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	@Override
 	protected void doBinding() {
 		super.doBinding();
-		
+
 		final ModelElement modelElement = input.getModelElement(propertyPath);
-		
+
 		// The data neede to create the table
 		final List<Object> rows = new ArrayList<Object>();
 		EObject sourceElement = null;
@@ -199,19 +199,22 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			displayError("Invalid table context"); //$NON-NLS-1$
 			return;
 		}
-		
+
 		createTableWidget(sourceElement, feature, rows);
-		
+
 	}
-	
+
 	/**
 	 * This allow to create the table widget.
 	 * 
-	 * @param sourceElement The source Element.
-	 * @param feature The feature.
-	 * @param rows The rows of the table.
+	 * @param sourceElement
+	 *            The source Element.
+	 * @param feature
+	 *            The feature.
+	 * @param rows
+	 *            The rows of the table.
 	 */
-	protected void createTableWidget(final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows){
+	protected void createTableWidget(final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
 
 		// Create the table
 		final Table table = createTable(sourceElement, feature, rows);
@@ -219,24 +222,59 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			displayError("Cannot initialize the table"); //$NON-NLS-1$
 			return;
 		}
-		
+
 		// Create the widget
 		nattableManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new EObjectSelectionExtractor());
 		natTableWidget = nattableManager.createNattable(self, SWT.NONE, null);
 		if (nattableManager instanceof TreeNattableModelManager) {
+			configureTreeTable((TreeNattableModelManager) nattableManager, sourceElement, feature, rows);
+
 			((TreeNattableModelManager) nattableManager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		}
-		
+
 		self.addDisposeListener(getDisposeListener());
 		natTableWidget.setBackground(self.getBackground());
-		
-		// Adapt the group to the table prefered size (with sub of removed rows size)
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.minimumHeight = natTableWidget.getPreferredHeight()-(rows.size()*70);
+
+		// Configure the layout and the layout data
+		configureLayout();
+	}
+
+	/**
+	 * This allows to configure the tree table.
+	 * 
+	 * @param nattableManager
+	 *            The nattable model manager.
+	 * @param sourceElement
+	 *            The source Element.
+	 * @param feature
+	 *            The feature.
+	 * @param rows
+	 *            The rows of the table.
+	 */
+	protected void configureTreeTable(final TreeNattableModelManager nattableManager, final EObject sourceElement, final EStructuralFeature feature, final Collection<?> rows) {
+		// Do nohting
+	}
+	
+	/**
+	 * This allows to configure the layout and the layout data.
+	 */
+	protected void configureLayout(){
+		// Adapt the group to the table preferred size
+		final GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+
+		// The preferred height of the nattable calculate it for each row (even if some are hidden)
+		// So to calculate the correct height for the composite :
+		// - Calculate the header height
+		// - Calculate the body height
+		// Add these values and add some extra to have correct displays
+		final int headerHeight = natTableWidget.getPreferredHeight() - nattableManager.getBodyLayerStack().getRowHideShowLayer().getPreferredHeight();
+		final int bodyHeight = nattableManager.getBodyLayerStack().getRowHideShowLayer().getHeight();
+		final int extra = 20;
+		data.minimumHeight = headerHeight + bodyHeight + extra;
 		self.setLayoutData(data);
-		
-		natTableWidget.layout();		
+
 		self.layout();
+		natTableWidget.layout();
 	}
 
 	/**
@@ -280,7 +318,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	 *            The context element.
 	 * @param synchronizedFeature
 	 *            The synchronized feature.
-	 * @param rows The rows of the table.
+	 * @param rows
+	 *            The rows of the table.
 	 * @return The created nattable.
 	 */
 	protected Table createTable(final EObject sourceElement, final EStructuralFeature synchronizedFeature, final Collection<?> rows) {
@@ -329,7 +368,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		table.setCurrentColumnAxisProvider(columnProvider);
 		table.setCurrentRowAxisProvider(rowProvider);
-		
+
 		table.setContext(sourceElement);
 
 		for (final Style style : tableConfiguration.getStyles()) {
@@ -337,7 +376,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		// Manage the construction of axis here because the table editing domain is null
-		if (TableHelper.isTreeTable(table) && null != rows && !rows.isEmpty()) {//add test on TreeTable to fix bug 476623
+		if (TableHelper.isTreeTable(table) && null != rows && !rows.isEmpty()) {// add test on TreeTable to fix bug 476623
 			final AbstractAxisProvider axisProvider = table.getCurrentRowAxisProvider();
 			TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 			AxisManagerRepresentation rep = conf.getAxisManagers().get(0);
@@ -345,33 +384,37 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 				addTreeItemAxis(axisProvider, rep, context);
 			}
 		}
-		
+
 		return table;
 	}
-	
+
 	/**
 	 * This allow to add the tree item axis.
 	 * 
-	 * @param axisProvider The axis provider.
-	 * @param rep The axis manager representation.
-	 * @param object The object to add.
+	 * @param axisProvider
+	 *            The axis provider.
+	 * @param rep
+	 *            The axis manager representation.
+	 * @param object
+	 *            The object to add.
 	 */
-	protected void addTreeItemAxis(final AbstractAxisProvider axisProvider, final AxisManagerRepresentation rep, final Object object){
-		if(object instanceof View && isStereotypedElement((View)object)){
+	protected void addTreeItemAxis(final AbstractAxisProvider axisProvider, final AxisManagerRepresentation rep, final Object object) {
+		if (object instanceof View && isStereotypedElement((View) object)) {
 			final IAxis axis = ITreeItemAxisHelper.createITreeItemAxis(null, null, object, rep);
 			axisProvider.getAxis().add(axis);
 		}
 	}
-	
+
 	/**
 	 * Check is the element of the view is stereotyped.
 	 * 
-	 * @param view The view.
+	 * @param view
+	 *            The view.
 	 * @return <code>true</code> if the element of view is stereotyped, <code>false</code> otherwise.
 	 */
-	protected boolean isStereotypedElement(final View view){
+	protected boolean isStereotypedElement(final View view) {
 		boolean result = false;
-		if(view.getElement() instanceof Element && !((Element)view.getElement()).getAppliedStereotypes().isEmpty()){
+		if (view.getElement() instanceof Element && !((Element) view.getElement()).getAppliedStereotypes().isEmpty()) {
 			result = true;
 		}
 		return result;
@@ -394,16 +437,16 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		return null;
 	}
-	
+
 	/**
 	 * This allow to create the dispose listener for the nattable table manager.
 	 * 
 	 * @return The dispose nattable manager listener.
 	 */
-	protected DisposeListener getDisposeListener(){
-		if(null == nattableDisposeListener){
+	protected DisposeListener getDisposeListener() {
+		if (null == nattableDisposeListener) {
 			nattableDisposeListener = new DisposeListener() {
-	
+
 				public void widgetDisposed(DisposeEvent e) {
 					nattableManager.dispose();
 					natTableWidget.dispose();
@@ -412,7 +455,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 		return nattableDisposeListener;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -432,7 +475,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	protected void hookDataSourceListener(DataSource newInput) {
 		newInput.addDataSourceListener(getDataSourceListener());
 	}
-	
+
 	/**
 	 * This allow to create the data source listener.
 	 * 
@@ -443,12 +486,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			dataSourceListener = new IDataSourceListener() {
 
 				public void dataSourceChanged(final DataSourceChangedEvent event) {
-					if(null != nattableManager){
+					if (null != nattableManager) {
 						nattableManager.dispose();
 						nattableManager = null;
 					}
 					// Dispose the previous nattablewidget if necessary
-					if(null != natTableWidget){
+					if (null != natTableWidget) {
 						natTableWidget.dispose();
 						natTableWidget = null;
 						self.removeDisposeListener(getDisposeListener());
@@ -456,19 +499,19 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 					// Get the datasource
 					final DataSource dataSource = event.getDataSource();
 					final StructuredSelection selection = (StructuredSelection) dataSource.getSelection();
-					
+
 					// Manage the context selection
 					final List<Object> contexts = new ArrayList<Object>(selection.size());
 					final Iterator<?> selectionIterator = selection.iterator();
-					while(selectionIterator.hasNext()){
+					while (selectionIterator.hasNext()) {
 						Object selectedObject = selectionIterator.next();
-						if(selectedObject instanceof AbstractEditPart){
+						if (selectedObject instanceof AbstractEditPart) {
 							contexts.add(((AbstractEditPart) selectedObject).getModel());
-						}else{
+						} else {
 							contexts.add(selectedObject);
 						}
 					}
-					
+
 					// Get the model element
 					if(0 < contexts.size()){
 						final ModelElement modelElement = dataSource.getModelElement(propertyPath);
@@ -492,7 +535,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 				}
 			};
 		}
-		
+
 		return dataSourceListener;
 	}
 }
