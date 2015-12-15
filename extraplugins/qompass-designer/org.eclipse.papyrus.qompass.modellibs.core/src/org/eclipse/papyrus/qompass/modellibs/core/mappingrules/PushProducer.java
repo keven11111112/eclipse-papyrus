@@ -20,6 +20,7 @@ import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
@@ -40,14 +41,11 @@ public class PushProducer implements IMappingRule {
 
 	public static String PUSH_I_PREFIX = "Push_"; //$NON-NLS-1$
 
+	public static String PUSH_C_PREFIX = "CPush_"; //$NON-NLS-1$
+
 	public static String PUSH_OP_NAME = "push"; //$NON-NLS-1$
 
 	public static String PUSH_OP_PARNAME = "data"; //$NON-NLS-1$
-
-	@Override
-	public Interface getProvided(Port p, boolean update) {
-		return null;
-	}
 
 	public static PushProducer getInstance() {
 		if (instance == null) {
@@ -62,10 +60,11 @@ public class PushProducer implements IMappingRule {
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PUSH_I_PREFIX, type, false);
+			Interface derivedInterface = MapUtil.getDerivedInterface(p, PUSH_I_PREFIX);
 			if (derivedInterface == null) {
 				return true;
 			}
+			
 			Operation derivedOperation = derivedInterface.getOperation(PUSH_OP_NAME, null, null);
 			if (derivedOperation == null) {
 				return true;
@@ -87,15 +86,17 @@ public class PushProducer implements IMappingRule {
 	}
 
 	@Override
-	public Interface getRequired(Port p, boolean update) {
+	public Type calcDerivedType(Port p, boolean update) {
 		Log.log(IStatus.INFO, Log.CALC_PORTKIND, p.getKind().getBase_Class().getName() + " => GetRequired on " + p.getBase_Port().getName());
-		Type type = p.getBase_Port().getType();
+		Type type = p.getType();
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PUSH_I_PREFIX, type, update);
+			Interface derivedInterface = MapUtil.getDerivedInterface(p, PUSH_I_PREFIX, update);
+			Class derivedType = MapUtil.getDerivedClass(p, PUSH_C_PREFIX, update);
+			MapUtil.addUsage(derivedType, derivedInterface);
 			if (!update) {
-				return derivedInterface;
+				return derivedType;
 			}
 			if (derivedInterface == null) {
 				// may happen, if within template (do not want creation of derived interfaces in template)
@@ -119,7 +120,7 @@ public class PushProducer implements IMappingRule {
 					parameter.setType(type);
 				}
 			}
-			return derivedInterface;
+			return derivedType;
 		} else {
 			return null;
 		}

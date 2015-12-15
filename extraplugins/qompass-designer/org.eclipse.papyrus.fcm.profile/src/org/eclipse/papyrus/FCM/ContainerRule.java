@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.ContainerRule#getBase_Class <em>Base Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.ContainerRule#getForConfig <em>For Config</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.ContainerRule#getKind <em>Kind</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.ContainerRule#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.ContainerRule#getForConfig <em>For Config</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.ContainerRule#getKind <em>Kind</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getContainerRule()
  * @model
@@ -45,7 +45,6 @@ public interface ContainerRule extends EObject {
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getContainerRule_Base_Class()
@@ -58,9 +57,7 @@ public interface ContainerRule extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.ContainerRule#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 * @param value the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -74,7 +71,6 @@ public interface ContainerRule extends EObject {
 	 * If the meaning of the '<em>For Config</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>For Config</em>' reference list.
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getContainerRule_ForConfig()
 	 * @model ordered="false"
@@ -90,7 +86,6 @@ public interface ContainerRule extends EObject {
 	 * If the meaning of the '<em>Kind</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.papyrus.FCM.ContainerRuleKind
 	 * @see #setKind(ContainerRuleKind)
@@ -104,9 +99,7 @@ public interface ContainerRule extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.ContainerRule#getKind <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Kind</em>' attribute.
+	 * @param value the new value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipse.papyrus.FCM.ContainerRuleKind
 	 * @see #getKind()
 	 * @generated

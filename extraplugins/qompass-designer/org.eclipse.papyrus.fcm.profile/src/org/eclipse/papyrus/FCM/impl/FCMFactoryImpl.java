@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.FCM.*;
 import org.eclipse.papyrus.FCM.Assembly;
 import org.eclipse.papyrus.FCM.AutoIndex;
 import org.eclipse.papyrus.FCM.AutoIndexPerNode;
@@ -64,7 +65,6 @@ import org.eclipse.papyrus.FCM.UseInstanceConfigurator;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
@@ -72,16 +72,16 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static FCMFactory init() {
 		try {
-			FCMFactory theFCMFactory = (FCMFactory) EPackage.Registry.INSTANCE.getEFactory(FCMPackage.eNS_URI);
+			FCMFactory theFCMFactory = (FCMFactory)EPackage.Registry.INSTANCE.getEFactory(FCMPackage.eNS_URI);
 			if (theFCMFactory != null) {
 				return theFCMFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new FCMFactoryImpl();
@@ -91,7 +91,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public FCMFactoryImpl() {
@@ -101,131 +100,90 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case FCMPackage.TEMPLATE:
-			return createTemplate();
-		case FCMPackage.BINDING_HELPER:
-			return createBindingHelper();
-		case FCMPackage.CONFIGURATION_PROPERTY:
-			return createConfigurationProperty();
-		case FCMPackage.IMPLEMENTATION_GROUP:
-			return createImplementationGroup();
-		case FCMPackage.ASSEMBLY:
-			return createAssembly();
-		case FCMPackage.FLATTEN:
-			return createFlatten();
-		case FCMPackage.COMP_TO_OOMAPPING:
-			return createCompToOOmapping();
-		case FCMPackage.PROG_LANGUAGE:
-			return createProgLanguage();
-		case FCMPackage.CODE_GEN_OPTIONS:
-			return createCodeGenOptions();
-		case FCMPackage.INTERACTION_COMPONENT:
-			return createInteractionComponent();
-		case FCMPackage.SINGLETON:
-			return createSingleton();
-		case FCMPackage.CONNECTOR:
-			return createConnector();
-		case FCMPackage.USE_INSTANCE_CONFIGURATOR:
-			return createUseInstanceConfigurator();
-		case FCMPackage.INSTANCE_CONFIGURATOR:
-			return createInstanceConfigurator();
-		case FCMPackage.RULE_APPLICATION:
-			return createRuleApplication();
-		case FCMPackage.CONTAINER_RULE:
-			return createContainerRule();
-		case FCMPackage.CONFIG_OPTION:
-			return createConfigOption();
-		case FCMPackage.TEMPLATE_PORT:
-			return createTemplatePort();
-		case FCMPackage.PORT:
-			return createPort();
-		case FCMPackage.PORT_KIND:
-			return createPortKind();
-		case FCMPackage.DEPLOYMENT_PLAN:
-			return createDeploymentPlan();
-		case FCMPackage.DERIVED_ELEMENT:
-			return createDerivedElement();
-		case FCMPackage.COMP_IMPL_TEMPLATE:
-			return createCompImplTemplate();
-		case FCMPackage.IMPLEMENTATION_PROPERTIES:
-			return createImplementationProperties();
-		case FCMPackage.OPERATING_SYSTEM:
-			return createOperatingSystem();
-		case FCMPackage.TARGET_ARCHITECTURE:
-			return createTargetArchitecture();
-		case FCMPackage.CONFIGURATION:
-			return createConfiguration();
-		case FCMPackage.INTERCEPTION_RULE:
-			return createInterceptionRule();
-		case FCMPackage.TARGET:
-			return createTarget();
-		case FCMPackage.COMPILER_CHAIN:
-			return createCompilerChain();
-		case FCMPackage.FRAGMENT:
-			return createFragment();
-		case FCMPackage.COPY_ATTRIBUTE_VALUE:
-			return createCopyAttributeValue();
-		case FCMPackage.AUTO_INDEX:
-			return createAutoIndex();
-		case FCMPackage.AUTO_INDEX_PER_NODE:
-			return createAutoIndexPerNode();
-		case FCMPackage.INIT_PRECEDENCE:
-			return createInitPrecedence();
-		case FCMPackage.CONNECTOR_CONFIGURATION:
-			return createConnectorConfiguration();
-		case FCMPackage.BIND_TEMPLATE:
-			return createBindTemplate();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case FCMPackage.TEMPLATE: return createTemplate();
+			case FCMPackage.BINDING_HELPER: return createBindingHelper();
+			case FCMPackage.CONFIGURATION_PROPERTY: return createConfigurationProperty();
+			case FCMPackage.IMPLEMENTATION_GROUP: return createImplementationGroup();
+			case FCMPackage.ASSEMBLY: return createAssembly();
+			case FCMPackage.FLATTEN: return createFlatten();
+			case FCMPackage.COMP_TO_OOMAPPING: return createCompToOOmapping();
+			case FCMPackage.PROG_LANGUAGE: return createProgLanguage();
+			case FCMPackage.CODE_GEN_OPTIONS: return createCodeGenOptions();
+			case FCMPackage.INTERACTION_COMPONENT: return createInteractionComponent();
+			case FCMPackage.SINGLETON: return createSingleton();
+			case FCMPackage.CONNECTOR: return createConnector();
+			case FCMPackage.USE_INSTANCE_CONFIGURATOR: return createUseInstanceConfigurator();
+			case FCMPackage.INSTANCE_CONFIGURATOR: return createInstanceConfigurator();
+			case FCMPackage.RULE_APPLICATION: return createRuleApplication();
+			case FCMPackage.CONTAINER_RULE: return createContainerRule();
+			case FCMPackage.CONFIG_OPTION: return createConfigOption();
+			case FCMPackage.TEMPLATE_PORT: return createTemplatePort();
+			case FCMPackage.PORT: return createPort();
+			case FCMPackage.PORT_KIND: return createPortKind();
+			case FCMPackage.DEPLOYMENT_PLAN: return createDeploymentPlan();
+			case FCMPackage.DERIVED_ELEMENT: return createDerivedElement();
+			case FCMPackage.COMP_IMPL_TEMPLATE: return createCompImplTemplate();
+			case FCMPackage.IMPLEMENTATION_PROPERTIES: return createImplementationProperties();
+			case FCMPackage.OPERATING_SYSTEM: return createOperatingSystem();
+			case FCMPackage.TARGET_ARCHITECTURE: return createTargetArchitecture();
+			case FCMPackage.CONFIGURATION: return createConfiguration();
+			case FCMPackage.INTERCEPTION_RULE: return createInterceptionRule();
+			case FCMPackage.TARGET: return createTarget();
+			case FCMPackage.COMPILER_CHAIN: return createCompilerChain();
+			case FCMPackage.FRAGMENT: return createFragment();
+			case FCMPackage.COPY_ATTRIBUTE_VALUE: return createCopyAttributeValue();
+			case FCMPackage.AUTO_INDEX: return createAutoIndex();
+			case FCMPackage.AUTO_INDEX_PER_NODE: return createAutoIndexPerNode();
+			case FCMPackage.INIT_PRECEDENCE: return createInitPrecedence();
+			case FCMPackage.CONNECTOR_CONFIGURATION: return createConnectorConfiguration();
+			case FCMPackage.BIND_TEMPLATE: return createBindTemplate();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case FCMPackage.CONTAINER_RULE_KIND:
-			return createContainerRuleKindFromString(eDataType, initialValue);
-		case FCMPackage.INTERCEPTION_KIND:
-			return createInterceptionKindFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case FCMPackage.CONTAINER_RULE_KIND:
+				return createContainerRuleKindFromString(eDataType, initialValue);
+			case FCMPackage.INTERCEPTION_KIND:
+				return createInterceptionKindFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case FCMPackage.CONTAINER_RULE_KIND:
-			return convertContainerRuleKindToString(eDataType, instanceValue);
-		case FCMPackage.INTERCEPTION_KIND:
-			return convertInterceptionKindToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case FCMPackage.CONTAINER_RULE_KIND:
+				return convertContainerRuleKindToString(eDataType, instanceValue);
+			case FCMPackage.INTERCEPTION_KIND:
+				return convertInterceptionKindToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -237,7 +195,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -249,7 +206,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -261,7 +217,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -273,7 +228,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -285,7 +239,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -297,7 +250,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -309,7 +261,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -321,7 +272,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -333,7 +283,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -345,7 +294,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -357,7 +305,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -369,7 +316,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -381,7 +327,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -393,7 +338,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -405,7 +349,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -417,7 +360,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -429,7 +371,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -441,7 +382,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -453,7 +393,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -465,7 +404,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -477,7 +415,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -489,7 +426,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -501,7 +437,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -513,7 +448,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -525,7 +459,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -537,7 +470,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -549,7 +481,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -561,7 +492,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -573,7 +503,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -585,7 +514,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -597,7 +525,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -609,7 +536,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -621,7 +547,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -633,7 +558,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -645,7 +569,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -657,7 +580,6 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -669,22 +591,17 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public ContainerRuleKind createContainerRuleKindFromString(EDataType eDataType, String initialValue) {
 		ContainerRuleKind result = ContainerRuleKind.get(initialValue);
-		if (result == null)
-		{
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertContainerRuleKindToString(EDataType eDataType, Object instanceValue) {
@@ -694,22 +611,17 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public InterceptionKind createInterceptionKindFromString(EDataType eDataType, String initialValue) {
 		InterceptionKind result = InterceptionKind.get(initialValue);
-		if (result == null)
-		{
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertInterceptionKindToString(EDataType eDataType, Object instanceValue) {
@@ -719,18 +631,16 @@ public class FCMFactoryImpl extends EFactoryImpl implements FCMFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public FCMPackage getFCMPackage() {
-		return (FCMPackage) getEPackage();
+		return (FCMPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @deprecated
 	 * @generated
 	 */

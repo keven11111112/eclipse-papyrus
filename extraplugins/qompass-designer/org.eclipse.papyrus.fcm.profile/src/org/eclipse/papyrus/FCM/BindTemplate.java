@@ -24,11 +24,11 @@ import org.eclipse.uml2.uml.Type;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.BindTemplate#getActual <em>Actual</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.BindTemplate#getBase_Property <em>Base Property</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.BindTemplate#getActual <em>Actual</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.BindTemplate#getBase_Property <em>Base Property</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getBindTemplate()
  * @model
@@ -43,7 +43,6 @@ public interface BindTemplate extends EObject {
 	 * If the meaning of the '<em>Actual</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Actual</em>' reference list.
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getBindTemplate_Actual()
 	 * @model ordered="false"
@@ -58,7 +57,6 @@ public interface BindTemplate extends EObject {
 	 * If the meaning of the '<em>Base Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Property</em>' reference.
 	 * @see #setBase_Property(Property)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getBindTemplate_Base_Property()
@@ -71,9 +69,7 @@ public interface BindTemplate extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.BindTemplate#getBase_Property <em>Base Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Property</em>' reference.
+	 * @param value the new value of the '<em>Base Property</em>' reference.
 	 * @see #getBase_Property()
 	 * @generated
 	 */

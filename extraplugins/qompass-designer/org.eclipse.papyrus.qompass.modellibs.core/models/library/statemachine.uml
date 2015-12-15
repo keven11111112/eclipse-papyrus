@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:C_Cpp="http://www.eclipse.org/papyrus/C_Cpp/1" xmlns:FCM="http://www.eclipse.org/papyrus/FCM/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <uml:Model xmi:id="_ago_QOUTEd-P08Bciq_LqQ" name="statemachine">
     <ownedComment xmi:type="uml:Comment" xmi:id="_9BpKIOuLEeCTfOY57pgE3w" annotatedElement="_u-qioOUTEd-P08Bciq_LqQ">
       <body>Call event interceptor, interacts with state-machine. It will handle in particular call events that are intercepted by the port operations</body>
@@ -20,9 +20,6 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://QML_DISTRIBUTION/distribution.uml#_O6TiIDLUEd26WNosUASSSw"/>
     </packageImport>
     <packagedElement xmi:type="uml:Package" xmi:id="_i9AuoOUTEd-P08Bciq_LqQ" name="SMInterceptor">
-      <packageImport xmi:type="uml:PackageImport" xmi:id="_q2WCYOUTEd-P08Bciq_LqQ">
-        <importedPackage xmi:type="uml:Package" href="pathmap://QML_CORE/core.uml#_mMCK8PiPEd2UhpY2Y3WUyg"/>
-      </packageImport>
       <packageMerge xmi:type="uml:PackageMerge" xmi:id="_ttDuoP3HEeC1YdT2qA0bjA">
         <mergedPackage xmi:type="uml:Package" href="pathmap://QML_CORE/core.uml#_mMCK8PiPEd2UhpY2Y3WUyg"/>
       </packageMerge>
@@ -246,6 +243,9 @@
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_DEJCwF81EeGbQoflzrdx0g" name="rules">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_HtqOoF1DEeWbP6DS-3NPyQ" annotatedElement="_0k6cIF1CEeWbP6DS-3NPyQ">
+        <body>Container rule for an OO state machine. The main difference is that we use OO variants of the contained elements and replace the interception connector by an interception operation</body>
+      </ownedComment>
       <packagedElement xmi:type="uml:Class" xmi:id="_18qdsO67EeCZ9MjsZTV1zw" name="StateMachineWCallEvents">
         <ownedAttribute xmi:type="uml:Property" xmi:id="_LyxAEPTXEeCn1-FCrfecFg" name="callEventInterceptor" visibility="public" type="_u-qioOUTEd-P08Bciq_LqQ" aggregation="composite">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MGWDYPTXEeCn1-FCrfecFg" value="1"/>
@@ -396,6 +396,38 @@
           </end>
         </ownedConnector>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_0k6cIF1CEeWbP6DS-3NPyQ" name="LWStateMachineWCallEvents">
+        <generalization xmi:type="uml:Generalization" xmi:id="_9326sJUHEeWaQ-5NjVnmdw">
+          <general xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_-WNegNtxEd6nqsBVkgJEEA"/>
+        </generalization>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="__1jp8F1CEeWbP6DS-3NPyQ" name="eventPool" visibility="public" aggregation="composite">
+          <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_JRmo0PNAEeCovO8AYZymZQ"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_jB-bkGH9EeWEu6399scseQ" name="thread" visibility="public">
+          <type xmi:type="uml:Class" href="pathmap://QML_CORE/core.uml#_SiY_AP-EEd6628OhKk_dpg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:type="uml:Property" xmi:id="_2DZ0IJOMEeWHFMpMrhT5xw" name="m_currentState" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_J-bDAF3VEeWbP6DS-3NPyQ" name="[name]" specification="_e5QLgF1DEeWbP6DS-3NPyQ">
+          <language>C/C++</language>
+          <body>!xtend StateMachineGen.eventInterceptorOO</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_GGdugGH9EeWEu6399scseQ" name="LWStateMachineWCallEvents" specification="_xt1ogGH8EeWEu6399scseQ">
+          <language>C/C++</language>
+          <body>// create connection between thread and this class
+thread.connect_rLC(get_lc());</body>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_Sxi6AJLREeWyWIXHbEJ4ew" name="processEvents" visibility="package" specification="_YcqpwJLREeWyWIXHbEJ4ew">
+          <language>C/C++</language>
+          <body>!xtend StateMachineGen.processEvents
+
+</body>
+        </ownedBehavior>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_e5QLgF1DEeWbP6DS-3NPyQ" name="[name]" method="_J-bDAF3VEeWbP6DS-3NPyQ"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_xt1ogGH8EeWEu6399scseQ" name="LWStateMachineWCallEvents" method="_GGdugGH9EeWEu6399scseQ"/>
+        <ownedOperation xmi:type="uml:Operation" xmi:id="_YcqpwJLREeWyWIXHbEJ4ew" name="processEvents" method="_Sxi6AJLREeWyWIXHbEJ4ew"/>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_e8kikOUUEd-P08Bciq_LqQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fAD7cOUUEd-P08Bciq_LqQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -408,6 +440,12 @@
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/C_Cpp/1#/"/>
       </eAnnotations>
       <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusC_Cpp_PROFILES/C_Cpp.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_54PeIGH8EeWEu6399scseQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_54R6YGH8EeWEu6399scseQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
     </profileApplication>
   </uml:Model>
   <FCM:InteractionComponent xmi:id="_hanSUOUUEd-P08Bciq_LqQ" base_Class="_u-qioOUTEd-P08Bciq_LqQ"/>
@@ -464,6 +502,15 @@
   <FCM:DerivedElement xmi:id="_hQPjMHk8EeOh_8tymvdOOg" base_Element="_hQJckHk8EeOh_8tymvdOOg" source="_N3m-oF8wEeGerN33d-RdRg"/>
   <FCM:DerivedElement xmi:id="_hQW38Hk8EeOh_8tymvdOOg" base_Element="_hQSmgHk8EeOh_8tymvdOOg" source="_ZgY_oF8wEeGerN33d-RdRg"/>
   <FCM:Template xmi:id="_9beBINnwEeS6rKPQ4VNKkA" base_Element="_3GbAwCWSEeGB3KV6qwTHBw">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_7qhTUHkgEeOCpqruXGWNPw"/>
+  </FCM:Template>
+  <FCM:Template xmi:id="_yd5NYF3TEeWbP6DS-3NPyQ" base_Element="_e5QLgF1DEeWbP6DS-3NPyQ">
+    <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_nLe_sHJDEeOMF7YEvnQt5g"/>
+  </FCM:Template>
+  <FCM:ContainerRule xmi:id="_-GBU0F3YEeW4Af5fHX2Rfg" base_Class="_0k6cIF1CEeWbP6DS-3NPyQ" kind="LightWeightOORule"/>
+  <standard:Create xmi:id="_9F8wQGH8EeWEu6399scseQ" base_BehavioralFeature="_xt1ogGH8EeWEu6399scseQ"/>
+  <FCM:InterceptionRule xmi:id="_5u8BwJHLEeWxgKjui1HhNA" base_Operation="_e5QLgF1DEeWbP6DS-3NPyQ"/>
+  <FCM:Template xmi:id="_YfX_gJLREeWyWIXHbEJ4ew" base_Element="_YcqpwJLREeWyWIXHbEJ4ew">
     <helper xmi:type="FCM:BindingHelper" href="pathmap://QML_CORE/core.uml#_7qhTUHkgEeOCpqruXGWNPw"/>
   </FCM:Template>
 </xmi:XMI>

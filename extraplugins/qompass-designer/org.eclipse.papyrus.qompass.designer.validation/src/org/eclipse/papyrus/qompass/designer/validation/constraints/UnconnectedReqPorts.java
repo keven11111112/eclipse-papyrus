@@ -22,6 +22,6 @@ public class UnconnectedReqPorts extends UnconnectedPorts {
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
-		return super.validatePorts(ctx, false);
+		return super.validatePorts(ctx, true);
 	}
 }

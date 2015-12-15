@@ -92,6 +92,7 @@
             <constraint
                   class="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedProvPorts"
                   id="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedProvPorts_ID"
+                  isEnabledByDefault="false"
                   lang="Java"
                   mode="Batch"
                   name="org.eclipse.papyrus.qompass.designer.validation.constraints.UnconnectedProvPorts"
@@ -101,7 +102,7 @@
                   &quot;Qompass: {0}&quot;
                </message>
                <description>
-                  unconnected provided port
+                  Check whether a provided port is not connected. Typically, this is not problematic. Therefore, the rule is disabled by default.
                </description>
                <target
                      class="Property">
@@ -119,7 +120,7 @@
                   &quot;Qompass: {0}&quot;
                </message>
                <description>
-                  unconnected provided port
+                  Check whether a required port is not connected. This would result in an error, if the component owning the port tries to invoke a service through that port.
                </description>
                <target
                      class="Property">

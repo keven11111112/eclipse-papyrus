@@ -20,8 +20,6 @@ import org.eclipse.papyrus.FCM.FCMPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Auto Index Per Node</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
@@ -29,7 +27,6 @@ public class AutoIndexPerNodeImpl extends AutoIndexImpl implements AutoIndexPerN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected AutoIndexPerNodeImpl() {
@@ -39,7 +36,6 @@ public class AutoIndexPerNodeImpl extends AutoIndexImpl implements AutoIndexPerN
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override

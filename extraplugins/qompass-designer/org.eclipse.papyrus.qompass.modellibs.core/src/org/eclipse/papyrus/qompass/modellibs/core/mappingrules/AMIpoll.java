@@ -19,6 +19,7 @@ import java.util.Iterator;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
@@ -35,30 +36,28 @@ import org.eclipse.uml2.uml.Type;
  * A second difference is that we do not keep the normal methods in the same interface and prefix the
  * new ones. (which would probably be a good idea).
  *
- * @author ansgar
- *
  */
 public class AMIpoll implements IMappingRule {
 
+	private static final String IAMI_POLL = "IAMIPoll_"; //$NON-NLS-1$
+	private static final String AMI_POLL = "AMIPoll_"; //$NON-NLS-1$
 
 	@Override
-	public Interface getProvided(Port p, boolean update) {
-		return null;
-	}
-
-	@Override
-	public Interface getRequired(Port p, boolean update) {
-		Type type = p.getBase_Port().getType();
+	public Type calcDerivedType(Port p, boolean update) {
+		Type type = p.getType();
 		if (!(type instanceof Interface)) {
 			return null;
 		}
 
+		Class derivedType = MapUtil.getDerivedClass(p, AMI_POLL);
 		Interface typingInterface = (Interface) type;
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, "_", type, update); //$NON-NLS-1$
-		if (!update) {
-			return derivedInterface;
-		}
+		Interface derivedInterface = MapUtil.getDerivedInterface(p, IAMI_POLL);
+		MapUtil.addUsage(derivedType, derivedInterface);
 
+		if (!update) {
+			return derivedType;
+		}
+		
 		for (Operation operation : typingInterface.getOwnedOperations()) {
 			String name = operation.getName();
 
@@ -142,7 +141,7 @@ public class AMIpoll implements IMappingRule {
 			}
 		}
 
-		return derivedInterface;
+		return derivedType;
 	}
 
 	public static boolean hasOutParameters(Operation operation) {
@@ -157,6 +156,6 @@ public class AMIpoll implements IMappingRule {
 	@Override
 	public boolean needsUpdate(Port p) {
 		// TODO: insufficient condition
-		return (getRequired(p, false) == null);
+		return (calcDerivedType(p, false) == null);
 	}
 }

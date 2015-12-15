@@ -60,9 +60,19 @@ return a*b;</body>
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_5Vd9UDclEeKAhIrFXfR8zQ" name="ServerStateMachine">
             <region xmi:type="uml:Region" xmi:id="_57WRkDclEeKAhIrFXfR8zQ" name="Region1">
-              <transition xmi:type="uml:Transition" xmi:id="_8ZB08DclEeKAhIrFXfR8zQ" name="Transition0" source="_66D8kDclEeKAhIrFXfR8zQ" target="_66D8kDclEeKAhIrFXfR8zQ"/>
+              <transition xmi:type="uml:Transition" xmi:id="_8ZB08DclEeKAhIrFXfR8zQ" name="Transition0" source="_66D8kDclEeKAhIrFXfR8zQ" target="_66D8kDclEeKAhIrFXfR8zQ">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_EY7WsDdgEeWSIc6H4M1kfQ">
+                  <language>C++</language>
+                  <body>My opaque behavior</body>
+                </effect>
+              </transition>
               <transition xmi:type="uml:Transition" xmi:id="_-v4XkDclEeKAhIrFXfR8zQ" name="Transition1" source="_9f6kgDclEeKAhIrFXfR8zQ" target="_66D8kDclEeKAhIrFXfR8zQ"/>
-              <subvertex xmi:type="uml:State" xmi:id="_66D8kDclEeKAhIrFXfR8zQ" name="State0"/>
+              <subvertex xmi:type="uml:State" xmi:id="_66D8kDclEeKAhIrFXfR8zQ" name="State0">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_9fEx8Da6EeWzceOhsQmFCQ">
+                  <language>C++</language>
+                  <body>// This is a C++ operation body</body>
+                </entry>
+              </subvertex>
               <subvertex xmi:type="uml:Pseudostate" xmi:id="_9f6kgDclEeKAhIrFXfR8zQ" name="Initial0"/>
             </region>
           </ownedBehavior>

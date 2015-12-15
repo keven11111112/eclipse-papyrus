@@ -20,17 +20,16 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * Use a dedicated component that that is responsible for configuring component instances. The concept is primarily intented for container extensions. For instance, a container extension might provide reflection data about a component. In this case, the
- * instance configuration would create the value specifications using data available in the model
+ * Use a dedicated component that that is responsible for configuring component instances. The concept is primarily intented for container extensions. For instance, a container extension might provide reflection data about a component. In this case, the instance configuration would create the value specifications using data available in the model
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class <em>Base Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator <em>Configurator</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator <em>Configurator</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getUseInstanceConfigurator()
  * @model
@@ -44,7 +43,6 @@ public interface UseInstanceConfigurator extends EObject {
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getUseInstanceConfigurator_Base_Class()
@@ -57,9 +55,7 @@ public interface UseInstanceConfigurator extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 * @param value the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -72,7 +68,6 @@ public interface UseInstanceConfigurator extends EObject {
 	 * If the meaning of the '<em>Configurator</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Configurator</em>' reference.
 	 * @see #setConfigurator(InstanceConfigurator)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getUseInstanceConfigurator_Configurator()
@@ -85,9 +80,7 @@ public interface UseInstanceConfigurator extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.UseInstanceConfigurator#getConfigurator <em>Configurator</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Configurator</em>' reference.
+	 * @param value the new value of the '<em>Configurator</em>' reference.
 	 * @see #getConfigurator()
 	 * @generated
 	 */

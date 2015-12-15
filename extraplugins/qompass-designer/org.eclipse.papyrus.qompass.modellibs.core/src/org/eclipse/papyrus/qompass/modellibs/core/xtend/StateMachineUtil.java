@@ -215,6 +215,8 @@ public class StateMachineUtil {
 	 */
 	public static Package boundPackageRef(Type actual) {
 		for (Package nestedPkg : PackageUtil.getRootPackage(actual).getNestedPackages()) {
+			// search for bound package templates who are bound to the same actual
+			// TODO: search is ambiguous, if same actual is used more than once
 			if (nestedPkg.getTemplateBindings().size() > 0) {
 				TemplateBinding binding = nestedPkg.getTemplateBindings().get(0);
 				if (actual == TemplateUtils.getFirstActualFromBinding(binding)) {

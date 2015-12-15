@@ -38,8 +38,6 @@ import org.eclipse.uml2.uml.Type;
  */
 public class PushConsumer implements IMappingRule {
 
-	public static String PUSH_I_PREFIX = "Push_"; //$NON-NLS-1$
-
 	public static String PUSH_OP_PREFIX = "push"; //$NON-NLS-1$
 
 	public static String PUSH_OP_PARNAME = "data"; //$NON-NLS-1$
@@ -50,10 +48,11 @@ public class PushConsumer implements IMappingRule {
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PUSH_I_PREFIX, type, false);
+			Interface derivedInterface = MapUtil.getDerivedInterface(p, PushProducer.PUSH_I_PREFIX);
 			if (derivedInterface == null) {
 				return true;
 			}
+		
 			Operation derivedOperation = derivedInterface.getOperation(PUSH_OP_PREFIX, null, null);
 			if (derivedOperation == null) {
 				return true;
@@ -75,18 +74,17 @@ public class PushConsumer implements IMappingRule {
 	}
 
 	@Override
-	public Interface getProvided(Port p, boolean update) {
+	public Type calcDerivedType(Port p, boolean update) {
 		Log.log(IStatus.INFO, Log.CALC_PORTKIND,
 				p.getKind().getBase_Class().getName() + " => GetProvided on " + p.getBase_Port().getName());
-		Type type = p.getBase_Port().getType();
+		Type type = p.getType();
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PUSH_I_PREFIX, type, update);
+			Interface derivedInterface = MapUtil.getDerivedInterface(p, PushProducer.PUSH_I_PREFIX, update);
 			if (!update) {
 				return derivedInterface;
 			}
-
 			if (derivedInterface == null) {
 				// may happen, if within template (do not want creation of derived interfaces in template)
 				return null;
@@ -108,10 +106,5 @@ public class PushConsumer implements IMappingRule {
 		} else {
 			return null;
 		}
-	}
-
-	@Override
-	public Interface getRequired(Port p, boolean update) {
-		return null;
 	}
 }

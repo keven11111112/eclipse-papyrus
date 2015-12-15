@@ -22,6 +22,7 @@ import org.eclipse.papyrus.FCM.util.MapUtil;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
@@ -40,6 +41,8 @@ import org.eclipse.uml2.uml.Type;
 public class PullConsumer implements IMappingRule {
 
 	public static String PULL_I_PREFIX = "PullConsumer_"; //$NON-NLS-1$
+	
+	public static String PULL_C_PREFIX = "CPullConsumer_"; //$NON-NLS-1$
 
 	public static String PULL_OP_NAME = "pull"; //$NON-NLS-1$
 
@@ -50,17 +53,12 @@ public class PullConsumer implements IMappingRule {
 	public static String BOOL_QNAME = "corba::Boolean"; //$NON-NLS-1$
 
 	@Override
-	public Interface getProvided(Port p, boolean update) {
-		return null;
-	}
-
-	@Override
 	public boolean needsUpdate(Port p) {
-		Type type = p.getBase_Port().getType();
+		Type type = p.getType();
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PULL_I_PREFIX, type, false);
+			Interface derivedInterface = MapUtil.getDerivedInterface(p, PULL_I_PREFIX);
 			if (derivedInterface == null) {
 				return true;
 			}
@@ -92,7 +90,7 @@ public class PullConsumer implements IMappingRule {
 	}
 
 	@Override
-	public Interface getRequired(Port p, boolean update) {
+	public Type calcDerivedType(Port p, boolean update) {
 		org.eclipse.uml2.uml.Port umlPort = p.getBase_Port();
 		Element owner = umlPort.getOwner();
 		String ownerStr = ""; //$NON-NLS-1$
@@ -101,18 +99,19 @@ public class PullConsumer implements IMappingRule {
 		}
 		Log.log(IStatus.INFO, Log.CALC_PORTKIND,
 				p.getKind().getBase_Class().getName() + " => GetRequired on " + umlPort.getName() + ownerStr);
-		Type type = umlPort.getType();
+		Type type = p.getType();
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, PULL_I_PREFIX, type, update);
+			Class derivedClass = MapUtil.getDerivedClass(p, PULL_C_PREFIX, update);
+			Interface derivedInterface = MapUtil.getDerivedInterface(p, PULL_I_PREFIX, update);
+			MapUtil.addUsage(derivedClass, derivedInterface);
 			if (!update) {
-				return derivedInterface;
+				return derivedClass;
 			}
-			if (derivedInterface == null) {
+			if (derivedInterface ==  null) {
 				return null;
 			}
-
 			// check whether operation already exists. Create, if not
 			Operation derivedOperationPull = derivedInterface.getOperation(PULL_OP_NAME, null, null);
 			if (derivedOperationPull == null) {
@@ -153,7 +152,7 @@ public class PullConsumer implements IMappingRule {
 				}
 			}
 
-			return derivedInterface;
+			return derivedClass;
 		} else {
 			return null;
 		}

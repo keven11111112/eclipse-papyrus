@@ -22,11 +22,11 @@ import org.eclipse.uml2.uml.Element;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.DerivedElement#getBase_Element <em>Base Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.DerivedElement#getSource <em>Source</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.DerivedElement#getBase_Element <em>Base Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.DerivedElement#getSource <em>Source</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getDerivedElement()
  * @model
@@ -40,7 +40,6 @@ public interface DerivedElement extends EObject {
 	 * If the meaning of the '<em>Base Element</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Element</em>' reference.
 	 * @see #setBase_Element(Element)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getDerivedElement_Base_Element()
@@ -53,9 +52,7 @@ public interface DerivedElement extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.DerivedElement#getBase_Element <em>Base Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Element</em>' reference.
+	 * @param value the new value of the '<em>Base Element</em>' reference.
 	 * @see #getBase_Element()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface DerivedElement extends EObject {
 	 * If the meaning of the '<em>Source</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Element)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getDerivedElement_Source()
@@ -81,9 +77,7 @@ public interface DerivedElement extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.DerivedElement#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Source</em>' reference.
+	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */

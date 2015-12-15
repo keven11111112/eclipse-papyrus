@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.Assembly#getBase_Class <em>Base Class</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.Assembly#getBase_Class <em>Base Class</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getAssembly()
  * @model
@@ -45,7 +45,6 @@ public interface Assembly extends EObject {
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getAssembly_Base_Class()
@@ -58,9 +57,7 @@ public interface Assembly extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Assembly#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 * @param value the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */

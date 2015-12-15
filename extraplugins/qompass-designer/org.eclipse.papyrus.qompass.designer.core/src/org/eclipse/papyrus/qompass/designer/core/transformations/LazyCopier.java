@@ -828,6 +828,19 @@ public class LazyCopier extends Copier {
 					for (Iterator<EObject> k = resolveProxies ? source.iterator() : source.basicIterator(); k.hasNext();) {
 						EObject referencedEObject = k.next();
 						EObject copyReferencedEObject = get(referencedEObject);
+						// check filters (modification compared to method in superclass)
+						boolean noCopy = false;
+						for (PreCopyListener listener : preCopyListeners) {
+							EObject result = listener.preCopyEObject(this, referencedEObject);
+							if (result != referencedEObject) {
+								copyReferencedEObject = result;
+								noCopy = (result == null);
+								break;
+							}
+						}
+						if (noCopy) {
+							continue;
+						}
 						if (copyReferencedEObject == null) {
 							if (useOriginalReferences && !isBidirectional) {
 								target.addUnique(index, referencedEObject);

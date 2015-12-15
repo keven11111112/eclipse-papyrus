@@ -27,7 +27,6 @@ import org.eclipse.papyrus.qompass.modellibs.core.Activator;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -63,17 +62,11 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class TemplatePort implements ITemplateMappingRule {
 
 	@Override
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, boolean update)
-	{
+	public Type calcDerivedType(org.eclipse.papyrus.FCM.Port p, boolean update) {
+		// TODO: unify template mapping rule and normal one.
 		return null;
 	}
-
-	@Override
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, boolean update)
-	{
-		return null;
-	}
-
+	
 	@Override
 	public PortKind getBoundType(org.eclipse.papyrus.FCM.Port p)
 	{
@@ -139,7 +132,7 @@ public class TemplatePort implements ITemplateMappingRule {
 				}
 
 				// create a bound element of the extended port. Add bound class to derived interface class
-				ti.bindNamedElement(extendedPort);
+				ti.bindElement(extendedPort);
 			} catch (TransformationException e) {
 				Activator.log.error("Could not create template binding", e);
 			}

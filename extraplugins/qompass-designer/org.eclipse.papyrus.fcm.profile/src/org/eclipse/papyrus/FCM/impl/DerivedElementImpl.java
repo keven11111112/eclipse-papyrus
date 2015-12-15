@@ -27,11 +27,11 @@ import org.eclipse.uml2.uml.Element;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl#getBase_Element <em>Base Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl#getSource <em>Source</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl#getBase_Element <em>Base Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.DerivedElementImpl#getSource <em>Source</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -40,7 +40,6 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	 * The cached value of the '{@link #getBase_Element() <em>Base Element</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_Element()
 	 * @generated
 	 * @ordered
@@ -51,7 +50,6 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -61,7 +59,6 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected DerivedElementImpl() {
@@ -71,7 +68,6 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -82,18 +78,16 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Element getBase_Element() {
 		if (base_Element != null && base_Element.eIsProxy()) {
-			InternalEObject oldBase_Element = (InternalEObject) base_Element;
-			base_Element = (Element) eResolveProxy(oldBase_Element);
+			InternalEObject oldBase_Element = (InternalEObject)base_Element;
+			base_Element = (Element)eResolveProxy(oldBase_Element);
 			if (base_Element != oldBase_Element) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT, oldBase_Element, base_Element));
-				}
 			}
 		}
 		return base_Element;
@@ -102,7 +96,6 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Element basicGetBase_Element() {
@@ -112,33 +105,29 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_Element(Element newBase_Element) {
 		Element oldBase_Element = base_Element;
 		base_Element = newBase_Element;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT, oldBase_Element, base_Element));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Element getSource() {
 		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject) source;
-			source = (Element) eResolveProxy(oldSource);
+			InternalEObject oldSource = (InternalEObject)source;
+			source = (Element)eResolveProxy(oldSource);
 			if (source != oldSource) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.DERIVED_ELEMENT__SOURCE, oldSource, source));
-				}
 			}
 		}
 		return source;
@@ -147,7 +136,6 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Element basicGetSource() {
@@ -157,37 +145,30 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setSource(Element newSource) {
 		Element oldSource = source;
 		source = newSource;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.DERIVED_ELEMENT__SOURCE, oldSource, source));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
-			if (resolve) {
-				return getBase_Element();
-			}
-			return basicGetBase_Element();
-		case FCMPackage.DERIVED_ELEMENT__SOURCE:
-			if (resolve) {
-				return getSource();
-			}
-			return basicGetSource();
+			case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
+				if (resolve) return getBase_Element();
+				return basicGetBase_Element();
+			case FCMPackage.DERIVED_ELEMENT__SOURCE:
+				if (resolve) return getSource();
+				return basicGetSource();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,18 +176,17 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
-			setBase_Element((Element) newValue);
-			return;
-		case FCMPackage.DERIVED_ELEMENT__SOURCE:
-			setSource((Element) newValue);
-			return;
+			case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
+				setBase_Element((Element)newValue);
+				return;
+			case FCMPackage.DERIVED_ELEMENT__SOURCE:
+				setSource((Element)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,18 +194,17 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
-			setBase_Element((Element) null);
-			return;
-		case FCMPackage.DERIVED_ELEMENT__SOURCE:
-			setSource((Element) null);
-			return;
+			case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
+				setBase_Element((Element)null);
+				return;
+			case FCMPackage.DERIVED_ELEMENT__SOURCE:
+				setSource((Element)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,16 +212,15 @@ public class DerivedElementImpl extends EObjectImpl implements DerivedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
-			return base_Element != null;
-		case FCMPackage.DERIVED_ELEMENT__SOURCE:
-			return source != null;
+			case FCMPackage.DERIVED_ELEMENT__BASE_ELEMENT:
+				return base_Element != null;
+			case FCMPackage.DERIVED_ELEMENT__SOURCE:
+				return source != null;
 		}
 		return super.eIsSet(featureID);
 	}

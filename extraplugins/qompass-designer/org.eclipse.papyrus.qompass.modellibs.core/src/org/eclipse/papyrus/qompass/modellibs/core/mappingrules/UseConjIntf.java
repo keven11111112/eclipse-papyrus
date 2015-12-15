@@ -19,12 +19,12 @@ import java.util.Iterator;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Type;
-
 
 /**
  * Use a conjugated interface (!= conjugated port), i.e. an interface in which the roles "in" and "out"
@@ -39,26 +39,26 @@ import org.eclipse.uml2.uml.Type;
  */
 public class UseConjIntf implements IMappingRule {
 
-	@Override
-	public Interface getProvided(Port p, boolean update) {
-		return null;
-	}
+	private static final String CONJ_INTF_TYPE = "ConjIntfType_"; //$NON-NLS-1$
+	private static final String CONJ_INTF = "ConjIntf_"; //$NON-NLS-1$
 
 	@Override
-	public Interface getRequired(Port p, boolean update) {
+	public Type calcDerivedType(Port p, boolean update) {
 		Type type = p.getBase_Port().getType();
 		if (!(type instanceof Interface)) {
 			return null;
 		}
 
 		Interface typingInterface = (Interface) type;
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, "_", type, update); //$NON-NLS-1$
+		Interface derivedInterface = MapUtil.getDerivedInterface(p, CONJ_INTF, update);
+		Class derivedType = MapUtil.getDerivedClass(p, CONJ_INTF_TYPE, update);
 		if (!update) {
-			return derivedInterface;
+			return derivedType;
 		}
 		if (derivedInterface == null) {
 			return null;
 		}
+		MapUtil.addUsage(derivedType, derivedInterface);
 		for (Operation operation : typingInterface.getOwnedOperations()) {
 			String name = operation.getName();
 
@@ -120,19 +120,20 @@ public class UseConjIntf implements IMappingRule {
 				}
 			}
 		}
-		return derivedInterface;
+		return derivedType;
 	}
 
 	@Override
 	public boolean needsUpdate(Port p) {
-		Type type = p.getBase_Port().getType();
+		Type type = p.getType();
 		if (!(type instanceof Interface)) {
 			return false;
 		}
 
 		Interface typingInterface = (Interface) type;
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, "_", type, false); //$NON-NLS-1$
-		if (derivedInterface == null) {
+		Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, CONJ_INTF);
+		Class derivedType = MapUtil.getOrCreateDerivedClass(p, CONJ_INTF_TYPE);
+		if ((derivedInterface == null) || (derivedType == null)) {
 			return true;
 		}
 		for (Operation operation : typingInterface.getOwnedOperations()) {

@@ -24,18 +24,42 @@ import org.eclipse.papyrus.FCM.DerivedElement;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.PortKind;
 import org.eclipse.papyrus.FCM.TemplatePort;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageMerge;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.TemplateSignature;
+import org.eclipse.uml2.uml.TemplateableElement;
 import org.eclipse.uml2.uml.Type;
 
 
-public class MapUtil
-{
+/**
+ * This class is responsible for creating derived types associated with ports. The derived
+ * type is the class that will type the port and contain imported and used interfaces depending
+ * on the FCM type and kind.
+ * A particular question related to the derived types is into which package we can place them
+ * within the type hierarchy:
+ * (1) Of course, the package must be writable. That means, it must not belong to an imported library.
+ * (2) The source type must be clearly identifiable.
+ * (3) If a template get's instantiated, derived types within (if we place them there) might
+ * need (re-) instantiation. Imagine AMI_ interface that contains some of I's method. The creation of an AMI_I type within the template
+ * 
+ * Therefore, a global "derived types" package is created within the model that owns the port. This
+ * package contains the full folder hierarchy of the original type and places the elements there.
+ * TODO: Align with package template instantiation => create type specific sub-folder, e.g. kind_type. Use package specific side-folders.
+ * Need specific solution for elements within template (placing into same template is finally not a good idea).
+ * Idea of package template (and the possibility to extend) was, that common elements are instantiated once. Thus, we will have interfaceBased_<intfName>/UseInterface/Use.cpp,
+ * not UseInterface_<intfName>/Use.cpp
+ * [Users choice to define template with additional package or not?]
+ */
+public class MapUtil {
+
+	private static final String DERIVED_TYPES = "derivedTypes"; //$NON-NLS-1$
 
 	// specific treatment of "root" model that is created by eC3M for deployment
 	// It avoids that copies of derived interfaces are created at different places
@@ -45,31 +69,69 @@ public class MapUtil
 
 	public static final String MAPPING_RULE_ID = "fcmPortMappingRule"; //$NON-NLS-1$
 
+	public enum CREATE_KIND {
+		CLASS, INTERFACE, NONE
+	}
+
 	/**
-	 * return the top-level owner of an element. This function returns the same value
-	 * as getModel, if the top-level element is a model. While this is the case for
-	 * models, model libraries have a top-level package (not a model). In this case,
-	 * getTop returns the top-level package whereas getModel would return null.
+	 * Get the template signature of a templateable element (typically a package). The class must
+	 * (1) either own the signature
+	 * (2) or merge with a package which owns the signature.
+	 * Qompass enables the "extension" of existing packages via the package merge mechanism
+	 *
+	 * @param template
+	 *            The potential template
+	 * @return the signature or null, if none can be found.
+	 */
+	public static TemplateSignature getSignature(TemplateableElement template) {
+		for (Element element : template.getOwnedElements()) {
+			if (element instanceof TemplateSignature) {
+				return (TemplateSignature) element;
+			}
+		}
+
+		// enable multiple package templates sharing the same signature.
+		if (template instanceof Package) {
+			Package pkg = (Package) template;
+			for (PackageMerge pkgImport : pkg.getPackageMerges()) {
+				Package importedPkg = pkgImport.getMergedPackage();
+				return getSignature(importedPkg);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Return the top-level owner of an element. This function returns the same value
+	 * as getModel, if the top-level element is a model and not contained in a template
+	 * While this is the case for models, model libraries have a top-level package (not
+	 * a model). In this case, getTop returns the top-level package whereas getModel
+	 * would return null.
+	 * In case of a package owning a signature, it returns this package instead of the
+	 * top level package. The reason is that the derived types might reference elements
+	 * of the template signature which would be undefined outside.
 	 *
 	 * @param element
+	 *            An element of which we want to query
 	 * @return the top-level owning package
 	 */
-	public static Package getTop(Element element)
-	{
+	public static Package getTop(Element element) {
 		while (element != null) {
 			Element owner = element.getOwner();
 			if (owner == null) {
 				if (element instanceof Package) {
 					return (Package) element;
 				}
-			}
-			else if ((owner instanceof Package) && (owner.getOwner() == null) &&
+			} else if ((owner instanceof Package) && (owner.getOwner() == null) &&
 					((Package) owner).getName().equals(rootModelName)) {
 				// Hack: assure that no new derived interface folder is created in "root" model
 				// that eC3M creates for deployment
 				if (element instanceof Package) {
 					// return (Package)element;
 				}
+			}
+			if ((element instanceof Package) && (getSignature((Package) element) != null)) {
+				return (Package) element;
 			}
 			element = owner;
 		}
@@ -82,8 +144,7 @@ public class MapUtil
 	 * @param element
 	 * @return
 	 */
-	public static DerivedElement applyDE(Element element)
-	{
+	public static DerivedElement applyDE(Element element) {
 		Stereotype stereotype = element.getApplicableStereotype("FCM::DerivedElement"); //$NON-NLS-1$
 		if (stereotype != null) {
 			EObject alreadyApplied = element.getStereotypeApplication(stereotype);
@@ -108,8 +169,7 @@ public class MapUtil
 	 *            the name of a package that should be be returned.
 	 * @return a package
 	 */
-	public static Package getAndCreate(Package root, String name, boolean createOnDemand)
-	{
+	public static Package getAndCreate(Package root, String name, boolean createOnDemand) {
 		NamedElement pkg = root.getOwnedMember(name);
 		if ((pkg == null) && createOnDemand) {
 			pkg = root.createNestedPackage(name);
@@ -118,63 +178,20 @@ public class MapUtil
 	}
 
 	/**
-	 * Get or create a derived interface for a port using the convention that the interface name
-	 * is a concatenation (separated by parameter separation) of the port kind name and the type name.
-	 *
-	 * @param kind
-	 *            the port kind
-	 * @param separation
-	 *            separation string between kind and type name
-	 * @param type
-	 *            the type of the port
-	 * @return
-	 */
-	public static Interface getOrCreateDerivedInterface(Port port, String separation, Type type)
-	{
-		return getOrCreateDerivedInterface(port, separation, type, false);
-	}
-
-	/**
-	 * Get a derived interface for a port using the convention that the interface name
-	 * is a concatenation (separated by parameter separation) of the port kind name and the type name.
-	 *
-	 * @param kind
-	 *            the port kind
-	 * @param separation
-	 *            separation string between kind and type name
-	 * @param type
-	 *            the type of the port
-	 * @return
-	 */
-	public static Interface getDerivedInterface(Port port, String separation, Type type)
-	{
-		return getOrCreateDerivedInterface(port, separation, type, true);
-	}
-
-	/**
-	 * Get a derived interface for a port using the convention that the interface name
-	 * is a concatenation (separated by parameter separation) of the port kind name and the type name.
+	 * Get or create a derived interface for a port using a fixed prefix
+	 * type name
 	 *
 	 * @param port
-	 *            the port, for which we create the interface. Port (its kind attribute) is used to determine name
-	 * @param separation
-	 *            separation string between kind and type name
+	 *            The port
+	 * @param prefix
+	 *            prefix string
 	 * @param type
-	 *            the type of the port
-	 * @param createOnDemand
-	 *            if true, create an interface on demand (otherwise, only existing ones will be returned)
-	 * @return
+	 *            type name
+	 * @return the derived interface or null (if it cannot be created)
 	 */
-	public static Interface getOrCreateDerivedInterface(Port port, String separation, Type type, boolean createOnDemand)
-	{
-		if (port == null) {
-			return null;
-		}
-		PortKind kind = port.getKind();
-		if (kind == null) {
-			return null;
-		}
-		return getOrCreateDerivedInterfaceIntern(port, kind.getBase_Class().getName() + separation, type, createOnDemand);
+	public static Class getDerivedClass(Port port, String prefix) {
+		Type type = getOrCreateDerivedTypeIntern(port, prefix, port.getType(), CREATE_KIND.NONE);
+		return type instanceof Class ? (Class) type : null;
 	}
 
 	/**
@@ -189,9 +206,25 @@ public class MapUtil
 	 *            type name
 	 * @return the derived interface or null (if it cannot be created)
 	 */
-	public static Interface getOrCreateDerivedInterfaceFP(Port port, String prefix, Type type)
-	{
-		return getOrCreateDerivedInterfaceIntern(port, prefix, type, false);
+	public static Class getDerivedClass(Port port, String prefix, boolean update) {
+		return update ? getOrCreateDerivedClass(port, prefix) : getDerivedClass(port, prefix);
+	}
+
+	/**
+	 * Get a derived interface of a port. The interface is searched within the derived types
+	 * folder based on the passed prefix
+	 *
+	 * @param port
+	 *            The port
+	 * @param prefix
+	 *            prefix string
+	 * @param type
+	 *            FCM port type
+	 * @return the derived interface or null (if it cannot be created)
+	 */
+	public static Interface getDerivedInterface(Port port, String prefix) {
+		Type type = getOrCreateDerivedTypeIntern(port, prefix, port.getType(), CREATE_KIND.NONE);
+		return type instanceof Interface ? (Interface) type : null;
 	}
 
 	/**
@@ -204,30 +237,49 @@ public class MapUtil
 	 *            prefix string
 	 * @param type
 	 *            type name
-	 * @param createOnDemand
-	 *            if true, create interfaces on demand
 	 * @return the derived interface or null (if it cannot be created)
 	 */
-	public static Interface getOrCreateDerivedInterfaceFP(Port port, String prefix, Type type, boolean createOnDemand)
-	{
-		return getOrCreateDerivedInterfaceIntern(port, prefix, type, createOnDemand);
+	public static Interface getDerivedInterface(Port port, String prefix, boolean update) {
+		return update ? getOrCreateDerivedInterface(port, prefix) : getDerivedInterface(port, prefix);
 	}
 
-
 	/**
-	 * Get a derived interface for a port using the name given by concatenation of prefix and
+	 * Get or create a derived interface for a port using a fixed prefix
 	 * type name
 	 *
+	 * @param port
+	 *            The port
 	 * @param prefix
 	 *            prefix string
 	 * @param type
 	 *            type name
-	 * @return the derived interface or null
+	 * @param createKind
+	 *            if non NONE, create either an interfaces or a class, if it does not exist yet
+	 * @return the derived interface or null (if it cannot be created)
 	 */
-	public static Interface getDerivedInterfaceFP(Port port, String prefix, Type type)
-	{
-		return getOrCreateDerivedInterfaceIntern(port, prefix, type, true);
+	public static Class getOrCreateDerivedClass(Port port, String prefix) {
+		Type type = getOrCreateDerivedTypeIntern(port, prefix, port.getType(), CREATE_KIND.CLASS);
+		return type instanceof Class ? (Class) type : null;
 	}
+
+	/**
+	 * Get or create a derived interface for a port using a fixed prefix
+	 * type name
+	 *
+	 * @param port
+	 *            The port
+	 * @param prefix
+	 *            prefix string
+	 * @param type
+	 *            type name
+	 * @return the derived interface or null (if it cannot be created)
+	 */
+	public static Interface getOrCreateDerivedInterface(Port port, String prefix) {
+		Type type = getOrCreateDerivedTypeIntern(port, prefix, port.getType(), CREATE_KIND.INTERFACE);
+		return type instanceof Interface ? (Interface) type : null;
+	}
+
+
 
 	/**
 	 * This function returns a Package reference that corresponds to a qualified name.
@@ -283,30 +335,29 @@ public class MapUtil
 	 *            prefix string
 	 * @param type
 	 *            type name
-	 * @param getOnly
-	 *            if true, do not create non-existing elements
+	 * @param createKind
+	 *            if non NONE, create either an interfaces or a class, if it does not exist yet
 	 * @return
 	 */
-	private static Interface getOrCreateDerivedInterfaceIntern(Port port, String prefix, Type type, boolean createOnDemand)
-	{
-		String interfaceName = "D_" + prefix + type.getName(); //$NON-NLS-1$
+	private static Type getOrCreateDerivedTypeIntern(Port port, String prefix, Type type, CREATE_KIND createKind) {
+		String typeName = prefix + type.getName();
 
 		// create derived element in "derivedInterface" package within the model owning
 		// the port (which must be an FCM model, since the port carries the FCM stereotype)
 		Package baseModelOfPort = getTop(port.getBase_Port());
-		Package derivedInterfaces = getAndCreate(baseModelOfPort, "derivedInterfaces", createOnDemand); //$NON-NLS-1$
-		if (derivedInterfaces != null) {
-			Package owner = getAndCreate(derivedInterfaces, type.allNamespaces(), createOnDemand);
+		// handle specific case of type within template. Place derived type into same template.
+		Package derivedTypes = getAndCreate(baseModelOfPort, DERIVED_TYPES, createKind != CREATE_KIND.NONE);
+		if (derivedTypes != null) {
+			Package owner = getAndCreate(derivedTypes, type.allNamespaces(), createKind != CREATE_KIND.NONE);
 			Interface intf = null;
 
-			PackageableElement pe = owner.getPackagedElement(interfaceName);
-			if (pe instanceof Interface) {
-				// interface already exists
-				return (Interface) pe;
-			}
-			else if (createOnDemand) {
-				// System.out.println ("Derived port types: create new interface " + interfaceName + " in package " + owner.getQualifiedName ());
-				intf = owner.createOwnedInterface(interfaceName);
+			PackageableElement pe = owner.getPackagedElement(typeName);
+			if (pe instanceof Type) {
+				// type already exists
+				return (Type) pe;
+			} else if (createKind == CREATE_KIND.INTERFACE) {
+				// System.out.println ("Derived port types: create new interface " + typeName + " in package " + owner.getQualifiedName ());
+				intf = owner.createOwnedInterface(typeName);
 
 				// System.out.println ("Derived port types: Apply derived stereotype annotation to interface: " + intf.getQualifiedName());
 				DerivedElement de = applyDE(intf);
@@ -315,10 +366,21 @@ public class MapUtil
 					de.setSource(type);
 				}
 				return intf;
+			} else if (createKind == CREATE_KIND.CLASS) {
+				// System.out.println ("Derived port types: create new interface " + typeName + " in package " + owner.getQualifiedName ());
+				Class newType = owner.createOwnedClass(typeName, false);
+
+				// System.out.println ("Derived port types: Apply derived stereotype annotation to interface: " + intf.getQualifiedName());
+				DerivedElement de = applyDE(newType);
+				if (de != null) {
+					// de may be null, if FCM is not properly applied
+					de.setSource(type);
+				}
+				return newType;
 			}
 		}
-		// instead of returning null, return a dummy interface that indicates the user that an element needs updating.
 
+		// instead of returning null, return a dummy interface that indicates the user that an element needs updating.
 		PackageableElement portKinds = baseModelOfPort.getImportedMember("PortKinds"); //$NON-NLS-1$
 		if (portKinds instanceof Package) {
 			PackageableElement pe = ((Package) portKinds).getPackagedElement("Please update derived elements"); //$NON-NLS-1$
@@ -330,34 +392,16 @@ public class MapUtil
 		return null;
 	}
 
+	public static void addRealization(Class portType, Interface providedInterface) {
+		if (!portType.getImplementedInterfaces().contains(providedInterface)) {
+			portType.createInterfaceRealization(null, providedInterface);
+		}
+	}
 
-	/**
-	 * Calculate derived required interface in function of port type and kind
-	 *
-	 * @param port
-	 *            the port, for which the calculation should be done
-	 * @return
-	 */
-	public static Interface getProvidedInterface(final Port port)
-	{
-		if (port.getBase_Port() == null) {
-			// should not happen, but can occur in case of corrupted XMI files
-			return null;
+	public static void addUsage(Class portType, Interface usedInterface) {
+		if (!portType.getUsedInterfaces().contains(usedInterface)) {
+			portType.createUsage(usedInterface);
 		}
-		PortKind portKind = port.getKind();
-		if (portKind == null) {
-			if (port.getBase_Port().getProvideds().size() > 0) {
-				return port.getBase_Port().getProvideds().get(0);
-			}
-		}
-		else if (portKind.getBase_Class() != null) {
-			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
-			final IMappingRule mappingRule = getMappingRule(ruleName);
-			if (mappingRule != null) {
-				return mappingRule.getProvided(port, false);
-			}
-		}
-		return null;
 	}
 
 	/**
@@ -367,27 +411,22 @@ public class MapUtil
 	 *            the port, for which the calculation should be done
 	 * @return
 	 */
-	public static Interface getRequiredInterface(final Port port)
-	{
-		PortKind portKind = port.getKind();
+	public static Type getDerivedType(final Port port) {
 		if (port.getBase_Port() == null) {
 			// should not happen, but can occur in case of corrupted XMI files
 			return null;
 		}
-		if (portKind == null) {
-			if (port.getBase_Port().getRequireds().size() > 0) {
-				return port.getBase_Port().getRequireds().get(0);
-			}
-		}
-		else if (portKind.getBase_Class() != null) {
+		PortKind portKind = port.getKind();
+		if (portKind != null) {
 			String ruleName = portKind.isExtendedPort() ? "ExtendedPort" : portKind.getBase_Class().getName(); //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if (mappingRule != null) {
-				return mappingRule.getRequired(port, false);
+				return mappingRule.calcDerivedType(port, false);
 			}
 		}
 		return null;
 	}
+
 
 	/**
 	 * Obtain the mapping rule for a port when the name of the portKind is given
@@ -397,8 +436,7 @@ public class MapUtil
 	 *
 	 * @return the mapping rule or null, if no rule could be found
 	 */
-	public static IMappingRule getMappingRule(String portKindName)
-	{
+	public static IMappingRule getMappingRule(String portKindName) {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] configElements = reg.getConfigurationElementsFor(Activator.PLUGIN_ID + "." + MAPPING_RULE_ID); //$NON-NLS-1$
 		for (IConfigurationElement configElement : configElements) {
@@ -447,8 +485,7 @@ public class MapUtil
 		if (port.getBase_Port() == null) {
 			// should not happen, but can occur in case of corrupted XMI files
 			return null;
-		}
-		else {
+		} else {
 			String ruleName = "TemplatePort"; //$NON-NLS-1$
 			final IMappingRule mappingRule = getMappingRule(ruleName);
 			if (mappingRule instanceof ITemplateMappingRule) {
@@ -468,8 +505,8 @@ public class MapUtil
 		final IMappingRule mappingRule = getMappingRule(port);
 
 		if (mappingRule != null) {
-			mappingRule.getProvided(port, true);
-			mappingRule.getRequired(port, true);
+			Type type = mappingRule.calcDerivedType(port, true);
+			port.getBase_Port().setType(type);
 			if (mappingRule instanceof ITemplateMappingRule) {
 				((ITemplateMappingRule) mappingRule).updateBinding(port);
 			}

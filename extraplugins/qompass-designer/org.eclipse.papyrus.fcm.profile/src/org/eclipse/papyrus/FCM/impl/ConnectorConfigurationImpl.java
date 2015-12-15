@@ -28,11 +28,11 @@ import org.eclipse.uml2.uml.Slot;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl#getBase_Slot <em>Base Slot</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl#getConnector <em>Connector</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl#getBase_Slot <em>Base Slot</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.ConnectorConfigurationImpl#getConnector <em>Connector</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -41,7 +41,6 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	 * The cached value of the '{@link #getBase_Slot() <em>Base Slot</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_Slot()
 	 * @generated
 	 * @ordered
@@ -52,7 +51,6 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	 * The cached value of the '{@link #getConnector() <em>Connector</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getConnector()
 	 * @generated
 	 * @ordered
@@ -62,7 +60,6 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ConnectorConfigurationImpl() {
@@ -72,7 +69,6 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -83,18 +79,16 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Slot getBase_Slot() {
 		if (base_Slot != null && base_Slot.eIsProxy()) {
-			InternalEObject oldBase_Slot = (InternalEObject) base_Slot;
-			base_Slot = (Slot) eResolveProxy(oldBase_Slot);
+			InternalEObject oldBase_Slot = (InternalEObject)base_Slot;
+			base_Slot = (Slot)eResolveProxy(oldBase_Slot);
 			if (base_Slot != oldBase_Slot) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT, oldBase_Slot, base_Slot));
-				}
 			}
 		}
 		return base_Slot;
@@ -103,7 +97,6 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Slot basicGetBase_Slot() {
@@ -113,33 +106,29 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_Slot(Slot newBase_Slot) {
 		Slot oldBase_Slot = base_Slot;
 		base_Slot = newBase_Slot;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT, oldBase_Slot, base_Slot));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Connector getConnector() {
 		if (connector != null && connector.eIsProxy()) {
-			InternalEObject oldConnector = (InternalEObject) connector;
-			connector = (Connector) eResolveProxy(oldConnector);
+			InternalEObject oldConnector = (InternalEObject)connector;
+			connector = (Connector)eResolveProxy(oldConnector);
 			if (connector != oldConnector) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR, oldConnector, connector));
-				}
 			}
 		}
 		return connector;
@@ -148,7 +137,6 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Connector basicGetConnector() {
@@ -158,37 +146,30 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setConnector(Connector newConnector) {
 		Connector oldConnector = connector;
 		connector = newConnector;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR, oldConnector, connector));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
-			if (resolve) {
-				return getBase_Slot();
-			}
-			return basicGetBase_Slot();
-		case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
-			if (resolve) {
-				return getConnector();
-			}
-			return basicGetConnector();
+			case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
+				if (resolve) return getBase_Slot();
+				return basicGetBase_Slot();
+			case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
+				if (resolve) return getConnector();
+				return basicGetConnector();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -196,18 +177,17 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
-			setBase_Slot((Slot) newValue);
-			return;
-		case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
-			setConnector((Connector) newValue);
-			return;
+			case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
+				setBase_Slot((Slot)newValue);
+				return;
+			case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
+				setConnector((Connector)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -215,18 +195,17 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
-			setBase_Slot((Slot) null);
-			return;
-		case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
-			setConnector((Connector) null);
-			return;
+			case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
+				setBase_Slot((Slot)null);
+				return;
+			case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
+				setConnector((Connector)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -234,16 +213,15 @@ public class ConnectorConfigurationImpl extends EObjectImpl implements Connector
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
-			return base_Slot != null;
-		case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
-			return connector != null;
+			case FCMPackage.CONNECTOR_CONFIGURATION__BASE_SLOT:
+				return base_Slot != null;
+			case FCMPackage.CONNECTOR_CONFIGURATION__CONNECTOR:
+				return connector != null;
 		}
 		return super.eIsSet(featureID);
 	}

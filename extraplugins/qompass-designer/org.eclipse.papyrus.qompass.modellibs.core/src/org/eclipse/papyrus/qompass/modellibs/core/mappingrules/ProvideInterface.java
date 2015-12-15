@@ -22,16 +22,11 @@ import org.eclipse.uml2.uml.Type;
 public class ProvideInterface implements IMappingRule
 {
 	@Override
-	public Interface getProvided(Port p, boolean update) {
+	public Type calcDerivedType(Port p, boolean update) {
 		Type type = p.getBase_Port().getType();
 		if (type instanceof Interface) {
 			return ((Interface) type);
 		}
-		return null;
-	}
-
-	@Override
-	public Interface getRequired(Port p, boolean update) {
 		return null;
 	}
 

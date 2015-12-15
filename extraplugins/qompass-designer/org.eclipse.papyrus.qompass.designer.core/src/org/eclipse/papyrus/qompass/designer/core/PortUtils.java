@@ -24,6 +24,7 @@ import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class PortUtils {
@@ -37,10 +38,7 @@ public class PortUtils {
 	 * @return the provided interface
 	 */
 	public static Interface getProvided(Port port) {
-		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
-		if (fcmPort != null) {
-			return fcmPort.getProvidedInterface();
-		} else if (port.getProvideds().size() > 0) {
+		if (port.getProvideds().size() > 0) {
 			// return first standard UML provided port
 			return port.getProvideds().get(0);
 		}
@@ -56,10 +54,7 @@ public class PortUtils {
 	 * @return the required interface
 	 */
 	public static Interface getRequired(Port port) {
-		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
-		if (fcmPort != null) {
-			return fcmPort.getRequiredInterface();
-		} else if (port.getRequireds().size() > 0) {
+		if (port.getRequireds().size() > 0) {
 			// return first standard UML required port
 			return port.getRequireds().get(0);
 		}
@@ -76,6 +71,19 @@ public class PortUtils {
 		return UMLUtil.getStereotypeApplication(port, org.eclipse.papyrus.FCM.Port.class);
 	}
 
+	/**
+	 * Return the value of the FCM stereotype attribute "type" 
+	 * @param port a UML port
+	 * @return the value of the type attribute
+	 */
+	public static Type getFCMType(Port port) {
+		org.eclipse.papyrus.FCM.Port fcmPort = getFCMport(port);
+		if (fcmPort != null) {
+			return fcmPort.getType();
+		}
+		return null;
+	}
+	
 	/**
 	 * Returns all ports (including inherited ones) for an encapsulated classifier
 	 * It will also flatten extended ports
@@ -290,7 +298,7 @@ public class PortUtils {
 
 	/**
 	 * return true, if intfA is a sub-interface of intfB, i.e. either both interfaces are identical or one of the
-	 * superclasses (generalizations of intfA) is identical to B.
+	 * super-classes (generalizations of intfA) is identical to B.
 	 * more general than interfaceB.
 	 *
 	 * @param intfA
@@ -298,6 +306,7 @@ public class PortUtils {
 	 * @return
 	 */
 	public static boolean isSubInterface(Interface intfA, Interface intfB) {
-		return (intfA == intfB) || (intfA.getGeneralizations().contains(intfB));
+		return (intfA == intfB) || (intfA != null && intfA.getGeneralizations().contains(intfB));
 	}
 }
+ 

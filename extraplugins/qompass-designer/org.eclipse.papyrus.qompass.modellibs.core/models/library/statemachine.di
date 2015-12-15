@@ -50,6 +50,9 @@
         <children>
           <emfPageIdentifier href="statemachine.notation#_Ogua0F81EeGbQoflzrdx0g"/>
         </children>
+        <children>
+          <emfPageIdentifier href="statemachine.notation#_jTpTMF1DEeWbP6DS-3NPyQ"/>
+        </children>
       </children>
     </windows>
   </sashModel>

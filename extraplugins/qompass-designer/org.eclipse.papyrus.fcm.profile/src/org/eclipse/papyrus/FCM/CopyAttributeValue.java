@@ -22,11 +22,11 @@ import org.eclipse.uml2.uml.Property;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.CopyAttributeValue#getSource <em>Source</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.CopyAttributeValue#getBase_Property <em>Base Property</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.CopyAttributeValue#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.CopyAttributeValue#getBase_Property <em>Base Property</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getCopyAttributeValue()
  * @model
@@ -40,7 +40,6 @@ public interface CopyAttributeValue extends EObject {
 	 * If the meaning of the '<em>Source</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Property)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getCopyAttributeValue_Source()
@@ -53,9 +52,7 @@ public interface CopyAttributeValue extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.CopyAttributeValue#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Source</em>' reference.
+	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface CopyAttributeValue extends EObject {
 	 * If the meaning of the '<em>Base Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Property</em>' reference.
 	 * @see #setBase_Property(Property)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getCopyAttributeValue_Base_Property()
@@ -81,9 +77,7 @@ public interface CopyAttributeValue extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.CopyAttributeValue#getBase_Property <em>Base Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Property</em>' reference.
+	 * @param value the new value of the '<em>Base Property</em>' reference.
 	 * @see #getBase_Property()
 	 * @generated
 	 */

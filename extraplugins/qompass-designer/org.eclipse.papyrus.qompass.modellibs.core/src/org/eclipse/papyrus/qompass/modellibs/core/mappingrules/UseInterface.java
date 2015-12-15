@@ -16,6 +16,8 @@ package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
+import org.eclipse.papyrus.FCM.util.MapUtil;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Type;
 
@@ -23,17 +25,12 @@ import org.eclipse.uml2.uml.Type;
 public class UseInterface implements IMappingRule
 {
 	@Override
-	public Interface getProvided(Port p, boolean update)
-	{
-		return null;
-	}
-
-	@Override
-	public Interface getRequired(Port p, boolean update)
-	{
-		Type type = p.getBase_Port().getType();
+	public Type calcDerivedType(Port p, boolean update) {
+		Type type = p.getType();
 		if (type instanceof Interface) {
-			return ((Interface) type);
+			Class useType = MapUtil.getDerivedClass(p, "Use_", update); //$NON-NLS-1$
+			MapUtil.addUsage(useType, (Interface) type);
+			return useType;
 		}
 		return null;
 	}

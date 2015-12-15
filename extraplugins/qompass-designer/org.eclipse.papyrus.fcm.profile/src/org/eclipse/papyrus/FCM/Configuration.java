@@ -22,12 +22,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.Configuration#getBase_Class <em>Base Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.Configuration#getConfigOptions <em>Config Options</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan <em>Deployment Plan</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.Configuration#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.Configuration#getConfigOptions <em>Config Options</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan <em>Deployment Plan</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getConfiguration()
  * @model
@@ -41,7 +41,6 @@ public interface Configuration extends EObject {
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getConfiguration_Base_Class()
@@ -54,9 +53,7 @@ public interface Configuration extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Configuration#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 * @param value the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */
@@ -70,7 +67,6 @@ public interface Configuration extends EObject {
 	 * If the meaning of the '<em>Config Options</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Config Options</em>' reference list.
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getConfiguration_ConfigOptions()
 	 * @model ordered="false"
@@ -85,7 +81,6 @@ public interface Configuration extends EObject {
 	 * If the meaning of the '<em>Deployment Plan</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Deployment Plan</em>' reference.
 	 * @see #setDeploymentPlan(DeploymentPlan)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getConfiguration_DeploymentPlan()
@@ -98,9 +93,7 @@ public interface Configuration extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Configuration#getDeploymentPlan <em>Deployment Plan</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Deployment Plan</em>' reference.
+	 * @param value the new value of the '<em>Deployment Plan</em>' reference.
 	 * @see #getDeploymentPlan()
 	 * @generated
 	 */

@@ -47,53 +47,54 @@ public class ExtendedPort2 implements IMappingRule {
 
 	public static final String NORM_PREFIX = "N2_"; //$NON-NLS-1$
 
-
 	@Override
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, boolean update)
-	{
-		return getDerived(p, p.getBase_Port().isConjugated(), update);
-	}
-
-	@Override
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, boolean update)
-	{
-		return getDerived(p, !p.getBase_Port().isConjugated(), update);
-	}
-
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isConjugated, boolean update)
-	{
-		Type type = extPort.getBase_Port().getType();
+	public Type calcDerivedType(org.eclipse.papyrus.FCM.Port p, boolean update) {
+	
+		Type type = p.getType();
 		if (!(type instanceof Class)) {
 			return null;
 		}
 
 		Class extendedPort = (Class) type;
+		boolean isConjugated = p.getBase_Port().isConjugated();
 		String prefix = isConjugated ? CONJ_PREFIX : NORM_PREFIX;
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type, update);
+		Class derivedClass = MapUtil.getDerivedClass(p, prefix, update);
+		Interface providedInterface = MapUtil.getDerivedInterface(p, prefix, update);
+		Interface requiredInterface = MapUtil.getDerivedInterface(p, prefix, update);
 		if (!update) {
-			return derivedInterface;
+			return derivedClass;
 		}
-		if (derivedInterface == null) {
+		if (derivedClass == null) {
 			return null;
 		}
 		for (Port port : extendedPort.getOwnedPorts()) {
 			// if the extended port is conjugated, each of the provided/required are (implicitly)
 			// conjugated [TODO: is PortUtils aware of it? - probably yes]
-			Interface provIntf = (isConjugated) ?
-					PortUtils.getRequired(port) :
-					PortUtils.getProvided(port);
-
-			if (provIntf != null) {
+			Interface reqIntf = PortUtils.getRequired(port);
+		
+			if (reqIntf != null) {
 				String name = PrefixConstants.getP_Prefix + port.getName();
 
 				// check whether operation already exists. Create, if not
-				Operation derivedOperation = derivedInterface.getOperation(name, null, null);
+				Operation derivedOperation = requiredInterface.getOperation(name, null, null);
 				if (derivedOperation == null) {
-					derivedOperation = derivedInterface.createOwnedOperation(name, null, null);
+					derivedOperation = requiredInterface.createOwnedOperation(name, null, null);
+				}
+			}
+			
+			Interface provIntf = PortUtils.getProvided(port);
+			
+			if (provIntf != null) {
+				String name = PrefixConstants.getConnQ_Prefix + port.getName();
+
+				// check whether operation already exists. Create, if not
+				Operation derivedOperation = providedInterface.getOperation(name, null, null);
+				if (derivedOperation == null) {
+					derivedOperation = providedInterface.createOwnedOperation(name, null, null);
 				}
 			}
 		}
-		return derivedInterface;
+		return derivedClass;
 	}
 
 	@Override
@@ -110,7 +111,7 @@ public class ExtendedPort2 implements IMappingRule {
 
 		Class extendedPort = (Class) type;
 		String prefix = isConjugated ? CONJ_PREFIX : NORM_PREFIX;
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, prefix, type, false);
+		Interface derivedInterface = MapUtil.getDerivedInterface(p, prefix);
 
 		if (derivedInterface == null) {
 			return true;

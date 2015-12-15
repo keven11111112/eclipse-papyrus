@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs <em>Template Defs</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class <em>Base Class</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs <em>Template Defs</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class <em>Base Class</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getCompImplTemplate()
  * @model
@@ -39,7 +39,6 @@ public interface CompImplTemplate extends EObject {
 	 * If the meaning of the '<em>Template Defs</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Template Defs</em>' attribute.
 	 * @see #setTemplateDefs(String)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getCompImplTemplate_TemplateDefs()
@@ -52,9 +51,7 @@ public interface CompImplTemplate extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.CompImplTemplate#getTemplateDefs <em>Template Defs</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Template Defs</em>' attribute.
+	 * @param value the new value of the '<em>Template Defs</em>' attribute.
 	 * @see #getTemplateDefs()
 	 * @generated
 	 */
@@ -67,7 +64,6 @@ public interface CompImplTemplate extends EObject {
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getCompImplTemplate_Base_Class()
@@ -80,9 +76,7 @@ public interface CompImplTemplate extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.CompImplTemplate#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 * @param value the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */

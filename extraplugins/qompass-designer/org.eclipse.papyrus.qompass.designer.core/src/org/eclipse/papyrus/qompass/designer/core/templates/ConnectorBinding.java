@@ -220,7 +220,7 @@ public class ConnectorBinding {
 			// this check is stronger than the first two, since it requires port kind identity.
 			// If none of the first two variants holds, the port is translating interfaces
 			// for which this stronger condition holds.
-			Type type = port.getType();
+			Type type = PortUtils.getFCMType(port);
 			if ((providedIntf != formal) && (requiredIntf != formal) && (type == formal)) {
 				// the template provides the formal parameter at one of its ports. Now examine
 				// with whom this port is connected, i.e. examine all ends of the
@@ -287,7 +287,7 @@ public class ConnectorBinding {
 			Log.log(IStatus.INFO, Log.TEMPLATE_BINDING, String.format(
 					Messages.ConnectorBinding_InfoConnPortConnectedVia,
 					port.getName(), partOrConnector.getName()));
-			Type otherType = otherPort.getType();
+			Type otherType = PortUtils.getFCMType(otherPort);
 
 
 			// type must be the same, kind as well. But depending on delegation or not, one of the ports

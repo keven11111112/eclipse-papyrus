@@ -25,10 +25,10 @@ import org.eclipse.papyrus.FCM.util.MapUtil;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.impl.TemplatePortImpl#getBoundType <em>Bound Type</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.TemplatePortImpl#getBoundType <em>Bound Type</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -36,7 +36,6 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected TemplatePortImpl() {
@@ -46,7 +45,6 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -57,13 +55,12 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public PortKind getBoundType() {
 		PortKind boundType = basicGetBoundType();
-		return boundType != null && boundType.eIsProxy() ? (PortKind) eResolveProxy((InternalEObject) boundType) : boundType;
+		return boundType != null && boundType.eIsProxy() ? (PortKind)eResolveProxy((InternalEObject)boundType) : boundType;
 	}
 
 	/**
@@ -125,17 +122,14 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
-			if (resolve) {
-				return getBoundType();
-			}
-			return basicGetBoundType();
+			case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
+				if (resolve) return getBoundType();
+				return basicGetBoundType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -143,15 +137,14 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
-			setBoundType((PortKind) newValue);
-			return;
+			case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
+				setBoundType((PortKind)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -159,15 +152,14 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
-			unsetBoundType();
-			return;
+			case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
+				unsetBoundType();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -175,14 +167,13 @@ public class TemplatePortImpl extends PortImpl implements TemplatePort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
-			return isSetBoundType();
+			case FCMPackage.TEMPLATE_PORT__BOUND_TYPE:
+				return isSetBoundType();
 		}
 		return super.eIsSet(featureID);
 	}

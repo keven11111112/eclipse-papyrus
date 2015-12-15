@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.FCM.Assembly;
 import org.eclipse.papyrus.FCM.ContainerRule;
-import org.eclipse.papyrus.FCM.RuleApplication;
+import org.eclipse.papyrus.FCM.InteractionComponent;
 import org.eclipse.papyrus.FCM.Singleton;
 import org.eclipse.papyrus.qompass.designer.core.preferences.QompassPreferenceConstants;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
@@ -379,6 +379,10 @@ public class Utils {
 		return component.isAbstract();
 	}
 
+	public static boolean isInteractionComponent(Classifier component) {
+		return StereotypeUtil.isApplied(component, InteractionComponent.class);		
+	}
+	
 	public static boolean isSingleton(Class component) {
 		return StereotypeUtil.isApplied(component, Singleton.class);
 	}
@@ -405,20 +409,6 @@ public class Utils {
 	 */
 	public static boolean isComponent(Class component) {
 		return (isCompType(component) || isCompImpl(component));
-	}
-
-	/**
-	 * Return the rules associated with a component
-	 *
-	 * @param component
-	 * @return
-	 */
-	public static EList<ContainerRule> getRules(Class component) {
-		RuleApplication ruleApplication = UMLUtil.getStereotypeApplication(component, RuleApplication.class);
-		if (ruleApplication != null) {
-			return ruleApplication.getContainerRule();
-		}
-		return null;
 	}
 
 	/**

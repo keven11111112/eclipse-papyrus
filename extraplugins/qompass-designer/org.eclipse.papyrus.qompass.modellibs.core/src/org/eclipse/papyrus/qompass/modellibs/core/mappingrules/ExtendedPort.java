@@ -20,7 +20,6 @@ import org.eclipse.papyrus.qompass.designer.core.OperationUtils;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Port;
@@ -48,8 +47,6 @@ import org.eclipse.uml2.uml.Type;
  *
  * TODO: This class has become obsolete now, since extended DDS ports are now supported via flattening
  *
- * @author ansgar
- *
  */
 @Deprecated
 public class ExtendedPort implements IMappingRule {
@@ -59,73 +56,26 @@ public class ExtendedPort implements IMappingRule {
 	public static final String REQ_PREFIX = "R_"; //$NON-NLS-1$
 
 	@Override
-	public Interface getProvided(org.eclipse.papyrus.FCM.Port p, boolean update)
-	{
-		return null;
-		// return getDerived(p, false, config, update);
-	}
-
-	@Override
-	public Interface getRequired(org.eclipse.papyrus.FCM.Port p, boolean update)
-	{
-		return null;
-		// return getDerived(p, true, config, update);
-	}
-
-	@Override
 	public boolean needsUpdate(org.eclipse.papyrus.FCM.Port p) {
 		return needsUpdate(p, false) ||
 				needsUpdate(p, true);
 	}
 
 	public boolean needsUpdate(org.eclipse.papyrus.FCM.Port p, boolean isRequired) {
-		Type type = p.getBase_Port().getType();
-		if (!(type instanceof Classifier)) {
-			return false;
-		}
-		Class extendedPort = p.getKind().getBase_Class();
-
-		String prefix = extendedPort.getName() + "_" + (isRequired ? REQ_PREFIX : PROV_PREFIX); //$NON-NLS-1$
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(p, prefix, type, false);
-		if (derivedInterface == null) {
-			return true;
-		}
-
-		for (Port port : extendedPort.getOwnedPorts()) {
-			Interface derivedIntf = (isRequired) ?
-					PortUtils.getRequired(port) :
-					PortUtils.getProvided(port);
-
-			if (derivedIntf != null) {
-				for (Operation op : derivedIntf.getAllOperations()) {
-					String name = port.getName() + "_" + op.getName(); //$NON-NLS-1$
-
-					// check whether operation already exists. Create, if not
-					Operation derivedOperation = derivedInterface.getOperation(name, null, null);
-					if (derivedOperation == null) {
-						return true;
-					}
-					else {
-						if (!OperationUtils.isSameOperation(derivedOperation, op, false)) {
-							return true;
-						}
-					}
-				}
-			}
-		}
-		return false;
+		return true;
 	}
 
-	public Interface getDerived(org.eclipse.papyrus.FCM.Port extPort, boolean isRequired, InstanceSpecification config, boolean update)
+	@Override
+	public Type calcDerivedType(org.eclipse.papyrus.FCM.Port p, boolean update)
 	{
-		Type type = extPort.getBase_Port().getType();
+		Type type = p.getType();
 		if (!(type instanceof Classifier)) {
 			return null;
 		}
-		Class extendedPort = extPort.getKind().getBase_Class();
+		Class extendedPort = p.getKind().getBase_Class();
 
-		String prefix = extendedPort.getName() + "_" + (isRequired ? REQ_PREFIX : PROV_PREFIX); //$NON-NLS-1$
-		Interface derivedInterface = MapUtil.getOrCreateDerivedInterfaceFP(extPort, prefix, type, update);
+		String prefix = extendedPort.getName() + "_" + (p.getBase_Port().isConjugated() ? REQ_PREFIX : PROV_PREFIX); //$NON-NLS-1$
+		Interface derivedInterface = MapUtil.getDerivedInterface(p, prefix, true);
 		if (!update) {
 			return derivedInterface;
 		}
@@ -153,7 +103,7 @@ public class ExtendedPort implements IMappingRule {
 		// kind.getBase_Class().getNearestPackage().getTemplateParameter();
 
 		for (Port port : extendedPort.getOwnedPorts()) {
-			Interface derivedIntf = (isRequired) ?
+			Interface derivedIntf = (p.getBase_Port().isConjugated()) ?
 					PortUtils.getRequired(port) :
 					PortUtils.getProvided(port);
 

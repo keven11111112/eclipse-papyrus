@@ -31,13 +31,13 @@ import org.eclipse.uml2.uml.Stereotype;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#getBase_Class <em>Base Class</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#getProvidedInterface <em>Provided Interface</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#getRequiredInterface <em>Required Interface</em>}</li>
- * <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#isExtendedPort <em>Extended Port</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#getBase_Class <em>Base Class</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#getProvidedInterface <em>Provided Interface</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#getRequiredInterface <em>Required Interface</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.FCM.impl.PortKindImpl#isExtendedPort <em>Extended Port</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -47,7 +47,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_Class()
 	 * @generated
 	 * @ordered
@@ -58,7 +57,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	 * The cached value of the '{@link #getProvidedInterface() <em>Provided Interface</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getProvidedInterface()
 	 * @generated
 	 * @ordered
@@ -69,7 +67,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	 * The cached value of the '{@link #getRequiredInterface() <em>Required Interface</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getRequiredInterface()
 	 * @generated
 	 * @ordered
@@ -80,7 +77,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	 * The default value of the '{@link #isExtendedPort() <em>Extended Port</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #isExtendedPort()
 	 * @generated
 	 * @ordered
@@ -90,7 +86,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected PortKindImpl() {
@@ -100,7 +95,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -111,18 +105,16 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public org.eclipse.uml2.uml.Class getBase_Class() {
 		if (base_Class != null && base_Class.eIsProxy()) {
-			InternalEObject oldBase_Class = (InternalEObject) base_Class;
-			base_Class = (org.eclipse.uml2.uml.Class) eResolveProxy(oldBase_Class);
+			InternalEObject oldBase_Class = (InternalEObject)base_Class;
+			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
 			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.PORT_KIND__BASE_CLASS, oldBase_Class, base_Class));
-				}
 			}
 		}
 		return base_Class;
@@ -131,7 +123,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public org.eclipse.uml2.uml.Class basicGetBase_Class() {
@@ -141,33 +132,29 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.PORT_KIND__BASE_CLASS, oldBase_Class, base_Class));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Interface getProvidedInterface() {
 		if (providedInterface != null && providedInterface.eIsProxy()) {
-			InternalEObject oldProvidedInterface = (InternalEObject) providedInterface;
-			providedInterface = (Interface) eResolveProxy(oldProvidedInterface);
+			InternalEObject oldProvidedInterface = (InternalEObject)providedInterface;
+			providedInterface = (Interface)eResolveProxy(oldProvidedInterface);
 			if (providedInterface != oldProvidedInterface) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.PORT_KIND__PROVIDED_INTERFACE, oldProvidedInterface, providedInterface));
-				}
 			}
 		}
 		return providedInterface;
@@ -176,7 +163,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Interface basicGetProvidedInterface() {
@@ -186,33 +172,29 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setProvidedInterface(Interface newProvidedInterface) {
 		Interface oldProvidedInterface = providedInterface;
 		providedInterface = newProvidedInterface;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.PORT_KIND__PROVIDED_INTERFACE, oldProvidedInterface, providedInterface));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Interface getRequiredInterface() {
 		if (requiredInterface != null && requiredInterface.eIsProxy()) {
-			InternalEObject oldRequiredInterface = (InternalEObject) requiredInterface;
-			requiredInterface = (Interface) eResolveProxy(oldRequiredInterface);
+			InternalEObject oldRequiredInterface = (InternalEObject)requiredInterface;
+			requiredInterface = (Interface)eResolveProxy(oldRequiredInterface);
 			if (requiredInterface != oldRequiredInterface) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FCMPackage.PORT_KIND__REQUIRED_INTERFACE, oldRequiredInterface, requiredInterface));
-				}
 			}
 		}
 		return requiredInterface;
@@ -221,7 +203,6 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Interface basicGetRequiredInterface() {
@@ -231,16 +212,14 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setRequiredInterface(Interface newRequiredInterface) {
 		Interface oldRequiredInterface = requiredInterface;
 		requiredInterface = newRequiredInterface;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, FCMPackage.PORT_KIND__REQUIRED_INTERFACE, oldRequiredInterface, requiredInterface));
-		}
 	}
 
 	/**
@@ -271,29 +250,22 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case FCMPackage.PORT_KIND__BASE_CLASS:
-			if (resolve) {
-				return getBase_Class();
-			}
-			return basicGetBase_Class();
-		case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
-			if (resolve) {
-				return getProvidedInterface();
-			}
-			return basicGetProvidedInterface();
-		case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
-			if (resolve) {
-				return getRequiredInterface();
-			}
-			return basicGetRequiredInterface();
-		case FCMPackage.PORT_KIND__EXTENDED_PORT:
-			return isExtendedPort();
+			case FCMPackage.PORT_KIND__BASE_CLASS:
+				if (resolve) return getBase_Class();
+				return basicGetBase_Class();
+			case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
+				if (resolve) return getProvidedInterface();
+				return basicGetProvidedInterface();
+			case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
+				if (resolve) return getRequiredInterface();
+				return basicGetRequiredInterface();
+			case FCMPackage.PORT_KIND__EXTENDED_PORT:
+				return isExtendedPort();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -301,21 +273,20 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case FCMPackage.PORT_KIND__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) newValue);
-			return;
-		case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
-			setProvidedInterface((Interface) newValue);
-			return;
-		case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
-			setRequiredInterface((Interface) newValue);
-			return;
+			case FCMPackage.PORT_KIND__BASE_CLASS:
+				setBase_Class((org.eclipse.uml2.uml.Class)newValue);
+				return;
+			case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
+				setProvidedInterface((Interface)newValue);
+				return;
+			case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
+				setRequiredInterface((Interface)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -323,21 +294,20 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case FCMPackage.PORT_KIND__BASE_CLASS:
-			setBase_Class((org.eclipse.uml2.uml.Class) null);
-			return;
-		case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
-			setProvidedInterface((Interface) null);
-			return;
-		case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
-			setRequiredInterface((Interface) null);
-			return;
+			case FCMPackage.PORT_KIND__BASE_CLASS:
+				setBase_Class((org.eclipse.uml2.uml.Class)null);
+				return;
+			case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
+				setProvidedInterface((Interface)null);
+				return;
+			case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
+				setRequiredInterface((Interface)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -345,20 +315,19 @@ public class PortKindImpl extends EObjectImpl implements PortKind {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case FCMPackage.PORT_KIND__BASE_CLASS:
-			return base_Class != null;
-		case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
-			return providedInterface != null;
-		case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
-			return requiredInterface != null;
-		case FCMPackage.PORT_KIND__EXTENDED_PORT:
-			return isSetExtendedPort();
+			case FCMPackage.PORT_KIND__BASE_CLASS:
+				return base_Class != null;
+			case FCMPackage.PORT_KIND__PROVIDED_INTERFACE:
+				return providedInterface != null;
+			case FCMPackage.PORT_KIND__REQUIRED_INTERFACE:
+				return requiredInterface != null;
+			case FCMPackage.PORT_KIND__EXTENDED_PORT:
+				return isSetExtendedPort();
 		}
 		return super.eIsSet(featureID);
 	}

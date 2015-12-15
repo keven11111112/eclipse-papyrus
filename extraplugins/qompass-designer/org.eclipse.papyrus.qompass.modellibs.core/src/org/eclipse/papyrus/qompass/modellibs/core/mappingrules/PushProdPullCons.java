@@ -14,55 +14,40 @@
 
 package org.eclipse.papyrus.qompass.modellibs.core.mappingrules;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.papyrus.FCM.Port;
 import org.eclipse.papyrus.FCM.util.IMappingRule;
 import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Interface;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Type;
 
 /**
+ * Create a bidirectional port with a push producer and a pull consumer
+ * TODO: Objective is not clear 
  * Will generate a suitable callable interface pulling consumer. The port is typed with a primitive type
- * or data type. The generated interface has a "<Type> pull as well as a "boolean hasData ()" operation).
- *
- * @author ansgar
+ * or data type. The generated interface has a "<Type> pull as well as a "boolean hasData()" operation).
  */
 public class PushProdPullCons implements IMappingRule {
 
 	@Override
-	public Interface getProvided(Port p, boolean update) {
-		return null;
-	}
-
-	@Override
-	public Interface getRequired(Port p, boolean update) {
-		org.eclipse.uml2.uml.Port umlPort = p.getBase_Port();
-		Element owner = umlPort.getOwner();
-		String ownerStr = ""; //$NON-NLS-1$
-		if (owner instanceof NamedElement) {
-			ownerStr = " of class " + ((NamedElement) owner).getQualifiedName(); //$NON-NLS-1$
-		}
-		Log.log(IStatus.INFO, Log.CALC_PORTKIND,
-				p.getKind().getBase_Class().getName() + " => GetRequired on " + umlPort.getName() + ownerStr);
-		Type type = umlPort.getType();
+	public Type calcDerivedType(Port p, boolean update) {
+		Type type = p.getType();
 
 		if ((type instanceof PrimitiveType) || (type instanceof DataType) || (type instanceof Signal)) {
 
-			Interface derivedInterface = MapUtil.getOrCreateDerivedInterface(p, "_", type, update); //$NON-NLS-1$
+			Class derivedClass = MapUtil.getDerivedClass(p, "PushProdPullcons", update);
 			if (!update) {
-				return derivedInterface;
+				return derivedClass;
 			}
 
 			// obtain derived interface for other port kind (Caveat: some rules get the prefix from the
 			// name of the port kind attached to port "p" which would produce wrong results.
-			Interface derivedInterfacePushProd = PushProducer.getInstance().getRequired(p, update);
-			Interface derivedInterfacePullCons = PullConsumer.getInstance().getRequired(p, update);
+			Type derivedInterfacePushProd = PushProducer.getInstance().calcDerivedType(p, update);
+			Type derivedInterfacePullCons = PullConsumer.getInstance().calcDerivedType(p, update);
+			
+			/*
 			if (derivedInterface == null) {
 				return null;
 			}
@@ -74,6 +59,8 @@ public class PushProdPullCons implements IMappingRule {
 				derivedInterface.createGeneralization(derivedInterfacePullCons);
 			}
 			return derivedInterface;
+			*/
+			return null;
 		}
 		else {
 			return null;

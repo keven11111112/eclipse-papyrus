@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_XSHWMF36Ed-UvNEDwY5GNg" type="PapyrusUMLClassDiagram" name="Interfaces" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_Pj6oUDeEEeGPyrZ5I3hMlA" type="2004" fontName="Sans Serif" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Pj6oUjeEEeGPyrZ5I3hMlA" source="ShadowFigure">
@@ -1512,13 +1512,21 @@
                 <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_66VpZTclEeKAhIrFXfR8zQ" key="QualifiedNameDepth" value="1000"/>
               </eAnnotations>
               <children xmi:type="notation:DecorationNode" xmi:id="_66VpZjclEeKAhIrFXfR8zQ" type="6001">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_67AXwDclEeKAhIrFXfR8zQ" width="109" height="20"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_67AXwDclEeKAhIrFXfR8zQ" width="232" height="51"/>
               </children>
               <children xmi:type="notation:DecorationNode" xmi:id="_66WQcDclEeKAhIrFXfR8zQ" type="6002">
-                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_66WQcTclEeKAhIrFXfR8zQ" y="20" width="109" height="74"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_66WQcTclEeKAhIrFXfR8zQ" y="51" width="232" height="74"/>
+              </children>
+              <children xmi:type="notation:BasicCompartment" xmi:id="_vJwSMDa6EeWzceOhsQmFCQ" type="compartment_shape_display">
+                <styles xmi:type="notation:TitleStyle" xmi:id="_vJwSMTa6EeWzceOhsQmFCQ"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vJwSMja6EeWzceOhsQmFCQ"/>
+              </children>
+              <children xmi:type="notation:Shape" xmi:id="_HPaqoDa7EeWzceOhsQmFCQ" type="690">
+                <element xmi:type="uml:OpaqueBehavior" href="ClientServerTraceTest.uml#_9fEx8Da6EeWzceOhsQmFCQ"/>
+                <layoutConstraint xmi:type="notation:Location" xmi:id="_HPaqoTa7EeWzceOhsQmFCQ"/>
               </children>
               <element xmi:type="uml:State" href="ClientServerTraceTest.uml#_66D8kDclEeKAhIrFXfR8zQ"/>
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_66VCUTclEeKAhIrFXfR8zQ" x="159" y="46" width="109" height="94"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_66VCUTclEeKAhIrFXfR8zQ" x="159" y="46" width="232" height="125"/>
             </children>
             <children xmi:type="notation:Shape" xmi:id="_9gPUoDclEeKAhIrFXfR8zQ" type="8000" fontName="Sans Serif" lineColor="0">
               <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_9gP7sTclEeKAhIrFXfR8zQ" source="ShadowFigure">
@@ -1551,12 +1559,16 @@
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_57mwWTclEeKAhIrFXfR8zQ"/>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_0uUs8AuXEeWXe7AeBUbqvw" name="diagram_compatibility_version" stringValue="1.1.0"/>
+    <styles xmi:type="notation:EObjectListValueStyle" xmi:id="_ELvLkDiaEeW6xpHWhORo3g" name="css_stylesheets" eObjectListValue="_ELy18DiaEeW6xpHWhORo3g"/>
     <element xmi:type="uml:StateMachine" href="ClientServerTraceTest.uml#_5Vd9UDclEeKAhIrFXfR8zQ"/>
     <edges xmi:type="notation:Connector" xmi:id="_8bHfoDclEeKAhIrFXfR8zQ" type="7000" source="_66VCUDclEeKAhIrFXfR8zQ" target="_66VCUDclEeKAhIrFXfR8zQ" smoothness="Normal" lineColor="0">
       <children xmi:type="notation:DecorationNode" xmi:id="_8bItwDclEeKAhIrFXfR8zQ" visible="false" type="7001">
         <layoutConstraint xmi:type="notation:Location" xmi:id="_8bItwTclEeKAhIrFXfR8zQ"/>
       </children>
-      <children xmi:type="notation:DecorationNode" xmi:id="_8bItwjclEeKAhIrFXfR8zQ" visible="false" type="7002">
+      <children xmi:type="notation:DecorationNode" xmi:id="_8bItwjclEeKAhIrFXfR8zQ" type="7002">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_W-TWYDdgEeWSIc6H4M1kfQ" source="PapyrusCSSForceValue">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_W-WZsDdgEeWSIc6H4M1kfQ" key="visible" value="true"/>
+        </eAnnotations>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_8bItwzclEeKAhIrFXfR8zQ"/>
       </children>
       <children xmi:type="notation:DecorationNode" xmi:id="_8bItxDclEeKAhIrFXfR8zQ" visible="false" type="7003">
@@ -1584,4 +1596,5 @@
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-xGfkDclEeKAhIrFXfR8zQ" id="(0.07339449541284404,0.1590909090909091)"/>
     </edges>
   </notation:Diagram>
+  <css:EmbeddedStyleSheet xmi:id="_ELy18DiaEeW6xpHWhORo3g" label="StateSvc" content="Transition > Label {&#xA;&#x9;bodyCutLength : 1;&#xA;}&#xA;&#xA;State > OpaqueBehavior {&#xA;&#x9;bodyCutLength : 1;&#xA;}"/>
 </xmi:XMI>

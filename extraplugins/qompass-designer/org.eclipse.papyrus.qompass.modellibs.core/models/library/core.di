@@ -69,6 +69,9 @@
           <children>
             <emfPageIdentifier href="pathmap://QML_CORE/sysinterfaces.notation#_SNBrsPNAEeCovO8AYZymZQ"/>
           </children>
+          <children>
+            <emfPageIdentifier href="core.notation#_0IaT8LnYEeCxXoyQxQ47PQ"/>
+          </children>
         </children>
       </windows>
     </sashModel>

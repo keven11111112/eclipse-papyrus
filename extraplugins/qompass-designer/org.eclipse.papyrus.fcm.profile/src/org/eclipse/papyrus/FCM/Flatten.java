@@ -20,16 +20,15 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * A composite that will get flattened during distribution. This means that it vanishes and its parts are added to the composite in which the flat composite is defined. A flat composite may not have assembly connections. It is primarily used by interaction
- * components
+ * A composite that will get flattened during distribution. This means that it vanishes and its parts are added to the composite in which the flat composite is defined. A flat composite may not have assembly connections. It is primarily used by interaction components
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.Flatten#getBase_Class <em>Base Class</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.Flatten#getBase_Class <em>Base Class</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getFlatten()
  * @model
@@ -43,7 +42,6 @@ public interface Flatten extends EObject {
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Class</em>' reference.
 	 * @see #setBase_Class(org.eclipse.uml2.uml.Class)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getFlatten_Base_Class()
@@ -56,9 +54,7 @@ public interface Flatten extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.Flatten#getBase_Class <em>Base Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Class</em>' reference.
+	 * @param value the new value of the '<em>Base Class</em>' reference.
 	 * @see #getBase_Class()
 	 * @generated
 	 */

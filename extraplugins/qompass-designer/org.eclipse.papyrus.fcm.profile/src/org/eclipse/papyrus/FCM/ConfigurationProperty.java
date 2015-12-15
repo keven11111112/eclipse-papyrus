@@ -21,15 +21,15 @@ import org.eclipse.uml2.uml.Property;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * This stereotype indicuates that the attribute does not only store values but needs to be configured initially be the user. It corresponds to the automatic creation of an entry (slot+nstance specification) in the deployment plan
+ * This stereotype indicuates that the attribute does not only store values but needs to be configured initially be the user. It corresponds to the automatic creation of an entry  (slot+nstance specification) in the deployment plan 
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.FCM.ConfigurationProperty#getBase_Property <em>Base Property</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.FCM.ConfigurationProperty#getBase_Property <em>Base Property</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.FCM.FCMPackage#getConfigurationProperty()
  * @model
@@ -43,7 +43,6 @@ public interface ConfigurationProperty extends EObject {
 	 * If the meaning of the '<em>Base Property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base Property</em>' reference.
 	 * @see #setBase_Property(Property)
 	 * @see org.eclipse.papyrus.FCM.FCMPackage#getConfigurationProperty_Base_Property()
@@ -56,9 +55,7 @@ public interface ConfigurationProperty extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.FCM.ConfigurationProperty#getBase_Property <em>Base Property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base Property</em>' reference.
+	 * @param value the new value of the '<em>Base Property</em>' reference.
 	 * @see #getBase_Property()
 	 * @generated
 	 */
