@@ -50,24 +50,25 @@ public class OperationHistoryListener implements IOperationHistoryListener {
 			EList<Classifier> regenListCopy = new BasicEList<Classifier>(ModelListener.regenList);
 			ModelListener.regenList.clear();
 
-			// regen ...
+			// re-generate files from list - if they are still in a resource
 			for (Classifier cl : regenListCopy) {
-				// System.err.println("regenerate: " + cl.getQualifiedName());
-				try {
-					ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(cl);
-					TextEditorModelSharedResource model = (TextEditorModelSharedResource) ServiceUtils.getInstance()
-							.getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
+				if (cl.eResource() != null) {
+					try {
+						ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(cl);
+						TextEditorModelSharedResource model = (TextEditorModelSharedResource) ServiceUtils.getInstance()
+								.getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 
-					if (model != null) {
-						TextEditorModel tem = model.getTextEditorModel(cl);
-						if (tem != null) {
-							SyncModelToCDT.syncModelToCDT(cl, tem.getGeneratorID());
+						if (model != null) {
+							TextEditorModel tem = model.getTextEditorModel(cl);
+							if (tem != null) {
+								SyncModelToCDT.syncModelToCDT(cl, tem.getGeneratorID());
+							}
 						}
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					} catch (NotFoundException e) {
+						Activator.log.error(e);
 					}
-				} catch (ServiceException e) {
-					Activator.log.error(e);
-				} catch (NotFoundException e) {
-					Activator.log.error(e);
 				}
 			}
 		}
