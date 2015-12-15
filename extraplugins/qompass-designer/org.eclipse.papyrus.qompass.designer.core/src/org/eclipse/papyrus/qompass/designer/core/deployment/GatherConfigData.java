@@ -34,22 +34,31 @@ public class GatherConfigData implements PreCopyListener {
 	 * Gather configuration data for a code generation project
 	 * Constructor.
 	 *
-	 * @param langSupport
+	 * @param projectSupport
 	 *            A reference to a class providing the language support interface
 	 */
-	public GatherConfigData(ILangProjectSupport langSupport) {
-		this.langSupport = langSupport;
+	public GatherConfigData(ILangProjectSupport projectSupport) {
+		this.projectSupport = projectSupport;
+		settings = projectSupport.initialConfigurationData();
 	}
 
 	@Override
 	public EObject preCopyEObject(LazyCopier copy, EObject sourceEObj) {
 		if (sourceEObj instanceof Class) {
-			langSupport.gatherConfigData((Class) sourceEObj, settings);
+			projectSupport.gatherConfigData((Class) sourceEObj, settings);
 		}
 		return sourceEObj;
 	}
 
-	protected ILangProjectSupport langSupport;
+	/**
+	 * Return the settings that have been gathered
+	 * @return
+	 */
+	public AbstractSettings getSettings() {
+		return settings;
+	}
+	
+	protected ILangProjectSupport projectSupport;
 	
 	protected AbstractSettings settings;
 }
