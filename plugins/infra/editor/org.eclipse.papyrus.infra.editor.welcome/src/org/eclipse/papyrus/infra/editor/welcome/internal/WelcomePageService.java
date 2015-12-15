@@ -96,7 +96,7 @@ public class WelcomePageService implements IWelcomePageService {
 		welcomeManager = Activator.getDefault().getWelcomeModelManager();
 		modelSet = services.getService(ModelSet.class);
 		welcomeManager.connect(modelSet);
-		welcomeManager.onWelcomeChanged(this::handleWelcomeChanged);
+		welcomeManager.onWelcomeChanged(modelSet, this::handleWelcomeChanged);
 
 		pageManager = services.getService(IPageManager.class);
 

@@ -59,9 +59,7 @@ public class WelcomeModelManager {
 	private final Path welcomePath;
 
 	private final Map<ModelSet, WelcomeLocator> resourceSets = new HashMap<>();
-
-	// Useful for validating our Welcome changes
-	private Consumer<Welcome> welcomeChangedHandler = Objects::requireNonNull;
+	private final Map<ModelSet, Consumer<Welcome>> welcomeChangedHandlers = new HashMap<>();
 
 	public WelcomeModelManager(Path stateLocation) {
 		super();
@@ -91,15 +89,39 @@ public class WelcomeModelManager {
 	}
 
 	public void disconnect(ModelSet resourceSet) {
+		welcomeChangedHandlers.remove(resourceSet);
+
 		WelcomeLocator locator = resourceSets.remove(resourceSet);
 		if (locator != null) {
 			locator.dispose();
 		}
 	}
 
-	public void onWelcomeChanged(Consumer<? super Welcome> welcomeChangedHandler) {
-		// Chain handlers
-		this.welcomeChangedHandler = this.welcomeChangedHandler.andThen(welcomeChangedHandler);
+	/**
+	 * Adds a handler to be invoked whenever the default {@link Welcome} model changes.
+	 * 
+	 * @param ownerModelSet
+	 *            the model set in which the default welcome model is used
+	 * 
+	 * @param welcomeChangedHandler
+	 *            a handler that reacts to the changed welcome model
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if the {@code ownerModelSet} is not currently
+	 *             {@linkplain #connect(ModelSet) connected} to the model manager
+	 */
+	public void onWelcomeChanged(ModelSet ownerModelSet, Consumer<? super Welcome> welcomeChangedHandler) {
+		if (!resourceSets.containsKey(ownerModelSet)) {
+			throw new IllegalArgumentException("ownerModelSet is not connected"); //$NON-NLS-1$
+		}
+
+		// Chain handlers, with a base handler that validates the incoming Welcome instance
+		welcomeChangedHandlers.put(ownerModelSet,
+				getWelcomeChangedHandler(ownerModelSet).andThen(welcomeChangedHandler));
+	}
+
+	private Consumer<Welcome> getWelcomeChangedHandler(ResourceSet resourceSet) {
+		return welcomeChangedHandlers.getOrDefault(resourceSet, Objects::requireNonNull);
 	}
 
 	public void createDefaultWelcomeResource(Welcome welcome) throws IOException {
@@ -357,7 +379,7 @@ public class WelcomeModelManager {
 						}
 
 						// Notify the client
-						welcomeChangedHandler.accept(realWelcome);
+						getWelcomeChangedHandler(rset).accept(realWelcome);
 
 						realWelcome = null; // Don't need to hang onto this any longer
 					}
