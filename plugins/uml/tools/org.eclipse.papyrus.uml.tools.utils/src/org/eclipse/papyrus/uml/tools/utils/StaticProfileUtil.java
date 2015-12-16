@@ -80,11 +80,10 @@ public class StaticProfileUtil {
 			return definition;
 	}
 	
-	protected static String basePackage;
+	protected String basePackage;
 	
-	protected static String packageName;
+	protected String packageName;
 	
-	protected static EPackage definition;
+	protected EPackage definition;
 }
-
 
