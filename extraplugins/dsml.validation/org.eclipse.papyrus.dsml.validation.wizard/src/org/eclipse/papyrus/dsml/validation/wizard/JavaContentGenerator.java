@@ -25,7 +25,6 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * this class generate java classes in the project
@@ -66,9 +65,6 @@ public class JavaContentGenerator {
 		
 		public void run(IProgressMonitor monitor) {
 			try {
-				// static profile apply the EPackage stereotype
-				Stereotype ePackage = umlProfile.getAppliedStereotype(Utils.EPackage_QNAME);
-				Utils.setStaticProfile(ePackage != null);
 				Utils.setPluginID(project.getName());
 				ClassesGenerator generator = new ClassesGenerator(umlProfile.eResource(), project);
 				generator.doGenerate(monitor);

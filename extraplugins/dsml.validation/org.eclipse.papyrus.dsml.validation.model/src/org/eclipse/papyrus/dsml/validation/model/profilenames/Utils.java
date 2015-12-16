@@ -15,12 +15,10 @@ package org.eclipse.papyrus.dsml.validation.model.profilenames;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
+import org.eclipse.papyrus.uml.tools.utils.StaticProfileUtil;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueExpression;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -34,18 +32,7 @@ public class Utils {
 	private static final String DOT = "."; //$NON-NLS-1$
 	private static final String JAVA_LANGUAGE = "JAVA"; //$NON-NLS-1$
 	private static final String OCL_LANGUAGE = "OCL"; //$NON-NLS-1$
-	
-	/**
-	 * qualified name of EPackage stereotype (used for static profile detection)
-	 */
-	public static final String EPackage_QNAME = "Ecore::EPackage"; //$NON-NLS-1$
-	/**
-	 * Attributes of EPackage stereotype 
-	 */
-	private static final String EPKG_BASE_PACKAGE = "basePackage"; //$NON-NLS-1$
-	private static final String EPKG_PACKAGE_NAME = "packageName"; //$NON-NLS-1$
-	
-	
+
 	/*
 	 * Map holding relations between String representing the qualified name of a
 	 * constraint and name of a package to which it belongs. Package name in
@@ -120,22 +107,17 @@ public class Utils {
 
 		Namespace nameSpace = constraint.getContext();
 		if (nameSpace instanceof Stereotype) {
-			Package profilePkg = PackageUtil.getRootPackage(constraint.getContext());
-			if (profilePkg instanceof Profile) {
-				Profile profile = (Profile) profilePkg;
-				Stereotype ePkg = profile.getAppliedStereotype(EPackage_QNAME);
-				String base = (String) profile.getValue(ePkg, EPKG_BASE_PACKAGE);
-				if (base != null) {
-					String pkgName = (String) profile.getValue(ePkg, EPKG_PACKAGE_NAME);
-					if (pkgName != null) {
-						return base + DOT + pkgName + DOT + nameSpace.getName();
-					}
-					else {
-						return base + DOT + nameSpace.getQualifiedName();
+			if (staticProfile != null) {
+				String basePackage = staticProfile.getBasePackage();
+				if (basePackage != null) {
+					String packageName = staticProfile.getPackageName();
+					if (packageName != null) {
+						return basePackage + DOT + packageName + DOT + nameSpace.getName();
+					} else {
+						return basePackage + DOT + nameSpace.getQualifiedName();
 					}
 				}
 			}
-			// Stereotype ePackage = umlProfile.getAppliedStereotype(EPackage_QNAME);
 			return nameSpace.getQualifiedName();
 		}
 		return ""; //$NON-NLS-1$
@@ -254,20 +236,20 @@ public class Utils {
 	public static String getTopPkg() {
 		return pluginID.toLowerCase();
 	}
-	
+
 	public static void setPluginID(String ID) {
 		pluginID = ID;
 	}
 
 	public static boolean isStaticProfile() {
-		return staticProfile;
+		return staticProfile.getDefinition() != null;
 	}
 
-	public static void setStaticProfile(boolean staticProfile) {
+	public static void setStaticProfile(StaticProfileUtil staticProfile) {
 		Utils.staticProfile = staticProfile;
 	}
 
 	private static String pluginID;
-	
-	private static boolean staticProfile;
+
+	private static StaticProfileUtil staticProfile;
 }
