@@ -19,6 +19,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexW
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRequirementsWithNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.RequirementsNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth1_H1_H3_V1_Test;
@@ -91,6 +92,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,
+		
+		// Bug 481023 : The nested requirement was not available in table
+		RequirementsNestedClassifier.class,
 
 		// Bug 481020 : Delete a requirement containing a nested requirement
 		DeleteRequirementsWithNestedClassifier.class,
