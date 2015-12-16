@@ -20,3 +20,6 @@ Bundle-Activator: org.eclipse.papyrus.uml.diagram.css.Activator
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Eclipse Modeling Project
+Export-Package: org.eclipse.papyrus.uml.diagram.css,
+ org.eclipse.papyrus.uml.diagram.css.dom,
+ org.eclipse.papyrus.uml.diagram.css.helper
