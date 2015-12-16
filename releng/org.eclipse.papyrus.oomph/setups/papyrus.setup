@@ -92,14 +92,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/releases/R201506010221">
+        <repository url="http://download.eclipse.org/modeling/emf/transaction/updates/milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF TRANSACTION</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/releases/R201505312255">
+        <repository url="http://download.eclipse.org/modeling/emf/validation/updates/milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF VALIDATION</value>
@@ -113,14 +113,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/releases/R201506060219">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Runtime</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/releases/R201505312221">
+        <repository url="http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GMF Notation</value>
@@ -134,14 +134,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201511100512/mwe">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201512150804/mwe">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201511100907/mwe2lang/">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201512150821/mwe2lang/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE:1</value>
@@ -176,7 +176,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201509290912/">
+        <repository url="http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201512150757/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T XPAND</value>
@@ -197,7 +197,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/S-3.8.0M3-20151111010029/repository/">
+        <repository url="http://build.eclipse.org/webtools/committers/wtp-R3.8.0-I/20151215010029/S-3.8.0M4-20151215010029/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>

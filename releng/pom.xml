@@ -51,7 +51,7 @@
 		<emf-compare.repo.url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.2/S201511010417</emf-compare.repo.url>
 		
 		<!-- updateFrom("EMF Query",0) -->
-		<emf-query.repo.url>${eclipse.download}/modeling/emf/query/updates/releases/R201505312221</emf-query.repo.url>
+		<emf-query.repo.url>${eclipse.download}/modeling/emf/query/updates/milestones</emf-query.repo.url>
 		
 		<!-- updateFrom("M2T ACCELEO",0) -->
 		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201510300615</m2t-acceleo.repo.url>
@@ -66,7 +66,7 @@
 		<mylyn.repo.url>${eclipse.download}/mylyn/snapshots/3.18</mylyn.repo.url>
 		
 		<!-- updateFrom("EGIT",0) -->
-		<egit.repo.url>${eclipse.download}/egit/staging/v4.2.0.201511101648-m1</egit.repo.url>
+		<egit.repo.url>${eclipse.download}/egit/staging/v4.2.0.201512141825-rc1</egit.repo.url>
 		
 		<!-- updateFrom("EPP Logging",0) -->
 		<epp-logging.repo.url>${eclipse.download}/technology/epp/logging/milestones/</epp-logging.repo.url>
@@ -120,25 +120,25 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201511100512/mwe</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201512150804/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201511100907/mwe2lang/</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201512150821/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>${eclipse.download}/modeling/emf/transaction/updates/releases/R201506010221</url>
+			<url>${eclipse.download}/modeling/emf/transaction/updates/milestones</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>${eclipse.download}/modeling/emf/validation/updates/releases/R201505312255</url>
+			<url>${eclipse.download}/modeling/emf/validation/updates/milestones</url>
 		</repository>
 		<repository>
 			<id>ep</id>
@@ -156,13 +156,13 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>${eclipse.download}/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
+			<url>${eclipse.download}/modeling/gmp/gmf-notation/updates/milestones</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>${eclipse.download}/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
+			<url>${eclipse.download}/modeling/gmp/gmf-runtime/updates/milestones</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
@@ -174,7 +174,7 @@
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>${eclipse.download}/modeling/m2t/xpand/updates/milestones/S201509290912/</url>
+			<url>${eclipse.download}/modeling/m2t/xpand/updates/milestones/S201512150757/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
@@ -225,7 +225,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>${eclipse.download}/webtools/downloads/drops/R3.8.0/S-3.8.0M3-20151111010029/repository/</url>
+			<url>http://build.eclipse.org/webtools/committers/wtp-R3.8.0-I/20151215010029/S-3.8.0M4-20151215010029/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
