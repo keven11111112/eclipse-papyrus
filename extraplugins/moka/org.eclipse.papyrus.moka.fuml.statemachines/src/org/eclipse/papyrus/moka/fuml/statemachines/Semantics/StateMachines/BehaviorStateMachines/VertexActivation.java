@@ -34,7 +34,7 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	
 	// Meta-information about the state
 	// used by the implementation only for debug
-	protected StateMetadata state;
+	protected StateMetadata status;
 	
 	// Incoming transitions of that vertex
 	protected List<TransitionActivation> incomingTransitionActivations;
@@ -62,11 +62,11 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	}
 	
 	public void setState(StateMetadata state){
-		this.state = state;
+		this.status = state;
 	}
 	
 	public StateMetadata getState(){
-		return this.state;
+		return this.status;
 	}
 	
 	public void addIncomingTransition(TransitionActivation activation){
@@ -158,7 +158,7 @@ public abstract class VertexActivation extends SM_SemanticVisitor {
 	public boolean isActive(){
 		// FIXME: Shall be replaced by a call to the state-machine configuration
 		// If a state is active, it is in the state-machine configuration
-		return this.state.equals(StateMetadata.ACTIVE);
+		return this.status.equals(StateMetadata.ACTIVE);
 	}
 	
 	public RegionActivation getLeastCommonAncestor(VertexActivation targetVertexActivation){

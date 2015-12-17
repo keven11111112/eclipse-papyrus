@@ -219,7 +219,7 @@ public class StateActivation extends VertexActivation {
 	}
 	
 	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
-		if(this.state.equals(StateMetadata.IDLE)){
+		if(this.status.equals(StateMetadata.IDLE)){
 			// The state is entered via an explicit transition
 			// The impact on the execution is that the parent state
 			// of the current state is not active then it must be entered

@@ -52,31 +52,31 @@ public class TransitionActivation extends SM_SemanticVisitor {
 	
 	protected VertexActivation vertexTargetActivation;
 	
-	protected TransitionMetadata state;
+	protected TransitionMetadata status;
 	
 	public TransitionMetadata getState() {
-		return state;
+		return status;
 	}
 
 	public void setState(TransitionMetadata state) {
-		this.state = state;
+		this.status = state;
 	}
 
 	public TransitionActivation(){
 		super();
-		this.state = TransitionMetadata.NONE;
+		this.status = TransitionMetadata.NONE;
 	}
 
 	public boolean isReached(){
-		return this.state.equals(TransitionMetadata.REACHED);
+		return this.status.equals(TransitionMetadata.REACHED);
 	}
 	
 	public boolean isTraversed(){
-		return this.state.equals(TransitionMetadata.TRAVERSED);
+		return this.status.equals(TransitionMetadata.TRAVERSED);
 	}
 	
 	public boolean isCompleted(){
-		return this.state.equals(TransitionMetadata.COMPLETED);
+		return this.status.equals(TransitionMetadata.COMPLETED);
 	}
 	
 	/**
