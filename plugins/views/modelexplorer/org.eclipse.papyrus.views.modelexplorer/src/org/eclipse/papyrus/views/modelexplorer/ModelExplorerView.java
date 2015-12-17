@@ -48,6 +48,7 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
+import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -97,6 +98,7 @@ import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.papyrus.views.modelexplorer.preferences.IFilterPreferenceConstants;
+import org.eclipse.papyrus.views.modelexplorer.preferences.INavigatorPreferenceConstants;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
@@ -353,6 +355,13 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			undoContext = serviceRegistry.getService(IUndoContext.class);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
+		}
+	}
+
+	@Override
+	protected void handleDoubleClick(DoubleClickEvent anEvent) {
+		if (Activator.getDefault().getPreferenceStore().getBoolean(INavigatorPreferenceConstants.PREF_EXPAND_NODE_ON_DOUBLE_CLICK)) {
+			super.handleDoubleClick(anEvent);
 		}
 	}
 

@@ -25,4 +25,9 @@ public interface INavigatorPreferenceConstants {
 	 * transform into another one
 	 */
 	public static final String PREF_NAVIGATOR_TRANSFORM_INTO_SHOW_POPUP = "org.eclipse.papyrus.navigator.TransformInto.showPopupDialog"; //$NON-NLS-1$
+	
+	/**
+	 * If this preferences is set to true. Then the model explorer will expand node on double click.
+	 */
+	public static final String PREF_EXPAND_NODE_ON_DOUBLE_CLICK = "org.eclipse.papyrus.modelexplorer.ModelExplorerView.expandOnDoubleClick"; //$NON-NLS-1$
 }

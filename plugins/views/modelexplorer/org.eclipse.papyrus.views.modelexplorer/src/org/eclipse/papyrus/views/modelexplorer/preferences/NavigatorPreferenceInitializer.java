@@ -36,6 +36,11 @@ public class NavigatorPreferenceInitializer extends
 		store.setDefault(
 				INavigatorPreferenceConstants.PREF_NAVIGATOR_TRANSFORM_INTO_SHOW_POPUP,
 				false);
+
+		// By default the model explorer expand node on double click
+		store.setDefault(
+				INavigatorPreferenceConstants.PREF_EXPAND_NODE_ON_DOUBLE_CLICK,
+				true);
 	}
 
 	/**
