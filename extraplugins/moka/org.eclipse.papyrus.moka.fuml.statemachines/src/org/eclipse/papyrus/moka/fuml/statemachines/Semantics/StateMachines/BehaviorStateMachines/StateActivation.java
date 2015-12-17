@@ -21,6 +21,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Ex
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_Object;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
@@ -45,6 +46,9 @@ public class StateActivation extends VertexActivation {
 	
 	// Boolean flag to know if the exit behavior was completed
 	public boolean isExitCompleted; 
+	
+	// The execution corresponding to the doActivity if any
+	public DoActivityExecution doActivityExecution;
 	
 	public boolean hasCompleted(){
 		// A state can only be considered as being completed under the following circumstances
@@ -161,18 +165,19 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
-	protected void tryExecuteDoActivity(){
+	protected void tryInvokeDoActivity(){
 		State state = (State) this.getNode();
 		// If an doActivity behavior is specified for that state then it is executed*/
 		if(!this.isDoActivityCompleted){
-			Execution execution = this.getExecutionFor(state.getDoActivity());
-			if(execution!=null){
-				execution.execute();
-				this.isDoActivityCompleted = true;
-			}
-			// If state has completed then generate a completion event*/
-			if(this.hasCompleted()){
-				this.notifyCompletion();
+			Behavior doActivity = state.getDoActivity(); 
+			if(doActivity!=null){
+				// Note: the doActivity is started asynchronously. However it as access
+				// to the current context object. Indeed it may need to read properties
+				// call operations and so on.
+				this.doActivityExecution = new DoActivityExecution();
+				this.doActivityExecution.owner = this;
+				this.doActivityExecution.encapsulate(this.getExecutionFor(doActivity));
+				this.doActivityExecution.invoke();
 			}
 		}
 	}
@@ -249,8 +254,8 @@ public class StateActivation extends VertexActivation {
 			}else{
 				// Execute the entry behavior if any
 				this.tryExecuteEntry();
-				// Execute the doActtivity if any
-				this.tryExecuteDoActivity();
+				// Invoke the doActivity if any
+				this.tryInvokeDoActivity();
 				// If the state is not completed, then try to start its owned regions.
 				// A region is entered implicitly since the is not the 
 				this.enterRegions(enteringTransition);
@@ -264,6 +269,13 @@ public class StateActivation extends VertexActivation {
 			for(RegionActivation regionActivation : this.regionActivation){
 				regionActivation.exit(exitingTransition);
 			}
+		}
+		// If there is a doActivity behavior that is currently executed then this behavior is terminated
+		if(!this.isDoActivityCompleted){
+			this.doActivityExecution.terminate();
+			this.doActivityExecution.destroy();
+			this.doActivityExecution = null;
+			this.isDoActivityCompleted = true;
 		}
 		// If there is an exit behavior specified for the state it is executed
 		if(!this.isExitCompleted){
