@@ -249,11 +249,11 @@ public class StateActivation extends VertexActivation {
 			}else{
 				// Execute the entry behavior if any
 				this.tryExecuteEntry();
+				// Execute the doActtivity if any
+				this.tryExecuteDoActivity();
 				// If the state is not completed, then try to start its owned regions.
 				// A region is entered implicitly since the is not the 
 				this.enterRegions(enteringTransition);
-				// Execute the doActtivity if any
-				this.tryExecuteDoActivity();
 			}
 		}
 	}
