@@ -17,7 +17,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
-public class EntryPointActivation extends ConnectionPointReferenceActivation {
+public class EntryPointActivation extends ConnectionPointActivation {
 	
 	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
 		// Enter a state through an entry point. The state on which the entry point is

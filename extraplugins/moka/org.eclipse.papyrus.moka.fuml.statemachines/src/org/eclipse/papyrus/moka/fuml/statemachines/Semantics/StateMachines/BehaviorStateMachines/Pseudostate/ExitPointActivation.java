@@ -19,7 +19,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 
-public class ExitPointActivation extends ConnectionPointReferenceActivation {
+public class ExitPointActivation extends ConnectionPointActivation {
 
 	protected boolean isEnterable() {
 		// Determine if this exit point satisfied its requirement to be exited.
