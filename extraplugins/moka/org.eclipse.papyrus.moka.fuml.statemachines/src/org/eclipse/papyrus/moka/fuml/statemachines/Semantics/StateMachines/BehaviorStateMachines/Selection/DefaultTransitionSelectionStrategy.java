@@ -39,7 +39,7 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 		while(i >= 1 && nextLevel){
 			for(VertexActivation vertexActivation : cartography.get(i)){
 				for(TransitionActivation transitionActivation : vertexActivation.getOutgoingTransitions()){
-					if(this.isReactive(transitionActivation, eventOccurrence)){
+					if(this.isFireable(transitionActivation, eventOccurrence)){
 						fireableTransition.add(transitionActivation);
 					}
 				}
@@ -53,7 +53,7 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 		return fireableTransition;
 	}
 	
-	protected boolean isReactive(TransitionActivation transitionActivation, EventOccurrence eventOccurrence){
+	protected boolean isFireable(TransitionActivation transitionActivation, EventOccurrence eventOccurrence){
 		// A transition is reactive when:
 		//
 		// 	- A completion event is being dispatched and this transition has no trigger
