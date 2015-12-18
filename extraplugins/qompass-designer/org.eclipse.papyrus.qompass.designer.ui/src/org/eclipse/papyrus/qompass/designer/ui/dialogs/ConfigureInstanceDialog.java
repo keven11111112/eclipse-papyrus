@@ -28,11 +28,11 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.FCM.ContainerRule;
+import org.eclipse.papyrus.FCM.util.FCMUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.ElementFilter;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
@@ -42,9 +42,12 @@ import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -58,8 +61,11 @@ import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.InstanceSpecification;
+import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralString;
@@ -96,6 +102,8 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 	protected Label fValueLabel;
 
 	protected Text fValue;
+
+	protected Combo fComboValue;
 
 	protected Package m_model;
 
@@ -406,6 +414,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		span2.horizontalAlignment = GridData.FILL;
 		span2.grabExcessHorizontalSpace = true;
 		fValue.setLayoutData(span2);
+		
 		fValue.addFocusListener(new FocusListener() {
 
 			@Override
@@ -447,6 +456,58 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 			}
 		});
 
+		fComboValue = new Combo(instanceConfigurationGroup, SWT.NONE);
+		span2 = new GridData();
+		span2.horizontalAlignment = GridData.FILL;
+		span2.grabExcessHorizontalSpace = true;
+		fComboValue.setLayoutData(span2);
+		
+		fComboValue.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				// store value, once focus is lost (different element is
+				// selected)
+				int index = fComboValue.getSelectionIndex();
+				if (m_instance == null) {
+					// no instance has been selected
+					// (field should be inactive, if not selected)
+					return;
+				}
+				Slot valueSlot = null;
+				for (Slot slot : m_instance.getSlots()) {
+					if (slot.getDefiningFeature() == m_currentAttribute) {
+						// slot for enumerations can only be configured with instanceValues.
+						// Destroy slots with do not contain at least one instanceValue
+						boolean destroySlot = true;
+						for (ValueSpecification value : slot.getValues()) {
+							if (value instanceof InstanceValue) {
+								destroySlot = false;
+							}
+						}
+						if (destroySlot) {
+							slot.destroy();
+						}
+						else {
+							valueSlot = slot;
+						}
+						break;
+					}
+				}
+				if (valueSlot == null) {
+					// slot does not exist yet, create
+					valueSlot = DepCreation.createSlotForConfigProp(m_instance,
+							m_currentAttribute);
+				}
+				Enumeration enumeration = (Enumeration) m_currentAttribute.getType();
+				for (ValueSpecification value : valueSlot.getValues()) {
+					if (value instanceof InstanceValue) {
+						((InstanceValue) value).setInstance(enumeration.getOwnedLiterals().get(index));
+					}
+				}
+			}
+		});
+		
 		fDescriptionLabel = new Label(instanceConfigurationGroup, SWT.NONE);
 		fDescriptionLabel.setText("Description:");
 		fDescriptionLabel.setLayoutData(span2);
@@ -480,12 +541,36 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		setEnabled(true);
 		fDescription.setText(Description.getDescription(attribute, "not available"));
 		fValueLabel.setText(getValueLabel(attribute));
+		boolean isEnum = m_currentAttribute.getType() instanceof Enumeration;
+		fValue.setVisible(!isEnum);
+		fComboValue.setVisible(isEnum);
+		if (isEnum) {
+			Enumeration enumeration = (Enumeration) m_currentAttribute.getType();
+			EList<EnumerationLiteral> literals = enumeration.getOwnedLiterals();
+			String items[] = new String[literals.size()];
+			for (int i = 0; i < literals.size(); i++) {
+				items[i] = literals.get(i).getName();
+			}
+			fComboValue.setItems(items);
+		}
+		
 		for (Slot slot : m_instance.getSlots()) {
 			if (slot.getDefiningFeature() == m_currentAttribute) {
 				for (ValueSpecification value : slot.getValues()) {
 					if (value instanceof LiteralInteger) {
 						Integer intVal = ((LiteralInteger) value).getValue();
 						fValue.setText(intVal.toString());
+						return;
+					}
+					if (value instanceof InstanceValue) {
+						InstanceSpecification enumIS = ((InstanceValue) value).getInstance();
+						if (enumIS instanceof EnumerationLiteral) {
+							EnumerationLiteral literal = (EnumerationLiteral) enumIS;
+							int index = literal.getEnumeration().getOwnedLiterals().indexOf(literal);
+							if (index != -1) {
+								fComboValue.select(index);
+							}
+						}
 						return;
 					}
 					else if (value instanceof LiteralBoolean) {
@@ -531,7 +616,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		// TODO: is it possible that multiple container extensions of the same
 		// type exist, and if yes, how do we configure these?
 		if (component instanceof Class) {
-			EList<ContainerRule> rules = Utils.getRules((Class) component);
+			EList<ContainerRule> rules = FCMUtil.getAllContainerRules((Class) component);
 			if (rules != null) {
 				for (ContainerRule aRule : rules) {
 					// (many, in case of a composite rule)
