@@ -25,6 +25,7 @@ import org.eclipse.papyrus.sysml.nattable.requirement.tests.importfile.ImportRow
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.importfile.ImportRowsSkipAll_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.insert.InsertEmptyAddAll_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.insert.InsertEmptyAxisIdentifierNotExisting_Test;
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.insert.InsertEmptyClipboard_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.insert.InsertEmptyFailColumns_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.insert.InsertEmptyReplaceAll_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.insert.InsertEmptySkipAll_Test;
@@ -44,6 +45,7 @@ import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.Past
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteColumnsOverwriteByOneLine_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteColumnsOverwriteFailColumns_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteColumnsOverwriteFailRows_Test;
+import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteEmptyClipboard_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteEmptyOverwriteAddAll_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteEmptyOverwriteAxisIdentifierNotExisting_Test;
 import org.eclipse.papyrus.sysml.nattable.requirement.tests.paste.overwrite.PasteEmptyOverwriteFailColumns_Test;
@@ -77,6 +79,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		RevealRequirementTableTest.class,
 
 		// Paste Overwrite tests
+		PasteEmptyClipboard_Test.class,
+		
 		PasteCellsOverwriteAll_Test.class,
 		PasteCellsOverwriteByOneLine_Test.class,
 		PasteCellsOverwriteFailColumns_Test.class,
@@ -101,6 +105,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteEmptyOverwriteAxisIdentifierNotExisting_Test.class,
 
 		// Insert tests
+		InsertEmptyClipboard_Test.class,
+		
 		InsertRowsAddAll_Test.class,
 		InsertRowsReplaceAll_Test.class,
 		InsertRowsSkipAll_Test.class,

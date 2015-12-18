@@ -18,9 +18,12 @@ package org.eclipse.papyrus.infra.nattable.handler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.PasteAxisInNattableManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.AbstractPasteInsertInTableHandler;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
@@ -72,8 +75,14 @@ public class PasteInTableHandler extends AbstractPasteInsertInTableHandler {
 		final Object userAction = event.getParameters().get(USER_ACTION__PREFERRED_USER_ACTION);
 		final int preferredUserAction = null == userAction ? UserActionConstants.UNDEFINED_USER_ACTION : Integer.parseInt(userAction.toString());
 
-		final PasteAxisInNattableManager pasteManager = new PasteAxisInNattableManager(currentNattableModelManager, pasteHelper, openProgressMonitor, openDialog, preferredUserAction, tableSelectionWrapper, TableClipboardUtils.getClipboardContentsAsString());
-		final IStatus result = pasteManager.doAction();
+		IStatus result = null;
+		final String clipboardContentsAsString = TableClipboardUtils.getClipboardContentsAsString();
+		if (null != clipboardContentsAsString && !clipboardContentsAsString.isEmpty()) {
+			final PasteAxisInNattableManager pasteManager = new PasteAxisInNattableManager(currentNattableModelManager, pasteHelper, openProgressMonitor, openDialog, preferredUserAction, tableSelectionWrapper, clipboardContentsAsString);
+			result = pasteManager.doAction();
+		} else {
+			result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.PasteImportHandler_EmptyClipboardString);
+		}
 
 		// Manage different types of dialog error depending of type error
 		if (openDialog) {

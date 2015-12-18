@@ -63,6 +63,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.importfile.ImportRows
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyAddAll_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyAddAll_V1_V3_V1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyClipboard_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyFailColumns_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyReplaceAll_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.insert.InsertEmptyReplaceAll_V1_V3_V1_MultiColumns_Test;
@@ -91,6 +92,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.Paste
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteFailColumns_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteColumnsOverwriteFailRows_H1_H1_H1_MultiColumns_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteEmptyClipboard_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteEmptyOverwriteAddAll_H1_H1_H1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteEmptyOverwriteAddAll_V1_V3_V1_MultiColumns_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.overwrite.PasteEmptyOverwriteAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test;
@@ -302,6 +304,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_V3_V1_MultiColumns_DetachedMode_Test.class,
 
 		// Tests of the paste with overwrite
+		PasteEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
+		
 		PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
 		PasteCellsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
 		PasteCellsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
@@ -333,6 +337,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteEmptyOverwriteAxisIdentifierNotExisting_H1_H1_H1_MultiColumns_Test.class,
 
 		// Tests of insert
+		InsertEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
+		
 		InsertRowsReplaceAll_H1_H1_H1_MultiColumns_Test.class,
 		InsertRowsReplaceAll_V1_V3_V1_MultiColumns_Test.class,
 		InsertRowsAddAll_H1_H1_H1_MultiColumns_Test.class,

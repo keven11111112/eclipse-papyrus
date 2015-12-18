@@ -29,6 +29,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportRowsRepla
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportRowsSkipAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.insert.InsertEmptyAddAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.insert.InsertEmptyAxisIdentifierNotExisting_Test;
+import org.eclipse.papyrus.uml.nattable.generic.tests.insert.InsertEmptyClipboard_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.insert.InsertEmptyFailColumns_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.insert.InsertEmptyReplaceAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.insert.InsertEmptySkipAll_Test;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteCells
 import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteColumnsOverwriteAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteColumnsOverwriteFailColumns_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteColumnsOverwriteFailRows_Test;
+import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteEmptyClipboard_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteEmptyOverwriteAddAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteEmptyOverwriteAxisIdentifierNotExisting_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.paste.overwrite.PasteEmptyOverwriteFailColumns_Test;
@@ -81,6 +83,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterUMLEnumerationMatcherTest.class,
 
 		// Paste Overwrite tests
+		PasteEmptyClipboard_Test.class,
+		
 		PasteCellsOverwriteAll_Test.class,
 		PasteCellsOverwriteByOneLine_Test.class,
 		PasteCellsOverwriteFailColumns_Test.class,
@@ -105,6 +109,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteEmptyOverwriteAxisIdentifierNotExisting_Test.class,
 
 		// Insert tests
+		InsertEmptyClipboard_Test.class,
+		
 		InsertRowsReplaceAll_Test.class,
 		InsertRowsAddAll_Test.class,
 		InsertRowsSkipAll_Test.class,

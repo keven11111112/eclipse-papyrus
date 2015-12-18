@@ -16,10 +16,13 @@ package org.eclipse.papyrus.infra.nattable.handler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.manager.InsertInNattableManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.AbstractPasteInsertInTableHandler;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
@@ -71,8 +74,14 @@ public class InsertInTableHandler extends AbstractPasteInsertInTableHandler {
 		final Object userAction = event.getParameters().get(USER_ACTION__PREFERRED_USER_ACTION);
 		final int preferredUserAction = null == userAction ? UserActionConstants.UNDEFINED_USER_ACTION : Integer.parseInt(userAction.toString());
 
-		final InsertInNattableManager pasteManager = new InsertInNattableManager(currentNattableModelManager, pasteHelper, openProgressMonitor, openDialog, preferredUserAction, tableSelectionWrapper, TableClipboardUtils.getClipboardContentsAsString());
-		final IStatus result = pasteManager.doAction();
+		IStatus result = null;
+		final String clipboardContentsAsString = TableClipboardUtils.getClipboardContentsAsString();
+		if (null != clipboardContentsAsString && !clipboardContentsAsString.isEmpty()) {
+			final InsertInNattableManager pasteManager = new InsertInNattableManager(currentNattableModelManager, pasteHelper, openProgressMonitor, openDialog, preferredUserAction, tableSelectionWrapper, TableClipboardUtils.getClipboardContentsAsString());
+			result = pasteManager.doAction();
+		} else {
+			result = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.PasteImportHandler_EmptyClipboardString);
+		}
 
 		// Manage different types of dialog error depending of type error
 		if (openDialog) {
@@ -80,7 +89,7 @@ public class InsertInTableHandler extends AbstractPasteInsertInTableHandler {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler#setEnabled(java.lang.Object)
 	 *
@@ -89,25 +98,25 @@ public class InsertInTableHandler extends AbstractPasteInsertInTableHandler {
 	@Override
 	public void setEnabled(final Object evaluationContext) {
 		super.setEnabled(evaluationContext);
-          if(isEnabled()){
+		if (isEnabled()) {
 			// Recalculate if the enable is allowed because the user can select cells and try to insert by click on rows for example.
 			boolean canEnable = false;
 			final INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
-			if(null != currentNattableModelManager){
-				final ISelection currentSelection = ((NattableModelManager)currentNattableModelManager).getSelectionInTable();
-				if(null == currentSelection){
+			if (null != currentNattableModelManager) {
+				final ISelection currentSelection = ((NattableModelManager) currentNattableModelManager).getSelectionInTable();
+				if (null == currentSelection) {
 					canEnable = true;
-				}else if (currentSelection instanceof TableStructuredSelection) {
+				} else if (currentSelection instanceof TableStructuredSelection) {
 					TableSelectionWrapper tableSelectionWrapper = (TableSelectionWrapper) ((TableStructuredSelection) currentSelection).getAdapter(TableSelectionWrapper.class);
-					if(null != tableSelectionWrapper){
-						if(tableSelectionWrapper.getSelectedCells().isEmpty() 
-							|| !tableSelectionWrapper.getFullySelectedRows().isEmpty() && tableSelectionWrapper.getFullySelectedColumns().isEmpty()){
-						canEnable = true;
+					if (null != tableSelectionWrapper) {
+						if (tableSelectionWrapper.getSelectedCells().isEmpty()
+								|| !tableSelectionWrapper.getFullySelectedRows().isEmpty() && tableSelectionWrapper.getFullySelectedColumns().isEmpty()) {
+							canEnable = true;
 						}
 					}
 				}
-                	}
+			}
 			setBaseEnabled(canEnable);
-        }
+		}
 	}
 }
