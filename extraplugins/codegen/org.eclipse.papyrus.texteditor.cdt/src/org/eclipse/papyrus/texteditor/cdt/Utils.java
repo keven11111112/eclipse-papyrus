@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@
 
 package org.eclipse.papyrus.texteditor.cdt;
 
+import org.eclipse.papyrus.codegen.extensionpoints.GenerationConstants;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -152,5 +153,35 @@ public class Utils {
 			element = owner;
 		}
 		return null;
+	}
+	
+	/**
+	 * Remove generated code from a body (everything between the GENERATED_START flag
+	 * 
+	 * @param bodyStr
+	 * @return
+	 */
+	public static String removeGenerated(String bodyStr) {
+		for (;;) {
+			int startPos = bodyStr.indexOf(GenerationConstants.GENERATED_START);
+			if (startPos == -1) {
+				break;
+			}
+			// search line break of previous line (if any)
+			while ((startPos > 0) && bodyStr.charAt(startPos) != '\r' && bodyStr.charAt(startPos) != '\n') {
+				startPos--;
+			}
+			int endPos = bodyStr.indexOf(GenerationConstants.GENERATED_END, startPos);
+			if (endPos == -1) {
+				break;
+			}
+			endPos += GenerationConstants.GENERATED_END.length();
+			// stop at first non white-space character after comment.
+			while ((endPos < bodyStr.length()) && Character.isWhitespace(bodyStr.charAt(endPos))) {
+				endPos++;
+			}
+			bodyStr = bodyStr.substring(0, startPos) + bodyStr.substring(endPos);
+		}
+		return bodyStr;
 	}
 }

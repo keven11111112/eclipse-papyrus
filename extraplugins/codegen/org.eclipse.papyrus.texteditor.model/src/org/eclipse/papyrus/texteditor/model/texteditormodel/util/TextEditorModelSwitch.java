@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipse.papyrus.texteditor.model.texteditormodel.*;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelPackage;
 
@@ -28,7 +29,6 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelPacka
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModelPackage
  * @generated
  */
@@ -37,7 +37,6 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected static TextEditorModelPackage modelPackage;
@@ -46,7 +45,6 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public TextEditorModelSwitch() {
@@ -59,8 +57,7 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -73,26 +70,20 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case TextEditorModelPackage.TEXT_EDITOR_MODEL: {
-			TextEditorModel textEditorModel = (TextEditorModel) theEObject;
-			T result = caseTextEditorModel(textEditorModel);
-			if (result == null) {
-				result = caseEModelElement(textEditorModel);
+			case TextEditorModelPackage.TEXT_EDITOR_MODEL: {
+				TextEditorModel textEditorModel = (TextEditorModel)theEObject;
+				T result = caseTextEditorModel(textEditorModel);
+				if (result == null) result = caseEModelElement(textEditorModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
 			}
-			if (result == null) {
-				result = defaultCase(theEObject);
-			}
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -102,9 +93,7 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Text Editor Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -119,9 +108,7 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -136,9 +123,7 @@ public class TextEditorModelSwitch<T> extends Switch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 *
-	 * @param object
-	 *            the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

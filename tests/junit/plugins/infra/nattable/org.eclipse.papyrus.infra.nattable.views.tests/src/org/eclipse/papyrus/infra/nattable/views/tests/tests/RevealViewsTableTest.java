@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.views.tests.tests;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -76,20 +77,20 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 	public void initTests() throws CoreException, IOException {
 		try {
 			initModel("RevealViewsTableTest", "modelUMLClass", getBundle()); //$NON-NLS-1$ //$NON-NLS-2$
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 
 		ResourceSet set = null;
 		try {
 			set = getModelSet();
-		} catch (ServiceException e) {
+		} catch (final ServiceException e) {
 			e.printStackTrace();
 		}
 
-		List<Resource> resources = set.getResources();
+		final List<Resource> resources = set.getResources();
 
-		for(Resource current : resources) {
+		for(final Resource current : resources) {
 			if(current.getURI().lastSegment().equals("modelUMLClass.uml")) { //$NON-NLS-1$
 				this.uml = current;
 			} else if(current.getURI().lastSegment().equals("modelUMLClass.notation")) { //$NON-NLS-1$
@@ -116,7 +117,7 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 		// select the page, corresponding to the requirement table used to test the behavior, in the multidiagram view
 		selectTablePage(1);
 
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = this.editor.getAdapter(INattableModelManager.class);
 		// verify that the axis is not inverted
 		if(manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
@@ -125,18 +126,18 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 		Assert.assertTrue(this.editor.getActiveEditor() instanceof NavigationTarget);
 		// spoofs the behavior when the link with editor button is activated
 		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.diagramTest1);
-		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
+		final ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
-		Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
+		final Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
+		final Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 		// verify that the same element has been selected on both sides
 		Assert.assertTrue("failed to match the selection with: " + this.diagramTest1, this.diagramTest1.equals(currentRealObject)); //$NON-NLS-1$
 
-		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
-		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
-		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
+		final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
+		final int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
+		final int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 		// verify that the line selected is indeed the line corresponding to the element selected in the model explorer
 		Assert.assertTrue("index of row does not match: " + rowSelectedPositions[0], rowSelectedPositions[0] == 0); //$NON-NLS-1$
 		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
@@ -153,24 +154,24 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 
 		selectTablePage(1);
 
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = this.editor.getAdapter(INattableModelManager.class);
 		if(!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
 		Assert.assertTrue(this.editor.getActiveEditor() instanceof NavigationTarget);
 		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.diagramTest1);
-		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
+		final ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
-		Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
+		final Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
+		final Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 		Assert.assertTrue("failed to match the selection with: " + this.diagramTest1, this.diagramTest1.equals(currentRealObject)); //$NON-NLS-1$
 
-		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
-		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
-		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
+		final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
+		final int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
+		final int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 		Assert.assertTrue("index of row does not match: " + columnSelectedPositions[0], columnSelectedPositions[0] == 0); //$NON-NLS-1$
 		Assert.assertTrue("number of selected columns does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
 	}
@@ -186,31 +187,32 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 
 		selectTablePage(1);
 
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = this.editor.getAdapter(INattableModelManager.class);
 		if(manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
 		Assert.assertTrue(this.editor.getActiveEditor() instanceof NavigationTarget);
 		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.viewsListTest);
-		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
+		final ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
+		final List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
 		for(int index = 0; index < selectedRowElements.size(); index++) {
-			Object currentAxisObject = selectedRowElements.get(index);
-			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
+			final Object currentAxisObject = selectedRowElements.get(index);
+			final Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			Assert.assertTrue("failed to match the selection", this.viewsListTest.contains(currentRealObject)); //$NON-NLS-1$
 		}
 
-		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
-		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
-		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
+		final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
+		final int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
+		final int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
 		Assert.assertTrue("index of row does not match", rowSelectedPositions.length == 2); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[0] == 1); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 0); //$NON-NLS-1$
+		final List rowSelectedPositionsAsList = Arrays.asList(rowSelectedPositions[0], rowSelectedPositions[1]);
+		Assert.assertTrue("index of row does not match", rowSelectedPositionsAsList.contains(0)); //$NON-NLS-1$
+		Assert.assertTrue("index of row does not match", rowSelectedPositionsAsList.contains(1)); //$NON-NLS-1$
 		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
 	}
 
@@ -225,31 +227,32 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 
 		selectTablePage(1);
 
-		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
+		final INattableModelManager manager = this.editor.getAdapter(INattableModelManager.class);
 		if(!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
 		Assert.assertTrue(this.editor.getActiveEditor() instanceof NavigationTarget);
 		((NavigationTarget)this.editor.getActiveEditor()).revealElement(this.viewsListTest);
-		ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
+		final ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		final ISelection selection = serv.getSelection();
 
 		Assert.assertTrue(selection instanceof IStructuredSelection);
-		List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
+		final List<?> selectedRowElements = ((IStructuredSelection)selection).toList();
 		for(int index = 0; index < selectedRowElements.size(); index++) {
-			Object currentAxisObject = selectedRowElements.get(index);
-			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
+			final Object currentAxisObject = selectedRowElements.get(index);
+			final Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
 			Assert.assertTrue("failed to match the selection", this.viewsListTest.contains(currentRealObject)); //$NON-NLS-1$
 		}
 
-		SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
-		int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
-		int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
+		final SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
+		final int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
+		final int[] columnSelectedPositions = layer.getFullySelectedColumnPositions();
 
 		Assert.assertTrue("index of row does not match", columnSelectedPositions.length == 2); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", columnSelectedPositions[0] == 0); //$NON-NLS-1$
-		Assert.assertTrue("index of row does not match", columnSelectedPositions[1] == 1); //$NON-NLS-1$
+		final List columnSelectedPositionsAsList = Arrays.asList(columnSelectedPositions[0], columnSelectedPositions[1]);
+		Assert.assertTrue("index of row does not match", columnSelectedPositionsAsList.contains(0)); //$NON-NLS-1$
+		Assert.assertTrue("index of row does not match", columnSelectedPositionsAsList.contains(1)); //$NON-NLS-1$
 		Assert.assertTrue("number of selected columns does not match: " + rowSelectedPositions.length, rowSelectedPositions.length == 0); //$NON-NLS-1$
 	}
 
@@ -265,19 +268,19 @@ public class RevealViewsTableTest extends AbstractEditorTest {
 		return "resources/"; //$NON-NLS-1$
 	}
 
-	protected void selectTablePage(int index) {
+	protected void selectTablePage(final int index) {
 		try {
-			Object tablePage = getPageManager().allPages().get(index);
+			final Object tablePage = getPageManager().allPages().get(index);
 			//			getPageManager().closeAllOpenedPages();
 			//			getPageManager().openPage(tablePage);
 			getPageManager().selectPage(tablePage);
-		} catch (ServiceException e) {
+		} catch (final ServiceException e) {
 			Activator.log.error(e);
 		}
 	}
 
 	protected List<Object> viewsList() {
-		List<Object> viewsList = new ArrayList<Object>();
+		final List<Object> viewsList = new ArrayList<Object>();
 		this.diagramTest1 = this.root.get(0);
 		viewsList.add(this.diagramTest1);
 		this.diagramTest2 = this.root.get(1);

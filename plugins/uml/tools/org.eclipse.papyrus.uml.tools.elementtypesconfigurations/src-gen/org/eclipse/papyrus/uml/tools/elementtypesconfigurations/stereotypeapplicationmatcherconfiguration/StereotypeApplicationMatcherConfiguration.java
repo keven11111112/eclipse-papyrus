@@ -23,10 +23,11 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration#getStereotypesQualifiedNames <em>Stereotypes Qualified Names</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration#getProfileUri <em>Profile Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationPackage#getStereotypeApplicationMatcherConfiguration()
  * @model
@@ -48,5 +49,31 @@ public interface StereotypeApplicationMatcherConfiguration extends MatcherConfig
 	 * @generated
 	 */
 	EList<String> getStereotypesQualifiedNames();
+
+	/**
+	 * Returns the value of the '<em><b>Profile Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Profile Uri</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Profile Uri</em>' attribute.
+	 * @see #setProfileUri(String)
+	 * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationPackage#getStereotypeApplicationMatcherConfiguration_ProfileUri()
+	 * @model
+	 * @generated
+	 */
+	String getProfileUri();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration#getProfileUri <em>Profile Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Profile Uri</em>' attribute.
+	 * @see #getProfileUri()
+	 * @generated
+	 */
+	void setProfileUri(String value);
 
 } // StereotypeApplicationMatcherConfiguration

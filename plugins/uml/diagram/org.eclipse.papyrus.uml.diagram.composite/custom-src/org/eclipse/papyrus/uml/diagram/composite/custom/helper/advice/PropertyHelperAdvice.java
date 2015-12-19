@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -23,13 +24,18 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
@@ -51,7 +57,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	 * @param request
 	 *            the request to modify the model
 	 * @return
-	 *         the command to destroy the views of the parts which are not owned by the new type
+	 * 		the command to destroy the views of the parts which are not owned by the new type
 	 *
 	 */
 	@Override
@@ -112,6 +118,41 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 		}
 
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeEditContextCommand(org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getBeforeEditContextCommand(GetEditContextRequest request) {
+		if (request.getEditCommandRequest() instanceof CreateElementRequest) {
+			// check the element to create is a sub kind of UML PORT
+			CreateElementRequest createElementRequest = ((CreateElementRequest) request.getEditCommandRequest());
+			// retrieve element type from this request and check if this is a kind of UML PORT
+			IElementType type = createElementRequest.getElementType();
+			List<IElementType> types = new ArrayList<IElementType>(Arrays.asList(type.getAllSuperTypes()));
+			types.add(type);
+			if (types.contains(UMLElementTypes.PROPERTY) && (!UMLPackage.eINSTANCE.getProperty_Qualifier().equals(createElementRequest.getContainmentFeature()))) {
+				GetEditContextCommand command = new GetEditContextCommand(request);
+				if (request.getEditContext() instanceof Property) {
+					// this line is very important
+					// change the context ok, but the feature must be change ifn order to create a port inside the class
+					createElementRequest.setContainmentFeature(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute());
+
+					Property p = (Property) request.getEditContext();
+					if (p.getType() != null) {
+						command.setEditContext(p.getType());
+						return command;
+					}
+
+				}
+			}
+		}
+
+		return super.getBeforeEditContextCommand(request);
 	}
 
 	/**

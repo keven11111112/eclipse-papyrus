@@ -455,14 +455,19 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 			cc.compose(createState);
 			cc.compose(createRegion);
 
+			// calculate position relative to graphical parent (passed position is absolute)
+			Rectangle parentBounds = graphicalParentEditPart.getFigure().getBounds().getCopy();
+			graphicalParentEditPart.getFigure().translateToAbsolute(parentBounds);
+			Point relLocation = new Point(location.x - parentBounds.x, location.y - parentBounds.y);
+			
 			// take care of the case when a simple state is dropped, then we should provide a reasonable size
 			if (droppedElement.getRegions().isEmpty()) {
 				// final state has default size 20
-				int sizeHint = (droppedElement instanceof FinalState) ? 20 : 40;
-				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, sizeHint, sizeHint), false);
+				int sizeHint = (droppedElement instanceof FinalState) ? 20 : 60;
+				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(relLocation.x, relLocation.y, sizeHint, sizeHint), false);
 				cc.compose(setBoundsCommand);
 			} else {
-				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(location.x, location.y, -1, -1), true);
+				setBoundsCommand = new CustomCompositeStateSetBoundsCommand(getEditingDomain(), null, descriptor, new Rectangle(relLocation.x, relLocation.y, -1, -1), true);
 				cc.compose(setBoundsCommand);
 				// force compartment to be shown
 				SetPropertyCommand showCompartment = new SetPropertyCommand(getEditingDomain(), (IAdaptable) createState.getCommandResult().getReturnValue(), "notation.View.visible", "Visibility", true) {

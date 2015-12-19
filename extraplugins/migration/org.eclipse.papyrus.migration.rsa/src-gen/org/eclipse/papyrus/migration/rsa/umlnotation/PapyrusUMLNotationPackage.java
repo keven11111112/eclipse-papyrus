@@ -282,6 +282,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_DIAGRAM__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = NotationPackage.DIAGRAM_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_DIAGRAM__SHOW_LIST_STEREOTYPE = NotationPackage.DIAGRAM_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>UML Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -289,7 +299,7 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_DIAGRAM_FEATURE_COUNT = NotationPackage.DIAGRAM_FEATURE_COUNT + 5;
+	int UML_DIAGRAM_FEATURE_COUNT = NotationPackage.DIAGRAM_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl <em>UML Shape</em>}' class.
@@ -613,6 +623,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = NotationPackage.SHAPE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_SHAPE__SHOW_LIST_STEREOTYPE = NotationPackage.SHAPE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>UML Shape</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -620,7 +640,7 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_SHAPE_FEATURE_COUNT = NotationPackage.SHAPE_FEATURE_COUNT + 5;
+	int UML_SHAPE_FEATURE_COUNT = NotationPackage.SHAPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLFrameImpl <em>UML Frame</em>}' class.
@@ -944,6 +964,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_FRAME__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_FRAME__SHOW_LIST_STEREOTYPE = UML_SHAPE__SHOW_LIST_STEREOTYPE;
+
+	/**
 	 * The number of structural features of the '<em>UML Frame</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1165,6 +1195,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = NotationPackage.COMPARTMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE = NotationPackage.COMPARTMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The feature id for the '<em><b>Vertical Alignment</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1172,7 +1212,7 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_SHAPE_COMPARTMENT__VERTICAL_ALIGNMENT = NotationPackage.COMPARTMENT_FEATURE_COUNT + 5;
+	int UML_SHAPE_COMPARTMENT__VERTICAL_ALIGNMENT = NotationPackage.COMPARTMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>UML Shape Compartment</em>' class.
@@ -1182,7 +1222,7 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_SHAPE_COMPARTMENT_FEATURE_COUNT = NotationPackage.COMPARTMENT_FEATURE_COUNT + 6;
+	int UML_SHAPE_COMPARTMENT_FEATURE_COUNT = NotationPackage.COMPARTMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLConnectorImpl <em>UML Connector</em>}' class.
@@ -1576,6 +1616,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_CONNECTOR__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = NotationPackage.CONNECTOR_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_CONNECTOR__SHOW_LIST_STEREOTYPE = NotationPackage.CONNECTOR_FEATURE_COUNT + 12;
+
+	/**
 	 * The number of structural features of the '<em>UML Connector</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1583,7 +1633,7 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_CONNECTOR_FEATURE_COUNT = NotationPackage.CONNECTOR_FEATURE_COUNT + 12;
+	int UML_CONNECTOR_FEATURE_COUNT = NotationPackage.CONNECTOR_FEATURE_COUNT + 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLViewImpl <em>UML View</em>}' class.
@@ -1757,6 +1807,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = NotationPackage.VIEW_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_VIEW__SHOW_LIST_STEREOTYPE = NotationPackage.VIEW_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>UML View</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1764,7 +1824,7 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UML_VIEW_FEATURE_COUNT = NotationPackage.VIEW_FEATURE_COUNT + 5;
+	int UML_VIEW_FEATURE_COUNT = NotationPackage.VIEW_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLComponentImpl <em>UML Component</em>}' class.
@@ -2429,6 +2489,16 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	int UML_CLASSIFIER_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT;
 
 	/**
+	 * The feature id for the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int UML_CLASSIFIER_SHAPE__SHOW_LIST_STEREOTYPE = UML_SHAPE__SHOW_LIST_STEREOTYPE;
+
+	/**
 	 * The feature id for the '<em><b>Use Classifier Shape</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2585,6 +2655,18 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getUMLView_ShowStereotypeAttributeCompartment();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowListStereotype <em>Show List Stereotype</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Show List Stereotype</em>'.
+	 * @see org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowListStereotype()
+	 * @see #getUMLView()
+	 * @generated
+	 */
+	EAttribute getUMLView_ShowListStereotype();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLComponent <em>UML Component</em>}'.
@@ -2776,6 +2858,15 @@ public interface PapyrusUMLNotationPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT = eINSTANCE.getUMLView_ShowStereotypeAttributeCompartment();
+
+		/**
+		 * The meta object literal for the '<em><b>Show List Stereotype</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute UML_VIEW__SHOW_LIST_STEREOTYPE = eINSTANCE.getUMLView_ShowListStereotype();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLComponentImpl <em>UML Component</em>}' class.

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:BPMNProfile="http://www.omg.org/spec/BPMNProfile/20121112/" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_2kH1EGapEeW6K7oxyO-6sw" name="RootElement">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_2xgJwGapEeW6K7oxyO-6sw" name="B" node="_QMnYkGayEeW11KFdjNHSjg _TvTcMGayEeW11KFdjNHSjg _6nPWIGayEeW11KFdjNHSjg _80ssMGayEeW11KFdjNHSjg _C6UmoGazEeW11KFdjNHSjg _X1UZ4GazEeW11KFdjNHSjg _b5jEUGazEeW11KFdjNHSjg _tE6kIGazEeW11KFdjNHSjg" group="_4iwsAGapEeW6K7oxyO-6sw _Ps2v4GaxEeW11KFdjNHSjg _ljQbcGaxEeW11KFdjNHSjg">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_5AKqoGayEeW11KFdjNHSjg" target="_TvTcMGayEeW11KFdjNHSjg" source="_QMnYkGayEeW11KFdjNHSjg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_f-HtAGazEeW11KFdjNHSjg" target="_6nPWIGayEeW11KFdjNHSjg" source="_TvTcMGayEeW11KFdjNHSjg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_mZspUGazEeW11KFdjNHSjg" target="_80ssMGayEeW11KFdjNHSjg" source="_6nPWIGayEeW11KFdjNHSjg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_nvia4GazEeW11KFdjNHSjg" target="_C6UmoGazEeW11KFdjNHSjg" source="_80ssMGayEeW11KFdjNHSjg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_o7t6IGazEeW11KFdjNHSjg" name=" " target="_X1UZ4GazEeW11KFdjNHSjg" source="_C6UmoGazEeW11KFdjNHSjg">
+        <guard xmi:type="uml:LiteralString" xmi:id="_TcbUkGkEEeWMF7EoSeYAmQ" value="true"/>
+      </edge>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_yM6_wGazEeW11KFdjNHSjg" target="_b5jEUGazEeW11KFdjNHSjg" source="_X1UZ4GazEeW11KFdjNHSjg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_zL2GIGazEeW11KFdjNHSjg" target="_tE6kIGazEeW11KFdjNHSjg" source="_b5jEUGazEeW11KFdjNHSjg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_HxQq8Ga0EeW11KFdjNHSjg" name=" " target="_6nPWIGayEeW11KFdjNHSjg" source="_C6UmoGazEeW11KFdjNHSjg">
+        <guard xmi:type="uml:LiteralString" xmi:id="_PX36AGkEEeWMF7EoSeYAmQ" value="false"/>
+      </edge>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_4iwsAGapEeW6K7oxyO-6sw" name="Human Resources" node="_6nPWIGayEeW11KFdjNHSjg"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_Ps2v4GaxEeW11KFdjNHSjg" name="Hiring Manager" node="_QMnYkGayEeW11KFdjNHSjg _TvTcMGayEeW11KFdjNHSjg _80ssMGayEeW11KFdjNHSjg _C6UmoGazEeW11KFdjNHSjg _b5jEUGazEeW11KFdjNHSjg _tE6kIGazEeW11KFdjNHSjg"/>
+      <group xmi:type="uml:ActivityPartition" xmi:id="_ljQbcGaxEeW11KFdjNHSjg" name="Accounting" node="_X1UZ4GazEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_QMnYkGayEeW11KFdjNHSjg" name="" outgoing="_5AKqoGayEeW11KFdjNHSjg" inPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_TvTcMGayEeW11KFdjNHSjg" name="Create Job Requisition" incoming="_5AKqoGayEeW11KFdjNHSjg" outgoing="_f-HtAGazEeW11KFdjNHSjg" inPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_6nPWIGayEeW11KFdjNHSjg" name="Find Candidates" incoming="_f-HtAGazEeW11KFdjNHSjg _HxQq8Ga0EeW11KFdjNHSjg" outgoing="_mZspUGazEeW11KFdjNHSjg" inPartition="_4iwsAGapEeW6K7oxyO-6sw"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_80ssMGayEeW11KFdjNHSjg" name="Conduct Interviews" incoming="_mZspUGazEeW11KFdjNHSjg" outgoing="_nvia4GazEeW11KFdjNHSjg" inPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:DecisionNode" xmi:id="_C6UmoGazEeW11KFdjNHSjg" name="Candidate Found?" incoming="_nvia4GazEeW11KFdjNHSjg" outgoing="_o7t6IGazEeW11KFdjNHSjg _HxQq8Ga0EeW11KFdjNHSjg" inPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_X1UZ4GazEeW11KFdjNHSjg" name="Setup Payroll" incoming="_o7t6IGazEeW11KFdjNHSjg" outgoing="_yM6_wGazEeW11KFdjNHSjg" inPartition="_ljQbcGaxEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_b5jEUGazEeW11KFdjNHSjg" name="Give First Day Briefing" incoming="_yM6_wGazEeW11KFdjNHSjg" outgoing="_zL2GIGazEeW11KFdjNHSjg" inPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+      <node xmi:type="uml:FlowFinalNode" xmi:id="_tE6kIGazEeW11KFdjNHSjg" name=" " incoming="_zL2GIGazEeW11KFdjNHSjg" inPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_2xGhIGapEeW6K7oxyO-6sw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_2xHIMGapEeW6K7oxyO-6sw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.omg.org/spec/BPMNProfile/20121112/#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://BPMN_PROF/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"/>
+    </profileApplication>
+  </uml:Model>
+  <BPMNProfile:BPMNProcess xmi:id="_2xwocGapEeW6K7oxyO-6sw" base_Element="_2xgJwGapEeW6K7oxyO-6sw" base_PackageableElement="_2xgJwGapEeW6K7oxyO-6sw" base_Behavior="_2xgJwGapEeW6K7oxyO-6sw" base_Activity="_2xgJwGapEeW6K7oxyO-6sw"/>
+  <BPMNProfile:Lane xmi:id="_4jE1EGapEeW6K7oxyO-6sw" base_Element="_4iwsAGapEeW6K7oxyO-6sw" base_ActivityPartition="_4iwsAGapEeW6K7oxyO-6sw"/>
+  <BPMNProfile:Lane xmi:id="_Ptdz4GaxEeW11KFdjNHSjg" base_Element="_Ps2v4GaxEeW11KFdjNHSjg" base_ActivityPartition="_Ps2v4GaxEeW11KFdjNHSjg"/>
+  <BPMNProfile:Lane xmi:id="_ljfE8GaxEeW11KFdjNHSjg" base_Element="_ljQbcGaxEeW11KFdjNHSjg" base_ActivityPartition="_ljQbcGaxEeW11KFdjNHSjg"/>
+  <BPMNProfile:StartEvent xmi:id="_QNDdcGayEeW11KFdjNHSjg" base_Element="_QMnYkGayEeW11KFdjNHSjg" base_ActivityNode="_QMnYkGayEeW11KFdjNHSjg" base_InitialNode="_QMnYkGayEeW11KFdjNHSjg"/>
+  <BPMNProfile:ManualTask xmi:id="_TvpacGayEeW11KFdjNHSjg" base_Element="_TvTcMGayEeW11KFdjNHSjg" base_ActivityNode="_TvTcMGayEeW11KFdjNHSjg" base_Action="_TvTcMGayEeW11KFdjNHSjg" base_OpaqueAction="_TvTcMGayEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_5AdlkGayEeW11KFdjNHSjg" base_Element="_5AKqoGayEeW11KFdjNHSjg" base_ControlFlow="_5AKqoGayEeW11KFdjNHSjg"/>
+  <BPMNProfile:ManualTask xmi:id="_6nfNwGayEeW11KFdjNHSjg" base_Element="_6nPWIGayEeW11KFdjNHSjg" base_ActivityNode="_6nPWIGayEeW11KFdjNHSjg" base_Action="_6nPWIGayEeW11KFdjNHSjg" base_OpaqueAction="_6nPWIGayEeW11KFdjNHSjg"/>
+  <BPMNProfile:ManualTask xmi:id="_81CDYGayEeW11KFdjNHSjg" base_Element="_80ssMGayEeW11KFdjNHSjg" base_ActivityNode="_80ssMGayEeW11KFdjNHSjg" base_Action="_80ssMGayEeW11KFdjNHSjg" base_OpaqueAction="_80ssMGayEeW11KFdjNHSjg"/>
+  <BPMNProfile:ExclusiveGateway xmi:id="_C6ovsGazEeW11KFdjNHSjg" base_Element="_C6UmoGazEeW11KFdjNHSjg" base_ActivityNode="_C6UmoGazEeW11KFdjNHSjg" base_ControlNode="_C6UmoGazEeW11KFdjNHSjg" base_DecisionNode="_C6UmoGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:ManualTask xmi:id="_X1nU0GazEeW11KFdjNHSjg" base_Element="_X1UZ4GazEeW11KFdjNHSjg" base_ActivityNode="_X1UZ4GazEeW11KFdjNHSjg" base_Action="_X1UZ4GazEeW11KFdjNHSjg" base_OpaqueAction="_X1UZ4GazEeW11KFdjNHSjg"/>
+  <BPMNProfile:ManualTask xmi:id="_b5zjAGazEeW11KFdjNHSjg" base_Element="_b5jEUGazEeW11KFdjNHSjg" base_ActivityNode="_b5jEUGazEeW11KFdjNHSjg" base_Action="_b5jEUGazEeW11KFdjNHSjg" base_OpaqueAction="_b5jEUGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_f-YywGazEeW11KFdjNHSjg" base_Element="_f-HtAGazEeW11KFdjNHSjg" base_ControlFlow="_f-HtAGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_mZ754GazEeW11KFdjNHSjg" base_Element="_mZspUGazEeW11KFdjNHSjg" base_ControlFlow="_mZspUGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_nvySgGazEeW11KFdjNHSjg" base_Element="_nvia4GazEeW11KFdjNHSjg" base_ControlFlow="_nvia4GazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_o76ucGazEeW11KFdjNHSjg" base_Element="_o7t6IGazEeW11KFdjNHSjg" base_ControlFlow="_o7t6IGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:EndEvent xmi:id="_tFMQ8GazEeW11KFdjNHSjg" base_Element="_tE6kIGazEeW11KFdjNHSjg" base_ActivityNode="_tE6kIGazEeW11KFdjNHSjg" base_FlowFinalNode="_tE6kIGazEeW11KFdjNHSjg" base_FinalNode="_tE6kIGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_yNNToGazEeW11KFdjNHSjg" base_Element="_yM6_wGazEeW11KFdjNHSjg" base_ControlFlow="_yM6_wGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_zMF9wGazEeW11KFdjNHSjg" base_Element="_zL2GIGazEeW11KFdjNHSjg" base_ControlFlow="_zL2GIGazEeW11KFdjNHSjg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_HxgikGa0EeW11KFdjNHSjg" base_Element="_HxQq8Ga0EeW11KFdjNHSjg" base_ControlFlow="_HxQq8Ga0EeW11KFdjNHSjg"/>
+</xmi:XMI>

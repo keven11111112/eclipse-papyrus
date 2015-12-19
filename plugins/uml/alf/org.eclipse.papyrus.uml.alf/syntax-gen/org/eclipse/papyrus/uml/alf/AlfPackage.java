@@ -65214,13 +65214,22 @@ public interface AlfPackage extends EPackage {
 	int MODEL_NAMESPACE___PACKAGE_DEFINITION_APPLIED_PROFILE_DERIVATION__DIAGNOSTICCHAIN_MAP = PACKAGE_DEFINITION___PACKAGE_DEFINITION_APPLIED_PROFILE_DERIVATION__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Context</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_NAMESPACE___CONTEXT = PACKAGE_DEFINITION_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Outer Scope</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___OUTER_SCOPE = PACKAGE_DEFINITION_OPERATION_COUNT + 0;
+	int MODEL_NAMESPACE___OUTER_SCOPE = PACKAGE_DEFINITION_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Model Scope</em>' operation.
@@ -65229,7 +65238,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___MODEL_SCOPE = PACKAGE_DEFINITION_OPERATION_COUNT + 1;
+	int MODEL_NAMESPACE___MODEL_SCOPE = PACKAGE_DEFINITION_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Qualified Name</em>' operation.
@@ -65238,7 +65247,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___QUALIFIED_NAME = PACKAGE_DEFINITION_OPERATION_COUNT + 2;
+	int MODEL_NAMESPACE___QUALIFIED_NAME = PACKAGE_DEFINITION_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Resolve In Scope</em>' operation.
@@ -65247,7 +65256,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___RESOLVE_IN_SCOPE__STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 3;
+	int MODEL_NAMESPACE___RESOLVE_IN_SCOPE__STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Resolve In Root</em>' operation.
@@ -65256,7 +65265,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___RESOLVE_IN_ROOT__STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 4;
+	int MODEL_NAMESPACE___RESOLVE_IN_ROOT__STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Resolve Path Name</em>' operation.
@@ -65265,7 +65274,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___RESOLVE_PATH_NAME__STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 5;
+	int MODEL_NAMESPACE___RESOLVE_PATH_NAME__STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Resolve Association End</em>' operation.
@@ -65274,7 +65283,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___RESOLVE_ASSOCIATION_END__ELEMENTREFERENCE_STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 6;
+	int MODEL_NAMESPACE___RESOLVE_ASSOCIATION_END__ELEMENTREFERENCE_STRING = PACKAGE_DEFINITION_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Applied Profiles</em>' operation.
@@ -65283,7 +65292,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___APPLIED_PROFILES = PACKAGE_DEFINITION_OPERATION_COUNT + 7;
+	int MODEL_NAMESPACE___APPLIED_PROFILES = PACKAGE_DEFINITION_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Stub For</em>' operation.
@@ -65292,16 +65301,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION = PACKAGE_DEFINITION_OPERATION_COUNT + 8;
-
-	/**
-	 * The operation id for the '<em>Model Namespace stub For</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_NAMESPACE___MODEL_NAMESPACE_STUB_FOR__UNITDEFINITION = PACKAGE_DEFINITION_OPERATION_COUNT + 9;
+	int MODEL_NAMESPACE___STUB_FOR__UNITDEFINITION = PACKAGE_DEFINITION_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Model Namespace applied Profiles</em>' operation.
@@ -102070,6 +102070,16 @@ public interface AlfPackage extends EPackage {
 	EClass getModelNamespace();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ModelNamespace#context() <em>Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Context</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ModelNamespace#context()
+	 * @generated
+	 */
+	EOperation getModelNamespace__Context();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ModelNamespace#outerScope() <em>Outer Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102158,16 +102168,6 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getModelNamespace__StubFor__UnitDefinition();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ModelNamespace#ModelNamespace_stubFor(org.eclipse.papyrus.uml.alf.UnitDefinition) <em>Model Namespace stub For</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Model Namespace stub For</em>' operation.
-	 * @see org.eclipse.papyrus.uml.alf.ModelNamespace#ModelNamespace_stubFor(org.eclipse.papyrus.uml.alf.UnitDefinition)
-	 * @generated
-	 */
-	EOperation getModelNamespace__ModelNamespace_stubFor__UnitDefinition();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ModelNamespace#ModelNamespace_appliedProfiles() <em>Model Namespace applied Profiles</em>}' operation.

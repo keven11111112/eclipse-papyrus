@@ -80,5 +80,12 @@
          </labelProviderContext>
       </labelProvider>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.tester">
+      <tester
+            class="org.eclipse.papyrus.uml.nattable.stereotype.display.tester.IsViewFromUMLElement"
+            id="org.eclipse.papyrus.uml.nattable.stereotype.display.tester">
+      </tester>
+   </extension>
 
 </plugin>

@@ -1,4 +1,7 @@
 Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.papyrus.java.template;singleton:=true
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: Java Template
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.jface.text,
@@ -6,11 +9,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jdt.ui,
  org.eclipse.pde.core,
  org.eclipse.ui
-Bundle-Vendor: Atos Origin
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.2.qualifier
-Bundle-Name: Java Template
 Bundle-Activator: org.eclipse.papyrus.java.template.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.java.template;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Atos Origin

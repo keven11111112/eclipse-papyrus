@@ -1,0 +1,349 @@
+
+SequenceFlow{
+	routing:Rectilinear;
+	roundedBendpointsRadius:20 ;
+}
+
+ControlFlow{
+	routing:Rectilinear;
+	roundedBendpointsRadius:20 ;
+}
+
+ObjectFlow{
+	routing:Rectilinear;
+	roundedBendpointsRadius:20 ;
+	lineStyle:dashed;
+}
+
+ObjectFlow > Label{
+	visible:false;
+}
+
+OpaqueAction{
+	rightMarginLabel : 5;
+    textAlignment : right;    
+}
+OpaqueAction > Compartment[kind="symbol"] {
+    visible:false;
+}
+
+* > Compartment[kind="symbol"] {
+    visible:true;    
+}
+
+* > Label:stereotype {
+	visible:false;
+	displayTag :false;
+}
+
+* {
+	followSVGSymbol: true;
+	svgCSSFile: url('platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/css/alternateBorderColor.css');
+	elementIcon : false;
+	displayTag :false;
+}
+
+
+
+[appliedStereotypes~="BPMNProfile::Task"]
+{
+	fillColor: white;	
+	displayTag: false;
+}
+
+[appliedStereotypes~="BPMNProfile::GlobalTask"]
+{
+	fillColor: white;	
+	displayTag: false;
+}
+
+[appliedStereotypes~="BPMNProfile::SubProcess"]{
+	borderStyle: solid;
+	fillColor: white;	
+	displayTag: false;
+}
+
+[appliedStereotypes~="BPMNProfile::Task"]{
+	fillColor: white;	
+	displayTag: false;
+}
+ 
+[appliedStereotypes~="BPMNProfile::ManualTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ManualTask.svg";
+}
+
+[appliedStereotypes~="BPMNProfile::ReceiveTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ReceiveTask.svg";
+}
+
+[appliedStereotypes~="BPMNProfile::UserTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/UserTask.svg";
+}
+
+[appliedStereotypes~="BPMNProfile::ScriptTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ScriptTask.svg";
+}
+
+[appliedStereotypes~="BPMNProfile::BusinessRuleTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/BusinessRuleTask.svg";
+}
+
+[appliedStereotypes~="BPMNProfile::SendTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/SendTask.svg";
+}
+
+[appliedStereotypes~="BPMNProfile::ServiceTask"]{
+	fillColor: white;	
+	displayTag: false;
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ServiceTask.svg";
+}
+
+
+[appliedStereotypes~="BPMNProfile::Task"] > Compartment[kind="symbol"] {
+    visible:false;    
+}
+
+[appliedStereotypes~="BPMNProfile::ParallelGateway"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/parallel.svg";
+	transparency: 100;
+	followSVGSymbol: true;
+	displayTag: false;
+	displayName : false;
+}
+
+[appliedStereotypes~="BPMNProfile::ExclusiveGateway"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ExclusiveGateway.svg";
+	transparency: 100;
+	followSVGSymbol: true;
+}
+
+[appliedStereotypes~="BPMNProfile::InclusiveGateway"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/InclusiveGateway.svg";
+	transparency: 100;
+	followSVGSymbol: true;
+	displayName: false;
+}
+ 
+[appliedStereotypes~="BPMNProfile::StartEvent"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/StartEvent.svg";
+	transparency: 100;
+	fillColor: white;
+	followSVGSymbol: true;
+	displayName: false;
+}
+
+[appliedStereotypes~="BPMNProfile::MessageEventDefinition"]
+{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/StartMessageEvent.svg";
+	transparency: 100;
+	fillColor: white;
+	followSVGSymbol: true;
+	displayName: false;
+}
+
+[appliedStereotypes~="BPMNProfile::IntermediateCatchEvent"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/IntermediateEvent.svg";
+	transparency: 100;
+	maintainSymbolRatio: true;
+	displayName: true;
+}
+
+[appliedStereotypes~="BPMNProfile::IntermediateThrowEvent"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/IntermediateEvent.svg";
+	transparency: 100;
+	maintainSymbolRatio: false;
+	displayName: true;
+}
+
+[appliedStereotypes~="BPMNProfile::IntermediateThrowEvent"] > Label:name{
+	visible: true;
+}
+
+
+[appliedStereotypes~="BPMNProfile::EndEvent"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/EndEvent.svg";
+	transparency: 100;
+	maintainSymbolRatio: true;
+	followSVGSymbol: true;
+	displayName: false;
+}
+
+
+[appliedStereotypes~="BPMNProfile::DataInput"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataInput.svg";
+	transparency: 100;
+	maintainSymbolRatio: true;
+}
+
+[appliedStereotypes~="BPMNProfile::DataOutput"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataOutput.svg";
+	transparency: 100;
+	maintainSymbolRatio: true;
+}
+
+[appliedStereotypes~="BPMNProfile::EventBasedGateway"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/EventBasedGateway.svg";
+	transparency: 100;
+}
+
+[appliedStereotypes~="BPMNProfile::SequenceFlow"]{
+	displayName: false;
+}
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore.svg";
+	transparency: 0;
+	displayTag: false;
+	followSVGSymbol: true;
+	
+}
+
+alternateBorderColor path{
+	stroke: red;
+}
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"][name="10"]{
+	/* 
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore10.svg";
+	 * */  
+	
+	transparency: 100;
+	displayTag: false;
+	maskLabel: stereotypeName;
+	svgCSSClass: alternateBorderColor;
+	
+}
+	/*
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"][name="20"]{
+	/*
+	 * 
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore20.svg";
+	transparency: 100;
+	displayTag: false;
+	maskLabel: stereotypeName;
+	svgCSSClass: alternateBorderColor;
+}
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"][name="100"]{
+	/*
+	 * 
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore100.svg";
+	 
+	transparency: 100;
+	displayTag: false;
+	maskLabel: stereotypeName;
+	svgCSSClass: alternateBorderColor;
+}
+/*
+ * 
+ */
+
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"] > Label:stereotype {
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::Lane"] > Compartment[kind="ActivityPartitionContentCompartment"] {
+	visible: false;
+}
+[appliedStereotypes~="BPMNProfile::Lane"] > Compartment[kind="symbol"] {
+	visible: false;
+}
+
+[appliedStereotypes~="BPMNProfile::IntermediateThrowEvent"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/IntermediateEvent.svg";
+	transparency: 100;
+	maintainSymbolRatio: false;
+	displayName: true;
+}
+
+[appliedStereotypes~="BPMNProfile::IntermediateThrowEvent"] > Label:name{
+	visible: true;
+}
+
+[appliedStereotypes~="BPMNProfile::DataObject"]{
+	/*
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataObject.svg";
+	 */
+	transparency: 100;
+	maintainSymbolRatio: true;
+	
+}
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"]{
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore.svg";
+	transparency: 100;
+	displayTag: false;
+	followSVGSymbol: true;
+	
+}
+
+[appliedStereotypes~="BPMNProfile::ManualTask"][name="10"]{	
+		lineColor: red;
+}
+
+
+alternateBorderColor path{
+	stroke: red;
+}
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"][name="10"]{
+	/* 
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore10.svg";
+	 * */  
+	
+	transparency: 100;
+	displayTag: false;
+	maskLabel: stereotypeName;
+	svgCSSClass: alternateBorderColor;
+	
+}
+	/*
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"][name="20"]{
+	/*
+	 * 
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore20.svg";
+	transparency: 100;
+	displayTag: false;
+	maskLabel: stereotypeName;
+	svgCSSClass: alternateBorderColor;
+}
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"][name="100"]{
+	/*
+	 * 
+	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore100.svg";
+	transparency: 100;
+	displayTag: false;
+	maskLabel: stereotypeName;
+	svgCSSClass: alternateBorderColor;
+}
+/*
+ * 
+ */
+
+
+[appliedStereotypes~="BPMNProfile::DataStoreReference"] > Label:stereotype {
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::Lane"] > Compartment[kind="ActivityPartitionContentCompartment"] {
+	visible: false;
+}
+[appliedStereotypes~="BPMNProfile::Lane"] > Compartment[kind="symbol"] {
+	visible: false;
+}

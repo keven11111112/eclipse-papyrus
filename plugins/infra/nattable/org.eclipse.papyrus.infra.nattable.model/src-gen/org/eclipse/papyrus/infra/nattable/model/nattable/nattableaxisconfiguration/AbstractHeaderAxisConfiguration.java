@@ -43,8 +43,6 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAbstractHeaderAxisConfiguration()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='oneObjectLabelConfigurationTypes oneFeatureLabelConfigurationTypes'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot oneObjectLabelConfigurationTypes='ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() <= 1' oneFeatureLabelConfigurationTypes='ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() <= 1'"
  * @generated
  */
 public interface AbstractHeaderAxisConfiguration extends StyledElement {

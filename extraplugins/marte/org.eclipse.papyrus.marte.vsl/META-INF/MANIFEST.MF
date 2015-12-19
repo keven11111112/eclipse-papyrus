@@ -1,22 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.marte.vsl,
- org.eclipse.papyrus.marte.vsl.extensions,
- org.eclipse.papyrus.marte.vsl.formatting,
- org.eclipse.papyrus.marte.vsl.parseTreeConstruction,
- org.eclipse.papyrus.marte.vsl.parser.antlr,
- org.eclipse.papyrus.marte.vsl.parser.antlr.internal,
- org.eclipse.papyrus.marte.vsl.scoping,
- org.eclipse.papyrus.marte.vsl.scoping.visitors,
- org.eclipse.papyrus.marte.vsl.services,
- org.eclipse.papyrus.marte.vsl.vSL,
- org.eclipse.papyrus.marte.vsl.vSL.impl,
- org.eclipse.papyrus.marte.vsl.vSL.util,
- org.eclipse.papyrus.marte.vsl.validation
-Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Name: %pluginName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl;singleton:=true
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
@@ -30,8 +13,25 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0",
  org.apache.log4j;bundle-version="1.2.15"
-Bundle-Vendor: %providerName
-Bundle-Version: 1.1.2.qualifier
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ManifestVersion: 2
+Bundle-Vendor: %providerName
 Import-Package: org.apache.log4j
-Bundle-SymbolicName: org.eclipse.papyrus.marte.vsl;singleton:=true
+Export-Package: org.eclipse.papyrus.marte.vsl,
+ org.eclipse.papyrus.marte.vsl.extensions,
+ org.eclipse.papyrus.marte.vsl.formatting,
+ org.eclipse.papyrus.marte.vsl.parseTreeConstruction,
+ org.eclipse.papyrus.marte.vsl.parser.antlr,
+ org.eclipse.papyrus.marte.vsl.parser.antlr.internal,
+ org.eclipse.papyrus.marte.vsl.scoping,
+ org.eclipse.papyrus.marte.vsl.scoping.visitors,
+ org.eclipse.papyrus.marte.vsl.services,
+ org.eclipse.papyrus.marte.vsl.vSL,
+ org.eclipse.papyrus.marte.vsl.vSL.impl,
+ org.eclipse.papyrus.marte.vsl.vSL.util,
+ org.eclipse.papyrus.marte.vsl.validation
+Bundle-Name: %pluginName
+Bundle-Version: 1.1.3.qualifier
+Bundle-ClassPath: .
+Bundle-Localization: plugin

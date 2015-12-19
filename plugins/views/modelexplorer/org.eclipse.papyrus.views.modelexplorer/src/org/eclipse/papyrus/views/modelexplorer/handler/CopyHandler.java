@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Use of a paste strategies
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Use the Copy Strategies
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
@@ -23,6 +24,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.clipboard.PapyrusClipboard;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultCopyCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.IStrategy;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.CopyStrategyManager;
+import org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy.ICopyStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.IPasteStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste.PasteStrategyManager;
 
@@ -42,7 +45,13 @@ public class CopyHandler extends AbstractCommandHandler {
 	}
 
 	protected static List<EObject> getElementsToPutInClipboard(Collection<EObject> selectedElements) {
-		return new ArrayList<EObject>(selectedElements);
+		List<EObject> elementsInClipboard = new ArrayList<EObject>(selectedElements);
+		List<IStrategy> allStrategies = CopyStrategyManager.getInstance().getAllStrategies();
+		for (IStrategy iStrategy : allStrategies) {
+			ICopyStrategy iCopyStrategy = (ICopyStrategy) iStrategy;
+			iCopyStrategy.prepareElementsInClipboard(elementsInClipboard, selectedElements);
+		}
+		return elementsInClipboard;
 	}
 
 	/**

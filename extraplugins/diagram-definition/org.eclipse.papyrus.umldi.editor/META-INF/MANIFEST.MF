@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.papyrus.umldi.editor;singleton:=true
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.9.100",
  org.eclipse.core.resources;bundle-version="3.8.101";visibility:=reexport,
  org.eclipse.papyrus.umldi.edit;bundle-version="0.7.0";visibility:=reexport,
@@ -10,14 +11,13 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.9.100",
  org.eclipse.uml2.uml.edit;bundle-version="4.1.2";visibility:=reexport,
  org.eclipse.papyrus.dd.editor;bundle-version="0.7.0",
  org.eclipse.m2m.qvt.oml;bundle-version="3.3.0"
-Export-Package: org.eclipse.papyrus.umldi.presentation
-Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Version: 0.7.0.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.umldi.presentation.UMLDIEditorPlugin$Implementation
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.umldi.editor;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: %providerName
+Export-Package: org.eclipse.papyrus.umldi.presentation
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.umldi.presentation.UMLDIEditorPlugin$Implementation

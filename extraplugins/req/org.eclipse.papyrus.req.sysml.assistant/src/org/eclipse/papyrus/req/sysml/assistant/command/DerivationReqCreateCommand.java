@@ -22,9 +22,8 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLFactory;
 
-
 /**
- * this command is used to create a link "satisfyBy" between requirement and namedElement
+ * Creates a "DerivedReq" link between requirements
  *
  */
 public class DerivationReqCreateCommand extends RecordingCommand {

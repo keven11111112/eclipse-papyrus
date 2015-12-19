@@ -531,8 +531,9 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			if (!prototype.isNatural()) {
 				DiagramUtils.setPrototype(diagram, prototype);
 			}
-			initializeDiagram(diagram);
 			diagramResource.getContents().add(diagram);
+			initializeDiagram(diagram);
+			
 		}
 		return diagram;
 	}

@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.req.sysml.preferences
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
+Export-Package: org.eclipse.papyrus.req.sysml.preferences
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.7.0.qualifier
-Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
-Bundle-Activator: org.eclipse.papyrus.req.sysml.preferences.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.req.sysml.preferences.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.req.sysml.preferences;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

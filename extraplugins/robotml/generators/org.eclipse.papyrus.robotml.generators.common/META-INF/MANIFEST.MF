@@ -6,6 +6,9 @@ Export-Package: org.eclipse.papyrus.robotml.generators.common,
  org.eclipse.acceleo.engine.generation.strategy,
  org.eclipse.uml2.uml,
  org.eclipse.acceleo.engine.service"
+Bundle-SymbolicName: org.eclipse.papyrus.robotml.generators.common
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: RobotML generators common queries (Incubation)
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
@@ -17,14 +20,11 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.profiler;bundle-version="3.1.0",
  org.eclipse.acceleo.engine;bundle-version="3.1.0",
  org.eclipse.uml2.uml;bundle-version="3.1.2",
- org.eclipse.papyrus.robotml;bundle-version="1.1.2",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.2"
-Bundle-Vendor: Eclipse Modeling Project
-Eclipse-LazyStart: true
+ org.eclipse.papyrus.robotml;bundle-version="1.1.3",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.3"
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.2.qualifier
-Bundle-Name: RobotML generators common queries (Incubation)
 Bundle-Activator: org.eclipse.papyrus.robotml.generators.common.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.robotml.generators.common
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: Eclipse Modeling Project
+Eclipse-LazyStart: true

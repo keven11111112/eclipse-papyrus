@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry.tests;singleton:=true
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.ecore.xmi,
  org.junit;bundle-version="4.10.0"
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %providerName
 Fragment-Host: org.eclipse.papyrus.infra.core.serviceregistry;bundle-version="0.10.0"
-Bundle-Version: 1.1.2.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.serviceregistry.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -14,13 +14,20 @@
 package org.eclipse.papyrus.uml.diagram.common.canonical.tests;
 
 import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AbstractCanonicalTest;
 import org.eclipse.papyrus.junit.framework.runner.Scenario;
 import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
@@ -65,6 +72,18 @@ public class CanonicalRegressionTest extends AbstractCanonicalTest {
 			// Still have the stereotype presentation
 			requireView(utility, requireView(class1));
 		}
+	}
+
+	@PluginResource("resources/478558/bug478558.di")
+	@ActiveDiagram("IBD")
+	@Test
+	public void visualizePropertyThatIsAssociationEnd_bug478558() {
+		org.eclipse.uml2.uml.Class block3 = (org.eclipse.uml2.uml.Class) editor.getModel().getOwnedType("Block3");
+		Property part3 = block3.getOwnedAttribute("part3", null);
+
+		assertThat(part3.getType(), not(instanceOf(Association.class)));
+		assertThat(part3.getType(), instanceOf(org.eclipse.uml2.uml.Class.class));
+		assertThat(part3.getType().getName(), is("Block1"));
 	}
 
 }

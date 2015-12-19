@@ -137,6 +137,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
@@ -197,6 +198,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * the columnHeaderLayerStack
 	 */
 	private ColumnHeaderLayerStack columnHeaderLayerStack;
+	
+	/**
+	 * @return the rowHeaderLayerStack
+	 */
+	public ColumnHeaderLayerStack getColumnHeaderLayerStack() {
+		return columnHeaderLayerStack;
+	}
 
 	/**
 	 * the rowHeaderLayerStack
@@ -367,6 +375,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
 		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
 
+		// register the decoration service
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, getDecorationService(), DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+		
 		this.natTable.setConfigRegistry(configRegistry);
 		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 		this.natTable.configure();
@@ -597,12 +608,27 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 * 
 	 * @return
-	 * 		the label provider serviceS
+	 * 		the label provider service
 	 */
 	private LabelProviderService getContextLabelProviderService() {
 		try {
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+		return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 * 		the decoration service
+	 */
+	protected DecorationService getDecorationService() {
+		try {
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
+			return serviceRegistry.getService(DecorationService.class);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
@@ -1155,7 +1181,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			this.columnHeaderDataProvider = null;
 		}
 
-
 		if (this.tableEditingDomain != null && this.resourceSetListener != null) {
 			this.tableEditingDomain.removeResourceSetListener(this.resourceSetListener);
 			this.tableEditingDomain = null;
@@ -1163,9 +1188,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		if (this.filterStrategy instanceof IDisposable) {
 			((IDisposable) this.filterStrategy).dispose();
 		}
+		this.cellAxisConfiguration = null;
+		this.filterConfiguration = null;
 		this.tableEditingDomain = null;
 		this.contextEditingDomain = null;
 		this.tableContext = null;
+          	if(this.natTable!=null){
+			this.natTable.dispose();
+                }
 	}
 
 	public EObject getTableContext() {

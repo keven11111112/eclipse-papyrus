@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.process.elementTypeSet"
+             path="model/process.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension> 
+    <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.process.elementTypeSetCustom"
+             path="model/processCustom.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension> 
+    <extension
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="org.eclipse.papyrus.bpmn.process.palette"
+            class="org.eclipse.papyrus.uml.diagram.common.service.ExtendedPluginPaletteProvider"
+            icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            name="org.eclipse.papyrus.bpmn.process.palette"
+            path="model/process.paletteConfiguration"
+            provider="CEA LIST">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.uml.diagram.activity">
+         </editor>
+      </paletteDefinition>
+   </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
+       <diagramexpansion
+             model="model/bpmnDiagramExpansion.xmi">
+       </diagramexpansion>
+    </extension>
+</plugin>

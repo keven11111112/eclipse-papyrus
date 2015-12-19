@@ -153,12 +153,12 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	public void dispose() {
 		removeListeners();
-		super.dispose();
 		for (final IAxisManager current : this.subManagers) {
 			current.dispose();
 		}
 		this.subManagers.clear();
-
+		this.axisComparator = null;
+		super.dispose();
 	}
 
 
@@ -171,6 +171,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		if (null != getTableEditingDomain()) {
 			getTableEditingDomain().removeResourceSetListener(this.resourceSetListener);
 		}
+		this.resourceSetListener = null;
 	}
 
 	/**

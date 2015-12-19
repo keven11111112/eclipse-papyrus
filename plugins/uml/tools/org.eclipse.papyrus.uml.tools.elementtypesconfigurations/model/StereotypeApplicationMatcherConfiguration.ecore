@@ -6,5 +6,6 @@
       eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.ecore#//MatcherConfiguration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stereotypesQualifiedNames"
         lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="profileUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

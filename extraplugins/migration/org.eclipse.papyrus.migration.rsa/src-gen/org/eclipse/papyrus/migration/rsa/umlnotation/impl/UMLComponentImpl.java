@@ -23,10 +23,10 @@ import org.eclipse.papyrus.migration.rsa.umlnotation.UMLComponent;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLComponentImpl#isShowWhitebox <em>Show Whitebox</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

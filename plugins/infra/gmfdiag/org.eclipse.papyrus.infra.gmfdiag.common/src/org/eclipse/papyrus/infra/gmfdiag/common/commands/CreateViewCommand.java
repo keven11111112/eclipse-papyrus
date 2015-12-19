@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
@@ -38,21 +39,20 @@ public class CreateViewCommand extends CreateCommand {
 	 */
 	@Override
 	public boolean canExecute() {
+		IAdaptable semanticAdapter = null;
 
-		// Warning the element adapter can possibly be null (see: https://bugs.eclipse.org/bugs/show_bug.cgi?id=353129)
-		if (viewDescriptor.getElementAdapter() == null) {
-			return false;
+		if (viewDescriptor.getElementAdapter() != null) {
+			// Try to adapt the descriptor ElementAdapter in EObject
+			EObject element = EMFHelper.getEObject(viewDescriptor.getElementAdapter());
+			IElementType elementType = (IElementType) viewDescriptor.getElementAdapter().getAdapter(IElementType.class);
+			semanticAdapter = new SemanticElementAdapter(element, elementType);
+			// Use the semanticAdapter instead of view descriptor element adapter to avoid the use of provides(ViewForKind) method
+			// from ViewProvider which is incorrectly implemented in GMF Tooling generated editors (other editors may have undesired side-effect on each-other).
 		}
 
-		// Try to adapt the descriptor ElementAdapter in EObject
-		EObject element = EMFHelper.getEObject(viewDescriptor.getElementAdapter());
-		IElementType elementType = (IElementType) viewDescriptor.getElementAdapter().getAdapter(IElementType.class);
-
-		SemanticElementAdapter semanticAdapter = new SemanticElementAdapter(element, elementType);
-
-		// Use the semanticAdapter instead of view descriptor element adapter to avoid the use of provides(ViewForKind) method
-		// from ViewProvider which is incorrectly implemented in GMF Tooling generated editors (other editors may have undesired side-effect on each-other).
-
+		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=450921
+		// it should be still possible to create elements without semantic if they have a view provider
+		// (like oval or note)
 		return ViewService.getInstance().provides(viewDescriptor.getViewKind(), semanticAdapter, containerView, viewDescriptor.getSemanticHint(), viewDescriptor.getIndex(), viewDescriptor.isPersisted(), viewDescriptor.getPreferencesHint());
 	}
 

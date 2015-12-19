@@ -107,168 +107,167 @@ public class PapyrusRSANotationAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected PapyrusRSANotationSwitch<Adapter> modelSwitch =
-			new PapyrusRSANotationSwitch<Adapter>() {
-				@Override
-				public Adapter caseUMLDiagram(UMLDiagram object) {
-					return createUMLDiagramAdapter();
-				}
+	protected PapyrusRSANotationSwitch<Adapter> modelSwitch = new PapyrusRSANotationSwitch<Adapter>() {
+		@Override
+		public Adapter caseUMLDiagram(UMLDiagram object) {
+			return createUMLDiagramAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLFrame(UMLFrame object) {
-					return createUMLFrameAdapter();
-				}
+		@Override
+		public Adapter caseUMLFrame(UMLFrame object) {
+			return createUMLFrameAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLShapeCompartment(UMLShapeCompartment object) {
-					return createUMLShapeCompartmentAdapter();
-				}
+		@Override
+		public Adapter caseUMLShapeCompartment(UMLShapeCompartment object) {
+			return createUMLShapeCompartmentAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLShape(UMLShape object) {
-					return createUMLShapeAdapter();
-				}
+		@Override
+		public Adapter caseUMLShape(UMLShape object) {
+			return createUMLShapeAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLConnector(UMLConnector object) {
-					return createUMLConnectorAdapter();
-				}
+		@Override
+		public Adapter caseUMLConnector(UMLConnector object) {
+			return createUMLConnectorAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLView(UMLView object) {
-					return createUMLViewAdapter();
-				}
+		@Override
+		public Adapter caseUMLView(UMLView object) {
+			return createUMLViewAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLComponent(UMLComponent object) {
-					return createUMLComponentAdapter();
-				}
+		@Override
+		public Adapter caseUMLComponent(UMLComponent object) {
+			return createUMLComponentAdapter();
+		}
 
-				@Override
-				public Adapter caseUMLClassifierShape(UMLClassifierShape object) {
-					return createUMLClassifierShapeAdapter();
-				}
+		@Override
+		public Adapter caseUMLClassifierShape(UMLClassifierShape object) {
+			return createUMLClassifierShapeAdapter();
+		}
 
-				@Override
-				public Adapter caseEModelElement(EModelElement object) {
-					return createEModelElementAdapter();
-				}
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
 
-				@Override
-				public Adapter caseView(View object) {
-					return createViewAdapter();
-				}
+		@Override
+		public Adapter caseView(View object) {
+			return createViewAdapter();
+		}
 
-				@Override
-				public Adapter caseDiagram(Diagram object) {
-					return createDiagramAdapter();
-				}
+		@Override
+		public Adapter caseDiagram(Diagram object) {
+			return createDiagramAdapter();
+		}
 
-				@Override
-				public Adapter caseNode(Node object) {
-					return createNodeAdapter();
-				}
+		@Override
+		public Adapter caseNode(Node object) {
+			return createNodeAdapter();
+		}
 
-				@Override
-				public Adapter caseStyle(Style object) {
-					return createStyleAdapter();
-				}
+		@Override
+		public Adapter caseStyle(Style object) {
+			return createStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseFontStyle(FontStyle object) {
-					return createFontStyleAdapter();
-				}
+		@Override
+		public Adapter caseFontStyle(FontStyle object) {
+			return createFontStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseDescriptionStyle(DescriptionStyle object) {
-					return createDescriptionStyleAdapter();
-				}
+		@Override
+		public Adapter caseDescriptionStyle(DescriptionStyle object) {
+			return createDescriptionStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseFillStyle(FillStyle object) {
-					return createFillStyleAdapter();
-				}
+		@Override
+		public Adapter caseFillStyle(FillStyle object) {
+			return createFillStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseLineStyle(LineStyle object) {
-					return createLineStyleAdapter();
-				}
+		@Override
+		public Adapter caseLineStyle(LineStyle object) {
+			return createLineStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseRoundedCornersStyle(RoundedCornersStyle object) {
-					return createRoundedCornersStyleAdapter();
-				}
+		@Override
+		public Adapter caseRoundedCornersStyle(RoundedCornersStyle object) {
+			return createRoundedCornersStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseShapeStyle(ShapeStyle object) {
-					return createShapeStyleAdapter();
-				}
+		@Override
+		public Adapter caseShapeStyle(ShapeStyle object) {
+			return createShapeStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseShape(Shape object) {
-					return createShapeAdapter();
-				}
+		@Override
+		public Adapter caseShape(Shape object) {
+			return createShapeAdapter();
+		}
 
-				@Override
-				public Adapter caseBasicDecorationNode(BasicDecorationNode object) {
-					return createBasicDecorationNodeAdapter();
-				}
+		@Override
+		public Adapter caseBasicDecorationNode(BasicDecorationNode object) {
+			return createBasicDecorationNodeAdapter();
+		}
 
-				@Override
-				public Adapter caseDecorationNode(DecorationNode object) {
-					return createDecorationNodeAdapter();
-				}
+		@Override
+		public Adapter caseDecorationNode(DecorationNode object) {
+			return createDecorationNodeAdapter();
+		}
 
-				@Override
-				public Adapter caseDrawerStyle(DrawerStyle object) {
-					return createDrawerStyleAdapter();
-				}
+		@Override
+		public Adapter caseDrawerStyle(DrawerStyle object) {
+			return createDrawerStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseBasicCompartment(BasicCompartment object) {
-					return createBasicCompartmentAdapter();
-				}
+		@Override
+		public Adapter caseBasicCompartment(BasicCompartment object) {
+			return createBasicCompartmentAdapter();
+		}
 
-				@Override
-				public Adapter caseCanonicalStyle(CanonicalStyle object) {
-					return createCanonicalStyleAdapter();
-				}
+		@Override
+		public Adapter caseCanonicalStyle(CanonicalStyle object) {
+			return createCanonicalStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseTitleStyle(TitleStyle object) {
-					return createTitleStyleAdapter();
-				}
+		@Override
+		public Adapter caseTitleStyle(TitleStyle object) {
+			return createTitleStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseCompartment(Compartment object) {
-					return createCompartmentAdapter();
-				}
+		@Override
+		public Adapter caseCompartment(Compartment object) {
+			return createCompartmentAdapter();
+		}
 
-				@Override
-				public Adapter caseEdge(Edge object) {
-					return createEdgeAdapter();
-				}
+		@Override
+		public Adapter caseEdge(Edge object) {
+			return createEdgeAdapter();
+		}
 
-				@Override
-				public Adapter caseRoutingStyle(RoutingStyle object) {
-					return createRoutingStyleAdapter();
-				}
+		@Override
+		public Adapter caseRoutingStyle(RoutingStyle object) {
+			return createRoutingStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseConnectorStyle(ConnectorStyle object) {
-					return createConnectorStyleAdapter();
-				}
+		@Override
+		public Adapter caseConnectorStyle(ConnectorStyle object) {
+			return createConnectorStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseConnector(Connector object) {
-					return createConnectorAdapter();
-				}
+		@Override
+		public Adapter caseConnector(Connector object) {
+			return createConnectorAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.handler;
 
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 
@@ -31,7 +32,11 @@ public class RowMasterDisconnectColumnSlaveHandler extends AbstractDisconnectSla
 	 */
 	@Override
 	protected AbstractAxisProvider getAxisProviderToEdit() {
-		return AxisUtils.getAxisProviderUsedForRows(getCurrentNattableModelManager());
+		INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
+		if (currentNattableModelManager == null ) {
+			return null;
+		}
+		return AxisUtils.getAxisProviderUsedForRows(currentNattableModelManager);
 	}
 
 }

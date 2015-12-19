@@ -854,12 +854,6 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 			 "validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
 		   });	
 		addAnnotation
-		  (abstractHeaderAxisConfigurationEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "oneObjectLabelConfigurationTypes oneFeatureLabelConfigurationTypes" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
 		  (axisManagerRepresentationEClass, 
 		   source, 
 		   new String[] {
@@ -882,13 +876,6 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$	
 		addAnnotation
-		  (abstractHeaderAxisConfigurationEClass, 
-		   source, 
-		   new String[] {
-			 "oneObjectLabelConfigurationTypes", "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() <= 1", //$NON-NLS-1$ //$NON-NLS-2$
-			 "oneFeatureLabelConfigurationTypes", "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() <= 1" //$NON-NLS-1$ //$NON-NLS-2$
-		   });	
-		addAnnotation
 		  (axisManagerRepresentationEClass, 
 		   source, 
 		   new String[] {
@@ -898,7 +885,7 @@ public class NattableaxisconfigurationPackageImpl extends EPackageImpl implement
 		  (tableHeaderAxisConfigurationEClass, 
 		   source, 
 		   new String[] {
-			 "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)" //$NON-NLS-1$ //$NON-NLS-2$
+			 "axisManagersIdUnique", "axisManagers->forAll(am1 : AxisManagerRepresentation | ( (axisManagers->excluding (am1))->forAll(am2 : AxisManagerRepresentation | am1.axisManagerId<>am2.axisManagerId) ))" //$NON-NLS-1$ //$NON-NLS-2$
 		   });
 	}
 } // NattableaxisconfigurationPackageImpl

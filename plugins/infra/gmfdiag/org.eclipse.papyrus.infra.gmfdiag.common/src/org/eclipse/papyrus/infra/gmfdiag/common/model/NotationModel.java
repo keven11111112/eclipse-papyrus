@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
@@ -146,21 +147,23 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 	public Diagram getDiagram(String diagramName) throws NotFoundException, BadArgumentExcetion {
 
 		if (diagramName == null || diagramName.length() == 0) {
-			throw new BadArgumentExcetion("Diagram name should not be null and size should be >0.");
+			throw new BadArgumentExcetion("Diagram name should not be null and size should be >0."); //$NON-NLS-1$
 		}
 
-		for (EObject element : getResource().getContents()) {
-			if (element instanceof Diagram) {
-				Diagram diagram = (Diagram) element;
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Diagram) {
+					Diagram diagram = (Diagram) element;
 
-				if (diagramName.equals(diagram.getName())) {
-					// Found
-					return diagram;
+					if (diagramName.equals(diagram.getName())) {
+						// Found
+						return diagram;
 
+					}
 				}
 			}
 		}
 		// not found
-		throw new NotFoundException("No Diagram named '" + diagramName + "' can be found in Model.");
+		throw new NotFoundException(NLS.bind("No Diagram named '{0}' can be found in Model.",diagramName)); //$NON-NLS-1$
 	}
 }

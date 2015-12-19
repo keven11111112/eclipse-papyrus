@@ -293,14 +293,11 @@ public class PapyrusCDTEditor extends CEditor {
 	 * @throws CoreException
 	 */
 	public void gotoElement(NamedElement element) {
-		// IFile srcFile = SyncModelToCDT.syncModelToCDT((Classifier) pe);
-		// ITranslationUnit itu2 = (ITranslationUnit) CoreModel.getDefault().create(srcFile);
-
 		ICElement ice = CDTUITools.getEditorInputCElement(m_input);
 
 		if (ice instanceof ITranslationUnit) {
 			ITranslationUnit itu = (ITranslationUnit) ice;
-			ICElement icElement = ObtainICElement.getICElement(itu, element);
+			ICElement icElement = ObtainICElement.getICElement(syncCpp.getCodeGen(), itu, element);
 			if (icElement instanceof ISourceReference) {
 				try {
 					ISourceRange range = ((ISourceReference) icElement).getSourceRange();
@@ -341,7 +338,8 @@ public class PapyrusCDTEditor extends CEditor {
 
 		URI uri = papyrusTextInstance.eResource().getURI();
 		Classifier classifier = (Classifier) papyrusTextInstance.getEditedObject();
-		srcFile = SyncModelToCDT.syncModelToCDT(classifier);
+		String generatorID = papyrusTextInstance.getGeneratorID();
+		srcFile = SyncModelToCDT.syncModelToCDT(classifier, generatorID);
 		if (srcFile == null || !srcFile.exists()) {
 			throw new PartInitException("Code generation before editing failed. Please check error log");
 		}
@@ -350,7 +348,7 @@ public class PapyrusCDTEditor extends CEditor {
 		// IStorage storage = new TextStorage(string);
 		super.doSetInput(newInput);
 
-		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1));
+		syncCpp = new SyncCDTtoModel(newInput, classifier, uri.segment(1), generatorID);
 		m_input = newInput;
 		reveal = new RevealCurrentOperation(newInput, classifier, uri.segment(1));
 
@@ -384,9 +382,6 @@ public class PapyrusCDTEditor extends CEditor {
 	protected IAction gmfUndo, gmfRedo;
 
 	protected IAction textUndo, textRedo;
-
-	// TODO: remove, unused
-	protected IActionBars gmfActionBars, textActionBars;
 
 	protected boolean oldDirty;
 

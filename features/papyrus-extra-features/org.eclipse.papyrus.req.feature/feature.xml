@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.req.feature" label="%featureName" provider-name="%providerName" version="0.7.0.qualifier">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.papyrus.req.feature"
+      label="%featureName"
+      version="0.7.0.qualifier"
+      provider-name="%providerName">
 
    <description>
-      This feature enables to help to manage SysMLReq and to assist tracability
+      This feature helps to manage SysML Requirements
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -17,24 +22,81 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.req.reqif" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.req.reqif"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.req.sysml.assistant" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.req.sysml.assistant"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.req.sysml.preferences" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.req.sysml.preferences"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.req.sysml.traceabilityassistant" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.papyrus.req.sysml.traceabilityassistant"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.rmf.reqif10" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.rmf.reqif10"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.rmf.reqif10.edit" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.rmf.reqif10.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.rmf.reqif10.common" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.rmf.reqif10.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.rmf.reqif10.xhtml" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.rmf.reqif10.xhtml"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.rmf.reqif10.pror" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.rmf.reqif10.pror"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
-   <plugin download-size="0" id="org.eclipse.rmf.reqif10.pror.edit" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin
+         id="org.eclipse.rmf.reqif10.pror.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.papyrus.req.domainModel2Profile"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

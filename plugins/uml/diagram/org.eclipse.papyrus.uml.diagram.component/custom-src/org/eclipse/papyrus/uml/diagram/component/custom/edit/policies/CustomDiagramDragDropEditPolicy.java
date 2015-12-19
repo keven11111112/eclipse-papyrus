@@ -17,39 +17,23 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.Viewport;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ComponentLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ConnectorHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.MultiDependencyHelper;
-import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
-import org.eclipse.papyrus.uml.diagram.component.custom.log.Log;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPartPCN;
@@ -72,7 +56,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.SubstitutionEditPart
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Collaboration;
@@ -83,8 +66,6 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.EncapsulatedClassifier;
-import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -206,8 +187,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ComponentEditPartPCN.VISUAL_ID:
 			case InterfaceEditPartPCN.VISUAL_ID:
 				return dropChildNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
-				// Test ChildNode... End
-				// Test TopLevelNode... Start
+			// Test ChildNode... End
+			// Test TopLevelNode... Start
 			case DependencyNodeEditPart.VISUAL_ID:
 				return dropDependencyNode(dropRequest, semanticElement, nodeVISUALID);
 			case PackageEditPart.VISUAL_ID:
@@ -215,7 +196,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ComponentEditPart.VISUAL_ID:
 			case InterfaceEditPart.VISUAL_ID:
 				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
-				// Test TopLevelNode... End
+			// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
 				return dropAffixedNode(dropRequest, semanticElement, nodeVISUALID);
 			case CommentEditPart.VISUAL_ID:
@@ -495,98 +476,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/**
 	 * <pre>
-	 * Returns the drop command for Affixed nodes (Parameter, Port).
-	 * This method uses PortPositionLocator used by both Port and Parameter.
-	 * If the dropped element is a Port, the graphical parent can be :
-	 * - a Class that owns or inherits the Port
-	 * - a Property which type owns or inherits the Port
-	 * </pre>
-	 * 
-	 * @param dropRequest
-	 *            the drop request
-	 * @param droppedElement
-	 *            the element to drop
-	 * @param nodeVISUALID
-	 *            the visual identifier of the EditPart of the dropped element
-	 * @return the drop command
-	 */
-	protected Command dropAffixedNode(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
-		// The dropped element must be a Port or Parameter
-		if (!((droppedElement instanceof Port) || (droppedElement instanceof Parameter))) {
-			Log.getInstance().error(new Exception("Incorrect parameter type (droppedElement should be a Port or Parameter)"));
-			return UnexecutableCommand.INSTANCE;
-		}
-		// Manage Element drop in compartment
-		Boolean isCompartmentTarget = false; // True if the target is a
-												// ShapeCompartmentEditPart
-		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
-		// Default drop location
-		Point dropLocation = dropRequest.getLocation().getCopy();
-		// Detect if the drop target is a compartment
-		if (graphicalParentEditPart instanceof ShapeCompartmentEditPart) {
-			isCompartmentTarget = true;
-			// Replace compartment edit part by its parent EditPart
-			graphicalParentEditPart = (GraphicalEditPart) graphicalParentEditPart.getParent();
-			// Translate Port expected location according to the compartment
-			// location
-			Point targetLocation = graphicalParentEditPart.getContentPane().getBounds().getLocation();
-			ShapeCompartmentFigure compartmentFigure = (ShapeCompartmentFigure) getHostFigure();
-			// Retrieve ViewPort location = the area where compartment children
-			// are located
-			// Retrieve ViewPort view location = the relative location of the
-			// viewed compartment
-			// depending on the current scroll bar state
-			Viewport compartmentViewPort = compartmentFigure.getScrollPane().getViewport();
-			Point compartmentViewPortLocation = compartmentViewPort.getLocation();
-			Point compartmentViewPortViewLocation = compartmentViewPort.getViewLocation();
-			// Calculate the delta between the targeted element position for
-			// drop (the Composite figure)
-			// and the View location with eventual scroll bar.
-			Point delta = compartmentViewPortLocation.translate(targetLocation.negate());
-			delta = delta.translate(compartmentViewPortViewLocation.negate());
-			// Translate the requested drop location (relative to parent)
-			dropLocation = dropRequest.getLocation().getTranslated(delta);
-		}
-		// Manage Element drop in compartment
-		// Create proposed creation bounds and use the locator to find the
-		// expected position
-		Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
-		PortPositionLocator locator = new PortPositionLocator(graphicalParentEditPart.getFigure(), PositionConstants.NONE);
-		Rectangle proposedBounds = new Rectangle(dropLocation, new Dimension(20, 20));
-		proposedBounds = proposedBounds.getTranslated(parentLoc);
-		Rectangle preferredBounds = locator.getPreferredLocation(proposedBounds);
-		// Convert the calculated preferred bounds as relative to parent
-		// location
-		Rectangle creationBounds = preferredBounds.getTranslated(parentLoc.getNegated());
-		dropLocation = creationBounds.getLocation();
-		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
-		if ((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier) graphicalParentObject).getAllAttributes().contains(droppedElement))) {
-			// Drop Port on StructuredClassifier
-			if (isCompartmentTarget) {
-				return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
-			}
-			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
-		} else if (graphicalParentObject instanceof ConnectableElement) {
-			// Drop Port on Part
-			Type type = ((ConnectableElement) graphicalParentObject).getType();
-			if ((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier) type).getAllAttributes().contains(droppedElement))) {
-				if (isCompartmentTarget) {
-					return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
-				}
-				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
-			}
-		} else if ((graphicalParentObject instanceof Behavior) && (((Behavior) graphicalParentObject).getOwnedParameters().contains(droppedElement))) {
-			// Drop Parameter on Behavior
-			if (isCompartmentTarget) {
-				return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
-			}
-			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
-		}
-		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * <pre>
 	 * This method return a drop command for TopLevelNode. 
 	 * It returns an {@link org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand} in
 	 * case the element is dropped on a canvas referencing a domain element that is not a Package.
@@ -609,33 +498,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement));
 		}
 		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * <pre>
-	 * This method returns the drop command for AffixedNode (Port, Parameter) 
-	 * in case the node is dropped on a ShapeCompartmentEditPart.
-	 * </pre>
-	 * 
-	 * @param nodeVISUALID
-	 *            the node visual identifier
-	 * @param location
-	 *            the drop location
-	 * @param droppedObject
-	 *            the object to drop
-	 * @return a CompositeCommand for Drop
-	 */
-	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
-		CompoundCommand cc = new CompoundCommand("Drop");
-		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
-		// Create the command targeting host parent (owner of the
-		// ShapeCompartmentEditPart)
-		CreateViewCommand createCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View) (getHost().getParent().getModel())));
-		cc.add(new ICommandProxy(createCommand));
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable) createCommand.getCommandResult().getReturnValue(), location);
-		cc.add(new ICommandProxy(setBoundsCommand));
-		return cc;
 	}
 
 	/**

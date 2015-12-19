@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager;
 import org.eclipse.papyrus.infra.nattable.filter.IPapyrusMatcherEditorFactory;
 import org.eclipse.papyrus.infra.nattable.filter.PapyrusTextMatchingMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
 /**
@@ -58,10 +59,28 @@ public class NattableConfigAttributes {
 	public static final ConfigAttribute<LabelProviderService> LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE = new ConfigAttribute<LabelProviderService>();
 
 	/**
+	 * The config attribute used to register the decoration service
+	 *
+	 * <ul>
+	 * <li>To store it : <code> configRegistry.registerConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, YOUR_LABEL_PROVER_SERVICE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);</code></li>
+	 * <li>To get it : <code></code></li>
+	 * LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+	 * </ul>
+	 */
+	public static final ConfigAttribute<DecorationService> DECORATION_SERVICE_CONFIG_ATTRIBUTE = new ConfigAttribute<DecorationService>();
+
+	
+	/**
 	 * Id used to register the label provider service
 	 */
 	public static final String LABEL_PROVIDER_SERVICE_ID = "label_provider_service_id"; //$NON-NLS-1$
 
+	/**
+	 * Id used to register the label provider service
+	 */
+	public static final String DECORATION_SERVICE_ID = "decoration_service_id"; //$NON-NLS-1$
+
+	
 	/**
 	 * Id used to register the table model manager
 	 */

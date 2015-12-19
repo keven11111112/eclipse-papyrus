@@ -187,12 +187,14 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 			if (values.isEmpty()) {
 				if (confRep != null) {
 					ITreeItemAxis toDestroy = getITreeItemAxisRepresentingObject(confRep.getChildren(), baseElement);
-					removeObject(toDestroy);
+					if(null != toDestroy){
+						removeObject(toDestroy);
+					}
 				}
 			} else {
 				if (values.contains(baseElement)) {
 					// we create the conf rep only for depth==0 (<=> semanticParent==null) or when the semantic parent has already been expanded
-					if (confRep == null && (nextDepth == 0 || !alreadyExpanded.contains(semanticParent))) {
+					if (confRep == null && (nextDepth == 0 || alreadyExpanded.contains(semanticParent))) {
 						confRep = addObject(null, curr);
 					}
 
@@ -200,7 +202,7 @@ public class UMLElementTreeAxisManagerForEventList extends EObjectTreeAxisManage
 						ITreeItemAxis stereotypedElementRep = getITreeItemAxisRepresentingObject(confRep.getChildren(), baseElement);
 						if (stereotypedElementRep == null) {
 							ITreeItemAxis newAxis = addObject(confRep, baseElement);
-							if (alreadyExpanded.contains(confRep) || confRep.getParent() == null) {// already expanded or root!
+							if (!managedElements.containsKey(baseElement) && (alreadyExpanded.contains(confRep) || confRep.getParent() == null)) {// already expanded or root!
 								fillChildrenForSemanticElement(newAxis);
 							}
 						}

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 
 import java.util.Iterator;
 
-import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -37,8 +37,10 @@ import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.composite.custom.edit.command.CreateBehaviorPortCommand;
-import org.eclipse.papyrus.uml.diagram.composite.custom.locators.BehaviorPortLocator;
+import org.eclipse.papyrus.uml.diagram.composite.custom.figures.PortFigure;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -47,9 +49,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This editpolicy calls explicitly BehaviorPortLocator in order to place the symbol behavior at the good place (inside the composite).
  */
 public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
-	public static String BEHAVIOR_PORT = "BehaviorPortPolicy";
-
-	private Port hostSemanticElement;
+	public static final String BEHAVIOR_PORT = "BehaviorPortPolicy";
 
 	@Override
 	public void notifyChanged(Notification notification) {
@@ -59,23 +59,28 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 		}
 	}
 
-	protected void udaptePortBehavior() {
-		ShapeCompartmentEditPart targetEditPart = getPossibleCompartment(((GraphicalEditPart) getHost()).getParent());
+	public void udaptePortBehavior() {
+		GraphicalEditPart parentEditPart = (GraphicalEditPart)((GraphicalEditPart) getHost()).getParent();
+		ShapeCompartmentEditPart targetEditPart = getPossibleCompartment(parentEditPart);
 		if (targetEditPart != null) {
+			// remove old BehaviorPort presentation
 			View behaviorPort = getBehaviorPortNode();
-			if (hostSemanticElement.isBehavior() && behaviorPort == null) {
-				BehaviorPortLocator locator = new BehaviorPortLocator(((GraphicalEditPart) getHost().getParent()).getFigure(), PositionConstants.NONE);
-				locator.setBorderItemOffset(60);
-				Rectangle rectBehavior = locator.getPreferredLocation(((GraphicalEditPart) getHost()).getFigure().getBounds());
-				// obtain coordinate to put the behavior
-				Rectangle rectContainer = (targetEditPart).getContentPane().getParent().getBounds();
-				rectBehavior = rectBehavior.getTranslated(-rectContainer.x, -rectContainer.y);
-				executeBehaviorPortCreation(targetEditPart, (getHost()), ((GraphicalEditPart) getHost()).getEditingDomain(), rectBehavior);
-			}
-			else {
-				if (!hostSemanticElement.isBehavior()) {
-					// remove behaviorPort
-					executeBehaviorPortDeletion(((GraphicalEditPart) getHost()).getEditingDomain(), behaviorPort);
+			executeBehaviorPortDeletion(((GraphicalEditPart) getHost()).getEditingDomain(), behaviorPort);
+		}
+
+		if (getHost() instanceof PortEditPart) {
+			IFigure hostFigure = ((PortEditPart) getHost()).getContentPane();
+			if (hostFigure instanceof PortFigure) {
+				PortFigure port = (PortFigure) hostFigure;
+
+				if (getUMLElement().isBehavior()) {
+					if (parentEditPart.resolveSemanticElement() instanceof Classifier || targetEditPart != null) {
+						port.restoreBehaviorFigure();
+					} else {
+						port.removeBehavior();
+					}
+				} else {
+					port.removeBehavior();
 				}
 			}
 		}
@@ -146,29 +151,28 @@ public class BehaviorPortEditPolicy extends GraphicalEditPolicy implements Notif
 	 */
 	@Override
 	public void activate() {
+		super.activate();
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
 		if (view == null) {
 			return;
 		}
-		hostSemanticElement = getUMLElement();
 		// adds a listener on the view and the element controlled by the
 		// editpart
 		getDiagramEventBroker().addNotificationListener(view, this);
-		if (hostSemanticElement == null) {
+		if (getUMLElement() == null) {
 			return;
 		}
-		getDiagramEventBroker().addNotificationListener(hostSemanticElement, this);
+		getDiagramEventBroker().addNotificationListener(getUMLElement(), this);
 		udaptePortBehavior();
 	}
 
 	@Override
 	public void deactivate() {
-		// TODO Auto-generated method stub
-		super.deactivate();
 		// remove notification on element
-		getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
+		getDiagramEventBroker().removeNotificationListener(getUMLElement(), this);
 
+		super.deactivate();
 	}
 
 	/**

@@ -49,7 +49,7 @@ public interface IAxis extends StyledElement {
 	 * @return the value of the '<em>Manager</em>' reference.
 	 * @see #setManager(AxisManagerRepresentation)
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#getIAxis_Manager()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	AxisManagerRepresentation getManager();

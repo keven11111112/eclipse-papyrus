@@ -10,6 +10,7 @@
  *  Mathieu Velten (Atos) mathieu.velten@atos.net - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 432753
  *  Christian W. Damus (CEA) - bug 437052
+ *  Calin Glitia (Esterel Technologies) calin.glitia@esterel-technologies.com - bug 480209 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -122,6 +123,7 @@ public class ProxyModificationTrackingAdapter extends EContentAdapter {
 
 					for (Object o : objects) {
 						if (o instanceof EObject) {
+							setReferencingResourcesAsModified((EObject) o);
 							TreeIterator<Object> properContents = EcoreUtil.getAllProperContents((EObject) o, false);
 							while (properContents.hasNext()) {
 								Object obj = properContents.next();

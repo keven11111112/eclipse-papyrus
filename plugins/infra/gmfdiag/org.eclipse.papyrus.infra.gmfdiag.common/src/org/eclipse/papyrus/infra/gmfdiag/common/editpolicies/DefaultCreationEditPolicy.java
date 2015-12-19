@@ -9,19 +9,23 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
+ *		Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476872
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -31,11 +35,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 
 /**
  * Default creation edit policy replacement used to replace {@link CreateCommand} by {@link CreateViewCommand},
@@ -78,6 +85,56 @@ public class DefaultCreationEditPolicy extends CreationEditPolicy {
 		return new ICommandProxy(cc.reduce());
 
 	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy#getReparentCommand(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 *
+	 * @param gep
+	 *            the editpart being reparented
+	 * @return The CompositeCommand that containing the modified MoveRequest.
+	 */
+	@Override
+	protected ICommand getReparentCommand(final IGraphicalEditPart gep) {
+
+		// This overrides getReparentCommand in order to store on the MoveRequest a parameter which indicate where the move action is done.
+
+		CompositeCommand cc = new CompositeCommand(DiagramUIMessages.AddCommand_Label);
+		View container = (View) getHost().getModel();
+		EObject context = ViewUtil.resolveSemanticElement(container);
+		View view = (View) gep.getModel();
+		EObject element = ViewUtil.resolveSemanticElement(view);
+
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
+
+		// semantic
+		if (null != element) {
+			MoveRequest moveRequest = new MoveRequest(editingDomain, context, element);
+
+			// Adding on the request where the action is done.
+			Map parameters = moveRequest.getParameters();
+			if (null != parameters) {
+				// Here, the action is done on the diagram
+				parameters.put(RequestParameterConstants.TYPE_MOVING, RequestParameterConstants.TYPE_MOVING_DIAGRAM);
+			}
+
+			moveRequest.addParameters(parameters);
+
+			Command moveSemanticCmd = getHost().getCommand(
+					new EditCommandRequestWrapper(moveRequest));
+
+			if (null == moveSemanticCmd) {
+				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+			}
+
+			cc.compose(new CommandProxy(moveSemanticCmd));
+		}
+
+		// notation
+		cc.compose(getReparentViewCommand(gep));
+		return cc;
+	}
+
 
 	/**
 	 * Get a SetBoundsCommand to move a new view at current mouse position.

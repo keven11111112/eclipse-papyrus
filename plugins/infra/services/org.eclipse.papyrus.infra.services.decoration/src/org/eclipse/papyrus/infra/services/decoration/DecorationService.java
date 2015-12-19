@@ -241,7 +241,7 @@ public class DecorationService extends Observable implements IDecorationService 
 	 * (which would result in a concurrent modification operation)
 	 *
 	 * @param element
-	 *            the element
+	 *            the element, must not be <code>null</code>
 	 * @param navigateToParents
 	 *            the navigate to parents
 	 * @return the decoration

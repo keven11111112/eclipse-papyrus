@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -16,8 +16,6 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assume.assumeThat;
-import junit.framework.TestCase;
-import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -34,6 +32,9 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
+
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc -->
@@ -146,7 +147,7 @@ public class ProfileAppliedTest extends TestCase {
 
 		// Dispose the resource set, making sure any CacheAdapters are purged
 		ResourceSet rset = fixture.eResource().getResourceSet();
-		for(Resource next : rset.getResources()) {
+		for (Resource next : rset.getResources()) {
 			next.unload();
 			next.eAdapters().clear();
 		}
@@ -168,6 +169,7 @@ public class ProfileAppliedTest extends TestCase {
 		rset.getResources().add(modelResource);
 
 		Package model = UMLFactory.eINSTANCE.createPackage();
+		modelResource.getContents().add(model);
 		model.setName("model1");
 		Class foo = model.createOwnedClass("Foo", false);
 
@@ -181,9 +183,13 @@ public class ProfileAppliedTest extends TestCase {
 		// Profile is applied
 		assertThat(getFixture().matches(foo), is(true));
 
-		getFixture().setProfileURI("bogus://profile1.uml#_0");
+		// Destroy the profile resource: makes the profile an unresolvable proxy
+		Resource profileResource = profile.eResource();
+		profileResource.unload();
+		profileResource.getResourceSet().getResources().remove(profileResource);
+		profileResource.eAdapters().clear();
 
-		// Even if profile cannot be resolved, the qualified name is an inexact backup
+		// Even if profile cannot be resolved, the URIs are still known and can be compared
 		assertThat(getFixture().matches(foo), is(true));
 	}
 
@@ -206,4 +212,4 @@ public class ProfileAppliedTest extends TestCase {
 		assertThat(getFixture().resolveProfile(getFixture()), nullValue());
 	}
 
-} //ProfileAppliedTest
+} // ProfileAppliedTest

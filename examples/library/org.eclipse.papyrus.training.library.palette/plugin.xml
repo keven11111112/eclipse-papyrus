@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.training.library.diagram.class.elementTypes"
+            path="palettes/extlibrary.classdiagram.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition
+            ID="org.eclipse.papyrus.training.library.palette.LibraryPalette"
+            class="org.eclipse.papyrus.uml.diagram.common.service.ExtendedPluginPaletteProvider"
+            icon="icons/library.gif"
+            name="org.eclipse.papyrus.training.library.palette.LibraryPalette"
+            path="palettes/extlibrary.classdiagram.paletteconfiguration"
+            provider="Eclipse Modeling Project">
+         <Priority
+               name="Medium">
+         </Priority>
+         <editor
+               id="org.eclipse.papyrus.uml.diagram.clazz">
+         </editor>
+      </paletteDefinition>
+   </extension>
+
+</plugin>

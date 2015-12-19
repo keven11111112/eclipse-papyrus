@@ -533,6 +533,13 @@
             properties="isSemanticDeletion"
             type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
       </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.uml.diagram.common.propertytester.DeleteActionPropertyTester"
+            id="org.eclipse.papyrus.uml.diagram.common.propertytester.deleteReadOnlyActionTester"
+            namespace="org.eclipse.papyrus.uml.diagram.common"
+            properties="isReadOnly"
+            type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+      </propertyTester>
    </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">

@@ -40,13 +40,6 @@ public class JavaContentGenerator {
 	protected Profile umlProfile;
 
 	private IProject project;
-
-	/**
-	 * The source folder for the generated file. Ideally, it should be changed from "src" to "src-gen", but the
-	 * PluginGenerator currently does not support setting up the class path within the generated plugin
-	 * appropriately.
-	 */
-	public static final String srcFolder = "src"; //$NON-NLS-1$
 	
 	/**
 	 *
@@ -62,25 +55,39 @@ public class JavaContentGenerator {
 		this.umlProfile = umlProfile;
 	}
 
+	class RunClassGenerator implements IRunnableWithProgress {
+		
+		private RuntimeException storedException = null;
+
+		public RuntimeException getException() {
+			return storedException;
+		}
+		
+		public void run(IProgressMonitor monitor) {
+			try {
+				Utils.setPluginID(project.getName());
+				ClassesGenerator generator = new ClassesGenerator(umlProfile.eResource(), project);
+				generator.doGenerate(monitor);
+			} catch (IOException e) {
+				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);
+				Activator.getDefault().getLog().log(status);
+			} catch (RuntimeException e) {
+				storedException = e;
+			}
+		}
+	}
+	
 	/**
 	 * launch the generation of the content
 	 */
 	public void run() {
-		IRunnableWithProgress operation = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) {
-				try {
-					Utils.setPluginID(project.getName());
-					ClassesGenerator generator = new ClassesGenerator(umlProfile.eResource(), project);
-					generator.doGenerate(monitor);
-				} catch (IOException e) {
-					IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);
-					Activator.getDefault().getLog().log(status);
-				}
-			}
-		};
+		RunClassGenerator operation = new RunClassGenerator();
 		try {
-			// don't fork (avoid dirty state of MANIFEST which is automatically openend by NewWizard)
+			// don't fork (avoid dirty state of MANIFEST which is automatically opened by NewWizard)
 			PlatformUI.getWorkbench().getProgressService().run(false, true, operation);
+			if (operation.getException() != null) {
+				throw operation.getException();
+			}
 		} catch (InvocationTargetException e) {
 			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getMessage(), e);
 			Activator.getDefault().getLog().log(status);

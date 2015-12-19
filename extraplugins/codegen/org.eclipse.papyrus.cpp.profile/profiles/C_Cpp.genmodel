@@ -64,7 +64,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Include/base_class"/>
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Include/base_PackageImport"/>
+          propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//Include/base_Classifier"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="C_Cpp.ecore#//ManualGeneration">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//ManualGeneration/extensionBody"/>
@@ -171,6 +171,10 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="C_Cpp.ecore#//StorageClass">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute C_Cpp.ecore#//StorageClass/storageClass"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//StorageClass/base_Property"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference C_Cpp.ecore#//StorageClass/base_Parameter"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="C_Cpp.ecore#//Volatile">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

@@ -19,23 +19,23 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * this class create a new requirement from the preferences
+ * Executes the creation of a new SysML requirement based on the Papyrus Req
+ * preferences page.
+ *
  */
-
-public class PapyrusReqSysMLRequirementHandler extends PapyrusReqSysMLAbstractHandler { 
-
-	
+public class PapyrusReqSysMLRequirementHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		Element selectedElement=getSelection();
-		if( selectedElement instanceof Package){
-			PapyrusReqSysMLRequirementCreateCommand darwinRequirementCommand= new PapyrusReqSysMLRequirementCreateCommand(transactionalEditingDomain,selectedElement);
+		Element selectedElement = getSelection();
+		if (selectedElement instanceof Package) {
+			PapyrusReqSysMLRequirementCreateCommand darwinRequirementCommand = new PapyrusReqSysMLRequirementCreateCommand(
+					transactionalEditingDomain, selectedElement);
 			transactionalEditingDomain.getCommandStack().execute(darwinRequirementCommand);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
@@ -44,13 +44,14 @@ public class PapyrusReqSysMLRequirementHandler extends PapyrusReqSysMLAbstractHa
 	 */
 	@Override
 	public boolean isEnabled() {
-		Element selectedElement=getSelection();
-		if( selectedElement instanceof Package){
+		Element selectedElement = getSelection();
+		if (selectedElement instanceof Package) {
 			return true;
 		}
-		
-		else{ return false;}
+
+		else {
+			return false;
+		}
 	}
 
-	
 }

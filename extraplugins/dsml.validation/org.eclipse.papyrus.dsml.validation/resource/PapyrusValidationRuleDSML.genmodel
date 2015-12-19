@@ -4,7 +4,7 @@
     modelDirectory="/org.eclipse.papyrus.dsml.validation/src-gen" editDirectory="/org.eclipse.papyrus.dsml.validation.edit/src-gen"
     editorDirectory="/org.eclipse.papyrus.dsml.validation.editor/src-gen" modelPluginID="org.eclipse.papyrus.dsml.validation"
     modelName="PapyrusValidationRuleDSML" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    testsDirectory="/org.eclipse.papyrus.dsml.validation.tests/src-gen" importerID="org.eclipse.uml2.uml.ecore.importer"
+    testsDirectory="/org.eclipse.papyrus.dsml.validation.tests/src-gen" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.uml2.types/model/Types.genmodel#//types ../../org.eclipse.uml2.uml/model/UML.genmodel#//uml"
     operationReflection="true" importOrganizing="true">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
@@ -31,7 +31,7 @@
     <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
     <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
   </genAnnotations>
-  <foreignModel>PapyrusValidationRuleDSML.uml</foreignModel>
+  <foreignModel>PapyrusDSMLValidationRule.ecore</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="PapyrusDSMLValidationRule" basePackage="org.eclipse.papyrus.dsml.validation"
       resource="XML" disposableProviderFactory="true" ecorePackage="PapyrusDSMLValidationRule.ecore#/">
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="PapyrusDSMLValidationRule.ecore#//Severity">
@@ -43,6 +43,11 @@
     <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="PapyrusDSMLValidationRule.ecore#//Mode">
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PapyrusDSMLValidationRule.ecore#//Mode/Batch"/>
       <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PapyrusDSMLValidationRule.ecore#//Mode/Live"/>
+    </genEnums>
+    <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false" ecoreEnum="PapyrusDSMLValidationRule.ecore#//NameBasedMsgMode">
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PapyrusDSMLValidationRule.ecore#//NameBasedMsgMode/Default"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PapyrusDSMLValidationRule.ecore#//NameBasedMsgMode/NameIsMessage"/>
+      <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="PapyrusDSMLValidationRule.ecore#//NameBasedMsgMode/CustomTemplate"/>
     </genEnums>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="PapyrusDSMLValidationRule.ecore#//ValidationRule">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute PapyrusDSMLValidationRule.ecore#//ValidationRule/severity"/>
@@ -56,6 +61,12 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute PapyrusDSMLValidationRule.ecore#//ValidationRule/target"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute PapyrusDSMLValidationRule.ecore#//ValidationRule/class"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute PapyrusDSMLValidationRule.ecore#//ValidationRule/id"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="PapyrusDSMLValidationRule.ecore#//MessageHandling">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute PapyrusDSMLValidationRule.ecore#//MessageHandling/messageMode"/>
+      <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference PapyrusDSMLValidationRule.ecore#//MessageHandling/base_Package"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute PapyrusDSMLValidationRule.ecore#//MessageHandling/customTemplate"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

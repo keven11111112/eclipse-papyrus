@@ -45,14 +45,6 @@ import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerForEventList implements IAxisManagerForEventList, ITreeItemAxisManagerForEventList {
 
 
-
-	/**
-	 * NOT IN THE API, only here to do the dev about the display of the category (intermediate level displayed filling configuration
-	 * 
-	 */
-	public static final boolean DISPLAY_CATEOGORY = HierarchicalRowLabelHeaderDataProvider.DISPLAY_CATEOGORY;
-
-
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#getAddAxisCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.util.Collection)
 	 *

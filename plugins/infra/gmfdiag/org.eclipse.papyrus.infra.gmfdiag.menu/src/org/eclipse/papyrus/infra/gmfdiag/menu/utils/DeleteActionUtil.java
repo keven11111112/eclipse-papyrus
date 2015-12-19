@@ -101,6 +101,46 @@ public final class DeleteActionUtil {
 	}
 
 	/**
+	 * Checks if this is a read only element from the edit part.
+	 *
+	 * @param editPart
+	 *            the edit part
+	 * @return true, if this is a read only element.
+	 */
+	public static boolean isReadOnly(final IGraphicalEditPart editPart) {
+		boolean isReadOnly = true;
+		TransactionalEditingDomain editingDomain = null;
+
+		// Get Editing Domain
+		try {
+			editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
+		} catch (ServiceException e) {
+			// Do nothing
+		}
+
+		if (null != editingDomain) {
+
+			final IReadOnlyHandler2 readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+			final EObject semantic = EMFHelper.getEObject(editPart);
+			final View graphical = NotationHelper.findView(editPart);
+
+			if (null != readOnly && null != semantic) {
+				// Is the semantic element read-only?
+				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
+				isReadOnly = result.get();
+				
+				if (!isReadOnly && (graphical != null)) {
+					// Or, if not, is the graphical element read-only?
+					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
+					isReadOnly = result.get();
+				}
+			}
+		}
+
+		return isReadOnly;
+	}
+	
+	/**
 	 * Gets the delete from model command.
 	 *
 	 * @param editPart

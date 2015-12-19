@@ -27,11 +27,11 @@ import org.eclipse.uml2.uml.Generalization;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.impl.VisibilityImpl#getValue <em>Value</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.impl.VisibilityImpl#getBase_generalization <em>Base generalization</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.VisibilityImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.impl.VisibilityImpl#getBase_generalization <em>Base generalization</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -40,7 +40,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -51,7 +50,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -62,7 +60,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	 * The cached value of the '{@link #getBase_generalization() <em>Base generalization</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getBase_generalization()
 	 * @generated
 	 * @ordered
@@ -72,7 +69,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected VisibilityImpl() {
@@ -82,7 +78,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -93,7 +88,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -104,33 +98,29 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setValue(String newValue) {
 		String oldValue = value;
 		value = newValue;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.VISIBILITY__VALUE, oldValue, value));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Generalization getBase_generalization() {
 		if (base_generalization != null && base_generalization.eIsProxy()) {
-			InternalEObject oldBase_generalization = (InternalEObject) base_generalization;
-			base_generalization = (Generalization) eResolveProxy(oldBase_generalization);
+			InternalEObject oldBase_generalization = (InternalEObject)base_generalization;
+			base_generalization = (Generalization)eResolveProxy(oldBase_generalization);
 			if (base_generalization != oldBase_generalization) {
-				if (eNotificationRequired()) {
+				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, C_CppPackage.VISIBILITY__BASE_GENERALIZATION, oldBase_generalization, base_generalization));
-				}
 			}
 		}
 		return base_generalization;
@@ -139,7 +129,6 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Generalization basicGetBase_generalization() {
@@ -149,34 +138,29 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void setBase_generalization(Generalization newBase_generalization) {
 		Generalization oldBase_generalization = base_generalization;
 		base_generalization = newBase_generalization;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, C_CppPackage.VISIBILITY__BASE_GENERALIZATION, oldBase_generalization, base_generalization));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case C_CppPackage.VISIBILITY__VALUE:
-			return getValue();
-		case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
-			if (resolve) {
-				return getBase_generalization();
-			}
-			return basicGetBase_generalization();
+			case C_CppPackage.VISIBILITY__VALUE:
+				return getValue();
+			case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
+				if (resolve) return getBase_generalization();
+				return basicGetBase_generalization();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,18 +168,17 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case C_CppPackage.VISIBILITY__VALUE:
-			setValue((String) newValue);
-			return;
-		case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
-			setBase_generalization((Generalization) newValue);
-			return;
+			case C_CppPackage.VISIBILITY__VALUE:
+				setValue((String)newValue);
+				return;
+			case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
+				setBase_generalization((Generalization)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -203,18 +186,17 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case C_CppPackage.VISIBILITY__VALUE:
-			setValue(VALUE_EDEFAULT);
-			return;
-		case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
-			setBase_generalization((Generalization) null);
-			return;
+			case C_CppPackage.VISIBILITY__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+			case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
+				setBase_generalization((Generalization)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -222,16 +204,15 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case C_CppPackage.VISIBILITY__VALUE:
-			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-		case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
-			return base_generalization != null;
+			case C_CppPackage.VISIBILITY__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case C_CppPackage.VISIBILITY__BASE_GENERALIZATION:
+				return base_generalization != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -239,17 +220,14 @@ public class VisibilityImpl extends MinimalEObjectImpl.Container implements Visi
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: "); //$NON-NLS-1$
+		result.append(" (value: ");
 		result.append(value);
 		result.append(')');
 		return result.toString();

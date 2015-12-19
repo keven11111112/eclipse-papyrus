@@ -201,7 +201,7 @@ public class CppGeneralizationPanel extends CppAbstractPanel {
 					vPropCombo.select(0);
 				}
 			} else {
-				Activator.log(new RuntimeException("Generalization: should never happened, model should be corrected before"));
+				// no visibility applied, defaults to public
 				vPropCombo.select(0);
 			}
 		}

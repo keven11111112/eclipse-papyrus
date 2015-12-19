@@ -107,15 +107,14 @@ abstract mapping Classifier::toAbstractDCElement() : element : DataContextElemen
 mapping Stereotype::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toAbstractDCElement{
 
 	element.properties := self.attribute->select(e | e.isAttribute(self)).map toProperty();
-	var superClassifiers := self.generalization.target->select(e | e.isView()).oclAsType(Classifier);
-	var tempAtt := self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet();
-	if not superClassifiers->isEmpty() then 
-   
- 		element.supertypes :=  self.generalization.target->select(e | e.isView()).oclAsType(Classifier).late resolve(DataContextElement)
-	 else 
-	 	element.supertypes := superClassifiers.map toDCElement().element->union(tempAtt)->asSet()
-	endif;
 	
+	//Stereotype generalization
+	var superClassifiers := self.generalization.target->select(e | e.isView()).oclAsType(Classifier);
+	
+	//base metaclasses
+	var baseElements := self.ownedAttribute->select(e | not e.isAttribute(self)).getDataContextElement()->asSet();
+	
+	element.supertypes := superClassifiers.map toDCElement().element->union(baseElements)->asSet()
 }
 
 mapping DataType::toDataContextElement() : element : DataContextElement, viewSingle : View, viewMultiple : View inherits Classifier::toAbstractDCElement when {

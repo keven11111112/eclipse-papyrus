@@ -19,6 +19,8 @@ import java.util.Map;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
+import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
+import org.eclipse.papyrus.uml.tools.utils.StaticProfileUtil;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -100,8 +102,8 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 	 */
 	private void relateCategoriesWithConstraints(Element element, Category category) {
 
-
 		if (element instanceof Profile) {
+			Profile profile = (Profile) element;
 
 			// creation of a category
 			ConstraintCategoryImpl subCategory = new ConstraintCategoryImpl(((Profile) element).getName(), category);
@@ -113,8 +115,13 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 			// associate validation to category to provider
 			constraintProvider.getConstraintsCategories().add(subCategory);
 			constraintsProviders.add(constraintProvider);
-			if (((Profile) element).getDefinition() != null) {
-				constraintProvider.setEPackage(((Profile) element).getDefinition());
+			StaticProfileUtil staticProfile = new StaticProfileUtil(profile);
+			Utils.setStaticProfile(staticProfile);
+			if (staticProfile.getDefinition() != null) {
+				constraintProvider.setEPackage(staticProfile.getDefinition());
+			}
+			else if (profile.getDefinition() != null) {
+				constraintProvider.setEPackage(profile.getDefinition());
 			}
 
 			// iterate on all direct element of the profile

@@ -95,11 +95,20 @@ public class CppGenUtils {
 
 			if (name.equals("Boolean")) { //$NON-NLS-1$
 				td = "bool"; //$NON-NLS-1$
-			} else if (name.equals("Integer")) { //$NON-NLS-1$
+			}
+			else if (name.equals("Integer")) { //$NON-NLS-1$
 				td = "int"; //$NON-NLS-1$
-			} else if (name.equals("String")) { //$NON-NLS-1$
+			}
+			else if (name.equals("Unlimited Natural")) { //$NON-NLS-1$
+				td = "unsigned long"; //$NON-NLS-1$
+			}
+			else if (name.equals("Real")) { //$NON-NLS-1$
+				td = "float"; //$NON-NLS-1$
+			}
+			else if (name.equals("String")) { //$NON-NLS-1$
 				td = "const char *"; //$NON-NLS-1$
-			} else if (name.equals("Unlimited Natural")) { //$NON-NLS-1$
+			}
+			else if (name.equals("Unlimited Natural")) { //$NON-NLS-1$
 				td = "unsigned long"; //$NON-NLS-1$
 			}
 			if (td != null) {

@@ -24,12 +24,12 @@ import org.eclipse.uml2.uml.Property;
  *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.C_Cpp.Const#getBase_parameter <em>Base parameter</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.Const#getBase_property <em>Base property</em>}</li>
- * <li>{@link org.eclipse.papyrus.C_Cpp.Const#getBase_operation <em>Base operation</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.Const#getBase_parameter <em>Base parameter</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.Const#getBase_property <em>Base property</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.C_Cpp.Const#getBase_operation <em>Base operation</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst()
  * @model
@@ -43,7 +43,6 @@ public interface Const extends EObject {
 	 * If the meaning of the '<em>Base parameter</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base parameter</em>' reference.
 	 * @see #setBase_parameter(Parameter)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst_Base_parameter()
@@ -56,9 +55,7 @@ public interface Const extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.Const#getBase_parameter <em>Base parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base parameter</em>' reference.
+	 * @param value the new value of the '<em>Base parameter</em>' reference.
 	 * @see #getBase_parameter()
 	 * @generated
 	 */
@@ -71,7 +68,6 @@ public interface Const extends EObject {
 	 * If the meaning of the '<em>Base property</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base property</em>' reference.
 	 * @see #setBase_property(Property)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst_Base_property()
@@ -84,9 +80,7 @@ public interface Const extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.Const#getBase_property <em>Base property</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base property</em>' reference.
+	 * @param value the new value of the '<em>Base property</em>' reference.
 	 * @see #getBase_property()
 	 * @generated
 	 */
@@ -99,7 +93,6 @@ public interface Const extends EObject {
 	 * If the meaning of the '<em>Base operation</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the value of the '<em>Base operation</em>' reference.
 	 * @see #setBase_operation(Operation)
 	 * @see org.eclipse.papyrus.C_Cpp.C_CppPackage#getConst_Base_operation()
@@ -112,9 +105,7 @@ public interface Const extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.C_Cpp.Const#getBase_operation <em>Base operation</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
-	 * @param value
-	 *            the new value of the '<em>Base operation</em>' reference.
+	 * @param value the new value of the '<em>Base operation</em>' reference.
 	 * @see #getBase_operation()
 	 * @generated
 	 */

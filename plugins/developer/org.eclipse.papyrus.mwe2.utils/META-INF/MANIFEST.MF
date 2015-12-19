@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.mwe2.utils,
+ org.eclipse.papyrus.mwe2.utils.components,
+ org.eclipse.papyrus.mwe2.utils.messages
+Bundle-SymbolicName: org.eclipse.papyrus.mwe2.utils
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: %Bundle-Name
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.mwe.core,
  org.eclipse.uml2.uml,
  org.apache.commons.logging,
  org.eclipse.m2m.qvt.oml
-Export-Package: org.eclipse.papyrus.mwe2.utils,
- org.eclipse.papyrus.mwe2.utils.components,
- org.eclipse.papyrus.mwe2.utils.messages
-Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.2.qualifier
-Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.mwe2.utils.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.mwe2.utils
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: %Bundle-Vendor

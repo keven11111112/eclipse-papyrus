@@ -388,9 +388,11 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 	 */
 	@Override
 	public void setStringValue(Object columnElement, Object rowElement, String valueAsString, AbstractStringValueConverter valueSolver, INattableModelManager tableManager, Map<?, ?> sharedMap) {
-		if (valueAsString == null || valueAsString.isEmpty()) {
-			return;
-		}
+		// commented to fix bug 480894: [Table]pasting an empty string in a stereotype property colonne throws a java.lang.IllegalStateException
+		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=480894
+		// if (valueAsString == null || valueAsString.isEmpty()) {
+		// return;
+		// }
 		final List<Object> umlObjects = organizeAndResolvedObjects(columnElement, rowElement, sharedMap);
 		final Element el = (Element) umlObjects.get(0);
 		final String id = (String) umlObjects.get(1);

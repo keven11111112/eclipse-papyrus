@@ -558,6 +558,19 @@ constructor AddStructuralFeatureValueAction::AddStructuralFeatureValueAction(pro
 	} endif;
 }
 
+constructor AddStructuralFeatureValueAction::AddStructuralFeatureValueAction(property_ : Property, classifier: Type, replaceAll : Boolean, unlimitedNaturalType : Type) {
+	name := "Write(" + nameOf(property_) + ")";
+	structuralFeature := property_;
+	isReplaceAll := replaceAll;
+	_'object' := new InputPin(name + ".object", classifier, 1, 1);
+	value := new InputPin (name + ".value", property_.type, 1, 1);
+	result.result := new OutputPin(name + ".result", classifier, 1, 1);
+	
+	if property_.isOrdered and not replaceAll then {
+		insertAt := new InputPin(name + ".insertAt", unlimitedNaturalType, 1, 1);
+	} endif;
+}
+
 constructor CallBehaviorAction::CallBehaviorAction(target : Behavior) {
 	name := "Call(" + nameOf(target) +")";
 	behavior := target;
@@ -595,6 +608,15 @@ constructor ClearStructuralFeatureAction::ClearStructuralFeatureAction(property_
 	_'object' := new InputPin(name + ".object", featuringClassifier, 1, 1);
 	_'object'.isOrdered := false;
 	result.result := new OutputPin(name + ".result", featuringClassifier, 1, 1);
+}
+
+constructor ClearStructuralFeatureAction::ClearStructuralFeatureAction(property_ : Property, classifier : Type) {
+	name := "Clear(" + nameOf(property_) + ")";
+	structuralFeature := property_;
+	
+	_'object' := new InputPin(name + ".object", classifier, 1, 1);
+	_'object'.isOrdered := false;
+	result.result := new OutputPin(name + ".result", classifier, 1, 1);
 }
 
 constructor CreateObjectAction::CreateObjectAction(class_ : Class) {
@@ -693,6 +715,21 @@ constructor RemoveStructuralFeatureValueAction::RemoveStructuralFeatureValueActi
 	var featuringClassifier := property_.featuringClassifier![true];
 	_'object' := new InputPin(name + ".object", featuringClassifier, 1, 1);
 	result.result := new OutputPin(name + ".result", featuringClassifier, 1, 1);
+	
+	if not property_.isOrdered or property_.isUnique or isRemoveDuplicates then {
+		value := new InputPin(name + ".value", property_.type, 1, 1);
+	} else {
+		removeAt := new InputPin(name + ".removeAt", unlimitedNaturalType, 1, 1);
+	} endif;
+}
+
+constructor RemoveStructuralFeatureValueAction::RemoveStructuralFeatureValueAction(property_ : Property, classifier : Type, removeDuplicates : Boolean, unlimitedNaturalType : Type) {
+	name := "Remove(" + nameOf(property_) + ")";
+	structuralFeature := property_;
+	isRemoveDuplicates := removeDuplicates;
+	
+	_'object' := new InputPin(name + ".object", classifier, 1, 1);
+	result.result := new OutputPin(name + ".result", classifier, 1, 1);
 	
 	if not property_.isOrdered or property_.isUnique or isRemoveDuplicates then {
 		value := new InputPin(name + ".value", property_.type, 1, 1);
@@ -816,7 +853,8 @@ constructor ExpansionRegion::ExpansionRegion(name_ : String, mode_ : ExpansionKi
 	mode := mode_;
 }
 
-constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
+constructor ExpansionNode::ExpansionNode(sourceName : String, type_ : Type, region : ExpansionRegion, isInput : Boolean) {
+	type := type_;
 	if isInput then {
 		name := nameOf(region) + if sourceName = null then ".inputElement" else ".inputElement(" + sourceName + ")" endif;
 		regionAsInput := region;
@@ -840,7 +878,6 @@ helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, i
 
 helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(ActivityNode), edges : Set(ActivityEdge)) : Set(ActivityEdge) {
 	region.node += nodes;
-	var outerEdges : Set(ActivityEdge);
 	var allOwnedNodes := region.allOwnedNodes();
 	edges->forEach(edge) {
 		var sourceIsContained := allOwnedNodes->includes(edge.source);
@@ -854,30 +891,29 @@ helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(Activity
 		} else {
 			if targetIsContained then {
 				// If an edge crosses into the region, then redirect its target.
-				edge.target :=
-					if edge.oclIsKindOf(ControlFlow) then region
-					else {
-						var inputPin := new InputPin (region,
-							region.name + ".input(" + nameOf(edge.source) + ")",
-							if edge.target.oclIsKindOf(ObjectNode) then edge.target.oclAsType(ObjectNode).type
-							else null endif,
-							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).lower
-							else 0 endif,
-							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).upper
-							else -1 endif
-						);
-						new ObjectFlow(region, inputPin, edge.target);
-						inputPin		
-					} endif;
+				if edge.oclIsKindOf(ControlFlow) then {
+					edge.target := region;
+				} else {
+					var inputPin := new InputPin (region,
+						region.name + ".input(" + nameOf(edge.source) + ")", 
+						typeOf(edge.target),
+						if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).lower
+						else 0 endif,
+						if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).upper
+						else -1 endif
+					);
+					new ObjectFlow(region, inputPin, edge.target);
+					edge.target := inputPin;
+				} endif;
 			} else if sourceIsContained then {
 				// If an edge crosses out of the region, then redirect its source.
-				edge.source :=
-					if edge.oclIsKindOf(ControlFlow) then region
-					else {
-						var outputNode ::= new ExpansionNode(nameOf(edge.source), region, false);
-						new ObjectFlow(region, edge.source, outputNode);
-						outputNode
-					} endif;
+				if edge.oclIsKindOf(ControlFlow) then {
+					edge.source := region;
+				} else {
+					var outputNode := new ExpansionNode(nameOf(edge.source), typeOf(edge.source), region, false);
+					new ObjectFlow(region, edge.source, outputNode);
+					edge.source := outputNode;
+				} endif;
 			} endif endif;
 		} endif;
 	};
@@ -906,6 +942,13 @@ helper nameOf(element : Element) : String {
 			if name = null then "<No Name>"
 			else "'" + name + "'" endif
 		endif endif endif;
+}
+
+helper typeOf(element : Element) : Type {
+	return 
+		if element.oclIsKindOf(TypedElement) then element.oclAsType(TypedElement).type 
+		else null 
+		endif;
 }
 
 

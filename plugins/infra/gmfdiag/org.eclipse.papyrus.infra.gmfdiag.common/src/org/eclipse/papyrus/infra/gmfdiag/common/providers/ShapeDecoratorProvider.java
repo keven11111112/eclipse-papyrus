@@ -20,6 +20,9 @@ import org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOpe
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 
 /**
  * Provides the decorator for the shape, based on the shape service
@@ -52,6 +55,21 @@ public class ShapeDecoratorProvider extends AbstractProvider implements IDecorat
 		}
 
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
+
+		View notationElement = NotationHelper.findView(decoratorTarget);
+		if (notationElement == null) {
+			return false;
+		}
+
+		try {
+			ServicesRegistry papyrusRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(notationElement);
+			if (papyrusRegistry == null) {
+				return false;
+			}
+		} catch (Exception ex) {
+			return false; // Not a Papyrus model
+		}
+
 		return ShapeDecorator.getDecoratorTargetNode(decoratorTarget) != null;
 	}
 

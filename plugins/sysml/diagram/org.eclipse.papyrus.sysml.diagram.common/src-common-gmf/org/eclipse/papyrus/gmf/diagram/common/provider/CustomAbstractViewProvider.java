@@ -114,7 +114,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 		if ((semanticHint != null) && (!"".equals(semanticHint))) {
 			graphicalType = registry.getNodeGraphicalType(semanticHint, containerView.getType());
 
-		} else {
+		} else if (semanticAdapter != null) {
 
 			EObject domainElement = (EObject) semanticAdapter.getAdapter(EObject.class);
 			if (domainElement != null) {

@@ -8,11 +8,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
-*     CEA LIST. - initial API and implementation
-*******************************************************************************/
+ *     CEA LIST. - initial API and implementation
+ *     Mauricio Alferez (mauricio.alferez@cea.fr) CEA LIST - Bugs 477726, 478595, 481377,...
+ *     
+ *******************************************************************************/
 
 package org.eclipse.papyrus.req.sysml.preferences;
 
+import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IntegerFieldEditor;
 import org.eclipse.jface.preference.StringFieldEditor;
@@ -24,10 +27,10 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
- * Preference page related to SysML Papyrus REQ 
+ * Preference page related to SysML Papyrus REQ
  *
  */
-public class PreferencePage  extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class PreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	public PreferencePage() {
 		super(GRID);
@@ -35,33 +38,44 @@ public class PreferencePage  extends FieldEditorPreferencePage implements IWorkb
 		setDescription("Papyrus SysML Requirements");
 	}
 
-
 	/**
-	 * Creates the field editors. Field editors are abstractions of
-	 * the common GUI blocks needed to manipulate various types
-	 * of preferences. Each field editor knows how to save and
-	 * restore itself.
+	 * Creates the field editors. Field editors are abstractions of the common
+	 * GUI blocks needed to manipulate various types of preferences. Each field
+	 * editor knows how to save and restore itself.
 	 */
 	@Override
 	public void createFieldEditors() {
-		
-		Group dmGroup = createGroup("Requirement");
-		addField(new StringFieldEditor(PreferenceConstants.REQUIREMENT_ID_PREFIX,"Prefix for Requirement ID",dmGroup));
-		addField(new IntegerFieldEditor(PreferenceConstants.REQUIREMENT_ID_DIGIT,"Number of digits for Requirement ID",dmGroup));
-		
+		Group reqCreationOptions = createGroup("Requirements creation");
+		addField(new StringFieldEditor(PreferenceConstants.REQUIREMENT_ID_PREFIX, "Prefix for requirement ID",
+				reqCreationOptions));
+		addField(new IntegerFieldEditor(PreferenceConstants.REQUIREMENT_ID_DIGIT, "Number of digits for requirement ID",
+				reqCreationOptions));
+		addField(new StringFieldEditor(PreferenceConstants.CHILD_REQUIREMENTS_SEPARATOR,
+				"Separator between parent and child requirements IDs", reqCreationOptions));
+
+		Group profileCreationOptions = createGroup("Generation of a profile based on a domain model");
+		addField(new StringFieldEditor(PreferenceConstants.NSURI_PREFIX, "Ns URI prefix for new profile",
+				profileCreationOptions));
+		addField(new BooleanFieldEditor(PreferenceConstants.GENERATE_ABSTRACTIONS_MODEL,
+				"Generate an abstraction model?", profileCreationOptions));
+		addField(new BooleanFieldEditor(PreferenceConstants.FROM_ASSOCIATIONS_TO_STEREOTYPES,
+				"Transform from associations to stereotypes?", profileCreationOptions));
+		addField(new BooleanFieldEditor(PreferenceConstants.FROM_ASSOCIATIONS_TO_ASSOCIATIONS,
+				"Transform from associations to associations?", profileCreationOptions));
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+	 * @see
+	 * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
 	 */
 	public void init(IWorkbench workbench) {
 	}
 
 	private Group createGroup(String text) {
 		Group group = new Group(getFieldEditorParent(), SWT.NONE);
-		//group.setLayout(new GridLayout(1, false));
+		// group.setLayout(new GridLayout(1, false));
 
 		GridLayout gridLayout = new GridLayout(2, false);
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
@@ -75,5 +89,4 @@ public class PreferencePage  extends FieldEditorPreferencePage implements IWorkb
 
 		return group;
 	}
-
 }

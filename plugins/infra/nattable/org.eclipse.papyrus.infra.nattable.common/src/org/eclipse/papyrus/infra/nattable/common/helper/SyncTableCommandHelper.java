@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.nattableconfiguration.NattableConfigurationRegistry;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
@@ -37,9 +38,9 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  */
 public class SyncTableCommandHelper implements IViewTypeHelper {
 	/**
-	 * ID of the extension point for Papyrus diagrams
+	 * ID of the extension point for Papyrus tables
 	 */
-	private static final String EXTENSION_PAPYRUS_SYNC_TABLE = "org.eclipse.papyrus.infra.nattable.configuration";
+	private static final String EXTENSION_PAPYRUS_SYNC_TABLE = NattableConfigurationRegistry.EXTENSION_ID;
 
 	/**
 	 * The cache of implementations

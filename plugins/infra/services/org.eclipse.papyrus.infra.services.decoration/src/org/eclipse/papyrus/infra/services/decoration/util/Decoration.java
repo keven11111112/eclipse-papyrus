@@ -24,7 +24,6 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Decoration.
  */

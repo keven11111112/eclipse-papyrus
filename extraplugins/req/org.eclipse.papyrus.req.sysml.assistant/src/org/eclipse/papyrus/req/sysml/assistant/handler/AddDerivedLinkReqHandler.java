@@ -22,25 +22,25 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * this class execute a derived link
+ * Executes the addition of DerivedReqt links
+ *
  */
-
-public class AddDerivedLinkReqHandler extends PapyrusReqSysMLAbstractHandler { 
-
-
+public class AddDerivedLinkReqHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		ArrayList<Element> selectedElements=getSelectionSet();
-		if( selectedElements.size()==2){
-			DerivationReqCreateCommand addDerivedLinkReqCommand= new DerivationReqCreateCommand(transactionalEditingDomain,(NamedElement)selectedElements.get(1),(NamedElement) selectedElements.get(0));
+		ArrayList<Element> selectedElements = getSelectionSet();
+		if (selectedElements.size() == 2) {
+			DerivationReqCreateCommand addDerivedLinkReqCommand = new DerivationReqCreateCommand(
+					transactionalEditingDomain, (NamedElement) selectedElements.get(1),
+					(NamedElement) selectedElements.get(0));
 			transactionalEditingDomain.getCommandStack().execute(addDerivedLinkReqCommand);
-		}
-		else{
+		} else {
 
-			Element selectedElement=getSelection();
-			if( selectedElement!=null){
-				AddDerivedLinkReqCommand addDerivedLinkReqCommand= new AddDerivedLinkReqCommand(transactionalEditingDomain,selectedElement);
+			Element selectedElement = getSelection();
+			if (selectedElement != null) {
+				AddDerivedLinkReqCommand addDerivedLinkReqCommand = new AddDerivedLinkReqCommand(
+						transactionalEditingDomain, selectedElement);
 				transactionalEditingDomain.getCommandStack().execute(addDerivedLinkReqCommand);
 			}
 		}
@@ -55,12 +55,12 @@ public class AddDerivedLinkReqHandler extends PapyrusReqSysMLAbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		Element selectedElement=getSelection();
-		if( selectedElement!=null){
+		Element selectedElement = getSelection();
+		if (selectedElement != null) {
 			return true;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
-
 
 }

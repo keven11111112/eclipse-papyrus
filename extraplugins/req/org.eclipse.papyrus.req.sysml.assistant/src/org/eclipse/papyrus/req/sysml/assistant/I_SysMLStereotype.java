@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.req.sysml.assistant;
 
 /**
- * list of constant for SysML
+ * list of constants for SysML
  *
  */
 public interface I_SysMLStereotype {

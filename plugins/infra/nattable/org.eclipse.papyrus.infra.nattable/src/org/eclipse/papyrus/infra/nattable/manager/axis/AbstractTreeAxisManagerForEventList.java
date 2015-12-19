@@ -14,9 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.manager.axis;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -375,14 +373,15 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param rowElement
 	 *            the element
 	 * @return
-	 *         a collection of all values for the intersection of the iaxis and the row element. These values are not yet filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
-	 *         
-	 *         @deprecated : use directly CellManagerFactory.INSTANCE.getCrossValueAsCollection(iaxis, rowElement, this.tableManager);
+	 * 		a collection of all values for the intersection of the iaxis and the row element. These values are not yet filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
+	 * 
+	 * @deprecated : use directly CellManagerFactory.INSTANCE.getCrossValueAsCollection(iaxis, rowElement, this.tableManager);
 	 */
 	@Deprecated
 	protected final Collection<?> getCellValueAsCollection(final Object iaxis, final Object rowElement) {
 		return CellManagerFactory.INSTANCE.getCrossValueAsCollection(iaxis, rowElement, this.tableManager);
 	}
+
 	/**
 	 *
 	 * @param axis
@@ -692,7 +691,10 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 					} else {
 						parentConf = parentRepresentation.iterator().next();
 					}
-					addObject(parentConf, newValue);
+					// this allows to avoid the double same entry on the same level (especially for the stereotyped elements)
+					if (!managedElements.containsKey(newValue)) {
+						addObject(parentConf, newValue);
+					}
 				}
 			}
 			return;

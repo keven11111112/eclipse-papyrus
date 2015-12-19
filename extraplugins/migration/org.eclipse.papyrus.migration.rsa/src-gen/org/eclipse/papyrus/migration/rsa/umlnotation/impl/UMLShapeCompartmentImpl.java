@@ -25,15 +25,16 @@ import org.eclipse.papyrus.migration.rsa.umlnotation.UMLView;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#getShowStereotype <em>Show Stereotype</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#getShowListVisibility <em>Show List Visibility</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#isShowListSignature <em>Show List Signature</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#getAlignment <em>Alignment</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#getShowStereotypeAttributeCompartment <em>Show Stereotype Attribute Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#getShowListStereotype <em>Show List Stereotype</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeCompartmentImpl#isVerticalAlignment <em>Vertical Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -148,6 +149,28 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 	 * @ordered
 	 */
 	protected String showStereotypeAttributeCompartment = SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getShowListStereotype() <em>Show List Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getShowListStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHOW_LIST_STEREOTYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getShowListStereotype() <em>Show List Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getShowListStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected String showListStereotype = SHOW_LIST_STEREOTYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isVerticalAlignment() <em>Vertical Alignment</em>}' attribute.
@@ -329,6 +352,32 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 	 * @generated
 	 */
 	@Override
+	public String getShowListStereotype() {
+		return showListStereotype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setShowListStereotype(String newShowListStereotype) {
+		String oldShowListStereotype = showListStereotype;
+		showListStereotype = newShowListStereotype;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE, oldShowListStereotype, showListStereotype));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public boolean isVerticalAlignment() {
 		return verticalAlignment;
 	}
@@ -367,6 +416,8 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 			return getAlignment();
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			return getShowStereotypeAttributeCompartment();
+		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE:
+			return getShowListStereotype();
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__VERTICAL_ALIGNMENT:
 			return isVerticalAlignment();
 		}
@@ -396,6 +447,9 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 			return;
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			setShowStereotypeAttributeCompartment((String) newValue);
+			return;
+		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE:
+			setShowListStereotype((String) newValue);
 			return;
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__VERTICAL_ALIGNMENT:
 			setVerticalAlignment((Boolean) newValue);
@@ -428,6 +482,9 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			setShowStereotypeAttributeCompartment(SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT);
 			return;
+		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE:
+			setShowListStereotype(SHOW_LIST_STEREOTYPE_EDEFAULT);
+			return;
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__VERTICAL_ALIGNMENT:
 			setVerticalAlignment(VERTICAL_ALIGNMENT_EDEFAULT);
 			return;
@@ -454,6 +511,8 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 			return ALIGNMENT_EDEFAULT == null ? alignment != null : !ALIGNMENT_EDEFAULT.equals(alignment);
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			return SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT == null ? showStereotypeAttributeCompartment != null : !SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT.equals(showStereotypeAttributeCompartment);
+		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE:
+			return SHOW_LIST_STEREOTYPE_EDEFAULT == null ? showListStereotype != null : !SHOW_LIST_STEREOTYPE_EDEFAULT.equals(showListStereotype);
 		case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__VERTICAL_ALIGNMENT:
 			return verticalAlignment != VERTICAL_ALIGNMENT_EDEFAULT;
 		}
@@ -480,6 +539,8 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 				return PapyrusUMLNotationPackage.UML_VIEW__ALIGNMENT;
 			case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 				return PapyrusUMLNotationPackage.UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT;
+			case PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE:
+				return PapyrusUMLNotationPackage.UML_VIEW__SHOW_LIST_STEREOTYPE;
 			default:
 				return -1;
 			}
@@ -507,6 +568,8 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 				return PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__ALIGNMENT;
 			case PapyrusUMLNotationPackage.UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 				return PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT;
+			case PapyrusUMLNotationPackage.UML_VIEW__SHOW_LIST_STEREOTYPE:
+				return PapyrusUMLNotationPackage.UML_SHAPE_COMPARTMENT__SHOW_LIST_STEREOTYPE;
 			default:
 				return -1;
 			}
@@ -537,6 +600,8 @@ public class UMLShapeCompartmentImpl extends CompartmentImpl implements UMLShape
 		result.append(alignment);
 		result.append(", showStereotypeAttributeCompartment: ");
 		result.append(showStereotypeAttributeCompartment);
+		result.append(", showListStereotype: ");
+		result.append(showListStereotype);
 		result.append(", verticalAlignment: ");
 		result.append(verticalAlignment);
 		result.append(')');

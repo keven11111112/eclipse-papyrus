@@ -11,6 +11,10 @@ Export-Package: org.eclipse.papyrus.uml.textedit.port.xtext,
  org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.impl,
  org.eclipse.papyrus.uml.textedit.port.xtext.umlPort.util,
  org.eclipse.papyrus.uml.textedit.port.xtext.validation
+Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.port.xtext;singleton:=true
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.xbase;resolution:=optional,
  org.eclipse.xtext.generator;resolution:=optional,
@@ -25,16 +29,12 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.uml.alf.common;bundle-version="1.1.2",
- org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.1.2",
+ org.eclipse.papyrus.uml.alf.common;bundle-version="1.1.3",
+ org.eclipse.papyrus.uml.xtext.integration.core;bundle-version="1.1.3",
  org.eclipse.xtext.xbase.lib
-Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.2.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: %providerName
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.port.xtext;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6

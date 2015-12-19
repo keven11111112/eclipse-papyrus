@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.papyrus.acceleo.debug;singleton:=true
+Bundle-Version: 1.1.3.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="4.0.0",
  org.eclipse.acceleo.engine;bundle-version="3.2.2",
- org.eclipse.papyrus.fcm.profile;bundle-version="1.1.2",
- org.eclipse.papyrus.acceleo;bundle-version="1.1.2",
- org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.1.2",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.2",
- org.eclipse.papyrus.acceleo.ui;bundle-version="1.1.2",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.2"
-Bundle-Vendor: %providerName
+ org.eclipse.papyrus.fcm.profile;bundle-version="1.1.3",
+ org.eclipse.papyrus.acceleo;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.widgets.toolbox;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.1.3",
+ org.eclipse.papyrus.acceleo.ui;bundle-version="1.1.3",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.3"
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.2.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.acceleo.debug.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.acceleo.debug;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: %providerName

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paletteconfiguration:PaletteConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"
+    id="org.eclipse.papyrus.bpmn.process.palette"
+    label="BPMN Process Palette Model"
+    description="Palette configuration for BPMN Process Diagram">
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.connectors"
+      label="Connectors"
+      description="Drawer Configuration for BPMN Process Diagram Connectors">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.sequenceFlow.tool"
+        label="Sequence Flow"
+        description="Sequence Flow (Control Flow)"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/SequenceFlow.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.SequenceFlow_ControlFlow_4004"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.dataAssociation.tool"
+        label="Data Association "
+        description="Data Association (Object Flow)"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/DataAssociation.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.DataAssociation_ObjectFlow_4003"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.tasks"
+      label="Tasks"
+      description="Drawer Configuration for BPMN Process Diagram Tasks">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.task.tool"
+        label="Task"
+        description="Task (Opaque Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/Task.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.Task_Action_3007"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.manualTask.tool"
+        label="Manual Task"
+        description="Manual Task (Opaque Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ManualTask.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ManualTask_OpaqueAction_3007"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.userTask.tool"
+        label="User Task"
+        description="User Task (Opaque Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/UserTask.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.UserTask_OpaqueAction_3007"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.scriptTask.tool"
+        label="Script Task"
+        description="Script Task (Opaque Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ScriptTask.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ScriptTask_OpaqueAction_3007"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.businessRuleTask.tool"
+        label="Business Rule Task"
+        description="Business Rule Task (Opaque Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/BusinessRuleTask.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.BusinessRuleTask_OpaqueAction_3007"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.sendTask.tool"
+        label="Send Task"
+        description="Send Task (Call Operation Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/SendTask.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.SendTask_CallOperationAction_3010"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.serviceTask.tool"
+        label="Service Task"
+        description="Service Task (Call Operation Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ServiceTask.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ServiceTask_CallOperationAction_3010"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.gateways"
+      label="Gateways"
+      description="Drawer Configuration for BPMN Process Diagram Gateways">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.inclusiveGateway.joinNode.tool"
+        label="Inclusive Gateway (Join node)"
+        description="Inclusive Gateway (Join node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/InclusiveGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_JoinNode_3041"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.exclusiveGateway.decisionNode.tool"
+        label="Exclusive Gateway (Decision node)"
+        description="Exclusive Gateway (Decision node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ExclusiveGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ExclusiveGateway_DecisionNode_3038"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.exclusiveGateway.mergeNode.tool"
+        label="Exclusive Gateway (Merge Node)"
+        description="Exclusive Gateway (Merge Node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ExclusiveGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ExclusiveGateway_MergeNode_3039"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.parallelGateway.joinNode.tool"
+        label="Parallel Gateway (Join node)"
+        description="Parallel Gateway (Join node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ParallelGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_JoinNode_3041"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.inclusiveGateway.forkNode.tool"
+        label="Inclusive Gateway (Fork node)"
+        description="Inclusive Gateway (Fork node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/InclusiveGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.InclusiveGateway_ForkNode_3040"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.parallelGateway.forkNode.tool"
+        label="Parallel Gateway (Fork node)"
+        description="Parallel Gateway (Fork node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/ParallelGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.ParallelGateway_ForkNode_3040"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.eventBasedGateway.forkNode.tool"
+        label="EventBasedGateway (Fork Node)"
+        description="EventBasedGateway (Fork Node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/EventBasedGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.EventBasedGateway_ForkNode_3040"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.eventBasedGateway.interruptibleActivityRegion.tool"
+        label="EventBasedGateway (Interruptible Activity Region)"
+        description="EventBasedGateway (Interruptible Activity Region)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/EventBasedGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.EventBasedGateway_InterruptibleActivityRegion_3068"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.eventBasedGateway.structuredActivityNode.tool"
+        label="EventBasedGateway (Structured Activity Node)"
+        description="EventBasedGateway (Structured Activity Node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/EventBasedGateway.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.EventBasedGateway_StructuredActivityNode_3065"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.events"
+      label="Events"
+      description="Drawer Configuration for BPMN Process Diagram Events">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.startEvent.tool"
+        label="Start Event"
+        description="Start Event (Initial node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/StartEvent.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.StartEvent_InitialNode_3004"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.endEvent.tool"
+        label="End Event"
+        description="End Event (Flow final)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/EndEvent.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.EndEvent_FlowFinalNode_3006"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.intermediateThrowEvent.tool"
+        label="Intermediate Throw Event"
+        description="Intermediate Throw Event (Call Operation Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/IntermediateThrowEvent.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.IntermediateThrowEvent_CallOperationAction_3010"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.boundaryEvent.tool"
+        label="Boundary Event"
+        description="Boundary Event (Initial node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/BoundaryEvent.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.BoundaryEvent_InitialNode_3004"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.intermediateCatchEvent.tool"
+        label="Intermediate Catch Event"
+        description="Intermediate Catch Event (Accept Event Action)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/IntermediateThrowEvent.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.IntermediateCatchEvent_AcceptEventAction_3063"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.subprocesses"
+      label="Subprocesses"
+      description="Drawer Configuration for BPMN Process Diagram Subprocesses">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.subprocess.tool"
+        label="Subprocess"
+        description="Subprocess (Structured Activity Node)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/SubProcess.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.SubProcess_StructuredActivityNode_3065"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.data"
+      label="Data"
+      description="Drawer Configuration for BPMN Process Diagram Data">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.dataStoreReference.tool"
+        label="Data Store Reference"
+        description="Data Store Reference">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/DataStore.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.DataStoreReference_DataStoreNode_3078"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.dataInput.tool"
+        label="Data Input"
+        description="Data Input">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/DataInput.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.DataInput_ActivityParameterNode_3059"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.dataOutput.tool"
+        label="Data Output"
+        description="Data Output">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/DataOutput.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.DataOutput_ActivityParameterNode_3059"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.dataObject.tool"
+        label="Data Object"
+        description="Data Object">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/DataObject.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.DataObject_DataStoreNode_3078"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="org.eclipse.papyrus.bpmn.process.pools"
+      label="Pools and Lanes"
+      description="Drawer Configuration for BPMN Process Diagram Pools and Lanes">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="bpmn.lane.tool"
+        label="Lane"
+        description="Lane (Activity Partition)">
+      <icon
+          pluginID="org.eclipse.papyrus.bpmn"
+          iconPath="/icons/Lane.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.bpmn.process.Lane_ActivityPartition_3067"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <requiredProfiles>BPMNProfile</requiredProfiles>
+</paletteconfiguration:PaletteConfiguration>

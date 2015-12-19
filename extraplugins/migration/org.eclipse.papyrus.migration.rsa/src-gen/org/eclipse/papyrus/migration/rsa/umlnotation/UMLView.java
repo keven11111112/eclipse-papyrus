@@ -21,14 +21,15 @@ import org.eclipse.gmf.runtime.notation.View;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowStereotype <em>Show Stereotype</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowListVisibility <em>Show List Visibility</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#isShowListSignature <em>Show List Signature</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getAlignment <em>Alignment</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowStereotypeAttributeCompartment <em>Show Stereotype Attribute Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowListStereotype <em>Show List Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.migration.rsa.umlnotation.PapyrusUMLNotationPackage#getUMLView()
  * @model abstract="true"
@@ -176,5 +177,34 @@ public interface UMLView extends EObject, View {
 	 * @generated
 	 */
 	void setShowStereotypeAttributeCompartment(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Show List Stereotype</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Show List Stereotype</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Show List Stereotype</em>' attribute.
+	 * @see #setShowListStereotype(String)
+	 * @see org.eclipse.papyrus.migration.rsa.umlnotation.PapyrusUMLNotationPackage#getUMLView_ShowListStereotype()
+	 * @model
+	 * @generated
+	 */
+	String getShowListStereotype();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLView#getShowListStereotype <em>Show List Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Show List Stereotype</em>' attribute.
+	 * @see #getShowListStereotype()
+	 * @generated
+	 */
+	void setShowListStereotype(String value);
 
 } // UMLView

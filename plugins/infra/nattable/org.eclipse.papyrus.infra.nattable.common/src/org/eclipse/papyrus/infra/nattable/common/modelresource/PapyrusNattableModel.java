@@ -14,6 +14,14 @@
 
 package org.eclipse.papyrus.infra.nattable.common.modelresource;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -25,6 +33,7 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
@@ -164,14 +173,16 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 			throw new BadArgumentExcetion("Table name should not be null and size should be >0."); //$NON-NLS-1$
 		}
 
-		for (EObject element : getResource().getContents()) {
-			if (element instanceof Table) {
-				Table table = (Table) element;
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Table) {
+					Table table = (Table) element;
 
-				if (tableName.equals(table.getName())) {
-					// Found
-					return table;
+					if (tableName.equals(table.getName())) {
+						// Found
+						return table;
 
+					}
 				}
 			}
 		}
@@ -179,4 +190,154 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 		throw new NotFoundException(NLS.bind("No Table named '{0}' can be found in Model.", tableName)); //$NON-NLS-1$
 	}
 
+	/**
+	 * 
+	 * @param tableName
+	 *            a table name, cannot be <code>null</code>
+	 * @return
+	 * 		the list of table with the wanted name
+	 */
+	public List<Table> getTableByName(final String tableName) {
+		Assert.isNotNull(tableName);
+		List<Table> matchingTables = new ArrayList<Table>();
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Table) {
+					Table table = (Table) element;
+					if (tableName.equals(table.getName())) {
+						matchingTables.add(table);
+					}
+				}
+			}
+		}
+		return matchingTables;
+	}
+
+	/**
+	 * 
+	 * @param tableType
+	 *            a table type, cannot be <code>null</code>
+	 * @return
+	 * 		the list of table with the wanted type
+	 */
+	public List<Table> getTableByType(final String tableType) {
+		Assert.isNotNull(tableType);
+		List<Table> matchingTables = new ArrayList<Table>();
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Table) {
+					Table table = (Table) element;
+					EObject prototype = table.getPrototype();
+					if (prototype instanceof TableViewPrototype) {
+						final String implementationID = ((TableViewPrototype) prototype).getImplementation();
+						if (tableType.equals(implementationID)) {
+							matchingTables.add(table);
+						}
+					} else {
+						if (tableType.equals(table.getTableConfiguration().getType())) {
+							matchingTables.add(table);
+						}
+					}
+				}
+			}
+		}
+		return matchingTables;
+	}
+
+	/**
+	 * 
+	 * @param tableContext
+	 *            an Eobject used a context of the table, cannot be <code>null</code>
+	 * @return
+	 * 		the list of table with the wanted context
+	 */
+	public List<Table> getTableByContext(final EObject tableContext) {
+		Assert.isNotNull(tableContext);
+		List<Table> matchingTables = new ArrayList<Table>();
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Table) {
+					Table table = (Table) element;
+					if (tableContext.equals(table.getContext())) {
+						matchingTables.add(table);
+					}
+				}
+			}
+		}
+		return matchingTables;
+	}
+
+	/**
+	 * 
+	 * @param tableOwner
+	 *            an EObject used a owner of the table, cannot be <code>null</code>
+	 * @return
+	 * 		the list of table with the wanted owner
+	 */
+	public List<Table> getTableByOwner(final EObject tableOwner) {
+		Assert.isNotNull(tableOwner);
+		List<Table> matchingTables = new ArrayList<Table>();
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Table) {
+					Table table = (Table) element;
+					if (tableOwner.equals(table.getOwner())) {
+						matchingTables.add(table);
+					}
+				}
+			}
+		}
+		return matchingTables;
+	}
+
+	/**
+	 * 
+	 * @param tableContext
+	 *            the context of the wanted table
+	 * @param tableOwner
+	 *            the owner of the wanted table
+	 * @param tableType
+	 *            the type of the wanted table
+	 * @param tableName
+	 *            the name of the wanted table
+	 * @return
+	 * the list of the tables matching the parameters. <code>null</code> parameters are ignored
+	 */
+	public List<Table> findMatchingTables(final EObject tableContext, final EObject tableOwner, final String tableType, final String tableName) {
+		final List<Table> matchingTables = new ArrayList<Table>();
+		for (Resource current : getResources()) {
+			for (EObject element : current.getContents()) {
+				if (element instanceof Table) {
+					Table table = (Table) element;
+					boolean matchName = true;
+					boolean matchType = true;
+					boolean matchOwner = true;
+					boolean matchContext = true;
+					if (tableName != null) {
+						matchName = tableName.equals(table.getName());
+					}
+					if (tableType != null) {
+						EObject prototype = table.getPrototype();
+						if (prototype instanceof TableViewPrototype) {
+							final String implementationID = ((TableViewPrototype) prototype).getImplementation();
+							matchType = tableType.equals(implementationID);
+						} else {
+							matchType = tableType.equals(table.getTableConfiguration().getType());
+						}
+					}
+					if (tableOwner != null) {
+						matchOwner = tableOwner.equals(table.getOwner());
+					}
+					if (tableContext != null) {
+						matchContext = tableContext.equals(table.getContext());
+					}
+
+					if (matchName && matchType && matchOwner && matchContext) {
+						matchingTables.add(table);
+					}
+				}
+			}
+		}
+		return matchingTables;
+	}
 }

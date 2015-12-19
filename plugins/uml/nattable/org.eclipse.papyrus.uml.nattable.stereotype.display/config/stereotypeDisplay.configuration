@@ -4,6 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration"
+    xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation"
     xmi:id="_KIq-4P4UEeSRsNBVzfUrzA">
   <viewpoints
       xsi:type="configuration:PapyrusViewpoint"
@@ -18,7 +19,7 @@
       <modelRules
           xmi:id="_7k79wP4VEeSRsNBVzfUrzA">
         <element
-            href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+        	href="http://www.eclipse.org/gmf/runtime/1.0.2/notation#//View"/>
       </modelRules>
       <owningRules
           xmi:id="_AJmbwP4WEeSRsNBVzfUrzA">

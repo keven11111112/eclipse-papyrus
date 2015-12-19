@@ -14,6 +14,14 @@
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.transaction.RunnableWithResult;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.common.core.util.Log;
+import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
+import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
@@ -109,4 +117,28 @@ public abstract class AbstractCommentEditPart extends NodeEditPart {
 	protected void setForegroundColor(Color color) {
 		getPrimaryShape().setBorderColor(color);
 	}
+
+	@Override
+	protected void performDirectEditRequest(Request request) {
+		EditPart editPart = this;
+		try {
+			editPart = (EditPart) getEditingDomain().runExclusive(
+					new RunnableWithResult.Impl<Object>() {
+
+						@Override
+						public void run() {
+							setResult(getChildren().get(0));
+						}
+					});
+		} catch (InterruptedException e) {
+			Trace.catching(DiagramUIPlugin.getInstance(),
+					DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "performDirectEditRequest", e); //$NON-NLS-1$
+			Log.error(DiagramUIPlugin.getInstance(),
+					DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "performDirectEditRequest", e); //$NON-NLS-1$
+		}
+		if (editPart != null) {
+			editPart.performRequest(request);
+		}
+	}
+
 }

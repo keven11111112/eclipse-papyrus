@@ -151,26 +151,9 @@ public class CompositePapyrusQuery extends AbstractPapyrusQuery {
 				Match[] matches = searchResult.getMatches(elements[i]);
 				searchResults.putAll(searchResult, Arrays.asList(matches));
 				
-				int adds = 0;
 				for (Match match : matches) {
 					addMatch(match);
-					
-					/** Every 100 events fired (prompting 100 results display operation),
-					* sleep 100ms so the UI doesn't get stuck
-					*/
-					if (delay) {
-						adds++;
-						if (adds >= NUMBER_ADDS_BEFORE_SLEEP) {
-							adds = 0;
-							try {
-								Thread.sleep(SLEEP_MILLISECONDS);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-					}
 				}
-				//addMatches(matches); // I need them, too
 			}
 
 			if (!searchResults.containsKey(searchResult)) {

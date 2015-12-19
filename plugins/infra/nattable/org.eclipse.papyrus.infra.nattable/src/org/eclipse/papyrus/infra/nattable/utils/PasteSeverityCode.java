@@ -58,10 +58,15 @@ public class PasteSeverityCode {
 	 * the severity code used when we try to paste columns in a tree table
 	 */
 	public static final int PASTE_ERROR__CANT_PASTE_COLUMNS_IN_TREE_TABLE = PASTE_ERROR__UNKNOWN_ELEMENT_TYPE + 1;
+	
+	/**
+	 * the severity code used when more lines is pasted than the number of depth available
+	 */
+	public static final int PASTE_ERROR__MORE_LINES_THAN_DEPTH = PASTE_ERROR__CANT_PASTE_COLUMNS_IN_TREE_TABLE + 1;
 
 	/**
 	 * the severity code used when there are too many cells on a rows
 	 */
-	public static final int PASTE_WARNING__TOO_MANY_CELLS_ON_ROWS = PASTE_ERROR__CANT_PASTE_COLUMNS_IN_TREE_TABLE + 1;
+	public static final int PASTE_WARNING__TOO_MANY_CELLS_ON_ROWS = PASTE_ERROR__MORE_LINES_THAN_DEPTH + 1;
 
 }

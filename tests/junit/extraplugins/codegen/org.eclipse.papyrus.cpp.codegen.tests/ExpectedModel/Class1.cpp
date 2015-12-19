@@ -20,7 +20,7 @@
  * @param cSource 
  * @return this 
  */
-Class1& Class1::operator =(const Class1 /*in*/& cSource) {
+Class1& Class1::operator =(const Class1& /*in*/cSource) {
 
 	if (this == &cSource)
 		return *this;
@@ -41,7 +41,7 @@ Class1::~Class1() {
  * Copy constructor
  * @param cSource 
  */
-Class1::Class1(const Class1 /*in*/& cSource) {
+Class1::Class1(const Class1& /*in*/cSource) {
 
 	iVal = cSource.iVal;
 }

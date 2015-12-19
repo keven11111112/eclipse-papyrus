@@ -9,20 +9,19 @@
  *
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
+ *  Vincent Lorenzo (CEA LIST) - Vincent.lorenzo@cea.fr - bug 481507
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview;
 
 import java.util.List;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.DecorationOverlayIcon;
+import org.eclipse.papyrus.infra.services.decoration.util.DecorationImageUtils;
 import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
-import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ModelExplorerDecorationAdapter.
  */
@@ -36,10 +35,6 @@ public class ModelExplorerDecorationAdapter {
 
 	/** The decoration position. */
 	protected int decorationPosition;
-
-	/** point corresponding to the size 16x16. */
-	private final Point size16 = new Point(16, 16);
-
 
 	/**
 	 * Instantiates a new model explorer decoration adapter.
@@ -104,49 +99,16 @@ public class ModelExplorerDecorationAdapter {
 	 *            the decoration position
 	 */
 	public Image getDecoratedImage() {
-		if (decoratorTarget == null) {
-			return null;
-		}
-
-		if (decorations == null) {
-			return decoratorTarget;
-		}
-
-		Image decoratedImage = null;
-
-		// Construct a new image identifier
-		String decoratedImageId = calcId();
-
-		decoratedImage = Activator.getDefault().getImageRegistry().get(decoratedImageId);
-		// Return the stored image if we have one
-		if (decoratedImage == null) {
-			// Otherwise create a new image and store it
-			ImageDescriptor[] decorationImages = new ImageDescriptor[5];
-			// Store the decoration by position
-			IPapyrusDecoration[] decorationByPosition = new IPapyrusDecoration[5];
-
-			for (IPapyrusDecoration decoration : decorations) {
-				IPapyrusDecoration existingDecoration = decorationByPosition[decoration.getPositionForJFace()];
-				if (existingDecoration == null || existingDecoration.getPriority() < decoration.getPriority()) {
-					// if no decoration exists for the current position
-					// or if the existing decoration has a lower priority than the current
-					// replace the existing decoration with the current one
-					decorationImages[decoration.getPositionForJFace()] = decoration.getDecorationImageForME();
-					decorationByPosition[decoration.getPositionForJFace()] = decoration;
-				}
-			}
-			ImageDescriptor decoratedImageDesc = new DecorationOverlayIcon(decoratorTarget, decorationImages, size16);
-			Activator.getDefault().getImageRegistry().put(decoratedImageId, decoratedImageDesc);
-			return Activator.getDefault().getImageRegistry().get(decoratedImageId);
-		}
-		return decoratedImage;
+		return DecorationImageUtils.getDecoratedImage(decoratorTarget, decorations, DecorationImageUtils.SIZE_16_16);
 	}
 
+	/**
+	 * 
+	 * @return
+	 * 		a unique id to identify the image
+	 * @deprecated since Papyrus 1.2
+	 */
 	public String calcId() {
-		String decoratedImageId = decoratorTarget.toString();
-		for (IPapyrusDecoration decoration : decorations) {
-			decoratedImageId += decoration.getDecorationImageForME().toString() + decoration.getPosition();
-		}
-		return decoratedImageId;
+		return DecorationImageUtils.calcId(decoratorTarget, decorations);
 	}
 }

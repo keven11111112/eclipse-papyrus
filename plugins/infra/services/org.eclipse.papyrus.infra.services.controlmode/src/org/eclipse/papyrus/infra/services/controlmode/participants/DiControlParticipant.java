@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2013, 2015 Atos, CEA List.
+ * Copyright (c) 2013, 2015 Atos, CEA List, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *     Arthur Daussy <a href="mailto:arthur.daussy@atos.net"> - Initial API and implementation
  *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 459702
+ *     Christian W. Damus - bug 480209
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.participants;
 
@@ -96,8 +97,17 @@ public class DiControlParticipant implements IControlCommandParticipant, IUncont
 	 * @return
 	 */
 	public boolean provideUnControlCommand(ControlModeRequest request) {
-		EObject objectBeingControl = request.getTargetObject();
-		return objectBeingControl != null;
+		boolean result = false;
+
+		EObject objectToUncontrol = request.getTargetObject();
+		if (objectToUncontrol != null) {
+			// If there is no DI resource, then there's nothing to do
+			URI diURI = request.getNewURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION);
+			ModelSet modelSet = request.getModelSet();
+			result = (modelSet != null) && modelSet.getURIConverter().exists(diURI, null);
+		}
+
+		return result;
 	}
 
 	/**

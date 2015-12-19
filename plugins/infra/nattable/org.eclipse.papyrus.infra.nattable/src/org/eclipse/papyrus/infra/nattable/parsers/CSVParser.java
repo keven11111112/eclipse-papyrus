@@ -40,7 +40,23 @@ public class CSVParser {
 	 *            The character that marks the beginning and end of raw text
 	 */
 	public CSVParser(Reader input, char valueSeparator, char textMarker) {
-		this.lexer = new CSVLexer(input, valueSeparator, textMarker);
+		this(input, valueSeparator, textMarker, false);
+	}
+	
+	/**
+	 * Initializes this parser with boolean to determinate if the beginning whitespace must be kept.
+	 *
+	 * @param input
+	 *            The input to parse
+	 * @param valueSeparator
+	 *            The character that separates values in rows
+	 * @param textMarker
+	 *            The character that marks the beginning and end of raw text
+	 * @param keepBeginningWhiteSpace
+	 *            Boolean to determinate if the beginning string whitespace must be kept or removed
+	 */
+	public CSVParser(final Reader input, final char valueSeparator, final char textMarker, final boolean keepBeginningWhiteSpace) {
+		this.lexer = new CSVLexer(input, valueSeparator, textMarker, keepBeginningWhiteSpace);
 		this.output = new Document();
 	}
 

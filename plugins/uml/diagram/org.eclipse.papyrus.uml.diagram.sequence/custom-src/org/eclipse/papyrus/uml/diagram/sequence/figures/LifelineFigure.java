@@ -160,6 +160,7 @@ public class LifelineFigure extends NodeNamedElementFigure {
 		// do not fill to enable gradient
 		fFigureLifelineNameContainerFigure.setFill(false);
 		fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
+		fFigureLifelineNameContainerFigure.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(30)));
 		this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
 		// change layout
 		ToolbarLayout layout = new ToolbarLayout(false);

@@ -19,8 +19,6 @@ import org.eclipse.papyrus.migration.rsa.umlnotation.UMLFrame;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>UML Frame</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

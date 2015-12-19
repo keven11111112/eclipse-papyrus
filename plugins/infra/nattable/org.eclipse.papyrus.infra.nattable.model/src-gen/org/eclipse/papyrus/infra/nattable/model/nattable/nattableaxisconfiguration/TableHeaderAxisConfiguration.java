@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getTableHeaderAxisConfiguration()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='axisManagersIdUnique'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot axisManagersIdUnique='axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot axisManagersIdUnique='axisManagers->forAll(am1 : AxisManagerRepresentation | ( (axisManagers->excluding (am1))->forAll(am2 : AxisManagerRepresentation | am1.axisManagerId<>am2.axisManagerId) ))'"
  * @generated
  */
 public interface TableHeaderAxisConfiguration extends AbstractHeaderAxisConfiguration {

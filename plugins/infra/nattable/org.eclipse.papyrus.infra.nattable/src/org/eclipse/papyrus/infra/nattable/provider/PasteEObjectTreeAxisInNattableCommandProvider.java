@@ -1,18 +1,4 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
- *
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Patrick Tessier (CEA LIST) - Initial API and implementation
- /*****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.provider;
-
-/*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
  *
@@ -23,8 +9,11 @@ package org.eclipse.papyrus.infra.nattable.provider;
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 448065
  *
  *****************************************************************************/
+package org.eclipse.papyrus.infra.nattable.provider;
+
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -43,7 +32,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -202,6 +190,11 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 
 	List<Object> secondAxis;
 
+	/**
+	 * Determinate if the table contains a single header column or multiple.
+	 */
+	private final boolean isSingleHeaderColumnTreeTable;
+
 	public PasteEObjectTreeAxisInNattableCommandProvider(INattableModelManager tableManager, boolean pasteColumn, Reader reader, CSVPasteHelper pasteHelper2, long totalSize) {
 		this.tableManager = tableManager;
 		// this.pasteMode = status;
@@ -226,7 +219,8 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 			this.factor = 1;
 			this.nbOperationsToDo = (int) totalSize;
 		}
-		parser = this.pasteHelper.createParser(reader);
+		this.isSingleHeaderColumnTreeTable = TableHelper.isSingleColumnTreeTable(table);
+		parser = this.pasteHelper.createParser(reader, isSingleHeaderColumnTreeTable);
 		init();
 	}
 
@@ -811,9 +805,8 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 	 * 
 	 */
 	protected void crossCellIteratorToFirstBodyCell(CellIterator cellIter, int nbReadCell) {
-		if (TableHelper.isSingleColumnTreeTable(table)) {
-			// TODO
-		} else {
+		// If this is a single column header tree table, we don't need to do anything, only the first column is used for the header in the excel spearsheet
+		if (!TableHelper.isSingleColumnTreeTable(table)) {
 			int nbColumns = (FillingConfigurationUtils.getMaxDepthForTree(table) + 1) * 2;
 			if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(table, 0)) {
 				nbColumns--;
@@ -845,9 +838,15 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 			progressMonitor.beginTask(PASTE_ACTION_TASK_NAME, this.nbOperationsToDo);
 		}
 
+		final boolean isSingleHeaderColumnTreeTable = TableHelper.isSingleColumnTreeTable(table);
+
 		// 2.2 create the creation request and find the command provider
 		final ICommand pasteAllCommand = new AbstractTransactionalCommand(contextEditingDomain, PASTE_COMMAND_NAME, null) {
 
+			/**
+			 * The character of the indentation for the single column.
+			 */
+			private static final char INDENTATION_CHARACTER = ' '; // $NON-NLS-1$
 
 			/**
 			 *
@@ -893,7 +892,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 					if (progressMonitor != null && readChar > refreshEachReadChar) {
 						readChar = 0;
 						// TODO : uncomment me, and move me, NPE on typeToCreate
-						//						progressMonitor.subTask(NLS.bind("{0} {1} have been created.", new Object[] { typeToCreate.getEClass().getName(), nbCreatedElements })); //$NON-NLS-1$
+						// progressMonitor.subTask(NLS.bind("{0} {1} have been created.", new Object[] { typeToCreate.getEClass().getName(), nbCreatedElements })); //$NON-NLS-1$
 						progressMonitor.worked(refreshEachReadChar);
 					}
 
@@ -905,14 +904,40 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 						String valueAsString = cellIter.next();
 						int nbReadCell = 1;
 
-						// test if the value is empty (we are in the tree header)
-						while (cellIter.hasNext() && valueAsString.isEmpty()) {
-							valueAsString = cellIter.next();
-							nbReadCell++;
+						if (isSingleHeaderColumnTreeTable && !valueAsString.isEmpty()) {
+							// If the table is a single header column, parse the value string to manage the correct depth
+							// (manage each separator character as empty cell)
+							while (INDENTATION_CHARACTER == valueAsString.charAt(0)) {
+								nbReadCell++;
+								valueAsString = valueAsString.substring(1);
+							}
+						} else {
+							// test if the value is empty (we are in the tree header)
+							while (cellIter.hasNext() && valueAsString.isEmpty()) {
+								valueAsString = cellIter.next();
+								nbReadCell++;
+							}
+							// Remove the whitespace on beginning
+							if(isSingleHeaderColumnTreeTable && !valueAsString.isEmpty()){
+								while (INDENTATION_CHARACTER == valueAsString.charAt(0)) {
+									valueAsString = valueAsString.substring(1);
+								}
+							}
 						}
 
-						int depth = getDepth(nbReadCell);
-						boolean isCategory = isCategory(nbReadCell);
+						int depth = -1;
+						boolean isCategory = false;
+						try {
+							depth = getDepth(nbReadCell);
+							isCategory = isCategory(nbReadCell);
+						} catch (UnsupportedOperationException ex) {
+							String message = NLS.bind("No defined depth for line {0}", nbReadCell); //$NON-NLS-1$
+							// The following lines allows to cancel all the paste if a problem of depth appears
+							// If a partial paste is authorized, remove this lines
+							Activator.log.error(message, ex);
+							IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_LINES_THAN_DEPTH, message, null);
+							return new CommandResult(status);
+						}
 
 						if (isCategory) {
 							confMap.put(Integer.valueOf(depth), (PasteEObjectConfiguration) getPasteConfigurationsFor(depth, valueAsString));
@@ -947,7 +972,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 						final IElementEditService creationContextCommandProvider = ElementEditServiceUtils.getCommandProvider(context);
 
 						final ICommand commandCreation = creationContextCommandProvider.getEditCommand(createRequest1);
-						if (commandCreation.canExecute()) {
+						if (null != commandCreation && commandCreation.canExecute()) {
 
 							// 1. we create the element
 							commandCreation.execute(monitor, info);
@@ -996,6 +1021,12 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 							while (secondAxisIterator.hasNext() && cellIter.hasNext()) {
 								// we must exit of the header part!
 								valueAsString = cellIter.next();
+								// Remove the whitespace on beginning
+								if(isSingleHeaderColumnTreeTable && !valueAsString.isEmpty()){
+									while (INDENTATION_CHARACTER == valueAsString.charAt(0)) {
+										valueAsString = valueAsString.substring(1);
+									}
+								}
 
 								final Object currentAxis = secondAxisIterator.next();
 								// valueAsString = cellIter.next();

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.eclipse.papyrus</groupId>
+	<artifactId>org.eclipse.papyrus.example.tests.releng</artifactId>
+	<version>1.1.3-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
+	    <version>1.1.3-SNAPSHOT</version>
+	    <relativePath>..</relativePath>
+    </parent>
+	<modules>
+		<module>../../examples/library/org.eclipse.papyrus.training.library.tests</module>
+		<module>../../features/papyrus-example-tests-features/org.eclipse.papyrus.example.tests.feature</module>
+	</modules>
+	<properties>
+		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
+        <testSuiteClass>org.eclipse.papyrus.training.library.tests.AllTests</testSuiteClass>
+	</properties>
+	<repositories>
+		<repository>
+			<id>papyrus-main</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.main}</url>
+		</repository>
+		<repository>
+			<id>papyrus-dev</id>
+			<layout>p2</layout>
+			<url>${papyrus.repo.dev}</url>
+		</repository>
+		<repository>
+			<id>emf-compare</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF COMPARE",0) -->
+			<url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.1/S201509120604</url>
+		</repository>
+		<repository>
+			<id>emf-emf</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF (Core)",0) -->
+			<url>${eclipse.download}/modeling/emf/emf/updates/2.11.x/</url>
+		</repository>
+		<repository>
+			<id>emft-mwe[0]</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMFT MWE",0) -->
+			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.2/R201511170833/mwe</url>
+		</repository>
+		<repository>
+			<id>emft-mwe[1]</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMFT MWE",1) -->
+			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.2/R201511170842/mwe2lang/</url>
+		</repository>
+		<repository>
+			<id>emf-transaction</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF TRANSACTION",0) -->
+			<url>${eclipse.download}/modeling/emf/transaction/updates/releases/R201506010221</url>
+		</repository>
+		<repository>
+			<id>emf-validation</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF VALIDATION",0) -->
+			<url>${eclipse.download}/modeling/emf/validation/updates/releases/R201505312255</url>
+		</repository>
+		<repository>
+			<id>ep</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Eclipse",0) -->
+			<url>${eclipse.download}/eclipse/updates/4.5/R-4.5.1-201509040015/</url>
+		</repository>
+		<repository>
+			<id>gef</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GEF",0) -->
+			<url>${eclipse.download}/tools/gef/updates/releases</url>
+		</repository>
+		<repository>
+			<id>gmp-gmf-notation</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GMF Notation",0) -->
+			<url>${eclipse.download}/modeling/gmp/gmf-notation/updates/releases/R201505312221</url>
+		</repository>
+		<repository>
+			<id>gmp-gmf-runtime</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GMF Runtime",0) -->
+			<url>${eclipse.download}/modeling/gmp/gmf-runtime/updates/releases/R201506060219</url>
+		</repository>
+		<repository>
+			<id>gmf-tooling</id>
+			<layout>p2</layout>
+			<!-- updateFrom("GMF Tooling",0) -->
+			<url>${eclipse.download}/modeling/gmp/gmf-tooling/updates/milestones-3.3.1/RC2</url>
+		</repository>
+		<repository>
+			<id>m2t-acceleo</id>
+			<layout>p2</layout>
+			<!-- updateFrom("M2T ACCELEO",0) -->
+			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201509091420</url>
+		</repository>
+		<repository>
+			<id>m2t-xpand</id>
+			<layout>p2</layout>
+			<!-- updateFrom("M2T XPAND",0) -->
+			<url>${eclipse.download}/modeling/m2t/xpand/updates/releases/R201505260349/</url>
+		</repository>
+		<repository>
+			<id>mdt-ocl</id>
+			<layout>p2</layout>
+			<!-- updateFrom("MDT OCL 6.0.1",0) -->
+			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.1/S201509081048</url>
+		</repository>
+		<repository>
+			<id>mdt-uml2</id>
+			<layout>p2</layout>
+			<!-- updateFrom("MDT UML2",0) -->
+			<url>${eclipse.download}/modeling/mdt/uml2/updates/5.1</url>
+		</repository>
+		<repository>
+			<id>mmt-qvto</id>
+			<layout>p2</layout>
+			<!-- updateFrom("QVT Operational",0) -->
+			<url>${eclipse.download}/mmt/qvto/updates/releases/3.5.0</url>
+		</repository>
+		<repository>
+			<id>nattable</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>${eclipse.download}/nattable/releases/1.3.0/repository/</url>
+		</repository>
+		<repository>
+			<id>orbit</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>${eclipse.download}/tools/orbit/downloads/drops/R20150519210750/repository</url>
+		</repository>
+		<repository>
+			<id>subversive</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Subversive",0) -->
+			<url>${eclipse.download}/technology/subversive/3.0/mars-site/</url>
+		</repository>
+		<repository>
+			<id>tmf-xtext</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Xtext, Xtend",0) -->
+			<url>${eclipse.download}/modeling/tmf/xtext/updates/releases/2.8.4/</url>
+		</repository>
+		<repository>
+			<id>swtbot</id>
+			<layout>p2</layout>
+			<!-- manualUpdate -->
+			<url>${eclipse.download}/technology/swtbot/releases/2.3.0/</url>
+		</repository>
+		<repository>
+			<id>webtools</id>
+			<layout>p2</layout>
+			<!-- updateFrom("WebTools",0) -->
+			<url>${eclipse.download}/webtools/downloads/drops/R3.7.1/R-3.7.1-20150915020029/repository/</url>
+		</repository>
+		<repository>
+			<id>XWT</id>
+			<layout>p2</layout>
+			<!-- updateFrom("XWT",0) -->
+			<url>${eclipse.download}/xwt/release-1.1.0</url>
+		</repository>
+	</repositories>
+	<build>
+		<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${java.source.version}</source>
+					<target>${java.target.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<version>${xtext.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<optimize>true</optimize>
+					<showWarnings>true</showWarnings>
+                    <!-- Tycho build using the project's JDT settings. -->
+                    <useProjectSettings>true</useProjectSettings>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					 <environments>
+						 <environment>
+							 <os>win32</os>
+							 <ws>win32</ws>
+							 <arch>x86</arch>
+						 </environment>
+						 <environment>
+							 <os>win32</os>
+							 <ws>win32</ws>
+							 <arch>x86_64</arch>
+						 </environment>
+						 <environment>
+							 <os>linux</os>
+							 <ws>gtk</ws>
+							 <arch>x86</arch>
+						 </environment>
+						 <environment>
+							 <os>linux</os>
+							 <ws>gtk</ws>
+							 <arch>x86_64</arch>
+						 </environment>
+						 <environment>
+							 <os>macosx</os>
+							 <ws>cocoa</ws>
+							 <arch>x86_64</arch>
+						 </environment>
+					 </environments>
+				</configuration>
+			</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-repository-plugin</artifactId>
+				<version>${tycho-version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-surefire-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<failIfNoTests>false</failIfNoTests>
+					<useUIHarness>true</useUIHarness>
+					<useUIThread>true</useUIThread>
+					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>-Xms512m -Xmx2048m -XX:MaxPermSize=512M -XX:SoftRefLRUPolicyMSPerMB=100</argLine>
+					<appArgLine>-testConfig=${testConfig}</appArgLine>
+					<product>org.eclipse.sdk.ide</product>
+					<skipTests>${skipInnerTests}</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

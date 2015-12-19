@@ -6,7 +6,7 @@
     <intListValue>2</intListValue>
     <intListValue>3</intListValue>
   </styles>
-  <creationTester xsi:type="nattabletester:JavaTableTester" tester="org.eclipse.papyrus.uml.nattable.tester.isumlelement"/>
+  <creationTester xsi:type="nattabletester:JavaTableTester" tester="org.eclipse.papyrus.uml.nattable.stereotype.display.tester"/>
   <rowHeaderAxisConfiguration xsi:type="nattableaxisconfiguration:TableHeaderAxisConfiguration" indexStyle="NUMERIC" displayIndex="false">
     <styles xsi:type="nattablestyle:IntValueStyle" name="rowLabelWidth" intValue="250"/>
     <ownedLabelConfigurations xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayIsDerived="false" displayType="false" displayMultiplicity="false"/>

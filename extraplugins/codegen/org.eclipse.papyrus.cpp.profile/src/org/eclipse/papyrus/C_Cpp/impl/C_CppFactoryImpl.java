@@ -51,7 +51,6 @@ import org.eclipse.papyrus.C_Cpp.Volatile;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
@@ -59,16 +58,16 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static C_CppFactory init() {
 		try {
-			C_CppFactory theC_CppFactory = (C_CppFactory) EPackage.Registry.INSTANCE.getEFactory(C_CppPackage.eNS_URI);
+			C_CppFactory theC_CppFactory = (C_CppFactory)EPackage.Registry.INSTANCE.getEFactory(C_CppPackage.eNS_URI);
 			if (theC_CppFactory != null) {
 				return theC_CppFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new C_CppFactoryImpl();
@@ -78,7 +77,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public C_CppFactoryImpl() {
@@ -88,107 +86,80 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case C_CppPackage.PTR:
-			return createPtr();
-		case C_CppPackage.INCLUDE:
-			return createInclude();
-		case C_CppPackage.MANUAL_GENERATION:
-			return createManualGeneration();
-		case C_CppPackage.EXTERN_LIBRARY:
-			return createExternLibrary();
-		case C_CppPackage.NO_CODE_GEN:
-			return createNoCodeGen();
-		case C_CppPackage.CPP_ROOT:
-			return createCppRoot();
-		case C_CppPackage.ARRAY:
-			return createArray();
-		case C_CppPackage.CONST:
-			return createConst();
-		case C_CppPackage.REF:
-			return createRef();
-		case C_CppPackage.EXTERNAL:
-			return createExternal();
-		case C_CppPackage.CONST_INIT:
-			return createConstInit();
-		case C_CppPackage.FRIEND:
-			return createFriend();
-		case C_CppPackage.INLINE:
-			return createInline();
-		case C_CppPackage.VIRTUAL:
-			return createVirtual();
-		case C_CppPackage.TYPEDEF:
-			return createTypedef();
-		case C_CppPackage.VISIBILITY:
-			return createVisibility();
-		case C_CppPackage.CPP_INIT:
-			return createCppInit();
-		case C_CppPackage.TEMPLATE:
-			return createTemplate();
-		case C_CppPackage.TEMPLATE_BINDING:
-			return createTemplateBinding();
-		case C_CppPackage.TEMPLATE_PARAMETER:
-			return createTemplateParameter();
-		case C_CppPackage.UNION:
-			return createUnion();
-		case C_CppPackage.STORAGE_CLASS:
-			return createStorageClass();
-		case C_CppPackage.VOLATILE:
-			return createVolatile();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case C_CppPackage.PTR: return createPtr();
+			case C_CppPackage.INCLUDE: return createInclude();
+			case C_CppPackage.MANUAL_GENERATION: return createManualGeneration();
+			case C_CppPackage.EXTERN_LIBRARY: return createExternLibrary();
+			case C_CppPackage.NO_CODE_GEN: return createNoCodeGen();
+			case C_CppPackage.CPP_ROOT: return createCppRoot();
+			case C_CppPackage.ARRAY: return createArray();
+			case C_CppPackage.CONST: return createConst();
+			case C_CppPackage.REF: return createRef();
+			case C_CppPackage.EXTERNAL: return createExternal();
+			case C_CppPackage.CONST_INIT: return createConstInit();
+			case C_CppPackage.FRIEND: return createFriend();
+			case C_CppPackage.INLINE: return createInline();
+			case C_CppPackage.VIRTUAL: return createVirtual();
+			case C_CppPackage.TYPEDEF: return createTypedef();
+			case C_CppPackage.VISIBILITY: return createVisibility();
+			case C_CppPackage.CPP_INIT: return createCppInit();
+			case C_CppPackage.TEMPLATE: return createTemplate();
+			case C_CppPackage.TEMPLATE_BINDING: return createTemplateBinding();
+			case C_CppPackage.TEMPLATE_PARAMETER: return createTemplateParameter();
+			case C_CppPackage.UNION: return createUnion();
+			case C_CppPackage.STORAGE_CLASS: return createStorageClass();
+			case C_CppPackage.VOLATILE: return createVolatile();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case C_CppPackage.VISIBILITY_KIND:
-			return createVisibilityKindFromString(eDataType, initialValue);
-		case C_CppPackage.EACCESS_KIND:
-			return createEAccessKindFromString(eDataType, initialValue);
-		case C_CppPackage.ESTORAGE_CLASS:
-			return createEStorageClassFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case C_CppPackage.VISIBILITY_KIND:
+				return createVisibilityKindFromString(eDataType, initialValue);
+			case C_CppPackage.EACCESS_KIND:
+				return createEAccessKindFromString(eDataType, initialValue);
+			case C_CppPackage.ESTORAGE_CLASS:
+				return createEStorageClassFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case C_CppPackage.VISIBILITY_KIND:
-			return convertVisibilityKindToString(eDataType, instanceValue);
-		case C_CppPackage.EACCESS_KIND:
-			return convertEAccessKindToString(eDataType, instanceValue);
-		case C_CppPackage.ESTORAGE_CLASS:
-			return convertEStorageClassToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+			case C_CppPackage.VISIBILITY_KIND:
+				return convertVisibilityKindToString(eDataType, instanceValue);
+			case C_CppPackage.EACCESS_KIND:
+				return convertEAccessKindToString(eDataType, instanceValue);
+			case C_CppPackage.ESTORAGE_CLASS:
+				return convertEStorageClassToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -200,7 +171,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -212,7 +182,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -224,7 +193,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -236,7 +204,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -248,7 +215,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -260,7 +226,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -272,7 +237,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -284,7 +248,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -296,7 +259,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -308,7 +270,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -320,7 +281,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -332,7 +292,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -344,7 +303,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -356,7 +314,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -368,7 +325,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -380,7 +336,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -392,7 +347,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -404,7 +358,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -416,7 +369,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -428,7 +380,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -440,7 +391,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -452,7 +402,6 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -464,22 +413,17 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public VisibilityKind createVisibilityKindFromString(EDataType eDataType, String initialValue) {
 		VisibilityKind result = VisibilityKind.get(initialValue);
-		if (result == null)
-		{
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertVisibilityKindToString(EDataType eDataType, Object instanceValue) {
@@ -489,22 +433,17 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAccessKind createEAccessKindFromString(EDataType eDataType, String initialValue) {
 		EAccessKind result = EAccessKind.get(initialValue);
-		if (result == null)
-		{
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertEAccessKindToString(EDataType eDataType, Object instanceValue) {
@@ -514,22 +453,17 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EStorageClass createEStorageClassFromString(EDataType eDataType, String initialValue) {
 		EStorageClass result = EStorageClass.get(initialValue);
-		if (result == null)
-		{
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertEStorageClassToString(EDataType eDataType, Object instanceValue) {
@@ -539,18 +473,16 @@ public class C_CppFactoryImpl extends EFactoryImpl implements C_CppFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public C_CppPackage getC_CppPackage() {
-		return (C_CppPackage) getEPackage();
+		return (C_CppPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @deprecated
 	 * @generated
 	 */

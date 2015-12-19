@@ -32,6 +32,9 @@ import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
+import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 /**
  *
@@ -95,8 +98,15 @@ public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 			rect.translate(request.getMoveDelta());
 			rect.resize(request.getSizeDelta());
 			getHostFigure().translateToRelative(rect);
-			Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemEP.getFigure());
-			realLocation.translate(-borderItemEP.getFigure().getSize().width / 2, -borderItemEP.getFigure().getSize().height / 2);
+			IFigure borderItemfigure = borderItemEP.getFigure();
+			Rectangle realLocation = borderItemLocator.getValidLocation(rect.getCopy(), borderItemfigure);
+
+			// If the locator use SlidableRoundedRectangleAnchor to calculate position we need to translate the feedback
+			if (borderItemLocator instanceof PortPositionLocator && ((PortPositionLocator) borderItemLocator).getParentFigure() instanceof SVGNodePlateFigure
+					&& ((SVGNodePlateFigure) ((PortPositionLocator) borderItemLocator).getParentFigure()).getConnectionAnchor("") instanceof SlidableRoundedRectangleAnchor) {//$NON-NLS-1$
+				realLocation.translate(-borderItemfigure.getSize().width / 2, -borderItemfigure.getSize().height / 2);
+			}
+
 			getHostFigure().translateToAbsolute(realLocation);
 			feedback.translateToRelative(realLocation);
 			feedback.setBounds(realLocation);

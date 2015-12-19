@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.ITreeItemAxisHelper;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
+import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
 import org.eclipse.papyrus.views.properties.contexts.Property;
@@ -75,7 +76,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * The composite.
 	 */
-	private Group self = null;;
+	protected Group self = null;;
 
 	/**
 	 * The table configuration URI.
@@ -85,12 +86,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * The nattable widget.
 	 */
-	private NatTable natTableWidget = null;
+	protected NatTable natTableWidget = null;
 	
 	/**
 	 * The nattable manager.
 	 */
-	private INattableModelManager nattableManager = null;
+	protected INattableModelManager nattableManager = null;
 	
 	/**
 	 * The dispose listener.
@@ -116,9 +117,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		fillLayout.marginHeight = 10;
 		fillLayout.marginWidth = 10;
 		self.setLayout(fillLayout);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.minimumHeight = 330;
-		self.setLayoutData(data);
 	}
 	
 	/**
@@ -197,8 +195,6 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
 			sourceElement = emfModelElement.getSource();
 			feature = emfModelElement.getFeature(getLocalPropertyPath());
-
-			createTableWidget(sourceElement, feature, null);
 		} else {
 			displayError("Invalid table context"); //$NON-NLS-1$
 			return;
@@ -234,7 +230,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		self.addDisposeListener(getDisposeListener());
 		natTableWidget.setBackground(self.getBackground());
 		
-		natTableWidget.layout();
+		// Adapt the group to the table prefered size (with sub of removed rows size)
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		data.minimumHeight = natTableWidget.getPreferredHeight()-(rows.size()*70);
+		self.setLayoutData(data);
+		
+		natTableWidget.layout();		
 		self.layout();
 	}
 
@@ -336,7 +337,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		// Manage the construction of axis here because the table editing domain is null
-		if (null != rows && !rows.isEmpty()) {
+		if (TableHelper.isTreeTable(table) && null != rows && !rows.isEmpty()) {//add test on TreeTable to fix bug 476623
 			final AbstractAxisProvider axisProvider = table.getCurrentRowAxisProvider();
 			TableHeaderAxisConfiguration conf = (TableHeaderAxisConfiguration) HeaderAxisConfigurationManagementUtils.getRowAbstractHeaderAxisInTableConfiguration(table);
 			AxisManagerRepresentation rep = conf.getAxisManagers().get(0);

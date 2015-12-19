@@ -11,6 +11,7 @@
  *   Christian W. Damus - bug 458685
  *   Christian W. Damus - bug 468071
  *   Christian W. Damus - bug 465899
+ *   Christian W. Damus - bug 478314
  *   
  *****************************************************************************/
 
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.uml.service.types.tests.creation.CreateRelationshipTe
 import org.eclipse.papyrus.uml.service.types.tests.creation.MoveElementTest;
 import org.eclipse.papyrus.uml.service.types.tests.creation.SetFeatureTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteAssociationTest;
+import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteContainmentSubsetTest;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeleteDependentWithStereotypeApplications458685;
 import org.eclipse.papyrus.uml.service.types.tests.deletion.DeletePureUMLElementTest;
 import org.junit.runner.RunWith;
@@ -45,6 +47,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		DeletePureUMLElementTest.class,
 		DeleteAssociationTest.class,
 		DeleteDependentWithStereotypeApplications458685.class,
+		DeleteContainmentSubsetTest.class,
 		ConnectorReadOnlyTestBug465899.class,
 })
 public class AllTests {

@@ -218,7 +218,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 					Activator.log.error(e);
 					return CommandResult.newCancelledCommandResult();
 				}
-
+				targetEnd.setOwningAssociation(association);
 				return CommandResult.newOKCommandResult(association);
 			}
 		};
@@ -305,8 +305,11 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Retrieve re-oriented association and add it to the list of re-factored elements
 		Association association = (Association) request.getRelationship();
-		EObject modifiedPropertyType = null;
 
+		// 1 property change its parents, if it is not contains by the association
+		// 1 property change its types
+		Property changeContainer = null;
+		Property changeType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
 		List<EObject> currentlyRefactoredElements = (request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS) != null) ? (List<EObject>) request.getParameter(RequestParameterConstants.ASSOCIATION_REFACTORED_ELEMENTS)
 				: new ArrayList<EObject>();
 
@@ -321,29 +324,20 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		// Retrieve property ends of the binary Association
 		if (association.getMemberEnds().size() == 2) {
-
-
-			Property semanticTarget = association.getMemberEnds().get(0);
-			Property semanticSource = association.getMemberEnds().get(1);
-
-
-			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
-				if (!association.getOwnedEnds().contains(semanticSource)) {
-					moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticSource);
-				}
-
-				modifiedPropertyType = semanticTarget;
-				setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
+			// if this a binary
+			// 1 property change its parents, if it is not contains by the association
+			// 1 property change its types
+			changeContainer = association.getMemberEnds().get(0);
+			if (changeType.equals(association.getMemberEnds().get(0))) {
+				changeContainer = association.getMemberEnds().get(1);
+			}
+			if (!association.getOwnedEnds().contains(changeContainer)) {
+				moveRequest = new MoveRequest(request.getNewRelationshipEnd(), changeContainer);
 			}
 
-			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_TARGET) {
-				if (!association.getOwnedEnds().contains(semanticTarget)) {
-					moveRequest = new MoveRequest(request.getNewRelationshipEnd(), semanticTarget);
-				}
+			setTypeRequest = new SetRequest(changeType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 
-				modifiedPropertyType = semanticSource;
-				setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
-			}
+
 
 			if (moveRequest != null) {
 				// Propagate parameters to the move request
@@ -374,17 +368,17 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		} else {
 			// Process nary-association
-
+			// we do pay attention to change container
 			// Forbid source reorient
 			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
 				return UnexecutableCommand.INSTANCE;
 			}
 
 			// Update the reoriented end
-			modifiedPropertyType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
+			changeType = getMemberEnd(association, (Classifier) request.getOldRelationshipEnd());
 
-			if (modifiedPropertyType != null) {
-				setTypeRequest = new SetRequest(modifiedPropertyType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
+			if (changeType != null) {
+				setTypeRequest = new SetRequest(changeType, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getNewRelationshipEnd());
 			}
 
 		}
@@ -393,7 +387,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 			// Propagate parameters to the set request
 			setTypeRequest.addParameters(request.getParameters());
 
-			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(modifiedPropertyType);
+			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(changeType);
 			if (provider != null) {
 				ICommand setTypeCommand = provider.getEditCommand(setTypeRequest);
 				gmfCommand = CompositeCommand.compose(gmfCommand, setTypeCommand);
@@ -412,11 +406,9 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 	 * @param classifier
 	 * @return
 	 */
-	protected Property getMemberEnd(Association association, Classifier classifier)
-	{
+	protected Property getMemberEnd(Association association, Classifier classifier) {
 		for (Property member : association.getMemberEnds()) {
-			if (member.getType().equals(classifier))
-			{
+			if (member.getType().equals(classifier)) {
 				return member;
 			}
 		}

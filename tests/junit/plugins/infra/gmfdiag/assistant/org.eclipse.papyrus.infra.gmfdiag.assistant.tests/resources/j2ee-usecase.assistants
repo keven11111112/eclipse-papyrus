@@ -22,7 +22,7 @@
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Constraint Constrained Element" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.ConstraintConstrainedElement_4012"/>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Package" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Package_1000"/>
   <ownedFilter xsi:type="filters:CompoundFilter" name="pertains to Profile j2ee" filter="//@ownedFilter.21/@ownedFilter.0 //@ownedFilter.21/@ownedFilter.1" operator="or">
-    <ownedFilter xsi:type="umlfilters:ProfileApplied" name="j2ee is applied in context" profileQualifiedName="j2ee" profileURI="platform:/resource/Assistants/j2ee.profile.uml#_raLqoEigEeSRp-p9nf2EsA"/>
+    <ownedFilter xsi:type="umlfilters:ProfileApplied" name="j2ee is applied in context" profileQualifiedName="j2ee" profileURI="platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.assistant.tests/resources/j2ee.profile.uml#_raLqoEigEeSRp-p9nf2EsA"/>
     <ownedFilter xsi:type="assistant:AssistedElementTypeFilter"/>
   </ownedFilter>
   <ownedFilter xsi:type="assistant:ElementTypeFilter" name="Association" elementTypeID="org.eclipse.papyrus.uml.diagram.usecase.Association_4011"/>

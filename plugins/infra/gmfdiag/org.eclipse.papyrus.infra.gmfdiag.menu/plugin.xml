@@ -328,6 +328,10 @@
                            property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
                            value="false">
                      </test>
+                     <test
+                           property="org.eclipse.papyrus.uml.diagram.common.isReadOnly"
+                           value="false">
+                     </test>
                   </iterate>
                </with>
             </and>

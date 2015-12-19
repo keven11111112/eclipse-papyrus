@@ -13,8 +13,15 @@ import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.nebula.widgets.nattable.NatTable;
+import org.eclipse.nebula.widgets.nattable.hideshow.RowHideShowLayer;
+import org.eclipse.nebula.widgets.nattable.hideshow.command.RowHideCommand;
+import org.eclipse.nebula.widgets.nattable.layer.ILayer;
+import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.EObjectTreeAxisManagerForEventList;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
+import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
@@ -24,6 +31,11 @@ import org.eclipse.uml2.uml.Element;
 
 public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEventList
 		implements IAxisManagerForEventList {
+
+	/**
+	 * The list of selected objects.
+	 */
+	private Collection<Object> selectionList = null;
 
 	public NotationTreeTableAxisManager() {
 
@@ -78,7 +90,7 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 			} else if (part instanceof DiagramEditor) {
 				editor = (DiagramEditor) part;
 			}
-			Collection<Object> selectionList = new ArrayList<Object>();
+			selectionList = new ArrayList<Object>();
 			if (editor != null && !editor.getDiagramGraphicalViewer().getSelection().isEmpty()) {
 				IStructuredSelection selection = (IStructuredSelection) editor.getDiagramGraphicalViewer().getSelection();
 				Iterator<?> iter = selection.iterator();
@@ -302,9 +314,57 @@ public class NotationTreeTableAxisManager extends EObjectTreeAxisManagerForEvent
 	 * @param depthToShow
 	 */
 	@Override
-	public void managedHideShowCategoriesForDepth(List<Integer> depthToHide, List<Integer> depthToShow) {
+	public void managedHideShowCategoriesForDepth(final List<Integer> depthToHide, final List<Integer> depthToShow) {
 		super.managedHideShowCategoriesForDepth(depthToHide, depthToShow);
+		// Hide the first level elements
+		if (null != selectionList && !selectionList.isEmpty()) {
+			final RowHideShowLayer layer = getRowHideShowLayer();
+			final NatTable natTable = (NatTable) getTableManager().getAdapter(NatTable.class);
+			if (natTable == null) {
+				return;
+			}
+			final TreeLayer treeLayer = getTreeLayer();
+			if(null != treeLayer){
+				for (int cpt = selectionList.size() - 1; cpt >= 0; cpt--) {
+					// Expand the tree item
+					treeLayer.expandTreeRow(cpt);
+					// Hide the first level
+					natTable.doCommand(new RowHideCommand(layer, cpt));
+				}
+			}
+		}
 	}
 
+	/**
+	 * Get the tree layer.
+	 *
+	 * @return
+	 * 		the tree layer
+	 */
+	private TreeLayer getTreeLayer() {
+		NatTable natTable = (NatTable) getTableManager().getAdapter(NatTable.class);
+		ILayer layer = natTable.getLayer();
+		if (layer instanceof PapyrusGridLayer) {
+			PapyrusGridLayer gridLayer = (PapyrusGridLayer) layer;
+			ILayer rowLayer = gridLayer.getRowHeaderLayer();
+			if (rowLayer instanceof RowHeaderHierarchicalLayerStack) {
+				return ((RowHeaderHierarchicalLayerStack) rowLayer).getTreeLayer();
+			}
+		}
+		return null;
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList#dispose()
+	 */
+	@Override
+	public void dispose() {
+		if (null != selectionList) {
+			selectionList.clear();
+			selectionList = null;
+		}
+		super.dispose();
+	}
 }

@@ -27,6 +27,9 @@ public class DeleteActionPropertyTester extends PropertyTester {
 
 	/** The Constant SEMANTIC_DELETION_PROPERTY. */
 	private static final String SEMANTIC_DELETION_PROPERTY = "isSemanticDeletion"; //$NON-NLS-1$
+	
+	/** The Constant READ_ONLY_PROPERTY. */
+	private static final String READ_ONLY_PROPERTY = "isReadOnly"; //$NON-NLS-1$
 
 	/**
 	 * Constructor.
@@ -48,6 +51,8 @@ public class DeleteActionPropertyTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		if (SEMANTIC_DELETION_PROPERTY.equals(property)) {
 			return expectedValue.equals(DeleteActionUtil.isSemanticDeletion((IGraphicalEditPart) receiver));
+		}else if (READ_ONLY_PROPERTY.equals(property)) {
+			return expectedValue.equals(DeleteActionUtil.isReadOnly((IGraphicalEditPart) receiver));
 		}
 
 		return false;

@@ -87,6 +87,7 @@ public class EOperationAxisManager extends EObjectAxisManager {
 				newAxis.setElement((EOperation) current);
 				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
+				managedObject.add(current);
 			}
 		}
 		if (!toAdd.isEmpty()) {

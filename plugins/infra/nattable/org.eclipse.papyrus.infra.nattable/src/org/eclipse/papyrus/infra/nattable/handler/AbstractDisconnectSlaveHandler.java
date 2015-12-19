@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -60,7 +60,7 @@ public abstract class AbstractDisconnectSlaveHandler extends AbstractTableHandle
 	/**
 	 *
 	 * @return
-	 *         the axis provider to edit
+	 *         the axis provider to edit or null
 	 */
 	protected abstract AbstractAxisProvider getAxisProviderToEdit();
 

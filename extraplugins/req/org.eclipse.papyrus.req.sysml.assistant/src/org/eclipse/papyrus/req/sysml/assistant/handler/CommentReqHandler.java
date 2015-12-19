@@ -20,23 +20,21 @@ import org.eclipse.papyrus.req.sysml.assistant.command.CommentReqCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * this class create a comment with the annotated element filled
+ * Executes the creation of a comment with the annotated element filled
+ *
  */
-
-public class CommentReqHandler extends PapyrusReqSysMLAbstractHandler { 
-
-	
+public class CommentReqHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		ArrayList<Element> selectedElement=getSelectionSet();
-		if( selectedElement.size()!=0){
-			CommentReqCommand commentReqCommand= new CommentReqCommand(transactionalEditingDomain,selectedElement);
+		ArrayList<Element> selectedElement = getSelectionSet();
+		if (selectedElement.size() != 0) {
+			CommentReqCommand commentReqCommand = new CommentReqCommand(transactionalEditingDomain, selectedElement);
 			transactionalEditingDomain.getCommandStack().execute(commentReqCommand);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
@@ -45,12 +43,12 @@ public class CommentReqHandler extends PapyrusReqSysMLAbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		ArrayList<Element> selectedElement=getSelectionSet();
-		if( selectedElement.size()!=0){
+		ArrayList<Element> selectedElement = getSelectionSet();
+		if (selectedElement.size() != 0) {
 			return true;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
 
-	
 }

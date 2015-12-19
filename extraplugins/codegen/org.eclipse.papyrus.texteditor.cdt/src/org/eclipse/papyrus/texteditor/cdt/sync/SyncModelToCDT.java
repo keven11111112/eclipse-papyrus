@@ -18,12 +18,13 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.papyrus.codegen.base.ModelElementsCreator;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen.FILE_KIND;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen2;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.cpp.codegen.Constants;
-import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
-import org.eclipse.papyrus.cpp.codegen.transformation.CppModelElementsCreator;
-import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -34,17 +35,20 @@ import org.eclipse.uml2.uml.Classifier;
  */
 public class SyncModelToCDT {
 
+	private static final String CPP_SUFFIX = "cpp"; //$NON-NLS-1$
 	/**
 	 * set to true, if a synchronization from an CDT editor to the model is active
 	 */
 	public static boolean syncFromEditor;
 
-	public static IFile syncModelToCDT(Classifier classifier) {
+	public static IFile syncModelToCDT(Classifier classifier, String generatorID) {
 		if ((classifier == null) || (classifier.eResource() == null)) {
 			return null;
 		}
 
-		IProject modelProject = LocateCppProject.getTargetProject(classifier, false);
+		ILangCodegen codegen = LanguageCodegen.getGenerator(TextEditorConstants.CPP, generatorID);
+		
+		IProject modelProject = codegen.getTargetProject(classifier, false);
 		if (modelProject == null) {
 			return null;
 		}
@@ -52,11 +56,12 @@ public class SyncModelToCDT {
 		IContainer srcPkg = null;
 		IFile cppFile = null;
 		try {
-			// get the container for the current element
-			ModelElementsCreator mec = new CppModelElementsCreator(modelProject);
-			mec.createPackageableElement(classifier, null, false); // need listener for sync in both directions!
+			codegen.generateCode(modelProject, classifier, null); // need listener for sync in both directions!
 
-			cppFile = modelProject.getFile(new Path(mec.getFileName(classifier) + Constants.DOT + CppCodeGenUtils.getBodySuffix()));
+			String suffix = (codegen instanceof ILangCodegen2) ?
+				suffix = ((ILangCodegen2) codegen).getSuffix(FILE_KIND.BODY) : CPP_SUFFIX;
+			
+			cppFile = modelProject.getFile(new Path(codegen.getFileName(modelProject, classifier) + Constants.DOT + suffix));
 	
 			// IStorage storage = new TextStorage(string);
 		} finally {

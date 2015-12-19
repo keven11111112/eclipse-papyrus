@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPartCN
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.DurationObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ParameterAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.UMLEditPartFactory;
@@ -46,6 +47,8 @@ public class CustomEditPartFactory extends UMLEditPartFactory {
 				return new CustomConnectorMultiplicityTargetEditPart(view);
 			case ConstraintEditPartCN.VISUAL_ID:
 				return new CustomConstraintEditPartCN(view);
+			case PortEditPart.VISUAL_ID:
+				return new CustomPortEditPart(view);
 			case PortNameEditPart.VISUAL_ID:
 				return new CustomPortNameEditPart(view);
 			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:

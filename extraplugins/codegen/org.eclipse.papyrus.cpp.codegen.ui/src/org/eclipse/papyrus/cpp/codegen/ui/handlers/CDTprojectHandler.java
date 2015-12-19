@@ -18,8 +18,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
-import org.eclipse.papyrus.codegen.extensionpoints.LanguageSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.AbstractSettings;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageProjectSupport;
 import org.eclipse.papyrus.cpp.codegen.utils.LocateCppProject;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.uml2.uml.Classifier;
@@ -68,10 +69,10 @@ public class CDTprojectHandler extends CmdHandler {
 			}
 
 			// get the container for the current element
-			ILangSupport langSupport = LanguageSupport.getLangSupport(LANGUAGE_NAME);
+			ILangProjectSupport langSupport = LanguageProjectSupport.getProjectSupport(LANGUAGE_NAME);
 			if (langSupport != null) {
-				langSupport.resetConfigurationData();
-				langSupport.setSettings(null);
+				AbstractSettings settings = langSupport.initialConfigurationData();
+				langSupport.setSettings(modelProject, settings);
 			}
 			else {
 				return null;

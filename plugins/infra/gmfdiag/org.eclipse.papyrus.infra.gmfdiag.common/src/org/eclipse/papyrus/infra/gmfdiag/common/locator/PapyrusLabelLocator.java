@@ -23,7 +23,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.ui.internal.util.LabelViewConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusLabelHelper;
@@ -103,7 +102,6 @@ public class PapyrusLabelLocator extends AbstractLocator {
 	 *
 	 * @return the location
 	 */
-	@SuppressWarnings("restriction")
 	private int getLocation() {
 		switch (getAlignment()) {
 		case ConnectionLocator.SOURCE:

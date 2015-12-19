@@ -8,17 +8,17 @@ Export-Package: org.eclipse.papyrus.dd.dc,
  org.eclipse.papyrus.dd.di,
  org.eclipse.papyrus.dd.di.impl,
  org.eclipse.papyrus.dd.di.util
+Bundle-SymbolicName: org.eclipse.papyrus.dd;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %pluginName
+Bundle-ClassPath: .
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.9.100",
  org.eclipse.emf.ecore;bundle-version="2.9.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.9.1";visibility:=reexport,
  org.eclipse.uml2.common;bundle-version="1.8.2";visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="3.3.0";visibility:=reexport
-Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .
-Bundle-Version: 0.7.0.qualifier
-Bundle-Localization: plugin
-Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.dd;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: %providerName

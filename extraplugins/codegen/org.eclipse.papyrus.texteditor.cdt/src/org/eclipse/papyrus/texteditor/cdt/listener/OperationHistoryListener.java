@@ -19,9 +19,16 @@ import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.texteditor.cdt.Activator;
+import org.eclipse.papyrus.texteditor.cdt.modelresource.TextEditorModelSharedResource;
 import org.eclipse.papyrus.texteditor.cdt.sync.SyncModelToCDT;
+import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 import org.eclipse.uml2.uml.Classifier;
-
 
 public class OperationHistoryListener implements IOperationHistoryListener {
 
@@ -37,16 +44,32 @@ public class OperationHistoryListener implements IOperationHistoryListener {
 	@Override
 	public void historyNotification(OperationHistoryEvent event) {
 		int eventType = event.getEventType();
-		if (eventType == OperationHistoryEvent.OPERATION_ADDED ||
-				eventType == OperationHistoryEvent.REDONE ||
-				eventType == OperationHistoryEvent.UNDONE) {
+		if (eventType == OperationHistoryEvent.OPERATION_ADDED || eventType == OperationHistoryEvent.REDONE
+				|| eventType == OperationHistoryEvent.UNDONE) {
 
 			EList<Classifier> regenListCopy = new BasicEList<Classifier>(ModelListener.regenList);
 			ModelListener.regenList.clear();
-			// regen ...
+
+			// re-generate files from list - if they are still in a resource
 			for (Classifier cl : regenListCopy) {
-				// System.err.println("regenerate: " + cl.getQualifiedName());
-				SyncModelToCDT.syncModelToCDT(cl);
+				if (cl.eResource() != null) {
+					try {
+						ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(cl);
+						TextEditorModelSharedResource model = (TextEditorModelSharedResource) ServiceUtils.getInstance()
+								.getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
+
+						if (model != null) {
+							TextEditorModel tem = model.getTextEditorModel(cl);
+							if (tem != null) {
+								SyncModelToCDT.syncModelToCDT(cl, tem.getGeneratorID());
+							}
+						}
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					} catch (NotFoundException e) {
+						Activator.log.error(e);
+					}
+				}
 			}
 		}
 	}

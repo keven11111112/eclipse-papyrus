@@ -26,6 +26,7 @@ import java.util.concurrent.Future;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.ui.checkouts.CDOModelEditorOpener;
 import org.eclipse.emf.cdo.internal.ui.InteractiveConflictHandlerSelector;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.ui.CDOInvalidRootAgent;
@@ -89,7 +90,8 @@ public class PapyrusCDOEditorManager {
 
 	public static final PapyrusCDOEditorManager INSTANCE = new PapyrusCDOEditorManager();
 
-	private static final boolean INTERACTIVE_CONFLICT_RESOLUTION = "true".equalsIgnoreCase(System.getProperty("INTERACTIVE_CONFLICT_RESOLUTION"));
+	  private static final boolean INTERACTIVE_CONFLICT_RESOLUTION = !"false"
+		      .equalsIgnoreCase(System.getProperty("cdo.interactive.conflict.resolution"));
 
 	private final BiMap<IEditorPart, CDOView> editors = HashBiMap.create();
 
@@ -139,7 +141,6 @@ public class PapyrusCDOEditorManager {
 		if (view instanceof CDOTransaction) {
 			CDOTransaction transaction = (CDOTransaction) view;
 
-			// TODO Revisit interactive conflict resolution at commit time.
 			if (INTERACTIVE_CONFLICT_RESOLUTION) {
 				CDOHandlingConflictResolver conflictResolver = new CDOHandlingConflictResolver() {
 					@Override
@@ -166,6 +167,7 @@ public class PapyrusCDOEditorManager {
 						return super.handleConflict(conflictHandler, lastNonConflictTimeStamp);
 					}
 				};
+
 				conflictResolver.setConflictHandlerSelector(new InteractiveConflictHandlerSelector());
 				transaction.options().addConflictResolver(conflictResolver);
 			} else {

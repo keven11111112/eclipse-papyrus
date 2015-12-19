@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -77,7 +78,7 @@ import org.eclipse.papyrus.migration.rsa.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.rsa.default_.DefaultPackage;
 import org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage;
 import org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage;
-import org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.UMLRealTimeStateMachPackage;
+import org.eclipse.papyrusrt.umlrt.profile.statemachine.UMLRealTimeStateMach.UMLRealTimeStateMachPackage;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.statushandlers.StatusManager;
@@ -297,7 +298,7 @@ public class ImportTransformation {
 	 * Used to initialize the progress monitor
 	 *
 	 * @return
-	 *         The total number of elements to be migrated
+	 * 		The total number of elements to be migrated
 	 */
 	protected int countSupportedElements() {
 		int i = 0;
@@ -566,6 +567,7 @@ public class ImportTransformation {
 
 			for (Resource resource : resourcesToSave) {
 				try {
+					cleanMetadataAnnotations(resource);
 					ResourceAccessHelper.INSTANCE.saveResource(resource, null);
 				} catch (Exception ex) {
 					Activator.log.error(ex);
@@ -584,6 +586,24 @@ public class ImportTransformation {
 
 		monitor.done();
 		return generationStatus;
+	}
+
+	/**
+	 * @param resource
+	 */
+	private void cleanMetadataAnnotations(Resource resource) {
+		// Bug 471684: UML2.x to UML2.5 creates (invalid) Ecore Metadata EAnnotations, which then cause OCL validation to fail
+		// Remove these EAnnotations from the model to avoid side effects
+		Iterator<EObject> rootElementsIterator = resource.getContents().iterator();
+		while (rootElementsIterator.hasNext()) {
+			EObject root = rootElementsIterator.next();
+			if (root instanceof EAnnotation) {
+				EAnnotation annotation = (EAnnotation) root;
+				if (ExtendedMetaData.ANNOTATION_URI.equals(annotation.getSource())) {
+					rootElementsIterator.remove();
+				}
+			}
+		}
 	}
 
 	protected void handleDanglingURIs(Collection<Resource> resourcesToSave) {
@@ -730,7 +750,7 @@ public class ImportTransformation {
 		return new BasicModelExtent(Arrays.asList(new EPackage[] {
 				PapyrusDSMLValidationRulePackage.eINSTANCE,
 				DocumentationPackage.eINSTANCE,
-				org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage.eINSTANCE,
+				org.eclipse.papyrusrt.umlrt.profile.UMLRealTime.UMLRealTimePackage.eINSTANCE,
 				UMLRealTimeStateMachPackage.eINSTANCE
 		}));
 	}
@@ -913,7 +933,7 @@ public class ImportTransformation {
 	/*
 	 * Bug 447097: [Model Import] Importing a fragmented model causes stereotype applications to be lost in resulting submodel
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447097
-	 * 
+	 *
 	 * Before the transformation, We moved all root elements from the fragment resources to the main
 	 * resource, then we transformed some of them to Papyrus Stereotype Applications. We need to move
 	 * these stereotype applications back to the proper fragment resource
@@ -1004,7 +1024,7 @@ public class ImportTransformation {
 
 	protected ExecutionContext createExecutionContext(final IProgressMonitor monitor, final MultiStatus generationStatus) {
 		ExecutionContextImpl context = new ExecutionContextImpl();
-		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$o
+		context.setConfigProperty("keepModeling", true); //$NON-NLS-1$ o
 		context.setConfigProperty(TransformationUI.MONITOR, monitor);
 
 		// context.setProgressMonitor(monitor);
@@ -1100,7 +1120,7 @@ public class ImportTransformation {
 				/*
 				 * Bug 447097: [Model Import] Importing a fragmented model causes stereotype applications to be lost in resulting submodel
 				 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447097
-				 * 
+				 *
 				 * StereotypeApplications from Fragments are not considered "rootElements" by QVTo, and
 				 * there is no logical link between UML Elements and stereotype applications in fragments
 				 * We need to make all root Elements available to the QVTo ModelExtent (Including the ones

@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -421,6 +422,10 @@ public class ImageUtil {
 
 			if (val instanceof EnumerationLiteral) {
 				if (((EnumerationLiteral) val).getLabel().equals(literal)) {
+					return true;
+				}
+			} else if (val instanceof Enumerator) {
+				if (((Enumerator) val).getName().equals(literal)) {
 					return true;
 				}
 			}

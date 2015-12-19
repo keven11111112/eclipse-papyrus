@@ -35,9 +35,9 @@ import org.eclipse.papyrus.codegen.base.ProjectBasedFileAccess;
 public class Generate {
 
 	/**
-	 * 
+	 * The source folder for the generated file. 
 	 */
-	private static final String SRC = "src-gen"; //$NON-NLS-1$
+	public static final String SRC = "src-gen"; //$NON-NLS-1$
 
 	/**
 	 * This method is used to launch the generation from a standalone application.

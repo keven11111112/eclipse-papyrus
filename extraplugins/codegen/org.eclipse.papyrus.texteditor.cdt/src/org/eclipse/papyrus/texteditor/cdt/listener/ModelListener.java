@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
@@ -68,6 +69,22 @@ public class ModelListener implements IPapyrusListener {
 				// don't treat addition here, since operations/properties do not have their final names yet
 				// IStorage storage = new TextStorage(string);
 			}
+			if (notifier instanceof Behavior) {
+				Behavior behavior = (Behavior) notifier;
+				if (eventType == Notification.SET) {
+					// name modification
+					if (behavior.getSpecification() == null) {
+					}
+				}
+				else if (eventType == Notification.ADD) {
+					// modification of an opaque behavior in Papyrus implied remove&add operations
+					Classifier nearestCl = getNearestClassifier(behavior);
+					if (nearestCl != null) {
+						regenList.add(nearestCl);
+					}
+				}
+			}
+			
 			else if (notifier instanceof Feature) {
 				// if a feature is added, it is first generated with a dummy name, then the name is corrected.
 				Feature feature = (Feature) notifier;
@@ -104,5 +121,15 @@ public class ModelListener implements IPapyrusListener {
 		}
 	}
 
+	public static Classifier getNearestClassifier(Element element) {
+		while (element != null) {
+			if (!(element instanceof Behavior) && (element instanceof Classifier)) {
+				return (Classifier) element;
+			}
+			element = element.getOwner();
+		}
+		return null;
+	}
+	
 	static EList<Classifier> regenList = new UniqueEList<Classifier>();
 }

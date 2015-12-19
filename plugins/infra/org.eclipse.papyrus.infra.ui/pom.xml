@@ -4,12 +4,12 @@
 	<parent>
 		<artifactId>org.eclipse.papyrus.releng</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
-		<version>1.1.2-SNAPSHOT</version>
+		<version>1.1.3-SNAPSHOT</version>
 		<relativePath>../../../releng/main</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.ui</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
-	<version>1.1.2-SNAPSHOT</version>
+	<version>1.1.3-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	<description>Plugin dedicated to manage generic menus and actions, linked to EMF but not to UML nor GMF technologies.</description>
 

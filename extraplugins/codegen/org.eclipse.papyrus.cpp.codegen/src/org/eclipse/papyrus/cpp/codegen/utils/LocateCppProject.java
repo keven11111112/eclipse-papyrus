@@ -19,8 +19,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
-import org.eclipse.papyrus.codegen.extensionpoints.LanguageSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.ILangProjectSupport;
+import org.eclipse.papyrus.codegen.extensionpoints.LanguageProjectSupport;
 import org.eclipse.papyrus.cpp.codegen.Activator;
 import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenConstants;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
@@ -78,10 +78,10 @@ public class LocateCppProject {
 						Messages.LocateCppProject_CreateTargetProjectTitle,
 						String.format(Messages.LocateCppProject_CreateTargetProjectDesc, projectName));
 				if (create) {
-					ILangSupport langSupport = LanguageSupport.getLangSupport(LANGUAGE_NAME);
+					ILangProjectSupport langSupport = LanguageProjectSupport.getProjectSupport(LANGUAGE_NAME);
 					if (langSupport != null) {
-						langSupport.resetConfigurationData();
-						modelProject = langSupport.createProject(projectName, null);
+						modelProject = langSupport.createProject(projectName);
+						langSupport.setSettings(modelProject, langSupport.initialConfigurationData());
 						if (modelProject == null) {
 							return null;
 						}

@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
 
+import java.util.List;
+
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
@@ -22,11 +24,16 @@ import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetMa
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.services.decoration.DecorationService;
+import org.eclipse.papyrus.infra.services.decoration.util.DecorationImageUtils;
+import org.eclipse.papyrus.infra.services.decoration.util.IPapyrusDecoration;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 
 /**
  * The LabelProvider used in the table
@@ -183,6 +190,9 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 				return null;
 			}
 			labelProviderContextId = ((IAxis) object).getManager().getLabelProviderContext();
+			if (Constants.HEADER_LABEL_PROVIDER_CONTEXT.equals(labelProviderContextId)) {
+				return getImageWithDecoration(contextElement, configRegistry, labelProviderContextId);
+			}
 			return getImage(contextElement, configRegistry, labelProviderContextId);
 		}
 		final LabelStack labels = getLabelStack(contextElement, configRegistry);
@@ -222,7 +232,33 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 			TreeFillingConfiguration conf = (TreeFillingConfiguration) ((IAxis) representedObjet).getElement();
 			return getImage(cell, configRegistry, conf.getLabelProviderContext());
 		}
-		return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
+		return getImageWithDecoration(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
+	}
+
+	/**
+	 * 
+	 * @param contextElement
+	 * the context element for which we want the decoration
+	 * @param configRegistry
+	 * the config registry of the table
+	 * @param labelproviderContext
+	 * the label provider context
+	 * @return
+	 * the image with decorators to display according to the  contextElement
+	 */
+	private Image getImageWithDecoration(final ILabelProviderCellContextElementWrapper contextElement, final IConfigRegistry configRegistry, final String labelproviderContext) {
+		Image im = getImage(contextElement, configRegistry, labelproviderContext);
+		DecorationService decorationService = configRegistry.getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
+		if (decorationService != null) {
+			Object representedObject= AxisUtils.getRepresentedElement(contextElement.getObject());
+			if(representedObject!=null){
+				List<IPapyrusDecoration> decoration = ((DecorationService) decorationService).getDecorations(representedObject, true);
+				if (decoration.size() > 0) {
+					return DecorationImageUtils.getDecoratedImage(im, decoration, DecorationImageUtils.SIZE_16_16);
+				}	
+			}
+		}
+		return im;
 	}
 
 	/**
@@ -263,10 +299,10 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @param configRegistry
 	 *            the config registry
 	 * @return
-	 *         the image to display for the header
+	 * 		the image to display for the header
 	 */
 	private Image getColumnHeaderImage(ILabelProviderCellContextElementWrapper cell, IConfigRegistry configRegistry) {
-		return getImage(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
+		return getImageWithDecoration(cell, configRegistry, Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 	}
 
 }

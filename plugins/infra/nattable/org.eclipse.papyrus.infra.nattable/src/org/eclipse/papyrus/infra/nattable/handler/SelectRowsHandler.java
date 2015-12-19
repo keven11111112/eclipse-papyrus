@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -50,6 +50,10 @@ public class SelectRowsHandler extends AbstractTableHandler {
 	@Override
 	public void setEnabled(Object evaluationContext) {
 		final INattableModelManager currentNattableModelManager = getCurrentNattableModelManager();
-		setBaseEnabled(currentNattableModelManager.canCreateDestroyRowsAxis());
+		boolean enabled = false;
+		if (currentNattableModelManager != null) {
+			enabled = currentNattableModelManager.canCreateDestroyRowsAxis();
+		}
+		setBaseEnabled(enabled);
 	}
 }

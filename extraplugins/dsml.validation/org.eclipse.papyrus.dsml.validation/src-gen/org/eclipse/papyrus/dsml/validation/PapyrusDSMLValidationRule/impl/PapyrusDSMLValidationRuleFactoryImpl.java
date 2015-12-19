@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.*;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.Mode;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRuleFactory;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage;
@@ -18,7 +19,6 @@ import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.ValidationR
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implements PapyrusDSMLValidationRuleFactory {
@@ -26,16 +26,16 @@ public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implement
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public static PapyrusDSMLValidationRuleFactory init() {
 		try {
-			PapyrusDSMLValidationRuleFactory thePapyrusDSMLValidationRuleFactory = (PapyrusDSMLValidationRuleFactory) EPackage.Registry.INSTANCE.getEFactory(PapyrusDSMLValidationRulePackage.eNS_URI);
+			PapyrusDSMLValidationRuleFactory thePapyrusDSMLValidationRuleFactory = (PapyrusDSMLValidationRuleFactory)EPackage.Registry.INSTANCE.getEFactory(PapyrusDSMLValidationRulePackage.eNS_URI);
 			if (thePapyrusDSMLValidationRuleFactory != null) {
 				return thePapyrusDSMLValidationRuleFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new PapyrusDSMLValidationRuleFactoryImpl();
@@ -45,7 +45,6 @@ public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implement
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public PapyrusDSMLValidationRuleFactoryImpl() {
@@ -55,59 +54,59 @@ public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case PapyrusDSMLValidationRulePackage.VALIDATION_RULE:
-			return createValidationRule();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case PapyrusDSMLValidationRulePackage.VALIDATION_RULE: return createValidationRule();
+			case PapyrusDSMLValidationRulePackage.MESSAGE_HANDLING: return createMessageHandling();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case PapyrusDSMLValidationRulePackage.SEVERITY:
-			return createSeverityFromString(eDataType, initialValue);
-		case PapyrusDSMLValidationRulePackage.MODE:
-			return createModeFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case PapyrusDSMLValidationRulePackage.SEVERITY:
+				return createSeverityFromString(eDataType, initialValue);
+			case PapyrusDSMLValidationRulePackage.MODE:
+				return createModeFromString(eDataType, initialValue);
+			case PapyrusDSMLValidationRulePackage.NAME_BASED_MSG_MODE:
+				return createNameBasedMsgModeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case PapyrusDSMLValidationRulePackage.SEVERITY:
-			return convertSeverityToString(eDataType, instanceValue);
-		case PapyrusDSMLValidationRulePackage.MODE:
-			return convertModeToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+			case PapyrusDSMLValidationRulePackage.SEVERITY:
+				return convertSeverityToString(eDataType, instanceValue);
+			case PapyrusDSMLValidationRulePackage.MODE:
+				return convertModeToString(eDataType, instanceValue);
+			case PapyrusDSMLValidationRulePackage.NAME_BASED_MSG_MODE:
+				return convertNameBasedMsgModeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public ValidationRule createValidationRule() {
@@ -118,21 +117,27 @@ public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @generated
+	 */
+	public MessageHandling createMessageHandling() {
+		MessageHandlingImpl messageHandling = new MessageHandlingImpl();
+		return messageHandling;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Severity createSeverityFromString(EDataType eDataType, String initialValue) {
 		Severity result = Severity.get(initialValue);
-		if (result == null) {
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertSeverityToString(EDataType eDataType, Object instanceValue) {
@@ -142,21 +147,17 @@ public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public Mode createModeFromString(EDataType eDataType, String initialValue) {
 		Mode result = Mode.get(initialValue);
-		if (result == null) {
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		}
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String convertModeToString(EDataType eDataType, Object instanceValue) {
@@ -166,17 +167,35 @@ public class PapyrusDSMLValidationRuleFactoryImpl extends EFactoryImpl implement
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
-	public PapyrusDSMLValidationRulePackage getPapyrusDSMLValidationRulePackage() {
-		return (PapyrusDSMLValidationRulePackage) getEPackage();
+	public NameBasedMsgMode createNameBasedMsgModeFromString(EDataType eDataType, String initialValue) {
+		NameBasedMsgMode result = NameBasedMsgMode.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @generated
+	 */
+	public String convertNameBasedMsgModeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PapyrusDSMLValidationRulePackage getPapyrusDSMLValidationRulePackage() {
+		return (PapyrusDSMLValidationRulePackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */

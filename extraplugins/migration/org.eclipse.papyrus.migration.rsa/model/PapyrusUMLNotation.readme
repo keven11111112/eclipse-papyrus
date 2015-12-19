@@ -1,0 +1,14 @@
+The PapyrusUMLNotation metamodel extends the Notation metamodel, which doesn't provide a Genmodel (And probably used non-standard code generation for Transient/Persisted links)
+
+Thus, when regenerating the PapyrusUMLNotation metamodel, it is required to do some manual clean-up in the generated code:
+
+- Remove the generated notation metamodel (Packages "notation", "notation.impl", "notation.util")
+- Replace all references to notation.* (especially notation.NotationPackage, notation.NotationPackageImpl) with proper version from GMF Notation (Import NotationPackage and NotationPackageImpl from GMF Notation)
+- Clean up the Manifest.mf and Plugin.xml (e.g. revert to last version)
+- Fix 'Persisted' methods (Compare with previous commit)
+- Remove support for generics in @Override methods (GMF Notation uses Java 1.4)
+
+Additionally, the EMF GenModel code generator evolves over time, and may add new concepts 
+(with @Override annotations), that were not supported in the GMF Notation metamodel 
+(e.g. support for EOperations). It may also be necessary to remove these generated
+methods/attributes/constants. 

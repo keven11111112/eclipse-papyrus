@@ -15,6 +15,7 @@ package org.eclipse.papyrus.dsml.validation.model.profilenames;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.papyrus.uml.tools.utils.StaticProfileUtil;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -28,8 +29,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class Utils {
 
+	private static final String DOT = "."; //$NON-NLS-1$
 	private static final String JAVA_LANGUAGE = "JAVA"; //$NON-NLS-1$
 	private static final String OCL_LANGUAGE = "OCL"; //$NON-NLS-1$
+
 	/*
 	 * Map holding relations between String representing the qualified name of a
 	 * constraint and name of a package to which it belongs. Package name in
@@ -104,7 +107,18 @@ public class Utils {
 
 		Namespace nameSpace = constraint.getContext();
 		if (nameSpace instanceof Stereotype) {
-			return ((Stereotype) constraint.getContext()).getQualifiedName();
+			if (staticProfile != null) {
+				String basePackage = staticProfile.getBasePackage();
+				if (basePackage != null) {
+					String packageName = staticProfile.getPackageName();
+					if (packageName != null) {
+						return basePackage + DOT + packageName + DOT + nameSpace.getName();
+					} else {
+						return basePackage + DOT + nameSpace.getQualifiedName();
+					}
+				}
+			}
+			return nameSpace.getQualifiedName();
 		}
 		return ""; //$NON-NLS-1$
 	}
@@ -222,10 +236,20 @@ public class Utils {
 	public static String getTopPkg() {
 		return pluginID.toLowerCase();
 	}
-	
+
 	public static void setPluginID(String ID) {
 		pluginID = ID;
 	}
 
+	public static boolean isStaticProfile() {
+		return staticProfile.getDefinition() != null;
+	}
+
+	public static void setStaticProfile(StaticProfileUtil staticProfile) {
+		Utils.staticProfile = staticProfile;
+	}
+
 	private static String pluginID;
+
+	private static StaticProfileUtil staticProfile;
 }

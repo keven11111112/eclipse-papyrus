@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:x="http://www.eclipse.org/xwt"
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns:j="clr-namespace:java.lang">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}"
+			property="BPMNProfile:Definitions:targetNamespace"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="BPMNProfile:Definitions:expressionLanguage"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="BPMNProfile:Definitions:typeLanguage"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="BPMNProfile:Definitions:exporter"></ppe:StringEditor>
+		<ppe:StringEditor input="{Binding}"
+			property="BPMNProfile:Definitions:exporterVersion"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout numColumns="1"></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:MultiReference input="{Binding}"
+			property="BPMNProfile:Definitions:extensions"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="BPMNProfile:Definitions:rootElements"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="BPMNProfile:Definitions:imports"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="BPMNProfile:Definitions:relationships"></ppe:MultiReference>
+	</Composite>
+</Composite>

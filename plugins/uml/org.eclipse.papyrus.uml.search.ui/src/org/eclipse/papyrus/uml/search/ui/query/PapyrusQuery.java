@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.search.ui.query;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,12 +26,10 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
@@ -83,12 +81,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 	protected Set<AbstractResultEntry> fResults = null;
 
-	/**
-	 * Buffer contains matches to manually display.
-	 * The buffer should be cleared after the display operation.
-	 */
-	//protected Set<AbstractResultEntry> buffer = null;
-
 	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes) {
 		this.searchQueryText = searchQueryText;
 		this.isCaseSensitive = isCaseSensitive;
@@ -99,21 +91,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 
 		results = new PapyrusSearchResult(this);
 		fResults = new HashSet<AbstractResultEntry>();
-		//buffer = new HashSet<AbstractResultEntry>();
-	}
-	
-	public PapyrusQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsTypes, boolean searchAllStringAttributes, boolean delay) {
-		this.searchQueryText = searchQueryText;
-		this.isCaseSensitive = isCaseSensitive;
-		this.isRegularExpression = isRegularExpression;
-		this.scopeEntries = scopeEntries;
-		this.participantsTypes = participantsTypes;
-		this.searchAllStringAttributes = searchAllStringAttributes;
-		this.delay = delay;
-
-		results = new PapyrusSearchResult(this);
-		fResults = new HashSet<AbstractResultEntry>();
-		//buffer = new HashSet<AbstractResultEntry>();
 	}
 
 	public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
@@ -177,7 +154,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 				ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
 
 				fResults.add(match);
-				//addToBuffer(match);
 			}
 		} else {
 			while (m.find()) {
@@ -185,7 +161,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 				int length = m.end() - m.start();
 				AttributeMatch match = new AttributeMatch(offset, length, participant, scopeEntry, attribute, stereotype);
 				fResults.add(match);
-				//addToBuffer(match);
 			}
 		}
 
@@ -195,7 +170,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 		// ModelMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute);
 		//
 		// fResults.add(match);
-		// addToBuffer(match);
 		// }
 	}
 
@@ -254,37 +228,24 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			}
 		}
 		
-		// Now, find in diagram and others the elements we found
-		ViewerSearchService viewerSearcherService = new ViewerSearchService();
-		try {
-			viewerSearcherService.startService();
-
-			// Get sources elements that matched
-			Set<Object> sources = new HashSet<Object>();
-			for (AbstractResultEntry match : fResults) {
-				if (match instanceof AttributeMatch) {
-					sources.add(((AttributeMatch) match).getSource());
-				} else {
-					sources.add(match.getSource());
+		// Find diagrams that contain the elements that were found
+		Set<AbstractResultEntry> viewResults = new HashSet<AbstractResultEntry>();
+		for (AbstractResultEntry match : fResults) {
+			Object source = match.getSource();
+			
+			if (source instanceof Element) {
+				List<View> views = getViews((Element) source);
+				
+				if (views != null && !views.isEmpty()) {
+					for (View view : views) {
+						ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, source);
+						viewResults.add(viewMatch);
+					}
 				}
 			}
-
-			// Get viewer of these sources
-			Map<Object, Map<Object, Object>> viewersMappings = viewerSearcherService.getViewers(sources, scopeEntry.getModelSet());
-
-			// Add viewers to results
-			for (Object containingModelSet : viewersMappings.keySet()) {
-				for (Object view : viewersMappings.get(containingModelSet).keySet()) {
-					Object semanticElement = viewersMappings.get(containingModelSet).get(view);
-					ViewerMatch viewMatch = new ViewerMatch(view, scopeEntry, semanticElement);
-					fResults.add(viewMatch);
-					//addToBuffer(viewMatch);
-				}
-			}
-
-		} catch (ServiceException e) {
-			Activator.log.error(Messages.PapyrusQuery_5 + scopeEntry.getModelSet(), e);
 		}
+		
+		fResults.addAll(viewResults);
 	}
 
 
@@ -305,8 +266,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 	}
 
 	public ISearchResult getSearchResult() {
-		int adds = 0;
-		
 		if (progressMonitor != null) {
 			progressMonitor.setWorkRemaining(fResults.size());
 			progressMonitor.subTask("Displaying Results");
@@ -318,22 +277,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			if (progressMonitor != null) {
 				progressMonitor.worked(1);
 			}
-			
-			
-			if (delay) {
-				/** E.g. Every 100 events fired (prompting 100 results display operation),
-				* sleep 100ms so the UI doesn't get stuck
-				*/
-				adds++;
-				if (adds >= NUMBER_ADDS_BEFORE_SLEEP) {
-					adds = 0;
-					try {
-						Thread.sleep(SLEEP_MILLISECONDS);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
 		}
 		
 		if (progressMonitor != null) {
@@ -342,28 +285,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 		
 		return results;
 	}
-	
-	/*private void displaySearchResult() {
-		for (AbstractResultEntry match : buffer) {
-			results.addMatch(match);
-		}
-		
-		try {
-			Thread.sleep(SLEEP_MILLISECONDS);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			buffer.clear();
-		}
-	}
-	
-	private void addToBuffer(AbstractResultEntry match) {
-		buffer.add(match);
-		
-		if (buffer.size() > BUFFER_SIZE) {
-			displaySearchResult();
-			buffer.clear();
-		}
-	}*/
 
 	/**
 	 * Getter for the text query

@@ -18,7 +18,10 @@ import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * Interface used by Qompass extensions that support a specific programming language
+ * 
+ * @deprecated Use ILangCodegen (or ILangCodegen2) instead
  */
+@Deprecated
 public interface ILangSupport {
 
 	/**

@@ -26,6 +26,7 @@ public class Messages extends NLS {
 	public static String CreateJavaValidationPluginHandler_CreateNewPlugin;
 	public static String CreateJavaValidationPluginHandler_DependencyAdded;
 	public static String CreateJavaValidationPluginHandler_DependencyAddedMsg;
+	public static String CreateJavaValidationPluginHandler_DSMLDependencyAddedMsg;
 	public static String CreateJavaValidationPluginHandler_ExceptionDuringPluginGeneration;
 	public static String CreateJavaValidationPluginHandler_GenerateIntoExisting;
 	public static String CreateJavaValidationPluginHandler_SelectExisting;
@@ -33,7 +34,6 @@ public class Messages extends NLS {
 	public static String CreateJavaValidationPluginHandler_HowtoGeneratePlugin;
 	public static String CreateJavaValidationPluginHandler_ProfileIsNotAPlugin;
 	public static String CreateJavaValidationPluginHandler_ProfileIsNotAPluginExplication;
-	public static String CreateJavaValidationPluginHandler_ProfileMustBeDefined;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -345,7 +345,16 @@ mapping MemberDefinition::toFeature() : Feature
 // Namespace Definitions
 
 mapping NamespaceDefinition::toNamespace() : Namespace
-  disjuncts ClassifierDefinition::toNamespace, PackageDefinition::toPackage;
+  disjuncts 
+  	ClassifierDefinition::toNamespace, 
+  	ModelNamespace::toNamespace, 
+  	PackageDefinition::toPackage;
+  
+mapping ModelNamespace::toNamespace() : Namespace {
+init {
+	result := self.context().toUml().oclAsType(Namespace);
+}
+}
   
 // Package Definitions
 
@@ -471,14 +480,12 @@ mapping ClassDefinition::toClass() : Class
 		  
 		  ownedAttribute := members[Property];
 		  ownedOperation := members[Operation];
-		  ownedBehavior := result.ownedOperation.method;
 		  nestedClassifier := members[Classifier];
 		  
-		  ownedAttribute[defaultValue <> null]->forEach(p) {
-		    var behavior := p.defaultValue.oclAsType(OpaqueExpression).behavior;
-		    behavior.name := uniqueName(p.name + "$defaultValue", result);
-		    ownedBehavior += behavior;
-		  };
+		  ownedBehavior := result.ownedOperation.method;
+		  ownedBehavior += ownedAttribute[defaultValue <> null].
+		  	defaultValue.oclAsType(OpaqueExpression).behavior;
+
 		  ownedOperation.method->forEach(m) {
 				m.name := uniqueName(m.specification.name + "$method", result);
 				if m.specification.invresolveone(OperationDefinition).isStub then {
@@ -498,7 +505,7 @@ mapping ClassDefinition::toClass() : Class
 		  
 		  // Create initialization operation.
 		  var initializationOperationName := uniqueName(self.actualName() + "$initialization", result);
-		  var initializationMethod := self.createInitializationMethod(result, initializationFlag, initializationOperationName);
+		  var initializationMethod := self.createInitializationMethod(result, initializationFlag);
 		  var initializationOperation := object Operation {
 		  	name := initializationOperationName;
 		  	visibility := VisibilityKind::protected;
@@ -516,6 +523,7 @@ mapping ClassDefinition::toClass() : Class
 		  	ownedBehavior += var activity ::= object Activity {
 		  		name := uniqueName(self.actualName() + "$method", result);
 		      ownedParameter := object Parameter {
+		      	name := "";
 		        type := result;
 		        lower := 1;
 		        upper := 1;
@@ -526,6 +534,7 @@ mapping ClassDefinition::toClass() : Class
 		      name := self.actualName();
 		      method := activity;
 		      ownedParameter := object Parameter {
+		      	name := "";
 		      	type := result;
 		      	lower := 1;
 		      	upper := 1;
@@ -564,9 +573,9 @@ query uniqueName(name : String, namespace : Namespace) : String {
   };
 }
 
-helper ClassDefinition::createInitializationMethod(class_ : Class, initializationFlag : Property, operationName: String) : Activity {
+helper ClassDefinition::createInitializationMethod(class_ : Class, initializationFlag : Property) : Activity {
 	var method := object Activity {
-	  name := operationName;
+	  name := uniqueName(class_.name + "$initialization$method", class_);
 	  visibility := VisibilityKind::protected;
 	};
 	
@@ -599,10 +608,11 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   	if attribute.defaultValue <> null then {
   	  var defaultBehavior := attribute.defaultValue.oclAsType(OpaqueExpression).behavior;
   	  initializationNode.node += var callAction ::= new CallBehaviorAction(defaultBehavior);
-  	  var graph := self.mapPropertyAssignment(attribute, selfFork, callAction._'result'->at(1));
+  	  var graph := self.mapPropertyAssignment(attribute, class_, selfFork, callAction._'result'->at(1));
   	  initializationNode.node += var node ::= new StructuredActivityNode("Initialization(" + attribute.name + ")");
   	  node.node := graph.nodes;
-  	  initializationNode.edge += graph.edges;
+  	  initializationNode.edge += graph.edges[source != selfFork];
+  	  method.edge += graph.edges[source = selfFork];
   	  if previousNode <> null then {
   	  	new ObjectFlow(initializationNode, previousNode, node);
   	  } endif;
@@ -632,7 +642,7 @@ helper ClassDefinition::createInitializationMethod(class_ : Class, initializatio
   new ObjectFlow(method, valueAction.result, testAction.second);
   
   method.ownedNode += var initialNode ::= new InitialNode("InitialNode");
-  createObjectDecisionGraph(
+  createControlDecisionGraph(
   	"Test(" + initializationFlag.name + ")",
   	initialNode, testAction.result,
   	initializationNode, null
@@ -819,21 +829,15 @@ mapping TypedElementDefinition::toProperty() : Property
 query FormalParameter::assignedValueSource(assignedName : String) : ActivityNode {
 	var activity : Activity;
 	var parameter : Parameter;
-	var context := self.containingMember().namespace;
-	var stub := context.stub();
-	var element :=
-		if stub = null then context.map toUml()
-		else stub.toUml() endif;
+	var context := self.containingMember().namespace.map toUml();
 		
-	if element.oclIsKindOf(Operation) then {
-		var operation := element.oclAsType(Operation);
+	if context.oclIsKindOf(Operation) then {
+		var operation := context.oclAsType(Operation);
 		activity := operation.method![true].oclAsType(Activity);
-		var i =
-			if stub = null then operation.ownedParameter->indexOf(self.map toParameter())
-			else context.oclAsType(ActivityDefinition).parameters()->indexOf(self) endif;
+		var i = operation.ownedParameter->indexOf(self.map toParameter());
 		parameter := activity.ownedParameter->at(i);
 	} else {
-		activity := element.oclAsType(Activity);
+		activity := context.oclAsType(Activity);
 		parameter := self.map toParameter();
 	} endif;
 	
@@ -870,13 +874,20 @@ mapping PropertyDefinition::toProperty() : Property
 		else AggregationKind::none endif;
   if self.initializer <> null then {
   	 var expression := self.initializer.map toOpaqueExpression();
+  	 expression.behavior.name := name + "$defaultValue$1";
   	 defaultValue := expression;
   } endif;
 }
 
 mapping Expression::toOpaqueExpression() : OpaqueExpression {
   behavior := self.map toActivity();
-  addDefinition(behavior.oclAsType(Activity), self);
+  language += "Alf";
+  var text := self.serialize();
+  if text.startsWith("=") then {
+  	text := text.substring(2, text.length());
+  } endif;
+  body += text;
+//  addDefinition(behavior.oclAsType(Activity), self);
 }
 
 // Operation Definitions
@@ -1011,7 +1022,7 @@ helper Class::mapDestructionOf(property_ : Property) : StructuredActivityNode {
 				structuredNode.node += var region ::= new ExpansionRegion("DestroyAll(" + property_.name + ")", ExpansionKind::iterative);
 				region.node += callAction;
 				new ControlFlow(structuredNode, readAction, region);
-				structuredNode.node += var inputNode ::= new ExpansionNode(null, region, true);
+				structuredNode.node += var inputNode ::= new ExpansionNode(null, readAction.result.type, region, true);
 				new ObjectFlow(structuredNode, readAction.result, inputNode);
 				new ObjectFlow(structuredNode, inputNode, callAction.target);
 			} endif;

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://BPMN_PROF/"
+            target="platform:/plugin/org.eclipse.papyrus.bpmn/model/">
+      </mapping>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated bpmn.profile -->
+      <package
+            uri="http://www.omg.org/spec/BPMNProfile/20121112/"
+            class="org.eclipse.papyrus.bpmn.BPMNProfile.BPMNProfilePackage"
+            genModel="model/bpmn.profile.genmodel"/>
+   </extension>
+
+    <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="UML profile for BPMN"
+            iconpath="icons/bpmn_16x16.png"
+            name="BPMNProfile"
+            path="platform:/plugin/org.eclipse.papyrus.bpmn/model/bpmn.profile.uml"
+            provider="CEA List">
+      </profile>
+   </extension>
+    <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://BPMN_PROF/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"
+            uri="pathmap://BPMN_PROF/bpmn.profile.uml">
+      </profile>
+   </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.elementTypeSet"
+             path="model/bpmn.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension>
+    <extension
+          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+       <elementTypeSet
+             id="org.eclipse.papyrus.bpmn.customElementTypeSet"
+             path="model/customBpmn.elementtypesconfigurations">
+       </elementTypeSet>
+    </extension>
+    <extension
+          point="org.eclipse.papyrus.views.properties.context">
+       <context
+             contextModel="properties/bpmn.ctx"
+             isCustomizable="true">
+       </context>
+    </extension>
+</plugin>

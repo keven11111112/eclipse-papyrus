@@ -14,10 +14,12 @@ package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeappli
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.MatcherConfigurationImpl;
@@ -31,10 +33,11 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplic
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.impl.StereotypeApplicationMatcherConfigurationImpl#getStereotypesQualifiedNames <em>Stereotypes Qualified Names</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.impl.StereotypeApplicationMatcherConfigurationImpl#getProfileUri <em>Profile Uri</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -48,6 +51,25 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 	 * @ordered
 	 */
 	protected EList<String> stereotypesQualifiedNames;
+
+	/**
+	 * The default value of the '{@link #getProfileUri() <em>Profile Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProfileUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PROFILE_URI_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getProfileUri() <em>Profile Uri</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProfileUri()
+	 * @generated
+	 * @ordered
+	 */
+	protected String profileUri = PROFILE_URI_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,11 +107,34 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getProfileUri() {
+		return profileUri;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProfileUri(String newProfileUri) {
+		String oldProfileUri = profileUri;
+		profileUri = newProfileUri;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI, oldProfileUri, profileUri));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES:
 				return getStereotypesQualifiedNames();
+			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI:
+				return getProfileUri();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -107,6 +152,9 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 				getStereotypesQualifiedNames().clear();
 				getStereotypesQualifiedNames().addAll((Collection<? extends String>)newValue);
 				return;
+			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI:
+				setProfileUri((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -122,6 +170,9 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES:
 				getStereotypesQualifiedNames().clear();
 				return;
+			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI:
+				setProfileUri(PROFILE_URI_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -136,6 +187,8 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 		switch (featureID) {
 			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES:
 				return stereotypesQualifiedNames != null && !stereotypesQualifiedNames.isEmpty();
+			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI:
+				return PROFILE_URI_EDEFAULT == null ? profileUri != null : !PROFILE_URI_EDEFAULT.equals(profileUri);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -152,6 +205,8 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stereotypesQualifiedNames: ");
 		result.append(stereotypesQualifiedNames);
+		result.append(", profileUri: ");
+		result.append(profileUri);
 		result.append(')');
 		return result.toString();
 	}

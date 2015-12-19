@@ -20,39 +20,55 @@ class ConstraintGen {
 		import org.eclipse.core.runtime.IStatus;
 		import org.eclipse.emf.validation.AbstractModelConstraint;
 		import org.eclipse.emf.validation.IValidationContext;
-		import org.eclipse.uml2.uml.Element;
-		import org.eclipse.uml2.uml.Stereotype;
+		import org.eclipse.emf.ecore.EObject;
+		«IF !Utils.staticProfile»
+			import org.eclipse.uml2.uml.Element;
+			import org.eclipse.uml2.uml.Stereotype;
+			import org.eclipse.uml2.uml.util.UMLUtil;
+		«ENDIF»
 		
 		public class «constraint.name»Constraint extends AbstractModelConstraint {
 		
 			public IStatus validate(IValidationContext ctx) {
-				if (ctx.getTarget() instanceof Element) {
-					Element element = (Element) ctx.getTarget();
+				EObject target = ctx.getTarget();
 		
-					«IF Utils.isConstraintForStereotype(constraint)»
-						Stereotype appliedStereotype = element.getAppliedStereotype("«Utils.getConstraintForStereotype(constraint)»"); //$NON-NLS-1$
-						if (appliedStereotype != null) {
-							if (evaluateConstraint(element, appliedStereotype)) {
-								return ctx.createSuccessStatus();
-							}
-							else {
-								return ctx.createFailureStatus("Constraint not validated"); //$NON-NLS-1$
-							}
-						}
+				«IF Utils.isConstraintForStereotype(constraint)»
+					«val qStereotypeName = Utils.getConstraintForStereotype(constraint)»
+					«IF Utils.staticProfile»
+						«val qStereotypeNameJava = qStereotypeName.replace("::", ".")»
+						if (target instanceof «qStereotypeNameJava») {
+							if (evaluateConstraint((«qStereotypeNameJava») target)) {
 					«ELSE»
-						if (evaluateConstraint(element)) {
+						Stereotype stereotype = UMLUtil.getStereotype(target);
+						if (stereotype.getQualifiedName().equals("«qStereotypeName»")) { //$NON-NLS-1$
+							Element element = UMLUtil.getBaseElement(target);
+							if (evaluateConstraint(element, stereotype)) {
+					«ENDIF»
 							return ctx.createSuccessStatus();
 						}
 						else {
-							return ctx.createFailureStatus("Constraint not validated");
+							return ctx.createFailureStatus(""); //$NON-NLS-1$ failure message is in plugin.xml
 						}
-					«ENDIF»
-				}
-				return ctx.createSuccessStatus();
+					}
+					return ctx.createSuccessStatus();
+				«ELSE»
+					if (evaluateConstraint(target)) {
+						return ctx.createSuccessStatus();
+					}
+					else {
+						return ctx.createFailureStatus(""); //$NON-NLS-1$ failure message is in plugin.xml
+					}
+				«ENDIF»
 			}
 		
 			«IF Utils.isConstraintForStereotype(constraint)»
-				private boolean evaluateConstraint(Element self, Stereotype appliedStereotype) {
+				«IF Utils.staticProfile»
+					«val qStereotypeName = Utils.getConstraintForStereotype(constraint)»
+					«val qStereotypeNameJava = qStereotypeName.replace("::", ".")»
+					private boolean evaluateConstraint(«qStereotypeNameJava» self) {
+				«ELSE»
+					private boolean evaluateConstraint(Element self, Stereotype appliedStereotype) {
+				«ENDIF»
 					«IF Utils.getJavaConstraintBody(constraint.specification) != null»
 						«Utils.getJavaConstraintBody(constraint.specification)»
 					«ELSE»
@@ -62,7 +78,7 @@ class ConstraintGen {
 			«ENDIF»	
 		
 			«IF !Utils.isConstraintForStereotype(constraint)»
-				private boolean evaluateConstraint(Element self) {
+				private boolean evaluateConstraint(EObject self) {
 					«IF Utils.getJavaConstraintBody(constraint.specification) != null»
 						«Utils.getJavaConstraintBody(constraint.specification)»
 					«ELSE»
@@ -84,6 +100,9 @@ class ConstraintGen {
 		while (contentIterator.hasNext) {
 			val constraint = contentIterator.next
 			if (Utils.hasSpecificationForJava(constraint)) {
+				if (constraint.name == null) {
+					throw new RuntimeException("Constraint has no name, context: " + constraint.context.qualifiedName);
+				}
 				val fileName = Utils.getTopPkg().replaceAll('\\.', '/') + '/constraints/' + constraint.getName() +
 					'Constraint.java';
 				fsa.generateFile(fileName, constraint.generateConstraint.toString)

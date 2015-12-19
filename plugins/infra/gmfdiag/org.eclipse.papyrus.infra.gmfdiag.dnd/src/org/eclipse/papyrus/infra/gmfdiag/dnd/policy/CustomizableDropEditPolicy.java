@@ -377,4 +377,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		return super.getTargetEditPart(request);
 	}
 
+	public EditPolicy getDefaultCreationPolicy() {
+		return defaultCreationEditPolicy;
+	}
 }

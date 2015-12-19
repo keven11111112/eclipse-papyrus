@@ -14,6 +14,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.generic.tests.tests;
 
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AddElementsOnConnectedTableTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -25,12 +30,17 @@ import org.junit.runners.Suite.SuiteClasses;
 		InvertAxisGenericTableTest.class,
 		EditAxisGenericTableTest.class,
 		OpenAndDeleteTest.class,
-		Bug458492_Edition_Enumeration.class, 
+		AddElementsOnConnectedTableTest.class,
+		Bug458492_Edition_Enumeration.class,
+		AxisChangeIndexWithConfigurationTest.class,
+		AxisChangeIndexWithoutConfigurationTest.class,
+		InvertedAxisChangeIndexWithConfigurationTest.class,
+		InvertedAxisChangeIndexWithoutConfigurationTest.class,
 		RevealGenericTableTest.class,
 		FilterStringMatcherTest.class,
 		FilterEEnumMatcherTest.class,
-		FilterNumericMatcherTest.class, 
-		FilterUMLEnumerationMatcherTest.class 
+		FilterNumericMatcherTest.class,
+		FilterUMLEnumerationMatcherTest.class
 })
 public class AllTests {
 	// JUnit 4 test suite

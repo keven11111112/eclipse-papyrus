@@ -20,10 +20,10 @@ import org.eclipse.gmf.runtime.notation.Compartment;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.UMLShapeCompartment#isVerticalAlignment <em>Vertical Alignment</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.migration.rsa.umlnotation.PapyrusUMLNotationPackage#getUMLShapeCompartment()
  * @model

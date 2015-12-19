@@ -144,76 +144,7 @@ public class NattableaxisconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateAbstractHeaderAxisConfiguration(AbstractHeaderAxisConfiguration abstractHeaderAxisConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(abstractHeaderAxisConfiguration, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractHeaderAxisConfiguration_oneObjectLabelConfigurationTypes(abstractHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractHeaderAxisConfiguration_oneFeatureLabelConfigurationTypes(abstractHeaderAxisConfiguration, diagnostics, context);
-		return result;
-	}
-
-	/**
-	 * The cached validation expression for the oneObjectLabelConfigurationTypes constraint of '<em>Abstract Header Axis Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ABSTRACT_HEADER_AXIS_CONFIGURATION__ONE_OBJECT_LABEL_CONFIGURATION_TYPES__EEXPRESSION = "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::ObjectLabelProviderConfiguration))->size() <= 1"; //$NON-NLS-1$
-
-	/**
-	 * Validates the oneObjectLabelConfigurationTypes constraint of '<em>Abstract Header Axis Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAbstractHeaderAxisConfiguration_oneObjectLabelConfigurationTypes(AbstractHeaderAxisConfiguration abstractHeaderAxisConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION,
-				 abstractHeaderAxisConfiguration,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				 "oneObjectLabelConfigurationTypes", //$NON-NLS-1$
-				 ABSTRACT_HEADER_AXIS_CONFIGURATION__ONE_OBJECT_LABEL_CONFIGURATION_TYPES__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
-
-	/**
-	 * The cached validation expression for the oneFeatureLabelConfigurationTypes constraint of '<em>Abstract Header Axis Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected static final String ABSTRACT_HEADER_AXIS_CONFIGURATION__ONE_FEATURE_LABEL_CONFIGURATION_TYPES__EEXPRESSION = "ownedLabelConfigurations->collect(ilc : nattable::nattablelabelprovider::ILabelProviderConfiguration | ilc.oclAsType(nattable::nattablelabelprovider::FeatureLabelProviderConfiguration))->size() <= 1"; //$NON-NLS-1$
-
-	/**
-	 * Validates the oneFeatureLabelConfigurationTypes constraint of '<em>Abstract Header Axis Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateAbstractHeaderAxisConfiguration_oneFeatureLabelConfigurationTypes(AbstractHeaderAxisConfiguration abstractHeaderAxisConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(NattableaxisconfigurationPackage.Literals.ABSTRACT_HEADER_AXIS_CONFIGURATION,
-				 abstractHeaderAxisConfiguration,
-				 diagnostics,
-				 context,
-				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				 "oneFeatureLabelConfigurationTypes", //$NON-NLS-1$
-				 ABSTRACT_HEADER_AXIS_CONFIGURATION__ONE_FEATURE_LABEL_CONFIGURATION_TYPES__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
+		return validate_EveryDefaultConstraint(abstractHeaderAxisConfiguration, diagnostics, context);
 	}
 
 	/**
@@ -288,8 +219,6 @@ public class NattableaxisconfigurationValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(tableHeaderAxisConfiguration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(tableHeaderAxisConfiguration, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(tableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractHeaderAxisConfiguration_oneObjectLabelConfigurationTypes(tableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractHeaderAxisConfiguration_oneFeatureLabelConfigurationTypes(tableHeaderAxisConfiguration, diagnostics, context);
 		if (result || diagnostics != null) result &= validateTableHeaderAxisConfiguration_axisManagersIdUnique(tableHeaderAxisConfiguration, diagnostics, context);
 		return result;
 	}
@@ -300,7 +229,7 @@ public class NattableaxisconfigurationValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS_ID_UNIQUE__EEXPRESSION = "axisManagers->forAll(am1 : AxisManagerRepresentation, am2 : AxisManagerRepresentation | am1.axisManagerId <> am2.axisManagerId)"; //$NON-NLS-1$
+	protected static final String TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGERS_ID_UNIQUE__EEXPRESSION = "axisManagers->forAll(am1 : AxisManagerRepresentation | ( (axisManagers->excluding (am1))->forAll(am2 : AxisManagerRepresentation | am1.axisManagerId<>am2.axisManagerId) ))"; //$NON-NLS-1$
 
 	/**
 	 * Validates the axisManagersIdUnique constraint of '<em>Table Header Axis Configuration</em>'.
@@ -329,18 +258,7 @@ public class NattableaxisconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateLocalTableHeaderAxisConfiguration(LocalTableHeaderAxisConfiguration localTableHeaderAxisConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(localTableHeaderAxisConfiguration, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractHeaderAxisConfiguration_oneObjectLabelConfigurationTypes(localTableHeaderAxisConfiguration, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractHeaderAxisConfiguration_oneFeatureLabelConfigurationTypes(localTableHeaderAxisConfiguration, diagnostics, context);
-		return result;
+		return validate_EveryDefaultConstraint(localTableHeaderAxisConfiguration, diagnostics, context);
 	}
 
 	/**

@@ -22,7 +22,7 @@
 ## BUILD_ALIAS=M4
 ##
 
-p2UpdateSiteDir=${WORKSPACE}/releng/dev/site/target/repository
+p2UpdateSiteDir=${WORKSPACE}/source/releng/dev/site/target/repository
 updateSite=${WORKSPACE}/repository
 
 updateZipName=Papyrus-Developer-Update.zip

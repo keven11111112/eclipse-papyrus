@@ -22,8 +22,6 @@ import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstrain
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomDependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomDependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomProfileEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomProfileEditPartTN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleSourceEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationRoleTargetEditPart;
@@ -31,8 +29,6 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartTN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry;
 
@@ -66,10 +62,7 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new CustomDependencyBranchEditPart(view);
-			case ProfileEditPartTN.VISUAL_ID:
-				return new CustomProfileEditPartTN(view);
-			case ProfileEditPartCN.VISUAL_ID:
-				return new CustomProfileEditPartCN(view);
+
 			case ConstraintEditPart.VISUAL_ID:
 				return new CustomConstraintEditPart(view);
 			case ConstraintEditPartCN.VISUAL_ID:

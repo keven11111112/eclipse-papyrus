@@ -9,6 +9,7 @@
  *
  * Contributors:
  *     Patrick Tessier (patrick.tessier@cea.fr) CEA LIST. - initial API and implementation
+ *     
  *******************************************************************************/
 package org.eclipse.papyrus.req.sysml.assistant.handler;
 
@@ -20,23 +21,22 @@ import org.eclipse.papyrus.req.sysml.assistant.command.ExtractCommentCommand;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * this class execute parses of comment
+ * Executes the parsing of a requirement to extract comments
  */
 
-public class ExtractCommentsHandler extends PapyrusReqSysMLAbstractHandler { 
-
-	
+public class ExtractCommentsHandler extends PapyrusAbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		super.execute(event);
-		ArrayList<Element> selectedElement=getSelectionSet();
-		if( selectedElement.size()!=0){
-			ExtractCommentCommand extractCommentCommand= new ExtractCommentCommand(transactionalEditingDomain,selectedElement);
+		ArrayList<Element> selectedElement = getSelectionSet();
+		if (selectedElement.size() != 0) {
+			ExtractCommentCommand extractCommentCommand = new ExtractCommentCommand(transactionalEditingDomain,
+					selectedElement);
 			transactionalEditingDomain.getCommandStack().execute(extractCommentCommand);
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
@@ -45,12 +45,12 @@ public class ExtractCommentsHandler extends PapyrusReqSysMLAbstractHandler {
 	 */
 	@Override
 	public boolean isEnabled() {
-		ArrayList<Element> selectedElement=getSelectionSet();
-		if( selectedElement.size()!=0){
+		ArrayList<Element> selectedElement = getSelectionSet();
+		if (selectedElement.size() != 0) {
 			return true;
+		} else {
+			return false;
 		}
-		else{ return false;}
 	}
 
-	
 }

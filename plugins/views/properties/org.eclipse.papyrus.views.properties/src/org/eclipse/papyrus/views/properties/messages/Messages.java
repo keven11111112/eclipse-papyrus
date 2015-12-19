@@ -24,6 +24,8 @@ public class Messages extends NLS {
 
 	public static String EcorePropertyEditorFactory_CreateANew;
 
+	public static String EditionDialog_CanNotFindview;
+
 	public static String EditionDialog_CreateANewElement;
 
 	public static String Preferences_ConflictWarning1;

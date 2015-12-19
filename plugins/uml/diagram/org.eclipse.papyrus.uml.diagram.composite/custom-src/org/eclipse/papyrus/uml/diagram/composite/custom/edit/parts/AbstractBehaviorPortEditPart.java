@@ -52,4 +52,14 @@ public abstract class AbstractBehaviorPortEditPart extends RoundedCompartmentEdi
 	protected int getDefaultCornerWidth() {
 		return 10;
 	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#isSelectable()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean isSelectable() {
+		return false;
+	}
 }

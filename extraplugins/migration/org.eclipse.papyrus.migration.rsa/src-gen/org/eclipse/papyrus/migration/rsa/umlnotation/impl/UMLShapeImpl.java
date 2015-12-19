@@ -25,14 +25,15 @@ import org.eclipse.papyrus.migration.rsa.umlnotation.UMLView;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl#getShowStereotype <em>Show Stereotype</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl#getShowListVisibility <em>Show List Visibility</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl#isShowListSignature <em>Show List Signature</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl#getAlignment <em>Alignment</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl#getShowStereotypeAttributeCompartment <em>Show Stereotype Attribute Compartment</em>}</li>
+ * <li>{@link org.eclipse.papyrus.migration.rsa.umlnotation.impl.UMLShapeImpl#getShowListStereotype <em>Show List Stereotype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -147,6 +148,28 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 	 * @ordered
 	 */
 	protected String showStereotypeAttributeCompartment = SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getShowListStereotype() <em>Show List Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getShowListStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SHOW_LIST_STEREOTYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getShowListStereotype() <em>Show List Stereotype</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getShowListStereotype()
+	 * @generated
+	 * @ordered
+	 */
+	protected String showListStereotype = SHOW_LIST_STEREOTYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -306,6 +329,32 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 	 * @generated
 	 */
 	@Override
+	public String getShowListStereotype() {
+		return showListStereotype;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setShowListStereotype(String newShowListStereotype) {
+		String oldShowListStereotype = showListStereotype;
+		showListStereotype = newShowListStereotype;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE, oldShowListStereotype, showListStereotype));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE:
@@ -318,6 +367,8 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 			return getAlignment();
 		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			return getShowStereotypeAttributeCompartment();
+		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE:
+			return getShowListStereotype();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -345,6 +396,9 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 			return;
 		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			setShowStereotypeAttributeCompartment((String) newValue);
+			return;
+		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE:
+			setShowListStereotype((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -374,6 +428,9 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			setShowStereotypeAttributeCompartment(SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT);
 			return;
+		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE:
+			setShowListStereotype(SHOW_LIST_STEREOTYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -397,6 +454,8 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 			return ALIGNMENT_EDEFAULT == null ? alignment != null : !ALIGNMENT_EDEFAULT.equals(alignment);
 		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 			return SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT == null ? showStereotypeAttributeCompartment != null : !SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT_EDEFAULT.equals(showStereotypeAttributeCompartment);
+		case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE:
+			return SHOW_LIST_STEREOTYPE_EDEFAULT == null ? showListStereotype != null : !SHOW_LIST_STEREOTYPE_EDEFAULT.equals(showListStereotype);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -421,6 +480,8 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 				return PapyrusUMLNotationPackage.UML_VIEW__ALIGNMENT;
 			case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 				return PapyrusUMLNotationPackage.UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT;
+			case PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE:
+				return PapyrusUMLNotationPackage.UML_VIEW__SHOW_LIST_STEREOTYPE;
 			default:
 				return -1;
 			}
@@ -448,6 +509,8 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 				return PapyrusUMLNotationPackage.UML_SHAPE__ALIGNMENT;
 			case PapyrusUMLNotationPackage.UML_VIEW__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT:
 				return PapyrusUMLNotationPackage.UML_SHAPE__SHOW_STEREOTYPE_ATTRIBUTE_COMPARTMENT;
+			case PapyrusUMLNotationPackage.UML_VIEW__SHOW_LIST_STEREOTYPE:
+				return PapyrusUMLNotationPackage.UML_SHAPE__SHOW_LIST_STEREOTYPE;
 			default:
 				return -1;
 			}
@@ -478,6 +541,8 @@ public class UMLShapeImpl extends ShapeImpl implements UMLShape {
 		result.append(alignment);
 		result.append(", showStereotypeAttributeCompartment: ");
 		result.append(showStereotypeAttributeCompartment);
+		result.append(", showListStereotype: ");
+		result.append(showListStereotype);
 		result.append(')');
 		return result.toString();
 	}

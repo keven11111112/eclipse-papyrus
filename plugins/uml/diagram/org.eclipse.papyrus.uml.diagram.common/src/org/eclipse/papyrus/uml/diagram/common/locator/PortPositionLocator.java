@@ -17,6 +17,7 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
@@ -267,34 +268,27 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 */
 	@Override
 	public int getCurrentSideOfParent() {
-		int position = PositionConstants.NONE;
-
-		// we are not on EAST, not on WEST, but we are on the NORTH
-		if ((constraint.x != parentFigure.getBounds().width - borderItemOffset) && (constraint.x != -this.borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
-			position = PositionConstants.NORTH;
-			// we are not on the EAST and not on the WEST, but we are on the SOUTH
-		} else if ((constraint.x != parentFigure.getBounds().width - borderItemOffset) && (constraint.x != -this.borderItemOffset) && (constraint.y == parentFigure.getBounds().height - borderItemOffset)) {
-			position = PositionConstants.SOUTH;
-			// we are on the EAST, but we are not on the NORTH and not on the SOUTH
-		} else if ((constraint.x == parentFigure.getBounds().width - borderItemOffset) && (constraint.y != -this.borderItemOffset) && (constraint.y != parentFigure.getBounds().height - borderItemOffset)) {
-			position = PositionConstants.EAST;
-			// we are on the WEST, but we are not on the on the NORTH and not on the SOUTH
-		} else if ((constraint.x == -this.borderItemOffset) && (constraint.y != -this.borderItemOffset) && (constraint.y != parentFigure.getBounds().height - borderItemOffset)) {
-			position = PositionConstants.WEST;
-			// we are on the NORTH and on the EAST
-		} else if ((constraint.x == parentFigure.getBounds().width - borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
-			position = PositionConstants.NORTH_EAST;
-			// we are on the NORTH and on the WEST
-		} else if ((constraint.x == -this.borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
-			position = PositionConstants.NORTH_WEST;
-			// we are on the EAST and on the SOUTH
-		} else if ((constraint.x == parentFigure.getBounds().width - borderItemOffset) && (constraint.y == parentFigure.getBounds().height - borderItemOffset)) {
-			position = PositionConstants.SOUTH_EAST;
-			// we are on the WEST and on the SOUTH
-		} else if ((constraint.x == -this.borderItemOffset) && (constraint.y == parentFigure.getBounds().height - borderItemOffset)) {
-			position = PositionConstants.SOUTH_WEST;
+		int defaultSkink =10;
+		Rectangle basisRectangle=new Rectangle(0, 0, parentFigure.getBounds().width, (parentFigure.getBounds().height));
+		//creation of an internal rectangle in order to compute the position (size divided by 2);
+		int skink_width=constraint.width/2;
+		int skink_height=constraint.height/2;
+		//sometime the size of element in the notation can be negative to explain that he can take the default size code. 
+		//The size in this case is inside the draw2D figure but here it is impossible to access to the figure of the port. 
+		// in this case , we compute a default internal rectangle minus 10.
+		if(skink_width<=0){
+			skink_width=defaultSkink;
 		}
+		if(skink_height<=0){
+			skink_height=defaultSkink;
+		}
+		Rectangle  internalRectangle= basisRectangle.getShrinked(new Insets(skink_height,skink_width, skink_height, skink_width));
+		//let draw2D to compute position
+		int position=internalRectangle.getPosition(constraint.getTopLeft());
+		//use to Debug
+		//System.out.println("basisRectangle " +basisRectangle+" internalRectangle"+internalRectangle+ " constraint"+constraint+ " "+position);
 		return position;
+
 	}
 
 	/**

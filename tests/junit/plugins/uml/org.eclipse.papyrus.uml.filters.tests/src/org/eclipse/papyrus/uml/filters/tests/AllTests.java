@@ -21,7 +21,10 @@ import org.junit.runners.Suite.SuiteClasses;
  * The master test suite for the plug-in.
  */
 @RunWith(Suite.class)
-@SuiteClasses(UMLFiltersAllTests.class)
+@SuiteClasses({
+		UMLFiltersAllTests.class,
+		ProfileAppliedRegressionTest.class,
+})
 public class AllTests {
 	// Nothing required
 }

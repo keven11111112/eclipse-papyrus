@@ -72,6 +72,7 @@ public class CSVPasteHelper {
 	}
 
 	/**
+	 * Create the CSV Parser.
 	 *
 	 * @param reader
 	 *            a reader
@@ -79,9 +80,22 @@ public class CSVPasteHelper {
 	 *         create a parser from the reader
 	 */
 	public CSVParser createParser(final Reader reader) {
-		return new CSVParser(reader, this.cellSeparator, textMarker);
+		return createParser(reader, false);
 	}
 
+	/**
+	 * Create the CSV Parser with the boolean for the beginning whitespace.
+	 *
+	 * @param reader
+	 *            a reader
+	 * @param keepBeginningWhiteSpace
+	 *            Boolean to determinate if the beginning string whitespace must be kept or removed
+	 * @return
+	 * 		create a parser from the reader
+	 */
+	public CSVParser createParser(final Reader reader, final boolean keepBeginningWhiteSpace) {
+		return new CSVParser(reader, this.cellSeparator, textMarker, keepBeginningWhiteSpace);
+	}
 
 	/**
 	 *

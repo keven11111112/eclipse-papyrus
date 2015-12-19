@@ -14,13 +14,17 @@
  *   Christian W. Damus (CEA) - 300957, 431998
  *   Christian W. Damus - 444588, 399859, 451557
  *   Christian W. Damus - bug 458197
+ *   Christian W. Damus - bug 481302
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.decoratormodel.internal.providers;
 
+import static com.google.common.collect.Iterables.filter;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -28,6 +32,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -39,6 +44,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
@@ -46,6 +52,7 @@ import org.eclipse.uml2.uml.Stereotype;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 /**
  * An implementation of the profile-application delegate protocol for externalized profile applications.
@@ -272,8 +279,63 @@ public class ExternalizedProfileApplicationDelegate implements IProfileApplicati
 		private class PrivateStereotypeCopier extends StereotypeApplicationCopier {
 			private static final long serialVersionUID = 1L;
 
+			private Set<Profile> extendedProfiles;
+
 			PrivateStereotypeCopier(Profile profile) {
 				super(profile);
+			}
+
+			/**
+			 * Extends the superclass implementation to additionally look into implicitly
+			 * referenced profiles to handle the case of a dynamic profile extending
+			 * a static profile (bug 481302).
+			 * 
+			 * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=481302">bug 481302</a>
+			 */
+			@Override
+			protected ENamedElement getDefinition(NamedElement element) {
+				ENamedElement result = super.getDefinition(element);
+
+				if (result == null) {
+					for (Profile next : getExtendedProfiles()) {
+						if (EcoreUtil.isAncestor(next, element)) {
+							result = next.getDefinition(element);
+							if (result != null) {
+								break;
+							}
+						}
+					}
+				}
+
+				return result;
+			}
+
+			protected Set<Profile> getExtendedProfiles() {
+				if (extendedProfiles == null) {
+					extendedProfiles = Sets.newHashSet();
+					computeExtendedProfiles(profile, extendedProfiles);
+				}
+				return extendedProfiles;
+			}
+
+			protected void computeExtendedProfiles(Profile profile, Set<Profile> result) {
+				for (TreeIterator<EObject> iter = profile.eAllContents(); iter.hasNext();) {
+					EObject next = iter.next();
+					if (next instanceof Stereotype) {
+						for (Stereotype super_ : filter(((Stereotype) next).getSuperClasses(), Stereotype.class)) {
+							Profile supersProfile = super_.containingProfile();
+							if ((supersProfile != null) && (supersProfile != profile)) {
+								result.add(supersProfile);
+							}
+						}
+					} else if (next instanceof Profile) {
+						// It has its own applications
+						iter.prune();
+					} else if (!(next instanceof Package)) {
+						// Only descend into non-profile packages to look for more stereotypes
+						iter.prune();
+					}
+				}
 			}
 		}
 	}
