@@ -29,7 +29,7 @@ public class ActivityExecution extends Execution {
 	 * The group of activations of the activity nodes of the activity.
 	 */
 	public ActivityNodeActivationGroup activationGroup;
-
+	
 	@Override
 	public void execute() {
 		// Execute the activity for this execution by creating an activity node
@@ -88,5 +88,4 @@ public class ActivityExecution extends Execution {
 			this.activationGroup.terminateAll();
 		}
 	}
-
 }

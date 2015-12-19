@@ -40,6 +40,12 @@ public abstract class Execution extends Object_ {
 	 */
 	public List<ParameterValue> parameterValues = new ArrayList<ParameterValue>();
 
+	/*
+	 * An execution may be encapsulated in another execution. The role of an encapsulating
+	 * execution is to be aware about the termination of its encapsulated execution
+	 */
+	public Execution encapsulatingExecution;
+	
 	public abstract void execute();
 	
 	public void terminate() {
