@@ -18,6 +18,10 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ClassifierBehaviorInvocationEventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.DoActivityContextObject;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_Object;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
@@ -47,8 +51,9 @@ public class StateActivation extends VertexActivation {
 	// Boolean flag to know if the exit behavior was completed
 	public boolean isExitCompleted; 
 	
-	// The execution corresponding to the doActivity if any
-	public DoActivityExecution doActivityExecution;
+	// The context object in which is executed the doActivity
+	// owned by the visited state
+	public DoActivityContextObject doActivityContextObject;
 	
 	public boolean hasCompleted(){
 		// A state can only be considered as being completed under the following circumstances
@@ -171,13 +176,24 @@ public class StateActivation extends VertexActivation {
 		if(!this.isDoActivityCompleted){
 			Behavior doActivity = state.getDoActivity(); 
 			if(doActivity!=null){
-				// Note: the doActivity is started asynchronously. However it as access
-				// to the current context object. Indeed it may need to read properties
-				// call operations and so on.
-				this.doActivityExecution = new DoActivityExecution();
-				this.doActivityExecution.owner = this;
-				this.doActivityExecution.encapsulate(this.getExecutionFor(doActivity));
-				this.doActivityExecution.invoke();
+				// Initialization of the context object used by the doActivity which
+				// is going to be invoked.
+				this.doActivityContextObject = new DoActivityContextObject();
+				Object_ stateMachineExecutionContext = this.getExecutionContext();
+				this.doActivityContextObject.initialize(this.getExecutionContext());
+				this.doActivityContextObject.owner = this;
+				Execution doActivityExecution = this.getExecutionFor(doActivity);
+				doActivityExecution.context = this.doActivityContextObject;
+				// The doActivity is started asynchronously. This is realized by adding an invocation event accepter
+				// for this doActivity within the event accepter list of the object activation attached to the currently
+				// executed state machine
+				ClassifierBehaviorInvocationEventAccepter invocation = new ClassifierBehaviorInvocationEventAccepter();
+				invocation.execution = doActivityExecution;
+				doActivityExecution.context.register(invocation);
+				InvocationEventOccurrence eventOccurence = new InvocationEventOccurrence();
+				eventOccurence.execution = doActivityExecution;
+				stateMachineExecutionContext.objectActivation.eventPool.add(eventOccurence);
+				stateMachineExecutionContext.objectActivation._send(new ArrivalSignal());
 			}
 		}
 	}
@@ -270,12 +286,10 @@ public class StateActivation extends VertexActivation {
 				regionActivation.exit(exitingTransition);
 			}
 		}
-		// If there is a doActivity behavior that is currently executed then this behavior is terminated
+		// If there is a doActivity currently executing then it is aborted
 		if(!this.isDoActivityCompleted){
-			this.doActivityExecution.terminate();
-			this.doActivityExecution.destroy();
-			this.doActivityExecution = null;
-			this.isDoActivityCompleted = true;
+			this.doActivityContextObject.destroy();
+			this.doActivityContextObject = null;
 		}
 		// If there is an exit behavior specified for the state it is executed
 		if(!this.isExitCompleted){

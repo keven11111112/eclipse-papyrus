@@ -8,41 +8,46 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Jeremie Tatibouet (CEA LIST)
+ *  Jeremie Tatibouet (CEA LIST) - Based on Ed Seidewitz remarks
  *
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
-import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.DoActivityExecution;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.DoActivityContextObject;
 
 public class DoActivityExecutionEventAccepter extends EventAccepter {
 
-	// DoActivity that need to be executed
-	protected DoActivityExecution execution;
+	// The doActivity context object in which this accepter is registered
+	public DoActivityContextObject context;
 	
-	public DoActivityExecutionEventAccepter(DoActivityExecution execution){
-		this.execution = execution;
-	}
+	// The actual event accepter (i.e., the one registered by the doActivity execution)
+	public EventAccepter encapsulatedAccepter;
 	
 	@Override
 	public void accept(EventOccurrence eventOccurrence) {
-		// Execute the DoActivity for which the invocation event occurence was accepted
-		if(eventOccurrence instanceof InvocationEventOccurrence){
-			this.execution.execute();
+		// Execute the RTC step related to the acceptance of this event.
+		// Afterwards check if there are remaining accepters registered in
+		// the for the object activation which is attached to the do activity
+		// context object.
+		this.context.unregister(this.encapsulatedAccepter);
+		this.encapsulatedAccepter.accept(eventOccurrence);
+		if(this.context.objectActivation.waitingEventAccepters.isEmpty()){
+			// Make the state to complete if it is ready to do so
+			if(this.context.owner!=null){
+				this.context.owner.isDoActivityCompleted = true;
+				if(this.context.owner.hasCompleted()){
+					this.context.owner.notifyCompletion();
+				}
+			}
 		}
 	}
 
 	@Override
 	public Boolean match(EventOccurrence eventOccurrence) {
-		// Make sure the event occurrence matches the DoActivity execution registered
-		// for this accepter
-		if(eventOccurrence instanceof InvocationEventOccurrence){
-			return ((InvocationEventOccurrence)eventOccurrence).execution==this.execution;
-		}
-		return false;
+		// Simply delegates to the match operation of the encapsulated accepter
+		return this.encapsulatedAccepter.match(eventOccurrence);
 	}
 
 }
