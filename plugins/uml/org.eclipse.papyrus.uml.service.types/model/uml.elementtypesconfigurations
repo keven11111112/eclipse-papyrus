@@ -465,7 +465,7 @@
     <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_Scj-sVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/FinalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//FinalNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.FinalState" identifier="org.eclipse.papyrus.uml.FinalState" name="UML::FinalState" hint="UML::FinalState" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xmi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="org.eclipse.papyrus.uml.FinalState" identifier="org.eclipse.papyrus.uml.FinalState" name="UML::FinalState" hint="UML::FinalState" kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.FinalStateHelper">
     <iconEntry xmi:type="elementtypesconfigurations:IconEntry" xmi:id="_ScklwFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/FinalState.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//FinalState"/>
   </elementTypeConfigurations>
