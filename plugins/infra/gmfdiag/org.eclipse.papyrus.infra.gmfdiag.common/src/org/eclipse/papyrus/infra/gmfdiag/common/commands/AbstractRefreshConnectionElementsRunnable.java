@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -83,7 +85,7 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 	 * @see org.eclipse.emf.transaction.RunnableWithResult#getStatus()
 	 *
 	 * @return
-	 *         the status of the runnable
+	 * 		the status of the runnable
 	 */
 	@Override
 	public final IStatus getStatus() {
@@ -93,7 +95,7 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 	/**
 	 *
 	 * @return
-	 *         the container edit part
+	 * 		the container edit part
 	 */
 	protected final IGraphicalEditPart getContainerEditPart() {
 		return this.containerEP;
@@ -114,6 +116,11 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 		if (targetEP != null) {
 			targetEP.refresh();
 		}
+		@SuppressWarnings("unchecked")
+		List<? extends EditPart> childrens = connectionToRefresh.getChildren();
+		for (EditPart nextChild : childrens) {
+			nextChild.refresh();
+		}
 		// to force the call to the router, to update the figure
 		connectionToRefresh.getFigure().validate();
 	}
@@ -121,7 +128,7 @@ public abstract class AbstractRefreshConnectionElementsRunnable<T> implements Ru
 	/**
 	 *
 	 * @return
-	 *         the figure for the container edit part
+	 * 		the figure for the container edit part
 	 */
 	protected final IFigure getContainerFigure() {
 		return this.containerEP.getFigure();
