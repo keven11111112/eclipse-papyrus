@@ -28,10 +28,13 @@ public class EntryPointActivation extends ConnectionPointActivation {
 		if(vertexActivation!=null){
 			vertexActivation.enter(enteringTransition, leastCommonAncestor);
 		}
-		// Fire all transitions originating from the entry point
-		// FIXME: Can these transitions have guards and triggers ?
+		// Fire all transitions originating from the entry point. These transitions
+		// are fired under the condition that the guard is true. 
 		for(int i = 0; i < this.getOutgoingTransitions().size(); i++){
-			this.getOutgoingTransitions().get(i).fire();
+			TransitionActivation transitionActivation = this.getOutgoingTransitions().get(i);
+			if(transitionActivation.evaluateGuard()){
+				transitionActivation.fire();
+			}
 		}
 	}
 }
