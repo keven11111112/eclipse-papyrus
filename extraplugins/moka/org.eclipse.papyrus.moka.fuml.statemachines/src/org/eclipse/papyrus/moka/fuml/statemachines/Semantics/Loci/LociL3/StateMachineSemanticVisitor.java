@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * (i.e., RegionActivation, TransitionActivation, VertexActivation)
  *
  */
-public abstract class SM_SemanticVisitor extends SemanticVisitor {
+public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 
 	protected SemanticVisitor parent;
 
@@ -54,7 +54,7 @@ public abstract class SM_SemanticVisitor extends SemanticVisitor {
 		this.parent = parent;
 	}
 
-	public SM_SemanticVisitor(){
+	public StateMachineSemanticVisitor(){
 		this.parent = null;
 	}
 	
@@ -67,7 +67,7 @@ public abstract class SM_SemanticVisitor extends SemanticVisitor {
 			if(this.parent instanceof StateMachineExecution){
 				contextChain.add(this.parent);
 			}else{
-				contextChain.addAll(((SM_SemanticVisitor)this.parent).getContextChain());
+				contextChain.addAll(((StateMachineSemanticVisitor)this.parent).getContextChain());
 			}
 		}
 		return contextChain;
@@ -77,7 +77,7 @@ public abstract class SM_SemanticVisitor extends SemanticVisitor {
 		if(this.parent!=null && this.parent instanceof StateMachineExecution){
 			return (Execution)this.parent;
 		}else{
-			return ((SM_SemanticVisitor)this.parent).getStateMachineExecution();
+			return ((StateMachineSemanticVisitor)this.parent).getStateMachineExecution();
 		}
 	}
 	

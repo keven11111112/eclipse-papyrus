@@ -24,8 +24,8 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_OpaqueExpressionEvaluation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_SemanticVisitor;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.StateMachineOpaqueExpressionEvaluation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.StateMachineSemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.TransitionKind;
 import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-public class TransitionActivation extends SM_SemanticVisitor {
+public class TransitionActivation extends StateMachineSemanticVisitor {
 	
 	/**
 	 * Provide the status of a specific transition
@@ -100,7 +100,7 @@ public class TransitionActivation extends SM_SemanticVisitor {
 				Evaluation evaluation = null;
 				if (specification instanceof OpaqueExpression) {
 					evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
-					((SM_OpaqueExpressionEvaluation)evaluation).context = this.getExecutionContext() ;
+					((StateMachineOpaqueExpressionEvaluation)evaluation).context = this.getExecutionContext() ;
 				}else if(specification instanceof LiteralBoolean){
 					evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 				}

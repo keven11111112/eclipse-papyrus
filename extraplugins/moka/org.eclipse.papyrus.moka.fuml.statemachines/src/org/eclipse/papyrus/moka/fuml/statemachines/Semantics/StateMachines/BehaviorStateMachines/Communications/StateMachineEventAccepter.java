@@ -34,9 +34,9 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
  * When a signal triggers an acceptance then accepter is removed from the pool. At the
  * end of the RTC step another one is automatically added to the pool.
  */
-public class SM_EventAccepter extends EventAccepter{
+public class StateMachineEventAccepter extends EventAccepter{
 
-	public SM_EventAccepter(StateMachineExecution execution) {
+	public StateMachineEventAccepter(StateMachineExecution execution) {
 		this.registrationContext = execution;
 	}
 	
@@ -61,7 +61,7 @@ public class SM_EventAccepter extends EventAccepter{
 		}
 		Object_ context = this.registrationContext.context;
 		if(context!=null && context.objectActivation!=null){
-			context.register(new SM_EventAccepter((StateMachineExecution)this.registrationContext));
+			context.register(new StateMachineEventAccepter((StateMachineExecution)this.registrationContext));
 		}
 	}
 

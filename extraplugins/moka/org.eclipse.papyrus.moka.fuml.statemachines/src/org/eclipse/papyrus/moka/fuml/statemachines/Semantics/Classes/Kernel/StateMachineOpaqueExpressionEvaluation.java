@@ -24,7 +24,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Pa
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 
-public class SM_OpaqueExpressionEvaluation extends CS_OpaqueExpressionEvaluation {
+public class StateMachineOpaqueExpressionEvaluation extends CS_OpaqueExpressionEvaluation {
 
 	public Object_ context = null ;
 

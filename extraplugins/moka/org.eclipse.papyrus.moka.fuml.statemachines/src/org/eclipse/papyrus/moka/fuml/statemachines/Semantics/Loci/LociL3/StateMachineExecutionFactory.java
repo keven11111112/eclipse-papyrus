@@ -15,7 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_OpaqueExpressionEvaluation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.StateMachineOpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.FinalStateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Transition;
 
-public class SM_ExecutionFactory extends CS_ExecutionFactory {
+public class StateMachineExecutionFactory extends CS_ExecutionFactory {
 	
 	public SemanticVisitor instantiateVisitor(Element element) {
 		// Provide the semantic visitor corresponding to the syntactic
@@ -62,7 +62,7 @@ public class SM_ExecutionFactory extends CS_ExecutionFactory {
 		}else if (element instanceof Region) {
 			visitor = new RegionActivation();
 		}else if(element instanceof OpaqueExpression) {
-			visitor = new SM_OpaqueExpressionEvaluation();
+			visitor = new StateMachineOpaqueExpressionEvaluation();
 		}else {
 			visitor = super.instantiateVisitor(element);
 		}

@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_SemanticVisitor;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.StateMachineSemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation.TransitionMetadata;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.Vertex;
@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Vertex;
 /**
  *	A visitor for a vertex owned by a state-machine 
  */
-public abstract class VertexActivation extends SM_SemanticVisitor {
+public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	
 	public enum StateMetadata{IDLE, ACTIVE}
 	

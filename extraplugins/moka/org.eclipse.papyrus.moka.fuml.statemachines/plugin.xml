@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.moka.engine">
       <engine
-            class="org.eclipse.papyrus.moka.fuml.statemachines.SM_ExecutionEngine"
+            class="org.eclipse.papyrus.moka.fuml.statemachines.StateMachineExecutionEngine"
             description="StateMachines semantics [Prototype]"></engine>
    </extension>
    <extension

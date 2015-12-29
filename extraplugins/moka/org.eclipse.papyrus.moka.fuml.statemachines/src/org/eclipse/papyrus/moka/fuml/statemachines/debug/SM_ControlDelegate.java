@@ -27,7 +27,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.debug.ControlDelegate;
 import org.eclipse.papyrus.moka.fuml.debug.FUMLThread;
 import org.eclipse.papyrus.moka.fuml.presentation.FUMLPresentationUtils;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.SM_SemanticVisitor;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.StateMachineSemanticVisitor;
 import org.eclipse.papyrus.moka.ui.presentation.AnimationUtils;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Element;
@@ -57,9 +57,9 @@ public class SM_ControlDelegate extends ControlDelegate {
 			semanticElement = ((ActivityEdgeInstance)object).edge ;
 			if (((ActivityEdgeInstance)object).group != null)
 				executionContext = ((ActivityEdgeInstance)object).group.getActivityExecution().context ;
-		}else if(object instanceof SM_SemanticVisitor){
-			semanticElement = ((SM_SemanticVisitor)object).getNode();
-			executionContext = ((SM_SemanticVisitor)object).getExecutionContext();
+		}else if(object instanceof StateMachineSemanticVisitor){
+			semanticElement = ((StateMachineSemanticVisitor)object).getNode();
+			executionContext = ((StateMachineSemanticVisitor)object).getExecutionContext();
 		}
 		else {
 			System.err.println(new Exception("Unexpected element in ControlDelegate::control")) ;

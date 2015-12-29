@@ -20,7 +20,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.SM_EventAccepter;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineEventAccepter;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
 import org.eclipse.uml2.uml.Class;
@@ -95,7 +95,7 @@ public class StateMachineExecution extends Execution {
 	public void execute() {
 		/*0. Initialization*/
 		if(this.context!=null && this.context.objectActivation!=null){
-			this.context.register(new SM_EventAccepter(this));
+			this.context.register(new StateMachineEventAccepter(this));
 		}
 		this.initRegions();
 		/*1. Create visitors for all vertices*/

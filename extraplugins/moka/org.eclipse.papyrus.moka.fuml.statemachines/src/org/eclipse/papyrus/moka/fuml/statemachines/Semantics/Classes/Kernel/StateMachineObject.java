@@ -7,7 +7,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Pa
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
 import org.eclipse.uml2.uml.Class;
 
-public class SM_Object extends CS_Object {
+public class StateMachineObject extends CS_Object {
 	
 	public void startBehavior(Class classifier, List<ParameterValue> inputs) {
 		// The behavior captured here is almost identical to the one provide by Object_.
