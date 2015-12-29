@@ -19,8 +19,11 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.SM_EventAccepter;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
@@ -119,5 +122,16 @@ public class StateMachineExecution extends Execution {
 	
 	public List<RegionActivation> getRegionActivation() {
 		return regionActivation;
+	}
+	
+	public void startBehavior(Class classifier, List<ParameterValue> inputs) {
+		// The behavior captured here is almost identical to the one provide by Object_.
+		// Instead of using a simple ObjectActivation we use a StateMachineObjectActivation.
+		// This specialized kind of ObjectActivation allows the registering of completion events.
+		if (this.objectActivation == null) {
+			this.objectActivation = new StateMachineObjectActivation();
+			this.objectActivation.object = this;
+		}
+		this.objectActivation.startBehavior(classifier, inputs);
 	}
 }

@@ -22,7 +22,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ar
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ClassifierBehaviorInvocationEventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.DoActivityContextObject;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.SM_Object;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
 import org.eclipse.uml2.uml.Behavior;
@@ -75,8 +75,8 @@ public class StateActivation extends VertexActivation {
 		// The notification of a completion event consists in sending in the execution
 		// context of the state-machine a completion event occurrence. This event is
 		// placed in the pool before any other event
-		SM_Object executionContext = (SM_Object) this.getExecutionContext();
-		executionContext.sendCompletionEvent(this);
+		Object_ context = this.getExecutionContext();
+		((StateMachineObjectActivation)context.objectActivation).registerCompletionEvent(this);
 	}
 	
 	public List<PseudostateActivation> getConnectionPointActivation(){
