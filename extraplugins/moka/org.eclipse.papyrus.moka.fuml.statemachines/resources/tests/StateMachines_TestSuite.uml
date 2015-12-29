@@ -6909,7 +6909,7 @@ StateMachine_TestSuite::Util::Architecture::Target {&#xD;
                       </node>
                     </entry>
                     <region xmi:type="uml:Region" xmi:id="_WRicYIBYEeSyU99AdVPD5Q" name="T1.1">
-                      <transition xmi:type="uml:Transition" xmi:id="_x_gYQIBYEeSyU99AdVPD5Q" name="EntryPoint_to_T1.1.1" source="_jcsPEIBYEeSyU99AdVPD5Q" target="_wSTPkIBYEeSyU99AdVPD5Q">
+                      <transition xmi:type="uml:Transition" xmi:id="_x_gYQIBYEeSyU99AdVPD5Q" name="EntryPoint_to_T1.1.1" kind="local" source="_jcsPEIBYEeSyU99AdVPD5Q" target="_wSTPkIBYEeSyU99AdVPD5Q">
                         <effect xmi:type="uml:Activity" xmi:id="_taaXQIBqEeSdy_b8iws23g" name="doTraversal" node="_gi1x41u2EeWBprt3NRLCdQ _gi2Y8Fu2EeWBprt3NRLCdQ _gi2Y8lu2EeWBprt3NRLCdQ _gi3AAFu2EeWBprt3NRLCdQ _gi3AAVu2EeWBprt3NRLCdQ">
                           <edge xmi:type="uml:ControlFlow" xmi:id="_gi0jwFu2EeWBprt3NRLCdQ" target="_gi2Y8Fu2EeWBprt3NRLCdQ" source="_gi1x41u2EeWBprt3NRLCdQ"/>
                           <edge xmi:type="uml:ObjectFlow" xmi:id="_gi1K0Fu2EeWBprt3NRLCdQ" target="_gi2Y91u2EeWBprt3NRLCdQ" source="_gi2Y8Vu2EeWBprt3NRLCdQ">
@@ -20915,7 +20915,7 @@ Expected execution sequence&#xD;
                   </node>
                 </entry>
                 <region xmi:type="uml:Region" xmi:id="_2N2XmoQCEeWxB6gcrPTBNA" name="Region1">
-                  <transition xmi:type="uml:Transition" xmi:id="_2N2Xm4QCEeWxB6gcrPTBNA" name="T1.1" source="_2N2XTYQCEeWxB6gcrPTBNA" target="_2N2-kIQCEeWxB6gcrPTBNA">
+                  <transition xmi:type="uml:Transition" xmi:id="_2N2Xm4QCEeWxB6gcrPTBNA" name="T1.1" kind="local" source="_2N2XTYQCEeWxB6gcrPTBNA" target="_2N2-kIQCEeWxB6gcrPTBNA">
                     <effect xmi:type="uml:Activity" xmi:id="_2N2XnIQCEeWxB6gcrPTBNA" name="doTraversal" node="_ituKA4QDEeWxB6gcrPTBNA _ituxEIQDEeWxB6gcrPTBNA _ituxEoQDEeWxB6gcrPTBNA _itvYIIQDEeWxB6gcrPTBNA _itvYIYQDEeWxB6gcrPTBNA">
                       <edge xmi:type="uml:ControlFlow" xmi:id="_itXksIQDEeWxB6gcrPTBNA" target="_ituxEIQDEeWxB6gcrPTBNA" source="_ituKA4QDEeWxB6gcrPTBNA"/>
                       <edge xmi:type="uml:ObjectFlow" xmi:id="_itYLwIQDEeWxB6gcrPTBNA" target="_ituxF4QDEeWxB6gcrPTBNA" source="_ituxEYQDEeWxB6gcrPTBNA">
@@ -30349,7 +30349,7 @@ Initial - T1 - wait - T2(effect) - EntryPoint - S1(entry) - T1.1(entry) - S1.1 -
                   </node>
                 </effect>
               </transition>
-              <transition xmi:type="uml:Transition" xmi:id="_vbhEgJ0sEeWMKsrTxOLnkQ" name="T1.1" source="_L6IPoJ0sEeWMKsrTxOLnkQ" target="_mhkBQJ0sEeWMKsrTxOLnkQ">
+              <transition xmi:type="uml:Transition" xmi:id="_vbhEgJ0sEeWMKsrTxOLnkQ" name="T1.1" kind="local" source="_L6IPoJ0sEeWMKsrTxOLnkQ" target="_mhkBQJ0sEeWMKsrTxOLnkQ">
                 <effect xmi:type="uml:Activity" xmi:id="_-dBU0J0sEeWMKsrTxOLnkQ" name="effect" node="_ro__sJ0tEeWMKsrTxOLnkQ _rpAmwJ0tEeWMKsrTxOLnkQ _rpAmwp0tEeWMKsrTxOLnkQ _rpB04J0tEeWMKsrTxOLnkQ _rpCb8J0tEeWMKsrTxOLnkQ">
                   <edge xmi:type="uml:ControlFlow" xmi:id="_ro9jcJ0tEeWMKsrTxOLnkQ" target="_rpAmwJ0tEeWMKsrTxOLnkQ" source="_ro__sJ0tEeWMKsrTxOLnkQ"/>
                   <edge xmi:type="uml:ObjectFlow" xmi:id="_ro-KgJ0tEeWMKsrTxOLnkQ" target="_rpAmx50tEeWMKsrTxOLnkQ" source="_rpAmwZ0tEeWMKsrTxOLnkQ">
@@ -31291,12 +31291,12 @@ activity 'SemanticTest Entry002-quater_Factory'(): 'SemanticTest Entry002-quater
               <transition xmi:type="uml:Transition" xmi:id="_Zn8aIKdWEeWA7bjN4txm9g" name="T2" source="_SlcAsKdWEeWA7bjN4txm9g" target="_nYxFsKdWEeWA7bjN4txm9g">
                 <trigger xmi:type="uml:Trigger" xmi:id="_f5lXUKdWEeWA7bjN4txm9g" name="StartTrigger" event="_OMzFUFbtEeWrJvPHum8sog"/>
               </transition>
-              <transition xmi:type="uml:Transition" xmi:id="_U8G1wKdZEeWA7bjN4txm9g" name="T1.1" guard="_IRS6kKdaEeWA7bjN4txm9g" source="_nYxFsKdWEeWA7bjN4txm9g" target="_OakbYKdZEeWA7bjN4txm9g">
+              <transition xmi:type="uml:Transition" xmi:id="_U8G1wKdZEeWA7bjN4txm9g" name="T1.1" guard="_IRS6kKdaEeWA7bjN4txm9g" kind="local" source="_nYxFsKdWEeWA7bjN4txm9g" target="_OakbYKdZEeWA7bjN4txm9g">
                 <ownedRule xmi:type="uml:Constraint" xmi:id="_IRS6kKdaEeWA7bjN4txm9g" name="true">
                   <specification xmi:type="uml:LiteralBoolean" xmi:id="_IRS6kadaEeWA7bjN4txm9g" value="true"/>
                 </ownedRule>
               </transition>
-              <transition xmi:type="uml:Transition" xmi:id="_b_SkoKdZEeWA7bjN4txm9g" name="T2.1" guard="_OQPlQKdaEeWA7bjN4txm9g" source="_nYxFsKdWEeWA7bjN4txm9g" target="_XJ1RkKdZEeWA7bjN4txm9g">
+              <transition xmi:type="uml:Transition" xmi:id="_b_SkoKdZEeWA7bjN4txm9g" name="T2.1" guard="_OQPlQKdaEeWA7bjN4txm9g" kind="local" source="_nYxFsKdWEeWA7bjN4txm9g" target="_XJ1RkKdZEeWA7bjN4txm9g">
                 <ownedRule xmi:type="uml:Constraint" xmi:id="_OQPlQKdaEeWA7bjN4txm9g" name="false">
                   <specification xmi:type="uml:LiteralBoolean" xmi:id="_OQPlQadaEeWA7bjN4txm9g"/>
                 </ownedRule>
@@ -36283,7 +36283,7 @@ activity TestsStandalone() {&#xD;
   <ActionLanguage:TextualRepresentation xmi:id="_Fkhrc5nqEeWShJYQiy5_gw" base_Comment="_FkdaAJnqEeWShJYQiy5_gw" language="Alf"/>
   <BackupProfile:Backup xmi:id="_FkiSgJnqEeWShJYQiy5_gw" timestamp="2015-12-03 19:16:37.217" state="MERGED" base_Comment="_FkdaAJnqEeWShJYQiy5_gw"/>
   <ActionLanguage:TextualRepresentation xmi:id="_8UB7AZnqEeWShJYQiy5_gw" base_Comment="_8UB7AJnqEeWShJYQiy5_gw" language="Alf"/>
-  <BackupProfile:Backup xmi:id="_8UCiEJnqEeWShJYQiy5_gw" timestamp="2015-12-28 18:52:28.276" base_Comment="_8UB7AJnqEeWShJYQiy5_gw"/>
+  <BackupProfile:Backup xmi:id="_8UCiEJnqEeWShJYQiy5_gw" timestamp="2015-12-29 18:30:38.162" base_Comment="_8UB7AJnqEeWShJYQiy5_gw"/>
   <standard:Create xmi:id="_DF-IcJplEeWShJYQiy5_gw" base_BehavioralFeature="_DF7FL5plEeWShJYQiy5_gw"/>
   <standard:Create xmi:id="_DGBLwJplEeWShJYQiy5_gw" base_BehavioralFeature="_DGAkv5plEeWShJYQiy5_gw"/>
   <standard:Create xmi:id="_DGCZ4JplEeWShJYQiy5_gw" base_BehavioralFeature="_DGBy65plEeWShJYQiy5_gw"/>
