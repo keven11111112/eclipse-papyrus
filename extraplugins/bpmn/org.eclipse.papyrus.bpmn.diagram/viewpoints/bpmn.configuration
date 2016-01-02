@@ -23,8 +23,9 @@
       </owningRules>
       <childRules xmi:id="_hnObI2ThEeS0VelLgL_ZMA"/>
       <paletteRules xmi:id="_hnObJGThEeS0VelLgL_ZMA" permit="false" element="activity.*"/>
+      <paletteRules xmi:id="_yRqRULFbEeWgGbmmY-b2nA" permit="false" element="bpmn.collaboration.*"/>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vB" name="BPMN Collaboration Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/bpmn_16x16.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA" customStyle="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/css/style.css">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_0kzWAPL_EeONXPQ2mbw9vB" name="BPMN Collaboration Diagram" icon="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/icons/BpmnCollaboration_16x16.png" implementationID="PapyrusUMLActivityDiagram" categories="_0kz9GPL_EeONXPQ2mbw9vA" customStyle="platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/css/style.css">
       <profiles href="http://www.omg.org/spec/BPMNProfile/20121112/#/"/>
       <modelRules xmi:id="_0kzWAfL_EeONXPQ2mbw9vA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
@@ -44,6 +45,7 @@
       </owningRules>
       <childRules xmi:id="_hnObI2ThEeS0VelLgL_ZMA"/>
       <paletteRules xmi:id="_hnObJGThEeS0VelLgL_ZMA" permit="false" element="activity.*"/>
+      <paletteRules xmi:id="_NOr_0LFZEeWgGbmmY-b2nA" permit="false" element="bpmn.process.*"/>
     </modelKinds>
   </viewpoints>
   <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>

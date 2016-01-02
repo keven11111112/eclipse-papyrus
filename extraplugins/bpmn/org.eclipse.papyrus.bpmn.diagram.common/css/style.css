@@ -51,6 +51,7 @@ OpaqueAction > Compartment[kind="symbol"] {
 {
 	fillColor: white;	
 	displayTag: false;
+	maskLabel: stereotype;
 }
 
 [appliedStereotypes~="BPMNProfile::GlobalTask"]
@@ -338,6 +339,10 @@ alternateBorderColor path{
 
 
 [appliedStereotypes~="BPMNProfile::DataStoreReference"] > Label:stereotype {
+	visible:false;
+}
+
+[appliedStereotypes~="BPMNProfile::Task"] > Label:stereotype {
 	visible:false;
 }
 
