@@ -11918,6 +11918,11 @@
         <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-resources-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Process-BPMNProcess-resources-upperValue" value="*"/>
       </ownedAttribute>
+      <icon xmi:type="uml:Image" xmi:id="_CsTPMLJWEeW3evHeiuWSvw" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/Process.png">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CsT2QLJWEeW3evHeiuWSvw" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CsT2QbJWEeW3evHeiuWSvw" key="image_kind_key" value="icon"/>
+        </eAnnotations>
+      </icon>
     </packagedElement>
     <packagedElement xmi:type="uml:Enumeration" xmi:id="BPMNProfile-Process-ProcessType" name="ProcessType">
       <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="BPMNProfile-Process-ProcessType-none" name="none"/>
@@ -14006,6 +14011,11 @@ DataInput owned by BPMN Activity has no notation. </body>
         <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks-lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BPMNProfile-Collaboration-BPMNCollaboration-conversationLinks-upperValue" value="*"/>
       </ownedAttribute>
+      <icon xmi:type="uml:Image" xmi:id="_Fy5zwLJWEeW3evHeiuWSvw" location="platform:/plugin/org.eclipse.papyrus.bpmn/icons/Collaboration.png">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Fy5zwbJWEeW3evHeiuWSvw" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Fy5zwrJWEeW3evHeiuWSvw" key="image_kind_key" value="icon"/>
+        </eAnnotations>
+      </icon>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="BPMNProfile-Collaboration-MessageFlowAssociation" name="MessageFlowAssociation">
       <ownedRule xmi:type="uml:Constraint" xmi:id="BPMNProfile-Collaboration-MessageFlowAssociation-MessageFlowAssociation.innerMessageFlowRef" name="MessageFlowAssociation.innerMessageFlowRef" constrainedElement="BPMNProfile-Collaboration-MessageFlowAssociation">
