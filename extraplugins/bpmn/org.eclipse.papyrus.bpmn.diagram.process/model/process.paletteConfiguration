@@ -8,7 +8,7 @@
     label="BPMN Process Palette Model"
     description="Palette configuration for BPMN Process Diagram">
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.connectors"
+      id="bpmn.process.connectors"
       label="Connectors"
       description="Drawer Configuration for BPMN Process Diagram Connectors">
     <ownedConfigurations
@@ -37,7 +37,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.tasks"
+      id="bpmn.process.tasks"
       label="Tasks"
       description="Drawer Configuration for BPMN Process Diagram Tasks">
     <ownedConfigurations
@@ -119,7 +119,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.gateways"
+      id="bpmn.process.gateways"
       label="Gateways"
       description="Drawer Configuration for BPMN Process Diagram Gateways">
     <ownedConfigurations
@@ -223,7 +223,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.events"
+      id="bpmn.process.events"
       label="Events"
       description="Drawer Configuration for BPMN Process Diagram Events">
     <ownedConfigurations
@@ -283,7 +283,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.subprocesses"
+      id="bpmn.process.subprocesses"
       label="Subprocesses"
       description="Drawer Configuration for BPMN Process Diagram Subprocesses">
     <ownedConfigurations
@@ -299,7 +299,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.data"
+      id="bpmn.process.data"
       label="Data"
       description="Drawer Configuration for BPMN Process Diagram Data">
     <ownedConfigurations
@@ -345,22 +345,6 @@
           iconPath="/icons/DataObject.png"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.bpmn.process.DataObject_DataStoreNode_3078"/>
-    </ownedConfigurations>
-  </drawerConfigurations>
-  <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.process.pools"
-      label="Pools and Lanes"
-      description="Drawer Configuration for BPMN Process Diagram Pools and Lanes">
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="bpmn.process.lane.tool"
-        label="Lane"
-        description="Lane (Activity Partition)">
-      <icon
-          pluginID="org.eclipse.papyrus.bpmn"
-          iconPath="/icons/Lane.png"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.bpmn.process.Lane_ActivityPartition_3067"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <requiredProfiles>BPMNProfile</requiredProfiles>

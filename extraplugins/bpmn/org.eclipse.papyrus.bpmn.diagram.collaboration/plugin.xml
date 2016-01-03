@@ -15,7 +15,6 @@
              path="model/collaborationCustom.elementtypesconfigurations">
        </elementTypeSet>
     </extension>
-    <!-- 
     <extension
          point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
       <paletteDefinition
@@ -33,7 +32,6 @@
          </editor>
       </paletteDefinition>
    </extension>
-   -->
     <extension
           point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
        <diagramexpansion

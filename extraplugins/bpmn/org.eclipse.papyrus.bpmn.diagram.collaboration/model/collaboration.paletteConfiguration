@@ -8,7 +8,7 @@
     label="BPMN Collaboration Palette Model"
     description="Palette configuration for BPMN Collaboration Diagram">
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.connectors"
+      id="bpmn.collaboration.connectors"
       label="Connectors"
       description="Drawer Configuration for BPMN Collaboration Diagram Connectors">
     <ownedConfigurations
@@ -37,7 +37,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.tasks"
+      id="bpmn.collaboration.tasks"
       label="Tasks"
       description="Drawer Configuration for BPMN Collaboration Diagram Tasks">
     <ownedConfigurations
@@ -119,7 +119,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.gateways"
+      id="bpmn.collaboration.gateways"
       label="Gateways"
       description="Drawer Configuration for BPMN Collaboration Diagram Gateways">
     <ownedConfigurations
@@ -223,7 +223,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.events"
+      id="bpmn.collaboration.events"
       label="Events"
       description="Drawer Configuration for BPMN Collaboration Diagram Events">
     <ownedConfigurations
@@ -283,7 +283,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.subprocesses"
+      id="bpmn.collaboration.subprocesses"
       label="Subprocesses"
       description="Drawer Configuration for BPMN Collaboration Diagram Subprocesses">
     <ownedConfigurations
@@ -299,7 +299,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.data"
+      id="bpmn.collaboration.data"
       label="Data"
       description="Drawer Configuration for BPMN Collaboration Diagram Data">
     <ownedConfigurations
@@ -348,7 +348,7 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="org.eclipse.papyrus.bpmn.collaboration.pools"
+      id="bpmn.collaboration.pools"
       label="Pools and Lanes"
       description="Drawer Configuration for BPMN Collaboration Diagram Pools and Lanes">
     <ownedConfigurations
