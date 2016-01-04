@@ -246,11 +246,6 @@
 			<layout>p2</layout> <url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url> 
 			</repository> -->
 		<repository>
-			<id>papyrus-main</id>
-			<layout>p2</layout>
-			<url>${papyrus.repo.main}</url>
-		</repository>
-		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
@@ -291,12 +286,6 @@
 			<layout>p2</layout>
 			<!-- manualUpdate -->
 			<url>${rmf.repo.url}</url>
-		</repository>
-		<repository>
-			<id>PapyrusRT</id>
-			<layout>p2</layout>
-			<!-- manualUpdate -->
-			<url>${papyrusrt.repo.url}</url>
 		</repository>
 	</repositories>
 	<build>
@@ -430,6 +419,13 @@
 
 		<profile>
 			<id>defaultProfile</id>
+			<repositories>
+				<repository>
+					<id>papyrus-main</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.main}</url>
+				</repository>
+			</repositories>
 			<build>
 				<plugins>
 					<plugin>
@@ -566,6 +562,55 @@
 				<property>
 					<name>SIGN</name>
 					<value>false</value>
+				</property>
+			</activation>
+		</profile>
+
+		<!-- Used with pack and packAndSign -->
+		<profile>
+			<id>buildExtra</id>
+				<repositories>
+					<repository>
+						<id>papyrus-main</id>
+						<layout>p2</layout>
+						<url>${papyrus.repo.main}</url>
+					</repository>
+			</repositories>
+			<activation>
+				<property>
+					<name>SIGN</name> <!-- Either true or false -->
+				</property>
+			</activation>
+		</profile>
+		
+		
+		<profile>
+			<id>buildAll</id>
+			<!-- Papyrus Update sites not included (They are included in the same build) -->
+			
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho-version}</version>
+						<executions>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			
+			<activation>
+				<property>
+					<name>buildAll</name>
+					<value>true</value>
 				</property>
 			</activation>
 		</profile>
