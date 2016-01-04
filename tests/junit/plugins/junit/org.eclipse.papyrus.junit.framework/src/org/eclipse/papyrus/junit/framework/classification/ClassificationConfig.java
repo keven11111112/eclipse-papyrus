@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *  Christian W. Damus - bug 451230
  *  Christian W. Damus - bug 464647
  *  Christian W. Damus - bug 480812
+ *  Christian W. Damus - bug 485156
  *****************************************************************************/
 package org.eclipse.papyrus.junit.framework.classification;
 
@@ -34,6 +35,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.junit.runners.Suite;
 
 import com.google.common.collect.ImmutableSet;
@@ -212,7 +214,8 @@ public enum ClassificationConfig implements Set<TestCategory> {
 			for (Annotation annotation : annotations) {
 				if (RunWith.class.isInstance(annotation)) {
 					RunWith runWith = (RunWith) annotation;
-					if (Suite.class.isAssignableFrom(runWith.value())) {
+					Class<?> runner = runWith.value();
+					if (Suite.class.isAssignableFrom(runner) && !Parameterized.class.isAssignableFrom(runner)) {
 						return true;
 					}
 				}

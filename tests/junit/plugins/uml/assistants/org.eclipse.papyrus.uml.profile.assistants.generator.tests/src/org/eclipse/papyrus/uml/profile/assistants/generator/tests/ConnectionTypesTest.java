@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.profile.assistants.generator.tests;
 
 import java.util.Arrays;
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationRunnerWithParametersFactory;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
@@ -24,12 +25,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+import org.junit.runners.Parameterized.UseParametersRunnerFactory;
 
 /**
  * Specific regression test cases verifying that connection assistants are inferred correctly for various types of
  * UML model elements.
  */
 @RunWith(Parameterized.class)
+@UseParametersRunnerFactory(ClassificationRunnerWithParametersFactory.class)
 @PluginResource("/resources/edges.profile.uml")
 public class ConnectionTypesTest {
 

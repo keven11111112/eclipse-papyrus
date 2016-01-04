@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485156
  *
  */
 package org.eclipse.papyrus.infra.emf.advice;
@@ -70,6 +71,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationRunnerWithParametersFactory;
 import org.eclipse.papyrus.junit.framework.classification.rules.Condition;
 import org.eclipse.papyrus.junit.framework.classification.rules.ConditionRule;
 import org.eclipse.papyrus.junit.framework.classification.rules.Conditional;
@@ -94,6 +96,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+import org.junit.runners.Parameterized.UseParametersRunnerFactory;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
@@ -104,6 +107,7 @@ import com.google.common.collect.Iterables;
  * Test suite for the {@link ReadOnlyObjectEditAdvice} class.
  */
 @RunWith(Parameterized.class)
+@UseParametersRunnerFactory(ClassificationRunnerWithParametersFactory.class)
 public class ReadOnlyObjectEditAdviceTest {
 
 	private static final String TEST_BUNDLE = "org.eclipse.papyrus.infra.emf.tests"; //$NON-NLS-1$
@@ -235,7 +239,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 			@Override
 			protected void doExecute() {
-				usage[0] = (Usage)writablePackage.createPackagedElement("B-->D", UMLPackage.Literals.USAGE); //$NON-NLS-1$
+				usage[0] = (Usage) writablePackage.createPackagedElement("B-->D", UMLPackage.Literals.USAGE); //$NON-NLS-1$
 				usage[0].getClients().add(classB);
 				usage[0].getSuppliers().add(classD);
 			}
@@ -438,8 +442,9 @@ public class ReadOnlyObjectEditAdviceTest {
 	public static Collection<Object[]> parameters() {
 		return ImmutableList.copyOf(Iterables.transform(Arrays.asList(ResourceMode.values()), new Function<Object, Object[]>() {
 
+			@Override
 			public Object[] apply(Object input) {
-				return new Object[]{ input };
+				return new Object[] { input };
 			}
 		}));
 	}
@@ -452,7 +457,7 @@ public class ReadOnlyObjectEditAdviceTest {
 	@BeforeClass
 	public static void registerReadOnlyHandlerAdapterFactory() throws Exception {
 		// Cannot add dependency on read-only plug-in because that would induce a cycle
-		readOnlyHandlerAdapterFactory = (IAdapterFactory)Platform.getBundle("org.eclipse.papyrus.infra.emf.readonly").loadClass("org.eclipse.papyrus.infra.emf.readonly.ReadOnlyAdapterFactory").newInstance();
+		readOnlyHandlerAdapterFactory = (IAdapterFactory) Platform.getBundle("org.eclipse.papyrus.infra.emf.readonly").loadClass("org.eclipse.papyrus.infra.emf.readonly.ReadOnlyAdapterFactory").newInstance();
 		Platform.getAdapterManager().registerAdapters(readOnlyHandlerAdapterFactory, EditingDomain.class);
 	}
 
@@ -471,7 +476,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 		URI readOnlyURI;
 
-		switch(resourceMode) {
+		switch (resourceMode) {
 		case WORKSPACE_WRITEABLE:
 		case WORKSPACE_READONLY:
 			workspaceFile = project.getFile("readonly.uml"); //$NON-NLS-1$
@@ -484,7 +489,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 		readOnlyPackage = loadPackage(readOnlyURI);
 
-		switch(resourceMode) {
+		switch (resourceMode) {
 		case WORKSPACE_WRITEABLE:
 			// File needs to exist to determine that it is writable
 			readOnlyPackage.eResource().save(null);
@@ -502,24 +507,25 @@ public class ReadOnlyObjectEditAdviceTest {
 		project.refreshLocal(IResource.DEPTH_INFINITE, null);
 
 		// Pick out some model elements
-		classA = (Class)writablePackage.getOwnedType("A"); //$NON-NLS-1$
-		classB = (Class)readOnlyPackage.getOwnedType("B"); //$NON-NLS-1$
+		classA = (Class) writablePackage.getOwnedType("A"); //$NON-NLS-1$
+		classB = (Class) readOnlyPackage.getOwnedType("B"); //$NON-NLS-1$
 	}
 
 	private Package loadPackage(URI uri) throws IOException {
 		Package result = null;
 
-		if(domain == null) {
+		if (domain == null) {
 			// Use an editing domain that doesn't implement its own read-only checking in order not
 			// to interfere with the advice's read-only check
 			domain = houseKeeper.cleanUpLater(WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(new ResourceSetImpl()), new HouseKeeper.Disposer<TransactionalEditingDomain>() {
 
+				@Override
 				public void dispose(TransactionalEditingDomain object) throws Exception {
 					// Make sure that we flush undo contexts so that our commands and the resources they retain may be reclaimed
 					ResourceSet rset = object.getResourceSet();
-					IOperationHistory history = ((IWorkspaceCommandStack)object.getCommandStack()).getOperationHistory();
+					IOperationHistory history = ((IWorkspaceCommandStack) object.getCommandStack()).getOperationHistory();
 
-					for(Resource next : rset.getResources()) {
+					for (Resource next : rset.getResources()) {
 						// Purge the resource undo context
 						IUndoContext resourceContext = new ResourceUndoContext(object, next);
 						history.dispose(resourceContext, true, true, true);
@@ -531,7 +537,7 @@ public class ReadOnlyObjectEditAdviceTest {
 			});
 
 			// Disable the EMF default read-only tracking
-			((AdapterFactoryEditingDomain)domain).setResourceToReadOnlyMap(null);
+			((AdapterFactoryEditingDomain) domain).setResourceToReadOnlyMap(null);
 		}
 
 		Resource res = domain.getResourceSet().createResource(uri);
@@ -541,9 +547,9 @@ public class ReadOnlyObjectEditAdviceTest {
 		try {
 			input = url.openStream();
 			res.load(input, null);
-			result = (Package)EcoreUtil.getObjectByType(res.getContents(), UMLPackage.Literals.PACKAGE);
+			result = (Package) EcoreUtil.getObjectByType(res.getContents(), UMLPackage.Literals.PACKAGE);
 		} finally {
-			if(input != null) {
+			if (input != null) {
 				try {
 					input.close();
 				} catch (IOException e) {
@@ -558,14 +564,14 @@ public class ReadOnlyObjectEditAdviceTest {
 	@After
 	public void destroyFixture() {
 		// Purge the default undo context
-		if(domain.getCommandStack() instanceof IWorkspaceCommandStack) {
-			IWorkspaceCommandStack stack = (IWorkspaceCommandStack)domain.getCommandStack();
+		if (domain.getCommandStack() instanceof IWorkspaceCommandStack) {
+			IWorkspaceCommandStack stack = (IWorkspaceCommandStack) domain.getCommandStack();
 			stack.getOperationHistory().dispose(stack.getDefaultUndoContext(), true, true, true);
 		}
 	}
 
 	IClientContext getClientContext() {
-		switch(resourceMode) {
+		switch (resourceMode) {
 		case PLUGIN_NOADVICE:
 			return ClientContextManager.getDefaultClientContext();
 		default:
@@ -597,7 +603,7 @@ public class ReadOnlyObjectEditAdviceTest {
 	}
 
 	void assertExecutability(ICommand command) {
-		switch(resourceMode) {
+		switch (resourceMode) {
 		case WORKSPACE_WRITEABLE:
 		case WORKSPACE_READONLY:
 		case PLUGIN_NOADVICE:
@@ -614,7 +620,7 @@ public class ReadOnlyObjectEditAdviceTest {
 	void assertAdvice(IEditCommandRequest request) {
 		ICommand command = new ReadOnlyObjectEditAdvice().getBeforeEditCommand(request);
 
-		switch(resourceMode) {
+		switch (resourceMode) {
 		case WORKSPACE_WRITEABLE:
 		case WORKSPACE_READONLY:
 		case PLUGIN_NOADVICE:
@@ -630,7 +636,7 @@ public class ReadOnlyObjectEditAdviceTest {
 
 	void executeUnprotected(Command command) {
 		try {
-			((TransactionalCommandStack)domain.getCommandStack()).execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, true));
+			((TransactionalCommandStack) domain.getCommandStack()).execute(command, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, true));
 		} catch (InterruptedException e) {
 			fail("Unprotected command execution interrupted.");
 		} catch (RollbackException e) {
