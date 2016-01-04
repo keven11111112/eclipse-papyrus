@@ -45,16 +45,16 @@
 		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones</cdt.repo.url>
 		
 		<!-- updateFrom("EMF CDO",0) -->
-		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/R20150916-0434</emf-cdo.repo.url>
+		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/S20151216-1133</emf-cdo.repo.url>
 		
 		<!-- updateFrom("EMF COMPARE",0) -->
-		<emf-compare.repo.url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.2/S201511010417</emf-compare.repo.url>
+		<emf-compare.repo.url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.2/S201512130548</emf-compare.repo.url>
 		
 		<!-- updateFrom("EMF Query",0) -->
 		<emf-query.repo.url>${eclipse.download}/modeling/emf/query/updates/milestones</emf-query.repo.url>
 		
 		<!-- updateFrom("M2T ACCELEO",0) -->
-		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201510300615</m2t-acceleo.repo.url>
+		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201512111602</m2t-acceleo.repo.url>
 		
 		<!-- manualUpdate -->
 		<upr.repo.url>${eclipse.download}/upr/0.9RC1/update/</upr.repo.url>
@@ -72,7 +72,7 @@
 		<epp-logging.repo.url>${eclipse.download}/technology/epp/logging/milestones/</epp-logging.repo.url>
 		
 		<!-- updateFrom("oomph",0) -->
-		<oomph.repo.url>${eclipse.download}/oomph/drops/release/1.2.1</oomph.repo.url>
+		<oomph.repo.url>${eclipse.download}/oomph/drops/milestone/S20151217-022042-1.3.0-M4</oomph.repo.url>
 
 		<!-- Papyrus repositories. Used when we're building individual components (vs building the parent pom including everything) -->
 		<papyrus.eclipse.target>neon</papyrus.eclipse.target>
@@ -180,7 +180,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.1.0/S201512141327</url>
+			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.1.0/S201512161807</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>

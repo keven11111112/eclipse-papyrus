@@ -51,31 +51,26 @@
 		<repository>
 			<id>nebula-tablecombo</id>
 			<layout>p2</layout>
-			<!-- manualUpdate -->
 			<url>${nebula-tablecombo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
-			<!-- updateFrom("M2T ACCELEO",0) -->
 			<url>${m2t-acceleo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>b3</id>
 			<layout>p2</layout>
-			<!-- manualUpdate -->
 			<url>${b3.repo.url}</url>
 		</repository>
 		<repository>
 			<id>oomph</id>
 			<layout>p2</layout>
-			<!-- updateFrom("Oomph",0) -->
 			<url>${oomph.repo.url}</url>
 		</repository>
 		<repository>
 			<id>UPR</id>
 			<layout>p2</layout>
-			<!-- manualUpdate -->
 			<url>${upr.repo.url}</url>
 		</repository>
 	</repositories>

@@ -34,37 +34,31 @@
 		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
-			<!-- updateFrom("CDT",0) -->
 			<url>${cdt.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
-			<!-- updateFrom("EMF CDO",0) -->
 			<url>${emf-cdo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>
 			<layout>p2</layout>
-			<!-- updateFrom("EMF COMPARE",0) -->
 			<url>${emf-compare.repo.url}</url>
 		</repository>
 		<repository>
 			<id>emf-query</id>
 			<layout>p2</layout>
-			<!-- updateFrom("EMF Query",0) -->
 			<url>${emf-query.repo.url}</url>
 		</repository>
 		<repository>
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
-			<!-- updateFrom("M2T ACCELEO",0) -->
 			<url>${m2t-acceleo.repo.url}</url>
 		</repository>
 		<repository>
 			<id>RMF</id>
 			<layout>p2</layout>
-			<!-- manualUpdate -->
 			<url>${rmf.repo.url}</url>
 		</repository>
 	</repositories>
