@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,8 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Francois Le Fevre (CEA LIST) francois.le-fevre@cea.fr - Initial API and implementation
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
 import java.util.ArrayList;
@@ -29,13 +30,13 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 
 /**
- * An abstract implementation for TransactionalCommandsDropStrategy. Extenders do not
+ * Based upon TransactionalDropStrategy, an abstract implementation for TransactionalCommandsDropStrategy. Extenders do not
  * need to implement their commands' #undo and #redo methods.
  * The differences with TransactionalDropStrategy is the fact that this class give the priority to the CommandS rather to the Command 
  *
  * @author Camille Letavernier
  */
-public abstract class TransactionalCommandsDropStrategy extends TransactionalDropStrategy {
+public abstract class TransactionalCommandsDropStrategy extends TransactionalDropStrategy implements MultipleDropStrategy {
 
 	protected boolean isTransactional(EditPart targetEditPart) {
 		return getTransactionalEditingDomain(targetEditPart) != null;
