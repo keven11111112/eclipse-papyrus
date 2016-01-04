@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011, 2015 Mia-Software, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016 Mia-Software, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,6 +10,7 @@
  *     Camille Letavernier (CEA LIST) - Generalize to support POMs
  *     Christian W. Damus (CEA) - Add support for updating Oomph setup models
  *     Christian W. Damus - Support updating of multiple selected files
+ *     Christian W. Damus - Ignore equivalent URL prefixes in detecting suspicious updates
  *      
  *******************************************************************************/
 package org.eclipse.papyrus.releng.tools.internal.popup.actions;
@@ -389,20 +390,26 @@ public abstract class DependencyUpdater {
 	}
 
 	private interface LocationUpdateStrategy {
+		Pattern URL_PREFIX_PATTERN = Pattern.compile("^(?:\\$\\{[^}]+\\}/|\\Qhttp://download.eclipse.org/\\E)"); //$NON-NLS-1$
+
 		boolean shouldAutoUpdate(UpdateItem update, String oldLocation, String newLocation);
 
 		String getUpdateConfirmationMessage(UpdateItem update, String oldLocation, String newLocation);
-	}
 
-	static class MilestoneLocationStrategy implements LocationUpdateStrategy {
-		private final Pattern typicalBuildTimestampPattern = Pattern.compile("[NISMR](?:-\\d+\\.\\d+(?:\\.\\d+)?(?:M|RC)\\d[abcd]-)?20\\d\\d[-0-9]+"); //$NON-NLS-1$
+		default boolean hasRecognizedURLPrefix(String location) {
+			return URL_PREFIX_PATTERN.matcher(location).find();
+		}
 
-		@Override
-		public boolean shouldAutoUpdate(UpdateItem update, String oldLocation, String newLocation) {
-			boolean result = true; // Optimistically assume sameness if we can't find any build timestamps
+		default String stripRecognizedURLPrefix(String location) {
+			Matcher m = URL_PREFIX_PATTERN.matcher(location);
+			return !m.find() ? location : location.substring(m.end());
+		}
 
-			Matcher oldMatcher = typicalBuildTimestampPattern.matcher(oldLocation);
-			Matcher newMatcher = typicalBuildTimestampPattern.matcher(newLocation);
+		default boolean matchURLPattern(Pattern urlPattern, String oldLocation, String newLocation) {
+			boolean result = true; // Optimistically assume sameness if we can't find matching URL path segment structures
+
+			Matcher oldMatcher = urlPattern.matcher(oldLocation);
+			Matcher newMatcher = urlPattern.matcher(newLocation);
 			boolean foundOld = oldMatcher.find();
 			boolean foundNew = newMatcher.find();
 
@@ -413,10 +420,25 @@ public abstract class DependencyUpdater {
 				// Compare prefixes
 				String oldPrefix = oldLocation.substring(0, oldMatcher.start());
 				String newPrefix = newLocation.substring(0, newMatcher.start());
+				if (hasRecognizedURLPrefix(oldPrefix) && hasRecognizedURLPrefix(newPrefix)) {
+					// Both have equivalent URL prefixes, so remove those for comparison
+					oldPrefix = stripRecognizedURLPrefix(oldPrefix);
+					newPrefix = stripRecognizedURLPrefix(newPrefix);
+				}
+
 				result = newPrefix.equals(oldPrefix);
 			}
 
 			return result;
+		}
+	}
+
+	static class MilestoneLocationStrategy implements LocationUpdateStrategy {
+		private final Pattern typicalBuildTimestampPattern = Pattern.compile("[NISMR](?:-\\d+\\.\\d+(?:\\.\\d+)?(?:M|RC)\\d[abcd]-)?20\\d\\d[-0-9]+"); //$NON-NLS-1$
+
+		@Override
+		public boolean shouldAutoUpdate(UpdateItem update, String oldLocation, String newLocation) {
+			return matchURLPattern(typicalBuildTimestampPattern, oldLocation, newLocation);
 		}
 
 		@Override
