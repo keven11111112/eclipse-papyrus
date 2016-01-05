@@ -8,7 +8,7 @@
             file="template/rami40.uml"
             id="org.eclipse.papyrus.manufacturing.rami40"
             language="uml"
-            name="Template implementing the RAMI 4.0 Reference Architecture"
+            name="%template.name"
             notation_file="template/rami40.notation">
       </template>
    </extension>
