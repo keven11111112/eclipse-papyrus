@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485212
  *
  */
 package org.eclipse.papyrus.infra.services.edit.tests.edit.advice;
@@ -35,6 +36,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -46,6 +48,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.internal.advice.MarkerDeletionAdvice;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.validation.EValidatorAdapter;
 import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
@@ -58,6 +61,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -173,8 +177,8 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 		editor.open();
 
 		// Validate the model
-		IPapyrusDiagnostician diagnostician = new EcoreDiagnostician();
-		diagnostician.initialize(((AdapterFactoryEditingDomain)editor.getEditingDomain()).getAdapterFactory(), new NullProgressMonitor());
+		IPapyrusDiagnostician diagnostician = new EcoreDiagnostician(new EValidatorAdapter((EValidator) EValidator.Registry.INSTANCE.get(UMLPackage.eINSTANCE)));
+		diagnostician.initialize(((AdapterFactoryEditingDomain) editor.getEditingDomain()).getAdapterFactory(), new NullProgressMonitor());
 		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(editor.getModel());
 		diagnostician.validate(editor.getModel(), diagnostic, diagnostician.createDefaultContext());
 
@@ -190,9 +194,9 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 	<T extends NamedElement> T findElement(Class<T> type, String name) {
 		T result = null;
 
-		for(Iterator<?> iter = editor.getModelResource().getAllContents(); iter.hasNext();) {
+		for (Iterator<?> iter = editor.getModelResource().getAllContents(); iter.hasNext();) {
 			Object next = iter.next();
-			if(type.isInstance(next) && ((name == null) || name.equals(((NamedElement)next).getName()))) {
+			if (type.isInstance(next) && ((name == null) || name.equals(((NamedElement) next).getName()))) {
 				result = type.cast(next);
 				break;
 			}
@@ -225,8 +229,8 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 
 	private void letMarkerCacheClearOut() {
 		Display display = Display.getCurrent();
-		if(display != null) {
-			while(display.readAndDispatch()) {
+		if (display != null) {
+			while (display.readAndDispatch()) {
 				// Pass
 			}
 		}
@@ -241,7 +245,7 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 			public void describeTo(Description description) {
 				description.appendText("marker of ");
 
-				switch(markerSeverity) {
+				switch (markerSeverity) {
 				case IMarker.SEVERITY_INFO:
 					description.appendText("INFO");
 					break;
@@ -260,10 +264,10 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 			public boolean matches(Object item) {
 				boolean result = item instanceof IMarkerDelta;
 
-				if(result) {
-					IMarkerDelta markerDelta = (IMarkerDelta)item;
+				if (result) {
+					IMarkerDelta markerDelta = (IMarkerDelta) item;
 					result = (markerDelta.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR) == markerSeverity) //
-						&& messagePattern.matcher(markerDelta.getAttribute(IMarker.MESSAGE, "")).find();
+							&& messagePattern.matcher(markerDelta.getAttribute(IMarker.MESSAGE, "")).find();
 				}
 
 				return result;
@@ -314,9 +318,9 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 				event.getDelta().accept(new IResourceDeltaVisitor() {
 
 					public boolean visit(IResourceDelta delta) throws CoreException {
-						if(file.equals(delta.getResource()) && ((delta.getFlags() & IResourceDelta.MARKERS) != 0)) {
-							for(IMarkerDelta markerDelta : delta.getMarkerDeltas()) {
-								switch(markerDelta.getKind()) {
+						if (file.equals(delta.getResource()) && ((delta.getFlags() & IResourceDelta.MARKERS) != 0)) {
+							for (IMarkerDelta markerDelta : delta.getMarkerDeltas()) {
+								switch (markerDelta.getKind()) {
 								case IResourceDelta.ADDED:
 									markersAdded = markersAdded || anyAssertionMatches(markerDelta);
 									break;
@@ -354,9 +358,9 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 		private boolean anyAssertionMatches(IMarkerDelta markerDelta) {
 			boolean result = false;
 
-			for(Matcher<? super IMarkerDelta> next : markerAssertions) {
+			for (Matcher<? super IMarkerDelta> next : markerAssertions) {
 				result = next.matches(markerDelta);
-				if(result) {
+				if (result) {
 					break;
 				}
 			}
