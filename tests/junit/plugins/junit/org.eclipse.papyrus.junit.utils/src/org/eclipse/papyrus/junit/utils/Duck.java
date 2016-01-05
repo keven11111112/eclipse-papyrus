@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485214
  *
  */
 package org.eclipse.papyrus.junit.utils;
@@ -34,15 +35,15 @@ public class Duck {
 	 * Wraps an object as a duck.
 	 * 
 	 * @param target
-	 *        the object to wrap. Must not be {@code null}
+	 *            the object to wrap. Must not be {@code null}
 	 * 
 	 * @throws NullPointerException
-	 *         on attempt to duck-wrap a {@code null}
+	 *             on attempt to duck-wrap a {@code null}
 	 */
 	public Duck(Object target) {
 		super();
 
-		if(target == null) {
+		if (target == null) {
 			throw new NullPointerException();
 		}
 
@@ -54,9 +55,9 @@ public class Duck {
 	 * This accounts for signature overloading by finding the first method that accepts the given arguments.
 	 * 
 	 * @param methodName
-	 *        the method name
+	 *            the method name
 	 * @param arg
-	 *        the arguments to the method
+	 *            the arguments to the method
 	 * @return whether I can invoke the named method with these arguments
 	 */
 	public boolean understands(String methodName, Object... arg) {
@@ -68,9 +69,9 @@ public class Duck {
 	 * This accounts for signature overloading by finding the first method that accepts the given arguments.
 	 * 
 	 * @param methodPattern
-	 *        the method name pattern
+	 *            the method name pattern
 	 * @param arg
-	 *        the arguments to the method
+	 *            the arguments to the method
 	 * @return whether I can invoke the indicated method with these arguments
 	 */
 	public boolean understandsp(String methodPattern, Object... arg) {
@@ -81,9 +82,9 @@ public class Duck {
 	 * Reflectively invokes a method by name. This accounts for signature overloading by finding the first method that accepts the given arguments.
 	 * 
 	 * @param methodName
-	 *        the method name
+	 *            the method name
 	 * @param arg
-	 *        the arguments to the method
+	 *            the arguments to the method
 	 * @return the method result, which would be {@code null} in the case of a {@code void} method
 	 */
 	public <T> T quack(String methodName, Object... arg) {
@@ -95,9 +96,9 @@ public class Duck {
 	 * accepts the given arguments.
 	 * 
 	 * @param methodPattern
-	 *        the method name pattern
+	 *            the method name pattern
 	 * @param arg
-	 *        the arguments to the method
+	 *            the arguments to the method
 	 * @return the method result, which would be {@code null} in the case of a {@code void} method
 	 */
 	public <T> T quackp(String methodPattern, Object... arg) {
@@ -109,11 +110,11 @@ public class Duck {
 	 * the first method that accepts the given arguments.
 	 * 
 	 * @param methodName
-	 *        the method name
+	 *            the method name
 	 * @param returning
-	 *        the required return type, or {@code null} if the return type doesn't matter
+	 *            the required return type, or {@code null} if the return type doesn't matter
 	 * @param arg
-	 *        the arguments to the method
+	 *            the arguments to the method
 	 * @return the method result, which would be {@code null} in the case of a {@code void} method
 	 */
 	public <T> T quack(String methodName, Class<T> returning, Object... arg) {
@@ -126,11 +127,11 @@ public class Duck {
 	 * accepts the given arguments.
 	 * 
 	 * @param methodPattern
-	 *        the method name pattern
+	 *            the method name pattern
 	 * @param returning
-	 *        the required return type, or {@code null} if the return type doesn't matter
+	 *            the required return type, or {@code null} if the return type doesn't matter
 	 * @param arg
-	 *        the arguments to the method
+	 *            the arguments to the method
 	 * @return the method result, which would be {@code null} in the case of a {@code void} method
 	 */
 	public <T> T quackp(String methodPattern, Class<T> returning, Object... arg) {
@@ -140,15 +141,15 @@ public class Duck {
 	@SuppressWarnings("unchecked")
 	private <T> T invoke(Method method, Object[] args) {
 		try {
-			return (method == null) ? null : (T)method.invoke(target, args);
+			return (method == null) ? null : (T) method.invoke(target, args);
 		} catch (IllegalAccessException e) {
 			throw new WrappedException(e);
 		} catch (InvocationTargetException e) {
 			Throwable toThrow = e.getTargetException();
-			if(toThrow instanceof Error) {
-				throw (Error)toThrow;
+			if (toThrow instanceof Error) {
+				throw (Error) toThrow;
 			}
-			throw new WrappedException((Exception)toThrow);
+			throw new WrappedException((Exception) toThrow);
 		}
 	}
 
@@ -157,9 +158,9 @@ public class Duck {
 		final Class<?>[] signature = signature(args);
 
 		Method[] scope = target.getClass().getMethods();
-		for(int i = 0; (result == null) && (i < scope.length); i++) {
+		for (int i = 0; (result == null) && (i < scope.length); i++) {
 			Method next = scope[i];
-			if(next.getName().equals(methodName) && matchReturn(next.getReturnType(), returning) && match(next, signature)) {
+			if (next.getName().equals(methodName) && matchReturn(next.getReturnType(), returning) && match(next, signature)) {
 				result = next;
 			}
 		}
@@ -174,10 +175,10 @@ public class Duck {
 		final Class<?>[] signature = signature(args);
 
 		Method[] scope = target.getClass().getMethods();
-		for(int i = 0; (result == null) && (i < scope.length); i++) {
+		for (int i = 0; (result == null) && (i < scope.length); i++) {
 			Method next = scope[i];
 			m.reset(next.getName());
-			if(m.matches() && matchReturn(next.getReturnType(), returning) && match(next, signature)) {
+			if (m.matches() && matchReturn(next.getReturnType(), returning) && match(next, signature)) {
 				result = next;
 			}
 		}
@@ -189,8 +190,8 @@ public class Duck {
 		Class<?>[] params = method.getParameterTypes();
 		boolean result = params.length == signature.length;
 
-		if(result) {
-			for(int i = 0; result && (i < signature.length); i++) {
+		if (result) {
+			for (int i = 0; result && (i < signature.length); i++) {
 				result = matchParameter(params[i], signature[i]);
 			}
 		}
@@ -201,15 +202,15 @@ public class Duck {
 	private static boolean matchReturn(Class<?> returnType, Class<?> expectedType) {
 		boolean result;
 
-		if(expectedType == null) {
+		if (expectedType == null) {
 			// Wildcard: take any method
 			result = true;
-		} else if((returnType == void.class) || (returnType == Void.class)) {
+		} else if ((returnType == void.class) || (returnType == Void.class)) {
 			// Handle void methods
 			result = (expectedType == void.class) || (expectedType == Void.class);
 		} else {
 			// Compare the unwrapped primitive types
-			result = Primitives.unwrap(expectedType).isAssignableFrom(Primitives.unwrap(expectedType));
+			result = Primitives.unwrap(expectedType).isAssignableFrom(Primitives.unwrap(returnType));
 		}
 
 		return result;
@@ -218,10 +219,10 @@ public class Duck {
 	private static boolean matchParameter(Class<?> paramType, Class<?> argType) {
 		boolean result;
 
-		if(argType == Void.class) {
+		if (argType == Void.class) {
 			// Handle null arguments: null is assignable to any object type (not primitive)
 			result = !paramType.isPrimitive();
-		} else if(paramType.isPrimitive()) {
+		} else if (paramType.isPrimitive()) {
 			// Compare the wrapper type
 			result = Primitives.wrap(paramType).isAssignableFrom(argType);
 		} else {
@@ -235,7 +236,7 @@ public class Duck {
 	private static Class<?>[] signature(Object[] args) {
 		Class<?>[] result = new Class<?>[args.length];
 
-		for(int i = 0; i < args.length; i++) {
+		for (int i = 0; i < args.length; i++) {
 			result[i] = (args[i] == null) ? Void.class : args[i].getClass();
 		}
 
@@ -244,7 +245,7 @@ public class Duck {
 
 	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof Duck) && target.equals(((Duck)obj).target);
+		return (obj instanceof Duck) && target.equals(((Duck) obj).target);
 	}
 
 	@Override

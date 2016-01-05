@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485214
  *
  */
 package org.eclipse.papyrus.editor.integration.tests.tests;
@@ -72,7 +73,7 @@ public class EditorMemoryLeakTest extends AbstractPapyrusTest {
 	@Test
 	@SoftReferenceSensitive
 	public void testDiagramContentDoesNotLeak() {
-		DiagramEditor diagramEditor = (DiagramEditor)editor.getEditor().getActiveEditor();
+		DiagramEditor diagramEditor = (DiagramEditor) editor.getEditor().getActiveEditor();
 		memory.add(diagramEditor.getDiagramEditPart());
 	}
 
@@ -131,6 +132,9 @@ public class EditorMemoryLeakTest extends AbstractPapyrusTest {
 			fail("Failed to validate model: " + e.getLocalizedMessage());
 		}
 
+		// The validation command activated the Model Validation view. Return to Properties
+		editor.getView(PROPERTY_SHEET, false);
+
 		editor.flushDisplayEvents();
 
 		memory.add(editor.getModel());
@@ -173,6 +177,9 @@ public class EditorMemoryLeakTest extends AbstractPapyrusTest {
 			e.printStackTrace();
 			fail("Failed to validate model: " + e.getLocalizedMessage());
 		}
+
+		// The validation command activated the Model Validation view. Return to Properties
+		editor.getView(PROPERTY_SHEET, false);
 
 		editor.flushDisplayEvents();
 
