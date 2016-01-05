@@ -98,6 +98,26 @@ public class ElementTypeUtils {
 
 		return true; // Default
 	}
+	
+	/**
+	 * return a boolean about the cancellability of a diagram for edition of an Element
+	 *
+	 * @param request
+	 *            an edition request
+	 * @return true if the request do not contain information about cancellability
+	 */
+	public static boolean dialogCancellable(IEditCommandRequest request) {
+		Object value = request.getParameter(RequestParameterConstants.DIALOG_CANCELLABLE);
+
+		if (value instanceof Boolean) {
+			return (Boolean) value;
+		} else if (value instanceof String) {
+			Boolean booleanObject = Boolean.valueOf((String) value);
+			return booleanObject.booleanValue();
+		}
+
+		return false; // Default
+	}
 
 	/**
 	 * Configure a request to specify whether the GUI should be used or not.
@@ -109,6 +129,18 @@ public class ElementTypeUtils {
 	 */
 	public static void setUseGUI(IEditCommandRequest request, boolean useGUI) {
 		request.setParameter(RequestParameterConstants.USE_GUI, useGUI);
+	}
+	
+	/**
+	 * Configure a request to specify whether the editdialog should be cancellable or not.
+	 *
+	 * If set to false, dialogs shouldn't be cancellable during the execution of the associated command(s)
+	 *
+	 * @param request
+	 * @param dialogCancellable
+	 */
+	public static void setDialogCancellable(IEditCommandRequest request, boolean dialogCancellable) {
+		request.setParameter(RequestParameterConstants.DIALOG_CANCELLABLE, dialogCancellable);
 	}
 
 }

@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfiguration;
+import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.creation.EditionDialog;
 import org.eclipse.swt.widgets.Display;
@@ -97,6 +98,8 @@ public class RuntimeValuesEditionAdviceEditHelperAdvice extends AbstractEditHelp
 		if (elementToConfigure == null) {
 			return null;
 		}
+		
+		final boolean dialogCancellable = ElementTypeUtils.dialogCancellable(request);
 
 		return new AbstractTransactionalCommand(request.getEditingDomain(), "Editing " + EMFCoreUtil.getName(elementToConfigure), Collections.singletonList(WorkspaceSynchronizer.getFile((elementToConfigure.eResource())))) {
 			/**
@@ -106,7 +109,7 @@ public class RuntimeValuesEditionAdviceEditHelperAdvice extends AbstractEditHelp
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				Set<View> viewsToDisplay = getViewsToDisplay();
 				if (!viewsToDisplay.isEmpty()) {
-					EditionDialog dialog = new EditionDialog(Display.getCurrent().getActiveShell()) {
+					EditionDialog dialog = new EditionDialog(Display.getCurrent().getActiveShell(), dialogCancellable) {
 
 					};
 					dialog.setTitle("Edit " + EMFCoreUtil.getName(elementToConfigure));
