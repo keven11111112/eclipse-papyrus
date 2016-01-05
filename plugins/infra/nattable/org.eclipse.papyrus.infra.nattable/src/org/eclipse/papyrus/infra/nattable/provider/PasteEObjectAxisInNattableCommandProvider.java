@@ -39,9 +39,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
@@ -59,7 +61,9 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.command.ErrorTransactionalCommand;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
@@ -76,6 +80,7 @@ import org.eclipse.papyrus.infra.nattable.paste.PastePostActionRegistry;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.ExtendedCompoundCommand;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -476,6 +481,8 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final ExtendedCompoundCommand compoundCommand = new ExtendedCompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName);
+
 				// initialize lists
 				final Collection<String> postActions = getPostActions();
 
@@ -506,7 +513,7 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				}
 
 				// 1. Add the elements to the context
-				AddCommand.create(contextEditingDomain, tableContext, containmentFeature, createdElements).execute();
+				compoundCommand.append(AddCommand.create(contextEditingDomain, tableContext, containmentFeature, createdElements));
 
 				if (progressMonitor != null) {
 					if (progressMonitor.isCanceled()) {
@@ -522,8 +529,8 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				} else {
 					cmd = tableManager.getAddRowElementCommand(createdElements);
 				}
-				if (cmd != null) {// could be null
-					cmd.execute();
+				if (null != cmd) {// could be null
+					compoundCommand.append(cmd);
 				}
 
 				if (progressMonitor != null) {
@@ -572,7 +579,12 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 				}
 
 				// add the created cells to the table
-				AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells).execute();
+				compoundCommand.append(AddCommand.create(tableEditingDomain, table, NattablePackage.eINSTANCE.getTable_Cells(), cells));
+
+				// Execute the global command
+				if (null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {
+					tableEditingDomain.getCommandStack().execute(compoundCommand);
+				}
 
 				if (progressMonitor != null) {
 					progressMonitor.done();
@@ -641,6 +653,10 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 			 */
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final ExtendedCompoundCommand compoundCommand = new ExtendedCompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName);
+
+				final List<IStatus> resultStatus = new ArrayList<IStatus>();
+
 				long readChar = 0;
 				long previousreadChar = 0;
 
@@ -667,12 +683,15 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 					final ICommand commandCreation = tableContextCommandProvider.getEditCommand(createRequest);
 					if (commandCreation.canExecute()) {
 						// 1. we create the element
-						commandCreation.execute(monitor, info);
 						// we execute the creation command
+						final Command emfCommandCreation = GMFtoEMFCommandWrapper.wrap(commandCreation);
+						emfCommandCreation.execute();
+
+						// Add the creation command to the compound command
+						compoundCommand.append(emfCommandCreation);
 
 						// 2. we add it to the table
 						final CommandResult res = commandCreation.getCommandResult();
-						commandCreation.dispose();
 
 						final Object createdElement = res.getReturnValue();
 						final Command addCommand;
@@ -681,9 +700,8 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 						} else {
 							addCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
 						}
-						if (addCommand != null) {// can be null
-							addCommand.execute();
-							addCommand.dispose();
+						if (null != addCommand) {// can be null
+							compoundCommand.append(addCommand);
 						}
 
 						// 3. we set the values
@@ -707,9 +725,13 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 							if (isEditable) {
 								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
 								final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
-								if (setValueCommand != null && setValueCommand.canExecute()) {
-									setValueCommand.execute();
-									setValueCommand.dispose();
+								final IStatus commandStatus = getStatusCommand(setValueCommand);
+								if (!commandStatus.isOK()) {
+									resultStatus.add(commandStatus);
+								} else {
+									if (null != setValueCommand) {
+										compoundCommand.append(setValueCommand);
+									}
 								}
 							}
 						}
@@ -719,14 +741,55 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 						}
 					}
 				}
+
+				// Execute the global command
+				if (null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {
+					tableEditingDomain.getCommandStack().execute(compoundCommand);
+				}
+
 				progressMonitor.done();
 				localDispose();
-				return CommandResult.newOKCommandResult();
+				if (resultStatus.isEmpty()) {
+					return CommandResult.newOKCommandResult();
+				} else {
+					final IStatus resultingStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, resultStatus.toArray(new IStatus[resultStatus.size()]), "The paste has been done, but we found some problems", null);
+					return new CommandResult(resultingStatus);
+				}
 			}
 		};
 		return pasteAllCommand;
 	}
 
+	/**
+	 * Get the status of the EMF command (containing compound command or gmf command).
+	 * 
+	 * @param command
+	 *            The command.
+	 * @return The status of the corresponding command.
+	 */
+	protected IStatus getStatusCommand(final Command command) {
+		IStatus resultStatus = Status.OK_STATUS;
+
+		if (command instanceof CompoundCommand) {
+			final Iterator<Command> subCommandIterator = ((CompoundCommand) command).getCommandList().iterator();
+			while (subCommandIterator.hasNext() && resultStatus.isOK()) {
+				final Command subCommand = subCommandIterator.next();
+				if (command instanceof CompoundCommand) {
+					IStatus subStatus = getStatusCommand(subCommand);
+					if (!subStatus.isOK()) {
+						resultStatus = subStatus;
+					}
+				}
+			}
+		} else if (command instanceof GMFtoEMFCommandWrapper) {
+			ICommand gmfCommand = ((GMFtoEMFCommandWrapper) command).getGMFCommand();
+			if (gmfCommand instanceof ErrorTransactionalCommand) {
+				resultStatus = ((ErrorTransactionalCommand) gmfCommand).getStatus();
+			}
+		}
+
+		return resultStatus;
+	}
 
 	/**
 	 *
@@ -760,6 +823,10 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 			 */
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final ExtendedCompoundCommand compoundCommand = new ExtendedCompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName);
+
+				final List<IStatus> resultStatus = new ArrayList<IStatus>();
+
 				long readChar = 0;
 				long previousreadChar = 0;
 
@@ -786,12 +853,15 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 					final ICommand commandCreation = tableContextCommandProvider.getEditCommand(createRequest);
 					if (commandCreation.canExecute()) {
 						// 1. we create the element
-						commandCreation.execute(monitor, info);
 						// we execute the creation command
+						final Command emfCommandCreation = GMFtoEMFCommandWrapper.wrap(commandCreation);
+						emfCommandCreation.execute();
+
+						// Add the creation command to the compound command
+						compoundCommand.append(emfCommandCreation);
 
 						// 2. we add it to the table
 						final CommandResult res = commandCreation.getCommandResult();
-						commandCreation.dispose();
 
 						final Object createdElement = res.getReturnValue();
 						final Command addCommand;
@@ -800,9 +870,8 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 						} else {
 							addCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
 						}
-						if (addCommand != null) {// can be null
-							addCommand.execute();
-							addCommand.dispose();
+						if (null != addCommand) {// can be null
+							compoundCommand.append(addCommand);
 						}
 
 						// 3. we set the values
@@ -825,9 +894,13 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 							if (isEditable) {
 								final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
 								final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
-								if (setValueCommand != null && setValueCommand.canExecute()) {
-									setValueCommand.execute();
-									setValueCommand.dispose();
+								final IStatus commandStatus = getStatusCommand(setValueCommand);
+								if (!commandStatus.isOK()) {
+									resultStatus.add(commandStatus);
+								} else {
+									if (null != setValueCommand) {
+										compoundCommand.append(setValueCommand);
+									}
 								}
 							}
 						}
@@ -837,9 +910,20 @@ public class PasteEObjectAxisInNattableCommandProvider implements PasteNattableC
 						}
 					}
 				}
+
+				// Execute the global command
+				if (null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {
+					tableEditingDomain.getCommandStack().execute(compoundCommand);
+				}
+
 				progressMonitor.done();
 				localDispose();
-				return CommandResult.newOKCommandResult();
+				if (resultStatus.isEmpty()) {
+					return CommandResult.newOKCommandResult();
+				} else {
+					final IStatus resultingStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, resultStatus.toArray(new IStatus[resultStatus.size()]), "The paste has been done, but we found some problems", null);
+					return new CommandResult(resultingStatus);
+				}
 			}
 		};
 		return pasteAllCommand;

@@ -167,7 +167,6 @@ public class PasteInSelectionNattableCommandProvider extends AbstractPasteInSele
 
 				// we add it to the table
 				final CommandResult res = commandCreation.getCommandResult();
-				commandCreation.dispose();
 
 				createdElement = res.getReturnValue();
 			}

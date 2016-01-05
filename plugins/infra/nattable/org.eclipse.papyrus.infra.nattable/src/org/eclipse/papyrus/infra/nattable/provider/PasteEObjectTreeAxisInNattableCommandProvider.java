@@ -33,11 +33,14 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -54,6 +57,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.command.ErrorTransactionalCommand;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
@@ -72,6 +76,7 @@ import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CSVPasteHelper;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.ExtendedCompoundCommand;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.PasteSeverityCode;
 import org.eclipse.papyrus.infra.nattable.utils.PasteTreeUtils;
@@ -546,6 +551,11 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 			@SuppressWarnings("unchecked")
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final ExtendedCompoundCommand compoundCommand = new ExtendedCompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName);
+
+				// Manage a list of created elements to create a unique add command for all created elements
+				final List<Object> objectsToAdd = new ArrayList<Object>();
+
 				final List<IStatus> resultStatus = new ArrayList<IStatus>();
 
 				long readChar = 0;
@@ -656,9 +666,9 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 							final EObject context = contextMap.get(depth - 1);
 							final EStructuralFeature containmentFeature = pasteConfToUse.getPasteElementContainementFeature();
 							if (containmentFeature.isMany()) {
-								((Collection<EObject>) context.eGet(containmentFeature)).add(eobject);
+								compoundCommand.append(AddCommand.create(getEditingDomain(), context, containmentFeature, eobject));
 							} else {
-								context.eSet(containmentFeature, createdElement);
+								compoundCommand.append(SetCommand.create(getEditingDomain(), context, containmentFeature, eobject));
 							}
 
 							// get the feature used as ID for the element
@@ -667,13 +677,8 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 								eobject.eSet(nameFeature, valueAsString);
 							}
 							// we add the created element to the table, only if its parent is the context of the table and if the table is filled by DnD
-							if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(table, 0) && ((EObject) createdElement).eContainer() == tableContext) {
-								final Command addCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
-
-								if (addCommand != null) {// can be null
-									addCommand.execute();
-									addCommand.dispose();
-								}
+							if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(table, 0) && context.equals(tableContext)) {
+								objectsToAdd.add(createdElement);
 							}
 						}
 
@@ -714,6 +719,23 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 							resultStatus.add(status);
 						}
 					}
+				}
+
+				// Manage the rows to add by a final command (manage it at the end of the global command)
+				final CompoundCommand addRowsCommand = new CompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_AddRowsCommandName);
+				for (final Object createdElement : objectsToAdd) {
+					final Command addRowElementCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
+					if (addRowElementCommand.canExecute()) {
+						addRowsCommand.append(addRowElementCommand);
+					}
+				}
+				if (!addRowsCommand.isEmpty()) {
+					compoundCommand.append(addRowsCommand);
+				}
+
+				// Execute the global command
+				if (null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {
+					tableEditingDomain.getCommandStack().execute(compoundCommand);
 				}
 
 				progressMonitor.done();
@@ -953,6 +975,11 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 			 */
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
+				final ExtendedCompoundCommand compoundCommand = new ExtendedCompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName);
+
+				// Manage a list of created elements to create a unique add command for all created elements
+				final List<Object> objectsToAdd = new ArrayList<Object>();
+
 				final List<IStatus> resultStatus = new ArrayList<IStatus>();
 
 				long readChar = 0;
@@ -1068,11 +1095,14 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 						if (null != commandCreation && commandCreation.canExecute()) {
 
 							// 1. we create the element
-							commandCreation.execute(monitor, info);
+							final Command emfCommandCreation = GMFtoEMFCommandWrapper.wrap(commandCreation);
+							emfCommandCreation.execute();
+
+							// Add the creation command to the compound command
+							compoundCommand.append(emfCommandCreation);
 
 							// 2. we get the result of the command
 							final CommandResult res = commandCreation.getCommandResult();
-							commandCreation.dispose();
 
 							// 3 we update the map
 							final Object createdElement = res.getReturnValue();
@@ -1092,18 +1122,19 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 									if (createdElementCommandProvider != null) {
 										final ICommand setName = createdElementCommandProvider.getEditCommand(setNameRequest);
 										if (setName != null && setName.canExecute()) {
-											setName.execute(monitor, info);
+
+											// 1. we create the element
+											final Command emfSetNameCommandCreation = GMFtoEMFCommandWrapper.wrap(setName);
+											emfSetNameCommandCreation.execute();
+
+											// Add the set name command to the compound command
+											compoundCommand.append(emfSetNameCommandCreation);
 										}
 									}
 								}
 								// we add the created element to the table, only if its parent is the context of the table and if the table is filled by DnD
 								if (!FillingConfigurationUtils.hasTreeFillingConfigurationForDepth(table, 0) && ((EObject) createdElement).eContainer() == tableContext) {
-									final Command addCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
-
-									if (addCommand != null) {// can be null
-										addCommand.execute();
-										addCommand.dispose();
-									}
+									objectsToAdd.add(createdElement);
 								}
 							}
 
@@ -1138,14 +1169,13 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 								if (isEditable) {
 									final AbstractStringValueConverter converter = CellManagerFactory.INSTANCE.getOrCreateStringValueConverterClass(columnObject, rowObject, tableManager, existingConverters, pasteHelper.getMultiValueSeparator());
 									final Command setValueCommand = CellManagerFactory.INSTANCE.getSetStringValueCommand(contextEditingDomain, columnObject, rowObject, valueAsString, converter, tableManager);
-									if (setValueCommand != null && setValueCommand.canExecute()) {
-										try {
-											setValueCommand.execute();
-										} catch (final Exception e) {
-											// TODO Auto-generated catch block
-											e.printStackTrace();
+									final IStatus commandStatus = getStatusCommand(setValueCommand);
+									if (!commandStatus.isOK()) {
+										resultStatus.add(commandStatus);
+									} else {
+										if (null != setValueCommand) {
+											compoundCommand.append(setValueCommand);
 										}
-										setValueCommand.dispose();
 									}
 								}
 							}
@@ -1164,6 +1194,24 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 						}
 					}
 				}
+
+				// Manage the rows to add by a final command (manage it at the end of the global command)
+				final CompoundCommand addRowsCommand = new CompoundCommand(Messages.PasteEObjectAxisInTableCommandProvider_AddRowsCommandName);
+				for (final Object createdElement : objectsToAdd) {
+					final Command addRowElementCommand = tableManager.getAddRowElementCommand(Collections.singleton(createdElement));
+					if (addRowElementCommand.canExecute()) {
+						addRowsCommand.append(addRowElementCommand);
+					}
+				}
+				if (!addRowsCommand.isEmpty()) {
+					compoundCommand.append(addRowsCommand);
+				}
+
+				// Execute the global command
+				if (null != compoundCommand && !compoundCommand.isEmpty() && compoundCommand.canExecute()) {
+					tableEditingDomain.getCommandStack().execute(compoundCommand);
+				}
+
 				progressMonitor.done();
 				localDispose();
 				if (resultStatus.isEmpty()) {
@@ -1175,6 +1223,37 @@ public class PasteEObjectTreeAxisInNattableCommandProvider implements PasteNatta
 			}
 		};
 		return pasteAllCommand;
+	}
+
+	/**
+	 * Get the status of the EMF command (containing compound command or gmf command).
+	 * 
+	 * @param command
+	 *            The command.
+	 * @return The status of the corresponding command.
+	 */
+	protected IStatus getStatusCommand(final Command command) {
+		IStatus resultStatus = Status.OK_STATUS;
+
+		if (command instanceof CompoundCommand) {
+			final Iterator<Command> subCommandIterator = ((CompoundCommand) command).getCommandList().iterator();
+			while (subCommandIterator.hasNext() && resultStatus.isOK()) {
+				final Command subCommand = subCommandIterator.next();
+				if (command instanceof CompoundCommand) {
+					IStatus subStatus = getStatusCommand(subCommand);
+					if (!subStatus.isOK()) {
+						resultStatus = subStatus;
+					}
+				}
+			}
+		} else if (command instanceof GMFtoEMFCommandWrapper) {
+			ICommand gmfCommand = ((GMFtoEMFCommandWrapper) command).getGMFCommand();
+			if (gmfCommand instanceof ErrorTransactionalCommand) {
+				resultStatus = ((ErrorTransactionalCommand) gmfCommand).getStatus();
+			}
+		}
+
+		return resultStatus;
 	}
 
 	/**

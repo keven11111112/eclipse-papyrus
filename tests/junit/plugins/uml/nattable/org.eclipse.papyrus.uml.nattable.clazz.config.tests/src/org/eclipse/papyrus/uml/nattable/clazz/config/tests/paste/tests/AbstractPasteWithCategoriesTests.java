@@ -148,8 +148,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 				// we can't hide a depth for which we don't have category
 
 				Assert.assertTrue("The depth 0 can't be hidden", StyleUtils.isHiddenDepth(getTable(), 0) == false);//$NON-NLS-1$
-			}
-			else {
+			} else {
 				Assert.assertEquals(2, current.length());
 				final char visibility = current.charAt(0);
 				final char nbCategoriesForTheDepth = current.charAt(1);
@@ -273,7 +272,8 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 			// TODO : activate me checkCopyToClipboard(str);
 
-			// TODO : activate me checkUndo_Redo();
+			// Check the undo and the redo
+			checkUndo_Redo(manager);
 
 			// we close the table, we re-open it and we check that is contains is correct!
 			testClose_Open();
@@ -313,33 +313,32 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 
 	}
 
-	protected void checkUndo_Redo() throws Exception {
+	/**
+	 * This allows to check the undo and the redo.
+	 * 
+	 * @param manager
+	 *            the nattable model manager.
+	 * @throws Exception
+	 *             The exception.
+	 */
+	protected void checkUndo_Redo(final INattableModelManager manager) throws Exception {
 
-		// TODO : use eclipse command will be better
-
-		// IUndoableOperation[] undoContext = CheckedOperationHistory.getInstance().getUndoHistory(CheckedOperationHistory.GLOBAL_UNDO_CONTEXT);
+		((ITreeNattableModelManager) manager).doCollapseExpandAction(CollapseAndExpandActionsEnum.COLLAPSE_ALL, null);
+		
+		// Execute the undo and check the table content
 		final EditingDomainUndoContext undoContext = new EditingDomainUndoContext(getTransactionalEditingDomain());
 		getTransactionalEditingDomain().getCommandStack().undo();
 		CheckedOperationHistory.getInstance().undo(undoContext, null, null);
-
-		// TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
-		// editingDomain.getCommandStack().undo();
+		
 		flushDisplayEvents();
-
-		final IEditorPart tableEditor = editor.getActiveEditor();
-		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
-		Assert.assertEquals(1, pageManager.allPages().size());
-		Assert.assertNotNull(tableEditor);
-		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		final INattableModelManager manager = tableEditor.getAdapter(INattableModelManager.class);
-		Assert.assertTrue(manager instanceof ITreeNattableModelManager);
 
 		final List<?> rowElements = manager.getRowElementsList();
-		flushDisplayEvents();
 		final int size = rowElements.size();
 		Assert.assertEquals(0, size);
+
+		// Execute the redo and check the table content
 		CheckedOperationHistory.getInstance().redo(undoContext, null, null);
-		// editingDomain.getCommandStack().redo();
+		getTransactionalEditingDomain().getCommandStack().redo();
 		flushDisplayEvents();
 
 		verifyModelContents();
@@ -734,12 +733,12 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		final String[] result = className.split("_"); //$NON-NLS-1$
 		Assert.assertTrue(result.length == 6);
 		final String depth1 = result[1];
-		//		if (depth1.endsWith("3")) { //$NON-NLS-1$
+		// if (depth1.endsWith("3")) { //$NON-NLS-1$
 		// // verifyTableContents_1_3_1(elements);
-		//		} else if (depth1.endsWith("1")) { //$NON-NLS-1$
+		// } else if (depth1.endsWith("1")) { //$NON-NLS-1$
 		// verifyTableContents_1_1_1(elements);
 		// } else {
-		//			throw new Exception("We have an error in the tests"); //$NON-NLS-1$
+		// throw new Exception("We have an error in the tests"); //$NON-NLS-1$
 		// }
 
 		// TODO N
@@ -784,7 +783,7 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	/**
 	 *
 	 * @return
-	 *         the name of the paste file to use
+	 * 		the name of the paste file to use
 	 */
 	protected String getPasteFileName() {
 		final StringBuilder builder = new StringBuilder(getClass().getSimpleName());

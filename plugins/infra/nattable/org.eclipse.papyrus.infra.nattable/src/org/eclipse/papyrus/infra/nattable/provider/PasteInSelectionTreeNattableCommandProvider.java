@@ -259,7 +259,6 @@ public class PasteInSelectionTreeNattableCommandProvider extends PasteInSelectio
 
 				// we get the result of the command
 				final CommandResult res = commandCreation.getCommandResult();
-				commandCreation.dispose();
 
 				// we update the map
 				createdElement = res.getReturnValue();

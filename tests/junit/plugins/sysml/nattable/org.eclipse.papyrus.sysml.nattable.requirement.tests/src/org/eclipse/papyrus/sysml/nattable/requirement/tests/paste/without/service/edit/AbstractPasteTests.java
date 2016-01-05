@@ -212,7 +212,7 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		Map<Object, Object> parameters = new HashMap<Object, Object>();
 		parameters.put(PasteInTableHandler.OPEN_DIALOG_ON_FAIL_BOOLEAN_PARAMETER, Boolean.FALSE);
 		parameters.put(PasteInTableHandler.OPEN__PROGRESS_MONITOR_DIALOG, Boolean.FALSE);
-		ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null); 
+		ExecutionEvent event = new ExecutionEvent(cmd, parameters, null, null);
 		flushDisplayEvents();
 		Object res = cmd.executeWithChecks(event);
 		Assert.assertTrue(res instanceof IStatus);
@@ -222,9 +222,43 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 			verifyModelContents();
 			checkTableDataStructure();
 			checkCopyToClipboard(str);
+
+			// Check the undo and the redo
+			checkUndo_Redo(manager);
 		}
 	}
 
+	/**
+	 * This allows to check the undo and the redo.
+	 * 
+	 * @param manager
+	 *            the nattable model manager.
+	 * @throws Exception
+	 *             The exception.
+	 */
+	protected void checkUndo_Redo(final INattableModelManager manager) throws Exception {
+		// Execute the undo and test the table
+		getTransactionalEditingDomain().getCommandStack().undo();
+		flushDisplayEvents();
+
+		final List<?> rowElements = manager.getRowElementsList();
+		final int size = rowElements.size();
+		Assert.assertEquals(1, size);
+
+		// Execute the redo and test the table content
+		getTransactionalEditingDomain().getCommandStack().redo();
+		flushDisplayEvents();
+
+		verifyModelContents();
+		checkTableDataStructure();
+	}
+
+	/**
+	 * This allows to check the returned status of the command.
+	 * 
+	 * @param status
+	 *            The status to check.
+	 */
 	protected void validateReturnedStatus(IStatus status) {
 		Assert.assertTrue(status.isOK());
 	}
@@ -290,8 +324,8 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		}
 		if ("RequirementTest".equals(name)) { //$NON-NLS-1$
 			// this is the initial requirement, available in the table
-			Assert.assertTrue(id == null || id.isEmpty()); //$NON-NLS-1$
-			Assert.assertTrue(text == null || text.isEmpty()); //$NON-NLS-1$
+			Assert.assertTrue(id == null || id.isEmpty()); // $NON-NLS-1$
+			Assert.assertTrue(text == null || text.isEmpty()); // $NON-NLS-1$
 			Assert.assertEquals("medium", priority2.getName()); //$NON-NLS-1$
 			if (this.checkClassColor) {
 				Assert.assertEquals("red", color2.getName()); //$NON-NLS-1$
@@ -386,44 +420,6 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		final INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
 		List<Object> rows = manager.getRowElementsList();
 		Assert.assertEquals(4, rows.size());
-
-		// TODO : do the check using the clipboard
-
-		// boolean tmp = true;
-		// while (tmp) {
-		// try {
-		// tmp = Display.getDefault().readAndDispatch();
-		// } catch (Exception e) {
-		// Activator.log.error(e);
-		// }
-		// }
-		// Display.getDefault().asyncExec(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// // TODO Auto-generated method stub
-		// ((NattableModelManager) manager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
-		// }
-		// });
-		// while (tmp) {
-		// try {
-		// tmp = Display.getDefault().readAndDispatch();
-		// } catch (Exception e) {
-		// Activator.log.error(e);
-		// }
-		// }
-		// List<?> elements = manager.getRowElementsList();
-		//
-		// String className = getClass().getSimpleName();
-		//		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		//		String[] result = className.split("_"); //$NON-NLS-1$
-		// Assert.assertTrue(result.length == 5);
-		// String first = result[0];
-		//		if ("Empty".equals(first)) { //$NON-NLS-1$
-		// checkDnDRoot(elements);
-		// } else {
-		// checkSynchronizedRoot(elements);
-		// }
 	}
 
 
@@ -553,90 +549,12 @@ public abstract class AbstractPasteTests extends AbstractOpenTableTest {
 		if (true) {// TODO, fixme
 			return;
 		}
-		// final INattableModelManager manager = (INattableModelManager) this.editor.getAdapter(INattableModelManager.class);
-		//
-		// boolean tmp = true;
-		// while (tmp) {
-		// try {
-		// tmp = Display.getDefault().readAndDispatch();
-		// } catch (Exception e) {
-		// Activator.log.error(e);
-		// }
-		// }
-		// Display.getDefault().asyncExec(new Runnable() {
-		//
-		// @Override
-		// public void run() {
-		// // TODO Auto-generated method stub
-		// ((NattableModelManager) manager).doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
-		// }
-		// });
-		// while (tmp) {
-		// try {
-		// tmp = Display.getDefault().readAndDispatch();
-		// } catch (Exception e) {
-		// Activator.log.error(e);
-		// }
-		// }
-		// List<?> elements = manager.getRowElementsList();
-		//		Assert.assertTrue(" the list managing the rows in not a TreeList", elements instanceof TreeList<?>); //$NON-NLS-1$
-		// Assert.assertEquals(2, elements.size());
-		// String className = getClass().getSimpleName();
-		//		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		//		String[] result = className.split("_"); //$NON-NLS-1$
-		// Assert.assertTrue(result.length == 5);
-		// String depth1 = result[1];
-		//		//		if (depth1.endsWith("3")) { //$NON-NLS-1$
-		// // // verifyTableContents_1_3_1(elements);
-		//		//		} else if (depth1.endsWith("1")) { //$NON-NLS-1$
-		// // verifyTableContents_1_1_1(elements);
-		// // } else {
-		//		//			throw new Exception("We have an error in the tests"); //$NON-NLS-1$
-		// // }
-		//
-		// // TODO N
-		// // Assert.assertEquals(11, elements.size());
-		//
-		// manager.selectAll();
-		// ((AbstractNattableWidgetManager) manager).copyToClipboard();
-		//
-		// String clipboardContents = TableClipboardUtils.getClipboardContentsAsString();
-		// String fileName = getPasteFileName();
-		//
-		// // String pastedContents = FileUtils.getStringFromPlatformFile(Activator.PLUGIN_ID,get filePath, fileNameWithExtension)
-		// int i = 0;
-		// i++;
-		//
-		// StringReader clipboardReader = new StringReader(clipboardContents);
-		// StringReader fileReader = new StringReader(pastedString);
-		// CSVPasteHelper helperClipboard = new CSVPasteHelper();
-		// CSVPasteHelper helperfile = new CSVPasteHelper();
-		// CSVParser clipboardParser = helperClipboard.createParser(clipboardReader);
-		// CSVParser fileParser = helperfile.createParser(fileReader);
-		// RowIterator clipboardRowIter = clipboardParser.parse();
-		// RowIterator fileRowIter = fileParser.parse();
-		// // doesn't work because tree header are not in the clipboard
-		// while (clipboardRowIter.hasNext()) {
-		// Assert.assertEquals(fileRowIter.hasNext(), clipboardRowIter.hasNext());
-		// CellIterator fileCellIterator = fileRowIter.next();
-		// CellIterator clipboardCellIterator = clipboardRowIter.next();
-		// while (clipboardCellIterator.hasNext()) {
-		// Assert.assertEquals(fileCellIterator.hasNext(), clipboardCellIterator.hasNext());
-		// String origin = fileCellIterator.next();
-		// String current = clipboardCellIterator.next();
-		//
-		// // contains and not equals, because due to label provider, it could be different
-		// Assert.assertTrue(current.contains(origin));
-		// }
-		// Assert.assertEquals(fileCellIterator.hasNext(), clipboardCellIterator.hasNext());
-		// }
-		// Assert.assertEquals(fileRowIter.hasNext(), clipboardRowIter.hasNext());
 	}
 
 	/**
 	 *
 	 * @return
-	 *         the name of the paste file to use
+	 * 		the name of the paste file to use
 	 */
 	protected String getPasteFileName() {
 		StringBuilder builder = new StringBuilder(getClass().getSimpleName());

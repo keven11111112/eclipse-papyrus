@@ -324,6 +324,8 @@ public class Messages extends NLS {
 	public static String PasteConfigurationUtils_PasteConfigurationIsConsistent;
 
 	public static String PasteEObjectAxisInTableCommandProvider_AddingElementToTheTable;
+	
+	public static String PasteEObjectAxisInTableCommandProvider_AddRowsCommandName;
 
 	public static String PasteEObjectAxisInTableCommandProvider_CommandCreationHasBeenCancelled;
 
@@ -340,6 +342,8 @@ public class Messages extends NLS {
 	public static String PasteEObjectAxisInTableCommandProvider_PasteColumns;
 
 	public static String PasteEObjectAxisInTableCommandProvider_PasteFromStringCommand;
+	
+	public static String PasteEObjectAxisInTableCommandProvider_PasteInTableCommandName;
 
 	public static String PasteEObjectAxisInTableCommandProvider_PasteRows;
 
