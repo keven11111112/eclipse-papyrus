@@ -654,7 +654,7 @@ query DoStatement::assignments() : Set(AssignedSource) {
 helper ForStatement::createStructuredNode() : StructuredActivityNode {
 	return 
 		if self.isParallel or 
-			 self.variableDefinition->at(1).resultSource2 = null and self.newAssignments()->isEmpty() then
+			 self.variableDefinition->at(1).expression2 = null and self.newAssignments()->isEmpty() then
 	    // If this is a parallel for statement, or the first loop variable
 	    // definition is not a sequence construction shortcut and there
 	    // are no new assignments in the body, map as an expansion region.
@@ -689,9 +689,9 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
 	if structuredNode.oclIsKindOf(ExpansionRegion) then {
 		var region := structuredNode.oclAsType(ExpansionRegion);
 		
-    // For each loop variable definition, create an input expansion
-    // node with a corresponding fork node (that becomes the assigned
-    // value source for the loop variable within the body).
+	    // For each loop variable definition, create an input expansion
+	    // node with a corresponding fork node (that becomes the assigned
+	    // value source for the loop variable within the body).
 		self.variableDefinition->forEach(definition) {
 			var variable = definition.variable;
 			nodes += var inputNode ::= new ExpansionNode(variable, definition.type.toType(), region, true);
@@ -701,12 +701,12 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
 			definition.assignedValueSource := forkNode;
 		};
 		
-    // For each @parallel name, create an output expansion node with
-    // a corresponding fork node (that becomes the assigned value
-    // source for the name after the for statement).
-    // (Note: This must be done before mapping the body, so the output
-    // expansion nodes are also available for mapping @parallel names
-    // used as targets of add calls within the body.)
+	    // For each @parallel name, create an output expansion node with
+	    // a corresponding fork node (that becomes the assigned value
+	    // source for the name after the for statement).
+	    // (Note: This must be done before mapping the body, so the output
+	    // expansion nodes are also available for mapping @parallel names
+	    // used as targets of add calls within the body.)
 		self.parallelNames()->forEach(parallelName) {
 			nodes += var outputNode ::= new ExpansionNode(parallelName, null, region, false);
 			nodes += var forkNode ::= new ForkNode(parallelName);
@@ -720,189 +720,189 @@ mapping ForStatement::toActivityGraph() : StatementActivityGraph
 	} else {
 		var loopNode := structuredNode.oclAsType(LoopNode);
 		
-    // Create output pins for all names assigned after the for statement.
-    // NOTE: Output pins are created even for names that are not
-    // assigned within the for statement, so they can be made available
-    // as loop variables for access within the body of the for statement.
-    var assignedNames := self.mapAssignedValueSources(result, true);
-    
-    // Create a loop variable pin corresponding to each loop variable definition.
+	    // Create output pins for all names assigned after the for statement.
+	    // NOTE: Output pins are created even for names that are not
+	    // assigned within the for statement, so they can be made available
+	    // as loop variables for access within the body of the for statement.
+	    var assignedNames := self.mapAssignedValueSources(result, true);
+	    
+	    // Create a loop variable pin corresponding to each loop variable definition.
 		var resultSource1 := firstDefinition.resultSource1;
 		var resultSource2 := firstDefinition.resultSource2;
-    var n = loopNode.loopVariable->size();
-    setupSubgraph.nodes += var forkNode ::= new ForkNode(nameOf(resultSource1));
-    self.variableDefinition->forEach(definition) {
-    	addLoopVariable(result, 
-    		definition.variable, 
-    		definition.type.toType(), 
-    		0, -1, 
-    		null);
-    	var inputPin = loopNode.loopVariableInput->last();
-    	if definition.resultSource1 = resultSource1 then {
-    		// Direct the flow for the the first variable through a fork node.
-		    setupSubgraph.edges += new ObjectFlow(resultSource1, forkNode);
-		    setupSubgraph.edges += new ObjectFlow(forkNode, inputPin);
-    	} else {
-    		setupSubgraph.edges += new ObjectFlow(definition.resultSource1, inputPin);
-    	} endif;
-    };
+	    var n = loopNode.loopVariable->size();
+	    setupSubgraph.nodes += var forkNode ::= new ForkNode(nameOf(resultSource1));
+	    self.variableDefinition->forEach(definition) {
+	    	addLoopVariable(result, 
+	    		definition.variable, 
+	    		definition.type.toType(), 
+	    		0, -1, 
+	    		null);
+	    	var inputPin = loopNode.loopVariableInput->last();
+	    	if definition.resultSource1 = resultSource1 then {
+	    		// Direct the flow for the the first variable through a fork node.
+			    setupSubgraph.edges += new ObjectFlow(resultSource1, forkNode);
+			    setupSubgraph.edges += new ObjectFlow(forkNode, inputPin);
+	    	} else {
+	    		setupSubgraph.edges += new ObjectFlow(definition.resultSource1, inputPin);
+	    	} endif;
+	    };
     
-    var callAction : CallBehaviorAction;
-    if resultSource2 = null then {
-	    // Unless the first loop variable definition is a sequence
-	    // construction shortcut, the number of iterations of the
-	    // loop is determined by the list size of the first loop
-	    // variable input.
-	    setupSubgraph.nodes += callAction := new CallBehaviorAction(self.functionSize());
-	    setupSubgraph.edges += new ObjectFlow(forkNode, callAction.argument->at(1));
-    } else {
-	    // If the first loop variable definition is a sequence
-	    // construction shortcut of the form m..n, then the number of
-	    // iterations of the loop is n-m+1.
-	    var inputPin := loopNode.loopVariableInput->at(n+1);
-    	object inputPin: {
-    		lower := 1;
-    		upper := 1;
-    	};
-    	setupSubgraph.nodes += var minusAction ::= new CallBehaviorAction(self.functionMinus());
-    	setupSubgraph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalNatural(1));
-    	setupSubgraph.nodes += callAction := new CallBehaviorAction(self.functionPlus());
-    	setupSubgraph.edges += Set{
-    		new ObjectFlow(resultSource2, minusAction.argument->at(1)),
-    		new ObjectFlow(forkNode, minusAction.argument->at(2)),
-    		new ObjectFlow(minusAction.result->at(1), callAction.argument->at(1)),
-    		new ObjectFlow(valueAction.result, callAction.argument->at(2))
-    	};
-    } endif;
+	    var callAction : CallBehaviorAction;
+	    if resultSource2 = null then {
+		    // Unless the first loop variable definition is a sequence
+		    // construction shortcut, the number of iterations of the
+		    // loop is determined by the list size of the first loop
+		    // variable input.
+		    setupSubgraph.nodes += callAction := new CallBehaviorAction(self.functionSize());
+		    setupSubgraph.edges += new ObjectFlow(forkNode, callAction.argument->at(1));
+	    } else {
+		    // If the first loop variable definition is a sequence
+		    // construction shortcut of the form m..n, then the number of
+		    // iterations of the loop is n-m+1.
+		    var inputPin := loopNode.loopVariableInput->at(n+1);
+	    	object inputPin: {
+	    		lower := 1;
+	    		upper := 1;
+	    	};
+	    	setupSubgraph.nodes += var minusAction ::= new CallBehaviorAction(self.functionMinus());
+	    	setupSubgraph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalNatural(1));
+	    	setupSubgraph.nodes += callAction := new CallBehaviorAction(self.functionPlus());
+	    	setupSubgraph.edges += Set{
+	    		new ObjectFlow(resultSource2, minusAction.argument->at(1)),
+	    		new ObjectFlow(forkNode, minusAction.argument->at(2)),
+	    		new ObjectFlow(minusAction.result->at(1), callAction.argument->at(1)),
+	    		new ObjectFlow(valueAction.result, callAction.argument->at(2))
+	    	};
+	    } endif;
     
-    // Set up loop variables for counting loop iterations and for the
-    // loop iteration count upper bound.
-  	setupSubgraph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalNatural(1));
-  	addLoopVariable(result, "counter", self.integerType().toType(), 1, 1, valueAction.result);
-  	var counterFork := loopNode.loopVariable->last().outgoing![true].target;
-  	addLoopVariable(result, "upper", self.integerType().toType(), 1, 1, callAction.result->at(1));
-  	var upperFork := loopNode.loopVariable->last().outgoing![true].target;
-  	
-  	// Map the test "count <= upper".
-  	var testCall := new CallBehaviorAction(self.functionLessThanOrEqual());
-  	addToLoopNode(result, Set{testCall}, Set{
-  		new ObjectFlow(counterFork, testCall.argument->at(1)),
-  		new ObjectFlow(upperFork, testCall.argument->at(2))
-  	});
-  	loopNode.test += testCall;
-  	loopNode.decider := testCall.result->at(1);
-  	
-  	// Determine the assigned value source for each loop variable within the
-  	// body of the for statement.
-  	var i := n + 1;
-  	var valueGraph := new StatementActivityGraph();
-  	self.variableDefinition->forEach(definition) {
-  		var loopVariable := loopNode.loopVariable->at(i);
-  		var variableFork := loopVariable.outgoing![true].target;
-  		if i = n + 1 and definition.resultSource2 <> null then {
-        // If this is the first loop variable, and its definition
-        // is a sequence construction shorthand, then its assigned
-        // value is just the value of the loop variable pin.
-        definition.assignedValueSource := variableFork;
-  		} else {
-        // Otherwise, the assigned value of the loop variable is
-        // the value at the position in the loop variable input list
-        // given by the current iteration count.
-  			valueGraph.nodes += definition.assignedValueSource := new ForkNode(definition.variable);
-  			valueGraph.nodes += callAction := new CallBehaviorAction(self.functionAt());
-  			valueGraph.edges += Set{
-  				new ObjectFlow(variableFork, callAction.argument->at(1)),
-  				new ObjectFlow(counterFork, callAction.argument->at(2)),
-  				new ObjectFlow(callAction.result->at(1), definition.assignedValueSource)
-  			};
-  		} endif;
-			i := i + 1;
-  	};
-  	
-    // Map the body of the for statement.
-    var bodyGraph := new StatementActivityGraph("Body(" + loopNode.name + ")");
-    
-    // NOTE: The loop variable value model elements and the body model
-    // elements are mapped into separate structured activity nodes,
-    // with the former having a control flow to the latter, to ensure
-    // all the loop variables have the proper values before the main
-    // body executes.
-    if valueGraph.nodes->notEmpty() then {
-	  	createStructuredNode(valueGraph, "Values(" + loopNode.name + ")");
-	    valueGraph.addTo(bodyGraph);
-	    bodyGraph.edges += new ControlFlow(valueGraph.structuredNode, bodyGraph.structuredNode);
-    } endif;
-  	
-    // NOTE: Making every body output (for an assigned name) an output 
-    // pin of the single body node is necessary for properly setting
-    // these outputs in the case of a break statement within the loop.
-    // This must be done before the body is mapped.
-    var assignmentsAfter := self.assignmentAfter;
-    assignedNames->forEach(assignedName) {
-     	var outputPin := assignmentsAfter->any(name = assignedName).toOutputPin();
-      bodyGraph.structuredNode.structuredNodeOutput += outputPin;
-      loopNode.bodyOutput += outputPin;
-    };
-    
-    var subgraph := self.body.map toActivityGraph(false);    
-    var bodyOutputs := mapBodyOutputs(subgraph, self.body.assignmentAfter, assignedNames);
-    subgraph.addToStructuredNode(bodyGraph);
-    Sequence{1..bodyOutputs->size()}->forEach(j) {
-    	bodyGraph.structuredNode.edge += new ObjectFlow(
-    		bodyOutputs->at(j), bodyGraph.structuredNode.output->at(j));
-    };
-
-    // Identify the body output corresponding to each loop variable.
-    i := n + 1;
-    self.variableDefinition->forEach(definition) {
-    	var loopVariable := loopNode.loopVariable->at(i);
-    	var variableFork := loopVariable.outgoing![true].target;
-    	if i = n + 1 and definition.resultSource2 <> null then {
-	      // If the this is the first loop variable, and its
-	      // definition is a sequence construction shorthand, then
-	      // its value must be incremented for the next iteration.
-	      bodyGraph.nodes += callAction := new CallBehaviorAction(self.functionPlus());
-	      bodyGraph.nodes += valueAction := new ValueSpecificationAction(self.literalNatural(1));
-	      bodyGraph.edges += new ObjectFlow(variableFork, callAction.argument->at(1));
-	      bodyGraph.edges += new ObjectFlow(valueAction.result, callAction.argument->at(2));
-	      loopNode.bodyOutput += callAction.result->at(1);
-    	} else {
-    		// Otherwise, the loop variable input list must simply be passed through
-    		// to the next iteration unchanged.
-    		bodyGraph.nodes += var passthruNode ::= createPassthruNode(loopVariable.name, loopVariable.type, 0, -1);
-    		bodyGraph.edges += new ObjectFlow(variableFork, passthruNode.structuredNodeInput![true]);
-    		loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
-    	} endif;
-    	i := i + 1;
-    };
-    
-    // Map the incrementing of the loop iteration count.
-    bodyGraph.nodes += callAction := new CallBehaviorAction(self.functionPlus());
-    bodyGraph.nodes += valueAction := new ValueSpecificationAction(self.literalNatural(1));
-    bodyGraph.edges += new ObjectFlow(counterFork, callAction.argument->at(1));
-    bodyGraph.edges += new ObjectFlow(valueAction.result, callAction.argument->at(2));
-    loopNode.bodyOutput += callAction.result->at(1);
-    
-    // Map the passing through of the upper bound value.
-    bodyGraph.nodes += var passthruNode ::= createPassthruNode("upper", self.typeInteger(), 1, 1);
-    bodyGraph.edges += new ObjectFlow(upperFork, passthruNode.structuredNodeInput![true]);
-    loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
-    
-    bodyGraph.addToLoopNode(result);
-    loopNode.bodyPart += bodyGraph.nodes[ExecutableNode];    
+	    // Set up loop variables for counting loop iterations and for the
+	    // loop iteration count upper bound.
+	  	setupSubgraph.nodes += var valueAction ::= new ValueSpecificationAction(self.literalNatural(1));
+	  	addLoopVariable(result, "counter", self.integerType().toType(), 1, 1, valueAction.result);
+	  	var counterFork := loopNode.loopVariable->last().outgoing![true].target;
+	  	addLoopVariable(result, "upper", self.integerType().toType(), 1, 1, callAction.result->at(1));
+	  	var upperFork := loopNode.loopVariable->last().outgoing![true].target;
+	  	
+	  	// Map the test "count <= upper".
+	  	var testCall := new CallBehaviorAction(self.functionLessThanOrEqual());
+	  	addToLoopNode(result, Set{testCall}, Set{
+	  		new ObjectFlow(counterFork, testCall.argument->at(1)),
+	  		new ObjectFlow(upperFork, testCall.argument->at(2))
+	  	});
+	  	loopNode.test += testCall;
+	  	loopNode.decider := testCall.result->at(1);
+	  	
+	  	// Determine the assigned value source for each loop variable within the
+	  	// body of the for statement.
+	  	var i := n + 1;
+	  	var valueGraph := new StatementActivityGraph();
+	  	self.variableDefinition->forEach(definition) {
+	  		var loopVariable := loopNode.loopVariable->at(i);
+	  		var variableFork := loopVariable.outgoing![true].target;
+	  		if i = n + 1 and definition.resultSource2 <> null then {
+	        // If this is the first loop variable, and its definition
+	        // is a sequence construction shorthand, then its assigned
+	        // value is just the value of the loop variable pin.
+	        definition.assignedValueSource := variableFork;
+	  		} else {
+	        // Otherwise, the assigned value of the loop variable is
+	        // the value at the position in the loop variable input list
+	        // given by the current iteration count.
+	  			valueGraph.nodes += definition.assignedValueSource := new ForkNode(definition.variable);
+	  			valueGraph.nodes += callAction := new CallBehaviorAction(self.functionAt());
+	  			valueGraph.edges += Set{
+	  				new ObjectFlow(variableFork, callAction.argument->at(1)),
+	  				new ObjectFlow(counterFork, callAction.argument->at(2)),
+	  				new ObjectFlow(callAction.result->at(1), definition.assignedValueSource)
+	  			};
+	  		} endif;
+				i := i + 1;
+	  	};
+	  	
+	    // Map the body of the for statement.
+	    var bodyGraph := new StatementActivityGraph("Body(" + loopNode.name + ")");
+	    
+	    // NOTE: The loop variable value model elements and the body model
+	    // elements are mapped into separate structured activity nodes,
+	    // with the former having a control flow to the latter, to ensure
+	    // all the loop variables have the proper values before the main
+	    // body executes.
+	    if valueGraph.nodes->notEmpty() then {
+		  	createStructuredNode(valueGraph, "Values(" + loopNode.name + ")");
+		    valueGraph.addTo(bodyGraph);
+		    bodyGraph.edges += new ControlFlow(valueGraph.structuredNode, bodyGraph.structuredNode);
+	    } endif;
+	  	
+	    // NOTE: Making every body output (for an assigned name) an output 
+	    // pin of the single body node is necessary for properly setting
+	    // these outputs in the case of a break statement within the loop.
+	    // This must be done before the body is mapped.
+	    var assignmentsAfter := self.assignmentAfter;
+	    assignedNames->forEach(assignedName) {
+	     	var outputPin := assignmentsAfter->any(name = assignedName).toOutputPin();
+	      bodyGraph.structuredNode.structuredNodeOutput += outputPin;
+	      loopNode.bodyOutput += outputPin;
+	    };
+	    
+	    var subgraph := self.body.map toActivityGraph(false);    
+	    var bodyOutputs := mapBodyOutputs(subgraph, self.body.assignmentAfter, assignedNames);
+	    subgraph.addToStructuredNode(bodyGraph);
+	    Sequence{1..bodyOutputs->size()}->forEach(j) {
+	    	bodyGraph.structuredNode.edge += new ObjectFlow(
+	    		bodyOutputs->at(j), bodyGraph.structuredNode.output->at(j));
+	    };
+	
+	    // Identify the body output corresponding to each loop variable.
+	    i := n + 1;
+	    self.variableDefinition->forEach(definition) {
+	    	var loopVariable := loopNode.loopVariable->at(i);
+	    	var variableFork := loopVariable.outgoing![true].target;
+	    	if i = n + 1 and definition.resultSource2 <> null then {
+		      // If this is the first loop variable, and its
+		      // definition is a sequence construction shorthand, then
+		      // its value must be incremented for the next iteration.
+		      bodyGraph.nodes += callAction := new CallBehaviorAction(self.functionPlus());
+		      bodyGraph.nodes += valueAction := new ValueSpecificationAction(self.literalNatural(1));
+		      bodyGraph.edges += new ObjectFlow(variableFork, callAction.argument->at(1));
+		      bodyGraph.edges += new ObjectFlow(valueAction.result, callAction.argument->at(2));
+		      loopNode.bodyOutput += callAction.result->at(1);
+	    	} else {
+	    		// Otherwise, the loop variable input list must simply be passed through
+	    		// to the next iteration unchanged.
+	    		bodyGraph.nodes += var passthruNode ::= createPassthruNode(loopVariable.name, loopVariable.type, 0, -1);
+	    		bodyGraph.edges += new ObjectFlow(variableFork, passthruNode.structuredNodeInput![true]);
+	    		loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
+	    	} endif;
+	    	i := i + 1;
+	    };
+	    
+	    // Map the incrementing of the loop iteration count.
+	    bodyGraph.nodes += callAction := new CallBehaviorAction(self.functionPlus());
+	    bodyGraph.nodes += valueAction := new ValueSpecificationAction(self.literalNatural(1));
+	    bodyGraph.edges += new ObjectFlow(counterFork, callAction.argument->at(1));
+	    bodyGraph.edges += new ObjectFlow(valueAction.result, callAction.argument->at(2));
+	    loopNode.bodyOutput += callAction.result->at(1);
+	    
+	    // Map the passing through of the upper bound value.
+	    bodyGraph.nodes += var passthruNode ::= createPassthruNode("upper", self.typeInteger(), 1, 1);
+	    bodyGraph.edges += new ObjectFlow(upperFork, passthruNode.structuredNodeInput![true]);
+	    loopNode.bodyOutput += passthruNode.structuredNodeOutput![true];
+	    
+	    bodyGraph.addToLoopNode(result);
+	    loopNode.bodyPart += bodyGraph.nodes[ExecutableNode];    
 	} endif;
 	
-  if setupSubgraph.nodes->notEmpty() then {
-    // Unless there are no setup model elements, map the setup elements
-    // into their own structured activity node that must complete
-    // before execution of the loop node/expansion region.
-    var nodeName := result.structuredNode.name;
-    result.structuredNode.name := "Loop(" + nodeName + ")";
-    createStructuredNode(setupSubgraph, "LoopVariables(" + nodeName + ")");
-    setupSubgraph.addTo(result);
-    edges += new ControlFlow(setupSubgraph.structuredNode, result.structuredNode);
-    createStructuredNode(result, nodeName);
-  } endif;
+    if setupSubgraph.nodes->notEmpty() then {
+	    // Unless there are no setup model elements, map the setup elements
+	    // into their own structured activity node that must complete
+	    // before execution of the loop node/expansion region.
+	    var nodeName := result.structuredNode.name;
+	    result.structuredNode.name := "Loop(" + nodeName + ")";
+	    createStructuredNode(setupSubgraph, "LoopVariables(" + nodeName + ")");
+	    setupSubgraph.addTo(result);
+	    edges += new ControlFlow(setupSubgraph.structuredNode, result.structuredNode);
+	    createStructuredNode(result, nodeName);
+    } endif;
 }
 
 query ForStatement::assignments() : Set(AssignedSource) {
