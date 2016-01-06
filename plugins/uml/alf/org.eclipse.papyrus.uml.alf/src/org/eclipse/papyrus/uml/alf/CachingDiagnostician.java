@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014-2016 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 	Ed Seidewitz
+ * 	 Ed Seidewitz
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf;
 
@@ -16,7 +16,6 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.xtext.validation.CancelableDiagnostician;
 
 import com.google.inject.Inject;
@@ -28,10 +27,6 @@ public class CachingDiagnostician extends CancelableDiagnostician {
 	@Inject
 	public CachingDiagnostician(Registry registry) {
 		super(registry);
-	}
-
-	public CachingDiagnostician() {
-		this(EValidator.Registry.INSTANCE);
 	}
 
 	@Override
