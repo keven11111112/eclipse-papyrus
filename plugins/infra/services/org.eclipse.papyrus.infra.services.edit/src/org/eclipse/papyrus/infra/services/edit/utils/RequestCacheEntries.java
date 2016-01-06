@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.utils;
 
+import java.util.HashSet;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
@@ -42,6 +43,9 @@ public final class RequestCacheEntries implements IRequestCacheEntries {
 		IEditHelperAdvice[] advices = ElementTypeRegistry.getInstance()
 				.getEditHelperAdvice(eObj, clientContext);
 		map.put(EditHelper_Advice, advices);
+		
+		map.put(IRequestCacheEntries.Dependent_Elements, new HashSet<Object>()); //The set will be populated on the fly
+		map.put(IRequestCacheEntries.Checked_Elements, new HashSet<Object>()); //The set will be populated on the fly
 	}
 
 }
