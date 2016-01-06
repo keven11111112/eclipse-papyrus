@@ -12,6 +12,7 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<modules>
+		<!-- features -->
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cdo.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.cpp.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.diagramtemplate.feature</module>
@@ -37,6 +38,9 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.effbd.feature</module>
+		
+		<!-- plug-ins-->
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo.ui</module>
@@ -209,7 +213,8 @@
 
 		<module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
 		<module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
-
+		<!-- Papyrus EFFBD -->
+		<module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
 		<!-- Papyrus Req -->
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.reqif</module>
 		<module>../../extraplugins/req/org.eclipse.papyrus.req.domainModel2Profile</module>
@@ -563,12 +568,12 @@
 		<!-- Used with pack and packAndSign -->
 		<profile>
 			<id>buildExtra</id>
-				<repositories>
-					<repository>
-						<id>papyrus-main</id>
-						<layout>p2</layout>
-						<url>${papyrus.repo.main}</url>
-					</repository>
+			<repositories>
+				<repository>
+					<id>papyrus-main</id>
+					<layout>p2</layout>
+					<url>${papyrus.repo.main}</url>
+				</repository>
 			</repositories>
 			<activation>
 				<property>
@@ -576,12 +581,13 @@
 				</property>
 			</activation>
 		</profile>
-		
-		
+
+
 		<profile>
 			<id>buildAll</id>
-			<!-- Papyrus Update sites not included (They are included in the same build) -->
-			
+			<!-- Papyrus Update sites not included (They are included in the same 
+				build) -->
+
 			<build>
 				<plugins>
 					<plugin>
@@ -600,7 +606,7 @@
 					</plugin>
 				</plugins>
 			</build>
-			
+
 			<activation>
 				<property>
 					<name>buildAll</name>

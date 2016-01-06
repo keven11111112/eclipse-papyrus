@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmi:id="_ko07IErbEeSdQKzSRatBjg">
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_xogdoErbEeSdQKzSRatBjg" name="Default Papyrus Viewpoint">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_ZrBf4JaBEeS8eNvSwD0lgA" name="EFFB" icon="platform:/plugin/org.eclipse.papyrus.effbd/icons/effbd16.png" implementationID="PapyrusUMLActivityDiagram" categories="_a6cL0MykEeSuYbPdZwWlyx" customPalette="platform:/plugin/org.eclipse.papyrus.effbd/resource/EFFBD.paletteconfiguration" customStyle="platform:/plugin/org.eclipse.papyrus.effbd/resource/EFFBD.css">
+      <modelRules xmi:id="_ZrBf4ZaBEeS8eNvSwD0lgA">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      </modelRules>
+      <modelRules xmi:id="__1p68DEsEeWJxc-KaJbwrw">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+      </modelRules>
+      <owningRules xmi:id="_3pz6EJzIEeWAbLfn_iCQ6g">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+        <newModelPath xmi:id="_557ikJzIEeWAbLfn_iCQ6g" creationType="org.eclipse.papyrus.effbd.effb">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules xmi:id="_BS57QJzJEeWAbLfn_iCQ6g">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
+        <newModelPath xmi:id="_DGUZoJzJEeWAbLfn_iCQ6g" creationType="org.eclipse.papyrus.effbd.effb">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/ownedBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <owningRules xmi:id="_KTZrYJzJEeWAbLfn_iCQ6g">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
+        <newModelPath xmi:id="_NqKy4JzJEeWAbLfn_iCQ6g" creationType="org.eclipse.papyrus.effbd.effb">
+          <feature href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier/classifierBehavior"/>
+        </newModelPath>
+      </owningRules>
+      <childRules xmi:id="_dVpCsJzIEeWAbLfn_iCQ6g"/>
+      <paletteRules xmi:id="_gKnaAJzvEeWAbLfn_iCQ6g" permit="false" element="activity.*"/>
+    </modelKinds>
+  </viewpoints>
+  <defaultStakeholder href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wLmkdxhEeOqHvRyiN87hA"/>
+  <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  <categories xmi:id="_a6cL0MykEeSuYbPdZwWlyx" name="EFFB"/>
+</configuration:PapyrusConfiguration>
