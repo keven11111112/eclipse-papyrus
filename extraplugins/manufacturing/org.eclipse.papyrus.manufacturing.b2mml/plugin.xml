@@ -4,31 +4,24 @@
 
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
-      <!--
       <mapping
             source="pathmap://B2MML_PROF/"
-            target="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/mockup">
+            target="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/mockup/">
       </mapping>
-      -->
+      <!--
       <mapping
             source="pathmap://B2MML_PROF/"
             target="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/">
       </mapping>
+      -->
    </extension>
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             name="Business to Manufacturing Markup Language (B2MML) Profile"
-            path="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/mockup/B2mmlProcessSegment.profile.uml"
+            path="pathmap://B2MML_PROF/B2mmlProcessSegment.profile.uml"
             provider="CEA List"
              description="UML profile for B2MML">
-      <!--
-      <profile
-            name="Business to Manufacturing Markup Language (B2MML) Profile"
-            path="platform:/plugin/org.eclipse.papyrus.manufacturing.b2mml/model/B2MML-profile.uml"
-            provider="CEA List"
-             description="UML profile for B2MML">
-      -->
       </profile>
    </extension>
        <extension
