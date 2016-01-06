@@ -32,5 +32,8 @@ public interface IRequestCacheEntries {
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
 	public static final String Client_Context = "Client_Context";//$NON-NLS-1$
+	
+	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
+	public static final String Dependent_Elements = "Dependent_Elements";//$NON-NLS-1$
 
 }

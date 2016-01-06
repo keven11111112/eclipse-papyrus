@@ -86,7 +86,7 @@ public class EMFLabelProvider extends ResolvingCustomizedLabelProvider implement
 		if (selection.size() == 1) {
 			return getText(selection.getFirstElement());
 		} else {
-			final List<Object> selectionAsList = selection.toList();
+			final List<?> selectionAsList = selection.toList();
 			String str = "";
 			for (int i = 0; i < selectionAsList.size(); i++) {
 				final String txt = getText(selectionAsList.get(i));
