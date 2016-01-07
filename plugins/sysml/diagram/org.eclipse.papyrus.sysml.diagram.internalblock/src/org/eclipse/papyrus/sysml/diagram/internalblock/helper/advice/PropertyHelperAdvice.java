@@ -13,10 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.helper.advice;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -51,7 +49,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	 * @param request
 	 *            the request to modify the model
 	 * @return
-	 *         the command to destroy the views of the parts which are not owned by the new type
+	 * 		the command to destroy the views of the parts which are not owned by the new type
 	 *
 	 */
 	@Override
@@ -76,7 +74,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 				// Remove members of the new type from the list.
 				// oldTypeMembers now contains the list of members for which views will become
 				// inconsistent (if shown in the propertyToEdit) after setting the new type.
-				List<NamedElement> possiblyInconsistentMembers = new ArrayList<NamedElement>();
+				Set<NamedElement> possiblyInconsistentMembers = new HashSet<NamedElement>();
 				possiblyInconsistentMembers.addAll(oldTypeMembers);
 				possiblyInconsistentMembers.removeAll(newTypeMembers);
 
@@ -122,7 +120,7 @@ public class PropertyHelperAdvice extends AbstractEditHelperAdvice {
 	 * @param list
 	 *            the list of the property view
 	 * @return
-	 *         <code>true</code> if the view need to be removed <code>false</code> if not
+	 * 		<code>true</code> if the view need to be removed <code>false</code> if not
 	 */
 	protected boolean isConcerned(View view, Set<View> propertyViews) {
 

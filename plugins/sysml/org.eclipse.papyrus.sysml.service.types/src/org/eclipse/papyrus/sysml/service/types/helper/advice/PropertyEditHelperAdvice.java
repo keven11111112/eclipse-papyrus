@@ -16,6 +16,7 @@ package org.eclipse.papyrus.sysml.service.types.helper.advice;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +24,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -51,12 +53,11 @@ import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
-import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
@@ -201,15 +202,12 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 	 * @return
 	 */
 	private ICommand getDestroyAssociatedNestedConnectorCommand(Property property, ICommand command) {
-		Package rootPackage = PackageUtil.getRootPackage(property);
 		// When creating a property in a new-element dialog, it is not attached to the model, yet. So, there will be no need to worry about connectors
-		if (rootPackage != null) {
-			List<Connector> instancesFilteredByType = org.eclipse.papyrus.uml.tools.utils.ElementUtil.getInstancesFilteredByType(rootPackage, Connector.class, null);
-			List<Connector> connectorToDestroy = ConnectorUtils.filterConnectorByPropertyInNestedConnectorEnd(instancesFilteredByType, property);
-			for (Connector connector : connectorToDestroy) {
-				ICommand destroyConnectorCommand = getDestroyConnectorCommand(connector);
-				command = CompositeCommand.compose(command, destroyConnectorCommand);
-			}
+		Collection<Setting> allReferences = CacheAdapter.getCacheAdapter(property).getInverseReferences(property);
+		List<Connector> connectorsToDestroy = ConnectorUtils.filterConnectorByPropertyInNestedConnectorEnd(allReferences, property);
+		for (Connector connector : connectorsToDestroy) {
+			ICommand destroyConnectorCommand = getDestroyConnectorCommand(connector);
+			command = CompositeCommand.compose(command, destroyConnectorCommand);
 		}
 		return command;
 	}
@@ -343,7 +341,8 @@ public class PropertyEditHelperAdvice extends AbstractEditHelperAdvice {
 								int size = memberViewsToDestroy.size();
 								MessageDialogWithToggle.openInformation(Display.getDefault().getActiveShell(), "Change Type Action",
 										"WARNING! Typing a Property by a ConstraintBlock make this property become a ConstraintProperty. ConstraintProperty have a specific representation. "
-												+ "\nSo all representations of this property will be removed from the model  (" + size + " occurence" + ((size > 1) ? "s" : "") + ").", "Don't show this dialog the next time", false, store,
+												+ "\nSo all representations of this property will be removed from the model  (" + size + " occurence" + ((size > 1) ? "s" : "") + ").",
+										"Don't show this dialog the next time", false, store,
 										DISPLAY_MESSAGE_FOR_TYPING_ACTION_PREFERENCE_KEY);
 							}
 
