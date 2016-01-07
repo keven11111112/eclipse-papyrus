@@ -525,6 +525,14 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.boundReferencesTo(self.referent.nestedClassifiers())->asOrderedSet()'"
+	 * @generated
+	 */
+	EList<ElementReference> nestedClassifiers();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferenceTo(self.referent.opposite())'"
 	 * @generated
 	 */
@@ -739,6 +747,14 @@ public interface BoundElementReference extends ElementReference {
 	 * @generated
 	 */
 	ElementReference activeClass();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.boundReferenceTo(self.referent.context())'"
+	 * @generated
+	 */
+	ElementReference context();
 
 	/**
 	 * <!-- begin-user-doc -->

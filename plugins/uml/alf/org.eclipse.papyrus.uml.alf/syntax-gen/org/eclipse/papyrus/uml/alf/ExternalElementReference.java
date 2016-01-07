@@ -513,6 +513,14 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tif not self.element.oclIsKindOf(uml::Class) then OrderedSet(ElementReference){}\n\t\telse\n\t       self.element.oclAsType(uml::Class).nestedClassifier->collect(e |\n\t           ExternalElementReference{element = e}\n\t       )->asOrderedSet()\n\t    endif'"
+	 * @generated
+	 */
+	EList<ElementReference> nestedClassifiers();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isClassifier() then OrderedSet(ElementReference){}\n        else if self.isAssociation() then\n        -- NOTE: This is to ensure proper ordering.\n          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())\n        else\n          self.element.oclAsType(uml::Classifier).allAttributes()->\n            collect(a | ExternalElementReference{element = a})->\n            asOrderedSet()\n        endif endif'"
 	 * @generated
 	 */
@@ -749,6 +757,14 @@ public interface ExternalElementReference extends ElementReference {
 	 * @generated
 	 */
 	ElementReference activeClass();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tif not self.isBehavior() then null\n\t\telse\n\t\t\tlet context = self.element.oclAsType(uml::Behavior).context in\n\t\t\t\tif context = null then self \n\t\t\t\telse ExternalElementReference{element = context} \n\t\t\t\tendif\n\t\tendif'"
+	 * @generated
+	 */
+	ElementReference context();
 
 	/**
 	 * <!-- begin-user-doc -->

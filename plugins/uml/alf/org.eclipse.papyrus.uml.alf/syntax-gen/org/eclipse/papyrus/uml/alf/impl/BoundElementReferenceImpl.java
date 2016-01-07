@@ -1237,6 +1237,31 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #nestedClassifiers() <em>Nested Classifiers</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #nestedClassifiers()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate NESTED_CLASSIFIERS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getBoundElementReference__NestedClassifiers()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ElementReference> nestedClassifiers() {
+		try {
+			return (EList<ElementReference>)NESTED_CLASSIFIERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #opposite() <em>Opposite</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1869,6 +1894,30 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #context() <em>Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #context()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate CONTEXT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getBoundElementReference__Context()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementReference context() {
+		try {
+			return (ElementReference)CONTEXT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #isActiveBehavior() <em>Is Active Behavior</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2227,6 +2276,7 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 				case AlfPackage.ELEMENT_REFERENCE___VISIBILITY: return AlfPackage.BOUND_ELEMENT_REFERENCE___VISIBILITY;
 				case AlfPackage.ELEMENT_REFERENCE___OWNED_MEMBERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___OWNED_MEMBERS;
 				case AlfPackage.ELEMENT_REFERENCE___MEMBERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___MEMBERS;
+				case AlfPackage.ELEMENT_REFERENCE___NESTED_CLASSIFIERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___NESTED_CLASSIFIERS;
 				case AlfPackage.ELEMENT_REFERENCE___OPPOSITE: return AlfPackage.BOUND_ELEMENT_REFERENCE___OPPOSITE;
 				case AlfPackage.ELEMENT_REFERENCE___SIGNAL: return AlfPackage.BOUND_ELEMENT_REFERENCE___SIGNAL;
 				case AlfPackage.ELEMENT_REFERENCE___PARAMETERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___PARAMETERS;
@@ -2248,6 +2298,7 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 				case AlfPackage.ELEMENT_REFERENCE___PARENTS: return AlfPackage.BOUND_ELEMENT_REFERENCE___PARENTS;
 				case AlfPackage.ELEMENT_REFERENCE___ALL_PARENTS: return AlfPackage.BOUND_ELEMENT_REFERENCE___ALL_PARENTS;
 				case AlfPackage.ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR: return AlfPackage.BOUND_ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR;
+				case AlfPackage.ELEMENT_REFERENCE___CONTEXT: return AlfPackage.BOUND_ELEMENT_REFERENCE___CONTEXT;
 				case AlfPackage.ELEMENT_REFERENCE___APPLIED_PROFILES: return AlfPackage.BOUND_ELEMENT_REFERENCE___APPLIED_PROFILES;
 				case AlfPackage.ELEMENT_REFERENCE___REFERENCE: return AlfPackage.BOUND_ELEMENT_REFERENCE___REFERENCE;
 				case AlfPackage.ELEMENT_REFERENCE___TEMPLATE_BINDING: return AlfPackage.BOUND_ELEMENT_REFERENCE___TEMPLATE_BINDING;
@@ -2371,6 +2422,8 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 				return ownedMembers();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___MEMBERS:
 				return members();
+			case AlfPackage.BOUND_ELEMENT_REFERENCE___NESTED_CLASSIFIERS:
+				return nestedClassifiers();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___OPPOSITE:
 				return opposite();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___SIGNAL:
@@ -2423,6 +2476,8 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 				return templateBinding();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___ACTIVE_CLASS:
 				return activeClass();
+			case AlfPackage.BOUND_ELEMENT_REFERENCE___CONTEXT:
+				return context();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___IS_ACTIVE_BEHAVIOR:
 				return isActiveBehavior();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE:

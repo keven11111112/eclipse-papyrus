@@ -25,7 +25,7 @@ public interface ThisExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let context = self.currentScope() in\n          if context = null then \n            null\n          else if context.isOperation() or context.isMethod() then\n            context.namespace()\n          else if context.isBehavior() then\n            let activeClass = context.activeClass() in\n              if activeClass = null then context else activeClass endif\n          else if context.isClass() then\n            context\n          else\n            null\n          endif endif endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let currentScope = self.currentScope() in\n          if currentScope = null then \n            null\n          else if currentScope.isOperation() or currentScope.isMethod() then\n            currentScope.namespace()\n          else if currentScope.isBehavior() then\n            let context = currentScope.context() in\n              if context = null then currentScope else context endif\n          else if currentScope.isClass() then\n            currentScope\n          else\n            null\n          endif endif endif endif'"
 	 * @generated
 	 */
 	ElementReference type();

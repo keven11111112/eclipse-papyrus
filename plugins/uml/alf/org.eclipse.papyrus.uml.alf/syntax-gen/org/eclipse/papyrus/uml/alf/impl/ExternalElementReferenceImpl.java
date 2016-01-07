@@ -1240,6 +1240,31 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #nestedClassifiers() <em>Nested Classifiers</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #nestedClassifiers()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate NESTED_CLASSIFIERS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExternalElementReference__NestedClassifiers()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ElementReference> nestedClassifiers() {
+		try {
+			return (EList<ElementReference>)NESTED_CLASSIFIERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #properties() <em>Properties</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1949,6 +1974,30 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #context() <em>Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #context()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate CONTEXT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExternalElementReference__Context()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementReference context() {
+		try {
+			return (ElementReference)CONTEXT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #conformsTo(org.eclipse.papyrus.uml.alf.ElementReference) <em>Conforms To</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2232,6 +2281,7 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 				case AlfPackage.ELEMENT_REFERENCE___VISIBILITY: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___VISIBILITY;
 				case AlfPackage.ELEMENT_REFERENCE___OWNED_MEMBERS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___OWNED_MEMBERS;
 				case AlfPackage.ELEMENT_REFERENCE___MEMBERS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___MEMBERS;
+				case AlfPackage.ELEMENT_REFERENCE___NESTED_CLASSIFIERS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___NESTED_CLASSIFIERS;
 				case AlfPackage.ELEMENT_REFERENCE___PROPERTIES: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___PROPERTIES;
 				case AlfPackage.ELEMENT_REFERENCE___ASSOCIATION_ENDS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION_ENDS;
 				case AlfPackage.ELEMENT_REFERENCE___OPPOSITE: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___OPPOSITE;
@@ -2255,6 +2305,7 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 				case AlfPackage.ELEMENT_REFERENCE___PARENTS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___PARENTS;
 				case AlfPackage.ELEMENT_REFERENCE___ALL_PARENTS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___ALL_PARENTS;
 				case AlfPackage.ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR;
+				case AlfPackage.ELEMENT_REFERENCE___CONTEXT: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___CONTEXT;
 				case AlfPackage.ELEMENT_REFERENCE___APPLIED_PROFILES: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___APPLIED_PROFILES;
 				case AlfPackage.ELEMENT_REFERENCE___ACTIVE_CLASS: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___ACTIVE_CLASS;
 				case AlfPackage.ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE: return AlfPackage.EXTERNAL_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE;
@@ -2377,6 +2428,8 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 				return additionalMembers();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___INHERIT__ELIST:
 				return inherit((EList<ElementReference>)arguments.get(0));
+			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___NESTED_CLASSIFIERS:
+				return nestedClassifiers();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___PROPERTIES:
 				return properties();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___MEMBER_ENDS:
@@ -2435,6 +2488,8 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 				return appliedProfiles();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___ACTIVE_CLASS:
 				return activeClass();
+			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___CONTEXT:
+				return context();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE:
 				return conformsTo((ElementReference)arguments.get(0));
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___EQUALS__ELEMENTREFERENCE:

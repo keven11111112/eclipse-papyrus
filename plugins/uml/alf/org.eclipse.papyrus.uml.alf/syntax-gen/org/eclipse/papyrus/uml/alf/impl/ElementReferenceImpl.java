@@ -747,6 +747,17 @@ public abstract class ElementReferenceImpl extends EObjectImpl implements Elemen
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<ElementReference> nestedClassifiers() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #properties() <em>Properties</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1047,6 +1058,17 @@ public abstract class ElementReferenceImpl extends EObjectImpl implements Elemen
 	 * @generated
 	 */
 	public ElementReference classifierBehavior() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ElementReference context() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -1698,6 +1720,8 @@ public abstract class ElementReferenceImpl extends EObjectImpl implements Elemen
 				return members();
 			case AlfPackage.ELEMENT_REFERENCE___VISIBLE_MEMBERS:
 				return visibleMembers();
+			case AlfPackage.ELEMENT_REFERENCE___NESTED_CLASSIFIERS:
+				return nestedClassifiers();
 			case AlfPackage.ELEMENT_REFERENCE___PROPERTIES:
 				return properties();
 			case AlfPackage.ELEMENT_REFERENCE___ASSOCIATION_ENDS:
@@ -1746,6 +1770,8 @@ public abstract class ElementReferenceImpl extends EObjectImpl implements Elemen
 				return allParents();
 			case AlfPackage.ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR:
 				return classifierBehavior();
+			case AlfPackage.ELEMENT_REFERENCE___CONTEXT:
+				return context();
 			case AlfPackage.ELEMENT_REFERENCE___APPLIED_PROFILES:
 				return appliedProfiles();
 			case AlfPackage.ELEMENT_REFERENCE___BASE:

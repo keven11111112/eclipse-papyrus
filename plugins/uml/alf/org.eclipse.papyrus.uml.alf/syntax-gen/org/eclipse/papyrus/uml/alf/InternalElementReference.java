@@ -462,6 +462,14 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='OrderedSet(ElementReference){}'"
+	 * @generated
+	 */
+	EList<ElementReference> nestedClassifiers();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isProperty() then null\n        else\n          let member = self.asMember() in\n            if member = null then null\n            else\n              let owner = member.owner() in\n                if not owner.oclIsKindOf(AssociationDefinition) then null\n                else\n                  let ends = owner.oclAsType(AssociationDefinition).ownedMember in\n                    if ends->size() <> 2 then null\n                    else ends->any(e | e <> member).oclAsType(Member).toReference()\n                    endif\n                endif\n            endif\n        endif'"
 	 * @generated
 	 */
@@ -650,6 +658,14 @@ public interface InternalElementReference extends ElementReference {
 	 * @generated
 	 */
 	ElementReference activeClass();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tif not self.isActivity() then null\n\t\telse\n\t\t\tlet stub = self.stub() in\n\t\t\tlet namespace = if stub = null then self.namespace() else stub.namespace() endif in\n\t\t\t\tif namespace = null or \n\t\t\t\t\tnamespace.nestedClassifiers()->exists(name() = self.name()) then null\n\n\t\t\t\t-- Note: This can only happen for a namespace that is an\n\t\t\t\t-- external element reference.\n\t\t\t\telse if namespace.isBehavior() then namespace.context()\n\n\t\t\t\telse namespace\n\t\t\t\tendif endif\n\t\tendif'"
+	 * @generated
+	 */
+	ElementReference context();
 
 	/**
 	 * <!-- begin-user-doc -->

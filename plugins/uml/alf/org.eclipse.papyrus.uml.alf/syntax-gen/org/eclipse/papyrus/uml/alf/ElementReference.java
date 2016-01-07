@@ -448,6 +448,14 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	EList<ElementReference> nestedClassifiers();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(isProperty())'"
 	 * @generated
 	 */
@@ -637,6 +645,14 @@ public interface ElementReference extends EObject {
 	 * @generated
 	 */
 	ElementReference classifierBehavior();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	ElementReference context();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -843,7 +859,7 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" memberRequired="true"
+	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        member = null or\n          let namespace = member.namespace() in\n            namespace <> null and\n              (self.equals(namespace) or\n                self.containsMember(namespace))'"
 	 * @generated
 	 */
