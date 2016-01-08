@@ -24,6 +24,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.In
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.DoActivityContextObject;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ForkPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -215,16 +216,24 @@ public class StateActivation extends VertexActivation {
 		// A region is typically entered explicitly when one of its contained
 		// state is targeted by a transition coming from the outside.
 		// *** Regions are entered concurrently ***
-		VertexActivation vertexActivation = enteringTransition.getTargetActivation();
 		List<Vertex> targetedVertices = new ArrayList<Vertex>();
-		if(vertexActivation instanceof EntryPointActivation){
-			Pseudostate entryPoint = (Pseudostate)vertexActivation.getNode();
-			for(int i = 0; i < entryPoint.getOutgoings().size(); i++){
-				targetedVertices.add(entryPoint.getOutgoings().get(i).getTarget());
+		VertexActivation sourceActivation = enteringTransition.getSourceActivation();
+		if(sourceActivation instanceof ForkPseudostateActivation){
+			Pseudostate fork = (Pseudostate)sourceActivation.getNode(); 
+			for(int i = 0; i < fork.getOutgoings().size(); i++){
+				targetedVertices.add(fork.getOutgoings().get(i).getTarget());
 			}
 		}else{
-			targetedVertices.add((Vertex)vertexActivation.getNode());
-		}
+			VertexActivation targetActivation = enteringTransition.getTargetActivation();
+			if(targetActivation instanceof EntryPointActivation){
+				Pseudostate entryPoint = (Pseudostate)targetActivation.getNode();
+				for(int i = 0; i < entryPoint.getOutgoings().size(); i++){
+					targetedVertices.add(entryPoint.getOutgoings().get(i).getTarget());
+				}
+			}else{
+				targetedVertices.add((Vertex)targetActivation.getNode());
+			}
+		}		
 		for(int i=0; i < this.regionActivation.size(); i++){
 			RegionActivation regionActivation = this.regionActivation.get(i);
 			int j = 0;
