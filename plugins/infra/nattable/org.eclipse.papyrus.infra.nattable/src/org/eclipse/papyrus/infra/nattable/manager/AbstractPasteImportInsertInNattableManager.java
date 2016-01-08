@@ -464,55 +464,61 @@ public abstract class AbstractPasteImportInsertInNattableManager {
 	 * 
 	 * @param manager
 	 *            The nattable model manager.
+	 * @param maxDepth The maximum depth to check.
 	 * @return The status of the check.
 	 */
-	protected IStatus checkTreeTableConfiguration(final INattableModelManager manager) {
+	protected IStatus checkTreeTableConfiguration(final INattableModelManager manager, final int maxDepth) {
 		IStatus status = Status.OK_STATUS;
 
 		// we check than there is only one categories by hidden depth
 		final List<Integer> hiddenCategories = StyleUtils.getHiddenDepths(manager);
 		for (final Integer current : hiddenCategories) {
-			final int size = FillingConfigurationUtils.getAllTreeFillingConfigurationForDepth(manager.getTable(), current.intValue()).size();
-			if (size > 1) {
-				status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_THAN_ONE_CATEGORY_FOR_A_HIDDEN_DEPTH,
-						NLS.bind(Messages.AbstractPasteImportInsertInNattableManager_YouHaveMoreThan1Category, current.intValue()), null);
+			if(current <= maxDepth){
+				final int size = FillingConfigurationUtils.getAllTreeFillingConfigurationForDepth(manager.getTable(), current.intValue()).size();
+				if (size > 1) {
+					status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__MORE_THAN_ONE_CATEGORY_FOR_A_HIDDEN_DEPTH,
+							NLS.bind(Messages.AbstractPasteImportInsertInNattableManager_YouHaveMoreThan1Category, current.intValue()), null);
+				}
 			}
 		}
 
 		if (status.isOK()) {
 			for (final TreeFillingConfiguration current : FillingConfigurationUtils.getAllTreeFillingConfiguration(manager.getTable())) {
-				final PasteEObjectConfiguration conf = current.getPasteConfiguration();
-				if (conf == null) {
-					// TODO : add detail of the error in message
-					status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_PASTE_CONFIGURATION,
-							Messages.AbstractPasteImportInsertInNattableManager_ThereIsNoPasteConfgurationForATreeFillingConfiguration,
-							null);
-				} else {
-
-					final String elementTypeId = conf.getPastedElementId();
-					if (elementTypeId == null || elementTypeId.isEmpty()) {
-						status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_ELEMENT_TYPE_IN_PASTE_CONFIGURATION,
-								Messages.AbstractPasteImportInsertInNattableManager_ThereIsNoElementIdDefinedInThePasteConfiguration, null);
-					} else if (!ElementTypeUtils.getAllExistingElementTypesIds().contains(elementTypeId)) {
-						status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__UNKNOWN_ELEMENT_TYPE,
-								String.format(Messages.AbstractPasteImportInsertInNattableManager_TheElementTypeIsUnknown, elementTypeId), null);
-					}
-
-
-					if (status.isOK()) {
-						final EStructuralFeature feature = conf.getPasteElementContainementFeature();
-						if (feature == null) {
-							final IAxis axis = current.getAxisUsedAsAxisProvider();
-							final NatTable natTable = manager.getAdapter(NatTable.class);
-							final LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper();
-							wrapper.setObject(axis);
-							wrapper.setConfigRegistry(natTable.getConfigRegistry());
-							final LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-							ILabelProvider p = serv.getLabelProvider(wrapper);
-							p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-							final String categoryName = p.getText(axis);
-							status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_CONTAINMENT_FEATURE,
-									String.format(Messages.AbstractPasteImportInsertInNattableManager_PasteConfigurationFeatureHasNotBeenSet, categoryName, current.getDepth()), null);
+				if(current.getDepth() <= maxDepth){
+					
+					final PasteEObjectConfiguration conf = current.getPasteConfiguration();
+					if (conf == null) {
+						// TODO : add detail of the error in message
+						status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_PASTE_CONFIGURATION,
+								Messages.AbstractPasteImportInsertInNattableManager_ThereIsNoPasteConfgurationForATreeFillingConfiguration,
+								null);
+					} else {
+	
+						final String elementTypeId = conf.getPastedElementId();
+						if (elementTypeId == null || elementTypeId.isEmpty()) {
+							status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_ELEMENT_TYPE_IN_PASTE_CONFIGURATION,
+									Messages.AbstractPasteImportInsertInNattableManager_ThereIsNoElementIdDefinedInThePasteConfiguration, null);
+						} else if (!ElementTypeUtils.getAllExistingElementTypesIds().contains(elementTypeId)) {
+							status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__UNKNOWN_ELEMENT_TYPE,
+									String.format(Messages.AbstractPasteImportInsertInNattableManager_TheElementTypeIsUnknown, elementTypeId), null);
+						}
+	
+	
+						if (status.isOK()) {
+							final EStructuralFeature feature = conf.getPasteElementContainementFeature();
+							if (feature == null) {
+								final IAxis axis = current.getAxisUsedAsAxisProvider();
+								final NatTable natTable = manager.getAdapter(NatTable.class);
+								final LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper();
+								wrapper.setObject(axis);
+								wrapper.setConfigRegistry(natTable.getConfigRegistry());
+								final LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+								ILabelProvider p = serv.getLabelProvider(wrapper);
+								p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
+								final String categoryName = p.getText(axis);
+								status = new PapyrusNattableStatus(IPapyrusNattableStatus.PASTE_CONFIGURATiON_ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_CONTAINMENT_FEATURE,
+										String.format(Messages.AbstractPasteImportInsertInNattableManager_PasteConfigurationFeatureHasNotBeenSet, categoryName, current.getDepth()), null);
+							}
 						}
 					}
 				}

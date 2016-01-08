@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPaste
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.MoveElementsTreeTableTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.NoDepth0TreeFillingConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Bug481310Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.RequirementsNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_V1_V3_V1_Test;
@@ -186,7 +187,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,
-		
+
 		// Bug 481020 : Delete a requirement containing a nested requirement
 		DeleteRequirementsWithNestedClassifier.class,
 
@@ -281,6 +282,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_H1_V1_MultiColumns_AttachedMode_Test.class,
 		PasteWithCategories_V1_V3_H1_MultiColumns_AttachedMode_Test.class,
 		PasteWithCategories_V1_V3_V1_MultiColumns_AttachedMode_Test.class,
+		
+		// Bug 481310 : Paste one depth when others can't get pasted elements
+		PasteWithCategories_H1_H3_H1_MultiColumns_AttachedMode_Bug481310Test.class,
 
 		// Detached Mode
 		// Paste tests for single column
@@ -300,7 +304,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		PasteWithCategories_V1_H1_V1_SingleColumn_DetachedMode_Test.class,
 		PasteWithCategories_V1_V3_H1_SingleColumn_DetachedMode_Test.class,
 		PasteWithCategories_V1_V3_V1_SingleColumn_DetachedMode_Test.class,
-
+		
 		// Paste tests for multi columns
 		PasteWithCategories_Empty_H1_H1_MultiColumns_DetachedMode_Test.class,
 		PasteWithCategories_Empty_H1_V1_MultiColumns_DetachedMode_Test.class,
@@ -321,7 +325,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Tests of the paste with overwrite
 		PasteEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
-		
+
 		PasteCellsOverwriteAll_H1_H1_H1_MultiColumns_Test.class,
 		PasteCellsOverwriteAll_V1_V3_V1_MultiColumns_Test.class,
 		PasteCellsOverwriteByOneLine_H1_H1_H1_MultiColumns_Test.class,
@@ -354,7 +358,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 		// Tests of insert
 		InsertEmptyClipboard_H1_H1_H1_MultiColumns_Test.class,
-		
+
 		InsertRowsReplaceAll_H1_H1_H1_MultiColumns_Test.class,
 		InsertRowsReplaceAll_V1_V3_V1_MultiColumns_Test.class,
 		InsertRowsAddAll_H1_H1_H1_MultiColumns_Test.class,
@@ -393,8 +397,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		ImportEmptyAddAll_V1_V3_V1_MultiColumns_Test.class,
 		ImportEmptySkipAll_H1_H1_H1_MultiColumns_Test.class,
 		ImportEmptySkipAll_V1_V3_V1_MultiColumns_Test.class,
-		
-		//validation markers tests
+
+		// validation markers tests
 		ValidationMarkerInTableHeaderTest.class,
 })
 public class AllTests {

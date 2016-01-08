@@ -420,7 +420,12 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		}
 	}
 
-	protected final void validateReturnedStatus(final IStatus status) {
+	/**
+	 * This allows to check the returned status of the paste action.
+	 * 
+	 * @param status The status got.
+	 */
+	protected void validateReturnedStatus(final IStatus status) {
 		String className = getClass().getSimpleName();
 		className = className.replaceFirst("PasteWithCategories_", ""); //$NON-NLS-1$ //$NON-NLS-2$
 		final String[] result = className.split("_"); //$NON-NLS-1$

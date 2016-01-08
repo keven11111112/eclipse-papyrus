@@ -91,6 +91,9 @@ public abstract class AbstractInsertImportInNattableManager extends AbstractPast
 		IStatus resultStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.InsertInNattableManager_InsertNotYetManaged);
 
 		PasteEnablementStatus pasteStatus = null;
+
+		int maxDepth = Integer.MAX_VALUE;
+
 		// Check if the paste configuration is needed for the paste action
 		pasteStatus = findPasteModeFromTableConfiguration(this.tableManager);
 		if (PasteModeEnumeration.PASTE_NO_CONFIGURATION != pasteStatus.getPasteMode() && PasteModeEnumeration.CANT_PASTE != pasteStatus.getPasteMode()) {
@@ -114,7 +117,7 @@ public abstract class AbstractInsertImportInNattableManager extends AbstractPast
 			resultStatus = createCantInsertStatus(pasteStatus);
 			break;
 		case PASTE_EOBJECT_ROW:
-			resultStatus = insertRow(this.tableManager, pasteStatus, pasteHelper);
+			resultStatus = insertRow(this.tableManager, pasteStatus, pasteHelper, maxDepth);
 			break;
 		case PASTE_EOBJECT_COLUMN:
 		case PASTE_EOBJECT_ROW_OR_COLUMN:
@@ -164,17 +167,19 @@ public abstract class AbstractInsertImportInNattableManager extends AbstractPast
 	 *            the paste status
 	 * @param pasteHelper
 	 *            the paste helper
+	 * @param maxDepth
+	 *            The maximum depth to check.
 	 * @return
 	 *         <code>true</code> if the paste can be done
 	 */
-	private IStatus insertRow(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
+	private IStatus insertRow(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper, final int maxDepth) {
 		IStatus resultStatus = Status.OK_STATUS;
 
 		if (TableHelper.isTreeTable(manager)) {
 			if (null != tableSelectionWrapper) {
 				resultStatus = insertTreeRows(manager, pasteStatus, pasteHelper, tableSelectionWrapper);
 			} else {
-				resultStatus = insertTreeRows(manager, pasteStatus, pasteHelper);
+				resultStatus = insertTreeRows(manager, pasteStatus, pasteHelper, maxDepth);
 			}
 		} else {
 			if (null != tableSelectionWrapper) {
@@ -217,12 +222,12 @@ public abstract class AbstractInsertImportInNattableManager extends AbstractPast
 	 *            The paste status.
 	 * @param pasteHelper
 	 *            The paste helper.
-	 * @param tableSelectionWrapper
-	 *            The current selection.
+	 * @param maxDepth
+	 *            The maximum depth to check.
 	 * @return The status of the paste.
 	 */
-	private IStatus insertTreeRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper) {
-		IStatus status = checkTreeTableConfiguration(manager);
+	private IStatus insertTreeRows(final INattableModelManager manager, final PasteEnablementStatus pasteStatus, final CSVPasteHelper pasteHelper, final int maxDepth) {
+		IStatus status = checkTreeTableConfiguration(manager, maxDepth);
 		if (status.isOK()) {
 			status = insertTree(manager, pasteStatus, useProgressMonitorDialog, createReader(), null, getDataSize());
 		}
