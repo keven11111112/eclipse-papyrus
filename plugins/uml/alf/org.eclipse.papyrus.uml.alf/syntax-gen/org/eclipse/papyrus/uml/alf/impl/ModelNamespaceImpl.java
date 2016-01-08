@@ -297,7 +297,7 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 	 * @generated NOT
 	 */
 	public EList<ElementReference> resolvePathName(final String pathName) {
-		return resolvePathName(pathName, this.getContextNamespace());
+		return resolvePathName(pathName, this.getContextNamespace().getModel());
 	}
 
 	public static EList<ElementReference> resolvePathName(

@@ -462,7 +462,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='OrderedSet(ElementReference){}'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tif not self.element.oclIsKindOf(ModelNamespace) then OrderedSet(ElementReference){}\n\t\telse\n\t\t\tself.element.oclAsType(ModelNamespace).context().nestedClassifiers()\n\t\tendif'"
 	 * @generated
 	 */
 	EList<ElementReference> nestedClassifiers();

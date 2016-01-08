@@ -794,7 +794,7 @@
     </eOperations>
     <eOperations name="nestedClassifiers" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="OrderedSet(ElementReference){}"/>
+        <details key="body" value="&#xA;&#x9;&#x9;if not self.element.oclIsKindOf(ModelNamespace) then OrderedSet(ElementReference){}&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;self.element.oclAsType(ModelNamespace).context().nestedClassifiers()&#xA;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="opposite" eType="#//ElementReference">
