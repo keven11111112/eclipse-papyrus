@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IEditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
@@ -36,6 +35,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
+import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.AbstractNotifierEditHelper;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
@@ -64,7 +64,7 @@ import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
  * 
  * </pre>
  */
-public class DefaultEditHelper extends AbstractEditHelper {
+public class DefaultEditHelper extends AbstractNotifierEditHelper {
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
 	public static final String Cache_Maps = IRequestCacheEntries.Cache_Maps;

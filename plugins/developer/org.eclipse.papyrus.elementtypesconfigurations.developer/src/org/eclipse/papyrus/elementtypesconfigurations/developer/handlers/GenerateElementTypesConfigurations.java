@@ -74,7 +74,7 @@ public class GenerateElementTypesConfigurations extends AbstractHandler {
 				e.printStackTrace();
 			}
 		} else if (selectedElement instanceof IFile) {
-			if (((IFile) selectedElement).getFileExtension().equals("elementtypesconfigurations")) {
+			if ("elementtypesconfigurations".equals(((IFile) selectedElement).getFileExtension())) {
 				String selectedFilePath = ((IFile) selectedElement).getFullPath().toString();
 
 				Resource outputResource = resourceSet.getResource(URI.createURI(selectedFilePath), true);
@@ -118,7 +118,8 @@ public class GenerateElementTypesConfigurations extends AbstractHandler {
 					Collection<EReference> ambiguousContainments = GenerateElementTypesConfigurationsUtils.findAmbiguousContainments(containmentEReference, possibleContainmentsEReference);
 					if (!ambiguousContainments.isEmpty()) {
 
-						if (!containsElementType(GenerateElementTypesConfigurationsUtils.getIdentifier(eClass) + GenerateElementTypesConfigurationsUtils.getAsName(containmentEReference, containmentEReference.getEContainingClass()), elementTypeSetConfiguration)) {
+						if (!containsElementType(GenerateElementTypesConfigurationsUtils.getIdentifier(eClass) + GenerateElementTypesConfigurationsUtils.getAsName(containmentEReference, containmentEReference.getEContainingClass()),
+								elementTypeSetConfiguration)) {
 							SpecializationTypeConfiguration specializationTypeConfiguration = createSpecializationTypeConfiguration(eClass, containmentEReference,
 									GenerateElementTypesConfigurationsUtils.getAsName(containmentEReference, containmentEReference.getEContainingClass()));
 
@@ -141,8 +142,7 @@ public class GenerateElementTypesConfigurations extends AbstractHandler {
 
 	}
 
-	protected MetamodelTypeConfiguration createMetamodelTypeConfiguration(EClass eClass)
-	{
+	protected MetamodelTypeConfiguration createMetamodelTypeConfiguration(EClass eClass) {
 		MetamodelTypeConfiguration metamodelTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createMetamodelTypeConfiguration();
 		metamodelTypeConfiguration.setEClass(eClass);
 		metamodelTypeConfiguration.setIdentifier(GenerateElementTypesConfigurationsUtils.getIdentifier(eClass));
@@ -160,8 +160,7 @@ public class GenerateElementTypesConfigurations extends AbstractHandler {
 		return metamodelTypeConfiguration;
 	}
 
-	protected SpecializationTypeConfiguration createSpecializationTypeConfiguration(EClass eClass, EReference containmentEReference, String asName)
-	{
+	protected SpecializationTypeConfiguration createSpecializationTypeConfiguration(EClass eClass, EReference containmentEReference, String asName) {
 		SpecializationTypeConfiguration specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
 
 		specializationTypeConfiguration.setIdentifier(GenerateElementTypesConfigurationsUtils.getIdentifier(eClass) + asName);

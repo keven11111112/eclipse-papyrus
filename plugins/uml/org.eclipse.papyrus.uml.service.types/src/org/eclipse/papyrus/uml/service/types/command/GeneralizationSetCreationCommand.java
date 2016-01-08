@@ -42,10 +42,7 @@ import org.eclipse.uml2.uml.GeneralizationSet;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
-/**
- * @author fn224852
- *
- */
+
 public class GeneralizationSetCreationCommand extends CreateRelationshipCommand {
 
 	/** The generalization setto create. */
