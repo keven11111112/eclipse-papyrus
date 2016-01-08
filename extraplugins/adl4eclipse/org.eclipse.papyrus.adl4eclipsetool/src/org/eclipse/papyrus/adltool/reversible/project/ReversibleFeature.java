@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.adltool.Activator.log;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -286,6 +287,28 @@ public class ReversibleFeature extends AbstractReversible<Component> implements 
 	public void setReversibleVersion(Reversible<?> reversible, StereotypeVersion version) {
 		dependencyVersions.put(reversible, version);
 
+	}
+
+	public List<ReversibleProject> getIncludedReversibleFeatures() {
+		if (feature.getIncludedFeatures().length > 0) {
+			List<ReversibleProject> includedFeatures = new ArrayList<ReversibleProject>();
+			for (IFeatureChild includedFeature : feature.getIncludedFeatures()) {
+				includedFeatures.add(ReversibleFactory.getInstance().getFeature(includedFeature.getId()));
+			}
+			return includedFeatures;
+		}
+		return Collections.emptyList();
+	}
+
+	public List<ReversibleProject> getIncludedReversiblePlugins() {
+		if (feature.getPlugins().length > 0) {
+			List<ReversibleProject> includedPlugins = new ArrayList<ReversibleProject>();
+			for (IFeaturePlugin includedPlugin : feature.getPlugins()) {
+				includedPlugins.add(ReversibleFactory.getInstance().getPlugin(includedPlugin.getId()));
+			}
+			return includedPlugins;
+		}
+		return Collections.emptyList();
 	}
 
 }

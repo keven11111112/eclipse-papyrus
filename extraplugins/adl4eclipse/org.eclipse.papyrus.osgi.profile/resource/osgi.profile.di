@@ -15,9 +15,6 @@
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="osgi.profile.notation#_OLXd4HtxEeKcL-wrhM9ICg"/>
-        </children>
-        <children>
           <emfPageIdentifier href="osgi.profile.notation#_dCrQYHtxEeKcL-wrhM9ICg"/>
         </children>
         <children>

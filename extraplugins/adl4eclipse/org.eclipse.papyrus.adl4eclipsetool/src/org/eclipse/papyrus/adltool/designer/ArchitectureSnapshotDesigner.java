@@ -19,16 +19,18 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.adl4eclipse.org.ADL4Eclipse_Stereotypes;
 import org.eclipse.papyrus.adltool.ADLConstants;
-import org.eclipse.papyrus.adltool.reversible.project.StereotypeVersion;
-import org.eclipse.papyrus.adltool.reversible.project.ReversiblePlugin;
-import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
-import org.eclipse.papyrus.osgi.profile.OSGIStereotypes;
-import org.eclipse.papyrus.adltool.reversible.extension.SchemaElement;
-import org.eclipse.papyrus.adltool.reversible.extension.SchemaAttribute;
+import org.eclipse.papyrus.adltool.Activator;
 import org.eclipse.papyrus.adltool.reversible.Reversible;
 import org.eclipse.papyrus.adltool.reversible.extension.ReversibleExtension;
+import org.eclipse.papyrus.adltool.reversible.extension.SchemaAttribute;
+import org.eclipse.papyrus.adltool.reversible.extension.SchemaElement;
 import org.eclipse.papyrus.adltool.reversible.extensionpoint.ReversibleExtensionPoint;
 import org.eclipse.papyrus.adltool.reversible.packages.ReversiblePackage;
+import org.eclipse.papyrus.adltool.reversible.project.ReversibleFeature;
+import org.eclipse.papyrus.adltool.reversible.project.ReversiblePlugin;
+import org.eclipse.papyrus.adltool.reversible.project.ReversibleProject;
+import org.eclipse.papyrus.adltool.reversible.project.StereotypeVersion;
+import org.eclipse.papyrus.osgi.profile.OSGIStereotypes;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
@@ -54,7 +56,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ArchitectureSnapshotDesigner {
 
 	/**
-	 * Set containing the projects that have been reversed during the current import.
+	 * Set containing the projects that have been reversed during the current
+	 * import.
 	 */
 	private Set<ReversibleProject> reversedProjects;
 
@@ -113,7 +116,9 @@ public class ArchitectureSnapshotDesigner {
 		for (Reversible<?> reversible : postponedReversibles) {
 			reversible.fillStereotype();
 		}
+
 	}
+
 
 	/**
 	 * Ensures that the ADL4Eclipse and OSGi profiles have been applied.
@@ -152,7 +157,8 @@ public class ArchitectureSnapshotDesigner {
 	/**
 	 * Flags the reversible to prevent recursive reverse loop.
 	 *
-	 * @param project the project to be flagged as reversed
+	 * @param project
+	 *            the project to be flagged as reversed
 	 */
 	private void setReversed(ReversibleProject project) {
 		reversedProjects.add(project);
@@ -160,6 +166,7 @@ public class ArchitectureSnapshotDesigner {
 
 	/**
 	 * Saves the reversible to fill its properties at the end of the reverse.
+	 * 
 	 * @param reversible
 	 */
 	private void postPoneFillStereotype(Reversible<?> reversible) {
@@ -174,7 +181,8 @@ public class ArchitectureSnapshotDesigner {
 	 * <b>Note:</b> This method adds the project's representation in the model.
 	 * </p>
 	 *
-	 * @param project the project to reverse
+	 * @param project
+	 *            the project to reverse
 	 */
 	private void reverseProject(ReversibleProject project) {
 		insertInModel(project);
@@ -230,9 +238,12 @@ public class ArchitectureSnapshotDesigner {
 	 * <b>Note:</b> This method adds the project's representation in the model.
 	 * </p>
 	 *
-	 * @param parent the parent project
-	 * @param child the child project
-	 * @param currentDepth the current depth level
+	 * @param parent
+	 *            the parent project
+	 * @param child
+	 *            the child project
+	 * @param currentDepth
+	 *            the current depth level
 	 */
 	private void reverseChildProject(ReversibleProject parent, ReversibleProject child, int currentDepth) {
 		// Prevent recursion cycle
@@ -240,7 +251,8 @@ public class ArchitectureSnapshotDesigner {
 			insertInModel(child);
 			setReversed(child);
 
-			// Reverse the sub-children if we are in infinite mode or the depth is not reached
+			// Reverse the sub-children if we are in infinite mode or the depth
+			// is not reached
 			if (currentDepth == ADLConstants.INFINITE_DEPTH_OPTION || currentDepth > 1) {
 				int newDepth = currentDepth == ADLConstants.INFINITE_DEPTH_OPTION ? currentDepth : currentDepth - 1;
 
@@ -258,11 +270,14 @@ public class ArchitectureSnapshotDesigner {
 	}
 
 	/**
-	 * Reverses an reversible package inside a reversible project, creates a dependency between the package and the project
-	 * and applies the stereotypes on the created elements.
+	 * Reverses an reversible package inside a reversible project, creates a
+	 * dependency between the package and the project and applies the
+	 * stereotypes on the created elements.
 	 *
-	 * @param project the project containing the imported packages
-	 * @param reversiblePackage the imported package name
+	 * @param project
+	 *            the project containing the imported packages
+	 * @param reversiblePackage
+	 *            the imported package name
 	 */
 	private void reversePackage(ReversibleProject project, ReversiblePackage reversiblePackage) {
 		Component reversedProject = project.getRepresentation();
@@ -307,11 +322,13 @@ public class ArchitectureSnapshotDesigner {
 			boolean includeCeiling = dependencyVersion.includeCeiling();
 
 			packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_FLOOR_ATT, floor);
-			packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDEFLOOR_ATT, includeFloor);
+			packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDEFLOOR_ATT,
+					includeFloor);
 
 			if (ceiling != null) {
 				packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_CEILING_ATT, ceiling);
-				packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDECEILING_ATT, includeCeiling);
+				packageDependency.setValue(dependencyStereotype, OSGIStereotypes.VERSIONRANGE_INCLUDECEILING_ATT,
+						includeCeiling);
 			}
 		}
 	}
@@ -468,7 +485,8 @@ public class ArchitectureSnapshotDesigner {
 			return; // The dependency already exists
 		}
 
-		// Create the dependency and add it to the reversed project's representation
+		// Create the dependency and add it to the reversed project's
+		// representation
 		Dependency extensionPointDependency = createDependency(dependencyName, extensionPort, extensionPointPort);
 
 		reversedProject.getPackagedElements().add(extensionPointDependency);
@@ -500,7 +518,13 @@ public class ArchitectureSnapshotDesigner {
 			dependency = createDependency(dependencyName, parentComponent, childComponent);
 
 			parentComponent.getPackagedElements().add(dependency);
-			parentComponent.createOwnedAttribute(child.getId(), childComponent);
+
+			// create only the owned attribute in case of really owned elements
+			// (e.g. do not add for simple referenced bundles)
+			if (shouldCreateAttribute(parent, child)) {
+				parentComponent.createOwnedAttribute(child.getId(), childComponent);
+			}
+
 		}
 
 		// Apply the stereotype
@@ -532,13 +556,37 @@ public class ArchitectureSnapshotDesigner {
 		return dependency;
 	}
 
+	private static boolean shouldCreateAttribute(ReversibleProject parent, ReversibleProject child) {
+		if (parent instanceof ReversibleFeature) {
+			// should only create for included plugins & included features, not
+			// referenced plugins
+			if (child instanceof ReversibleFeature
+					&& ((ReversibleFeature) parent).getIncludedReversibleFeatures().contains(child)) {
+				return true;
+			}
+			if (child instanceof ReversiblePlugin
+					&& ((ReversibleFeature) parent).getIncludedReversiblePlugins().contains(child)) {
+				return true;
+			}
+			return false;
+		} else if (parent instanceof ReversiblePlugin) {
+			return true;
+		} else {
+			Activator.log.error("Case not handled", null);
+			return true;
+		}
+	}
+
 	/**
 	 * Creates a dependency link between two
 	 * {@link org.eclipse.uml2.uml.NamedElement NamedElement}s
 	 *
-	 * @param name the name of the dependency
-	 * @param client the client NamedElement
-	 * @param supplier the supplier NamedElement
+	 * @param name
+	 *            the name of the dependency
+	 * @param client
+	 *            the client NamedElement
+	 * @param supplier
+	 *            the supplier NamedElement
 	 * @return the created dependency
 	 */
 	private Dependency createDependency(String name, NamedElement client, NamedElement supplier) {
@@ -571,7 +619,8 @@ public class ArchitectureSnapshotDesigner {
 	private void reverseExtensionPointElements(ReversibleExtensionPoint extensionPoint) {
 		ReversibleProject parent = extensionPoint.getParent();
 
-		// Make sure the parent project is in the model to apply the stereotypes on the elements
+		// Make sure the parent project is in the model to apply the stereotypes
+		// on the elements
 		insertInModel(parent);
 
 		// Ensure the extension point is in its parent's representation
@@ -621,9 +670,9 @@ public class ArchitectureSnapshotDesigner {
 	}
 
 	/**
-	 * Returns a reversible project's representation in the model.
-	 * This method checks if the representation has the same name of the reversible's id
-	 * and if the reversible's stereotype is applied on it.
+	 * Returns a reversible project's representation in the model. This method
+	 * checks if the representation has the same name of the reversible's id and
+	 * if the reversible's stereotype is applied on it.
 	 *
 	 * @param reversible
 	 * @return the representation or null if it does not exists

@@ -16,9 +16,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -34,6 +39,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.osgi.profile.OSGIStereotypes;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbench;
@@ -93,7 +99,8 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 	/**
 	 * Constructor.
 	 *
-	 * @param advanced true to launch the wizard in advanced mode.
+	 * @param advanced
+	 *            true to launch the wizard in advanced mode.
 	 */
 	public AbstractImportWizard(boolean advanced) {
 		super();
@@ -136,12 +143,14 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 		}
 
 		if (rootModel != null && !rootModel.isModelLibrary()) {
-			// Check if the required profiles are applied to the rootModel to initialize the modelSet
+			// Check if the required profiles are applied to the rootModel to
+			// initialize the modelSet
 			Profile adlProfile = rootModel.getAppliedProfile(ADL4Eclipse_Stereotypes.ADL4ECLIPSE);
 			Profile osgiProfile = rootModel.getAppliedProfile(OSGIStereotypes.OSGI);
 
 			if (adlProfile == null && osgiProfile == null) {
-				bundleSelectionPage.setMessage("Info: The selected model does not have the ADL and OSGI profiles applied.");
+				bundleSelectionPage
+						.setMessage("Info: The selected model does not have the ADL and OSGI profiles applied.");
 			}
 
 			try {
@@ -197,18 +206,32 @@ public abstract class AbstractImportWizard extends Wizard implements IImportWiza
 	 */
 	@Override
 	public boolean performFinish() {
-		Set<ReversibleProject> selectedBundles = bundleSelectionPage.getResult();
+		final Set<ReversibleProject> selectedBundles = bundleSelectionPage.getResult();
 
 		// One bundle must be selected
 		if (selectedBundles.size() > 0) {
-			Package selection = bundleSelectionPage.getSelectedModel();
+			final Package selection = bundleSelectionPage.getSelectedModel();
 
 			if (selection != null) {
-				ReverseSettings reverseSettings = bundleSelectionPage.getReverseSettings();
+				final ReverseSettings reverseSettings = bundleSelectionPage.getReverseSettings();
+				Job importJob = new Job("Import") {
 
-				// Launch the advanced reverse engineering
-				command = new CompleteArchitectureSnapshotCommand(transactionalEditingDomain, selection, selectedBundles, reverseSettings);
-				transactionalEditingDomain.getCommandStack().execute(command);
+					@Override
+					protected IStatus run(IProgressMonitor monitor) {
+						// Launch the advanced reverse engineering
+						command = new CompleteArchitectureSnapshotCommand(transactionalEditingDomain, selection,
+								selectedBundles, reverseSettings);
+						monitor.worked(1);
+						transactionalEditingDomain.getCommandStack().execute(command);
+						Display.getDefault().asyncExec(new Runnable() {
+							public void run() {
+								MessageDialog.openInformation(getShell(), "Import finished", "Import is finished on "+ selectedBundles.size() +" bundles.");
+							}
+						});
+						return Status.OK_STATUS;
+					}
+				};
+				importJob.schedule();
 
 				return true;
 			}

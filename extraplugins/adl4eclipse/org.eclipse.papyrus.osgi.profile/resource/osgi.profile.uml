@@ -5913,6 +5913,12 @@ the first request to load a class.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_4NkzAHxDEeKtsedMuIUuZQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_4NlaEHxDEeKtsedMuIUuZQ" value="1"/>
       </ownedAttribute>
+      <icon xmi:type="uml:Image" xmi:id="_ZmC2QLRHEeWJYOBCFeoFpg" location="platform:/plugin/org.eclipse.papyrus.osgi.profile/img/bundle_obj.gif">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ZmC2QbRHEeWJYOBCFeoFpg" source="image_papyrus">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZmC2QrRHEeWJYOBCFeoFpg" key="image_name_key" value="icon"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ZmC2Q7RHEeWJYOBCFeoFpg" key="image_kind_key" value="icon"/>
+        </eAnnotations>
+      </icon>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_gpObEHxHEeKtsedMuIUuZQ" name="VersionRange">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_rD64UHxHEeKtsedMuIUuZQ" name="floor">

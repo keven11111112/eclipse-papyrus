@@ -7708,7 +7708,7 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uvhX4DX3EeWTuIXEiMMoaQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uvjNEDX3EeWTuIXEiMMoaQ" value="*"/>
     </ownedAttribute>
-    <icon xmi:type="uml:Image" xmi:id="_hU14AOqKEeOfTcbrnCq2oQ" format="" location="platform:/plugin/org.eclipse.papyrus.adl4eclipse.profile/img/adl.png">
+    <icon xmi:type="uml:Image" xmi:id="_hU14AOqKEeOfTcbrnCq2oQ" format="" location="platform:/plugin/org.eclipse.papyrus.adl4eclipse.profile/img/bundle_obj.gif">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hU14AeqKEeOfTcbrnCq2oQ" source="image_papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hU14AuqKEeOfTcbrnCq2oQ" key="image_kind_key" value="icon"/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hU14A-qKEeOfTcbrnCq2oQ" key="image_name_key" value="icon"/>
@@ -7968,6 +7968,12 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_iU1W8DIUEeWWouxtI2Wm3A" name="base_Component" association="_iUyToDIUEeWWouxtI2Wm3A">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Component"/>
     </ownedAttribute>
+    <icon xmi:type="uml:Image" xmi:id="_QCmKgLPNEeWCRfC2qgqhcA" location="platform:/plugin/org.eclipse.papyrus.adl4eclipse.profile/img/feature_obj.gif">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QCmxkLPNEeWCRfC2qgqhcA" source="image_papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QCmxkbPNEeWCRfC2qgqhcA" key="image_name_key" value="icon"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QCmxkrPNEeWCRfC2qgqhcA" key="image_kind_key" value="icon"/>
+      </eAnnotations>
+    </icon>
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_iUyToDIUEeWWouxtI2Wm3A" name="E_Feature_Component1" memberEnd="_iU0v4DIUEeWWouxtI2Wm3A _iU1W8DIUEeWWouxtI2Wm3A">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_iU0v4DIUEeWWouxtI2Wm3A" name="extension_Feature" type="_QjEa8DITEeWWouxtI2Wm3A" aggregation="composite" association="_iUyToDIUEeWWouxtI2Wm3A"/>

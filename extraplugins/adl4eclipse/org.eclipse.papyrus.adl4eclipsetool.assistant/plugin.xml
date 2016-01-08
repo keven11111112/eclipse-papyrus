@@ -59,4 +59,58 @@
               notation_file="resources/model.notation">
         </template>
      </extension>
+     <extension
+           point="org.eclipse.ui.commands">
+        <category
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.commands.category"
+              name="ADL4Eclipse Refactoring Category">
+        </category>
+        <command
+              categoryId="org.eclipse.papyrus.adl4eclipsetool.assistant.commands.category"
+              id="org.eclipse.papyrus.adl4eclipsetool.assistant.commands.ModelRefactoringCommand"
+              name="Model Refactoring Command">
+        </command>
+     </extension>
+     <extension
+            point="org.eclipse.core.expressions.propertyTesters">
+         <propertyTester
+               class="org.eclipse.papyrus.adl4eclipsetool.assistant.handlers.ArchitectureModelPropertyTester"
+               id="org.eclipse.papyrus.adl4eclipsetool.assistant.menu.tester"
+               namespace="org.eclipse.papyrus.adl4eclipsetool.assistant.menu.tester"
+               properties="isArchitectureModel"
+               type="org.eclipse.jface.viewers.IStructuredSelection">
+         </propertyTester>
+      </extension>
+     <extension
+           point="org.eclipse.ui.handlers">
+        <handler
+              class="org.eclipse.papyrus.adl4eclipsetool.assistant.handlers.ModelRefactoringHandler"
+              commandId="org.eclipse.papyrus.adl4eclipsetool.assistant.commands.ModelRefactoringCommand">
+           <enabledWhen>
+              <and>
+                 <with
+                       variable="selection">
+                    <test
+                          forcePluginActivation="true"
+                          property="org.eclipse.papyrus.adl4eclipsetool.assistant.menu.tester.isArchitectureModel"
+                          value="true">
+                    </test>
+                 </with>
+              </and>
+           </enabledWhen>
+        </handler>
+     </extension>
+      <extension
+         point="org.eclipse.ui.menus">
+     <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.uml.modelrepair.refactor?after=additions">
+         <command
+               commandId="org.eclipse.papyrus.adl4eclipsetool.assistant.commands.ModelRefactoringCommand"
+               icon="img/adl.png"
+               id="org.eclipse.papyrus.adl4eclipsetool.assistant.menus.ModelRefactoringCommand"
+               mnemonic="S">
+         </command>
+        </menuContribution>
+     </extension>
 </plugin>

@@ -393,7 +393,8 @@ public class BundleSelectionPage extends WizardPage {
 					while (iterator.hasNext()) {
 						Object domain = iterator.next();
 						if (domain instanceof Reversible) {
-							descriptionContent.setText(((ReversibleProject) domain).getDescription());
+							String text = ((ReversibleProject) domain).getDescription();
+							descriptionContent.setText(( text !=null ) ? text : "");
 						}
 					}
 				}
