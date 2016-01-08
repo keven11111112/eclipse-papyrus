@@ -26,6 +26,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ExitPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ForkPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.InitialPseudostateActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.JoinPseudostateActivation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -51,6 +52,7 @@ public class StateMachineExecutionFactory extends CS_ExecutionFactory {
 				case EXIT_POINT_LITERAL: visitor = new ExitPointActivation(); break;
 				case CHOICE_LITERAL: visitor = new ChoicePseudostateActivation(); break;
 				case FORK_LITERAL: visitor = new ForkPseudostateActivation(); break;
+				case JOIN_LITERAL: visitor = new JoinPseudostateActivation(); break;
 				default: System.err.println("Element: "+element+" is not supported");break;
 			}
 		}else if (element instanceof State) {

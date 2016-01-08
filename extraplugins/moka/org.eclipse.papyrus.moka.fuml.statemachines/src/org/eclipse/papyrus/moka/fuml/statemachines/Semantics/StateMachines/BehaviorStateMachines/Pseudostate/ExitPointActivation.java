@@ -19,23 +19,25 @@ import java.util.List;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation.TransitionMetadata;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 
 public class ExitPointActivation extends ConnectionPointActivation {
 
-	protected boolean isEnterable() {
+	public boolean isReady(TransitionActivation enteringTransition) {
 		// Determine if this exit point satisfied its requirement to be exited.
 		// The requirement is: all incoming transitions must have been fired once
 		// if they originate from sub-states located in orthogonal regions
 		int i = 0;
-		boolean enterable = true;
-		while (enterable && i < this.getIncomingTransitions().size()) {
-			enterable = TransitionMetadata.TRAVERSED == this.getIncomingTransitions().get(i).getState();
+		boolean isReady = true;
+		while (isReady && i < this.incomingTransitionActivations.size()) {
+			TransitionActivation transitionActivation = this.incomingTransitionActivations.get(i);
+			if(enteringTransition!=transitionActivation && !transitionActivation.isTraversed()){
+				isReady = false;
+			}
 			i++;
 		}
-		return enterable;
+		return isReady;
 	}
 
 	protected List<TransitionActivation> getFireableTransitions() {
@@ -52,8 +54,12 @@ public class ExitPointActivation extends ConnectionPointActivation {
 	}
 
 	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
+		// When the ExitPoint is entered then the state on which it is placed is exited.
+		// One outgoing transition is chosen non-deterministically in set of transition
+		// that can be used to leave the ExitPoint. This transition is fired. This lead
+		// to exit and parent states in cascade if required.
 		List<TransitionActivation> fireableTransitions = this.getFireableTransitions();
-		if (this.isEnterable() && !fireableTransitions.isEmpty()) {
+		if (this.isReady(enteringTransition) && !fireableTransitions.isEmpty()) {
 			ChoiceStrategy choiceStrategy = (ChoiceStrategy) this.getExecutionLocus().factory.getStrategy("choice");
 			int chosenIndex = choiceStrategy.choose(fireableTransitions.size());
 			TransitionActivation selectedTransition = fireableTransitions.get(chosenIndex - 1);

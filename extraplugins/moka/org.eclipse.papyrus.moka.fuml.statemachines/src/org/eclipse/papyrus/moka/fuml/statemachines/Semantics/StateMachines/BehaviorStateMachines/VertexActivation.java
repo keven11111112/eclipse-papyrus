@@ -172,4 +172,12 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		}
 		return leastCommonAncestor;
 	}
+	
+	public boolean isReady(TransitionActivation enteringTransition){
+		// By default a vertex as no prerequisite that need to be full-filled
+		// to be entered. Nevertheless some vertex (e.g., join or exit) have such
+		// prerequisites. Therefore this method is intended to be overridden in vertex
+		// activation sub-classes. 
+		return true;
+	}
 }

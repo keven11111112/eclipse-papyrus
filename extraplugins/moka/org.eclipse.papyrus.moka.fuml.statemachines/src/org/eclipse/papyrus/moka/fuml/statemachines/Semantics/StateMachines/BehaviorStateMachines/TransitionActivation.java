@@ -206,18 +206,29 @@ public class TransitionActivation extends StateMachineSemanticVisitor {
 		//	   state which contains the transition
 		Transition node = (Transition) this.getNode();
 		boolean exitSourceState = false;
-		RegionActivation leastCommonAncestor = null;
+		// Determine if the transition will lead to exit the source state
 		if(node.getKind()==TransitionKind.EXTERNAL_LITERAL){
 			exitSourceState = true;
 		}else if(node.getKind()==TransitionKind.LOCAL_LITERAL){
 			StateActivation stateActivation = this.getContainingState();
 			exitSourceState = stateActivation!=null && node.getSource()!=stateActivation.getNode();
 		}
+		// Proceed to the exiting of the source vertex. Note that if required the containing
+		// state will also be exited (this rule applies recursively). The exiting phase is not
+		// realized in cascade when the target is not ready to be entered (e.g., in the case of
+		// a join or in the case of an exit point playing the role of a join).
+		RegionActivation leastCommonAncestor = null;
 		if(exitSourceState){
-			if(this.vertexSourceActivation.getParentState()!=this.vertexTargetActivation.getParentState()){
-				leastCommonAncestor = this.vertexSourceActivation.getLeastCommonAncestor(this.vertexTargetActivation);
+			if(this.vertexTargetActivation.isReady(this)){
+				if(this.vertexSourceActivation.getParentState()!=
+						this.vertexTargetActivation.getParentState()){
+					leastCommonAncestor = this.vertexSourceActivation.
+							getLeastCommonAncestor(this.vertexTargetActivation);
+				}
+				this.vertexSourceActivation.exit(this, leastCommonAncestor);
+			}else{
+				this.vertexSourceActivation.exit(this, null);
 			}
-			this.vertexSourceActivation.exit(this, leastCommonAncestor);
 		}
 	}
 	
