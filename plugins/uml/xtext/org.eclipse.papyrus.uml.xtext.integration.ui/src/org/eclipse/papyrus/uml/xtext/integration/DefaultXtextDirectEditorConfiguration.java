@@ -147,7 +147,7 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 					EObject xtextObject = context.getFakeResource().getParseResult().getRootASTElement();
 					ICommand cmd = DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject);
 					if (cmd != null) {
-						result.add(DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject));
+						result.add(cmd);
 					}
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
