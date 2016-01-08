@@ -362,6 +362,9 @@ mapping Parameter::toFormalParameter() : FormalParameter
   }
 	typePart := self.map toTypedElementDefinition();
 	direction := self.direction.toParameterDirectionString();
+	if direction = "return" then {
+		name := null;
+	} endif;
 }
 
 mapping Parameter::toMember() : Member
