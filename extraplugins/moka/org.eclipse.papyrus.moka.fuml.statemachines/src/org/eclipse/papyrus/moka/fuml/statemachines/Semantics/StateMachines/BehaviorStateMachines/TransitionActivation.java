@@ -201,8 +201,8 @@ public class TransitionActivation extends StateMachineSemanticVisitor {
 	
 	protected void exitSource(){
 		// A source state is exited when the transition fires under the following conditions:
-		// 1 - The transition leaving the source state is external
-		// 2 - The transition leaving the source state is local but the source state is not the
+		// 1 - The transition leaving the source vertex is external
+		// 2 - The transition leaving the source vertex is local but the source state is not the
 		//	   state which contains the transition
 		Transition node = (Transition) this.getNode();
 		boolean exitSourceState = false;

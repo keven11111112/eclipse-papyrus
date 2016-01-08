@@ -25,15 +25,13 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.Vertex;
 
-/**
- *	A visitor for a vertex owned by a state-machine 
- */
 public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	
+	// ACTIVE = the vertex is currently in the state machine configuration
+	// IDLE = the vertex is not in the state machine configuration
 	public enum StateMetadata{IDLE, ACTIVE}
 	
-	// Meta-information about the state
-	// used by the implementation only for debug
+	// Status of the current vertex
 	protected StateMetadata status;
 	
 	// Incoming transitions of that vertex
@@ -50,6 +48,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public VertexActivation getParentState(){
+		// The parent state of a vertex is either a StateMachineExecution or a StateActivation
 		RegionActivation regionActivation = (RegionActivation)this.getParent();
 		if(regionActivation!=null){
 			if(regionActivation.getParent() instanceof StateMachineExecution){
@@ -85,33 +84,28 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return this.incomingTransitionActivations;
 	}
 
-	/**
-	 * By default return nothing. Must be overridden by state activation;
-	 * @param vertex
-	 * @return null
-	 */
 	protected VertexActivation getVertexActivation(Vertex vertex){
+		// By default return nothing. Must be overridden by state activation;
 		return null;
 	}
 	
 	public final void tagOutgoingTransitions(TransitionMetadata status){
+		// Assign the given status to all outgoing transitions of this vertex 
 		for(TransitionActivation transitionActivation: this.outgoingTransitionActivations){
 			transitionActivation.setState(status);
 		}
 	}
 	
 	public final void tagIncomingTransitions(TransitionMetadata status){
+		// Assign the given status to all incoming transitions of this vertex
 		for(TransitionActivation transitionActivation: this.incomingTransitionActivations){
 			transitionActivation.setState(status);
 		}
 	}
 	
-	/**
-	 * Provides the hierarchy of state activations starting from the current
-	 * element. This list is ordered from the innermost element to the outermost element
-	 * @return List<VertexActivation>
-	 */
 	public List<VertexActivation> getAscendingHierarchy(){
+		// Provides the hierarchy of state activations starting from the current
+		// element. This list is ordered from the innermost element to the outermost element
 		List<VertexActivation> hierarchy = new ArrayList<VertexActivation>();
 		List<SemanticVisitor> contextChain = this.getContextChain();
 		for(SemanticVisitor element : contextChain){
@@ -122,37 +116,24 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return hierarchy;
 	}
 		
-	/**
-	 * Describes the semantics of a vertex
-	 */
 	public void enter(TransitionActivation enteringTransition,  RegionActivation leastCommonAncestor){
+		// 1-The vertex becomes active
+		// 2-Outgoing transitions of this vertex are tagged as being REACHED
+		// 3-The vertex starts to be highlighted
 		logger.info(this.getNode().getName()+" => ACTIVE");
-		/*1. The vertex becomes active*/
 		this.setState(StateMetadata.ACTIVE);
-		/*2. Vertex outgoing transitions are tag as REACHED*/
 		this.tagOutgoingTransitions(TransitionMetadata.REACHED);
-		/*3. The vertex starts to be highlighted*/
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
 	}
 	
-	/**
-	 * Describes the semantics of a vertex when exited
-	 */
 	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor){
-		/*1. The representation of the vertex stops to be highlighted*/
+		// 1-The representation of the vertex stops to be highlighted
+		// 2-The incoming transitions of this vertex get back to the NONE status
+		// 3- The vertex becomes IDLE
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
-		/*2. The incoming transitions of this vertex get back to the NONE status*/
 		this.tagIncomingTransitions(TransitionMetadata.NONE);
-		/*3. The vertex becomes IDLE*/
 		this.setState(StateMetadata.IDLE);
 		logger.info(this.getNode().getName()+" => IDLE");
-	}
-	
-	/**
-	 * Implicit exit consists in exiting a state without using a transition
-	 */
-	public final void implicitExit(){
-		this.exit(null,null);
 	}
 	
 	public boolean isActive(){
