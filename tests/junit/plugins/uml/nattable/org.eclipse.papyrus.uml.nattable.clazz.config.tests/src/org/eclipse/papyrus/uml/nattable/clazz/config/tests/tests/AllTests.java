@@ -18,6 +18,7 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexW
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.DeleteRequirementsWithNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.EditInvalidPastedText_V1_V3_V1;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.NoDepth0TreeFillingConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.OpenAndDeleteTest;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.bugs.RequirementsNestedClassifier;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth0_H1_V3_V1_Test;
@@ -91,6 +92,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		OpenTableTest.class,
 		OpenAndDeleteTest.class,
 		Bug_481017_ReloadEditorTest.class,
+		NoDepth0TreeFillingConfigurationTest.class,
 
 		SortAxisClassTreeTableTest.class,
 		EditAxisClassTreeTableTest.class,
