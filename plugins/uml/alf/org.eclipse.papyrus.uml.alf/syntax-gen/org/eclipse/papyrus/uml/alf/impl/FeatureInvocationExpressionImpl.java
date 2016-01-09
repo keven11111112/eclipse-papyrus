@@ -177,7 +177,7 @@ public class FeatureInvocationExpressionImpl extends InvocationExpressionImpl im
 	 * @ordered
 	 */
 	protected static final String FEATURE_INVOCATION_EXPRESSION_REFERENT_EXISTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
-		"        self.isImplicit or\n" +
+		"        self.isImplicit or self.referent <> null and\n" +
 		"          -- TODO: Remove this check once overloading resolution is implemented.\n" +
 		"          self.tuple.size() <= self.parameterCount() and\n" +
 		"          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and\n" +

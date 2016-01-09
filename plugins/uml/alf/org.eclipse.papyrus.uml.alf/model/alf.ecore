@@ -829,7 +829,7 @@
     </eOperations>
     <eOperations name="namespace" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.element.oclIsKindOf(MemberDefinition) then&#xA;          self.element.oclAsType(MemberDefinition).outerScope()&#xA;        else&#xA;          null&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isModelNamespace() then&#xA;        &#x9;self.element.oclAsType(ModelNamespace).context().namespace()&#xA;        else if self.element.oclIsKindOf(MemberDefinition) then&#xA;          self.element.oclAsType(MemberDefinition).outerScope()&#xA;        else&#xA;          null&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="template" eType="#//ElementReference">
@@ -925,7 +925,7 @@
     </eOperations>
     <eOperations name="equals" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="other &lt;> null and other.asAlf() = self.element"/>
+        <details key="body" value="&#xA;&#x9;&#x9;other &lt;> null and (other.asAlf() = self.element or &#xA;&#x9;&#x9;&#x9;self.isModelNamespace() and other.asUml() = self.element.oclAsType(ModelNamespace).context().asUml())"/>
       </eAnnotations>
       <eParameters name="other" eType="#//ElementReference"/>
     </eOperations>
@@ -1385,7 +1385,7 @@
     </eOperations>
     <eOperations name="equals" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        other &lt;> null and &#xA;        other.asUml() = self.element and &#xA;        other.name() = self.name()"/>
+        <details key="body" value="&#xA;        other &lt;> null and &#xA;        &#x9;(other.asUml() = self.element and other.name() = self.name() or&#xA;        &#x9; other.isModelNamespace() and other.asAlf().oclAsType(ModelNamespace).context().asUml() = self.element)"/>
       </eAnnotations>
       <eParameters name="other" eType="#//ElementReference"/>
     </eOperations>
@@ -7108,7 +7108,7 @@
         <details key="documentation" value="If a feature invocation expression is not an implicit destructor call,&#xA;then it must be possible to determine a single valid referent for it&#xA;according to the overloading resolution rules."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.isImplicit or&#xA;          -- TODO: Remove this check once overloading resolution is implemented.&#xA;          self.tuple.size() &lt;= self.parameterCount() and&#xA;          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and&#xA;          self.tuple.output()->forAll(output | self.parameterIsAssignableTo(output))"/>
+        <details key="body" value="&#xA;        self.isImplicit or self.referent &lt;> null and&#xA;          -- TODO: Remove this check once overloading resolution is implemented.&#xA;          self.tuple.size() &lt;= self.parameterCount() and&#xA;          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and&#xA;          self.tuple.output()->forAll(output | self.parameterIsAssignableTo(output))"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">

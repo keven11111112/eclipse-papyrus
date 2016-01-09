@@ -779,7 +779,7 @@ public interface ExternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other <> null and \n        other.asUml() = self.element and \n        other.name() = self.name()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        other <> null and \n        \t(other.asUml() = self.element and other.name() = self.name() or\n        \t other.isModelNamespace() and other.asAlf().oclAsType(ModelNamespace).context().asUml() = self.element)'"
 	 * @generated
 	 */
 	boolean equals(ElementReference other);

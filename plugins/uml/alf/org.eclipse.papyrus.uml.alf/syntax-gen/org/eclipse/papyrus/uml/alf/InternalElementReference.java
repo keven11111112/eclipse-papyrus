@@ -519,7 +519,7 @@ public interface InternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.element.oclIsKindOf(MemberDefinition) then\n          self.element.oclAsType(MemberDefinition).outerScope()\n        else\n          null\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isModelNamespace() then\n        \tself.element.oclAsType(ModelNamespace).context().namespace()\n        else if self.element.oclIsKindOf(MemberDefinition) then\n          self.element.oclAsType(MemberDefinition).outerScope()\n        else\n          null\n        endif endif'"
 	 * @generated
 	 */
 	ElementReference namespace();
@@ -680,7 +680,7 @@ public interface InternalElementReference extends ElementReference {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='other <> null and other.asAlf() = self.element'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tother <> null and (other.asAlf() = self.element or \n\t\t\tself.isModelNamespace() and other.asUml() = self.element.oclAsType(ModelNamespace).context().asUml())'"
 	 * @generated
 	 */
 	boolean equals(ElementReference other);

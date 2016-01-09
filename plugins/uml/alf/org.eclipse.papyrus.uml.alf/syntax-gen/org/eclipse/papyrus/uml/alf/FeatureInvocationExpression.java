@@ -104,7 +104,7 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * then it must be possible to determine a single valid referent for it
 	 * according to the overloading resolution rules.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or\n          -- TODO: Remove this check once overloading resolution is implemented.\n          self.tuple.size() <= self.parameterCount() and\n          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and\n          self.tuple.output()->forAll(output | self.parameterIsAssignableTo(output))'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or self.referent <> null and\n          -- TODO: Remove this check once overloading resolution is implemented.\n          self.tuple.size() <= self.parameterCount() and\n          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and\n          self.tuple.output()->forAll(output | self.parameterIsAssignableTo(output))'"
 	 * @generated
 	 */
 	boolean featureInvocationExpressionReferentExists(DiagnosticChain diagnostics, Map<Object, Object> context);
