@@ -838,7 +838,7 @@
     </eOperations>
     <eOperations name="activeClass" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isActivity() then null&#xA;        else&#xA;        &#x9;let stub = self.stub() in&#xA;        &#x9;let this = if stub = null then self else stub endif in&#xA;          let namespace = this.namespace() in&#xA;            if namespace = null or &#xA;              not this.equals(namespace.classifierBehavior()) then null&#xA;            else namespace&#xA;            endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isActivity() then null&#xA;        else&#xA;        &#x9;let stub = self.stub() in&#xA;        &#x9;&#x9;-- This will also work is the stub is external.&#xA;&#x9;        &#x9;if stub &lt;> null then stub.activeClass()&#xA;&#x9;        &#x9;else&#xA;&#x9;            &#x9;let namespace = self.namespace() in&#xA;&#x9;&#x9;&#x9;            if namespace = null or &#xA;&#x9;&#x9;&#x9;              not self.equals(namespace.classifierBehavior()) then null&#xA;&#x9;&#x9;&#x9;            else namespace&#xA;&#x9;&#x9;&#x9;            endif&#xA;&#x9;&#x9;&#x9;    endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="context" eType="#//ElementReference">
@@ -1287,7 +1287,7 @@
     </eOperations>
     <eOperations name="activeClass" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isBehavior() then null&#xA;        else if self.element.oclAsType(uml::Behavior).isActive then self&#xA;        else&#xA;          let context = self.element.oclAsType(uml::Behavior).context in&#xA;            if context &lt;> null and self.element = context.classifierBehavior then&#xA;              ExternalElementReference{element = context}&#xA;            else&#xA;              null&#xA;            endif&#xA;        endif endif"/>
+        <details key="body" value="&#xA;        if not self.isBehavior() then null&#xA;        else&#xA;          let context = self.element.oclAsType(uml::Behavior).context in&#xA;          &#x9;if context &lt;> null then ExternalElementReference{element = context}&#xA;          &#x9;else if self.element.oclAsType(uml::Behavior).isActive then self&#xA;          &#x9;else null&#xA;          &#x9;endif endif &#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="context" eType="#//ElementReference">

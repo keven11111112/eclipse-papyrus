@@ -753,7 +753,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isBehavior() then null\n        else if self.element.oclAsType(uml::Behavior).isActive then self\n        else\n          let context = self.element.oclAsType(uml::Behavior).context in\n            if context <> null and self.element = context.classifierBehavior then\n              ExternalElementReference{element = context}\n            else\n              null\n            endif\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isBehavior() then null\n        else\n          let context = self.element.oclAsType(uml::Behavior).context in\n          \tif context <> null then ExternalElementReference{element = context}\n          \telse if self.element.oclAsType(uml::Behavior).isActive then self\n          \telse null\n          \tendif endif \n        endif'"
 	 * @generated
 	 */
 	ElementReference activeClass();
