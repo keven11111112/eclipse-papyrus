@@ -81,17 +81,17 @@ public abstract class AbstractEditableNodeTest extends EditableElementTest {
 				Class<?> editableEditPartClass = editableEditPart.getClass();
 				try {
 					// test is editable
-					Method methodisEditable = editableEditPartClass.getDeclaredMethod("isEditable", null);
+					Method methodisEditable = getMethodRecusrively(editableEditPartClass, "isEditable");
 					if (methodisEditable != null) {
 						methodisEditable.setAccessible(true);
-						Object resultdirectEditorType = methodisEditable.invoke(editableEditPart, null);
+						Object resultdirectEditorType = methodisEditable.invoke(editableEditPart);
 						Assert.assertEquals("the editpart must be editable", true, resultdirectEditorType);
 					}
 					//
-					Method methodgetEditTextValidator = editableEditPartClass.getDeclaredMethod("getEditTextValidator", null);
+					Method methodgetEditTextValidator = getMethodRecusrively(editableEditPartClass, "getEditTextValidator");
 					if (methodgetEditTextValidator != null) {
 						methodgetEditTextValidator.setAccessible(true);
-						Object result = methodgetEditTextValidator.invoke(editableEditPart, null);
+						Object result = methodgetEditTextValidator.invoke(editableEditPart);
 						Assert.assertNotNull("the editpart must be editable", result);
 						ICellEditorValidator cellvalidato = (ICellEditorValidator) result;
 						Assert.assertEquals("the text is valid", null, cellvalidato.isValid("MyElement"));
@@ -106,17 +106,17 @@ public abstract class AbstractEditableNodeTest extends EditableElementTest {
 
 					// call and test kind of editor
 					int directEditorType = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
-					Method methodgetDirectEditionType = editableEditPartClass.getDeclaredMethod("getDirectEditionType", null);
+					Method methodgetDirectEditionType = getMethodRecusrively(editableEditPartClass, "getDirectEditionType");
 					if (methodgetDirectEditionType != null) {
-						directEditorType = (Integer) methodgetDirectEditionType.invoke(editableEditPart, null);
+						directEditorType = (Integer) methodgetDirectEditionType.invoke(editableEditPart);
 						Assert.assertEquals("wrong kind of direct editor", expectedKind.get() & directEditorType, directEditorType);
 					}
 					// call and test current editor if supported and it is not contributed by some external plug-in
 					if (directEditorType == IDirectEdition.DEFAULT_DIRECT_EDITOR) {
-						Method methodGetManager = editableEditPartClass.getDeclaredMethod("getManager", null);
+						Method methodGetManager = getMethodRecusrively(editableEditPartClass, "getManager");
 						if (methodGetManager != null) {
 							methodGetManager.setAccessible(true);
-							Object result = methodGetManager.invoke(editableEditPart, null);
+							Object result = methodGetManager.invoke(editableEditPart);
 							Assert.assertTrue("the manager to edit name must be a MultilineLabelDirectEditManager", result instanceof MultilineLabelDirectEditManager);
 							MultilineLabelDirectEditManager manager = (MultilineLabelDirectEditManager) result;
 							IFigure fig = getPrimaryFigure(editableEditPart);
@@ -143,6 +143,23 @@ public abstract class AbstractEditableNodeTest extends EditableElementTest {
 
 			}
 		}
+	}
+
+	public Method getMethodRecusrively(Class<?> clazz, String methodName, Class<?>... parameterTypes) throws NoSuchMethodException {
+		try {
+			return clazz.getDeclaredMethod(methodName, parameterTypes);
+		} catch (NoSuchMethodException e) {
+			Class<?> superClazz = clazz.getSuperclass();
+			if (clazz.getSuperclass() != null) {
+				return getMethodRecusrively(superClazz, methodName, parameterTypes);
+			} else {
+				throw e;
+			}
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 }
