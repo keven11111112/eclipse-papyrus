@@ -33,16 +33,16 @@ OpaqueAction > Compartment[kind="symbol"] {
     visible:true;    
 }
 
-* > Label:stereotype {
+* > Label[type=StereotypeLabel] {
 	visible:false;
-	displayTag :false;
+	displayTags: false;
 }
 
 * {
 	followSVGSymbol: true;
 	svgCSSFile: url('platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/css/alternateBorderColor.css');
 	elementIcon : false;
-	displayTag :false;
+	displayTags :false;
 }
 
 
@@ -50,66 +50,66 @@ OpaqueAction > Compartment[kind="symbol"] {
 [appliedStereotypes~="BPMNProfile::Task"]
 {
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotype;
 }
 
 [appliedStereotypes~="BPMNProfile::GlobalTask"]
 {
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 }
 
 [appliedStereotypes~="BPMNProfile::SubProcess"]{
 	borderStyle: solid;
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 }
 
 [appliedStereotypes~="BPMNProfile::Task"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 }
  
 [appliedStereotypes~="BPMNProfile::ManualTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ManualTask.svg";
 }
 
 [appliedStereotypes~="BPMNProfile::ReceiveTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ReceiveTask.svg";
 }
 
 [appliedStereotypes~="BPMNProfile::UserTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/UserTask.svg";
 }
 
 [appliedStereotypes~="BPMNProfile::ScriptTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ScriptTask.svg";
 }
 
 [appliedStereotypes~="BPMNProfile::BusinessRuleTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/BusinessRuleTask.svg";
 }
 
 [appliedStereotypes~="BPMNProfile::SendTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/SendTask.svg";
 }
 
 [appliedStereotypes~="BPMNProfile::ServiceTask"]{
 	fillColor: white;	
-	displayTag: false;
+	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ServiceTask.svg";
 }
 
@@ -122,7 +122,7 @@ OpaqueAction > Compartment[kind="symbol"] {
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/parallel.svg";
 	transparency: 100;
 	followSVGSymbol: true;
-	displayTag: false;
+	displayTags: false;
 	displayName : false;
 }
 
@@ -208,7 +208,7 @@ OpaqueAction > Compartment[kind="symbol"] {
 [appliedStereotypes~="BPMNProfile::DataStoreReference"]{
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore.svg";
 	transparency: 0;
-	displayTag: false;
+	displayTags: false;
 	followSVGSymbol: true;
 	
 }
@@ -223,7 +223,7 @@ alternateBorderColor path{
 	 * */  
 	
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotypeName;
 	svgCSSClass: alternateBorderColor;
 	
@@ -235,7 +235,7 @@ alternateBorderColor path{
 	 * 
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore20.svg";
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotypeName;
 	svgCSSClass: alternateBorderColor;
 }
@@ -246,7 +246,7 @@ alternateBorderColor path{
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore100.svg";
 	 
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotypeName;
 	svgCSSClass: alternateBorderColor;
 }
@@ -281,13 +281,13 @@ alternateBorderColor path{
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataObject.svg";
 	transparency: 100;
 	maintainSymbolRatio: true;
-	displayTag: false;
+	displayTags: false;
 }
 
 [appliedStereotypes~="BPMNProfile::DataStoreReference"]{
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore.svg";
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	followSVGSymbol: true;
 	
 }
@@ -307,7 +307,7 @@ alternateBorderColor path{
 	 * */  
 	
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotypeName;
 	svgCSSClass: alternateBorderColor;
 	
@@ -319,7 +319,7 @@ alternateBorderColor path{
 	 * 
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore20.svg";
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotypeName;
 	svgCSSClass: alternateBorderColor;
 }
@@ -329,7 +329,7 @@ alternateBorderColor path{
 	 * 
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/DataStore100.svg";
 	transparency: 100;
-	displayTag: false;
+	displayTags: false;
 	maskLabel: stereotypeName;
 	svgCSSClass: alternateBorderColor;
 }
