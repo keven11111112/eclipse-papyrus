@@ -235,6 +235,7 @@
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram</module>
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.common</module>
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.process</module>
+		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.collaboration</module>
 		<module>../../extraplugins/bpmn/org.eclipse.papyrus.bpmn.diagram.ui</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.bpmn.extra.feature</module>
 
