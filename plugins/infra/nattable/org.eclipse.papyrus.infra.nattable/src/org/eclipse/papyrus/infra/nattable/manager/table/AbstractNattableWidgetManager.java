@@ -989,10 +989,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 						if (!getTable().isInvertAxis()) {
 							if (getTable().getLocalRowHeaderAxisConfiguration() != null) {
 								localRowHeaderAxis = getTable().getLocalRowHeaderAxisConfiguration();
-							} else{
-								// Calculate the modified header row position (-1 because the index is displayed)
-								newHeaderLabelWidth = rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition-1);
-								if (newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth() || newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+							} else if (newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth() || newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
 									TableHeaderAxisConfiguration rowHeaderAxis;
 									EStructuralFeature localHeaderFeature = null;
 									rowHeaderAxis = getTable().getTableConfiguration().getRowHeaderAxisConfiguration();
@@ -1002,16 +999,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 									IEditCommandRequest initLocalRowHeaderAxis = new SetRequest(tableDomain, table, localHeaderFeature, localRowHeaderAxis);
 									IElementEditService localRowHeaderAxisProvider = ElementEditServiceUtils.getCommandProvider(table);
 									resizeRowHeaderCommand.add(localRowHeaderAxisProvider.getEditCommand(initLocalRowHeaderAxis));
-								}
 							}
 
 						} else {
 							if (getTable().getLocalColumnHeaderAxisConfiguration() != null) {
 								localRowHeaderAxis = getTable().getLocalColumnHeaderAxisConfiguration();
-							} else{
-								// Calculate the modified header row position (-1 because the index is displayed)
-								newHeaderLabelWidth = rowHeaderLayerStack.getRowLabelDataLayer().getColumnWidthByPosition(resizedHeaderPosition-1);
-								if (newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth() || newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
+							} else if (newHeaderIndexWidth != DefaultSizeUtils.getDefaultRowHeaderWidth() || newHeaderLabelWidth != DefaultSizeUtils.getDefaultRowHeaderWidth()) {
 									TableHeaderAxisConfiguration rowHeaderAxis;
 									EStructuralFeature localHeaderFeature = null;
 									rowHeaderAxis = getTable().getTableConfiguration().getColumnHeaderAxisConfiguration();
@@ -1021,7 +1014,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 									IEditCommandRequest initLocalRowHeaderAxis = new SetRequest(tableDomain, table, localHeaderFeature, localRowHeaderAxis);
 									IElementEditService localRowHeaderAxisProvider = ElementEditServiceUtils.getCommandProvider(table);
 									resizeRowHeaderCommand.add(localRowHeaderAxisProvider.getEditCommand(initLocalRowHeaderAxis));
-								}
 							}
 
 						}
