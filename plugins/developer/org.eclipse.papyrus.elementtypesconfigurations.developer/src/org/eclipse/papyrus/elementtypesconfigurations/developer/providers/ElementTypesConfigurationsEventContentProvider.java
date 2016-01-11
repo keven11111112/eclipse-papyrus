@@ -101,7 +101,7 @@ public class ElementTypesConfigurationsEventContentProvider implements ITreeCont
 
 			List<AbstractElementTypesConfigurationsEvent> adviceRequestConfigurationEvents = elementTypesConfigurationsEventsChain.getAdviceRequestConfigurationEvents();
 			if (!adviceRequestConfigurationEvents.isEmpty()) {
-				result.add(new AbstractMap.SimpleEntry<String, Object>("BeforeAdvicesCommandsEvents", adviceRequestConfigurationEvents));
+				result.add(new AbstractMap.SimpleEntry<String, Object>("AdviceRequestConfigurationEvents", adviceRequestConfigurationEvents));
 			}
 			AbstractElementTypesConfigurationsEvent editHelperRequestConfigurationEvent = elementTypesConfigurationsEventsChain.getEditHelperRequestConfigurationEvent();
 			if (editHelperRequestConfigurationEvent != null) {
