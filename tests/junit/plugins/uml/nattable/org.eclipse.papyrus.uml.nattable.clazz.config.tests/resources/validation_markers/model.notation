@@ -11,4 +11,5 @@
     </axis>
   </columnAxisProvidersHistory>
   <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_llz805TrEeWLLOhs9sPEkw" description="This axis provider manages the rows, according to the wanted hierarchy" name="HierarchicalRowaAxisManager" disconnectSlave="true"/>
+  <localRowHeaderAxisConfiguration xmi:type="nattableaxisconfiguration:LocalTableHeaderAxisConfiguration" xmi:id="_5MHdQLhGEeW6aLBdUg7VGQ" indexStyle="NUMERIC" displayIndex="false"/>
 </nattable:Table>

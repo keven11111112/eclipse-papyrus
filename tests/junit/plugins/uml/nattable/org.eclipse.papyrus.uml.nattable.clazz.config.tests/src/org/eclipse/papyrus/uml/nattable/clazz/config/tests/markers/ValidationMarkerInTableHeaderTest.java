@@ -98,7 +98,7 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 	/**
 	 * the total of columns in the table
 	 */
-	private static final int NB_COLUMNS = 8;
+	private static final int NB_COLUMNS = 7;
 
 
 	private static final int MAX_ROWS = NB_ROWS;
