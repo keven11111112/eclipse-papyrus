@@ -1072,6 +1072,10 @@ mapping AcceptStatement::toActivityGraph() : StatementActivityGraph
 	var initialNode := new InitialNode(structuredNode);
 	new ControlFlow(structuredNode, initialNode, acceptAction);
 	
+	if decisionNode <> null then {
+		new ControlFlow(structuredNode, acceptAction, decisionNode);
+	} endif;
+	
 	if hasOutput then {
 		var outputPin := acceptAction.result->at(1);
 		self.signalSourceNode.name := "Fork(" + outputPin.name + ")";
