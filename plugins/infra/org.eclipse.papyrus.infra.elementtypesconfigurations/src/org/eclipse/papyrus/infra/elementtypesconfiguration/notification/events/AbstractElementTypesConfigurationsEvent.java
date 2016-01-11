@@ -30,6 +30,7 @@ public abstract class AbstractElementTypesConfigurationsEvent implements IElemen
 	private IEditHelper editHelper;
 
 	public AbstractElementTypesConfigurationsEvent(IEditCommandRequest req, IEditHelper editHelper) {
+		this();
 		this.request = req;
 		this.editHelper = editHelper;
 	}
