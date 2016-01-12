@@ -156,7 +156,7 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		// in fact , there is a bug here!
 		// TODO try to fix this test
 		// the bad test (which works on all screen size)
-		Assert.assertTrue("There are more columns than expected", NB_COLUMNS <= columnCount);
+		Assert.assertTrue("There are more columns than expected", columnCount <= NB_COLUMNS);
 
 		// the good test, but the result depends of the screen size (if there is a scrollbar, it doesn't work)
 		// Assert.assertEquals("The number of columns is not the excpected one", NB_COLUMNS, columnCount); //$NON-NLS-1$
