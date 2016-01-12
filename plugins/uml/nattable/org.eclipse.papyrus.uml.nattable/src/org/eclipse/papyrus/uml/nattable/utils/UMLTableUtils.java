@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 435417
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.utils;
@@ -91,50 +92,38 @@ public class UMLTableUtils {
 	 *         the UML::Property or <code>null</code> if we can't resolve it (the required profile is not applied)
 	 */
 	public static Property getRealStereotypeProperty(final EObject eobject, final String id) {
+		Property result = null;
+		
 		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		if (eobject instanceof Element) {
 			final Element element = (Element) eobject;
 			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-			final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
-			final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
-			final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
-			String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
-			final List<String> subPackages = new ArrayList<String>();
-			
-			// 1. we check if the profile is applied on the nearest package
-			if (element.getNearestPackage() != null) {
-				Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
-			
-				if(null == profile){
-					if (profileQN.contains(NamedElement.SEPARATOR)){
-						String[] split = profileQN.split(NamedElement.SEPARATOR);
-						profileQN = split[0];
-						for (int splitIndex=1;splitIndex<split.length;splitIndex++){
-							subPackages.add(split[splitIndex]);
-						}
-					}
-					profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
-				}
 
-				if (profile != null) {
-					Package currentPackage = profile;
-					Iterator<String> subPackagesIterator = subPackages.iterator();
-					while (null != currentPackage && subPackagesIterator.hasNext()){
-						NamedElement namedElement = currentPackage.getOwnedMember(subPackagesIterator.next());
-						currentPackage = namedElement instanceof Package ? (Package) namedElement : null;
-					}
-					if (null != currentPackage){
-						final Stereotype ste = currentPackage.getOwnedStereotype(stereotypeName);
-						return (Property) ste.getMember(propertyName);
+			// Bug 435417 : Search the properties by their qualified name instead of search by its stereotypes first
+			// This allows to manage the inherit properties and the stereotypes in packages
+			final Iterator<Profile> appliedProfilesIterator = element.getNearestPackage().getAllAppliedProfiles().iterator();
+			while(appliedProfilesIterator.hasNext() && null == result){
+				final Profile appliedProfile = appliedProfilesIterator.next();
+				final Iterator<Stereotype> stereotypesIterator = appliedProfile.getOwnedStereotypes().iterator();
+				while(stereotypesIterator.hasNext() && null == result){
+					final Stereotype ownedStereotype = stereotypesIterator.next();
+					final Iterator<Property> propertiesIterator = ownedStereotype.getAllAttributes().iterator();
+					while(propertiesIterator.hasNext() && null == result){
+						final Property property = propertiesIterator.next();
+						if(property.getQualifiedName().equals(propertyQN)){
+							result = property;
+						}
 					}
 				}
 			}
 
 			// 2. if not, the profile could be applied on a sub-package of the nearest package
 			/* the table can show element which are not children of its context, so the profile could not be available in its context */
-			return getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
+			if(null == result){
+				result = getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
+			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
