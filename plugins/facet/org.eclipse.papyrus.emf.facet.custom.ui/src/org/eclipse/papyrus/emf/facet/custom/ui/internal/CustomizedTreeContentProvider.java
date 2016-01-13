@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.exception.CustomizationException;
@@ -140,6 +139,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return result;
 	}
 
+	@Override
 	public Object[] getElements(final Object inputElement) {
 		// Reconcile the (possibly changed) list of root elements with our tree element proxies
 
@@ -161,7 +161,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		}
 
 		for (final Object element : elements) {
-			if (!isVisible(element, null)) {
+			if (!isVisible(element)) {
 				continue;
 			}
 
@@ -189,6 +189,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return eObjectProxy;
 	}
 
+	@Override
 	public Object[] getChildren(final Object parentElement) {
 		Object[] result;
 		if (parentElement == null) {
@@ -320,6 +321,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return children;
 	}
 
+	@Override
 	public Object getParent(final Object element) {
 		Object result = null;
 		if (element instanceof TreeElement) {
@@ -329,28 +331,31 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return result;
 	}
 
+	@Override
 	public boolean hasChildren(final Object element) {
 		return getChildren(element).length > 0;
 	}
 
 
 
+	@Override
 	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 		if (oldInput != newInput) {
 			cache.clear();
 		}
 	}
 
+	@Override
 	public ICustomizationManager getCustomizationManager() {
 		return this.customManager;
 	}
 
-	public boolean isVisible(final Object object, final ETypedElement eTypedElement) {
+	public boolean isVisible(final Object object) {
 		Boolean result = Boolean.TRUE;
 		if (object instanceof EObject) {
 			final EObject eObject = (EObject) object;
 			try {
-				result = this.customManager.getCustomValueOf(eObject, eTypedElement, this.contentHandler.getIsVisible(), Boolean.class);
+				result = this.customManager.getCustomValueOf(eObject, this.contentHandler.getIsVisible(), Boolean.class);
 			} catch (final CustomizationException e) {
 				Logger.logError(e, Activator.getDefault());
 			}
@@ -376,7 +381,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	private void createReferences(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<Object> children) {
 		final EObject eObject = treeElement.getEObject();
 
-		for (EReference next : eObject.eClass().getEAllReferences()) {
+		for (EReference next : getVisibleReferences(eObject)) {
 			createReference(treeElement, eObject, next, children);
 		}
 		for (EStructuralFeature next : facetFeatures) {
@@ -387,26 +392,24 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 	}
 
 	private void createReference(EObjectTreeElement treeElement, EObject eObject, EReference eReference, Collection<Object> children) {
-		if (isVisible(eObject, eReference)) {
-			if (collapseLink(eObject, eReference)) {
-				if (eReference.getUpperBound() != 1) {
-					collectMultiValuedReferenceChildren(eReference, eObject, treeElement, children);
-				} else {
-					Object child = getSingleValuedReferenceChild(eReference, eObject, treeElement);
-					if (child != null) {
-						children.add(child);
-					}
-				}
+		if (collapseLink(eObject, eReference)) {
+			if (eReference.getUpperBound() != 1) {
+				collectMultiValuedReferenceChildren(eReference, eObject, treeElement, children);
 			} else {
-				children.add(getEReferenceProxy(eReference, treeElement));
+				Object child = getSingleValuedReferenceChild(eReference, eObject, treeElement);
+				if (child != null) {
+					children.add(child);
+				}
 			}
+		} else {
+			children.add(getEReferenceProxy(eReference, treeElement));
 		}
 	}
 
 	private void createAttributes(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<? super TreeElement> children) {
 		final EObject eObject = treeElement.getEObject();
 
-		for (EAttribute next : eObject.eClass().getEAllAttributes()) {
+		for (EAttribute next : getVisibleAttributes(eObject)) {
 			createAttribute(treeElement, eObject, next, children);
 		}
 		for (EStructuralFeature next : facetFeatures) {
@@ -416,36 +419,48 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		}
 	}
 
+	private List<EAttribute> getVisibleAttributes(EObject eObject) {
+		List<EAttribute> result = null;
+		try {
+			result = this.customManager.getCustomValuesOf(eObject, this.contentHandler.getVisibleAttributes(), EAttribute.class);
+		} catch (final CustomizationException e) {
+			Logger.logError(e, Activator.getDefault());
+		}
+
+		return result == null ? Collections.emptyList() : result;
+	}
+
+	private List<EReference> getVisibleReferences(EObject eObject) {
+		List<EReference> result = null;
+		try {
+			result = this.customManager.getCustomValuesOf(eObject, this.contentHandler.getVisibleReferences(), EReference.class);
+		} catch (final CustomizationException e) {
+			Logger.logError(e, Activator.getDefault());
+		}
+
+		return result == null ? Collections.emptyList() : result;
+	}
+
 	private void createAttribute(EObjectTreeElement treeElement, EObject eObject, EAttribute eAttribute, Collection<? super TreeElement> children) {
-		if (isVisible(eObject, eAttribute)) {
-			TreeElement eAttributeTreeElement = getEAttributeProxy(eAttribute, treeElement);
-			if (eAttributeTreeElement != null) {
-				children.add(eAttributeTreeElement);
-			}
+		TreeElement eAttributeTreeElement = getEAttributeProxy(eAttribute, treeElement);
+		if (eAttributeTreeElement != null) {
+			children.add(eAttributeTreeElement);
 		}
 	}
 
 
 	private EReferenceTreeElement createReferenceProxy(final EReference reference, final EObjectTreeElement parent) {
-		final EObject eObject = parent.getEObject();
-		if (isVisible(eObject, reference)) {
-			final EReferenceTreeElement referenceProxy = TreeproxyFactory.eINSTANCE.createEReferenceTreeElement();
-			referenceProxy.setEReference(reference);
-			referenceProxy.setParent(parent);
-			return referenceProxy;
-		}
-		return null;
+		final EReferenceTreeElement referenceProxy = TreeproxyFactory.eINSTANCE.createEReferenceTreeElement();
+		referenceProxy.setEReference(reference);
+		referenceProxy.setParent(parent);
+		return referenceProxy;
 	}
 
 	private EAttributeTreeElement createAttributeProxy(final EAttribute attribute, final EObjectTreeElement parent) {
-		final EObject eObject = parent.getEObject();
-		if (isVisible(eObject, attribute)) {
-			final EAttributeTreeElement attributeProxy = TreeproxyFactory.eINSTANCE.createEAttributeTreeElement();
-			attributeProxy.setEAttribute(attribute);
-			attributeProxy.setParent(parent);
-			return attributeProxy;
-		}
-		return null;
+		final EAttributeTreeElement attributeProxy = TreeproxyFactory.eINSTANCE.createEAttributeTreeElement();
+		attributeProxy.setEAttribute(attribute);
+		attributeProxy.setParent(parent);
+		return attributeProxy;
 	}
 
 	private Object getSingleValuedReferenceChild(final EReference eReference, final EObject eObject, final TreeElement parent) {
@@ -502,6 +517,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return (EReferenceTreeElement) cache.get(cacheElement);
 	}
 
+	@Override
 	public void dispose() {
 		cache.clear();
 		rootElements = null;

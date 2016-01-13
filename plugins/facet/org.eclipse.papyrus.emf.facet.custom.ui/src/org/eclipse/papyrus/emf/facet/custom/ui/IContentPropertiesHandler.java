@@ -21,7 +21,34 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperati
  * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface IContentPropertiesHandler {
+
+	/**
+	 * The isVisible customization operation
+	 *
+	 * Since Papyrus 1.2.0, this operation is only used for Objects (Not Features)
+	 *
+	 * @return
+	 */
 	FacetOperation getIsVisible();
 
+	/**
+	 * Return the collapseLink customization operation
+	 *
+	 * @return
+	 */
 	public FacetOperation getCollapseLink();
+
+	/**
+	 * Return the getVisibleAttributes customization operation
+	 *
+	 * @return
+	 */
+	public FacetOperation getVisibleAttributes();
+
+	/**
+	 * Return the getVisibleReferences customization operation
+	 *
+	 * @return
+	 */
+	public FacetOperation getVisibleReferences();
 }

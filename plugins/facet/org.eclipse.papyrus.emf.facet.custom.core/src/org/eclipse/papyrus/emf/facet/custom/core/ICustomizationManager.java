@@ -59,7 +59,7 @@ public interface ICustomizationManager {
 	 */
 	<T> T getCustomValueOf(EObject eObject,
 			FacetOperation customProperty, Class<T> classs)
-			throws CustomizationException;
+					throws CustomizationException;
 
 	/**
 	 * This method is used to get the value of a customization property for a
@@ -78,7 +78,7 @@ public interface ICustomizationManager {
 	<T> T getCustomValueOf(EObject eObject,
 			ETypedElement structuralFeature,
 			FacetOperation customProperty, Class<T> classs)
-			throws CustomizationException;
+					throws CustomizationException;
 
 	/**
 	 * This method returns the resourceSet used to manage the customization
@@ -87,5 +87,15 @@ public interface ICustomizationManager {
 	ResourceSet getResourceSet();
 
 	IFacetManager getFacetManager();
+
+	/**
+	 * Multi-valued version of {@link #getCustomValueOf(EObject, FacetOperation, Class)}
+	 *
+	 * @param eObject
+	 * @param visibleReferences
+	 * @param class1
+	 * @return
+	 */
+	<T> List<T> getCustomValuesOf(EObject eObject, FacetOperation customProperty, Class<T> class1) throws CustomizationException;;
 
 }

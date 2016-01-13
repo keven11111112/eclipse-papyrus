@@ -5,8 +5,7 @@ Export-Package: org.eclipse.papyrus.infra.nattable.modelexplorer,
  org.eclipse.papyrus.infra.nattable.modelexplorer.providers,
  org.eclipse.papyrus.infra.nattable.modelexplorer.queries
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- bin
+Bundle-ClassPath: .
 Bundle-Name: %Bundle-Name
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ui,

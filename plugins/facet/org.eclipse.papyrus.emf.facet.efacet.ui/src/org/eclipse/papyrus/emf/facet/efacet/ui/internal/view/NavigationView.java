@@ -252,7 +252,7 @@ public class NavigationView extends ViewPart implements INavigationView {
 		final GridLayout groupLayout = new GridLayout();
 		queryGroup.setLayout(groupLayout);
 		final Collection<ETypedElement> eTypedElements = new ArrayList<ETypedElement>(
-				FacetUtils.getETypedElements(getResourceSet()));
+				FacetUIUtils.getETypedElements(getResourceSet()));
 		final Collection<? extends EObject> knownEPackages = IFacetSetCatalogManagerFactory.DEFAULT
 				.getOrCreateFacetSetCatalogManager(this.getResourceSet())
 				.getRegisteredFacetSets();
@@ -264,7 +264,7 @@ public class NavigationView extends ViewPart implements INavigationView {
 						getCustomizationManager(),
 						knownEPackages);
 		this.navSelection.setAvailableETypedElements(eTypedElements);
-	}
+	}	
 
 	private void createContextGroup(final Composite parent) {
 		final Group contextGroup = new Group(parent, SWT.NONE);

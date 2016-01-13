@@ -19,12 +19,17 @@ import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
+/**
+ *
+ * @deprecated Since Papyrus 1.2.0: Bug 485539.
+ */
+@Deprecated
 public class NotVisibleStructuralFeatureQuery implements IJavaQuery2<Table, Boolean> {
 	@Override
 	public Boolean evaluate(final Table context,
 			final IParameterValueList2 parameterValues,
 			final IFacetManager facetManager)
-			throws DerivedTypedElementException {
+					throws DerivedTypedElementException {
 		ParameterValue parameterValue = parameterValues.getParameterValueByName("eStructuralFeature");
 		EStructuralFeature eStructuralFeature = (EStructuralFeature) parameterValue.getValue();
 		// if eStructural feature ==null this is root model explorer.

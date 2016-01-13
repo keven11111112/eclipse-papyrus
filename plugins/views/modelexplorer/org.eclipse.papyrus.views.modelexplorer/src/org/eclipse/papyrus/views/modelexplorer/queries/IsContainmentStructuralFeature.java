@@ -28,12 +28,15 @@ import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
  * this query is used to return false, if the given object is a references that is not containment or if it is a attribute.
  * it return true if the the feature is also a facetReferences
  *
+ * @deprecated Since Papyrus 1.2.0 (Bug 485539), the isVisible query is not used for Features anymore.
+ *             Use {@link GetVisibleReferencesQuery} instead
+ *
  */
+@Deprecated
 public class IsContainmentStructuralFeature implements IJavaQuery2<EObject, Boolean> {
-	public Boolean evaluate(final EObject context,
-			final IParameterValueList2 parameterValues,
-			final IFacetManager facetManager)
-			throws DerivedTypedElementException {
+
+	@Override
+	public Boolean evaluate(final EObject context, final IParameterValueList2 parameterValues, final IFacetManager facetManager) throws DerivedTypedElementException {
 		ParameterValue parameterValue = parameterValues.getParameterValueByName("eStructuralFeature");
 		EStructuralFeature eStructuralFeature = (EStructuralFeature) parameterValue.getValue();
 		// if eStructural feature ==null this is root model explorer.
@@ -41,19 +44,15 @@ public class IsContainmentStructuralFeature implements IJavaQuery2<EObject, Bool
 		if (eStructuralFeature == null) {
 			return true;
 		}
-		// This is an UML element?
+		// This is a UML element?
 		if (context instanceof EObject) {
 			// the eStructure is a containmentReference or Facet Reference?
 			if (eStructuralFeature instanceof EReference) {
-				if (((EReference) eStructuralFeature).equals(EcorePackage.eINSTANCE.getEModelElement_EAnnotations())) {
+				if (eStructuralFeature == EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS) {
 					return false;
 				}
-				if (((EReference) (eStructuralFeature)).isContainment() || (eStructuralFeature instanceof FacetReference)) {
-					return true;
-				}
-				else {
-					return false;
-				}
+
+				return ((EReference) eStructuralFeature).isContainment() || eStructuralFeature instanceof FacetReference;
 			}
 			// this is not a ref like EAttribute
 			else {

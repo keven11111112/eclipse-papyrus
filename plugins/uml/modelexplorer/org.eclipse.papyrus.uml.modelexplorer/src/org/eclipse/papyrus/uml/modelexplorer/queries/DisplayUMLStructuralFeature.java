@@ -28,7 +28,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * this query is used to return false, if the given object is a references that is not containment or if it is a attribute.
  * it return true if the the feature is also a facetReferences
- *
+ * @deprecated Since Papyrus 1.2.0 (Bug 485539), the isVisible query is not used for Features anymore.
+ * Use {@link GetVisibleReferencesQuery} instead
  */
 public class DisplayUMLStructuralFeature extends IsContainmentStructuralFeature implements IJavaQuery2<EObject, Boolean> {
 	@Override

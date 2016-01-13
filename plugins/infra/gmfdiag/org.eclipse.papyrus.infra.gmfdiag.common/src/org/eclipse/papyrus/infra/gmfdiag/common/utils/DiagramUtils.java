@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,9 +80,8 @@ public class DiagramUtils {
 	 * @return The diagram's owner
 	 */
 	public static EObject getOwner(Diagram diagram) {
-		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
-		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
+		PapyrusViewStyle pvs = getPapyrusViewStyle(diagram);
+		if (pvs != null) {
 			EObject value = pvs.getOwner();
 			if (value != null) {
 				return value;
@@ -102,71 +100,84 @@ public class DiagramUtils {
 	 *            The new diagram's owner
 	 */
 	public static void setOwner(Diagram diagram, EObject owner) {
-		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
-		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
+		PapyrusViewStyle pvs = getPapyrusViewStyle(diagram);
+		if (pvs != null) {
 			pvs.setOwner(owner);
 		} else {
-			PapyrusViewStyle pvs = (PapyrusViewStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+			pvs = (PapyrusViewStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			pvs.setOwner(owner);
 		}
 	}
 
 	/**
+	 * Returns the PapyrusViewStyle owned by this diagram (if any)
+	 *
+	 * @param diagram
+	 * @return
+	 */
+	public static final PapyrusViewStyle getPapyrusViewStyle(Diagram diagram) {
+		for (Style ownedStyle : (List<Style>) diagram.getStyles()) { // Access all styles directly to avoid CSS computation, and use instanceof (Rather than reflexive EMF)
+			if (ownedStyle instanceof PapyrusViewStyle) {
+				return (PapyrusViewStyle) ownedStyle;
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Gets the prototype of a diagram
-	 * Check if the selected viewpoint contains 
-	 * 		1. the diagram model kind
-	 * 		2. an ancestor of the diagram model kind
-	 * 		3. a descendant of the diagram model kind
-	 * 
+	 * Check if the selected viewpoint contains
+	 * 1. the diagram model kind
+	 * 2. an ancestor of the diagram model kind
+	 * 3. a descendant of the diagram model kind
+	 *
 	 * @param diagram
 	 *            A diagram
 	 * @return The diagram's prototype
 	 */
 	public static ViewPrototype getPrototype(Diagram diagram) {
-		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
-		if (style != null && style instanceof PapyrusViewStyle) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
+		PapyrusViewStyle pvs = getPapyrusViewStyle(diagram);
+		if (pvs != null) {
 			PapyrusView diagramConfig = pvs.getConfiguration();
-			
-			//  Check if the selected viewpoint contains the diagram model kind
+
+			// Check if the selected viewpoint contains the diagram model kind
 			if (diagramConfig != null) {
 				if (PolicyChecker.getCurrent().isInViewpoint(diagramConfig)) {
-					return ViewPrototype.get(diagramConfig);	
+					return ViewPrototype.get(diagramConfig);
 				}
-				
-				//  Check if the selected viewpoint contains an ancestor of the diagram model kind
+
+				// Check if the selected viewpoint contains an ancestor of the diagram model kind
 				PapyrusView diagramParentView = diagramConfig.getParent();
 				while (diagramParentView != null && !PolicyChecker.getCurrent().isInViewpoint(diagramParentView)) {
 					diagramParentView = diagramParentView.getParent();
 				}
-				if  (diagramParentView != null){
+				if (diagramParentView != null) {
 					return ViewPrototype.get(diagramParentView);
 				}
-				
-				//  Check if the selected viewpoint contains a descendant of the diagram model kind
+
+				// Check if the selected viewpoint contains a descendant of the diagram model kind
 				String diagramConfigName = diagramConfig.getName();
-				if (diagramConfigName!= null){ // the model kind name is used as a "semantic" key to test equality
+				if (diagramConfigName != null) { // the model kind name is used as a "semantic" key to test equality
 					EList<ModelKind> modelKinds = PolicyChecker.getCurrent().getViewpoint().getModelKinds();
 					for (ModelKind modelKind : modelKinds) {
-						if (modelKind instanceof PapyrusView){
+						if (modelKind instanceof PapyrusView) {
 							PapyrusView papyrusView = (PapyrusView) modelKind;
-							
+
 							if (diagramConfigName.equals(papyrusView.getName())) {
 								ViewPrototype.get(papyrusView);
 							}
-						
+
 							PapyrusView parentPapyrusView = papyrusView.getParent();
 							while (parentPapyrusView != null && !diagramConfigName.equals(parentPapyrusView.getName())) {
 								parentPapyrusView = parentPapyrusView.getParent();
 							}
-							if  (parentPapyrusView != null){
+							if (parentPapyrusView != null) {
 								return ViewPrototype.get(papyrusView);
 							}
 						}
-					}						
+					}
 				}
-			
+
 			}
 
 			return ViewPrototype.get(diagram.getType(), pvs.getOwner(), diagram.getElement());
@@ -191,12 +202,11 @@ public class DiagramUtils {
 	 *            The new diagram's prototype
 	 */
 	public static void setPrototype(Diagram diagram, ViewPrototype prototype) {
-		Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
-		if (style != null) {
-			PapyrusViewStyle pvs = (PapyrusViewStyle) style;
+		PapyrusViewStyle pvs = getPapyrusViewStyle(diagram);
+		if (pvs != null) {
 			pvs.setConfiguration(prototype.getConfiguration());
 		} else {
-			PapyrusViewStyle pvs = (PapyrusViewStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
+			pvs = (PapyrusViewStyle) diagram.createStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			pvs.setConfiguration(prototype.getConfiguration());
 		}
 	}

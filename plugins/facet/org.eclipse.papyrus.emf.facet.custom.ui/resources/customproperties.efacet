@@ -307,6 +307,26 @@
       <query
           xsi:type="query:FalseLiteralQuery"/>
     </facetOperations>
+    <facetOperations
+        name="visibleReferences"
+        upperBound="-1">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.DefaultVisibleReferencesQuery"/>
+    </facetOperations>
+    <facetOperations
+        name="visibleAttributes"
+        upperBound="-1">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.emf.facet.custom.ui.internal.query.DefaultVisibleAttributesQuery"/>
+    </facetOperations>
   </eClassifiers>
   <eClassifiers
       xsi:type="efacet:Facet"

@@ -52,6 +52,8 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	private static final String IS_ITALIC = "isItalic"; //$NON-NLS-1$
 	private static final String COLLAPSE_LINK = "collapseLink"; //$NON-NLS-1$
 	private static final String IS_VISIBLE = "isVisible"; //$NON-NLS-1$
+	private static final String VISIBLE_REFERENCES = "visibleReferences"; //$NON-NLS-1$
+	private static final String VISIBLE_ATTRIBUTES = "visibleAttributes"; //$NON-NLS-1$
 	private static final String IS_UNDERLINED = "isUnderlined"; //$NON-NLS-1$
 	private static final String IS_STRUCKTHROUGH = "isStruckthrough"; //$NON-NLS-1$
 	private static final String TOP_L_OVERLAY = "topLeftOverlay"; //$NON-NLS-1$
@@ -126,56 +128,67 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	}
 
 
+	@Override
 	public FacetOperation getCollapseLink() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.COLLAPSE_LINK);
 	}
 
+	@Override
 	public FacetOperation getLabelProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.LABEL);
 	}
 
+	@Override
 	public FacetOperation getBackgroundProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.BACKGROUND);
 	}
 
+	@Override
 	public FacetOperation getForegroundProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.FOREGROUND);
 	}
 
+	@Override
 	public FacetOperation getFontNameProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.FONT);
 	}
 
+	@Override
 	public FacetOperation getFontSizeProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.FONT_SIZE);
 	}
 
+	@Override
 	public FacetOperation getIsBoldProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.IS_BOLD);
 	}
 
+	@Override
 	public FacetOperation getIsItalicProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.IS_ITALIC);
 	}
 
+	@Override
 	public FacetOperation getIsVisible() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.IS_VISIBLE);
 	}
 
+	@Override
 	public FacetOperation getIsUnderlinedProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.IS_UNDERLINED);
 	}
 
+	@Override
 	public FacetOperation getIsStruckthroughProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.IS_STRUCKTHROUGH);
@@ -211,6 +224,7 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 				PropertiesHandler.BOTTOM_R_OVERLAY);
 	}
 
+	@Override
 	public FacetOperation getSelectionProperty() {
 		return getPropertyByName(PropertiesHandler.CUSTOM,
 				PropertiesHandler.SELECTION);
@@ -305,5 +319,27 @@ public class PropertiesHandler implements IContentPropertiesHandler,
 	public FacetOperation getToolTipShadowProperty() {
 		return getPropertyByName(PropertiesHandler.TT_CUSTOM,
 				PropertiesHandler.SHADOW);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandler#getVisibleAttributes()
+	 *
+	 * @return
+	 */
+	@Override
+	public FacetOperation getVisibleAttributes() {
+		return getPropertyByName(PropertiesHandler.CUSTOM,
+				PropertiesHandler.VISIBLE_ATTRIBUTES);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.emf.facet.custom.ui.IContentPropertiesHandler#getVisibleReferences()
+	 *
+	 * @return
+	 */
+	@Override
+	public FacetOperation getVisibleReferences() {
+		return getPropertyByName(PropertiesHandler.CUSTOM,
+				PropertiesHandler.VISIBLE_REFERENCES);
 	}
 }

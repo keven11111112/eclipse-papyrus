@@ -55,14 +55,16 @@ public class CustomizationManager implements ICustomizationManager {
 		this.facetManager.getManagedFacetSets().remove(customization);
 	}
 
+	@Override
 	public List<Customization> getManagedCustomizations() {
 		return new CustomizationsDelegatingList(this.facetManager.getManagedFacetSets());
 	}
 
+	@Override
 	public <T> T getCustomValueOf(final EObject eObject,
 			final FacetOperation customizationProperty,
 			final Class<T> classs)
-			throws CustomizationException {
+					throws CustomizationException {
 		// Begin precondition checking section
 		/*
 		 * The scope of a customization property is not available yet in new customization meta-model
@@ -86,11 +88,12 @@ public class CustomizationManager implements ICustomizationManager {
 		return result;
 	}
 
+	@Override
 	public <T> T getCustomValueOf(final EObject eObject,
 			final ETypedElement eTypedElement,
 			final FacetOperation customizationProperty,
 			final Class<T> classs)
-			throws CustomizationException {
+					throws CustomizationException {
 		// Begin precondition checking section
 		if (eObject == null) {
 			throw new IllegalArgumentException("The parameter 'eObject' must not be null."); //$NON-NLS-1$
@@ -157,6 +160,7 @@ public class CustomizationManager implements ICustomizationManager {
 		}
 	}
 
+	@Override
 	public ResourceSet getResourceSet() {
 		return this.facetManager.getResourceSet();
 	}
@@ -174,7 +178,28 @@ public class CustomizationManager implements ICustomizationManager {
 		}
 	}
 
+	@Override
 	public IFacetManager getFacetManager() {
 		return this.facetManager;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager#getCustomValuesOf(org.eclipse.emf.ecore.EObject, org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation, java.lang.Class)
+	 *
+	 * @param eObject
+	 * @param customProperty
+	 * @param class1
+	 * @return
+	 * @throws CustomizationException
+	 */
+	@Override
+	public <T> List<T> getCustomValuesOf(EObject eObject, FacetOperation customizationProperty, Class<T> classs) throws CustomizationException {
+		List<T> result = null;
+		try {
+			result = this.facetManager.getOrInvokeMultiValued(eObject, customizationProperty, classs);
+		} catch (final Exception e) {
+			throw new CustomizationException(e);
+		}
+		return result;
 	}
 }
