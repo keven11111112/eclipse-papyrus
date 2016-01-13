@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015-2016 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -472,15 +472,15 @@ query CallBehaviorAction::parameters() : OrderedSet(Parameter) {
 
 // Link End Data
 
-constructor LinkEndData::LinkEndData(inout action : LinkAction, end_ : Property, pin : Pin) {
+constructor LinkEndData::LinkEndData(inout action : LinkAction, end_ : Property, isInput : Boolean) {
 	_'end' := end_;
 	action.endData += result;
 	
-	if pin.oclIsKindOf(InputPin) then {
-		value := pin.oclAsType(InputPin);
-		action.inputValue += pin.oclAsType(InputPin);
+	if isInput then {
+		value := new InputPin(nameOf(action) + ".value(" + nameOf(end_) + ")", end_.type, 1, 1);
+		action.inputValue += value;
 	} else if action.oclIsKindOf(ReadLinkAction) then {
-		action.oclAsType(ReadLinkAction).result := pin.oclAsType(OutputPin);
+		action.oclAsType(ReadLinkAction).result := new OutputPin(nameOf(action) + ".result", end_);
 	} endif endif;	
 }
 
@@ -655,9 +655,11 @@ constructor ReadIsClassifiedObjectAction::ReadIsClassifiedObjectAction(type : Cl
 
 constructor ReadLinkAction::ReadLinkAction(associationEnd : Property) {
 	name := "ReadLink(" + nameOf(associationEnd) + ")";
-	inputValue := inputPinsFromProperties(name + ".inputValue", 
-		associationEnd.association.ownedEnd->asSequence()->excluding(associationEnd)->asOrderedSet());
-	result.result := new OutputPin(name + ".result", associationEnd);
+	associationEnd.association.ownedEnd->asSequence()->excluding(associationEnd)->
+	forEach(otherEnd) {
+		new LinkEndData(result, otherEnd, true);
+	};
+	new LinkEndData(result, associationEnd, false);
 }
 
 constructor ReadSelfAction::ReadSelfAction(type : Type) {
