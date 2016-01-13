@@ -18,12 +18,12 @@
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:TreeFillingConfiguration" depth="2" labelProvider="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
       <axisUsedAsAxisProvider xsi:type="nattableaxis:EOperationAxis">
-        <element xsi:type="ecore:EOperation" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Element/getAppliedStereotypes"/>
+        <element xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Element/getAppliedStereotypes"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xsi:type="nattableaxisconfiguration:TreeFillingConfiguration" depth="3" labelProvider="//@rowHeaderAxisConfiguration/@ownedLabelConfigurations.0" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.treefilling.operation.labelprovider">
       <axisUsedAsAxisProvider xsi:type="nattableaxis:EOperationAxis" alias="">
-        <element xsi:type="ecore:EOperation" href="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/getAllAttributes"/>
+        <element xsi:type="ecore:EOperation" href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier/getAllAttributes"/>
       </axisUsedAsAxisProvider>
     </ownedAxisConfigurations>
     <axisManagers xsi:type="nattableaxisconfiguration:AxisManagerRepresentation" axisManagerId="org.eclipse.papyrus.uml.nattable.stereotype.display.axis.manager" labelProviderContext="org.eclipse.papyrus.infra.nattable.header.labelprovider" headerLabelConfiguration="//@columnHeaderAxisConfiguration/@ownedLabelConfigurations.0" specificAxisConfigurations="//@rowHeaderAxisConfiguration/@ownedAxisConfigurations.0 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.1 //@rowHeaderAxisConfiguration/@ownedAxisConfigurations.2"/>
