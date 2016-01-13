@@ -69,18 +69,38 @@ public abstract class AbstractEditorTest extends AbstractPapyrusTest {
 	}
 
 	/**
-	 * Inits this.editor
+	 * Create a new test project
+	 * @param projectName
+	 */
+	protected IProject createProject(String projectName) throws Exception {
+		project = ProjectUtils.createProject(projectName);
+		return project;
+	}
+	
+	/**
+	 * Initializes this editor
 	 * Fails or throws an exception if an error occurs
 	 *
-	 * @param bundle
-	 *        the source bundle where the model is store
 	 * @param projectName
-	 *        the project that will created at runtime to execute test
+	 *        the project that will be created at runtime to execute the test
 	 * @param modelName
 	 *        the model that will be copied and test executed on.
+	 * @param bundle
+	 *        the source bundle where the model is stored
 	 */
 	protected void initModel(String projectName, String modelName, Bundle bundle) throws Exception {
-		project = ProjectUtils.createProject(projectName);
+		createProject(projectName);
+		initModel(modelName, bundle);
+	}
+
+	/**
+	 * Initializes this editor. Should be called, after a previous invocation of createProject() 
+	 *
+	 * @param modelName
+	 * @param bundle
+	 * @throws Exception
+	 */
+	protected void initModel(String modelName, Bundle bundle) throws Exception {
 		this.diModelFile = PapyrusProjectUtils.copyPapyrusModel(project, bundle, getSourcePath(), modelName);
 		Display.getDefault().syncExec(new Runnable() {
 
@@ -97,6 +117,21 @@ public abstract class AbstractEditorTest extends AbstractPapyrusTest {
 		Assert.assertNotNull(editor);
 	}
 
+	
+	/**
+	 * copy a model into the workspace, e.g. a profile that is required by the test model
+	 *
+	 * @param projectName
+	 *        the project that will be created at runtime to execute the test
+	 * @param modelName
+	 *        the model that will be copied and test executed on.
+	 * @param bundle
+	 *        the source bundle where the model is stored
+	 */
+	protected void copyModel(String modelName, Bundle bundle) throws Exception {	
+		PapyrusProjectUtils.copyPapyrusModel(project, bundle, getSourcePath(), modelName);
+	}
+	
 	@After
 	public void dispose() throws Exception {
 		if(editor != null) {
@@ -151,13 +186,12 @@ public abstract class AbstractEditorTest extends AbstractPapyrusTest {
 
 		IModel umlIModel;
 		try {
-			umlIModel = getModelSet().getModel("org.eclipse.papyrus.infra.core.resource.uml.UmlModel");
+			umlIModel = getModelSet().getModel("org.eclipse.papyrus.infra.core.resource.uml.UmlModel"); //$NON-NLS-1$
 
 			AbstractBaseModel umlModel = null;
 			if(umlIModel instanceof AbstractBaseModel) {
 				umlModel = (AbstractBaseModel)umlIModel;
 			}
-
 
 			Assert.assertFalse("umlRessource contains nothing", umlModel.getResource().getContents().isEmpty());
 			Object root = umlModel.getResource().getContents().get(0);
@@ -167,6 +201,7 @@ public abstract class AbstractEditorTest extends AbstractPapyrusTest {
 		} catch (ServiceException e) {
 			Assert.fail(e.getMessage());
 		}
+		// not reachable due to asserts above (no check by caller)
 		return null;
 
 	}
