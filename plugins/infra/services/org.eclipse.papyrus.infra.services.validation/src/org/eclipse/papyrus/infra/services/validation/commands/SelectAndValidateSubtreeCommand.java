@@ -29,6 +29,24 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 
 public class SelectAndValidateSubtreeCommand extends AbstractValidateCommand {
 
+	/**
+	 * Constructor for validation with EcoreDiagnostician
+	 *
+	 * @param selectedElement
+	 *            the element from which on a subtree should be validated
+	 */
+	public SelectAndValidateSubtreeCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+
+	/**
+	 * Constructor based on selected element and diagnostician
+	 *
+	 * @param selectedElement
+	 *            the element from which on a subtree should be validated
+	 * @param diagnostician
+	 *            the diagnostician (e.g. EcoreDiagnostician)
+	 */
 	public SelectAndValidateSubtreeCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(Messages.ValidateSubtreeCommand_ValidateSubtree, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}

@@ -2,49 +2,17 @@
 <?eclipse version="3.4"?>
 <plugin>
   <extension
-       point="org.eclipse.ui.handlers">
-	<handler
-			class="org.eclipse.papyrus.uml.service.validation.handler.ValidateModelHandler"
-			commandId="org.eclipse.papyrus.validation.ValidateModelCommand">
-		<activeWhen>
-			<iterate ifEmpty="false">
-				<adapt type="org.eclipse.emf.ecore.EObject"></adapt>
-			</iterate>
-		</activeWhen>
-	</handler>
-    <handler
-			class="org.eclipse.papyrus.uml.service.validation.handler.ValidateSubtreeHandler"
-			commandId="org.eclipse.papyrus.validation.ValidateSubtreeCommand">
-		<activeWhen>
-			<iterate ifEmpty="false">
-				<adapt type="org.eclipse.emf.ecore.EObject"></adapt>
-			</iterate>
-		</activeWhen>
-	</handler>
-    <handler
-			class="org.eclipse.papyrus.uml.service.validation.handler.SelectAndValidateSubtreeHandler"
-			commandId="org.eclipse.papyrus.validation.SelectAndValidateSubtreeCommand">
-		<activeWhen>
-			<iterate ifEmpty="false">
-				<adapt type="org.eclipse.emf.ecore.EObject"></adapt>
-			</iterate>
-		</activeWhen>
-	</handler>
-	<handler
-			class="org.eclipse.papyrus.uml.service.validation.handler.SelectAndValidateModelHandler"
-			commandId="org.eclipse.papyrus.validation.SelectAndValidateModelCommand">
-		<activeWhen>
-			<iterate ifEmpty="false">
-				<adapt type="org.eclipse.emf.ecore.EObject"></adapt>
-			</iterate>
-		</activeWhen>
-	</handler>
-  </extension>
-  <extension
          point="org.eclipse.emf.validation.constraintParsers">
       <constraintParser
             class="org.eclipse.papyrus.uml.service.validation.oclpivot.OCLpivotConstraintParser"
             lang="OCLpivot">
       </constraintParser>
+  </extension>
+  <extension
+        point="org.eclipse.papyrus.infra.services.validation.diagnosticians">
+        <diagnostician
+              class="org.eclipse.papyrus.uml.service.validation.internal.UMLDiagnostician"
+              id="org.eclipse.papyrus.uml.language">
+        </diagnostician>    
   </extension>
 </plugin>

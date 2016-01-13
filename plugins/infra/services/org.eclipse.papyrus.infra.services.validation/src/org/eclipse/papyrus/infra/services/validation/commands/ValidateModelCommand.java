@@ -31,15 +31,26 @@ import org.eclipse.papyrus.infra.services.validation.Messages;
 public class ValidateModelCommand extends AbstractValidateCommand {
 
 	/**
-	 *
-	 * Constructor.
+	 * Constructor for validation with EcoreDiagnostician
 	 *
 	 * @param selectedElement
+	 *            an element of the model to validate
+	 */
+	public ValidateModelCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+
+	/**
+	 * Constructor based on selected element and diagnostician
+	 *
+	 * @param selectedElement
+	 *            an element of the model to validate
+	 * @param diagnostician
+	 *            the diagnostician (e.g. EcoreDiagnostician)
 	 */
 	public ValidateModelCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(Messages.ValidateModelCommand_ValidateModel, TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement), diagnostician);
 	}
-
 
 	/**
 	 * get the root element

@@ -14,7 +14,7 @@
  *****************************************************************************/
 
 
-package org.eclipse.papyrus.infra.services.validation;
+package org.eclipse.papyrus.infra.services.validation.internal;
 
 import java.util.Collection;
 import java.util.Iterator;

@@ -30,12 +30,22 @@ import org.eclipse.papyrus.infra.services.validation.Messages;
 public class ValidateSubtreeCommand extends AbstractValidateCommand {
 
 	/**
+	 * Constructor for validation with EcoreDiagnostician
+	 *
+	 * @param selectedElement
+	 *            the element from which on a subtree should be validated
+	 */
+	public ValidateSubtreeCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+
+	/**
 	 * Constructor based on selected element and diagnostician
 	 *
 	 * @param selectedElement
 	 *            the element from which on a subtree should be validated
 	 * @param diagnostician
-	 *            the diagnostician (e.g. UMLDiagnostician)
+	 *            the diagnostician (e.g. EcoreDiagnostician)
 	 */
 	public ValidateSubtreeCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(Messages.ValidateSubtreeCommand_ValidateSubtree, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);

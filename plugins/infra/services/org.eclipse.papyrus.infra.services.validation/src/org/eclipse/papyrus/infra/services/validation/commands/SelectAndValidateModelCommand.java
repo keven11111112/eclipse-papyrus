@@ -33,10 +33,22 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 
 	/**
-	 *
-	 * Constructor.
+	 * Constructor for validation with EcoreDiagnostician
 	 *
 	 * @param selectedElement
+	 *            an element of the model to validate
+	 */
+	public SelectAndValidateModelCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+	
+	/**
+	 * Constructor based on selected element and diagnostician
+	 *
+	 * @param selectedElement
+	 *            an element of the model to validate
+	 * @param diagnostician
+	 *            the diagnostician (e.g. EcoreDiagnostician)
 	 */
 	public SelectAndValidateModelCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(Messages.ValidateModelCommand_ValidateModel, TransactionUtil.getEditingDomain(selectedElement), getTopOwner(selectedElement), diagnostician);

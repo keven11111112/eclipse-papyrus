@@ -26,7 +26,6 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
-import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralBooleanRule;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralIntegerOrUnlimitedNaturalRule;
@@ -157,8 +156,7 @@ public class ValueSpecificationSetCommand {
 			// The parser of xtext string value throw errors
 			result.add(manageOpaqueExpression(objectToEdit, structuralFeature, initialValueSpecification, xtextStringValue, defaultLanguages));
 		}
-		AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(
-				objectToEdit, new UMLDiagnostician());
+		AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(objectToEdit);
 		validationCommand.disableUIFeedback();
 		result.add(validationCommand);
 		return result;

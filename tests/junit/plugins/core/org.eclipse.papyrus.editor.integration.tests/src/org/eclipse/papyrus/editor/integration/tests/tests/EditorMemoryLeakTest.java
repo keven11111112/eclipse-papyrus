@@ -27,7 +27,6 @@ import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule.S
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -126,7 +125,7 @@ public class EditorMemoryLeakTest extends AbstractPapyrusTest {
 	public void testValidatedProfiledModelContentDoesNotLeak_noEGenericTypes() {
 		// Validate the model
 		try {
-			new ValidateModelCommand(editor.getModel(), new UMLDiagnostician()).execute(new NullProgressMonitor(), null);
+			new ValidateModelCommand(editor.getModel()).execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 			fail("Failed to validate model: " + e.getLocalizedMessage());
@@ -172,7 +171,7 @@ public class EditorMemoryLeakTest extends AbstractPapyrusTest {
 	public void testValidatedProfiledModelContentDoesNotLeak() {
 		// Validate the model
 		try {
-			new ValidateModelCommand(editor.getModel(), new UMLDiagnostician()).execute(new NullProgressMonitor(), null);
+			new ValidateModelCommand(editor.getModel()).execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 			fail("Failed to validate model: " + e.getLocalizedMessage());

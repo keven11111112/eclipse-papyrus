@@ -43,7 +43,6 @@ import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
-import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
@@ -275,7 +274,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 					result.add(new UpdateOpaqueExpressionCommand(editingDomain, (OpaqueExpression) semanticObject, newString));
 				}
 				if (doValidation) {
-					final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
+					final AbstractValidateCommand validationCommand = new AsyncValidateSubtreeCommand(semanticObject);
 					validationCommand.disableUIFeedback();
 					result.add(validationCommand);
 				}

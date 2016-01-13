@@ -365,7 +365,7 @@ public class StereotypePropertyEditorConfigurationContribution extends DefaultXt
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
-				// ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject, new UMLDiagnostician());
+				// ValidateSubtreeCommand validationCommand = new ValidateSubtreeCommand(semanticObject);
 				// validationCommand.disableUIFeedback();
 				// result.add(validationCommand);
 				return result;

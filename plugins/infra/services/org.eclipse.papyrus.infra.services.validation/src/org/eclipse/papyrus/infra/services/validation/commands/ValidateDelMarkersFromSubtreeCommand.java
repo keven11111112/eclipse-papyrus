@@ -27,6 +27,24 @@ import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
 public class ValidateDelMarkersFromSubtreeCommand extends AbstractValidateCommand {
 
+	/**
+	 * Constructor with EcoreDiagnostician
+	 *
+	 * @param selectedElement
+	 *            the root of the subtree from which to remove markers
+	 */
+	public ValidateDelMarkersFromSubtreeCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+	
+	/**
+	 * Constructor
+	 *
+	 * @param selectedElement
+	 *            the root of the subtree from which to remove markers
+	 * @param diagnostician
+	 *            the diagnostician (e.g. EcoreDiagnostician)
+	 */
 	public ValidateDelMarkersFromSubtreeCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(Messages.ValidateDelMarkersFromSubtreeCommand_DelMarkersFromSubtree, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}

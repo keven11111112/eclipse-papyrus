@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.infra.services.validation,
  org.eclipse.papyrus.infra.services.validation.commands,
  org.eclipse.papyrus.infra.services.validation.handler,
+ org.eclipse.papyrus.infra.services.validation.internal;x-friends:="org.eclipse.papyrus.uml.service.validation",
  org.eclipse.papyrus.infra.services.validation.preferences
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

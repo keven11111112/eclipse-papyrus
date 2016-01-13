@@ -13,7 +13,7 @@
  *****************************************************************************/
 
 
-package org.eclipse.papyrus.uml.service.validation;
+package org.eclipse.papyrus.uml.service.validation.internal;
 
 import java.util.Map;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateValidator;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
-import org.eclipse.papyrus.infra.services.validation.EValidatorAdapter;
+import org.eclipse.papyrus.infra.services.validation.internal.EValidatorAdapter;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OpaqueBehavior;

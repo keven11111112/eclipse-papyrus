@@ -35,11 +35,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.Messages;
 import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.papyrus.infra.services.validation.ValidationUtils;
+import org.eclipse.papyrus.infra.services.validation.internal.ValidationRegistry;
 import org.eclipse.papyrus.infra.services.validation.preferences.PreferenceUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -83,7 +83,7 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 	 *            the selected element
 	 */
 	public AbstractValidateCommand(String label, TransactionalEditingDomain domain, EObject selectedElement) {
-		this(label, domain, selectedElement, new EcoreDiagnostician());
+		this(label, domain, selectedElement, null);
 	}
 
 	/**
@@ -130,6 +130,9 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 
 	protected void runValidation(final EObject validateElement) {
 		final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		if (diagnostician == null) {
+			diagnostician = ValidationRegistry.getDiagnostician(selectedElement);
+		}
 
 		ValidationOperation runValidationWithProgress = new ValidationOperation(validateElement, this);
 
@@ -138,7 +141,6 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
 				try {
 					handleDiagnostic(progressMonitor, diagnostic, validateElement, shell);
-
 				} finally {
 					progressMonitor.done();
 				}

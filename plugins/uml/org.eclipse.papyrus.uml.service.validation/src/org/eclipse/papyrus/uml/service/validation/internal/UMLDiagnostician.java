@@ -11,7 +11,7 @@
  * Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Contribution related to bug 410457, 410119 and 410059
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.service.validation;
+package org.eclipse.papyrus.uml.service.validation.internal;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateDomain;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.internal.EcoreDiagnostician;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;

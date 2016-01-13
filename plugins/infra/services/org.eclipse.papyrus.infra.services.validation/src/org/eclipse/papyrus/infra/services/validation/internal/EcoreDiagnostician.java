@@ -11,7 +11,7 @@
  * Ed Willink, Klaas Gadeyne, A. Radermacher - Remove hard-coded UML dependency - Bug 408215 
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.services.validation;
+package org.eclipse.papyrus.infra.services.validation.internal;
 
 import java.util.Map;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
 
 /**
  * This is a generic diagnostician to validate Ecore model in Papyrus

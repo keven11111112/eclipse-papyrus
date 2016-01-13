@@ -18,7 +18,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateDelMarkersFromSubtreeCommand;
 
 /**
@@ -33,6 +32,6 @@ public class ValidateDelMarkersFromSubtreeHandler extends AbstractCommandHandler
 		if (selectedElement == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return new GMFtoEMFCommandWrapper(new ValidateDelMarkersFromSubtreeCommand(selectedElement, new EcoreDiagnostician()));
+		return GMFtoEMFCommandWrapper.wrap(new ValidateDelMarkersFromSubtreeCommand(selectedElement));
 	}
 }

@@ -27,7 +27,6 @@ import org.eclipse.papyrus.infra.nattable.manager.table.TreeNattableModelManager
 import org.eclipse.papyrus.infra.nattable.provider.NattableTopLabelProvider;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -144,7 +143,7 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		this.fixture.flushDisplayEvents();
 		// we validate the model
-		ValidateModelCommand cmd = new ValidateModelCommand(this.root, new EcoreDiagnostician());
+		ValidateModelCommand cmd = new ValidateModelCommand(this.root);
 		this.fixture.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 		this.fixture.flushDisplayEvents();
 

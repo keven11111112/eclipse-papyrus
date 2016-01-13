@@ -32,6 +32,24 @@ import org.eclipse.papyrus.infra.services.validation.Messages;
 
 public class ValidateDelMarkersFromModelCommand extends AbstractValidateCommand {
 
+	/**
+	 * Constructor with EcoreDiagnostician
+	 *
+	 * @param selectedElement
+	 *            an element of the model from which to remove markers
+	 */
+	public ValidateDelMarkersFromModelCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+	
+	/**
+	 * Constructor
+	 *
+	 * @param selectedElement
+	 *            an element of the model from which to remove markers
+	 * @param diagnostician
+	 *            the diagnostician (e.g. EcoreDiagnostician)
+	 */
 	public ValidateDelMarkersFromModelCommand(EObject selectedElement, IPapyrusDiagnostician diagnostician) {
 		super(Messages.ValidateDelMarkersFromModelCommand_DeleteMarkersFromModel, TransactionUtil.getEditingDomain(selectedElement), selectedElement, diagnostician);
 	}

@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 
 <plugin>
+   <extension-point id="diagnosticians" name="Registered diagnostician" schema="schema/diagnostician.exsd"/>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page

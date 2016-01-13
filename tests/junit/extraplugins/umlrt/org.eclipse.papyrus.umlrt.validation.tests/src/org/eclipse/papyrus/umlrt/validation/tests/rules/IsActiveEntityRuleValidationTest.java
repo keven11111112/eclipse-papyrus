@@ -23,7 +23,6 @@ import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.papyrus.junit.framework.classification.FailingTest;
-import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.papyrus.umlrt.validation.tests.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Class;
@@ -80,7 +79,7 @@ public class IsActiveEntityRuleValidationTest extends AbstractValidationEditorTe
 		activeCapsule = (Class) model.getPackagedElement(CAPSULE_ACTIVE_NAME);
 		Assert.assertNotNull("Impossible to find capsule " + CAPSULE_ACTIVE_NAME, activeCapsule);
 		final EditingDomain domain = TransactionUtil.getEditingDomain(model);
-		final ValidateModelCommand validateModelCommand = new ValidateModelCommand(model, new UMLDiagnostician());
+		final ValidateModelCommand validateModelCommand = new ValidateModelCommand(model);
 		Display.getDefault().syncExec(new Runnable() {
 			@Override
 			public void run() {

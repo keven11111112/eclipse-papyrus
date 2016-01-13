@@ -30,12 +30,22 @@ import org.eclipse.swt.widgets.Display;
 public class AsyncValidateSubtreeCommand extends ValidateSubtreeCommand {
 
 	/**
+	 * Constructor for validation with EcoreDiagnostician
+	 *
+	 * @param selectedElement
+	 *            the element from which on a subtree should be validated
+	 */
+	public AsyncValidateSubtreeCommand(EObject selectedElement) {
+		this(selectedElement, null);
+	}
+	
+	/**
 	 * Constructor based on selected element and diagnostician
 	 *
 	 * @param selectedElement
 	 *            the element from which on a subtree should be validated
 	 * @param diagnostician
-	 *            the diagnostician (e.g. UMLDiagnostician)
+	 *            the diagnostician (e.g. EcoreDiagnostician)
 	 */
 	public AsyncValidateSubtreeCommand(EObject selectedElement,
 			IPapyrusDiagnostician diagnostician) {

@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService;
-import org.eclipse.papyrus.infra.services.validation.EcoreDiagnostician;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateDelMarkersFromModelCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;
@@ -146,12 +145,12 @@ public class ModelValidationMarkersTest extends AbstractPapyrusCDOUITest {
 	}
 
 	void validateModel() {
-		execute(new ValidateModelCommand(getUMLModel(), new EcoreDiagnostician()));
+		execute(new ValidateModelCommand(getUMLModel()));
 		flushDisplayEvents();
 	}
 
 	void deleteMarkers() {
-		execute(new ValidateDelMarkersFromModelCommand(getUMLModel(), new EcoreDiagnostician()));
+		execute(new ValidateDelMarkersFromModelCommand(getUMLModel()));
 	}
 
 	MarkersMonitorService getMarkersMonitorService() {
