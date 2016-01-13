@@ -92,11 +92,10 @@ public class EStructuralFeatureAxisManager extends EObjectAxisManager {
 				newAxis.setElement((EStructuralFeature) current);
 				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
-				managedObject.add(current);
 			}
 		}
 		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+			return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd), objectToAdd);
 		}
 		return null;
 	}

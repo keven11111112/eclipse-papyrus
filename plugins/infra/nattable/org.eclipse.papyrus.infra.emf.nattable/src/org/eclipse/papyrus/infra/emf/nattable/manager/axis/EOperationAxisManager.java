@@ -87,11 +87,10 @@ public class EOperationAxisManager extends EObjectAxisManager {
 				newAxis.setElement((EOperation) current);
 				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
-				managedObject.add(current);
 			}
 		}
 		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+			return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd), objectToAdd);
 		}
 		return null;
 	}

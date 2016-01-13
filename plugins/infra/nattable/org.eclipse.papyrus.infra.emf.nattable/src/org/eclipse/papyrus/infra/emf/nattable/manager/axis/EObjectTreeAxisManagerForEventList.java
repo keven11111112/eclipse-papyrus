@@ -64,7 +64,7 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 			}
 		}
 		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+			return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd), objectToAdd);
 		}
 		return null;
 	}
