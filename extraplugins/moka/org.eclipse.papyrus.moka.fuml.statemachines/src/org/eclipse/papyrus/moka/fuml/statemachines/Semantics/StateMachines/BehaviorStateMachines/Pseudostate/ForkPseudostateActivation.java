@@ -15,6 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 public class ForkPseudostateActivation extends PseudostateActivation {
 
@@ -22,6 +23,13 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
 		// Fires all outgoing transitions of the for **concurrently**
 		// Transitions outgoing from a fork are not guarded nor triggered
+		// If required parent state is entered first (the rule applies recursively)
+		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
+			VertexActivation parentVertexActivation = this.getParentState();
+			if (parentVertexActivation != null) {
+				parentVertexActivation.enter(enteringTransition, leastCommonAncestor);
+			}
+		}
 		super.enter(enteringTransition, leastCommonAncestor);
 		for(int i=0; i < this.outgoingTransitionActivations.size(); i++){
 			this.outgoingTransitionActivations.get(i).fire();
@@ -43,6 +51,13 @@ public class ForkPseudostateActivation extends PseudostateActivation {
 		}
 		if(isExitable){
 			super.exit(exitingTransition, leastCommonAncestor);
+			// If required parent state is exited (the rule applies recursively)
+			if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
+				VertexActivation parentVertexActivation = this.getParentState();
+				if (parentVertexActivation != null) {
+					parentVertexActivation.enter(exitingTransition, leastCommonAncestor);
+				}
+			}
 		}
 	}
 	
