@@ -219,7 +219,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 			Logger.logError(e, Activator.getDefault());
 		}
 
-		final Collection<Object> children = new ArrayList<Object>();
+		final Collection<TreeElement> children = new ArrayList<TreeElement>();
 		createAttributes(treeElement, facetFeatures, children);
 		createReferences(treeElement, facetFeatures, children);
 		return children.toArray();
@@ -378,7 +378,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 
 
 
-	private void createReferences(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<Object> children) {
+	private void createReferences(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<TreeElement> children) {
 		final EObject eObject = treeElement.getEObject();
 
 		for (EReference next : getVisibleReferences(eObject)) {
@@ -391,12 +391,12 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		}
 	}
 
-	private void createReference(EObjectTreeElement treeElement, EObject eObject, EReference eReference, Collection<Object> children) {
+	private void createReference(EObjectTreeElement treeElement, EObject eObject, EReference eReference, Collection<TreeElement> children) {
 		if (collapseLink(eObject, eReference)) {
 			if (eReference.getUpperBound() != 1) {
 				collectMultiValuedReferenceChildren(eReference, eObject, treeElement, children);
 			} else {
-				Object child = getSingleValuedReferenceChild(eReference, eObject, treeElement);
+				EObjectTreeElement child = getSingleValuedReferenceChild(eReference, eObject, treeElement);
 				if (child != null) {
 					children.add(child);
 				}
@@ -406,7 +406,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		}
 	}
 
-	private void createAttributes(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<? super TreeElement> children) {
+	private void createAttributes(final EObjectTreeElement treeElement, Collection<EStructuralFeature> facetFeatures, Collection<TreeElement> children) {
 		final EObject eObject = treeElement.getEObject();
 
 		for (EAttribute next : getVisibleAttributes(eObject)) {
@@ -463,8 +463,8 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return attributeProxy;
 	}
 
-	private Object getSingleValuedReferenceChild(final EReference eReference, final EObject eObject, final TreeElement parent) {
-		Object child = null;
+	private EObjectTreeElement getSingleValuedReferenceChild(final EReference eReference, final EObject eObject, final TreeElement parent) {
+		EObjectTreeElement child = null;
 		try {
 			final IFacetManager facetManager = this.customManager.getFacetManager();
 			final Object result = facetManager.getOrInvoke(eObject, eReference, null);
@@ -478,7 +478,7 @@ public class CustomizedTreeContentProvider implements ICustomizedTreeContentProv
 		return child;
 	}
 
-	private void collectMultiValuedReferenceChildren(final EReference eReference, final EObject eObject, final TreeElement parent, Collection<Object> children) {
+	private void collectMultiValuedReferenceChildren(final EReference eReference, final EObject eObject, final TreeElement parent, Collection<TreeElement> children) {
 		try {
 			final IFacetManager facetManager = this.customManager.getFacetManager();
 			final List<Object> result = facetManager.getOrInvokeMultiValued(eObject, eReference, null);

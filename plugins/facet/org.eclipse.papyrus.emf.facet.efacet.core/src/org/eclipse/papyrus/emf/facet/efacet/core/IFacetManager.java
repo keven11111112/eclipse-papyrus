@@ -224,4 +224,13 @@ public interface IFacetManager {
 	 */
 	void removeListener(IFacetManagerListener listener);
 
+	/**
+	 * @param eObject
+	 * @param classs
+	 * @return
+	 */
+	<T extends ETypedElement> List<T> getETypedElements(EObject eObject, Class<T> classs) throws FacetManagerException;
+	
+	
+
 }

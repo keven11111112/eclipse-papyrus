@@ -23,10 +23,13 @@
 package org.eclipse.papyrus.emf.facet.efacet.core.internal;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -56,6 +59,7 @@ import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.FacetConform
 import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.NonApplicableFacetException;
 import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.NonConformingEObjectException;
 import org.eclipse.papyrus.emf.facet.efacet.core.internal.exception.UnmatchingExpectedTypeException;
+import org.eclipse.papyrus.emf.facet.efacet.core.internal.exported.IResolverManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.internal.serialization.SerializationManager;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.DerivedTypedElement;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
@@ -78,6 +82,8 @@ public class FacetManager implements IFacetManager, Adapter {
 	private final FacetManagerContext context;
 	private final SerializationManager serializationMgr;
 	private final ResourceSet resourceSet;
+	private final Map<Facet, EClass> extendedMetaclass = new HashMap<>();
+	private final Map<Facet, Map<Class<?>, List<? extends ETypedElement>>> typedElements = new HashMap<>();
 
 	public FacetManager(final Resource resource) {
 		this.serializationMgr = new SerializationManager(resource);
@@ -91,6 +97,7 @@ public class FacetManager implements IFacetManager, Adapter {
 		this.resourceSet = resourceSet;
 	}
 
+	@Override
 	public void saveStructuralFeatureInstanceModel()
 			throws FacetManagerException {
 		this.serializationMgr.saveStructuralFeatureInstanceModel();
@@ -105,6 +112,7 @@ public class FacetManager implements IFacetManager, Adapter {
 	 *            the Facet the applicability of which is being tested
 	 * @return whether the given model element should be seen as an instance of the given Facet
 	 */
+	@Override
 	public boolean isConforming(final EObject eObject, final Facet facet)
 			throws FacetManagerException {
 		return getConformanceState(eObject, facet) == FacetManager.ConformanceState.Conformant;
@@ -135,8 +143,9 @@ public class FacetManager implements IFacetManager, Adapter {
 			throw new IllegalArgumentException("facet cannot be null"); //$NON-NLS-1$
 		}
 		// End of precondition section
+
 		ConformanceState result;
-		final EClass extendedMetaclass = FacetUtils.getExtendedMetaclass(facet);
+		final EClass extendedMetaclass = getExtendedMetaclass(facet);
 		if (extendedMetaclass != null
 				&& (extendedMetaclass.isSuperTypeOf(eObject.eClass()) || extendedMetaclass == EcorePackage.eINSTANCE.getEObject())) {
 			final ETypedElement typeElement = facet.getConformanceTypedElement();
@@ -163,6 +172,13 @@ public class FacetManager implements IFacetManager, Adapter {
 			}
 		}
 		return result;
+	}
+
+	private final EClass getExtendedMetaclass(Facet facet) {
+		if (!extendedMetaclass.containsKey(facet)) {
+			extendedMetaclass.put(facet, FacetUtils.getExtendedMetaclass(facet));
+		}
+		return extendedMetaclass.get(facet);
 	}
 
 	private Boolean getConformanceValue(final EObject eObject,
@@ -201,6 +217,7 @@ public class FacetManager implements IFacetManager, Adapter {
 		return result;
 	}
 
+	@Override
 	public void set(final EObject eObject,
 			final EStructuralFeature structuralFeature, final Object newValue,
 			final EditingDomain editingDomain) throws FacetManagerException {
@@ -248,7 +265,7 @@ public class FacetManager implements IFacetManager, Adapter {
 	private <T> T internalGet(final EObject eObject,
 			final EStructuralFeature structuralFeature,
 			final Class<T> expectedType, final boolean basicGet)
-			throws FacetManagerException {
+					throws FacetManagerException {
 		try {
 			Object value;
 			if (structuralFeature.eContainer() instanceof Facet) {
@@ -295,9 +312,10 @@ public class FacetManager implements IFacetManager, Adapter {
 		}
 	}
 
+	@Override
 	public <T> T invoke(final EObject eObject, final EOperation operation,
 			final Class<T> expectedType, final EditingDomain editingDomain, final Object... arguments)
-			throws FacetManagerException {
+					throws FacetManagerException {
 		try {
 			return internalInvoke(eObject, operation, expectedType, false, arguments);
 		} catch (Exception e) {
@@ -307,7 +325,7 @@ public class FacetManager implements IFacetManager, Adapter {
 
 	public <T> List<T> invokeMultiValued(final EObject eObject, final EOperation operation,
 			final Class<T> expectedType, final Object... arguments)
-			throws FacetManagerException {
+					throws FacetManagerException {
 		Object result;
 		try {
 			result = internalInvoke(eObject, operation, null, false, arguments);
@@ -319,9 +337,9 @@ public class FacetManager implements IFacetManager, Adapter {
 
 	private <T> T internalInvoke(final EObject eObject, final EOperation operation, final Class<T> expectedType,
 			final boolean basicInvoke, final Object... arguments)
-			throws DerivedTypedElementException, InvocationTargetException,
-			FacetConformanceEvaluationException, NonApplicableFacetException,
-			NonConformingEObjectException, FacetManagerException {
+					throws DerivedTypedElementException, InvocationTargetException,
+					FacetConformanceEvaluationException, NonApplicableFacetException,
+					NonConformingEObjectException, FacetManagerException {
 		Object result;
 		if (operation.eContainer() instanceof Facet) {
 			final Facet facet = (Facet) operation.eContainer();
@@ -354,6 +372,7 @@ public class FacetManager implements IFacetManager, Adapter {
 		throw new UnsupportedOperationException("not implemented yet"); //$NON-NLS-1$
 	}
 
+	@Override
 	public List<ETypedElementResult> batchInvoke(
 			final Collection<EObject> eObjects, final EOperation operation,
 			final Object... arguments) throws FacetManagerException {
@@ -361,18 +380,24 @@ public class FacetManager implements IFacetManager, Adapter {
 		throw new UnsupportedOperationException("not implemented yet"); //$NON-NLS-1$
 	}
 
+	@Override
 	public List<FacetSet> getManagedFacetSets() {
 		return this.context;
 	}
 
 	public void setManagedFacetSets(final List<FacetSet> facetSets) {
+		extendedMetaclass.clear();
+		typedElements.clear();
 		this.context.setManagedFacetSets(facetSets);
 	}
 
 	public void removeFacetSet(final FacetSet facetSet) {
+		extendedMetaclass.clear();
+		typedElements.clear();
 		this.context.removeFacetSet(facetSet);
 	}
 
+	@Override
 	public ResourceSet getResourceSet() {
 		return this.resourceSet;
 	}
@@ -382,78 +407,22 @@ public class FacetManager implements IFacetManager, Adapter {
 		throw new UnsupportedOperationException("not implemented yet"); //$NON-NLS-1$
 	}
 
+	@Override
 	public Set<EAttribute> getAttributes(final EObject eObject)
 			throws FacetManagerException {
-		return getEStructuralFeatures(eObject, EAttribute.class);
+		return new HashSet<>(getETypedElements(eObject, EAttribute.class));
 	}
 
+	@Override
 	public Set<EStructuralFeature> getStructuralFeature(final EObject eObject)
 			throws FacetManagerException {
-		return getEStructuralFeatures(eObject, EStructuralFeature.class);
+		return new HashSet<>(getETypedElements(eObject, EStructuralFeature.class));
 	}
 
-	public <T extends ETypedElement> Set<T> getEStructuralFeatures(
-			final EObject eObject, final Class<T> classs)
-			throws FacetManagerException {
-		final Set<T> result = new HashSet<T>();
-		for (FacetSet facetSet : this.context.getManagedFacetSets()) {
-			result.addAll(getETypedElements(eObject, facetSet, classs));
-		}
-		return result;
-	}
-
-	private <T extends ETypedElement> Collection<T> getETypedElements(
-			final EObject eObject, final FacetSet facetSet,
-			final Class<T> classs) throws FacetManagerException {
-		final Set<T> result = new HashSet<T>();
-		for (EClassifier eClassifier : facetSet.getEClassifiers()) {
-			if (eClassifier instanceof Facet) {
-				final Facet facet = (Facet) eClassifier;
-				if (isConforming(eObject, facet)) {
-					for (EStructuralFeature eStructuralFeature : getAllEStructuralFeatures(facet)) {
-						if (classs.isInstance(eStructuralFeature)) {
-							@SuppressWarnings("unchecked")
-							// @SuppressWarnings("unchecked") This type has been
-							// checked using isInstance
-							final T typedSF = (T) eStructuralFeature;
-							result.add(typedSF);
-						}
-					}
-				}
-			}
-		}
-		// hierarchical FacetSets
-		for (EPackage ePackage : facetSet.getESubpackages()) {
-			if (ePackage instanceof FacetSet) {
-				final FacetSet subFacetSet = (FacetSet) ePackage;
-				result.addAll(getETypedElements(eObject,
-						subFacetSet, classs));
-			}
-		}
-		// aggregates
-		for (FacetSet subFacetSet : facetSet.getFacetSets()) {
-			result.addAll(getETypedElements(eObject, subFacetSet, classs));
-		}
-		return result;
-	}
-
-	private List<EStructuralFeature> getAllEStructuralFeatures(final Facet facet) {
-		final List<EStructuralFeature> structFeatures = new LinkedList<EStructuralFeature>();
-		structFeatures.addAll(facet.getFacetElements());
-		for (Facet extFacet : facet.getExtendedFacets()) {
-			structFeatures.addAll(getAllEStructuralFeatures(extFacet));
-		}
-		return structFeatures;
-	}
-
+	@Override
 	public Set<EReference> getReferences(final EObject eObject)
 			throws FacetManagerException {
-		return getEStructuralFeatures(eObject, EReference.class);
-	}
-
-	public Collection<? extends EStructuralFeature> getSF(final EObject eObject)
-			throws FacetManagerException {
-		return getEStructuralFeatures(eObject, EStructuralFeature.class);
+		return new HashSet<>(getETypedElements(eObject, EReference.class));
 	}
 
 	@Deprecated
@@ -462,6 +431,8 @@ public class FacetManager implements IFacetManager, Adapter {
 			this.context.addFrontManagedFacetSet((FacetSet) facetToLoad
 					.getEPackage());
 		}
+		extendedMetaclass.clear();
+		typedElements.clear();
 	}
 
 	@Deprecated
@@ -471,11 +442,14 @@ public class FacetManager implements IFacetManager, Adapter {
 
 	public void removeAllManagedFacetSets() {
 		this.context.clear();
+		extendedMetaclass.clear();
+		typedElements.clear();
 	}
 
+	@Override
 	public <T> List<T> getOrInvokeMultiValued(final EObject eObject,
 			final ETypedElement eTypedElement, final Class<T> classs)
-			throws FacetManagerException {
+					throws FacetManagerException {
 		List<T> result = null;
 		if (eTypedElement instanceof EStructuralFeature) {
 			final EStructuralFeature structuralFeature = (EStructuralFeature) eTypedElement;
@@ -487,9 +461,10 @@ public class FacetManager implements IFacetManager, Adapter {
 		return result;
 	}
 
+	@Override
 	public <T> T getOrInvoke(final EObject eObject,
 			final ETypedElement eTypedElement, final Class<T> classs)
-			throws FacetManagerException {
+					throws FacetManagerException {
 		T result = null;
 		if (eTypedElement instanceof EStructuralFeature) {
 			final EStructuralFeature structuralFeature = (EStructuralFeature) eTypedElement;
@@ -505,6 +480,7 @@ public class FacetManager implements IFacetManager, Adapter {
 		throw new IllegalStateException("Not implemented, and never will since it's deprecated"); //$NON-NLS-1$
 	}
 
+	@Override
 	public <T> List<ETypedElementResult> batchGetOrInvoke(final Collection<EObject> sources, final ETypedElement query, final Class<T> classs)
 			throws FacetManagerException {
 		final List<ETypedElementResult> results = new LinkedList<ETypedElementResult>();
@@ -557,34 +533,138 @@ public class FacetManager implements IFacetManager, Adapter {
 
 	public void addBackManagedFacetSet(final FacetSet facetSet) {
 		this.context.addBackManagedFacetSet(facetSet);
+		extendedMetaclass.clear();
+		typedElements.clear();
 	}
 
 	public void addFrontManagedFacetSet(final FacetSet facetSet) {
 		this.context.addFrontManagedFacetSet(facetSet);
+		extendedMetaclass.clear();
+		typedElements.clear();
 	}
 
+	@Override
 	public void notifyChanged(final Notification notification) {
 		// Nothing to do
 	}
 
+	@Override
 	public Notifier getTarget() {
 		return null;
 	}
 
+	@Override
 	public void setTarget(final Notifier newTarget) {
 		// Nothing to do
 	}
 
+	@Override
 	public boolean isAdapterForType(final Object type) {
 		return false;
 	}
 
+	@Override
 	public void addListener(final IFacetManagerListener listener) {
 		this.context.addListener(listener);
 	}
 
+	@Override
 	public void removeListener(final IFacetManagerListener listener) {
 		this.context.removeListener(listener);
+	}
+
+
+
+
+
+	/**
+	 * @see org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager#getETypedElements(org.eclipse.emf.ecore.EObject, java.lang.Class)
+	 *
+	 * @param eObject
+	 * @param classs
+	 * @return
+	 * @throws FacetManagerException
+	 */
+	@Override
+	public <T extends ETypedElement> List<T> getETypedElements(EObject eObject, Class<T> classs) throws FacetManagerException {
+		final List<T> result = new ArrayList<T>();
+		for (FacetSet facetSet : getManagedFacetSets()) {
+			result.addAll(getETypedElements(eObject, facetSet, classs));
+		}
+		return result;
+	}
+
+	private <T extends ETypedElement> List<T> getETypedElements(final EObject eObject, final FacetSet facetSet, final Class<T> classs)
+			throws FacetManagerException {
+		final List<T> result = new ArrayList<T>();
+		for (EClassifier eClassifier : facetSet.getEClassifiers()) {
+			if (eClassifier instanceof Facet) {
+				final Facet facet = (Facet) eClassifier;
+
+				// Before checking conformance, verify that the facet contains at least one element in the returned list.
+				// Do no compute conformance if the list will be empty anyway
+				if (EStructuralFeature.class.isAssignableFrom(classs)) {
+					if (!facet.getAllFacetElements().isEmpty()) {
+						if (isConforming(eObject, facet)) {
+							result.addAll(getETypedElement(classs, facet));
+						}
+					}
+				} else if (EOperation.class.isAssignableFrom(classs)) {
+					if (!facet.getAllFacetOperations().isEmpty()) {
+						if (isConforming(eObject, facet)) {
+							result.addAll(getETypedElement(classs, facet));
+						}
+					}
+				} else {
+					if (isConforming(eObject, facet)) {
+						result.addAll(getETypedElement(classs, facet));
+					}
+				}
+
+			}
+		}
+		// hierarchical FacetSets
+		for (EPackage ePackage : facetSet.getESubpackages()) {
+			if (ePackage instanceof FacetSet) {
+				final FacetSet subFacetSet = (FacetSet) ePackage;
+				result.addAll(getETypedElements(eObject, subFacetSet, classs));
+			}
+		}
+		// aggregates
+		for (FacetSet subFacetSet : facetSet.getFacetSets()) {
+			result.addAll(getETypedElements(eObject, subFacetSet, classs));
+		}
+		return result;
+	}
+
+	private <T extends ETypedElement> List<T> getETypedElement(final Class<T> classs, final Facet facet) {
+		if (!typedElements.containsKey(facet)) {
+			typedElements.put(facet, new HashMap<>());
+		}
+
+		Map<Class<?>, List<? extends ETypedElement>> cache = typedElements.get(facet);
+		if (!cache.containsKey(classs)) {
+			final List<ETypedElement> result = new ArrayList<ETypedElement>();
+			for (ETypedElement eTypedElement : facet.getAllTypedElements()) {
+				if (classs.isInstance(eTypedElement)) {
+					@SuppressWarnings("unchecked")
+					// @SuppressWarnings("unchecked") This type has been
+					// checked using isInstance
+					final T typedSF = (T) eTypedElement;
+					final T resolvedTE = IResolverManager.DEFAULT
+							.resolve(typedSF, classs);
+					if (resolvedTE == null) {
+						result.add(typedSF);
+					} else {
+						result.add(resolvedTE);
+					}
+				}
+			}
+
+			cache.put(classs, result);
+		}
+
+		return (List<T>) cache.get(classs);
 	}
 
 }
