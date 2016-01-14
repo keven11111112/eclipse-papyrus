@@ -32,7 +32,7 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4007;
+	public static final String VISUAL_ID = "4007";
 
 	/**
 	 * @generated
@@ -57,13 +57,11 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ComponentRealizationNameEditPart) {
-			((ComponentRealizationNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ComponentRealizationNameEditPart) {
+			((ComponentRealizationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
-		if (childEditPart instanceof ComponentRealizationAppliedStereotypeEditPart) {
-			((ComponentRealizationAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ComponentRealizationAppliedStereotypeEditPart) {
+			((ComponentRealizationAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -73,7 +71,7 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -83,10 +81,10 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ComponentRealizationNameEditPart) {
+		if(childEditPart instanceof ComponentRealizationNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ComponentRealizationAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ComponentRealizationAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -97,7 +95,7 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -121,6 +119,6 @@ public class ComponentRealizationEditPart extends UMLConnectionNodeEditPart impl
 	 */
 	@Override
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure) getFigure();
+		return (InterfaceRealizationFigure)getFigure();
 	}
 }

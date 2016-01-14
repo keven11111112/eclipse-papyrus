@@ -24,16 +24,16 @@ import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
  */
 public class LayoutEditPolicyForLabel extends LayoutEditPolicy {
 
-	private final int labelVisualId;
+	private final String labelVisualId;
 
-	public LayoutEditPolicyForLabel(final int labelVisualId) {
+	public LayoutEditPolicyForLabel(final String labelVisualId) {
 		this.labelVisualId = labelVisualId;
 	}
 
 	@Override
 	protected EditPolicy createChildEditPolicy(final EditPart child) {
 		final View childView = (View) child.getModel();
-		if (UMLVisualIDRegistry.getVisualID(childView) == this.labelVisualId) {
+		if (UMLVisualIDRegistry.getVisualID(childView).equals(this.labelVisualId)) {
 			return new ExternalLabelPrimaryDragRoleEditPolicy();
 		}
 		EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);

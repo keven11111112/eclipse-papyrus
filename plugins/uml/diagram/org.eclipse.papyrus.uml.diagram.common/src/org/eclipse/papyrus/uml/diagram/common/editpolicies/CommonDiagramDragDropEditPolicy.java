@@ -126,30 +126,16 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *
 	 * @return the uML element type
 	 */
-	public IElementType getUMLElementType(int elementID) {
-		return VisualTypeService.getInstance().getElementType(getContextDiagram(), Integer.toString(elementID));
+	public IElementType getUMLElementType(String elementID) {
+		return VisualTypeService.getInstance().getElementType(getContextDiagram(), elementID);
 	}
 
-	public int getNodeVisualID(View containerView, EObject domainElement) {
-		String result = VisualTypeService.getInstance().getNodeType(containerView, domainElement);
-
-		try {
-			return (result == null) ? -1 : Integer.parseInt(result);
-		} catch (NumberFormatException e) {
-			// Not supported by this diagram
-			return -1;
-		}
+	public String getNodeVisualID(View containerView, EObject domainElement) {
+		return VisualTypeService.getInstance().getNodeType(containerView, domainElement);
 	}
 
-	public int getLinkWithClassVisualID(EObject domainElement) {
-		String result = VisualTypeService.getInstance().getLinkType(getContextDiagram(), domainElement);
-
-		try {
-			return (result == null) ? -1 : Integer.parseInt(result);
-		} catch (NumberFormatException e) {
-			// Not supported by this diagram
-			return -1;
-		}
+	public String getLinkWithClassVisualID(EObject domainElement) {
+		return VisualTypeService.getInstance().getLinkType(getContextDiagram(), domainElement);
 	}
 
 	/**
@@ -204,7 +190,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *
 	 * @return the composite command
 	 */
-	public CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point absoluteLocation, Element semanticLink) {
+	public CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, String linkVISUALID, Point absoluteLocation, Element semanticLink) {
 		IAdaptable sourceAdapter = findAdapter(cc, source, getLinkSourceDropLocation(absoluteLocation, source, target));
 		IAdaptable targetAdapter = findAdapter(cc, target, getLinkTargetDropLocation(absoluteLocation, source, target));
 		// descriptor of the link
@@ -311,8 +297,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 		Point location = dropRequest.getLocation().getCopy();
 		IGraphicalEditPart parent = (IGraphicalEditPart) getHost();
 		boolean isParentDiagram = getHost().getModel() instanceof Diagram;
-		int nodeVISUALID = getNodeVisualID(parent.getNotationView(), droppedObject);
-		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
+		String nodeVISUALID = getNodeVisualID(parent.getNotationView(), droppedObject);
+		String linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if (getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
 			if (!isParentDiagram && !isDropNonCanvasNodeAllowed(parent, droppedObject)) {
 				return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
@@ -337,7 +323,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			return cc;
 		}
 
-		if (linkVISUALID == -1 && nodeVISUALID != -1) {
+		if (linkVISUALID == null && nodeVISUALID != null) {
 			// The element to drop is a node
 			// Retrieve it's expected graphical parent
 			EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
@@ -353,7 +339,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 
 		}
-		if (linkVISUALID != -1) {
+		if (linkVISUALID != null) {
 			Collection<?> sources = linkmappingHelper.getSource((Element) droppedObject);
 			Collection<?> targets = linkmappingHelper.getTarget((Element) droppedObject);
 			if (sources.size() == 0 || targets.size() == 0) {
@@ -483,7 +469,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *            the drop request
 	 * @return the creation node command
 	 */
-	protected ICommand getDefaultDropNodeCommand(int nodeVISUALID, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
+	protected ICommand getDefaultDropNodeCommand(String nodeVISUALID, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
 		return getDefaultDropNodeCommand(getHost(), nodeVISUALID, absoluteLocation, droppedObject);
 	}
 
@@ -500,7 +486,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *            the object to drop
 	 * @return the creation node command
 	 */
-	protected ICommand getDefaultDropNodeCommand(int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
+	protected ICommand getDefaultDropNodeCommand(String nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
 		return getDefaultDropNodeCommand(nodeVISUALID, absoluteLocation, droppedObject, null);
 	}
 
@@ -534,53 +520,6 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 */
 	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, Point absoluteLocation, EObject droppedObject) {
 		return getDefaultDropNodeCommand(hostEP, null, absoluteLocation, droppedObject);
-	}
-
-	/**
-	 * This method returns the default drop command for node. It create the view
-	 * at the specified location, using the gmf command framework so the
-	 * policies are used.
-	 *
-	 * @param hostEP
-	 *            The host edit part which will be the parent of the new node
-	 * @param nodeVISUALID
-	 *            the node visual identifier
-	 * @param location
-	 *            the drop location
-	 * @param droppedObject
-	 *            the object to drop
-	 * @param request
-	 *            the drop request
-	 * @return the creation node command
-	 */
-	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, EObject droppedObject, DropObjectsRequest request) {
-		IHintedType type = ((IHintedType) getUMLElementType(nodeVISUALID));
-
-		String semanticHint = null;
-		if (type != null) {
-			semanticHint = type.getSemanticHint();
-		}
-
-		return getDefaultDropNodeCommand(hostEP, semanticHint, absoluteLocation, droppedObject, request);
-	}
-
-	/**
-	 * This method returns the default drop command for node. It create the view
-	 * at the specified location, using the gmf command framework so the
-	 * policies are used.
-	 *
-	 * @param hostEP
-	 *            The host edit part which will be the parent of the new node
-	 * @param nodeVISUALID
-	 *            the node visual identifier
-	 * @param location
-	 *            the drop location
-	 * @param droppedObject
-	 *            the object to drop
-	 * @return the creation node command
-	 */
-	protected ICommand getDefaultDropNodeCommand(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, EObject droppedObject) {
-		return getDefaultDropNodeCommand(hostEP, nodeVISUALID, absoluteLocation, droppedObject, null);
 	}
 
 	/**
@@ -693,7 +632,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *
 	 * @return the specific drop command
 	 */
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID, String linkVISUALID) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -949,7 +888,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *            the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropAffixedNode(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+	protected Command dropAffixedNode(DropObjectsRequest dropRequest, Element droppedElement, String nodeVISUALID) {
 		// The dropped element must be a Port or Parameter
 		if (!((droppedElement instanceof Port) || (droppedElement instanceof Parameter))) {
 			// Log.getInstance().error(new Exception("Incorrect parameter type (droppedElement should be a Port or Parameter)"));
@@ -1040,7 +979,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 	 *            the object to drop
 	 * @return a CompositeCommand for Drop
 	 */
-	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(String nodeVISUALID, Point location, EObject droppedObject) {
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());

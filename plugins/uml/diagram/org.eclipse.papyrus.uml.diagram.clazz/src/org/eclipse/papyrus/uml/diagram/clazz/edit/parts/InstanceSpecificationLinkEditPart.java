@@ -30,7 +30,7 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4021;
+	public static final String VISUAL_ID = "4021";
 
 	/**
 	 * @generated
@@ -53,11 +53,11 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SourceISLinkLabelEditPart) {
-			((SourceISLinkLabelEditPart) childEditPart).setLabel(getPrimaryShape().getSourceLabel());
+		if(childEditPart instanceof SourceISLinkLabelEditPart) {
+			((SourceISLinkLabelEditPart)childEditPart).setLabel(getPrimaryShape().getSourceLabel());
 		}
-		if (childEditPart instanceof TargetISLinkLabelEditPart) {
-			((TargetISLinkLabelEditPart) childEditPart).setLabel(getPrimaryShape().getTargetLabel());
+		if(childEditPart instanceof TargetISLinkLabelEditPart) {
+			((TargetISLinkLabelEditPart)childEditPart).setLabel(getPrimaryShape().getTargetLabel());
 		}
 		return false;
 	}
@@ -67,7 +67,7 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -77,10 +77,10 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SourceISLinkLabelEditPart) {
+		if(childEditPart instanceof SourceISLinkLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof TargetISLinkLabelEditPart) {
+		if(childEditPart instanceof TargetISLinkLabelEditPart) {
 			return true;
 		}
 		return false;
@@ -91,7 +91,7 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -115,6 +115,6 @@ public class InstanceSpecificationLinkEditPart extends UMLConnectionNodeEditPart
 	 */
 	@Override
 	public InstanceSpecificationLinkFigure getPrimaryShape() {
-		return (InstanceSpecificationLinkFigure) getFigure();
+		return (InstanceSpecificationLinkFigure)getFigure();
 	}
 }

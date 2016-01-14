@@ -131,4 +131,23 @@ import xpt.providers.ParserUtils_qvto
 		«ENDIF»
 	'''
 
+	override def getParserByVisualIdMethod(GenParsers it) '''
+		«generatedMemberComment()»
+		protected org.eclipse.gmf.runtime.common.ui.services.parser.IParser getParser(String visualID) {
+			if (visualID != null) {
+				switch (visualID) {
+					«FOR node : editorGen.diagram.topLevelNodes»
+						«dispatch_getParsers(node)»
+					«ENDFOR»
+					«FOR node : editorGen.diagram.childNodes»
+						«dispatch_getParsers(node)»
+					«ENDFOR»
+					«FOR link : editorGen.diagram.links»
+						«dispatch_getParsers(link)»
+					«ENDFOR»
+				}
+			}
+			return null;
+		}
+	'''
 }

@@ -38,7 +38,7 @@ public class CustomTimingDiagramCreationEditPolicy extends PapyrusCreationEditPo
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
 		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
-			if (Integer.toString(InteractionEditPartTN.VISUAL_ID).equals(semanticHint)) {
+			if (InteractionEditPartTN.VISUAL_ID.equals(semanticHint)) {
 				final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(getHost().getModel());
 				final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomTimingDiagramCreationEditPolicy_CreateInteraction);
 				compoundCommand.add(new RefreshCommandForUndo((IGraphicalEditPart) getHost()));

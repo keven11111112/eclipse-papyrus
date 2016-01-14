@@ -45,7 +45,7 @@ public class ExpansionRegionCompartmentDnDEditPolicy extends ActivityGroupCustom
 	}
 
 	public IUndoableOperation dropExpansionNode(ExpansionNode expNode) {
-		int visualID = 0;
+		String visualID;
 		if (expNode.getRegionAsInput() != null) {
 			visualID = ExpansionNodeAsInEditPart.VISUAL_ID;
 		} else {
@@ -62,7 +62,7 @@ public class ExpansionRegionCompartmentDnDEditPolicy extends ActivityGroupCustom
 		return wrapCommand;
 	}
 
-	protected ICommand getCreateViewCommand(IGraphicalEditPart parent, Element droppedElement, int nodeVISUALID) {
+	protected ICommand getCreateViewCommand(IGraphicalEditPart parent, Element droppedElement, String nodeVISUALID) {
 		IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
 

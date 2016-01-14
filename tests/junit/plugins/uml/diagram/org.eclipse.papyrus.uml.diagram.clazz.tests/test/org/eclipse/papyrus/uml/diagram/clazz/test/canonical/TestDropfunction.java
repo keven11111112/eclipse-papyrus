@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomUMLDiagramUpdater;
@@ -79,11 +79,11 @@ public class TestDropfunction extends TestChildLabel {
 		testSetOfDrop(UMLElementTypes.EnumerationLiteral_3017, EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID);
 	}
 
-	protected void testToCreateSetOfNode(IElementType type, int containerType) {
+	protected void testToCreateSetOfNode(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) {
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
@@ -117,11 +117,11 @@ public class TestDropfunction extends TestChildLabel {
 	 * @param containerType
 	 *        the container type
 	 */
-	protected void testSetOfDrop(IElementType type, int containerType) {
+	protected void testSetOfDrop(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) {
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;

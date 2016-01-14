@@ -27,7 +27,7 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1045;
+	public static final String VISUAL_ID = "1045";
 
 	/**
 	 * @generated
@@ -63,6 +63,6 @@ public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implem
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

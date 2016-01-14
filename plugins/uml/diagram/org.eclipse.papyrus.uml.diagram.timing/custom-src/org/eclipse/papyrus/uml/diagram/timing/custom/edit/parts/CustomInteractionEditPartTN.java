@@ -126,9 +126,9 @@ public class CustomInteractionEditPartTN extends InteractionEditPartTN {
 			@Override
 			protected EditPolicy createChildEditPolicy(final EditPart child) {
 				final View childView = (View) child.getModel();
-				final int visualID = UMLVisualIDRegistry.getVisualID(childView);
+				final String visualID = UMLVisualIDRegistry.getVisualID(childView);
 				// don't let Gates be resized
-				if (visualID == GateEditPart.VISUAL_ID) {
+				if (GateEditPart.VISUAL_ID.equals(visualID)) {
 					return new BorderItemSelectionEditPolicy();
 				}
 				return new NonResizableEditPolicy();

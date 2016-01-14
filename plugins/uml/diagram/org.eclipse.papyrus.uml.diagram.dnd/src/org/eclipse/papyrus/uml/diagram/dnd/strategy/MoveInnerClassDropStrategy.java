@@ -111,7 +111,7 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 
 		for (EObject eObject : getSourceEObjects(dropRequest)) {
 			if (eObject instanceof org.eclipse.uml2.uml.Class) {
-				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter(eObject), Node.class, Integer.toString(NestedClassForClassEditPart.VISUAL_ID), ((IGraphicalEditPart) targetEditPart).getDiagramPreferencesHint()));
+				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter(eObject), Node.class, NestedClassForClassEditPart.VISUAL_ID, ((IGraphicalEditPart) targetEditPart).getDiagramPreferencesHint()));
 			}
 		}
 		if (viewDescriptors.isEmpty()) {
@@ -163,7 +163,7 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 			EditPart primaryEditPart = getPrimaryEditPart(targetEditPart);
 			View primaryView = ((IGraphicalEditPart) targetEditPart).getPrimaryView();
 			
-			int nestedClassSemanticHint = -1;
+			String nestedClassSemanticHint = null;
 			switch (UMLVisualIDRegistry.getVisualID(primaryView)) {
 			case ClassEditPart.VISUAL_ID:
 				nestedClassSemanticHint = ClassNestedClassifierCompartmentEditPart.VISUAL_ID;
@@ -185,7 +185,7 @@ public class MoveInnerClassDropStrategy extends MoveDropStrategy {
 				break;
 			}
 
-			if (nestedClassSemanticHint != -1) {
+			if (nestedClassSemanticHint != null) {
 				String type = UMLVisualIDRegistry.getType(nestedClassSemanticHint);
 				EditPart target = ((IGraphicalEditPart) primaryEditPart).getChildBySemanticHint(type);
 				if (target != null) {

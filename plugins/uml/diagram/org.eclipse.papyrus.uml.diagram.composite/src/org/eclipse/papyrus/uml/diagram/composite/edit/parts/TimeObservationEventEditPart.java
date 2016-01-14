@@ -27,7 +27,7 @@ public class TimeObservationEventEditPart extends ConnectionEditPart implements 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4018;
+	public static final String VISUAL_ID = "4018";
 
 	/**
 	 * @generated
@@ -60,6 +60,6 @@ public class TimeObservationEventEditPart extends ConnectionEditPart implements 
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

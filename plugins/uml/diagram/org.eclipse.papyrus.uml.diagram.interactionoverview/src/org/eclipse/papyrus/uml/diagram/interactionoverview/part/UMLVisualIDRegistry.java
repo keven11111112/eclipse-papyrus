@@ -57,22 +57,22 @@ public class UMLVisualIDRegistry extends org.eclipse.papyrus.uml.diagram.activit
 		super();
 	}
 
-	public static int customGetNodeVisualID(final View containerView, final EObject domainElement) {
+	public static String customGetNodeVisualID(final View containerView, final EObject domainElement) {
 		if (domainElement == null) {
-			return -1;
+			return null;
 		}
 		final String containerModelID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getModelID(containerView);
 		if (!InteractionOverviewDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			return -1;
+			return null;
 		}
-		int containerVisualID;
+		String containerVisualID;
 		if (InteractionOverviewDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = InteractionOverviewDiagramEditPart.VISUAL_ID;
 			} else {
-				return -1;
+				return null;
 			}
 		}
 		switch (containerVisualID) {
@@ -180,7 +180,7 @@ public class UMLVisualIDRegistry extends org.eclipse.papyrus.uml.diagram.activit
 			}
 			break;
 		}
-		return -1;
+		return null;
 	}
 
 	private static boolean isInteractionUse_3008(final View containerView, final CallBehaviorAction domainElement) {

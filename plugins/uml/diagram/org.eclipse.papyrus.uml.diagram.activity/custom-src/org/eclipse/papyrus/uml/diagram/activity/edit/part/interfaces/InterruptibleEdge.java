@@ -27,7 +27,7 @@ public interface InterruptibleEdge {
 	/**
 	 * @return return the visual ID of the edit which should hold the InterruptibleEdge icon
 	 */
-	public int getInterruptibleEdgeIconVisualID();
+	public String getInterruptibleEdgeIconVisualID();
 
 	/**
 	 * Get the Interruptible edge icon or null if not set

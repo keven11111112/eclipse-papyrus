@@ -59,15 +59,15 @@ public class TestTransitionLinks extends TestStateMachineLink {
 		checkTransitionLink(stateExitPointEP, stateExitPointEP, 3);
 	}
 
-	private int getElementTypeId(IElementType elementType) {
+	private String getElementTypeId(IElementType elementType) {
 		Assert.assertTrue("Expected IHintedType.", elementType instanceof IHintedType);
 		String semanticHint = ((IHintedType) elementType).getSemanticHint();
 		Assert.assertNotNull("Semantic hint is null.", semanticHint);
 		try {
-			return Integer.valueOf(semanticHint).intValue();
+			return semanticHint;
 		} catch (NumberFormatException e) {
 			Assert.fail(e.getMessage());
-			return -1;
+			return null;
 		}
 	}
 

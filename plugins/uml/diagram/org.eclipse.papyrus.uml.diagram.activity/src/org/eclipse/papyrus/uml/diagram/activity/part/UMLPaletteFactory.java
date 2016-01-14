@@ -365,209 +365,208 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(ACTIVITY_NODES_ACCEPTEVENTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_ACCEPTEVENTACTION)) {
 			return createAcceptEventAction14CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_TESTIDENTITYACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_TESTIDENTITYACTION)) {
 			return createTestIdentityAction15CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_ACTIVITY)) {
+		if(toolId.equals(ACTIVITY_NODES_ACTIVITY)) {
 			return createActivity16CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_ACTIVITYPARAMETERNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_ACTIVITYPARAMETERNODE)) {
 			return createActivityParameterNode17CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CENTRALBUFFERNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_CENTRALBUFFERNODE)) {
 			return createCentralBufferNode18CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_DATASTORENODE)) {
+		if(toolId.equals(ACTIVITY_NODES_DATASTORENODE)) {
 			return createDataStoreNode19CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINT)) {
 			return createConstraint20CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_COMMENT)) {
+		if(toolId.equals(ACTIVITY_NODES_COMMENT)) {
 			return createComment21CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_EDGES_CONTROLFLOW)) {
+		if(toolId.equals(ACTIVITY_EDGES_CONTROLFLOW)) {
 			return createControlFlow1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_EDGES_EXCEPTIONHANDLER)) {
+		if(toolId.equals(ACTIVITY_EDGES_EXCEPTIONHANDLER)) {
 			return createExceptionHandler2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_EDGES_OBJECTFLOW)) {
+		if(toolId.equals(ACTIVITY_EDGES_OBJECTFLOW)) {
 			return createObjectFlow3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_EDGES_LINK)) {
+		if(toolId.equals(ACTIVITY_EDGES_LINK)) {
 			return createLink4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_ACTIVITYGROUP_ACTIVITYPARTITION)) {
+		if(toolId.equals(ACTIVITY_NODES_ACTIVITYGROUP_ACTIVITYPARTITION)) {
 			return createActivityPartition1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_ACTIVITYGROUP_INTERRUPTIBLEACTIVITYREGION)) {
+		if(toolId.equals(ACTIVITY_NODES_ACTIVITYGROUP_INTERRUPTIBLEACTIVITYREGION)) {
 			return createInterruptibleActivityRegion2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_INITIALNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_INITIALNODE)) {
 			return createInitialnode1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_ACTIVITYFINAL)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_ACTIVITYFINAL)) {
 			return createActivityfinal2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_FLOWFINAL)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_FLOWFINAL)) {
 			return createFlowfinal3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_DECISIONNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_DECISIONNODE)) {
 			return createDecisionnode4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_MERGENODE)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_MERGENODE)) {
 			return createMergenode5CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_JOINNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_JOINNODE)) {
 			return createJoinnode6CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_FORKNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_CONTROLNODES_FORKNODE)) {
 			return createForknode7CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONCONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONCONSTRAINT)) {
 			return createLocalPreconditionConstraint1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONINTERVALCONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONINTERVALCONSTRAINT)) {
 			return createLocalPreconditionIntervalConstraint3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONDURATIONCONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONDURATIONCONSTRAINT)) {
 			return createLocalPreconditionDurationConstraint4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONTIMECONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONTIMECONSTRAINT)) {
 			return createLocalPreconditionTimeConstraint5CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONCONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONCONSTRAINT)) {
 			return createLocalPostconditionConstraint6CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONINTERVALCONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONINTERVALCONSTRAINT)) {
 			return createLocalPostconditionIntervalConstraint8CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONDURATIONCONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONDURATIONCONSTRAINT)) {
 			return createLocalPostconditionDurationConstraint9CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONTIMECONSTRAINT)) {
+		if(toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONTIMECONSTRAINT)) {
 			return createLocalPostconditionTimeConstraint10CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_PINS_OUTPUTPIN)) {
+		if(toolId.equals(ACTIVITY_NODES_PINS_OUTPUTPIN)) {
 			return createOutputPin1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_PINS_INPUTPIN)) {
+		if(toolId.equals(ACTIVITY_NODES_PINS_INPUTPIN)) {
 			return createInputPin2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_PINS_ACTIONINPUTPIN)) {
+		if(toolId.equals(ACTIVITY_NODES_PINS_ACTIONINPUTPIN)) {
 			return createActionInputPin3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_PINS_VALUEPIN)) {
+		if(toolId.equals(ACTIVITY_NODES_PINS_VALUEPIN)) {
 			return createValuePin4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_EXPANSIONREGION)) {
+		if(toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_EXPANSIONREGION)) {
 			return createExpansionRegion1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_INPUTEXPANSIONNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_INPUTEXPANSIONNODE)) {
 			return createInputExpansionNode2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_OUTPUTEXPANSIONNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_OUTPUTEXPANSIONNODE)) {
 			return createOutputExpansionNode3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_BROADCASTSIGNALACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_BROADCASTSIGNALACTION)) {
 			return createBroadcastSignalAction1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_CALLBEHAVIORACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_CALLBEHAVIORACTION)) {
 			return createCallBehaviorAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_CALLOPERATIONACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_CALLOPERATIONACTION)) {
 			return createCallOperationAction3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_SENDOBJECTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_SENDOBJECTACTION)) {
 			return createSendObjectAction4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_SENDSIGNALACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_SENDSIGNALACTION)) {
 			return createSendSignalAction5CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_STARTOBJECTBEHAVIOURACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_STARTOBJECTBEHAVIOURACTION)) {
 			return createStartObjectBehaviourAction6CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_CREATEOBJECTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_CREATEOBJECTACTION)) {
 			return createCreateObjectAction1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_DESTROYOBJECTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_DESTROYOBJECTACTION)) {
 			return createDestroyObjectAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_READSELFACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_READSELFACTION)) {
 			return createReadSelfAction3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_RECLASSIFYOBJECTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_RECLASSIFYOBJECTACTION)) {
 			return createReclassifyObjectAction4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_READISCLASSIFIEDOBJECTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_READISCLASSIFIEDOBJECTACTION)) {
 			return createReadIsClassifiedObjectAction5CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_STRUCTUREDACTIVITYNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_STRUCTUREDACTIVITYNODE)) {
 			return createStructuredActivityNode1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_LOOPNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_LOOPNODE)) {
 			return createLoopNode2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_SEQUENCENODE)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_SEQUENCENODE)) {
 			return createSequenceNode3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_CONDITIONALNODE)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_CONDITIONALNODE)) {
 			return createConditionalNode4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION)) {
 			return createReadStructuralFeatureAction1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION)) {
 			return createAddStructuralFeatureValueAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE)) {
+		if(toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE)) {
 			return createClearStructuralFeature3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_ADDVARIABLEVALUEACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_ADDVARIABLEVALUEACTION)) {
 			return createAddVariableValueAction1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_READVARIABLEACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_READVARIABLEACTION)) {
 			return createReadVariableAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_OPAQUEACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_OPAQUEACTION)) {
 			return createOpaqueAction1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_VALUESPECIFICATIONACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_VALUESPECIFICATIONACTION)) {
 			return createValueSpecificationAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_CLEARASSOCIATIONACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_CLEARASSOCIATIONACTION)) {
 			return createClearAssociationAction3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_READEXTENTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_READEXTENTACTION)) {
 			return createReadExtentAction4CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_REDUCEACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_REDUCEACTION)) {
 			return createReduceAction5CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_STARTCLASSIFIERBEHAVIOR)) {
+		if(toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_STARTCLASSIFIERBEHAVIOR)) {
 			return createStartClassifierBehavior6CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_CREATELINKACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_LINKACTIONS_CREATELINKACTION)) {
 			return createCreateLinkAction1CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_READLINKACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_LINKACTIONS_READLINKACTION)) {
 			return createReadLinkAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_DESTROYLINKACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_LINKACTIONS_DESTROYLINKACTION)) {
 			return createDestroyLinkAction3CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_CREATELINKOBJECTACTION)) {
+		if(toolId.equals(ACTIVITY_NODES_LINKACTIONS_CREATELINKOBJECTACTION)) {
 			return createCreateLinkObjectAction4CreationTool();
 		}
 		// default return: null
@@ -578,7 +577,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}

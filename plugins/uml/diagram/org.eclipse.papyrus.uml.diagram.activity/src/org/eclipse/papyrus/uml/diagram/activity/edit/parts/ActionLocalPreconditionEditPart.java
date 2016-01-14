@@ -30,7 +30,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4001;
+	public static final String VISUAL_ID = "4001";
 
 	/**
 	 * @generated
@@ -66,7 +66,7 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 	 */
 	@Override
 	public DashedLinkDescriptor getPrimaryShape() {
-		return (DashedLinkDescriptor) getFigure();
+		return (DashedLinkDescriptor)getFigure();
 	}
 
 	/**
@@ -79,7 +79,6 @@ public class ActionLocalPreconditionEditPart extends ConnectionEditPart implemen
 		 */
 		public DashedLinkDescriptor() {
 			this.setLineStyle(Graphics.LINE_DASH);
-
 		}
 	}
 }

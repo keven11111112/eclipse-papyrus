@@ -28,7 +28,7 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4001;
+	public static final String VISUAL_ID = "4001";
 
 	/**
 	 * @generated
@@ -62,6 +62,6 @@ public class LinkDescriptorEditPart extends ConnectionEditPart implements ITreeB
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

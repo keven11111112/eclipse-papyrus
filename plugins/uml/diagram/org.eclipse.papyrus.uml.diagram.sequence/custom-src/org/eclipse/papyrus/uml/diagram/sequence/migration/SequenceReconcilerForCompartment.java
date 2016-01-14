@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionInteractio
 public class SequenceReconcilerForCompartment extends ReconcilerForCompartment {
 
 	/** The compartments visual id. */
-	private List<Integer> compartmentsVisualID = Arrays.asList(
+	private List<String> compartmentsVisualID = Arrays.asList(
 			InteractionInteractionCompartmentEditPart.VISUAL_ID,
 			CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 
@@ -37,7 +37,7 @@ public class SequenceReconcilerForCompartment extends ReconcilerForCompartment {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment#getCompartmentsVisualID()
 	 */
 	@Override
-	public List<Integer> getCompartmentsVisualID() {
+	public List<String> getCompartmentsVisualID() {
 		return compartmentsVisualID;
 	}
 

@@ -160,8 +160,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
-		Set<Integer> elementsVisualId = new HashSet<Integer>();
+	protected Set<String> getDroppableElementVisualId() {
+		Set<String> elementsVisualId = new HashSet<String>();
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
 		elementsVisualId.add(ActionExecutionSpecificationEditPart.VISUAL_ID);
 		elementsVisualId.add(BehaviorExecutionSpecificationEditPart.VISUAL_ID);
@@ -204,7 +204,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
 		// handle nodes on messages (no visual ID detected for them)
-		elementsVisualId.add(-1);
+		elementsVisualId.add(null);
 		return elementsVisualId;
 	}
 
@@ -345,7 +345,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
@@ -353,7 +353,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
@@ -361,12 +361,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
+	public String getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
 		Point location = dropRequest.getLocation().getCopy();
 		// handle gate creation
 		if (semanticElement instanceof Gate) {
@@ -377,7 +377,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (cmd != null) {
 			return cmd;
 		}
-		if (nodeVISUALID != -1) {
+		if (nodeVISUALID != null) {
 			switch (nodeVISUALID) {
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -408,11 +408,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ContinuationEditPart.VISUAL_ID:
 			case InteractionOperandEditPart.VISUAL_ID:
 				return dropCompartmentNodeElement(semanticElement, nodeVISUALID, location);
-			default:
-				return UnexecutableCommand.INSTANCE;
 			}
 		}
-		if (linkVISUALID != -1) {
+		if (linkVISUALID != null) {
 			switch (linkVISUALID) {
 			case MessageEditPart.VISUAL_ID:
 			case Message2EditPart.VISUAL_ID:
@@ -424,8 +422,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropMessage(dropRequest, semanticElement, linkVISUALID);
 			case GeneralOrderingEditPart.VISUAL_ID:
 				return dropGeneralOrdering(dropRequest, semanticElement, linkVISUALID);
-			default:
-				return UnexecutableCommand.INSTANCE;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -440,7 +436,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the node visual id
 	 * @return the drop command if the Element can be dropped
 	 */
-	private Command dropNodeElement(Element element, int nodeVISUALID, Point location) {
+	private Command dropNodeElement(Element element, String nodeVISUALID, Point location) {
 		Element parent = element.getOwner();
 		if (getHostObject().equals(parent)) {
 			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
@@ -460,7 +456,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the node visual id
 	 * @return the drop command if the element can be dropped
 	 */
-	private Command dropCombinedFragment(CombinedFragment combinedFragment, int nodeVISUALID, Point location) {
+	private Command dropCombinedFragment(CombinedFragment combinedFragment, String nodeVISUALID, Point location) {
 		Element parent = combinedFragment.getOwner();
 		Element parentContainer = parent.getOwner();
 		if (!(parentContainer instanceof CombinedFragment)) {
@@ -518,7 +514,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return
 	 */
-	protected ICommand dropCombinedFragment(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, Dimension size, EObject droppedObject) {
+	protected ICommand dropCombinedFragment(EditPart hostEP, String nodeVISUALID, Point absoluteLocation, Dimension size, EObject droppedObject) {
 		IHintedType type = ((IHintedType) getUMLElementType(nodeVISUALID));
 		String semanticHint = null;
 		if (type != null) {
@@ -558,7 +554,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param location
 	 * @return
 	 */
-	private Command dropCompartmentNodeElement(Element element, int nodeVISUALID, Point location) {
+	private Command dropCompartmentNodeElement(Element element, String nodeVISUALID, Point location) {
 		Element parent = element.getOwner();
 		Element directParent = parent;
 		if (parent instanceof InteractionOperand) {
@@ -588,8 +584,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param location
 	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
 	 */
-	private Command handleNodeOnMessage(Element semanticElement, int nodeVISUALID, int linkVISUALID, Point location) {
-		if (nodeVISUALID == -1 && linkVISUALID == -1) {
+	private Command handleNodeOnMessage(Element semanticElement, String nodeVISUALID, String linkVISUALID, Point location) {
+		if (nodeVISUALID == null && linkVISUALID == null) {
 			// detect duration observation on a message
 			if (semanticElement instanceof DurationObservation) {
 				List<NamedElement> events = ((DurationObservation) semanticElement).getEvents();
@@ -785,7 +781,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if (execution != null) {
 				List<View> existingViews = DiagramEditPartsUtil.findViews(execution, getViewer());
 				for (View view : existingViews) {
-					if (ActionExecutionSpecificationEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view) || BehaviorExecutionSpecificationEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view)) {
+					if (ActionExecutionSpecificationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view)) || BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getVisualID(view))) {
 						Object object = getViewer().getEditPartRegistry().get(view);
 						if (object instanceof IGraphicalEditPart) {
 							Rectangle bounds = SequenceUtil.getAbsoluteBounds((IGraphicalEditPart) object);
@@ -818,7 +814,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (event1 instanceof MessageOccurrenceSpecification && event2 instanceof MessageOccurrenceSpecification) {
 			if (!event1.equals(event2)) {
 				boolean endsOfSameMessage = false;
-				int visualId = -1;
+				String visualId = null;
 				if (droppedElement instanceof DurationConstraint) {
 					visualId = DurationConstraintInMessageEditPart.VISUAL_ID;
 					endsOfSameMessage = DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification) event1, (OccurrenceSpecification) event2);
@@ -862,11 +858,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the detected link visual id
 	 * @return true if element may be a duration constraint
 	 */
-	private boolean isDurationConstraintHint(int nodeVISUALID, int linkVISUALID) {
-		if (linkVISUALID != -1) {
+	private boolean isDurationConstraintHint(String nodeVISUALID, String linkVISUALID) {
+		if (linkVISUALID != null) {
 			return false;
 		} else {
-			return nodeVISUALID == -1 || nodeVISUALID == ConstraintEditPart.VISUAL_ID || nodeVISUALID == DurationConstraintEditPart.VISUAL_ID || nodeVISUALID == DurationConstraintInMessageEditPart.VISUAL_ID;
+			return nodeVISUALID == null || ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID) || DurationConstraintEditPart.VISUAL_ID.equals(nodeVISUALID) || DurationConstraintInMessageEditPart.VISUAL_ID.equals(nodeVISUALID);
 		}
 	}
 
@@ -881,7 +877,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the label node visual id
 	 * @return the command or UnexecutableCommand
 	 */
-	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, int nodeVISUALID) {
+	private Command dropNodeOnMessage(PackageableElement durationLabelElement, ConnectionNodeEditPart messageEditPart, String nodeVISUALID) {
 		IAdaptable elementAdapter = new EObjectAdapter(durationLabelElement);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
 		return messageEditPart.getCommand(new CreateViewRequest(descriptor));
@@ -897,7 +893,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param dropLocation
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
-	private Command dropTimeObservationInLifeline(TimeObservation observation, int nodeVISUALID, Point dropLocation) {
+	private Command dropTimeObservationInLifeline(TimeObservation observation, String nodeVISUALID, Point dropLocation) {
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(observation);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
@@ -942,7 +938,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the node visual id
 	 * @return the command if the lifeline is the correct one or UnexecutableCommand
 	 */
-	private Command dropIntervalConstraintInLifeline(IntervalConstraint constraint, int nodeVISUALID) {
+	private Command dropIntervalConstraintInLifeline(IntervalConstraint constraint, String nodeVISUALID) {
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(constraint);
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType) getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, true, getDiagramPreferencesHint());
@@ -1000,14 +996,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the node visual id
 	 * @return arbitrary default height for the node visual id (eventually -1)
 	 */
-	private int getDefaultDropHeight(int nodeVISUALID) {
-		if (TimeConstraintEditPart.VISUAL_ID == nodeVISUALID || TimeObservationEditPart.VISUAL_ID == nodeVISUALID) {
+	private int getDefaultDropHeight(String nodeVISUALID) {
+		if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVISUALID) || TimeObservationEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 			return 2;
 		}
 		return -1;
 	}
 
-	private Command dropStateInvariant(StateInvariant stateInvariant, int nodeVISUALID, Point location) {
+	private Command dropStateInvariant(StateInvariant stateInvariant, String nodeVISUALID, Point location) {
 		// an StateInvariant covereds systematically a unique lifeline
 		Lifeline lifeline = stateInvariant.getCovereds().get(0);
 		// Check that the container view is the view of the lifeline
@@ -1077,7 +1073,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the node visualID
 	 * @return the command to drop the destructionEvent on a lifeline if allowed.
 	 */
-	private Command dropDestructionOccurrence(DestructionOccurrenceSpecification destructionOccurence, int nodeVISUALID, Point location) {
+	private Command dropDestructionOccurrence(DestructionOccurrenceSpecification destructionOccurence, String nodeVISUALID, Point location) {
 		// Get all the view of this destructionEvent.
 		List<View> existingViews = DiagramEditPartsUtil.findViews(destructionOccurence, getViewer());
 		// Get the lifelines containing the graphical destructionEvent
@@ -1109,7 +1105,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the location of the drop request
 	 * @return the drop command
 	 */
-	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID, Point location) {
+	private Command dropExecutionSpecification(ExecutionSpecification es, String nodeVISUALID, Point location) {
 		List<View> existingViews = DiagramEditPartsUtil.findViews(es, getViewer());
 		// only allow one view instance of a single element by diagram
 		if (existingViews.isEmpty()) {
@@ -1155,7 +1151,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param location
 	 * @return
 	 */
-	private Command dropCoRegion(CombinedFragment combinedFragment, int nodeVISUALID, Point location) {
+	private Command dropCoRegion(CombinedFragment combinedFragment, String nodeVISUALID, Point location) {
 		List<View> existingViews = DiagramEditPartsUtil.findViews(combinedFragment, getViewer());
 		// only allow one view instance of a single element by diagram
 		if (existingViews.isEmpty()) {
@@ -1274,7 +1270,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the message's visual id
 	 * @return the drop command
 	 */
-	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	private Command dropMessage(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		// Do NOT drop again if existed.
 		List<View> existingViews = DiagramEditPartsUtil.findViews(semanticLink, getViewer());
 		if (!existingViews.isEmpty()) {
@@ -1315,7 +1311,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the composite command
 	 */
-	protected Command getDropLocatedLinkCommand(DropObjectsRequest dropRequest, Element source, Element target, int linkVISUALID, Element semanticLink) {
+	protected Command getDropLocatedLinkCommand(DropObjectsRequest dropRequest, Element source, Element target, String linkVISUALID, Element semanticLink) {
 		// look for editpart
 		GraphicalEditPart sourceEditPart = (GraphicalEditPart) lookForEditPart(source);
 		GraphicalEditPart targetEditPart = (GraphicalEditPart) lookForEditPart(target);
@@ -1526,7 +1522,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the link's visual id
 	 * @return the drop command
 	 */
-	private Command dropGeneralOrdering(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	private Command dropGeneralOrdering(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> sources = SequenceLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = SequenceLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if (!sources.isEmpty() && !targets.isEmpty()) {

@@ -18,7 +18,7 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.part.UMLVisualIDRegis
 public class CustomInteractionOverviewDiagramDragAndDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 
 	@Override
-	public int getNodeVisualID(final View containerView, final EObject domainElement) {
+	public String getNodeVisualID(final View containerView, final EObject domainElement) {
 		return UMLVisualIDRegistry.customGetNodeVisualID(containerView, domainElement);
 	}
 }

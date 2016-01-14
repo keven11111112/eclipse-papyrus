@@ -22,8 +22,8 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages;
-import org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypes;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.ConnectorDurationObservationEditPart;
@@ -70,67 +70,67 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Package_1000 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Package_1000"); //$NON-NLS-1$
+	public static final IElementType Package_1000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Package_1000"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Interaction_8002 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Interaction_8002"); //$NON-NLS-1$
+	public static final IElementType Interaction_8002 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Interaction_8002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Diagram_8016 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Diagram_8016"); //$NON-NLS-1$
+	public static final IElementType Diagram_8016 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Diagram_8016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Lifeline_8001 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Lifeline_8001"); //$NON-NLS-1$
+	public static final IElementType Lifeline_8001 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Lifeline_8001"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Constraint_8004 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Constraint_8004"); //$NON-NLS-1$
+	public static final IElementType Constraint_8004 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Constraint_8004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Comment_8005 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Comment_8005"); //$NON-NLS-1$
+	public static final IElementType Comment_8005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Comment_8005"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservation_8006 = getElementType("org.eclipse.papyrus.uml.diagram.communication.TimeObservation_8006"); //$NON-NLS-1$
+	public static final IElementType TimeObservation_8006 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.TimeObservation_8006"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservation_8007 = getElementType("org.eclipse.papyrus.uml.diagram.communication.DurationObservation_8007"); //$NON-NLS-1$
+	public static final IElementType DurationObservation_8007 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.DurationObservation_8007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Message_8009 = getElementType("org.eclipse.papyrus.uml.diagram.communication.Message_8009"); //$NON-NLS-1$
+	public static final IElementType Message_8009 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.Message_8009"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType CommentAnnotatedElement_8010 = getElementType("org.eclipse.papyrus.uml.diagram.communication.CommentAnnotatedElement_8010"); //$NON-NLS-1$
+	public static final IElementType CommentAnnotatedElement_8010 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.CommentAnnotatedElement_8010"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType ConstraintConstrainedElement_8011 = getElementType("org.eclipse.papyrus.uml.diagram.communication.ConstraintConstrainedElement_8011"); //$NON-NLS-1$
+	public static final IElementType ConstraintConstrainedElement_8011 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.ConstraintConstrainedElement_8011"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType DurationObservationEvent_8012 = getElementType("org.eclipse.papyrus.uml.diagram.communication.DurationObservationEvent_8012"); //$NON-NLS-1$
+	public static final IElementType DurationObservationEvent_8012 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.DurationObservationEvent_8012"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType TimeObservationEvent_8013 = getElementType("org.eclipse.papyrus.uml.diagram.communication.TimeObservationEvent_8013"); //$NON-NLS-1$
+	public static final IElementType TimeObservationEvent_8013 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.communication.TimeObservationEvent_8013"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -167,58 +167,74 @@ public class UMLElementTypes {
 	 */
 	public static synchronized ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if (elements == null) {
+		if(elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
-
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
-
-
 			elements.put(Interaction_8002, UMLPackage.eINSTANCE.getInteraction());
-
-
 			elements.put(Diagram_8016, NotationPackage.eINSTANCE.getDiagram());
-
-
 			elements.put(Lifeline_8001, UMLPackage.eINSTANCE.getLifeline());
-
-
 			elements.put(Constraint_8004, UMLPackage.eINSTANCE.getConstraint());
-
-
 			elements.put(Comment_8005, UMLPackage.eINSTANCE.getComment());
-
-
 			elements.put(TimeObservation_8006, UMLPackage.eINSTANCE.getTimeObservation());
-
-
 			elements.put(DurationObservation_8007, UMLPackage.eINSTANCE.getDurationObservation());
-
-
 			elements.put(Message_8009, UMLPackage.eINSTANCE.getMessage());
-
 			elements.put(CommentAnnotatedElement_8010, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
-
 			elements.put(ConstraintConstrainedElement_8011, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
-
 			elements.put(DurationObservationEvent_8012, UMLPackage.eINSTANCE.getDurationObservation_Event());
-
 			elements.put(TimeObservationEvent_8013, UMLPackage.eINSTANCE.getTimeObservation_Event());
 		}
 		return elements.get(type);
 	}
 
 	/**
-	 * @generated
-	 */
-	private static IElementType getElementType(String id) {
+	* @generated
+	*/
+	private static IElementType getElementTypeByUniqueId(String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
 
 	/**
 	 * @generated
 	 */
+	public static IElementType getElementType(String visualID) {
+		if(visualID != null) {
+			switch(visualID) {
+			case ModelEditPart.VISUAL_ID:
+				return Package_1000;
+			case InteractionEditPart.VISUAL_ID:
+				return Interaction_8002;
+			case ShortCutDiagramEditPart.VISUAL_ID:
+				return Diagram_8016;
+			case LifelineEditPartCN.VISUAL_ID:
+				return Lifeline_8001;
+			case ConstraintEditPartCN.VISUAL_ID:
+				return Constraint_8004;
+			case CommentEditPartCN.VISUAL_ID:
+				return Comment_8005;
+			case TimeObservationEditPartCN.VISUAL_ID:
+				return TimeObservation_8006;
+			case DurationObservationEditPartCN.VISUAL_ID:
+				return DurationObservation_8007;
+			case MessageEditPart.VISUAL_ID:
+				return Message_8009;
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+				return CommentAnnotatedElement_8010;
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+				return ConstraintConstrainedElement_8011;
+			case ConnectorDurationObservationEditPart.VISUAL_ID:
+				return DurationObservationEvent_8012;
+			case ConnectorTimeObservationEditPart.VISUAL_ID:
+				return TimeObservationEvent_8013;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static synchronized boolean isKnownElementType(IElementType elementType) {
-		if (KNOWN_ELEMENT_TYPES == null) {
+		if(KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Interaction_8002);
@@ -234,42 +250,14 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_8012);
 			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_8013);
 		}
-		return KNOWN_ELEMENT_TYPES.contains(elementType);
-	}
-
-	/**
-	 * @generated
-	 */
-	public static IElementType getElementType(int visualID) {
-		switch (visualID) {
-		case ModelEditPart.VISUAL_ID:
-			return Package_1000;
-		case InteractionEditPart.VISUAL_ID:
-			return Interaction_8002;
-		case ShortCutDiagramEditPart.VISUAL_ID:
-			return Diagram_8016;
-		case LifelineEditPartCN.VISUAL_ID:
-			return Lifeline_8001;
-		case ConstraintEditPartCN.VISUAL_ID:
-			return Constraint_8004;
-		case CommentEditPartCN.VISUAL_ID:
-			return Comment_8005;
-		case TimeObservationEditPartCN.VISUAL_ID:
-			return TimeObservation_8006;
-		case DurationObservationEditPartCN.VISUAL_ID:
-			return DurationObservation_8007;
-		case MessageEditPart.VISUAL_ID:
-			return Message_8009;
-		case CommentAnnotatedElementEditPart.VISUAL_ID:
-			return CommentAnnotatedElement_8010;
-		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return ConstraintConstrainedElement_8011;
-		case ConnectorDurationObservationEditPart.VISUAL_ID:
-			return DurationObservationEvent_8012;
-		case ConnectorTimeObservationEditPart.VISUAL_ID:
-			return TimeObservationEvent_8013;
+		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+		if(!result) {
+			IElementType[] supertypes = elementType.getAllSuperTypes();
+			for(int i = 0; !result && (i < supertypes.length); i++) {
+				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
@@ -289,7 +277,7 @@ public class UMLElementTypes {
 		 * @generated
 		 */
 		@Override
-		public IElementType getElementTypeForVisualId(int visualID) {
+		public IElementType getElementTypeForVisualId(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes.getElementType(visualID);
 		}
 
@@ -301,4 +289,18 @@ public class UMLElementTypes {
 			return org.eclipse.papyrus.uml.diagram.communication.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
+
+	/**
+	 * @generated
+	 */
+	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
+		boolean result = subtype == supertype;
+		if(!result) {
+			IElementType[] supertypes = subtype.getAllSuperTypes();
+			for(int i = 0; !result && (i < supertypes.length); i++) {
+				result = supertype == supertypes[i];
+			}
+		}
+		return result;
+	}
 }

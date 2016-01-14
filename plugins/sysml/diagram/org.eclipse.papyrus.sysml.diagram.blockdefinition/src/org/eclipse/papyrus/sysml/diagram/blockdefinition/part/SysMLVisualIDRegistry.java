@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.part;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -111,8 +111,8 @@ public class SysMLVisualIDRegistry {
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
 
 		@Override
-		public int getVisualID(View view) {
-			return 0;
+		public String getVisualID(View view) {
+			return null;
 		}
 
 		@Override
@@ -121,22 +121,22 @@ public class SysMLVisualIDRegistry {
 		}
 
 		@Override
-		public int getNodeVisualID(View containerView, EObject domainElement) {
-			return 0;
+		public String getNodeVisualID(View containerView, EObject domainElement) {
+			return null;
 		}
 
 		@Override
-		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 			return false;
 		}
 
 		@Override
-		public boolean isCompartmentVisualID(int visualID) {
+		public boolean isCompartmentVisualID(String visualID) {
 			return false;
 		}
 
 		@Override
-		public boolean isSemanticLeafVisualID(int visualID) {
+		public boolean isSemanticLeafVisualID(String visualID) {
 			return false;
 		}
 

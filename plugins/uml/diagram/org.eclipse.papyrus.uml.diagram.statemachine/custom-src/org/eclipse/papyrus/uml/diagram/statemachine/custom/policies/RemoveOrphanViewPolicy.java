@@ -19,6 +19,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomRegionDeleteCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 
 /**
  * this policy is used to supress orphan node view in GMF view the prolicy to
@@ -28,7 +31,11 @@ import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
-	public int[] notOrphanNode = { 3002, 2002, 6002 };
+	public String[] notOrphanNode = { 
+		RegionCompartmentEditPart.VISUAL_ID, 
+		StateMachineCompartmentEditPart.VISUAL_ID, 
+		StateCompartmentEditPart.VISUAL_ID 
+	};
 
 	public RemoveOrphanViewPolicy() {
 		super();

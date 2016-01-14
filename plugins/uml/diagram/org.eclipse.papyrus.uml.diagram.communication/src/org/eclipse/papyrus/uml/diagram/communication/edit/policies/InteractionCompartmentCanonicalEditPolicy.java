@@ -108,7 +108,7 @@ public class InteractionCompartmentCanonicalEditPolicy extends CanonicalEditPoli
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		String visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
 		case LifelineEditPartCN.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:

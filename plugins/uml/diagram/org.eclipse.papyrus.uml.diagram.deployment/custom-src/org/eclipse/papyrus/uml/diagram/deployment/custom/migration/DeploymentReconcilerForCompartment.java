@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackagePackageableE
 public class DeploymentReconcilerForCompartment extends ReconcilerForCompartment {
 
 	/** The compartments visual id. */
-	private List<Integer> compartmentsVisualID = Arrays.asList(
+	private List<String> compartmentsVisualID = Arrays.asList(
 			ModelPackageableElementCompartmentEditPart.VISUAL_ID,
 			PackagePackageableElementCompartmentEditPart.VISUAL_ID,
 			DeviceCompositeCompartmentEditPart.VISUAL_ID,
@@ -59,7 +59,7 @@ public class DeploymentReconcilerForCompartment extends ReconcilerForCompartment
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment#getCompartmentsVisualID()
 	 */
 	@Override
-	public List<Integer> getCompartmentsVisualID() {
+	public List<String> getCompartmentsVisualID() {
 		return compartmentsVisualID;
 	}
 

@@ -42,9 +42,9 @@ public class UMLElementTypes {
 
 	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
-	public static final IElementType CallBehaviorAction_5000 = getElementType("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"); //$NON-NLS-1$
+	public static final IElementType CallBehaviorAction_5000 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"); //$NON-NLS-1$
 
-	public static final IElementType CallBehaviorAction_As_InteractionUse_5005 = getElementType("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_As_InteractionUse_5005"); //$NON-NLS-1$
+	public static final IElementType CallBehaviorAction_As_InteractionUse_5005 = getElementTypeByUniqueId("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_As_InteractionUse_5005"); //$NON-NLS-1$
 
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
@@ -156,7 +156,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static IElementType getElementType(final String id) {
+	private static IElementType getElementTypeByUniqueId(final String id) {
 		return ElementTypeRegistry.getInstance().getType(id);
 	}
 
@@ -175,7 +175,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static IElementType getElementType(final int visualID) {
+	public static IElementType getElementType(final String visualID) {
 		switch (visualID) {
 		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 			return CallBehaviorAction_5000;

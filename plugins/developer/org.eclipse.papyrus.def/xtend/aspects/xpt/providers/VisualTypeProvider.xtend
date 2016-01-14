@@ -53,7 +53,7 @@ import xpt.providers.ElementTypes
 			org.eclipse.gmf.runtime.emf.type.core.IElementType result = null;
 			
 			try {
-				result = «elementTypes.qualifiedClassName(it)».getElementType(Integer.parseInt(viewType));
+				result = «elementTypes.qualifiedClassName(it)».getElementType(viewType);
 			} catch (NumberFormatException e) {
 				// Not supported by this diagram
 			}
@@ -66,8 +66,7 @@ import xpt.providers.ElementTypes
 		«generatedMemberComment»
 		«overrideI»
 		public String getNodeType(org.eclipse.gmf.runtime.notation.View parentView, org.eclipse.emf.ecore.EObject element) {
-			int result = «visualIDs.getNodeVisualIDMethodCall(it)»(parentView, element);
-			return (result < 0) ? null : Integer.toString(result);
+			return «visualIDs.getNodeVisualIDMethodCall(it)»(parentView, element);
 		}
 	'''
 
@@ -75,8 +74,7 @@ import xpt.providers.ElementTypes
 		«generatedMemberComment»
 		«overrideI»
 		public String getLinkType(org.eclipse.gmf.runtime.notation.Diagram diagram, org.eclipse.emf.ecore.EObject element) {
-			int result = «visualIDs.getLinkWithClassVisualIDMethodCall(it)»(element);
-			return (result < 0) ? null : Integer.toString(result);
+			return «visualIDs.getLinkWithClassVisualIDMethodCall(it)»(element);
 		}
 	'''
 

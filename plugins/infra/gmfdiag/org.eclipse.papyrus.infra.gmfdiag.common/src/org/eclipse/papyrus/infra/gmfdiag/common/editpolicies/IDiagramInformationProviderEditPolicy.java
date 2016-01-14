@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 
 /**
  *

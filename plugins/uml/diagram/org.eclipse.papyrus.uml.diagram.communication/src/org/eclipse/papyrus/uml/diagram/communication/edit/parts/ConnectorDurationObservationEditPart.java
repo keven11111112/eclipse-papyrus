@@ -16,8 +16,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.communication.edit.policies.ConnectorDurationObservationItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -27,7 +27,7 @@ public class ConnectorDurationObservationEditPart extends ConnectionEditPart imp
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 8012;
+	public static final String VISUAL_ID = "8012";
 
 	/**
 	 * @generated
@@ -42,7 +42,7 @@ public class ConnectorDurationObservationEditPart extends ConnectionEditPart imp
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConnectorDurationObservationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 	}
 
 	/**
@@ -62,6 +62,6 @@ public class ConnectorDurationObservationEditPart extends ConnectionEditPart imp
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

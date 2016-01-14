@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
@@ -82,11 +82,11 @@ public class TestStaticFeatureRepresentation extends TestChildLabel {
 		testToTestStaticoperation(UMLElementTypes.Property_3012, ClassAttributeCompartmentEditPart.VISUAL_ID);
 	}
 
-	protected void testToTestStaticoperation(IElementType type, int containerType) {
+	protected void testToTestStaticoperation(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while (compartment == null && index < getTopEditPart().getChildren().size()) {
-			if ((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View) ((ListCompartmentEditPart) (getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) {
+			if ((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View) ((ListCompartmentEditPart) (getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) {
 				compartment = (ListCompartmentEditPart) (getTopEditPart().getChildren().get(index));
 			}
 			index++;

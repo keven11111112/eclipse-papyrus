@@ -23,6 +23,7 @@ import com.google.inject.Inject
 //This template has been modified in order to remove canonical ediPolicies
 
 @Singleton class Common extends xpt.diagram.editparts.Common {
+	@Inject extension xpt.Common;
 	
 	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
 
@@ -47,5 +48,10 @@ import com.google.inject.Inject
 	«ELSE»
 	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)»());
 	«ENDIF»
+	'''
+
+	override def visualIDConstant(GenCommonBase it) '''
+		«generatedMemberComment»
+		public static final String VISUAL_ID = "«visualID»";
 	'''
 }

@@ -30,20 +30,21 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.CustomInteractionCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.TimingDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.figures.CustomInteractionRectangleFigure;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.InteractionNodeItemSemanticEditPolicyTN;
 import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.timing.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
@@ -56,7 +57,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2;
+	public static final String VISUAL_ID = "2";
 
 	/**
 	 * @generated
@@ -80,9 +81,10 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionNodeItemSemanticEditPolicyTN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
@@ -100,13 +102,16 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case GateEditPart.VISUAL_ID:
-					return new BorderItemResizableEditPolicy();
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case GateEditPart.VISUAL_ID:
+						return new BorderItemResizableEditPolicy();
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -125,7 +130,6 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 		return lep;
 	}
 
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -134,7 +138,6 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -152,38 +155,32 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	public CustomInteractionRectangleFigure getPrimaryShape() {
-		return (CustomInteractionRectangleFigure) primaryShape;
+		return (CustomInteractionRectangleFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InteractionNameEditPart) {
-			((InteractionNameEditPart) childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
+		if(childEditPart instanceof InteractionNameEditPart) {
+			((InteractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
-
-
-		if (childEditPart instanceof InteractionCompartmentEditPartTN) {
+		if(childEditPart instanceof InteractionCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((InteractionCompartmentEditPartTN) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((InteractionCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}
-
-		if (childEditPart instanceof TimeRulerCompartmentEditPartCN) {
+		if(childEditPart instanceof TimeRulerCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((TimeRulerCompartmentEditPartCN) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((TimeRulerCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
-
-
-		if (childEditPart instanceof GateEditPart) {
+		if(childEditPart instanceof GateEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((GateEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((GateEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -193,21 +190,21 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InteractionNameEditPart) {
+		if(childEditPart instanceof InteractionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InteractionCompartmentEditPartTN) {
+		if(childEditPart instanceof InteractionCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			pane.remove(((InteractionCompartmentEditPartTN) childEditPart).getFigure());
+			pane.remove(((InteractionCompartmentEditPartTN)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof TimeRulerCompartmentEditPartCN) {
+		if(childEditPart instanceof TimeRulerCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getTimeRulerContainerFigure();
-			pane.remove(((TimeRulerCompartmentEditPartCN) childEditPart).getFigure());
+			pane.remove(((TimeRulerCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof GateEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof GateEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((GateEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -218,7 +215,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -229,7 +226,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -240,13 +237,13 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof InteractionCompartmentEditPartTN) {
+		if(editPart instanceof InteractionCompartmentEditPartTN) {
 			return getPrimaryShape().getCompartmentFigure();
 		}
-		if (editPart instanceof TimeRulerCompartmentEditPartCN) {
+		if(editPart instanceof TimeRulerCompartmentEditPartCN) {
 			return getPrimaryShape().getTimeRulerContainerFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -257,10 +254,9 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(600, 400);
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(600, 400);
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -273,7 +269,6 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -286,7 +281,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -299,7 +294,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -310,7 +305,7 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -328,8 +323,8 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -341,33 +336,27 @@ public class InteractionEditPartTN extends NamedElementEditPart {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionNameEditPart.VISUAL_ID));
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Lifeline_19) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Lifeline_19)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionCompartmentEditPartTN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Lifeline_20) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Lifeline_20)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InteractionCompartmentEditPartTN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Node_24) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Node_24)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeRulerCompartmentEditPartCN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Node_25) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Node_25)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeRulerCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 }

@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
-import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentAnnotatedElementEditPart;
@@ -65,7 +65,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getSemanticChildren(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getSemanticChildren(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -76,7 +76,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getContainedLinks(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getContainedLinks(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -87,7 +87,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getIncomingLinks(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getIncomingLinks(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -98,7 +98,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getOutgoingLinks(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getOutgoingLinks(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -143,16 +143,16 @@ public class SysMLDiagramUpdater {
 		if (id.equals(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID)) {
 			return getConnector_link_uml_connector_IncomingLink(view);
 		}
-		if (id.equals(Integer.toString(CommentEditPart.VISUAL_ID))) {
+		if (id.equals(CommentEditPart.VISUAL_ID)) {
 			return getComment_2109IncomingLinks(view);
 		}
-		if (id.equals(Integer.toString(CommentEditPartCN.VISUAL_ID))) {
+		if (id.equals(CommentEditPartCN.VISUAL_ID)) {
 			return getComment_3097IncomingLinks(view);
 		}
-		if (id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID))) {
+		if (id.equals(ConstraintEditPart.VISUAL_ID)) {
 			return getConstraint_2114IncomingLinks(view);
 		}
-		if (id.equals(Integer.toString(ConstraintEditPartCN.VISUAL_ID))) {
+		if (id.equals(ConstraintEditPartCN.VISUAL_ID)) {
 			return getConstraint_3120IncomingLinks(view);
 		}
 		return Collections.emptyList();
@@ -185,16 +185,16 @@ public class SysMLDiagramUpdater {
 		if (id.equals(UMLGraphicalTypes.LINK_UML_CONNECTOR_ID)) {
 			return getConnector_link_uml_connector_OutgoingLink(view);
 		}
-		if (id.equals(Integer.toString(CommentEditPart.VISUAL_ID))) {
+		if (id.equals(CommentEditPart.VISUAL_ID)) {
 			return getComment_2109OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(CommentEditPartCN.VISUAL_ID))) {
+		if (id.equals(CommentEditPartCN.VISUAL_ID)) {
 			return getComment_3097OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID))) {
+		if (id.equals(ConstraintEditPart.VISUAL_ID)) {
 			return getConstraint_2114OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(ConstraintEditPartCN.VISUAL_ID))) {
+		if (id.equals(ConstraintEditPartCN.VISUAL_ID)) {
 			return getConstraint_3120OutgoingLinks(view);
 		}
 		return Collections.emptyList();
@@ -441,7 +441,7 @@ public class SysMLDiagramUpdater {
 					continue;
 				}
 				final ConnectableElement src = current.getRole();
-				result.add(new UpdaterLinkDescriptor(src, target, connector, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Connector_4013, -1));
+				result.add(new UpdaterLinkDescriptor(src, target, connector, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Connector_4013, null));
 			}
 		}
 		return result;
@@ -470,7 +470,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UpdaterLinkDescriptor(src, target, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_4010, -1));
+			result.add(new UpdaterLinkDescriptor(src, target, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_4010, null));
 		}
 		return result;
 	}
@@ -513,7 +513,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UpdaterLinkDescriptor(src, dst, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_4010, -1));
+			result.add(new UpdaterLinkDescriptor(src, dst, link, org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes.Dependency_4010, null));
 		}
 		return result;
 	}

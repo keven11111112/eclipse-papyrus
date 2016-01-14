@@ -22,18 +22,17 @@ import org.eclipse.gmf.codegen.gmfgen.FeatureLinkModelFacet
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
+import org.eclipse.gmf.codegen.gmfgen.GenDiagramUpdater
 import org.eclipse.gmf.codegen.gmfgen.GenLink
+import org.eclipse.gmf.codegen.gmfgen.GenNode
 import org.eclipse.gmf.codegen.gmfgen.TypeLinkModelFacet
+import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificDiagramUpdater
 import xpt.Common
 import xpt.Common_qvto
 import xpt.GenModelUtils_qvto
-import xpt.diagram.updater.LinkDescriptor
-import xpt.diagram.updater.NodeDescriptor
 import xpt.diagram.updater.UpdaterLinkType
 import xpt.diagram.updater.Utils_qvto
-import org.eclipse.gmf.codegen.gmfgen.GenDiagramUpdater
-import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 
 // we removed all static modifiers and all private methods becames protected to allow to override method. 
 //see bug421212: [Diagram] Papyrus should provide actions for Show/Hide related links in all diagrams
@@ -42,9 +41,9 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
 	@Inject extension GenModelUtils_qvto;
-	@Inject LinkDescriptor linkDescriptor;
+	@Inject xpt.diagram.updater.LinkDescriptor linkDescriptor;
 	@Inject VisualIDRegistry xptVisualIDRegistry;
-	@Inject NodeDescriptor nodeDescriptor;
+	@Inject xpt.diagram.updater.NodeDescriptor nodeDescriptor;
 
 	@Inject MetaModel xptMetaModel;
 
@@ -91,7 +90,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 			package «packageName(it)»;
 			
 			«generatedClassComment»
-			public class «className(it)» implements  org.eclipse.gmf.tooling.runtime.update.DiagramUpdater {
+			public class «className(it)» implements  org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater {
 			«classSingleton(it)»
 			«_constructor(it)»
 			«isShortcutOrphaned(it)»
@@ -216,7 +215,7 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 							{ «xptMetaModel.DeclareAndAssign(childMetaFeature.typeGenClass, 'childElement', 'modelElement',
 			it.getModelElementType(), childMetaFeature)»
 						«ENDIF»
-						int visualID = «xptVisualIDRegistry.getNodeVisualIDMethodCall(it.diagram)»(view, «xptMetaModel.
+						String visualID = «xptVisualIDRegistry.getNodeVisualIDMethodCall(it.diagram)»(view, «xptMetaModel.
 			DowncastToEObject(childMetaFeature.typeGenClass, 'childElement')»);
 						«FOR next : getSemanticChildren(it, childMetaFeature)»
 							«checkChildElementVisualID(next, null != childMetaFeature && childMetaFeature.listType)»
@@ -282,10 +281,13 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 			««« remove static modifier
 	public «listOfNodeDescriptors» getSemanticChildren(org.eclipse.gmf.runtime.notation.View view) {
 			«IF semanticContainers.notEmpty»
-				switch («xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»(view)) {
-					«FOR next : semanticContainers»
-						«getSemanticChildrenCase(next)»
-					«ENDFOR»
+				String vid = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»(view);
+				if (vid != null) {
+					switch (vid) {
+						«FOR next : semanticContainers»
+							«getSemanticChildrenCase(next)»
+						«ENDFOR»
+					}
 				}
 			«ENDIF»
 			return «newEmptyList()»;
@@ -309,10 +311,13 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 		««« remove static modifier
 	public «listOfLinkDescriptors» get«linkType.linkMethodSuffix»Links(org.eclipse.gmf.runtime.notation.View view) {
 			«IF linkContainers.notEmpty»
-				switch («xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view)) {
-					«FOR next : linkContainers»
-						«getContainedLinksCase(next, linkType)»
-					«ENDFOR»
+				String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view);
+				if (vid != null) {
+					switch (vid) {
+						«FOR next : linkContainers»
+							«getContainedLinksCase(next, linkType)»
+						«ENDFOR»
+					}
 				}
 			«ENDIF»
 			return «newEmptyList»;
@@ -322,4 +327,22 @@ import org.eclipse.papyrus.papyrusgmfgenextension.CustomDiagramUpdaterSingleton
 	override runtimeTypedInstance(GenDiagramUpdater it) '''
 		'''
 
+	/**
+	 * XXX: [MG] suspicious code inside, EVEN after I moved ", " into the IF, there still may be problem if inner IF condition is not met.
+	 * Need to check with case when it.modelFacet.childMetaFeature == null    
+	 */
+	override def checkChildElementVisualID(GenNode it, Boolean inLoop) '''
+	if («VisualIDRegistry::visualID(it)».equals(visualID)) {
+		result.add(new «nodeDescriptor.qualifiedClassName(it.getDiagram().diagramUpdater)»(«IF null != modelFacet.childMetaFeature»«xptMetaModel.DowncastToEObject(modelFacet.childMetaFeature.typeGenClass, 'childElement')», «ENDIF»visualID));
+	«IF inLoop»
+		continue;
+	«ENDIF»
+	}
+	'''
+
+	override def checkLinkVisualID(TypeLinkModelFacet it, GenLink genLink, boolean inLoop) '''
+	if (!«VisualIDRegistry::visualID(genLink)».equals(«xptVisualIDRegistry.getLinkWithClassVisualIDMethodCall(genLink.diagram)»(«xptMetaModel.DowncastToEObject(metaClass, 'link')»))) {
+		«stopLinkProcessing(inLoop)»
+	}
+	'''
 }

@@ -67,7 +67,7 @@ public class RectangleToLollipopCommand extends AbstractTransactionalCommand {
 	 * @param elementID
 	 * @return return the element type from the id
 	 */
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
@@ -77,7 +77,7 @@ public class RectangleToLollipopCommand extends AbstractTransactionalCommand {
 	 * @param domainElement
 	 * @return get the visual id from the domain element
 	 */
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 

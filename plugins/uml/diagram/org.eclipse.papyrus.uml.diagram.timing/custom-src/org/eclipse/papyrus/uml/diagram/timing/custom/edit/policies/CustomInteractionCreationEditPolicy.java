@@ -50,7 +50,7 @@ public class CustomInteractionCreationEditPolicy extends PapyrusCreationEditPoli
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
 		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
-			if (Integer.toString(GateEditPart.VISUAL_ID).equals(semanticHint)) {
+			if (GateEditPart.VISUAL_ID.equals(semanticHint)) {
 				return getCreateGateCommand(request, superCommand);
 			}
 		}

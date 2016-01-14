@@ -43,11 +43,11 @@ public abstract class TestNested extends org.eclipse.papyrus.uml.diagram.tests.c
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToCreateAChildLabel(IElementType type, int containerType) {
+	public void testToCreateAChildLabel(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getChildEditPart().getChildren().size()) {
-			if((getChildEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getChildEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+			if((getChildEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getChildEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart)(getChildEditPart().getChildren().get(index));
 			}
 			index++;
@@ -78,12 +78,12 @@ public abstract class TestNested extends org.eclipse.papyrus.uml.diagram.tests.c
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToCreateANode(IElementType type, int containerType) {
+	public void testToCreateANode(IElementType type, String containerType) {
 		ResizableCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
 			if((getTopEditPart().getChildren().get(index)) instanceof ResizableCompartmentEditPart) {
-				if((((View)((ResizableCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+				if((((View)((ResizableCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 					compartment = (ResizableCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 				}
 			}
@@ -173,7 +173,7 @@ public abstract class TestNested extends org.eclipse.papyrus.uml.diagram.tests.c
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToManageTopNode(IElementType parentNodeType, IElementType topNodeType, IElementType type, int containerChilType, int containerType) {
+	public void testToManageTopNode(IElementType parentNodeType, IElementType topNodeType, IElementType type, String containerChilType, String containerType) {
 		//Parent Node
 		testToCreateATopNode(parentNodeType);
 		//Top Node

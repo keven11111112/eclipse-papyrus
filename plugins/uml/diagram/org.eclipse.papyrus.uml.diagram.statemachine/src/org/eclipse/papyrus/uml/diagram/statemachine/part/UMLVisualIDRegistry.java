@@ -11,12 +11,11 @@
  */
 package org.eclipse.papyrus.uml.diagram.statemachine.part;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
@@ -104,12 +103,12 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getVisualID(View view) {
-		if (view instanceof Diagram) {
-			if (PackageEditPart.MODEL_ID.equals(view.getType())) {
+	public static String getVisualID(View view) {
+		if(view instanceof Diagram) {
+			if(PackageEditPart.MODEL_ID.equals(view.getType())) {
 				return PackageEditPart.VISUAL_ID;
 			} else {
-				return -1;
+				return null;
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -120,12 +119,12 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getModelID(View view) {
 		View diagram = view.getDiagram();
-		while (view != diagram) {
+		while(view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-			if (annotation != null) {
+			if(annotation != null) {
 				return annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
-			view = (View) view.eContainer();
+			view = (View)view.eContainer();
 		}
 		return diagram != null ? diagram.getType() : null;
 	}
@@ -133,433 +132,430 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getVisualID(String type) {
-		try {
-			return Integer.parseInt(type);
-		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
-			}
+	public static String getVisualID(String type) {
+		return type;
+	}
+
+	/**
+	* @generated
+	*/
+	public static String getType(String visualID) {
+		return visualID;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getDiagramVisualID(EObject domainElement) {
+		if(domainElement == null) {
+			return null;
 		}
-		return -1;
+		return PackageEditPart.VISUAL_ID;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static String getType(int visualID) {
-		return Integer.toString(visualID);
-	}
-
-	/**
-	 * @generated
-	 */
-	public static int getDiagramVisualID(EObject domainElement) {
-		if (domainElement == null) {
-			return -1;
-		}
-		return 1000;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static int getNodeVisualID(View containerView, EObject domainElement) {
-		if (domainElement == null) {
-			return -1;
+	public static String getNodeVisualID(View containerView, EObject domainElement) {
+		if(domainElement == null) {
+			return null;
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
-			return -1;
+		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+			return null;
 		}
-		int containerVisualID;
-		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerVisualID;
+		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
 			} else {
-				return -1;
+				return null;
 			}
 		}
-		switch (containerVisualID) {
-		case PackageEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
-				return StateMachineEditPart.VISUAL_ID;
+		if(containerVisualID != null) {
+			switch(containerVisualID) {
+			case PackageEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())) {
+					return StateMachineEditPart.VISUAL_ID;
+				}
+				break;
+			case StateMachineEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateEntryPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateExitPointEditPart.VISUAL_ID;
+				}
+				break;
+			case StateEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_690((Behavior)domainElement)) {
+					return EntryStateBehaviorEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_691((Behavior)domainElement)) {
+					return DoActivityStateBehaviorStateEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_692((Behavior)domainElement)) {
+					return ExitStateBehaviorEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
+					return InternalTransitionEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
+					return RegionEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateEntryPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateExitPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
+					return ConnectionPointReferenceEditPart.VISUAL_ID;
+				}
+				break;
+			case RegionCompartmentEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_8000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateInitialEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_9000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateJoinEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_10000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateForkEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_11000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateChoiceEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_12000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateJunctionEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_13000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateShallowHistoryEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_14000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateDeepHistoryEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_15000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateTerminateEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getFinalState().isSuperTypeOf(domainElement.eClass())) {
+					return FinalStateEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())) {
+					return StateEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateEntryPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateExitPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+					return CommentEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return ConstraintEditPart.VISUAL_ID;
+				}
+				break;
+			case StateMachineCompartmentEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
+					return RegionEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateEntryPointEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate)domainElement)) {
+					return PseudostateExitPointEditPart.VISUAL_ID;
+				}
+				break;
+			case StateCompartmentEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
+					return RegionEditPart.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
+					return ConnectionPointReferenceEditPart.VISUAL_ID;
+				}
+				break;
 			}
-			break;
-		case StateMachineEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateEntryPointEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateExitPointEditPart.VISUAL_ID;
-			}
-			break;
-		case StateEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_690((Behavior) domainElement)) {
-				return EntryStateBehaviorEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_691((Behavior) domainElement)) {
-				return DoActivityStateBehaviorStateEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getBehavior().isSuperTypeOf(domainElement.eClass()) && isBehavior_692((Behavior) domainElement)) {
-				return ExitStateBehaviorEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
-				return InternalTransitionEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
-				return RegionEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateEntryPointEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateExitPointEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
-				return ConnectionPointReferenceEditPart.VISUAL_ID;
-			}
-			break;
-		case RegionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_8000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateInitialEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_9000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateJoinEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_10000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateForkEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_11000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateChoiceEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_12000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateJunctionEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_13000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateShallowHistoryEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_14000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateDeepHistoryEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_15000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateTerminateEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getFinalState().isSuperTypeOf(domainElement.eClass())) {
-				return FinalStateEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())) {
-				return StateEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateEntryPointEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateExitPointEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
-				return CommentEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
-				return ConstraintEditPart.VISUAL_ID;
-			}
-			break;
-		case StateMachineCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
-				return RegionEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_16000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateEntryPointEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(domainElement.eClass()) && isPseudostate_17000(containerView, (Pseudostate) domainElement)) {
-				return PseudostateExitPointEditPart.VISUAL_ID;
-			}
-			break;
-		case StateCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(domainElement.eClass())) {
-				return RegionEditPart.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getConnectionPointReference().isSuperTypeOf(domainElement.eClass())) {
-				return ConnectionPointReferenceEditPart.VISUAL_ID;
-			}
-			break;
 		}
-		return -1;
+		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static boolean canCreateNode(View containerView, int nodeVisualID) {
+	* @generated
+	*/
+	public static boolean canCreateNode(View containerView, String nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getModelID(containerView);
-		if (!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
-		int containerVisualID;
-		if (PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerVisualID;
+		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = PackageEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
-		switch (containerVisualID) {
-		case PackageEditPart.VISUAL_ID:
-			if (StateMachineEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
+		if(containerVisualID != null) {
+			switch(containerVisualID) {
+			case PackageEditPart.VISUAL_ID:
+				if(StateMachineEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateMachineEditPart.VISUAL_ID:
+				if(StateMachineNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(StateMachineCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case RegionEditPart.VISUAL_ID:
+				if(RegionCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case FinalStateEditPart.VISUAL_ID:
+				if(FinalStateFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(FinalStateStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateEditPart.VISUAL_ID:
+				if(StateNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(StateFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(StateCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(EntryStateBehaviorEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(DoActivityStateBehaviorStateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ExitStateBehaviorEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(InternalTransitionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(RegionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConnectionPointReferenceEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateInitialEditPart.VISUAL_ID:
+				if(PseudostateInitialFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateInitialStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateJoinEditPart.VISUAL_ID:
+				if(PseudostateJoinFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateJoinStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateForkEditPart.VISUAL_ID:
+				if(PseudostateForkNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateForkStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateChoiceEditPart.VISUAL_ID:
+				if(PseudostateChoiceFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateChoiceStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateJunctionEditPart.VISUAL_ID:
+				if(PseudostateJunctionFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateJunctionStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateShallowHistoryEditPart.VISUAL_ID:
+				if(PseudostateShallowHistoryFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateDeepHistoryEditPart.VISUAL_ID:
+				if(PseudostateDeepHistoryFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateTerminateEditPart.VISUAL_ID:
+				if(PseudostateTerminateFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateTerminateStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateEntryPointEditPart.VISUAL_ID:
+				if(PseudostateEntryPointFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case PseudostateExitPointEditPart.VISUAL_ID:
+				if(PseudostateExitPointFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ConnectionPointReferenceEditPart.VISUAL_ID:
+				if(ConnectionPointReferenceNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConnectionPointReferenceStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case CommentEditPart.VISUAL_ID:
+				if(CommentBodyEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ConstraintEditPart.VISUAL_ID:
+				if(ConstraintNameLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConstraintBodyEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case RegionCompartmentEditPart.VISUAL_ID:
+				if(PseudostateInitialEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateJoinEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateForkEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateChoiceEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateJunctionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateShallowHistoryEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateDeepHistoryEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateTerminateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(FinalStateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(StateEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(CommentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConstraintEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateMachineCompartmentEditPart.VISUAL_ID:
+				if(RegionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateEntryPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(PseudostateExitPointEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case StateCompartmentEditPart.VISUAL_ID:
+				if(RegionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConnectionPointReferenceEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case TransitionEditPart.VISUAL_ID:
+				if(TransitionNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(TransitionGuardEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(TransitionStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case GeneralizationEditPart.VISUAL_ID:
+				if(GeneralizationStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ContextLinkEditPart.VISUAL_ID:
+				if(ContextLinkAppliedStereotypeEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
 			}
-			break;
-		case StateMachineEditPart.VISUAL_ID:
-			if (StateMachineNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (StateMachineCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateEntryPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case RegionEditPart.VISUAL_ID:
-			if (RegionCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case FinalStateEditPart.VISUAL_ID:
-			if (FinalStateFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (FinalStateStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case StateEditPart.VISUAL_ID:
-			if (StateNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (StateFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (StateCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (EntryStateBehaviorEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (DoActivityStateBehaviorStateEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ExitStateBehaviorEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InternalTransitionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (RegionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateEntryPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConnectionPointReferenceEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateInitialEditPart.VISUAL_ID:
-			if (PseudostateInitialFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateInitialStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateJoinEditPart.VISUAL_ID:
-			if (PseudostateJoinFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateJoinStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateForkEditPart.VISUAL_ID:
-			if (PseudostateForkNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateForkStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateChoiceEditPart.VISUAL_ID:
-			if (PseudostateChoiceFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateChoiceStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateJunctionEditPart.VISUAL_ID:
-			if (PseudostateJunctionFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateJunctionStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateShallowHistoryEditPart.VISUAL_ID:
-			if (PseudostateShallowHistoryFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateShallowHistoryStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateDeepHistoryEditPart.VISUAL_ID:
-			if (PseudostateDeepHistoryFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateDeepHistoryStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateTerminateEditPart.VISUAL_ID:
-			if (PseudostateTerminateFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateTerminateStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateEntryPointEditPart.VISUAL_ID:
-			if (PseudostateEntryPointFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateEntryPointStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PseudostateExitPointEditPart.VISUAL_ID:
-			if (PseudostateExitPointFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateExitPointStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ConnectionPointReferenceEditPart.VISUAL_ID:
-			if (ConnectionPointReferenceNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConnectionPointReferenceStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case CommentEditPart.VISUAL_ID:
-			if (CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ConstraintEditPart.VISUAL_ID:
-			if (ConstraintNameLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConstraintBodyEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case RegionCompartmentEditPart.VISUAL_ID:
-			if (PseudostateInitialEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateJoinEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateForkEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateChoiceEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateJunctionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateShallowHistoryEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateDeepHistoryEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateTerminateEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (FinalStateEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (StateEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateEntryPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (CommentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConstraintEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case StateMachineCompartmentEditPart.VISUAL_ID:
-			if (RegionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateEntryPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (PseudostateExitPointEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case StateCompartmentEditPart.VISUAL_ID:
-			if (RegionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConnectionPointReferenceEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case TransitionEditPart.VISUAL_ID:
-			if (TransitionNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (TransitionGuardEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (TransitionStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case GeneralizationEditPart.VISUAL_ID:
-			if (GeneralizationStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ContextLinkEditPart.VISUAL_ID:
-			if (ContextLinkAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		}
 		return false;
 	}
@@ -567,17 +563,17 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getLinkWithClassVisualID(EObject domainElement) {
-		if (domainElement == null) {
-			return -1;
+	public static String getLinkWithClassVisualID(EObject domainElement) {
+		if(domainElement == null) {
+			return null;
 		}
-		if (UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
+		if(UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
 			return TransitionEditPart.VISUAL_ID;
 		}
-		if (UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
+		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
-		return -1;
+		return null;
 	}
 
 	/**
@@ -595,9 +591,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_8000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is an initial
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.INITIAL_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.INITIAL_LITERAL))
 				return true;
 		}
 		return false;
@@ -608,9 +604,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_9000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a join
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.JOIN_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.JOIN_LITERAL))
 				return true;
 		}
 		return false;
@@ -621,9 +617,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_10000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a fork
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.FORK_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.FORK_LITERAL))
 				return true;
 		}
 		return false;
@@ -634,9 +630,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_11000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a choice
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.CHOICE_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.CHOICE_LITERAL))
 				return true;
 		}
 		return false;
@@ -647,9 +643,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_12000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a junction
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.JUNCTION_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.JUNCTION_LITERAL))
 				return true;
 		}
 		return false;
@@ -660,9 +656,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_13000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a shallowHistory
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.SHALLOW_HISTORY_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.SHALLOW_HISTORY_LITERAL))
 				return true;
 		}
 		return false;
@@ -673,9 +669,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_14000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a deepHistory
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.DEEP_HISTORY_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.DEEP_HISTORY_LITERAL))
 				return true;
 		}
 		return false;
@@ -686,9 +682,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_15000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is a terminate
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.TERMINATE_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.TERMINATE_LITERAL))
 				return true;
 		}
 		return false;
@@ -699,9 +695,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_16000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is an entryPoint
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.ENTRY_POINT_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.ENTRY_POINT_LITERAL))
 				return true;
 		}
 		return false;
@@ -712,9 +708,9 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isPseudostate_17000(View containerView, Pseudostate domainElement) {
 		// Test if the pseudostate is an exitPoint
-		if (domainElement instanceof Pseudostate) {
-			PseudostateKind kind = ((Pseudostate) domainElement).getKind();
-			if (kind.equals(PseudostateKind.EXIT_POINT_LITERAL))
+		if(domainElement instanceof Pseudostate) {
+			PseudostateKind kind = ((Pseudostate)domainElement).getKind();
+			if(kind.equals(PseudostateKind.EXIT_POINT_LITERAL))
 				return true;
 		}
 		return false;
@@ -725,7 +721,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isBehavior_690(Behavior domainElement) {
 		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
@@ -733,7 +729,7 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isBehavior_691(Behavior domainElement) {
 		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
@@ -741,32 +737,32 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isBehavior_692(Behavior domainElement) {
 		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getBehavior(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
-	 * @generated
-	 */
-	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
-		if (candidate == -1) {
+	* @generated
+	*/
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
+		if(candidate == null) {
 			//unrecognized id is always bad
 			return false;
 		}
-		int basic = getNodeVisualID(containerView, domainElement);
-		return basic == candidate;
+		String basic = getNodeVisualID(containerView, domainElement);
+		return candidate.equals(basic);
 	}
 
 	/**
 	 * @generated
 	 */
-	public static boolean isCompartmentVisualID(int visualID) {
-		switch (visualID) {
-		case RegionCompartmentEditPart.VISUAL_ID:
-		case StateMachineCompartmentEditPart.VISUAL_ID:
-		case StateCompartmentEditPart.VISUAL_ID:
-			return true;
-		default:
-			break;
+	public static boolean isCompartmentVisualID(String visualID) {
+		if(visualID != null) {
+			switch(visualID) {
+			case RegionCompartmentEditPart.VISUAL_ID:
+			case StateMachineCompartmentEditPart.VISUAL_ID:
+			case StateCompartmentEditPart.VISUAL_ID:
+				return true;
+			}
 		}
 		return false;
 	}
@@ -774,31 +770,31 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static boolean isSemanticLeafVisualID(int visualID) {
-		switch (visualID) {
-		case PackageEditPart.VISUAL_ID:
-			return false;
-		case CommentEditPart.VISUAL_ID:
-		case ConstraintEditPart.VISUAL_ID:
-		case InternalTransitionEditPart.VISUAL_ID:
-		case EntryStateBehaviorEditPart.VISUAL_ID:
-		case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
-		case ExitStateBehaviorEditPart.VISUAL_ID:
-		case FinalStateEditPart.VISUAL_ID:
-		case PseudostateInitialEditPart.VISUAL_ID:
-		case PseudostateJoinEditPart.VISUAL_ID:
-		case PseudostateForkEditPart.VISUAL_ID:
-		case PseudostateChoiceEditPart.VISUAL_ID:
-		case PseudostateJunctionEditPart.VISUAL_ID:
-		case PseudostateShallowHistoryEditPart.VISUAL_ID:
-		case PseudostateDeepHistoryEditPart.VISUAL_ID:
-		case PseudostateTerminateEditPart.VISUAL_ID:
-		case PseudostateEntryPointEditPart.VISUAL_ID:
-		case PseudostateExitPointEditPart.VISUAL_ID:
-		case ConnectionPointReferenceEditPart.VISUAL_ID:
-			return true;
-		default:
-			break;
+	public static boolean isSemanticLeafVisualID(String visualID) {
+		if(visualID != null) {
+			switch(visualID) {
+			case PackageEditPart.VISUAL_ID:
+				return false;
+			case CommentEditPart.VISUAL_ID:
+			case ConstraintEditPart.VISUAL_ID:
+			case InternalTransitionEditPart.VISUAL_ID:
+			case EntryStateBehaviorEditPart.VISUAL_ID:
+			case DoActivityStateBehaviorStateEditPart.VISUAL_ID:
+			case ExitStateBehaviorEditPart.VISUAL_ID:
+			case FinalStateEditPart.VISUAL_ID:
+			case PseudostateInitialEditPart.VISUAL_ID:
+			case PseudostateJoinEditPart.VISUAL_ID:
+			case PseudostateForkEditPart.VISUAL_ID:
+			case PseudostateChoiceEditPart.VISUAL_ID:
+			case PseudostateJunctionEditPart.VISUAL_ID:
+			case PseudostateShallowHistoryEditPart.VISUAL_ID:
+			case PseudostateDeepHistoryEditPart.VISUAL_ID:
+			case PseudostateTerminateEditPart.VISUAL_ID:
+			case PseudostateEntryPointEditPart.VISUAL_ID:
+			case PseudostateExitPointEditPart.VISUAL_ID:
+			case ConnectionPointReferenceEditPart.VISUAL_ID:
+				return true;
+			}
 		}
 		return false;
 	}
@@ -807,11 +803,12 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
 		/**
 		 * @generated
 		 */
 		@Override
-		public int getVisualID(View view) {
+		public String getVisualID(View view) {
 			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getVisualID(view);
 		}
 
@@ -827,7 +824,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public int getNodeVisualID(View containerView, EObject domainElement) {
+		public String getNodeVisualID(View containerView, EObject domainElement) {
 			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
@@ -835,7 +832,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
@@ -843,7 +840,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public boolean isCompartmentVisualID(int visualID) {
+		public boolean isCompartmentVisualID(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
 		}
 
@@ -851,7 +848,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public boolean isSemanticLeafVisualID(int visualID) {
+		public boolean isSemanticLeafVisualID(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};

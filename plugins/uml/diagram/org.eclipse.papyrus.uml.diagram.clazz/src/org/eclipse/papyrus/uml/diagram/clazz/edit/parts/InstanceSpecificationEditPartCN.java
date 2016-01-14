@@ -66,7 +66,7 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3020;
+	public static final String VISUAL_ID = "3020";
 
 	/**
 	 * @generated
@@ -81,7 +81,7 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	/**
 	 * @generated
 	 */
-	public InstanceSpecificationEditPartCN(final View view) {
+	public InstanceSpecificationEditPartCN(View view) {
 		super(view);
 	}
 
@@ -93,9 +93,7 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
@@ -110,37 +108,40 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		final org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			@Override
-			protected EditPolicy createChildEditPolicy(final EditPart child) {
-				final View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case InstanceSpecificationFloatingNameEditPartCN.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case InstanceSpecificationFloatingNameEditPartCN.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							final MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
 			@Override
-			protected Command getMoveChildrenCommand(final Request request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
 			@Override
-			protected Command getCreateCommand(final CreateRequest request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 		};
@@ -153,22 +154,21 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 **/
 	@Override
-	protected void handleNotificationEvent(final Notification event) {
+	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
-			final Object notifier = event.getNotifier();
-			final List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -186,38 +186,36 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 */
 	@Override
 	public InstanceSpecificationFigure getPrimaryShape() {
-		return (InstanceSpecificationFigure) primaryShape;
+		return (InstanceSpecificationFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean addFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof InstanceSpecificationNameEditPartCN) {
-			((InstanceSpecificationNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof InstanceSpecificationNameEditPartCN) {
+			((InstanceSpecificationNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
-			final IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((InstanceSpecificationSlotCompartmentEditPartCN) childEditPart).getFigure());
+		if(childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
+			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((InstanceSpecificationSlotCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean removeFixedChild(final EditPart childEditPart) {
-		if (childEditPart instanceof InstanceSpecificationNameEditPartCN) {
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof InstanceSpecificationNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
-			final IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
-			pane.remove(((InstanceSpecificationSlotCompartmentEditPartCN) childEditPart).getFigure());
+		if(childEditPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
+			IFigure pane = getPrimaryShape().getSlotCompartmentFigure();
+			pane.remove(((InstanceSpecificationSlotCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -227,8 +225,8 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected void addChildVisual(final EditPart childEditPart, final int index) {
-		if (addFixedChild(childEditPart)) {
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -238,8 +236,8 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected void removeChildVisual(final EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+	protected void removeChildVisual(EditPart childEditPart) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -249,11 +247,11 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected IFigure getContentPaneFor(final IGraphicalEditPart editPart) {
-		if (editPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof InstanceSpecificationSlotCompartmentEditPartCN) {
 			return getPrimaryShape().getSlotCompartmentFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -263,9 +261,9 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected void addBorderItem(final IFigure borderItemContainer, final IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof InstanceSpecificationFloatingNameEditPartCN) {
-			final IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof InstanceSpecificationFloatingNameEditPartCN) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
@@ -277,7 +275,7 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		final RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 100);
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 100);
 		return result;
 	}
 
@@ -292,7 +290,6 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -304,9 +301,9 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected IFigure setupContentPane(final IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
-			final ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
+	protected IFigure setupContentPane(IFigure nodeShape) {
+		if(nodeShape.getLayoutManager() == null) {
+			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
 		}
@@ -318,7 +315,7 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -328,8 +325,8 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected void setForegroundColor(final Color color) {
-		if (primaryShape != null) {
+	protected void setForegroundColor(Color color) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -338,7 +335,7 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected void setLineWidth(final int width) {
+	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
 
@@ -346,9 +343,9 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	protected void setLineType(final int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+	protected void setLineType(int style) {
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -364,11 +361,11 @@ public class InstanceSpecificationEditPartCN extends RoundedCompartmentEditPart 
 	 * @generated
 	 */
 	@Override
-	public EditPart getTargetEditPart(final Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			final CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			final IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Slot_3030)) {
+	public EditPart getTargetEditPart(Request request) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Slot_3030)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID));
 			}
 		}

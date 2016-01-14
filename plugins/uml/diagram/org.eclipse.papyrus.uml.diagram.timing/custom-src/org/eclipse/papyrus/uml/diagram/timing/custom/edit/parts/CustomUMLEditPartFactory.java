@@ -55,7 +55,7 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 	public EditPart createEditPart(final EditPart context, final Object model) {
 		if (model instanceof View) {
 			final View view = (View) model;
-			final int visualID = UMLVisualIDRegistry.getVisualID(view);
+			final String visualID = UMLVisualIDRegistry.getVisualID(view);
 			switch (visualID) {
 			case TimingDiagramEditPart.VISUAL_ID:// 1
 				return new CustomTimingDiagramEditPart(view);

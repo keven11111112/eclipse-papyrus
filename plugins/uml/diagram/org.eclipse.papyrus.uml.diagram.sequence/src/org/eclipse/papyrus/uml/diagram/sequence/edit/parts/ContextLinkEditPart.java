@@ -20,7 +20,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 8500;
+	public static final String VISUAL_ID = "8500";
 
 	/**
 	 * @generated
@@ -44,9 +44,8 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintContextAppliedStereotypeEditPart) {
-			((ConstraintContextAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ConstraintContextAppliedStereotypeEditPart) {
+			((ConstraintContextAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -56,7 +55,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -66,7 +65,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintContextAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ConstraintContextAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -77,7 +76,7 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -101,6 +100,6 @@ public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBran
 	 */
 	@Override
 	public CustomContextLinkFigure getPrimaryShape() {
-		return (CustomContextLinkFigure) getFigure();
+		return (CustomContextLinkFigure)getFigure();
 	}
 }

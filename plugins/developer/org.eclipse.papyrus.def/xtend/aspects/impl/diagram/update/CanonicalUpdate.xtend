@@ -121,10 +121,13 @@ import xpt.editor.VisualIDRegistry
 			}
 			java.util.LinkedList<«linkDescriptor.qualifiedClassName(it.editorGen.diagramUpdater)»> result = new java.util.LinkedList<«linkDescriptor.
 				qualifiedClassName(it.editorGen.diagramUpdater)»>();
-			switch («xptVisualIDRegistry.getVisualIDMethodCall(it)»(view)) {
-				«FOR se : it.allSemanticElements»
-				«caseSemanticElement(se)»
-				«ENDFOR»
+			String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(view);
+			if (vid != null) {
+				switch (vid) {
+					«FOR se : it.allSemanticElements»
+					«caseSemanticElement(se)»
+					«ENDFOR»
+				}
 			}
 			for (java.util.Iterator<?> children = view.getChildren().iterator(); children.hasNext();) {
 				result.addAll(collectAllLinks((org.eclipse.gmf.runtime.notation.View) children.next(), domain2NotationMap));

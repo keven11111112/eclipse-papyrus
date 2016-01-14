@@ -12,11 +12,6 @@
 package org.eclipse.papyrus.uml.diagram.statemachine.preferences;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.ConnectionsPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.PrintingPreferencePage;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramEditorPlugin;
 
@@ -36,7 +31,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		DiagramConnectionsPreferencePage.initDefaults(store);
 		DiagramPrintingPreferencePage.initDefaults(store);
 		DiagramRulersAndGridPreferencePage.initDefaults(store);
-
 	}
 
 	/**

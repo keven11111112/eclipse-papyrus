@@ -255,9 +255,9 @@ public class CustomTimelineCompartmentLayoutEditPolicy extends AbstractTimelineL
 	@Override
 	protected EditPolicy createChildEditPolicy(final EditPart child) {
 		final View childView = (View) child.getModel();
-		final int visualID = UMLVisualIDRegistry.getVisualID(childView);
+		final String visualID = UMLVisualIDRegistry.getVisualID(childView);
 		// make these EditParts non-resizable
-		if (visualID == FullStateInvariantEditPartCN.VISUAL_ID || OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || visualID == FullStateInvariantVerticalLineEditPart.VISUAL_ID || TimeElementUtils.isTimeElementEditPart(visualID)
+		if (FullStateInvariantEditPartCN.VISUAL_ID.equals(visualID) || OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || FullStateInvariantVerticalLineEditPart.VISUAL_ID.equals(visualID) || TimeElementUtils.isTimeElementEditPart(visualID)
 				|| GeneralOrderingUtils.isGeneralOrderingEditPart(visualID)) {
 			return createNonResizableEditPolicy();
 		}

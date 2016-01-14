@@ -21,8 +21,8 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 	public EditPart createEditPart(final EditPart context, final Object model) {
 		if (model instanceof View) {
 			final View view = (View) model;
-			int visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
-			if (visualID != -1) {
+			String visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
+			if (visualID != null) {
 				switch (visualID) {
 				case CustomActivityEditPartTN.VISUAL_ID:// 2001
 					return new CustomActivityEditPartTN(view);
@@ -39,14 +39,8 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 					// org.eclipse.gmf.runtime.diagram.ui.editpartProviders
 				}
 			} else {
-				visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
-				switch (visualID) {
-				case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
-					return new CallBehaviorActionAsInteractionEditPart(view);// 5000
-				case CallBehaviorActionEditPart.VISUAL_ID: // 3008
-				case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:// 5005
-					return new CustomInteractionUseEditPartCN(view);
-				default:
+				if (view.getType().equals(InteractionOverviewDiagramEditPart.MODEL_ID)) {
+					return new InteractionOverviewDiagramEditPart(view);
 				}
 			}
 		}

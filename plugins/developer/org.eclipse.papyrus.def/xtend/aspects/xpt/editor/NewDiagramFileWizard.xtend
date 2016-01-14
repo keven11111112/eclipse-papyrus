@@ -141,8 +141,8 @@ import xpt.CodeStyle
 				protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(
 						org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info)
 							throws org.eclipse.core.commands.ExecutionException {
-					int diagramVID = «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(diagramRootElementSelectionPage.getModelElement());
-					if (diagramVID != «VisualIDRegistry::visualID(it)») {
+					String diagramVID = «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(diagramRootElementSelectionPage.getModelElement());
+					if (diagramVID.equals(«VisualIDRegistry::visualID(it)»)) {
 						return org.eclipse.gmf.runtime.common.core.command.CommandResult.newErrorCommandResult(
 							«xptExternalizer.accessorCall(editorGen, i18nKeyForNewDiagramFileWizardIncorrectRootError(it))»);
 					}

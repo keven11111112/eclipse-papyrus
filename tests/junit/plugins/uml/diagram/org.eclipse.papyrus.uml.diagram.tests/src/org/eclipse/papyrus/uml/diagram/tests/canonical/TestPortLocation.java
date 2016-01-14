@@ -42,13 +42,13 @@ public abstract class TestPortLocation extends AbstractPapyrusTestCase {
 	protected abstract IElementType getPortType();
 
 	protected void testPortLocation(IElementType container) {
-		testPortLocation(container, 0, null);
+		testPortLocation(container, null, null);
 	}
 
-	protected void testPortLocation(IElementType container, int containerCompartmentVisualId, IElementType child) {
+	protected void testPortLocation(IElementType container, String containerCompartmentVisualId, IElementType child) {
 		IGraphicalEditPart parentEP = createChild(getDiagramEditPart(), container);
 		EObject containerSemantic = parentEP.resolveSemanticElement();
-		if (containerCompartmentVisualId > 0) {
+		if (containerCompartmentVisualId != null) {
 			parentEP = findChildBySemanticHint(parentEP, containerCompartmentVisualId);
 		}
 		if (child != null) {
@@ -80,8 +80,8 @@ public abstract class TestPortLocation extends AbstractPapyrusTestCase {
 		Assert.assertEquals(new Point(-10, 180), portPositionLocator.getConstraint().getLocation());
 	}
 
-	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
+	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, String vid) {
+		IGraphicalEditPart childEP = parent.getChildBySemanticHint(vid);
 		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
 		return childEP;
 	}

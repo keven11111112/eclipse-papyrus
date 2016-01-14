@@ -18,31 +18,33 @@ import metamodel.MetaModel
 import org.eclipse.emf.codegen.ecore.genmodel.GenClass
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
-import org.eclipse.gmf.codegen.gmfgen.GenExpressionInterpreter
 import org.eclipse.gmf.codegen.gmfgen.GenJavaExpressionProvider
 import org.eclipse.gmf.codegen.gmfgen.GenLink
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet
 import org.eclipse.gmf.codegen.gmfgen.ValueExpression
 import xpt.CodeStyle
 import xpt.Common
-import xpt.expressions.getExpression
-import org.eclipse.gmf.codegen.gmfgen.GenConstraint
+import xpt.Common_qvto
+import xpt.diagram.editpolicies.LinkUtils_qvto
+import xpt.diagram.updater.Utils_qvto
 
 //XXX: [MG] decide what to do with @MetaDef methods
 @Singleton class VisualIDRegistry extends xpt.editor.VisualIDRegistry {
-
 	@Inject extension MetaModel
 	@Inject extension Common
+	@Inject extension Common_qvto;
+	@Inject extension LinkUtils_qvto;
+	@Inject extension Utils_qvto;
+	
 	@Inject CodeStyle xptCodeStyle;
-	@Inject getExpression xptGetExpression;
 
 	override getDiagramVisualID(GenDiagram it) '''
 		«generatedMemberComment()»
-		public static int «getDiagramVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
+		public static String «getDiagramVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
 			if (domainElement == null) {
 				«unrecognizedVID(it)»
 			}
-			return «visualID»;
+			return «visualID(it)»;
 		}
 	'''
 
@@ -124,10 +126,10 @@ import org.eclipse.gmf.codegen.gmfgen.GenConstraint
 
 	override runtimeTypedInstance(GenDiagram it) '''
 		«generatedClassComment()»
-		public static final org.eclipse.gmf.tooling.runtime.structure.DiagramStructure «runtimeTypedInstanceName(it)» = new org.eclipse.gmf.tooling.runtime.structure.DiagramStructure() {
+		public static final org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure «runtimeTypedInstanceName(it)» = new org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure() {
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
-			public int «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
+			public String «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
 				return «getVisualIDMethodCall(it)»(view);
 			}
 			
@@ -139,25 +141,25 @@ import org.eclipse.gmf.codegen.gmfgen.GenConstraint
 			
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
-			public int «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
+			public String «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
 				return «getNodeVisualIDMethodCall(it)»(containerView, domainElement);
 			}
 			
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
-			public boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, int candidate) {
+			public boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, String candidate) {
 				return «checkNodeVisualIDMethodCall(it)»(containerView, domainElement, candidate);
 			}
 			
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
-			public boolean «isCompartmentVisualIDMethodName(it)»(int visualID) {
+			public boolean «isCompartmentVisualIDMethodName(it)»(String visualID) {
 				return «isCompartmentVisualIDMethodCall(it)»(visualID);
 			}
 			
 			«generatedMemberComment()»
 			«xptCodeStyle.overrideC(it)»
-			public boolean «isSemanticLeafVisualIDMethodName(it)»(int visualID) {
+			public boolean «isSemanticLeafVisualIDMethodName(it)»(String visualID) {
 				return «isSemanticLeafVisualIDMethodCall(it)»(visualID);
 			}
 		};
@@ -177,4 +179,160 @@ import org.eclipse.gmf.codegen.gmfgen.GenConstraint
 			return diagram != null ? diagram.getType() : null;
 		}
 	'''
+
+	override def getType(GenDiagram it) '''
+	«generatedMemberComment()»
+	public static String «getTypeMethodName(it)»(String visualID) {
+		return visualID;
+	}
+	'''
+
+	override def getViewVisualID(GenDiagram it) '''
+		«generatedMemberComment()»
+		public static String «getVisualIdMethodName(it)»(org.eclipse.gmf.runtime.notation.View view) {
+			if (view instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+				if («modelID(it)».equals(view.getType())) {
+					return «visualID(it)»;
+				} else {
+					«unrecognizedVID(it)»
+				}
+			}
+			return «getVisualIDMethodCall(it)»(view.getType());
+		}
+	'''
+
+	override def unrecognizedVID(GenDiagram it) '''
+	return null;
+	'''
+
+	override def getVisualID(GenDiagram it) '''
+		«generatedMemberComment()»
+		public static String «getVisualIdMethodName(it)»(String type) {
+			return type;
+		}
+	'''
+	
+	override def getNodeVisualID(GenDiagram it) '''
+	«generatedMemberComment()»
+	public static String «getNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement) {
+		if (domainElement == null) {
+			«unrecognizedVID(it)»
+		}
+		String containerModelID = «getModelIDMethodCall(it)»(containerView);
+		if (!«modelID(it)».equals(containerModelID)«FOR spf : shortcutsProvidedFor»«checkContainerModelID(spf)»«ENDFOR») { «nonNLS_All(shortcutsProvidedFor)»
+			«unrecognizedVID(it)»
+		}
+		String containerVisualID;
+		if («modelID(it)».equals(containerModelID)) {
+			containerVisualID = «getVisualIDMethodCall(it)»(containerView);
+		} else {
+			if (containerView instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+				containerVisualID = «visualID(it)»;		
+			} else {
+				«unrecognizedVID(it)»
+			}
+		}
+		if (containerVisualID != null) {
+			switch (containerVisualID) {
+				«FOR container : allContainers»
+				«caseDomainContainerVisualID(container)»
+				«ENDFOR»
+			}
+		}
+		«unrecognizedVID(it)»
+	}
+	'''
+
+	override def getLinkWithClassVisualID(GenDiagram it) '''
+	«generatedMemberComment()»
+	public static String «getLinkWithClassVisualIDMethodName(it)»(org.eclipse.emf.ecore.EObject domainElement) {
+		if (domainElement == null) {
+			«unrecognizedVID(it)»
+		}
+		«FOR typeLink : links.filter[l|isTypeLink(l)]»«returnVisualID(typeLink)»«ENDFOR»
+		«unrecognizedVID(it)»
+	}
+	'''
+
+	override def canCreateNode(GenDiagram it) '''
+	«generatedMemberComment()»
+	public static boolean «canCreateNodeMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, String nodeVisualID) {
+		String containerModelID = «getModelIDMethodCall(it)»(containerView);
+		if (!«modelID(it)».equals(containerModelID)«FOR spf : shortcutsProvidedFor»«checkContainerModelID(spf)»«ENDFOR») { «nonNLS_All(shortcutsProvidedFor)»
+			return false;
+		}
+		String containerVisualID;
+		if («modelID(it)».equals(containerModelID)) {
+			containerVisualID = «getVisualIDMethodCall(it)»(containerView);
+		} else {
+			if (containerView instanceof org.eclipse.gmf.runtime.notation.Diagram) {
+				containerVisualID = «visualID(it)»;		
+			} else {
+				return false;
+			}
+		}
+		if (containerVisualID != null) {
+			switch (containerVisualID) {
+				«FOR container : allContainers.filter[e|getEssentialVisualChildren(e).notEmpty]»«checkEssentialChildren(container)»«ENDFOR»
+				«FOR link : links.filter[l|getEssentialVisualChildren(l).notEmpty]»«checkEssentialChildren(link)»«ENDFOR»
+			}
+		}
+		return false;
+	}
+	'''
+
+	override def checkEssentialChild(GenCommonBase it) '''
+	if («visualID(it)».equals(nodeVisualID)) {
+		return true;
+	}
+	'''
+
+	override def isCompartmentVisualID(GenDiagram it) '''
+		«generatedMemberComment()»
+		public static boolean «isCompartmentVisualIDMethodName(it)»(String visualID) {
+			«IF compartments.notEmpty»
+				if (visualID != null) {
+					switch (visualID) {
+						«FOR compartment : compartments»«caseVisualID(compartment)»«ENDFOR»
+							return true;
+					}
+				}
+			«ENDIF»
+			return false;
+		}
+	'''
+
+	override def isSemanticLeafVisualID(GenDiagram it) {
+		var leafs = it.allNodes.filter[n | getSemanticChildren(n).empty && n.compartments.forall[c | getSemanticChildren(c).empty]].sortBy[n|n.visualID]
+		return '''
+		«generatedMemberComment()»
+		public static boolean «isSemanticLeafVisualIDMethodName(it)»(String visualID) {
+			if (visualID != null) {
+				switch (visualID) {
+					«/*We need to ensure at last one case, this is legitimate way*/
+					caseVisualID(it)»
+						return false;
+					«IF leafs.notEmpty»
+					«FOR leaf : leafs»«caseVisualID(leaf)»«ENDFOR»
+						return true;
+					«ENDIF»
+				}
+			}
+			return false;
+		}
+	'''
+	}
+
+	override def checkNodeVisualID(GenDiagram it) '''
+		«generatedMemberComment()»
+		public static boolean «checkNodeVisualIDMethodName(it)»(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.emf.ecore.EObject domainElement, String candidate) {
+			if (candidate == null){
+				//unrecognized id is always bad
+				return false;
+			}
+			String basic = «getNodeVisualIDMethodName(it)»(containerView, domainElement);
+			return candidate.equals(basic);
+		}
+	'''
+
 }

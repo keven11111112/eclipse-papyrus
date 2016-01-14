@@ -192,8 +192,8 @@ public final class DropUtils {
 		final ListIterator<View> listIterator = views.listIterator();
 		while (listIterator.hasNext()) {
 			final View view = listIterator.next();
-			final int visualID = UMLVisualIDRegistry.getVisualID(view);
-			if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) && visualID != GateEditPart.VISUAL_ID) {
+			final String visualID = UMLVisualIDRegistry.getVisualID(view);
+			if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) &&  !GateEditPart.VISUAL_ID.equals(visualID)) {
 				listIterator.remove();
 			}
 		}

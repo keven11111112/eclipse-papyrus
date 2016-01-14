@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -28,11 +28,11 @@ public class InheritedCompositeDiagramEditPartProvider extends UMLEditPartProvid
 
 	@Override
 	protected IGraphicalEditPart createEditPart(View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		if (visualID == ContextLinkEditPart.VISUAL_ID) {
+		String visualID = UMLVisualIDRegistry.getVisualID(view);
+		if (ContextLinkEditPart.VISUAL_ID.equals(visualID)) {
 			return new ContextLinkEditPart(view);
 		}
-		if (visualID == ContextLinkAppliedStereotypeEditPart.VISUAL_ID) {
+		if (ContextLinkAppliedStereotypeEditPart.VISUAL_ID.equals(visualID)) {
 			return new ContextLinkAppliedStereotypeEditPart(view);
 		}
 		return super.createEditPart(view);

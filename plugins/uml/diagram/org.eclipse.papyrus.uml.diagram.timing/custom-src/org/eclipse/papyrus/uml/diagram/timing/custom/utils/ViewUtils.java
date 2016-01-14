@@ -109,7 +109,7 @@ public class ViewUtils {
 		return timelineCompartmentViews.get(0);
 	}
 
-	public static View findFirstChildViewWithId(final View view, final int visualId) {
+	public static View findFirstChildViewWithId(final View view, final String visualId) {
 		final List<View> result = findSubViewsWithId(view, visualId);
 		if (result.isEmpty()) {
 			return null;
@@ -117,18 +117,18 @@ public class ViewUtils {
 		return result.get(0);
 	}
 
-	public static List<View> findSubViewsWithId(final View view, final int visualId) {
+	public static List<View> findSubViewsWithId(final View view, final String visualId) {
 		final List<View> views = new ArrayList<View>();
 		internalFindSubViewsWithId(view, visualId, views);
 		return views;
 	}
 
-	private static List<View> internalFindSubViewsWithId(final View view, final int visualId, final List<View> result) {
+	private static List<View> internalFindSubViewsWithId(final View view, final String visualId, final List<View> result) {
 		// the javadoc says it's a list of Views
 		@SuppressWarnings("unchecked")
 		final EList<View> children = view.getChildren();
 		for (final View child : children) {
-			if (UMLVisualIDRegistry.getVisualID(child) == visualId) {
+			if (UMLVisualIDRegistry.getVisualID(child).equals(visualId)) {
 				result.add(child);
 			}
 			internalFindSubViewsWithId(child, visualId, result);
@@ -136,12 +136,12 @@ public class ViewUtils {
 		return null;
 	}
 
-	public static View findSuperViewWithId(final View view, final int visualId) {
+	public static View findSuperViewWithId(final View view, final String visualId) {
 		EObject parent = view;
 		while (parent != null) {
 			if (parent instanceof View) {
 				final View parentView = (View) parent;
-				if (UMLVisualIDRegistry.getVisualID(parentView) == visualId) {
+				if (UMLVisualIDRegistry.getVisualID(parentView).equals(visualId)) {
 					return parentView;
 				}
 			}

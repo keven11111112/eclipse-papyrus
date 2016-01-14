@@ -38,7 +38,7 @@ public class CustomObjectFlowEditPart extends ObjectFlowEditPart implements Inte
 	 * {@inheritDoc InterruptibleEdge}
 	 */
 	@Override
-	public int getInterruptibleEdgeIconVisualID() {
+	public String getInterruptibleEdgeIconVisualID() {
 		return ObjectFlowInterruptibleIconEditPart.VISUAL_ID;
 	}
 

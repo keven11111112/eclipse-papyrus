@@ -21,7 +21,7 @@ public class InteractionOverviewDiagramEditPart extends DiagramEditPart {
 
 	public static String MODEL_ID = "PapyrusUMLInteractionOverviewDiagram";
 
-	public static final int VISUAL_ID = 1000;
+	public static final String VISUAL_ID = "1000";
 
 	public InteractionOverviewDiagramEditPart(final View view) {
 		super(view);

@@ -31,7 +31,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4017;
+	public static final String VISUAL_ID = "4017";
 
 	/**
 	 * @generated
@@ -55,11 +55,11 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
-			((AssociationClassRoleSourceEditPart) childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
+			((AssociationClassRoleSourceEditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
 		}
-		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
-			((AssociationClassRoleTargetEditPart) childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
+		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
+			((AssociationClassRoleTargetEditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 		}
 		return false;
 	}
@@ -69,7 +69,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -79,10 +79,10 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AssociationClassRoleSourceEditPart) {
+		if(childEditPart instanceof AssociationClassRoleSourceEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AssociationClassRoleTargetEditPart) {
+		if(childEditPart instanceof AssociationClassRoleTargetEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +93,7 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -117,6 +117,6 @@ public class AssociationClassLinkEditPart extends AbstractAssociationEditPart im
 	 */
 	@Override
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure) getFigure();
+		return (AssociationFigure)getFigure();
 	}
 }

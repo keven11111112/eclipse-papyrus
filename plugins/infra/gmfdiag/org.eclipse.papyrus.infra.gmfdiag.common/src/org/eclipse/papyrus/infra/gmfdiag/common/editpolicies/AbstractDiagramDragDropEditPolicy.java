@@ -21,18 +21,18 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy
 public abstract class AbstractDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
 	/** The specific drop. */
-	private Set<Integer> specificDrop = null;
+	private Set<String> specificDrop = null;
 
 	/**
 	 * The list of visualID that the policy manages.
 	 */
-	protected abstract Set<Integer> getDroppableElementVisualId();
+	protected abstract Set<String> getDroppableElementVisualId();
 		
 	
 	/**
 	 * Gets elements visual id that can be dropped in the diagram
 	 */
-	protected Set<Integer> getSpecificDrop() {
+	protected Set<String> getSpecificDrop() {
 		if (specificDrop == null) {
 			specificDrop = getDroppableElementVisualId();
 		}

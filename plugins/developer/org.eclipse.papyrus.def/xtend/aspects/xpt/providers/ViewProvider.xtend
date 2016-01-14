@@ -90,7 +90,7 @@ import xpt.editor.VisualIDRegistry
 		               return false;
 		         }
 		         
-		         int visualID = «getVisualIDMethodCall(it)»(op.getSemanticHint());
+		         String visualID = «getVisualIDMethodCall(it)»(op.getSemanticHint());
 		         if(org.eclipse.gmf.runtime.notation.Node.class.isAssignableFrom(op.getViewKind())) {
 		               return «canCreateNodeMethodCall(it)»(op.getContainerView(), visualID);
 		         }
@@ -113,7 +113,7 @@ import xpt.editor.VisualIDRegistry
 		
 			«generatedMemberComment»«/* When diagram domain element is null only diagram kind is checked */»
 			protected boolean provides(org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation op) {
-				return «VisualIDRegistry::modelID(it)».equals(op.getSemanticHint())«IF domainDiagramElement != null» && «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())) != -1«ENDIF»;
+				return «VisualIDRegistry::modelID(it)».equals(op.getSemanticHint())«IF domainDiagramElement != null» && «xptVisualIDRegistry.getDiagramVisualIDMethodCall(it)»(getSemanticElement(op.getSemanticAdapter())) != null«ENDIF»;
 			}
 		
 			«generatedMemberComment»
@@ -123,7 +123,7 @@ import xpt.editor.VisualIDRegistry
 				}
 				org.eclipse.gmf.runtime.emf.type.core.IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 				org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-				int visualID;
+				String visualID;
 				if (op.getSemanticHint() == null) {
 					// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
 					// In this situation there should be NO elementType, visualID will be determined
@@ -148,7 +148,7 @@ import xpt.editor.VisualIDRegistry
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				//if (domainElement != null && visualID != «getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement)) {
+				//if (domainElement != null && !visualID.equals(«getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement))) {
 				//	return false; // visual id for node EClass should match visual id from element type
 				//}
 			} else {«/*
@@ -160,27 +160,29 @@ import xpt.editor.VisualIDRegistry
 					if (!«VisualIDRegistry::modelID(it)».equals(«xptVisualIDRegistry.getModelIDMethodCall(it)»(op.getContainerView()))) {
 						return false; // foreign diagram
 					}
-					switch (visualID) {
-					«IF getAllNodes().exists[e|e.elementType instanceof NotationType]»
-						«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(NotationType))»
-							«localCaseVisualID(e)»
-						«ENDFOR»
-						break; // pure design element
-					«ENDIF»
-					«IF getAllNodes().exists[e|e.elementType instanceof MetamodelType || e.elementType instanceof SpecializationType]»
-						«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(MetamodelType))»
-							«localCaseVisualID(e)»
-						«ENDFOR»
-						«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(SpecializationType))»
-							«localCaseVisualID(e)»
-						«ENDFOR»
-						if (domainElement == null || visualID != «xptVisualIDRegistry.getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement)) {
-							return false; // visual id in semantic hint should match visual id for domain element
+					if (visualID != null) {
+						switch (visualID) {
+						«IF getAllNodes().exists[e|e.elementType instanceof NotationType]»
+							«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(NotationType))»
+								«localCaseVisualID(e)»
+							«ENDFOR»
+							break; // pure design element
+						«ENDIF»
+						«IF getAllNodes().exists[e|e.elementType instanceof MetamodelType || e.elementType instanceof SpecializationType]»
+							«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(MetamodelType))»
+								«localCaseVisualID(e)»
+							«ENDFOR»
+							«FOR e : getAllNodes().map[e|e.elementType].filter(typeof(SpecializationType))»
+								«localCaseVisualID(e)»
+							«ENDFOR»
+							if (domainElement == null || !visualID.equals(«xptVisualIDRegistry.getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement))) {
+								return false; // visual id in semantic hint should match visual id for domain element
+							}
+							break;«/*FIXME: Perhaps, can return true or false right away, without any further check?*/»
+						«ENDIF»
+						default:
+							return false;
 						}
-						break;«/*FIXME: Perhaps, can return true or false right away, without any further check?*/»
-					«ENDIF»
-					default:
-						return false;
 					}
 				«ELSE»
 					return false;
@@ -213,9 +215,9 @@ import xpt.editor.VisualIDRegistry
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		//int visualID = «getVisualIDMethodCall(it)»(elementTypeHint);
+		//String visualID = «getVisualIDMethodCall(it)»(elementTypeHint);
 		//org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		//if (domainElement != null && visualID != «getLinkWithClassVisualIDMethodCall(it)»(domainElement)) {
+		//if (domainElement != null && !visualID.equals(«getLinkWithClassVisualIDMethodCall(it)»(domainElement))) {
 		//	return false; // visual id for link EClass should match visual id from element type
 		//}
 		return true; «««Does it make sense to check visualID here, like we did for nodes?
@@ -245,17 +247,19 @@ import xpt.editor.VisualIDRegistry
 			«generatedMemberComment»
 			public org.eclipse.gmf.runtime.notation.Node createNode(org.eclipse.core.runtime.IAdaptable semanticAdapter, org.eclipse.gmf.runtime.notation.View containerView, String semanticHint, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 				final org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(semanticAdapter);
-				final int visualID;
+				final String visualID;
 				if (semanticHint == null) {
 					visualID = «xptVisualIDRegistry.getNodeVisualIDMethodCall(it)»(containerView, domainElement);
 				} else {
 					visualID = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(semanticHint);
 				}
-				switch(visualID) {
-				«FOR n : getAllNodes()»
-					«xptVisualIDRegistry.caseVisualID(n)»
-						return create«n.uniqueIdentifier»(domainElement, containerView, index, persisted, preferencesHint);
-				«ENDFOR»
+				if (visualID != null) {
+					switch(visualID) {
+					«FOR n : getAllNodes()»
+						«xptVisualIDRegistry.caseVisualID(n)»
+							return create«n.uniqueIdentifier»(domainElement, containerView, index, persisted, preferencesHint);
+					«ENDFOR»
+					}
 				}
 				// can't happen, provided #provides(CreateNodeViewOperation) is correct
 				return null;
@@ -265,11 +269,14 @@ import xpt.editor.VisualIDRegistry
 			public org.eclipse.gmf.runtime.notation.Edge createEdge(org.eclipse.core.runtime.IAdaptable semanticAdapter, org.eclipse.gmf.runtime.notation.View containerView, String semanticHint, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
 				org.eclipse.gmf.runtime.emf.type.core.IElementType elementType = getSemanticElementType(semanticAdapter);
 				String elementTypeHint = ((org.eclipse.gmf.runtime.emf.type.core.IHintedType) elementType).getSemanticHint();
-				switch («xptVisualIDRegistry.getVisualIDMethodCall(it)»(elementTypeHint)) {
-				«FOR link : links»
-					«xptVisualIDRegistry.caseVisualID(link)»
-						return create«link.uniqueIdentifier»(«IF isTypeLink(link)» getSemanticElement(semanticAdapter), «ENDIF»containerView, index, persisted, preferencesHint);
-				«ENDFOR»
+				String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it)»(elementTypeHint);
+				if (vid != null) {
+					switch (vid) {
+					«FOR link : links»
+						«xptVisualIDRegistry.caseVisualID(link)»
+							return create«link.uniqueIdentifier»(«IF isTypeLink(link)» getSemanticElement(semanticAdapter), «ENDIF»containerView, index, persisted, preferencesHint);
+					«ENDFOR»
+					}
 				}
 				// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 				return null;

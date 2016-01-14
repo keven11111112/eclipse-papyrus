@@ -111,7 +111,7 @@ public final class LifelineUtils {
 	@SuppressWarnings("boxing")
 	public static void updateFragmentNames(final Lifeline lifeline, final View lifelineView) {
 		View fullLifelineView = lifelineView;
-		if (lifelineView != null && !Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(lifelineView.getType())) {
+		if (lifelineView != null && !FullLifelineEditPartCN.VISUAL_ID.equals(lifelineView.getType())) {
 			fullLifelineView = null;
 		}
 		final Map<String, Integer> stateInvariantCounts = new HashMap<String, Integer>();
@@ -241,8 +241,8 @@ public final class LifelineUtils {
 		return compositeCommand;
 	}
 
-	public static boolean isLifelineEditPart(final int visualID) {
-		return visualID == FullLifelineEditPartCN.VISUAL_ID || visualID == CompactLifelineEditPartCN.VISUAL_ID;
+	public static boolean isLifelineEditPart(final String visualID) {
+		return FullLifelineEditPartCN.VISUAL_ID.equals(visualID) || CompactLifelineEditPartCN.VISUAL_ID.equals(visualID);
 	}
 
 	public static boolean isLifelineEditPart(final EditPart editPart) {
@@ -250,7 +250,7 @@ public final class LifelineUtils {
 	}
 
 	public static boolean isLifelineView(final View view) {
-		final int visualID = UMLVisualIDRegistry.getVisualID(view);
+		final String visualID = UMLVisualIDRegistry.getVisualID(view);
 		return isLifelineEditPart(visualID);
 	}
 

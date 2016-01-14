@@ -45,7 +45,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
  */
 public class CustomContainmentCreationEditPolicy extends DefaultCreationEditPolicy {
 
-	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[] { NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID,
+	private static List<String> ourCanHaveContainmentLinks = Arrays.asList(new String[] { NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID,
 			ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });
 
 	/**

@@ -33,14 +33,14 @@ public abstract class AbstractPapyrusSemanticTestCase extends AbstractPapyrusTes
 	/**
 	 * create childNodeEditPart in parentEditPart
 	 */
-	protected IGraphicalEditPart createChild(int childVID, IGraphicalEditPart container) {
+	protected IGraphicalEditPart createChild(String childVID, IGraphicalEditPart container) {
 		final CreateViewRequest requestcreation = createRequest(childVID, container);
 		Command cmd = container.getCommand(requestcreation);
 		executeOnUIThread(cmd);
 		return findChildBySemanticHint(container, childVID);
 	}
 
-	protected CreateViewRequest createRequest(int childVID, IGraphicalEditPart container) {
+	protected CreateViewRequest createRequest(String childVID, IGraphicalEditPart container) {
 		final IElementType childType = getTypeByID(childVID);
 		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(childType, container.getDiagramPreferencesHint());
 		requestcreation.setSize(new Dimension(1, 1));
@@ -48,10 +48,10 @@ public abstract class AbstractPapyrusSemanticTestCase extends AbstractPapyrusTes
 		return requestcreation;
 	}
 
-	protected abstract IElementType getTypeByID(int vid);
+	protected abstract IElementType getTypeByID(String vid);
 
-	protected IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
+	protected IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, String vid) {
+		IGraphicalEditPart childEP = parent.getChildBySemanticHint(vid);
 		Assert.assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
 		return childEP;
 	}

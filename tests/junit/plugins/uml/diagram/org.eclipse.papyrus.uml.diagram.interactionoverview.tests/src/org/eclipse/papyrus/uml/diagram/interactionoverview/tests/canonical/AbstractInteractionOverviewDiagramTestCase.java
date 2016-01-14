@@ -51,7 +51,7 @@ import org.eclipse.gmf.runtime.diagram.ui.util.INotationType;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
@@ -588,7 +588,7 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	private ActivityActivityContentCompartmentEditPart findActivityContenCompartment(CustomActivityEditPartTN activityEP) {
-		return (ActivityActivityContentCompartmentEditPart) activityEP.getChildBySemanticHint(Integer.toString(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+		return (ActivityActivityContentCompartmentEditPart) activityEP.getChildBySemanticHint(ActivityActivityContentCompartmentEditPart.VISUAL_ID);
 	}
 
 	protected static EditPart findChildEditPartAssociatedToView(final EditPart parentEditPart, final View view) {

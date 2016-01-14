@@ -239,8 +239,8 @@ public class FragmentOrderingKeeper {
 				List<?> lifelineViews = DiagramEditPartsUtil.getEObjectViews(lifeline);
 				for (Object lifelineView : lifelineViews) {
 					if (lifelineView instanceof View && diagram != null) {
-						int visualID = UMLVisualIDRegistry.getVisualID((View) lifelineView);
-						if (visualID == LifelineEditPart.VISUAL_ID) {
+						String visualID = UMLVisualIDRegistry.getVisualID((View) lifelineView);
+						if (LifelineEditPart.VISUAL_ID.equals(visualID)) {
 							EditPart part = DiagramEditPartsUtil.getEditPartFromView((View) lifelineView, diagram);
 							if (part instanceof LifelineEditPart) {
 								constrainingLifelineParts.add((LifelineEditPart) part);

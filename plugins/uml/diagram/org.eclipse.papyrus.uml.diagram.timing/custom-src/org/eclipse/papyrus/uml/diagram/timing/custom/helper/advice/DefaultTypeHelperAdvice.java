@@ -20,7 +20,7 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimingDiagramEditPart;
 /** This HelperAdvice disapproves destroy requests for VerticalLines. */
 public class DefaultTypeHelperAdvice extends AbstractEditHelperAdvice {
 
-	private static String VERTICAL_LINE_ID = Integer.toString(FullStateInvariantVerticalLineEditPart.VISUAL_ID);
+	private static String VERTICAL_LINE_ID = FullStateInvariantVerticalLineEditPart.VISUAL_ID;
 
 	@Override
 	public boolean approveRequest(final IEditCommandRequest request) {
@@ -29,7 +29,7 @@ public class DefaultTypeHelperAdvice extends AbstractEditHelperAdvice {
 			final EObject elementToDestroy = destroyElementRequest.getElementToDestroy();
 			if (elementToDestroy instanceof View) {
 				final View view = (View) elementToDestroy;
-				if (VERTICAL_LINE_ID.equals(view.getType()) && TimingDiagramEditPart.MODEL_ID == ViewUtils.getContainingDiagramType(view)) {
+				if (VERTICAL_LINE_ID.equals(view.getType()) && TimingDiagramEditPart.MODEL_ID.equals(ViewUtils.getContainingDiagramType(view))) {
 					return false;
 				}
 			}

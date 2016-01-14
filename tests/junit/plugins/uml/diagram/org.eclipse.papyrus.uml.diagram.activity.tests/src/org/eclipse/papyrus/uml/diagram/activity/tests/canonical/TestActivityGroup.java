@@ -8,7 +8,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
@@ -405,7 +405,7 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 		protected abstract void checkSemantic(IGraphicalEditPart childEP, IGraphicalEditPart currentParent);
 
 		public IGraphicalEditPart doDD() {
-			int childVID = UMLVisualIDRegistry.getVisualID(getChildEP().getNotationView());
+			String childVID = UMLVisualIDRegistry.getVisualID(getChildEP().getNotationView());
 			Command ddCommand = createChangeBoundCommand(getChildEP(), getTargetEP());
 			assertTrue(ddCommand.canExecute());
 			executeOnUIThread(ddCommand);

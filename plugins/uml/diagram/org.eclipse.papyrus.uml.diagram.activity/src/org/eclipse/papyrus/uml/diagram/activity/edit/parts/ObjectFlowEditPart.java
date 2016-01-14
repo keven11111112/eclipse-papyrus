@@ -37,7 +37,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4003;
+	public static final String VISUAL_ID = "4003";
 
 	/**
 	 * @generated
@@ -61,9 +61,8 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
-			((ObjectFlowAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
+			((ObjectFlowAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -73,7 +72,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -83,7 +82,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +93,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -118,7 +117,7 @@ public class ObjectFlowEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	public ActivityEdgeFigure getPrimaryShape() {
-		return (ActivityEdgeFigure) getFigure();
+		return (ActivityEdgeFigure)getFigure();
 	}
 
 	/**

@@ -153,14 +153,17 @@ import xpt.providers.ElementTypes
 		)»
 			protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(
 					org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest req) {
-				switch (getVisualID(req)) {
-					«FOR link : getReroutableTypeLinks(it)»
-					«reorientLinkCommandWithService(link) »
-					«ENDFOR»
-					«callReorientCommand(it)»
-					«FOR link : getReroutableTypeLinks(it)»
-					«reorientLinkCommandWithoutService(link) »
-					«ENDFOR»
+				String vid = getVisualID(req);
+				if (vid != null) { 
+					switch (vid) {
+						«FOR link : getReroutableTypeLinks(it)»
+						«reorientLinkCommandWithService(link) »
+						«ENDFOR»
+						«callReorientCommand(it)»
+						«FOR link : getReroutableTypeLinks(it)»
+						«reorientLinkCommandWithoutService(link) »
+						«ENDFOR»
+					}
 				}
 				return super.getReorientRelationshipCommand(req);
 				}

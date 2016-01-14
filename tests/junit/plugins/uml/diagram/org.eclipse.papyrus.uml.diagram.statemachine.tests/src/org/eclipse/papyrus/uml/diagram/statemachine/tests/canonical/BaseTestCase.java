@@ -50,7 +50,7 @@ public class BaseTestCase extends AbstractPapyrusSemanticTestCase {
 	}
 
 	@Override
-	protected IElementType getTypeByID(int vid) {
+	protected IElementType getTypeByID(String vid) {
 		return UMLElementTypes.getElementType(vid);
 	}
 }

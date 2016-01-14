@@ -53,8 +53,8 @@ public class ActivityGroupCustomDragAndDropEditPolicy extends CustomDiagramDragD
 	protected IUndoableOperation getDropObjectCommand(DropObjectsRequest dropRequest, EObject droppedObject) {
 		Point location = dropRequest.getLocation().getCopy();
 		EditPart hostForDroppedObject = droppedObject instanceof Pin ? getHost().getParent() : getHost();
-		int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) hostForDroppedObject).getNotationView(), droppedObject);
-		int linkVISUALID = getLinkWithClassVisualID(droppedObject);
+		String nodeVISUALID = getNodeVisualID(((IGraphicalEditPart) hostForDroppedObject).getNotationView(), droppedObject);
+		String linkVISUALID = getLinkWithClassVisualID(droppedObject);
 		if (getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
 			Command specificDropCommand = getSpecificDropCommand(dropRequest, (Element) droppedObject, nodeVISUALID, linkVISUALID);
 			CompositeCommand cc = new CompositeCommand("Drop command");
@@ -75,7 +75,7 @@ public class ActivityGroupCustomDragAndDropEditPolicy extends CustomDiagramDragD
 			}
 			return cc;
 		}
-		if (linkVISUALID == -1 && nodeVISUALID != -1) {
+		if (linkVISUALID == null && nodeVISUALID != null) {
 			// The element to drop is a node
 			// Retrieve it's expected graphical parent
 			EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
@@ -95,7 +95,7 @@ public class ActivityGroupCustomDragAndDropEditPolicy extends CustomDiagramDragD
 			}
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}
-		if (linkVISUALID != -1) {
+		if (linkVISUALID != null) {
 			Collection<?> sources = linkmappingHelper.getSource((Element) droppedObject);
 			Collection<?> targets = linkmappingHelper.getTarget((Element) droppedObject);
 			if (sources.size() == 0 || targets.size() == 0) {

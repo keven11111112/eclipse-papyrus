@@ -17,7 +17,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	@Override
-	protected IParser getParser(int visualID) {
+	protected IParser getParser(String visualID) {
 		switch (visualID) {
 		case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser(CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy.APPLIED_STEREOTYPE_LABEL);

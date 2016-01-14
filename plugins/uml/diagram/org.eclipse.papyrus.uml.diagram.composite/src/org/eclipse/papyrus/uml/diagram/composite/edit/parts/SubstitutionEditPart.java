@@ -29,7 +29,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4011;
+	public static final String VISUAL_ID = "4011";
 
 	/**
 	 * @generated
@@ -51,13 +51,11 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SubstitutionNameEditPart) {
-			((SubstitutionNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof SubstitutionNameEditPart) {
+			((SubstitutionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
-		if (childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
-			((SubstitutionAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
+			((SubstitutionAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -66,7 +64,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -76,10 +74,10 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SubstitutionNameEditPart) {
+		if(childEditPart instanceof SubstitutionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
+		if(childEditPart instanceof SubstitutionAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -89,7 +87,7 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -111,6 +109,6 @@ public class SubstitutionEditPart extends UMLConnectionNodeEditPart implements I
 	 * @generated
 	 */
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure) getFigure();
+		return (InterfaceRealizationFigure)getFigure();
 	}
 }

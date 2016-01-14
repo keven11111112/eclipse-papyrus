@@ -81,7 +81,7 @@ public class ConnectorHelper extends ElementHelper {
 	 * @param containerView
 	 * @return the drop command for Connector
 	 */
-	public CompositeCommand dropConnector(Connector connector, int linkVisualID, EditPartViewer viewer, EditPart host, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
+	public CompositeCommand dropConnector(Connector connector, String linkVisualID, EditPartViewer viewer, EditPart host, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		CompositeCommand cc = new CompositeCommand("drop Connector");
 		ConnectableElement sourceRole = connector.getEnds().get(0).getRole();
 		ConnectableElement targetRole = connector.getEnds().get(1).getRole();

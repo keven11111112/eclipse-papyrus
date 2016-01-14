@@ -71,8 +71,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 		Composite composite = new Composite(notificationsGroup, SWT.NONE);
 		confirmPinSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_PIN_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmPinSyncFromParameter_label, composite);
 		addField(confirmPinSyncFromParameter);
-		confirmActivityParameterNodeSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label,
-				composite);
+		confirmActivityParameterNodeSyncFromParameter = new BooleanFieldEditor(IActivityPreferenceConstants.PREF_CONFIRM_ACTIVITY_PARAMETER_SYNC_FROM_PARAMETER, CustomMessages.DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label, composite);
 		addField(confirmActivityParameterNodeSyncFromParameter);
 	}
 

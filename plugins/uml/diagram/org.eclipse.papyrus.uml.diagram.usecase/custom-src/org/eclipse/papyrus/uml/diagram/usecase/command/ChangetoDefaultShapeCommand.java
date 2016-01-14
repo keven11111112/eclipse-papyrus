@@ -58,11 +58,11 @@ public class ChangetoDefaultShapeCommand extends AbstractTransactionalCommand {
 		this.elementEditPart = classView;
 	}
 
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
@@ -71,7 +71,7 @@ public class ChangetoDefaultShapeCommand extends AbstractTransactionalCommand {
 		// creation of the node
 		Element semanticElement = (Element) elementEditPart.resolveSemanticElement();
 		View containerView = (View) elementEditPart.getNotationView().eContainer();
-		int visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, semanticElement);
+		String visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, semanticElement);
 		UMLViewProvider umlViewProvider = new UMLViewProvider();
 		IAdaptable elementAdapter = new EObjectAdapter(semanticElement);
 		String semanticHint = ((IHintedType) getUMLElementType(visualID)).getSemanticHint();

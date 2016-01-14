@@ -73,7 +73,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 * array list of visual id that correspond to views that are not linked to
 	 * semantic elements. For example, comment links
 	 */
-	private ArrayList<Integer> notOrphanList = new ArrayList<Integer>();
+	private ArrayList<String> notOrphanList = new ArrayList<String>();
 
 	/** the pattern that checks visual ids are valid integers */
 	private static Pattern digit = Pattern.compile("\\d+");
@@ -318,9 +318,9 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 *            the list of visual id of views that should never be attached
 	 *            to a semantic element
 	 */
-	public void init(int[] notOrphanVisualID) {
+	public void init(String[] notOrphanVisualID) {
 		for (int i = 0; i < notOrphanVisualID.length; i++) {
-			notOrphanList.add(new Integer(notOrphanVisualID[i]));
+			notOrphanList.add(notOrphanVisualID[i]);
 		}
 	}
 
@@ -339,7 +339,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	 */
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
-		if (isInteger(semanticHint) && notOrphanList.contains(new Integer(semanticHint))) {
+		if (notOrphanList.contains(semanticHint)) {
 			return false;
 		}
 		return !view.isSetElement();
