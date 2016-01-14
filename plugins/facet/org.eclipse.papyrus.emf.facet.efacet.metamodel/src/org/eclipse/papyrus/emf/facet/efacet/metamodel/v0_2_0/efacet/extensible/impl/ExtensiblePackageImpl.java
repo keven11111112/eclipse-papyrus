@@ -20,7 +20,6 @@ package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensibleFactory;
@@ -51,10 +50,15 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 	private EClass queryEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage#eNS_URI
@@ -77,7 +81,9 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link ExtensiblePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ExtensiblePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -94,13 +100,10 @@ public class ExtensiblePackageImpl extends EPackageImpl implements ExtensiblePac
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
 		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) : EFacetPackage.eINSTANCE);
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
 		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) instanceof RuntimePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) : RuntimePackage.eINSTANCE);
 

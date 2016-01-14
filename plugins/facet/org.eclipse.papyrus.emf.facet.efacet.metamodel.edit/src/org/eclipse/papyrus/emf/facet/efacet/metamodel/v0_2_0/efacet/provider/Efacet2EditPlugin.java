@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -19,7 +19,6 @@ package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the Efacet2 edit plugin.
@@ -56,7 +55,6 @@ public final class Efacet2EditPlugin extends EMFPlugin {
 	 */
 	public Efacet2EditPlugin() {
 		super(new ResourceLocator[] {
-				EcoreEditPlugin.INSTANCE,
 		});
 	}
 

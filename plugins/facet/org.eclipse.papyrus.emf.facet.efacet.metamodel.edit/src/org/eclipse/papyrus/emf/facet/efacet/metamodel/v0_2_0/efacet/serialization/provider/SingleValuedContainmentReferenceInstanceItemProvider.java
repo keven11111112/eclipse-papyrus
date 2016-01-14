@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -25,14 +25,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
@@ -49,13 +42,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serializatio
  * @generated
  */
 public class SingleValuedContainmentReferenceInstanceItemProvider
-		extends AbstractReferenceInstanceItemProvider
-		implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		extends AbstractReferenceInstanceItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -84,7 +71,8 @@ public class SingleValuedContainmentReferenceInstanceItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -170,235 +158,98 @@ public class SingleValuedContainmentReferenceInstanceItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createAbstractReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createAbstractReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createMultiValuedContainmentReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createMultiValuedContainmentReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createMultiValuedReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createMultiValuedReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createAbstractAttributeInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createAbstractAttributeInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createSingleValuedAttributeInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createSingleValuedAttributeInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createExtendedEObjectReference()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createExtendedEObjectReference()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createSingleValuedContainmentReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createSingleValuedContainmentReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createSingleValuedReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createSingleValuedReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						SerializationFactory.eINSTANCE.createMultiValuedAttributeInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				SerializationFactory.eINSTANCE.createMultiValuedAttributeInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createFacetAttribute()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createFacetAttribute()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createFacetReference()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createFacetReference()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createFacetOperation()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createFacetOperation()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createFacetSet()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createFacetSet()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createFacet()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createFacet()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createCategory()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createCategory()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createParameterValue()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createParameterValue()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EFacetFactory.eINSTANCE.createDocumentedElement()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				EFacetFactory.eINSTANCE.createDocumentedElement()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createNavigationQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createNavigationQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createIsOneOfQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createIsOneOfQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createStringLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createStringLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createTrueLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createTrueLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createFalseLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createFalseLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createNullLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createNullLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createFloatLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createFloatLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						QueryFactory.eINSTANCE.createOperationCallQuery()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				QueryFactory.eINSTANCE.createOperationCallQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						RuntimeFactory.eINSTANCE.createETypedElementPrimitiveTypeResult()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				RuntimeFactory.eINSTANCE.createETypedElementPrimitiveTypeResult()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						RuntimeFactory.eINSTANCE.createETypedElementEObjectResult()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				RuntimeFactory.eINSTANCE.createETypedElementEObjectResult()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						RuntimeFactory.eINSTANCE.createETypedElementPrimitiveTypeListResult()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				RuntimeFactory.eINSTANCE.createETypedElementPrimitiveTypeListResult()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						RuntimeFactory.eINSTANCE.createETypedElementEObjectListResult()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEAttribute()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEAnnotation()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEDataType()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEEnum()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEEnumLiteral()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEFactory()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEOperation()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEPackage()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEParameter()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEReference()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.create(EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY)));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createEGenericType()));
-
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
-						EcoreFactory.eINSTANCE.createETypeParameter()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT,
+				RuntimeFactory.eINSTANCE.createETypedElementEObjectListResult()));
 	}
 
 }

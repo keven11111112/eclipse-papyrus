@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -86,19 +86,17 @@ public class AbstractReferenceInstanceItemProvider
 	 * @generated
 	 */
 	protected void addEReferencePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_AbstractReferenceInstance_eReference_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_AbstractReferenceInstance_eReference_feature", "_UI_AbstractReferenceInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						SerializationPackage.Literals.ABSTRACT_REFERENCE_INSTANCE__EREFERENCE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_AbstractReferenceInstance_eReference_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_AbstractReferenceInstance_eReference_feature", "_UI_AbstractReferenceInstance_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				SerializationPackage.Literals.ABSTRACT_REFERENCE_INSTANCE__EREFERENCE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**

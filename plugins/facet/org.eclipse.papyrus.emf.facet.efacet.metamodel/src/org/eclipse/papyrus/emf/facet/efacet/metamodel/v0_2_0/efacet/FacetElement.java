@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.ETypedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement#getCategories <em>Categories</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetElement()
  * @model abstract="true"

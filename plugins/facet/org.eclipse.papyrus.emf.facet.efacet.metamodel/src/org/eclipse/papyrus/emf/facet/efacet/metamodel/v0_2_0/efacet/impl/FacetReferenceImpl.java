@@ -38,13 +38,13 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Q
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl#getDocumentation <em>Documentation</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl#getCategories <em>Categories</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl#getQuery <em>Query</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetReferenceImpl#getOverride <em>Override</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -211,8 +211,7 @@ public class FacetReferenceImpl extends EReferenceImpl implements FacetReference
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, EFacetPackage.FACET_REFERENCE__QUERY, newQuery, newQuery));
 		}
 	}

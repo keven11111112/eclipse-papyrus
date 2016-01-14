@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.EPackage;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet#getCategories <em>Categories</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacetSet()
  * @model annotation="GenModel documentation='A \"FacetSet\" is the root element of a facet model. It contains a list of \"Facet\".'"

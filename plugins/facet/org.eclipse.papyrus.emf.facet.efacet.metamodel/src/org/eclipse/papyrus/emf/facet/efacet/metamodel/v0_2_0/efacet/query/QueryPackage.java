@@ -38,8 +38,6 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.E
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory
  * @model kind="package"
  * @generated
- * @noextend This interface is not intended to be extended by clients.
- * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface QueryPackage extends EPackage {
 	/**
@@ -377,7 +375,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.IntegerLiteralQueryImpl
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getIntegerLiteralQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	int INTEGER_LITERAL_QUERY = 6;
 
@@ -388,7 +385,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int INTEGER_LITERAL_QUERY__CAN_HAVE_SIDE_EFFECTS = ExtensiblePackage.QUERY__CAN_HAVE_SIDE_EFFECTS;
 
@@ -399,7 +395,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int INTEGER_LITERAL_QUERY__CAN_BE_CACHED = ExtensiblePackage.QUERY__CAN_BE_CACHED;
 
@@ -410,7 +405,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int INTEGER_LITERAL_QUERY__VALUE = ExtensiblePackage.QUERY_FEATURE_COUNT + 0;
 
@@ -421,7 +415,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int INTEGER_LITERAL_QUERY_FEATURE_COUNT = ExtensiblePackage.QUERY_FEATURE_COUNT + 1;
 
@@ -433,7 +426,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.FloatLiteralQueryImpl
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getFloatLiteralQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	int FLOAT_LITERAL_QUERY = 7;
 
@@ -444,7 +436,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int FLOAT_LITERAL_QUERY__CAN_HAVE_SIDE_EFFECTS = ExtensiblePackage.QUERY__CAN_HAVE_SIDE_EFFECTS;
 
@@ -455,7 +446,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int FLOAT_LITERAL_QUERY__CAN_BE_CACHED = ExtensiblePackage.QUERY__CAN_BE_CACHED;
 
@@ -466,7 +456,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int FLOAT_LITERAL_QUERY__VALUE = ExtensiblePackage.QUERY_FEATURE_COUNT + 0;
 
@@ -477,7 +466,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int FLOAT_LITERAL_QUERY_FEATURE_COUNT = ExtensiblePackage.QUERY_FEATURE_COUNT + 1;
 
@@ -489,7 +477,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.EObjectLiteralQueryImpl
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getEObjectLiteralQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	int EOBJECT_LITERAL_QUERY = 8;
 
@@ -500,7 +487,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int EOBJECT_LITERAL_QUERY__CAN_HAVE_SIDE_EFFECTS = ExtensiblePackage.QUERY__CAN_HAVE_SIDE_EFFECTS;
 
@@ -511,7 +497,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int EOBJECT_LITERAL_QUERY__CAN_BE_CACHED = ExtensiblePackage.QUERY__CAN_BE_CACHED;
 
@@ -522,7 +507,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int EOBJECT_LITERAL_QUERY__ELEMENT = ExtensiblePackage.QUERY_FEATURE_COUNT + 0;
 
@@ -533,7 +517,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int EOBJECT_LITERAL_QUERY_FEATURE_COUNT = ExtensiblePackage.QUERY_FEATURE_COUNT + 1;
 
@@ -545,7 +528,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.OperationCallQueryImpl
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getOperationCallQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	int OPERATION_CALL_QUERY = 9;
 
@@ -556,7 +538,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int OPERATION_CALL_QUERY__CAN_HAVE_SIDE_EFFECTS = ExtensiblePackage.QUERY__CAN_HAVE_SIDE_EFFECTS;
 
@@ -567,7 +548,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int OPERATION_CALL_QUERY__CAN_BE_CACHED = ExtensiblePackage.QUERY__CAN_BE_CACHED;
 
@@ -578,7 +558,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int OPERATION_CALL_QUERY__OPERATION = ExtensiblePackage.QUERY_FEATURE_COUNT + 0;
 
@@ -589,7 +568,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int OPERATION_CALL_QUERY__ARGUMENTS = ExtensiblePackage.QUERY_FEATURE_COUNT + 1;
 
@@ -600,7 +578,6 @@ public interface QueryPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int OPERATION_CALL_QUERY_FEATURE_COUNT = ExtensiblePackage.QUERY_FEATURE_COUNT + 2;
 
@@ -727,7 +704,6 @@ public interface QueryPackage extends EPackage {
 	 * @return the meta object for class '<em>Integer Literal Query</em>'.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery
 	 * @generated
-	 * @since 0.2
 	 */
 	EClass getIntegerLiteralQuery();
 
@@ -740,7 +716,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.IntegerLiteralQuery#getValue()
 	 * @see #getIntegerLiteralQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	EAttribute getIntegerLiteralQuery_Value();
 
@@ -752,7 +727,6 @@ public interface QueryPackage extends EPackage {
 	 * @return the meta object for class '<em>Float Literal Query</em>'.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery
 	 * @generated
-	 * @since 0.2
 	 */
 	EClass getFloatLiteralQuery();
 
@@ -765,7 +739,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.FloatLiteralQuery#getValue()
 	 * @see #getFloatLiteralQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	EAttribute getFloatLiteralQuery_Value();
 
@@ -777,7 +750,6 @@ public interface QueryPackage extends EPackage {
 	 * @return the meta object for class '<em>EObject Literal Query</em>'.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery
 	 * @generated
-	 * @since 0.2
 	 */
 	EClass getEObjectLiteralQuery();
 
@@ -790,7 +762,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery#getElement()
 	 * @see #getEObjectLiteralQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	EReference getEObjectLiteralQuery_Element();
 
@@ -802,7 +773,6 @@ public interface QueryPackage extends EPackage {
 	 * @return the meta object for class '<em>Operation Call Query</em>'.
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery
 	 * @generated
-	 * @since 0.2
 	 */
 	EClass getOperationCallQuery();
 
@@ -815,7 +785,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getOperation()
 	 * @see #getOperationCallQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	EReference getOperationCallQuery_Operation();
 
@@ -828,7 +797,6 @@ public interface QueryPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.OperationCallQuery#getArguments()
 	 * @see #getOperationCallQuery()
 	 * @generated
-	 * @since 0.2
 	 */
 	EReference getOperationCallQuery_Arguments();
 
@@ -966,7 +934,6 @@ public interface QueryPackage extends EPackage {
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.IntegerLiteralQueryImpl
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getIntegerLiteralQuery()
 		 * @generated
-		 * @since 0.2
 		 */
 		EClass INTEGER_LITERAL_QUERY = eINSTANCE.getIntegerLiteralQuery();
 
@@ -976,7 +943,6 @@ public interface QueryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 0.2
 		 */
 		EAttribute INTEGER_LITERAL_QUERY__VALUE = eINSTANCE.getIntegerLiteralQuery_Value();
 
@@ -988,7 +954,6 @@ public interface QueryPackage extends EPackage {
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.FloatLiteralQueryImpl
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getFloatLiteralQuery()
 		 * @generated
-		 * @since 0.2
 		 */
 		EClass FLOAT_LITERAL_QUERY = eINSTANCE.getFloatLiteralQuery();
 
@@ -998,7 +963,6 @@ public interface QueryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 0.2
 		 */
 		EAttribute FLOAT_LITERAL_QUERY__VALUE = eINSTANCE.getFloatLiteralQuery_Value();
 
@@ -1010,7 +974,6 @@ public interface QueryPackage extends EPackage {
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.EObjectLiteralQueryImpl
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getEObjectLiteralQuery()
 		 * @generated
-		 * @since 0.2
 		 */
 		EClass EOBJECT_LITERAL_QUERY = eINSTANCE.getEObjectLiteralQuery();
 
@@ -1020,7 +983,6 @@ public interface QueryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 0.2
 		 */
 		EReference EOBJECT_LITERAL_QUERY__ELEMENT = eINSTANCE.getEObjectLiteralQuery_Element();
 
@@ -1032,7 +994,6 @@ public interface QueryPackage extends EPackage {
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.OperationCallQueryImpl
 		 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.QueryPackageImpl#getOperationCallQuery()
 		 * @generated
-		 * @since 0.2
 		 */
 		EClass OPERATION_CALL_QUERY = eINSTANCE.getOperationCallQuery();
 
@@ -1042,7 +1003,6 @@ public interface QueryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 0.2
 		 */
 		EReference OPERATION_CALL_QUERY__OPERATION = eINSTANCE.getOperationCallQuery_Operation();
 
@@ -1052,7 +1012,6 @@ public interface QueryPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 0.2
 		 */
 		EReference OPERATION_CALL_QUERY__ARGUMENTS = eINSTANCE.getOperationCallQuery_Arguments();
 

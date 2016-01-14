@@ -92,68 +92,67 @@ public class QueryAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected QuerySwitch<Adapter> modelSwitch =
-			new QuerySwitch<Adapter>() {
-				@Override
-				public Adapter caseNavigationQuery(NavigationQuery object) {
-					return createNavigationQueryAdapter();
-				}
+	protected QuerySwitch<Adapter> modelSwitch = new QuerySwitch<Adapter>() {
+		@Override
+		public Adapter caseNavigationQuery(NavigationQuery object) {
+			return createNavigationQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseIsOneOfQuery(IsOneOfQuery object) {
-					return createIsOneOfQueryAdapter();
-				}
+		@Override
+		public Adapter caseIsOneOfQuery(IsOneOfQuery object) {
+			return createIsOneOfQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseStringLiteralQuery(StringLiteralQuery object) {
-					return createStringLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseStringLiteralQuery(StringLiteralQuery object) {
+			return createStringLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseTrueLiteralQuery(TrueLiteralQuery object) {
-					return createTrueLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseTrueLiteralQuery(TrueLiteralQuery object) {
+			return createTrueLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseFalseLiteralQuery(FalseLiteralQuery object) {
-					return createFalseLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseFalseLiteralQuery(FalseLiteralQuery object) {
+			return createFalseLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseNullLiteralQuery(NullLiteralQuery object) {
-					return createNullLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseNullLiteralQuery(NullLiteralQuery object) {
+			return createNullLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseIntegerLiteralQuery(IntegerLiteralQuery object) {
-					return createIntegerLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseIntegerLiteralQuery(IntegerLiteralQuery object) {
+			return createIntegerLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseFloatLiteralQuery(FloatLiteralQuery object) {
-					return createFloatLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseFloatLiteralQuery(FloatLiteralQuery object) {
+			return createFloatLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseEObjectLiteralQuery(EObjectLiteralQuery object) {
-					return createEObjectLiteralQueryAdapter();
-				}
+		@Override
+		public Adapter caseEObjectLiteralQuery(EObjectLiteralQuery object) {
+			return createEObjectLiteralQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseOperationCallQuery(OperationCallQuery object) {
-					return createOperationCallQueryAdapter();
-				}
+		@Override
+		public Adapter caseOperationCallQuery(OperationCallQuery object) {
+			return createOperationCallQueryAdapter();
+		}
 
-				@Override
-				public Adapter caseQuery(Query object) {
-					return createQueryAdapter();
-				}
+		@Override
+		public Adapter caseQuery(Query object) {
+			return createQueryAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

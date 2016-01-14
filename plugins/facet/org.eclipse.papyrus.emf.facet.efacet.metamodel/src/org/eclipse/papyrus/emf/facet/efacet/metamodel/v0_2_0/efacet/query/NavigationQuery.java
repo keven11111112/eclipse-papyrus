@@ -30,11 +30,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Q
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.NavigationQuery#isFailOnError <em>Fail On Error</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#getNavigationQuery()
  * @model

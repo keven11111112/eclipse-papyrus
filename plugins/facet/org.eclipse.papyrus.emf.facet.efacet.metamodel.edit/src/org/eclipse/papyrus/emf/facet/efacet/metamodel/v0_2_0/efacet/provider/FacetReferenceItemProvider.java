@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -27,12 +27,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -48,13 +43,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryF
  * @generated
  */
 public class FacetReferenceItemProvider
-		extends ItemProviderAdapter
-		implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		extends ItemProviderAdapter {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -114,19 +103,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ENamedElement_name_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature", "_UI_ENamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ENAMED_ELEMENT__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ENamedElement_name_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature", "_UI_ENamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ENAMED_ELEMENT__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -137,19 +124,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addOrderedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_ordered_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_ordered_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__ORDERED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_ordered_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_ordered_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__ORDERED,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -160,19 +145,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addUniquePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_unique_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_unique_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__UNIQUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_unique_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_unique_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__UNIQUE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -183,19 +166,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_lowerBound_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_lowerBound_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__LOWER_BOUND,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_lowerBound_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_lowerBound_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__LOWER_BOUND,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -206,19 +187,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_upperBound_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_upperBound_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__UPPER_BOUND,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_upperBound_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_upperBound_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__UPPER_BOUND,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -229,19 +208,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addManyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_many_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_many_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__MANY,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_many_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_many_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__MANY,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -252,19 +229,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addRequiredPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_required_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_required_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__REQUIRED,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_required_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_required_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__REQUIRED,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -275,19 +250,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addETypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElement_eType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_eType_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ETYPED_ELEMENT__ETYPE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElement_eType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_eType_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ETYPED_ELEMENT__ETYPE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -298,19 +271,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addChangeablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_changeable_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_changeable_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__CHANGEABLE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_changeable_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_changeable_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__CHANGEABLE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -321,19 +292,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addVolatilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_volatile_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_volatile_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__VOLATILE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_volatile_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_volatile_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__VOLATILE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -344,19 +313,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addTransientPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_transient_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_transient_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__TRANSIENT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_transient_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_transient_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__TRANSIENT,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -367,19 +334,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addDefaultValueLiteralPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_defaultValueLiteral_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_defaultValueLiteral_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_defaultValueLiteral_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_defaultValueLiteral_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE_LITERAL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -390,19 +355,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addDefaultValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_defaultValue_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_defaultValue_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_defaultValue_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_defaultValue_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__DEFAULT_VALUE,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -413,19 +376,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addUnsettablePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_unsettable_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_unsettable_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__UNSETTABLE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_unsettable_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_unsettable_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__UNSETTABLE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -436,19 +397,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addDerivedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EStructuralFeature_derived_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_derived_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.ESTRUCTURAL_FEATURE__DERIVED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EStructuralFeature_derived_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EStructuralFeature_derived_feature", "_UI_EStructuralFeature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.ESTRUCTURAL_FEATURE__DERIVED,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -459,19 +418,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addContainmentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EReference_containment_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EReference_containment_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.EREFERENCE__CONTAINMENT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EReference_containment_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EReference_containment_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.EREFERENCE__CONTAINMENT,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -482,19 +439,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addContainerPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EReference_container_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EReference_container_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.EREFERENCE__CONTAINER,
-						false,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EReference_container_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EReference_container_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.EREFERENCE__CONTAINER,
+				false,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -505,19 +460,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addResolveProxiesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EReference_resolveProxies_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EReference_resolveProxies_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.EREFERENCE__RESOLVE_PROXIES,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EReference_resolveProxies_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EReference_resolveProxies_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.EREFERENCE__RESOLVE_PROXIES,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -528,19 +481,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addEOppositePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EReference_eOpposite_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EReference_eOpposite_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.EREFERENCE__EOPPOSITE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EReference_eOpposite_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EReference_eOpposite_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.EREFERENCE__EOPPOSITE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -551,19 +502,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addEReferenceTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EReference_eReferenceType_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EReference_eReferenceType_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.EREFERENCE__EREFERENCE_TYPE,
-						false,
-						false,
-						false,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EReference_eReferenceType_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EReference_eReferenceType_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.EREFERENCE__EREFERENCE_TYPE,
+				false,
+				false,
+				false,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -574,19 +523,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addEKeysPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EReference_eKeys_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EReference_eKeys_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EcorePackage.Literals.EREFERENCE__EKEYS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EReference_eKeys_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EReference_eKeys_feature", "_UI_EReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EcorePackage.Literals.EREFERENCE__EKEYS,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -597,19 +544,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addDocumentationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DocumentedElement_documentation_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_DocumentedElement_documentation_feature", "_UI_DocumentedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EFacetPackage.Literals.DOCUMENTED_ELEMENT__DOCUMENTATION,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DocumentedElement_documentation_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_DocumentedElement_documentation_feature", "_UI_DocumentedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EFacetPackage.Literals.DOCUMENTED_ELEMENT__DOCUMENTATION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -620,19 +565,17 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addCategoriesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_FacetElement_categories_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_FacetElement_categories_feature", "_UI_FacetElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EFacetPackage.Literals.FACET_ELEMENT__CATEGORIES,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_FacetElement_categories_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_FacetElement_categories_feature", "_UI_FacetElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EFacetPackage.Literals.FACET_ELEMENT__CATEGORIES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -643,23 +586,22 @@ public class FacetReferenceItemProvider
 	 * @generated
 	 */
 	protected void addOverridePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DerivedTypedElement_override_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_DerivedTypedElement_override_feature", "_UI_DerivedTypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__OVERRIDE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DerivedTypedElement_override_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_DerivedTypedElement_override_feature", "_UI_DerivedTypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__OVERRIDE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -713,8 +655,8 @@ public class FacetReferenceItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((FacetReference) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_FacetReference_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_FacetReference_type") //$NON-NLS-1$
+				:
 				getString("_UI_FacetReference_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -772,55 +714,35 @@ public class FacetReferenceItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createNavigationQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createNavigationQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createIsOneOfQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createIsOneOfQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createStringLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createStringLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createTrueLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createTrueLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createFalseLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createFalseLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createNullLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createNullLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createFloatLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createFloatLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
-						QueryFactory.eINSTANCE.createOperationCallQuery()));
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
+				QueryFactory.eINSTANCE.createOperationCallQuery()));
 	}
 
 	/**

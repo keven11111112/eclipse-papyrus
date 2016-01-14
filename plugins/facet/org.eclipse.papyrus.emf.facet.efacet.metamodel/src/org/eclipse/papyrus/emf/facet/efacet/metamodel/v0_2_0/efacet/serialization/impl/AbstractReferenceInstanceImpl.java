@@ -29,10 +29,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serializatio
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.AbstractReferenceInstanceImpl#getEReference <em>EReference</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

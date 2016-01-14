@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
@@ -133,10 +132,15 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 	private EClass operationCallQueryEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage#eNS_URI
@@ -159,7 +163,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link QueryPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link QueryPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -176,13 +182,10 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
 		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) : EFacetPackage.eINSTANCE);
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
 		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI) instanceof ExtensiblePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI)
 				: ExtensiblePackage.eINSTANCE);
 		RuntimePackageImpl theRuntimePackage = (RuntimePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) instanceof RuntimePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI) : RuntimePackage.eINSTANCE);
@@ -511,13 +514,13 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(navigationQueryEClass, NavigationQuery.class, "NavigationQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getNavigationQuery_Path(), ecorePackage.getETypedElement(), null,
-				"path", null, 1, -1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getNavigationQuery_Path(), ecorePackage.getETypedElement(), null, "path", null, 1, -1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
 		initEAttribute(getNavigationQuery_FailOnError(), ecorePackage.getEBoolean(), "failOnError", "true", 0, 1, NavigationQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 
 		initEClass(isOneOfQueryEClass, IsOneOfQuery.class, "IsOneOfQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIsOneOfQuery_ExpectedEObjects(), ecorePackage.getEObject(), null,
-				"expectedEObjects", null, 0, -1, IsOneOfQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIsOneOfQuery_ExpectedEObjects(), ecorePackage.getEObject(), null, "expectedEObjects", null, 0, -1, IsOneOfQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(stringLiteralQueryEClass, StringLiteralQuery.class, "StringLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringLiteralQuery_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -535,14 +538,14 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		initEAttribute(getFloatLiteralQuery_Value(), ecorePackage.getEFloat(), "value", null, 0, 1, FloatLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(eObjectLiteralQueryEClass, EObjectLiteralQuery.class, "EObjectLiteralQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEObjectLiteralQuery_Element(), ecorePackage.getEObject(), null,
-				"element", null, 0, 1, EObjectLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getEObjectLiteralQuery_Element(), ecorePackage.getEObject(), null, "element", null, 0, 1, EObjectLiteralQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
 
 		initEClass(operationCallQueryEClass, OperationCallQuery.class, "OperationCallQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getOperationCallQuery_Operation(), ecorePackage.getEOperation(), null,
-				"operation", null, 0, 1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getOperationCallQuery_Arguments(), theExtensiblePackage.getQuery(), null,
-				"arguments", null, 0, -1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getOperationCallQuery_Operation(), ecorePackage.getEOperation(), null, "operation", null, 0, 1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationCallQuery_Arguments(), theExtensiblePackage.getQuery(), null, "arguments", null, 0, -1, OperationCallQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
 	}
 
 } // QueryPackageImpl

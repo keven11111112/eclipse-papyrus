@@ -30,10 +30,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.String
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.StringLiteralQueryImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

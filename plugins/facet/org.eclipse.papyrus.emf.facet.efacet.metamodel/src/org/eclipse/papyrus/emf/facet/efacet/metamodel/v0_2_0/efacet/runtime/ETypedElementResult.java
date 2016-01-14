@@ -35,13 +35,13 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterVal
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getDerivedTypedElement <em>Derived Typed Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getParameterValues <em>Parameter Values</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getSource <em>Source</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementResult#getException <em>Exception</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementResult()
  * @model abstract="true"

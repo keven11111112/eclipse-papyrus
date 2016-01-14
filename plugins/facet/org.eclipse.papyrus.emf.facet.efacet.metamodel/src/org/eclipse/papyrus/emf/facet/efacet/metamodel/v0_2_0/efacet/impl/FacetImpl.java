@@ -21,7 +21,10 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
@@ -43,6 +46,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getDocumentation <em>Documentation</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getExtendedMetaclass <em>Extended Metaclass</em>}</li>
@@ -50,8 +54,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getFacetOperations <em>Facet Operations</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getConformanceTypedElement <em>Conformance Typed Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getExtendedFacets <em>Extended Facets</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getAllTypedElements <em>All Typed Elements</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getAllFacetOperations <em>All Facet Operations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetImpl#getAllFacetElements <em>All Facet Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -132,6 +138,39 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * @ordered
 	 */
 	protected EList<Facet> extendedFacets;
+
+	/**
+	 * The cached value of the '{@link #getAllTypedElements() <em>All Typed Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getAllTypedElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ETypedElement> allTypedElements;
+
+	/**
+	 * The cached value of the '{@link #getAllFacetOperations() <em>All Facet Operations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getAllFacetOperations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FacetOperation> allFacetOperations;
+
+	/**
+	 * The cached value of the '{@link #getAllFacetElements() <em>All Facet Elements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getAllFacetElements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EStructuralFeature> allFacetElements;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -340,6 +379,58 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @generated NOT
+	 */
+	public EList<ETypedElement> getAllTypedElements() {
+		if (allTypedElements == null) {
+			allTypedElements = new BasicEList<ETypedElement>();
+			allTypedElements.addAll(getAllFacetElements());
+			allTypedElements.addAll(getAllFacetOperations());
+			allTypedElements = ECollections.unmodifiableEList(allTypedElements);
+		}
+		return allTypedElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	public EList<FacetOperation> getAllFacetOperations() {
+		if (allFacetOperations == null) {
+			allFacetOperations = new UniqueEList.FastCompare<FacetOperation>();
+			for (Facet facet : getExtendedFacets()) {
+				allFacetOperations.addAll(facet.getAllFacetOperations());
+			}
+			allFacetOperations.addAll(getFacetOperations());
+			allFacetOperations = ECollections.unmodifiableEList(allFacetOperations);
+		}
+		return allFacetOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	public EList<EStructuralFeature> getAllFacetElements() {
+		if (allFacetElements == null) {
+			allFacetElements = new UniqueEList.FastCompare<EStructuralFeature>();
+			for (Facet facet : getExtendedFacets()) {
+				allFacetElements.addAll(facet.getAllFacetElements());
+			}
+			allFacetElements.addAll(getFacetElements());
+			allFacetElements = ECollections.unmodifiableEList(allFacetElements);
+		}
+		return allFacetElements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
 	 * @generated
 	 */
 	@Override
@@ -380,6 +471,12 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 			return basicGetConformanceTypedElement();
 		case EFacetPackage.FACET__EXTENDED_FACETS:
 			return getExtendedFacets();
+		case EFacetPackage.FACET__ALL_TYPED_ELEMENTS:
+			return getAllTypedElements();
+		case EFacetPackage.FACET__ALL_FACET_OPERATIONS:
+			return getAllFacetOperations();
+		case EFacetPackage.FACET__ALL_FACET_ELEMENTS:
+			return getAllFacetElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -471,6 +568,12 @@ public class FacetImpl extends EClassifierImpl implements Facet {
 			return conformanceTypedElement != null;
 		case EFacetPackage.FACET__EXTENDED_FACETS:
 			return extendedFacets != null && !extendedFacets.isEmpty();
+		case EFacetPackage.FACET__ALL_TYPED_ELEMENTS:
+			return allTypedElements != null && !allTypedElements.isEmpty();
+		case EFacetPackage.FACET__ALL_FACET_OPERATIONS:
+			return allFacetOperations != null && !allFacetOperations.isEmpty();
+		case EFacetPackage.FACET__ALL_FACET_ELEMENTS:
+			return allFacetElements != null && !allFacetElements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

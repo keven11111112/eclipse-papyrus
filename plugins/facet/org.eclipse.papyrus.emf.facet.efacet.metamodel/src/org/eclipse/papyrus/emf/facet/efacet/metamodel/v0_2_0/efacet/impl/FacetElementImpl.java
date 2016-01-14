@@ -33,11 +33,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetElement
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl#getDocumentation <em>Documentation</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetElementImpl#getCategories <em>Categories</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

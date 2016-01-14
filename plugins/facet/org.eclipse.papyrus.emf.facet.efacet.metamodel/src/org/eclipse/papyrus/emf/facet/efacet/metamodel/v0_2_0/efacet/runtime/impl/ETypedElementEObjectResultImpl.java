@@ -33,10 +33,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.Runt
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementEObjectResultImpl#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

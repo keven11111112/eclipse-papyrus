@@ -27,10 +27,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackag
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DocumentedElementImpl#getDocumentation <em>Documentation</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

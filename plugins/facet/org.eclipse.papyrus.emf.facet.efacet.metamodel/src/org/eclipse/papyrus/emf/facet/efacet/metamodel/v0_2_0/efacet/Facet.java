@@ -34,14 +34,17 @@ import org.eclipse.emf.ecore.ETypedElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedMetaclass <em>Extended Metaclass</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetElements <em>Facet Elements</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getFacetOperations <em>Facet Operations</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getConformanceTypedElement <em>Conformance Typed Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets <em>Extended Facets</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllTypedElements <em>All Typed Elements</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetOperations <em>All Facet Operations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetElements <em>All Facet Elements</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore validationDelegates='( self.query.scope = self.facet.extendedMetaClass ) and ( self.query.name = self.name )'"
@@ -151,8 +154,58 @@ public interface Facet extends EClassifier, DocumentedElement {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_ExtendedFacets()
 	 * @model annotation="GenModel documentation='A facet can extend other facets. If A facet A can extend a facet B. In this case an eObject conforms to the facet A if it matches conformance evaluation of A and B. '"
 	 * @generated
-	 * @since 0.2
 	 */
 	EList<Facet> getExtendedFacets();
+
+	/**
+	 * Returns the value of the '<em><b>All Typed Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.ETypedElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Typed Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>All Typed Elements</em>' reference list.
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllTypedElements()
+	 * @model changeable="false" derived="true"
+	 * @generated
+	 */
+	EList<ETypedElement> getAllTypedElements();
+
+	/**
+	 * Returns the value of the '<em><b>All Facet Operations</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Facet Operations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>All Facet Operations</em>' reference list.
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllFacetOperations()
+	 * @model changeable="false" derived="true"
+	 * @generated
+	 */
+	EList<FacetOperation> getAllFacetOperations();
+
+	/**
+	 * Returns the value of the '<em><b>All Facet Elements</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EStructuralFeature}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Facet Elements</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>All Facet Elements</em>' reference list.
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#getFacet_AllFacetElements()
+	 * @model changeable="false" derived="true"
+	 * @generated
+	 */
+	EList<EStructuralFeature> getAllFacetElements();
 
 } // Facet

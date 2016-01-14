@@ -38,13 +38,13 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Q
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl#getDocumentation <em>Documentation</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl#getCategories <em>Categories</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl#getQuery <em>Query</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.FacetOperationImpl#getOverride <em>Override</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -211,8 +211,7 @@ public class FacetOperationImpl extends EOperationImpl implements FacetOperation
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, EFacetPackage.FACET_OPERATION__QUERY, newQuery, newQuery));
 		}
 	}

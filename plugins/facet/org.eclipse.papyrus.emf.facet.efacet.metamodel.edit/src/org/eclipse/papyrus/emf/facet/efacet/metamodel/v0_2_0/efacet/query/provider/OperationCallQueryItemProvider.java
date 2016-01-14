@@ -9,7 +9,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Design
  *    Nicolas Guyomar (Mia-Software) - Implementation
- *    Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ *    Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  *    Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *    Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *    Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -31,12 +31,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.provider.QueryItemProvider;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
@@ -52,13 +47,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryP
  * @generated
  */
 public class OperationCallQueryItemProvider
-		extends QueryItemProvider
-		implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		extends QueryItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -95,23 +84,22 @@ public class OperationCallQueryItemProvider
 	 * @generated
 	 */
 	protected void addOperationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_OperationCallQuery_operation_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_OperationCallQuery_operation_feature", "_UI_OperationCallQuery_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						QueryPackage.Literals.OPERATION_CALL_QUERY__OPERATION,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_OperationCallQuery_operation_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_OperationCallQuery_operation_feature", "_UI_OperationCallQuery_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				QueryPackage.Literals.OPERATION_CALL_QUERY__OPERATION,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,55 +186,35 @@ public class OperationCallQueryItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createNavigationQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createNavigationQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createIsOneOfQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createIsOneOfQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createStringLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createStringLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createTrueLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createTrueLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createFalseLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createFalseLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createNullLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createNullLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createFloatLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createFloatLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
-						QueryFactory.eINSTANCE.createOperationCallQuery()));
+		newChildDescriptors.add(createChildParameter(QueryPackage.Literals.OPERATION_CALL_QUERY__ARGUMENTS,
+				QueryFactory.eINSTANCE.createOperationCallQuery()));
 	}
 
 	/**

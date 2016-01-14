@@ -30,11 +30,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Q
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl#isCanHaveSideEffects <em>Can Have Side Effects</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.impl.QueryImpl#isCanBeCached <em>Can Be Cached</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

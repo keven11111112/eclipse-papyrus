@@ -32,10 +32,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryP
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.IsOneOfQueryImpl#getExpectedEObjects <em>Expected EObjects</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

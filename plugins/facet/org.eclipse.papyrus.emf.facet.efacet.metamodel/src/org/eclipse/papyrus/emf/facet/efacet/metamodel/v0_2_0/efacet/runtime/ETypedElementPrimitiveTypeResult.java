@@ -31,10 +31,10 @@ package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeResult#getResult <em>Result</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementPrimitiveTypeResult()
  * @model

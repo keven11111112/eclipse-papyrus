@@ -27,8 +27,6 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryP
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Null Literal Query</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

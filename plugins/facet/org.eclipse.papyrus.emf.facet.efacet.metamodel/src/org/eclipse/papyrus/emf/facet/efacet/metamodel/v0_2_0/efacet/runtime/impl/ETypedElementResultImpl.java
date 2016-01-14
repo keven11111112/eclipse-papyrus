@@ -42,13 +42,13 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.Runt
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl#getDerivedTypedElement <em>Derived Typed Element</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl#getParameterValues <em>Parameter Values</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl#getSource <em>Source</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.impl.ETypedElementResultImpl#getException <em>Exception</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

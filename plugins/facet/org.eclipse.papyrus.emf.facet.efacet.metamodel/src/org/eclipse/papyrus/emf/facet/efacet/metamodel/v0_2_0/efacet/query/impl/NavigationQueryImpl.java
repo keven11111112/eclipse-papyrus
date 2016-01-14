@@ -33,11 +33,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryP
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.NavigationQueryImpl#getPath <em>Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.impl.NavigationQueryImpl#isFailOnError <em>Fail On Error</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

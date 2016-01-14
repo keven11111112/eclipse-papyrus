@@ -89,38 +89,37 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected RuntimeSwitch<Adapter> modelSwitch =
-			new RuntimeSwitch<Adapter>() {
-				@Override
-				public <T> Adapter caseETypedElementPrimitiveTypeResult(ETypedElementPrimitiveTypeResult<T> object) {
-					return createETypedElementPrimitiveTypeResultAdapter();
-				}
+	protected RuntimeSwitch<Adapter> modelSwitch = new RuntimeSwitch<Adapter>() {
+		@Override
+		public <T> Adapter caseETypedElementPrimitiveTypeResult(ETypedElementPrimitiveTypeResult<T> object) {
+			return createETypedElementPrimitiveTypeResultAdapter();
+		}
 
-				@Override
-				public <T extends EObject> Adapter caseETypedElementEObjectResult(ETypedElementEObjectResult<T> object) {
-					return createETypedElementEObjectResultAdapter();
-				}
+		@Override
+		public <T extends EObject> Adapter caseETypedElementEObjectResult(ETypedElementEObjectResult<T> object) {
+			return createETypedElementEObjectResultAdapter();
+		}
 
-				@Override
-				public <T> Adapter caseETypedElementPrimitiveTypeListResult(ETypedElementPrimitiveTypeListResult<T> object) {
-					return createETypedElementPrimitiveTypeListResultAdapter();
-				}
+		@Override
+		public <T> Adapter caseETypedElementPrimitiveTypeListResult(ETypedElementPrimitiveTypeListResult<T> object) {
+			return createETypedElementPrimitiveTypeListResultAdapter();
+		}
 
-				@Override
-				public <T extends EObject> Adapter caseETypedElementEObjectListResult(ETypedElementEObjectListResult<T> object) {
-					return createETypedElementEObjectListResultAdapter();
-				}
+		@Override
+		public <T extends EObject> Adapter caseETypedElementEObjectListResult(ETypedElementEObjectListResult<T> object) {
+			return createETypedElementEObjectListResultAdapter();
+		}
 
-				@Override
-				public Adapter caseETypedElementResult(ETypedElementResult object) {
-					return createETypedElementResultAdapter();
-				}
+		@Override
+		public Adapter caseETypedElementResult(ETypedElementResult object) {
+			return createETypedElementResultAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

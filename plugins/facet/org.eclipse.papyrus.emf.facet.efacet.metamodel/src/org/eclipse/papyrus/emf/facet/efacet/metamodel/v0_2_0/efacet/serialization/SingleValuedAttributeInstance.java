@@ -22,10 +22,10 @@ package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serializati
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SingleValuedAttributeInstance#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#getSingleValuedAttributeInstance()
  * @model

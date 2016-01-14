@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -95,19 +95,17 @@ public class ETypedElementResultItemProvider
 	 * @generated
 	 */
 	protected void addDerivedTypedElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElementResult_derivedTypedElement_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElementResult_derivedTypedElement_feature", "_UI_ETypedElementResult_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__DERIVED_TYPED_ELEMENT,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElementResult_derivedTypedElement_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElementResult_derivedTypedElement_feature", "_UI_ETypedElementResult_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__DERIVED_TYPED_ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -118,19 +116,17 @@ public class ETypedElementResultItemProvider
 	 * @generated
 	 */
 	protected void addSourcePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElementResult_source_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElementResult_source_feature", "_UI_ETypedElementResult_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__SOURCE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElementResult_source_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElementResult_source_feature", "_UI_ETypedElementResult_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__SOURCE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -141,23 +137,22 @@ public class ETypedElementResultItemProvider
 	 * @generated
 	 */
 	protected void addExceptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ETypedElementResult_exception_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ETypedElementResult_exception_feature", "_UI_ETypedElementResult_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__EXCEPTION,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ETypedElementResult_exception_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElementResult_exception_feature", "_UI_ETypedElementResult_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__EXCEPTION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,8 +193,8 @@ public class ETypedElementResultItemProvider
 	public String getText(Object object) {
 		Throwable labelValue = ((ETypedElementResult) object).getException();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ETypedElementResult_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_ETypedElementResult_type") //$NON-NLS-1$
+				:
 				getString("_UI_ETypedElementResult_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
@@ -238,10 +233,8 @@ public class ETypedElementResultItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__PARAMETER_VALUES,
-						EFacetFactory.eINSTANCE.createParameterValue()));
+		newChildDescriptors.add(createChildParameter(RuntimePackage.Literals.ETYPED_ELEMENT_RESULT__PARAMETER_VALUES,
+				EFacetFactory.eINSTANCE.createParameterValue()));
 	}
 
 	/**

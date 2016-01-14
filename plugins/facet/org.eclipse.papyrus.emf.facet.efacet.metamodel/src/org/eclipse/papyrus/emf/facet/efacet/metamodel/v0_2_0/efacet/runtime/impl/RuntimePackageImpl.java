@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
@@ -101,10 +100,15 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	private EDataType javaExceptionEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#eNS_URI
@@ -127,7 +131,9 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link RuntimePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link RuntimePackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -144,13 +150,10 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
 		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) : EFacetPackage.eINSTANCE);
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
 		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI) instanceof ExtensiblePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI)
 				: ExtensiblePackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
@@ -436,16 +439,16 @@ public class RuntimePackageImpl extends EPackageImpl implements RuntimePackage {
 
 		initEClass(eTypedElementEObjectListResultEClass, ETypedElementEObjectListResult.class, "ETypedElementEObjectListResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		g1 = createEGenericType(eTypedElementEObjectListResultEClass_T);
-		initEReference(getETypedElementEObjectListResult_ResultList(), g1, null,
-				"resultList", null, 0, -1, ETypedElementEObjectListResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getETypedElementEObjectListResult_ResultList(), g1, null, "resultList", null, 0, -1, ETypedElementEObjectListResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(eTypedElementResultEClass, ETypedElementResult.class, "ETypedElementResult", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getETypedElementResult_DerivedTypedElement(), ecorePackage.getETypedElement(), null,
-				"derivedTypedElement", null, 1, 1, ETypedElementResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getETypedElementResult_ParameterValues(), theEFacetPackage.getParameterValue(), null,
-				"parameterValues", null, 0, -1, ETypedElementResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getETypedElementResult_Source(), ecorePackage.getEObject(), null,
-				"source", null, 1, 1, ETypedElementResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getETypedElementResult_DerivedTypedElement(), ecorePackage.getETypedElement(), null, "derivedTypedElement", null, 1, 1, ETypedElementResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getETypedElementResult_ParameterValues(), theEFacetPackage.getParameterValue(), null, "parameterValues", null, 0, -1, ETypedElementResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getETypedElementResult_Source(), ecorePackage.getEObject(), null, "source", null, 1, 1, ETypedElementResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
 		initEAttribute(getETypedElementResult_Exception(), this.getJavaException(), "exception", null, 0, 1, ETypedElementResult.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize data types

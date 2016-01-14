@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -91,19 +91,17 @@ public class QueryItemProvider
 	 * @generated
 	 */
 	protected void addCanHaveSideEffectsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Query_canHaveSideEffects_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Query_canHaveSideEffects_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExtensiblePackage.Literals.QUERY__CAN_HAVE_SIDE_EFFECTS,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Query_canHaveSideEffects_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Query_canHaveSideEffects_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExtensiblePackage.Literals.QUERY__CAN_HAVE_SIDE_EFFECTS,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -114,19 +112,17 @@ public class QueryItemProvider
 	 * @generated
 	 */
 	protected void addCanBeCachedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Query_canBeCached_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_Query_canBeCached_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						ExtensiblePackage.Literals.QUERY__CAN_BE_CACHED,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Query_canBeCached_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_Query_canBeCached_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				ExtensiblePackage.Literals.QUERY__CAN_BE_CACHED,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**

@@ -27,8 +27,6 @@ import org.eclipse.emf.ecore.EFactory;
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryPackage
  * @generated
- * @noextend This interface is not intended to be extended by clients.
- * @noimplement This interface is not intended to be implemented by clients.
  */
 public interface QueryFactory extends EFactory {
 	/**
@@ -107,7 +105,6 @@ public interface QueryFactory extends EFactory {
 	 *
 	 * @return a new object of class '<em>Integer Literal Query</em>'.
 	 * @generated
-	 * @since 0.2
 	 */
 	IntegerLiteralQuery createIntegerLiteralQuery();
 
@@ -118,7 +115,6 @@ public interface QueryFactory extends EFactory {
 	 *
 	 * @return a new object of class '<em>Float Literal Query</em>'.
 	 * @generated
-	 * @since 0.2
 	 */
 	FloatLiteralQuery createFloatLiteralQuery();
 
@@ -129,7 +125,6 @@ public interface QueryFactory extends EFactory {
 	 *
 	 * @return a new object of class '<em>EObject Literal Query</em>'.
 	 * @generated
-	 * @since 0.2
 	 */
 	EObjectLiteralQuery createEObjectLiteralQuery();
 
@@ -140,7 +135,6 @@ public interface QueryFactory extends EFactory {
 	 *
 	 * @return a new object of class '<em>Operation Call Query</em>'.
 	 * @generated
-	 * @since 0.2
 	 */
 	OperationCallQuery createOperationCallQuery();
 

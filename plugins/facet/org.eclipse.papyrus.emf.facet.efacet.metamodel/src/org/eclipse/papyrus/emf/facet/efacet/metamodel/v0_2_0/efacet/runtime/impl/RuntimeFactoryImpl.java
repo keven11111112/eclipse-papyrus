@@ -49,7 +49,7 @@ public class RuntimeFactoryImpl extends EFactoryImpl implements RuntimeFactory {
 	 */
 	public static RuntimeFactory init() {
 		try {
-			RuntimeFactory theRuntimeFactory = (RuntimeFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet/runtime"); //$NON-NLS-1$
+			RuntimeFactory theRuntimeFactory = (RuntimeFactory) EPackage.Registry.INSTANCE.getEFactory(RuntimePackage.eNS_URI);
 			if (theRuntimeFactory != null) {
 				return theRuntimeFactory;
 			}

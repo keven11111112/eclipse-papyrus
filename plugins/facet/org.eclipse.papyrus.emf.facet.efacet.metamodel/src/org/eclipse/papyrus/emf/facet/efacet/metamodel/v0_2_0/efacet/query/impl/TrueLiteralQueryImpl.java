@@ -28,8 +28,6 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.TrueLi
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>True Literal Query</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

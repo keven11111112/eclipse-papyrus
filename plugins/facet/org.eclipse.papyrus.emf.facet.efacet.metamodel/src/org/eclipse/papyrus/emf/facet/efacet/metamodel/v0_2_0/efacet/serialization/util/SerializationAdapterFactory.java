@@ -88,58 +88,57 @@ public class SerializationAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected SerializationSwitch<Adapter> modelSwitch =
-			new SerializationSwitch<Adapter>() {
-				@Override
-				public Adapter caseAbstractReferenceInstance(AbstractReferenceInstance object) {
-					return createAbstractReferenceInstanceAdapter();
-				}
+	protected SerializationSwitch<Adapter> modelSwitch = new SerializationSwitch<Adapter>() {
+		@Override
+		public Adapter caseAbstractReferenceInstance(AbstractReferenceInstance object) {
+			return createAbstractReferenceInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseMultiValuedContainmentReferenceInstance(MultiValuedContainmentReferenceInstance object) {
-					return createMultiValuedContainmentReferenceInstanceAdapter();
-				}
+		@Override
+		public Adapter caseMultiValuedContainmentReferenceInstance(MultiValuedContainmentReferenceInstance object) {
+			return createMultiValuedContainmentReferenceInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseMultiValuedReferenceInstance(MultiValuedReferenceInstance object) {
-					return createMultiValuedReferenceInstanceAdapter();
-				}
+		@Override
+		public Adapter caseMultiValuedReferenceInstance(MultiValuedReferenceInstance object) {
+			return createMultiValuedReferenceInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseSingleValuedAttributeInstance(SingleValuedAttributeInstance object) {
-					return createSingleValuedAttributeInstanceAdapter();
-				}
+		@Override
+		public Adapter caseSingleValuedAttributeInstance(SingleValuedAttributeInstance object) {
+			return createSingleValuedAttributeInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseExtendedEObjectReference(ExtendedEObjectReference object) {
-					return createExtendedEObjectReferenceAdapter();
-				}
+		@Override
+		public Adapter caseExtendedEObjectReference(ExtendedEObjectReference object) {
+			return createExtendedEObjectReferenceAdapter();
+		}
 
-				@Override
-				public Adapter caseSingleValuedContainmentReferenceInstance(SingleValuedContainmentReferenceInstance object) {
-					return createSingleValuedContainmentReferenceInstanceAdapter();
-				}
+		@Override
+		public Adapter caseSingleValuedContainmentReferenceInstance(SingleValuedContainmentReferenceInstance object) {
+			return createSingleValuedContainmentReferenceInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseSingleValuedReferenceInstance(SingleValuedReferenceInstance object) {
-					return createSingleValuedReferenceInstanceAdapter();
-				}
+		@Override
+		public Adapter caseSingleValuedReferenceInstance(SingleValuedReferenceInstance object) {
+			return createSingleValuedReferenceInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseMultiValuedAttributeInstance(MultiValuedAttributeInstance object) {
-					return createMultiValuedAttributeInstanceAdapter();
-				}
+		@Override
+		public Adapter caseMultiValuedAttributeInstance(MultiValuedAttributeInstance object) {
+			return createMultiValuedAttributeInstanceAdapter();
+		}
 
-				@Override
-				public Adapter caseAbstractAttributeInstance(AbstractAttributeInstance object) {
-					return createAbstractAttributeInstanceAdapter();
-				}
+		@Override
+		public Adapter caseAbstractAttributeInstance(AbstractAttributeInstance object) {
+			return createAbstractAttributeInstanceAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

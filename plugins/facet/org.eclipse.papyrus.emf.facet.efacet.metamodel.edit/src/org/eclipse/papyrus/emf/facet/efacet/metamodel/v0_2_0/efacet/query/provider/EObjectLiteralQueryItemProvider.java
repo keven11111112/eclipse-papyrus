@@ -9,7 +9,7 @@
  * Contributors:
  *    Gregoire Dupe (Mia-Software) - Design
  *    Nicolas Guyomar (Mia-Software) - Implementation
- *    Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ *    Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  *    Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *    Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *    Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -30,12 +30,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.provider.QueryItemProvider;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider.Efacet2EditPlugin;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.EObjectLiteralQuery;
@@ -49,13 +44,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryP
  * @generated
  */
 public class EObjectLiteralQueryItemProvider
-		extends QueryItemProvider
-		implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+		extends QueryItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -92,19 +81,17 @@ public class EObjectLiteralQueryItemProvider
 	 * @generated
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_EObjectLiteralQuery_element_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_EObjectLiteralQuery_element_feature", "_UI_EObjectLiteralQuery_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						QueryPackage.Literals.EOBJECT_LITERAL_QUERY__ELEMENT,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_EObjectLiteralQuery_element_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_EObjectLiteralQuery_element_feature", "_UI_EObjectLiteralQuery_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				QueryPackage.Literals.EOBJECT_LITERAL_QUERY__ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**

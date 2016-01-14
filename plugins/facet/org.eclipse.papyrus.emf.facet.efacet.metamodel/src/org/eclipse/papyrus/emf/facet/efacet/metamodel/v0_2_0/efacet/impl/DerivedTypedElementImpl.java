@@ -29,11 +29,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.Q
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl#getQuery <em>Query</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.DerivedTypedElementImpl#getOverride <em>Override</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -130,8 +130,7 @@ public abstract class DerivedTypedElementImpl extends FacetElementImpl implement
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, EFacetPackage.DERIVED_TYPED_ELEMENT__QUERY, newQuery, newQuery));
 		}
 	}

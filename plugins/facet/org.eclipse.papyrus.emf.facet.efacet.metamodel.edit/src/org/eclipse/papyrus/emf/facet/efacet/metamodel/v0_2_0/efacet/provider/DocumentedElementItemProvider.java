@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -88,19 +88,17 @@ public class DocumentedElementItemProvider
 	 * @generated
 	 */
 	protected void addDocumentationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DocumentedElement_documentation_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_DocumentedElement_documentation_feature", "_UI_DocumentedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EFacetPackage.Literals.DOCUMENTED_ELEMENT__DOCUMENTATION,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DocumentedElement_documentation_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_DocumentedElement_documentation_feature", "_UI_DocumentedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EFacetPackage.Literals.DOCUMENTED_ELEMENT__DOCUMENTATION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -125,8 +123,8 @@ public class DocumentedElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DocumentedElement) object).getDocumentation();
-		return label == null || label.length() == 0 ?
-				getString("_UI_DocumentedElement_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_DocumentedElement_type") //$NON-NLS-1$
+				:
 				getString("_UI_DocumentedElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 

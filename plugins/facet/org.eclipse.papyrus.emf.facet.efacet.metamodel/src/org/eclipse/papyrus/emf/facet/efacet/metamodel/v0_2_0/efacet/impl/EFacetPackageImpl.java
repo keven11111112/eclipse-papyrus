@@ -18,14 +18,11 @@
  */
 package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl;
 
-import static org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage.RESOURCE;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category;
@@ -146,10 +143,15 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 	private EDataType resourceEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage#eNS_URI
@@ -172,7 +174,9 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link EFacetPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link EFacetPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -189,12 +193,9 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
-		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
+		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) instanceof SerializationPackageImpl
+				? EPackage.Registry.INSTANCE.getEPackage(SerializationPackage.eNS_URI) : SerializationPackage.eINSTANCE);
 		ExtensiblePackageImpl theExtensiblePackage = (ExtensiblePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI) instanceof ExtensiblePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExtensiblePackage.eNS_URI)
 				: ExtensiblePackage.eINSTANCE);
 		QueryPackageImpl theQueryPackage = (QueryPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
@@ -331,6 +332,36 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 	 */
 	public EReference getFacet_ExtendedFacets() {
 		return (EReference) facetEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public EReference getFacet_AllTypedElements() {
+		return (EReference) facetEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public EReference getFacet_AllFacetOperations() {
+		return (EReference) facetEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	public EReference getFacet_AllFacetElements() {
+		return (EReference) facetEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -501,6 +532,9 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		createEReference(facetEClass, FACET__FACET_OPERATIONS);
 		createEReference(facetEClass, FACET__CONFORMANCE_TYPED_ELEMENT);
 		createEReference(facetEClass, FACET__EXTENDED_FACETS);
+		createEReference(facetEClass, FACET__ALL_TYPED_ELEMENTS);
+		createEReference(facetEClass, FACET__ALL_FACET_OPERATIONS);
+		createEReference(facetEClass, FACET__ALL_FACET_ELEMENTS);
 
 		categoryEClass = createEClass(CATEGORY);
 
@@ -595,14 +629,20 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		addEOperation(facetSetEClass, this.getFacetSet(), "getFacetSets", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(facetEClass, Facet.class, "Facet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getFacet_ExtendedMetaclass(), ecorePackage.getEClass(), null,
-				"extendedMetaclass", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFacet_FacetElements(), ecorePackage.getEStructuralFeature(), null,
-				"facetElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getFacet_ExtendedMetaclass(), ecorePackage.getEClass(), null, "extendedMetaclass", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
+		initEReference(getFacet_FacetElements(), ecorePackage.getEStructuralFeature(), null, "facetElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
 		initEReference(getFacet_FacetOperations(), this.getFacetOperation(), null, "facetOperations", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getFacet_ConformanceTypedElement(), ecorePackage.getETypedElement(), null,
-				"conformanceTypedElement", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getFacet_ConformanceTypedElement(), ecorePackage.getETypedElement(), null, "conformanceTypedElement", null, 0, 1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
 		initEReference(getFacet_ExtendedFacets(), this.getFacet(), null, "extendedFacets", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getFacet_AllTypedElements(), ecorePackage.getETypedElement(), null, "allTypedElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
+		initEReference(getFacet_AllFacetOperations(), this.getFacetOperation(), null, "allFacetOperations", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
+		initEReference(getFacet_AllFacetElements(), ecorePackage.getEStructuralFeature(), null, "allFacetElements", null, 0, -1, Facet.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
 
 		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -610,14 +650,14 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		initEReference(getFacetElement_Categories(), this.getCategory(), null, "categories", null, 0, -1, FacetElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(derivedTypedElementEClass, DerivedTypedElement.class, "DerivedTypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getDerivedTypedElement_Query(), theExtensiblePackage.getQuery(), null,
-				"query", null, 1, 1, DerivedTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getDerivedTypedElement_Override(), this.getDerivedTypedElement(), null,
-				"override", null, 0, 1, DerivedTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDerivedTypedElement_Query(), theExtensiblePackage.getQuery(), null, "query", null, 1, 1, DerivedTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
+		initEReference(getDerivedTypedElement_Override(), this.getDerivedTypedElement(), null, "override", null, 0, 1, DerivedTypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, //$NON-NLS-1$
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterValueEClass, ParameterValue.class, "ParameterValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getParameterValue_Parameter(), ecorePackage.getEParameter(), null,
-				"parameter", null, 1, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getParameterValue_Parameter(), ecorePackage.getEParameter(), null, "parameter", null, 1, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, //$NON-NLS-1$
+				IS_ORDERED);
 		initEAttribute(getParameterValue_Value(), ecorePackage.getEJavaObject(), "value", null, 0, 1, ParameterValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(documentedElementEClass, DocumentedElement.class, "DocumentedElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -649,15 +689,18 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$
 		addAnnotation(this,
 				source,
-				new String[] { "validationDelegates", "org.eclipse.ocl.ecore.OCL" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"validationDelegates", "org.eclipse.ocl.ecore.OCL" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(facetEClass,
 				source,
-				new String[] { "validationDelegates", "( self.query.scope = self.facet.extendedMetaClass ) and ( self.query.name = self.name )" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"validationDelegates", "( self.query.scope = self.facet.extendedMetaClass ) and ( self.query.name = self.name )" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(facetEClass,
 				source,
-				new String[] { "validationDelegates", "self.conformanceQuery.scope = self.extendedMetaClass" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"validationDelegates", "self.conformanceQuery.scope = self.extendedMetaClass" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 
@@ -672,19 +715,23 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		String source = "GenModel"; //$NON-NLS-1$
 		addAnnotation(facetSetEClass,
 				source,
-				new String[] { "documentation", "A \"FacetSet\" is the root element of a facet model. It contains a list of \"Facet\"." //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"documentation", "A \"FacetSet\" is the root element of a facet model. It contains a list of \"Facet\"." //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(facetSetEClass.getEOperations().get(0),
 				source,
-				new String[] { "documentation", "The FacetSets aggregated by this FacetSet (this operation is overridden in Aggregate in the aggregate metamodel)." //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"documentation", "The FacetSets aggregated by this FacetSet (this operation is overridden in Aggregate in the aggregate metamodel)." //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(getFacet_ExtendedMetaclass(),
 				source,
-				new String[] { "documentation", "The \"extendedMetaclass\" reference references the virtually subtyped EClass." //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"documentation", "The \"extendedMetaclass\" reference references the virtually subtyped EClass." //$NON-NLS-1$ //$NON-NLS-2$
 				});
 		addAnnotation(getFacet_ExtendedFacets(),
 				source,
-				new String[] { "documentation", "A facet can extend other facets. If A facet A can extend a facet B. In this case an eObject conforms to the facet A if it matches conformance evaluation of A and B. " //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"documentation", "A facet can extend other facets. If A facet A can extend a facet B. In this case an eObject conforms to the facet A if it matches conformance evaluation of A and B. " //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 
@@ -699,7 +746,8 @@ public class EFacetPackageImpl extends EPackageImpl implements EFacetPackage {
 		String source = "org.eclipse.ocl.ecore.OCL"; //$NON-NLS-1$
 		addAnnotation(facetEClass,
 				source,
-				new String[] { "body", "not(self.container().oclCastAs(FacetSet).facets->exists(f|f.extendedMetaClass.container() <> self.extendedMetaClass.container() ))" //$NON-NLS-1$ //$NON-NLS-2$
+				new String[] {
+						"body", "not(self.container().oclCastAs(FacetSet).facets->exists(f|f.extendedMetaClass.container() <> self.extendedMetaClass.container() ))" //$NON-NLS-1$ //$NON-NLS-2$
 				});
 	}
 

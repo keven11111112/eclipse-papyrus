@@ -39,7 +39,7 @@ public class ExtensibleFactoryImpl extends EFactoryImpl implements ExtensibleFac
 	 */
 	public static ExtensibleFactory init() {
 		try {
-			ExtensibleFactory theExtensibleFactory = (ExtensibleFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet/extensible"); //$NON-NLS-1$
+			ExtensibleFactory theExtensibleFactory = (ExtensibleFactory) EPackage.Registry.INSTANCE.getEFactory(ExtensiblePackage.eNS_URI);
 			if (theExtensibleFactory != null) {
 				return theExtensibleFactory;
 			}

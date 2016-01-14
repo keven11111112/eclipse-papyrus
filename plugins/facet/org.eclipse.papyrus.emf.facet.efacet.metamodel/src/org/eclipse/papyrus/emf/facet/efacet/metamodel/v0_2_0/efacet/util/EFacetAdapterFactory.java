@@ -99,108 +99,107 @@ public class EFacetAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected EFacetSwitch<Adapter> modelSwitch =
-			new EFacetSwitch<Adapter>() {
-				@Override
-				public Adapter caseFacetAttribute(FacetAttribute object) {
-					return createFacetAttributeAdapter();
-				}
+	protected EFacetSwitch<Adapter> modelSwitch = new EFacetSwitch<Adapter>() {
+		@Override
+		public Adapter caseFacetAttribute(FacetAttribute object) {
+			return createFacetAttributeAdapter();
+		}
 
-				@Override
-				public Adapter caseFacetReference(FacetReference object) {
-					return createFacetReferenceAdapter();
-				}
+		@Override
+		public Adapter caseFacetReference(FacetReference object) {
+			return createFacetReferenceAdapter();
+		}
 
-				@Override
-				public Adapter caseFacetOperation(FacetOperation object) {
-					return createFacetOperationAdapter();
-				}
+		@Override
+		public Adapter caseFacetOperation(FacetOperation object) {
+			return createFacetOperationAdapter();
+		}
 
-				@Override
-				public Adapter caseFacetSet(FacetSet object) {
-					return createFacetSetAdapter();
-				}
+		@Override
+		public Adapter caseFacetSet(FacetSet object) {
+			return createFacetSetAdapter();
+		}
 
-				@Override
-				public Adapter caseFacet(Facet object) {
-					return createFacetAdapter();
-				}
+		@Override
+		public Adapter caseFacet(Facet object) {
+			return createFacetAdapter();
+		}
 
-				@Override
-				public Adapter caseCategory(Category object) {
-					return createCategoryAdapter();
-				}
+		@Override
+		public Adapter caseCategory(Category object) {
+			return createCategoryAdapter();
+		}
 
-				@Override
-				public Adapter caseFacetElement(FacetElement object) {
-					return createFacetElementAdapter();
-				}
+		@Override
+		public Adapter caseFacetElement(FacetElement object) {
+			return createFacetElementAdapter();
+		}
 
-				@Override
-				public Adapter caseDerivedTypedElement(DerivedTypedElement object) {
-					return createDerivedTypedElementAdapter();
-				}
+		@Override
+		public Adapter caseDerivedTypedElement(DerivedTypedElement object) {
+			return createDerivedTypedElementAdapter();
+		}
 
-				@Override
-				public Adapter caseParameterValue(ParameterValue object) {
-					return createParameterValueAdapter();
-				}
+		@Override
+		public Adapter caseParameterValue(ParameterValue object) {
+			return createParameterValueAdapter();
+		}
 
-				@Override
-				public Adapter caseDocumentedElement(DocumentedElement object) {
-					return createDocumentedElementAdapter();
-				}
+		@Override
+		public Adapter caseDocumentedElement(DocumentedElement object) {
+			return createDocumentedElementAdapter();
+		}
 
-				@Override
-				public Adapter caseEModelElement(EModelElement object) {
-					return createEModelElementAdapter();
-				}
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
 
-				@Override
-				public Adapter caseENamedElement(ENamedElement object) {
-					return createENamedElementAdapter();
-				}
+		@Override
+		public Adapter caseENamedElement(ENamedElement object) {
+			return createENamedElementAdapter();
+		}
 
-				@Override
-				public Adapter caseETypedElement(ETypedElement object) {
-					return createETypedElementAdapter();
-				}
+		@Override
+		public Adapter caseETypedElement(ETypedElement object) {
+			return createETypedElementAdapter();
+		}
 
-				@Override
-				public Adapter caseEStructuralFeature(EStructuralFeature object) {
-					return createEStructuralFeatureAdapter();
-				}
+		@Override
+		public Adapter caseEStructuralFeature(EStructuralFeature object) {
+			return createEStructuralFeatureAdapter();
+		}
 
-				@Override
-				public Adapter caseEAttribute(EAttribute object) {
-					return createEAttributeAdapter();
-				}
+		@Override
+		public Adapter caseEAttribute(EAttribute object) {
+			return createEAttributeAdapter();
+		}
 
-				@Override
-				public Adapter caseEReference(EReference object) {
-					return createEReferenceAdapter();
-				}
+		@Override
+		public Adapter caseEReference(EReference object) {
+			return createEReferenceAdapter();
+		}
 
-				@Override
-				public Adapter caseEOperation(EOperation object) {
-					return createEOperationAdapter();
-				}
+		@Override
+		public Adapter caseEOperation(EOperation object) {
+			return createEOperationAdapter();
+		}
 
-				@Override
-				public Adapter caseEPackage(EPackage object) {
-					return createEPackageAdapter();
-				}
+		@Override
+		public Adapter caseEPackage(EPackage object) {
+			return createEPackageAdapter();
+		}
 
-				@Override
-				public Adapter caseEClassifier(EClassifier object) {
-					return createEClassifierAdapter();
-				}
+		@Override
+		public Adapter caseEClassifier(EClassifier object) {
+			return createEClassifierAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

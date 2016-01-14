@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -89,19 +89,17 @@ public class ParameterValueItemProvider
 	 * @generated
 	 */
 	protected void addParameterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ParameterValue_parameter_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ParameterValue_parameter_feature", "_UI_ParameterValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EFacetPackage.Literals.PARAMETER_VALUE__PARAMETER,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ParameterValue_parameter_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ParameterValue_parameter_feature", "_UI_ParameterValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EFacetPackage.Literals.PARAMETER_VALUE__PARAMETER,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -112,19 +110,17 @@ public class ParameterValueItemProvider
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ParameterValue_value_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ParameterValue_value_feature", "_UI_ParameterValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						EFacetPackage.Literals.PARAMETER_VALUE__VALUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ParameterValue_value_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ParameterValue_value_feature", "_UI_ParameterValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				EFacetPackage.Literals.PARAMETER_VALUE__VALUE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -150,8 +146,8 @@ public class ParameterValueItemProvider
 	public String getText(Object object) {
 		Object labelValue = ((ParameterValue) object).getValue();
 		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ParameterValue_type") : //$NON-NLS-1$
+		return label == null || label.length() == 0 ? getString("_UI_ParameterValue_type") //$NON-NLS-1$
+				:
 				getString("_UI_ParameterValue_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 

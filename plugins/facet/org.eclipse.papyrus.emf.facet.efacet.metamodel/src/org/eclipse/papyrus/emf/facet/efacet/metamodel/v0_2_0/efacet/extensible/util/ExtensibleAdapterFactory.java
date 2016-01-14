@@ -80,18 +80,17 @@ public class ExtensibleAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected ExtensibleSwitch<Adapter> modelSwitch =
-			new ExtensibleSwitch<Adapter>() {
-				@Override
-				public Adapter caseQuery(Query object) {
-					return createQueryAdapter();
-				}
+	protected ExtensibleSwitch<Adapter> modelSwitch = new ExtensibleSwitch<Adapter>() {
+		@Override
+		public Adapter caseQuery(Query object) {
+			return createQueryAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

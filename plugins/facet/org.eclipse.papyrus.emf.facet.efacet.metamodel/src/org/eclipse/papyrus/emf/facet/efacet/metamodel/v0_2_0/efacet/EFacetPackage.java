@@ -1120,9 +1120,38 @@ public interface EFacetPackage extends EPackage {
 	 *
 	 * @generated
 	 * @ordered
-	 * @since 0.2
 	 */
 	int FACET__EXTENDED_FACETS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>All Typed Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FACET__ALL_TYPED_ELEMENTS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>All Facet Operations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FACET__ALL_FACET_OPERATIONS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>All Facet Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int FACET__ALL_FACET_ELEMENTS = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Facet</em>' class.
@@ -1132,7 +1161,7 @@ public interface EFacetPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FACET_FEATURE_COUNT = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 6;
+	int FACET_FEATURE_COUNT = EcorePackage.ECLASSIFIER_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl <em>Category</em>}' class.
@@ -1695,9 +1724,44 @@ public interface EFacetPackage extends EPackage {
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getExtendedFacets()
 	 * @see #getFacet()
 	 * @generated
-	 * @since 0.2
 	 */
 	EReference getFacet_ExtendedFacets();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllTypedElements <em>All Typed Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>All Typed Elements</em>'.
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllTypedElements()
+	 * @see #getFacet()
+	 * @generated
+	 */
+	EReference getFacet_AllTypedElements();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetOperations <em>All Facet Operations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>All Facet Operations</em>'.
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetOperations()
+	 * @see #getFacet()
+	 * @generated
+	 */
+	EReference getFacet_AllFacetOperations();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetElements <em>All Facet Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>All Facet Elements</em>'.
+	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet#getAllFacetElements()
+	 * @see #getFacet()
+	 * @generated
+	 */
+	EReference getFacet_AllFacetElements();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Category <em>Category</em>}'.
@@ -1968,9 +2032,35 @@ public interface EFacetPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 *
 		 * @generated
-		 * @since 0.2
 		 */
 		EReference FACET__EXTENDED_FACETS = eINSTANCE.getFacet_ExtendedFacets();
+
+		/**
+		 * The meta object literal for the '<em><b>All Typed Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference FACET__ALL_TYPED_ELEMENTS = eINSTANCE.getFacet_AllTypedElements();
+
+		/**
+		 * The meta object literal for the '<em><b>All Facet Operations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference FACET__ALL_FACET_OPERATIONS = eINSTANCE.getFacet_AllFacetOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>All Facet Elements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference FACET__ALL_FACET_ELEMENTS = eINSTANCE.getFacet_AllFacetElements();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.impl.CategoryImpl <em>Category</em>}' class.

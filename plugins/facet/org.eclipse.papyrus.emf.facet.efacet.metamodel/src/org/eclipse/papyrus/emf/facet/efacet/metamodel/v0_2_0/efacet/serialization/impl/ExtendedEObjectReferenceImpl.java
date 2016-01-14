@@ -37,12 +37,12 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serializatio
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.ExtendedEObjectReferenceImpl#getExtendedEObject <em>Extended EObject</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.ExtendedEObjectReferenceImpl#getAttributeInstances <em>Attribute Instances</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.ExtendedEObjectReferenceImpl#getReferenceInstances <em>Reference Instances</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

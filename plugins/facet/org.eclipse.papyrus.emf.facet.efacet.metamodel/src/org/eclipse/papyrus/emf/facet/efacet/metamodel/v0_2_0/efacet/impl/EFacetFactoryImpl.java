@@ -50,7 +50,7 @@ public class EFacetFactoryImpl extends EFactoryImpl implements EFacetFactory {
 	 */
 	public static EFacetFactory init() {
 		try {
-			EFacetFactory theEFacetFactory = (EFacetFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacet"); //$NON-NLS-1$
+			EFacetFactory theEFacetFactory = (EFacetFactory) EPackage.Registry.INSTANCE.getEFactory(EFacetPackage.eNS_URI);
 			if (theEFacetFactory != null) {
 				return theEFacetFactory;
 			}

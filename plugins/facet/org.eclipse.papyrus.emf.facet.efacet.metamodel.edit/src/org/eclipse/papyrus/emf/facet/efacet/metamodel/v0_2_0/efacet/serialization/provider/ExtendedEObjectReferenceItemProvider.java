@@ -9,7 +9,7 @@
  *  Contributors:
  * 	Gregoire Dupe (Mia-Software) - Design
  * 	Nicolas Guyomar (Mia-Software) - Implementation
- * 	Emmanuelle Rouillé (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
+ * 	Emmanuelle Rouillï¿½ (Mia-Software) - Bug 352618 - To be able to use non derived facet structural features and save them values.
  * 	Nicolas Bros (Mia-Software) - Bug 361823 - [Restructuring] eFacet2 meta-model
  *       Gregoire Dupe (Mia-Software) - Bug 366055 - NavigationQuery
  *       Gregoire Dupe (Mia-Software) - Bug 369673 - [Facet] IsOneOfQuery
@@ -90,23 +90,22 @@ public class ExtendedEObjectReferenceItemProvider
 	 * @generated
 	 */
 	protected void addExtendedEObjectPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ExtendedEObjectReference_extendedEObject_feature"), //$NON-NLS-1$
-						getString("_UI_PropertyDescriptor_description", "_UI_ExtendedEObjectReference_extendedEObject_feature", "_UI_ExtendedEObjectReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-						SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__EXTENDED_EOBJECT,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ExtendedEObjectReference_extendedEObject_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_ExtendedEObjectReference_extendedEObject_feature", "_UI_ExtendedEObjectReference_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__EXTENDED_EOBJECT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -194,45 +193,29 @@ public class ExtendedEObjectReferenceItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__ATTRIBUTE_INSTANCES,
-						SerializationFactory.eINSTANCE.createAbstractAttributeInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__ATTRIBUTE_INSTANCES,
+				SerializationFactory.eINSTANCE.createAbstractAttributeInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__ATTRIBUTE_INSTANCES,
-						SerializationFactory.eINSTANCE.createSingleValuedAttributeInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__ATTRIBUTE_INSTANCES,
+				SerializationFactory.eINSTANCE.createSingleValuedAttributeInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__ATTRIBUTE_INSTANCES,
-						SerializationFactory.eINSTANCE.createMultiValuedAttributeInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__ATTRIBUTE_INSTANCES,
+				SerializationFactory.eINSTANCE.createMultiValuedAttributeInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
-						SerializationFactory.eINSTANCE.createAbstractReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
+				SerializationFactory.eINSTANCE.createAbstractReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
-						SerializationFactory.eINSTANCE.createMultiValuedContainmentReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
+				SerializationFactory.eINSTANCE.createMultiValuedContainmentReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
-						SerializationFactory.eINSTANCE.createMultiValuedReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
+				SerializationFactory.eINSTANCE.createMultiValuedReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
-						SerializationFactory.eINSTANCE.createSingleValuedContainmentReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
+				SerializationFactory.eINSTANCE.createSingleValuedContainmentReferenceInstance()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
-						SerializationFactory.eINSTANCE.createSingleValuedReferenceInstance()));
+		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.EXTENDED_EOBJECT_REFERENCE__REFERENCE_INSTANCES,
+				SerializationFactory.eINSTANCE.createSingleValuedReferenceInstance()));
 	}
 
 	/**

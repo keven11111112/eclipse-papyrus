@@ -32,10 +32,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.ETypedElementPrimitiveTypeListResult#getResultList <em>Result List</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimePackage#getETypedElementPrimitiveTypeListResult()
  * @model
@@ -44,7 +44,6 @@ import org.eclipse.emf.common.util.EList;
 public interface ETypedElementPrimitiveTypeListResult<T> extends ETypedElementResult {
 	/**
 	 * Returns the value of the '<em><b>Result List</b></em>' attribute list.
-	 * The list contents are of type {@link T}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Result List</em>' attribute list isn't clear, there really should be more of a description here...

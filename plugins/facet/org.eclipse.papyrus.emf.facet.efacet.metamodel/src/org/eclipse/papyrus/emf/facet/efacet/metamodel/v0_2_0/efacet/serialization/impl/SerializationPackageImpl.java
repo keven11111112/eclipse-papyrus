@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.extensible.ExtensiblePackage;
@@ -123,10 +122,15 @@ public class SerializationPackageImpl extends EPackageImpl implements Serializat
 	private EClass abstractAttributeInstanceEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage#eNS_URI
@@ -166,9 +170,6 @@ public class SerializationPackageImpl extends EPackageImpl implements Serializat
 		SerializationPackageImpl theSerializationPackage = (SerializationPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SerializationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SerializationPackageImpl());
 
 		isInited = true;
-
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		EFacetPackageImpl theEFacetPackage = (EFacetPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) instanceof EFacetPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EFacetPackage.eNS_URI) : EFacetPackage.eINSTANCE);
@@ -504,42 +505,42 @@ public class SerializationPackageImpl extends EPackageImpl implements Serializat
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractReferenceInstanceEClass, AbstractReferenceInstance.class, "AbstractReferenceInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAbstractReferenceInstance_EReference(), ecorePackage.getEReference(), null,
-				"eReference", null, 1, 1, AbstractReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractReferenceInstance_EReference(), ecorePackage.getEReference(), null, "eReference", null, 1, 1, AbstractReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiValuedContainmentReferenceInstanceEClass, MultiValuedContainmentReferenceInstance.class, "MultiValuedContainmentReferenceInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getMultiValuedContainmentReferenceInstance_OwnedElements(), ecorePackage.getEObject(), null,
-				"ownedElements", null, 0, -1, MultiValuedContainmentReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMultiValuedContainmentReferenceInstance_OwnedElements(), ecorePackage.getEObject(), null, "ownedElements", null, 0, -1, MultiValuedContainmentReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiValuedReferenceInstanceEClass, MultiValuedReferenceInstance.class, "MultiValuedReferenceInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getMultiValuedReferenceInstance_ReferencedElements(), ecorePackage.getEObject(), null,
-				"referencedElements", null, 0, -1, MultiValuedReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getMultiValuedReferenceInstance_ReferencedElements(), ecorePackage.getEObject(), null, "referencedElements", null, 0, -1, MultiValuedReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleValuedAttributeInstanceEClass, SingleValuedAttributeInstance.class, "SingleValuedAttributeInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getSingleValuedAttributeInstance_Value(), ecorePackage.getEJavaObject(), "value", null, 0, 1, SingleValuedAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(extendedEObjectReferenceEClass, ExtendedEObjectReference.class, "ExtendedEObjectReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getExtendedEObjectReference_ExtendedEObject(), ecorePackage.getEObject(), null,
-				"extendedEObject", null, 1, 1, ExtendedEObjectReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getExtendedEObjectReference_AttributeInstances(), this.getAbstractAttributeInstance(), null,
-				"attributeInstances", null, 0, -1, ExtendedEObjectReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getExtendedEObjectReference_ReferenceInstances(), this.getAbstractReferenceInstance(), null,
-				"referenceInstances", null, 0, -1, ExtendedEObjectReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getExtendedEObjectReference_ExtendedEObject(), ecorePackage.getEObject(), null, "extendedEObject", null, 1, 1, ExtendedEObjectReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendedEObjectReference_AttributeInstances(), this.getAbstractAttributeInstance(), null, "attributeInstances", null, 0, -1, ExtendedEObjectReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExtendedEObjectReference_ReferenceInstances(), this.getAbstractReferenceInstance(), null, "referenceInstances", null, 0, -1, ExtendedEObjectReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleValuedContainmentReferenceInstanceEClass, SingleValuedContainmentReferenceInstance.class, "SingleValuedContainmentReferenceInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSingleValuedContainmentReferenceInstance_OwnedElement(), ecorePackage.getEObject(), null,
-				"ownedElement", null, 0, 1, SingleValuedContainmentReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSingleValuedContainmentReferenceInstance_OwnedElement(), ecorePackage.getEObject(), null, "ownedElement", null, 0, 1, SingleValuedContainmentReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, //$NON-NLS-1$
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(singleValuedReferenceInstanceEClass, SingleValuedReferenceInstance.class, "SingleValuedReferenceInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getSingleValuedReferenceInstance_ReferencedElement(), ecorePackage.getEObject(), null,
-				"referencedElement", null, 0, 1, SingleValuedReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSingleValuedReferenceInstance_ReferencedElement(), ecorePackage.getEObject(), null, "referencedElement", null, 0, 1, SingleValuedReferenceInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, //$NON-NLS-1$
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiValuedAttributeInstanceEClass, MultiValuedAttributeInstance.class, "MultiValuedAttributeInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getMultiValuedAttributeInstance_Values(), ecorePackage.getEJavaObject(), "values", null, 0, -1, MultiValuedAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(abstractAttributeInstanceEClass, AbstractAttributeInstance.class, "AbstractAttributeInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAbstractAttributeInstance_EAttribute(), ecorePackage.getEAttribute(), null,
-				"eAttribute", null, 1, 1, AbstractAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getAbstractAttributeInstance_EAttribute(), ecorePackage.getEAttribute(), null, "eAttribute", null, 1, 1, AbstractAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, //$NON-NLS-1$
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // SerializationPackageImpl

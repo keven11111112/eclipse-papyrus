@@ -29,10 +29,10 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serializatio
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.impl.SingleValuedContainmentReferenceInstanceImpl#getOwnedElement <em>Owned Element</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -118,8 +118,7 @@ public class SingleValuedContainmentReferenceInstanceImpl extends AbstractRefere
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, SerializationPackage.SINGLE_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENT, newOwnedElement, newOwnedElement));
 		}
 	}
