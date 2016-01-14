@@ -24,7 +24,7 @@
 		<buildAll>false</buildAll> <!-- Set to true when building this pom directly (Rather than individual components). This will disable Papyrus Update Sites (Since they are being built by this POM). -->
 
 		<!-- manualUpdate -->
-		<nattable.repo.url>${eclipse.download}/nattable/releases/1.3.0/repository/</nattable.repo.url>
+		<nattable.repo.url>${eclipse.download}/nattable/snapshots/475/repository/</nattable.repo.url>
 
 		<!-- manualUpdate -->
 		<nebula-tablecombo.repo.url>${eclipse.download}/technology/nebula/archives/Q12015/release/</nebula-tablecombo.repo.url>

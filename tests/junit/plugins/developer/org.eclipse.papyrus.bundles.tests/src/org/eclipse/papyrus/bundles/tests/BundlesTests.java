@@ -56,7 +56,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
 
-	private static final String NATTABLE_VERSION = "1.3.0"; //$NON-NLS-1$
+	private static final String NATTABLE_VERSION = "1.4.0"; //$NON-NLS-1$
 
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
