@@ -145,7 +145,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		Rectangle bounds = container.getBounds();
 		// do the layout based on the policies
 		if (!visibleCompartments.isEmpty()) {
-			if (forcedLabelBounds) {
+			if (forcedLabelBounds && hasShapeDisplayed(container) ) { // Bug 485824
 				layoutForcedLabel(container);
 			} else {
 				layoutDefault(container);
@@ -157,6 +157,21 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		}
 		// layout the invisible elements
 		layoutInvisibles(bounds.x + 3, bounds.getBottomLeft().y + 1);
+	}
+
+	/**
+	 * Returns <code>true</code> if there is a displayed shape compartment in the list of visible compartment
+	 * @param container the figure to check
+	 * @return <code>true</code> if there is a displayed shape compartment in the list of visible compartment
+	 */
+	protected boolean hasShapeDisplayed(IFigure container) {
+		for (int i = 0; i != visibleCompartments.size(); i++) {
+			IFigure compartment = visibleCompartments.get(i);
+			if (compartment instanceof ScalableCompartmentFigure) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
