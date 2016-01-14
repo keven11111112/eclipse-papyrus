@@ -19,6 +19,23 @@
             id="org.eclipse.papyrus.css.blacknwhite_theme"
             label="Black &amp; White">
       </themeDefinition>
+      <themeDefinition
+            icon="icons/papyrus.png"
+            id="org.eclipse.papyrus.css.frame_theme"
+            label="Frame Theme">
+      </themeDefinition>
+      <themeContribution
+            id="org.eclipse.papyrus.css.frame_theme">
+         <stylesheet
+               stylesheetPath="theme/papyrus_theme.css">
+         </stylesheet>
+      </themeContribution>
+      <themeContribution
+            id="org.eclipse.papyrus.css.frame_theme">
+         <stylesheet
+               stylesheetPath="theme/frame_theme.css">
+         </stylesheet>
+      </themeContribution>
    </extension>
 
 </plugin>

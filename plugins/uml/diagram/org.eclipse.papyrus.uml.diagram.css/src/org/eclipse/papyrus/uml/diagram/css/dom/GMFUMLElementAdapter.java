@@ -64,6 +64,8 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	/** The Constant APPLIED_STEREOTYPES_PROPERTY. */
 	public static final String APPLIED_STEREOTYPES_PROPERTY = "appliedStereotypes"; //$NON-NLS-1$
 
+	/** The Constant IS_FRAMEZABLE. */
+	public static final String IS_FRAME = "isFrame"; //$NON-NLS-1$
 
 
 	/**
@@ -173,6 +175,15 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			if (IS_TIME_EVENT_ACTION_PROPERTY.equals(attr)) {
 				if (semanticElement instanceof AcceptEventAction) {
 					return String.valueOf(isAcceptTimeEventAction((AcceptEventAction) semanticElement));
+				}
+			}
+			// manage of isFraezable=true attribute for dislaying header/frame
+			if(IS_FRAME.equals(attr)){
+				if(notationElement.eContainer()==notationElement.getDiagram()){
+					return String.valueOf(true);
+				}
+				else{
+					return String.valueOf(false);
 				}
 			}
 		}
