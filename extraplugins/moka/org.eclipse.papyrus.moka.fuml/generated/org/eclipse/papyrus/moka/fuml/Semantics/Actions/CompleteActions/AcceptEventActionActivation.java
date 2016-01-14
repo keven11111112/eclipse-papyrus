@@ -49,7 +49,6 @@ public class AcceptEventActionActivation extends ActionActivation {
 		super.run();
 		this.eventAccepter = new AcceptEventActionEventAccepter();
 		this.eventAccepter.actionActivation = this;
-		this.eventAccepter.registrationContext = this.getActivityExecution();
 	}
 
 	@Override

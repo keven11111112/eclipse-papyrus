@@ -16,6 +16,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
@@ -36,7 +37,14 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
  */
 public class StateMachineEventAccepter extends EventAccepter{
 
+	// The execution that actually made the event accepter registered
+	// in the object activation. Note this is particularly useful to access the
+	// the configured related to the state-machine that registered this event
+	// accepter.
+	public Execution registrationContext;
+	
 	public StateMachineEventAccepter(StateMachineExecution execution) {
+		// The accepter always knows from which execution it comes from
 		this.registrationContext = execution;
 	}
 	
@@ -67,9 +75,14 @@ public class StateMachineEventAccepter extends EventAccepter{
 
 	@Override
 	public Boolean match(EventOccurrence eventOccurrence) {
-		// Return true if there is at least one transition that is 
-		// ready to fire on this event. Return false otherwise
-		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
+		// Return true if there is at least one transition that is ready to fire on this event. 
+		// Return false otherwise. Note false is also returned if the registration context was
+		// previously destroyed. The registration context (i.e., the state-machine) is considered
+		// as being destroyed if it has no locus.
+		if(this.registrationContext.locus==null){
+			return false;
+		}
+		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
 		return !selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
 	}
 

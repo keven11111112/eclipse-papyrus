@@ -156,4 +156,14 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 			}
 		}
 	}
+	
+	public void terminate(){
+		// Capture the semantics related to the termination of a region. Regions typically
+		// gets terminated when the state-machine which contains it is gets itself terminated.
+		for(int i=0; i < this.vertexActivations.size(); i++){
+			this.vertexActivations.get(i).terminate();
+		}
+		this.vertexActivations.clear();
+		this.transitionActivations.clear();
+	}
 }

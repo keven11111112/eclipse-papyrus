@@ -91,10 +91,12 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 	
 	public void activate(){
 		//By default it does nothing
+		return;
 	}
 	
 	public void activateTransitions(){
 		//By default it does nothing
+		return;
 	}
 	
 	protected Execution getExecutionFor(Behavior behavior){

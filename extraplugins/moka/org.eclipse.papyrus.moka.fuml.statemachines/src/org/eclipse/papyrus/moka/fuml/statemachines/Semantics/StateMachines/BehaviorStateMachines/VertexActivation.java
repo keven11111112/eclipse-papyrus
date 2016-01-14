@@ -180,4 +180,10 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// activation sub-classes. 
 		return true;
 	}
+	
+	public void terminate(){
+		// Terminate applied by a vertex activation does nothing by default. However it is intended
+		// to be overridden by sub-classe(s)  
+		return;
+	}
 }

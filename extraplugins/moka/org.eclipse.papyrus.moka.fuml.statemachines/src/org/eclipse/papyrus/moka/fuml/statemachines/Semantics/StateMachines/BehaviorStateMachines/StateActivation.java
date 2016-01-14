@@ -181,7 +181,7 @@ public class StateActivation extends VertexActivation {
 				// is going to be invoked.
 				this.doActivityContextObject = new DoActivityContextObject();
 				Object_ stateMachineExecutionContext = this.getExecutionContext();
-				this.doActivityContextObject.initialize(this.getExecutionContext());
+				this.doActivityContextObject.initialize(stateMachineExecutionContext);
 				this.doActivityContextObject.owner = this;
 				Execution doActivityExecution = this.getExecutionFor(doActivity);
 				doActivityExecution.context = this.doActivityContextObject;
@@ -322,6 +322,24 @@ public class StateActivation extends VertexActivation {
 					stateActivation.exit(exitingTransition, leastCommonAncestor);
 				}
 			}
+		}
+	}
+	
+	public void terminate(){
+		// A state gets terminated when the state-machine that contains it gets itself terminated.
+		// If the state has an ongoing doActivity behavior then this latter is aborted. In addition,
+		// the state is active then it is removed from the active state configuration.
+		if(this.isActive()){
+			if(!this.regionActivation.isEmpty()){
+				for(int i = 0; i < this.regionActivation.size(); i++){
+					this.regionActivation.get(i).terminate();
+				}
+				this.regionActivation.clear();
+			}
+			if(!this.isDoActivityCompleted){
+				this.doActivityContextObject.destroy();
+			}
+			this.connectionPointActivation.clear();
 		}
 	}
 }

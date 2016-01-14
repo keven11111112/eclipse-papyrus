@@ -91,7 +91,6 @@ public class StateMachineExecution extends Execution {
 		return vertexActivation;
 	}
 	
-	@Override
 	public void execute() {
 		/*0. Initialization*/
 		if(this.context!=null && this.context.objectActivation!=null){
@@ -112,7 +111,6 @@ public class StateMachineExecution extends Execution {
 		}
 	}
 
-	@Override
 	public Value new_() {
 		if(this.context!=null){
 			return new StateMachineExecution(this.context);
@@ -133,5 +131,16 @@ public class StateMachineExecution extends Execution {
 			this.objectActivation.object = this;
 		}
 		this.objectActivation.startBehavior(classifier, inputs);
+	}
+	
+	public void terminate() {
+		// The termination of a state-machine consists in aborting all "ongoing" doActivity behaviors
+		// started by states owned by this state-machine. States that are currently active (i.e., registered
+		// in the state-machine configuration) are not exited (i.e., if they have have exit behaviors then
+		// these behaviors are not executed.
+		for(int i=0; i < this.regionActivation.size(); i++){
+			this.regionActivation.get(i).terminate();
+		}
+		this.regionActivation.clear();
 	}
 }
