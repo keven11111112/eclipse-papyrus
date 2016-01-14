@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:PapyrusDSMLValidationRule="http://www.eclipse.org/papyrus/dsmlvalidation" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Profile xmi:id="_GkQEIOGnEeO2stwZ2ZCXww" name="profile" metaclassReference="_sAN54OGoEeOLd684kqvD2g _JlLW0OV-EeOFd8atAXGFIA">
     <elementImport xmi:type="uml:ElementImport" xmi:id="_sAN54OGoEeOLd684kqvD2g" alias="Class">
       <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
@@ -57,12 +57,6 @@
     <packagedElement xmi:type="uml:Extension" xmi:id="_iDxbQJ50EeWRy9FpOq-8kw" name="E_AlwaysPassiveJava_Class1" memberEnd="_iDz3gJ50EeWRy9FpOq-8kw _iD0ekJ50EeWRy9FpOq-8kw">
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_iDz3gJ50EeWRy9FpOq-8kw" name="extension_AlwaysPassiveJava" type="_S607oJ5zEeWRy9FpOq-8kw" aggregation="composite" association="_iDxbQJ50EeWRy9FpOq-8kw"/>
     </packagedElement>
-    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_EKPz8OG0EeOljYnPInggmQ">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EVNt0OG0EeOljYnPInggmQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/dsmlvalidation#/"/>
-      </eAnnotations>
-      <appliedProfile xmi:type="uml:Profile" href="pathmap://DSMLValidation_PROFILES/PapyrusValidationRuleDSML.uml#__sUW0OhNEeCjcc2EgK3Uwg"/>
-    </profileApplication>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_euhykJ7IEeWu3Jt7boFR1Q">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_eukO0J7IEeWu3Jt7boFR1Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -70,7 +64,5 @@
       <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Profile>
-  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_HiHHoOG0EeOljYnPInggmQ" base_Constraint="_uHg9kOGoEeOLd684kqvD2g" message="Custom message"/>
-  <PapyrusDSMLValidationRule:ValidationRule xmi:id="_XnVHAJ5zEeWRy9FpOq-8kw" base_Constraint="_ROKlgJ5zEeWRy9FpOq-8kw" message="" class="JavaValidation"/>
   <Ecore:EPackage xmi:id="_gWqOAJ7IEeWu3Jt7boFR1Q" base_Package="_GkQEIOGnEeO2stwZ2ZCXww" packageName="profile" nsURI="http://org.eclipse.papyrus/activetest/1" basePackage="org.eclipse.papyrus.validation.tests"/>
 </xmi:XMI>

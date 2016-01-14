@@ -278,11 +278,6 @@
 					<layout>p2</layout>
 					<url>${papyrus.repo.dev}</url>
 				</repository>
-				<repository>
-					<id>papyrus-extra</id>
-					<layout>p2</layout>
-					<url>${papyrus.repo.extra}</url>
-				</repository>
 			</repositories>
 			<activation>
 				<activeByDefault>true</activeByDefault>
