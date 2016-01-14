@@ -50,14 +50,14 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 	private static final String TABLE_NAME = "GenericTable0"; //$NON-NLS-1$
 
 	/**
-	 * The number of class features.
+	 * The number of class features and operations.
 	 */
-	private static final int NB_CLASS_FEATURES = 51;
+	private static final int NB_CLASS_FEATURES_AND_OPERATIONS = 166;
 
 	/**
-	 * The number of interface features.
+	 * The number of interface features and operations.
 	 */
-	private static final int NB_INTERFACE_FEATURES = 6;
+	private static final int NB_INTERFACE_FEATURES_AND_OPERATIONS = 9;
 
 	/**
 	 * The number of empty axis (equals to 0).
@@ -131,7 +131,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created class", 1, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class structural features", NB_CLASS_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class structural features", NB_CLASS_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 		// Undo the creation of the class
 		editingDomain.getCommandStack().undo();
@@ -151,7 +151,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created class", 1, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class structural features", NB_CLASS_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class structural features", NB_CLASS_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 
 		// Create an other class
@@ -161,7 +161,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created class and the existing class", 2, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class structural features (without doubloon)", NB_CLASS_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class structural features (without doubloon)", NB_CLASS_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 		// Undo the creation of the class
 		editingDomain.getCommandStack().undo();
@@ -171,7 +171,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the existing class", 1, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class structural features", NB_CLASS_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class structural features", NB_CLASS_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 		// Redo the creation of the class
 		editingDomain.getCommandStack().redo();
@@ -181,7 +181,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created class and the existing class", 2, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class structural features (without doubloon)", NB_CLASS_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class structural features (without doubloon)", NB_CLASS_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 
 		// Create an interface
@@ -191,7 +191,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created interface and the existing classes", 3, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class and interface structural features (without doubloon)", NB_CLASS_FEATURES + NB_INTERFACE_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class and interface structural features (without doubloon)", NB_CLASS_FEATURES_AND_OPERATIONS + NB_INTERFACE_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 		// Undo the creation of the class
 		editingDomain.getCommandStack().undo();
@@ -201,7 +201,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created class and the existing class", 2, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class structural features (without doubloon)", NB_CLASS_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class structural features (without doubloon)", NB_CLASS_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 
 		// Redo the creation of the class
 		editingDomain.getCommandStack().redo();
@@ -211,7 +211,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 		rowElements = currentManager.getRowElementsList();
 		Assert.assertEquals("The rows must contain the created interface and the existing classes", 3, rowElements.size()); //$NON-NLS-1$
 		columnElements = currentManager.getColumnElementsList();
-		Assert.assertEquals("The columns must contain the class and interface structural features (without doubloon)", NB_CLASS_FEATURES + NB_INTERFACE_FEATURES, columnElements.size()); //$NON-NLS-1$
+		Assert.assertEquals("The columns must contain the class and interface structural features (without doubloon)", NB_CLASS_FEATURES_AND_OPERATIONS + NB_INTERFACE_FEATURES_AND_OPERATIONS, columnElements.size()); //$NON-NLS-1$
 	}
 
 	/**
