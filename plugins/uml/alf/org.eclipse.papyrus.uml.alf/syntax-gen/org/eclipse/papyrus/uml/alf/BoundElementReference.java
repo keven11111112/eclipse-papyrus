@@ -533,6 +533,22 @@ public interface BoundElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.boundReferencesTo(self.referent.properties())->asOrderedSet()'"
+	 * @generated
+	 */
+	EList<ElementReference> properties();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.boundReferencesTo(self.referent.associationEnds())->asOrderedSet()'"
+	 * @generated
+	 */
+	EList<ElementReference> associationEnds();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.boundReferenceTo(self.referent.opposite())'"
 	 * @generated
 	 */

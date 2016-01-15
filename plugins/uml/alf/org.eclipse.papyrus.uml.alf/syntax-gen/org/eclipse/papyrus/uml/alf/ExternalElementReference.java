@@ -521,7 +521,7 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isClassifier() then OrderedSet(ElementReference){}\n        else if self.isAssociation() then\n        -- NOTE: This is to ensure proper ordering.\n          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())\n        else\n          self.element.oclAsType(uml::Classifier).allAttributes()->\n            collect(a | ExternalElementReference{element = a})->\n            asOrderedSet()\n        endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isClassifier() then OrderedSet(ElementReference){}\n        else if self.isAssociation() then \n        \tself.members()->select(isProperty())\n        else\n          self.element.oclAsType(uml::Classifier).allAttributes()->\n            collect(a | ExternalElementReference{element = a})->\n            asOrderedSet()\n        endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> properties();
@@ -529,26 +529,10 @@ public interface ExternalElementReference extends ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isAssociation() then OrderedSet(ElementReference){}\n        else\n          self.element.oclAsType(uml::Association).memberEnd->\n          collect(e | ExternalElementReference{element = e})->\n          asOrderedSet()\n        endif'"
-	 * @generated
-	 */
-	EList<ElementReference> memberEnds();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        -- NOTE: This is to ensure proper ordering.\n        self.ownedEnds()->appendAll(self.parents().associationEnds()->asOrderedSet())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\tif not self.isAssociation() then OrderedSet(ElementReference){}\n\t\telse \n\t\t\tself.element.oclAsType(uml::Association).ownedEnd->\n            collect(e | ExternalElementReference{element = e})->\n            asOrderedSet()\n\t\tendif'"
 	 * @generated
 	 */
 	EList<ElementReference> associationEnds();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if not self.isAssociation() then OrderedSet(ElementReference){}\n        else\n          self.element.oclAsType(uml::Association).ownedEnd->\n          collect(e | ExternalElementReference{element = e})->\n          asOrderedSet()\n        endif'"
-	 * @generated
-	 */
-	EList<ElementReference> ownedEnds();
 
 	/**
 	 * <!-- begin-user-doc -->

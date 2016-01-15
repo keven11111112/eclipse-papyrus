@@ -35,8 +35,6 @@ public interface BitStringUnaryExpression extends UnaryExpression {
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBitStringUnaryExpression_IsBitStringConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='FeatureInvocationExpression'"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName body='FeatureInvocationExpression'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='self.isIntegerType(self.operand.type)'"
 	 * @generated
 	 */

@@ -1290,31 +1290,6 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #memberEnds() <em>Member Ends</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #memberEnds()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate MEMBER_ENDS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExternalElementReference__MemberEnds()).getInvocationDelegate();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<ElementReference> memberEnds() {
-		try {
-			return (EList<ElementReference>)MEMBER_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
-
-	/**
 	 * The cached invocation delegate for the '{@link #associationEnds() <em>Association Ends</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1333,31 +1308,6 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 	public EList<ElementReference> associationEnds() {
 		try {
 			return (EList<ElementReference>)ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #ownedEnds() <em>Owned Ends</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #ownedEnds()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate OWNED_ENDS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExternalElementReference__OwnedEnds()).getInvocationDelegate();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	public EList<ElementReference> ownedEnds() {
-		try {
-			return (EList<ElementReference>)OWNED_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -2432,12 +2382,8 @@ public class ExternalElementReferenceImpl extends ElementReferenceImpl implement
 				return nestedClassifiers();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___PROPERTIES:
 				return properties();
-			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___MEMBER_ENDS:
-				return memberEnds();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION_ENDS:
 				return associationEnds();
-			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___OWNED_ENDS:
-				return ownedEnds();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___OPPOSITE:
 				return opposite();
 			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE___SIGNAL:

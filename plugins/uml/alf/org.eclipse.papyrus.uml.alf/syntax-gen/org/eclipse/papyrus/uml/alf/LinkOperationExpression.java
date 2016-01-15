@@ -204,7 +204,7 @@ public interface LinkOperationExpression extends InvocationExpression {
 	 * The qualified name of a link operation expression must resolve to a
 	 * single association.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent <> null'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\tself.referent <> null and \n\t-- Also check that the association owns all its ends.\n\tself.referent.properties()->forAll(isAssociationEnd())'"
 	 * @generated
 	 */
 	boolean linkOperationExpressionAssociationReference(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -228,7 +228,7 @@ public interface LinkOperationExpression extends InvocationExpression {
 	 * For a clear association operation, returns a single, typeless parameter.
 	 * Otherwise, returns the ends of the named association.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClear then\n          OrderedSet(ElementReference){\n          FormalParameter{\n            direction = \'in\',\n            typePart = TypedElementDefinition{\n              lowerBound = \'1\',\n              upperBound = \'1\'\n            }\n          }.toReference()\n         }\n        else\n          let referent = self.referent in\n            if referent = null then OrderedSet(ElementReference){}\n            else\n              self.referent.properties()->collect(property | \n                -- NOTE: Arguments for a link operation have multiplicity 1..1.\n                parameterFromPropertyWithMultiplicity(property, \'1\', \'1\')\n              )->asOrderedSet()\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isClear then\n          OrderedSet(ElementReference){\n          FormalParameter{\n            direction = \'in\',\n            typePart = TypedElementDefinition{\n              lowerBound = \'1\',\n              upperBound = \'1\'\n            }\n          }.toReference()\n         }\n        else\n          let referent = self.referent in\n            if referent = null then OrderedSet(ElementReference){}\n            else\n              self.referent.associationEnds()->collect(property | \n                -- NOTE: Arguments for a link operation have multiplicity 1..1.\n                parameterFromPropertyWithMultiplicity(property, \'1\', \'1\')\n              )->asOrderedSet()\n            endif\n        endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameterElements();

@@ -461,7 +461,7 @@ public interface InvocationExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referent = self.referent in\n          if self.isBehavior or self.isOperation then\n            referent.parameters()\n          else if self.isAssociationEnd then\n            let association = referent.association() in\n              association.properties()->reject(equals(referent))->\n                collect(p | self.parameterFromPropertyWithMultiplicity(p, \'1\', \'1\'))->asOrderedSet()\n          else if referent <> null then\n              referent.properties()->\n                collect(p | self.parameterFromProperty(p))->asOrderedSet()   \n          else\n            OrderedSet(ElementReference){}\n          endif endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referent = self.referent in\n          if self.isBehavior or self.isOperation then\n            referent.parameters()\n          else if self.isAssociationEnd then\n            let association = referent.association() in\n              association.associationEnds()->reject(equals(referent))->\n                collect(p | self.parameterFromPropertyWithMultiplicity(p, \'1\', \'1\'))->asOrderedSet()\n          else if referent <> null then\n              referent.properties()->\n                collect(p | self.parameterFromProperty(p))->asOrderedSet()   \n          else\n            OrderedSet(ElementReference){}\n          endif endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> InvocationExpression_parameterElements();

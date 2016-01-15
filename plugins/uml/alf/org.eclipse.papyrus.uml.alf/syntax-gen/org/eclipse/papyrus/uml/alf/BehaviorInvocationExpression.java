@@ -132,7 +132,7 @@ public interface BehaviorInvocationExpression extends InvocationExpression {
 	 * resolution rules, unless it is an implicit destructor call (in which case
 	 * it has no referent).
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or \n        let referent = self.referent in\n          referent <> null and \n          -- NOTE: This check prevents the invocation from disambiguating to an \n          -- illegal constructor invocation.\n          not referent.isConstructor()'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or \n        let referent = self.referent in\n          referent <> null and \n          -- NOTE: This check prevents the invocation from disambiguating to an \n          -- illegal constructor invocation.\n          not referent.isConstructor() and\n          -- Also check that the association owns all its ends.\n          referent.isAssociationEnd() implies\n          \treferent.association().properties()->forAll(isAssociationEnd())'"
 	 * @generated
 	 */
 	boolean behaviorInvocationExpressionReferentConstraint(DiagnosticChain diagnostics, Map<Object, Object> context);

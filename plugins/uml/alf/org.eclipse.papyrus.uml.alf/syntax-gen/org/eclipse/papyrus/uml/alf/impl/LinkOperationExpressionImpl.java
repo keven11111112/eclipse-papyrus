@@ -285,7 +285,10 @@ public class LinkOperationExpressionImpl extends InvocationExpressionImpl implem
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String LINK_OPERATION_EXPRESSION_ASSOCIATION_REFERENCE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "self.referent <> null";
+	protected static final String LINK_OPERATION_EXPRESSION_ASSOCIATION_REFERENCE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
+		"\tself.referent <> null and \n" +
+		"\t-- Also check that the association owns all its ends.\n" +
+		"\tself.referent.properties()->forAll(isAssociationEnd())";
 
 	/**
 	 * <!-- begin-user-doc -->

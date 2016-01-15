@@ -1147,22 +1147,12 @@
     </eOperations>
     <eOperations name="properties" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isClassifier() then OrderedSet(ElementReference){}&#xA;        else if self.isAssociation() then&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;          self.memberEnds()->appendAll(self.parents().properties()->asOrderedSet())&#xA;        else&#xA;          self.element.oclAsType(uml::Classifier).allAttributes()->&#xA;            collect(a | ExternalElementReference{element = a})->&#xA;            asOrderedSet()&#xA;        endif endif"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="memberEnds" upperBound="-1" eType="#//ElementReference">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(uml::Association).memberEnd->&#xA;          collect(e | ExternalElementReference{element = e})->&#xA;          asOrderedSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;        if not self.isClassifier() then OrderedSet(ElementReference){}&#xA;        else if self.isAssociation() then &#xA;        &#x9;self.members()->select(isProperty())&#xA;        else&#xA;          self.element.oclAsType(uml::Classifier).allAttributes()->&#xA;            collect(a | ExternalElementReference{element = a})->&#xA;            asOrderedSet()&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="associationEnds" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        -- NOTE: This is to ensure proper ordering.&#xA;        self.ownedEnds()->appendAll(self.parents().associationEnds()->asOrderedSet())"/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="ownedEnds" upperBound="-1" eType="#//ElementReference">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;        else&#xA;          self.element.oclAsType(uml::Association).ownedEnd->&#xA;          collect(e | ExternalElementReference{element = e})->&#xA;          asOrderedSet()&#xA;        endif"/>
+        <details key="body" value="&#xA;&#x9;&#x9;if not self.isAssociation() then OrderedSet(ElementReference){}&#xA;&#x9;&#x9;else &#xA;&#x9;&#x9;&#x9;self.element.oclAsType(uml::Association).ownedEnd->&#xA;            collect(e | ExternalElementReference{element = e})->&#xA;            asOrderedSet()&#xA;&#x9;&#x9;endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="opposite" eType="#//ElementReference">
@@ -1632,6 +1622,16 @@
     <eOperations name="nestedClassifiers" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="body" value="self.boundReferencesTo(self.referent.nestedClassifiers())->asOrderedSet()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="properties" upperBound="-1" eType="#//ElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.boundReferencesTo(self.referent.properties())->asOrderedSet()"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="associationEnds" upperBound="-1" eType="#//ElementReference">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="body" value="self.boundReferencesTo(self.referent.associationEnds())->asOrderedSet()"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="opposite" eType="#//ElementReference">
@@ -3369,7 +3369,7 @@
     </eOperations>
     <eOperations name="InvocationExpression_parameterElements" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let referent = self.referent in&#xA;          if self.isBehavior or self.isOperation then&#xA;            referent.parameters()&#xA;          else if self.isAssociationEnd then&#xA;            let association = referent.association() in&#xA;              association.properties()->reject(equals(referent))->&#xA;                collect(p | self.parameterFromPropertyWithMultiplicity(p, '1', '1'))->asOrderedSet()&#xA;          else if referent &lt;> null then&#xA;              referent.properties()->&#xA;                collect(p | self.parameterFromProperty(p))->asOrderedSet()   &#xA;          else&#xA;            OrderedSet(ElementReference){}&#xA;          endif endif endif"/>
+        <details key="body" value="&#xA;        let referent = self.referent in&#xA;          if self.isBehavior or self.isOperation then&#xA;            referent.parameters()&#xA;          else if self.isAssociationEnd then&#xA;            let association = referent.association() in&#xA;              association.associationEnds()->reject(equals(referent))->&#xA;                collect(p | self.parameterFromPropertyWithMultiplicity(p, '1', '1'))->asOrderedSet()&#xA;          else if referent &lt;> null then&#xA;              referent.properties()->&#xA;                collect(p | self.parameterFromProperty(p))->asOrderedSet()   &#xA;          else&#xA;            OrderedSet(ElementReference){}&#xA;          endif endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="parameterFromProperty" lowerBound="1" eType="#//ElementReference">
@@ -4233,7 +4233,7 @@
     </eOperations>
     <eOperations name="linkOperationExpressionAssociationReference" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.referent &lt;> null"/>
+        <details key="body" value="&#xA;&#x9;self.referent &lt;> null and &#xA;&#x9;-- Also check that the association owns all its ends.&#xA;&#x9;self.referent.properties()->forAll(isAssociationEnd())"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -4257,7 +4257,7 @@
     </eOperations>
     <eOperations name="parameterElements" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        if self.isClear then&#xA;          OrderedSet(ElementReference){&#xA;          FormalParameter{&#xA;            direction = 'in',&#xA;            typePart = TypedElementDefinition{&#xA;              lowerBound = '1',&#xA;              upperBound = '1'&#xA;            }&#xA;          }.toReference()&#xA;         }&#xA;        else&#xA;          let referent = self.referent in&#xA;            if referent = null then OrderedSet(ElementReference){}&#xA;            else&#xA;              self.referent.properties()->collect(property | &#xA;                -- NOTE: Arguments for a link operation have multiplicity 1..1.&#xA;                parameterFromPropertyWithMultiplicity(property, '1', '1')&#xA;              )->asOrderedSet()&#xA;            endif&#xA;        endif"/>
+        <details key="body" value="&#xA;        if self.isClear then&#xA;          OrderedSet(ElementReference){&#xA;          FormalParameter{&#xA;            direction = 'in',&#xA;            typePart = TypedElementDefinition{&#xA;              lowerBound = '1',&#xA;              upperBound = '1'&#xA;            }&#xA;          }.toReference()&#xA;         }&#xA;        else&#xA;          let referent = self.referent in&#xA;            if referent = null then OrderedSet(ElementReference){}&#xA;            else&#xA;              self.referent.associationEnds()->collect(property | &#xA;                -- NOTE: Arguments for a link operation have multiplicity 1..1.&#xA;                parameterFromPropertyWithMultiplicity(property, '1', '1')&#xA;              )->asOrderedSet()&#xA;            endif&#xA;        endif"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operation" lowerBound="1"
@@ -5678,12 +5678,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isBitStringConversion"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" volatile="true"
         transient="true" derived="true">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="FeatureInvocationExpression"/>
-      </eAnnotations>
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml#Property.oppositeRoleName">
-        <details key="body" value="FeatureInvocationExpression"/>
-      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
         <details key="derivation" value="self.isIntegerType(self.operand.type)"/>
       </eAnnotations>
@@ -5801,7 +5795,7 @@
     </eOperations>
     <eOperations name="behaviorInvocationExpressionReferentConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        self.isImplicit or &#xA;        let referent = self.referent in&#xA;          referent &lt;> null and &#xA;          -- NOTE: This check prevents the invocation from disambiguating to an &#xA;          -- illegal constructor invocation.&#xA;          not referent.isConstructor()"/>
+        <details key="body" value="&#xA;        self.isImplicit or &#xA;        let referent = self.referent in&#xA;          referent &lt;> null and &#xA;          -- NOTE: This check prevents the invocation from disambiguating to an &#xA;          -- illegal constructor invocation.&#xA;          not referent.isConstructor() and&#xA;          -- Also check that the association owns all its ends.&#xA;          referent.isAssociationEnd() implies&#xA;          &#x9;referent.association().properties()->forAll(isAssociationEnd())"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">

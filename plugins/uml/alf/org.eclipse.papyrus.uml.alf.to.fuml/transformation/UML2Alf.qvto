@@ -262,10 +262,10 @@ mapping PrimitiveType::toMember() : Member
 
 mapping Association::toAssociationDefinition() : AssociationDefinition 
   inherits Classifier::toClassifierDefinition {
-	ownedMember += self.memberEnd->map toMember();
-	if self.name->isEmpty() or self.name = "" then {
+	ownedMember += self.ownedEnd->map toMember();
+	if self.name = null or self.name = "" then {
 		name := "A";
-		self.memberEnd.name->forEach(endName) {
+		self.ownedEnd.name->forEach(endName) {
 			name := name + "_" + endName;
 		};
 		name := toName(name);

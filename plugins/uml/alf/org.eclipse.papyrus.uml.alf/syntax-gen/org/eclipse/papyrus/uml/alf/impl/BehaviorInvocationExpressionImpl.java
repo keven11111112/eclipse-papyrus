@@ -244,7 +244,10 @@ public class BehaviorInvocationExpressionImpl extends InvocationExpressionImpl i
 		"          referent <> null and \n" +
 		"          -- NOTE: This check prevents the invocation from disambiguating to an \n" +
 		"          -- illegal constructor invocation.\n" +
-		"          not referent.isConstructor()";
+		"          not referent.isConstructor() and\n" +
+		"          -- Also check that the association owns all its ends.\n" +
+		"          referent.isAssociationEnd() implies\n" +
+		"          \treferent.association().properties()->forAll(isAssociationEnd())";
 
 	/**
 	 * <!-- begin-user-doc -->

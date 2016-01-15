@@ -3234,31 +3234,13 @@ public interface AlfPackage extends EPackage {
 	int EXTERNAL_ELEMENT_REFERENCE___PROPERTIES = ELEMENT_REFERENCE_OPERATION_COUNT + 49;
 
 	/**
-	 * The operation id for the '<em>Member Ends</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_ELEMENT_REFERENCE___MEMBER_ENDS = ELEMENT_REFERENCE_OPERATION_COUNT + 50;
-
-	/**
 	 * The operation id for the '<em>Association Ends</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION_ENDS = ELEMENT_REFERENCE_OPERATION_COUNT + 51;
-
-	/**
-	 * The operation id for the '<em>Owned Ends</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_ELEMENT_REFERENCE___OWNED_ENDS = ELEMENT_REFERENCE_OPERATION_COUNT + 52;
+	int EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION_ENDS = ELEMENT_REFERENCE_OPERATION_COUNT + 50;
 
 	/**
 	 * The operation id for the '<em>Opposite</em>' operation.
@@ -3267,7 +3249,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___OPPOSITE = ELEMENT_REFERENCE_OPERATION_COUNT + 53;
+	int EXTERNAL_ELEMENT_REFERENCE___OPPOSITE = ELEMENT_REFERENCE_OPERATION_COUNT + 51;
 
 	/**
 	 * The operation id for the '<em>Signal</em>' operation.
@@ -3276,7 +3258,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___SIGNAL = ELEMENT_REFERENCE_OPERATION_COUNT + 54;
+	int EXTERNAL_ELEMENT_REFERENCE___SIGNAL = ELEMENT_REFERENCE_OPERATION_COUNT + 52;
 
 	/**
 	 * The operation id for the '<em>Namespace</em>' operation.
@@ -3285,7 +3267,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___NAMESPACE = ELEMENT_REFERENCE_OPERATION_COUNT + 55;
+	int EXTERNAL_ELEMENT_REFERENCE___NAMESPACE = ELEMENT_REFERENCE_OPERATION_COUNT + 53;
 
 	/**
 	 * The operation id for the '<em>Owned Parameters</em>' operation.
@@ -3294,7 +3276,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___OWNED_PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 56;
+	int EXTERNAL_ELEMENT_REFERENCE___OWNED_PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 54;
 
 	/**
 	 * The operation id for the '<em>Parameters</em>' operation.
@@ -3303,7 +3285,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 57;
+	int EXTERNAL_ELEMENT_REFERENCE___PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 55;
 
 	/**
 	 * The operation id for the '<em>Return Parameter</em>' operation.
@@ -3312,7 +3294,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___RETURN_PARAMETER = ELEMENT_REFERENCE_OPERATION_COUNT + 58;
+	int EXTERNAL_ELEMENT_REFERENCE___RETURN_PARAMETER = ELEMENT_REFERENCE_OPERATION_COUNT + 56;
 
 	/**
 	 * The operation id for the '<em>Specification</em>' operation.
@@ -3321,7 +3303,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___SPECIFICATION = ELEMENT_REFERENCE_OPERATION_COUNT + 59;
+	int EXTERNAL_ELEMENT_REFERENCE___SPECIFICATION = ELEMENT_REFERENCE_OPERATION_COUNT + 57;
 
 	/**
 	 * The operation id for the '<em>Redefined Operations</em>' operation.
@@ -3330,7 +3312,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___REDEFINED_OPERATIONS = ELEMENT_REFERENCE_OPERATION_COUNT + 60;
+	int EXTERNAL_ELEMENT_REFERENCE___REDEFINED_OPERATIONS = ELEMENT_REFERENCE_OPERATION_COUNT + 58;
 
 	/**
 	 * The operation id for the '<em>Template</em>' operation.
@@ -3339,7 +3321,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___TEMPLATE = ELEMENT_REFERENCE_OPERATION_COUNT + 61;
+	int EXTERNAL_ELEMENT_REFERENCE___TEMPLATE = ELEMENT_REFERENCE_OPERATION_COUNT + 59;
 
 	/**
 	 * The operation id for the '<em>Uml Template Binding</em>' operation.
@@ -3348,7 +3330,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___UML_TEMPLATE_BINDING = ELEMENT_REFERENCE_OPERATION_COUNT + 62;
+	int EXTERNAL_ELEMENT_REFERENCE___UML_TEMPLATE_BINDING = ELEMENT_REFERENCE_OPERATION_COUNT + 60;
 
 	/**
 	 * The operation id for the '<em>Template Parameters</em>' operation.
@@ -3357,7 +3339,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___TEMPLATE_PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 63;
+	int EXTERNAL_ELEMENT_REFERENCE___TEMPLATE_PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 61;
 
 	/**
 	 * The operation id for the '<em>Parametered Elements</em>' operation.
@@ -3366,7 +3348,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___PARAMETERED_ELEMENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 64;
+	int EXTERNAL_ELEMENT_REFERENCE___PARAMETERED_ELEMENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 62;
 
 	/**
 	 * The operation id for the '<em>Template Actuals</em>' operation.
@@ -3375,7 +3357,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___TEMPLATE_ACTUALS = ELEMENT_REFERENCE_OPERATION_COUNT + 65;
+	int EXTERNAL_ELEMENT_REFERENCE___TEMPLATE_ACTUALS = ELEMENT_REFERENCE_OPERATION_COUNT + 63;
 
 	/**
 	 * The operation id for the '<em>Direction</em>' operation.
@@ -3384,7 +3366,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___DIRECTION = ELEMENT_REFERENCE_OPERATION_COUNT + 66;
+	int EXTERNAL_ELEMENT_REFERENCE___DIRECTION = ELEMENT_REFERENCE_OPERATION_COUNT + 64;
 
 	/**
 	 * The operation id for the '<em>Association</em>' operation.
@@ -3393,7 +3375,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION = ELEMENT_REFERENCE_OPERATION_COUNT + 67;
+	int EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION = ELEMENT_REFERENCE_OPERATION_COUNT + 65;
 
 	/**
 	 * The operation id for the '<em>Type</em>' operation.
@@ -3402,7 +3384,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___TYPE = ELEMENT_REFERENCE_OPERATION_COUNT + 68;
+	int EXTERNAL_ELEMENT_REFERENCE___TYPE = ELEMENT_REFERENCE_OPERATION_COUNT + 66;
 
 	/**
 	 * The operation id for the '<em>Lower</em>' operation.
@@ -3411,7 +3393,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___LOWER = ELEMENT_REFERENCE_OPERATION_COUNT + 69;
+	int EXTERNAL_ELEMENT_REFERENCE___LOWER = ELEMENT_REFERENCE_OPERATION_COUNT + 67;
 
 	/**
 	 * The operation id for the '<em>Upper</em>' operation.
@@ -3420,7 +3402,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___UPPER = ELEMENT_REFERENCE_OPERATION_COUNT + 70;
+	int EXTERNAL_ELEMENT_REFERENCE___UPPER = ELEMENT_REFERENCE_OPERATION_COUNT + 68;
 
 	/**
 	 * The operation id for the '<em>Is Ordered</em>' operation.
@@ -3429,7 +3411,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___IS_ORDERED = ELEMENT_REFERENCE_OPERATION_COUNT + 71;
+	int EXTERNAL_ELEMENT_REFERENCE___IS_ORDERED = ELEMENT_REFERENCE_OPERATION_COUNT + 69;
 
 	/**
 	 * The operation id for the '<em>Is Nonunique</em>' operation.
@@ -3438,7 +3420,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___IS_NONUNIQUE = ELEMENT_REFERENCE_OPERATION_COUNT + 72;
+	int EXTERNAL_ELEMENT_REFERENCE___IS_NONUNIQUE = ELEMENT_REFERENCE_OPERATION_COUNT + 70;
 
 	/**
 	 * The operation id for the '<em>Parents</em>' operation.
@@ -3447,7 +3429,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 73;
+	int EXTERNAL_ELEMENT_REFERENCE___PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 71;
 
 	/**
 	 * The operation id for the '<em>All Parents</em>' operation.
@@ -3456,7 +3438,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___ALL_PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 74;
+	int EXTERNAL_ELEMENT_REFERENCE___ALL_PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 72;
 
 	/**
 	 * The operation id for the '<em>Classifier Behavior</em>' operation.
@@ -3465,7 +3447,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR = ELEMENT_REFERENCE_OPERATION_COUNT + 75;
+	int EXTERNAL_ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR = ELEMENT_REFERENCE_OPERATION_COUNT + 73;
 
 	/**
 	 * The operation id for the '<em>Applied Profiles</em>' operation.
@@ -3474,7 +3456,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___APPLIED_PROFILES = ELEMENT_REFERENCE_OPERATION_COUNT + 76;
+	int EXTERNAL_ELEMENT_REFERENCE___APPLIED_PROFILES = ELEMENT_REFERENCE_OPERATION_COUNT + 74;
 
 	/**
 	 * The operation id for the '<em>Active Class</em>' operation.
@@ -3483,7 +3465,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___ACTIVE_CLASS = ELEMENT_REFERENCE_OPERATION_COUNT + 77;
+	int EXTERNAL_ELEMENT_REFERENCE___ACTIVE_CLASS = ELEMENT_REFERENCE_OPERATION_COUNT + 75;
 
 	/**
 	 * The operation id for the '<em>Context</em>' operation.
@@ -3492,7 +3474,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___CONTEXT = ELEMENT_REFERENCE_OPERATION_COUNT + 78;
+	int EXTERNAL_ELEMENT_REFERENCE___CONTEXT = ELEMENT_REFERENCE_OPERATION_COUNT + 76;
 
 	/**
 	 * The operation id for the '<em>Conforms To</em>' operation.
@@ -3501,7 +3483,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 79;
+	int EXTERNAL_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 77;
 
 	/**
 	 * The operation id for the '<em>Equals</em>' operation.
@@ -3510,7 +3492,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___EQUALS__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 80;
+	int EXTERNAL_ELEMENT_REFERENCE___EQUALS__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 78;
 
 	/**
 	 * The operation id for the '<em>Copy</em>' operation.
@@ -3519,7 +3501,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___COPY = ELEMENT_REFERENCE_OPERATION_COUNT + 81;
+	int EXTERNAL_ELEMENT_REFERENCE___COPY = ELEMENT_REFERENCE_OPERATION_COUNT + 79;
 
 	/**
 	 * The operation id for the '<em>Model Scope</em>' operation.
@@ -3528,7 +3510,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___MODEL_SCOPE = ELEMENT_REFERENCE_OPERATION_COUNT + 82;
+	int EXTERNAL_ELEMENT_REFERENCE___MODEL_SCOPE = ELEMENT_REFERENCE_OPERATION_COUNT + 80;
 
 	/**
 	 * The operation id for the '<em>Resolve Path Name</em>' operation.
@@ -3537,7 +3519,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___RESOLVE_PATH_NAME__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 83;
+	int EXTERNAL_ELEMENT_REFERENCE___RESOLVE_PATH_NAME__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 81;
 
 	/**
 	 * The operation id for the '<em>External Element Reference resolve Path Name</em>' operation.
@@ -3546,7 +3528,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___EXTERNAL_ELEMENT_REFERENCE_RESOLVE_PATH_NAME__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 84;
+	int EXTERNAL_ELEMENT_REFERENCE___EXTERNAL_ELEMENT_REFERENCE_RESOLVE_PATH_NAME__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 82;
 
 	/**
 	 * The operation id for the '<em>Resolve In Scope</em>' operation.
@@ -3555,7 +3537,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___RESOLVE_IN_SCOPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 85;
+	int EXTERNAL_ELEMENT_REFERENCE___RESOLVE_IN_SCOPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 83;
 
 	/**
 	 * The operation id for the '<em>Resolve Stereotype</em>' operation.
@@ -3564,7 +3546,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___RESOLVE_STEREOTYPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 86;
+	int EXTERNAL_ELEMENT_REFERENCE___RESOLVE_STEREOTYPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 84;
 
 	/**
 	 * The operation id for the '<em>Stub</em>' operation.
@@ -3573,7 +3555,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___STUB = ELEMENT_REFERENCE_OPERATION_COUNT + 87;
+	int EXTERNAL_ELEMENT_REFERENCE___STUB = ELEMENT_REFERENCE_OPERATION_COUNT + 85;
 
 	/**
 	 * The operation id for the '<em>Stub For</em>' operation.
@@ -3582,7 +3564,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE___STUB_FOR__UNITDEFINITION = ELEMENT_REFERENCE_OPERATION_COUNT + 88;
+	int EXTERNAL_ELEMENT_REFERENCE___STUB_FOR__UNITDEFINITION = ELEMENT_REFERENCE_OPERATION_COUNT + 86;
 
 	/**
 	 * The number of operations of the '<em>External Element Reference</em>' class.
@@ -3591,7 +3573,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXTERNAL_ELEMENT_REFERENCE_OPERATION_COUNT = ELEMENT_REFERENCE_OPERATION_COUNT + 89;
+	int EXTERNAL_ELEMENT_REFERENCE_OPERATION_COUNT = ELEMENT_REFERENCE_OPERATION_COUNT + 87;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.ExternalEnumerationLiteralReferenceImpl <em>External Enumeration Literal Reference</em>}' class.
@@ -4270,15 +4252,6 @@ public interface AlfPackage extends EPackage {
 	int EXTERNAL_ENUMERATION_LITERAL_REFERENCE___PROPERTIES = EXTERNAL_ELEMENT_REFERENCE___PROPERTIES;
 
 	/**
-	 * The operation id for the '<em>Member Ends</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_ENUMERATION_LITERAL_REFERENCE___MEMBER_ENDS = EXTERNAL_ELEMENT_REFERENCE___MEMBER_ENDS;
-
-	/**
 	 * The operation id for the '<em>Association Ends</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4286,15 +4259,6 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXTERNAL_ENUMERATION_LITERAL_REFERENCE___ASSOCIATION_ENDS = EXTERNAL_ELEMENT_REFERENCE___ASSOCIATION_ENDS;
-
-	/**
-	 * The operation id for the '<em>Owned Ends</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXTERNAL_ENUMERATION_LITERAL_REFERENCE___OWNED_ENDS = EXTERNAL_ELEMENT_REFERENCE___OWNED_ENDS;
 
 	/**
 	 * The operation id for the '<em>Opposite</em>' operation.
@@ -4773,24 +4737,6 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOUND_ELEMENT_REFERENCE___VISIBLE_MEMBERS = ELEMENT_REFERENCE___VISIBLE_MEMBERS;
-
-	/**
-	 * The operation id for the '<em>Properties</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND_ELEMENT_REFERENCE___PROPERTIES = ELEMENT_REFERENCE___PROPERTIES;
-
-	/**
-	 * The operation id for the '<em>Association Ends</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOUND_ELEMENT_REFERENCE___ASSOCIATION_ENDS = ELEMENT_REFERENCE___ASSOCIATION_ENDS;
 
 	/**
 	 * The operation id for the '<em>Receptions</em>' operation.
@@ -5360,13 +5306,31 @@ public interface AlfPackage extends EPackage {
 	int BOUND_ELEMENT_REFERENCE___NESTED_CLASSIFIERS = ELEMENT_REFERENCE_OPERATION_COUNT + 47;
 
 	/**
+	 * The operation id for the '<em>Properties</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_ELEMENT_REFERENCE___PROPERTIES = ELEMENT_REFERENCE_OPERATION_COUNT + 48;
+
+	/**
+	 * The operation id for the '<em>Association Ends</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOUND_ELEMENT_REFERENCE___ASSOCIATION_ENDS = ELEMENT_REFERENCE_OPERATION_COUNT + 49;
+
+	/**
 	 * The operation id for the '<em>Opposite</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___OPPOSITE = ELEMENT_REFERENCE_OPERATION_COUNT + 48;
+	int BOUND_ELEMENT_REFERENCE___OPPOSITE = ELEMENT_REFERENCE_OPERATION_COUNT + 50;
 
 	/**
 	 * The operation id for the '<em>Signal</em>' operation.
@@ -5375,7 +5339,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___SIGNAL = ELEMENT_REFERENCE_OPERATION_COUNT + 49;
+	int BOUND_ELEMENT_REFERENCE___SIGNAL = ELEMENT_REFERENCE_OPERATION_COUNT + 51;
 
 	/**
 	 * The operation id for the '<em>Parameters</em>' operation.
@@ -5384,7 +5348,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 50;
+	int BOUND_ELEMENT_REFERENCE___PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 52;
 
 	/**
 	 * The operation id for the '<em>Return Parameter</em>' operation.
@@ -5393,7 +5357,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___RETURN_PARAMETER = ELEMENT_REFERENCE_OPERATION_COUNT + 51;
+	int BOUND_ELEMENT_REFERENCE___RETURN_PARAMETER = ELEMENT_REFERENCE_OPERATION_COUNT + 53;
 
 	/**
 	 * The operation id for the '<em>Specification</em>' operation.
@@ -5402,7 +5366,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___SPECIFICATION = ELEMENT_REFERENCE_OPERATION_COUNT + 52;
+	int BOUND_ELEMENT_REFERENCE___SPECIFICATION = ELEMENT_REFERENCE_OPERATION_COUNT + 54;
 
 	/**
 	 * The operation id for the '<em>Redefined Operations</em>' operation.
@@ -5411,7 +5375,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___REDEFINED_OPERATIONS = ELEMENT_REFERENCE_OPERATION_COUNT + 53;
+	int BOUND_ELEMENT_REFERENCE___REDEFINED_OPERATIONS = ELEMENT_REFERENCE_OPERATION_COUNT + 55;
 
 	/**
 	 * The operation id for the '<em>Namespace</em>' operation.
@@ -5420,7 +5384,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___NAMESPACE = ELEMENT_REFERENCE_OPERATION_COUNT + 54;
+	int BOUND_ELEMENT_REFERENCE___NAMESPACE = ELEMENT_REFERENCE_OPERATION_COUNT + 56;
 
 	/**
 	 * The operation id for the '<em>Template</em>' operation.
@@ -5429,7 +5393,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___TEMPLATE = ELEMENT_REFERENCE_OPERATION_COUNT + 55;
+	int BOUND_ELEMENT_REFERENCE___TEMPLATE = ELEMENT_REFERENCE_OPERATION_COUNT + 57;
 
 	/**
 	 * The operation id for the '<em>Template Parameters</em>' operation.
@@ -5438,7 +5402,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___TEMPLATE_PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 56;
+	int BOUND_ELEMENT_REFERENCE___TEMPLATE_PARAMETERS = ELEMENT_REFERENCE_OPERATION_COUNT + 58;
 
 	/**
 	 * The operation id for the '<em>Parametered Elements</em>' operation.
@@ -5447,7 +5411,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___PARAMETERED_ELEMENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 57;
+	int BOUND_ELEMENT_REFERENCE___PARAMETERED_ELEMENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 59;
 
 	/**
 	 * The operation id for the '<em>Is Template Binding</em>' operation.
@@ -5456,7 +5420,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___IS_TEMPLATE_BINDING = ELEMENT_REFERENCE_OPERATION_COUNT + 58;
+	int BOUND_ELEMENT_REFERENCE___IS_TEMPLATE_BINDING = ELEMENT_REFERENCE_OPERATION_COUNT + 60;
 
 	/**
 	 * The operation id for the '<em>Template Actuals</em>' operation.
@@ -5465,7 +5429,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___TEMPLATE_ACTUALS = ELEMENT_REFERENCE_OPERATION_COUNT + 59;
+	int BOUND_ELEMENT_REFERENCE___TEMPLATE_ACTUALS = ELEMENT_REFERENCE_OPERATION_COUNT + 61;
 
 	/**
 	 * The operation id for the '<em>Direction</em>' operation.
@@ -5474,7 +5438,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___DIRECTION = ELEMENT_REFERENCE_OPERATION_COUNT + 60;
+	int BOUND_ELEMENT_REFERENCE___DIRECTION = ELEMENT_REFERENCE_OPERATION_COUNT + 62;
 
 	/**
 	 * The operation id for the '<em>Association</em>' operation.
@@ -5483,7 +5447,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___ASSOCIATION = ELEMENT_REFERENCE_OPERATION_COUNT + 61;
+	int BOUND_ELEMENT_REFERENCE___ASSOCIATION = ELEMENT_REFERENCE_OPERATION_COUNT + 63;
 
 	/**
 	 * The operation id for the '<em>Type</em>' operation.
@@ -5492,7 +5456,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___TYPE = ELEMENT_REFERENCE_OPERATION_COUNT + 62;
+	int BOUND_ELEMENT_REFERENCE___TYPE = ELEMENT_REFERENCE_OPERATION_COUNT + 64;
 
 	/**
 	 * The operation id for the '<em>Lower</em>' operation.
@@ -5501,7 +5465,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___LOWER = ELEMENT_REFERENCE_OPERATION_COUNT + 63;
+	int BOUND_ELEMENT_REFERENCE___LOWER = ELEMENT_REFERENCE_OPERATION_COUNT + 65;
 
 	/**
 	 * The operation id for the '<em>Upper</em>' operation.
@@ -5510,7 +5474,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___UPPER = ELEMENT_REFERENCE_OPERATION_COUNT + 64;
+	int BOUND_ELEMENT_REFERENCE___UPPER = ELEMENT_REFERENCE_OPERATION_COUNT + 66;
 
 	/**
 	 * The operation id for the '<em>Is Ordered</em>' operation.
@@ -5519,7 +5483,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___IS_ORDERED = ELEMENT_REFERENCE_OPERATION_COUNT + 65;
+	int BOUND_ELEMENT_REFERENCE___IS_ORDERED = ELEMENT_REFERENCE_OPERATION_COUNT + 67;
 
 	/**
 	 * The operation id for the '<em>Is Nonunique</em>' operation.
@@ -5528,7 +5492,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___IS_NONUNIQUE = ELEMENT_REFERENCE_OPERATION_COUNT + 66;
+	int BOUND_ELEMENT_REFERENCE___IS_NONUNIQUE = ELEMENT_REFERENCE_OPERATION_COUNT + 68;
 
 	/**
 	 * The operation id for the '<em>Parents</em>' operation.
@@ -5537,7 +5501,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 67;
+	int BOUND_ELEMENT_REFERENCE___PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 69;
 
 	/**
 	 * The operation id for the '<em>All Parents</em>' operation.
@@ -5546,7 +5510,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___ALL_PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 68;
+	int BOUND_ELEMENT_REFERENCE___ALL_PARENTS = ELEMENT_REFERENCE_OPERATION_COUNT + 70;
 
 	/**
 	 * The operation id for the '<em>Classifier Behavior</em>' operation.
@@ -5555,7 +5519,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR = ELEMENT_REFERENCE_OPERATION_COUNT + 69;
+	int BOUND_ELEMENT_REFERENCE___CLASSIFIER_BEHAVIOR = ELEMENT_REFERENCE_OPERATION_COUNT + 71;
 
 	/**
 	 * The operation id for the '<em>Applied Profiles</em>' operation.
@@ -5564,7 +5528,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___APPLIED_PROFILES = ELEMENT_REFERENCE_OPERATION_COUNT + 70;
+	int BOUND_ELEMENT_REFERENCE___APPLIED_PROFILES = ELEMENT_REFERENCE_OPERATION_COUNT + 72;
 
 	/**
 	 * The operation id for the '<em>Reference</em>' operation.
@@ -5573,7 +5537,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___REFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 71;
+	int BOUND_ELEMENT_REFERENCE___REFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 73;
 
 	/**
 	 * The operation id for the '<em>Template Binding</em>' operation.
@@ -5582,7 +5546,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___TEMPLATE_BINDING = ELEMENT_REFERENCE_OPERATION_COUNT + 72;
+	int BOUND_ELEMENT_REFERENCE___TEMPLATE_BINDING = ELEMENT_REFERENCE_OPERATION_COUNT + 74;
 
 	/**
 	 * The operation id for the '<em>Active Class</em>' operation.
@@ -5591,7 +5555,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___ACTIVE_CLASS = ELEMENT_REFERENCE_OPERATION_COUNT + 73;
+	int BOUND_ELEMENT_REFERENCE___ACTIVE_CLASS = ELEMENT_REFERENCE_OPERATION_COUNT + 75;
 
 	/**
 	 * The operation id for the '<em>Context</em>' operation.
@@ -5600,7 +5564,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___CONTEXT = ELEMENT_REFERENCE_OPERATION_COUNT + 74;
+	int BOUND_ELEMENT_REFERENCE___CONTEXT = ELEMENT_REFERENCE_OPERATION_COUNT + 76;
 
 	/**
 	 * The operation id for the '<em>Is Active Behavior</em>' operation.
@@ -5609,7 +5573,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___IS_ACTIVE_BEHAVIOR = ELEMENT_REFERENCE_OPERATION_COUNT + 75;
+	int BOUND_ELEMENT_REFERENCE___IS_ACTIVE_BEHAVIOR = ELEMENT_REFERENCE_OPERATION_COUNT + 77;
 
 	/**
 	 * The operation id for the '<em>Conforms To</em>' operation.
@@ -5618,7 +5582,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 76;
+	int BOUND_ELEMENT_REFERENCE___CONFORMS_TO__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 78;
 
 	/**
 	 * The operation id for the '<em>Equals</em>' operation.
@@ -5627,7 +5591,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___EQUALS__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 77;
+	int BOUND_ELEMENT_REFERENCE___EQUALS__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 79;
 
 	/**
 	 * The operation id for the '<em>Copy</em>' operation.
@@ -5636,7 +5600,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___COPY = ELEMENT_REFERENCE_OPERATION_COUNT + 78;
+	int BOUND_ELEMENT_REFERENCE___COPY = ELEMENT_REFERENCE_OPERATION_COUNT + 80;
 
 	/**
 	 * The operation id for the '<em>Model Scope</em>' operation.
@@ -5645,7 +5609,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___MODEL_SCOPE = ELEMENT_REFERENCE_OPERATION_COUNT + 79;
+	int BOUND_ELEMENT_REFERENCE___MODEL_SCOPE = ELEMENT_REFERENCE_OPERATION_COUNT + 81;
 
 	/**
 	 * The operation id for the '<em>Resolve Path Name</em>' operation.
@@ -5654,7 +5618,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___RESOLVE_PATH_NAME__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 80;
+	int BOUND_ELEMENT_REFERENCE___RESOLVE_PATH_NAME__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 82;
 
 	/**
 	 * The operation id for the '<em>Resolve In Scope</em>' operation.
@@ -5663,7 +5627,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___RESOLVE_IN_SCOPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 81;
+	int BOUND_ELEMENT_REFERENCE___RESOLVE_IN_SCOPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 83;
 
 	/**
 	 * The operation id for the '<em>Resolve Stereotype</em>' operation.
@@ -5672,7 +5636,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___RESOLVE_STEREOTYPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 82;
+	int BOUND_ELEMENT_REFERENCE___RESOLVE_STEREOTYPE__STRING = ELEMENT_REFERENCE_OPERATION_COUNT + 84;
 
 	/**
 	 * The operation id for the '<em>Stub</em>' operation.
@@ -5681,7 +5645,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___STUB = ELEMENT_REFERENCE_OPERATION_COUNT + 83;
+	int BOUND_ELEMENT_REFERENCE___STUB = ELEMENT_REFERENCE_OPERATION_COUNT + 85;
 
 	/**
 	 * The operation id for the '<em>Stub For</em>' operation.
@@ -5690,7 +5654,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___STUB_FOR__UNITDEFINITION = ELEMENT_REFERENCE_OPERATION_COUNT + 84;
+	int BOUND_ELEMENT_REFERENCE___STUB_FOR__UNITDEFINITION = ELEMENT_REFERENCE_OPERATION_COUNT + 86;
 
 	/**
 	 * The operation id for the '<em>Bound Reference To</em>' operation.
@@ -5699,7 +5663,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___BOUND_REFERENCE_TO__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 85;
+	int BOUND_ELEMENT_REFERENCE___BOUND_REFERENCE_TO__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 87;
 
 	/**
 	 * The operation id for the '<em>Bound Reference To1</em>' operation.
@@ -5708,7 +5672,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___BOUND_REFERENCE_TO1__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 86;
+	int BOUND_ELEMENT_REFERENCE___BOUND_REFERENCE_TO1__ELEMENTREFERENCE = ELEMENT_REFERENCE_OPERATION_COUNT + 88;
 
 	/**
 	 * The operation id for the '<em>Bound References To</em>' operation.
@@ -5717,7 +5681,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE___BOUND_REFERENCES_TO__ELIST = ELEMENT_REFERENCE_OPERATION_COUNT + 87;
+	int BOUND_ELEMENT_REFERENCE___BOUND_REFERENCES_TO__ELIST = ELEMENT_REFERENCE_OPERATION_COUNT + 89;
 
 	/**
 	 * The number of operations of the '<em>Bound Element Reference</em>' class.
@@ -5726,7 +5690,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BOUND_ELEMENT_REFERENCE_OPERATION_COUNT = ELEMENT_REFERENCE_OPERATION_COUNT + 88;
+	int BOUND_ELEMENT_REFERENCE_OPERATION_COUNT = ELEMENT_REFERENCE_OPERATION_COUNT + 90;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.DocumentedElementImpl <em>Documented Element</em>}' class.
@@ -90088,16 +90052,6 @@ public interface AlfPackage extends EPackage {
 	EOperation getExternalElementReference__Properties();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExternalElementReference#memberEnds() <em>Member Ends</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Member Ends</em>' operation.
-	 * @see org.eclipse.papyrus.uml.alf.ExternalElementReference#memberEnds()
-	 * @generated
-	 */
-	EOperation getExternalElementReference__MemberEnds();
-
-	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExternalElementReference#associationEnds() <em>Association Ends</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90106,16 +90060,6 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExternalElementReference__AssociationEnds();
-
-	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExternalElementReference#ownedEnds() <em>Owned Ends</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Owned Ends</em>' operation.
-	 * @see org.eclipse.papyrus.uml.alf.ExternalElementReference#ownedEnds()
-	 * @generated
-	 */
-	EOperation getExternalElementReference__OwnedEnds();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExternalElementReference#opposite() <em>Opposite</em>}' operation.
@@ -91089,6 +91033,26 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getBoundElementReference__NestedClassifiers();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.BoundElementReference#properties() <em>Properties</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Properties</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.BoundElementReference#properties()
+	 * @generated
+	 */
+	EOperation getBoundElementReference__Properties();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.BoundElementReference#associationEnds() <em>Association Ends</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Association Ends</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.BoundElementReference#associationEnds()
+	 * @generated
+	 */
+	EOperation getBoundElementReference__AssociationEnds();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.BoundElementReference#opposite() <em>Opposite</em>}' operation.

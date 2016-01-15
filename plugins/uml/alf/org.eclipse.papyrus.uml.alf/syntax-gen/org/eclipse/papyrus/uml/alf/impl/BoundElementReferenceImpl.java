@@ -1262,6 +1262,54 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #properties() <em>Properties</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #properties()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate PROPERTIES__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getBoundElementReference__Properties()).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ElementReference> properties() {
+		try {
+			return (EList<ElementReference>)PROPERTIES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #associationEnds() <em>Association Ends</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #associationEnds()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate ASSOCIATION_ENDS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getBoundElementReference__AssociationEnds()).getInvocationDelegate();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	public EList<ElementReference> associationEnds() {
+		try {
+			return (EList<ElementReference>)ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #opposite() <em>Opposite</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2277,6 +2325,8 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 				case AlfPackage.ELEMENT_REFERENCE___OWNED_MEMBERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___OWNED_MEMBERS;
 				case AlfPackage.ELEMENT_REFERENCE___MEMBERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___MEMBERS;
 				case AlfPackage.ELEMENT_REFERENCE___NESTED_CLASSIFIERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___NESTED_CLASSIFIERS;
+				case AlfPackage.ELEMENT_REFERENCE___PROPERTIES: return AlfPackage.BOUND_ELEMENT_REFERENCE___PROPERTIES;
+				case AlfPackage.ELEMENT_REFERENCE___ASSOCIATION_ENDS: return AlfPackage.BOUND_ELEMENT_REFERENCE___ASSOCIATION_ENDS;
 				case AlfPackage.ELEMENT_REFERENCE___OPPOSITE: return AlfPackage.BOUND_ELEMENT_REFERENCE___OPPOSITE;
 				case AlfPackage.ELEMENT_REFERENCE___SIGNAL: return AlfPackage.BOUND_ELEMENT_REFERENCE___SIGNAL;
 				case AlfPackage.ELEMENT_REFERENCE___PARAMETERS: return AlfPackage.BOUND_ELEMENT_REFERENCE___PARAMETERS;
@@ -2424,6 +2474,10 @@ public class BoundElementReferenceImpl extends ElementReferenceImpl implements B
 				return members();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___NESTED_CLASSIFIERS:
 				return nestedClassifiers();
+			case AlfPackage.BOUND_ELEMENT_REFERENCE___PROPERTIES:
+				return properties();
+			case AlfPackage.BOUND_ELEMENT_REFERENCE___ASSOCIATION_ENDS:
+				return associationEnds();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___OPPOSITE:
 				return opposite();
 			case AlfPackage.BOUND_ELEMENT_REFERENCE___SIGNAL:

@@ -3645,7 +3645,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__MemberEnds() {
+	public EOperation getExternalElementReference__AssociationEnds() {
         return getExternalElementReference().getEOperations().get(50);
 	}
 
@@ -3654,7 +3654,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__AssociationEnds() {
+	public EOperation getExternalElementReference__Opposite() {
         return getExternalElementReference().getEOperations().get(51);
 	}
 
@@ -3663,7 +3663,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__OwnedEnds() {
+	public EOperation getExternalElementReference__Signal() {
         return getExternalElementReference().getEOperations().get(52);
 	}
 
@@ -3672,7 +3672,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Opposite() {
+	public EOperation getExternalElementReference__Namespace() {
         return getExternalElementReference().getEOperations().get(53);
 	}
 
@@ -3681,7 +3681,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Signal() {
+	public EOperation getExternalElementReference__OwnedParameters() {
         return getExternalElementReference().getEOperations().get(54);
 	}
 
@@ -3690,7 +3690,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Namespace() {
+	public EOperation getExternalElementReference__Parameters() {
         return getExternalElementReference().getEOperations().get(55);
 	}
 
@@ -3699,7 +3699,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__OwnedParameters() {
+	public EOperation getExternalElementReference__ReturnParameter() {
         return getExternalElementReference().getEOperations().get(56);
 	}
 
@@ -3708,7 +3708,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Parameters() {
+	public EOperation getExternalElementReference__Specification() {
         return getExternalElementReference().getEOperations().get(57);
 	}
 
@@ -3717,7 +3717,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ReturnParameter() {
+	public EOperation getExternalElementReference__RedefinedOperations() {
         return getExternalElementReference().getEOperations().get(58);
 	}
 
@@ -3726,7 +3726,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Specification() {
+	public EOperation getExternalElementReference__Template() {
         return getExternalElementReference().getEOperations().get(59);
 	}
 
@@ -3735,7 +3735,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__RedefinedOperations() {
+	public EOperation getExternalElementReference__UmlTemplateBinding() {
         return getExternalElementReference().getEOperations().get(60);
 	}
 
@@ -3744,7 +3744,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Template() {
+	public EOperation getExternalElementReference__TemplateParameters() {
         return getExternalElementReference().getEOperations().get(61);
 	}
 
@@ -3753,7 +3753,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__UmlTemplateBinding() {
+	public EOperation getExternalElementReference__ParameteredElements() {
         return getExternalElementReference().getEOperations().get(62);
 	}
 
@@ -3762,7 +3762,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__TemplateParameters() {
+	public EOperation getExternalElementReference__TemplateActuals() {
         return getExternalElementReference().getEOperations().get(63);
 	}
 
@@ -3771,7 +3771,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ParameteredElements() {
+	public EOperation getExternalElementReference__Direction() {
         return getExternalElementReference().getEOperations().get(64);
 	}
 
@@ -3780,7 +3780,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__TemplateActuals() {
+	public EOperation getExternalElementReference__Association() {
         return getExternalElementReference().getEOperations().get(65);
 	}
 
@@ -3789,7 +3789,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Direction() {
+	public EOperation getExternalElementReference__Type() {
         return getExternalElementReference().getEOperations().get(66);
 	}
 
@@ -3798,7 +3798,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Association() {
+	public EOperation getExternalElementReference__Lower() {
         return getExternalElementReference().getEOperations().get(67);
 	}
 
@@ -3807,7 +3807,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Type() {
+	public EOperation getExternalElementReference__Upper() {
         return getExternalElementReference().getEOperations().get(68);
 	}
 
@@ -3816,7 +3816,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Lower() {
+	public EOperation getExternalElementReference__IsOrdered() {
         return getExternalElementReference().getEOperations().get(69);
 	}
 
@@ -3825,7 +3825,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Upper() {
+	public EOperation getExternalElementReference__IsNonunique() {
         return getExternalElementReference().getEOperations().get(70);
 	}
 
@@ -3834,7 +3834,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__IsOrdered() {
+	public EOperation getExternalElementReference__Parents() {
         return getExternalElementReference().getEOperations().get(71);
 	}
 
@@ -3843,7 +3843,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__IsNonunique() {
+	public EOperation getExternalElementReference__AllParents() {
         return getExternalElementReference().getEOperations().get(72);
 	}
 
@@ -3852,7 +3852,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Parents() {
+	public EOperation getExternalElementReference__ClassifierBehavior() {
         return getExternalElementReference().getEOperations().get(73);
 	}
 
@@ -3861,7 +3861,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__AllParents() {
+	public EOperation getExternalElementReference__AppliedProfiles() {
         return getExternalElementReference().getEOperations().get(74);
 	}
 
@@ -3870,7 +3870,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ClassifierBehavior() {
+	public EOperation getExternalElementReference__ActiveClass() {
         return getExternalElementReference().getEOperations().get(75);
 	}
 
@@ -3879,7 +3879,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__AppliedProfiles() {
+	public EOperation getExternalElementReference__Context() {
         return getExternalElementReference().getEOperations().get(76);
 	}
 
@@ -3888,7 +3888,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ActiveClass() {
+	public EOperation getExternalElementReference__ConformsTo__ElementReference() {
         return getExternalElementReference().getEOperations().get(77);
 	}
 
@@ -3897,7 +3897,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Context() {
+	public EOperation getExternalElementReference__Equals__ElementReference() {
         return getExternalElementReference().getEOperations().get(78);
 	}
 
@@ -3906,7 +3906,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ConformsTo__ElementReference() {
+	public EOperation getExternalElementReference__Copy() {
         return getExternalElementReference().getEOperations().get(79);
 	}
 
@@ -3915,7 +3915,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Equals__ElementReference() {
+	public EOperation getExternalElementReference__ModelScope() {
         return getExternalElementReference().getEOperations().get(80);
 	}
 
@@ -3924,7 +3924,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__Copy() {
+	public EOperation getExternalElementReference__ResolvePathName__String() {
         return getExternalElementReference().getEOperations().get(81);
 	}
 
@@ -3933,7 +3933,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ModelScope() {
+	public EOperation getExternalElementReference__ExternalElementReference_resolvePathName__String() {
         return getExternalElementReference().getEOperations().get(82);
 	}
 
@@ -3942,7 +3942,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ResolvePathName__String() {
+	public EOperation getExternalElementReference__ResolveInScope__String() {
         return getExternalElementReference().getEOperations().get(83);
 	}
 
@@ -3951,7 +3951,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ExternalElementReference_resolvePathName__String() {
+	public EOperation getExternalElementReference__ResolveStereotype__String() {
         return getExternalElementReference().getEOperations().get(84);
 	}
 
@@ -3960,7 +3960,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ResolveInScope__String() {
+	public EOperation getExternalElementReference__Stub() {
         return getExternalElementReference().getEOperations().get(85);
 	}
 
@@ -3969,26 +3969,8 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExternalElementReference__ResolveStereotype__String() {
-        return getExternalElementReference().getEOperations().get(86);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExternalElementReference__Stub() {
-        return getExternalElementReference().getEOperations().get(87);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EOperation getExternalElementReference__StubFor__UnitDefinition() {
-        return getExternalElementReference().getEOperations().get(88);
+        return getExternalElementReference().getEOperations().get(86);
 	}
 
 	/**
@@ -4551,7 +4533,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Opposite() {
+	public EOperation getBoundElementReference__Properties() {
         return getBoundElementReference().getEOperations().get(48);
 	}
 
@@ -4560,7 +4542,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Signal() {
+	public EOperation getBoundElementReference__AssociationEnds() {
         return getBoundElementReference().getEOperations().get(49);
 	}
 
@@ -4569,7 +4551,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Parameters() {
+	public EOperation getBoundElementReference__Opposite() {
         return getBoundElementReference().getEOperations().get(50);
 	}
 
@@ -4578,7 +4560,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ReturnParameter() {
+	public EOperation getBoundElementReference__Signal() {
         return getBoundElementReference().getEOperations().get(51);
 	}
 
@@ -4587,7 +4569,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Specification() {
+	public EOperation getBoundElementReference__Parameters() {
         return getBoundElementReference().getEOperations().get(52);
 	}
 
@@ -4596,7 +4578,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__RedefinedOperations() {
+	public EOperation getBoundElementReference__ReturnParameter() {
         return getBoundElementReference().getEOperations().get(53);
 	}
 
@@ -4605,7 +4587,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Namespace() {
+	public EOperation getBoundElementReference__Specification() {
         return getBoundElementReference().getEOperations().get(54);
 	}
 
@@ -4614,7 +4596,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Template() {
+	public EOperation getBoundElementReference__RedefinedOperations() {
         return getBoundElementReference().getEOperations().get(55);
 	}
 
@@ -4623,7 +4605,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__TemplateParameters() {
+	public EOperation getBoundElementReference__Namespace() {
         return getBoundElementReference().getEOperations().get(56);
 	}
 
@@ -4632,7 +4614,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ParameteredElements() {
+	public EOperation getBoundElementReference__Template() {
         return getBoundElementReference().getEOperations().get(57);
 	}
 
@@ -4641,7 +4623,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__IsTemplateBinding() {
+	public EOperation getBoundElementReference__TemplateParameters() {
         return getBoundElementReference().getEOperations().get(58);
 	}
 
@@ -4650,7 +4632,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__TemplateActuals() {
+	public EOperation getBoundElementReference__ParameteredElements() {
         return getBoundElementReference().getEOperations().get(59);
 	}
 
@@ -4659,7 +4641,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Direction() {
+	public EOperation getBoundElementReference__IsTemplateBinding() {
         return getBoundElementReference().getEOperations().get(60);
 	}
 
@@ -4668,7 +4650,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Association() {
+	public EOperation getBoundElementReference__TemplateActuals() {
         return getBoundElementReference().getEOperations().get(61);
 	}
 
@@ -4677,7 +4659,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Type() {
+	public EOperation getBoundElementReference__Direction() {
         return getBoundElementReference().getEOperations().get(62);
 	}
 
@@ -4686,7 +4668,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Lower() {
+	public EOperation getBoundElementReference__Association() {
         return getBoundElementReference().getEOperations().get(63);
 	}
 
@@ -4695,7 +4677,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Upper() {
+	public EOperation getBoundElementReference__Type() {
         return getBoundElementReference().getEOperations().get(64);
 	}
 
@@ -4704,7 +4686,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__IsOrdered() {
+	public EOperation getBoundElementReference__Lower() {
         return getBoundElementReference().getEOperations().get(65);
 	}
 
@@ -4713,7 +4695,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__IsNonunique() {
+	public EOperation getBoundElementReference__Upper() {
         return getBoundElementReference().getEOperations().get(66);
 	}
 
@@ -4722,7 +4704,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Parents() {
+	public EOperation getBoundElementReference__IsOrdered() {
         return getBoundElementReference().getEOperations().get(67);
 	}
 
@@ -4731,7 +4713,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__AllParents() {
+	public EOperation getBoundElementReference__IsNonunique() {
         return getBoundElementReference().getEOperations().get(68);
 	}
 
@@ -4740,7 +4722,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ClassifierBehavior() {
+	public EOperation getBoundElementReference__Parents() {
         return getBoundElementReference().getEOperations().get(69);
 	}
 
@@ -4749,7 +4731,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__AppliedProfiles() {
+	public EOperation getBoundElementReference__AllParents() {
         return getBoundElementReference().getEOperations().get(70);
 	}
 
@@ -4758,7 +4740,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Reference() {
+	public EOperation getBoundElementReference__ClassifierBehavior() {
         return getBoundElementReference().getEOperations().get(71);
 	}
 
@@ -4767,7 +4749,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__TemplateBinding() {
+	public EOperation getBoundElementReference__AppliedProfiles() {
         return getBoundElementReference().getEOperations().get(72);
 	}
 
@@ -4776,7 +4758,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ActiveClass() {
+	public EOperation getBoundElementReference__Reference() {
         return getBoundElementReference().getEOperations().get(73);
 	}
 
@@ -4785,7 +4767,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Context() {
+	public EOperation getBoundElementReference__TemplateBinding() {
         return getBoundElementReference().getEOperations().get(74);
 	}
 
@@ -4794,7 +4776,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__IsActiveBehavior() {
+	public EOperation getBoundElementReference__ActiveClass() {
         return getBoundElementReference().getEOperations().get(75);
 	}
 
@@ -4803,7 +4785,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ConformsTo__ElementReference() {
+	public EOperation getBoundElementReference__Context() {
         return getBoundElementReference().getEOperations().get(76);
 	}
 
@@ -4812,7 +4794,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Equals__ElementReference() {
+	public EOperation getBoundElementReference__IsActiveBehavior() {
         return getBoundElementReference().getEOperations().get(77);
 	}
 
@@ -4821,7 +4803,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Copy() {
+	public EOperation getBoundElementReference__ConformsTo__ElementReference() {
         return getBoundElementReference().getEOperations().get(78);
 	}
 
@@ -4830,7 +4812,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ModelScope() {
+	public EOperation getBoundElementReference__Equals__ElementReference() {
         return getBoundElementReference().getEOperations().get(79);
 	}
 
@@ -4839,7 +4821,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ResolvePathName__String() {
+	public EOperation getBoundElementReference__Copy() {
         return getBoundElementReference().getEOperations().get(80);
 	}
 
@@ -4848,7 +4830,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ResolveInScope__String() {
+	public EOperation getBoundElementReference__ModelScope() {
         return getBoundElementReference().getEOperations().get(81);
 	}
 
@@ -4857,7 +4839,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__ResolveStereotype__String() {
+	public EOperation getBoundElementReference__ResolvePathName__String() {
         return getBoundElementReference().getEOperations().get(82);
 	}
 
@@ -4866,7 +4848,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__Stub() {
+	public EOperation getBoundElementReference__ResolveInScope__String() {
         return getBoundElementReference().getEOperations().get(83);
 	}
 
@@ -4875,7 +4857,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__StubFor__UnitDefinition() {
+	public EOperation getBoundElementReference__ResolveStereotype__String() {
         return getBoundElementReference().getEOperations().get(84);
 	}
 
@@ -4884,7 +4866,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__BoundReferenceTo__ElementReference() {
+	public EOperation getBoundElementReference__Stub() {
         return getBoundElementReference().getEOperations().get(85);
 	}
 
@@ -4893,7 +4875,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__BoundReferenceTo1__ElementReference() {
+	public EOperation getBoundElementReference__StubFor__UnitDefinition() {
         return getBoundElementReference().getEOperations().get(86);
 	}
 
@@ -4902,8 +4884,26 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getBoundElementReference__BoundReferencesTo__EList() {
+	public EOperation getBoundElementReference__BoundReferenceTo__ElementReference() {
         return getBoundElementReference().getEOperations().get(87);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getBoundElementReference__BoundReferenceTo1__ElementReference() {
+        return getBoundElementReference().getEOperations().get(88);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getBoundElementReference__BoundReferencesTo__EList() {
+        return getBoundElementReference().getEOperations().get(89);
 	}
 
 	/**
