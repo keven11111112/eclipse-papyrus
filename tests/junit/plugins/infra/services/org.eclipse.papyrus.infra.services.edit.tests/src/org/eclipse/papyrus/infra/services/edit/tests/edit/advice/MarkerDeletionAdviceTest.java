@@ -22,7 +22,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IMarkerDelta;
@@ -35,19 +34,24 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.internal.advice.MarkerDeletionAdvice;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.services.validation.commands.ValidateModelCommand;
+import org.eclipse.papyrus.infra.services.validation.IPapyrusDiagnostician;
+import org.eclipse.papyrus.infra.services.validation.ValidationTool;
+import org.eclipse.papyrus.infra.services.validation.internal.EValidatorAdapter;
+import org.eclipse.papyrus.infra.services.validation.internal.EcoreDiagnostician;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
@@ -57,6 +61,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -66,8 +71,9 @@ import org.junit.Test;
 
 
 /**
- * Test suite for the {@link MarkerDeletionAdvice} class.
+ * Test suite for the {@link MarkerDeletionAredvice} class.
  */
+@SuppressWarnings("restriction")
 @PluginResource("model/MarkerDeletionModel.di")
 public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 
@@ -172,12 +178,14 @@ public class MarkerDeletionAdviceTest extends AbstractPapyrusTest {
 		editor.open();
 
 		// Validate the model
-		ValidateModelCommand validationCommand = new ValidateModelCommand(editor.getModel());
-		try {
-			validationCommand.execute(new NullProgressMonitor(), null);
-		} catch (ExecutionException e) {
-			Activator.log.error(e);
-		}
+		IPapyrusDiagnostician diagnostician = new EcoreDiagnostician(new EValidatorAdapter((EValidator) EValidator.Registry.INSTANCE.get(UMLPackage.eINSTANCE)));
+		diagnostician.initialize(((AdapterFactoryEditingDomain) editor.getEditingDomain()).getAdapterFactory(), new NullProgressMonitor());
+		BasicDiagnostic diagnostic = diagnostician.createDefaultDiagnostic(editor.getModel());
+		diagnostician.validate(editor.getModel(), diagnostic, diagnostician.createDefaultContext());
+
+		// Create the markers
+		ValidationTool tool = new ValidationTool(editor.getModel());
+		tool.createMarkers(diagnostic, new NullProgressMonitor());
 	}
 
 	<T extends NamedElement> T findElement(Class<T> type) {
