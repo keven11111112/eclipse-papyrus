@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 459174
- *  Christian W. Damus - bug 467207
+ *  Christian W. Damus - bugs 459174, 467207, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.registries;
@@ -47,7 +46,6 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfigura
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints.IElementTypeSetExtensionPoint;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.preferences.ElementTypesPreferences;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.ElementTypeCycleUtil;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.ElementTypeRegistryUtils;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -134,7 +132,7 @@ public class ElementTypeSetConfigurationRegistry {
 	 */
 	public void loadElementTypeSetConfiguration(String identifier) {
 		// retrieve the path from the identifier
-		String path = ElementTypesPreferences.getLocalElementTypeDefinitions().get(identifier);
+		String path = UserElementTypeDefinitionsRegistry.getInstance().getLocalElementTypeDefinitions().get(identifier);
 		if (path == null) {
 			return;
 		}
@@ -326,7 +324,7 @@ public class ElementTypeSetConfigurationRegistry {
 
 
 	protected Map<String, ElementTypeSetConfiguration> readElementTypeSetConfigurationModelsFromWorkspace() {
-		Map<String, String> localFilesPath = ElementTypesPreferences.getLocalElementTypeDefinitions();
+		Map<String, String> localFilesPath = UserElementTypeDefinitionsRegistry.getInstance().getLocalElementTypeDefinitions();
 		Map<String, ElementTypeSetConfiguration> workspaceElementTypeSets = new HashMap<String, ElementTypeSetConfiguration>();
 		if (localFilesPath != null && !localFilesPath.isEmpty()) {
 			for (Entry<String, String> idToPath : localFilesPath.entrySet()) {
@@ -392,7 +390,7 @@ public class ElementTypeSetConfigurationRegistry {
 	 */
 	protected ElementTypeSetConfiguration getElementTypeSetConfiguration(String elementTypesID, String modelPath, String bundleId) {
 		// 1. look in preferences.
-		String filePath = ElementTypesPreferences.getElementTypesRedefinition(elementTypesID);
+		String filePath = UserElementTypeDefinitionsRegistry.getInstance().getElementTypesRedefinition(elementTypesID);
 		if (filePath != null) {
 			getElementTypeSetConfigurationInPluginStateArea(elementTypesID);
 		}

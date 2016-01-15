@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin Integration.
+ * Copyright (c) 2011, 2016 Atos Origin Integration, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,17 +8,17 @@
  *
  * Contributors:
  *  Tristan Faure (Atos Origin Integration) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.onefile.model.adapters;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.mapping.ResourceMapping;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.papyrus.infra.onefile.model.ISubResourceFile;
 import org.eclipse.papyrus.infra.onefile.model.impl.SubResourceFile;
 import org.eclipse.papyrus.infra.onefile.model.mapping.SubResourceMapping;
-import org.eclipse.ui.IContributorResourceAdapter;
 
 /**
  * Adapter Factory for {@link SubResourceFile}
@@ -28,29 +28,21 @@ import org.eclipse.ui.IContributorResourceAdapter;
  */
 public class SubResourceAdapterFactory implements IAdapterFactory {
 
-	public Object getAdapter(Object adaptableObject, Class adapterType) {
+	public <T> T getAdapter(Object adaptableObject, Class<T> adapterType) {
 		if (ResourceMapping.class.equals(adapterType)) {
 			if (adaptableObject instanceof ISubResourceFile) {
-				return new SubResourceMapping((ISubResourceFile) adaptableObject);
+				return adapterType.cast(new SubResourceMapping((ISubResourceFile) adaptableObject));
 			}
 		} else if (IFile.class.equals(adapterType)) {
 			if (adaptableObject instanceof ISubResourceFile) {
-				return ((ISubResourceFile) adaptableObject).getFile();
-			}
-		} else if (IContributorResourceAdapter.class.equals(adapterType)) {
-			if (adaptableObject instanceof ISubResourceFile) {
-				return new PapyrusModelContributorResourceAdapter();
-			}
-		} else if (IResource.class.equals(adapterType)) {
-			if (adaptableObject instanceof ISubResourceFile) {
-				return ((ISubResourceFile) adaptableObject).getFile();
+				return adapterType.cast(((ISubResourceFile) adaptableObject).getFile());
 			}
 		}
 		return null;
 	}
 
-	public Class[] getAdapterList() {
-		return new Class[] {};
+	public Class<?>[] getAdapterList() {
+		return new Class[] { ResourceMapping.class, IFile.class };
 	}
 
 }

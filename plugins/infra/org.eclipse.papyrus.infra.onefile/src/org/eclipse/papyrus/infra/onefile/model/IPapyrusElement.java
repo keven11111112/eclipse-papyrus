@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.infra.onefile.model;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * Basic operations for Papyrus Model Elements
@@ -16,13 +15,6 @@ public interface IPapyrusElement {
 	 * @return
 	 */
 	String getText();
-
-	/**
-	 * Return the image displayed for the {@link IPapyrusFile}
-	 *
-	 * @return
-	 */
-	Image getImage();
 
 	/**
 	 * Return the project containing the {@link IPapyrusFile}

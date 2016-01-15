@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.tests;
 
@@ -26,7 +28,6 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
@@ -69,8 +70,6 @@ public abstract class AbstractElementTypeTests extends AbstractPapyrusTest imple
 
 	protected static TransactionalEditingDomain transactionalEditingDomain;
 
-	protected static IFile workspaceTestFile;
-
 	protected static Package packageWithAllElements;
 
 	protected static Package packageWithComponents;
@@ -101,8 +100,6 @@ public abstract class AbstractElementTypeTests extends AbstractPapyrusTest imple
 			Bundle bundle = Platform.getBundle("org.eclipse.papyrus.infra.extendedtypes.tests");
 			copyPapyrusModel = PapyrusProjectUtils.copyPapyrusModel(createProject, bundle, "/model/", "model");
 			PapyrusProjectUtils.copyPapyrusModel(createProject, bundle, "/model/", "ExtendedTypesTestsProfile.profile");
-			workspaceTestFile = PapyrusProjectUtils.copyIFile("/model/WorkspaceTest.extendedtypes", bundle, createProject, "/model/WorkspaceTest.extendedtypes");
-			Assert.assertTrue(workspaceTestFile.isAccessible());
 		} catch (CoreException e) {
 			fail(e.getMessage());
 		} catch (IOException e) {
@@ -146,7 +143,7 @@ public abstract class AbstractElementTypeTests extends AbstractPapyrusTest imple
 		}
 
 		try {
-			papyrusContext = TypeContext.getContext();
+			papyrusContext = org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext.getContext();
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		}

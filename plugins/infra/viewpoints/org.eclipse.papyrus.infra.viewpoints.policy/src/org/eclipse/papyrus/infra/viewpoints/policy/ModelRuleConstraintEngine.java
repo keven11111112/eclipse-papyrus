@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,19 +9,19 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 417409
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.constraints.Activator;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
@@ -29,10 +29,9 @@ import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngine;
 import org.eclipse.papyrus.infra.constraints.runtime.ConstraintFactory;
 import org.eclipse.papyrus.infra.constraints.runtime.DefaultConstraintEngine;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
-import org.eclipse.papyrus.infra.viewpoints.configuration.Rule;
 
 /**
- * {@link ConstraintEngine} for viewpoint {@link Rule}
+ * {@link ConstraintEngine} for viewpoint {@link ModelRule}
  */
 public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule> {
 
@@ -40,6 +39,13 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 
 	/** singleton instance */
 	private static ModelRuleConstraintEngine instance;
+
+	/**
+	 * Not instantiable by clients.
+	 */
+	private ModelRuleConstraintEngine() {
+		super(ModelRule.class);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -51,7 +57,7 @@ public class ModelRuleConstraintEngine extends DefaultConstraintEngine<ModelRule
 	}
 
 	public boolean matchesRule(ModelRule rule, EObject element) {
-		IStructuredSelection selection = new StructuredSelection(element);
+		Collection<EObject> selection = Collections.singletonList(element);
 		List<Constraint> constraints = getConstraintsFor(rule);
 		if (constraints == null || constraints.size() == 0) {
 			return true;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,14 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 435420
- *  Christian W. Damus (CEA) - bug 417409
+ *  Christian W. Damus (CEA) - bugs 435420, 417409
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.xwt;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
@@ -175,7 +176,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 	 * any constraint, or if at least one of its constraints match the current selection
 	 *
 	 * @return
-	 *         True if the section should be displayed
+	 * 		True if the section should be displayed
 	 */
 	protected boolean isApplied() {
 		if (getConstraints().isEmpty()) {
@@ -183,11 +184,12 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		}
 
 		ISelection selection = getSelection();
+		List<?> selectionList = ((IStructuredSelection) selection).toList();
 
 		// Return true only if at least one constraint matches the selection
 
 		for (Constraint constraint : getConstraints()) {
-			if (constraint.match((IStructuredSelection) selection)) {
+			if (constraint.match(selectionList)) {
 				return true;
 			}
 		}
@@ -237,6 +239,7 @@ public class XWTSection extends AbstractPropertySection implements IChangeListen
 		return "XWTSection : " + section.getName(); //$NON-NLS-1$
 	}
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		display(true);
 	}

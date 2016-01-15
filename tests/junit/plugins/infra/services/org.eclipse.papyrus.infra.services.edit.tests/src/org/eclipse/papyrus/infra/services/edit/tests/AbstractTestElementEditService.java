@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.tests;
 
 import static org.junit.Assert.fail;
@@ -14,7 +27,6 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.MetamodelType;
-import org.eclipse.papyrus.infra.services.edit.Activator;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
 import org.eclipse.papyrus.infra.services.edit.tests.edit.helper.EPackageEditHelper;
@@ -29,11 +41,15 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * Abstract Papyrus initialization class (required to get Service activation).
  */
 public abstract class AbstractTestElementEditService extends AbstractPapyrusTest {
+
+	private static Bundle testBundle;
 
 	protected static final String PAPYRUS_CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext"; //$NON-NLS-1$
 
@@ -49,10 +65,10 @@ public abstract class AbstractTestElementEditService extends AbstractPapyrusTest
 	public static void openPapyrusWithAnEmptyProject() throws Exception {
 		// Prepare new project for tests
 		IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject("TestProject");
-		if(!testProject.exists()) {
+		if (!testProject.exists()) {
 			testProject.create(new NullProgressMonitor());
 		}
-		if(!testProject.isOpen()) {
+		if (!testProject.isOpen()) {
 			testProject.open(new NullProgressMonitor());
 		}
 
@@ -61,9 +77,9 @@ public abstract class AbstractTestElementEditService extends AbstractPapyrusTest
 		IFile emptyModel_no = testProject.getFile("EmptyModel.notation");
 		IFile emptyModel_uml = testProject.getFile("EmptyModel.uml");
 
-		emptyModel_di.create(Activator.getDefault().getBundle().getResource("/model/EmptyModel.di").openStream(), true, new NullProgressMonitor());
-		emptyModel_no.create(Activator.getDefault().getBundle().getResource("/model/EmptyModel.notation").openStream(), true, new NullProgressMonitor());
-		emptyModel_uml.create(Activator.getDefault().getBundle().getResource("/model/EmptyModel.uml").openStream(), true, new NullProgressMonitor());
+		emptyModel_di.create(getTestBundle().getResource("/model/EmptyModel.di").openStream(), true, new NullProgressMonitor());
+		emptyModel_no.create(getTestBundle().getResource("/model/EmptyModel.notation").openStream(), true, new NullProgressMonitor());
+		emptyModel_uml.create(getTestBundle().getResource("/model/EmptyModel.uml").openStream(), true, new NullProgressMonitor());
 
 		// Open the EmptyModel.di file with Papyrus (assumed to be the default editor for "di" files here).
 		Display.getDefault().syncExec(new Runnable() {
@@ -80,6 +96,13 @@ public abstract class AbstractTestElementEditService extends AbstractPapyrusTest
 		});
 
 		Assert.assertNotNull(editor);
+	}
+
+	protected static Bundle getTestBundle() {
+		if (testBundle == null) {
+			testBundle = FrameworkUtil.getBundle(AbstractTestElementEditService.class);
+		}
+		return testBundle;
 	}
 
 	@Before

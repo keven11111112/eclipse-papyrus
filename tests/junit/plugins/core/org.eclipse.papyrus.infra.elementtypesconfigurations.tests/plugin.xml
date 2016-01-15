@@ -8,11 +8,5 @@
             path="model/elementtypetest.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
-      <extension
-         point="org.eclipse.papyrus.infra.newchild">
-      <menuCreationModel
-            model="model/ElementTypesMenu.xmi">
-      </menuCreationModel>
-   </extension>
 
 </plugin>

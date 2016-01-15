@@ -43,14 +43,4 @@
             editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionEditHelperAdvice">
       </aspectAction>
    </extension>
-   
-    <extension
-         point="org.eclipse.papyrus.infra.extendedtypes.aspectActionConfiguration">
-      <aspectAction
-            configurationClass="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfiguration"
-            configurationModelCreation="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfigurationModelCreation"
-            creationElementValidator="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionCreationElementValidator"
-            editHelperAdvice="org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionEditHelperAdvice">
-      </aspectAction>
-   </extension>
 </plugin>

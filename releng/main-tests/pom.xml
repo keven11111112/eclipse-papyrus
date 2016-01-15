@@ -37,7 +37,9 @@
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
+		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.ui.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.tests</module>
+		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.ui.tests</module>
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
@@ -55,6 +57,7 @@
 		<module>../../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
 		<module>../../tests/junit/plugins/infra/nattable</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.tests</module>
+		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.edit.ui.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider.tests</module>
 		<module>../../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.resourceloading.tests</module>
 		<module>../../tests/junit/plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.tests</module>

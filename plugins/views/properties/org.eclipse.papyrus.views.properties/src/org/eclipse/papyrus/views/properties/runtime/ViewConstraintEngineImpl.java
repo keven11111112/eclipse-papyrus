@@ -29,6 +29,10 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  */
 public class ViewConstraintEngineImpl extends DefaultConstraintEngine<View> implements ViewConstraintEngine {
 
+	public ViewConstraintEngineImpl() {
+		super(View.class);
+	}
+
 	@Override
 	public synchronized void refresh() {
 		constraints.clear();
@@ -40,6 +44,7 @@ public class ViewConstraintEngineImpl extends DefaultConstraintEngine<View> impl
 		fireConstraintsChanged();
 	}
 
+	@Override
 	public void addContext(final Context context) {
 		for (View view : context.getViews()) {
 			for (ConstraintDescriptor descriptor : view.getConstraints()) {
@@ -48,6 +53,7 @@ public class ViewConstraintEngineImpl extends DefaultConstraintEngine<View> impl
 		}
 	}
 
+	@Override
 	public Set<View> getViews(final ISelection forSelection) {
 		return getDisplayUnits(forSelection);
 	}

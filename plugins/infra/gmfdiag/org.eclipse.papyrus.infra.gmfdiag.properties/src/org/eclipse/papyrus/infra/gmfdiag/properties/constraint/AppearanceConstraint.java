@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,15 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
@@ -57,7 +59,7 @@ public class AppearanceConstraint implements Constraint {
 		return false;
 	}
 
-	public boolean match(IStructuredSelection selection) {
+	public boolean match(Collection<?> selection) {
 		for (Constraint constraint : constraints) {
 			if (constraint.match(selection)) {
 				return true;

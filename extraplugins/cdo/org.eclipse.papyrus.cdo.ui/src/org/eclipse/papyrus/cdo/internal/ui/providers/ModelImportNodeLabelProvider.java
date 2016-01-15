@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.providers;
 
@@ -22,6 +24,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferNode;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.ui.util.CompositeLabelProvider;
+import org.eclipse.papyrus.infra.onefile.ui.providers.PapyrusLabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
@@ -30,7 +33,7 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
  */
 public class ModelImportNodeLabelProvider implements ILabelProvider {
 
-	private final ILabelProvider delegate = new CompositeLabelProvider(new PapyrusElementLabelProvider(), new WorkbenchLabelProvider());
+	private final ILabelProvider delegate = new CompositeLabelProvider(new PapyrusLabelProvider(), new WorkbenchLabelProvider());
 
 	public ModelImportNodeLabelProvider() {
 		super();

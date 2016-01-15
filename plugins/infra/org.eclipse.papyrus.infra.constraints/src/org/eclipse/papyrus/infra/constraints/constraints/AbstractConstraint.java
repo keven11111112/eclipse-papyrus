@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,15 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.constraints;
 
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.constraints.Activator;
 import org.eclipse.papyrus.infra.constraints.ConfigProperty;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
@@ -41,6 +44,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 */
 	protected DisplayUnit display;
 
+	@Override
 	public final void setConstraintDescriptor(ConstraintDescriptor descriptor) {
 		this.descriptor = descriptor;
 		display = getDisplay(descriptor);
@@ -58,6 +62,7 @@ public abstract class AbstractConstraint implements Constraint {
 		return descriptor.getDisplay();
 	}
 
+	@Override
 	public DisplayUnit getDisplayUnit() {
 		return display;
 	}
@@ -66,6 +71,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 * A constraint for a Single element (Exactly one) overrides
 	 * the same constraint for a multiple element (One or more)
 	 */
+	@Override
 	public boolean overrides(Constraint constraint) {
 		if (equivalent(constraint)) {
 			if (getDisplayUnit().getElementMultiplicity() == 1) {
@@ -86,10 +92,11 @@ public abstract class AbstractConstraint implements Constraint {
 	 *
 	 * @param constraint
 	 * @return
-	 *         True if this object is equivalent to the given constraint
+	 * 		True if this object is equivalent to the given constraint
 	 */
 	protected abstract boolean equivalent(Constraint constraint);
 
+	@Override
 	public ConstraintDescriptor getDescriptor() {
 		return descriptor;
 	}
@@ -100,7 +107,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 * @param propertyName
 	 *            The name of the property to retrieve
 	 * @return
-	 *         The ConfigProperty corresponding to the given propertyName
+	 * 		The ConfigProperty corresponding to the given propertyName
 	 */
 	protected ConfigProperty getProperty(String propertyName) {
 		if (descriptor == null || !(descriptor instanceof SimpleConstraint)) {
@@ -123,7 +130,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 *
 	 * @param propertyName
 	 * @return
-	 *         True if the property exists in the constraint descriptor
+	 * 		True if the property exists in the constraint descriptor
 	 */
 	protected boolean hasProperty(String propertyName) {
 		if (descriptor == null || !(descriptor instanceof SimpleConstraint)) {
@@ -146,7 +153,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 *            The name of the property for which we want to retrieve the value
 	 *            The name must correspond to a valid ValueProperty
 	 * @return
-	 *         The value associated to the given property
+	 * 		The value associated to the given property
 	 *
 	 * @see #getReferenceValue(String)
 	 */
@@ -169,7 +176,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 *            The name of the property for which we want to retrieve the value
 	 *            The name must correspond to a valid ReferenceProperty
 	 * @return
-	 *         The value associated to the given property
+	 * 		The value associated to the given property
 	 *
 	 * @see #getValue(String)
 	 */
@@ -205,7 +212,8 @@ public abstract class AbstractConstraint implements Constraint {
 	 * The default implementation matches a selection iff the constraint matches
 	 * each object of the selection.
 	 */
-	public boolean match(IStructuredSelection selection) {
+	@Override
+	public boolean match(Collection<?> selection) {
 		if (selection.isEmpty()) {
 			return false;
 		}
@@ -218,7 +226,7 @@ public abstract class AbstractConstraint implements Constraint {
 		int selectionSize = selection.size();
 		if (elementMultiplicity == 1) {
 			if (selectionSize == 1) {
-				if (match(selection.getFirstElement())) {
+				if (match(first(selection))) {
 					return true;
 				}
 			}
@@ -237,6 +245,12 @@ public abstract class AbstractConstraint implements Constraint {
 		return false;
 	}
 
+	protected Object first(Collection<?> collection) {
+		return (collection instanceof List<?>)
+				? ((List<?>) collection).get(0)
+				: collection.iterator().next();
+	}
+
 	/**
 	 * Tests if this constraint matches the given object
 	 * This methods only needs to be implemented when you don't
@@ -245,7 +259,7 @@ public abstract class AbstractConstraint implements Constraint {
 	 * @param selection
 	 *            The object to be tested against this constraint
 	 * @return
-	 *         True if this constraint matches the given object
+	 * 		True if this constraint matches the given object
 	 *
 	 * @see {@link #match(IStructuredSelection)}
 	 */

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse version="3.0"?>
-
 <!--
- <copyright>
- </copyright>
+ Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
 
- $Id$
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors:
+  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+  Christian W. Damus - bug 485220
 -->
 <plugin>
    <extension-point id="ConstraintEnvironment" name="ConstraintEnvironment" schema="schema/ConstraintEnvironment.exsd"/>
@@ -18,16 +23,7 @@
             uri="http://www.eclipse.org/papyrus/constraints/environment/0.9">
       </package>
    </extension>
-
-   <!-- TODO: EMF-FACET update uicustom
-   <extension
-         point="org.eclipse.papyrus.emf.facet.infra.browser.custom.core.registration">
-      <browserCustomization
-            file="custom/constraints.uiCustom"
-            loadByDefault="true">
-      </browserCustomization>
-   </extension>
-   -->
+   
    <extension
          point="org.eclipse.papyrus.infra.constraints.ConstraintEnvironment">
       <environment

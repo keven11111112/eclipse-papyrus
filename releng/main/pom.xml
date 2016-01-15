@@ -106,6 +106,7 @@
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.constraints</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.constraints.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.constraints.editor</module>
+		<module>../../plugins/infra/org.eclipse.papyrus.infra.constraints.ui</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.log</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.pluginexplorer</module>
@@ -127,11 +128,13 @@
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.emf</module>
+		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.ui</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.editor</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.emf</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes</module>
+		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.ui</module>
         <module>../../plugins/infra/org.eclipse.papyrus.infra.filters</module>
         <module>../../plugins/infra/org.eclipse.papyrus.infra.filters.edit</module>
 		<module>../../plugins/uml/tools/org.eclipse.papyrus.uml.tools.elementtypesconfigurations</module>
@@ -168,11 +171,13 @@
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.newchild</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.newchild.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.onefile</module>
+		<module>../../plugins/infra/org.eclipse.papyrus.infra.onefile.ui</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.psf</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.controlmode</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.controlmode.history</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.decoration</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.edit</module>
+		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.edit.ui</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.labelprovider</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.localizer</module>
 		<module>../../plugins/infra/services/org.eclipse.papyrus.infra.services.markerlistener</module>

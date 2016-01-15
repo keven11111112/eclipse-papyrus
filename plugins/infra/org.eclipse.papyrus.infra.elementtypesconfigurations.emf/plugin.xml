@@ -110,13 +110,6 @@
             uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.provider.RuntimevalueseditionadviceconfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
    </extension>
-      <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
-      <adviceConfigurationType
-            configurationClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration"
-            factoryClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceEditHelperAdviceFactory">
-      </adviceConfigurationType>
-   </extension>
    <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
       <adviceConfigurationType

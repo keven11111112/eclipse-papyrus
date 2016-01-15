@@ -21,8 +21,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
-import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * Default Implementation of {@link IPapyrusFile}
@@ -90,10 +88,6 @@ public class PapyrusFile implements IPapyrusFile {
 
 	public String getText() {
 		return getName().substring(0, getName().lastIndexOf('.'));
-	}
-
-	public Image getImage() {
-		return PapyrusImageUtils.getDefaultIcon();
 	}
 
 	public Object getAdapter(Class adapter) {

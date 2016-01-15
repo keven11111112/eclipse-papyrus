@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.onefile.providers.PapyrusLabelProvider;
+import org.eclipse.papyrus.infra.onefile.ui.providers.PapyrusLabelProvider;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.examples.uml.ui.UMLExamplesUIPlugin;
 import org.eclipse.uml2.uml.Package;

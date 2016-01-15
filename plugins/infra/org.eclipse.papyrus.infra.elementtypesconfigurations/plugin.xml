@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
 <!--
- <copyright>
- </copyright>r
+ Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
 
- $Id$
+ Contributors:
+   CEA LIST - Initial API and implementation
+   Christian W. Damus - bug 485220
 -->
-
 <plugin>
 	<extension-point id="elementTypeSetConfiguration" name="ElementType Set Configuration" schema="schema/elementTypeSetConfiguration.exsd"/>
 	<extension-point id="elementTypeConfigurationType" name="ElementType Configuration Type" schema="schema/elementTypeConfigurationType.exsd"/>
 	<extension-point id="adviceConfigurationType" name="Advice Configuration Type" schema="schema/adviceConfigurationType.exsd"/>
 	<extension-point id="containerConfigurationType" name="Container Configuration Type" schema="schema/containerConfigurationType.exsd"/>
 	<extension-point id="matcherConfigurationType" name="Matcher Configuration Type" schema="schema/matcherConfigurationType.exsd"/>
-
+	<extension-point id="userDefinitions" name="User Element Type Definitions" schema="schema/userDefinitions.exsd"/>
    
    <extension
          point="org.eclipse.papyrus.infra.core.service">
@@ -26,76 +30,6 @@
             startKind="startup">
       </service>
    </extension>
-
-	<extension
-         point="org.eclipse.ui.menus">
-    <menuContribution
-          allPopups="false"
-          locationURI="popup:org.eclipse.ui.popup.any?after=additions">
-       <command
-             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.deploy"
-             icon="icons/configuration.gif"
-             style="push">
-          <visibleWhen
-                checkEnabled="false">
-             <with
-                   variable="selection">
-                <iterate
-                      ifEmpty="false"
-                      operator="and">
-                   <adapt
-                         type="org.eclipse.core.resources.IFile">
-                      <or>
-                         <test
-                               property="org.eclipse.core.resources.extension"
-                               value="elementtypesconfigurations">
-                         </test>
-                      </or>
-                   </adapt>
-                </iterate>
-             </with>
-          </visibleWhen>
-       </command>
-       <command
-             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.undeploy"
-             icon="icons/configuration.gif"
-             style="push">
-          <visibleWhen
-                checkEnabled="false">
-             <with
-                   variable="selection">
-                <iterate
-                      ifEmpty="false"
-                      operator="and">
-                   <adapt
-                         type="org.eclipse.core.resources.IFile">
-                      <or>
-                         <test
-                               property="org.eclipse.core.resources.extension"
-                               value="elementtypesconfigurations">
-                         </test>
-                      </or>
-                   </adapt>
-                </iterate>
-             </with>
-          </visibleWhen>
-       </command>
-    </menuContribution>
-	</extension>
-
-	<extension
-         point="org.eclipse.ui.commands">
-		<command
-            defaultHandler="org.eclipse.papyrus.infra.elementtypesconfigurations.handler.DeployElementTypeSetConfigurationHandler"
-            id="org.eclipse.papyrus.infra.elementtypesconfigurations.deploy"
-            name="Deploy ElementTypes Set configuration">
-		</command>
-		<command
-            defaultHandler="org.eclipse.papyrus.infra.elementtypesconfigurations.handler.UndeployElementTypeSetConfigurationHandler"
-            id="org.eclipse.papyrus.infra.elementtypesconfigurations.undeploy"
-            name="Disable ElementTypes Set configuration">
-		</command>
-	</extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated ElementTypesConfigurations -->

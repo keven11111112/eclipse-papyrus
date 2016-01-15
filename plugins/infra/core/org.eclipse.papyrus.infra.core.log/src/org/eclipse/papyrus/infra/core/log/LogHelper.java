@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2009, 2015 Atos Origin, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016 Atos Origin, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * Contributors:
  *     Atos Origin - initial API and implementation
  *     Christian W. Damus (CEA) - bug 422257
- *     Christian W. Damus - bug 465416
+ *     Christian W. Damus - bugs 465416, 485220
  *
  *******************************************************************************/
 package org.eclipse.papyrus.infra.core.log;
@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.osgi.framework.Bundle;
 
 /**
  * A Log Helper.
@@ -35,7 +36,7 @@ public class LogHelper {
 	private String pluginId;
 
 	/** The plugin related to that helper. */
-	private Plugin activator;
+	private Bundle bundle;
 
 	private boolean tracing;
 	private Map<String, Boolean> traceOptions;
@@ -59,14 +60,35 @@ public class LogHelper {
 	}
 
 	/**
+	 * Constructor.
+	 *
+	 * @param bundle
+	 *            The bundle.
+	 */
+	public LogHelper(Bundle bundle) {
+		setBundle(bundle);
+	}
+
+	/**
 	 * Set the associated plugin.
 	 * This plugin log will be used as log.
 	 *
 	 * @param activator
 	 */
 	public void setPlugin(Plugin activator) {
-		this.pluginId = activator.getBundle().getSymbolicName();
-		this.activator = activator;
+		setBundle(activator.getBundle());
+	}
+
+	/**
+	 * Set the associated {@code bundle}.
+	 * This {@code bundle}'s log will be used as log.
+	 *
+	 * @param bundle
+	 *            the bundle
+	 */
+	public void setBundle(Bundle bundle) {
+		this.pluginId = bundle.getSymbolicName();
+		this.bundle = bundle;
 
 		this.tracing = Boolean.valueOf(Platform.getDebugOption(String.format("%s/debug", pluginId))); //$NON-NLS-1$
 		if (tracing) {
@@ -102,7 +124,7 @@ public class LogHelper {
 	 * @return True if the platform is in debug mode.
 	 */
 	public boolean isDebugEnabled() {
-		if (activator != null) {
+		if (bundle != null) {
 			return Platform.inDebugMode();
 		}
 
@@ -172,10 +194,10 @@ public class LogHelper {
 	 */
 	public void log(IStatus status) {
 
-		if (activator == null) {
+		if (bundle == null) {
 			// TODO Do log with java ?
 		} else {
-			activator.getLog().log(status);
+			Platform.getLog(bundle).log(status);
 		}
 	}
 

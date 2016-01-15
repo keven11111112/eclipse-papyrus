@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.constraints.runtime;
 
+import java.util.Collection;
 import java.util.Set;
 
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
 
@@ -33,10 +33,14 @@ public interface ConstraintEngine<E extends DisplayUnit> {
 	/**
 	 * Returns the DisplayUnits matching the given selection
 	 *
-	 * @param forSelection
-	 * @return
+	 * @param a
+	 *            plastic "selection" of objects, which may be a {@link Collection} of
+	 *            some kind, something convertible to a collection (like a JFace {@code IStructuredSelection}),
+	 *            or just a single object
+	 * 
+	 * @return the display units applicable to the selection
 	 */
-	public Set<E> getDisplayUnits(ISelection forSelection);
+	public Set<E> getDisplayUnits(Object selection);
 
 	/**
 	 * Adds a constraint descriptor to this engine
