@@ -15,7 +15,9 @@ Require-Bundle: org.eclipse.papyrus.junit.utils;bundle-version="1.2.0",
  org.eclipse.uml2.uml;bundle-version="5.0.0";visibility:=reexport,
  org.eclipse.papyrus.junit.framework;bundle-version="1.2.0",
  org.eclipse.ocl.xtext.completeocl;bundle-version="1.1.0",
- org.eclipse.ocl.pivot.uml;bundle-version="1.1.0"
+ org.eclipse.ocl.pivot.uml;bundle-version="1.1.0",
+ org.eclipse.papyrus.uml.validation.tests.staticprofile;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.validation.tests.genvalidation;bundle-version="1.2.0"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.validation.tests.Activator
