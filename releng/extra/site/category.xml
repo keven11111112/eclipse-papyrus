@@ -66,7 +66,10 @@
    <feature url="features/org.eclipse.papyrus.extra.eastadl.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.eastadl.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.cpp.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.cpp.feature" version="1.2.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.extra.codegen.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.feature" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.extra.codegen.cpp.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.cpp.feature" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.extra.qompass.designer.basic.feature_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.qompass.designer.basic.feature" version="1.2.0.qualifier">
@@ -99,7 +102,10 @@
    <feature url="features/org.eclipse.papyrus.migration.rsa.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.migration.rsa.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.extra.cpp.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.cpp.feature.source" version="1.2.0.qualifier">
+   <feature url="features/org.eclipse.papyrus.extra.codegen.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.feature.source" version="1.2.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.extra.codegen.cpp.feature.source_1.2.0.qualifier.jar" id="org.eclipse.papyrus.extra.codegen.cpp.feature.source" version="1.2.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.uml.alf.extra.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.uml.alf.extra.feature.source" version="0.7.0.qualifier">
