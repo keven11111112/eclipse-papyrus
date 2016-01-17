@@ -52,6 +52,7 @@ public class ToggleAdvancedModelExplorerHandler extends AbstractHandler {
 		super.setEnabled(evaluationContext);
 	}
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		ICustomizationManager customizationManager = Activator.getDefault().getCustomizationManager();
@@ -94,7 +95,7 @@ public class ToggleAdvancedModelExplorerHandler extends AbstractHandler {
 						}
 
 						// Save the current state of the customizations
-						org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
+						org.eclipse.papyrus.infra.ui.internal.emf.Activator.getDefault().saveCustomizationManagerState();
 					}
 				}
 

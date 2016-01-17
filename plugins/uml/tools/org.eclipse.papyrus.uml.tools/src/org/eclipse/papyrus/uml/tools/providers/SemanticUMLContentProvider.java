@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.adapters.ResourceSetRootsAdapter;
-import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;

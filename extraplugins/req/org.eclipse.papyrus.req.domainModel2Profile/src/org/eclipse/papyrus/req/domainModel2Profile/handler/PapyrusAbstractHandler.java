@@ -26,8 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
@@ -38,79 +38,85 @@ import org.eclipse.uml2.uml.Element;
  */
 public abstract class PapyrusAbstractHandler extends AbstractHandler {
 
-	protected TransactionalEditingDomain transactionalEditingDomain=null;
+	protected TransactionalEditingDomain transactionalEditingDomain = null;
 	protected IMultiDiagramEditor papyrusEditor;
 
 
 	/**
 	 * install element of Papyrus in order to execute commands
-	 * @param event the context of the execution
+	 * 
+	 * @param event
+	 *            the context of the execution
 	 */
-	protected void setPapyrusEnvironment(ExecutionEvent event){
-		//look for papyrus
+	protected void setPapyrusEnvironment(ExecutionEvent event) {
+		// look for papyrus
 		try {
 			papyrusEditor = ServiceUtilsForHandlers.getInstance().getService(IMultiDiagramEditor.class, event);
-			transactionalEditingDomain= ServiceUtilsForHandlers.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, event);
+			transactionalEditingDomain = ServiceUtilsForHandlers.getInstance().getService(org.eclipse.emf.transaction.TransactionalEditingDomain.class, event);
 
 		} catch (ServiceException ex) {
 			System.err.println(ex);
 		}
 	}
+
 	/**
 	 * getSelected element in the diagram or in the model explorer
+	 * 
 	 * @return Element or null
 	 */
-	protected Element getSelection(){
-		org.eclipse.uml2.uml.Element selectedElement =null;
+	protected Element getSelection() {
+		org.eclipse.uml2.uml.Element selectedElement = null;
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		ISelection selection = selectionService.getSelection();
-		//look for papyrus
-		if(selection instanceof IStructuredSelection) {
-			Object selectedobject = ((IStructuredSelection)selection).getFirstElement();
-			if(selectedobject instanceof GraphicalEditPart) {
-				Object graphicalElement = ((GraphicalEditPart)selectedobject).getModel();
-				if((graphicalElement instanceof View) && ((View)graphicalElement).getElement() instanceof org.eclipse.uml2.uml.Element) {
-					selectedElement = (org.eclipse.uml2.uml.Element)((View)graphicalElement).getElement();
+		// look for papyrus
+		if (selection instanceof IStructuredSelection) {
+			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
+			if (selectedobject instanceof GraphicalEditPart) {
+				Object graphicalElement = ((GraphicalEditPart) selectedobject).getModel();
+				if ((graphicalElement instanceof View) && ((View) graphicalElement).getElement() instanceof org.eclipse.uml2.uml.Element) {
+					selectedElement = (org.eclipse.uml2.uml.Element) ((View) graphicalElement).getElement();
 				}
-			}
-			else if(selectedobject instanceof IAdaptable) {
-				EObject selectedEObject = (EObject)((IAdaptable)selectedobject).getAdapter(EObject.class);
-				if (selectedEObject instanceof org.eclipse.uml2.uml.Element){
-					selectedElement=(Element)selectedEObject;
+			} else if (selectedobject instanceof IAdaptable) {
+				EObject selectedEObject = ((IAdaptable) selectedobject).getAdapter(EObject.class);
+				if (selectedEObject instanceof org.eclipse.uml2.uml.Element) {
+					selectedElement = (Element) selectedEObject;
 				}
 			}
 		}
 		return selectedElement;
 	}
-	public  Object execute(ExecutionEvent event) throws ExecutionException {
+
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
 		setPapyrusEnvironment(event);
 		return null;
 	}
+
 	/**
 	 * getSelected element in the diagram or in the model explorer
+	 * 
 	 * @return Element or null
 	 */
-	protected ArrayList<Element> getSelectionSet(){
-		ArrayList<Element> selectedSet =new ArrayList<Element>();
+	protected ArrayList<Element> getSelectionSet() {
+		ArrayList<Element> selectedSet = new ArrayList<Element>();
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		ISelection selection = selectionService.getSelection();
 
 
-		if(selection instanceof IStructuredSelection) {
+		if (selection instanceof IStructuredSelection) {
 			@SuppressWarnings("rawtypes")
-			Iterator selectedobjectIteractor = ((IStructuredSelection)selection).iterator();
+			Iterator selectedobjectIteractor = ((IStructuredSelection) selection).iterator();
 			while (selectedobjectIteractor.hasNext()) {
 				Object currentSelection = selectedobjectIteractor.next();
-				if(currentSelection instanceof GraphicalEditPart) {
-					Object graphicalElement = ((GraphicalEditPart)currentSelection).getModel();
-					if((graphicalElement instanceof View) && ((View)graphicalElement).getElement() instanceof org.eclipse.uml2.uml.Element) {
-						selectedSet.add( (org.eclipse.uml2.uml.Element)((View)graphicalElement).getElement());
+				if (currentSelection instanceof GraphicalEditPart) {
+					Object graphicalElement = ((GraphicalEditPart) currentSelection).getModel();
+					if ((graphicalElement instanceof View) && ((View) graphicalElement).getElement() instanceof org.eclipse.uml2.uml.Element) {
+						selectedSet.add((org.eclipse.uml2.uml.Element) ((View) graphicalElement).getElement());
 					}
-				}
-				else if(currentSelection instanceof IAdaptable) {
-					EObject selectedEObject = (EObject)((IAdaptable)currentSelection).getAdapter(EObject.class);
-					if (selectedEObject instanceof org.eclipse.uml2.uml.Element){
-						selectedSet.add((Element)selectedEObject);
+				} else if (currentSelection instanceof IAdaptable) {
+					EObject selectedEObject = ((IAdaptable) currentSelection).getAdapter(EObject.class);
+					if (selectedEObject instanceof org.eclipse.uml2.uml.Element) {
+						selectedSet.add((Element) selectedEObject);
 					}
 				}
 			}

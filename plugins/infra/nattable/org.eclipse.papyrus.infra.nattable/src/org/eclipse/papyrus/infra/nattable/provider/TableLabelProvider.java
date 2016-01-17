@@ -14,10 +14,10 @@ package org.eclipse.papyrus.infra.nattable.provider;
 import java.util.Collection;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.swt.graphics.Image;
 
@@ -30,7 +30,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider#getText(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#getText(java.lang.Object)
 	 *
 	 * @param table
 	 * @return
@@ -51,7 +51,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider#getImage(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#getImage(java.lang.Object)
 	 *
 	 * @param table
 	 * @return
@@ -114,7 +114,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider#hasCommonImage(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#hasCommonImage(java.util.Collection)
 	 *
 	 * @param objects
 	 * @return
@@ -144,7 +144,7 @@ public class TableLabelProvider extends EMFLabelProvider implements IFilteredLab
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider#getNonCommonIcon(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#getNonCommonIcon(java.lang.Object)
 	 *
 	 * @param commonObject
 	 * @return

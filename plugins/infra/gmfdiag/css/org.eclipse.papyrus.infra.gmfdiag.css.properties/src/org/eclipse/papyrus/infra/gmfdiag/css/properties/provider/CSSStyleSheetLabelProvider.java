@@ -11,9 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.provider;
 
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 
 
 public class CSSStyleSheetLabelProvider extends EMFLabelProvider {

@@ -91,7 +91,7 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 	 * Redefine refresh cache because applied comments list is a subset of {@link Element#getOwnedComments <em>Owned Comments</em>}.
 	 * </p>
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#refreshCacheList()
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#refreshCacheList()
 	 *
 	 */
 	@Override

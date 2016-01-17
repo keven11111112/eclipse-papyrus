@@ -27,8 +27,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.services.tracepoints.Activator;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.ui.PlatformUI;
 
 /**
@@ -50,7 +50,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 * Returns the command to execute (to be implemented
 	 * in children implementing this class)
 	 *
-	 * @return the command to execute
+	 * &#64;return the command to execute
 	 *
 	 * </pre>
 	 */
@@ -111,14 +111,14 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 			for (Object current : structuredSelection.toArray()) {
 				// Adapt current selection to EObject
 				if (current instanceof IAdaptable) {
-					selectedEObjects.add((EObject) ((IAdaptable) current).getAdapter(EObject.class));
+					selectedEObjects.add(((IAdaptable) current).getAdapter(EObject.class));
 				}
 			}
 		} else { // Not a IStructuredSelection
 			if (selection != null) {
 				// Adapt current selection to EObject
 				if (selection instanceof IAdaptable) {
-					selectedEObjects.add((EObject) ((IAdaptable) selection).getAdapter(EObject.class));
+					selectedEObjects.add(((IAdaptable) selection).getAdapter(EObject.class));
 				}
 			}
 		}

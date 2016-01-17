@@ -27,7 +27,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.messages.Messages;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForIEvaluationContext;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 

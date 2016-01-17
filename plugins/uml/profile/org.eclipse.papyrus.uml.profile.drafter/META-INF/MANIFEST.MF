@@ -25,7 +25,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jface.databinding,
  com.ibm.icu,
  org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.ui;bundle-version="1.2.0"
 Export-Package: org.eclipse.papyrus.uml.profile.drafter,
  org.eclipse.papyrus.uml.profile.drafter.exceptions,
  org.eclipse.papyrus.uml.profile.drafter.ui.handler,

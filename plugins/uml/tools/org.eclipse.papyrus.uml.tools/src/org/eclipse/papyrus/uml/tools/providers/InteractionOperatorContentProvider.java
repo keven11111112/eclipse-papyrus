@@ -15,8 +15,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.InteractionOperatorKind;

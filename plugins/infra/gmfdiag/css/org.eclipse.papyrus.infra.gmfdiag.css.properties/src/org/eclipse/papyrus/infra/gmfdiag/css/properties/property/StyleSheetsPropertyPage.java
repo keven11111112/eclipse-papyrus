@@ -39,7 +39,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ProjectCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.messages.Messages;
@@ -47,6 +46,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetLa
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;

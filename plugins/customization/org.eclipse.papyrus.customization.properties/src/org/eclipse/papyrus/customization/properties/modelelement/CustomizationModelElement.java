@@ -32,9 +32,9 @@ import org.eclipse.papyrus.customization.properties.providers.PropertyEditorType
 import org.eclipse.papyrus.customization.properties.providers.TabContentProvider;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.constraints.providers.ConstraintTypeContentProvider;
-import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
-import org.eclipse.papyrus.infra.emf.providers.strategy.ContainmentBrowseStrategy;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.ContainmentBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;

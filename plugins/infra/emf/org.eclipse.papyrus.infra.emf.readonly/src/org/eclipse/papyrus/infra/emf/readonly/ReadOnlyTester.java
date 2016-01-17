@@ -21,13 +21,13 @@ import java.util.Iterator;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterators;
 
 public class ReadOnlyTester extends PropertyTester {
 
@@ -35,15 +35,21 @@ public class ReadOnlyTester extends PropertyTester {
 
 	public static final String CAN_MAKE_WRITABLE = "canMakeWritable"; //$NON-NLS-1$
 
+	@Override
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		if (receiver instanceof IStructuredSelection) {
-			Iterator<?> objects = ((IStructuredSelection) receiver).iterator();
+		Iterator<?> objects;
+		if (receiver instanceof Iterator<?>) {
+			objects = (Iterator<?>) receiver;
+		} else if (receiver instanceof Iterable<?>) {
+			objects = ((Iterable<?>) receiver).iterator();
+		} else {
+			objects = Iterators.singletonIterator(receiver);
+		}
 
-			if (IS_READ_ONLY.equals(property)) {
-				return testIsReadOnly(objects, asBoolean(expectedValue));
-			} else if (CAN_MAKE_WRITABLE.equals(property)) {
-				return canMakeWritable(objects, asBoolean(expectedValue));
-			}
+		if (IS_READ_ONLY.equals(property)) {
+			return testIsReadOnly(objects, asBoolean(expectedValue));
+		} else if (CAN_MAKE_WRITABLE.equals(property)) {
+			return canMakeWritable(objects, asBoolean(expectedValue));
 		}
 
 		return false;

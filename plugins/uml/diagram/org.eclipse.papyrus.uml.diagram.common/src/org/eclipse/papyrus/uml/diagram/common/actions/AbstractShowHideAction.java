@@ -45,7 +45,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionDelegate;

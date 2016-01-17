@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -25,13 +25,13 @@ import org.eclipse.emf.edit.EMFEditPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-@SuppressWarnings("restriction")
 public class Activator extends AbstractUIPlugin {
 
 	/** The plug-in ID */
@@ -47,15 +47,6 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	private ICustomizationManager fCustomizationManager;
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -87,13 +78,6 @@ public class Activator extends AbstractUIPlugin {
 		return ImageDescriptor.createFromURL(uri);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -114,99 +98,8 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
 	public ICustomizationManager getCustomizationManager() {
-		return org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager();
+		return ProviderHelper.getCustomizationManager();
 	}
-
-	private void init(final ICustomizationManager customizationManager) {
-		// the appearance can be customized here:
-
-		// customizationManager.setShowDerivedLinks(true);
-		//
-		// try {
-		//
-		// // load customizations defined as default through the customization
-		// // extension
-		// List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
-		// for(MetamodelView metamodelView : registryDefaultCustomizations) {
-		// customizationManager.registerCustomization(metamodelView);
-		// }
-		// customizationManager.loadCustomizations();
-		// loadFacetsForCustomizations(registryDefaultCustomizations, customizationManager);
-		//
-		// } catch (Throwable e) {
-		// Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
-		// }
-	}
-
-	// /**
-	// * load the facets
-	// *
-	// * @param customizations
-	// * list of customization
-	// * @param customizationManager
-	// * the Customization Manager
-	// */
-	// protected void loadFacetsForCustomizations(final List<MetamodelView> customizations, final CustomizationManager customizationManager) {
-	// final Set<Facet> referencedFacets = new HashSet<Facet>();
-	// final Collection<FacetSet> facetSets = FacetSetCatalog.getSingleton().getAllFacetSets();
-	//
-	// for(MetamodelView customization : customizations) {
-	// String metamodelURI = customization.getMetamodelURI();
-	// // find customized FacetSet
-	// FacetSet customizedFacetSet = null;
-	// if(metamodelURI != null) {
-	// for(FacetSet facetSet : facetSets) {
-	// if(metamodelURI.equals(facetSet.getNsURI())) {
-	// customizedFacetSet = facetSet;
-	// break;
-	// }
-	// }
-	// }
-	// if(customizedFacetSet == null) {
-	// continue;
-	// }
-	//
-	// // find customized Facets
-	// EList<TypeView> types = customization.getTypes();
-	// for(TypeView typeView : types) {
-	// String metaclassName = typeView.getMetaclassName();
-	// Facet facet = findFacetWithFullyQualifiedName(metaclassName, customizedFacetSet);
-	// if(facet != null) {
-	// referencedFacets.add(facet);
-	// } else {
-	// Activator.log.warn(NLS.bind(Messages.BrowserActionBarContributor_missingRequiredFacet, new Object[]{ metaclassName, customizedFacetSet.getName(), customization.getName() }));
-	// }
-	// }
-	//
-	// for(Facet referencedFacet : referencedFacets) {
-	// customizationManager.loadFacet(referencedFacet);
-	// }
-	// }
-	//
-	// //
-	// // for modified facets
-	// // customizationManager.getInstancesForMetaclasses().buildDerivationTree();
-	// // customizationManager.getAppearanceConfiguration().touch();
-	// // customizationManager.refreshDelayed(true);
-	// }
-
-	// /**
-	// * fin a facet from
-	// *
-	// * @param metaclassName
-	// * @param customizedFacetSet
-	// * @return
-	// */
-	// private Facet findFacetWithFullyQualifiedName(final String metaclassName, final FacetSet customizedFacetSet) {
-	// EList<Facet> facets = customizedFacetSet.getFacets();
-	// for(Facet facet : facets) {
-	// String facetName = getMetaclassQualifiedName(facet);
-	// if(metaclassName.equals(facetName)) {
-	// return facet;
-	// }
-	// }
-	// return null;
-	// }
 
 	/**
 	 * @return the qualified name of the given metaclass

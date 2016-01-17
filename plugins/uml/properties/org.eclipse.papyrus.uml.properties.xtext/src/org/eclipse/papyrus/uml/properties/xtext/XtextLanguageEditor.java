@@ -13,7 +13,7 @@ import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
+import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.properties.widgets.BodyEditor;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;

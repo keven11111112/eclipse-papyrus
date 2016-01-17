@@ -26,12 +26,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
-import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ModelCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
+import org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList;
 
 
 /**
@@ -80,7 +80,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	 * @param values
 	 *            the values
 	 * @return the command to add values
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getAddAllCommand(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getAddAllCommand(java.util.Collection)
 	 */
 	@Override
 	public Command getAddAllCommand(Collection<?> values) {
@@ -157,7 +157,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	 * @param value
 	 *            the value
 	 * @return the removes command
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getRemoveCommand(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getRemoveCommand(java.lang.Object)
 	 */
 	@Override
 	public Command getRemoveCommand(Object value) {
@@ -193,7 +193,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	 * @param values
 	 *            the values
 	 * @return the removes the all command
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getRemoveAllCommand(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getRemoveAllCommand(java.util.Collection)
 	 */
 	@Override
 	public Command getRemoveAllCommand(Collection<?> values) {
@@ -201,7 +201,7 @@ public class ModelStyleSheetObservableList extends EMFObservableList implements 
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#dispose()
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#dispose()
 	 *
 	 */
 	@Override

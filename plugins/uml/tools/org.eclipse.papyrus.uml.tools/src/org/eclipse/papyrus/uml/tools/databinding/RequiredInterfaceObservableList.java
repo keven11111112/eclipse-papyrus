@@ -218,7 +218,7 @@ public class RequiredInterfaceObservableList extends PapyrusObservableList {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#dispose()
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#dispose()
 	 *
 	 */
 	@Override

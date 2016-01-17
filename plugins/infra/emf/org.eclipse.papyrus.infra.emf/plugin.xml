@@ -19,21 +19,6 @@
 <plugin>
    <extension-point id="dependencyUpdateParticipant" name="Dependency Update Participants" schema="schema/dependencyUpdateParticipant.exsd"/>
    <extension
-         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-      <labelProvider
-            priority="110"
-            provider="org.eclipse.papyrus.infra.emf.providers.ResourceFilteredLabelProvider">
-      </labelProvider>
-      <labelProvider
-            priority="100"
-            provider="org.eclipse.papyrus.infra.emf.providers.EMFFilteredLabelProvider">
-      </labelProvider>
-      <labelProvider
-            priority="50"
-            provider="org.eclipse.papyrus.infra.emf.providers.AnyTypeLabelProvider">
-      </labelProvider>
-   </extension>
-   <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
             nsURI="http://www.eclipse.org/emf/2002/Ecore">
@@ -70,16 +55,6 @@
                ref="org.eclipse.papyrus.infra.emf.deletePageAdvice">
          </advice>
       </binding>
-   </extension>
-   <extension
-         point="org.eclipse.core.runtime.adapters">
-      <factory
-            adaptableType="org.eclipse.emf.ecore.EObject"
-            class="org.eclipse.papyrus.infra.emf.adapters.EObjectAdapterFactory">
-         <adapter
-               type="org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor">
-         </adapter>
-      </factory>
    </extension>
 
 </plugin>

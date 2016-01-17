@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -486,8 +486,8 @@ public class PackageUtil {
 		while (it.hasNext()) {
 			NamedElement element = it.next();
 			if ((element instanceof Type) /*
-										 * && (!(element instanceof Relationship))
-										 */) {
+											 * && (!(element instanceof Relationship))
+											 */) {
 				// Check for redundant type
 				// if (!umlTypeQNames.contains(element.getQualifiedName())) {
 				// /umlTypeQNames.add(element.getQualifiedName());

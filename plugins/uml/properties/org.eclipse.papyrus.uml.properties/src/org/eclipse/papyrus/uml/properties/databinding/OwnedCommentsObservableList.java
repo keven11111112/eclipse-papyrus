@@ -79,7 +79,7 @@ public class OwnedCommentsObservableList extends PapyrusObservableList {
 	 * Redefine method to add filtered list.
 	 * </p>
 	 * 
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#refreshCacheList()
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#refreshCacheList()
 	 *
 	 */
 	@Override

@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.uml.commands.Activator;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -56,7 +56,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	 * Returns the current editing domain
 	 *
 	 * @return
-	 *         the current editing domain
+	 * 		the current editing domain
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		TransactionalEditingDomain editingDomain = null;
@@ -75,7 +75,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	 * Returns the command to execute (to be implemented
 	 * in children implementing this class)
 	 *
-	 * @return the command to execute
+	 * &#64;return the command to execute
 	 *
 	 * </pre>
 	 */

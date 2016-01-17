@@ -32,7 +32,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForIEvaluationContext;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.papyrus.layers.stackmodel.layers.Layer;
 import org.eclipse.papyrus.layers3.ui.commands.AbstractLayersCommand;

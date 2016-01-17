@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocument
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForIEvaluationContext;
 import org.eclipse.papyrus.layers.runtime.NotationDiagramHelper;
 import org.eclipse.papyrus.layers.runtime.model.LayersModel;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;

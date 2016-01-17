@@ -49,7 +49,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
@@ -221,24 +220,24 @@ public class EMFHelper {
 	 */
 	public static EObject getEObject(final Object source) {
 
-		// Support for EMF 0.2 CustomizedTree: The TreeElements are EObjects, and do not implement IAdatapble.
-		// FIXME: Use an AdapterFactory instead, to remove the dependency to EMF Facet 0.2
-		Object resolved = CustomizedContentProviderUtils.resolve(source);
-		if (resolved != source && isEMFModelElement(resolved)) {
-			return (EObject) resolved;
-		}
-
 		// General case
 		if (isEMFModelElement(source)) {
 			return (EObject) source;
-		} else if (source instanceof IAdaptable) {
+		}
+
+		// Try to get an intrinsic adapter
+		if (source instanceof IAdaptable) {
 			EObject eObject = ((IAdaptable) source).getAdapter(EObject.class);
 			if (eObject == null) { // EMF Facet 0.1
 				eObject = ((IAdaptable) source).getAdapter(EReference.class);
 			}
-			return asEMFModelElement(eObject); // in case the adapter is a CDOResource
+
+			if (eObject != null) {
+				return asEMFModelElement(eObject); // in case the adapter is a CDOResource
+			}
 		}
 
+		// External adapter (last ditch case)
 		if (source != null) {
 			return asEMFModelElement(Platform.getAdapterManager().getAdapter(source, EObject.class));
 		}

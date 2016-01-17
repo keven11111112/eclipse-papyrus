@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.ui.ISources;
 
 /**
@@ -51,6 +51,7 @@ public abstract class AbstractCommonCommandHandler extends AbstractHandler {
 	 * @return null
 	 * @throws ExecutionException
 	 */
+	@Override
 	public abstract Object execute(ExecutionEvent event) throws ExecutionException;
 
 	protected TransactionalEditingDomain getEditingDomain(ExecutionEvent event) {
@@ -78,7 +79,7 @@ public abstract class AbstractCommonCommandHandler extends AbstractHandler {
 
 	protected boolean computeEnabled() {
 		List<EObject> elts = getSelectedElements();
-		return !(elts.size()==0);
+		return !(elts.size() == 0);
 	}
 
 	protected List<?> getSelection() {

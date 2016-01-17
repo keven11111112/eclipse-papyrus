@@ -20,7 +20,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.widgets.Activator;
+import org.eclipse.papyrus.infra.emf.Activator;
 
 //TODO
 public class EMFFileUtil {

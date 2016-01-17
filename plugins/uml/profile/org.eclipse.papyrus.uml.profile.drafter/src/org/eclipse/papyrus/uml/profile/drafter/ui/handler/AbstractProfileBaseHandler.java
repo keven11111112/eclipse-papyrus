@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.profile.drafter.ui.handler;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForIEvaluationContext;
 import org.eclipse.papyrus.uml.profile.drafter.UserProfileCatalog;
 import org.eclipse.papyrus.uml.profile.drafter.exceptions.DraftProfileException;
 import org.eclipse.papyrus.uml.profile.drafter.services.ProfileCatalogService;
@@ -37,9 +37,10 @@ public abstract class AbstractProfileBaseHandler extends AbstractBaseHandler {
 	 * The class can be shared by code acting on the same UML model.
 	 */
 	protected UMLMetamodelUtils umlMetamodelUtils;
-	
+
 	/**
 	 * Reset the values homd by the handler.
+	 * 
 	 * @see org.eclipse.papyrus.uml.profile.drafter.ui.handler.AbstractBaseHandler#resetCachedValues()
 	 *
 	 */
@@ -48,7 +49,7 @@ public abstract class AbstractProfileBaseHandler extends AbstractBaseHandler {
 		umlMetamodelUtils = null;
 		super.resetCachedValues();
 	}
-	
+
 	/**
 	 * Lookup the {@link ProfileCatalogService} service.
 	 * 
@@ -57,16 +58,17 @@ public abstract class AbstractProfileBaseHandler extends AbstractBaseHandler {
 	 * @throws ServiceException
 	 */
 	public ProfileCatalogService getProfileCatalogService(IEvaluationContext context) throws ServiceException {
-		
-	    ServicesRegistry servicesRegistry = ServiceUtilsForIEvaluationContext.getInstance().getServiceRegistry(context);
+
+		ServicesRegistry servicesRegistry = ServiceUtilsForIEvaluationContext.getInstance().getServiceRegistry(context);
 		return servicesRegistry.getService(ProfileCatalogService.class);
 	}
-	
+
 	/**
 	 * Lookup the {@link UserProfileCatalog}.
 	 * 
 	 * @return
-	 * @throws ServiceException If the Editing domain can't be found.
+	 * @throws ServiceException
+	 *             If the Editing domain can't be found.
 	 */
 	protected UserProfileCatalog getProfileCatalog(IEvaluationContext context) throws ServiceException {
 
@@ -79,23 +81,24 @@ public abstract class AbstractProfileBaseHandler extends AbstractBaseHandler {
 	 * initialize the value.
 	 * 
 	 * @return the umlMetamodelUtils
-	 * @throws DraftProfileException 
+	 * @throws DraftProfileException
 	 */
 	public UMLMetamodelUtils getCachedUmlMetamodelUtils(IEvaluationContext context) throws DraftProfileException {
-		if( umlMetamodelUtils == null) {
+		if (umlMetamodelUtils == null) {
 			umlMetamodelUtils = getUmlMetamodelUtils(context);
 		}
-		
+
 		return umlMetamodelUtils;
 	}
 
 	/**
 	 * @return the umlMetamodelUtils
-	 * @throws DraftProfileException If the {@link UMLMetamodelUtils} object can't be created. A nested exception indicate the root cause.
+	 * @throws DraftProfileException
+	 *             If the {@link UMLMetamodelUtils} object can't be created. A nested exception indicate the root cause.
 	 * 
 	 */
 	public UMLMetamodelUtils getUmlMetamodelUtils(IEvaluationContext context) throws DraftProfileException {
-		
+
 		try {
 			return new UMLMetamodelUtils(lookupServicesRegistry(context));
 		} catch (ServiceException e) {

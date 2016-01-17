@@ -19,6 +19,7 @@
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.core.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.discovery.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.emf.feature</module>
+		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.ui.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.gmfdiag.css.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.infra.gmfdiag.feature</module>
@@ -120,6 +121,7 @@
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.appearance</module>
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.diagram.common</module>
 		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly</module>
+		<module>../../plugins/infra/emf/org.eclipse.papyrus.infra.ui.emf</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.export</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.welcome</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.extendedtypes</module>

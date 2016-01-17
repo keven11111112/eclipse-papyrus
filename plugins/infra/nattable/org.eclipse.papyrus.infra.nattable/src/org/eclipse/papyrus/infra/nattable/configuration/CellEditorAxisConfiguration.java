@@ -30,7 +30,6 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ColumnOverrideLabelAccumul
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.accumulator.CustomRowOverrideLabelAccumulator;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.CellAxisConfigurationRegistry;
@@ -45,6 +44,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 
 /**
  * This class allows to configure cell editors by Axis

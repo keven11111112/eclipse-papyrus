@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 
 /**
  * This handler allows to Close Diagrams and Tables
@@ -60,6 +60,7 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 	 * @return
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		final IPageManager pageMngr;
@@ -106,6 +107,7 @@ public class CloseHandler extends AbstractModelExplorerHandler implements IExecu
 	 * @param data
 	 * @throws CoreException
 	 */
+	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if (data instanceof Hashtable && this.parameterID != null) {
 			this.parameter = (String) ((Hashtable) data).get(this.parameterID);

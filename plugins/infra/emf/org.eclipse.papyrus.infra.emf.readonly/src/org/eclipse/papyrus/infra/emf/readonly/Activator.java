@@ -14,13 +14,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.concurrent.Executor;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
+import org.eclipse.papyrus.infra.emf.readonly.spi.IReadOnlyManagerProcessor;
 import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -37,7 +41,11 @@ public class Activator extends Plugin {
 
 	public static LogHelper log;
 
+	private static final IReadOnlyManagerProcessor[] NO_PROCESSORS = {};
+
 	private Executor readOnlyCacheExecutor;
+
+	private ServiceTracker<IReadOnlyManagerProcessor, IReadOnlyManagerProcessor> roManagerProcessorTracker;
 
 	/**
 	 * The constructor
@@ -50,10 +58,16 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		roManagerProcessorTracker = new ServiceTracker<>(context, IReadOnlyManagerProcessor.class, null);
+		roManagerProcessorTracker.open();
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		roManagerProcessorTracker.close();
+		roManagerProcessorTracker = null;
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -96,5 +110,11 @@ public class Activator extends Plugin {
 		this.readOnlyCacheExecutor = executor;
 
 		return result;
+	}
+
+	Iterable<IReadOnlyManagerProcessor> getReadOnlyManagerProcessors() {
+		IReadOnlyManagerProcessor[] processors = roManagerProcessorTracker.getServices(NO_PROCESSORS);
+
+		return (processors == null) ? Collections.emptyList() : Arrays.asList(processors);
 	}
 }

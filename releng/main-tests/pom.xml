@@ -45,6 +45,7 @@
 		<module>../../tests/junit/plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly.tests</module>
 		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.tests</module>
+		<module>../../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.ui.emf.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.canonical.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands.tests</module>
 		<module>../../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common.tests</module>

@@ -19,9 +19,9 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
 import org.eclipse.swt.graphics.Image;
 

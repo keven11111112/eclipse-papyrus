@@ -24,12 +24,12 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.infra.gmfdiag.export.actions.ExportAllDiagramsParameter;
 import org.eclipse.papyrus.infra.gmfdiag.export.actions.ExportComposite;
 import org.eclipse.papyrus.infra.gmfdiag.export.engine.ExportAllDiagramsEngine;
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.export.utils.SelectionHelper;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
 import org.eclipse.ui.IExportWizard;
 import org.eclipse.ui.IWorkbench;
 

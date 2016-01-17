@@ -20,8 +20,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
 
 /**
  * Specific content provider for the tree view of the "views" dialog to choose a diagram for a hyperlink
@@ -38,7 +38,7 @@ public class TreeViewContentProvider extends SemanticEMFContentProvider {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider#getChildren(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.MoDiscoContentProvider#getChildren(java.lang.Object)
 	 *
 	 * @param parentElement
 	 * @return

@@ -16,8 +16,8 @@ package org.eclipse.papyrus.views.properties.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.emf.databinding.AnnotationObservableValue;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.ui.emf.databinding.AnnotationObservableValue;
 
 /**
  * A ModelElement for handling EAnnotations

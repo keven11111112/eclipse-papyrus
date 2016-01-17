@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -18,7 +20,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.customization.properties.Activator;
-import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.environment.Environment;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
@@ -38,7 +41,7 @@ public class EnvironmentContentProvider extends SemanticEMFContentProvider imple
 	 *            different environments.
 	 */
 	public EnvironmentContentProvider(EStructuralFeature feature) {
-		super(null, feature, getRoots(feature), org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager());
+		super(null, feature, getRoots(feature), ProviderHelper.getCustomizationManager());
 	}
 
 	private static EObject[] getRoots(EStructuralFeature feature) {

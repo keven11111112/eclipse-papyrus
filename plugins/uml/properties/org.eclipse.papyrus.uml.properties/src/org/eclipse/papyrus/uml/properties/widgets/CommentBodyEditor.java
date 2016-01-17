@@ -19,7 +19,7 @@ import java.util.Collections;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.uml.tools.namereferences.NameReferencesHelper;
 import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLProviderHelper;

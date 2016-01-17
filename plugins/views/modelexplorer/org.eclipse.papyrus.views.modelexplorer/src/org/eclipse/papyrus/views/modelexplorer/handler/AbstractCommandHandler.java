@@ -31,7 +31,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.views.modelexplorer.Activator;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -56,7 +56,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 * Returns the command to execute (to be implemented
 	 * in children implementing this class)
 	 *
-	 * @return the command to execute
+	 * &#64;return the command to execute
 	 *
 	 * </pre>
 	 */
@@ -140,6 +140,7 @@ public abstract class AbstractCommandHandler extends AbstractModelExplorerHandle
 	 * @return null
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		try {
 			ISelection selection = HandlerUtil.getCurrentSelection(event);

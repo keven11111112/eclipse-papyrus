@@ -13,7 +13,7 @@ package org.eclipse.papyrus.customization.properties.providers;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.BooleanToggle;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;

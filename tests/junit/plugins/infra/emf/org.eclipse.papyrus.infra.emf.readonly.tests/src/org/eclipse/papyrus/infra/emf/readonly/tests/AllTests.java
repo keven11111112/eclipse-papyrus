@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,9 +15,8 @@ package org.eclipse.papyrus.infra.emf.readonly.tests;
 import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomainTest;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManagerTest;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTesterTest;
-import org.eclipse.papyrus.infra.emf.readonly.ReferencedModelReadOnlyHandlerTest;
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 
@@ -26,7 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
-PapyrusROTransactionalEditingDomainTest.class, ReferencedModelReadOnlyHandlerTest.class, ReadOnlyManagerTest.class, ReadOnlyTesterTest.class
+		PapyrusROTransactionalEditingDomainTest.class, ReadOnlyManagerTest.class, ReadOnlyTesterTest.class
 })
 public class AllTests {
 

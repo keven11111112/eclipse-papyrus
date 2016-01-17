@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.uml.tools.providers;
 
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.ProfileUtil;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;

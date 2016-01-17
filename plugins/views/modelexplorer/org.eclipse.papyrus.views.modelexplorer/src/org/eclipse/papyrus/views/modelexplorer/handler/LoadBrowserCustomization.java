@@ -113,7 +113,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 
 
 				// Save the current state of the customizations
-				org.eclipse.papyrus.infra.emf.Activator.getDefault().saveCustomizationManagerState();
+				org.eclipse.papyrus.infra.ui.internal.emf.Activator.getDefault().saveCustomizationManagerState();
 			}
 
 			// // load customizations defined as default through the customization

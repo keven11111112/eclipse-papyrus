@@ -22,10 +22,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
 import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForIEvaluationContext;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
@@ -39,7 +39,7 @@ import org.eclipse.ui.IEditorPart;
 public class RenameTableHandler extends AbstractHandler {
 
 	public static final String NEW_TABLE_NAME = Messages.RenameTableHandler_NewName;
-	
+
 	public static final String RENAME_AN_EXISTING_TABLE = Messages.RenameTableHandler_RenameAnExistingTable;
 
 	/**
@@ -121,7 +121,7 @@ public class RenameTableHandler extends AbstractHandler {
 	protected INattableModelManager lookupTableManager(IEvaluationContext context) throws ServiceException {
 		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getService(IMultiDiagramEditor.class, context);
 
-		INattableModelManager tableManager = (INattableModelManager) editor.getAdapter(INattableModelManager.class);
+		INattableModelManager tableManager = editor.getAdapter(INattableModelManager.class);
 		return tableManager;
 	}
 

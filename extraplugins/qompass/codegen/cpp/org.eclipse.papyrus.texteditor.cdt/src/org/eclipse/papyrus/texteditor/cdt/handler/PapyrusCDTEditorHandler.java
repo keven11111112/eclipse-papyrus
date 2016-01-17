@@ -41,7 +41,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.texteditor.cdt.Activator;
 import org.eclipse.papyrus.texteditor.cdt.TextEditorConstants;
 import org.eclipse.papyrus.texteditor.cdt.editor.PapyrusCDTEditor;

@@ -29,8 +29,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -52,9 +52,9 @@ public abstract class AbstractGenericCommandHandler extends AbstractHandler {
 	protected List<EObject> getSelectedElements() {
 		List<EObject> result = new LinkedList<EObject>();
 		for (Object element : getSelection()) {
-			EObject elementi = EMFHelper.getEObject(element) ;
-			if(elementi instanceof TableNamedElement){
-				result.add( elementi);
+			EObject elementi = EMFHelper.getEObject(element);
+			if (elementi instanceof TableNamedElement) {
+				result.add(elementi);
 			}
 		}
 		return result;
@@ -68,6 +68,7 @@ public abstract class AbstractGenericCommandHandler extends AbstractHandler {
 	 * @return null
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		try {
 			ISelection selection = HandlerUtil.getCurrentSelection(event);
@@ -107,8 +108,8 @@ public abstract class AbstractGenericCommandHandler extends AbstractHandler {
 	protected boolean computeEnabled() {
 		boolean result = true;
 		List<EObject> elts = getSelectedElements();
-		if(elts.size()==0){
-			result=false;
+		if (elts.size() == 0) {
+			result = false;
 		}
 
 		return result;

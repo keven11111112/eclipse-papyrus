@@ -18,11 +18,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 
 /**
  * Label Provider for problem
@@ -46,7 +46,7 @@ public class ProblemLabelProvider extends EMFLabelProvider implements IFilteredL
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider#getText(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider#getText(org.eclipse.emf.ecore.EObject)
 	 *
 	 * @param element
 	 * @return

@@ -29,13 +29,13 @@ import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
 import org.eclipse.papyrus.infra.nattable.command.TableCommands;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
+import org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList;
 
 /**
  * Observable value for the element type id
@@ -97,7 +97,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getAddAllCommand(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getAddAllCommand(java.util.Collection)
 	 *
 	 * @param values
 	 * @return
@@ -118,7 +118,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getAddAllCommand(int, java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getAddAllCommand(int, java.util.Collection)
 	 *
 	 * @param index
 	 * @param values
@@ -141,7 +141,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getAddCommand(int, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getAddCommand(int, java.lang.Object)
 	 *
 	 * @param index
 	 * @param value
@@ -191,7 +191,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getAddCommand(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getAddCommand(java.lang.Object)
 	 *
 	 * @param value
 	 * @return
@@ -211,7 +211,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getRemoveAllCommand(java.util.Collection)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getRemoveAllCommand(java.util.Collection)
 	 *
 	 * @param values
 	 * @return
@@ -244,7 +244,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getSetCommand(int, java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getSetCommand(int, java.lang.Object)
 	 *
 	 * @param index
 	 * @param value
@@ -266,7 +266,7 @@ public abstract class AbstractPasteObjectPostActionsObservableValue extends EMFO
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#getRemoveCommand(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList#getRemoveCommand(java.lang.Object)
 	 *
 	 * @param value
 	 * @return

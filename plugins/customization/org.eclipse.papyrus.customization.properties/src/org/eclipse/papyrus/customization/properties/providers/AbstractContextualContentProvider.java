@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -17,8 +19,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
@@ -46,7 +49,7 @@ public abstract class AbstractContextualContentProvider extends SemanticEMFConte
 	 *            The EObject used to retrieve the available contexts
 	 */
 	protected AbstractContextualContentProvider(EObject source) {
-		super(findContexts(source).toArray(new Context[0]), org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager());
+		super(findContexts(source).toArray(new Context[0]), ProviderHelper.getCustomizationManager());
 		contexts = ListHelper.asList((Context[]) roots);
 	}
 

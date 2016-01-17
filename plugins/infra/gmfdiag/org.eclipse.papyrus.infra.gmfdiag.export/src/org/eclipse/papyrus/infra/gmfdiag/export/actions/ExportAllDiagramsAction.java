@@ -27,10 +27,10 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ResourceUtils;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.infra.gmfdiag.export.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.export.engine.ExportAllDiagramsEngine;
 import org.eclipse.papyrus.infra.gmfdiag.export.utils.SelectionHelper;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 
@@ -107,11 +107,11 @@ public class ExportAllDiagramsAction extends AbstractHandler {
 		if (file != null) {
 			IContainer parentResource = file.getParent();
 			IContainer containerForParentLocation = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(parentResource.getLocation());
-			if (containerForParentLocation != null) { 
+			if (containerForParentLocation != null) {
 				parentResource = containerForParentLocation;
 				uriFile = URI.createPlatformResourceURI(parentResource.getLocation().toString(), true);
 			} else {
-				//linked resource
+				// linked resource
 				uriFile = URI.createPlatformResourceURI(parentResource.getFullPath().toString(), true);
 			}
 

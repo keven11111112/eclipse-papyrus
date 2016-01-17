@@ -38,7 +38,6 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
@@ -49,6 +48,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.WorkspaceThemes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
+import org.eclipse.papyrus.infra.ui.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
@@ -351,7 +351,7 @@ public class CSSThemeEditionDialog extends Dialog {
 		comboViewer.setContentProvider(new EMFContentProvider(workspaceThemes, StylesheetsPackage.eINSTANCE.getWorkspaceThemes_Themes()) {
 
 			/**
-			 * @see org.eclipse.papyrus.infra.emf.providers.EMFContentProvider#getSemanticProvider(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature)
+			 * @see org.eclipse.papyrus.infra.ui.emf.providers.EMFContentProvider#getSemanticProvider(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature)
 			 *
 			 * @param editedEObject
 			 * @param feature

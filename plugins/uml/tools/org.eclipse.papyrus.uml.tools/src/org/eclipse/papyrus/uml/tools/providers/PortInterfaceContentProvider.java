@@ -44,7 +44,7 @@ public class PortInterfaceContentProvider extends SemanticUMLContentProvider {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.emf.providers.strategy.SemanticEMFContentProvider#getElements()
+	 * @see org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider#getElements()
 	 *
 	 * @return
 	 */

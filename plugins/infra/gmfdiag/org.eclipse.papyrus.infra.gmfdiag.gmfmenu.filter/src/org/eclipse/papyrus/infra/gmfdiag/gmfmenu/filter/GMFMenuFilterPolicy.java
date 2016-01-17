@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.ui.services.action.contributionitem.IPopupMenuContributionPolicy;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
 
 /**
  *

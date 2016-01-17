@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.providers;
 
@@ -16,6 +18,7 @@ import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.DecoratingCustomizedLabelProvider;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.ResolvingCustomizedLabelProvider;
+import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -30,14 +33,14 @@ public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 	 * Constructor.
 	 */
 	public ContextLabelProvider() {
-		super(new DecoratingCustomizedLabelProvider(org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager()));
+		super(new DecoratingCustomizedLabelProvider(ProviderHelper.getCustomizationManager()));
 	}
 
 	@Override
 	public String getText(Object element) {
 		if (!(element instanceof EObjectTreeElement) && element instanceof EObject) {
 			try {
-				//				Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
+				// Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
 				// method.setAccessible(true);
 				// AppearanceConfiguration result = (AppearanceConfiguration)method.invoke(Activator.getDefault().getCustomizationManager());
 				// ITreeElement treeElement = new ModelElementItem((EObject)element, null, result);
@@ -69,7 +72,7 @@ public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 	public Image getImage(Object element) {
 		if (!(element instanceof EObjectTreeElement) && element instanceof EObject) {
 			try {
-				//				Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
+				// Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
 				// method.setAccessible(true);
 				// AppearanceConfiguration result = (AppearanceConfiguration)method.invoke(Activator.getDefault().getCustomizationManager());
 				// ITreeElement treeElement = new ModelElementItem((EObject)element, null, result);
