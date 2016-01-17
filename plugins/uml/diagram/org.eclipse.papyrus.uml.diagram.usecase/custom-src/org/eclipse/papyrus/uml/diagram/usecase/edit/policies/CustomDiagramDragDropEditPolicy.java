@@ -51,8 +51,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
-		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+	protected Set<String> getDroppableElementVisualId() {
+		Set<String> droppableElementsVisualId = new HashSet<String>();
 		droppableElementsVisualId.add(AssociationEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
@@ -61,7 +61,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
@@ -69,7 +69,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
@@ -77,7 +77,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
+	public String getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 
@@ -85,13 +85,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-		switch (linkVISUALID) {
-		case AssociationEditPart.VISUAL_ID:
-			return dropAssociation(dropRequest, semanticLink, linkVISUALID);
-		default:
-			return super.getSpecificDropCommand(dropRequest, semanticLink, nodeVISUALID, linkVISUALID);
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID, String linkVISUALID) {
+		if (linkVISUALID != null) {
+			switch (linkVISUALID) {
+			case AssociationEditPart.VISUAL_ID:
+				return dropAssociation(dropRequest, semanticLink, linkVISUALID);
+			}
 		}
+		return super.getSpecificDropCommand(dropRequest, semanticLink, nodeVISUALID, linkVISUALID);
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the command for association
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> endtypes = UseCaseLinkMappingHelper.getInstance().getSource(semanticLink);
 		if (endtypes.size() == 1) {
 			// Bug 468646: It is debatable whether self-associations on use cases or actors make sense, but

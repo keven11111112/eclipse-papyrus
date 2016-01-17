@@ -54,7 +54,7 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3020;
+	public static final String VISUAL_ID = "3020";
 
 	/**
 	 * @generated
@@ -81,9 +81,7 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(DeleteTimeElementWithoutEventPolicy.KEY, new DeleteTimeElementWithoutEventPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TimeObservationItemSemanticEditPolicy());
@@ -99,22 +97,25 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case TimeObservationLabelEditPart.VISUAL_ID:
-				case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case TimeObservationLabelEditPart.VISUAL_ID:
+					case TimeObservationAppliedStereotypeEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -144,7 +145,7 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	public TimeMarkElementFigure getPrimaryShape() {
-		return (TimeMarkElementFigure) primaryShape;
+		return (TimeMarkElementFigure)primaryShape;
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof TimeObservationLabelEditPart || borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
+		if(borderItemEditPart instanceof TimeObservationLabelEditPart || borderItemEditPart instanceof TimeObservationAppliedStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -185,7 +186,6 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
-
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -216,7 +216,7 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -234,8 +234,8 @@ public class TimeObservationEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

@@ -40,7 +40,7 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7010;
+	public static final String VISUAL_ID = "7010";
 
 	/**
 	 * @generated
@@ -78,7 +78,6 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UseCasePointsInRectangleCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
 
@@ -87,7 +86,7 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 	 */
 	@Override
 	protected void setRatio(Double ratio) {
-		if (getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
+		if(getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
 			super.setRatio(ratio);
 		}
 	}
@@ -97,7 +96,6 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-
 		return super.getTargetEditPart(request);
 	}
 
@@ -107,10 +105,7 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (NotationPackage.eINSTANCE.getSize_Width().equals(feature)
-				|| NotationPackage.eINSTANCE.getSize_Height().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_X().equals(feature)
-				|| NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
+		if(NotationPackage.eINSTANCE.getSize_Width().equals(feature) || NotationPackage.eINSTANCE.getSize_Height().equals(feature) || NotationPackage.eINSTANCE.getLocation_X().equals(feature) || NotationPackage.eINSTANCE.getLocation_Y().equals(feature)) {
 			refreshBounds();
 		}
 		super.handleNotificationEvent(notification);
@@ -121,16 +116,13 @@ public class UseCasePointsInRectangleEditPart extends ResizeableListCompartmentE
 	 */
 	@Override
 	protected void refreshBounds() {
-		int width = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
-		int height = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		Dimension size = new Dimension(width, height);
-		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
 		Point loc = new Point(x, y);
-		((GraphicalEditPart) getParent()).setLayoutConstraint(
-				this,
-				getFigure(),
-				new Rectangle(loc, size));
+		((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

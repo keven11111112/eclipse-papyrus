@@ -248,8 +248,8 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return true, if is reorient about the containment link
 	 */
 	public static boolean isReorientContainmentLink(ReconnectRequest request) {
-		int visualId = getVisualID(request);
-		return visualId == ContainmentLinkEditPart.VISUAL_ID;
+		String visualId = getVisualID(request);
+		return ContainmentLinkEditPart.VISUAL_ID.equals(visualId);
 	}
 
 	/**
@@ -293,9 +293,8 @@ public class ContainmentHelper extends ElementHelper {
 	 *            the request
 	 * @return the visual id
 	 */
-	private static int getVisualID(ReconnectRequest request) {
-		Object id = request.getExtendedData().get(UMLBaseItemSemanticEditPolicy.VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	private static String getVisualID(ReconnectRequest request) {
+		return (String) request.getExtendedData().get(UMLBaseItemSemanticEditPolicy.VISUAL_ID_KEY);
 	}
 
 	/**

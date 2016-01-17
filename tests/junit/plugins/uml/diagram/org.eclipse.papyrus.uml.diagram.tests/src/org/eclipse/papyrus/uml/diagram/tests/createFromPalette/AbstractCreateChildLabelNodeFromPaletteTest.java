@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
@@ -47,7 +47,7 @@ public abstract class AbstractCreateChildLabelNodeFromPaletteTest extends Abstra
 	/**
 	 * Test case for creation of a label node within a top node of the diagram.
 	 */
-	public void testCreateChildLabelNodeFromPalette(IElementType topNodeType, IElementType childNodeType, int compartmentType, boolean mustPass) {
+	public void testCreateChildLabelNodeFromPalette(IElementType topNodeType, IElementType childNodeType, String compartmentType, boolean mustPass) {
 		create(topNodeType);
 		createChildNode(childNodeType, compartmentType);
 	}
@@ -55,7 +55,7 @@ public abstract class AbstractCreateChildLabelNodeFromPaletteTest extends Abstra
 	/**
 	 * Test case for creation of a label node within a node that is nested within a top node of the diagram.
 	 */
-	public void testCreateChildLabelNodeFromPalette(IElementType topNodeType, int topNodeCompartmentType, IElementType nestedNodeType, IElementType childNodeType, int compartmentType, boolean mustPass) {
+	public void testCreateChildLabelNodeFromPalette(IElementType topNodeType, String topNodeCompartmentType, IElementType nestedNodeType, IElementType childNodeType, String compartmentType, boolean mustPass) {
 		create(nestedNodeType, topNodeType, topNodeCompartmentType);
 		createChildNode(childNodeType, compartmentType);
 	}
@@ -65,12 +65,12 @@ public abstract class AbstractCreateChildLabelNodeFromPaletteTest extends Abstra
 	 * @param compartmentType
 	 * @param b
 	 */
-	private void createChildNode(IElementType childNodeType, int compartmentType) {
+	private void createChildNode(IElementType childNodeType, String compartmentType) {
 		ListCompartmentEditPart compartment = null;
 
 		// Find the edit-part for the compartment
 		for (Object editPart : getParentEditPart().getChildren()) {
-			if (editPart instanceof ListCompartmentEditPart && (((View) ((ListCompartmentEditPart) (editPart)).getModel()).getType().equals("" + compartmentType))) { //$NON-NLS-1$
+			if (editPart instanceof ListCompartmentEditPart && (((View) ((ListCompartmentEditPart) (editPart)).getModel()).getType().equals(compartmentType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart) editPart;
 			}
 		}
@@ -129,13 +129,13 @@ public abstract class AbstractCreateChildLabelNodeFromPaletteTest extends Abstra
 	/**
 	 * Create a node nested within a top node.
 	 */
-	public void create(IElementType nestedNodeType, IElementType topNodeType, int compartmentType) {
+	public void create(IElementType nestedNodeType, IElementType topNodeType, String compartmentType) {
 		create(topNodeType);
 		GraphicalEditPart topNode = parentNode;
 		parentNode = null;
 
 		// Find the edit-part for the compartment
-		String compartmentVisualID = String.valueOf(compartmentType);
+		String compartmentVisualID = compartmentType;
 		CompartmentEditPart compartment = null;
 		for (CompartmentEditPart editPart : Iterables.filter(topNode.getChildren(), CompartmentEditPart.class)) {
 			if (compartmentVisualID.equals(((View) editPart.getModel()).getType())) { // $NON-NLS-1$

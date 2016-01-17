@@ -1128,6 +1128,7 @@
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Abstract Interaction EditPart"
         genView="/0/@diagram/@topLevelNodes.0"
         name="AbstractInteractionEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractInteractionEditPart"/>
@@ -1138,6 +1139,7 @@
         genExternalNodeLabel="/0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.0/@labels.1"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Rounded Compartment EditPart"
         genView="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.0"
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>

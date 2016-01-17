@@ -1746,9 +1746,9 @@
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement"/>
           <containmentMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedMember"/>
           <childMetaFeature
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedMember"/>
         </modelFacet>
         <labels
             visualID="6039"
@@ -3196,11 +3196,6 @@
         name="QualifiedNameActor"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"/>
     <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="It specify the super class for the shape editpart"
-        name="AbstractShapeEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractShapeEditPart"/>
-    <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
         comment="External node label locator"
         classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
@@ -3246,6 +3241,7 @@
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.usecase.custom.edit.parts.SubjectNodeEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Package EditPart"
         genView="/0/@diagram/@childNodes.11 /0/@diagram/@topLevelNodes.5"
         name="PackageEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"/>

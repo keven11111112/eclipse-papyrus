@@ -73,7 +73,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3022;
+	public static final String VISUAL_ID = "3022";
 
 	/**
 	 * @generated
@@ -100,13 +100,10 @@ public class SignalEditPartCN extends ClassifierEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.SignalCanonicalEditPolicyCN());
-
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.SignalCanonicalEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
@@ -128,23 +125,26 @@ public class SignalEditPartCN extends ClassifierEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case SignalFloatingNameEditPartCN.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case SignalFloatingNameEditPartCN.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
-				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-					return new BorderItemResizableEditPolicy();
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+						return new BorderItemResizableEditPolicy();
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -174,17 +174,16 @@ public class SignalEditPartCN extends ClassifierEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -202,32 +201,29 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	public SignalFigure getPrimaryShape() {
-		return (SignalFigure) primaryShape;
+		return (SignalFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SignalNameEditPartCN) {
-			((SignalNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof SignalNameEditPartCN) {
+			((SignalNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-		if (childEditPart instanceof SignalAttributeCompartmentEditPartCN) {
+		if(childEditPart instanceof SignalAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((SignalAttributeCompartmentEditPartCN) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((SignalAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
-		// Papyrus Gencode :precise the locator for a template signature
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+		//Papyrus Gencode :precise the locator for a template signature
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
 		return false;
 	}
 
@@ -235,16 +231,16 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof SignalNameEditPartCN) {
+		if(childEditPart instanceof SignalNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof SignalAttributeCompartmentEditPartCN) {
+		if(childEditPart instanceof SignalAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((SignalAttributeCompartmentEditPartCN) childEditPart).getFigure());
+			pane.remove(((SignalAttributeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -255,7 +251,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -266,7 +262,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -277,10 +273,10 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof SignalAttributeCompartmentEditPartCN) {
+		if(editPart instanceof SignalAttributeCompartmentEditPartCN) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -291,7 +287,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof SignalFloatingNameEditPartCN) {
+		if(borderItemEditPart instanceof SignalFloatingNameEditPartCN) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -319,7 +315,6 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -332,7 +327,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -345,7 +340,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -356,7 +351,7 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -374,8 +369,8 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -392,10 +387,10 @@ public class SignalEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3005)) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3005)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(SignalAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
 		}

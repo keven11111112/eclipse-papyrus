@@ -552,7 +552,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 	 *            The type of the message
 	 * @return The connection anchor
 	 */
-	private ConnectionAnchor createAnchor(Request request, IElementType elementType, int visualId, Class<?> messageType) {
+	private ConnectionAnchor createAnchor(Request request, IElementType elementType, String visualId, Class<?> messageType) {
 		if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
 			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
 			List<?> relationshipTypes = createRequest.getElementTypes();
@@ -565,7 +565,7 @@ public class CustomInteractionEditPart extends InteractionEditPart implements IP
 			CreateConnectionViewRequest createRequest = (CreateConnectionViewRequest) request;
 			ConnectionViewDescriptor connectionViewDescriptor = createRequest.getConnectionViewDescriptor();
 			if (connectionViewDescriptor != null) {
-				if (String.valueOf(visualId).equals(connectionViewDescriptor.getSemanticHint())) {
+				if (visualId.equals(connectionViewDescriptor.getSemanticHint())) {
 					return createAnchor(createRequest.getLocation().getCopy());
 				}
 			}

@@ -60,7 +60,7 @@ public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.editpoli
 		if (request instanceof org.eclipse.gef.requests.ReconnectRequest) {
 			Object view = ((org.eclipse.gef.requests.ReconnectRequest) request).getConnectionEditPart().getModel();
 			if (view instanceof org.eclipse.gmf.runtime.notation.View) {
-				Integer id = new Integer(«getVisualIDMethodCall(it)»((org.eclipse.gmf.runtime.notation.View) view));
+				String id = «getVisualIDMethodCall(it)»((org.eclipse.gmf.runtime.notation.View) view);
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, view);
 			}
@@ -69,9 +69,8 @@ public class «className(it)» extends org.eclipse.gmf.runtime.diagram.ui.editpoli
 	}
 	
 	«generatedMemberComment('Returns visual id from request parameters.')»
-	protected int getVisualID(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
-		Object id = request.getParameter(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	protected String getVisualID(org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest request) {
+		return (String) request.getParameter(VISUAL_ID_KEY);
 	}
 
 	«semanticPart(it)»

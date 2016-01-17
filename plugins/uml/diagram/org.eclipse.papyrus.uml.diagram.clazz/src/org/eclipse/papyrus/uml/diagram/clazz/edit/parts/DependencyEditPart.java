@@ -32,7 +32,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4008;
+	public static final String VISUAL_ID = "4008";
 
 	/**
 	 * @generated
@@ -56,11 +56,11 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DependencyNameEditPart) {
-			((DependencyNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof DependencyNameEditPart) {
+			((DependencyNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
-		if (childEditPart instanceof AppliedStereotypeDependencyEditPart) {
-			((AppliedStereotypeDependencyEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof AppliedStereotypeDependencyEditPart) {
+			((AppliedStereotypeDependencyEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -70,7 +70,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +80,10 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DependencyNameEditPart) {
+		if(childEditPart instanceof DependencyNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeDependencyEditPart) {
+		if(childEditPart instanceof AppliedStereotypeDependencyEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +94,7 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -118,6 +118,6 @@ public class DependencyEditPart extends UMLConnectionNodeEditPart implements ITr
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

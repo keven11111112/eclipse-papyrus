@@ -35,7 +35,7 @@ public class Message6EditPart extends AbstractMessageEditPart implements ITreeBr
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4008;
+	public static final String VISUAL_ID = "4008";
 
 	/**
 	 * @generated
@@ -62,13 +62,11 @@ public class Message6EditPart extends AbstractMessageEditPart implements ITreeBr
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MessageName6EditPart) {
-			((MessageName6EditPart) childEditPart).setLabel(
-					getPrimaryShape().getMessageLabelFigure());
+		if(childEditPart instanceof MessageName6EditPart) {
+			((MessageName6EditPart)childEditPart).setLabel(getPrimaryShape().getMessageLabelFigure());
 		}
-		if (childEditPart instanceof MessageLostAppliedStereotypeEditPart) {
-			((MessageLostAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof MessageLostAppliedStereotypeEditPart) {
+			((MessageLostAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -78,7 +76,7 @@ public class Message6EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -88,10 +86,10 @@ public class Message6EditPart extends AbstractMessageEditPart implements ITreeBr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MessageName6EditPart) {
+		if(childEditPart instanceof MessageName6EditPart) {
 			return true;
 		}
-		if (childEditPart instanceof MessageLostAppliedStereotypeEditPart) {
+		if(childEditPart instanceof MessageLostAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -102,7 +100,7 @@ public class Message6EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -126,6 +124,6 @@ public class Message6EditPart extends AbstractMessageEditPart implements ITreeBr
 	 */
 	@Override
 	public MessageLost getPrimaryShape() {
-		return (MessageLost) getFigure();
+		return (MessageLost)getFigure();
 	}
 }

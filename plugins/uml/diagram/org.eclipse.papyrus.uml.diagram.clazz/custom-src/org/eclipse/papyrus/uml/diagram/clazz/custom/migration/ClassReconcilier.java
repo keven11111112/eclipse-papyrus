@@ -81,7 +81,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalFloatingNameEditPa
 public class ClassReconcilier extends DiagramReconciler {
 
 	final String CONTAINMENT_LINK_OLD_VISUAL_ID = "4022"; //$NON-NLS-1$
-	final String CONTAINMENT_LINK_NEW_VISUAL_ID = Integer.toString(ContainmentLinkEditPart.VISUAL_ID);
+	final String CONTAINMENT_LINK_NEW_VISUAL_ID = ContainmentLinkEditPart.VISUAL_ID;
 	final String CONTAINMENT_LINK_AFFIXEDNODE_OLD_VISUAL_ID = "3032"; //$NON-NLS-1$
 
 

@@ -159,14 +159,14 @@ public final class TickUtils {
 	}
 
 	private static void checkTickView(final View tickView) {
-		if (!Integer.toString(TickEditPart.VISUAL_ID).equals(tickView.getType())) {
+		if (!TickEditPart.VISUAL_ID.equals(tickView.getType())) {
 			throw new IllegalArgumentException("The parameter must be a tick View (id = " + TickEditPart.VISUAL_ID + "). The id was " + tickView.getType()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	private static void checkOccurrenceSpecificationView(final View occurrenceSpecificationView) {
-		if (!Integer.toString(OccurrenceSpecificationEditPartCN.VISUAL_ID).equals(occurrenceSpecificationView.getType()) && !Integer.toString(MessageOccurrenceSpecificationEditPartCN.VISUAL_ID).equals(occurrenceSpecificationView.getType())
-				&& !Integer.toString(DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID).equals(occurrenceSpecificationView.getType())) {
+		if (!OccurrenceSpecificationEditPartCN.VISUAL_ID.equals(occurrenceSpecificationView.getType()) && !MessageOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(occurrenceSpecificationView.getType())
+				&& !DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(occurrenceSpecificationView.getType())) {
 			throw new IllegalArgumentException("The parameter must be an Occurrencespecification View. The id was " + occurrenceSpecificationView.getType()); //$NON-NLS-1$
 		}
 	}

@@ -31,19 +31,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.CustomFullStateInvariantItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.TimingDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.figures.FullStateFigure;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.FullStateInvariantItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
@@ -55,7 +56,7 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 11;
+	public static final String VISUAL_ID = "11";
 
 	/**
 	 * @generated
@@ -80,7 +81,8 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new FullStateInvariantItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomFullStateInvariantItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
@@ -96,22 +98,24 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case FullStateInvariantAppliedStereotypeEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case FullStateInvariantAppliedStereotypeEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
 					}
-					;
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -141,18 +145,16 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -170,7 +172,7 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	public FullStateFigure getPrimaryShape() {
-		return (FullStateFigure) primaryShape;
+		return (FullStateFigure)primaryShape;
 	}
 
 	/**
@@ -178,12 +180,11 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof FullStateInvariantAppliedStereotypeEditPart) {
+		if(borderItemEditPart instanceof FullStateInvariantAppliedStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
@@ -193,7 +194,7 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
 
@@ -208,7 +209,6 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -240,7 +240,7 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -258,8 +258,8 @@ public class FullStateInvariantEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

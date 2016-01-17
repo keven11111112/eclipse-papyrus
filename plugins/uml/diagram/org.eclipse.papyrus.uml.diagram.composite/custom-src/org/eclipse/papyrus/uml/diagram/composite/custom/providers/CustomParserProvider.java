@@ -39,7 +39,7 @@ public class CustomParserProvider extends UMLParserProvider {
 	}
 
 	@Override
-	protected IParser getParser(int visualID) {
+	protected IParser getParser(String visualID) {
 		switch (visualID) {
 		case ConnectorMultiplicitySourceEditPart.VISUAL_ID:
 		case ConnectorMultiplicityTargetEditPart.VISUAL_ID:

@@ -17,10 +17,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.figures.MessageDeleteFigure;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.MessageDeleteItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -30,7 +29,7 @@ public class MessageDeleteEditPart extends ConnectionEditPart implements ITreeBr
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 47;
+	public static final String VISUAL_ID = "47";
 
 	/**
 	 * @generated
@@ -45,21 +44,19 @@ public class MessageDeleteEditPart extends ConnectionEditPart implements ITreeBr
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageDeleteItemSemanticEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MessageDeleteNameLabelEditPart) {
-			((MessageDeleteNameLabelEditPart) childEditPart).setLabel(
-					getPrimaryShape().getMessageLabel());
+		if(childEditPart instanceof MessageDeleteNameLabelEditPart) {
+			((MessageDeleteNameLabelEditPart)childEditPart).setLabel(getPrimaryShape().getMessageLabel());
 		}
-		if (childEditPart instanceof MessageDeleteAppliedStereotypeEditPart) {
-			((MessageDeleteAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof MessageDeleteAppliedStereotypeEditPart) {
+			((MessageDeleteAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -69,7 +66,7 @@ public class MessageDeleteEditPart extends ConnectionEditPart implements ITreeBr
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -79,10 +76,10 @@ public class MessageDeleteEditPart extends ConnectionEditPart implements ITreeBr
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof MessageDeleteNameLabelEditPart) {
+		if(childEditPart instanceof MessageDeleteNameLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof MessageDeleteAppliedStereotypeEditPart) {
+		if(childEditPart instanceof MessageDeleteAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +90,7 @@ public class MessageDeleteEditPart extends ConnectionEditPart implements ITreeBr
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -117,6 +114,6 @@ public class MessageDeleteEditPart extends ConnectionEditPart implements ITreeBr
 	 */
 	@Override
 	public MessageDeleteFigure getPrimaryShape() {
-		return (MessageDeleteFigure) getFigure();
+		return (MessageDeleteFigure)getFigure();
 	}
 }

@@ -11,7 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.profile.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.DefaultEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry;
@@ -25,8 +25,6 @@ public class UMLEditPartProvider extends DefaultEditPartProvider {
 	 * @generated
 	 */
 	public UMLEditPartProvider() {
-		super(new UMLEditPartFactory(),
-				UMLVisualIDRegistry.TYPED_INSTANCE,
-				ProfileDiagramEditPart.MODEL_ID);
+		super(new UMLEditPartFactory(), UMLVisualIDRegistry.TYPED_INSTANCE, ProfileDiagramEditPart.MODEL_ID);
 	}
 }

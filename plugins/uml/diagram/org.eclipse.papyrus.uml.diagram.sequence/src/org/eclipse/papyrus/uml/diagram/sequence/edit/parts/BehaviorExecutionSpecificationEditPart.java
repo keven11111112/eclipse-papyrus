@@ -45,7 +45,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3003;
+	public static final String VISUAL_ID = "3003";
 
 	/**
 	 * @generated
@@ -71,9 +71,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ElementCreationWithMessageEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ExecutionSpecificationComponentEditPolicy());
@@ -90,7 +88,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -102,7 +99,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -133,7 +130,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 */
 	@Override
 	public AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure getPrimaryShape() {
-		return (AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure) primaryShape;
+		return (AbstractExecutionSpecificationEditPart.ExecutionSpecificationRectangleFigure)primaryShape;
 	}
 
 	/**
@@ -154,10 +151,9 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	@Override
 	public EditPolicy getPrimaryDragEditPolicy() {
 		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if (result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy) result;
-			ep.setResizeDirections(
-					PositionConstants.NORTH | PositionConstants.SOUTH);
+		if(result instanceof ResizableEditPolicy) {
+			ResizableEditPolicy ep = (ResizableEditPolicy)result;
+			ep.setResizeDirections(PositionConstants.NORTH | PositionConstants.SOUTH);
 		}
 		return result;
 	}
@@ -173,7 +169,6 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -193,7 +188,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -204,7 +199,7 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -231,8 +226,8 @@ public class BehaviorExecutionSpecificationEditPart extends AbstractExecutionSpe
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 }

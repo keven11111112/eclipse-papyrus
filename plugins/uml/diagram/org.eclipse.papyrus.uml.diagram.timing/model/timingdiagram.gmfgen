@@ -2145,7 +2145,7 @@
         iD="org.eclipse.papyrus.uml.diagram.timing"
         name="Papyrus Timing Diagram "
         provider="Eclipse Modeling Project"
-        version="1.0.1.qualifier">
+        version="1.2.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>
@@ -2248,9 +2248,8 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
     </labelParsers>
     <extensions
-        name="Custom templates">
-      <rootInput
-          href="../../org.eclipse.papyrus.uml.diagram.activity/model/activityDiagram.gmfgen#PapyrusUMLActivityDiagram"/>
+        name="Custom templates"
+        rootInput="PapyrusUMLTimingDiagram">
       <invocations
           xsi:type="gmfgen:GenTemplateInvocation"
           description="VisualTypeProvider"

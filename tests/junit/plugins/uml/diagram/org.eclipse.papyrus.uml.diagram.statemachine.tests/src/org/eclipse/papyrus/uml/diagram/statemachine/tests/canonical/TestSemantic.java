@@ -196,7 +196,7 @@ public class TestSemantic extends BaseTestCase {
 		checkPseudostate(PseudostateTerminateEditPart.VISUAL_ID);
 	}
 
-	public void checkPseudostate(int VID) {
+	public void checkPseudostate(String VID) {
 		IGraphicalEditPart stateEP = createChild(VID, getRegionCompartmentEditPart());
 
 		checkListElementReferenceSemantic(stateEP, getRegionCompartmentEditPart(), UMLPackage.eINSTANCE.getRegion_Subvertex());
@@ -252,7 +252,7 @@ public class TestSemantic extends BaseTestCase {
 		checkPseudostateKind(PseudostateTerminateEditPart.VISUAL_ID, PseudostateKind.TERMINATE_LITERAL, "Terminate");
 	}
 
-	public void checkPseudostateKind(int VID, PseudostateKind kind, String startName) {
+	public void checkPseudostateKind(String VID, PseudostateKind kind, String startName) {
 		IGraphicalEditPart stateEP = createChild(VID, getRegionCompartmentEditPart());
 		Pseudostate pseudostate = (Pseudostate) stateEP.resolveSemanticElement();
 		Assert.assertEquals(kind, pseudostate.getKind());
@@ -269,7 +269,7 @@ public class TestSemantic extends BaseTestCase {
 		checkPseudoPointInStateMachine(PseudostateExitPointEditPart.VISUAL_ID);
 	}
 
-	public void checkPseudoPointInStateMachine(int VID) {
+	public void checkPseudoPointInStateMachine(String VID) {
 		IGraphicalEditPart stateMachineEP = findChildBySemanticHint(getDiagramEditPart(), StateMachineEditPart.VISUAL_ID);
 		IGraphicalEditPart pseudostateEP = createChild(VID, stateMachineEP);
 
@@ -286,7 +286,7 @@ public class TestSemantic extends BaseTestCase {
 		checkPseudoPointInRegion(PseudostateExitPointEditPart.VISUAL_ID);
 	}
 
-	public void checkPseudoPointInRegion(int VID) {
+	public void checkPseudoPointInRegion(String VID) {
 		Request req = createUnspecifiedToolRequest(VID);
 		
 		Command cmd = getRegionCompartmentEditPart().getCommand(req);
@@ -348,7 +348,7 @@ public class TestSemantic extends BaseTestCase {
 		checkListElementReferenceSemantic(stateEP, getRegionCompartmentEditPart(), UMLPackage.eINSTANCE.getRegion_Subvertex());
 	}
 
-	protected Request createUnspecifiedToolRequest(int VID) {
+	protected Request createUnspecifiedToolRequest(String VID) {
 		List<IElementType> types = new LinkedList<IElementType>();
 		
 		types.add(UMLElementTypes.getElementType(VID));

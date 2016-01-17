@@ -24,8 +24,8 @@ public final class GeneralOrderingUtils {
 		// utility class
 	}
 
-	public static boolean isGeneralOrderingEditPart(final int visualID) {
-		return visualID == GeneralOrderingEditPart.VISUAL_ID;
+	public static boolean isGeneralOrderingEditPart(final String visualID) {
+		return GeneralOrderingEditPart.VISUAL_ID.equals(visualID);
 	}
 
 	public static boolean isGeneralOrderingEditPart(final EditPart editPart) {

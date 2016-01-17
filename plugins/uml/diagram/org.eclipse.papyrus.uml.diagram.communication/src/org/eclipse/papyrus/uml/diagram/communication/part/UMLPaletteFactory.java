@@ -68,7 +68,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
@@ -76,25 +75,25 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Tool createTool(String toolId) {
-		if (toolId.equals(COMMUNICATION_TOOL_LIFELINE)) {
+		if(toolId.equals(COMMUNICATION_TOOL_LIFELINE)) {
 			return createLifelineComCreationTool();
 		}
-		if (toolId.equals(COMMUNICATION_TOOL_COMMENT)) {
+		if(toolId.equals(COMMUNICATION_TOOL_COMMENT)) {
 			return createComment7CreationTool();
 		}
-		if (toolId.equals(COMMUNICATION_TOOL_CONSTRAINT)) {
+		if(toolId.equals(COMMUNICATION_TOOL_CONSTRAINT)) {
 			return createConstraint5CreationTool();
 		}
-		if (toolId.equals(COMMUNICATION_TOOL_DURATIONOBSERVATION)) {
+		if(toolId.equals(COMMUNICATION_TOOL_DURATIONOBSERVATION)) {
 			return createDurationObservation4CreationTool();
 		}
-		if (toolId.equals(COMMUNICATION_TOOL_TIMEOBSERVATION)) {
+		if(toolId.equals(COMMUNICATION_TOOL_TIMEOBSERVATION)) {
 			return createTimeObservation6CreationTool();
 		}
-		if (toolId.equals(CREATEMESSAGECREATECREATIONTOOL)) {
+		if(toolId.equals(CREATEMESSAGECREATECREATIONTOOL)) {
 			return createMessageCreateCreationTool();
 		}
-		if (toolId.equals(CREATELINK13CREATIONTOOL)) {
+		if(toolId.equals(CREATELINK13CREATIONTOOL)) {
 			return createLink13CreationTool();
 		}
 		// default return: null
@@ -106,7 +105,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}

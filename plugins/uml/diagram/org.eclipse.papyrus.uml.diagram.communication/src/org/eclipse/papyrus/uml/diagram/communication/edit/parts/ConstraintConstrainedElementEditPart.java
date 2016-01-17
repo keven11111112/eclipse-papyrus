@@ -15,9 +15,9 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.communication.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -27,7 +27,7 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 8011;
+	public static final String VISUAL_ID = "8011";
 
 	/**
 	 * @generated
@@ -42,7 +42,7 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 	}
 
 	/**
@@ -62,6 +62,6 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

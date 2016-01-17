@@ -37,13 +37,11 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	@Override
 	public IElementType getElementType(Diagram diagram, String viewType) {
 		IElementType result = null;
-		
 		try {
-			result = UMLElementTypes.getElementType(Integer.parseInt(viewType));
+			result = UMLElementTypes.getElementType(viewType);
 		} catch (NumberFormatException e) {
 			// Not supported by this diagram
 		}
-		
 		return result;
 	}
 
@@ -52,8 +50,7 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	 */
 	@Override
 	public String getNodeType(View parentView, EObject element) {
-		int result = UMLVisualIDRegistry.getNodeVisualID(parentView, element);
-		return (result < 0) ? null : Integer.toString(result);
+		return UMLVisualIDRegistry.getNodeVisualID(parentView, element);
 	}
 
 	/**
@@ -61,8 +58,6 @@ public class UMLVisualTypeProvider extends AbstractVisualTypeProvider {
 	 */
 	@Override
 	public String getLinkType(Diagram diagram, EObject element) {
-		int result = UMLVisualIDRegistry.getLinkWithClassVisualID(element);
-		return (result < 0) ? null : Integer.toString(result);
+		return UMLVisualIDRegistry.getLinkWithClassVisualID(element);
 	}
-
 }

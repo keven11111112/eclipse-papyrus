@@ -38,7 +38,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.junit.Assert;
@@ -101,11 +101,11 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testViewDeletion(IElementType type, int containerType) {
+	public void testViewDeletion(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
@@ -138,11 +138,11 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testDestroy(IElementType type, int containerType) {
+	public void testDestroy(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
@@ -175,11 +175,11 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testDrop(IElementType type, int containerType) {
+	public void testDrop(IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
@@ -218,11 +218,11 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testChangeContainer(IElementType topNodeType, IElementType type, int containerType) {
+	public void testChangeContainer(IElementType topNodeType, IElementType type, String containerType) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
@@ -278,11 +278,11 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 *        the container type
 	 * @param maskmanaged used to test if the editpart must have a mask managed edit policy
 	 */
-	public void testToCreateANode(IElementType type, int containerType, boolean maskmanaged, String initialName) {
+	public void testToCreateANode(IElementType type, String containerType, boolean maskmanaged, String initialName) {
 		ListCompartmentEditPart compartment = null;
 		int index = 0;
 		while(compartment == null && index < getTopEditPart().getChildren().size()) {
-			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals("" + containerType))) { //$NON-NLS-1$
+			if((getTopEditPart().getChildren().get(index)) instanceof ListCompartmentEditPart && (((View)((ListCompartmentEditPart)(getTopEditPart().getChildren().get(index))).getModel()).getType().equals(containerType))) { //$NON-NLS-1$
 				compartment = (ListCompartmentEditPart)(getTopEditPart().getChildren().get(index));
 			}
 			index++;
@@ -394,7 +394,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToManageTopNode(IElementType topNodeType, IElementType type, int containerType,String initialName) {
+	public void testToManageTopNode(IElementType topNodeType, IElementType type, String containerType,String initialName) {
 		testToCreateATopNode(topNodeType);
 		testToCreateANode(type, containerType, false, initialName);
 		testDestroy(type, containerType);
@@ -414,7 +414,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToManageTopNode(IElementType topNodeType, IElementType type, int containerType) {
+	public void testToManageTopNode(IElementType topNodeType, IElementType type, String containerType) {
 		testToManageTopNode(topNodeType, type, containerType, null);
 	}
 
@@ -428,7 +428,7 @@ public abstract class TestChildLabel extends org.eclipse.papyrus.uml.diagram.tes
 	 * @param containerType
 	 *        the container type
 	 */
-	public void testToManageTopNodeWithMask(IElementType topNodeType, IElementType type, int containerType,String initialName) {
+	public void testToManageTopNodeWithMask(IElementType topNodeType, IElementType type, String containerType,String initialName) {
 		testToCreateATopNode(topNodeType);
 		testToCreateANode(type, containerType, true, initialName);
 		testDestroy(type, containerType);

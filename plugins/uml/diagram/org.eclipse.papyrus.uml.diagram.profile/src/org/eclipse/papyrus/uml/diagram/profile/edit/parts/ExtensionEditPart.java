@@ -28,7 +28,7 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1013;
+	public static final String VISUAL_ID = "1013";
 
 	/**
 	 * @generated
@@ -65,6 +65,6 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 	 */
 	@Override
 	public ExtensionFigure getPrimaryShape() {
-		return (ExtensionFigure) getFigure();
+		return (ExtensionFigure)getFigure();
 	}
 }

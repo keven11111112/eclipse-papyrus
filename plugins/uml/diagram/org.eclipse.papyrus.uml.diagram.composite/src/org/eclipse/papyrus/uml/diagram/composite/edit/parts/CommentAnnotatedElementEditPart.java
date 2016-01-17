@@ -27,7 +27,7 @@ public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart i
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4002;
+	public static final String VISUAL_ID = "4002";
 
 	/**
 	 * @generated
@@ -60,6 +60,6 @@ public class CommentAnnotatedElementEditPart extends UMLConnectionNodeEditPart i
 	 * @generated
 	 */
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

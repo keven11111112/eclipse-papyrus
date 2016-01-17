@@ -53,41 +53,41 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		myDiagramEditor = diagramEditor;
 	}
 
-	public void checkDuplicate(int parent, int parentContainer, int child) {
-		checkDuplicate(parent, parentContainer, child, 0);
+	public void checkDuplicate(String parent, String parentContainer, String child) {
+		checkDuplicate(parent, parentContainer, child, null);
 	}
 
-	public void checkDuplicate(int parent, int parentContainer, int child, int nestedChild) {
+	public void checkDuplicate(String parent, String parentContainer, String child, String nestedChild) {
 		IGraphicalEditPart parentEP = createChild(parent, myDiagramEditPart, 0);
 		IGraphicalEditPart targetEP = findChildBySemanticHint(parentEP, parentContainer);
-		IGraphicalEditPart dndEP = createChild(nestedChild > 0 ? nestedChild : child, targetEP, 0);
+		IGraphicalEditPart dndEP = createChild(nestedChild != null ? nestedChild : child, targetEP, 0);
 		{
 			Command ddCommand = createDropCommand(dndEP, myDiagramEditPart);
 			Assert.assertTrue(ddCommand.canExecute());
 			executeOnUIThread(ddCommand);
 		}
-		IGraphicalEditPart canvasDnDEP = findChildBySemanticHint(myDiagramEditPart, nestedChild > 0 ? child : getDefaultNamedElementVisualId());
+		IGraphicalEditPart canvasDnDEP = findChildBySemanticHint(myDiagramEditPart, nestedChild != null ? child : getDefaultNamedElementVisualId());
 		{
 			Command ddCommand = createDropCommand(canvasDnDEP, targetEP);
 			Assert.assertFalse(canvasDnDEP.getClass().getName() + " can't be dropped to the " + targetEP.getClass().getName() + " due the duplication behavior rule.", ddCommand.canExecute());
 		}
 	}
 
-	public void checkUnexecutableChildCreate(int targetVisualId, int targetCompartmentVisualId, int childVisualId) {
+	public void checkUnexecutableChildCreate(String targetVisualId, String targetCompartmentVisualId, String childVisualId) {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
 		Command command = getCreateChildCommand(childVisualId, targetCompartmentEP);
 		Assert.assertFalse("The " + childVisualId + "-visualId can't be created in the " + targetCompartmentEP.getClass().getName(), command.canExecute());
 	}
 
-	public void checkChildCreate(int targetVisualId, int targetCompartmentVisualId, int childVisualId) {
+	public void checkChildCreate(String targetVisualId, String targetCompartmentVisualId, String childVisualId) {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
 		Command command = getCreateChildCommand(childVisualId, targetCompartmentEP);
 		Assert.assertTrue("The " + childVisualId + "-visualId should be created in the " + targetCompartmentEP.getClass().getName(), command.canExecute());
 	}
 
-	public void checkUnexecutableDrop2Canvas(int targetVisualId, int targetCompartmentVisualId, int childVisualId) {
+	public void checkUnexecutableDrop2Canvas(String targetVisualId, String targetCompartmentVisualId, String childVisualId) {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
 		IGraphicalEditPart childEP = createChild(childVisualId, targetCompartmentEP, 0);
@@ -97,7 +97,7 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Assert.assertFalse("The " + childEP.getClass().getName() + " can't be droped to the Canvas.", command.canExecute());
 	}
 
-	public void checkDropPropertyFromModelExplorer2Canvas(int targetVisualId, int targetCompartmentVisualId, int childVisualId) throws Exception {
+	public void checkDropPropertyFromModelExplorer2Canvas(String targetVisualId, String targetCompartmentVisualId, String childVisualId) throws Exception {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
 		IGraphicalEditPart childEP = createChild(childVisualId, targetCompartmentEP, 0);
@@ -109,7 +109,7 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Assert.assertTrue(ddCommand.canExecute());
 	}
 
-	public void checkDropAssociationPropertyFromModelExplorer(int targetVisualId, int targetCompartmentVisualId, IElementType associationType) throws Exception {
+	public void checkDropAssociationPropertyFromModelExplorer(String targetVisualId, String targetCompartmentVisualId, IElementType associationType) throws Exception {
 		IGraphicalEditPart sourceEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 1);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(sourceEP, targetCompartmentVisualId);
@@ -167,7 +167,7 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		return req;
 	}
 
-	private Command getCreateChildCommand(int childVID, IGraphicalEditPart container) {
+	private Command getCreateChildCommand(String childVID, IGraphicalEditPart container) {
 		final IElementType childType = getElementType(childVID);
 		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(childType, container.getDiagramPreferencesHint());
 		requestcreation.setSize(new Dimension(1, 1));
@@ -175,7 +175,7 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		return container.getCommand(requestcreation);
 	}
 
-	public void checkUnexecutableDrop(int targetVisualId, int targetCompartmentVisualId, int dropableVisualId) {
+	public void checkUnexecutableDrop(String targetVisualId, String targetCompartmentVisualId, String dropableVisualId) {
 		IGraphicalEditPart targetEP = createChild(targetVisualId, myDiagramEditPart, 0);
 		IGraphicalEditPart dropableEP = createChild(dropableVisualId, myDiagramEditPart, 1);
 		IGraphicalEditPart targetCompartmentEP = findChildBySemanticHint(targetEP, targetCompartmentVisualId);
@@ -183,11 +183,11 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		Assert.assertFalse("The " + dropableEP.getClass().getName() + " can't be droped to the " + targetCompartmentEP.getClass().getName(), command.canExecute());
 	}
 
-	protected abstract int getDefaultNamedElementVisualId();
+	protected abstract String getDefaultNamedElementVisualId();
 
-	protected abstract IElementType getElementType(int childVID);
+	protected abstract IElementType getElementType(String childVID);
 
-	protected abstract int getVisualID(View view);
+	protected abstract String getVisualID(View view);
 
 	private void executeOnUIThread(final Command command) {
 		Display.getDefault().syncExec(new Runnable() {
@@ -236,14 +236,14 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		return c;
 	}
 
-	private IGraphicalEditPart createChild(int childVID, IGraphicalEditPart container, int number) {
+	private IGraphicalEditPart createChild(String childVID, IGraphicalEditPart container, int number) {
 		Command cmd = getCreateChildCommand(childVID, container);
 		executeOnUIThread(cmd);
 		return findChild(container, childVID, number);
 	}
 
 
-	private IGraphicalEditPart findChild(IGraphicalEditPart parent, int vid, int number) {
+	private IGraphicalEditPart findChild(IGraphicalEditPart parent, String vid, int number) {
 		List<?> children = parent.getChildren();
 		if (number > children.size() - 1) {
 			Assert.fail("Parent " + parent + ", type " + parent.getNotationView() + " hasn't less children then " + number);
@@ -254,8 +254,8 @@ public abstract class TestListCompartmentHelper extends AbstractPapyrusTest {
 		return childEP;
 	}
 
-	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
+	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, String vid) {
+		IGraphicalEditPart childEP = parent.getChildBySemanticHint(vid);
 		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
 		return childEP;
 	}

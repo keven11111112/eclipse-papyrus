@@ -60,8 +60,8 @@ public final class OccurrenceSpecificationUtils {
 		// utility class
 	}
 
-	public static boolean isOccurrenceSpecificationEditPart(final int visualID) {
-		return visualID == OccurrenceSpecificationEditPartCN.VISUAL_ID || visualID == MessageOccurrenceSpecificationEditPartCN.VISUAL_ID || visualID == DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID;
+	public static boolean isOccurrenceSpecificationEditPart(final String visualID) {
+		return OccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID) || MessageOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID) || DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID);
 	}
 
 	public static boolean isOccurrenceSpecificationEditPart(final EditPart editPart) {
@@ -69,7 +69,7 @@ public final class OccurrenceSpecificationUtils {
 	}
 
 	public static boolean isOccurrenceSpecificationView(final View view) {
-		final int visualID = UMLVisualIDRegistry.getVisualID(view);
+		final String visualID = UMLVisualIDRegistry.getVisualID(view);
 		return isOccurrenceSpecificationEditPart(visualID);
 	}
 
@@ -293,8 +293,8 @@ public final class OccurrenceSpecificationUtils {
 				final List<View> viewsToRemove = new ArrayList<View>();
 				for (int i = before ? index - 1 : index + 1; before ? i >= 0 : i < children.size(); i = (before ? i - 1 : i + 1)) {
 					final View childView = children.get(i);
-					final int visualID = UMLVisualIDRegistry.getVisualID(childView);
-					if (isOccurrenceSpecificationEditPart(visualID) || StateInvariantUtils.isStateInvariantEditPart(visualID) || visualID == FullStateInvariantVerticalLineEditPart.VISUAL_ID) {
+					final String visualID = UMLVisualIDRegistry.getVisualID(childView);
+					if (isOccurrenceSpecificationEditPart(visualID) || StateInvariantUtils.isStateInvariantEditPart(visualID) || FullStateInvariantVerticalLineEditPart.VISUAL_ID.equals(visualID)) {
 						viewsToRemove.add(childView);
 					}
 				}
@@ -302,8 +302,8 @@ public final class OccurrenceSpecificationUtils {
 				// since we deleted the preceding state invariant)
 				if (before && index + 1 < children.size()) {
 					final View childView = children.get(index + 1);
-					final int visualID = UMLVisualIDRegistry.getVisualID(childView);
-					if (visualID == FullStateInvariantVerticalLineEditPart.VISUAL_ID) {
+					final String visualID = UMLVisualIDRegistry.getVisualID(childView);
+					if (FullStateInvariantVerticalLineEditPart.VISUAL_ID.equals(visualID)) {
 						viewsToRemove.add(childView);
 					}
 				}

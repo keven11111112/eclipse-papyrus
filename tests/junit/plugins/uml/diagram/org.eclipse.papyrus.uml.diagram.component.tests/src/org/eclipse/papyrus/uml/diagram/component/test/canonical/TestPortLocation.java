@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ComponentCompositeCompartmentEditPart;

@@ -273,7 +273,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
@@ -281,148 +280,148 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CLAZZ_TOOL_CLASS)) {
+		if(toolId.equals(CLAZZ_TOOL_CLASS)) {
 			return createClass1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER)) {
+		if(toolId.equals(CLAZZ_TOOL_CLASSIFIERTEMPLATEPARAMETER)) {
 			return createClassifierTemplateParameter2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_COMMENT)) {
+		if(toolId.equals(CLAZZ_TOOL_COMMENT)) {
 			return createComment5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_COMPONENT)) {
+		if(toolId.equals(CLAZZ_TOOL_COMPONENT)) {
 			return createComponent4CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CONSTRAINT)) {
+		if(toolId.equals(CLAZZ_TOOL_CONSTRAINT)) {
 			return createConstraint5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_DATATYPE)) {
+		if(toolId.equals(CLAZZ_TOOL_DATATYPE)) {
 			return createDataType6CreationTool();
 		}
-		if (toolId.equals(CREATEDURATIONOBSERVATION7CREATIONTOOL)) {
+		if(toolId.equals(CREATEDURATIONOBSERVATION7CREATIONTOOL)) {
 			return createDurationObservation7CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ENUMERATION)) {
+		if(toolId.equals(CLAZZ_TOOL_ENUMERATION)) {
 			return createEnumeration8CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
+		if(toolId.equals(CLAZZ_TOOL_ENUMERATIONLITERAL)) {
 			return createEnumerationliteral9CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INTERFACE)) {
+		if(toolId.equals(CLAZZ_TOOL_INTERFACE)) {
 			return createInterface10CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATION)) {
+		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATION)) {
 			return createInstanceSpecification11CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INFORMATIONITEM)) {
+		if(toolId.equals(CLAZZ_TOOL_INFORMATIONITEM)) {
 			return createInformationItem12CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PRIMITIVETYPE)) {
+		if(toolId.equals(CLAZZ_TOOL_PRIMITIVETYPE)) {
 			return createPrimitiveType13CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_MODEL)) {
+		if(toolId.equals(CLAZZ_TOOL_MODEL)) {
 			return createModel14CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_OPERATION)) {
+		if(toolId.equals(CLAZZ_TOOL_OPERATION)) {
 			return createOperation15CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER)) {
+		if(toolId.equals(CLAZZ_TOOL_OPERATIONTEMPLATEPARAMETER)) {
 			return createOperationTemplateParameterCreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PACKAGE)) {
+		if(toolId.equals(CLAZZ_TOOL_PACKAGE)) {
 			return createPackage17CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PROPERTY)) {
+		if(toolId.equals(CLAZZ_TOOL_PROPERTY)) {
 			return createProperty18CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_RECEPTION)) {
+		if(toolId.equals(CLAZZ_TOOL_RECEPTION)) {
 			return createReception19CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
+		if(toolId.equals(CLAZZ_TOOL_REDEFINABLETEMPLATESIGNATURE)) {
 			return createRedefinableTemplateSignature20CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_SIGNAL)) {
+		if(toolId.equals(CLAZZ_TOOL_SIGNAL)) {
 			return createSignal21CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_SLOT)) {
+		if(toolId.equals(CLAZZ_TOOL_SLOT)) {
 			return createSlot22CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATEPARAMETER)) {
 			return createTemplateParameter23CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_TEMPLATESIGNATURE)) {
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATESIGNATURE)) {
 			return createTemplateSignatureCreationTool();
 		}
-		if (toolId.equals(CREATETIMEOBSERVATION22CREATIONTOOL)) {
+		if(toolId.equals(CREATETIMEOBSERVATION22CREATIONTOOL)) {
 			return createTimeObservation22CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER)) {
+		if(toolId.equals(CLAZZ_TOOL_CONNECTABLEELEMENTTEMPLATEPARAMETER)) {
 			return createConnectableElementTemplateParameter26CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
+		if(toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
 			return createAbstraction1CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
 			return createAssociation2CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
 			return createAssociationBranch3CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
 			return createAssociationClass4CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CONTAINMENTLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_CONTAINMENTLINK)) {
 			return createContainmentLink5CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_CONTEXTLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_CONTEXTLINK)) {
 			return createContextLink6CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
+		if(toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
 			return createDependency7CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
+		if(toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
 			return createDependencyBranch8CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
+		if(toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
 			return createElementImport9CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
+		if(toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
 			return createGeneralization10CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
+		if(toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
 			return createGeneralizationSet11CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INFORMATIONFLOWLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_INFORMATIONFLOWLINK)) {
 			return createInformationFlowLinkCreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
+		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
 			return createInstanceSpecificationLinkCreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
+		if(toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
 			return createInterfaceRealization14CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_LINK)) {
+		if(toolId.equals(CLAZZ_TOOL_LINK)) {
 			return createLink15CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
+		if(toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
 			return createPackageImport16CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
+		if(toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
 			return createPackageMerge17CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
+		if(toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
 			return createProfileApplication18CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_REALIZATION)) {
+		if(toolId.equals(CLAZZ_TOOL_REALIZATION)) {
 			return createRealization19CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
+		if(toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
 			return createSubstitution20CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
 			return createTemplateBinding21CreationTool();
 		}
-		if (toolId.equals(CLAZZ_TOOL_USAGE)) {
+		if(toolId.equals(CLAZZ_TOOL_USAGE)) {
 			return createUsage22CreationTool();
 		}
 		// default return: null
@@ -434,7 +433,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}
@@ -481,9 +479,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Component_2002);
 		types.add(UMLElementTypes.Component_3021);
-		types.add(UMLElementTypes.Component_3055);
-		types.add(UMLElementTypes.Component_3056);
-		types.add(UMLElementTypes.Component_3057);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}

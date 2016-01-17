@@ -30,15 +30,16 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.CustomGateItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.edit.policies.TimingDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.custom.figures.GateFigure;
 import org.eclipse.papyrus.uml.diagram.timing.custom.locator.LabelInCompartmentLocator;
-import org.eclipse.papyrus.uml.diagram.timing.edit.policies.GateItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
@@ -50,7 +51,7 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 69;
+	public static final String VISUAL_ID = "69";
 
 	/**
 	 * @generated
@@ -76,7 +77,8 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new GateItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new TimingDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomGateItemSemanticEditPolicy());
@@ -92,22 +94,24 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case GateLabelEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case GateLabelEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
 					}
-					;
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -139,7 +143,7 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	public GateFigure getPrimaryShape() {
-		return (GateFigure) primaryShape;
+		return (GateFigure)primaryShape;
 	}
 
 	/**
@@ -147,11 +151,10 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof GateLabelEditPart) {
+		if(borderItemEditPart instanceof GateLabelEditPart) {
 			IBorderItemLocator locator = new LabelInCompartmentLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
@@ -160,7 +163,7 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(40, 40);
 		return result;
 	}
 
@@ -180,7 +183,6 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
-
 	}
 
 	/**
@@ -200,7 +202,7 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -211,7 +213,7 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -229,8 +231,8 @@ public class GateEditPart extends BorderedBorderItemEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

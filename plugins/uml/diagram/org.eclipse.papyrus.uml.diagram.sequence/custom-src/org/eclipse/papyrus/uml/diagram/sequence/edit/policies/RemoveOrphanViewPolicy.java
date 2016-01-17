@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineNameEditPart;
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
-	public int[] notOrphanNode = { LifelineNameEditPart.VISUAL_ID };
+	public String[] notOrphanNode = { LifelineNameEditPart.VISUAL_ID };
 
 	public RemoveOrphanViewPolicy() {
 		super();

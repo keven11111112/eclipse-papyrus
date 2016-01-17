@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineCompa
 public class StateMachineReconcilerForCompartment extends ReconcilerForCompartment {
 
 	/** The compartments visual id. */
-	private List<Integer> compartmentsVisualID = Arrays.asList(
+	private List<String> compartmentsVisualID = Arrays.asList(
 			RegionCompartmentEditPart.VISUAL_ID,
 			StateMachineCompartmentEditPart.VISUAL_ID,
 			StateCompartmentEditPart.VISUAL_ID);
@@ -39,7 +39,7 @@ public class StateMachineReconcilerForCompartment extends ReconcilerForCompartme
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment#getCompartmentsVisualID()
 	 */
 	@Override
-	public List<Integer> getCompartmentsVisualID() {
+	public List<String> getCompartmentsVisualID() {
 		return compartmentsVisualID;
 	}
 

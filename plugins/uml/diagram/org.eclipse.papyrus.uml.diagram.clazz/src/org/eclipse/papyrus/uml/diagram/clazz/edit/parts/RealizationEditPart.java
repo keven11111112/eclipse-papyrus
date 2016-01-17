@@ -32,7 +32,7 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final String VISUAL_ID = "4005";
 
 	/**
 	 * @generated
@@ -56,11 +56,11 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeRealizationEditPart) {
-			((AppliedStereotypeRealizationEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof AppliedStereotypeRealizationEditPart) {
+			((AppliedStereotypeRealizationEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
-		if (childEditPart instanceof RealizationNameEditPart) {
-			((RealizationNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof RealizationNameEditPart) {
+			((RealizationNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
 		return false;
 	}
@@ -70,7 +70,7 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -80,10 +80,10 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AppliedStereotypeRealizationEditPart) {
+		if(childEditPart instanceof AppliedStereotypeRealizationEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof RealizationNameEditPart) {
+		if(childEditPart instanceof RealizationNameEditPart) {
 			return true;
 		}
 		return false;
@@ -94,7 +94,7 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -118,6 +118,6 @@ public class RealizationEditPart extends UMLConnectionNodeEditPart implements IT
 	 */
 	@Override
 	public InterfaceRealizationFigure getPrimaryShape() {
-		return (InterfaceRealizationFigure) getFigure();
+		return (InterfaceRealizationFigure)getFigure();
 	}
 }

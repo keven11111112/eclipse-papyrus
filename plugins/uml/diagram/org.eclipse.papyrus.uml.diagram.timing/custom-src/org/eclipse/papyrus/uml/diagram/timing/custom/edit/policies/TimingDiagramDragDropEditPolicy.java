@@ -93,7 +93,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/** Elements for which we want to specialize the drop */
 	@SuppressWarnings("boxing")
-	private static final Integer[] SPECIFIC_DROP_ELEMENT_IDS = { InteractionEditPartTN.VISUAL_ID, FullLifelineEditPartCN.VISUAL_ID, CompactLifelineEditPartCN.VISUAL_ID, MessageSyncEditPart.VISUAL_ID, MessageAsyncEditPart.VISUAL_ID,
+	private static final String[] SPECIFIC_DROP_ELEMENT_IDS = { InteractionEditPartTN.VISUAL_ID, FullLifelineEditPartCN.VISUAL_ID, CompactLifelineEditPartCN.VISUAL_ID, MessageSyncEditPart.VISUAL_ID, MessageAsyncEditPart.VISUAL_ID,
 			MessageReplyEditPart.VISUAL_ID, MessageCreateEditPart.VISUAL_ID, MessageDeleteEditPart.VISUAL_ID, MessageFoundEditPart.VISUAL_ID, MessageLostEditPart.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, TimeConstraintEditPart.VISUAL_ID,
 			DurationObservationEditPartCN.VISUAL_ID, DurationConstraintEditPartCN.VISUAL_ID, GeneralOrderingEditPart.VISUAL_ID, GateEditPart.VISUAL_ID };
 
@@ -103,16 +103,16 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/** override the drop command */
 	@Override
-	protected Command getSpecificDropCommand(final DropObjectsRequest dropRequest, final Element semanticElement, final int nodeVISUALID, final int linkVISUALID) {
-		switch (nodeVISUALID) {
-		case InteractionEditPartTN.VISUAL_ID:
-			return new ICommandProxy(dropMainElement(dropRequest, semanticElement, nodeVISUALID));
-		case FullLifelineEditPartCN.VISUAL_ID:
-		case CompactLifelineEditPartCN.VISUAL_ID:
-			return new ICommandProxy(dropLifeline(dropRequest, semanticElement, nodeVISUALID));
-		default:
+	protected Command getSpecificDropCommand(final DropObjectsRequest dropRequest, final Element semanticElement, final String nodeVISUALID, final String linkVISUALID) {
+		if (nodeVISUALID != null) {
+			switch (nodeVISUALID) {
+			case InteractionEditPartTN.VISUAL_ID:
+				return new ICommandProxy(dropMainElement(dropRequest, semanticElement, nodeVISUALID));
+			case FullLifelineEditPartCN.VISUAL_ID:
+			case CompactLifelineEditPartCN.VISUAL_ID:
+				return new ICommandProxy(dropLifeline(dropRequest, semanticElement, nodeVISUALID));
+			}
 		}
-
 		if (getHost().getModel() instanceof View) {
 			final View hostView = (View) getHost().getModel();
 			if (MessageUtils.isMessage(linkVISUALID)) {
@@ -120,22 +120,22 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					return new ICommandProxy(DropUtils.getDropMessageCommand((Message) semanticElement, hostView, getViewer()));
 				}
 			}
-			if (nodeVISUALID == TimeObservationEditPart.VISUAL_ID) {
+			if (TimeObservationEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 				return new ICommandProxy(DropUtils.getDropTimeObservationCommand((TimeObservation) semanticElement, hostView, getViewer()));
 			}
-			if (nodeVISUALID == TimeConstraintEditPart.VISUAL_ID) {
+			if (TimeConstraintEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 				return new ICommandProxy(DropUtils.getDropTimeConstraintCommand((TimeConstraint) semanticElement, hostView, getViewer()));
 			}
-			if (nodeVISUALID == DurationObservationEditPartCN.VISUAL_ID) {
+			if (DurationObservationEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
 				return new ICommandProxy(DropUtils.getDropDurationObservationCommand((DurationObservation) semanticElement, hostView, getViewer()));
 			}
-			if (nodeVISUALID == DurationConstraintEditPartCN.VISUAL_ID) {
+			if (DurationConstraintEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
 				return new ICommandProxy(DropUtils.getDropDurationConstraintCommand((DurationConstraint) semanticElement, hostView, getViewer()));
 			}
-			if (nodeVISUALID == GeneralOrderingEditPart.VISUAL_ID) {
+			if (GeneralOrderingEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 				return new ICommandProxy(DropUtils.getDropGeneralOrderingCommand((GeneralOrdering) semanticElement, hostView, getViewer()));
 			}
-			if (nodeVISUALID == GateEditPart.VISUAL_ID) {
+			if (GateEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 				return new ICommandProxy(DropUtils.getDropGateCommand((Gate) semanticElement, hostView, getViewer()));
 			}
 		}
@@ -144,7 +144,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	}
 
-	private ICommand dropLifeline(final DropObjectsRequest dropRequest, final Element semanticElement, final int nodeVISUALID) {
+	private ICommand dropLifeline(final DropObjectsRequest dropRequest, final Element semanticElement, final String nodeVISUALID) {
 		if (!(semanticElement instanceof Lifeline)) {
 			throw new IllegalArgumentException();
 		}
@@ -288,7 +288,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		};
 	}
 
-	private ICommand dropMainElement(final DropObjectsRequest dropRequest, final Element semanticElement, final int nodeVISUALID) {
+	private ICommand dropMainElement(final DropObjectsRequest dropRequest, final Element semanticElement, final String nodeVISUALID) {
 		if (canBeDropped(semanticElement)) {
 			final IHintedType type = ((IHintedType) getUMLElementType(nodeVISUALID));
 			String semanticHint = null;
@@ -308,17 +308,17 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/** @return the set of element ids for which we want to specialize the drop */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
-		return new HashSet<Integer>(Arrays.asList(SPECIFIC_DROP_ELEMENT_IDS));
+	protected Set<String> getDroppableElementVisualId() {
+		return new HashSet<String>(Arrays.asList(SPECIFIC_DROP_ELEMENT_IDS));
 	}
 
 	@Override
-	public IElementType getUMLElementType(final int elementID) {
+	public IElementType getUMLElementType(final String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
 	@Override
-	public int getNodeVisualID(final View containerView, final EObject domainElement) {
+	public String getNodeVisualID(final View containerView, final EObject domainElement) {
 		if (domainElement instanceof Gate && (String.valueOf(InteractionEditPartTN.VISUAL_ID).equals(containerView.getType()) || String.valueOf(InteractionCompartmentEditPartTN.VISUAL_ID).equals(containerView.getType()))) {
 			// allow dropping a Gate directly on an Interaction or Interaction compartment
 			return GateEditPart.VISUAL_ID;
@@ -327,7 +327,7 @@ public class TimingDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	@Override
-	public int getLinkWithClassVisualID(final EObject domainElement) {
+	public String getLinkWithClassVisualID(final EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 

@@ -61,11 +61,13 @@ import org.eclipse.papyrus.uml.diagram.profile.custom.commands.SetStereotypeVisi
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.ProfileLinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ExtensionEditPart;
@@ -97,8 +99,8 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
-		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
+	protected Set<String> getDroppableElementVisualId() {
+		Set<String> droppableElementsVisualID = new HashSet<String>();
 		droppableElementsVisualID.add(DependencyNodeEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ElementImportEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ExtensionEditPart.VISUAL_ID);
@@ -116,7 +118,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
+	public String getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 
@@ -124,7 +126,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
@@ -132,7 +134,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
@@ -150,12 +152,12 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		Collection<?> endtypes = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
 		if (endtypes.size() == 2) {
 			Element source = (Element) endtypes.toArray()[0];
 			Element target = (Element) endtypes.toArray()[1];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (endtypes.size() > 2) {
 			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
@@ -176,7 +178,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	// protected Command dropAssociationClass(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	// protected Command dropAssociationClass(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 	// AssociationClassHelper associationClassHelper = new AssociationClassHelper(getEditingDomain());
 	// return associationClassHelper.dropAssociationClass((AssociationClass)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 	// }
@@ -192,13 +194,13 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		Collection<?> sources = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = ProfileLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if (sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element) sources.toArray()[0];
 			Element target = (Element) targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Dependency"), source, target, DependencyEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
 		}
 		if (sources.size() > 1 || targets.size() > 1) {
 			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());
@@ -211,32 +213,34 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * {@inheritedDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
+		if (linkVISUALID != null) {
 		// /!\ Warning the order is important! test on the superclass and AssociationNode is a super class for ExtensionEditPart!
-		switch (linkVISUALID) {
-		case ElementImportEditPart.VISUAL_ID:
-			return dropElementImport(dropRequest, semanticElement, nodeVISUALID);
-		case ExtensionEditPart.VISUAL_ID:
-			return dropExtension(dropRequest, semanticElement, linkVISUALID);
-		default:
+			switch (linkVISUALID) {
+			case ElementImportEditPart.VISUAL_ID:
+				return dropElementImport(dropRequest, semanticElement, nodeVISUALID);
+			case ExtensionEditPart.VISUAL_ID:
+				return dropExtension(dropRequest, semanticElement, linkVISUALID);
+			}
 		}
-		switch (nodeVISUALID) {
-		case 2014:
-			return dropDependency(dropRequest, semanticElement, nodeVISUALID);
-		case 2015:
-			return dropAssociation(dropRequest, semanticElement, nodeVISUALID);
-		case CommentEditPart.VISUAL_ID:
-		case CommentEditPartCN.VISUAL_ID:
-			return dropComment(dropRequest, semanticElement, nodeVISUALID);
-		case ConstraintEditPart.VISUAL_ID:
-		case ConstraintEditPartCN.VISUAL_ID:
-			return dropConstraint(dropRequest, (Constraint) semanticElement, nodeVISUALID);
-		case MetaclassEditPart.VISUAL_ID:
-		case MetaclassEditPartCN.VISUAL_ID:
-			return dropMetaclass(dropRequest, semanticElement, nodeVISUALID);
-		default:
-			return UnexecutableCommand.INSTANCE;
+		if (nodeVISUALID != null) {
+			switch (nodeVISUALID) {
+			case DependencyNodeEditPart.VISUAL_ID:
+				return dropDependency(dropRequest, semanticElement, nodeVISUALID);
+			case AssociationNodeEditPart.VISUAL_ID:
+				return dropAssociation(dropRequest, semanticElement, nodeVISUALID);
+			case CommentEditPart.VISUAL_ID:
+			case CommentEditPartCN.VISUAL_ID:
+				return dropComment(dropRequest, semanticElement, nodeVISUALID);
+			case ConstraintEditPart.VISUAL_ID:
+			case ConstraintEditPartCN.VISUAL_ID:
+				return dropConstraint(dropRequest, (Constraint) semanticElement, nodeVISUALID);
+			case MetaclassEditPart.VISUAL_ID:
+			case MetaclassEditPartCN.VISUAL_ID:
+				return dropMetaclass(dropRequest, semanticElement, nodeVISUALID);
+			}
 		}
+		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
@@ -251,7 +255,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * @return
 	 * 		the command to drop the metaclass
 	 */
-	protected Command dropMetaclass(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+	protected Command dropMetaclass(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID) {
 		// we test if the element to drop is a Class or a Metaclass
 		if (Util.isMetaclass((Type) semanticElement)) {
 			CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
@@ -284,17 +288,17 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 		// Test canvas element
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart) getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 		if (!(graphicalParentObject instanceof org.eclipse.uml2.uml.Package)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (nodeVISUALID == CommentEditPart.VISUAL_ID) {
+		if (CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_1002,
 					(IHintedType) UMLElementTypes.CommentAnnotatedElement_1022);
-		} else if (nodeVISUALID == CommentEditPartCN.VISUAL_ID) {
+		} else if (CommentEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropCommentCommand((Comment) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView(), (IHintedType) UMLElementTypes.Comment_1007,
 					(IHintedType) UMLElementTypes.CommentAnnotatedElement_1022);
 		}
@@ -313,7 +317,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the command
 	 */
-	protected Command dropConstraint(DropObjectsRequest dropRequest, Constraint constraint, int nodeVISUALID) {
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Constraint constraint, String nodeVISUALID) {
 		ICommand dropConstraintCommand = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), constraint, dropRequest);
 		if (constraint.getContext() != null) {
 			ShowConstraintContextLink showConstraintContextLink = new ShowConstraintContextLink(getEditingDomain(), (GraphicalEditPart) getHost(), constraint);
@@ -344,7 +348,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *            hte link visualid
 	 * @return
 	 */
-	protected Command dropExtension(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropExtension(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> sources = ProfileLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = ProfileLinkMappingHelper.getInstance().getTarget(semanticLink);
 		Element source = (Element) sources.toArray()[0];
@@ -363,7 +367,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * @param linkVISUALID
 	 * @return
 	 */
-	protected Command dropElementImport(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropElementImport(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		if (semanticLink instanceof ElementImport) {
 			if (((ElementImport) semanticLink).getImportedElement() instanceof Class) {
 				Class metaclass = (Class) ((ElementImport) semanticLink).getImportedElement();
@@ -432,7 +436,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the composite command
 	 */
-	CompositeCommand dropBinaryLinkExtension(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+	CompositeCommand dropBinaryLinkExtension(CompositeCommand cc, Element source, Element target, String linkVISUALID, Point location, Element semanticLink) {
 		// look for editpart
 		GraphicalEditPart sourceEditPart = (GraphicalEditPart) lookForEditPart(source);
 		GraphicalEditPart targetEditPart = (GraphicalEditPart) lookForEditPart(target);

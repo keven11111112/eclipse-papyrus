@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterLinkDescriptor;
 
 /**
  * @generated
@@ -25,14 +25,14 @@ public class UMLLinkDescriptor extends UpdaterLinkDescriptor {
 	/**
 	 * @generated
 	 */
-	public UMLLinkDescriptor(EObject source, EObject destination, IElementType elementType, int linkVID) {
+	public UMLLinkDescriptor(EObject source, EObject destination, IElementType elementType, String linkVID) {
 		super(source, destination, elementType, linkVID);
 	}
 
 	/**
 	 * @generated
 	 */
-	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, int linkVID) {
+	public UMLLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType, String linkVID) {
 		super(source, destination, linkElement, elementType, linkVID);
 	}
 }

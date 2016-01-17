@@ -31,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceFloatingLabelEditPartPCN;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortFloatingNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceFloatingLabelEditPart;
@@ -68,7 +67,6 @@ public class ComponentReconcilier extends DiagramReconciler {
 		map.put(String.valueOf(DependencyNodeEditPart.VISUAL_ID), String.valueOf(DependencyNodeFloatingLabelEditPart.VISUAL_ID));
 		map.put(String.valueOf(InterfaceEditPart.VISUAL_ID), String.valueOf(InterfaceFloatingLabelEditPart.VISUAL_ID));
 		map.put(String.valueOf(InterfaceEditPartPCN.VISUAL_ID), String.valueOf(InterfaceFloatingLabelEditPartPCN.VISUAL_ID));
-		map.put(String.valueOf(PortFloatingNameEditPart.VISUAL_ID), String.valueOf(PortFloatingNameEditPart.VISUAL_ID));
 		map.put(String.valueOf(RectangleInterfaceEditPart.VISUAL_ID), String.valueOf(RectangleInterfaceFloatingLabelEditPart.VISUAL_ID));
 		map.put(String.valueOf(RectangleInterfaceEditPartCN.VISUAL_ID), String.valueOf(RectangleInterfaceFloatingLabelEditPartCN.VISUAL_ID));
 

@@ -35,8 +35,8 @@ public class StateMachineUtil {
 		return findChildBySemanticHint(region, RegionCompartmentEditPart.VISUAL_ID);
 	}
 
-	public static IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
+	public static IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, String vid) {
+		IGraphicalEditPart childEP = parent.getChildBySemanticHint(vid);
 		Assert.assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
 		return childEP;
 	}

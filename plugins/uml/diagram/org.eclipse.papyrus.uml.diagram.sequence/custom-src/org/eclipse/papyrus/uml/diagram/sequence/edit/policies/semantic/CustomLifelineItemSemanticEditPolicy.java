@@ -323,14 +323,14 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 			ReconnectRequest reconnReq = (ReconnectRequest) request;
 			Object model = reconnReq.getConnectionEditPart().getModel();
 			// Source of Message Found should be always located on Interaction.
-			if (model instanceof View && 4009 == UMLVisualIDRegistry.getVisualID((View) model)) {
+			if (model instanceof View && UMLVisualIDRegistry.getVisualID((View) model).equals(Message7EditPart.VISUAL_ID)) {
 				return false;
 			}
 		} else if (REQ_RECONNECT_TARGET.equals(request.getType())) {
 			ReconnectRequest reconnReq = (ReconnectRequest) request;
 			Object model = reconnReq.getConnectionEditPart().getModel();
 			// Target of Message Lost should be always located on Interaction.
-			if (model instanceof View && 4008 == UMLVisualIDRegistry.getVisualID((View) model)) {
+			if (model instanceof View && UMLVisualIDRegistry.getVisualID((View) model).equals(Message6EditPart.VISUAL_ID)) {
 				return false;
 			}
 		}

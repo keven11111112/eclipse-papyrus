@@ -46,7 +46,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.swt.graphics.Color;
@@ -59,7 +58,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3124;
+	public static final String VISUAL_ID = "3124";
 
 	/**
 	 * @generated
@@ -85,16 +84,12 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.StartClassifierBehaviorActionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -112,25 +107,28 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case StartClassifierBehaviorActionFloatingNameEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case StartClassifierBehaviorActionFloatingNameEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
-				case InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
-				case ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
-				case ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
-					return new BorderItemResizableEditPolicy();
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					case InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
+					case ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
+					case ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
+						return new BorderItemResizableEditPolicy();
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -159,18 +157,16 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -186,49 +182,35 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure) primaryShape;
+		return (RoundedCompartmentFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StartClassifierBehaviorActionNameEditPart) {
-			((StartClassifierBehaviorActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof StartClassifierBehaviorActionNameEditPart) {
+			((StartClassifierBehaviorActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
+		if(childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInStartClassifierBehaviorActionAsObjectEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
+		if(childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
+		if(childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -236,19 +218,19 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof StartClassifierBehaviorActionNameEditPart) {
+		if(childEditPart instanceof StartClassifierBehaviorActionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof InputPinInStartClassifierBehaviorActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInStartClassifierBehaviorActionAsObjectEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ValuePinInStartClassifierBehaviorActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInStartClassifierBehaviorActionAsObjectEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ActionPinInStartClassifierBehaviorActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInStartClassifierBehaviorActionAsObjectEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -258,7 +240,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -268,7 +250,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -278,7 +260,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -288,7 +270,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof StartClassifierBehaviorActionFloatingNameEditPart) {
+		if(borderItemEditPart instanceof StartClassifierBehaviorActionFloatingNameEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -314,7 +296,6 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -326,7 +307,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -338,7 +319,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -348,7 +329,7 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -364,8 +345,8 @@ public class StartClassifierBehaviorActionEditPart extends RoundedCompartmentEdi
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

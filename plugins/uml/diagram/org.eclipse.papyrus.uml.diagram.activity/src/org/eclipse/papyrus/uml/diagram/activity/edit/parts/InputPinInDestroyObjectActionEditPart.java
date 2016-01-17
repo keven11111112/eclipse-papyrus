@@ -45,7 +45,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3096;
+	public static final String VISUAL_ID = "3096";
 
 	/**
 	 * @generated
@@ -72,9 +72,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
@@ -93,18 +91,16 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -115,22 +111,25 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
-				case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case InputPinInDestroyObjectActionLabelEditPart.VISUAL_ID:
+					case InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -161,7 +160,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 */
 	@Override
 	public InputPinFigure getPrimaryShape() {
-		return (InputPinFigure) primaryShape;
+		return (InputPinFigure)primaryShape;
 	}
 
 	/**
@@ -169,11 +168,10 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof InputPinInDestroyObjectActionLabelEditPart) {
+		if(borderItemEditPart instanceof InputPinInDestroyObjectActionLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-			if (borderItemEditPart instanceof InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart) {
+		} else if(borderItemEditPart instanceof InputPinInDestroyObjectActionAppliedStereotypeWrappingLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -205,7 +203,6 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
-
 	}
 
 	/**
@@ -225,7 +222,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -236,7 +233,7 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -254,8 +251,8 @@ public class InputPinInDestroyObjectActionEditPart extends AbstractPinEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

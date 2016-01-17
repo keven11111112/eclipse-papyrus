@@ -50,7 +50,7 @@ public class CustomFullLifelineStateDefinitionCompartmentCreationEditPolicy exte
 	protected Command getCreateCommand(final CreateViewRequest request) {
 		final Command superCommand = super.getCreateCommand(request);
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
-		if (viewDescriptors.size() == 1 && Integer.toString(StateDefinitionEditPart.VISUAL_ID).equals(viewDescriptors.get(0).getSemanticHint())) {
+		if (viewDescriptors.size() == 1 && StateDefinitionEditPart.VISUAL_ID.equals(viewDescriptors.get(0).getSemanticHint())) {
 			final View lifelineView = (View) getHost().getParent().getModel();
 			final Lifeline lifeline = (Lifeline) lifelineView.getElement();
 			final List<?> children = getHost().getChildren();

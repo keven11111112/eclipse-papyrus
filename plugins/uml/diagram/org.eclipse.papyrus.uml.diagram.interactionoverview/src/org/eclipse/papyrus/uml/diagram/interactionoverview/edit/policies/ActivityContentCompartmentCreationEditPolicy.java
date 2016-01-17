@@ -36,12 +36,12 @@ public class ActivityContentCompartmentCreationEditPolicy extends PapyrusCreatio
 		final List<? extends ViewDescriptor> viewDescriptors = request.getViewDescriptors();
 		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
-			if (Integer.toString(CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID).equals(semanticHint)) {
+			if (CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID.equals(semanticHint)) {
 				return getCreateCallBehaviorActionAsInteractionCommand(request, superCommand);
 			}
 		} else if (request instanceof CreateViewRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
-			if (Integer.toString(CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID).equals(semanticHint)) {
+			if (CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID.equals(semanticHint)) {
 				return getCreateCallBehaviorActionAsInteractionCommand(request, superCommand);
 			}
 		}

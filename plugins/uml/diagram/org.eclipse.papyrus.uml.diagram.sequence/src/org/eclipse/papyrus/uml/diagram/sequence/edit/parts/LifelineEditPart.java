@@ -61,7 +61,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3001;
+	public static final String VISUAL_ID = "3001";
 
 	/**
 	 * @generated
@@ -88,13 +88,10 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
-
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
@@ -115,7 +112,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -126,17 +122,20 @@ public class LifelineEditPart extends NamedElementEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case StateInvariantEditPart.VISUAL_ID:
-				case TimeConstraintEditPart.VISUAL_ID:
-				case TimeObservationEditPart.VISUAL_ID:
-				case DurationConstraintEditPart.VISUAL_ID:
-				case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
-					return new BorderItemResizableEditPolicy();
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case StateInvariantEditPart.VISUAL_ID:
+					case TimeConstraintEditPart.VISUAL_ID:
+					case TimeObservationEditPart.VISUAL_ID:
+					case DurationConstraintEditPart.VISUAL_ID:
+					case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+						return new BorderItemResizableEditPolicy();
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -168,69 +167,47 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	public LifelineFigure getPrimaryShape() {
-		return (LifelineFigure) primaryShape;
+		return (LifelineFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof LifelineNameEditPart) {
-			((LifelineNameEditPart) childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
+		if(childEditPart instanceof LifelineNameEditPart) {
+			((LifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
-		if (childEditPart instanceof StateInvariantEditPart) {
+		//Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
+		if(childEditPart instanceof StateInvariantEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
-		if (childEditPart instanceof TimeConstraintEditPart) {
+		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		if(childEditPart instanceof TimeConstraintEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
-		if (childEditPart instanceof TimeObservationEditPart) {
+		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		if(childEditPart instanceof TimeObservationEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((TimeObservationEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
-		if (childEditPart instanceof DurationConstraintEditPart) {
+		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
+		if(childEditPart instanceof DurationConstraintEditPart) {
 			IBorderItemLocator locator = new TimeMarkElementPositionLocator(getMainFigure(), PositionConstants.NONE);
-			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
-		// Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
-		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+		//Papyrus Gencode :Specific locator for the itemBorder of the lifeline.
+		if(childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
 			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
-			getBorderedFigure().getBorderItemContainer().add(((DestructionOccurrenceSpecificationEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((DestructionOccurrenceSpecificationEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -238,27 +215,27 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof LifelineNameEditPart) {
+		if(childEditPart instanceof LifelineNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof StateInvariantEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((StateInvariantEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof StateInvariantEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((StateInvariantEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof TimeConstraintEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TimeConstraintEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof TimeConstraintEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((TimeConstraintEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof TimeObservationEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((TimeObservationEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof TimeObservationEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((TimeObservationEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof DurationConstraintEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((DurationConstraintEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof DurationConstraintEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((DurationConstraintEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((DestructionOccurrenceSpecificationEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof DestructionOccurrenceSpecificationEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((DestructionOccurrenceSpecificationEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -269,7 +246,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -280,7 +257,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -293,7 +270,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -322,7 +299,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -335,7 +311,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -348,7 +324,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -359,7 +335,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -377,8 +353,8 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

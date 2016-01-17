@@ -30,7 +30,7 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final String VISUAL_ID = "4005";
 
 	/**
 	 * @generated
@@ -60,7 +60,7 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -78,7 +78,7 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -102,6 +102,6 @@ public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITre
 	 */
 	@Override
 	public ExceptionHandlerFigure getPrimaryShape() {
-		return (ExceptionHandlerFigure) getFigure();
+		return (ExceptionHandlerFigure)getFigure();
 	}
 }

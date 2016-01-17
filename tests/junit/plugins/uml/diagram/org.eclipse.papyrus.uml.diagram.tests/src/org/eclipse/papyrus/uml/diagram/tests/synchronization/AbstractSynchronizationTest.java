@@ -109,10 +109,10 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		}
 	}
 
-	protected void testSynchronizeTopNode(IElementType elementType, int expectedEditPart) {
+	protected void testSynchronizeTopNode(IElementType elementType, String expectedEditPart) {
 		EObject element = createSemanticElement(elementType, getRootSemanticModel());
 
-		assertThat("Wrong edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 
 		undo();
 
@@ -120,17 +120,17 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 
 		redo();
 
-		assertThat("Wrong edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 	}
 
-	protected void testSynchronizeChildNode(IElementType parentElementType, IElementType childElementType, int expectedEditPart) {
+	protected void testSynchronizeChildNode(IElementType parentElementType, IElementType childElementType, String expectedEditPart) {
 		EObject parent = createSemanticElement(parentElementType, getRootSemanticModel());
 
 		requireEditPart(parent);
 
 		EObject element = createSemanticElement(childElementType, parent);
 
-		assertThat("Wrong child edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong child edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 
 		undo();
 
@@ -138,10 +138,10 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 
 		redo();
 
-		assertThat("Wrong child edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong child edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 	}
 
-	protected void testSynchronizeLink(IElementType sourceElementType, IElementType targetElementType, IElementType linkElementType, int expectedEditPart) {
+	protected void testSynchronizeLink(IElementType sourceElementType, IElementType targetElementType, IElementType linkElementType, String expectedEditPart) {
 		EObject source = createSemanticElement(sourceElementType, getRootSemanticModel());
 		EObject target = createSemanticElement(targetElementType, getRootSemanticModel());
 
@@ -150,7 +150,7 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 
 		EObject element = createSemanticLinkElement(linkElementType, source, target, findOwner(linkElementType, source));
 
-		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 
 		undo();
 
@@ -158,7 +158,7 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 
 		redo();
 
-		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 	}
 
 	protected EObject findOwner(IElementType elementType, EObject initial) {
@@ -174,7 +174,7 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		return result;
 	}
 
-	protected void testSynchronizeLinkInContainer(IElementType containerElementType, IElementType sourceElementType, IElementType targetElementType, IElementType linkElementType, int expectedEditPart) {
+	protected void testSynchronizeLinkInContainer(IElementType containerElementType, IElementType sourceElementType, IElementType targetElementType, IElementType linkElementType, String expectedEditPart) {
 		EObject container = createSemanticElement(containerElementType, getRootSemanticModel());
 		EObject source = createSemanticElement(sourceElementType, container);
 		EObject target = createSemanticElement(targetElementType, container);
@@ -184,7 +184,7 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 
 		EObject element = createSemanticLinkElement(linkElementType, source, target, findOwner(linkElementType, source));
 
-		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 
 		undo();
 
@@ -192,10 +192,10 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 
 		redo();
 
-		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Wrong link edit part", requireEditPart(element).getNotationView().getType(), is(expectedEditPart));
 	}
 
-	protected void testSynchronizeLabelNode(IElementType parentElementType, IElementType childElementType, int expectedCompartment, int expectedEditPart) {
+	protected void testSynchronizeLabelNode(IElementType parentElementType, IElementType childElementType, String expectedCompartment, String expectedEditPart) {
 		EObject parent = createSemanticElement(parentElementType, getRootSemanticModel());
 
 		requireEditPart(parent);
@@ -203,8 +203,8 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		EObject element = createSemanticElement(childElementType, parent);
 
 		IGraphicalEditPart editPart = requireEditPart(element);
-		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(String.valueOf(expectedCompartment)));
-		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(expectedCompartment));
+		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(expectedEditPart));
 
 		undo();
 
@@ -213,11 +213,11 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		redo();
 
 		editPart = requireEditPart(element);
-		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(String.valueOf(expectedCompartment)));
-		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(expectedCompartment));
+		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(expectedEditPart));
 	}
 
-	protected void testSynchronizeLabelNode(IElementType topElementType, IElementType parentElementType, IElementType childElementType, int expectedCompartment, int expectedEditPart) {
+	protected void testSynchronizeLabelNode(IElementType topElementType, IElementType parentElementType, IElementType childElementType, String expectedCompartment, String expectedEditPart) {
 		EObject top = createSemanticElement(topElementType, getRootSemanticModel());
 		EObject parent = createSemanticElement(parentElementType, top);
 
@@ -226,8 +226,8 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		EObject element = createSemanticElement(childElementType, parent);
 
 		IGraphicalEditPart editPart = requireEditPart(element);
-		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(String.valueOf(expectedCompartment)));
-		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(expectedCompartment));
+		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(expectedEditPart));
 
 		undo();
 
@@ -236,8 +236,8 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		redo();
 
 		editPart = requireEditPart(element);
-		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(String.valueOf(expectedCompartment)));
-		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(String.valueOf(expectedEditPart)));
+		assertThat("Label is in wrong compartment", ((IGraphicalEditPart) editPart.getParent()).getNotationView().getType(), is(expectedCompartment));
+		assertThat("Wrong label edit part", editPart.getNotationView().getType(), is(expectedEditPart));
 	}
 
 	protected EObject createSemanticElement(IElementType elementType, EObject container) {
@@ -362,8 +362,8 @@ public abstract class AbstractSynchronizationTest extends AbstractPapyrusTestCas
 		assertThat("View exists: " + label(element), view, nullValue());
 	}
 
-	protected IGraphicalEditPart getCompartment(IGraphicalEditPart parent, int type) {
-		return parent.getChildBySemanticHint(Integer.toString(type));
+	protected IGraphicalEditPart getCompartment(IGraphicalEditPart parent, String type) {
+		return parent.getChildBySemanticHint(type);
 	}
 
 	protected <T extends DirectedRelationship> T getRelationship(NamedElement from, NamedElement to, Class<T> type) {

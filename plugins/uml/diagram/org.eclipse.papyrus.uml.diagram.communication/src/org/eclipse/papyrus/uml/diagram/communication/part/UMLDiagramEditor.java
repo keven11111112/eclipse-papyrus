@@ -106,17 +106,13 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
-
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
-
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
 		documentProvider = new GmfMultiDiagramDocumentProvider(editingDomain);
-
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
-
 	}
 
 	/**
@@ -133,7 +129,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot paletteRoot;
-		if (existingPaletteRoot == null) {
+		if(existingPaletteRoot == null) {
 			paletteRoot = PapyrusPaletteService.getInstance().createPalette(this, getDefaultPaletteContent());
 		} else {
 			PapyrusPaletteService.getInstance().updatePalette(existingPaletteRoot, this, getDefaultPaletteContent());
@@ -165,13 +161,15 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class type) {
-		if (type == IPropertySheetPage.class) {
+		if(type == IPropertySheetPage.class) {
 			return null;
 		}
-		if (type == IShowInTargetList.class) {
+		if(type == IShowInTargetList.class) {
 			return new IShowInTargetList() {
+
+				@Override
 				public String[] getShowInTargetIds() {
-					return new String[] { ProjectExplorer.VIEW_ID };
+					return new String[]{ ProjectExplorer.VIEW_ID };
 				}
 			};
 		}
@@ -254,8 +252,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
-		DiagramEditorContextMenuProvider provider =
-				new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
+		DiagramEditorContextMenuProvider provider = new DiagramEditorContextMenuProvider(this, getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
@@ -277,6 +274,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		super.configureDiagramEditDomain();
 		getDiagramEditDomain().getDiagramCommandStack().addCommandStackListener(new CommandStackListener() {
 
+			@Override
 			public void commandStackChanged(EventObject event) {
 				firePropertyChange(IEditorPart.PROP_DIRTY);
 			}
@@ -296,7 +294,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	protected OperationHistoryDirtyState getDirtyState() {
-		if (dirtyState == null) {
+		if(dirtyState == null) {
 			dirtyState = OperationHistoryDirtyState.newInstance(getUndoContext(), getOperationHistory());
 		}
 		return dirtyState;
@@ -307,11 +305,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	@Override
 	protected void setUndoContext(IUndoContext context) {
-		if (dirtyState != null) {
+		if(dirtyState != null) {
 			dirtyState.dispose();
 			dirtyState = null;
 		}
-
 		super.setUndoContext(context);
 	}
 
@@ -328,9 +325,8 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	public void providerChanged(ProviderChangeEvent event) {
 		// update the palette if the palette service has changed
-		if (PapyrusPaletteService.getInstance().equals(event.getSource())) {
-			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this,
-					getDefaultPaletteContent());
+		if(PapyrusPaletteService.getInstance().equals(event.getSource())) {
+			PapyrusPaletteService.getInstance().updatePalette(getPaletteViewer().getPaletteRoot(), this, getDefaultPaletteContent());
 		}
 	}
 
@@ -342,12 +338,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		// remove palette service listener
 		// remove preference listener
 		PapyrusPaletteService.getInstance().removeProviderChangeListener(this);
-
-		if (dirtyState != null) {
+		if(dirtyState != null) {
 			dirtyState.dispose();
 			dirtyState = null;
 		}
-
 		super.dispose();
 	}
 
@@ -384,13 +378,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			@Override
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
-
 				// customize menu...
 				viewer.setContextMenu(new PapyrusPaletteContextMenuProvider(viewer));
-
 				viewer.getKeyHandler().setParent(getPaletteKeyHandler());
 				viewer.getControl().addMouseListener(getPaletteMouseListener());
-
 				// Add a transfer drag target listener that is supported on
 				// palette template entries whose template is a creation tool.
 				// This will enable drag and drop of the palette shape creation
@@ -412,9 +403,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 * @return Palette Key Handler for the palette
 			 */
 			private KeyHandler getPaletteKeyHandler() {
-
-				if (paletteKeyHandler == null) {
-
+				if(paletteKeyHandler == null) {
 					paletteKeyHandler = new KeyHandler() {
 
 						/**
@@ -422,34 +411,25 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						 * whenever a key is released, and the Tool is in the proper state. Override
 						 * to support pressing the enter key to create a shape or connection
 						 * (between two selected shapes)
-						 *
+						 * 
 						 * @param event
 						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						@Override
 						public boolean keyReleased(KeyEvent event) {
-
-							if (event.keyCode == SWT.Selection) {
-
+							if(event.keyCode == SWT.Selection) {
 								Tool tool = getPaletteViewer().getActiveTool().createTool();
-
-								if (toolSupportsAccessibility(tool)) {
-
+								if(toolSupportsAccessibility(tool)) {
 									tool.keyUp(event, getDiagramGraphicalViewer());
-
 									// deactivate current selection
 									getPaletteViewer().setActiveTool(null);
-
 									return true;
 								}
-
 							}
 							return super.keyReleased(event);
 						}
-
 					};
-
 				}
 				return paletteKeyHandler;
 			}
@@ -458,9 +438,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 			 * @return Palette Mouse listener for the palette
 			 */
 			private MouseListener getPaletteMouseListener() {
-
-				if (paletteMouseListener == null) {
-
+				if(paletteMouseListener == null) {
 					paletteMouseListener = new MouseListener() {
 
 						/**
@@ -472,18 +450,16 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 						/**
 						 * Override to support double-clicking a palette tool entry to create a
 						 * shape or connection (between two selected shapes).
-						 *
+						 * 
 						 * @see MouseListener#mouseDoubleClick(MouseEvent)
 						 */
+						@Override
 						public void mouseDoubleClick(MouseEvent e) {
 							Tool tool = getPaletteViewer().getActiveTool().createTool();
-
-							if (toolSupportsAccessibility(tool)) {
-
+							if(toolSupportsAccessibility(tool)) {
 								tool.setViewer(getDiagramGraphicalViewer());
 								tool.setEditDomain(getDiagramGraphicalViewer().getEditDomain());
 								tool.mouseDoubleClick(e, getDiagramGraphicalViewer());
-
 								// Current active tool should be deactivated,
 								// but if it is down here it will get
 								// reactivated deep in GEF palette code after
@@ -492,25 +468,24 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 							}
 						}
 
+						@Override
 						public void mouseDown(MouseEvent e) {
 							// do nothing
 						}
 
+						@Override
 						public void mouseUp(MouseEvent e) {
 							// Deactivate current active tool here if a
 							// double-click was handled.
-							if (clearActiveTool) {
+							if(clearActiveTool) {
 								getPaletteViewer().setActiveTool(null);
 								clearActiveTool = false;
 							}
-
 						}
 					};
-
 				}
 				return paletteMouseListener;
 			}
-
 		};
 	}
 
@@ -528,23 +503,20 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	@Override
 	protected void initializeGraphicalViewer() {
 		super.initializeGraphicalViewer();
-
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						// It is usual for the transfer data not to be set because it is available locally
-						return LocalSelectionTransfer.getTransfer().getSelection();
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				// It is usual for the transfer data not to be set because it is available locally
+				return LocalSelectionTransfer.getTransfer().getSelection();
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
-
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 	}
 
 	/**
@@ -552,10 +524,10 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		if (getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
-			IMultiDiagramEditor editor = (IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+		if(getSite().getPage().getActiveEditor() instanceof IMultiDiagramEditor) {
+			IMultiDiagramEditor editor = (IMultiDiagramEditor)getSite().getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
-			if (this.equals(editor.getActiveEditor())) {
+			if(this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());
 				super.selectionChanged(part, selection);
 			} else {
@@ -567,7 +539,7 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		// from
 		// org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor.selectionChanged(IWorkbenchPart,
 		// ISelection)
-		if (part == this) {
+		if(part == this) {
 			rebuildStatusLine();
 		}
 	}

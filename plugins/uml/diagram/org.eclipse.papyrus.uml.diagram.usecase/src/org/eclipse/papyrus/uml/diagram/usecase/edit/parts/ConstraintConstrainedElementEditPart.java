@@ -27,7 +27,7 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4012;
+	public static final String VISUAL_ID = "4012";
 
 	/**
 	 * @generated
@@ -63,6 +63,6 @@ public class ConstraintConstrainedElementEditPart extends UMLConnectionNodeEditP
 	 */
 	@Override
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

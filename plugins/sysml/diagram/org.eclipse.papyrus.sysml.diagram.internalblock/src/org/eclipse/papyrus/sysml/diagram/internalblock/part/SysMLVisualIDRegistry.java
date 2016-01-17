@@ -15,7 +15,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.part;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -103,7 +103,7 @@ public class SysMLVisualIDRegistry {
 		}
 
 		@Override
-		public int getVisualID(View view) {// TODO : not useful with sysml, because we are using String!
+		public String getVisualID(View view) {// TODO : not useful with sysml, because we are using String!
 			final String type = view.getType();
 			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getVisualID(view);
 		}
@@ -116,25 +116,25 @@ public class SysMLVisualIDRegistry {
 
 
 		@Override
-		public int getNodeVisualID(View containerView, EObject domainElement) {
+		public String getNodeVisualID(View containerView, EObject domainElement) {
 			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
 
 		@Override
-		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
 
 		@Override
-		public boolean isCompartmentVisualID(int visualID) {
+		public boolean isCompartmentVisualID(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
 		}
 
 
 		@Override
-		public boolean isSemanticLeafVisualID(int visualID) {
+		public boolean isSemanticLeafVisualID(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};

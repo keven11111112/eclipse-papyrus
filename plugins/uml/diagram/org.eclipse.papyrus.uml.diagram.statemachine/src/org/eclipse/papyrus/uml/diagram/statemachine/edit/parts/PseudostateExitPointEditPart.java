@@ -60,7 +60,7 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 17000;
+	public static final String VISUAL_ID = "17000";
 
 	/**
 	 * @generated
@@ -87,9 +87,7 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -106,22 +104,25 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case PseudostateExitPointFloatingLabelEditPart.VISUAL_ID:
-				case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case PseudostateExitPointFloatingLabelEditPart.VISUAL_ID:
+					case PseudostateExitPointStereotypeEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -151,18 +152,16 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -179,7 +178,7 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 	 */
 	@Override
 	public PseudostateExitPointFigure getPrimaryShape() {
-		return (PseudostateExitPointFigure) primaryShape;
+		return (PseudostateExitPointFigure)primaryShape;
 	}
 
 	/**
@@ -187,12 +186,11 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof PseudostateExitPointStereotypeEditPart) {
+		if(borderItemEditPart instanceof PseudostateExitPointStereotypeEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-			if (borderItemEditPart instanceof PseudostateExitPointFloatingLabelEditPart) {
+		} else if(borderItemEditPart instanceof PseudostateExitPointFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -224,7 +222,6 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
-
 	}
 
 	/**
@@ -244,7 +241,7 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -255,7 +252,7 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -273,8 +270,8 @@ public class PseudostateExitPointEditPart extends RoundedBorderNamedElementEditP
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

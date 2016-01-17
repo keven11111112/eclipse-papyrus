@@ -76,7 +76,7 @@ public class CustomViewProvider extends AbstractViewProvider {
 	@Override
 	public Node createNode(final IAdaptable semanticAdapter, final View containerView, final String semanticHint, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
-		final int visualID;
+		final String visualID;
 		if (semanticHint == null) {
 			visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {

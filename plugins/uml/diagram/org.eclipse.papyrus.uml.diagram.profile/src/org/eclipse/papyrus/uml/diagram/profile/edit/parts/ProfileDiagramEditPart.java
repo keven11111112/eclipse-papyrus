@@ -36,7 +36,7 @@ public class ProfileDiagramEditPart extends PapyrusDiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1000;
+	public static final String VISUAL_ID = "1000";
 
 	/**
 	 * @generated
@@ -51,10 +51,8 @@ public class ProfileDiagramEditPart extends PapyrusDiagramEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());

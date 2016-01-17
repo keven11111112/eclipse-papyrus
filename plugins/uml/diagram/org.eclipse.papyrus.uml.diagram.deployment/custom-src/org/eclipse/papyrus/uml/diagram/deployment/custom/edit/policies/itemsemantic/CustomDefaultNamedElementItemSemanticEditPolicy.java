@@ -39,8 +39,7 @@ public class CustomDefaultNamedElementItemSemanticEditPolicy extends DefaultSema
 		return super.getSemanticCommand(request);
 	}
 
-	protected int getVisualID(IEditCommandRequest request) {
-		Object id = request.getParameter(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	protected String getVisualID(IEditCommandRequest request) {
+		return (String) request.getParameter(VISUAL_ID_KEY);
 	}
 }

@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeploymentEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DeviceEditPart;
@@ -95,9 +96,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the droppable element visual id {@inheritDoc}
 	 */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
+	protected Set<String> getDroppableElementVisualId() {
 
-		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		Set<String> droppableElementsVisualId = new HashSet<String>();
 
 		// Class CN
 		droppableElementsVisualId.add(CommentEditPartCN.VISUAL_ID);
@@ -123,7 +124,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the uML element type {@inheritDoc}
 	 */
 	@Override
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
@@ -137,7 +138,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the node visual id {@inheritDoc}
 	 */
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
@@ -149,7 +150,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the link with class visual id {@inheritDoc}
 	 */
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
+	public String getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 
@@ -167,18 +168,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the specific drop command {@inheritDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
-
-		// Switch test over linkVisualID
-		switch(linkVISUALID) {
-
-		case ManifestationEditPart.VISUAL_ID:
-			return dropManifestation(dropRequest, semanticElement, linkVISUALID);
-
-		case DeploymentEditPart.VISUAL_ID:
-			return dropDependencyNode(dropRequest, semanticElement, linkVISUALID);
-
-		default:
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
+		if (linkVISUALID != null) {
+			// Switch test over linkVisualID
+			switch(linkVISUALID) {
+	
+			case ManifestationEditPart.VISUAL_ID:
+				return dropManifestation(dropRequest, semanticElement, linkVISUALID);
+	
+			case DeploymentEditPart.VISUAL_ID:
+				return dropDependencyNode(dropRequest, semanticElement, linkVISUALID);
+			}
+		}
+		if (nodeVISUALID != null) {
 			// Switch test over nodeVISUALID
 			switch(nodeVISUALID) {
 
@@ -212,10 +214,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case ConstraintEditPart.VISUAL_ID:
 			case ConstraintEditPartCN.VISUAL_ID:
 				return dropConstraint(dropRequest, semanticElement, nodeVISUALID);
-			default:
-				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
 		}
+		return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 	}
 
 	/**
@@ -229,7 +230,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the link visualid
 	 * @return the command
 	 */
-	protected Command dropManifestation(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropManifestation(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> sourceEnds = DeploymentLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targetEnds = DeploymentLinkMappingHelper.getInstance().getTarget(semanticLink);
 
@@ -257,10 +258,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the node visual id
 	 * @return the command
 	 */
-	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		if(nodeVISUALID == ConstraintEditPart.VISUAL_ID) {
+	protected Command dropConstraint(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
+		if(ConstraintEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_2005, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
-		} else if(nodeVISUALID == ConstraintEditPartCN.VISUAL_ID) {
+		} else if(ConstraintEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropConstraintCommand((Constraint)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Constraint_56, (IHintedType)UMLElementTypes.ConstraintConstrainedElement_4009);
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -278,23 +279,23 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the node visual id
 	 * @return the command
 	 */
-	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	protected Command dropComment(DropObjectsRequest dropRequest, Element semanticLink, String nodeVISUALID) {
 
-		if(nodeVISUALID == CommentEditPart.VISUAL_ID) {
+		if(CommentEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_2001, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
-		} else if(nodeVISUALID == CommentEditPartCN.VISUAL_ID) {
+		} else if(CommentEditPartCN.VISUAL_ID.equals(nodeVISUALID)) {
 			return getDropCommentCommand((Comment)semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView(), (IHintedType)UMLElementTypes.Comment_54, (IHintedType)UMLElementTypes.CommentAnnotatedElement_4008);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	private Command dropDependencyNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+	private Command dropDependencyNode(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID) {
 		Collection<?> sources = DeploymentLinkMappingHelper.getInstance().getSource(semanticElement);
 		Collection<?> targets = DeploymentLinkMappingHelper.getInstance().getTarget(semanticElement);
 		if(sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4004, dropRequest.getLocation(), semanticElement));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("Drop Dependency"), source, target, DependencyEditPart.VISUAL_ID, dropRequest.getLocation(), semanticElement));
 		}
 		if(sources.size() > 1 || targets.size() > 1) {
 			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());
@@ -314,7 +315,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> sourceEnds = DeploymentLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targetEnds = DeploymentLinkMappingHelper.getInstance().getTarget(semanticLink);
 
@@ -341,7 +342,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropProperty(DropObjectsRequest dropRequest, Property droppedElement, int nodeVISUALID) {
+	protected Command dropProperty(DropObjectsRequest dropRequest, Property droppedElement, String nodeVISUALID) {
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
@@ -391,7 +392,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropTopLevelNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	protected Command dropTopLevelNode(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
@@ -415,7 +416,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the link visualid
 	 * @return the command
 	 */
-	private Command dropChildNode(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+	private Command dropChildNode(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
@@ -440,7 +441,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the object to drop
 	 * @return a CompositeCommand for Drop
 	 */
-	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(String nodeVISUALID, Point location, EObject droppedObject) {
 		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 

@@ -30,7 +30,7 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4016;
+	public static final String VISUAL_ID = "4016";
 
 	/**
 	 * @generated
@@ -53,13 +53,11 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof UsageNameEditPart) {
-			((UsageNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof UsageNameEditPart) {
+			((UsageNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 		}
-		if (childEditPart instanceof AppliedStereotypeUsageEditPart) {
-			((AppliedStereotypeUsageEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof AppliedStereotypeUsageEditPart) {
+			((AppliedStereotypeUsageEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -69,7 +67,7 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -79,10 +77,10 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof UsageNameEditPart) {
+		if(childEditPart instanceof UsageNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof AppliedStereotypeUsageEditPart) {
+		if(childEditPart instanceof AppliedStereotypeUsageEditPart) {
 			return true;
 		}
 		return false;
@@ -93,7 +91,7 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -117,6 +115,6 @@ public class UsageEditPart extends UMLConnectionNodeEditPart implements ITreeBra
 	 */
 	@Override
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

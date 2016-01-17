@@ -48,7 +48,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3204;
+	public static final String VISUAL_ID = "3204";
 
 	/**
 	 * @generated
@@ -74,9 +74,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -95,7 +93,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -129,19 +127,17 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	public NodeNamedElementFigure getPrimaryShape() {
-		return (NodeNamedElementFigure) primaryShape;
+		return (NodeNamedElementFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DefaultNamedElementNameEditPart) {
-			((DefaultNamedElementNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof DefaultNamedElementNameEditPart) {
+			((DefaultNamedElementNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -149,7 +145,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DefaultNamedElementNameEditPart) {
+		if(childEditPart instanceof DefaultNamedElementNameEditPart) {
 			return true;
 		}
 		return false;
@@ -160,7 +156,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -171,7 +167,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -205,7 +201,6 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -218,7 +213,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -231,7 +226,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -242,7 +237,7 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -260,8 +255,8 @@ public class DefaultNamedElementEditPart extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

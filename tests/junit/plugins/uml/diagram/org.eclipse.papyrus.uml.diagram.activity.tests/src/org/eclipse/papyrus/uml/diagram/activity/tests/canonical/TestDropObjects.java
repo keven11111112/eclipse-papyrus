@@ -15,7 +15,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
@@ -110,7 +110,7 @@ public class TestDropObjects extends AbstractPapyrusTestCase {
 			}
 		}
 
-		private int getChildVID() {
+		private String getChildVID() {
 			return UMLVisualIDRegistry.getVisualID(getChildEP().getNotationView());
 		}
 

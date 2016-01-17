@@ -51,7 +51,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 46;
+	public static final String VISUAL_ID = "46";
 
 	/**
 	 * @generated
@@ -77,9 +77,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
@@ -102,7 +100,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -136,26 +134,23 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	public ExecutionEnvironmentFigure getPrimaryShape() {
-		return (ExecutionEnvironmentFigure) primaryShape;
+		return (ExecutionEnvironmentFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof NestedExecutionEnvironmentNameEditPartCN) {
-			((NestedExecutionEnvironmentNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof NestedExecutionEnvironmentNameEditPartCN) {
+			((NestedExecutionEnvironmentNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-		if (childEditPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
+		if(childEditPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((ExecutionEnvironmentCompositeCompartmentEditPartCN) childEditPart).getFigure());
+			pane.add(((ExecutionEnvironmentCompositeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -163,12 +158,12 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof NestedExecutionEnvironmentNameEditPartCN) {
+		if(childEditPart instanceof NestedExecutionEnvironmentNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
+		if(childEditPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getCompositeCompartmentFigure();
-			pane.remove(((ExecutionEnvironmentCompositeCompartmentEditPartCN) childEditPart).getFigure());
+			pane.remove(((ExecutionEnvironmentCompositeCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -179,7 +174,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -190,7 +185,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -201,7 +196,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
+		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
 		}
 		return getContentPane();
@@ -227,7 +222,6 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -240,7 +234,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -253,7 +247,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -264,7 +258,7 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -282,8 +276,8 @@ public class NestedExecutionEnvironmentEditPartCN extends NodeEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

@@ -85,29 +85,29 @@ public class UMLValidationProvider {
 		@Override
 		public void validationOccurred(ValidationEvent event) {
 			boolean needReport = false;
-			if (event.getSeverity() >= IStatus.WARNING) {
+			if(event.getSeverity() >= IStatus.WARNING) {
 				needReport = true;
 			}
-			if (needReport && event.getEvaluationMode().isLive()) {
+			if(needReport && event.getEvaluationMode().isLive()) {
 				StringBuffer messageBuff = new StringBuffer();
 				List<String> handledConstraints = new LinkedList<String>(SELF_MANAGING_CONSTRAINTS);
-				for (IConstraintStatus status : event.getValidationResults()) {
+				for(IConstraintStatus status : event.getValidationResults()) {
 					// report only major problems
-					if (status.getSeverity() >= event.getSeverity()) {
+					if(status.getSeverity() >= event.getSeverity()) {
 						String constraintId = status.getConstraint().getDescriptor().getId();
 						String constraintPlugin = status.getConstraint().getDescriptor().getPluginId();
-						if (UMLDiagramEditorPlugin.ID.equals(constraintPlugin) && !handledConstraints.contains(constraintId)) {
+						if(UMLDiagramEditorPlugin.ID.equals(constraintPlugin) && !handledConstraints.contains(constraintId)) {
 							handledConstraints.add(constraintId);
 							messageBuff.append(status.getMessage());
 						}
 					}
 				}
-				if (messageBuff.length() == 0) {
+				if(messageBuff.length() == 0) {
 					// no error to report
 					return;
 				}
 				final String message = messageBuff.toString();
-				if (event.getSeverity() >= IStatus.ERROR) {
+				if(event.getSeverity() >= IStatus.ERROR) {
 					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
 
 						@Override
@@ -154,6 +154,7 @@ public class UMLValidationProvider {
 	public static void runWithConstraints(TransactionalEditingDomain editingDomain, Runnable operation) {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
+
 			@Override
 			public void run() {
 				try {
@@ -164,7 +165,7 @@ public class UMLValidationProvider {
 				}
 			}
 		};
-		if (editingDomain != null) {
+		if(editingDomain != null) {
 			try {
 				editingDomain.runExclusive(task);
 			} catch (Exception e) {
@@ -179,17 +180,17 @@ public class UMLValidationProvider {
 	 * @generated NOT filter for Papyrus editor only
 	 */
 	static boolean isInDefaultEditorContext(Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
+		if(shouldConstraintsBePrivate() && !constraintsActive) {
 			return false;
 		}
-		if (object instanceof View) {
-			return constraintsActive && ActivityDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object));
+		if(object instanceof View) {
+			return constraintsActive && ActivityDiagramEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View)object));
 		}
 		// filter for Papyrus editor only
-		if (object instanceof EObject) {
-			EObject eObj = (EObject) object;
+		if(object instanceof EObject) {
+			EObject eObj = (EObject)object;
 			Resource resource = eObj.eResource();
-			if (resource != null) {
+			if(resource != null) {
 				ResourceSet set = resource.getResourceSet();
 				return set instanceof ModelSet;
 			}
@@ -221,7 +222,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ObjectNode context = (ObjectNode) ctx.getTarget();
+			ObjectNode context = (ObjectNode)ctx.getTarget();
 			return UMLValidationHelper.validateInputOutputParameter(context, ctx);
 		}
 	}
@@ -236,7 +237,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ValuePin context = (ValuePin) ctx.getTarget();
+			ValuePin context = (ValuePin)ctx.getTarget();
 			return UMLValidationHelper.validateCompatibleType(context, ctx);
 		}
 	}
@@ -251,7 +252,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ActivityEdge context = (ActivityEdge) ctx.getTarget();
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
 			return UMLValidationHelper.validateSourceAndTarget(context, ctx);
 		}
 	}
@@ -266,7 +267,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ObjectFlow context = (ObjectFlow) ctx.getTarget();
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
 			return UMLValidationHelper.validateCompatibleTypes(context, ctx);
 		}
 	}
@@ -281,7 +282,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ObjectFlow context = (ObjectFlow) ctx.getTarget();
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
 			return UMLValidationHelper.validateSameUpperBounds(context, ctx);
 		}
 	}
@@ -296,7 +297,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ObjectFlow context = (ObjectFlow) ctx.getTarget();
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
 			return UMLValidationHelper.validateTarget(context, ctx);
 		}
 	}
@@ -311,7 +312,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ObjectFlow context = (ObjectFlow) ctx.getTarget();
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
 			return UMLValidationHelper.validateTransformationBehaviour(context, ctx);
 		}
 	}
@@ -326,7 +327,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ObjectFlow context = (ObjectFlow) ctx.getTarget();
+			ObjectFlow context = (ObjectFlow)ctx.getTarget();
 			return UMLValidationHelper.validateInputAndOutputParameter(context, ctx);
 		}
 	}
@@ -341,7 +342,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			DecisionNode context = (DecisionNode) ctx.getTarget();
+			DecisionNode context = (DecisionNode)ctx.getTarget();
 			return UMLValidationHelper.validateIncomingObjectOneInputParameter(context, ctx);
 		}
 	}
@@ -356,7 +357,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			DecisionNode context = (DecisionNode) ctx.getTarget();
+			DecisionNode context = (DecisionNode)ctx.getTarget();
 			return UMLValidationHelper.validateIncomingControlOneInputParameter(context, ctx);
 		}
 	}
@@ -371,7 +372,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			DecisionNode context = (DecisionNode) ctx.getTarget();
+			DecisionNode context = (DecisionNode)ctx.getTarget();
 			return UMLValidationHelper.validateTwoInputParameters(context, ctx);
 		}
 	}
@@ -386,7 +387,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ExceptionHandler context = (ExceptionHandler) ctx.getTarget();
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
 			return UMLValidationHelper.validateException_HandlerBody_Constraint4(context, ctx);
 		}
 	}
@@ -401,7 +402,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ActivityEdge context = (ActivityEdge) ctx.getTarget();
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
 			return UMLValidationHelper.validateInterruptibleEdge(context, ctx);
 		}
 	}
@@ -416,7 +417,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ExceptionHandler context = (ExceptionHandler) ctx.getTarget();
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
 			return UMLValidationHelper.validateException_StructuredActivityNode_Constraint3(context, ctx);
 		}
 	}
@@ -431,7 +432,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ExceptionHandler context = (ExceptionHandler) ctx.getTarget();
+			ExceptionHandler context = (ExceptionHandler)ctx.getTarget();
 			return UMLValidationHelper.validateException_SourceAndTargetEdge_Constraint1(context, ctx);
 		}
 	}
@@ -446,7 +447,7 @@ public class UMLValidationProvider {
 		 */
 		@Override
 		public IStatus validate(IValidationContext ctx) {
-			ActivityEdge context = (ActivityEdge) ctx.getTarget();
+			ActivityEdge context = (ActivityEdge)ctx.getTarget();
 			return UMLValidationHelper.validateException_StructuredActivityNode_Constraint2(context, ctx);
 		}
 	}

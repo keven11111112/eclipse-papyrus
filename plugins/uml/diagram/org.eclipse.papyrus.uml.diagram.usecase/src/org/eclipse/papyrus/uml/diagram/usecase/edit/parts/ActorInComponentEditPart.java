@@ -55,7 +55,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3018;
+	public static final String VISUAL_ID = "3018";
 
 	/**
 	 * @generated
@@ -81,9 +81,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -98,24 +96,27 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case ActorInComponentNameEditPart.VISUAL_ID:
-				case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
-				case ActorQualifiedNameInCEditPart.VISUAL_ID:
-				case ActorInComponentFloatingLabelEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case ActorInComponentNameEditPart.VISUAL_ID:
+					case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
+					case ActorQualifiedNameInCEditPart.VISUAL_ID:
+					case ActorInComponentFloatingLabelEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -145,18 +146,16 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -174,7 +173,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure) primaryShape;
+		return (RoundedCompartmentFigure)primaryShape;
 	}
 
 	/**
@@ -182,19 +181,16 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof ActorInComponentNameEditPart) {
+		if(borderItemEditPart instanceof ActorInComponentNameEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-			if (borderItemEditPart instanceof ActorInComponentAppliedStereotypeEditPart) {
+		} else if(borderItemEditPart instanceof ActorInComponentAppliedStereotypeEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-				if (borderItemEditPart instanceof ActorQualifiedNameInCEditPart) {
+		} else if(borderItemEditPart instanceof ActorQualifiedNameInCEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-					if (borderItemEditPart instanceof ActorInComponentFloatingLabelEditPart) {
+		} else if(borderItemEditPart instanceof ActorInComponentFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -222,7 +218,6 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -243,7 +238,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -254,7 +249,7 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -272,8 +267,8 @@ public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

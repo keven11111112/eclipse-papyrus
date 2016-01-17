@@ -25,7 +25,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 */
 
 	@Override
-	protected IParser getParser(final int visualID) {
+	protected IParser getParser(final String visualID) {
 		switch (visualID) {
 		case CallBehaviorActionNameEditPart.VISUAL_ID:
 			return getCallBehaviorActionLabel_5004Parser();

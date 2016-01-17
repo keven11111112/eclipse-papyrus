@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ContextLinkSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.figure.CustomContextLinkFigure;
@@ -33,7 +33,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 8500;
+	public static final String VISUAL_ID = "8500";
 
 	/**
 	 * @generated
@@ -50,7 +50,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContextLinkSemanticEditPolicy());
 	}
 
@@ -58,9 +58,8 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
-			((ContextLinkAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
+			((ContextLinkAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -69,7 +68,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -79,7 +78,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
+		if(childEditPart instanceof ContextLinkAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -89,7 +88,7 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -112,6 +111,6 @@ public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements IT
 	 * @generated
 	 */
 	public CustomContextLinkFigure getPrimaryShape() {
-		return (CustomContextLinkFigure) getFigure();
+		return (CustomContextLinkFigure)getFigure();
 	}
 }

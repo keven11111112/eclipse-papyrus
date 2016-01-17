@@ -613,10 +613,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 					ConnectionEditPart conn = ((ReconnectRequest) request).getConnectionEditPart();
 					Object model = conn.getModel();
 					if (model instanceof View) {
-						if (REQ_RECONNECT_TARGET.equals(request.getType()) && 4008 == UMLVisualIDRegistry.getVisualID((View) model)) {
+						if (REQ_RECONNECT_TARGET.equals(request.getType()) && UMLVisualIDRegistry.getVisualID((View) model).equals(Message6EditPart.VISUAL_ID)) {
 							return host;
 						}
-						if (REQ_RECONNECT_SOURCE.equals(request.getType()) && 4009 == UMLVisualIDRegistry.getVisualID((View) model)) {
+						if (REQ_RECONNECT_SOURCE.equals(request.getType()) && UMLVisualIDRegistry.getVisualID((View) model).equals(Message7EditPart.VISUAL_ID)) {
 							return host;
 						}
 					}

@@ -25,7 +25,7 @@ import org.eclipse.papyrus.uml.diagram.communication.edit.parts.InteractionCompa
 public class CommunicationReconcilerForCompartment extends ReconcilerForCompartment {
 
 	/** The compartments visual id. */
-	private List<Integer> compartmentsVisualID = Arrays.asList(
+	private List<String> compartmentsVisualID = Arrays.asList(
 			InteractionCompartmentEditPart.VISUAL_ID);
 
 	/**
@@ -35,7 +35,7 @@ public class CommunicationReconcilerForCompartment extends ReconcilerForCompartm
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment#getCompartmentsVisualID()
 	 */
 	@Override
-	public List<Integer> getCompartmentsVisualID() {
+	public List<String> getCompartmentsVisualID() {
 		return compartmentsVisualID;
 	}
 

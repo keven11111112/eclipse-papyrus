@@ -212,8 +212,8 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 		assertThat("View exists: " + label(element), view, nullValue());
 	}
 
-	protected IGraphicalEditPart getCompartment(IGraphicalEditPart parent, int type) {
-		return parent.getChildBySemanticHint(Integer.toString(type));
+	protected IGraphicalEditPart getCompartment(IGraphicalEditPart parent, String type) {
+		return parent.getChildBySemanticHint(type);
 	}
 
 	protected IGraphicalEditPart getClassAttributeCompartment(IGraphicalEditPart class_) {
@@ -542,7 +542,8 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 		String hint = (elementType instanceof IHintedType) ? ((IHintedType) elementType).getSemanticHint() : null;
 		// Don't attempt to create relationship "nodes" like the DependencyNode or AssociationNode
-		if ((hint != null) && Integer.parseInt(hint) >= 4000) {
+		//MEE: removed the following check (Integer.parseInt(hint) >= 4000) from next if statement (should not check against a literal)
+		if ((hint != null)) {
 			CreateConnectionViewAndElementRequest request = new CreateConnectionViewAndElementRequest(elementType, hint, editor.getPreferencesHint());
 			request.setType(RequestConstants.REQ_CONNECTION_START);
 			request.setLocation(new Point(0, 0));

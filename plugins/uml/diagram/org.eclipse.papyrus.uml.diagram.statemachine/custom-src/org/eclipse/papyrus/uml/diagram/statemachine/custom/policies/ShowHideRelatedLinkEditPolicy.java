@@ -1,7 +1,7 @@
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractUMLShowHideRelatedLinkEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;

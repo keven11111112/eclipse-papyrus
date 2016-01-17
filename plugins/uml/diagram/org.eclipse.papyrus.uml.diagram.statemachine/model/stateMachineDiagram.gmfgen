@@ -190,7 +190,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -219,7 +219,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               viewPattern=""
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
@@ -308,7 +308,7 @@
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -329,7 +329,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -413,7 +413,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -442,7 +442,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -529,7 +529,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -558,7 +558,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -645,7 +645,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -671,7 +671,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -754,7 +754,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -783,7 +783,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -866,7 +866,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -895,7 +895,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -978,7 +978,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -1007,7 +1007,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -1090,7 +1090,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -1119,7 +1119,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -1202,7 +1202,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -1231,7 +1231,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -1317,7 +1317,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -1346,7 +1346,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -1432,7 +1432,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern=""
               editorPattern=""
               editPattern="">
@@ -1461,7 +1461,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -1536,7 +1536,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -1563,7 +1563,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               editorPattern="&lt;&lt;0>>"
               editPattern="&lt;&lt;0>>">
             <metaFeatures
@@ -1627,7 +1627,7 @@
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.HTMLCornerBentFigure"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               viewPattern=""
               editPattern="">
             <metaFeatures
@@ -1694,7 +1694,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -1711,7 +1711,7 @@
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ConstraintFigure"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.4"
+              parser="/0/@labelParsers/@implementations.5"
               viewPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
@@ -1762,7 +1762,7 @@
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="/0/@labelParsers/@implementations.5">
+            parser="/0/@labelParsers/@implementations.6">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Transition/guard"/>
         </labelModelFacet>
@@ -1802,7 +1802,7 @@
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="/0/@labelParsers/@implementations.6">
+            parser="/0/@labelParsers/@implementations.7">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/entry"/>
         </labelModelFacet>
@@ -1842,7 +1842,7 @@
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="/0/@labelParsers/@implementations.7">
+            parser="/0/@labelParsers/@implementations.8">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/doActivity"/>
         </labelModelFacet>
@@ -1882,7 +1882,7 @@
         </modelFacet>
         <labelModelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet"
-            parser="/0/@labelParsers/@implementations.8">
+            parser="/0/@labelParsers/@implementations.9">
           <metaFeatures
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/State/exit"/>
         </labelModelFacet>
@@ -1976,7 +1976,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -2038,7 +2038,7 @@
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -2054,7 +2054,7 @@
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.2">
+              parser="/0/@labelParsers/@implementations.3">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Transition/guard"/>
           </modelFacet>
@@ -2076,7 +2076,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -2135,7 +2135,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
+              parser="/0/@labelParsers/@implementations.1"
               viewPattern="&lt;&lt;{0}>>"
               editorPattern="&lt;&lt;{0}>>"
               editPattern="&lt;&lt;{0}>>">
@@ -2227,14 +2227,7 @@
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.NoSemanticParserEditPolicy"/>
           <modelFacet
-              xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.0"
-              viewPattern="&lt;&lt;{0}>>"
-              editorPattern="&lt;&lt;{0}>>"
-              editPattern="&lt;&lt;{0}>>">
-            <metaFeatures
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-          </modelFacet>
+              parser="/0/@labelParsers/@implementations.0"/>
         </labels>
       </links>
       <compartments
@@ -2698,8 +2691,11 @@
     <labelParsers
         extensibleViaService="true">
       <implementations
+          xsi:type="gmfgen:ExternalParser"
+          uses="/0/@diagram/@links.4/@labels.0/@modelFacet"/>
+      <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.1/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.2/@labels.1/@modelFacet /0/@diagram/@childNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.0/@labels.2/@modelFacet /0/@diagram/@childNodes.1/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet"
@@ -2792,6 +2788,7 @@
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractBorderEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Constraint EditPart"
         genView="/0/@diagram/@childNodes.15"
         name="ConstraintEditPart extension"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart"/>
@@ -2803,6 +2800,7 @@
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Rounded Compartment EditPart"
         genView="/0/@diagram/@childNodes.2 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.4"
         name="RoundedCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>

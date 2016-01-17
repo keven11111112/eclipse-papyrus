@@ -50,7 +50,7 @@ public class CustomInteractionCompartmentCreationEditPolicy extends PapyrusCreat
 		if (request instanceof CreateViewAndElementRequest && viewDescriptors.size() == 1) {
 			final String semanticHint = viewDescriptors.get(0).getSemanticHint();
 			final TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(getHost().getModel());
-			if (Integer.toString(CompactLifelineEditPartCN.VISUAL_ID).equals(semanticHint)) {
+			if (CompactLifelineEditPartCN.VISUAL_ID.equals(semanticHint)) {
 				final View interactionView = (View) getHost().getParent().getModel();
 				final Interaction interaction = (Interaction) interactionView.getElement();
 				// note: only add a StateInvariant to the Lifeline if the request is a CreateViewAndElementRequest,
@@ -64,7 +64,7 @@ public class CustomInteractionCompartmentCreationEditPolicy extends PapyrusCreat
 				compoundCommand.add(new RefreshCommandForDo(interactionEditPart));
 				return compoundCommand;
 			}
-			if (Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(semanticHint)) {
+			if (FullLifelineEditPartCN.VISUAL_ID.equals(semanticHint)) {
 				final CompoundCommand compoundCommand = new CompoundCommand(Messages.CustomInteractionCompartmentCreationEditPolicy_CreateFullLifeline);
 				final InteractionEditPartTN interactionEditPart = getInteractionEditPart();
 				compoundCommand.add(new RefreshCommandForUndo(interactionEditPart));

@@ -136,7 +136,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	 * @generated
 	 */
 	@Override
-	protected IParser getParser(int visualID) {
+	protected IParser getParser(String visualID) {
 		switch (visualID) {
 		case PropertyForComponentEditPart.VISUAL_ID:
 			return getCustomPropertyParser();

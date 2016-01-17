@@ -119,7 +119,7 @@ public class ConstraintCopyPasteTest {
 
 		// Select diagram
 		EditPart class2EP = editorFixture.findEditPart(class2);
-		IGraphicalEditPart classCompartmentEditPart = ((IGraphicalEditPart)class2EP).getChildBySemanticHint(Integer.toString(ClassCompositeCompartmentEditPart.VISUAL_ID));
+		IGraphicalEditPart classCompartmentEditPart = ((IGraphicalEditPart)class2EP).getChildBySemanticHint(ClassCompositeCompartmentEditPart.VISUAL_ID);
 		editorFixture.deselect(constraintEP);
 		editorFixture.select(classCompartmentEditPart);
 		editorFixture.getPageManager().selectPage(mainDiagram);
@@ -164,8 +164,8 @@ public class ConstraintCopyPasteTest {
 		return ((IStructuredSelection) selectionService.getSelection()).getFirstElement();
 	}
 
-	private View findChildView(View baseView, int compartmentID) {
-		String type = Integer.toString(compartmentID);
+	private View findChildView(View baseView, String compartmentID) {
+		String type = compartmentID;
 		for (Object childObject: baseView.getChildren()) {
 			View child = (View)childObject; 
 			if (child.getType().equals(type)) {

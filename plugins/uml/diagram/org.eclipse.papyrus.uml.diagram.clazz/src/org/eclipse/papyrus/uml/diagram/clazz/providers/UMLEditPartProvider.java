@@ -11,7 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.clazz.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.DefaultEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;

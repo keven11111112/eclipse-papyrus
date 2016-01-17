@@ -102,7 +102,7 @@ public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagra
 		String semanticHint = myViewDescriptor.getSemanticHint();
 		int iterNbAddedMetaclasses = 0;
 
-		if (!(semanticHint.equals(((Integer) MetaclassEditPart.VISUAL_ID).toString())) && !(semanticHint.equals(((Integer) MetaclassEditPartCN.VISUAL_ID).toString()))) {
+		if (!MetaclassEditPart.VISUAL_ID.equals(semanticHint) && !MetaclassEditPartCN.VISUAL_ID.equals(semanticHint)) {
 			return super.doExecuteWithResult(monitor, info);
 		} else {
 

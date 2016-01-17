@@ -11,13 +11,12 @@
  */
 package org.eclipse.papyrus.uml.diagram.communication.part;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.CommentEditPartCN;
@@ -64,12 +63,12 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getVisualID(View view) {
-		if (view instanceof Diagram) {
-			if (ModelEditPart.MODEL_ID.equals(view.getType())) {
+	public static String getVisualID(View view) {
+		if(view instanceof Diagram) {
+			if(ModelEditPart.MODEL_ID.equals(view.getType())) {
 				return ModelEditPart.VISUAL_ID;
 			} else {
-				return -1;
+				return null;
 			}
 		}
 		return org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getVisualID(view.getType());
@@ -80,12 +79,12 @@ public class UMLVisualIDRegistry {
 	 */
 	public static String getModelID(View view) {
 		View diagram = view.getDiagram();
-		while (view != diagram) {
+		while(view != diagram) {
 			EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-			if (annotation != null) {
+			if(annotation != null) {
 				return annotation.getDetails().get("modelID"); //$NON-NLS-1$
 			}
-			view = (View) view.eContainer();
+			view = (View)view.eContainer();
 		}
 		return diagram != null ? diagram.getType() : null;
 	}
@@ -93,190 +92,187 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getVisualID(String type) {
-		try {
-			return Integer.parseInt(type);
-		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				UMLDiagramEditorPlugin.getInstance().logError("Unable to parse view type as a visualID number: " + type);
-			}
+	public static String getVisualID(String type) {
+		return type;
+	}
+
+	/**
+	* @generated
+	*/
+	public static String getType(String visualID) {
+		return visualID;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static String getDiagramVisualID(EObject domainElement) {
+		if(domainElement == null) {
+			return null;
 		}
-		return -1;
+		return ModelEditPart.VISUAL_ID;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static String getType(int visualID) {
-		return Integer.toString(visualID);
-	}
-
-	/**
-	 * @generated
-	 */
-	public static int getDiagramVisualID(EObject domainElement) {
-		if (domainElement == null) {
-			return -1;
-		}
-		return 1000;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static int getNodeVisualID(View containerView, EObject domainElement) {
-		if (domainElement == null) {
-			return -1;
+	public static String getNodeVisualID(View containerView, EObject domainElement) {
+		if(domainElement == null) {
+			return null;
 		}
 		String containerModelID = org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getModelID(containerView);
-		if (!ModelEditPart.MODEL_ID.equals(containerModelID)) {
-			return -1;
+		if(!ModelEditPart.MODEL_ID.equals(containerModelID)) {
+			return null;
 		}
-		int containerVisualID;
-		if (ModelEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerVisualID;
+		if(ModelEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = ModelEditPart.VISUAL_ID;
 			} else {
-				return -1;
+				return null;
 			}
 		}
-		switch (containerVisualID) {
-		case ModelEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
-				return InteractionEditPart.VISUAL_ID;
+		if(containerVisualID != null) {
+			switch(containerVisualID) {
+			case ModelEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())) {
+					return InteractionEditPart.VISUAL_ID;
+				}
+				if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())) {
+					return ShortCutDiagramEditPart.VISUAL_ID;
+				}
+				break;
+			case InteractionCompartmentEditPart.VISUAL_ID:
+				if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
+					return LifelineEditPartCN.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
+					return CommentEditPartCN.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
+					return ConstraintEditPartCN.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
+					return TimeObservationEditPartCN.VISUAL_ID;
+				}
+				if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
+					return DurationObservationEditPartCN.VISUAL_ID;
+				}
+				break;
 			}
-			if (NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())) {
-				return ShortCutDiagramEditPart.VISUAL_ID;
-			}
-			break;
-		case InteractionCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())) {
-				return LifelineEditPartCN.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())) {
-				return CommentEditPartCN.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())) {
-				return ConstraintEditPartCN.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())) {
-				return TimeObservationEditPartCN.VISUAL_ID;
-			}
-			if (UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())) {
-				return DurationObservationEditPartCN.VISUAL_ID;
-			}
-			break;
 		}
-		return -1;
+		return null;
 	}
 
 	/**
-	 * @generated
-	 */
-	public static boolean canCreateNode(View containerView, int nodeVisualID) {
+	* @generated
+	*/
+	public static boolean canCreateNode(View containerView, String nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getModelID(containerView);
-		if (!ModelEditPart.MODEL_ID.equals(containerModelID)) {
+		if(!ModelEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
-		int containerVisualID;
-		if (ModelEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerVisualID;
+		if(ModelEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
-			if (containerView instanceof Diagram) {
+			if(containerView instanceof Diagram) {
 				containerVisualID = ModelEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
-		switch (containerVisualID) {
-		case ModelEditPart.VISUAL_ID:
-			if (InteractionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
+		if(containerVisualID != null) {
+			switch(containerVisualID) {
+			case ModelEditPart.VISUAL_ID:
+				if(InteractionEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ShortCutDiagramEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InteractionEditPart.VISUAL_ID:
+				if(InteractionNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(InteractionFloatingLabelEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(InteractionCompartmentEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ShortCutDiagramEditPart.VISUAL_ID:
+				if(DiagramNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case LifelineEditPartCN.VISUAL_ID:
+				if(LifelineNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(LifelineFloatingLabelEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case ConstraintEditPartCN.VISUAL_ID:
+				if(ConstraintNameEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConstraintBodyEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case CommentEditPartCN.VISUAL_ID:
+				if(CommentBodyEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case TimeObservationEditPartCN.VISUAL_ID:
+				if(TimeObservationNameEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(TimeObservationStereotypeLabelEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case DurationObservationEditPartCN.VISUAL_ID:
+				if(DurationObservationLabelEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(DurationObservationStereotypeLabelEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case InteractionCompartmentEditPart.VISUAL_ID:
+				if(LifelineEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(CommentEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(ConstraintEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(TimeObservationEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(DurationObservationEditPartCN.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
+			case MessageEditPart.VISUAL_ID:
+				if(MessageNameEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				if(AppliedStereotypeMessageEditPart.VISUAL_ID.equals(nodeVisualID)) {
+					return true;
+				}
+				break;
 			}
-			if (ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case InteractionEditPart.VISUAL_ID:
-			if (InteractionNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InteractionFloatingLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (InteractionCompartmentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ShortCutDiagramEditPart.VISUAL_ID:
-			if (DiagramNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case LifelineEditPartCN.VISUAL_ID:
-			if (LifelineNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (LifelineFloatingLabelEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case ConstraintEditPartCN.VISUAL_ID:
-			if (ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case CommentEditPartCN.VISUAL_ID:
-			if (CommentBodyEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case TimeObservationEditPartCN.VISUAL_ID:
-			if (TimeObservationNameEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (TimeObservationStereotypeLabelEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case DurationObservationEditPartCN.VISUAL_ID:
-			if (DurationObservationLabelEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (DurationObservationStereotypeLabelEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case InteractionCompartmentEditPart.VISUAL_ID:
-			if (LifelineEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (CommentEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (ConstraintEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (TimeObservationEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (DurationObservationEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case MessageEditPart.VISUAL_ID:
-			if (MessageNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if (AppliedStereotypeMessageEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		}
 		return false;
 	}
@@ -284,14 +280,14 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static int getLinkWithClassVisualID(EObject domainElement) {
-		if (domainElement == null) {
-			return -1;
+	public static String getLinkWithClassVisualID(EObject domainElement) {
+		if(domainElement == null) {
+			return null;
 		}
-		if (UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_8009((Message) domainElement)) {
+		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass()) && isMessage_8009((Message)domainElement)) {
 			return MessageEditPart.VISUAL_ID;
 		}
-		return -1;
+		return null;
 	}
 
 	/**
@@ -309,30 +305,30 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isMessage_8009(Message domainElement) {
 		Object result = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
 	/**
-	 * @generated
-	 */
-	public static boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
-		if (candidate == -1) {
-			// unrecognized id is always bad
+	* @generated
+	*/
+	public static boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
+		if(candidate == null) {
+			//unrecognized id is always bad
 			return false;
 		}
-		int basic = getNodeVisualID(containerView, domainElement);
-		return basic == candidate;
+		String basic = getNodeVisualID(containerView, domainElement);
+		return candidate.equals(basic);
 	}
 
 	/**
 	 * @generated
 	 */
-	public static boolean isCompartmentVisualID(int visualID) {
-		switch (visualID) {
-		case InteractionCompartmentEditPart.VISUAL_ID:
-			return true;
-		default:
-			break;
+	public static boolean isCompartmentVisualID(String visualID) {
+		if(visualID != null) {
+			switch(visualID) {
+			case InteractionCompartmentEditPart.VISUAL_ID:
+				return true;
+			}
 		}
 		return false;
 	}
@@ -340,19 +336,19 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	public static boolean isSemanticLeafVisualID(int visualID) {
-		switch (visualID) {
-		case ModelEditPart.VISUAL_ID:
-			return false;
-		case LifelineEditPartCN.VISUAL_ID:
-		case ConstraintEditPartCN.VISUAL_ID:
-		case CommentEditPartCN.VISUAL_ID:
-		case TimeObservationEditPartCN.VISUAL_ID:
-		case DurationObservationEditPartCN.VISUAL_ID:
-		case ShortCutDiagramEditPart.VISUAL_ID:
-			return true;
-		default:
-			break;
+	public static boolean isSemanticLeafVisualID(String visualID) {
+		if(visualID != null) {
+			switch(visualID) {
+			case ModelEditPart.VISUAL_ID:
+				return false;
+			case LifelineEditPartCN.VISUAL_ID:
+			case ConstraintEditPartCN.VISUAL_ID:
+			case CommentEditPartCN.VISUAL_ID:
+			case TimeObservationEditPartCN.VISUAL_ID:
+			case DurationObservationEditPartCN.VISUAL_ID:
+			case ShortCutDiagramEditPart.VISUAL_ID:
+				return true;
+			}
 		}
 		return false;
 	}
@@ -361,11 +357,12 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static final DiagramStructure TYPED_INSTANCE = new DiagramStructure() {
+
 		/**
 		 * @generated
 		 */
 		@Override
-		public int getVisualID(View view) {
+		public String getVisualID(View view) {
 			return org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getVisualID(view);
 		}
 
@@ -381,7 +378,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public int getNodeVisualID(View containerView, EObject domainElement) {
+		public String getNodeVisualID(View containerView, EObject domainElement) {
 			return org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		}
 
@@ -389,7 +386,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public boolean checkNodeVisualID(View containerView, EObject domainElement, int candidate) {
+		public boolean checkNodeVisualID(View containerView, EObject domainElement, String candidate) {
 			return org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.checkNodeVisualID(containerView, domainElement, candidate);
 		}
 
@@ -397,7 +394,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public boolean isCompartmentVisualID(int visualID) {
+		public boolean isCompartmentVisualID(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.isCompartmentVisualID(visualID);
 		}
 
@@ -405,7 +402,7 @@ public class UMLVisualIDRegistry {
 		 * @generated
 		 */
 		@Override
-		public boolean isSemanticLeafVisualID(int visualID) {
+		public boolean isSemanticLeafVisualID(String visualID) {
 			return org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry.isSemanticLeafVisualID(visualID);
 		}
 	};

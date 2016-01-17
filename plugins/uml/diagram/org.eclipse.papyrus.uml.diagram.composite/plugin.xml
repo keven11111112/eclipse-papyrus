@@ -1537,7 +1537,7 @@
             class="org.eclipse.papyrus.uml.diagram.composite.providers.UMLVisualTypeProvider"
             diagramType="CompositeStructure">
          </visualTypeProvider>
-</extension>
+   </extension>
 <extension
       point="org.eclipse.papyrus.infra.hyperlink.hyperlinkContributor">
       <contributor

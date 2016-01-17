@@ -30,9 +30,9 @@ public final class Constants {
 
 	public static final int STATE_DEFINITIONS_WIDTH = 100;
 
-	public static final String fullStateInvariantId = Integer.toString(FullStateInvariantEditPartCN.VISUAL_ID);
+	public static final String fullStateInvariantId = FullStateInvariantEditPartCN.VISUAL_ID;
 
-	public static final String compactStateInvariantId = Integer.toString(CompactStateInvariantEditPartCN.VISUAL_ID);
+	public static final String compactStateInvariantId = CompactStateInvariantEditPartCN.VISUAL_ID;
 
-	public static final String verticalLineId = Integer.toString(FullStateInvariantVerticalLineEditPart.VISUAL_ID);
+	public static final String verticalLineId = FullStateInvariantVerticalLineEditPart.VISUAL_ID;
 }

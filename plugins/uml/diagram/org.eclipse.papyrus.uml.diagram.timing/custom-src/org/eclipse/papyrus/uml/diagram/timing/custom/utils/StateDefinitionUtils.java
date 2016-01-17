@@ -161,7 +161,7 @@ public final class StateDefinitionUtils {
 	}
 
 	public static View getParentLifelineView(final View view) {
-		final String id = Integer.toString(FullLifelineEditPartCN.VISUAL_ID);
+		final String id = FullLifelineEditPartCN.VISUAL_ID;
 		View parent = view;
 		while (parent != null) {
 			if (id.equals(parent.getType())) {
@@ -245,13 +245,13 @@ public final class StateDefinitionUtils {
 	}
 
 	private static void checkStateDefinitionView(final View stateDefinitionView) {
-		if (!Integer.toString(StateDefinitionEditPart.VISUAL_ID).equals(stateDefinitionView.getType())) {
+		if (!StateDefinitionEditPart.VISUAL_ID.equals(stateDefinitionView.getType())) {
 			throw new IllegalArgumentException("The parameter must be a StateDefinition View (id = " + StateDefinitionEditPart.VISUAL_ID + "). The id was " + stateDefinitionView.getType()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
 	private static void checkLifelineView(final View lifelineView) {
-		if (!Integer.toString(FullLifelineEditPartCN.VISUAL_ID).equals(lifelineView.getType())) {
+		if (!FullLifelineEditPartCN.VISUAL_ID.equals(lifelineView.getType())) {
 			throw new IllegalArgumentException("The parameter must be a Lifeline View (id = " + FullLifelineEditPartCN.VISUAL_ID + "). The id was " + lifelineView.getType()); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}

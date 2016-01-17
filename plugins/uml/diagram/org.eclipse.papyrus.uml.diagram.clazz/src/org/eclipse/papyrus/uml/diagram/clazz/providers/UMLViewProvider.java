@@ -72,16 +72,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	@Override
 	public final boolean provides(IOperation operation) {
-		if (operation instanceof CreateViewForKindOperation) {
-			return provides((CreateViewForKindOperation) operation);
+		if(operation instanceof CreateViewForKindOperation) {
+			return provides((CreateViewForKindOperation)operation);
 		}
 		assert operation instanceof CreateViewOperation;
-		if (operation instanceof CreateDiagramViewOperation) {
-			return provides((CreateDiagramViewOperation) operation);
-		} else if (operation instanceof CreateEdgeViewOperation) {
-			return provides((CreateEdgeViewOperation) operation);
-		} else if (operation instanceof CreateNodeViewOperation) {
-			return provides((CreateNodeViewOperation) operation);
+		if(operation instanceof CreateDiagramViewOperation) {
+			return provides((CreateDiagramViewOperation)operation);
+		} else if(operation instanceof CreateEdgeViewOperation) {
+			return provides((CreateEdgeViewOperation)operation);
+		} else if(operation instanceof CreateNodeViewOperation) {
+			return provides((CreateNodeViewOperation)operation);
 		}
 		return false;
 	}
@@ -91,23 +91,20 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 * if (op.getViewKind() == Node.class)
-		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 * if (op.getViewKind() == Edge.class)
-		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 */
-
+		    if (op.getViewKind() == Node.class)
+		return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		    if (op.getViewKind() == Edge.class)
+		return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		*/
 		// check Diagram Type should be the class diagram
 		String modelID = UMLVisualIDRegistry.getModelID(op.getContainerView());
-		if (!getDiagramProvidedId().equals(modelID)) {
+		if(!getDiagramProvidedId().equals(modelID)) {
 			return false;
 		}
-
-		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if (Node.class.isAssignableFrom(op.getViewKind())) {
+		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if(Node.class.isAssignableFrom(op.getViewKind())) {
 			return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 		}
-
 		return true;
 	}
 
@@ -116,13 +113,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected String getDiagramProvidedId() {
 		/*
-		 * Indicates for which diagram this provider works for.
-		 * <p>
-		 * This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
-		 * </p>
-		 * 
-		 * @return the unique identifier of the diagram for which views are provided.
-		 */
+		* Indicates for which diagram this provider works for.
+		* <p>
+		* This method can be overloaded when diagram editor inherits from another one, but should never be <code>null</code>
+		* </p>
+		* 
+		* @return the unique identifier of the diagram for which views are provided.
+		*/
 		return ModelEditPart.MODEL_ID;
 	}
 
@@ -130,132 +127,131 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return ModelEditPart.MODEL_ID.equals(op.getSemanticHint()) && UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
+		return ModelEditPart.MODEL_ID.equals(op.getSemanticHint()) && UMLVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != null;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean provides(CreateNodeViewOperation op) {
-		if (op.getContainerView() == null) {
+		if(op.getContainerView() == null) {
 			return false;
 		}
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		int visualID;
-		if (op.getSemanticHint() == null) {
+		String visualID;
+		if(op.getSemanticHint() == null) {
 			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
 			// In this situation there should be NO elementType, visualID will be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
-			if (elementType != null || domainElement == null) {
+			if(elementType != null || domainElement == null) {
 				return false;
 			}
 			visualID = UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement);
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-			if (elementType != null) {
-
-				if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+			if(elementType != null) {
+				if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
-
-				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-				if (!op.getSemanticHint().equals(elementTypeHint)) {
+				String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+				if(!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				// if (domainElement != null && visualID != org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-				// return false; // visual id for node EClass should match visual id from element type
-				// }
+				//if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
+				//	return false; // visual id for node EClass should match visual id from element type
+				//}
 			} else {
-				if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if(!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
-				switch (visualID) {
-				case DependencyNodeEditPart.VISUAL_ID:
-				case AssociationClassEditPart.VISUAL_ID:
-				case AssociationNodeEditPart.VISUAL_ID:
-				case InstanceSpecificationEditPart.VISUAL_ID:
-				case ComponentEditPart.VISUAL_ID:
-				case SignalEditPart.VISUAL_ID:
-				case InterfaceEditPart.VISUAL_ID:
-				case ModelEditPartTN.VISUAL_ID:
-				case InformationItemEditPart.VISUAL_ID:
-				case ShortCutDiagramEditPart.VISUAL_ID:
-				case DurationObservationEditPart.VISUAL_ID:
-				case TimeObservationEditPart.VISUAL_ID:
-				case DefaultNamedElementEditPart.VISUAL_ID:
-				case PropertyForComponentEditPart.VISUAL_ID:
-				case NestedClassForComponentEditPart.VISUAL_ID:
-				case OperationForComponentEditPart.VISUAL_ID:
-				case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
-				case OperationTemplateParameterEditPart.VISUAL_ID:
-				case ClassifierTemplateParameterEditPart.VISUAL_ID:
-				case TemplateParameterEditPart.VISUAL_ID:
-				case EnumerationLiteralEditPart.VISUAL_ID:
-				case ReceptionEditPart.VISUAL_ID:
-				case ReceptionInInterfaceEditPart.VISUAL_ID:
-				case SlotEditPart.VISUAL_ID:
-				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-				case TemplateSignatureEditPart.VISUAL_ID:
-				case EnumerationEditPartCN.VISUAL_ID:
-				case InformationItemEditPartCN.VISUAL_ID:
-				case PrimitiveTypeEditPartCN.VISUAL_ID:
-				case DataTypeEditPartCN.VISUAL_ID:
-				case CommentEditPartCN.VISUAL_ID:
-				case ConstraintEditPartCN.VISUAL_ID:
-				case NestedInterfaceForComponentEditPart.VISUAL_ID:
-				case EnumerationEditPart.VISUAL_ID:
-				case PackageEditPart.VISUAL_ID:
-				case ClassEditPart.VISUAL_ID:
-				case PrimitiveTypeEditPart.VISUAL_ID:
-				case DataTypeEditPart.VISUAL_ID:
-				case ConstraintEditPart.VISUAL_ID:
-				case CommentEditPart.VISUAL_ID:
-				case PropertyForClassEditPart.VISUAL_ID:
-				case PropertyForSignalEditPart.VISUAL_ID:
-				case PropertyForInterfaceEditPart.VISUAL_ID:
-				case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
-				case PropertyforDataTypeEditPart.VISUAL_ID:
-				case NestedClassForClassEditPart.VISUAL_ID:
-				case NestedClassForInterfaceEditPart.VISUAL_ID:
-				case OperationForClassEditPart.VISUAL_ID:
-				case OperationForInterfaceEditpart.VISUAL_ID:
-				case OperationForPrimitiveTypeEditPart.VISUAL_ID:
-				case OperationForDataTypeEditPart.VISUAL_ID:
-				case InstanceSpecificationEditPartCN.VISUAL_ID:
-				case ComponentEditPartCN.VISUAL_ID:
-				case SignalEditPartCN.VISUAL_ID:
-				case InterfaceEditPartCN.VISUAL_ID:
-				case ModelEditPartCN.VISUAL_ID:
-				case PackageEditPartCN.VISUAL_ID:
-				case ClassEditPartCN.VISUAL_ID:
-				case NestedInterfaceForClassEditPart.VISUAL_ID:
-				case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
-				case NestedEnumerationForClassEditPart.VISUAL_ID:
-				case NestedEnumerationForComponentEditPart.VISUAL_ID:
-				case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
-				case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
-				case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
-				case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
-				case NestedDataTypeForClassEditPart.VISUAL_ID:
-				case NestedDataTypeForComponentEditPart.VISUAL_ID:
-				case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
-				case NestedSignalForClassEditPart.VISUAL_ID:
-				case NestedSignalForComponentEditPart.VISUAL_ID:
-				case NestedSignalForInterfaceEditPart.VISUAL_ID:
-				case NestedComponentForClassEditPart.VISUAL_ID:
-				case NestedComponentForInterfaceEditPart.VISUAL_ID:
-				case NestedComponentForComponentEditPart.VISUAL_ID:
-					if (domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
-						return false; // visual id in semantic hint should match visual id for domain element
+				if(visualID != null) {
+					switch(visualID) {
+					case DependencyNodeEditPart.VISUAL_ID:
+					case AssociationClassEditPart.VISUAL_ID:
+					case AssociationNodeEditPart.VISUAL_ID:
+					case InstanceSpecificationEditPart.VISUAL_ID:
+					case ComponentEditPart.VISUAL_ID:
+					case SignalEditPart.VISUAL_ID:
+					case InterfaceEditPart.VISUAL_ID:
+					case ModelEditPartTN.VISUAL_ID:
+					case InformationItemEditPart.VISUAL_ID:
+					case ShortCutDiagramEditPart.VISUAL_ID:
+					case DurationObservationEditPart.VISUAL_ID:
+					case TimeObservationEditPart.VISUAL_ID:
+					case DefaultNamedElementEditPart.VISUAL_ID:
+					case PropertyForComponentEditPart.VISUAL_ID:
+					case NestedClassForComponentEditPart.VISUAL_ID:
+					case OperationForComponentEditPart.VISUAL_ID:
+					case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+					case OperationTemplateParameterEditPart.VISUAL_ID:
+					case ClassifierTemplateParameterEditPart.VISUAL_ID:
+					case TemplateParameterEditPart.VISUAL_ID:
+					case EnumerationLiteralEditPart.VISUAL_ID:
+					case ReceptionEditPart.VISUAL_ID:
+					case ReceptionInInterfaceEditPart.VISUAL_ID:
+					case SlotEditPart.VISUAL_ID:
+					case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+					case TemplateSignatureEditPart.VISUAL_ID:
+					case EnumerationEditPartCN.VISUAL_ID:
+					case InformationItemEditPartCN.VISUAL_ID:
+					case PrimitiveTypeEditPartCN.VISUAL_ID:
+					case DataTypeEditPartCN.VISUAL_ID:
+					case CommentEditPartCN.VISUAL_ID:
+					case ConstraintEditPartCN.VISUAL_ID:
+					case NestedInterfaceForComponentEditPart.VISUAL_ID:
+					case EnumerationEditPart.VISUAL_ID:
+					case PackageEditPart.VISUAL_ID:
+					case ClassEditPart.VISUAL_ID:
+					case PrimitiveTypeEditPart.VISUAL_ID:
+					case DataTypeEditPart.VISUAL_ID:
+					case ConstraintEditPart.VISUAL_ID:
+					case CommentEditPart.VISUAL_ID:
+					case PropertyForClassEditPart.VISUAL_ID:
+					case PropertyForSignalEditPart.VISUAL_ID:
+					case PropertyForInterfaceEditPart.VISUAL_ID:
+					case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
+					case PropertyforDataTypeEditPart.VISUAL_ID:
+					case NestedClassForClassEditPart.VISUAL_ID:
+					case NestedClassForInterfaceEditPart.VISUAL_ID:
+					case OperationForClassEditPart.VISUAL_ID:
+					case OperationForInterfaceEditpart.VISUAL_ID:
+					case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+					case OperationForDataTypeEditPart.VISUAL_ID:
+					case InstanceSpecificationEditPartCN.VISUAL_ID:
+					case ComponentEditPartCN.VISUAL_ID:
+					case SignalEditPartCN.VISUAL_ID:
+					case InterfaceEditPartCN.VISUAL_ID:
+					case ModelEditPartCN.VISUAL_ID:
+					case PackageEditPartCN.VISUAL_ID:
+					case ClassEditPartCN.VISUAL_ID:
+					case NestedInterfaceForClassEditPart.VISUAL_ID:
+					case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
+					case NestedEnumerationForClassEditPart.VISUAL_ID:
+					case NestedEnumerationForComponentEditPart.VISUAL_ID:
+					case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
+					case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
+					case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
+					case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
+					case NestedDataTypeForClassEditPart.VISUAL_ID:
+					case NestedDataTypeForComponentEditPart.VISUAL_ID:
+					case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
+					case NestedSignalForClassEditPart.VISUAL_ID:
+					case NestedSignalForComponentEditPart.VISUAL_ID:
+					case NestedSignalForInterfaceEditPart.VISUAL_ID:
+					case NestedComponentForClassEditPart.VISUAL_ID:
+					case NestedComponentForInterfaceEditPart.VISUAL_ID:
+					case NestedComponentForComponentEditPart.VISUAL_ID:
+						if(domainElement == null || !visualID.equals(UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement))) {
+							return false; // visual id in semantic hint should match visual id for domain element
+						}
+						break;
+					default:
+						return false;
 					}
-					break;
-				default:
-					return false;
 				}
 			}
 		}
-
 		return UMLVisualIDRegistry.canCreateNode(op.getContainerView(), visualID);
 	}
 
@@ -264,30 +260,30 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		// RS: add code for extended types creation
-		if (elementType instanceof IExtendedHintedElementType) {
+		//RS: add code for extended types creation
+		if(elementType instanceof IExtendedHintedElementType) {
 			IElementType closestNonExtendedType = ElementTypeUtils.getClosestDiagramType(elementType);
-			if (!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
+			if(!UMLElementTypes.isKnownElementType(closestNonExtendedType) || (!(closestNonExtendedType instanceof IHintedType))) {
 				return false; // foreign element type.
 			}
 		} else {
-			if (!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+			if(!UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 				return false; // foreign element type
 			}
 		}
-		// if (!org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
-		// return false; // foreign element type
-		// }
+		//if (!org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes.isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
+		//	return false; // foreign element type
+		//}
 		// END R.S.
-		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
+		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+		if(elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		// int visualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
-		// org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		// if (domainElement != null && visualID != org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
-		// return false; // visual id for link EClass should match visual id from element type
-		// }
+		//String visualID = org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getVisualID(elementTypeHint);
+		//org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
+		//if (domainElement != null && !visualID.equals(org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement))) {
+		//	return false; // visual id for link EClass should match visual id from element type
+		//}
 		return true;
 	}
 
@@ -312,163 +308,165 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
-		final int visualID;
-		if (semanticHint == null) {
+		final String visualID;
+		if(semanticHint == null) {
 			visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
 			visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 		}
-		switch (visualID) {
-		case DependencyNodeEditPart.VISUAL_ID:
-			return createDependency_2014(domainElement, containerView, index, persisted, preferencesHint);
-		case AssociationClassEditPart.VISUAL_ID:
-			return createAssociationClass_2013(domainElement, containerView, index, persisted, preferencesHint);
-		case AssociationNodeEditPart.VISUAL_ID:
-			return createAssociation_2015(domainElement, containerView, index, persisted, preferencesHint);
-		case InstanceSpecificationEditPart.VISUAL_ID:
-			return createInstanceSpecification_2001(domainElement, containerView, index, persisted, preferencesHint);
-		case ComponentEditPart.VISUAL_ID:
-			return createComponent_2002(domainElement, containerView, index, persisted, preferencesHint);
-		case SignalEditPart.VISUAL_ID:
-			return createSignal_2003(domainElement, containerView, index, persisted, preferencesHint);
-		case InterfaceEditPart.VISUAL_ID:
-			return createInterface_2004(domainElement, containerView, index, persisted, preferencesHint);
-		case ModelEditPartTN.VISUAL_ID:
-			return createModel_2005(domainElement, containerView, index, persisted, preferencesHint);
-		case EnumerationEditPart.VISUAL_ID:
-			return createEnumeration_2006(domainElement, containerView, index, persisted, preferencesHint);
-		case PackageEditPart.VISUAL_ID:
-			return createPackage_2007(domainElement, containerView, index, persisted, preferencesHint);
-		case InformationItemEditPart.VISUAL_ID:
-			return createInformationItem_2099(domainElement, containerView, index, persisted, preferencesHint);
-		case ClassEditPart.VISUAL_ID:
-			return createClass_2008(domainElement, containerView, index, persisted, preferencesHint);
-		case PrimitiveTypeEditPart.VISUAL_ID:
-			return createPrimitiveType_2009(domainElement, containerView, index, persisted, preferencesHint);
-		case DataTypeEditPart.VISUAL_ID:
-			return createDataType_2010(domainElement, containerView, index, persisted, preferencesHint);
-		case ConstraintEditPart.VISUAL_ID:
-			return createConstraint_2011(domainElement, containerView, index, persisted, preferencesHint);
-		case CommentEditPart.VISUAL_ID:
-			return createComment_2012(domainElement, containerView, index, persisted, preferencesHint);
-		case ShortCutDiagramEditPart.VISUAL_ID:
-			return createDiagram_2016(domainElement, containerView, index, persisted, preferencesHint);
-		case DurationObservationEditPart.VISUAL_ID:
-			return createDurationObservation_2095(domainElement, containerView, index, persisted, preferencesHint);
-		case TimeObservationEditPart.VISUAL_ID:
-			return createTimeObservation_2096(domainElement, containerView, index, persisted, preferencesHint);
-		case DefaultNamedElementEditPart.VISUAL_ID:
-			return createNamedElement_2097(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForClassEditPart.VISUAL_ID:
-			return createProperty_3012(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForComponentEditPart.VISUAL_ID:
-			return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForSignalEditPart.VISUAL_ID:
-			return createProperty_3005(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyForInterfaceEditPart.VISUAL_ID:
-			return createProperty_3006(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
-			return createProperty_3041(domainElement, containerView, index, persisted, preferencesHint);
-		case PropertyforDataTypeEditPart.VISUAL_ID:
-			return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedClassForClassEditPart.VISUAL_ID:
-			return createClass_3014(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedClassForComponentEditPart.VISUAL_ID:
-			return createClass_3004(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedClassForInterfaceEditPart.VISUAL_ID:
-			return createClass_3008(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForClassEditPart.VISUAL_ID:
-			return createOperation_3013(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForComponentEditPart.VISUAL_ID:
-			return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForInterfaceEditpart.VISUAL_ID:
-			return createOperation_3007(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
-			return createOperation_3042(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationForDataTypeEditPart.VISUAL_ID:
-			return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
-		case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
-			return createConnectableElementTemplateParameter_3034(domainElement, containerView, index, persisted, preferencesHint);
-		case OperationTemplateParameterEditPart.VISUAL_ID:
-			return createOperationTemplateParameter_3035(domainElement, containerView, index, persisted, preferencesHint);
-		case ClassifierTemplateParameterEditPart.VISUAL_ID:
-			return createClassifierTemplateParameter_3031(domainElement, containerView, index, persisted, preferencesHint);
-		case TemplateParameterEditPart.VISUAL_ID:
-			return createTemplateParameter_3016(domainElement, containerView, index, persisted, preferencesHint);
-		case EnumerationLiteralEditPart.VISUAL_ID:
-			return createEnumerationLiteral_3017(domainElement, containerView, index, persisted, preferencesHint);
-		case ReceptionEditPart.VISUAL_ID:
-			return createReception_3011(domainElement, containerView, index, persisted, preferencesHint);
-		case ReceptionInInterfaceEditPart.VISUAL_ID:
-			return createReception_3039(domainElement, containerView, index, persisted, preferencesHint);
-		case SlotEditPart.VISUAL_ID:
-			return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
-		case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-			return createRedefinableTemplateSignature_3015(domainElement, containerView, index, persisted, preferencesHint);
-		case TemplateSignatureEditPart.VISUAL_ID:
-			return createTemplateSignature_3033(domainElement, containerView, index, persisted, preferencesHint);
-		case InstanceSpecificationEditPartCN.VISUAL_ID:
-			return createInstanceSpecification_3020(domainElement, containerView, index, persisted, preferencesHint);
-		case ComponentEditPartCN.VISUAL_ID:
-			return createComponent_3021(domainElement, containerView, index, persisted, preferencesHint);
-		case SignalEditPartCN.VISUAL_ID:
-			return createSignal_3022(domainElement, containerView, index, persisted, preferencesHint);
-		case InterfaceEditPartCN.VISUAL_ID:
-			return createInterface_3023(domainElement, containerView, index, persisted, preferencesHint);
-		case ModelEditPartCN.VISUAL_ID:
-			return createModel_3024(domainElement, containerView, index, persisted, preferencesHint);
-		case EnumerationEditPartCN.VISUAL_ID:
-			return createEnumeration_3025(domainElement, containerView, index, persisted, preferencesHint);
-		case PackageEditPartCN.VISUAL_ID:
-			return createPackage_3009(domainElement, containerView, index, persisted, preferencesHint);
-		case InformationItemEditPartCN.VISUAL_ID:
-			return createInformationItem_3040(domainElement, containerView, index, persisted, preferencesHint);
-		case ClassEditPartCN.VISUAL_ID:
-			return createClass_3010(domainElement, containerView, index, persisted, preferencesHint);
-		case PrimitiveTypeEditPartCN.VISUAL_ID:
-			return createPrimitiveType_3026(domainElement, containerView, index, persisted, preferencesHint);
-		case DataTypeEditPartCN.VISUAL_ID:
-			return createDataType_3027(domainElement, containerView, index, persisted, preferencesHint);
-		case CommentEditPartCN.VISUAL_ID:
-			return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
-		case ConstraintEditPartCN.VISUAL_ID:
-			return createConstraint_3029(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedInterfaceForClassEditPart.VISUAL_ID:
-			return createInterface_3036(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedInterfaceForComponentEditPart.VISUAL_ID:
-			return createInterface_3037(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
-			return createInterface_3038(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedEnumerationForClassEditPart.VISUAL_ID:
-			return createEnumeration_3052(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedEnumerationForComponentEditPart.VISUAL_ID:
-			return createEnumeration_3053(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
-			return createEnumeration_3054(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
-			return createPrimitiveType_3047(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
-			return createPrimitiveType_3046(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
-			return createPrimitiveType_3048(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedDataTypeForClassEditPart.VISUAL_ID:
-			return createDataType_3044(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedDataTypeForComponentEditPart.VISUAL_ID:
-			return createDataType_3045(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
-			return createDataType_3043(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedSignalForClassEditPart.VISUAL_ID:
-			return createSignal_3050(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedSignalForComponentEditPart.VISUAL_ID:
-			return createSignal_3051(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedSignalForInterfaceEditPart.VISUAL_ID:
-			return createSignal_3049(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedComponentForClassEditPart.VISUAL_ID:
-			return createComponent_3055(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedComponentForInterfaceEditPart.VISUAL_ID:
-			return createComponent_3056(domainElement, containerView, index, persisted, preferencesHint);
-		case NestedComponentForComponentEditPart.VISUAL_ID:
-			return createComponent_3057(domainElement, containerView, index, persisted, preferencesHint);
+		if(visualID != null) {
+			switch(visualID) {
+			case DependencyNodeEditPart.VISUAL_ID:
+				return createDependency_2014(domainElement, containerView, index, persisted, preferencesHint);
+			case AssociationClassEditPart.VISUAL_ID:
+				return createAssociationClass_2013(domainElement, containerView, index, persisted, preferencesHint);
+			case AssociationNodeEditPart.VISUAL_ID:
+				return createAssociation_2015(domainElement, containerView, index, persisted, preferencesHint);
+			case InstanceSpecificationEditPart.VISUAL_ID:
+				return createInstanceSpecification_2001(domainElement, containerView, index, persisted, preferencesHint);
+			case ComponentEditPart.VISUAL_ID:
+				return createComponent_2002(domainElement, containerView, index, persisted, preferencesHint);
+			case SignalEditPart.VISUAL_ID:
+				return createSignal_2003(domainElement, containerView, index, persisted, preferencesHint);
+			case InterfaceEditPart.VISUAL_ID:
+				return createInterface_2004(domainElement, containerView, index, persisted, preferencesHint);
+			case ModelEditPartTN.VISUAL_ID:
+				return createModel_2005(domainElement, containerView, index, persisted, preferencesHint);
+			case EnumerationEditPart.VISUAL_ID:
+				return createEnumeration_2006(domainElement, containerView, index, persisted, preferencesHint);
+			case PackageEditPart.VISUAL_ID:
+				return createPackage_2007(domainElement, containerView, index, persisted, preferencesHint);
+			case InformationItemEditPart.VISUAL_ID:
+				return createInformationItem_2099(domainElement, containerView, index, persisted, preferencesHint);
+			case ClassEditPart.VISUAL_ID:
+				return createClass_2008(domainElement, containerView, index, persisted, preferencesHint);
+			case PrimitiveTypeEditPart.VISUAL_ID:
+				return createPrimitiveType_2009(domainElement, containerView, index, persisted, preferencesHint);
+			case DataTypeEditPart.VISUAL_ID:
+				return createDataType_2010(domainElement, containerView, index, persisted, preferencesHint);
+			case ConstraintEditPart.VISUAL_ID:
+				return createConstraint_2011(domainElement, containerView, index, persisted, preferencesHint);
+			case CommentEditPart.VISUAL_ID:
+				return createComment_2012(domainElement, containerView, index, persisted, preferencesHint);
+			case ShortCutDiagramEditPart.VISUAL_ID:
+				return createDiagram_2016(domainElement, containerView, index, persisted, preferencesHint);
+			case DurationObservationEditPart.VISUAL_ID:
+				return createDurationObservation_2095(domainElement, containerView, index, persisted, preferencesHint);
+			case TimeObservationEditPart.VISUAL_ID:
+				return createTimeObservation_2096(domainElement, containerView, index, persisted, preferencesHint);
+			case DefaultNamedElementEditPart.VISUAL_ID:
+				return createNamedElement_2097(domainElement, containerView, index, persisted, preferencesHint);
+			case PropertyForClassEditPart.VISUAL_ID:
+				return createProperty_3012(domainElement, containerView, index, persisted, preferencesHint);
+			case PropertyForComponentEditPart.VISUAL_ID:
+				return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
+			case PropertyForSignalEditPart.VISUAL_ID:
+				return createProperty_3005(domainElement, containerView, index, persisted, preferencesHint);
+			case PropertyForInterfaceEditPart.VISUAL_ID:
+				return createProperty_3006(domainElement, containerView, index, persisted, preferencesHint);
+			case PropertyforPrimitiveTypeEditPart.VISUAL_ID:
+				return createProperty_3041(domainElement, containerView, index, persisted, preferencesHint);
+			case PropertyforDataTypeEditPart.VISUAL_ID:
+				return createProperty_3018(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedClassForClassEditPart.VISUAL_ID:
+				return createClass_3014(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedClassForComponentEditPart.VISUAL_ID:
+				return createClass_3004(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedClassForInterfaceEditPart.VISUAL_ID:
+				return createClass_3008(domainElement, containerView, index, persisted, preferencesHint);
+			case OperationForClassEditPart.VISUAL_ID:
+				return createOperation_3013(domainElement, containerView, index, persisted, preferencesHint);
+			case OperationForComponentEditPart.VISUAL_ID:
+				return createOperation_3003(domainElement, containerView, index, persisted, preferencesHint);
+			case OperationForInterfaceEditpart.VISUAL_ID:
+				return createOperation_3007(domainElement, containerView, index, persisted, preferencesHint);
+			case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+				return createOperation_3042(domainElement, containerView, index, persisted, preferencesHint);
+			case OperationForDataTypeEditPart.VISUAL_ID:
+				return createOperation_3019(domainElement, containerView, index, persisted, preferencesHint);
+			case ConnectableElementTemplateParameterEditPart.VISUAL_ID:
+				return createConnectableElementTemplateParameter_3034(domainElement, containerView, index, persisted, preferencesHint);
+			case OperationTemplateParameterEditPart.VISUAL_ID:
+				return createOperationTemplateParameter_3035(domainElement, containerView, index, persisted, preferencesHint);
+			case ClassifierTemplateParameterEditPart.VISUAL_ID:
+				return createClassifierTemplateParameter_3031(domainElement, containerView, index, persisted, preferencesHint);
+			case TemplateParameterEditPart.VISUAL_ID:
+				return createTemplateParameter_3016(domainElement, containerView, index, persisted, preferencesHint);
+			case EnumerationLiteralEditPart.VISUAL_ID:
+				return createEnumerationLiteral_3017(domainElement, containerView, index, persisted, preferencesHint);
+			case ReceptionEditPart.VISUAL_ID:
+				return createReception_3011(domainElement, containerView, index, persisted, preferencesHint);
+			case ReceptionInInterfaceEditPart.VISUAL_ID:
+				return createReception_3039(domainElement, containerView, index, persisted, preferencesHint);
+			case SlotEditPart.VISUAL_ID:
+				return createSlot_3030(domainElement, containerView, index, persisted, preferencesHint);
+			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+				return createRedefinableTemplateSignature_3015(domainElement, containerView, index, persisted, preferencesHint);
+			case TemplateSignatureEditPart.VISUAL_ID:
+				return createTemplateSignature_3033(domainElement, containerView, index, persisted, preferencesHint);
+			case InstanceSpecificationEditPartCN.VISUAL_ID:
+				return createInstanceSpecification_3020(domainElement, containerView, index, persisted, preferencesHint);
+			case ComponentEditPartCN.VISUAL_ID:
+				return createComponent_3021(domainElement, containerView, index, persisted, preferencesHint);
+			case SignalEditPartCN.VISUAL_ID:
+				return createSignal_3022(domainElement, containerView, index, persisted, preferencesHint);
+			case InterfaceEditPartCN.VISUAL_ID:
+				return createInterface_3023(domainElement, containerView, index, persisted, preferencesHint);
+			case ModelEditPartCN.VISUAL_ID:
+				return createModel_3024(domainElement, containerView, index, persisted, preferencesHint);
+			case EnumerationEditPartCN.VISUAL_ID:
+				return createEnumeration_3025(domainElement, containerView, index, persisted, preferencesHint);
+			case PackageEditPartCN.VISUAL_ID:
+				return createPackage_3009(domainElement, containerView, index, persisted, preferencesHint);
+			case InformationItemEditPartCN.VISUAL_ID:
+				return createInformationItem_3040(domainElement, containerView, index, persisted, preferencesHint);
+			case ClassEditPartCN.VISUAL_ID:
+				return createClass_3010(domainElement, containerView, index, persisted, preferencesHint);
+			case PrimitiveTypeEditPartCN.VISUAL_ID:
+				return createPrimitiveType_3026(domainElement, containerView, index, persisted, preferencesHint);
+			case DataTypeEditPartCN.VISUAL_ID:
+				return createDataType_3027(domainElement, containerView, index, persisted, preferencesHint);
+			case CommentEditPartCN.VISUAL_ID:
+				return createComment_3028(domainElement, containerView, index, persisted, preferencesHint);
+			case ConstraintEditPartCN.VISUAL_ID:
+				return createConstraint_3029(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedInterfaceForClassEditPart.VISUAL_ID:
+				return createInterface_3036(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedInterfaceForComponentEditPart.VISUAL_ID:
+				return createInterface_3037(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
+				return createInterface_3038(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedEnumerationForClassEditPart.VISUAL_ID:
+				return createEnumeration_3052(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedEnumerationForComponentEditPart.VISUAL_ID:
+				return createEnumeration_3053(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedEnumerationForInterfaceEditPart.VISUAL_ID:
+				return createEnumeration_3054(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedPrimitiveTypeForClassEditPart.VISUAL_ID:
+				return createPrimitiveType_3047(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedPrimitiveTypeForComponentEditPart.VISUAL_ID:
+				return createPrimitiveType_3046(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID:
+				return createPrimitiveType_3048(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedDataTypeForClassEditPart.VISUAL_ID:
+				return createDataType_3044(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedDataTypeForComponentEditPart.VISUAL_ID:
+				return createDataType_3045(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedDataTypeForInterfaceEditPart.VISUAL_ID:
+				return createDataType_3043(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedSignalForClassEditPart.VISUAL_ID:
+				return createSignal_3050(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedSignalForComponentEditPart.VISUAL_ID:
+				return createSignal_3051(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedSignalForInterfaceEditPart.VISUAL_ID:
+				return createSignal_3049(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedComponentForClassEditPart.VISUAL_ID:
+				return createComponent_3055(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedComponentForInterfaceEditPart.VISUAL_ID:
+				return createComponent_3056(domainElement, containerView, index, persisted, preferencesHint);
+			case NestedComponentForComponentEditPart.VISUAL_ID:
+				return createComponent_3057(domainElement, containerView, index, persisted, preferencesHint);
+			}
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -480,60 +478,63 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		switch (UMLVisualIDRegistry.getVisualID(elementTypeHint)) {
-		case AssociationClassDashedLinkEditPart.VISUAL_ID:
-			return createLink_4016(containerView, index, persisted, preferencesHint);
-		case AssociationClassLinkEditPart.VISUAL_ID:
-			return createAssociationClass_4017(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case AssociationEditPart.VISUAL_ID:
-			return createAssociation_4001(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case AssociationBranchEditPart.VISUAL_ID:
-			return createAssociation_4019(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case GeneralizationEditPart.VISUAL_ID:
-			return createGeneralization_4002(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case InterfaceRealizationEditPart.VISUAL_ID:
-			return createInterfaceRealization_4003(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case SubstitutionEditPart.VISUAL_ID:
-			return createSubstitution_4004(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case RealizationEditPart.VISUAL_ID:
-			return createRealization_4005(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case AbstractionEditPart.VISUAL_ID:
-			return createAbstraction_4006(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case UsageEditPart.VISUAL_ID:
-			return createUsage_4007(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case DependencyEditPart.VISUAL_ID:
-			return createDependency_4008(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case DependencyBranchEditPart.VISUAL_ID:
-			return createDependency_4018(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case ElementImportEditPart.VISUAL_ID:
-			return createElementImport_4009(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case PackageImportEditPart.VISUAL_ID:
-			return createPackageImport_4010(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case PackageMergeEditPart.VISUAL_ID:
-			return createPackageMerge_4011(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case ProfileApplicationEditPart.VISUAL_ID:
-			return createProfileApplication_4012(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case CommentAnnotatedElementEditPart.VISUAL_ID:
-			return createCommentAnnotatedElement_4013(containerView, index, persisted, preferencesHint);
-		case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			return createConstraintConstrainedElement_4014(containerView, index, persisted, preferencesHint);
-		case TemplateBindingEditPart.VISUAL_ID:
-			return createTemplateBinding_4015(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case GeneralizationSetEditPart.VISUAL_ID:
-			return createGeneralizationSet_4020(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case InstanceSpecificationLinkEditPart.VISUAL_ID:
-			return createInstanceSpecification_4021(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case ContainmentLinkEditPart.VISUAL_ID:
-			return createLink_4023(containerView, index, persisted, preferencesHint);
-		case ConnectorTimeObservationEditPart.VISUAL_ID:
-			return createTimeObservationEvent_4024(containerView, index, persisted, preferencesHint);
-		case ConnectorDurationObservationEditPart.VISUAL_ID:
-			return createDurationObservationEvent_4025(containerView, index, persisted, preferencesHint);
-		case InformationFlowEditPart.VISUAL_ID:
-			return createInformationFlow_4026(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
-		case ContextLinkEditPart.VISUAL_ID:
-			return createConstraintContext_8500(containerView, index, persisted, preferencesHint);
+		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+		String vid = UMLVisualIDRegistry.getVisualID(elementTypeHint);
+		if(vid != null) {
+			switch(vid) {
+			case AssociationClassDashedLinkEditPart.VISUAL_ID:
+				return createLink_4016(containerView, index, persisted, preferencesHint);
+			case AssociationClassLinkEditPart.VISUAL_ID:
+				return createAssociationClass_4017(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case AssociationEditPart.VISUAL_ID:
+				return createAssociation_4001(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case AssociationBranchEditPart.VISUAL_ID:
+				return createAssociation_4019(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case GeneralizationEditPart.VISUAL_ID:
+				return createGeneralization_4002(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case InterfaceRealizationEditPart.VISUAL_ID:
+				return createInterfaceRealization_4003(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case SubstitutionEditPart.VISUAL_ID:
+				return createSubstitution_4004(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case RealizationEditPart.VISUAL_ID:
+				return createRealization_4005(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case AbstractionEditPart.VISUAL_ID:
+				return createAbstraction_4006(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case UsageEditPart.VISUAL_ID:
+				return createUsage_4007(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case DependencyEditPart.VISUAL_ID:
+				return createDependency_4008(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case DependencyBranchEditPart.VISUAL_ID:
+				return createDependency_4018(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case ElementImportEditPart.VISUAL_ID:
+				return createElementImport_4009(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case PackageImportEditPart.VISUAL_ID:
+				return createPackageImport_4010(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case PackageMergeEditPart.VISUAL_ID:
+				return createPackageMerge_4011(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case ProfileApplicationEditPart.VISUAL_ID:
+				return createProfileApplication_4012(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+				return createCommentAnnotatedElement_4013(containerView, index, persisted, preferencesHint);
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+				return createConstraintConstrainedElement_4014(containerView, index, persisted, preferencesHint);
+			case TemplateBindingEditPart.VISUAL_ID:
+				return createTemplateBinding_4015(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case GeneralizationSetEditPart.VISUAL_ID:
+				return createGeneralizationSet_4020(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case InstanceSpecificationLinkEditPart.VISUAL_ID:
+				return createInstanceSpecification_4021(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case ContainmentLinkEditPart.VISUAL_ID:
+				return createLink_4023(containerView, index, persisted, preferencesHint);
+			case ConnectorTimeObservationEditPart.VISUAL_ID:
+				return createTimeObservationEvent_4024(containerView, index, persisted, preferencesHint);
+			case ConnectorDurationObservationEditPart.VISUAL_ID:
+				return createDurationObservationEvent_4025(containerView, index, persisted, preferencesHint);
+			case InformationFlowEditPart.VISUAL_ID:
+				return createInformationFlow_4026(getSemanticElement(semanticAdapter), containerView, index, persisted, preferencesHint);
+			case ContextLinkEditPart.VISUAL_ID:
+				return createConstraintContext_8500(containerView, index, persisted, preferencesHint);
+			}
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
 		return null;
@@ -549,18 +550,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DependencyNode");
 		Node label1 = createLabel(node, UMLVisualIDRegistry.getType(MultiDependencyLabelEditPart.VISUAL_ID));
 		label1.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location1 = (Location) label1.getLayoutConstraint();
+		Location location1 = (Location)label1.getLayoutConstraint();
 		location1.setX(0);
 		location1.setY(5);
 		Node label8522 = createLabel(node, UMLVisualIDRegistry.getType(DependencyFloatingNameEditPart.VISUAL_ID));
 		label8522.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8522 = (Location) label8522.getLayoutConstraint();
+		Location location8522 = (Location)label8522.getLayoutConstraint();
 		location8522.setX(0);
 		location8522.setY(5);
 		return node;
@@ -576,14 +576,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AssociationClass");
 		Node label5066 = createLabel(node, UMLVisualIDRegistry.getType(AssociationClassNameEditPart.VISUAL_ID));
 		Node label8504 = createLabel(node, UMLVisualIDRegistry.getType(AssociationClassFloatingNameEditPart.VISUAL_ID));
 		label8504.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8504 = (Location) label8504.getLayoutConstraint();
+		Location location8504 = (Location)label8504.getLayoutConstraint();
 		location8504.setX(0);
 		location8504.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -603,13 +602,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "AssociationNode");
 		Node label8521 = createLabel(node, UMLVisualIDRegistry.getType(AssociationFloatingNameEditPart.VISUAL_ID));
 		label8521.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8521 = (Location) label8521.getLayoutConstraint();
+		Location location8521 = (Location)label8521.getLayoutConstraint();
 		location8521.setX(0);
 		location8521.setY(5);
 		return node;
@@ -625,14 +623,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InstanceSpecification");
 		Node label5002 = createLabel(node, UMLVisualIDRegistry.getType(InstanceSpecificationNameEditPart.VISUAL_ID));
 		Node label8505 = createLabel(node, UMLVisualIDRegistry.getType(InstanceSpecificationFloatingNameEditPart.VISUAL_ID));
 		label8505.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8505 = (Location) label8505.getLayoutConstraint();
+		Location location8505 = (Location)label8505.getLayoutConstraint();
 		location8505.setX(0);
 		location8505.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -650,14 +647,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
 		Node label5005 = createLabel(node, UMLVisualIDRegistry.getType(ComponentNameEditPart.VISUAL_ID));
 		Node label8503 = createLabel(node, UMLVisualIDRegistry.getType(ComponentFloatingNameEditPart.VISUAL_ID));
 		label8503.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8503 = (Location) label8503.getLayoutConstraint();
+		Location location8503 = (Location)label8503.getLayoutConstraint();
 		location8503.setX(0);
 		location8503.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -677,14 +673,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Signal");
 		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(SignalNameEditPart.VISUAL_ID));
 		Node label8506 = createLabel(node, UMLVisualIDRegistry.getType(SignalFloatingNameEditPart.VISUAL_ID));
 		label8506.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8506 = (Location) label8506.getLayoutConstraint();
+		Location location8506 = (Location)label8506.getLayoutConstraint();
 		location8506.setX(0);
 		location8506.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(SignalAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -702,14 +697,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interface");
 		Node label5011 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceNameEditPart.VISUAL_ID));
 		Node label8507 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceFloatingNameEditPart.VISUAL_ID));
 		label8507.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8507 = (Location) label8507.getLayoutConstraint();
+		Location location8507 = (Location)label8507.getLayoutConstraint();
 		location8507.setX(0);
 		location8507.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -729,9 +723,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Model");
 		Node label5020 = createLabel(node, UMLVisualIDRegistry.getType(ModelNameEditPartTN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ModelPackageableElementCompartmentEditPartTN.VISUAL_ID), true, true, false, false);
@@ -749,14 +742,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Enumeration");
 		Node label5023 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationNameEditPart.VISUAL_ID));
 		Node label8508 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationFloatingNameEditPart.VISUAL_ID));
 		label8508.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8508 = (Location) label8508.getLayoutConstraint();
+		Location location8508 = (Location)label8508.getLayoutConstraint();
 		location8508.setX(0);
 		location8508.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -774,9 +766,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Package");
 		Node label5026 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPart.VISUAL_ID), true, true, false, false);
@@ -794,14 +785,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InformationItem");
 		Node label5161 = createLabel(node, UMLVisualIDRegistry.getType(InformationItemNameEditPart.VISUAL_ID));
 		Node label8512 = createLabel(node, UMLVisualIDRegistry.getType(InformationItemFloatingNameEditPart.VISUAL_ID));
 		label8512.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8512 = (Location) label8512.getLayoutConstraint();
+		Location location8512 = (Location)label8512.getLayoutConstraint();
 		location8512.setX(0);
 		location8512.setY(5);
 		return node;
@@ -817,14 +807,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		Node label5029 = createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPart.VISUAL_ID));
 		Node label8510 = createLabel(node, UMLVisualIDRegistry.getType(ClassFloatingNameEditPart.VISUAL_ID));
 		label8510.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8510 = (Location) label8510.getLayoutConstraint();
+		Location location8510 = (Location)label8510.getLayoutConstraint();
 		location8510.setX(0);
 		location8510.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -844,14 +833,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		Node label5032 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPart.VISUAL_ID));
 		Node label8511 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeFloatingNameEditPart.VISUAL_ID));
 		label8511.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8511 = (Location) label8511.getLayoutConstraint();
+		Location location8511 = (Location)label8511.getLayoutConstraint();
 		location8511.setX(0);
 		location8511.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -870,14 +858,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataType");
 		Node label5035 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeNameEditPart.VISUAL_ID));
 		Node label8502 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeFloatingNameEditPart.VISUAL_ID));
 		label8502.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8502 = (Location) label8502.getLayoutConstraint();
+		Location location8502 = (Location)label8502.getLayoutConstraint();
 		location8502.setX(0);
 		location8502.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID), true, true, true, true);
@@ -896,9 +883,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
 		Node label5037 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
 		Node label5159 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPart.VISUAL_ID));
@@ -915,9 +901,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
 		Node label5038 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
 		return node;
@@ -933,13 +918,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShortCutDiagram");
 		Node label0 = createLabel(node, UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 		label0.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location0 = (Location) label0.getLayoutConstraint();
+		Location location0 = (Location)label0.getLayoutConstraint();
 		location0.setX(0);
 		location0.setY(5);
 		return node;
@@ -955,18 +939,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DurationObservation");
 		Node label5155 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationFloatingNameEditPart.VISUAL_ID));
 		label5155.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location5155 = (Location) label5155.getLayoutConstraint();
+		Location location5155 = (Location)label5155.getLayoutConstraint();
 		location5155.setX(25);
 		location5155.setY(3);
 		Node label5156 = createLabel(node, UMLVisualIDRegistry.getType(DurationObservationStereotypeLabelEditPart.VISUAL_ID));
 		label5156.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location5156 = (Location) label5156.getLayoutConstraint();
+		Location location5156 = (Location)label5156.getLayoutConstraint();
 		location5156.setX(25);
 		location5156.setY(-10);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "DurationObservation");
@@ -983,18 +966,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TimeObservation");
 		Node label5153 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationFloatingNameEditPart.VISUAL_ID));
 		label5153.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location5153 = (Location) label5153.getLayoutConstraint();
+		Location location5153 = (Location)label5153.getLayoutConstraint();
 		location5153.setX(25);
 		location5153.setY(3);
 		Node label5154 = createLabel(node, UMLVisualIDRegistry.getType(TimeObservationStereotypeLabelEditPart.VISUAL_ID));
 		label5154.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location5154 = (Location) label5154.getLayoutConstraint();
+		Location location5154 = (Location)label5154.getLayoutConstraint();
 		location5154.setX(25);
 		location5154.setY(-10);
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(node, prefStore, "TimeObservation");
@@ -1011,9 +993,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DefaultNamedElement");
 		Node label5157 = createLabel(node, UMLVisualIDRegistry.getType(DefaultNamedElementNameEditPart.VISUAL_ID));
 		return node;
@@ -1028,8 +1009,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PropertyForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		return node;
 	}
@@ -1043,8 +1023,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PropertyForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		return node;
 	}
@@ -1058,8 +1037,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PropertyForSignalEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		return node;
 	}
@@ -1073,8 +1051,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PropertyForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		return node;
 	}
@@ -1088,8 +1065,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PropertyforPrimitiveTypeEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		return node;
 	}
@@ -1103,8 +1079,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PropertyforDataTypeEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Property");
 		return node;
 	}
@@ -1118,8 +1093,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedClassForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		return node;
 	}
@@ -1133,8 +1107,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedClassForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		return node;
 	}
@@ -1148,8 +1121,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedClassForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		return node;
 	}
@@ -1163,8 +1135,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(OperationForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
@@ -1178,8 +1149,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(OperationForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
@@ -1193,8 +1163,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(OperationForInterfaceEditpart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
@@ -1208,8 +1177,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(OperationForPrimitiveTypeEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
@@ -1223,8 +1191,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(OperationForDataTypeEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Operation");
 		return node;
 	}
@@ -1238,8 +1205,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ConnectableElementTemplateParameterEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConnectableElementTemplateParameter");
 		return node;
 	}
@@ -1253,8 +1219,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(OperationTemplateParameterEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OperationTemplateParameter");
 		return node;
 	}
@@ -1268,8 +1233,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ClassifierTemplateParameterEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ClassifierTemplateParameter");
 		return node;
 	}
@@ -1283,8 +1247,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(TemplateParameterEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TemplateParameter");
 		return node;
 	}
@@ -1298,8 +1261,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(EnumerationLiteralEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "EnumerationLiteral");
 		return node;
 	}
@@ -1313,8 +1275,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ReceptionEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Reception");
 		return node;
 	}
@@ -1328,8 +1289,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ReceptionInInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Reception");
 		return node;
 	}
@@ -1343,8 +1303,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(SlotEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Slot");
 		return node;
 	}
@@ -1358,9 +1317,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(RedefinableTemplateSignatureEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "RedefinableTemplateSignature");
 		createCompartment(node, UMLVisualIDRegistry.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID), false, true, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "RedefinableTemplateSignature");
@@ -1376,9 +1334,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(TemplateSignatureEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "TemplateSignature");
 		createCompartment(node, UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID), false, true, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "TemplateSignature");
@@ -1394,14 +1351,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(InstanceSpecificationEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InstanceSpecification");
 		Node label5040 = createLabel(node, UMLVisualIDRegistry.getType(InstanceSpecificationNameEditPartCN.VISUAL_ID));
 		Node label8509 = createLabel(node, UMLVisualIDRegistry.getType(InstanceSpecificationFloatingNameEditPartCN.VISUAL_ID));
 		label8509.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8509 = (Location) label8509.getLayoutConstraint();
+		Location location8509 = (Location)label8509.getLayoutConstraint();
 		location8509.setX(0);
 		location8509.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1418,14 +1374,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ComponentEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
 		Node label5043 = createLabel(node, UMLVisualIDRegistry.getType(ComponentNameEditPartCN.VISUAL_ID));
 		Node label8513 = createLabel(node, UMLVisualIDRegistry.getType(ComponentFloatingNameEditPartCN.VISUAL_ID));
 		label8513.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8513 = (Location) label8513.getLayoutConstraint();
+		Location location8513 = (Location)label8513.getLayoutConstraint();
 		location8513.setX(0);
 		location8513.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(ComponentAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1444,14 +1399,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(SignalEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Signal");
 		Node label5046 = createLabel(node, UMLVisualIDRegistry.getType(SignalNameEditPartCN.VISUAL_ID));
 		Node label8514 = createLabel(node, UMLVisualIDRegistry.getType(SignalFloatingNameEditPartCN.VISUAL_ID));
 		label8514.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8514 = (Location) label8514.getLayoutConstraint();
+		Location location8514 = (Location)label8514.getLayoutConstraint();
 		location8514.setX(0);
 		location8514.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(SignalAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1468,14 +1422,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(InterfaceEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interface");
 		Node label5049 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceNameEditPartCN.VISUAL_ID));
 		Node label8515 = createLabel(node, UMLVisualIDRegistry.getType(InterfaceFloatingNameEditPartCN.VISUAL_ID));
 		label8515.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8515 = (Location) label8515.getLayoutConstraint();
+		Location location8515 = (Location)label8515.getLayoutConstraint();
 		location8515.setX(0);
 		location8515.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1494,9 +1447,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ModelEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Model");
 		Node label5052 = createLabel(node, UMLVisualIDRegistry.getType(ModelNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(ModelPackageableElementCompartmentEditPartCN.VISUAL_ID), true, true, false, false);
@@ -1513,14 +1465,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(EnumerationEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Enumeration");
 		Node label5055 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationNameEditPartCN.VISUAL_ID));
 		Node label8516 = createLabel(node, UMLVisualIDRegistry.getType(EnumerationFloatingNameEditPartCN.VISUAL_ID));
 		label8516.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8516 = (Location) label8516.getLayoutConstraint();
+		Location location8516 = (Location)label8516.getLayoutConstraint();
 		location8516.setX(0);
 		location8516.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1537,9 +1488,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PackageEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Package");
 		Node label5017 = createLabel(node, UMLVisualIDRegistry.getType(PackageNameEditPartCN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(PackagePackageableElementCompartmentEditPartCN.VISUAL_ID), true, true, false, false);
@@ -1556,14 +1506,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(InformationItemEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InformationItem");
 		Node label5162 = createLabel(node, UMLVisualIDRegistry.getType(InformationItemNameEditPartCN.VISUAL_ID));
 		Node label8517 = createLabel(node, UMLVisualIDRegistry.getType(InformationItemFloatingNameEditPartCN.VISUAL_ID));
 		label8517.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8517 = (Location) label8517.getLayoutConstraint();
+		Location location8517 = (Location)label8517.getLayoutConstraint();
 		location8517.setX(0);
 		location8517.setY(5);
 		return node;
@@ -1578,14 +1527,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ClassEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Class");
 		Node label5014 = createLabel(node, UMLVisualIDRegistry.getType(ClassNameEditPartCN.VISUAL_ID));
 		Node label8518 = createLabel(node, UMLVisualIDRegistry.getType(ClassFloatingNameEditPartCN.VISUAL_ID));
 		label8518.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8518 = (Location) label8518.getLayoutConstraint();
+		Location location8518 = (Location)label8518.getLayoutConstraint();
 		location8518.setX(0);
 		location8518.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(ClassAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1604,14 +1552,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(PrimitiveTypeEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		Node label5058 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeNameEditPartCN.VISUAL_ID));
 		Node label8519 = createLabel(node, UMLVisualIDRegistry.getType(PrimitiveTypeFloatingNameEditPartCN.VISUAL_ID));
 		label8519.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8519 = (Location) label8519.getLayoutConstraint();
+		Location location8519 = (Location)label8519.getLayoutConstraint();
 		location8519.setX(0);
 		location8519.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1629,14 +1576,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(DataTypeEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataType");
 		Node label5061 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeNameEditPartCN.VISUAL_ID));
 		Node label8520 = createLabel(node, UMLVisualIDRegistry.getType(DataTypeFloatingNameEditPartCN.VISUAL_ID));
 		label8520.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8520 = (Location) label8520.getLayoutConstraint();
+		Location location8520 = (Location)label8520.getLayoutConstraint();
 		location8520.setX(0);
 		location8520.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPartCN.VISUAL_ID), true, true, true, true);
@@ -1654,9 +1600,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(CommentEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Comment");
 		Node label5063 = createLabel(node, UMLVisualIDRegistry.getType(CommentBodyEditPartCN.VISUAL_ID));
 		return node;
@@ -1671,9 +1616,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ConstraintEditPartCN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Constraint");
 		Node label5064 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintNameEditPartCN.VISUAL_ID));
 		Node label5160 = createLabel(node, UMLVisualIDRegistry.getType(ConstraintBodyEditPartCN.VISUAL_ID));
@@ -1689,8 +1633,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedInterfaceForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
@@ -1704,8 +1647,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedInterfaceForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
@@ -1719,8 +1661,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedInterfaceForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Interface");
 		return node;
 	}
@@ -1734,8 +1675,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedEnumerationForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Enumeration");
 		return node;
 	}
@@ -1749,8 +1689,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedEnumerationForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Enumeration");
 		return node;
 	}
@@ -1764,8 +1703,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedEnumerationForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Enumeration");
 		return node;
 	}
@@ -1779,8 +1717,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedPrimitiveTypeForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		return node;
 	}
@@ -1794,8 +1731,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedPrimitiveTypeForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		return node;
 	}
@@ -1809,8 +1745,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedPrimitiveTypeForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "PrimitiveType");
 		return node;
 	}
@@ -1824,8 +1759,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedDataTypeForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataType");
 		return node;
 	}
@@ -1839,8 +1773,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedDataTypeForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataType");
 		return node;
 	}
@@ -1854,8 +1787,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedDataTypeForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DataType");
 		return node;
 	}
@@ -1869,8 +1801,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedSignalForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Signal");
 		return node;
 	}
@@ -1884,8 +1815,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedSignalForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Signal");
 		return node;
 	}
@@ -1899,8 +1829,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedSignalForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Signal");
 		return node;
 	}
@@ -1914,8 +1843,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedComponentForClassEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
 		return node;
 	}
@@ -1929,8 +1857,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedComponentForInterfaceEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
 		return node;
 	}
@@ -1944,8 +1871,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(NestedComponentForComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
 		return node;
 	}
@@ -1966,14 +1892,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(AssociationClassDashedLinkEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationClassDashedLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -1993,24 +1917,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(AssociationClassLinkEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationClassLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6031 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationClassRoleSourceEditPart.VISUAL_ID));
 		label6031.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6031 = (Location) label6031.getLayoutConstraint();
+		Location location6031 = (Location)label6031.getLayoutConstraint();
 		location6031.setX(0);
 		location6031.setY(-20);
 		Node label6032 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationClassRoleTargetEditPart.VISUAL_ID));
 		label6032.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6032 = (Location) label6032.getLayoutConstraint();
+		Location location6032 = (Location)label6032.getLayoutConstraint();
 		location6032.setX(0);
 		location6032.setY(20);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationClassLink");
 		return edge;
 	}
@@ -2031,44 +1953,42 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(AssociationEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6001 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeAssociationEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6001 = (Location) label6001.getLayoutConstraint();
+		Location location6001 = (Location)label6001.getLayoutConstraint();
 		location6001.setX(0);
 		location6001.setY(-20);
 		Node label6002 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationNameEditPart.VISUAL_ID));
 		label6002.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6002 = (Location) label6002.getLayoutConstraint();
+		Location location6002 = (Location)label6002.getLayoutConstraint();
 		location6002.setX(0);
 		location6002.setY(20);
 		Node label6003 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationTargetNameEditPart.VISUAL_ID));
 		label6003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6003 = (Location) label6003.getLayoutConstraint();
+		Location location6003 = (Location)label6003.getLayoutConstraint();
 		location6003.setX(0);
 		location6003.setY(-20);
 		Node label6005 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationSourceNameEditPart.VISUAL_ID));
 		label6005.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6005 = (Location) label6005.getLayoutConstraint();
+		Location location6005 = (Location)label6005.getLayoutConstraint();
 		location6005.setX(0);
 		location6005.setY(20);
 		Node label6033 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplicitySourceEditPart.VISUAL_ID));
 		label6033.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6033 = (Location) label6033.getLayoutConstraint();
+		Location location6033 = (Location)label6033.getLayoutConstraint();
 		location6033.setX(0);
 		location6033.setY(20);
 		Node label6034 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplicityTargetEditPart.VISUAL_ID));
 		label6034.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6034 = (Location) label6034.getLayoutConstraint();
+		Location location6034 = (Location)label6034.getLayoutConstraint();
 		location6034.setX(0);
 		location6034.setY(-20);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationLink");
 		return edge;
 	}
@@ -2089,24 +2009,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(AssociationBranchEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "AssociationBranchLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6024 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchRoleEditPart.VISUAL_ID));
 		label6024.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6024 = (Location) label6024.getLayoutConstraint();
+		Location location6024 = (Location)label6024.getLayoutConstraint();
 		location6024.setX(0);
 		location6024.setY(-20);
 		Node label6035 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationBranchMutliplicityEditPart.VISUAL_ID));
 		label6035.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6035 = (Location) label6035.getLayoutConstraint();
+		Location location6035 = (Location)label6035.getLayoutConstraint();
 		location6035.setX(0);
 		location6035.setY(20);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "AssociationBranchLink");
 		return edge;
 	}
@@ -2127,19 +2045,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(GeneralizationEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Generalization");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6007 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotyperGeneralizationEditPart.VISUAL_ID));
 		label6007.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6007 = (Location) label6007.getLayoutConstraint();
+		Location location6007 = (Location)label6007.getLayoutConstraint();
 		location6007.setX(0);
 		location6007.setY(40);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Generalization");
 		return edge;
 	}
@@ -2160,24 +2076,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(InterfaceRealizationEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "InterfaceRealization");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6008 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID));
 		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6008 = (Location) label6008.getLayoutConstraint();
+		Location location6008 = (Location)label6008.getLayoutConstraint();
 		location6008.setX(0);
 		location6008.setY(40);
 		Node label6009 = createLabel(edge, UMLVisualIDRegistry.getType(InterfaceRealizationNameEditPart.VISUAL_ID));
 		label6009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6009 = (Location) label6009.getLayoutConstraint();
+		Location location6009 = (Location)label6009.getLayoutConstraint();
 		location6009.setX(0);
 		location6009.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InterfaceRealization");
 		return edge;
 	}
@@ -2198,24 +2112,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(SubstitutionEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Substitution");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6010 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeSubstitutionEditPart.VISUAL_ID));
 		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6010 = (Location) label6010.getLayoutConstraint();
+		Location location6010 = (Location)label6010.getLayoutConstraint();
 		location6010.setX(0);
 		location6010.setY(40);
 		Node label6011 = createLabel(edge, UMLVisualIDRegistry.getType(SubstitutionNameEditPart.VISUAL_ID));
 		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6011 = (Location) label6011.getLayoutConstraint();
+		Location location6011 = (Location)label6011.getLayoutConstraint();
 		location6011.setX(0);
 		location6011.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Substitution");
 		return edge;
 	}
@@ -2236,24 +2148,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(RealizationEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Realization");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeRealizationEditPart.VISUAL_ID));
 		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6012 = (Location) label6012.getLayoutConstraint();
+		Location location6012 = (Location)label6012.getLayoutConstraint();
 		location6012.setX(0);
 		location6012.setY(40);
 		Node label6013 = createLabel(edge, UMLVisualIDRegistry.getType(RealizationNameEditPart.VISUAL_ID));
 		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6013 = (Location) label6013.getLayoutConstraint();
+		Location location6013 = (Location)label6013.getLayoutConstraint();
 		location6013.setX(0);
 		location6013.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Realization");
 		return edge;
 	}
@@ -2274,24 +2184,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(AbstractionEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Abstraction");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6014 = createLabel(edge, UMLVisualIDRegistry.getType(AbstractionNameEditPart.VISUAL_ID));
 		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6014 = (Location) label6014.getLayoutConstraint();
+		Location location6014 = (Location)label6014.getLayoutConstraint();
 		location6014.setX(0);
 		location6014.setY(40);
 		Node label6015 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeAbstractionEditPart.VISUAL_ID));
 		label6015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6015 = (Location) label6015.getLayoutConstraint();
+		Location location6015 = (Location)label6015.getLayoutConstraint();
 		location6015.setX(0);
 		location6015.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Abstraction");
 		return edge;
 	}
@@ -2312,24 +2220,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(UsageEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "Usage");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6016 = createLabel(edge, UMLVisualIDRegistry.getType(UsageNameEditPart.VISUAL_ID));
 		label6016.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6016 = (Location) label6016.getLayoutConstraint();
+		Location location6016 = (Location)label6016.getLayoutConstraint();
 		location6016.setX(0);
 		location6016.setY(40);
 		Node label6017 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeUsageEditPart.VISUAL_ID));
 		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6017 = (Location) label6017.getLayoutConstraint();
+		Location location6017 = (Location)label6017.getLayoutConstraint();
 		location6017.setX(0);
 		location6017.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Usage");
 		return edge;
 	}
@@ -2350,24 +2256,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(DependencyEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "DependencyLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6026 = createLabel(edge, UMLVisualIDRegistry.getType(DependencyNameEditPart.VISUAL_ID));
 		label6026.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6026 = (Location) label6026.getLayoutConstraint();
+		Location location6026 = (Location)label6026.getLayoutConstraint();
 		location6026.setX(0);
 		location6026.setY(40);
 		Node label6027 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeDependencyEditPart.VISUAL_ID));
 		label6027.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6027 = (Location) label6027.getLayoutConstraint();
+		Location location6027 = (Location)label6027.getLayoutConstraint();
 		location6027.setX(0);
 		location6027.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "DependencyLink");
 		return edge;
 	}
@@ -2388,14 +2292,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(DependencyBranchEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "DependencyBranchLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2415,24 +2317,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ElementImportEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ElementImport");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6020 = createLabel(edge, UMLVisualIDRegistry.getType(ElementImportAliasEditPart.VISUAL_ID));
 		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6020 = (Location) label6020.getLayoutConstraint();
+		Location location6020 = (Location)label6020.getLayoutConstraint();
 		location6020.setX(0);
 		location6020.setY(40);
 		Node label6021 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeElementImportEditPart.VISUAL_ID));
 		label6021.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6021 = (Location) label6021.getLayoutConstraint();
+		Location location6021 = (Location)label6021.getLayoutConstraint();
 		location6021.setX(0);
 		location6021.setY(60);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "ElementImport");
 		return edge;
 	}
@@ -2453,19 +2353,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(PackageImportEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "PackageImport");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6022 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypePackageImportEditPart.VISUAL_ID));
 		label6022.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6022 = (Location) label6022.getLayoutConstraint();
+		Location location6022 = (Location)label6022.getLayoutConstraint();
 		location6022.setX(0);
 		location6022.setY(40);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "PackageImport");
 		return edge;
 	}
@@ -2486,19 +2384,17 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(PackageMergeEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "PackageMerge");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6030 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypePackageMergeEditPart.VISUAL_ID));
 		label6030.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6030 = (Location) label6030.getLayoutConstraint();
+		Location location6030 = (Location)label6030.getLayoutConstraint();
 		location6030.setX(0);
 		location6030.setY(40);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "PackageMerge");
 		return edge;
 	}
@@ -2519,14 +2415,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ProfileApplicationEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ProfileApplication");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2546,13 +2440,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(CommentAnnotatedElementEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2572,13 +2464,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ConstraintConstrainedElementEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2598,24 +2488,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(TemplateBindingEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "TemplateBinding");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6023 = createLabel(edge, UMLVisualIDRegistry.getType(BindingSubstitutionEditPart.VISUAL_ID));
 		label6023.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6023 = (Location) label6023.getLayoutConstraint();
+		Location location6023 = (Location)label6023.getLayoutConstraint();
 		location6023.setX(0);
 		location6023.setY(40);
 		Node label6036 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeTemplateBindingEditPart.VISUAL_ID));
 		label6036.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6036 = (Location) label6036.getLayoutConstraint();
+		Location location6036 = (Location)label6036.getLayoutConstraint();
 		location6036.setX(0);
 		location6036.setY(20);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "TemplateBinding");
 		return edge;
 	}
@@ -2636,24 +2524,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(GeneralizationSetEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "GeneralizationSet");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label5067 = createLabel(edge, UMLVisualIDRegistry.getType(ConstraintLabelEditPart.VISUAL_ID));
 		label5067.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location5067 = (Location) label5067.getLayoutConstraint();
+		Location location5067 = (Location)label5067.getLayoutConstraint();
 		location5067.setX(0);
 		location5067.setY(20);
 		Node label6037 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeGeneralizationSetLabelEditPart.VISUAL_ID));
 		label6037.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6037 = (Location) label6037.getLayoutConstraint();
+		Location location6037 = (Location)label6037.getLayoutConstraint();
 		location6037.setX(0);
 		location6037.setY(40);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "GeneralizationSet");
 		return edge;
 	}
@@ -2674,24 +2560,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(InstanceSpecificationLinkEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "InstanceSpecificationLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6039 = createLabel(edge, UMLVisualIDRegistry.getType(SourceISLinkLabelEditPart.VISUAL_ID));
 		label6039.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6039 = (Location) label6039.getLayoutConstraint();
+		Location location6039 = (Location)label6039.getLayoutConstraint();
 		location6039.setX(0);
 		location6039.setY(20);
 		Node label6038 = createLabel(edge, UMLVisualIDRegistry.getType(TargetISLinkLabelEditPart.VISUAL_ID));
 		label6038.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6038 = (Location) label6038.getLayoutConstraint();
+		Location location6038 = (Location)label6038.getLayoutConstraint();
 		location6038.setX(0);
 		location6038.setY(20);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InstanceSpecificationLink");
 		return edge;
 	}
@@ -2712,14 +2596,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ContainmentLinkEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "ContainmentLink");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2739,13 +2621,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ConnectorTimeObservationEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2765,13 +2645,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ConnectorDurationObservationEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		return edge;
 	}
 
@@ -2791,24 +2669,22 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(InformationFlowEditPart.VISUAL_ID));
 		edge.setElement(domainElement);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(edge, prefStore, "InformationFlow");
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label6040 = createLabel(edge, UMLVisualIDRegistry.getType(InformationFlowConveyedLabelEditPart.VISUAL_ID));
 		label6040.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6040 = (Location) label6040.getLayoutConstraint();
+		Location location6040 = (Location)label6040.getLayoutConstraint();
 		location6040.setX(0);
 		location6040.setY(30);
 		Node label6041 = createLabel(edge, UMLVisualIDRegistry.getType(InformationFlowAppliedStereotypeEditPart.VISUAL_ID));
 		label6041.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6041 = (Location) label6041.getLayoutConstraint();
+		Location location6041 = (Location)label6041.getLayoutConstraint();
 		location6041.setX(0);
 		location6041.setY(15);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "InformationFlow");
 		return edge;
 	}
@@ -2829,18 +2705,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		edge.setType(UMLVisualIDRegistry.getType(ContextLinkEditPart.VISUAL_ID));
 		edge.setElement(null);
 		// initializePreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
-
-		// org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		// if (routing != null) {
-		// org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		// }
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
 		Node label8501 = createLabel(edge, UMLVisualIDRegistry.getType(ContextLinkAppliedStereotypeEditPart.VISUAL_ID));
 		label8501.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location8501 = (Location) label8501.getLayoutConstraint();
+		Location location8501 = (Location)label8501.getLayoutConstraint();
 		location8501.setX(0);
 		location8501.setY(15);
-
 		PreferenceInitializerForElementHelper.initLabelVisibilityFromPrefs(edge, prefStore, "Undefined");
 		return edge;
 	}
@@ -2849,7 +2723,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected void stampShortcut(View containerView, Node target) {
-		if (!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+		if(!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put("modelID", ModelEditPart.MODEL_ID); //$NON-NLS-1$
@@ -2871,21 +2745,19 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
-		// SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
-		// rv.setShowTitle(showTitle);
-		// rv.setCollapsed(isCollapsed);
+		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+		//rv.setShowTitle(showTitle);
+		//rv.setCollapsed(isCollapsed);
 		Node rv = NotationFactory.eINSTANCE.createBasicCompartment();
-
 		rv.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-
-		if (hasTitle) {
+		if(hasTitle) {
 			TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 			rv.getStyles().add(ts);
 		}
-		if (canSort) {
+		if(canSort) {
 			rv.getStyles().add(NotationFactory.eINSTANCE.createSortingStyle());
 		}
-		if (canFilter) {
+		if(canFilter) {
 			rv.getStyles().add(NotationFactory.eINSTANCE.createFilteringStyle());
 		}
 		rv.setType(hint);
@@ -2897,11 +2769,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected EObject getSemanticElement(IAdaptable semanticAdapter) {
-		if (semanticAdapter == null) {
+		if(semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eObject != null) {
 			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}
 		return null;
@@ -2911,10 +2783,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 * @generated
 	 */
 	protected IElementType getSemanticElementType(IAdaptable semanticAdapter) {
-		if (semanticAdapter == null) {
+		if(semanticAdapter == null) {
 			return null;
 		}
-		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
 	}
 
 	/**
@@ -2923,15 +2795,13 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
 		String fontConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.FONT);
 		String fontColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FONT);
-
-		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null) {
+		FontStyle viewFontStyle = (FontStyle)view.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if(viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());
 			viewFontStyle.setBold((fontData.getStyle() & SWT.BOLD) != 0);
 			viewFontStyle.setItalic((fontData.getStyle() & SWT.ITALIC) != 0);
-
 			org.eclipse.swt.graphics.RGB fontRGB = PreferenceConverter.getColor(store, fontColorConstant);
 			viewFontStyle.setFontColor(FigureUtilities.RGBToInteger(fontRGB).intValue());
 		}
@@ -2953,24 +2823,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		String fillColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_FILL);
 		String gradientColorConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.COLOR_GRADIENT);
 		String gradientPolicyConstant = PreferencesConstantsHelper.getElementConstant(elementName, PreferencesConstantsHelper.GRADIENT_POLICY);
-
-
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(store, fillColorConstant);
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities.RGBToInteger(fillRGB));
-
-
-		FillStyle fillStyle = (FillStyle) view
-				.getStyle(NotationPackage.Literals.FILL_STYLE);
-		fillStyle
-				.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
-
-		;
-		if (store.getBoolean(gradientPolicyConstant)) {
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(
-					store.getString(gradientColorConstant));
+		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
+		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());;
+		if(store.getBoolean(gradientPolicyConstant)) {
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
-			fillStyle
-					.setTransparency(gradientPreferenceConverter.getTransparency());
+			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
 	}
 }

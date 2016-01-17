@@ -54,32 +54,32 @@ public class CustomValidationProvider extends UMLValidationProvider {
 				object = ((Bounds) object).eContainer();
 			}
 			if (object instanceof View && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID((View) object))) {
-				final int id = UMLVisualIDRegistry.getVisualID((View) object);
+				final String id = UMLVisualIDRegistry.getVisualID((View) object);
 				boolean result = false;
 				// Lifeline
-				result = result || id == LifelineEditPart.VISUAL_ID;
+				result = result || LifelineEditPart.VISUAL_ID.equals(id);
 				// ES
-				result = result || id == ActionExecutionSpecificationEditPart.VISUAL_ID;
-				result = result || id == BehaviorExecutionSpecificationEditPart.VISUAL_ID;
+				result = result || ActionExecutionSpecificationEditPart.VISUAL_ID.equals(id);
+				result = result || BehaviorExecutionSpecificationEditPart.VISUAL_ID.equals(id);
 				// CF and Interaction operands
-				result = result || id == CombinedFragmentEditPart.VISUAL_ID;
-				result = result || id == CombinedFragment2EditPart.VISUAL_ID;
-				result = result || id == InteractionOperandEditPart.VISUAL_ID;
+				result = result || CombinedFragmentEditPart.VISUAL_ID.equals(id);
+				result = result || CombinedFragment2EditPart.VISUAL_ID.equals(id);
+				result = result || InteractionOperandEditPart.VISUAL_ID.equals(id);
 				// Time related : do nothing, the real event support will be also moved
-				// result = result || id == TimeConstraintEditPart.VISUAL_ID;
-				// result = result || id == TimeObservationEditPart.VISUAL_ID;
-				// result = result || id == DurationConstraintEditPart.VISUAL_ID;
-				// result = result || id == DurationObservationEditPart.VISUAL_ID;
+				// result = result || TimeConstraintEditPart.VISUAL_ID.equals(id);
+				// result = result || TimeObservationEditPart.VISUAL_ID.equals(id);
+				// result = result || DurationConstraintEditPart.VISUAL_ID.equals(id);
+				// result = result || DurationObservationEditPart.VISUAL_ID.equals(id);
 				// Messages
-				result = result || id == MessageEditPart.VISUAL_ID;
-				result = result || id == Message2EditPart.VISUAL_ID;
-				result = result || id == Message3EditPart.VISUAL_ID;
-				result = result || id == Message4EditPart.VISUAL_ID;
-				result = result || id == Message5EditPart.VISUAL_ID;
-				result = result || id == Message6EditPart.VISUAL_ID;
-				result = result || id == Message7EditPart.VISUAL_ID;
+				result = result || MessageEditPart.VISUAL_ID.equals(id);
+				result = result || Message2EditPart.VISUAL_ID.equals(id);
+				result = result || Message3EditPart.VISUAL_ID.equals(id);
+				result = result || Message4EditPart.VISUAL_ID.equals(id);
+				result = result || Message5EditPart.VISUAL_ID.equals(id);
+				result = result || Message6EditPart.VISUAL_ID.equals(id);
+				result = result || Message7EditPart.VISUAL_ID.equals(id);
 				// General Ordering : do nothing, the real event support will be also moved
-				// result = result || id == GeneralOrderingEditPart.VISUAL_ID;
+				// result = result || GeneralOrderingEditPart.VISUAL_ID.equals(id);
 				return result;
 			}
 			return false;

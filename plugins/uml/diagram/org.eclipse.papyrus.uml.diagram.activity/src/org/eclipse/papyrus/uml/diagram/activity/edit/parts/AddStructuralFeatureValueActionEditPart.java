@@ -69,7 +69,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3091;
+	public static final String VISUAL_ID = "3091";
 
 	/**
 	 * @generated
@@ -96,16 +96,12 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddStructuralFeatureValueActionCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -123,32 +119,35 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case AddStructuralFeatureValueActionFloatingNameEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case AddStructuralFeatureValueActionFloatingNameEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
-				case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-				case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-				case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
-				case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-				case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-				case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
-				case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
-				case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
-				case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
-				case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
-					return new BorderItemResizableEditPolicy();
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+					case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+					case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+					case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+					case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+					case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+					case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+					case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+					case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+					case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+						return new BorderItemResizableEditPolicy();
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -178,119 +177,77 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 * @generated
 	 */
 	public RoundedCompartmentFigure getPrimaryShape() {
-		return (RoundedCompartmentFigure) primaryShape;
+		return (RoundedCompartmentFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AddStructuralFeatureValueActionNameEditPart) {
-			((AddStructuralFeatureValueActionNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof AddStructuralFeatureValueActionNameEditPart) {
+			((AddStructuralFeatureValueActionNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+		if(childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsObjectEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+		if(childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsValueEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+		if(childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsInserAtEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
+		if(childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsObjectEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
+		if(childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsValueEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+		if(childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+		if(childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsObjectEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
+		if(childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsValueEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+		if(childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+		if(childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.SOUTH);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInAddStructuralFeatureValueActionAsResultEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInAddStructuralFeatureValueActionAsResultEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -298,47 +255,47 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof AddStructuralFeatureValueActionNameEditPart) {
+		if(childEditPart instanceof AddStructuralFeatureValueActionNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsObjectEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsValueEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsInserAtEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsObjectEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsValueEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsObjectEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsValueEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInAddStructuralFeatureValueActionAsResultEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInAddStructuralFeatureValueActionAsResultEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -349,7 +306,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -360,7 +317,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -371,7 +328,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -381,7 +338,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof AddStructuralFeatureValueActionFloatingNameEditPart) {
+		if(borderItemEditPart instanceof AddStructuralFeatureValueActionFloatingNameEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -409,7 +366,6 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -421,7 +377,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -434,7 +390,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -445,7 +401,7 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -463,8 +419,8 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -485,52 +441,52 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 	protected void handleNotificationEvent(Notification notification) {
 		super.handleNotificationEvent(notification);
 		Object feature = notification.getFeature();
-		if (UMLPackage.Literals.STRUCTURAL_FEATURE_ACTION__STRUCTURAL_FEATURE.equals(feature)) {
+		if(UMLPackage.Literals.STRUCTURAL_FEATURE_ACTION__STRUCTURAL_FEATURE.equals(feature)) {
 			EObject resolvedElement = this.resolveSemanticElement();
 			final Object result = resolvedElement.eGet(UMLPackage.Literals.WRITE_STRUCTURAL_FEATURE_ACTION__RESULT);
 			final Object object = resolvedElement.eGet(UMLPackage.Literals.STRUCTURAL_FEATURE_ACTION__OBJECT);
 			final Object value = resolvedElement.eGet(UMLPackage.Literals.WRITE_STRUCTURAL_FEATURE_ACTION__VALUE);
 			Object _feature = notification.getNewValue();
-			if (_feature instanceof StructuralFeature) {
+			if(_feature instanceof StructuralFeature) {
 				org.eclipse.emf.common.command.Command cmdSetResultType = null;
 				org.eclipse.emf.common.command.Command cmdSetObjectType = null;
 				org.eclipse.emf.common.command.Command cmdSetValueType = null;
-				StructuralFeature newFeature = (StructuralFeature) _feature;
+				StructuralFeature newFeature = (StructuralFeature)_feature;
 				Element owner = newFeature.getOwner();
-				if (newFeature.getFeaturingClassifiers().contains(owner)) {
+				if(newFeature.getFeaturingClassifiers().contains(owner)) {
 					cmdSetResultType = SetCommand.create(getEditingDomain(), result, UMLPackage.Literals.TYPED_ELEMENT__TYPE, owner);
 					cmdSetObjectType = SetCommand.create(getEditingDomain(), object, UMLPackage.Literals.TYPED_ELEMENT__TYPE, owner);
 				}
 				Type type = newFeature.getType();
-				if (type != null) {
+				if(type != null) {
 					cmdSetValueType = SetCommand.create(getEditingDomain(), value, UMLPackage.Literals.TYPED_ELEMENT__TYPE, type);
 				}
 				try {
-					if (cmdSetResultType != null) {
-						if (cmdSetResultType.canExecute()) {
+					if(cmdSetResultType != null) {
+						if(cmdSetResultType.canExecute()) {
 							CommandStack commandStack = getEditingDomain().getCommandStack();
-							if (commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack) commandStack).execute(cmdSetResultType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+							if(commandStack instanceof TransactionalCommandStack) {
+								((TransactionalCommandStack)commandStack).execute(cmdSetResultType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 							} else {
 								commandStack.execute(cmdSetResultType);
 							}
 						}
 					}
-					if (cmdSetValueType != null) {
-						if (cmdSetValueType.canExecute()) {
+					if(cmdSetValueType != null) {
+						if(cmdSetValueType.canExecute()) {
 							CommandStack commandStack = getEditingDomain().getCommandStack();
-							if (commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack) commandStack).execute(cmdSetValueType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+							if(commandStack instanceof TransactionalCommandStack) {
+								((TransactionalCommandStack)commandStack).execute(cmdSetValueType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 							} else {
 								commandStack.execute(cmdSetValueType);
 							}
 						}
 					}
-					if (cmdSetObjectType != null) {
-						if (cmdSetObjectType.canExecute()) {
+					if(cmdSetObjectType != null) {
+						if(cmdSetObjectType.canExecute()) {
 							CommandStack commandStack = getEditingDomain().getCommandStack();
-							if (commandStack instanceof TransactionalCommandStack) {
-								((TransactionalCommandStack) commandStack).execute(cmdSetObjectType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+							if(commandStack instanceof TransactionalCommandStack) {
+								((TransactionalCommandStack)commandStack).execute(cmdSetObjectType, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
 							} else {
 								commandStack.execute(cmdSetObjectType);
 							}

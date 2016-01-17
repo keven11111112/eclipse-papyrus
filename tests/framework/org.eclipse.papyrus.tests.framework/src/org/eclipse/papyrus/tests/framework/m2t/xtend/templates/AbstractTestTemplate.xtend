@@ -92,7 +92,7 @@ abstract class AbstractTestTemplate {
     
     def getDiagramUpdaterMethod(Class class_) '''
         @Override
-        public «imported('org.eclipse.gmf.tooling.runtime.update.DiagramUpdater')» getDiagramUpdater() {
+        public «imported('org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater')» getDiagramUpdater() {
             return «class_.diagramUpdater».«class_.diagramUpdaterInstanceField»;
         }
     '''

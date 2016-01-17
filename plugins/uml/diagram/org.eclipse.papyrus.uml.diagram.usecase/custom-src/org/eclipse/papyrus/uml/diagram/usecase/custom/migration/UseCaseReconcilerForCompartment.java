@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsInRectang
 public class UseCaseReconcilerForCompartment extends ReconcilerForCompartment {
 
 	/** The compartments visual id. */
-	private List<Integer> compartmentsVisualID = Arrays.asList(
+	private List<String> compartmentsVisualID = Arrays.asList(
 			UseCasePointsEditPartTN.VISUAL_ID,
 			UseCasePointsInRectangleEditPart.VISUAL_ID,
 			SubjectComponentUsecasesEditPart.VISUAL_ID,
@@ -51,7 +51,7 @@ public class UseCaseReconcilerForCompartment extends ReconcilerForCompartment {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment#getCompartmentsVisualID()
 	 */
 	@Override
-	public List<Integer> getCompartmentsVisualID() {
+	public List<String> getCompartmentsVisualID() {
 		return compartmentsVisualID;
 	}
 
