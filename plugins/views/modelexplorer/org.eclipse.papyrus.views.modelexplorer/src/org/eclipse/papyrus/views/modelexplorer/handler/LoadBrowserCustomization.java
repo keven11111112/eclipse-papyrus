@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
@@ -40,7 +40,7 @@ import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCal
 import org.eclipse.papyrus.emf.facet.util.ui.internal.exported.dialog.IDialogCallbackWithPreCommit;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -80,6 +80,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		if (Activator.getDefault().getCustomizationManager() != null) {
@@ -92,11 +93,13 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			Shell shell = HandlerUtil.getActiveShell(event);
 			IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog> dialogCallBack = new IDialogCallbackWithPreCommit<List<Customization>, Boolean, Dialog>() {
 
+				@Override
 				public void committed(List<Customization> result, Boolean precommitResult) {
 					// TODO Auto-generated method stub
 
 				}
 
+				@Override
 				public Dialog openPrecommitDialog(List<Customization> result, IDialogCallback<Boolean> precommitCallback) {
 					// TODO Auto-generated method stub
 					return null;
@@ -239,12 +242,12 @@ public class LoadBrowserCustomization extends AbstractHandler {
 	// } catch (Exception e) {
 	// Activator.log.error(e);
 	// }
-	//		return ""; //$NON-NLS-1$
+	// return ""; //$NON-NLS-1$
 	// }
 
 	/**
 	 * Get the metmodel URI
-	 * **/
+	 **/
 	protected List<EPackage> getMetamodels(ServicesRegistry serviceRegistry) {
 		List<EPackage> ePackages = new ArrayList<EPackage>();
 
@@ -254,7 +257,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 		 */
 		IPageManager pageMngr = null;
 		try {
-			pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
+			pageMngr = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
 			List<Object> pages = pageMngr.allPages();
 			for (int i = 0; i < pages.size(); i++) {
 				if (pages.get(i) instanceof EObject) {

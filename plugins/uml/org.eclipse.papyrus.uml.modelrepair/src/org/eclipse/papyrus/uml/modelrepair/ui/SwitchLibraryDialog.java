@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Inspired from Class {@link SwitchPackageImportDialog}
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.modelrepair.ui;
@@ -54,12 +55,12 @@ import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.resource.DependencyManager;
 import org.eclipse.papyrus.infra.emf.resource.Replacement;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.markerlistener.dialogs.DiagnosticDialog;
+import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
@@ -266,7 +267,7 @@ public class SwitchLibraryDialog extends SelectionDialog {
 				final Collection<Replacement> allReplacements = new LinkedList<Replacement>();
 				final BasicDiagnostic diagnostics = new BasicDiagnostic(Activator.PLUGIN_ID, 0, "Problems in switching library", null);
 
-				IRunnableWithProgress runnable = TransactionHelper.createPrivilegedRunnableWithProgress(editingDomain, new IRunnableWithProgress() {
+				IRunnableWithProgress runnable = TransactionUIHelper.createPrivilegedRunnableWithProgress(editingDomain, new IRunnableWithProgress() {
 
 					public void run(IProgressMonitor monitor) {
 						SubMonitor subMonitor = SubMonitor.convert(monitor, librariesToEdit.size());

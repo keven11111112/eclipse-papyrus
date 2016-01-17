@@ -17,10 +17,10 @@ import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
-import org.eclipse.papyrus.infra.core.editor.reload.EMFSelectionContext;
-import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.ui.editor.reload.EMFSelectionContext;
+import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
 
 
 /**

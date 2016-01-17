@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.nattable.generic.tests.bugs;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -156,7 +156,7 @@ public class CellEditorsConfigurationTest extends AbstractPapyrusTest {
 		Assert.assertNotEquals("The tenth cell must have at least one cell editor configuration", 0, cell9.getConfigLabels().getLabels().size());
 		Assert.assertEquals("The tenth cell editor must be an UMLStereotypeMultiUnlimitedNaturalCellEditorConfiguration", "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeMultiUnlimitedNaturalCellEditorConfiguration.MultiEditor9", //$NON-NLS-1$ //$NON-NLS-2$
 				cell9.getConfigLabels().getLabels().get(0));
-		
+
 		// The eleventh cell must be an UMLStereotypeSingleUMLReferenceCellEditorConfiguration
 		ILayerCell cell10 = currentManager.getBodyLayerStack().getCellByPosition(10, 0);
 		Assert.assertNotEquals("The eleventh cell must have config labels", null, cell10.getConfigLabels());

@@ -16,10 +16,10 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.ResetStyleHelper;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 
 
 /**

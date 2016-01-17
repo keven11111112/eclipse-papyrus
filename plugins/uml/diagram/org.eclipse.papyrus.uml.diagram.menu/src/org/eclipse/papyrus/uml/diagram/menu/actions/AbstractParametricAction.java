@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.ui.IWorkbenchPart;
 
 

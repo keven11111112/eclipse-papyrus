@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManagerForEventList;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
-import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Element;

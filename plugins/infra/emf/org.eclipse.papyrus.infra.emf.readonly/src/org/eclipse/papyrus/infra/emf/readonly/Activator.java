@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 Atos Origin, Christian W. Damus, and others.
- *
+ * Copyright (c) 2011, 2016 Atos Origin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,7 @@
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus - bug 463564
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -19,8 +19,7 @@ import java.util.concurrent.Executor;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -46,11 +45,6 @@ public class Activator extends Plugin {
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -58,11 +52,6 @@ public class Activator extends Plugin {
 		log = new LogHelper(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -87,7 +76,7 @@ public class Activator extends Plugin {
 	public synchronized Executor getReadOnlyCacheExecutor() {
 		if (readOnlyCacheExecutor == null) {
 			// The default executor is one that runs tasks on the display's event queue
-			readOnlyCacheExecutor = UIUtil.createUIExecutor(Display.getDefault());
+			readOnlyCacheExecutor = CoreExecutors.getUIExecutorService();
 		}
 		return readOnlyCacheExecutor;
 	}

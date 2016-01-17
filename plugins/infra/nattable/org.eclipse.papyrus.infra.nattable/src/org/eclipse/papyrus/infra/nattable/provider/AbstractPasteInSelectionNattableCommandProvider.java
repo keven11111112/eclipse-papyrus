@@ -88,7 +88,7 @@ import org.eclipse.papyrus.infra.nattable.utils.InsertedElementInNattable;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.UserActionConstants;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.infra.widgets.util.ImageConstants;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;

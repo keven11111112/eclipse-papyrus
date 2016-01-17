@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,12 +10,8 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - filter out EObjects that are Resources (CDO)
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
- *  Christian W. Damus (CEA) - bug 323802
- *  Christian W. Damus (CEA) - bug 429826
- *  Christian W. Damus (CEA) - bug 408491
- *  Christian W. Damus (CEA) - bug 432813
- *  Christian W. Damus (CEA) - bug 422257
- *  Christian W. Damus - bug 469188
+ *  Christian W. Damus (CEA) - bugs 323802, 429826, 408491, 432813, 422257
+ *  Christian W. Damus - bugs 469188, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
@@ -58,7 +54,7 @@ import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 
@@ -305,7 +301,7 @@ public class EMFHelper {
 		EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(source);
 		if (domain == null) {
 			try {
-				domain = ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+				domain = ServiceUtils.getInstance().getTransactionalEditingDomain(null);
 			} catch (ServiceException e) {
 				// Ignore: We cannot find the domain
 			}

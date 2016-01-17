@@ -20,7 +20,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.papyrus.infra.core.utils.PapyrusImageUtils;
+import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICallBack;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;

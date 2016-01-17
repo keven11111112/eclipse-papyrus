@@ -21,8 +21,6 @@ import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.AbstractEditorFactory;
-import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -31,6 +29,8 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.messages.Messages;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory;
+import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -62,7 +62,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 	 * Return true if this PageModelFactory can create a PageModel for the specified pageIdentifier.
 	 * The pageIdentifier is an instance of Diagram.
 	 *
-	 * @see org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 *
@@ -85,7 +85,7 @@ public class GmfEditorFactory extends AbstractEditorFactory {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 *

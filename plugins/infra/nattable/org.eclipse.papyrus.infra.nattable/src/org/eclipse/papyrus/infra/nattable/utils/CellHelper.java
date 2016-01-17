@@ -44,8 +44,8 @@ import org.eclipse.papyrus.infra.nattable.paste.IValueSetter;
 import org.eclipse.papyrus.infra.nattable.paste.ReferenceValueSetter;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
-import org.eclipse.papyrus.infra.tools.converter.StringValueConverterStatus;
+import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.ui.converter.StringValueConverterStatus;
 
 
 public class CellHelper {

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 Atos Origin, CEA, Christian W. Damus, and others.
- *
+ * Copyright (c) 2010, 2016 Atos Origin, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,7 +11,7 @@
  *  Patrick Tessier (CEA LIST)-modification
  *  Christian W. Damus (CEA) - bug 421411
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 454386
- *  Christian W. Damus - bug 460583
+ *  Christian W. Damus - bugs 460583, 485220
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
@@ -41,30 +40,24 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.INonDirtying;
 import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.hyperlink.ui.AdvancedHLManager;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.ExistingNavigableElement;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigableElement;
-import org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.INavigationPreferenceConstant;
 import org.eclipse.papyrus.infra.hyperlink.helper.AbstractHyperLinkHelper;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
-import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.service.HyperlinkService;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorNavigationDialog;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 
 /**
  * This class is used to open a new diagram when the double click is detected.
@@ -144,7 +137,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 				}
 
 			}
-			
+
 			// test which kind of navigation by consulting preference
 			String navigationKind = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore().getString(INavigationPreferenceConstant.PAPYRUS_NAVIGATION_DOUBLECLICK_KIND);
 
@@ -165,7 +158,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					}
 				}
 			}
-			
+
 			if (defaultHyperLinkObject.size() == 1) {
 				// open the diagram
 				final HyperLinkObject hyperlinkObject = defaultHyperLinkObject.get(0);
@@ -299,31 +292,33 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 				return new NavigateHyperlinksCommand();
 			}
-			
+
 			// No default hyperlinks, so we open the manager shell if the clicked-on object is not a diagram shotcut
 			if (!(semanticElement instanceof Diagram)) {
 				if (defaultHyperLinkObject.size() == 0) {
 					class AddHyperlinkCommand extends Command {
 						private Command addLinkCommand;
-						
+
 						private AddHyperlinkCommand() {
 							super("Add hyperlink");
 						}
-						
+
+						@Override
 						public void execute() {
 							addLinkCommand = new Command("Add Hyperlink") {
 								@Override
 								public void execute() {
-									HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(), (EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
+									HyperLinkManagerShell hyperLinkManagerShell = new HyperLinkManagerShell(createEditorRegistry(), ((IGraphicalEditPart) getHost()).getEditingDomain(),
+											(EModelElement) ((IGraphicalEditPart) getHost()).getNotationView().getElement(),
 											((IGraphicalEditPart) getHost()).getNotationView(), hyperlinkHelperFactory);
 									hyperLinkManagerShell.setInput(hyperLinkObjectList);
 									hyperLinkManagerShell.open(); // TODO cannot click Ok
 								}
 							};
-							
+
 							addLinkCommand.execute();
 						}
-						
+
 						@Override
 						public void undo() {
 							if (addLinkCommand != null && addLinkCommand.canUndo()) {
@@ -347,8 +342,9 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 							super.dispose();
 						}
-					};
-					
+					}
+					;
+
 					return new AddHyperlinkCommand();
 				}
 			}
@@ -421,7 +417,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
-				IPageManager pageMngr = ServiceUtilsForEObject.getInstance().getIPageManager(diagramToOpen);
+				IPageManager pageMngr = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, diagramToOpen);
 				if (pageMngr.isOpen(diagramToOpen)) {
 					pageMngr.selectPage(diagramToOpen);
 				} else {

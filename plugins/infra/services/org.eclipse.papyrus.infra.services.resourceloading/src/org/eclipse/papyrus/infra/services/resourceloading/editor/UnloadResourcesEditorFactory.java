@@ -4,10 +4,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.EditorDescriptor;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.ui.extension.diagrameditor.EditorDescriptor;
+import org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory;
 
 
 public class UnloadResourcesEditorFactory implements IPluggableEditorFactory {

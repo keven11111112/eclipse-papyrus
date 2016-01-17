@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><feature id="org.eclipse.papyrus.infra.gmfdiag.feature" label="Papyrus GMF diagram" provider-name="Eclipse Modeling Project" version="1.2.0.qualifier">
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
-      Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+      Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
 All rights reserved.   This program and the accompanying materials
 are made available under the terms of the Eclipse Public License
 v1.0
@@ -30,6 +30,8 @@ http://www.eclipse.org/legal/epl-v10.html
    <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.widgets" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.common" install-size="0" unpack="false" version="0.0.0"/>
+
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.gef" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.gmfdiag.modelexplorer" install-size="0" unpack="false" version="0.0.0"/>
 

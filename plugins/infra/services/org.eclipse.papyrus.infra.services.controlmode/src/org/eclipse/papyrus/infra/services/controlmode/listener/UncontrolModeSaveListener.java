@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.service.IUncontrolledObjectsProvider;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
 
 
 /**
@@ -58,7 +58,7 @@ public class UncontrolModeSaveListener implements ISaveEventListener {
 	 *
 	 * @param event
 	 *            the event
-	 * @see org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener#doSaveAs(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)
+	 * @see org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener#doSaveAs(org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent)
 	 */
 	public void doSaveAs(DoSaveEvent event) {
 		doSave(event);
@@ -69,7 +69,7 @@ public class UncontrolModeSaveListener implements ISaveEventListener {
 	 *
 	 * @param event
 	 *            the event
-	 * @see org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener#doSave(org.eclipse.papyrus.infra.core.lifecycleevents.DoSaveEvent)
+	 * @see org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener#doSave(org.eclipse.papyrus.infra.ui.lifecycleevents.DoSaveEvent)
 	 */
 	public void doSave(DoSaveEvent event) {
 

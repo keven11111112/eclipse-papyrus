@@ -34,7 +34,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
-import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;

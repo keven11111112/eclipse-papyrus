@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.selection.action.AbstractMouseSelectionAction;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.editor.welcome.nattable.ServiceConfigAttributes;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.swt.events.MouseEvent;

@@ -19,7 +19,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableConstants;
 import org.eclipse.papyrus.uml.nattable.stereotype.display.utils.StereotypeDisplayTreeTableHelper;
 import org.eclipse.uml2.uml.Property;
@@ -176,7 +176,7 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetStringValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.String,
-	 *      org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *      org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 */
 	@Override
 	public Command getSetStringValueCommand(final TransactionalEditingDomain domain, final Object columnElement, final Object rowElement, final String newValue, final AbstractStringValueConverter valueConverter, final INattableModelManager tableManager) {
@@ -207,7 +207,7 @@ public class StereotypeDisplayTreeTableCellManager implements ICellManager {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
 	 */
 	@Override

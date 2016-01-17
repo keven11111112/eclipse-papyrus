@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.IExecutorPolicy;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.sync.service.ISyncService;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.swt.widgets.Display;
 
 /**

@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.navigation.provider.impl;
 
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.navigation.provider.NavigationTargetProvider;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.papyrus.infra.widgets.util.RevealSemanticElementWrapper;

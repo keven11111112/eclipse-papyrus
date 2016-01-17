@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
@@ -20,13 +21,13 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
-import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkSpecificObject;
 import org.eclipse.papyrus.infra.hyperlink.service.HyperlinkContributor;
@@ -49,14 +50,15 @@ public class DirectedRelationshipSourceHyperlinkContributor implements Hyperlink
 	 * @param fromElement
 	 * @return
 	 */
+	@Override
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
 		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
-		
+
 		if (fromElement instanceof Element) {
 			List<DirectedRelationship> relationships = ((Element) fromElement).getTargetDirectedRelationships();
-			
+
 			List<Object> objectsInViews = new ArrayList<Object>();
-			
+
 			for (DirectedRelationship relationship : relationships) {
 				for (Element source : relationship.getSources()) {
 					ViewerSearchService viewerSearchService = null;
@@ -80,26 +82,26 @@ public class DirectedRelationshipSourceHyperlinkContributor implements Hyperlink
 							}
 						}
 					}
-					
+
 					if (viewerSearchService != null) {
 						List<Object> viewerSearchResults = viewerSearchService.getViewersInCurrentModel(source, null, false, false);
 						objectsInViews.addAll(viewerSearchResults);
 					}
 				}
 			}
-			
+
 			// Get active page to later check if a found object is in the active page (we don't want the object then)
 			TreeIterator<EObject> allViewsOfActivatePage = null;
 			View page = null;
 			try {
-				IPage activePage = ServiceUtilsForEObject.getInstance().getISashWindowsContainer((Element) fromElement).getActiveSashWindowsPage();
-				
+				IPage activePage = ServiceUtilsForEObject.getInstance().getService(ISashWindowsContainer.class, (Element) fromElement).getActiveSashWindowsPage();
+
 				if (activePage != null) {
 					Object pageId = activePage.getRawModel();
-					
+
 					if (pageId instanceof PageRef) {
 						Object emfPageId = ((PageRef) pageId).getEmfPageIdentifier();
-						
+
 						if (emfPageId instanceof View) {
 							page = ((View) emfPageId);
 						}
@@ -108,13 +110,13 @@ public class DirectedRelationshipSourceHyperlinkContributor implements Hyperlink
 			} catch (Exception e) {
 				Activator.log.error(e);
 			}
-			
+
 			for (Object object : objectsInViews) {
 				if (object instanceof View) {
 					// Check if the activate page contains the object
 					// If so, we do not create a hyperlink for the object
 					boolean inActivePage = false;
-					if  (page != null) {
+					if (page != null) {
 						allViewsOfActivatePage = page.eAllContents();
 						while (allViewsOfActivatePage.hasNext()) {
 							EObject next = allViewsOfActivatePage.next();
@@ -130,7 +132,7 @@ public class DirectedRelationshipSourceHyperlinkContributor implements Hyperlink
 							}
 						}
 					}
-					
+
 					if (!inActivePage) {
 						HyperLinkSpecificObject hyperlink = new HyperLinkSpecificObject((EObject) object);
 						hyperlinks.add(hyperlink);
@@ -138,8 +140,8 @@ public class DirectedRelationshipSourceHyperlinkContributor implements Hyperlink
 				}
 			}
 		}
-	
-		
+
+
 		return hyperlinks;
 	}
 

@@ -63,7 +63,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableClipboardUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.ui.progress.UIJob;
 
 /**

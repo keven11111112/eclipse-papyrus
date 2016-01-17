@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.uml.diagram.activity;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * ActivityDiagramCreationCondition class allows to check if an Activity diagram can be added to the

@@ -16,8 +16,8 @@ package org.eclipse.papyrus.integrationtests.editor.operationhistory;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.integrationtests.editor.ExecutionException;
 import org.eclipse.papyrus.integrationtests.editor.ProgramaticPapyrusEditor;
 

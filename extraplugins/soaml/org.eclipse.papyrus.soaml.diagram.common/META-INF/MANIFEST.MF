@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.papyrus.infra.core,
  org.eclipse.papyrus.infra.viewpoints.policy,
  org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.core.expressions,
- org.eclipse.papyrus.uml.diagram.communication
+ org.eclipse.papyrus.uml.diagram.communication,
+ org.eclipse.papyrus.infra.ui;bundle-version="1.2.0"
 Export-Package: org.eclipse.papyrus.soaml.diagram.common.commands
 Bundle-Vendor: %Bundle-Vendor
 Bundle-ActivationPolicy: lazy

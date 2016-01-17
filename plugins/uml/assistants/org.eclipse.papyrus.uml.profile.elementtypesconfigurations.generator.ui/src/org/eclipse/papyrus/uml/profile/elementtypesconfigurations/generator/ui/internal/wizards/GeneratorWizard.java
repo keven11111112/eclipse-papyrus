@@ -27,7 +27,7 @@ import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.AbstractGenerator;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ElementTypesGenerator;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;

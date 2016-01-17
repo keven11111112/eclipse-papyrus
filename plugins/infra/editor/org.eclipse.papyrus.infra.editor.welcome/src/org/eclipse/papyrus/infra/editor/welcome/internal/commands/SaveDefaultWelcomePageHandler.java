@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.infra.editor.welcome.internal.commands;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.ui.statushandlers.IStatusAdapterConstants;
 import org.eclipse.ui.statushandlers.StatusAdapter;
 import org.eclipse.ui.statushandlers.StatusManager;

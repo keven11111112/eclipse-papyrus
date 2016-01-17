@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils;
 
@@ -24,8 +26,9 @@ import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
  * This helper can be used to run (safe) transactions outside the CommandStack
  *
  * @author Camille Letavernier
- *
+ * @deprecated Use the {@code org.eclipse.papyrus.infra.core.util.TransactionHelper}, instead
  */
+@Deprecated
 public class TransactionHelper {
 
 	public static void run(EditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {

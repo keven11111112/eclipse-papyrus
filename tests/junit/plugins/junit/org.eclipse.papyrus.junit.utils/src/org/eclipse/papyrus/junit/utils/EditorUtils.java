@@ -16,7 +16,7 @@ package org.eclipse.papyrus.junit.utils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -81,17 +81,17 @@ public class EditorUtils {
 		E result;
 		boolean posted = false;
 
-		org.eclipse.papyrus.infra.core.internal.preferences.YesNo originalPreference = org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
-		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.core.internal.preferences.YesNo.NO);
+		org.eclipse.papyrus.infra.ui.internal.preferences.YesNo originalPreference = org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+		org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.ui.internal.preferences.YesNo.NO);
 
 		try {
 			result = editorOpener.openEditor();
-			result.getSite().getShell().getDisplay().asyncExec(() -> org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(originalPreference));
+			result.getSite().getShell().getDisplay().asyncExec(() -> org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(originalPreference));
 			posted = true;
 		} finally {
 			if (!posted) {
 				// Revert now because the editor failed to open and we won't be reverting asynchronously
-				org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(originalPreference);
+				org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(originalPreference);
 			}
 		}
 

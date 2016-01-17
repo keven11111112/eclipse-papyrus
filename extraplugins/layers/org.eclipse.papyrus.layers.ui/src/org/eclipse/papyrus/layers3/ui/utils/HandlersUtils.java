@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,14 +8,17 @@
  *
  * Contributors:
  *     Cedric Dumoulin - cedric.dumoulin@lifl.fr
+ *     Christian W. Damus - bug 485220
+ *     
  ******************************************************************************/
 package org.eclipse.papyrus.layers3.ui.utils;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForWorkbenchPage;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForWorkbenchPage;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -53,7 +57,7 @@ public class HandlersUtils {
 			throw new NotFoundException("No active IWorkbenchPage");
 		}
 
-		IEditorPart editor = ServiceUtilsForWorkbenchPage.getInstance().getNestedActiveIEditorPart(page);
+		IEditorPart editor = ServiceUtilsForWorkbenchPage.getInstance().getService(ISashWindowsContainer.class, page).getActiveEditor();
 
 		if (!(editor instanceof DiagramDocumentEditor)) {
 			throw new NotFoundException("Selected editor do not contains Diagram");

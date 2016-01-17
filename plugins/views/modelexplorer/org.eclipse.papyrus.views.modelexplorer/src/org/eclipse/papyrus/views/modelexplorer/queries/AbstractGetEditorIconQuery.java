@@ -15,11 +15,11 @@
 package org.eclipse.papyrus.views.modelexplorer.queries;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistryExtended;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistryExtended;
+import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 
 /**
  *

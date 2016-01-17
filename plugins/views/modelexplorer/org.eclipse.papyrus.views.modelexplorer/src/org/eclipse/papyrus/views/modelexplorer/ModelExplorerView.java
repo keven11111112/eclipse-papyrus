@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,12 +9,8 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - post refreshes for transaction commit asynchronously (CDO)
- *  Christian W. Damus (CEA) - bug 429826
- *  Christian W. Damus (CEA) - bug 434635
- *  Christian W. Damus (CEA) - bug 437217
- *  Christian W. Damus (CEA) - bug 441857
- *  Christian W. Damus - bug 450235
- *  Christian W. Damus - bug 451683
+ *  Christian W. Damus (CEA) - bugs 429826, 434635, 437217, 441857
+ *  Christian W. Damus - bugs 450235, 451683, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -52,22 +48,15 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerColumn;
 import org.eclipse.jface.window.ToolTip;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editor.IReloadableEditor;
-import org.eclipse.papyrus.infra.core.editor.reload.EditorReloadAdapter;
-import org.eclipse.papyrus.infra.core.editor.reload.EditorReloadEvent;
-import org.eclipse.papyrus.infra.core.editor.reload.TreeViewerContext;
-import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyListener;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyEvent;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageLifeCycleEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
@@ -78,6 +67,13 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.IReloadableEditor;
+import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadAdapter;
+import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadEvent;
+import org.eclipse.papyrus.infra.ui.editor.reload.TreeViewerContext;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.IEditorInputChangedListener;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveAndDirtyService;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.views.modelexplorer.SharedModelExplorerState.StateChangedEvent;
 import org.eclipse.papyrus.views.modelexplorer.listener.DoubleClickListener;
@@ -118,6 +114,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+
 import com.google.common.base.Supplier;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -172,6 +169,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	private ISelectionListener pageSelectionListener = new ISelectionListener() {
 
+		@Override
 		public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 			handleSelectionChangedFromDiagramEditor(part, selection);
 		}
@@ -185,10 +183,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		/**
 		 * This method is called when the editor input is changed from the ISaveAndDirtyService.
 		 *
-		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
+		 * @see org.eclipse.papyrus.infra.ui.lifecycleevents.IEditorInputChangedListener#editorInputChanged(org.eclipse.ui.part.FileEditorInput)
 		 *
 		 * @param fileEditorInput
 		 */
+		@Override
 		public void editorInputChanged(FileEditorInput fileEditorInput) {
 			// Change the editor input.
 			setPartName(fileEditorInput.getName());
@@ -197,9 +196,10 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		/**
 		 * The isDirty flag has changed, reflect its new value
 		 *
-		 * @see org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
+		 * @see org.eclipse.papyrus.infra.ui.lifecycleevents.IEditorInputChangedListener#isDirtyChanged()
 		 *
 		 */
+		@Override
 		public void isDirtyChanged() {
 			firePropertyChange(IEditorPart.PROP_DIRTY);
 		}
@@ -322,7 +322,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// IPageMngr iPageMngr = EditorUtils.getIPageMngr();
 		IPageManager iPageMngr;
 		try {
-			iPageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
+			iPageMngr = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
 		} catch (ServiceException e) {
 			// This shouldn't happen.
 			return Collections.emptyList();
@@ -391,6 +391,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		viewer.getNavigatorContentService().getActivationService().addExtensionActivationListener(new IExtensionActivationListener() {
 
+			@Override
 			public void onExtensionActivation(String aViewerId, String[] theNavigatorExtensionIds, boolean isActive) {
 				sharedState.updateNavigatorContentExtensions(theNavigatorExtensionIds, isActive);
 			}
@@ -454,6 +455,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		getCommonViewer().setSorter(null);
 		((CustomCommonViewer) getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
 		getCommonViewer().addDoubleClickListener(new DoubleClickListener(new Supplier<ServicesRegistry>() {
+			@Override
 			public ServicesRegistry get() {
 				return serviceRegistry;
 			}
@@ -473,6 +475,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		tree.addKeyListener(new KeyListener() {
 
+			@Override
 			public void keyReleased(KeyEvent e) {
 				if (navigationMenu != null) {
 					if (e.keyCode == SWT.ALT) {
@@ -481,6 +484,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				}
 			}
 
+			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.keyCode != SWT.ALT) {
 					return;
@@ -535,6 +539,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		tree.addMouseMoveListener(new MouseMoveListener() {
 
+			@Override
 			public void mouseMove(MouseEvent e) {
 				if (navigationMenu != null) {
 					navigationMenu.handleRequest(e, getTreeItem(e));
@@ -592,6 +597,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Self-listen for property changes
 		addPropertyListener(new IPropertyListener() {
 
+			@Override
 			public void propertyChanged(Object source, int propId) {
 				switch (propId) {
 				case IS_LINKING_ENABLED_PROPERTY:
@@ -671,6 +677,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private Runnable createRefreshRunnable() {
 		return new Runnable() {
 
+			@Override
 			public void run() {
 				// Only run if I'm still pending
 				synchronized (ModelExplorerView.this) {
@@ -937,6 +944,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 *
 	 * @return the EditingDomain used by the properties view
 	 */
+	@Override
 	public EditingDomain getEditingDomain() {
 		return editingDomain;
 	}
@@ -952,6 +960,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	}
 
+	@Override
 	public void revealSemanticElement(List<?> elementList) {
 		// Ensure that the ModelExplorer is refreshed before
 		// trying to display an element. Useful if the element has just been created,
@@ -1003,6 +1012,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					if (rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet) rs, r.getURI())) {
 						commonViewer.getControl().getDisplay().syncExec(new Runnable() {
 
+							@Override
 							public void run() {
 								commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
 								commonViewer.expandToLevel(new ReferencableMatchingItem(resource), 1);
@@ -1034,6 +1044,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 					commonViewer.getControl().getDisplay().syncExec(new Runnable() {
 
+						@Override
 						public void run() {
 							commonViewer.expandToLevel(itemToExpand, 1);
 						}
@@ -1046,6 +1057,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				commonViewer.getControl().getDisplay().syncExec(new Runnable() {
 
+					@Override
 					public void run() {
 						commonViewer.expandToLevel(itemToExpand, 1);
 					}
@@ -1067,6 +1079,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	public static void selectReveal(final ISelection structuredSelection, final Viewer commonViewer) {
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				commonViewer.setSelection(structuredSelection, true);
 			}
@@ -1088,6 +1101,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		} else {
 			viewer.getControl().getDisplay().syncExec(new Runnable() {
 
+				@Override
 				public void run() {
 					viewer.setSelection(selection);
 				}
@@ -1095,10 +1109,12 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		}
 	}
 
+	@Override
 	public void pageOpened(IPage page) {
 		refreshTree();
 	}
 
+	@Override
 	public void pageClosed(IPage page) {
 		refreshTree();
 	}
@@ -1106,6 +1122,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private void refreshTree() {
 		Display.getDefault().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				if (getCommonViewer().getControl() == null || getCommonViewer().getControl().isDisposed()) {
 					return;
@@ -1117,22 +1134,27 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		});
 	}
 
+	@Override
 	public void pageChanged(IPage newPage) {
 		// Nothing
 	}
 
+	@Override
 	public void pageActivated(IPage page) {
 		// Nothing
 	}
 
+	@Override
 	public void pageDeactivated(IPage page) {
 		// Nothing
 	}
 
+	@Override
 	public void pageAboutToBeOpened(IPage page) {
 		// Nothing
 	}
 
+	@Override
 	public void pageAboutToBeClosed(IPage page) {
 		// Nothing
 	}
@@ -1140,6 +1162,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	private IReadOnlyListener createReadOnlyListener() {
 		return new IReadOnlyListener() {
 
+			@Override
 			public void readOnlyStateChanged(ReadOnlyEvent event) {
 				switch (event.getEventType()) {
 				case ReadOnlyEvent.RESOURCE_READ_ONLY_STATE_CHANGED:
@@ -1200,6 +1223,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				private volatile Runnable contentUpdate;
 
+				@Override
 				public void sharedStateChanged(StateChangedEvent event) {
 					switch (event.getEventType()) {
 					case StateChangedEvent.LINKING_ENABLED:
@@ -1220,6 +1244,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					if (contentUpdate == null) {
 						contentUpdate = new Runnable() {
 
+							@Override
 							public void run() {
 								CommonViewer viewer = getCommonViewer();
 								if ((viewer != null) && (viewer.getControl() != null) && !viewer.getControl().isDisposed()) {

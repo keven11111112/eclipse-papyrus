@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 433371
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.editor.integration.tests.tests;
@@ -38,11 +39,10 @@ import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.editor.integration.tests.Activator;
-import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -50,6 +50,7 @@ import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
@@ -97,17 +98,17 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 			registry.add(ModelSet.class, Integer.MAX_VALUE, modelSet);
 			registry.startRegistry();
 		} catch (ServiceException ex) {
-			//Ignore
+			// Ignore
 		}
 
 		IModelCreationCommand creationCommand = new CreateUMLModelCommand();
 		creationCommand.createModel(modelSet);
 
-		//Create the root UML Model
-		UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
-		Model model = (Model)umlModel.lookupRoot();
+		// Create the root UML Model
+		UmlModel umlModel = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
+		Model model = (Model) umlModel.lookupRoot();
 
-		//Creates and opens a Papyrus Class Diagram
+		// Creates and opens a Papyrus Class Diagram
 		ICreationCommand diagramCreationCommand = new CreateClassDiagramCommand();
 		diagramCreationCommand.createDiagram(modelSet, model, "TestDiagram1");
 
@@ -135,7 +136,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		try {
 			registry.disposeRegistry();
 		} catch (ServiceException ex) {
-			//Ignore
+			// Ignore
 		}
 	}
 
@@ -192,7 +193,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		ModelSet modelSet = editor.getServicesRegistry().getService(ModelSet.class);
 		Assert.assertNotNull("Cannot retrieve the ModelSet", modelSet);
 
-		UmlModel umlModel = (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
+		UmlModel umlModel = (UmlModel) modelSet.getModel(UmlModel.MODEL_ID);
 		Assert.assertNotNull("Cannot retrieve the UML Model", umlModel);
 
 		EObject rootEObject = umlModel.lookupRoot();
@@ -212,12 +213,12 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		Assert.assertEquals(2, pageManager.allPages().size());
 
-		Assert.assertTrue(editor.getActiveEditor() instanceof UmlClassDiagramForMultiEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		Assert.assertTrue(editor.getActiveEditor() instanceof UmlClassDiagramForMultiEditor); // TODO: The PageManager doesn't provide the getActivePage() method
 
 		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
 
-		Diagram classDiagram = (Diagram)notationResource.getContents().get(0);
-		Diagram timingDiagram = (Diagram)notationResource.getContents().get(1);
+		Diagram classDiagram = (Diagram) notationResource.getContents().get(0);
+		Diagram timingDiagram = (Diagram) notationResource.getContents().get(1);
 
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, timingDiagram)));
@@ -228,8 +229,8 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		ISashWindowsContainer container = editor.getServicesRegistry().getService(ISashWindowsContainer.class);
 		IPage selectedPage = container.getActiveSashWindowsPage();
 
-		//FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
-		//TODO: There should be a specific test for selectPage, with a basic and a complex model
+		// FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
+		// TODO: There should be a specific test for selectPage, with a basic and a complex model
 		pageManager.selectPage(classDiagram);
 		Assert.assertTrue("Couldn't change the page selection", editor.getActiveEditor() instanceof UmlClassDiagramForMultiEditor);
 
@@ -244,44 +245,44 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	@Test
 	@Ignore("new papyrus table are not yet in the main build")
 	public void testAvailableAndActivePageWithNatTable() throws Exception {
-		//		initModel("availableAndActivePage2", "two_tables_model");
-		//		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
-		//		Assert.assertEquals(2, pageManager.allPages().size());
-		//		IEditorPart tableEditor = editor.getActiveEditor();
-		//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
-		//		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-		//		Assert.assertNotNull(manager);
-		//		Assert.assertEquals("PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
+		// initModel("availableAndActivePage2", "two_tables_model");
+		// IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
+		// Assert.assertEquals(2, pageManager.allPages().size());
+		// IEditorPart tableEditor = editor.getActiveEditor();
+		// Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		// INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		// Assert.assertNotNull(manager);
+		// Assert.assertEquals("PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
 		//
-		//		Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
+		// Resource notationResource = NotationUtils.getNotationModel(editor.getServicesRegistry().getService(ModelSet.class)).getResource();
 		//
-		//		Table genericTable = (Table)notationResource.getContents().get(0);
-		//		Table tableOfViews = (Table)notationResource.getContents().get(1);
+		// Table genericTable = (Table)notationResource.getContents().get(0);
+		// Table tableOfViews = (Table)notationResource.getContents().get(1);
 		//
-		//		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
-		//		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, tableOfViews)));
-		//		tableEditor = editor.getActiveEditor();
-		//		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-		//		Assert.assertNotNull(manager);
-		//		Assert.assertEquals("PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
+		// TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
+		// editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(new OpenDiagramCommand(editingDomain, tableOfViews)));
+		// tableEditor = editor.getActiveEditor();
+		// Assert.assertTrue(tableEditor instanceof NatTableEditor);
+		// manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		// Assert.assertNotNull(manager);
+		// Assert.assertEquals("PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
 		//
-		//		//FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
-		//		//TODO: There should be a specific test for selectPage, with a basic and a complex model
-		//		pageManager.selectPage(genericTable);
-		//		tableEditor = editor.getActiveEditor();
-		//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
-		//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-		//		Assert.assertNotNull(manager);
-		//		Assert.assertEquals("Couldn't change the page selection", "PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
+		// //FIXME: Does not work yet. See Bug 401107: [IPageManager] selectPage does not work
+		// //TODO: There should be a specific test for selectPage, with a basic and a complex model
+		// pageManager.selectPage(genericTable);
+		// tableEditor = editor.getActiveEditor();
+		// Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		// manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		// Assert.assertNotNull(manager);
+		// Assert.assertEquals("Couldn't change the page selection", "PapyrusGenericTable", manager.getTable().getTableConfiguration().getType());
 		//
 		//
-		//		pageManager.selectPage(tableOfViews);
-		//		tableEditor = editor.getActiveEditor();
-		//		Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
-		//		manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
-		//		Assert.assertNotNull(manager);
-		//		Assert.assertEquals("Couldn't change the page selection", "PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
+		// pageManager.selectPage(tableOfViews);
+		// tableEditor = editor.getActiveEditor();
+		// Assert.assertTrue(tableEditor instanceof NatTableEditor); //TODO: The PageManager doesn't provide the getActivePage() method
+		// manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		// Assert.assertNotNull(manager);
+		// Assert.assertEquals("Couldn't change the page selection", "PapyrusViewsTable", manager.getTable().getTableConfiguration().getType());
 	}
 
 	@Test
@@ -304,7 +305,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	public void testDiagramDeletion() throws Exception {
 		initModel("diagramDeletion", "simple_class_model", getBundle());
 		ModelSet modelSet = getModelSet();
-		final Diagram diagram = (Diagram)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
+		final Diagram diagram = (Diagram) NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
 		testPageDeletion(diagram, UmlClassDiagramForMultiEditor.class);
 	}
 
@@ -312,7 +313,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	public void testDiagramIndirectDeletion_bug433371() throws Exception {
 		initModel("bug433371", "delete_sash_page", getBundle());
 		ModelSet modelSet = getModelSet();
-		final Diagram diagram = (Diagram)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(1);
+		final Diagram diagram = (Diagram) NotationUtils.getNotationModel(modelSet).getResource().getContents().get(1);
 
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 		pageManager.selectPage(diagram); // Make sure the one we want deleted is active
@@ -327,15 +328,15 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	@Test
 	@Ignore("new papyrus table are not yet in the main build")
 	public void testNatTableDeletion() throws Exception {
-		//		initModel("tableDeletion", "simple_uml_generic_table_model");
-		//		ModelSet modelSet = getModelSet();
-		//		final Table diagram = (Table)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
-		//		testPageDeletion(diagram, NatTableEditor.class);
+		// initModel("tableDeletion", "simple_uml_generic_table_model");
+		// ModelSet modelSet = getModelSet();
+		// final Table diagram = (Table)NotationUtils.getNotationModel(modelSet).getResource().getContents().get(0);
+		// testPageDeletion(diagram, NatTableEditor.class);
 	}
 
-	//Does not work. The table creation produces two executable commands (Create Table Editor and Identity)
-	//Only Identity (which does nothing) is undoable. Undoing the table creation does nothing
-	//This is an EMF Facet Table bug, which tries to delete columns for an empty table as soon as the table is created
+	// Does not work. The table creation produces two executable commands (Create Table Editor and Identity)
+	// Only Identity (which does nothing) is undoable. Undoing the table creation does nothing
+	// This is an EMF Facet Table bug, which tries to delete columns for an empty table as soon as the table is created
 	@Test
 	public void testTableCreation() throws Exception {
 		initModel("tableCreation", "empty_model", getBundle());
@@ -353,7 +354,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	private void testPageCreation(ICommand creationCommand, Class<?> expectedEditorClass) throws Exception {
 		IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 
-		//Check initial state
+		// Check initial state
 		Assert.assertTrue(pageManager.allPages().isEmpty());
 		Assert.assertNull(editor.getActiveEditor());
 
@@ -361,7 +362,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
 
-		for(int i = 0; i < 3; i++) { //Undo/Redo 3 times
+		for (int i = 0; i < 3; i++) { // Undo/Redo 3 times
 			Assert.assertEquals("The page has not been correctly created", 1, pageManager.allPages().size());
 			Assert.assertTrue("The editor has not been correctly opened", expectedEditorClass.isInstance(editor.getActiveEditor()));
 
@@ -377,7 +378,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	private void testPageDeletion(final EObject page, Class<?> expectedEditorClass) throws Exception {
 		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 
-		//Check initial state
+		// Check initial state
 		Assert.assertFalse(pageManager.allPages().isEmpty());
 		int initialPagesSize = pageManager.allPages().size();
 
@@ -391,7 +392,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 			@Override
 			protected void doExecute() {
-				pageManager.removePage(page);
+				pageManager.closeAllOpenedPages(page);
 			}
 
 		};
@@ -401,7 +402,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 		editingDomain.getCommandStack().execute(command);
 
-		for(int i = 0; i < 3; i++) { //Undo/Redo 3 times
+		for (int i = 0; i < 3; i++) { // Undo/Redo 3 times
 			Assert.assertNull("The editor should be closed", editor.getActiveEditor());
 			Assert.assertEquals("The page has not been correctly deleted", initialPagesSize - 1, pageManager.allPages().size());
 
@@ -417,7 +418,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 	private void testPageDeletion(final EObject elementToDelete, final Object dependentPage, Class<?> expectedEditorClass) throws Exception {
 		final IPageManager pageManager = editor.getServicesRegistry().getService(IPageManager.class);
 
-		//Check initial state
+		// Check initial state
 		assertThat("Page not open", pageManager.allPages(), hasItem(dependentPage));
 
 		assertThat("Wrong kind of page", editor.getActiveEditor(), instanceOf(expectedEditorClass));
@@ -425,13 +426,13 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		TransactionalEditingDomain editingDomain = editor.getServicesRegistry().getService(TransactionalEditingDomain.class);
 
 		Element clazz = getRootUMLModel().getOwnedType("Class1");
-		Behavior toDelete = ((BehavioredClassifier)clazz).getOwnedBehaviors().get(0);
+		Behavior toDelete = ((BehavioredClassifier) clazz).getOwnedBehaviors().get(0);
 		IElementEditService edit = ElementEditServiceUtils.getCommandProvider(clazz);
 		ICommand command = edit.getEditCommand(new DestroyElementRequest(toDelete, false));
 
 		editingDomain.getCommandStack().execute(GMFtoEMFCommandWrapper.wrap(command));
 
-		for(int i = 0; i < 3; i++) { //Undo/Redo 3 times
+		for (int i = 0; i < 3; i++) { // Undo/Redo 3 times
 			assertThat("The editor page should be closed", pageManager.allPages(), not(hasItem(dependentPage)));
 
 			editingDomain.getCommandStack().undo();
@@ -450,7 +451,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
 		final int initialSize = pageManager.allPages().size();
-		Model model = (Model)UmlUtils.getUmlModel(modelSet).getResource().getContents().get(0);
+		Model model = (Model) UmlUtils.getUmlModel(modelSet).getResource().getContents().get(0);
 
 		IElementEditService provider;
 
@@ -464,7 +465,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyFirstElementCommand));
 			Assert.assertEquals("The page should have been destroyed", initialSize - 1, pageManager.allPages().size());
-			//TODO: Test the opened pages too
+			// TODO: Test the opened pages too
 		}
 
 		{
@@ -502,7 +503,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
 
 		final int initialSize = pageManager.allPages().size();
-		Model model = (Model)UmlUtils.getUmlModel(modelSet).lookupRoot();
+		Model model = (Model) UmlUtils.getUmlModel(modelSet).lookupRoot();
 
 		IElementEditService provider;
 
@@ -516,7 +517,7 @@ public class PageManagerTests extends AbstractEditorIntegrationTest {
 
 			editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyFirstElementCommand));
 			Assert.assertEquals("The page should have been destroyed", initialSize - 1, pageManager.allPages().size());
-			//TODO: Test the opened pages too
+			// TODO: Test the opened pages too
 		}
 
 		{

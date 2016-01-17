@@ -132,7 +132,7 @@
             priority="1"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.services.EditorLifecycleManager">
+               serviceKeyRef="org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager">
          </dependsOn>
          <dependsOn
                serviceKeyRef="org.eclipse.papyrus.infra.core.resource.ModelSet">

@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem;
 import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 
 /**
  * This wrapper manage the display and the creation/destruction of the StringResolutionProblem associated to the cells
@@ -157,7 +157,7 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetStringValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.String,
-	 *      org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
+	 *      org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter, org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager)
 	 *
 	 * @param domain
 	 * @param columnElement
@@ -222,7 +222,7 @@ public class StringResolutionProblemWrapperCellManager implements IUnsetValueCel
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
 	 *
 	 * @param columnElement

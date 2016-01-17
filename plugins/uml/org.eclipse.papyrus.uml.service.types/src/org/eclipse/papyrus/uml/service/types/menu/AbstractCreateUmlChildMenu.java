@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.menu;
 
-import org.eclipse.papyrus.infra.tools.util.AbstractCreateMenuFromCommandCategory;
+import org.eclipse.papyrus.infra.ui.util.AbstractCreateMenuFromCommandCategory;
 
 
 /**

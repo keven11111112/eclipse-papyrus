@@ -17,7 +17,7 @@
       </command>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.texteditor.cdt.factory.PapyrusCDTEditorFactory"
             icon="icons/texteditor.gif">

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 Cedric Dumoulin, Christian W. Damus, and others.
- *
+ * Copyright (c) 2013, 2016 Cedric Dumoulin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Christian W. Damus - bug 469188
+ *  Christian W. Damus - bugs 469188, 485220
  *
  *****************************************************************************/
 
@@ -21,8 +20,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.ContentChangedEventProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.CurrentFolderAndPageManager;
@@ -34,6 +31,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.Tra
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 
@@ -243,15 +241,6 @@ public class DiSashModelManager {
 		}
 
 		return contentChangedEventProvider;
-	}
-
-	/**
-	 * Get the IPageMngr providing basic methods to manage Pages in the sash model.
-	 *
-	 * @return
-	 */
-	public IPageMngr getIPageMngr() {
-		return getIPageManager();
 	}
 
 	/**

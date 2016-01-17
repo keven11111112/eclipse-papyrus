@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.diagram.communication;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * The Class CommunicationDiagramCreationCondition.

@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 
 /**

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,8 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 454386
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -26,12 +27,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /**
  * This class is used to open a new diagram when the double click is detected.
  * It is dependent of papyrus environment
+ * 
  * @deprecated since 1.0.2 / use org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy
  * 
  */
@@ -65,7 +67,7 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			try {
-				IPageManager pageMngr = ServiceUtilsForEObject.getInstance().getIPageManager(diagramToOpen);
+				IPageManager pageMngr = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, diagramToOpen);
 				if (pageMngr.isOpen(diagramToOpen)) {
 					pageMngr.selectPage(diagramToOpen);
 				} else {

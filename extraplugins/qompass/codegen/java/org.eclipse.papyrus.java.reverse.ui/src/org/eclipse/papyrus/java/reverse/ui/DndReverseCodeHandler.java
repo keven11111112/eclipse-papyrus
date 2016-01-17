@@ -28,7 +28,7 @@ import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.java.reverse.ui.dialog.DndReverseCodeDialog;
 import org.eclipse.papyrus.java.reverse.ui.dialog.ReverseCodeDialog;
 import org.eclipse.papyrus.uml.diagram.common.util.MDTUtil;

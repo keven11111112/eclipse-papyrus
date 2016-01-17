@@ -21,9 +21,9 @@ import java.beans.PropertyChangeListener;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashLayoutCommandFactory;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
+import org.eclipse.papyrus.infra.ui.internal.commands.SashLayoutCommandFactory;
 
 /**
  * Encapsulation of the "shared layout" property of the Papyrus Editor.

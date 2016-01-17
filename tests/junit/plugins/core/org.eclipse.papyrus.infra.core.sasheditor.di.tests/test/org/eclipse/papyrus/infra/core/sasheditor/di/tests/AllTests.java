@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.tests;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelMngrTest;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProvider2Test;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProviderTest;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImplTest;
+import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImplTest;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalDiContentProvider2Test;
 import org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query.SashModelQueryTest;
 import org.junit.runner.RunWith;
@@ -34,7 +34,7 @@ import org.junit.runners.Suite.SuiteClasses;
 	DiContentProviderTest.class, 
 	DiContentProvider2Test.class, 
 	TransactionalDiContentProvider2Test.class,
-	PageMngrImplTest.class,
+	PageManagerImplTest.class,
 	// package org.eclipse.papyrus.infra.core.sasheditor.di.sashmodel.query
 	SashModelQueryTest.class
 })

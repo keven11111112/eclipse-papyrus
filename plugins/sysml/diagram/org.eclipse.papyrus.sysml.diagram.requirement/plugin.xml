@@ -12,7 +12,7 @@
 
 
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
 		creationCondition="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreationCondition"

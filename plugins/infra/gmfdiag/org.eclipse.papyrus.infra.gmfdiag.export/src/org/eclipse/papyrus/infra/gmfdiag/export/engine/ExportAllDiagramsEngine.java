@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2014 Anyware Technologies, CEA, and others.
+ * Copyright (c) 2007, 2016 Anyware Technologies, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which accompanies
  * this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -11,6 +11,7 @@
  * Christian W. Damus (CEA) - bug 431411
  * Christian W. Damus (CEA) - bug 410346
  * Gabriel Pascual (ALL4TEC) - Bug 440754
+ * Christian W. Damus - bug 485220
  *
  ******************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.export.engine;
@@ -43,16 +44,14 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.core.editor.DiSashModelManagerServiceFactory;
 import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
-import org.eclipse.papyrus.infra.core.editor.PageMngrServiceFactory;
 import org.eclipse.papyrus.infra.core.resource.EditingDomainServiceFactory;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.service.ILocalPageService;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.ILocalPageService;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -68,6 +67,8 @@ import org.eclipse.papyrus.infra.gmfdiag.export.actions.ExportAllDiagramsParamet
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService;
+import org.eclipse.papyrus.infra.ui.editor.DiSashModelManagerServiceFactory;
+import org.eclipse.papyrus.infra.ui.editor.PageMngrServiceFactory;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.papyrus.views.validation.internal.ValidationMarkersService;
 import org.eclipse.swt.SWTError;
@@ -203,7 +204,7 @@ public class ExportAllDiagramsEngine {
 				// Get pages manager from service registry
 				IPageManager pageManager = null;
 				try {
-					pageManager = ServiceUtilsForResourceSet.getInstance().getIPageManager(modelSet);
+					pageManager = ServiceUtilsForResourceSet.getInstance().getService(IPageManager.class, modelSet);
 				} catch (ServiceException e) {
 					Activator.log.error(e);
 				}

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST and others.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - implement extension API to support drag-and-drop
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.helper;
@@ -25,11 +25,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.commands.CreateHyperLinkPageCommand;
@@ -39,6 +37,7 @@ import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.ui.EditorHyperLinkEditorShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkConstants;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 
 /**
  *
@@ -131,7 +130,7 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper implements IH
 	 * @param editor
 	 *            an editor
 	 * @return
-	 *         the HyperLinkEditor corresponding to this object
+	 * 		the HyperLinkEditor corresponding to this object
 	 *
 	 */
 	public HyperLinkEditor getHyperLinkObjectFor(final Object editor) {// create an interface for this method?
@@ -145,7 +144,7 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper implements IH
 	 * @param eAnnotation
 	 *            an eAnnotation
 	 * @return
-	 *         the HyperLinkEditor corresponding to this eAnnotation
+	 * 		the HyperLinkEditor corresponding to this eAnnotation
 	 */
 	public HyperLinkEditor getHyperLinkObjectFor(final EAnnotation eAnnotation) {
 		for (String source : HyperLinkConstants.validHyperLinkPageSources) {
@@ -169,7 +168,7 @@ public class EditorHyperLinkHelper extends AbstractHyperLinkHelper implements IH
 		final ServicesRegistry registry;
 		try {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(linkOwner);
-			IPageManager pageManager = ServiceUtils.getInstance().getIPageManager(registry);
+			IPageManager pageManager = registry.getService(IPageManager.class);
 
 			if ((linkTarget instanceof EObject) && pageManager.allPages().contains(linkTarget)) {
 				ILabelProvider labelProvider = registry.getService(LabelProviderService.class).getLabelProvider();

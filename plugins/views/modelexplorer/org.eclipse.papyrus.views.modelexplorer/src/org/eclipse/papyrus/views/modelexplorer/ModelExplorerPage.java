@@ -16,7 +16,7 @@
 
 package org.eclipse.papyrus.views.modelexplorer;
 
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.ViewPartPage;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
+import org.eclipse.papyrus.infra.ui.util.DisplayUtils;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.QualifiedName;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.StateRule;
 import org.eclipse.papyrus.uml.textedit.state.xtext.umlState.SubmachineRule;

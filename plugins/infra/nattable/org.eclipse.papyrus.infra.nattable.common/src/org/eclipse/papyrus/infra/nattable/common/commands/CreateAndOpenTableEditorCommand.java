@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;

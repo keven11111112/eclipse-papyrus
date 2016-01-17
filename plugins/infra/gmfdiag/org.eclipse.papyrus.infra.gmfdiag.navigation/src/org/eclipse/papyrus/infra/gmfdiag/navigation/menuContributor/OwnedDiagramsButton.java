@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
@@ -20,7 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -43,14 +44,14 @@ public class OwnedDiagramsButton implements NavigationMenuContributor {
 	 */
 	public List<NavigationMenuButton> getButtons(Object fromElement) {
 		List<NavigationMenuButton> buttons = new LinkedList<NavigationMenuButton>();
-		
+
 		if (fromElement != null) {
 			List<Diagram> diagrams = getOwnedDiagrams(fromElement);
 			if (!diagrams.isEmpty()) {
 				buttons.add(new NavigationSubMenuButton("Owned diagrams...", null, "Show owned diagrams", diagrams));
 			}
 		}
-		
+
 		return buttons;
 	}
 
@@ -64,15 +65,17 @@ public class OwnedDiagramsButton implements NavigationMenuContributor {
 		try {
 			List<Diagram> ownedDiagrams = new LinkedList<Diagram>();
 
-			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(eObject);
+			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, eObject);
 			for (Object pageObject : pageManager.allPages()) {
 				if (pageObject instanceof Diagram) {
 					Diagram diagram = (Diagram) pageObject;
 
 					// Avoid navigation to the current diagram
-					/*if (currentView != null && currentView.getDiagram() == diagram) {
-						continue;
-					}*/
+					/*
+					 * if (currentView != null && currentView.getDiagram() == diagram) {
+					 * continue;
+					 * }
+					 */
 
 					if (diagram.getElement() == eObject) {
 						ownedDiagrams.add(diagram);

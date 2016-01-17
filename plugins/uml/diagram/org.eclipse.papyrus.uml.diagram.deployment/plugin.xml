@@ -83,7 +83,7 @@
       </command>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.uml.diagram.deployment.DeploymentDiagramEditorFactory"

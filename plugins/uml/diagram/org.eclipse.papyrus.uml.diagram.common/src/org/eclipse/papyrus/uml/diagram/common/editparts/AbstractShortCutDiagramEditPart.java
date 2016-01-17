@@ -25,11 +25,11 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
 
 /**

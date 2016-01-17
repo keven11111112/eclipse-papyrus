@@ -6,7 +6,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.uml2.uml.Interaction;
 
@@ -30,7 +30,7 @@ public class InteractionUseUtil {
 		final IPageManager pageManager;
 		TransactionalEditingDomain editingDomain;
 		try {
-			pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(diagram);
+			pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, diagram);
 			editingDomain = ServiceUtilsForEObject.getInstance().getTransactionalEditingDomain(diagram);
 		} catch (Exception e) {
 			return;

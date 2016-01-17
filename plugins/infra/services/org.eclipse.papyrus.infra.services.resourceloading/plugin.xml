@@ -39,7 +39,7 @@
       </loadingStrategy>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.infra.services.resourceloading.editor.UnloadResourcesEditorFactory">
       </editorDiagram>

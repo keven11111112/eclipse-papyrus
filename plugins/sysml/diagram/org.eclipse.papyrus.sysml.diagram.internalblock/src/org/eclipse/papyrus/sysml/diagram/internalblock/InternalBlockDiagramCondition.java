@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * InternalBlockDiagramCondition to set conditions for the diagram creation

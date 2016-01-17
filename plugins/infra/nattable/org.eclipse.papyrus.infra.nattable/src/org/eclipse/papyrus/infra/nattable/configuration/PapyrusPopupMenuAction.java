@@ -40,7 +40,7 @@ import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionEvent;

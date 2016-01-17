@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 433371
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.advice;
@@ -22,8 +23,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.IPageUtils;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
@@ -37,9 +38,9 @@ public class RemovePageHelper {
 
 	public static ICommand getRemovePageCommand(final TransactionalEditingDomain editingDomain, final EObject elementToDestroy) {
 		try {
-			final IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(elementToDestroy);
+			final IPageManager pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, elementToDestroy);
 			if (pageManager.allPages().contains(elementToDestroy)) {
-				final Command command = IPageUtils.getMemoizedCloseAllPagesCommand(editingDomain, pageManager, elementToDestroy);
+				final Command command = DiUtils.getMemoizedCloseAllPagesCommand(editingDomain, pageManager, elementToDestroy);
 				if (command != null) {
 					return new AbstractTransactionalCommand(editingDomain, "Delete page", null) { //$NON-NLS-1$
 

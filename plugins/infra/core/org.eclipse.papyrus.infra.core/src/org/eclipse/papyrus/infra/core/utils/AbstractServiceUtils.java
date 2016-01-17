@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 LIFL & CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,20 +10,19 @@
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus - bug 468030
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.core.utils;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageMngr;
-import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
 
 /**
  * Set of utility methods for accessing core Services. This class provide
@@ -50,6 +49,17 @@ public abstract class AbstractServiceUtils<T> {
 	abstract public ServicesRegistry getServiceRegistry(T from) throws ServiceException;
 
 	/**
+	 * Obtains the service registry determined automatically from the context of which
+	 * Papyrus editor or view is active (implying the model that the user is currently editing).
+	 * 
+	 * @return the contextual service registry, or {@code null} if none can be determined
+	 */
+	protected ServicesRegistry getContextualServiceRegistry() {
+		IContextualServiceRegistryTracker tracker = Activator.getDefault().getContextualServiceRegistryTracker();
+		return (tracker == null) ? null : tracker.getServiceRegistry();
+	}
+
+	/**
 	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}.
 	 *
 	 * @param from
@@ -59,21 +69,6 @@ public abstract class AbstractServiceUtils<T> {
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(TransactionalEditingDomain.class);
-	}
-
-	/**
-	 * Gets the {@link IPageMngr} registered in the {@link ServicesRegistry}.
-	 *
-	 * @param from
-	 * @return
-	 * @throws ServiceException
-	 *             If an error occurs while getting the requested service.
-	 *
-	 * @deprecated Use {@link #getIPageManager(Object)} instead
-	 */
-	@Deprecated
-	public IPageMngr getIPageMngr(T from) throws ServiceException {
-		return getServiceRegistry(from).getService(IPageMngr.class);
 	}
 
 	/**
@@ -98,42 +93,6 @@ public abstract class AbstractServiceUtils<T> {
 	 */
 	public ModelSet getModelSet(T from) throws ServiceException {
 		return getServiceRegistry(from).getService(ModelSet.class);
-	}
-
-	/**
-	 * Gets the {@link ILifeCycleEventsProvider} registered in the {@link ServicesRegistry}.
-	 *
-	 * @param from
-	 * @return
-	 * @throws ServiceException
-	 *             If an error occurs while getting the requested service.
-	 */
-	public ILifeCycleEventsProvider getILifeCycleEventsProvider(T from) throws ServiceException {
-		return getServiceRegistry(from).getService(ILifeCycleEventsProvider.class);
-	}
-
-	/**
-	 * Gets the {@link ISashWindowsContainer} registered in the {@link ServicesRegistry}.
-	 *
-	 * @param from
-	 * @return
-	 * @throws ServiceException
-	 *             If an error occurs while getting the requested service.
-	 */
-	public ISashWindowsContainer getISashWindowsContainer(T from) throws ServiceException {
-		return getServiceRegistry(from).getService(ISashWindowsContainer.class);
-	}
-
-	/**
-	 * Gets the {@link IEditorPart} of the currently nested active editor.
-	 *
-	 * @param from
-	 * @return
-	 * @throws ServiceException
-	 *             If an error occurs while getting the requested service.
-	 */
-	public IEditorPart getNestedActiveIEditorPart(T from) throws ServiceException {
-		return getISashWindowsContainer(from).getActiveEditor();
 	}
 
 	/**

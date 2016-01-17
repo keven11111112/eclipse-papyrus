@@ -46,6 +46,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.uml.service.types,
  org.eclipse.papyrus.infra.widgets,
+ org.eclipse.papyrus.infra.ui,
+ org.eclipse.papyrus.infra.core.sashwindows.di,
 «IF printingEnabled» org.eclipse.gmf.runtime.diagram.ui.printing,
  org.eclipse.gmf.runtime.diagram.ui.printing.render,
 «ENDIF»

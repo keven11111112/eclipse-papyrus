@@ -121,7 +121,7 @@
    </listener>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+      point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
    <actionBarContributor
          id="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
          implementingClass="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor">
@@ -214,7 +214,7 @@
    </PasteCommandProvider>
 </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <diagramCategory
             class="org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand"
             description="Create Unified Modeling Language diagrams"

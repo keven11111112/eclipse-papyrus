@@ -68,7 +68,7 @@ import org.eclipse.papyrus.infra.nattable.utils.CollapseExpandActionHelper;
 import org.eclipse.papyrus.infra.nattable.utils.FillingConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;

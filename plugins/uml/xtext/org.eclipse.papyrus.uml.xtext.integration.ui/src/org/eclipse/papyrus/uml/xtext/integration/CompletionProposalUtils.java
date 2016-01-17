@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.infra.core.utils.DisplayUtils;
+import org.eclipse.papyrus.infra.ui.util.DisplayUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;

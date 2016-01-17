@@ -21,7 +21,7 @@ import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 
 

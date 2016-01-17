@@ -20,12 +20,12 @@ import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.codegen.base.Activator;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.services.EditorLifecycleEventListener;
-import org.eclipse.papyrus.infra.core.services.EditorLifecycleManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.services.EditorLifecycleEventListener;
+import org.eclipse.papyrus.infra.ui.services.EditorLifecycleManager;
 
 /**
  * Manage and update change events for incremental code generation

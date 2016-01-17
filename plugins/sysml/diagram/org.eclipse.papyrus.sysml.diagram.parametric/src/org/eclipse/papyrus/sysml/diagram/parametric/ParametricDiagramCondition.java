@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.sysml.diagram.parametric;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * ParametricDiagramCondition to set conditions for the diagram creation

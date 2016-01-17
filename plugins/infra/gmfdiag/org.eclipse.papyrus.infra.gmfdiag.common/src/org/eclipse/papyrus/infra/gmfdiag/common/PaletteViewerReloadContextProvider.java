@@ -18,10 +18,10 @@ import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.ui.palette.PaletteViewer;
-import org.eclipse.papyrus.infra.core.editor.reload.EditorReloadEvent;
-import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadEvent;
+import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.ui.IMemento;
 
 

@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.ui.Activator;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 
 
 public abstract class AbstractParametricOnSelectedElementsAction {

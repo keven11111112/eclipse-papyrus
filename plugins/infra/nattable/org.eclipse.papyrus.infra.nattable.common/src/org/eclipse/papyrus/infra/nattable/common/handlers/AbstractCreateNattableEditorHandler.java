@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 LIFL & CEA LIST.
- *
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,8 @@
  * Contributors:
  *   Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *   Juan Cadavid (CEA-LIST) juan.cadavid@cea.fr - Overloading execution to support creation of multiple tables with an incremental name
+ *   Christian W. Damus - bug 485220
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.handlers;
 
@@ -35,7 +36,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.EditorNameInitializer;
@@ -169,7 +170,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	public Table doExecute(final ServicesRegistry serviceRegistry, String name, String description) throws ServiceException, NotFoundException {
 		final Table editorModel = createEditorModel(serviceRegistry, name, description);
 		// Get the mngr allowing to add/open new editor.
-		final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
+		final IPageManager pageMngr = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
 		// add the new editor model to the sash.
 		pageMngr.openPage(editorModel);
 		return editorModel;
@@ -203,7 +204,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * @param resourceSet
 	 *            TODO
 	 * @return
-	 *         the configuration to use for the new table
+	 * 		the configuration to use for the new table
 	 */
 	protected TableConfiguration getDefaultTableEditorConfiguration(ResourceSet resourceSet) {
 		final Resource resource = resourceSet.getResource(getTableEditorConfigurationURI(), true);
@@ -220,7 +221,7 @@ public abstract class AbstractCreateNattableEditorHandler extends AbstractHandle
 	 * Returns the context used to create the table
 	 *
 	 * @return
-	 *         the context used to create the table or <code>null</code> if not found
+	 * 		the context used to create the table or <code>null</code> if not found
 	 * @throws ServiceException
 	 */
 	protected EObject getTableContext() {

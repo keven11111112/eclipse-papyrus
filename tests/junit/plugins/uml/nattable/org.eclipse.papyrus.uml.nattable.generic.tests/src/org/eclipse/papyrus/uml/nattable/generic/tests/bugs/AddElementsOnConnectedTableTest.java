@@ -24,7 +24,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.TableUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;

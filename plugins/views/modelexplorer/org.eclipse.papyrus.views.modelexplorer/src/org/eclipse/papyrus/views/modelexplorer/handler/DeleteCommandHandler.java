@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  * 		Benoit Maggi (CEA LIST) benoit.maggi@cea.fr _ Bug 436952
  * 		Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec - Bug 436952
+ *      Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -79,7 +79,7 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 */
 	protected static boolean isPage(EObject current) {
 		try {
-			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(current);
+			IPageManager pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, current);
 			if (pageManager.allPages().contains(current)) {
 				return true;
 			}
@@ -95,10 +95,10 @@ public class DeleteCommandHandler extends AbstractCommandHandler implements IHan
 	 * Build the delete command for a set of EObject selected in the ModelExplorer.
 	 * The delete command is given by the {@link IElementEditService} of selected
 	 * elements.
-	 * @param selectedElements elements to delete
-	 * @return the composite deletion command for current selection
+	 * &#64;param selectedElements elements to delete
+	 * &#64;return the composite deletion command for current selection
 	 *
-	 * @TODO : Manage possible Diagrams listed in the selection
+	 * &#64;TODO : Manage possible Diagrams listed in the selection
 	 *
 	 * </pre>
 	 */

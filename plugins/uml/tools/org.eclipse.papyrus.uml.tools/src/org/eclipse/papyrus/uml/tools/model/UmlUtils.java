@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.tools.Activator;
 
 import com.google.common.collect.Iterables;

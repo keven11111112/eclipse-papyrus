@@ -18,7 +18,7 @@ import java.util.Map;
 
 import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.uml.tools.utils.UMLStringValueConverter;
 import org.eclipse.uml2.uml.Element;
 

@@ -17,13 +17,13 @@ package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IContentChangedProvider;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.ContentChangedEventProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.DiContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageManagerImpl;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.TransactionalPageManagerImpl;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 

@@ -18,7 +18,7 @@ import java.util.Collections;
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.IHandler;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AbstractTableTest;
 import org.junit.Assert;
 

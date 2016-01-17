@@ -38,15 +38,15 @@ import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.services.resourceloading.Activator;
 import org.eclipse.papyrus.infra.services.resourceloading.Messages;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
@@ -268,7 +268,7 @@ public class LoadingUtils {
 											Diagram diag = ((Diagram) eobject);
 											if (pageMngr.isOpen(diag)) {
 
-												IDiagramGraphicalViewer graphicalViewer = (IDiagramGraphicalViewer) core.getAdapter(IDiagramGraphicalViewer.class);
+												IDiagramGraphicalViewer graphicalViewer = core.getAdapter(IDiagramGraphicalViewer.class);
 												if (graphicalViewer == null) {
 													continue;
 												}
@@ -308,11 +308,11 @@ public class LoadingUtils {
 	}
 
 	static void runInEditingDomain(TransactionalEditingDomain domain, IEditorPart editorContext, IRunnableWithProgress operation) {
-		final IWorkbenchSiteProgressService progress = (IWorkbenchSiteProgressService) editorContext.getSite().getService(IWorkbenchSiteProgressService.class);
+		final IWorkbenchSiteProgressService progress = editorContext.getSite().getService(IWorkbenchSiteProgressService.class);
 
 		try {
 			progress.incrementBusy();
-			progress.busyCursorWhile(TransactionHelper.createPrivilegedRunnableWithProgress(domain, operation));
+			progress.busyCursorWhile(TransactionUIHelper.createPrivilegedRunnableWithProgress(domain, operation));
 		} catch (InterruptedException e) {
 			Activator.log.error(e);
 		} catch (InvocationTargetException e) {
@@ -329,6 +329,7 @@ public class LoadingUtils {
 	 * @see #getExtensions(ModelSet)
 	 */
 	private static final Set<String> COMMON_EXTENSIONS = new HashSet<String>();
+
 	static {
 		COMMON_EXTENSIONS.add(UmlModel.UML_FILE_EXTENSION);
 		COMMON_EXTENSIONS.add(NotationModel.NOTATION_FILE_EXTENSION);

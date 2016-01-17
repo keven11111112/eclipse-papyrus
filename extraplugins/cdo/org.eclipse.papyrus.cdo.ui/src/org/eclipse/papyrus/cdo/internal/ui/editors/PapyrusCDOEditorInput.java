@@ -13,7 +13,7 @@ package org.eclipse.papyrus.cdo.internal.ui.editors;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.infra.core.editor.IPapyrusPageInput;
+import org.eclipse.papyrus.infra.ui.editor.IPapyrusPageInput;
 import org.eclipse.ui.IPersistableElement;
 
 /**

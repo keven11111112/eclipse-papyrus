@@ -43,7 +43,7 @@ public class GMFDiagramViewTypeHelper implements IViewTypeHelper {
 	/**
 	 * ID of the extension point for Papyrus diagrams
 	 */
-	private static final String EXTENSION_PAPYRUS_DIAGRAM = "org.eclipse.papyrus.infra.core.papyrusDiagram";
+	private static final String EXTENSION_PAPYRUS_DIAGRAM = "org.eclipse.papyrus.infra.ui.papyrusDiagram";
 
 	private static class NakedViewPrototype extends DiagramPrototype {
 		private final String label;

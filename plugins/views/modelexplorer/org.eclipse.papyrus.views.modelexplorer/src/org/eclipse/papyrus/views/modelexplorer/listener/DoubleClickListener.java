@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 450235
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.listener;
@@ -23,8 +24,8 @@ import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -45,7 +46,8 @@ public class DoubleClickListener implements IDoubleClickListener {
 	/**
 	 * Initializes me with a fixed service registry.
 	 *
-	 * @param servicesRegistry a service registry
+	 * @param servicesRegistry
+	 *            a service registry
 	 *
 	 * @deprecated The editor that the Model Explorer views can change dynamically, replacing its service registry. Use the {@link #DoubleClickListener(Supplier)} constructor instead to account for the variability of the registry.
 	 */
@@ -57,7 +59,8 @@ public class DoubleClickListener implements IDoubleClickListener {
 	/**
 	 * Initializes me with a variable service registry.
 	 *
-	 * @param servicesRegistrySupplier a supplier of a dynamically variable service registry
+	 * @param servicesRegistrySupplier
+	 *            a supplier of a dynamically variable service registry
 	 */
 	public DoubleClickListener(Supplier<ServicesRegistry> servicesRegistrySupplier) {
 		this.servicesRegistry = servicesRegistrySupplier;
@@ -68,12 +71,13 @@ public class DoubleClickListener implements IDoubleClickListener {
 	 * @see org.eclipse.jface.viewers.IDoubleClickListener#doubleClick(org.eclipse.jface.viewers.DoubleClickEvent)
 	 *
 	 */
+	@Override
 	public void doubleClick(DoubleClickEvent event) {
 		ISelection selection = event.getSelection();
 		final IPageManager pageManager;
 		// get the page Manager
 		try {
-			pageManager = ServiceUtils.getInstance().getIPageManager(servicesRegistry.get());
+			pageManager = ServiceUtils.getInstance().getService(IPageManager.class, servicesRegistry.get());
 		} catch (Exception e) {
 			Activator.log.error(Messages.DoubleClickListener_Error_NoLoadManagerToOpen, e);
 			return;

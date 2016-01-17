@@ -140,7 +140,7 @@ import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;

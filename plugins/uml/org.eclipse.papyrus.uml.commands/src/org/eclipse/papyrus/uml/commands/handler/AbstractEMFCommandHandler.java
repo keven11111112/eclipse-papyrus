@@ -61,7 +61,7 @@ public abstract class AbstractEMFCommandHandler extends AbstractHandler {
 	protected TransactionalEditingDomain getEditingDomain() {
 		TransactionalEditingDomain editingDomain = null;
 		try {
-			editingDomain = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+			editingDomain = org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 		} catch (ServiceException e) {
 			// we are closing the editor, so the model explorer has nothing to display
 			// e.printStackTrace();

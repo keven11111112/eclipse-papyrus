@@ -10,7 +10,7 @@
    </extension>
 
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<creationCommand
        creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
        creationCondition="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCondition"

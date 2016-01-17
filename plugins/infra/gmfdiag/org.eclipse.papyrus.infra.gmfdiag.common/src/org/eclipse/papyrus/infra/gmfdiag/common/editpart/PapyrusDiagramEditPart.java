@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
@@ -41,6 +40,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.PapyrusRubberbandDragTracker;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.SVGPostProcessor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.ui.IEditorPart;
 
 import com.google.common.collect.Sets;

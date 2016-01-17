@@ -15,9 +15,9 @@ package org.eclipse.papyrus.infra.editor.welcome.internal.modelelements;
 
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashLayoutCommandFactory;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.ui.internal.commands.SashLayoutCommandFactory;
 
 /**
  * Encapsulation of the "restore active page" property of the Papyrus Editor.

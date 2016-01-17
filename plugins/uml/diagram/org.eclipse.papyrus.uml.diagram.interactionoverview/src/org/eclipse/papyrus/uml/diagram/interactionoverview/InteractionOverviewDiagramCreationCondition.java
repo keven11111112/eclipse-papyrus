@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.uml.diagram.interactionoverview;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * PackageDiagramCreationCondition class allows to check if a Interaction Overview diagram can

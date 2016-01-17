@@ -481,8 +481,8 @@ def selectionChanged (GenEditorView it)'''
 «generatedMemberComment»
 	@Override
 	public void selectionChanged(org.eclipse.ui.IWorkbenchPart part, org.eclipse.jface.viewers.ISelection selection) {
-		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor) {
-			org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor editor = (org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor) getSite().getPage().getActiveEditor();
+		if (getSite().getPage().getActiveEditor() instanceof org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor) {
+			org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor editor = (org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor) getSite().getPage().getActiveEditor();
 			// If not the active editor, ignore selection changed.
 			if (this.equals(editor.getActiveEditor())) {
 				updateActions(getSelectionActions());

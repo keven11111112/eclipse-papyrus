@@ -26,7 +26,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide,
  org.eclipse.papyrus.infra.widgets;bundle-version="1.2.0",
  org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.validation;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.services.validation;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0"
 Export-Package: org.eclipse.papyrus.uml.nattable.clazz.config.tests,
  org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests
 Bundle-Vendor: %Bundle-Vendor

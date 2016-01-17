@@ -25,7 +25,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.messages.Messages;
-import org.eclipse.papyrus.infra.tools.preferences.ui.dialog.AbstractApplyValueOnPreferenceKeyDialog;
+import org.eclipse.papyrus.infra.ui.preferences.dialog.AbstractApplyValueOnPreferenceKeyDialog;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -48,7 +48,7 @@ public class ApplyValueOnPreferenceKeyDialog extends AbstractApplyValueOnPrefere
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.tools.preferences.ui.dialog.AbstractPreferenceKeyDialog#createContentProvider()
+	 * @see org.eclipse.papyrus.infra.ui.preferences.dialog.AbstractPreferenceKeyDialog#createContentProvider()
 	 *
 	 * @return
 	 */

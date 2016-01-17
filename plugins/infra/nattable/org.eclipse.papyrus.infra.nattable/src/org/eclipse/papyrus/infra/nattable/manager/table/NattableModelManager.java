@@ -115,7 +115,7 @@ import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.providers.FlattenableRestrictedFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;

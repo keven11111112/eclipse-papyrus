@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;

@@ -108,7 +108,7 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 
 	/**
 	 * @return the composite that contains the table
-	 * **/
+	 **/
 	public Composite getDefaultHyperlinkComposite() {
 		return defaultHyperlinkComposite;
 	}
@@ -160,7 +160,7 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 	 * get the command to create diagrams from the selection done into the table
 	 *
 	 * @return the command in charge of the creation of the diagrams
-	 * **/
+	 **/
 	public ICommand getCommand() {
 		return command;
 	}
@@ -349,7 +349,7 @@ public class LocalDefaultLinkDiagramTab extends AbstractHyperLinkTab {
 	 * @return the creation command registry
 	 */
 	protected static ICreationCommandRegistry getCreationCommandRegistry() {
-		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.ui.Activator.PLUGIN_ID);
 	}
 
 	@Override

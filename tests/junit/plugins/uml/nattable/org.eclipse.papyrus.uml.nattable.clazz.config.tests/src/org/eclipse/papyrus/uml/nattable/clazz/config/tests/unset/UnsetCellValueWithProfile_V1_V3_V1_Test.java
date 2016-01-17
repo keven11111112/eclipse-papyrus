@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemA
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
-import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
+import org.eclipse.papyrus.infra.ui.util.SelectionHelper;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Class;

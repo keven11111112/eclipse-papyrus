@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,13 +8,14 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.utils;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.views.config.Activator;
@@ -76,12 +76,12 @@ public class Utils {
 	 * @param eobject
 	 *            an eobject
 	 * @return
-	 *         the IPageMngr found thanks to this eobject or <code>null</code> if not found
+	 * 		the IPageMngr found thanks to this eobject or <code>null</code> if not found
 	 */
 	public static final IPageManager getIPagneManager(final EObject eobject) {
 		IPageManager mngr = null;
 		try {
-			mngr = ServiceUtilsForResource.getInstance().getIPageManager(eobject.eResource());
+			mngr = ServiceUtilsForResource.getInstance().getService(IPageManager.class, eobject.eResource());
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
@@ -93,7 +93,7 @@ public class Utils {
 	 * @param editor
 	 *            an editor
 	 * @return
-	 *         the Context of this editor, or <code>null</code> if not found
+	 * 		the Context of this editor, or <code>null</code> if not found
 	 */
 	public static final Object getEditorContext(final Object editor) {
 		if (editor instanceof EObject) {

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
- *
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.stereotype.display.tests.tests;
@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -61,7 +61,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 	 * The class diagram name.
 	 */
 	private static final String CLASS_DIAGRAM_NAME = "ClassDiagram";
-	
+
 	/**
 	 * The component diagram name.
 	 */
@@ -81,7 +81,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 	 * The component name.
 	 */
 	private static final String COMPONENT1_NAME = "Component1";
-	
+
 	/**
 	 * The port name.
 	 */
@@ -181,7 +181,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		error = new StringBuilder(COMPONENT1_NAME);
 		error.append(" doesn't exist");
 		Assert.assertNotNull(error.toString(), component1);
-		port1 = (org.eclipse.uml2.uml.Port) component1.getOwnedPort(PORT1_NAME, null);
+		port1 = component1.getOwnedPort(PORT1_NAME, null);
 		error = new StringBuilder(PORT1_NAME);
 		error.append(" doesn't exist");
 		Assert.assertNotNull(error.toString(), port1);
@@ -367,7 +367,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		final Diagram mainDiagram = DiagramUtils.getNotationDiagram(editorFixture.getModelSet(), COMPONENT_DIAGRAM_NAME);
 		editorFixture.getPageManager().openPage(mainDiagram);
 		Assert.assertEquals("Current opened diagram is not the expected one", COMPONENT_DIAGRAM_NAME, mainDiagram.getName());
-				
+
 		// Get the interface view
 		final View component1View = DiagramUtils.findShape(mainDiagram, COMPONENT1_NAME);
 		Assert.assertNotNull("Component view not present", component1View);
@@ -408,7 +408,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		editorFixture.deselect(portEP);
 		editorFixture.flushDisplayEvents();
 	}
-	
+
 	/**
 	 * This allow to test the stereotype display for the association object.
 	 * 
@@ -421,7 +421,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		final Diagram mainDiagram = DiagramUtils.getNotationDiagram(editorFixture.getModelSet(), CLASS_DIAGRAM_NAME);
 		editorFixture.getPageManager().openPage(mainDiagram);
 		Assert.assertEquals("Current opened diagram is not the expected one", CLASS_DIAGRAM_NAME, mainDiagram.getName());
-				
+
 		// Get the interface view
 		final View associationView = DiagramUtils.findEdge(mainDiagram, ASSOCIATION1_NAME);
 		Assert.assertNotNull("Association view not present", associationView);
@@ -460,7 +460,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		editorFixture.deselect(associationEP);
 		editorFixture.flushDisplayEvents();
 	}
-	
+
 	/**
 	 * This allow to test the stereotype display for the time observation object.
 	 * 
@@ -473,7 +473,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		final Diagram mainDiagram = DiagramUtils.getNotationDiagram(editorFixture.getModelSet(), CLASS_DIAGRAM_NAME);
 		editorFixture.getPageManager().openPage(mainDiagram);
 		Assert.assertEquals("Current opened diagram is not the expected one", CLASS_DIAGRAM_NAME, mainDiagram.getName());
-				
+
 		// Get the interface view
 		final View timeObservationView = DiagramUtils.findShape(mainDiagram, TIME_OBSERVATION1_NAME);
 		Assert.assertNotNull("Time Observation view not present", timeObservationView);
@@ -487,7 +487,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		final StringBuilder error = new StringBuilder("The object selected is not the ");
 		error.append(TIME_OBSERVATION1_NAME);
 		Assert.assertEquals(error.toString(), timeObservationEP, editorSelection);
-		
+
 		// Create the table
 		final ITreeNattableModelManager manager = createTable(timeObservationView);
 
@@ -512,15 +512,17 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		editorFixture.deselect(timeObservationEP);
 		editorFixture.flushDisplayEvents();
 	}
-	
+
 	/**
 	 * This allow to create the table and the nattable manager.
 	 * 
-	 * @param context The context of the table.
+	 * @param context
+	 *            The context of the table.
 	 * @return The created nattable manager.
-	 * @throws Exception The exception.
+	 * @throws Exception
+	 *             The exception.
 	 */
-	public ITreeNattableModelManager createTable(final View context) throws Exception{
+	public ITreeNattableModelManager createTable(final View context) throws Exception {
 		ITreeNattableModelManager manager = null;
 
 		// Create the table from the selected class in the diagram
@@ -531,11 +533,11 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 		final IEditorPart timeObservationTableEditor = editorFixture.getEditor().getActiveEditor();
 		Assert.assertTrue(timeObservationTableEditor instanceof NatTableEditor);
 		manager = (ITreeNattableModelManager) timeObservationTableEditor.getAdapter(INattableModelManager.class);
-		
+
 		// expand the table
 		manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		editorFixture.flushDisplayEvents();
-		
+
 		return manager;
 	}
 
@@ -565,7 +567,7 @@ public class StereotypeDisplayTableTest extends AbstractPapyrusTest {
 					model.addPapyrusTable(editorModel);
 
 					// Get the manager allowing to add/open new editor.
-					final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
+					final IPageManager pageMngr = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
 					pageMngr.openPage(editorModel);
 				} catch (Exception e) {
 					Activator.log.error(e);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *		
- *		CEA LIST - Initial API and implementation
+ *	CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.tests.utils;
@@ -26,6 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -40,9 +42,9 @@ public class EditorUtils {
 
 	public static ParametricDiagramForMultiEditor getDiagramEditor() throws Exception {
 
-		ServicesRegistry serviceRegistry = (ServicesRegistry)getEditor().getAdapter(ServicesRegistry.class);
+		ServicesRegistry serviceRegistry = getEditor().getAdapter(ServicesRegistry.class);
 		try {
-			return (ParametricDiagramForMultiEditor)ServiceUtils.getInstance().getNestedActiveIEditorPart(serviceRegistry);
+			return (ParametricDiagramForMultiEditor) ServiceUtils.getInstance().getService(ISashWindowsContainer.class, serviceRegistry).getActiveEditor();
 
 		} catch (ServiceException e) {
 			throw new Exception("Unable to retrieve service.", e);
@@ -74,16 +76,16 @@ public class EditorUtils {
 	public static EditPart getEditPart(View view) throws Exception {
 
 		// Test if the container is the diagram itself first
-		if(getDiagramEditPart().getModel() == view) {
+		if (getDiagramEditPart().getModel() == view) {
 			return getDiagramEditPart();
 		}
 
 		// Test diagram children and look for the view
 		@SuppressWarnings("unchecked")
 		Iterator<EditPart> it = EditPartUtilities.getAllChildren(getDiagramEditPart()).iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EditPart editPart = it.next();
-			if(editPart.getModel() == view) {
+			if (editPart.getModel() == view) {
 				return editPart;
 			}
 		}
@@ -91,9 +93,9 @@ public class EditorUtils {
 		// Test diagram nested connections and look for the view
 		@SuppressWarnings("unchecked")
 		Iterator<EditPart> itLinks = EditPartUtilities.getAllNestedConnectionEditParts(getDiagramEditPart()).iterator();
-		while(itLinks.hasNext()) {
+		while (itLinks.hasNext()) {
 			EditPart editPart = itLinks.next();
-			if(editPart.getModel() == view) {
+			if (editPart.getModel() == view) {
 				return editPart;
 			}
 		}
@@ -120,7 +122,7 @@ public class EditorUtils {
 
 	public static TransactionalEditingDomain getTransactionalEditingDomain() throws Exception {
 
-		ServicesRegistry serviceRegistry = (ServicesRegistry)getEditor().getAdapter(ServicesRegistry.class);
+		ServicesRegistry serviceRegistry = getEditor().getAdapter(ServicesRegistry.class);
 		try {
 			return ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 

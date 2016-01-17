@@ -15,7 +15,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="5.1.0",
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction,
+ org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-Description: %Bundle-Description

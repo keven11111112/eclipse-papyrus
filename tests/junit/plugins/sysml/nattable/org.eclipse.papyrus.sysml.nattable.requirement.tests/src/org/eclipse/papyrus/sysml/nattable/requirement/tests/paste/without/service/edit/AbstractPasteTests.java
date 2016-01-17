@@ -40,8 +40,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.AxisConfigurationUtils;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.tools.util.FileUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.GenericUtils;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 434993
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.tests;
@@ -20,7 +21,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
@@ -63,15 +64,15 @@ public abstract class AbstractTest4B extends AbstractPapyrusTest {
 	}
 
 	public static boolean setActiveDiagramViewByName(String diagramName) throws Exception {
-		if(diagramName == null) {
+		if (diagramName == null) {
 			return false;
 		}
-		ServicesRegistry serviceRegistry = (ServicesRegistry)EditorUtils.getEditor().getAdapter(ServicesRegistry.class);
-		IPageManager iPageManager = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
+		ServicesRegistry serviceRegistry = EditorUtils.getEditor().getAdapter(ServicesRegistry.class);
+		IPageManager iPageManager = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
 		List<Object> allPages = iPageManager.allPages();
-		for(Object object : allPages) {
-			if(object instanceof Diagram) {
-				if(diagramName.equals(((Diagram)object).getName())) {
+		for (Object object : allPages) {
+			if (object instanceof Diagram) {
+				if (diagramName.equals(((Diagram) object).getName())) {
 					iPageManager.selectPage(object);
 					return true;
 				}

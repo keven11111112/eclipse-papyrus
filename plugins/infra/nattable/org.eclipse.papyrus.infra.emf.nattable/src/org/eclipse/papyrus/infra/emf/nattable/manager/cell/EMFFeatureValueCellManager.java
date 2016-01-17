@@ -40,7 +40,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
 import org.eclipse.papyrus.infra.nattable.command.ErrorTransactionalCommand;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
@@ -51,8 +50,9 @@ import org.eclipse.papyrus.infra.nattable.utils.CellHelper;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
-import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -374,7 +374,7 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
 	 *
 	 * @param columnElement

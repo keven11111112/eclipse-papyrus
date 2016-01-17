@@ -8,32 +8,24 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 429826
- *  Christian W. Damus (CEA) - bug 408491
- *  Christian W. Damus (CEA) - bug 433320
- *  Christian W. Damus - bug 451557
- *  Christian W. Damus - bug 457560
- *  Christian W. Damus - bug 461629
- *  Christian W. Damus - bug 463564
- *  Christian W. Damus - bug 466997
- *  Christian W. Damus - bug 465416
+ *  Christian W. Damus (CEA) - bugs 429826, 408491, 433320
+ *  Christian W. Damus - bugs 451557, 457560, 461629, 463564, 466997, 465416, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionImpl;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 
 import com.google.common.collect.Maps;
@@ -46,7 +38,7 @@ import com.google.common.collect.Sets;
  * @author Camille Letavernier
  *
  */
-public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.TransactionHelper {
+public class TransactionHelper {
 
 	// Refactoring needed. The sasheditor contentprovider should have dependencies to infra.EMF...
 
@@ -61,6 +53,38 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	public static final String TRANSACTION_OPTION_INTERACTIVE = "papyrus.interactive"; //$NON-NLS-1$
 
 	public static final String TRANSACTION_OPTION_MERGE_NESTED_READ = "papyrus.merge_nested_read"; //$NON-NLS-1$
+
+	public static void run(EditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {
+		if (domain instanceof TransactionalEditingDomain) {
+			run((TransactionalEditingDomain) domain, writeOperation);
+		} else {
+			writeOperation.run();
+		}
+	}
+
+	public static void run(TransactionalEditingDomain domain, final Runnable writeOperation) throws InterruptedException, RollbackException {
+		if (domain instanceof InternalTransactionalEditingDomain) {
+			run((InternalTransactionalEditingDomain) domain, writeOperation);
+		} else {
+			// Shouldn't happen, as all TransactionalEditingDomain implementations should also implement InternalTransactionalEditingDomain
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+				@Override
+				protected void doExecute() {
+					writeOperation.run();
+				}
+			});
+		}
+	}
+
+	public static void run(InternalTransactionalEditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {
+		Transaction transaction = domain.startTransaction(false, Collections.emptyMap());
+		try {
+			writeOperation.run();
+		} finally {
+			transaction.commit();
+		}
+	}
 
 	/**
 	 * Queries whether an editing {@code domain} has been disposed.
@@ -354,58 +378,6 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	public static boolean isTriggerTransaction(Transaction transaction) {
 		Object value = transaction.getOptions().get(TransactionImpl.OPTION_IS_TRIGGER_TRANSACTION);
 		return (value instanceof Boolean) ? (Boolean) value : false;
-	}
-
-	/**
-	 * Create a privileged runnable with progress, which is like a regular {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
-	 * privileged runnable} except that it is given a progress monitor for progress reporting.
-	 * This enables execution of monitored runnables on the modal-context thread using the transaction borrowed from the UI thread.
-	 *
-	 * @param domain
-	 *            an editing domain
-	 * @param runnable
-	 *            a runnable with progress that is to borrow the {@code domain}'s active transaction on the modal context thread
-	 * @return the privileged runnable, ready to pass into the progress service or other such API
-	 */
-	public static IRunnableWithProgress createPrivilegedRunnableWithProgress(TransactionalEditingDomain domain, final IRunnableWithProgress runnable) {
-		final IProgressMonitor monitorHolder[] = { null };
-
-		final Runnable privileged = domain.createPrivilegedRunnable(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					runnable.run(monitorHolder[0]);
-				} catch (RuntimeException e) {
-					throw e;
-				} catch (Exception e) {
-					throw new WrappedException(e);
-				}
-			}
-		});
-
-		return new IRunnableWithProgress() {
-
-			@Override
-			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-				monitorHolder[0] = monitor;
-
-				try {
-					privileged.run();
-				} catch (OperationCanceledException e) {
-					throw new InterruptedException(e.getLocalizedMessage());
-				} catch (WrappedException e) {
-					Exception unwrapped = e.exception();
-					if (unwrapped instanceof InvocationTargetException) {
-						throw (InvocationTargetException) unwrapped;
-					} else if (unwrapped instanceof InterruptedException) {
-						throw (InterruptedException) unwrapped;
-					} else {
-						throw e;
-					}
-				}
-			}
-		};
 	}
 
 	/**

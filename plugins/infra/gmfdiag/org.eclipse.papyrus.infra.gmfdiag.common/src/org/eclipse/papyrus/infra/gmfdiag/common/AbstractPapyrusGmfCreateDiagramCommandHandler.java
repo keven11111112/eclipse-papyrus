@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2013 CEA LIST.
- *
+ * Copyright (c) 2008, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - only calculate affected files for workspace resources (CDO)
  *  Laurent Wouters (CEA) - laurent.wouters@cea.fr - Refactoring for viewpoints
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -55,7 +55,7 @@ import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -181,10 +181,10 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 				// We have a path for the root auto-selection
 				for (RootAutoSelect auto : rule.getSelectDiagramRoot()) {
 					EReference ref = auto.getFeature();
-					element =(EObject) element.eGet(ref);
+					element = (EObject) element.eGet(ref);
 				}
-			}			
-			
+			}
+
 			CommandResult result = doEditDiagramName(prototype, name);
 			if (!result.getStatus().isOK()) {
 				return result;
@@ -195,7 +195,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			Diagram diagram = doCreateDiagram(notationResource, owner, element, prototype, name);
 
 			if (diagram != null) {
-				IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diResource);
+				IPageManager pageManager = ServiceUtilsForResource.getInstance().getService(IPageManager.class, diResource);
 				pageManager.addPage(diagram);
 				return CommandResult.newOKCommandResult(diagram);
 			}
@@ -533,7 +533,7 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			}
 			diagramResource.getContents().add(diagram);
 			initializeDiagram(diagram);
-			
+
 		}
 		return diagram;
 	}

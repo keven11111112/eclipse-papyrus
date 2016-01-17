@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.manager.cell;
@@ -23,7 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.manager.cell.AbstractCellManager;
@@ -178,7 +178,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * @param editor
 	 *            an editor
 	 * @return
-	 *         the type of the editor
+	 * 		the type of the editor
 	 */
 	protected Object getEditorType(final Object editor) {
 		if (editor instanceof EObject) {
@@ -205,7 +205,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 		if (editor instanceof EObject) {
 			IPageManager mngr = null;
 			try {
-				mngr = ServiceUtilsForResource.getInstance().getIPageManager(((EObject) editor).eResource());
+				mngr = ServiceUtilsForResource.getInstance().getService(IPageManager.class, ((EObject) editor).eResource());
 				return mngr.isOpen(editor);
 			} catch (ServiceException e) {
 				// Activator.log.error(e);
@@ -220,7 +220,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * @param editor
 	 *            an editor
 	 * @return
-	 *         the name of the editor
+	 * 		the name of the editor
 	 */
 	protected Object getEditorName(final Object editor) {
 		if (editor instanceof EObject) {
@@ -238,7 +238,7 @@ public class ModelViewsCellManager extends AbstractCellManager {
 	 * @param editor
 	 *            the editor
 	 * @return
-	 *         the context of this editor
+	 * 		the context of this editor
 	 */
 	protected Object getEditorContext(final Object editor) {
 		final Object result = Utils.getEditorContext(editor);

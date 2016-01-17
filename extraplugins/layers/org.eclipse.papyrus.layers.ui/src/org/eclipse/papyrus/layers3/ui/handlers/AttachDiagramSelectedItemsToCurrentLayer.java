@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +8,8 @@
  *
  * Contributors:
  *     Cedric Dumoulin - cedric.dumoulin@lifl.fr
+ *     Christian W. Damus - bug 485220
+ *     
  ******************************************************************************/
 /**
  *
@@ -27,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
 import org.eclipse.papyrus.layers.stackmodel.NotFoundException;
@@ -141,7 +145,7 @@ public class AttachDiagramSelectedItemsToCurrentLayer extends AbstractLayersComm
 		// }
 		for (Object obj : structuredSelection.toList()) {
 			// Adapt the selected object to a View.
-			View view = (View) Platform.getAdapterManager().getAdapter(obj, View.class);
+			View view = Platform.getAdapterManager().getAdapter(obj, View.class);
 			if (view != null) {
 				result.add(view);
 			}
@@ -162,7 +166,7 @@ public class AttachDiagramSelectedItemsToCurrentLayer extends AbstractLayersComm
 
 		IEditorPart editor;
 		try {
-			editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
+			editor = ServiceUtilsForIEvaluationContext.getInstance().getService(ISashWindowsContainer.class, context).getActiveEditor();
 		} catch (ServiceException e) {
 			throw new NotFoundException("Selected editor do not provides ServiceRegistry", e); //$NON-NLS-1$
 		}

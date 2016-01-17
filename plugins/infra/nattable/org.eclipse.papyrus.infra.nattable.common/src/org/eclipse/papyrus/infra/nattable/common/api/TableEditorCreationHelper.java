@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
@@ -27,13 +28,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.nattable.common.Activator;
-import org.eclipse.papyrus.infra.nattable.common.api.ITableEditorStatusCode;
 import org.eclipse.papyrus.infra.nattable.common.commands.CreateAndOpenTableEditorCommand;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.common.modelresource.PapyrusNattableModel;
@@ -240,7 +240,7 @@ public class TableEditorCreationHelper {
 		} catch (ServiceException e) {
 			return new Status(IStatus.ERROR, pluginID, ITableEditorStatusCode.SERVICES_REGISTRY_NOT_FOUND, e.getMessage(), e);
 		}
-		
+
 
 		// 2. check the model set prototype
 		try {
@@ -262,7 +262,7 @@ public class TableEditorCreationHelper {
 
 		// 4. check the page manager
 		try {
-			this.pageMngr = ServiceUtils.getInstance().getIPageManager(this.servicesRegistry);
+			this.pageMngr = ServiceUtils.getInstance().getService(IPageManager.class, this.servicesRegistry);
 		} catch (ServiceException e) {
 			return new Status(IStatus.ERROR, pluginID, ITableEditorStatusCode.PAGE_MANAGER_NOT_FOUND, e.getMessage(), e);
 		}
@@ -416,7 +416,7 @@ public class TableEditorCreationHelper {
 						PapyrusTable papyrusTable = (PapyrusTable) configuration;
 						String configurationURI = papyrusTable.getConfiguration();
 						URI uri = NattableConfigurationRegistry.INSTANCE.getConfigurationURI(tableType);
-						if (configurationURI.equals(uri.toString())) { //to check ? 
+						if (configurationURI.equals(uri.toString())) { // to check ?
 							return prototype;
 						}
 					}

@@ -26,7 +26,7 @@
             priority="9"
             startKind="startup">
          <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider">
+               serviceKeyRef="org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider">
          </dependsOn>
          <dependsOn
                serviceKeyRef="org.eclipse.papyrus.infra.services.controlmode.service.IUncontrolledObjectsProvider">

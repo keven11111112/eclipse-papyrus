@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<diagramCategory class="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand" description="SysML diagrams" icon="icons/category_sysml.gif" id="sysml" label="SysML">
 	</diagramCategory>      
 </extension>

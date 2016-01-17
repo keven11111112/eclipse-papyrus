@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
@@ -28,8 +29,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantService;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.core.IModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.DefaultModelingAssistantModelProvider;
@@ -41,6 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingle
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.InducedRepresentationCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.junit.Assert;
 import org.junit.Test;
@@ -52,7 +54,7 @@ import org.osgi.framework.Bundle;
  * 
  *
  */
-public class AssistantUsage extends AbstractEditorTest{
+public class AssistantUsage extends AbstractEditorTest {
 
 	/**
 	 * 
@@ -65,7 +67,7 @@ public class AssistantUsage extends AbstractEditorTest{
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
 			NotationModel notation = (NotationModel) modelSet.getModel(NotationModel.MODEL_ID);
 			Diagram diagram = notation.getDiagram(name);
-			ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).openPage(diagram);
+			ServiceUtils.getInstance().getService(IPageManager.class, editor.getServicesRegistry()).openPage(diagram);
 			flushDisplayEvents();
 		} catch (Exception e) {
 			throw new IllegalStateException("Cannot initialize test", e);
@@ -88,87 +90,87 @@ public class AssistantUsage extends AbstractEditorTest{
 
 	@Test
 	public void testAssistantForLabelNode() {
-		//loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry=  loadXMIExpansionModel("AddChildLabel.xmi");
-		Assert.assertEquals("Size ot the registry must be equals to 1",1,diagramExpansionsRegistry.getDiagramExpansions().size());
-		Assert.assertEquals("Size ot the map childreen must be equals to 1",1,diagramExpansionsRegistry.mapChildreen.size());
+		// loading
+		DiagramExpansionsRegistry diagramExpansionsRegistry = loadXMIExpansionModel("AddChildLabel.xmi");
+		Assert.assertEquals("Size ot the registry must be equals to 1", 1, diagramExpansionsRegistry.getDiagramExpansions().size());
+		Assert.assertEquals("Size ot the map childreen must be equals to 1", 1, diagramExpansionsRegistry.mapChildreen.size());
 
-		//test the data structure that is interpreted by the framework
-		ChildrenListRepresentation childrenListRepresentation= diagramExpansionsRegistry.mapChildreen.get(CLASS_DIAGRAM_TYPE);
+		// test the data structure that is interpreted by the framework
+		ChildrenListRepresentation childrenListRepresentation = diagramExpansionsRegistry.mapChildreen.get(CLASS_DIAGRAM_TYPE);
 		System.out.println(childrenListRepresentation);
-		Assert.assertNotNull("A usage contex has been defined for "+CLASS_DIAGRAM_TYPE , childrenListRepresentation);
-		Assert.assertNotNull("The class has been redefined",childrenListRepresentation.IDMap.get(CLASS_VISUALID));
-		Assert.assertNotNull("The compartment of class has been added",childrenListRepresentation.IDMap.get(IMPLEMENTED_INTERFACES_HINT));
-		List<String> the_2008_Children=childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
-		Assert.assertEquals("2008 can have a new compartment",1, the_2008_Children.size());
-		Assert.assertEquals("2008 has to contain "+IMPLEMENTED_INTERFACES_HINT,IMPLEMENTED_INTERFACES_HINT, the_2008_Children.get(0));
+		Assert.assertNotNull("A usage contex has been defined for " + CLASS_DIAGRAM_TYPE, childrenListRepresentation);
+		Assert.assertNotNull("The class has been redefined", childrenListRepresentation.IDMap.get(CLASS_VISUALID));
+		Assert.assertNotNull("The compartment of class has been added", childrenListRepresentation.IDMap.get(IMPLEMENTED_INTERFACES_HINT));
+		List<String> the_2008_Children = childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
+		Assert.assertEquals("2008 can have a new compartment", 1, the_2008_Children.size());
+		Assert.assertEquals("2008 has to contain " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, the_2008_Children.get(0));
 
-		Assert.assertNotNull("The Nested Interface has to be added",childrenListRepresentation.IDMap.get(NESTED_INTERFACE_LABEL));
-		List<String> the_IMPLEMENTED_INTERFACES_Children=childrenListRepresentation.parentChildrenRelation.get(IMPLEMENTED_INTERFACES_HINT);
-		Assert.assertEquals("Nested Interface can have a new compartment",1, the_IMPLEMENTED_INTERFACES_Children.size());
-		Assert.assertEquals("Nested Interface has to contain "+NESTED_INTERFACE_LABEL,NESTED_INTERFACE_LABEL, the_IMPLEMENTED_INTERFACES_Children.get(0));
-		// the model is valid 
-		//now launch a class diagram
+		Assert.assertNotNull("The Nested Interface has to be added", childrenListRepresentation.IDMap.get(NESTED_INTERFACE_LABEL));
+		List<String> the_IMPLEMENTED_INTERFACES_Children = childrenListRepresentation.parentChildrenRelation.get(IMPLEMENTED_INTERFACES_HINT);
+		Assert.assertEquals("Nested Interface can have a new compartment", 1, the_IMPLEMENTED_INTERFACES_Children.size());
+		Assert.assertEquals("Nested Interface has to contain " + NESTED_INTERFACE_LABEL, NESTED_INTERFACE_LABEL, the_IMPLEMENTED_INTERFACES_Children.get(0));
+		// the model is valid
+		// now launch a class diagram
 
 		try {
 			initModel("ExpansionModelProject", "ExpansionModelTest", getBundle());
 			openDiagram(editor, "NewDiagram");
-			SynchronizableGmfDiagramEditor	diagramEditor = (SynchronizableGmfDiagramEditor)editor.getActiveEditor();
-			DiagramEditPart diagramEditPart = (DiagramEditPart)editor.getAdapter(DiagramEditPart.class);
+			SynchronizableGmfDiagramEditor diagramEditor = (SynchronizableGmfDiagramEditor) editor.getActiveEditor();
+			DiagramEditPart diagramEditPart = editor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("The diagram must be opened", diagramEditPart);
-			IGraphicalEditPart classEditPart =(IGraphicalEditPart)diagramEditPart.getChildren().get(0);
+			IGraphicalEditPart classEditPart = (IGraphicalEditPart) diagramEditPart.getChildren().get(0);
 			Assert.assertNotNull("A Class edit Part must exist", diagramEditPart);
 
-			//verify editpolicy
-			EditPolicy inducedRepresentationCreator=classEditPart.getEditPolicy(InducedRepresentationCreationEditPolicy.INDUCED_REPRESENTATION_CREATOR_EDITPOLICY);
+			// verify editpolicy
+			EditPolicy inducedRepresentationCreator = classEditPart.getEditPolicy(InducedRepresentationCreationEditPolicy.INDUCED_REPRESENTATION_CREATOR_EDITPOLICY);
 			Assert.assertNotNull("A Class must have this editpolicy", inducedRepresentationCreator);
 
 
-			//test in the notation
-			View classNotationView=classEditPart.getNotationView();
+			// test in the notation
+			View classNotationView = classEditPart.getNotationView();
 			Assert.assertEquals("the Type of class editpart must be 2008", classNotationView.getType(), "2008");
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments",classNotationView.getPersistedChildren().size(), 6);
-			View compartment=(View)classNotationView.getPersistedChildren().get(5);
-			Assert.assertEquals("The last compartment must have the type "+IMPLEMENTED_INTERFACES_HINT,IMPLEMENTED_INTERFACES_HINT , compartment.getType());
+			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", classNotationView.getPersistedChildren().size(), 6);
+			View compartment = (View) classNotationView.getPersistedChildren().get(5);
+			Assert.assertEquals("The last compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartment.getType());
 
-			//test in the editpart is created for this notation
-			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments",classEditPart.getChildren().size(), 6);
-			IGraphicalEditPart compartmentEdiPart=(IGraphicalEditPart)classEditPart.getChildren().get(5);
-			Assert.assertEquals("The last compartment must have the type "+IMPLEMENTED_INTERFACES_HINT,IMPLEMENTED_INTERFACES_HINT , compartmentEdiPart.getNotationView().getType());
+			// test in the editpart is created for this notation
+			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments", classEditPart.getChildren().size(), 6);
+			IGraphicalEditPart compartmentEdiPart = (IGraphicalEditPart) classEditPart.getChildren().get(5);
+			Assert.assertEquals("The last compartment must have the type " + IMPLEMENTED_INTERFACES_HINT, IMPLEMENTED_INTERFACES_HINT, compartmentEdiPart.getNotationView().getType());
 
-			//load model assistant
+			// load model assistant
 			URI assistantURI = URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.common.tests", true);
-			assistantURI=assistantURI.appendSegment("models");
-			assistantURI=assistantURI.appendSegment("MyChildLabelAssistant.assistants");
-			//Assert.assertTrue("The assistant file exist", assistantURI.isFile());
+			assistantURI = assistantURI.appendSegment("models");
+			assistantURI = assistantURI.appendSegment("MyChildLabelAssistant.assistants");
+			// Assert.assertTrue("The assistant file exist", assistantURI.isFile());
 
 			IModelingAssistantModelProvider result = new DefaultModelingAssistantModelProvider(assistantURI);
 			Assert.assertNotNull("the assistant model must be loaded", result);
 			ModelingAssistantModelRegistry.getInstance().loadModels(result);
-			//try to create a label inside this compartment.
-			final IElementType interfaceLabelelementType=ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label");
-			List<?> types=ModelingAssistantService.getInstance().getTypesForPopupBar(classEditPart);
-			boolean founded=false;
+			// try to create a label inside this compartment.
+			final IElementType interfaceLabelelementType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label");
+			List<?> types = ModelingAssistantService.getInstance().getTypesForPopupBar(classEditPart);
+			boolean founded = false;
 
-			//test the construction of the popupbar
+			// test the construction of the popupbar
 			for (Object object : types) {
-				if(object instanceof ProxyElementType){
-					ProxyElementType proxyElementType= (ProxyElementType) object;
+				if (object instanceof ProxyElementType) {
+					ProxyElementType proxyElementType = (ProxyElementType) object;
 					System.out.println(proxyElementType);
 
 
-					if( ("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label".equals(proxyElementType.getId()))
+					if (("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label".equals(proxyElementType.getId()))
 							&& interfaceLabelelementType.equals(proxyElementType.resolveSemanticType())
-							&& interfaceLabelelementType.equals(proxyElementType.resolveVisualType())){
-						
-						//find the good short cut
-						founded=true;
-						//now construct the request and command to simulate the  display inside popup bar
-						Request req=CreateViewRequestFactory.getCreateShapeRequest(proxyElementType,
+							&& interfaceLabelelementType.equals(proxyElementType.resolveVisualType())) {
+
+						// find the good short cut
+						founded = true;
+						// now construct the request and command to simulate the display inside popup bar
+						Request req = CreateViewRequestFactory.getCreateShapeRequest(proxyElementType,
 								classEditPart.getDiagramPreferencesHint());
-						EditPart targetEditpart= classEditPart.getTargetEditPart(req);
-						Assert.assertEquals("the request must be redirect to compartment", compartmentEdiPart,targetEditpart);
-						Command cmd=targetEditpart.getCommand(req);
+						EditPart targetEditpart = classEditPart.getTargetEditPart(req);
+						Assert.assertEquals("the request must be redirect to compartment", compartmentEdiPart, targetEditpart);
+						Command cmd = targetEditpart.getCommand(req);
 						Assert.assertNotNull("The command must not be null", cmd);
 						Assert.assertTrue("The command must be executable", cmd.canExecute());
 					}
@@ -184,18 +186,19 @@ public class AssistantUsage extends AbstractEditorTest{
 	}
 
 	protected DiagramExpansionsRegistry loadXMIExpansionModel(String filename) {
-		DiagramExpansionsRegistry diagramExpansionsRegistry= DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
+		DiagramExpansionsRegistry diagramExpansionsRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 		diagramExpansionsRegistry.clear();
-		Assert.assertEquals("Size ot the registry must be equals to 0",0,diagramExpansionsRegistry.getDiagramExpansions().size());
-		Assert.assertEquals("Size ot the map childreen must be equals to 0",0,diagramExpansionsRegistry.mapChildreen.size());
+		Assert.assertEquals("Size ot the registry must be equals to 0", 0, diagramExpansionsRegistry.getDiagramExpansions().size());
+		Assert.assertEquals("Size ot the map childreen must be equals to 0", 0, diagramExpansionsRegistry.mapChildreen.size());
 		URI badContextExpansion = URI.createPlatformPluginURI("org.eclipse.papyrus.infra.gmfdiag.common.tests", true);
-		badContextExpansion=badContextExpansion.appendSegment("models");
-		badContextExpansion=badContextExpansion.appendSegment(filename);
+		badContextExpansion = badContextExpansion.appendSegment("models");
+		badContextExpansion = badContextExpansion.appendSegment(filename);
 
 		diagramExpansionsRegistry.loadExpansion(badContextExpansion);
 
 		return diagramExpansionsRegistry;
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest#getSourcePath()
 	 *

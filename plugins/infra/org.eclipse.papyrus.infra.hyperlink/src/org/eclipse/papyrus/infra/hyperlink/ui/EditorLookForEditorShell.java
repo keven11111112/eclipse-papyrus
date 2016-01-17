@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
  *  Christian W. Damus (CEA) - bug 431397
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
@@ -18,6 +18,7 @@ package org.eclipse.papyrus.infra.hyperlink.ui;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -33,10 +34,9 @@ import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.extension.NotFoundException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.util.EditorListContentProvider;
 import org.eclipse.papyrus.infra.hyperlink.util.TreeViewContentProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.providers.IGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
@@ -246,7 +247,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		ContainmentBrowseStrategy strategy = new ContainmentBrowseStrategy(semanticProvider);
 		IGraphicalContentProvider graphicalContentProvider = new EMFGraphicalContentProvider(strategy, model.eResource().getResourceSet(), Activator.PLUGIN_ID + ".editorTreeView");
 		treeViewer.setContentProvider(graphicalContentProvider);
-		//treeViewer.setInput(model.eResource());
+		// treeViewer.setInput(model.eResource());
 		treeViewer.setInput(registry);
 		graphicalContentProvider.createAfter(getAfterTreeViewComposite());
 		this.setChildrenBackground(getAfterTreeViewComposite(), Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
@@ -269,7 +270,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		// add listner on the new button to display menu for each diagram
 		diagramMenuButton = new Menu(getNewDiagrambutton());
 		getNewDiagrambutton().setMenu(diagramMenuButton);
-		CreationCommandRegistry commandRegistry = CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+		CreationCommandRegistry commandRegistry = CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.ui.Activator.PLUGIN_ID);
 		for (CreationCommandDescriptor desc : commandRegistry.getCommandDescriptors()) {
 			MenuItem menuItem = new MenuItem(diagramMenuButton, SWT.PUSH);
 			menuItem.addSelectionListener(new DiagramCreateListener(desc, null, commandRegistry));
@@ -293,7 +294,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 
 				final IPageManager pageManager;
 				try {
-					pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(model);
+					pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, model);
 				} catch (ServiceException ex) {
 					Activator.log.error(ex);
 					return;
@@ -315,7 +316,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 					pageManager.closeAllOpenedPages(page);
 				}
 
-				//getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
+				// getDiagramfilteredTree().getViewer().setInput(""); //$NON-NLS-1$
 				getModeFilteredTree().getViewer().refresh();
 			}
 		});
@@ -420,7 +421,7 @@ public class EditorLookForEditorShell extends AbstractLookForEditorShell {
 		EObject eObject = (EObject) object;
 
 		try {
-			return ServiceUtilsForEObject.getInstance().getIPageMngr(eObject).allPages().contains(object);
+			return ServiceUtilsForEObject.getInstance().getService(IPageManager.class, eObject).allPages().contains(object);
 		} catch (ServiceException ex) {
 			return false;
 		}

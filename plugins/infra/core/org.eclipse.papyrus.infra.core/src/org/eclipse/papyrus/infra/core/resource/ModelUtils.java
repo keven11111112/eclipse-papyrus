@@ -1,6 +1,16 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2016 CEA LIST, Atos, Christian W. Damus, and others.
  *
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
 
 import java.io.IOException;
@@ -15,7 +25,7 @@ import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
@@ -43,7 +53,7 @@ public class ModelUtils {
 	@Deprecated
 	public static ModelSet getModelSet() {
 		try {
-			return ServiceUtilsForActionHandlers.getInstance().getModelSet();
+			return ServiceUtils.getInstance().getModelSet(null);
 		} catch (ServiceException e) {
 			return null;
 		}
@@ -65,7 +75,7 @@ public class ModelUtils {
 	 */
 	@Deprecated
 	public static ModelSet getModelSetChecked() throws ServiceException {
-		return ServiceUtilsForActionHandlers.getInstance().getModelSet();
+		return ServiceUtils.getInstance().getModelSet(null);
 	}
 
 	/**

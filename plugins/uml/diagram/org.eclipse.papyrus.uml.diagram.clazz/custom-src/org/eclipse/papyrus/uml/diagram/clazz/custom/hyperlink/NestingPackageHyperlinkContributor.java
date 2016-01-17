@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Shuai Li (CEA LIST) <shuai.li@cea.fr> - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -47,13 +49,14 @@ public class NestingPackageHyperlinkContributor implements HyperlinkContributor 
 	 * @param fromElement
 	 * @return
 	 */
+	@Override
 	public List<HyperLinkObject> getHyperlinks(Object fromElement) {
 		ArrayList<HyperLinkObject> hyperlinks = new ArrayList<HyperLinkObject>();
-		
+
 		if (fromElement instanceof org.eclipse.uml2.uml.Package) {
 			org.eclipse.uml2.uml.Package nestingPackage = ((org.eclipse.uml2.uml.Package) fromElement).getNestingPackage();
 			List<Object> pages = new ArrayList<Object>();
-			
+
 			if (nestingPackage != null) {
 				ViewerSearchService viewerSearchService = null;
 				try {
@@ -76,19 +79,19 @@ public class NestingPackageHyperlinkContributor implements HyperlinkContributor 
 						}
 					}
 				}
-				
+
 				if (viewerSearchService != null) {
 					List<Object> viewerSearchResults = viewerSearchService.getViewersInCurrentModel(null, nestingPackage, true, false);
 					pages.addAll(viewerSearchResults);
 				}
 			}
-			
+
 			for (Object page : pages) {
 				if (page instanceof Diagram
 						&& ((Diagram) page).getType().equals(ModelEditPart.MODEL_ID)) {
 					try {
 						// Page must not be active page
-						IPage activeSashPage = ServiceUtilsForEObject.getInstance().getISashWindowsContainer((org.eclipse.uml2.uml.Package) fromElement).getActiveSashWindowsPage();
+						IPage activeSashPage = ServiceUtilsForEObject.getInstance().getService(ISashWindowsContainer.class, (org.eclipse.uml2.uml.Package) fromElement).getActiveSashWindowsPage();
 						Object activePage = null;
 
 						if (activeSashPage != null) {
@@ -114,7 +117,7 @@ public class NestingPackageHyperlinkContributor implements HyperlinkContributor 
 				}
 			}
 		}
-		
+
 		return hyperlinks;
 	}
 

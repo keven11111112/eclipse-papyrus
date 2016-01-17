@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.IPartListener;

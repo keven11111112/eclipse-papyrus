@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,19 +9,13 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - add test for AdapterUtils
- *  Christian W. Damus (CEA) - bug 402525
- *  Christian W. Damus (CEA) - bug 422257
- *  Christian W. Damus (CEA) - bug 399859
- *  Christian W. Damus - bug 456934
- *  Christian W. Damus - bug 468030
- *  Christian W. Damus - bug 482949
+ *  Christian W. Damus (CEA) - bugs 402525, 422257, 399859
+ *  Christian W. Damus - bugs 456934, 468030, 482949, 485220
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
 
-import org.eclipse.papyrus.infra.core.contentoutline.NestedEditorDelegatedOutlinePageTest;
 import org.eclipse.papyrus.infra.core.language.LanguageServiceTest;
-import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProviderTest;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResourceTest;
 import org.eclipse.papyrus.infra.core.resource.ModelSetTest;
 import org.eclipse.papyrus.infra.core.resource.NestingTransactionalCommandStackTest;
@@ -47,9 +41,6 @@ import org.junit.runners.Suite.SuiteClasses;
 		LanguageServiceTest.class,
 		// {oep}.core.services
 		ComposedServiceTest.class, ServicesRegistryTest.class,
-		// {oep}.core.lifecycleevents
-		/* SaveAndDirtyServiceTest.class, */LifeCycleEventsProviderTest.class,
-		NestedEditorDelegatedOutlinePageTest.class,
 		// {oep}.core.utils
 		AdapterUtilsTest.class, JobBasedFutureTest.class, JobExecutorServiceTest.class
 })

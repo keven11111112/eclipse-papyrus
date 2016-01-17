@@ -16,28 +16,13 @@
 
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.service.ILocalPageService;
-import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.Activator;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
-import org.eclipse.papyrus.infra.core.sashwindows.di.DiFactory;
-import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
-import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.BasicPageManagerImpl;
 import org.eclipse.swt.widgets.Display;
-import org.osgi.framework.FrameworkUtil;
 
 
 /**
@@ -47,7 +32,16 @@ import org.osgi.framework.FrameworkUtil;
  * @author cedric dumoulin
  *
  */
-public class PageManagerImpl extends PageMngrImpl implements IPageManager {
+public class PageManagerImpl extends BasicPageManagerImpl {
+
+	/**
+	 * An object used to get the current folder, or to ask to set the
+	 * active page.
+	 * This is usually backuped by the SashWindowContainer. <br>
+	 */
+	private ICurrentFolderAndPageMngr folderAndPageMngr;
+
+	private ContentChangedEventProvider contentChangedEventProvider;
 
 	/**
 	 * Constructor.
@@ -64,7 +58,10 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	 *
 	 */
 	protected PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
-		super(diSashModel, contentChangedEventProvider);
+		super(diSashModel);
+
+		this.contentChangedEventProvider = contentChangedEventProvider;
+		this.folderAndPageMngr = new DefaultCurrentFolderAndPageMngr(diSashModel);
 	}
 
 	/**
@@ -78,233 +75,46 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 	 *            the folder and page mngr
 	 */
 	protected PageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider, ICurrentFolderAndPageMngr folderAndPageMngr) {
-		super(diSashModel, contentChangedEventProvider, folderAndPageMngr);
+		super(diSashModel);
+
+		this.contentChangedEventProvider = contentChangedEventProvider;
+		this.folderAndPageMngr = folderAndPageMngr;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#closeAllOpenedPages(java.lang.Object)
-	 *
-	 * @param pageIdentifier
-	 */
 	@Override
-	public void closeAllOpenedPages(Object pageIdentifier) {
-		while (isOpen(pageIdentifier)) {
-			closePage(pageIdentifier);
-		}
+	protected TabFolder getCurrentFolder() {
+		return folderAndPageMngr.getCurrentFolder();
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#addPage(java.lang.Object)
-	 *
-	 * @param pageIdentifier
-	 */
 	@Override
-	public void addPage(Object pageIdentifier) {
-		// Nothing
+	protected boolean isLegacyMode() {
+		// We are never in legacy mode even if there is a page list
+		return false;
 	}
 
-	/**
-	 * Reload the Diagram
-	 * This used when a resource is reloaded, the related diagrams are reloaded as well
-	 *
-	 * @see org.eclipse.papyrus.infra.services.controlmode.listener.LoadResourceSnippet
-	 *
-	 * @param diagramProxy
-	 *            Identifier of the page to reload
-	 */
 	@Override
-	public void reloadPage(Object diagramProxy) {
-
-		if (diagramProxy instanceof EObject) {
-
-			PageRef proxyRef = diSashModel.getSashModel().lookupPage(diagramProxy);
-
-			if (proxyRef.eContainer() instanceof TabFolder) {
-				TabFolder folder = (TabFolder) proxyRef.eContainer();
-
-
-				if (folder != null) {
-					if (folder.getChildren() != null) {
-						// get the initial index of the Diagram Tab
-						int i = folder.getChildren().indexOf(proxyRef);
-
-						if (i >= 0) {
-							// Create a new Page
-							PageRef newRef = DiFactory.eINSTANCE.createPageRef();
-							newRef.setEmfPageIdentifier((EObject) diagramProxy);
-							// Replace the previous by the new one
-							folder.getChildren().set(i, newRef);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#allPages()
-	 *
-	 * @return
-	 */
-	@Override
-	public List<Object> allPages() {
-		// FIXME: Temporary, naive code. Need to implement a mechanism to contribute page providers
-		List<Object> result = new LinkedList<Object>();
-		List<Resource> notationResources = getResources("notation");
-		for (Resource notationResource : notationResources) {
-			for (EObject content : notationResource.getContents()) {
-				if (isPage(content)) {
-					result.add(content);
-				}
-			}
-		}
-
-
-		return result;
-	}
-
-	/**
-	 * Gets the local pages.
-	 *
-	 * @param model
-	 *            the model
-	 * @return the local pages
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#allLocalPages()
-	 */
-	@Override
-	public List<Object> allLocalPages(ILocalPageService service) {
-		List<Object> result = new LinkedList<Object>();
-
-		List<Resource> notationResources = getResources("notation");
-		for (Resource notationResource : notationResources) {
-			for (EObject content : notationResource.getContents()) {
-				if (isPage(content)) {
-
-					if (service.isLocalPage(content)) {
-						result.add(content);
-					}
-				}
-			}
-		}
-
-		return result;
-	}
-
-
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#getAssociatedPages(org.eclipse.emf.common.util.URI)
-	 *
-	 * @param uriTrim
-	 * @return
-	 */
-	@Override
-	public List<Object> getAssociatedPages(Object uriTrim) {
-
-		List<Object> list = new ArrayList<Object>();
-
-		SashModel sashModel = diSashModel.getSashModel();
-		Iterator<?> iter = sashModel.eAllContents();
-
-		while (iter.hasNext()) {
-			Object next = iter.next();
-			if (next instanceof PageRef) {
-				PageRef pageRef = (PageRef) next;
-
-				// pageRef is one of the pages referred into the sash resource
-				if (pageRef != null) {
-					EObject pageID = pageRef.getEmfPageIdentifier();
-					if (pageID != null) {
-						URI uriContainer;
-						if (pageID.eIsProxy()) {
-							InternalEObject internal = (InternalEObject) pageID;
-							uriContainer = internal.eProxyURI().trimFragment().trimFileExtension();
-
-						} else {
-							uriContainer = pageID.eResource().getURI().trimFileExtension();
-						}
-						if (uriTrim instanceof URI) {
-							if (uriContainer.equals(uriTrim)) {
-								list.add(pageID);
-							}
-						}
-					}
-				}
-
-			}
-
-		}
-		return list;
-	}
-
-	/**
-	 * Gets the resources.
-	 *
-	 * @param fileExtension
-	 *            the file extension
-	 * @return the resources
-	 */
-	private List<Resource> getResources(String fileExtension) {
-		List<Resource> resourcesList = new LinkedList<Resource>();
-
-		// Get resource set from Di Sash model
-		ResourceSet resourceSet = diSashModel.eResource().getResourceSet();
-
-		for (Resource resource : resourceSet.getResources()) {
-
-			// Verify if the resource exist and is loaded
-			if (resource != null && resource.isLoaded()) {
-				// Verify if its extension correspond
-				if (fileExtension.equals(resource.getURI().fileExtension())) {
-					resourcesList.add(resource);
-				}
-
-			}
-		}
-
-		return resourcesList;
-	}
-
-	/**
-	 * Checks if is page.
-	 *
-	 * @param content
-	 *            the content
-	 * @return true, if is page
-	 */
-	private boolean isPage(EObject content) {
+	protected boolean isPage(EObject content) {
 		return Platform.getAdapterManager().getAdapter(content, IOpenable.class) != null;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#openPage(java.lang.Object)
-	 *
-	 * @param pageIdentifier
-	 */
 	@Override
-	public void openPage(Object pageIdentifier) {
-		diSashModel.getSashModel().addPage(getCurrentFolder(), pageIdentifier);
+	public void closePage(Object pageIdentifier) {
+		// Suppress event notifications
+		doExecute(() -> super.closePage(pageIdentifier));
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#openPage(java.lang.Object, java.lang.String)
-	 *
-	 * @param pageIdentifier
-	 * @param editorID
-	 */
 	@Override
-	public void openPage(Object pageIdentifier, String editorID) {
-		PageRef newPage = DiFactory.eINSTANCE.createPageRef();
-		newPage.setFavoriteEditor(editorID);
-		newPage.setPageIdentifier(pageIdentifier);
-		diSashModel.getSashModel().addPage(getCurrentFolder(), newPage);
+	public void closeAllOpenedPages() {
+		// Suppress event notifications
+		doExecute(() -> super.closeAllOpenedPages());
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager#selectPage(java.lang.Object)
-	 *
-	 * @param pageIdentifier
-	 */
+	@Override
+	public void closeOtherPages(Object pageIdentifier) {
+		// Suppress event notifications
+		doExecute(() -> super.closeOtherPages(pageIdentifier));
+	}
+
 	@Override
 	public void selectPage(final Object pageIdentifier) {
 		Display.getDefault().syncExec(new Runnable() {
@@ -314,16 +124,6 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 				folderAndPageMngr.setActivePage(pageIdentifier);
 			}
 		});
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal.PageMngrImpl#removePage(java.lang.Object)
-	 *
-	 * @param pageIdentifier
-	 */
-	@Override
-	public void removePage(Object pageIdentifier) {
-		closeAllOpenedPages(pageIdentifier);
 	}
 
 	/**
@@ -337,57 +137,27 @@ public class PageManagerImpl extends PageMngrImpl implements IPageManager {
 
 	}
 
-	/**
-	 * Executes an operation on my internal sash model.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param sashModelOperation
-	 *            the operation to execute
-	 * @return the operation's result
-	 * @throws IllegalAccessException
-	 *             on attempt to execute an operation defined by a client bundle
-	 */
-	public <T> T execute(SashModelOperation<T> sashModelOperation) throws IllegalAccessException {
+	@Override
+	protected <T> T doExecute(SashModelOperation<T> sashModelOperation) {
 		T result;
 
-		if (FrameworkUtil.getBundle(sashModelOperation.getClass()) != Activator.getDefault().getBundle()) {
-			throw new IllegalAccessException("Attempt to access bundle-private API."); //$NON-NLS-1$
-		}
+		final boolean deliver = contentChangedEventProvider.isDeliver();
 
-		ContentChangedEventProvider eventProvider = getContentChangedEventProvider();
-		final boolean deliver = eventProvider.isDeliver();
-
-		eventProvider.setDeliver(false);
+		contentChangedEventProvider.setDeliver(false);
 		try {
-			result = sashModelOperation.execute(diSashModel);
+			result = super.doExecute(sashModelOperation);
 		} finally {
-			eventProvider.setDeliver(deliver);
+			contentChangedEventProvider.setDeliver(deliver);
 		}
 
 		return result;
 	}
 
-	//
-	// Private interfaces
-	//
-
-	/**
-	 * An operation on the internal sash model of a page manager.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 */
-	public static interface SashModelOperation<T> {
-
-		/**
-		 * Execute.
-		 *
-		 * @param sashWindowsManager
-		 *            the sash windows manager
-		 * @return the t
-		 */
-		T execute(SashWindowsMngr sashWindowsManager);
+	private void doExecute(Runnable sashModelOperation) {
+		doExecute(ignored -> {
+			sashModelOperation.run();
+			return ignored;
+		});
 	}
 
 }

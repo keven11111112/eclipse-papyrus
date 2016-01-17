@@ -110,6 +110,7 @@
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.pluginexplorer</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor</module>
 		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.sasheditor.di</module>
+		<module>../../plugins/infra/core/org.eclipse.papyrus.infra.core.sashwindows.di</module>
 		<module>../../plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome</module>
 		<module>../../plugins/infra/editor/org.eclipse.papyrus.infra.editor.welcome.nattable</module>
 		<module>../../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery</module>
@@ -149,6 +150,7 @@
 		<module>../../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui</module>
         <module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.canonical</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.dnd</module>
+		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.gef</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.hyperlink</module>
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu</module>

@@ -13,7 +13,7 @@ package org.eclipse.papyrus.commands;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.extension.commands.ICreationCondition;
+import org.eclipse.papyrus.infra.ui.extension.commands.ICreationCondition;
 
 /**
  * Creation Command Descriptor used to create a new diagram

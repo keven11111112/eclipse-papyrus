@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
-import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;

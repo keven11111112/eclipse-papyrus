@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
-import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
+import org.eclipse.papyrus.infra.ui.util.SelectionHelper;
 
 /**
  * this class provides methods to get the table selection using the Eclipse ISelectioService, so the editor must have the focus

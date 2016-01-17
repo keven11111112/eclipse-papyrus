@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.helper.advice;
@@ -39,7 +40,7 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.commands.IPapyrusDuplicateCommandConstants;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
@@ -241,7 +242,7 @@ public class NatTableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice 
 
 				if (diTargetResource != null) {
 					try {
-						IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diTargetResource);
+						IPageManager pageManager = ServiceUtilsForResource.getInstance().getService(IPageManager.class, diTargetResource);
 						pageManager.addPage(duplicateTable);
 					} catch (ServiceException e) {
 						Activator.log.error(e);
@@ -257,7 +258,7 @@ public class NatTableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice 
 					targetResource.getContents().add(duplicateTable);
 					if (diTargetResource != null) {
 						try {
-							IPageManager pageManager = ServiceUtilsForResource.getInstance().getIPageManager(diTargetResource);
+							IPageManager pageManager = ServiceUtilsForResource.getInstance().getService(IPageManager.class, diTargetResource);
 							pageManager.addPage(duplicateTable);
 						} catch (ServiceException e) {
 							Activator.log.error(e);
@@ -307,8 +308,7 @@ public class NatTableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice 
 			ModelSet modelSet = (ModelSet) resourceSet;
 			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, PapyrusNattableModel.TABLE_MODEL_FILE_EXTENSION, true);
 			return destinationResource;
-		}
-		else {
+		} else {
 			throw new RuntimeException("Resource Set is not a ModelSet or is null"); //$NON-NLS-1$
 		}
 	}
@@ -343,8 +343,7 @@ public class NatTableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice 
 			ModelSet modelSet = (ModelSet) resourceSet;
 			Resource destinationResource = modelSet.getAssociatedResource(semanticObject, DiModel.DI_FILE_EXTENSION, true);
 			return destinationResource;
-		}
-		else {
+		} else {
 			throw new RuntimeException("Resource Set is not a ModelSet or is null"); //$NON-NLS-1$
 		}
 	}

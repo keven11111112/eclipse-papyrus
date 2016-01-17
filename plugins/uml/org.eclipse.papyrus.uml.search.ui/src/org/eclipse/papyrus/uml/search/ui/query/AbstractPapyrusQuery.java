@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST and others.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - Fix leaking of all UML models in search results
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.query;
@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.search.ui.Activator;
@@ -39,9 +39,9 @@ import org.eclipse.uml2.uml.Element;
  *
  */
 public abstract class AbstractPapyrusQuery implements ISearchQuery {
-	
+
 	protected SubMonitor progressMonitor;
-	
+
 	/**
 	 * Getter for the text query
 	 *
@@ -95,21 +95,22 @@ public abstract class AbstractPapyrusQuery implements ISearchQuery {
 			return "";
 		}
 	}
-	
+
 	/**
 	 * Get views in which the UML element is shown
+	 * 
 	 * @param element
 	 * @return
 	 */
-	
+
 	protected List<View> getViews(Element element) {
 		if (element == null) {
 			return null;
 		}
-		
+
 		IPageManager pageManager;
 		try {
-			pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(element);
+			pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, element);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
 			return null;
@@ -146,7 +147,7 @@ public abstract class AbstractPapyrusQuery implements ISearchQuery {
 			Activator.log.error(e);
 			return null;
 		}
-		
+
 		return viewsToSelect;
 	}
 }

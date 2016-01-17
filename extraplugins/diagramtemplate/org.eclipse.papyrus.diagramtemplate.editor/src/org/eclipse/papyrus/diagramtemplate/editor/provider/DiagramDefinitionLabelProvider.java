@@ -92,7 +92,7 @@ public class DiagramDefinitionLabelProvider implements ILabelProvider {
 	 * @return the creation command registry
 	 */
 	private ICreationCommandRegistry getCreationCommandRegistry() {
-		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+		return CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.ui.Activator.PLUGIN_ID);
 	}
 
 }

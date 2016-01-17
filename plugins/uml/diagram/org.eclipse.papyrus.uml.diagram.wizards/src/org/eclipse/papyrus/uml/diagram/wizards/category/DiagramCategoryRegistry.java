@@ -26,7 +26,7 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.core.extension.BadClassNameException;
 import org.eclipse.papyrus.infra.core.extension.ExtensionUtils;
-import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
+import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -36,7 +36,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 public class DiagramCategoryRegistry extends ExtensionUtils {
 
 	/** The Constant CATEGORY_EXTENSION_POINT_NAME. */
-	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.infra.core.papyrusDiagram"; //$NON-NLS-1$
+	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.infra.ui.papyrusDiagram"; //$NON-NLS-1$
 
 	/** ID of the editor extension (schema filename). */
 	public static final String CATEGORY_ELEMENT_NAME = "diagramCategory"; //$NON-NLS-1$
@@ -136,10 +136,10 @@ public class DiagramCategoryRegistry extends ExtensionUtils {
 	 * Builds the category descriptor.
 	 *
 	 * @param confElement
-	 *        the conf element
+	 *            the conf element
 	 * @return the diagram category descriptor
 	 * @throws BadClassNameException
-	 *         the bad class name exception
+	 *             the bad class name exception
 	 */
 	protected DiagramCategoryDescriptor buildCategoryDescriptor(IConfigurationElement confElement) throws BadClassNameException {
 		Class<IModelCreationCommand> commandClazz = (Class<IModelCreationCommand>) parseClass(confElement, CATEGORY_CLASS, CATEGORY_ELEMENT_NAME);

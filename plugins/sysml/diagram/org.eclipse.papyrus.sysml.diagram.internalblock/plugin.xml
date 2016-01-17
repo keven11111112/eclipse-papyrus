@@ -10,7 +10,7 @@
    </extension>
    
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<creationCommand creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCreateCommand" creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramCondition" icon="icons/obj16/Diagram_InternalBlock.gif" id="org.eclipse.papyrus.sysml.diagram.internalblock.CreateCommand" language="sysml" label="Internal Block Diagram"></creationCommand>
 	<editorDiagram actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor" factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory" icon="icons/obj16/Diagram_InternalBlock.gif"></editorDiagram>
 </extension>

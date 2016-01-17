@@ -19,9 +19,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.infra.core.utils.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
+import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.swt.graphics.Image;
 
 /**

@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisIndexStyle;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
-import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
+import org.eclipse.papyrus.infra.ui.util.EclipseCommandUtils;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests.AbstractTableTest;

@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;

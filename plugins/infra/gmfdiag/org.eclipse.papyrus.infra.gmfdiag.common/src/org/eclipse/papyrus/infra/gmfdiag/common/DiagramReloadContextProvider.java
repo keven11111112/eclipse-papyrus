@@ -19,11 +19,11 @@ import org.eclipse.gef.EditDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.views.palette.PalettePage;
-import org.eclipse.papyrus.infra.core.editor.reload.EMFSelectionContext;
-import org.eclipse.papyrus.infra.core.editor.reload.EditorReloadEvent;
-import org.eclipse.papyrus.infra.core.editor.reload.IDisposableReloadContext;
-import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.ui.editor.reload.EMFSelectionContext;
+import org.eclipse.papyrus.infra.ui.editor.reload.EditorReloadEvent;
+import org.eclipse.papyrus.infra.ui.editor.reload.IDisposableReloadContext;
+import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
 
 import com.google.common.collect.Iterables;
 

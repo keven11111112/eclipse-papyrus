@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.providers.MoDiscoContentProvider;
 import org.eclipse.papyrus.uml.diagram.modelexplorer.Activator;

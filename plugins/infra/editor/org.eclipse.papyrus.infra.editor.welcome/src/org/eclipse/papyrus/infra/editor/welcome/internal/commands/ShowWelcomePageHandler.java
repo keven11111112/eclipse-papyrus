@@ -13,10 +13,10 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.internal.commands;
 
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.utils.IPageUtils;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 
 /**
  * Handler for the <em>Show Welcome Page</em> menu command.

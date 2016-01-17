@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 Cedric Dumoulin.
- *
+ * Copyright (c) 2013, 2016 Cedric Dumoulin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.messages.Messages;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
 import org.eclipse.swt.widgets.Display;
@@ -150,9 +151,7 @@ public class RenameDiagramHandler extends AbstractHandler {
 
 
 		// Get page from the event !
-		// IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
-
-		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
+		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getService(ISashWindowsContainer.class, context).getActiveEditor();
 
 		if (!(editor instanceof DiagramDocumentEditor)) {
 			throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$

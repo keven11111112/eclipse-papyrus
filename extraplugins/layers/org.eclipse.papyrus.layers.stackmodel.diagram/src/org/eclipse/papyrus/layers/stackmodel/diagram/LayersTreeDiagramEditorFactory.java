@@ -15,13 +15,13 @@ package org.eclipse.papyrus.layers.stackmodel.diagram;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.EditorDescriptor;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory;
-import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.ui.extension.diagrameditor.EditorDescriptor;
+import org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory;
+import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -71,7 +71,7 @@ public class LayersTreeDiagramEditorFactory implements IPluggableEditorFactory {
 	/**
 	 * TODO Implements next methods
 	 *
-	 * @see org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory#createIPageModel(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 *
@@ -83,7 +83,7 @@ public class LayersTreeDiagramEditorFactory implements IPluggableEditorFactory {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.core.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory#isPageModelFactoryFor(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 *

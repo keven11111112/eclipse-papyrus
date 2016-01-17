@@ -16,7 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.export.engine;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.service.AbstractLocalPageService;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.AbstractLocalPageService;
 
 /**
  * Definition of local page for Export All Diagrams feture.
@@ -36,7 +36,7 @@ public class ExportDiagramLocalPageService extends AbstractLocalPageService {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.sasheditor.contentprovider.service.ILocalPageService#isLocalPage(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.core.sashwindows.di.service.ILocalPageService#isLocalPage(java.lang.Object)
 	 *
 	 * @param content
 	 * @return

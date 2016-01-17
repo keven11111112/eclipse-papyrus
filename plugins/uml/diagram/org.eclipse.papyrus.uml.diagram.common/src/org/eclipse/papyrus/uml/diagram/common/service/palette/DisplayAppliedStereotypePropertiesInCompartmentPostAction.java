@@ -33,7 +33,7 @@ import org.eclipse.jface.viewers.ICheckStateProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 454578
- *  Christian W. Damus - bug 458197
+ *  Christian W. Damus - bugs 454578, 458197, 485220
  *
  *****************************************************************************/
 
@@ -19,6 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.tools.listeners.ProfileApplicationListener;
@@ -48,7 +48,7 @@ public class PaletteProfileApplicationListener implements IPapyrusListener {
 		if (ProfileApplicationListener.isProfileApplicationNotification(notification)) {
 			try {
 				Package package_ = (Package) notification.getNotifier();
-				IEditorPart editor = ServiceUtilsForEObject.getInstance().getNestedActiveIEditorPart(package_);
+				IEditorPart editor = ServiceUtilsForEObject.getInstance().getService(ISashWindowsContainer.class, package_).getActiveEditor();
 				if (editor == null) {
 					return;
 				}

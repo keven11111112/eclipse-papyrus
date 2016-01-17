@@ -13,11 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.service;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.core.lifecycleevents.LifeCycleEventsProvider;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProvider;
 
 
 /**
@@ -92,7 +92,7 @@ public class ProfileService implements IService {
 	 * Activate listeners.
 	 */
 	private void activate() {
-		// on enregistre un listener auprès du lifecycle
+		// on enregistre un listener auprï¿½s du lifecycle
 		try {
 			eventProvider = servicesRegistry.getService(ILifeCycleEventsProvider.class);
 			eventProvider.addAboutToDoSaveListener(aboutToSaveListener);

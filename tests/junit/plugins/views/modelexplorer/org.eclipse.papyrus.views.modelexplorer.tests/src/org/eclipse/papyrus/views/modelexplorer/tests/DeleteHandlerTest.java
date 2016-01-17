@@ -30,7 +30,7 @@ import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.swt.widgets.Display;

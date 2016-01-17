@@ -24,8 +24,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 /**
@@ -34,7 +34,7 @@ import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 public abstract class ModelCreationCommandBase implements IModelCreationCommand {
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand#createModel(org.eclipse.papyrus.infra.core.utils.DiResourceSet)
+	 * @see org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand#createModel(org.eclipse.papyrus.infra.core.utils.DiResourceSet)
 	 *
 	 * @param diResourceSet
 	 */

@@ -1,5 +1,6 @@
 /*******************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +8,8 @@
  * 
  * Contributors:
  *     Cedric Dumoulin - cedric.dumoulin@lifl.fr
+ *     Christian W. Damus - bug 485220
+ *     
  ******************************************************************************/
 package org.eclipse.papyrus.uml.profile.drafter.ui.handler;
 
@@ -28,6 +31,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
@@ -37,6 +41,7 @@ import org.eclipse.ui.IEditorPart;
 /**
  * Base class for Handlers .
  * This class provide utility methods.
+ * 
  * @author cedric dumoulin
  *
  */
@@ -62,10 +67,11 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	 * @throws ExecutionException
 	 * 
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
+
 		resetCachedValues();
-		
+
 		// Get requested objects
 		IEvaluationContext context;
 		try {
@@ -77,7 +83,7 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 
 
 		// Execute the command in 3 phases
-		if (!preExecute(event, context) ) {
+		if (!preExecute(event, context)) {
 			return null;
 		}
 		executeTransaction(event, context);
@@ -100,7 +106,7 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	 * outside of the transaction.
 	 * 
 	 * @param event
-	 * @param context 
+	 * @param context
 	 * @return true if the doExecute() should be called, false if the command should stop
 	 */
 	protected boolean preExecute(ExecutionEvent event, IEvaluationContext context) throws ExecutionException {
@@ -113,19 +119,20 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	 * outside of the transaction.
 	 * 
 	 * @param event
-	 * @param context 
+	 * @param context
 	 */
 	protected void postExecute(ExecutionEvent event, IEvaluationContext context) throws ExecutionException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	/**
 	 * Execute as transaction
-	 * @param event 
-	 * @param selections 
-	 * @param context 
+	 * 
+	 * @param event
+	 * @param selections
+	 * @param context
 	 */
 	private void executeTransaction(ExecutionEvent event, final IEvaluationContext context) {
 
@@ -152,7 +159,7 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 				}
 			}
 
-			
+
 		};
 
 		editingDomain.getCommandStack().execute(cmd);
@@ -161,31 +168,33 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 
 	/**
 	 * get the selected objects from the context.
+	 * 
 	 * @param context
 	 * @return
 	 */
 	protected List<Object> getCachedSelections(IEvaluationContext context) {
 
-		if( cachedSelections == null) {
+		if (cachedSelections == null) {
 			cachedSelections = getSelections(context);
 		}
-		
+
 		return cachedSelections;
 	}
-	
+
 	/**
 	 * get the selected objects from the context.
+	 * 
 	 * @param context
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<Object> getSelections(IEvaluationContext context) {
 		Object sel = context.getVariable("selection");
-		if(! (sel instanceof IStructuredSelection)) {
+		if (!(sel instanceof IStructuredSelection)) {
 			return Collections.emptyList();
 		}
 
-		IStructuredSelection structuredSelection = (IStructuredSelection)sel;
+		IStructuredSelection structuredSelection = (IStructuredSelection) sel;
 
 		return structuredSelection.toList();
 	}
@@ -203,26 +212,26 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 		List<T> results = new ArrayList<T>();
 
 		// create model with EList<EObject> objects
-		for(Object obj : selections) {
-			
+		for (Object obj : selections) {
+
 			T ele = null;
 
 			// Bug in Tree Explorer
 			// ModelExplorer tree element do not implements IAdaptable. So, we should manually get the underlying adaptable object.
-//			if( obj instanceof EObjectTreeElement ) {
-//				obj = ((EObjectTreeElement)obj).getEObject();
-//			}
+			// if( obj instanceof EObjectTreeElement ) {
+			// obj = ((EObjectTreeElement)obj).getEObject();
+			// }
 
 			// Adapt object to NamedElement
-			if(obj instanceof IAdaptable) {
-				ele = (T)((IAdaptable)obj).getAdapter(expectedType);
+			if (obj instanceof IAdaptable) {
+				ele = ((IAdaptable) obj).getAdapter(expectedType);
 			}
-			if(ele == null) {
-				ele = (T)Platform.getAdapterManager().getAdapter(obj, expectedType);
+			if (ele == null) {
+				ele = Platform.getAdapterManager().getAdapter(obj, expectedType);
 			}
 
 			// Add uml element if found
-			if(ele != null) {
+			if (ele != null) {
 				results.add(ele);
 			}
 
@@ -232,7 +241,7 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	}
 
 	/**
-	 * Get the name used in the {@link RecordingCommand}. This name will be visible in 
+	 * Get the name used in the {@link RecordingCommand}. This name will be visible in
 	 * undo/redo.
 	 * 
 	 * @return The command name to show.
@@ -247,37 +256,40 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	 */
 	protected abstract void doExecute(ExecutionEvent event, IEvaluationContext context);
 
-//	/**
-//	 * 
-//	 * @return
-//	 * @throws NotFoundException
-//	 */
-//	protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
-//		
-//		return lookupLayersViewChecked().getLayerStackMngrChecked();
-//		
-//	}
+	// /**
+	// *
+	// * @return
+	// * @throws NotFoundException
+	// */
+	// protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
+	//
+	// return lookupLayersViewChecked().getLayerStackMngrChecked();
+	//
+	// }
 
-	
+
 	protected IEvaluationContext getIEvaluationContext(ExecutionEvent event) throws NotFoundException {
 		try {
-			return (IEvaluationContext)event.getApplicationContext();
+			return (IEvaluationContext) event.getApplicationContext();
 		} catch (ClassCastException e) {
 			throw new NotFoundException("IEvaluationContext can't be found.");
 		}
-		
+
 	}
+
 	/**
 	 * Try to lookup the TransactionalEditingDomain.
+	 * 
 	 * @return
-	 * @throws ServiceException If the Editing domain can't be found.
+	 * @throws ServiceException
+	 *             If the Editing domain can't be found.
 	 */
 	protected TransactionalEditingDomain lookupTransactionalEditingDomain(IEvaluationContext context) throws ServiceException {
 
 		// Get page from the event !
-//	    IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
-		
-	    return ServiceUtilsForIEvaluationContext.getInstance().getTransactionalEditingDomain(context);
+		// IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
+
+		return ServiceUtilsForIEvaluationContext.getInstance().getTransactionalEditingDomain(context);
 	}
 
 	/**
@@ -286,7 +298,7 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	 * 
 	 * @param context
 	 * @return
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 */
 	protected ServicesRegistry lookupServicesRegistry(IEvaluationContext context) throws ServiceException {
 		return ServiceUtilsForIEvaluationContext.getInstance().getServiceRegistry(context);
@@ -302,25 +314,26 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 	 */
 	@Override
 	public void setEnabled(Object evaluationContext) {
-		
+
 		resetCachedValues();
-		
-		if( ! (evaluationContext instanceof IEvaluationContext)) {
+
+		if (!(evaluationContext instanceof IEvaluationContext)) {
 			setBaseEnabled(false);
 			return;
 		}
-		
-		IEvaluationContext context = (IEvaluationContext)evaluationContext;
+
+		IEvaluationContext context = (IEvaluationContext) evaluationContext;
 
 		List<Object> selections = getCachedSelections(context);
 		// Ask the subclass
 		setBaseEnabled(isEnabled(context, selections));
-		
+
 	}
-	
+
 	/**
 	 * Return true if the action is enabled, false otherwise.
 	 * Subclasses should implements this method. The default implementation return true.
+	 * 
 	 * @param context
 	 * @return
 	 */
@@ -328,112 +341,112 @@ public abstract class AbstractBaseHandler extends AbstractHandler {
 		return true;
 	}
 
-	//	/**
-	//	 * 
-	//	 * @return
-	//	 * @throws NotFoundException
-	//	 */
-	//	protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
-	//		
-	//		return lookupLayersViewChecked().getLayerStackMngrChecked();
-	//		
-	//	}
-	
+	// /**
+	// *
+	// * @return
+	// * @throws NotFoundException
+	// */
+	// protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
+	//
+	// return lookupLayersViewChecked().getLayerStackMngrChecked();
+	//
+	// }
+
 	/**
 	 * lookup the notation diagram helper.
 	 * This method can be used from {@link #execute(ExecutionEvent)} or {@link #setEnabled(Object)}.
 	 * 
-	 * @return The 
+	 * @return The
 	 * @throws NotFoundException
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 */
-//	protected NotationDiagramHelper lookupNotationDiagramHelperChecked(IEvaluationContext context) throws NotFoundException, ServiceException {
-//		
-//		
-//		// Get page from the event !
-////	    IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
-//		
-//		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
-//
-//		if( ! (editor instanceof DiagramDocumentEditor) ) {
-//			throw new NotFoundException("Selected editor do not contains Diagram");
-//		}
-//		DiagramDocumentEditor diagramEditor = (DiagramDocumentEditor)editor;
-//		
-//		Diagram diagram = diagramEditor.getDiagram();
-//		if(diagram == null) {
-//			throw new NotFoundException("Selected editor do not contains Diagram");			
-//		}
-//		
-//		// Lookup the Layer model
-//		LayersModel layersModel = (LayersModel)ServiceUtilsForIEvaluationContext.getInstance().getModelSet(context).getModel(LayersModel.MODEL_ID);
-//		// Return a new instance of the Helper
-//		return new NotationDiagramHelper(layersModel, diagram);
-//	}
+	// protected NotationDiagramHelper lookupNotationDiagramHelperChecked(IEvaluationContext context) throws NotFoundException, ServiceException {
+	//
+	//
+	// // Get page from the event !
+	//// IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(event).getActivePage();
+	//
+	// IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
+	//
+	// if( ! (editor instanceof DiagramDocumentEditor) ) {
+	// throw new NotFoundException("Selected editor do not contains Diagram");
+	// }
+	// DiagramDocumentEditor diagramEditor = (DiagramDocumentEditor)editor;
+	//
+	// Diagram diagram = diagramEditor.getDiagram();
+	// if(diagram == null) {
+	// throw new NotFoundException("Selected editor do not contains Diagram");
+	// }
+	//
+	// // Lookup the Layer model
+	// LayersModel layersModel = (LayersModel)ServiceUtilsForIEvaluationContext.getInstance().getModelSet(context).getModel(LayersModel.MODEL_ID);
+	// // Return a new instance of the Helper
+	// return new NotationDiagramHelper(layersModel, diagram);
+	// }
 
 	/**
 	 * lookup the LayerStack application object from context..
 	 * This method can be used from {@link #execute(ExecutionEvent)} or {@link #setEnabled(Object)}.
 	 * 
-	 * @return The 
+	 * @return The
 	 * @throws NotFoundException
-	 * @throws ServiceException 
-	 * @throws org.eclipse.papyrus.infra.core.resource.NotFoundException 
+	 * @throws ServiceException
+	 * @throws org.eclipse.papyrus.infra.core.resource.NotFoundException
 	 */
-//	protected LayersStackApplication lookupLayersStackApplicationChecked(IEvaluationContext context) throws NotFoundException, ServiceException, org.eclipse.papyrus.infra.core.resource.NotFoundException {
-//		
-//		ModelSet modelSet = ServiceUtilsForIEvaluationContext.getInstance().getModelSet(context);
-//		LayersModel model = (LayersModel)modelSet.getModelChecked(LayersModel.MODEL_ID);
-//
-//		return model.lookupLayerStackApplication();
-//	}
+	// protected LayersStackApplication lookupLayersStackApplicationChecked(IEvaluationContext context) throws NotFoundException, ServiceException, org.eclipse.papyrus.infra.core.resource.NotFoundException {
+	//
+	// ModelSet modelSet = ServiceUtilsForIEvaluationContext.getInstance().getModelSet(context);
+	// LayersModel model = (LayersModel)modelSet.getModelChecked(LayersModel.MODEL_ID);
+	//
+	// return model.lookupLayerStackApplication();
+	// }
 
-		//	/**
-		//	 * 
-		//	 * @return
-		//	 * @throws NotFoundException
-		//	 */
-		//	protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
-		//		
-		//		return lookupLayersViewChecked().getLayerStackMngrChecked();
-		//		
-		//	}
-		
-		/**
-		 * Get the notation diagram helper.
-		 * This method can be used from {@link #execute(ExecutionEvent)} or {@link #setEnabled(Object)}.
-		 * 
-		 * @return The
-		 * @throws NotFoundException
-		 * @throws ServiceException
-		 */
-		protected Diagram lookupNotationDiagramChecked(IEvaluationContext context) throws NotFoundException, ServiceException {
-		
-			IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getNestedActiveIEditorPart(context);
-		
-			if(!(editor instanceof DiagramDocumentEditor)) {
-				throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
-			}
-			DiagramDocumentEditor diagramEditor = (DiagramDocumentEditor)editor;
-		
-			Diagram diagram = diagramEditor.getDiagram();
-			if(diagram == null) {
-				throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
-			}
-		
-			// Return a new instance of the Helper
-			return diagram;
+	// /**
+	// *
+	// * @return
+	// * @throws NotFoundException
+	// */
+	// protected LayerStackMngr lookupLayerStackMngrChecked() throws NotFoundException {
+	//
+	// return lookupLayersViewChecked().getLayerStackMngrChecked();
+	//
+	// }
+
+	/**
+	 * Get the notation diagram helper.
+	 * This method can be used from {@link #execute(ExecutionEvent)} or {@link #setEnabled(Object)}.
+	 * 
+	 * @return The
+	 * @throws NotFoundException
+	 * @throws ServiceException
+	 */
+	protected Diagram lookupNotationDiagramChecked(IEvaluationContext context) throws NotFoundException, ServiceException {
+
+		IEditorPart editor = ServiceUtilsForIEvaluationContext.getInstance().getService(ISashWindowsContainer.class, context).getActiveEditor();
+
+		if (!(editor instanceof DiagramDocumentEditor)) {
+			throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
+		}
+		DiagramDocumentEditor diagramEditor = (DiagramDocumentEditor) editor;
+
+		Diagram diagram = diagramEditor.getDiagram();
+		if (diagram == null) {
+			throw new NotFoundException("Selected editor do not contains Diagram"); //$NON-NLS-1$
 		}
 
-		/**
-		 * Return true if the first element of the selection is instance of the specified type.
-		 */
-		protected boolean selectionFirstElementInstanceOf(List<Object> selections, Class<?> type) {
-	        if( selections.size() != 1) {
-	        	return false;
-	        }
-	        Object first = selections.get(0);
-			return type.isInstance(first);
+		// Return a new instance of the Helper
+		return diagram;
+	}
+
+	/**
+	 * Return true if the first element of the selection is instance of the specified type.
+	 */
+	protected boolean selectionFirstElementInstanceOf(List<Object> selections, Class<?> type) {
+		if (selections.size() != 1) {
+			return false;
 		}
+		Object first = selections.get(0);
+		return type.isInstance(first);
+	}
 
 }

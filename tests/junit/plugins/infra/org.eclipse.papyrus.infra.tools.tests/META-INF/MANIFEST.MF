@@ -10,8 +10,7 @@ Require-Bundle: org.junit;bundle-version="4.10.0",
  com.google.guava;bundle-version="11.0.0",
  org.eclipse.papyrus.junit.utils;bundle-version="1.2.0"
 Export-Package: org.eclipse.papyrus.infra.tools.databinding,
- org.eclipse.papyrus.infra.tools.tests,
- org.eclipse.papyrus.infra.tools.util
+ org.eclipse.papyrus.infra.tools.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Papyrus Infrastructure Tools Tests

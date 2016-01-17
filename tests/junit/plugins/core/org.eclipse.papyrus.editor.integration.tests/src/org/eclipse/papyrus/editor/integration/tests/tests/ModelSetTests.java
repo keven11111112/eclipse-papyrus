@@ -17,13 +17,13 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.editor.integration.tests.Activator;
-import org.eclipse.papyrus.infra.core.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.ui.extension.commands.IModelCreationCommand;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
@@ -64,7 +64,7 @@ public class ModelSetTests extends AbstractEditorIntegrationTest {
 		emptyModelCreationProject.create(new NullProgressMonitor());
 		emptyModelCreationProject.open(new NullProgressMonitor());
 
-		String modelName = "++nëw môdèl & spécîâl chàr$++";
+		String modelName = "++nï¿½w mï¿½dï¿½l & spï¿½cï¿½ï¿½l chï¿½r$++";
 
 		final IFile emptyModelDi = emptyModelCreationProject.getFile(modelName + ".di");
 

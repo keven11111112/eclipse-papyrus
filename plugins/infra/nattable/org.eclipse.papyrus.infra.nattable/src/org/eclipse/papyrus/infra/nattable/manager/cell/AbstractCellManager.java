@@ -18,8 +18,8 @@ import java.util.Map;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
-import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
 
 /**
  * The abstract class for the cell manager
@@ -111,7 +111,7 @@ public abstract class AbstractCellManager implements ICellManager, IUnsetValueCe
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#getSetStringValueCommand(org.eclipse.emf.transaction.TransactionalEditingDomain, java.lang.Object, java.lang.Object, java.lang.String,
-	 *      org.eclipse.papyrus.infra.tools.converter.IStringValueConverter, INattableModelManager)
+	 *      org.eclipse.papyrus.infra.ui.converter.IStringValueConverter, INattableModelManager)
 	 *
 	 * @param domain
 	 * @param columnElement
@@ -170,7 +170,7 @@ public abstract class AbstractCellManager implements ICellManager, IUnsetValueCe
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter,
+	 * @see org.eclipse.papyrus.infra.nattable.manager.cell.ICellManager#setStringValue(java.lang.Object, java.lang.Object, java.lang.String, org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter,
 	 *      org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, java.util.Map)
 	 *
 	 * @param columnElement

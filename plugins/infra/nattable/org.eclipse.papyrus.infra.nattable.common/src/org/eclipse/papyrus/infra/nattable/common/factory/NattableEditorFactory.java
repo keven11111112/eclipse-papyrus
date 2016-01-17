@@ -18,8 +18,6 @@ package org.eclipse.papyrus.infra.nattable.common.factory;
 import java.lang.reflect.Constructor;
 
 import org.eclipse.papyrus.infra.core.editor.BackboneException;
-import org.eclipse.papyrus.infra.core.extension.diagrameditor.AbstractEditorFactory;
-import org.eclipse.papyrus.infra.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IEditorModel;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -27,6 +25,8 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.ui.extension.diagrameditor.AbstractEditorFactory;
+import org.eclipse.papyrus.infra.ui.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -56,7 +56,7 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 	/**
 	 * Create the IPageModel that is used by the SashWindows to manage the editor.
 	 *
-	 * @see org.eclipse.papyrus.infra.core.editorsfactory.IEditorFactory#createIPageModel(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.editorsfactory.IEditorFactory#createIPageModel(java.lang.Object)
 	 *
 	 * @param pageIdentifier
 	 *            The model pushed in the sashmodel by the creation command
@@ -68,7 +68,7 @@ public class NattableEditorFactory extends AbstractEditorFactory {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.core.editorsfactory.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.editorsfactory.IEditorFactory#isPageModelFactoryFor(java.lang.Object)
 	 *
 	 * @param pageIdentifier
 	 * @return

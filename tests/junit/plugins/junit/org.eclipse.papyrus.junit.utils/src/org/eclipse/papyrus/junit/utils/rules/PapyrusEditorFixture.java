@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 433206
- *   Christian W. Damus - bug 465416
- *   Christian W. Damus - bug 434983
- *   Christian W. Damus - bug 483721
- *   Christian W. Damus - bug 469188
+ *   Christian W. Damus - bugs 433206, 465416, 434983, 483721, 469188, 485220
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -73,14 +69,13 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPageVisitor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -91,6 +86,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.infra.tools.util.TypeUtils;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
@@ -138,7 +134,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 	private final List<String> excludedTypeView = Arrays.asList(new String[] { "Note" });
 
 	@SuppressWarnings("restriction")
-	private org.eclipse.papyrus.infra.core.internal.preferences.YesNo initialEditorLayoutStorageMigrationPreference;
+	private org.eclipse.papyrus.infra.ui.internal.preferences.YesNo initialEditorLayoutStorageMigrationPreference;
 
 	private IMultiDiagramEditor editor;
 
@@ -185,8 +181,8 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		// Ensure that we won't see a dialog prompting the user to migrate page layout
 		// storage from the DI file to the workspace-private sash file
-		initialEditorLayoutStorageMigrationPreference = org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
-		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.core.internal.preferences.YesNo.NO);
+		initialEditorLayoutStorageMigrationPreference = org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+		org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.ui.internal.preferences.YesNo.NO);
 
 		if (hasRequiredViews()) {
 			openRequiredViews();
@@ -263,7 +259,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			editor = null;
 			activeDiagramEditor = null;
 
-			org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialEditorLayoutStorageMigrationPreference);
+			org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialEditorLayoutStorageMigrationPreference);
 
 			try {
 				if (hasRequiredViews()) {
@@ -661,7 +657,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
 			NotationModel notation = (NotationModel) modelSet.getModel(NotationModel.MODEL_ID);
 			Diagram diagram = notation.getDiagram(name);
-			ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).openPage(diagram);
+			ServiceUtils.getInstance().getService(IPageManager.class, editor.getServicesRegistry()).openPage(diagram);
 			flushDisplayEvents();
 
 			activateDiagram(editor, name);
@@ -679,7 +675,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
 			PapyrusNattableModel notation = (PapyrusNattableModel) modelSet.getModel(PapyrusNattableModel.MODEL_ID);
 			Table table = notation.getTable(name);
-			ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).openPage(table);
+			ServiceUtils.getInstance().getService(IPageManager.class, editor.getServicesRegistry()).openPage(table);
 			flushDisplayEvents();
 
 			activateTable(editor, name);
@@ -708,7 +704,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 			// If the diagram was deleted, then so too was its page
 			if (diagram != null) {
-				ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).closePage(diagram);
+				ServiceUtils.getInstance().getService(IPageManager.class, editor.getServicesRegistry()).closePage(diagram);
 				flushDisplayEvents();
 			}
 		} catch (Exception e) {

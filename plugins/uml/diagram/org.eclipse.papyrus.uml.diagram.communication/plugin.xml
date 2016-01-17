@@ -36,7 +36,7 @@
    
    
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramEditorFactory"
             icon="icons/obj16/Diagram_Communication.gif">

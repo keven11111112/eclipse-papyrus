@@ -25,11 +25,11 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.hyperlink.helper.HyperLinkHelperFactory;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractHyperLinkTab;
 import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 
 /**
  *

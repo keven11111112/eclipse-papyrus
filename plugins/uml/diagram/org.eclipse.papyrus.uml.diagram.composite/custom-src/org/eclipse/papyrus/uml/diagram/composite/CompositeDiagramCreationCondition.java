@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.composite;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * CompositeDiagramCreationCondition class allows to check if a Composite diagram can be added to the

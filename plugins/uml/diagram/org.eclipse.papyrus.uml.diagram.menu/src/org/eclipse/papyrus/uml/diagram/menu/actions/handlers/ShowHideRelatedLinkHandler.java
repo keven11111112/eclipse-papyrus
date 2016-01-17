@@ -44,7 +44,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.ShowHideRelate
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractShowHideRelatedLinkEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.uml.diagram.menu.Activator;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPartSite;

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,18 +8,19 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.services.controlmode.service;
 
-import org.eclipse.papyrus.infra.core.lifecycleevents.ILifeCycleEventsProvider;
-import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveEventListener;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.controlmode.listener.UncontrolModeSaveListener;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ILifeCycleEventsProvider;
+import org.eclipse.papyrus.infra.ui.lifecycleevents.ISaveEventListener;
 
 /**
  * Service to registry SaveListener for Uncontrol.
@@ -56,7 +57,7 @@ public class ControlModeService implements IService {
 	 */
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 
-		lifeCycleEventsProvider = ServiceUtils.getInstance().getILifeCycleEventsProvider(servicesRegistry);
+		lifeCycleEventsProvider = ServiceUtils.getInstance().getService(ILifeCycleEventsProvider.class, servicesRegistry);
 		uncontrolledObjectsProvider = ServiceUtils.getInstance().getService(IUncontrolledObjectsProvider.class, servicesRegistry);
 
 

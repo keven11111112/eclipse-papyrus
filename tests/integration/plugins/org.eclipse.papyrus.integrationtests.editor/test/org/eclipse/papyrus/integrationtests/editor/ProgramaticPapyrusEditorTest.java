@@ -18,12 +18,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
-import org.eclipse.papyrus.infra.tools.util.WorkbenchPartHelper;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**

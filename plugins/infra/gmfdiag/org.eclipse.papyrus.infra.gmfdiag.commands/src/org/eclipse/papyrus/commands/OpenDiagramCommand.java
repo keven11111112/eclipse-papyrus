@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
+ * Copyright (c) 2010, 2016 Atos Origin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -21,7 +21,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 
 /**
@@ -79,7 +79,7 @@ public class OpenDiagramCommand extends AbstractTransactionalCommand {
 				 * pageMngr =serviceRegistry.getService(IPageMngr.class);
 				 * } else
 				 */
-				pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(diagramToOpen);
+				pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, diagramToOpen);
 
 				if (pageManager.isOpen(diagramToOpen)) {
 					pageManager.selectPage(diagramToOpen);

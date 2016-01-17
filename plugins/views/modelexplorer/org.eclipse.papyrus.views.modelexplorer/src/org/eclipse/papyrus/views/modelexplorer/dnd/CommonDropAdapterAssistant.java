@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2014 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,8 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Céline Janssens (ALL4TEC) Celine.Janssens@all4tec.net - Bug 420593
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 447025
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 
 package org.eclipse.papyrus.views.modelexplorer.dnd;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EObjectTreeElement;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.EReferenceTreeElement;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -448,7 +450,7 @@ public class CommonDropAdapterAssistant extends org.eclipse.ui.navigator.CommonD
 	 */
 	private List<Object> getEditors(EObject context) {
 		try {
-			return ServiceUtilsForEObject.getInstance().getIPageManager(context).allPages();
+			return ServiceUtilsForEObject.getInstance().getService(IPageManager.class, context).allPages();
 		} catch (ServiceException ex) {
 			return Collections.emptyList();
 		}

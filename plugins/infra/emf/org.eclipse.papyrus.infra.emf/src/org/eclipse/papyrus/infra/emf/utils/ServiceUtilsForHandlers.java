@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,16 +8,20 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.utils;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.AbstractServiceUtils;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartSite;
@@ -36,6 +40,18 @@ public class ServiceUtilsForHandlers extends AbstractServiceUtils<ExecutionEvent
 
 	private ServiceUtilsForHandlers() {
 		// Singleton
+	}
+
+	/**
+	 * Gets the {@link IEditorPart} of the currently nested active editor.
+	 *
+	 * @param from
+	 * @return
+	 * @throws ServiceException
+	 *             If an error occurs while getting the requested service.
+	 */
+	public IEditorPart getNestedActiveIEditorPart(ExecutionEvent from) throws ServiceException {
+		return getService(ISashWindowsContainer.class, from).getActiveEditor();
 	}
 
 	@Override
@@ -83,7 +99,7 @@ public class ServiceUtilsForHandlers extends AbstractServiceUtils<ExecutionEvent
 
 			// Try to adapt the active part to the ServicesRegistry
 			IWorkbenchPart part = (IWorkbenchPart) evaluationContext.getVariable(ISources.ACTIVE_PART_NAME);
-			registry = (ServicesRegistry) (part).getAdapter(ServicesRegistry.class);
+			registry = (part).getAdapter(ServicesRegistry.class);
 			if (registry != null) {
 				return registry;
 			}
@@ -91,6 +107,8 @@ public class ServiceUtilsForHandlers extends AbstractServiceUtils<ExecutionEvent
 
 		throw new ServiceNotFoundException("The ServiceRegistry cannot be resolved"); //$NON-NLS-1$
 	}
+
+
 
 	public static ServiceUtilsForHandlers getInstance() {
 		return instance;

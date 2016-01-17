@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.emf,
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.core.resources,
- org.eclipse.papyrus.req.sysml.preferences
+ org.eclipse.papyrus.req.sysml.preferences,
+ org.eclipse.papyrus.infra.ui;bundle-version="1.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.gmf.runtime.notation

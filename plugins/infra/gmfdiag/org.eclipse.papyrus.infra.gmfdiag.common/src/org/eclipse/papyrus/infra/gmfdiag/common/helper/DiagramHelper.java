@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 433206
- *  Christian W. Damus - bug 461629
- *  Christian W. Damus - bug 466997
- *  Christian W. Damus - bug 478556
+ *  Christian W. Damus - bugs 433206, 461629, 466997, 478556, 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
@@ -29,18 +27,18 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.infra.core.utils.IExecutorPolicy;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IPapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.util.EditorUtils;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 
@@ -137,7 +135,7 @@ public class DiagramHelper {
 			ServicesRegistry servicesRegistry = editorPart.getAdapter(ServicesRegistry.class);
 			if (servicesRegistry != null) {
 				try {
-					ISashWindowsContainer container = ServiceUtils.getInstance().getISashWindowsContainer(servicesRegistry);
+					ISashWindowsContainer container = ServiceUtils.getInstance().getService(ISashWindowsContainer.class, servicesRegistry);
 					visibleEditorParts = container.getVisibleIEditorParts();
 				} catch (ServiceException e) {
 					Activator.log.error(e);

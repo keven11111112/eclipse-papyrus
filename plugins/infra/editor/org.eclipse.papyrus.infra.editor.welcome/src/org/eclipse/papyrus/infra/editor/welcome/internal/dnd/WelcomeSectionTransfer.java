@@ -13,7 +13,7 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.internal.dnd;
 
-import org.eclipse.papyrus.infra.tools.dnd.PapyrusTransfer;
+import org.eclipse.papyrus.infra.ui.dnd.PapyrusTransfer;
 import org.eclipse.ui.forms.widgets.Section;
 
 /**

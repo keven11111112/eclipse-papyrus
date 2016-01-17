@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 LIFL & CEA LIST.
- *
+ * Copyright (c) 2010, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
@@ -38,12 +38,13 @@ public class ServiceUtils extends AbstractServiceUtils<ServicesRegistry> {
 	 * @see org.eclipse.papyrus.infra.core.utils.AbstractServiceUtils#getServiceRegistry(java.lang.Object)
 	 *
 	 * @param from
+	 *            the service registry, or {@code null} to try to get the contextual default service registry
 	 * @return
 	 * @throws ServiceException
 	 */
 	@Override
 	public ServicesRegistry getServiceRegistry(ServicesRegistry from) throws ServiceException {
-		return from;
+		return (from != null) ? from : getContextualServiceRegistry();
 	}
 
 }

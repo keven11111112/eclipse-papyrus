@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,11 +9,8 @@
  * Contributors:
  *   CEA - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 431953 (adapted from SwitchProfileDialog)
- *   Christian W. Damus - bug 451338
- *   Christian W. Damus - bug 451557
+ *   Christian W. Damus - bugs 451338, 451557, 436666, 458736, 485220
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 454997
- *   Christian W. Damus - bug 436666
- *   Christian W. Damus - bug 458736
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.ui;
@@ -67,11 +64,11 @@ import org.eclipse.jface.wizard.ProgressMonitorPart;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
-import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.markerlistener.dialogs.DiagnosticDialog;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.IRepairAction;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.IStereotypeOrphanGroup;
@@ -258,7 +255,7 @@ public class ZombieStereotypesDialog extends TrayDialog {
 
 					final BasicDiagnostic diagnostics = new BasicDiagnostic(Activator.PLUGIN_ID, 0, "Problems in repairing stereotypes", null);
 
-					IRunnableWithProgress runnable = TransactionHelper.createPrivilegedRunnableWithProgress(editingDomain, new IRunnableWithProgress() {
+					IRunnableWithProgress runnable = TransactionUIHelper.createPrivilegedRunnableWithProgress(editingDomain, new IRunnableWithProgress() {
 
 						public void run(IProgressMonitor monitor) {
 							SubMonitor subMonitor = SubMonitor.convert(monitor, actionsToApply.size());

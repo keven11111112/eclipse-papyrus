@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,12 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 402525, 323802, 431953, 433310, 434993
- *  Christian W. Damus - bug 399859
- *  Christian W. Damus - bug 451230
- *  Christian W. Damus - bug 433206
- *  Christian W. Damus - bug 463156
- *  Christian W. Damus - bug 474610
- *  Christian W. Damus - bug 469188
+ *  Christian W. Damus - bugs 399859, 451230, 433206, 463156, 474610, 469188, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
@@ -55,6 +50,7 @@ public class AllTests {
 
 		/* infra */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.tools.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.ui.tests.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.services.edit.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.services.edit.tests.suites.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.services.labelprovider.tests.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.emf.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.emf.tests.AllTests"));

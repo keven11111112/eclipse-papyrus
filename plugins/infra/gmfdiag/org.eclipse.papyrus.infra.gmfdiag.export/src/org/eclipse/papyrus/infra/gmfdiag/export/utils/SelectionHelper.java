@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
@@ -24,8 +25,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.service.ILocalPageService;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.ILocalPageService;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.infra.gmfdiag.export.engine.ExportDiagramLocalPageService;
@@ -84,15 +85,15 @@ public class SelectionHelper {
 		}
 		// Try to adapt
 		if (result == null && selectedObj instanceof IAdaptable) {
-			result = (IFile) ((IAdaptable) selectedObj).getAdapter(IFile.class);
+			result = ((IAdaptable) selectedObj).getAdapter(IFile.class);
 		}
 		// adapt in ifile
 		if (result == null) {
-			result = (IFile) Platform.getAdapterManager().getAdapter(selectedObj, IFile.class);
+			result = Platform.getAdapterManager().getAdapter(selectedObj, IFile.class);
 		}
 		if (result == null) {
 			// try to check if it is a collection
-			Collection<?> collec = (Collection<?>) Platform.getAdapterManager().getAdapter(selectedObj, Collection.class);
+			Collection<?> collec = Platform.getAdapterManager().getAdapter(selectedObj, Collection.class);
 			if (collec != null) {
 				for (Object o : collec) {
 					if (o instanceof IFile) {
@@ -123,7 +124,7 @@ public class SelectionHelper {
 
 		IPageManager pageManager = null;
 		try {
-			pageManager = ServiceUtilsForSelection.getInstance().getIPageManager(receiver);
+			pageManager = ServiceUtilsForSelection.getInstance().getService(IPageManager.class, receiver);
 		} catch (ServiceException e) {
 			// Ignore service exception
 		}

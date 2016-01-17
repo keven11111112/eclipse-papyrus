@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.service.IStereotypeRepairService;
 import org.eclipse.swt.widgets.Display;

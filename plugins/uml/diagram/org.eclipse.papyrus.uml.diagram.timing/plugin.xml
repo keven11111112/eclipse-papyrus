@@ -796,7 +796,7 @@
     </extension>
 
     <!-- register editor in Papyrus -->
-    <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+    <extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
         <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.uml.diagram.timing.custom.TimingDiagramEditorFactory"

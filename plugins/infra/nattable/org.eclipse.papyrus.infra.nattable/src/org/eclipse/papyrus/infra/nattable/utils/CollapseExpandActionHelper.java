@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvide
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
-import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
+import org.eclipse.papyrus.infra.ui.util.SelectionHelper;
 import org.eclipse.swt.widgets.Control;
 
 /**

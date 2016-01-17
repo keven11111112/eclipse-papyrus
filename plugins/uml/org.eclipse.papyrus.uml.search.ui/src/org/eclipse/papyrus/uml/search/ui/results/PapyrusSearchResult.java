@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.papyrus.infra.core.utils.EditorUtils;
+import org.eclipse.papyrus.infra.ui.util.EditorUtils;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;

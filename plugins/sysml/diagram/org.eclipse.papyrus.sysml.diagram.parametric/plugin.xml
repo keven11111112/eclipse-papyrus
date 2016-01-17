@@ -21,7 +21,7 @@
 </extension>
    
 <!-- Diagram declaration -->
-<extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+<extension point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramCreateCommand"
 		icon="icons/obj16/Diagram_Parametric.png"

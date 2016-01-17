@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.uml.diagram.statemachine;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
+import org.eclipse.papyrus.infra.ui.extension.commands.PerspectiveContextDependence;
 
 /**
  * The StateMachineDiagramCreationCondition class allows to check if a State Machine

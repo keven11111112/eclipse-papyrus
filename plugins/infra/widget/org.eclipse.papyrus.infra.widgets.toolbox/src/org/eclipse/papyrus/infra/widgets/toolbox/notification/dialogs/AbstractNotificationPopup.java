@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.infra.core.utils.PapyrusImageUtils;
+import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.SwtUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.SwtUtil.FadeJob;
 import org.eclipse.swt.SWT;

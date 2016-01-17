@@ -18,7 +18,7 @@ import java.util.Map;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.papyrus.infra.core.utils.PapyrusImageUtils;
+import org.eclipse.papyrus.infra.ui.util.PapyrusImageUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.INotification;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.NotificationRunnable;

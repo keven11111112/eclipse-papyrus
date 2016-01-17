@@ -16,8 +16,8 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 
 
 /**

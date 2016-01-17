@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 CEA LIST and others.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 408491
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.provider;
@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.IOpenable;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
@@ -66,6 +66,7 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 * @param expectedValue
 	 * @return
 	 */
+	@Override
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		if (IS_EOBJECT.equals(property) && receiver instanceof IStructuredSelection) {
 			boolean answer = isObject((IStructuredSelection) receiver);
@@ -124,14 +125,14 @@ public class PropertyTester extends org.eclipse.core.expressions.PropertyTester 
 	 * Returns the page manager
 	 *
 	 * @return
-	 *         the page manager
+	 * 		the page manager
 	 */
 	protected IPageManager getPageManager(IStructuredSelection selection) {
 		IPageManager pageMngr = null;
 		try {
 			ServiceUtilsForSelection instance = ServiceUtilsForSelection.getInstance();
 			if (instance != null) {
-				pageMngr = instance.getIPageManager(selection);
+				pageMngr = instance.getService(IPageManager.class, selection);
 			}
 		} catch (NullPointerException npe) {
 			// We cannot find the page manager. Just return null.

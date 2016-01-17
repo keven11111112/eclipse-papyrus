@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.internal;
 
@@ -27,21 +29,21 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
  */
 public class TransactionalPageManagerImpl extends PageManagerImpl {
 
-	protected EditingDomain editingDomain;
+	private EditingDomain editingDomain;
 
 	public TransactionalPageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		super(diSashModel, contentChangedEventProvider);
+
+		this.editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(diSashModel);
 	}
 
 	public TransactionalPageManagerImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider, ICurrentFolderAndPageMngr folderAndPageMngr) {
 		super(diSashModel, contentChangedEventProvider, folderAndPageMngr);
+
+		this.editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(diSashModel);
 	}
 
 	protected EditingDomain getEditingDomain() {
-		if (editingDomain == null) {
-			editingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(diSashModel);
-		}
-
 		return editingDomain;
 	}
 

@@ -17,13 +17,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.language.ILanguage;
 import org.eclipse.papyrus.infra.core.language.ILanguageChangeListener;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.language.LanguageChangeEvent;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.editor.welcome.internal.Activator;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
 

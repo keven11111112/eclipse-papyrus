@@ -18,11 +18,11 @@ import java.util.Iterator;
 
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ShapeNamedElementFigure;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;

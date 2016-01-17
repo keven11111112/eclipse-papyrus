@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,22 @@
  *
  * Contributors:
  *  Francois Le Fevre (CEA LIST) francois.le-fevre@cea.fr - Initial API and implementation
+ *  Christian W. Damus = bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
+import org.eclipse.papyrus.infra.tools.spi.IExecutorServiceFactory;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.WorkbenchPartHelper;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -33,31 +43,46 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
+	private ServiceRegistration<IExecutorServiceFactory> executorFactoryReg;
+	private ServiceRegistration<IContextualServiceRegistryTracker> serviceRegistryTrackerReg;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		IExecutorServiceFactory executorFactory = () -> UIUtil.createUIExecutor(Display.getDefault());
+		executorFactoryReg = context.registerService(IExecutorServiceFactory.class, executorFactory, null);
+
+		IContextualServiceRegistryTracker serviceRegistryTracker = () -> {
+			ServicesRegistry result = null;
+			IEditorPart editor = WorkbenchPartHelper.getCurrentActiveEditorPart();
+			if (editor != null) {
+				result = editor.getAdapter(ServicesRegistry.class);
+			}
+			return result;
+		};
+		serviceRegistryTrackerReg = context.registerService(IContextualServiceRegistryTracker.class, serviceRegistryTracker, null);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		if (serviceRegistryTrackerReg != null) {
+			serviceRegistryTrackerReg.unregister();
+			serviceRegistryTrackerReg = null;
+		}
+		if (executorFactoryReg != null) {
+			executorFactoryReg.unregister();
+			executorFactoryReg = null;
+		}
+
 		plugin = null;
 		super.stop(context);
 	}

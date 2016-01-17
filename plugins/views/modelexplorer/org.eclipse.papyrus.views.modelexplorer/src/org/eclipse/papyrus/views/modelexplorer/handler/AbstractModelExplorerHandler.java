@@ -25,10 +25,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
@@ -48,7 +48,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	protected TransactionalEditingDomain getEditingDomain() {
 		TransactionalEditingDomain editingDomain = null;
 		try {
-			editingDomain = org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+			editingDomain = org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
 		} catch (ServiceException e) {
 			// we are closing the editor, so the model explorer has nothing to display
 			// e.printStackTrace();

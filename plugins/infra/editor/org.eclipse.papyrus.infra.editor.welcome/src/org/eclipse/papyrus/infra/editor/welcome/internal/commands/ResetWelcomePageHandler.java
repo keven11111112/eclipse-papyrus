@@ -13,8 +13,8 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.internal.commands;
 
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 
 /**
  * Handler for the <em>Reset Welcome Page</em> menu command.

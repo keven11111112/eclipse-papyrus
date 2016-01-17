@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.tests;
@@ -33,12 +33,12 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
@@ -194,12 +194,12 @@ public abstract class AbstractHandlerTest extends AbstractPapyrusTest {
 	/**
 	 * 
 	 * @return
-	 *         the diagrams owned by the IPageMngr
+	 * 		the diagrams owned by the IPageMngr
 	 * @throws ServiceException
 	 */
 	protected List<Diagram> getDiagrams() throws ServiceException {
 
-		IPageManager pageManager = ServiceUtilsForResourceSet.getInstance().getIPageManager(editorFixture.getResourceSet());
+		IPageManager pageManager = ServiceUtilsForResourceSet.getInstance().getService(IPageManager.class, editorFixture.getResourceSet());
 		List<Object> pages = pageManager.allPages();
 		List<Diagram> diagrams = new ArrayList<Diagram>();
 		for (Object current : pages) {
@@ -213,12 +213,12 @@ public abstract class AbstractHandlerTest extends AbstractPapyrusTest {
 	/**
 	 * 
 	 * @return
-	 *         the diagrams owned by the IPageMngr
+	 * 		the diagrams owned by the IPageMngr
 	 * @throws ServiceException
 	 */
 	protected List<Table> getTables() throws ServiceException {
 
-		IPageManager pageManager = ServiceUtilsForResourceSet.getInstance().getIPageManager(editorFixture.getResourceSet());
+		IPageManager pageManager = ServiceUtilsForResourceSet.getInstance().getService(IPageManager.class, editorFixture.getResourceSet());
 		List<Object> pages = pageManager.allPages();
 		List<Table> diagrams = new ArrayList<Table>();
 		for (Object current : pages) {

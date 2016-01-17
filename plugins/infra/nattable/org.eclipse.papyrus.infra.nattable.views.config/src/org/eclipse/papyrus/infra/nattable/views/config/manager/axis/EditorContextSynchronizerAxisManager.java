@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.views.config.manager.axis;
@@ -25,8 +25,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.emf.adapters.ResourceSetRootsAdapter;
 import org.eclipse.papyrus.infra.emf.nattable.manager.axis.AbstractSynchronizedOnEStructuralFeatureAxisManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -91,7 +91,7 @@ public class EditorContextSynchronizerAxisManager extends AbstractSynchronizedOn
 	protected List<Object> getFeaturesValue() {
 		if (pageManager == null) {
 			try {
-				pageManager = ServiceUtilsForEObject.getInstance().getIPageManager(getTableManager().getTable());
+				pageManager = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, getTableManager().getTable());
 			} catch (Exception ex) {
 				Activator.log.error("The page manager is not accessible", ex);
 				return Collections.emptyList();

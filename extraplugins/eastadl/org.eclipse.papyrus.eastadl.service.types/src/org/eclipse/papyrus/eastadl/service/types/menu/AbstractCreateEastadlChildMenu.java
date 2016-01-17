@@ -1,6 +1,6 @@
 package org.eclipse.papyrus.eastadl.service.types.menu;
 
-import org.eclipse.papyrus.infra.tools.util.AbstractCreateMenuFromCommandCategory;
+import org.eclipse.papyrus.infra.ui.util.AbstractCreateMenuFromCommandCategory;
 
 public class AbstractCreateEastadlChildMenu extends AbstractCreateMenuFromCommandCategory {
 

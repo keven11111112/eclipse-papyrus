@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.nebula.widgets.nattable.layer.DataLayer;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.nattable.common.editor.NatTableEditor;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;

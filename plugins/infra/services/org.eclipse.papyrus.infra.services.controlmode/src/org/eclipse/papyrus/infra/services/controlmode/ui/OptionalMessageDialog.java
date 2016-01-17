@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2011 IBM Corporation and others.
+ * Copyright (c) 2000, 2016 IBM Corporation, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,13 +7,14 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Christian W. Damus - bug 485220
  *******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.ui;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -111,10 +112,10 @@ public class OptionalMessageDialog extends MessageDialog {
 	 * @return the settings to be used
 	 */
 	private static IDialogSettings getDialogSettings() {
-		IDialogSettings settings = Activator.getDefault().getDialogSettings();
+		IDialogSettings settings = ControlModePlugin.getDefault().getDialogSettings();
 		settings = settings.getSection(STORE_ID);
 		if (settings == null) {
-			settings = Activator.getDefault().getDialogSettings().addNewSection(STORE_ID);
+			settings = ControlModePlugin.getDefault().getDialogSettings().addNewSection(STORE_ID);
 		}
 		return settings;
 	}
@@ -139,7 +140,7 @@ public class OptionalMessageDialog extends MessageDialog {
 	 * Clears all remembered information about hidden dialogs
 	 */
 	public static void clearAllRememberedStates() {
-		IDialogSettings settings = Activator.getDefault().getDialogSettings();
+		IDialogSettings settings = ControlModePlugin.getDefault().getDialogSettings();
 		settings.addNewSection(STORE_ID);
 	}
 }

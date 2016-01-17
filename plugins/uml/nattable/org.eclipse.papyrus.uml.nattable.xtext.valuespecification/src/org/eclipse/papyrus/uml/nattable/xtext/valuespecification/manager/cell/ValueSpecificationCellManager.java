@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.xtext.valuespecification.manager.cell;
@@ -26,15 +27,13 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.nattable.manager.cell.EMFFeatureValueCellManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.tools.converter.AbstractStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.AbstractStringValueConverter;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.internal.UmlValueSpecificationActivator;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils.commands.ValueSpecificationSetCommand;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.ValueSpecification;
 
 import com.google.inject.Injector;
 
@@ -56,12 +55,12 @@ public class ValueSpecificationCellManager extends EMFFeatureValueCellManager {
 			final Object columnElement, final Object rowElement,
 			final Object newValue, final INattableModelManager tableManager) {
 		if (newValue instanceof IAdaptable) {
-			final ICommand cmd = (ICommand) ((IAdaptable) newValue)
+			final ICommand cmd = ((IAdaptable) newValue)
 					.getAdapter(ICommand.class);
 			if (null != cmd && cmd.canExecute()) {
 				return new GMFtoEMFCommandWrapper(cmd);
 			} else {
-				final String editedString = (String) ((IAdaptable) newValue)
+				final String editedString = ((IAdaptable) newValue)
 						.getAdapter(String.class);
 				return getSetStringValueCommand(domain, columnElement,
 						rowElement, editedString, null, tableManager);
@@ -89,9 +88,9 @@ public class ValueSpecificationCellManager extends EMFFeatureValueCellManager {
 
 			EStructuralFeature structuralFeature = null;
 			if (columnElement instanceof EStructuralFeatureAxis) {
-				structuralFeature = (EStructuralFeature) ((EStructuralFeatureAxis) columnElement).getElement();
+				structuralFeature = ((EStructuralFeatureAxis) columnElement).getElement();
 			} else {
-				structuralFeature = (EStructuralFeature) ((EStructuralFeatureAxis) rowElement).getElement();
+				structuralFeature = ((EStructuralFeatureAxis) rowElement).getElement();
 			}
 
 			if (UMLPackage.Literals.VALUE_SPECIFICATION == structuralFeature

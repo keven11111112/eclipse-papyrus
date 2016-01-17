@@ -26,8 +26,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -41,6 +39,8 @@ import org.eclipse.papyrus.infra.hyperlink.ui.HyperLinkManagerShell;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkException;
 import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
+import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**

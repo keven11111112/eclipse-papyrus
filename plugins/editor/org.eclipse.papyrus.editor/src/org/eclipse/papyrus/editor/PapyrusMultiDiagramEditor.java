@@ -14,8 +14,8 @@
 
 package org.eclipse.papyrus.editor;
 
-import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
+import org.eclipse.papyrus.infra.ui.editor.CoreMultiDiagramEditor;
 
 /**
  * Papyrus main MultiEditor. This class add GMF adaptation dedicated to Papyrus.

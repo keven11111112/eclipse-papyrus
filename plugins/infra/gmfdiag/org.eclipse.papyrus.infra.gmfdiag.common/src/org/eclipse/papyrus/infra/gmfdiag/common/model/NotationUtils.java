@@ -38,10 +38,10 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more

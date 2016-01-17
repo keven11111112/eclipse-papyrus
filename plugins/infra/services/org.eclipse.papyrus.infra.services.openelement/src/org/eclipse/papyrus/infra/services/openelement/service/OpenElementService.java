@@ -12,9 +12,9 @@
 package org.eclipse.papyrus.infra.services.openelement.service;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.ui.PartInitException;
 
 /**

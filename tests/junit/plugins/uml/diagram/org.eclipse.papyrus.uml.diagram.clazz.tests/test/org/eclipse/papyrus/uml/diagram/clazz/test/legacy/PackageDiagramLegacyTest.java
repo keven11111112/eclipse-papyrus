@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.test.legacy;
 
@@ -16,9 +18,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.diagram.clazz.UmlClassDiagramForMultiEditor;
@@ -52,7 +54,7 @@ public class PackageDiagramLegacyTest extends AbstractPapyrusTest {
 		houseKeeper.createFile(project, "package24.notation", "model/legacyPackage/package24.notation");
 
 		editor = houseKeeper.openPapyrusEditor(diFile);
-		pageManager = ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry());
+		pageManager = ServiceUtils.getInstance().getService(IPageManager.class, editor.getServicesRegistry());
 	}
 
 	@Test
@@ -68,10 +70,10 @@ public class PackageDiagramLegacyTest extends AbstractPapyrusTest {
 	}
 
 	protected Diagram getDiagram(String name) {
-		for(Object page : pageManager.allPages()) {
-			if(page instanceof Diagram) {
-				if(name.equals(((Diagram)page).getName())) {
-					return (Diagram)page;
+		for (Object page : pageManager.allPages()) {
+			if (page instanceof Diagram) {
+				if (name.equals(((Diagram) page).getName())) {
+					return (Diagram) page;
 				}
 			}
 		}
@@ -89,9 +91,9 @@ public class PackageDiagramLegacyTest extends AbstractPapyrusTest {
 
 		pageManager.openPage(closedDiagram);
 
-		//Assert.assertEquals("PapyrusUMLClassDiagram", closedDiagram.getType());
+		// Assert.assertEquals("PapyrusUMLClassDiagram", closedDiagram.getType());
 
-		pageManager.selectPage(closedDiagram); //Workaround for an unrelated bug: the page is not immediately selected after it has been opened
+		pageManager.selectPage(closedDiagram); // Workaround for an unrelated bug: the page is not immediately selected after it has been opened
 
 		IEditorPart closedDiagramEditor = editor.getActiveEditor();
 
@@ -99,7 +101,7 @@ public class PackageDiagramLegacyTest extends AbstractPapyrusTest {
 
 		IEditorInput input = closedDiagramEditor.getEditorInput();
 		Assert.assertTrue(input instanceof URIEditorInput);
-		URIEditorInput uriInput = (URIEditorInput)input;
+		URIEditorInput uriInput = (URIEditorInput) input;
 
 		Assert.assertTrue(uriInput.getURI().equals(EcoreUtil.getURI(closedDiagram)));
 	}

@@ -13,7 +13,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.adapter;
 
 import org.eclipse.core.runtime.IAdapterFactory;
-import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
+import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
 
 /**
  * An adapter factory for the outline page contributed by nested diagram editors.

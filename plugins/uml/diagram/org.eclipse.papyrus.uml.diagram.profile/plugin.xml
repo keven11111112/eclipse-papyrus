@@ -505,7 +505,7 @@
       </menuContribution>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.uml.diagram.profile.ProfileDiagramEditorFactory"
@@ -731,7 +731,7 @@
 </extension>
 
 <extension
-	point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+	point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
 	<diagramCategory
        class="org.eclipse.papyrus.uml.diagram.profile.CreateProfileModelCommand"
        description="Profile diagram"

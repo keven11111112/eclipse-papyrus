@@ -57,7 +57,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

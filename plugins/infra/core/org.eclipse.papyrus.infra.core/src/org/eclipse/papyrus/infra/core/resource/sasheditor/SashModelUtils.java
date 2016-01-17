@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2015 LIFL, CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  LIFL - Initial API and implementation
  *  Christian W. Damus - bug 434983
  *  Christian W. Damus - bug 469188
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
@@ -23,7 +24,7 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 
 /**
  * Set of utility methods linked to Trace for ControlMode
@@ -49,7 +50,7 @@ public class SashModelUtils {
 	public static SashModel getSashModel() {
 
 		try {
-			return (SashModel) ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(SashModel.MODEL_ID);
+			return (SashModel) ServiceUtils.getInstance().getModelSet(null).getModel(SashModel.MODEL_ID);
 		} catch (ServiceException e) {
 			return null;
 		}
@@ -72,7 +73,7 @@ public class SashModelUtils {
 	@Deprecated
 	public static SashModel getSashModelChecked() throws ServiceException {
 
-		return (SashModel) ServiceUtilsForActionHandlers.getInstance().getModelSet().getModel(SashModel.MODEL_ID);
+		return (SashModel) ServiceUtils.getInstance().getModelSet(null).getModel(SashModel.MODEL_ID);
 	}
 
 	/**

@@ -44,8 +44,8 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
 import org.eclipse.papyrus.cdo.internal.ui.editors.PapyrusCDOEditorManager;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPerspectiveDescriptor;
@@ -87,7 +87,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	private DiagramDocumentEditor lastDiagramEditor;
 
 	@SuppressWarnings("restriction")
-	private org.eclipse.papyrus.infra.core.internal.preferences.YesNo initialSashStoragePreference;
+	private org.eclipse.papyrus.infra.ui.internal.preferences.YesNo initialSashStoragePreference;
 
 	public AbstractPapyrusCDOUITest() {
 		super();
@@ -147,8 +147,8 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	@SuppressWarnings("restriction")
 	@Before
 	public void suppressSashLayoutMigrationDialog() {
-		initialSashStoragePreference = org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
-		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.core.internal.preferences.YesNo.NO);
+		initialSashStoragePreference = org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().getConvertSharedPageLayoutToPrivate();
+		org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(org.eclipse.papyrus.infra.ui.internal.preferences.YesNo.NO);
 	}
 
 	@After
@@ -176,7 +176,7 @@ public abstract class AbstractPapyrusCDOUITest extends AbstractPapyrusCDOTest {
 	@SuppressWarnings("restriction")
 	@After
 	public void restoreSashLayoutMigrationDialog() {
-		org.eclipse.papyrus.infra.core.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialSashStoragePreference);
+		org.eclipse.papyrus.infra.ui.internal.preferences.EditorPreferences.getInstance().setConvertSharedPageLayoutToPrivate(initialSashStoragePreference);
 	}
 
 	private void importResource(CDOTransaction transaction, String srcPath, String dstPath, Map<? super Resource, ? super Resource> importMap) {

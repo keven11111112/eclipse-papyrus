@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.util;
@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.hyperlink.Activator;
 
@@ -63,7 +63,7 @@ public class EditorListContentProvider implements ITreeContentProvider {
 	 */
 	public Object[] getElements(Object inputElement) {
 		try {
-			IPageManager iPageMngr = ServiceUtilsForEObject.getInstance().getIPageManager(model);
+			IPageManager iPageMngr = ServiceUtilsForEObject.getInstance().getService(IPageManager.class, model);
 			Object[] result = iPageMngr.allPages().toArray();
 
 			List<Object> res = new ArrayList<Object>();

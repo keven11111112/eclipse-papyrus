@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.Activator;
-import org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter;
-import org.eclipse.papyrus.infra.tools.converter.ConvertedValueContainer;
-import org.eclipse.papyrus.infra.tools.converter.MultiConvertedValueContainer;
-import org.eclipse.papyrus.infra.tools.converter.StringValueConverterStatus;
+import org.eclipse.papyrus.infra.ui.converter.ConvertedValueContainer;
+import org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter;
+import org.eclipse.papyrus.infra.ui.converter.MultiConvertedValueContainer;
+import org.eclipse.papyrus.infra.ui.converter.StringValueConverterStatus;
 import org.eclipse.papyrus.uml.tools.utils.messages.Messages;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
@@ -73,7 +73,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter#dispose()
+	 * @see org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter#dispose()
 	 *
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter#getFeatureUpperBound(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter#getFeatureUpperBound(java.lang.Object)
 	 *
 	 * @param feature
 	 * @return
@@ -99,7 +99,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter#getFeatureType(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter#getFeatureType(java.lang.Object)
 	 *
 	 * @param feature
 	 * @return
@@ -140,7 +140,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter#doDeduceValueFromString(java.lang.Object, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter#doDeduceValueFromString(java.lang.Object, java.lang.String)
 	 *
 	 * @param feature
 	 * @param valueAsString
@@ -157,7 +157,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter#deduceValueFromString(java.lang.Object, org.eclipse.emf.ecore.EClassifier, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter#deduceValueFromString(java.lang.Object, org.eclipse.emf.ecore.EClassifier, java.lang.String)
 	 *
 	 * @param feature
 	 * @param featureType
@@ -179,7 +179,7 @@ public class UMLStringValueConverter extends EMFStringValueConverter {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.emf.utils.EMFStringValueConverter#deduceEObjectValue(org.eclipse.emf.ecore.EObject, java.lang.Object, org.eclipse.emf.ecore.EClass, boolean, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.ui.converter.EMFStringValueConverter#deduceEObjectValue(org.eclipse.emf.ecore.EObject, java.lang.Object, org.eclipse.emf.ecore.EClass, boolean, java.lang.String)
 	 *
 	 * @param resolutionContext
 	 * @param feature

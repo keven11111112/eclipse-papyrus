@@ -32,7 +32,7 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ResourceAdapter;
-import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.papyrus.infra.ui.util.UIUtil;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;

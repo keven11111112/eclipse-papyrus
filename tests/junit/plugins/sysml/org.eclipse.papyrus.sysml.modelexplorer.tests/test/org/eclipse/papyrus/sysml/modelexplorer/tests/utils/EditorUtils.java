@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelexplorer.tests.utils;
@@ -15,6 +16,7 @@ package org.eclipse.papyrus.sysml.modelexplorer.tests.utils;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -33,7 +35,7 @@ public class EditorUtils {
 	 * 
 	 * @return current active editor
 	 * @throws Exception
-	 *         exception thrown in case of issue
+	 *             exception thrown in case of issue
 	 */
 	public static IEditorPart getEditor() throws Exception {
 		RunnableWithResult<IEditorPart> runnable;
@@ -51,9 +53,9 @@ public class EditorUtils {
 
 	public static DiagramEditor getDiagramEditor() throws Exception {
 
-		ServicesRegistry serviceRegistry = (ServicesRegistry)getEditor().getAdapter(ServicesRegistry.class);
+		ServicesRegistry serviceRegistry = getEditor().getAdapter(ServicesRegistry.class);
 		try {
-			return (DiagramEditor)ServiceUtils.getInstance().getNestedActiveIEditorPart(serviceRegistry);
+			return (DiagramEditor) ServiceUtils.getInstance().getService(ISashWindowsContainer.class, serviceRegistry).getActiveEditor();
 
 		} catch (ServiceException e) {
 			throw new Exception("Unable to retrieve service.", e); //$NON-NLS-1$

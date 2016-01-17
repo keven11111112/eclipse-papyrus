@@ -21,7 +21,7 @@ import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectCellCommand;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
-import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
+import org.eclipse.papyrus.infra.ui.util.SelectionHelper;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Class;

@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.infra.nattable.preferences;
 
 import org.eclipse.core.runtime.preferences.IScopeContext;
-import org.eclipse.papyrus.infra.tools.preferences.AbstractPapyrusPreferenceStore;
-import org.eclipse.papyrus.infra.tools.preferences.ui.dialog.AbstractApplyValueOnPreferenceKeyDialog;
+import org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferenceStore;
+import org.eclipse.papyrus.infra.ui.preferences.dialog.AbstractApplyValueOnPreferenceKeyDialog;
 
 /**
  * this class is a specific store that is used to look for value of element
@@ -51,7 +51,7 @@ public class PapyrusTablePreferenceStore extends AbstractPapyrusPreferenceStore 
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.infra.tools.preferences.AbstractPapyrusPreferenceStore#createPreferenceKeyDialog(java.lang.String[])
+	 * @see org.eclipse.papyrus.infra.ui.preferences.AbstractPapyrusPreferenceStore#createPreferenceKeyDialog(java.lang.String[])
 	 *
 	 * @param keys
 	 * @return

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.cdt.handler;
@@ -31,13 +31,13 @@ import org.eclipse.papyrus.codegen.extensionpoints.ILangCodegen;
 import org.eclipse.papyrus.codegen.extensionpoints.LanguageCodegen;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
 import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -81,8 +81,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		// Filter Classes (including Behaviors, since Behavior inherits from Class), Operation and Transition
 		if (selectedEObject instanceof Class ||
 				selectedEObject instanceof Operation ||
-				selectedEObject instanceof Transition)
-		{
+				selectedEObject instanceof Transition) {
 			URI uri = selectedEObject.eResource().getURI();
 
 			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
@@ -147,7 +146,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	 */
 	public void doExecute(final ServicesRegistry serviceRegistry) throws ServiceException, NotFoundException {
 		// Get the page manager allowing to add/open an editor.
-		final IPageManager pageMngr = ServiceUtils.getInstance().getIPageManager(serviceRegistry);
+		final IPageManager pageMngr = ServiceUtils.getInstance().getService(IPageManager.class, serviceRegistry);
 
 		Classifier classifierToEdit = getClassifierToEdit();
 		TextEditorModel editorModel = getEditorModel(serviceRegistry, classifierToEdit);
@@ -163,7 +162,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 		if (codegen.getTargetProject(classifierToEdit, true) == null) {
 			return;
 		}
-		
+
 		if (selectedEObject instanceof Transition) {
 			Transition transition = (Transition) selectedEObject;
 			if (transition.getEffect() == null) {
@@ -182,8 +181,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 				if (pageMngr.isOpen(editorModelFinal)) {
 					// select existing editor
 					pageMngr.selectPage(editorModelFinal);
-				}
-				else {
+				} else {
 					pageMngr.openPage(editorModelFinal);
 				}
 				try {
@@ -194,13 +192,12 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 
 					if (rootModel instanceof TabFolder) {
 						// root = tabFolder, i.e. there is a single folder
-						ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
+						ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getService(ISashWindowsContainer.class, serviceRegistry);
 						int index = lookupIndex((TabFolder) rootModel, editorModelFinal);
 						if (index != -1) {
 							sashContentProvider.createFolder(sashContainer.getSelectedTabFolderModel(), index, sashContainer.getSelectedTabFolderModel(), SWT.RIGHT);
 						}
-					}
-					else if (rootModel instanceof SashPanel) {
+					} else if (rootModel instanceof SashPanel) {
 						// multiple tab-folders exist. Find existing one and move editorModel to other
 						// TODO
 						// ISashWindowsContainer sashContainer = ServiceUtils.getInstance().getISashWindowsContainer(serviceRegistry);
@@ -234,8 +231,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 			return null;
 		}
 		editorModel.setGeneratorID(LanguageCodegen.getID(codegen));
-		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
-				ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
+		TextEditorModelSharedResource model = (TextEditorModelSharedResource) ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 		model.addTextEditorModel(editorModel);
 
 		return editorModel;
@@ -249,11 +245,9 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	protected Classifier getClassifierToEdit() {
 		if (selectedEObject instanceof Operation) {
 			return ((Operation) selectedEObject).getFeaturingClassifiers().get(0);
-		}
-		else if (selectedEObject instanceof Transition) {
+		} else if (selectedEObject instanceof Transition) {
 			return ((Transition) selectedEObject).getContainer().getStateMachine().getContext();
-		}
-		else if (selectedEObject instanceof Behavior) {
+		} else if (selectedEObject instanceof Behavior) {
 			Element owner = (Behavior) selectedEObject;
 			while (owner != null) {
 				owner = owner.getOwner();
@@ -262,8 +256,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 				}
 			}
 			return null;
-		}
-		else if (selectedEObject instanceof Classifier) {
+		} else if (selectedEObject instanceof Classifier) {
 			// must be class or datatype
 			return (Classifier) selectedEObject;
 		}
@@ -282,8 +275,7 @@ public class PapyrusCDTEditorHandler extends CmdHandler {
 	 * @throws NotFoundException
 	 */
 	protected TextEditorModel getEditorModel(final ServicesRegistry serviceRegistry, Classifier classifierToEdit) throws ServiceException, NotFoundException {
-		TextEditorModelSharedResource model = (TextEditorModelSharedResource)
-				ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
+		TextEditorModelSharedResource model = (TextEditorModelSharedResource) ServiceUtils.getInstance().getModelSet(serviceRegistry).getModelChecked(TextEditorModelSharedResource.MODEL_ID);
 		return model.getTextEditorModel(classifierToEdit);
 	}
 

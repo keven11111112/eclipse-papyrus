@@ -28,7 +28,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
+import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.providers.HierarchicToFlatContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IRestrictedContentProvider;

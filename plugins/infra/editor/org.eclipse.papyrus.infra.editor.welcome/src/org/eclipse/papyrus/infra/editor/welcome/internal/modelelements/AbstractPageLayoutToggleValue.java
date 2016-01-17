@@ -21,18 +21,18 @@ import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashLayoutCommandFactory;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
-import org.eclipse.papyrus.infra.core.services.SaveLayoutBeforeClose;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.editor.welcome.internal.Activator;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.infra.ui.internal.commands.SashLayoutCommandFactory;
+import org.eclipse.papyrus.infra.ui.services.SaveLayoutBeforeClose;
 
 /**
  * Non-transactional boolean-valued observable properties of the page layout

@@ -18,8 +18,8 @@ import java.lang.reflect.Method;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider;
 
 
 /**
