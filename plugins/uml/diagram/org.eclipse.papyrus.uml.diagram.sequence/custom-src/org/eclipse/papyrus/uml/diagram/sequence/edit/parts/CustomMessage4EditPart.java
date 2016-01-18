@@ -47,11 +47,11 @@ public class CustomMessage4EditPart extends Message4EditPart {
 	}
 
 	/**
-	 * Block message sort modification
+	 * Block message sort modification.
 	 */
 	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		SequenceUtil.handleMessageSortChange(getEditingDomain(), notification, (Message) resolveSemanticElement(), MessageSort.ASYNCH_CALL_LITERAL);
+	protected void handleNotificationEvent(final Notification notification) {
+		SequenceUtil.handleMessageSortChange(getEditingDomain(), notification, (Message) resolveSemanticElement(), MessageSort.CREATE_MESSAGE_LITERAL);
 		super.handleNotificationEvent(notification);
 	}
 

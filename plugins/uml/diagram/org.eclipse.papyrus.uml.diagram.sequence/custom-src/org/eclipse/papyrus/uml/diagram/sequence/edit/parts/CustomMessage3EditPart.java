@@ -50,8 +50,8 @@ public class CustomMessage3EditPart extends Message3EditPart {
 	 * Block message sort modification
 	 */
 	@Override
-	protected void handleNotificationEvent(Notification notification) {
-		SequenceUtil.handleMessageSortChange(getEditingDomain(), notification, (Message) resolveSemanticElement(), MessageSort.ASYNCH_CALL_LITERAL);
+	protected void handleNotificationEvent(final Notification notification) {
+		SequenceUtil.handleMessageSortChange(getEditingDomain(), notification, (Message) resolveSemanticElement(), MessageSort.REPLY_LITERAL);
 		super.handleNotificationEvent(notification);
 	}
 
