@@ -12,6 +12,7 @@
 #include "CppCodegenTest/Class5.h"
 
 // Derived includes directives
+#include "AnsiCLibrary/Pkg_AnsiCLibrary.h"
 
 // static attributes (if any)
 

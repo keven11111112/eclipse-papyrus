@@ -12,6 +12,8 @@
 #include "CppCodegenTest/Class2.h"
 
 // Derived includes directives
+#include "AnsiCLibrary/Pkg_AnsiCLibrary.h"
+#include "CppCodegenTest/Class1.h"
 
 // Include from Include declaration (body)
 #include <string.h>

@@ -12,7 +12,8 @@
 #include "CppCodegenTest/Pkg_CppCodegenTest.h"
 
 #include "AnsiCLibrary/Pkg_AnsiCLibrary.h"
-#include "CppCodegenTest/Class3.h"
+
+class Class3;
 
 /************************************************************/
 /**

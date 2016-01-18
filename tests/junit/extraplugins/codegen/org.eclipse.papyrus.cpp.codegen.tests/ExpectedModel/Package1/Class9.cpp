@@ -12,6 +12,7 @@
 #include "CppCodegenTest/Package1/Class9.h"
 
 // Derived includes directives
+#include "AnsiCLibrary/Pkg_AnsiCLibrary.h"
 
 namespace Package1 {
 

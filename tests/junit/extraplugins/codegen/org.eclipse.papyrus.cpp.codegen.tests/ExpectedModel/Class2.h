@@ -12,11 +12,12 @@
 #include "CppCodegenTest/Pkg_CppCodegenTest.h"
 
 #include "AnsiCLibrary/Pkg_AnsiCLibrary.h"
-#include "CppCodegenTest/Class1.h"
 
 // Include from Include stereotype (header)
 #include <iostream>
 // End of Include stereotype (header)
+
+class Class1;
 
 /************************************************************/
 /**
