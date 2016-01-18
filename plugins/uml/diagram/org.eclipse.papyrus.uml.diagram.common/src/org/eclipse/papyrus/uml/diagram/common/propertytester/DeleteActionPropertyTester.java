@@ -57,7 +57,6 @@ public class DeleteActionPropertyTester extends PropertyTester {
 		} else if (READ_ONLY_PROPERTY.equals(property)) {
 			final Object model = ((IGraphicalEditPart) receiver).getModel();
 			if (model instanceof View && ((View)model).getElement() instanceof org.eclipse.uml2.uml.Class){
-				org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) ((View)model).getElement();
 				//we want to be able to delete Metaclass (to do a hide action) with Delete from Model see bug 477084
 				org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) ((View)model).getElement();
 				result = expectedValue.equals(!clazz.isMetaclass());
