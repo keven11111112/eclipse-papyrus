@@ -17,11 +17,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesContentProvider;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesDetailsContentProvider;
+import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesDetailsLabelProvider;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesLabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -40,9 +39,9 @@ import org.eclipse.ui.part.ViewPart;
 public class RegistredElementTypesView extends ViewPart {
 
 	IClientContext context = null;
-	ListViewer listViewer = null;
+	FilteredTree detailsFilteredTree = null;
 	SashForm sash = null;
-	FilteredTree tree = null;
+	FilteredTree elementTypesFilteredTree = null;
 
 	public RegistredElementTypesView() {
 		try {
@@ -62,31 +61,29 @@ public class RegistredElementTypesView extends ViewPart {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(context);
-				tree.getViewer().setInput(elementTypes);
+				elementTypesFilteredTree.getViewer().setInput(elementTypes);
 			}
 
 		});
 		sash = new SashForm(parent, SWT.HORIZONTAL);
 		sash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		tree = new FilteredTree(sash, SWT.BORDER, new PatternFilter(), true);
-		tree.getViewer().setLabelProvider(new ElementTypesLabelProvider());
-		tree.getViewer().setContentProvider(new ElementTypesContentProvider());
-		listViewer = new ListViewer(sash);
-		listViewer.setLabelProvider(new LabelProvider());
-		listViewer.setContentProvider(new ElementTypesDetailsContentProvider());
-
+		elementTypesFilteredTree = new FilteredTree(sash, SWT.BORDER, new PatternFilter(), true);
+		elementTypesFilteredTree.getViewer().setLabelProvider(new ElementTypesLabelProvider());
+		elementTypesFilteredTree.getViewer().setContentProvider(new ElementTypesContentProvider());
+		detailsFilteredTree = new FilteredTree(sash, SWT.BORDER, new PatternFilter(), true);
+		detailsFilteredTree.getViewer().setLabelProvider(new ElementTypesDetailsLabelProvider());
+		detailsFilteredTree.getViewer().setContentProvider(new ElementTypesDetailsContentProvider());
 
 		IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(context);
-		tree.getViewer().setInput(elementTypes);
+		elementTypesFilteredTree.getViewer().setInput(elementTypes);
 
-		tree.getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
+		elementTypesFilteredTree.getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
-				if (event.getSelection() instanceof IStructuredSelection)
-				{
-					listViewer.setInput(((IStructuredSelection) event.getSelection()).getFirstElement());
+				if (event.getSelection() instanceof IStructuredSelection) {
+					detailsFilteredTree.getViewer().setInput(((IStructuredSelection) event.getSelection()).getFirstElement());
 				}
 
 			}
