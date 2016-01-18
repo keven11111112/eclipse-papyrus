@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
@@ -174,9 +175,13 @@ public class GenUtils {
 	 *            List of ALL stereotypes that must no be applied
 	 * @param includedStereotypes
 	 *            List of ANY stereotype that must no be applied (at least one)
+	 * @param bypassForInnerClassifiers
+	 *            Always include inner classifier types or not
+	 * @param noSharedAggregation
+	 *            Always exclude attributes with a shared aggregation kind
 	 * @return Collection of classifiers which are the types of the attributes
 	 */
-	public static EList<Classifier> getTypesViaAttributes(Classifier current, EList<Class<? extends EObject>> excludedStereotypes, EList<Class<? extends EObject>> includedStereotypes, boolean bypassForInnerClassifiers) {
+	public static EList<Classifier> getTypesViaAttributes(Classifier current, EList<Class<? extends EObject>> excludedStereotypes, EList<Class<? extends EObject>> includedStereotypes, boolean bypassForInnerClassifiers, boolean noSharedAggregation) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 
 		Iterator<Property> attributes;
@@ -186,14 +191,24 @@ public class GenUtils {
 			Type type = currentAttribute.getType();
 			
 			if  (type != null) {
+				// Check type is inner classifier
 				if (bypassForInnerClassifiers && !(type.getOwner() instanceof Package)) { // if we force inner class types to be processed
 					addFarthestOwnerType(type, result);
 				} else {
-					// Check stereotypes
+					// Check other conditions
 					boolean ok = true;
-					if (excludedStereotypes != null && GenUtils.hasAnyStereotype(currentAttribute, excludedStereotypes)) {
+					
+					// Check attribute is shared aggregation
+					if (noSharedAggregation && currentAttribute.getAggregation() == AggregationKind.SHARED_LITERAL) {
 						ok = false;
 					}
+					// Check attribute does not have an excluded stereotype
+					if (ok) {
+						if (excludedStereotypes != null && GenUtils.hasAnyStereotype(currentAttribute, excludedStereotypes)) {
+							ok = false;
+						}
+					}
+					// Check attribute has an included stereotype
 					if (ok) {
 						if (includedStereotypes != null && !GenUtils.hasAnyStereotype(currentAttribute, includedStereotypes)) {
 							ok = false;
@@ -204,6 +219,32 @@ public class GenUtils {
 					if (ok) {
 						addFarthestOwnerType(type, result);
 					}
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Retrieve a list of types of attributes, with SHARED aggregation, that belong to the current classifier.
+	 *
+	 * @param current
+	 *            Class on which the attributes are searched
+	 * @return Collection of classifiers which are the types of the attributes
+	 */
+	public static EList<Classifier> getTypesViaSharedAggregationAttributes(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+
+		Iterator<Property> attributes;
+		attributes = current.getAttributes().iterator();
+		while (attributes.hasNext()) {
+			Property currentAttribute = attributes.next();
+			Type type = currentAttribute.getType();
+			
+			if  (type != null) {
+				if (currentAttribute.getAggregation() == AggregationKind.SHARED_LITERAL) {
+					addFarthestOwnerType(type, result);
 				}
 			}
 		}
@@ -249,6 +290,8 @@ public class GenUtils {
 	 *            List of ALL stereotypes that must not be applied to a parameter
 	 * @param includedParameterStereotypes
 	 *            List of ANY stereotype that must be applied to a parameter (at least one)
+	 * @param bypassForInnerClassifiers
+	 *            Always include types that are inner classifiers
 	 * @return Collection of classifiers which are the types of the operation parameters
 	 */
 	public static EList<Classifier> getTypesViaOperations(Classifier current,
@@ -342,6 +385,8 @@ public class GenUtils {
 	 *            List of ALL stereotypes that must not be applied to a parameter
 	 * @param includedParameterStereotypes
 	 *            List of ANY stereotype that must be applied to a parameter (at least one)
+	 * @param bypassForInnerClassifiers
+	 *            Always include types that are inner classifiers
 	 * @return Collection of classifiers which are the types of the opaque behavior parameters
 	 */
 	public static EList<Classifier> getTypesViaOpaqueBehaviors(Classifier current,
@@ -437,13 +482,34 @@ public class GenUtils {
 	 *            List of ALL stereotypes that must no be applied
 	 * @param includedStereotypes
 	 *            List of ANY stereotype that must no be applied (at least one)
+	 * @param bypassForInnerClassifiers
+	 *            Always include types that are inner classifiers
+	 * @param noSharedAggregation
+	 *            Always exclude attributes with a shared aggregation kind
 	 * @return Collection of classifiers which are the types of the attributes of inner classifiers
 	 */
-	public static EList<Classifier> getInnerClassifierTypesViaAttributes(Classifier current, EList<Class<? extends EObject>> excludedStereotypes, EList<Class<? extends EObject>> includedStereotypes, boolean bypassForInnerClassifiers) {
+	public static EList<Classifier> getInnerClassifierTypesViaAttributes(Classifier current, EList<Class<? extends EObject>> excludedStereotypes, EList<Class<? extends EObject>> includedStereotypes, boolean bypassForInnerClassifiers, boolean noSharedAggregation) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 		for (Element ownedElement : current.allOwnedElements()) {
 			if (ownedElement instanceof Classifier) {
-				result.addAll(getTypesViaAttributes((Classifier) ownedElement, excludedStereotypes, includedStereotypes, bypassForInnerClassifiers));
+				result.addAll(getTypesViaAttributes((Classifier) ownedElement, excludedStereotypes, includedStereotypes, bypassForInnerClassifiers, noSharedAggregation));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve a list of types of attributes, of shared aggregation, of inner classifiers that belong to the current classifier.
+	 *
+	 * @param current
+	 *            Class on which the attributes are searched
+	 * @return Collection of classifiers which are the types of the attributes of inner classifiers
+	 */
+	public static EList<Classifier> getInnerClassifierTypesViaSharedAggregationAttributes(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
+				result.addAll(getTypesViaSharedAggregationAttributes((Classifier) ownedElement));
 			}
 		}
 		return result;
@@ -712,7 +778,7 @@ public class GenUtils {
 	 * @param classifier
 	 * @return
 	 */
-	private static void addFarthestOwnerType(Element element, EList<Classifier> result) {
+	public static void addFarthestOwnerType(Element element, EList<Classifier> result) {
 		if (element == null || result == null) {
 			return;
 		}

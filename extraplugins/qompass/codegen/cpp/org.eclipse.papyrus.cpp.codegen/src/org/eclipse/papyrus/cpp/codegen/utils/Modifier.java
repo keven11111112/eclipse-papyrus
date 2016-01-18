@@ -41,18 +41,19 @@ public class Modifier {
 
 	public static String modPtr(Element propertyOrParameter) {
 		// Pointer
-		String ptr = ""; //$NON-NLS-1$
+		String ptr; //$NON-NLS-1$
 		Ptr cppPtr = UMLUtil.getStereotypeApplication(propertyOrParameter, Ptr.class);
 		if (cppPtr != null) {
 			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*"; //$NON-NLS-1$
 		} else {
-			ptr = ""; //$NON-NLS-1$
-		}
-		if (propertyOrParameter instanceof Property) {
-			if (((Property) propertyOrParameter).getAggregation() == AggregationKind.SHARED_LITERAL) {
-				ptr += "*"; //$NON-NLS-1$
+			if (propertyOrParameter instanceof Property
+					&& ((Property) propertyOrParameter).getAggregation() == AggregationKind.SHARED_LITERAL) {
+				ptr = "*"; //$NON-NLS-1$
+			} else {
+				ptr = ""; //$NON-NLS-1$
 			}
 		}
+		
 		boolean ptrOrRef = GenUtils.hasStereotype(propertyOrParameter, Ref.class)
 				|| GenUtils.hasStereotype(propertyOrParameter, Ptr.class);
 

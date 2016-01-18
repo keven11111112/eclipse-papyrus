@@ -11,6 +11,7 @@
 
 package org.eclipse.papyrus.cpp.codegen.utils;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -22,6 +23,7 @@ import org.eclipse.papyrus.C_Cpp.NoCodeGen;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.C_Cpp.Ref;
 import org.eclipse.papyrus.codegen.base.GenUtils;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
@@ -29,6 +31,8 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PrimitiveType;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
 
 /**
  * A set of utility functions related to classes.
@@ -96,7 +100,7 @@ public class ClassUtils {
 		noCodeGenStereotypes.add(NoCodeGen.class);
 		
 		// class attributes dependencies (non-ptr and non-ref)
-		usedClasses.addAll(GenUtils.getTypesViaAttributes(currentClass, ptrRefStereotypes, null, true));
+		usedClasses.addAll(GenUtils.getTypesViaAttributes(currentClass, ptrRefStereotypes, null, true, true));
 		addEnumerationsAndPrimitiveTypes(usedClasses, GenUtils.getTypesViaAttributes(currentClass));
 		
 		// class inline operation parameters dependencies (non-ptr and non-ref)
@@ -104,7 +108,7 @@ public class ClassUtils {
 		addEnumerationsAndPrimitiveTypes(usedClasses, GenUtils.getTypesViaOperations(currentClass));
 		
 		// inner classifier attribute dependencies (non-ptr and non-ref)
-		usedClasses.addAll(GenUtils.getInnerClassifierTypesViaAttributes(currentClass, ptrRefStereotypes, null, true));
+		usedClasses.addAll(GenUtils.getInnerClassifierTypesViaAttributes(currentClass, ptrRefStereotypes, null, true, true));
 		addEnumerationsAndPrimitiveTypes(usedClasses, GenUtils.getInnerClassifierTypesViaAttributes(currentClass));
 		
 		// inner classifier operation parameters dependencies (non-ptr and non-ref)
@@ -169,19 +173,6 @@ public class ClassUtils {
 		return usedClasses;
 	}
 	
-	private static void addEnumerationsAndPrimitiveTypes(List<Classifier> usedClasses, List<Classifier> unfilteredClasses) {
-		if (usedClasses != null && unfilteredClasses != null) {
-			for (Classifier classifier : unfilteredClasses) {
-				if ((classifier instanceof Enumeration) || (classifier instanceof PrimitiveType)) {
-					if (classifier.getOwner() instanceof Package) {
-						usedClasses.add(classifier);
-					}
-				}
-			}
-		}
-		
-	}
-	
 	/**
 	 * Calculate the list of classifiers that needs to be declared in a header file
 	 *
@@ -202,16 +193,18 @@ public class ClassUtils {
 		EList<Class<? extends EObject>> noCodeGenStereotypes = new BasicEList<Class<? extends EObject>>();
 		noCodeGenStereotypes.add(NoCodeGen.class);
 		
-		// class attributes dependencies (only ptr and ref)
-		usedClasses.addAll(GenUtils.getTypesViaAttributes(currentClass, null, ptrRefStereotypes, true));
+		// class attributes dependencies (only ptr and ref and shared aggregation)
+		usedClasses.addAll(GenUtils.getTypesViaAttributes(currentClass, null, ptrRefStereotypes, true, false));
+		usedClasses.addAll(GenUtils.getTypesViaSharedAggregationAttributes(currentClass));
 		// operation parameters dependencies
 		usedClasses.addAll(GenUtils.getTypesViaOperations(currentClass));
 		usedClasses.removeAll(GenUtils.getTypesViaOperations(currentClass, noCodeGenStereotypes, inlineStereotypes, ptrRefStereotypes, null, false)); // Remove inline operation parameter types that have been included previously
 		// no-specification opaque behavior dependencies
 		usedClasses.addAll(GenUtils.getTypesViaOpaqueBehaviors(currentClass));
 		
-		// inner classifier attribute dependencies (only ptr and ref)
-		usedClasses.addAll(GenUtils.getInnerClassifierTypesViaAttributes(currentClass, null, ptrRefStereotypes, false));
+		// inner classifier attribute dependencies (only ptr and ref and shared aggregation)
+		usedClasses.addAll(GenUtils.getInnerClassifierTypesViaAttributes(currentClass, null, ptrRefStereotypes, false, false));
+		usedClasses.addAll(GenUtils.getInnerClassifierTypesViaSharedAggregationAttributes(currentClass));
 		// inner classifier parameters dependencies
 		usedClasses.addAll(GenUtils.getInnerClassifierTypesViaOperations(currentClass));
 		usedClasses.removeAll(GenUtils.getInnerClassifierTypesViaOperations(currentClass, noCodeGenStereotypes, inlineStereotypes, ptrRefStereotypes, null, false)); // Remove inner classifier inline operation parameter types that have been included previously
@@ -255,5 +248,18 @@ public class ClassUtils {
 		}
 		
 		return nestedOperations;
+	}
+	
+	private static void addEnumerationsAndPrimitiveTypes(List<Classifier> usedClasses, List<Classifier> unfilteredClasses) {
+		if (usedClasses != null && unfilteredClasses != null) {
+			for (Classifier classifier : unfilteredClasses) {
+				if ((classifier instanceof Enumeration) || (classifier instanceof PrimitiveType)) {
+					if (classifier.getOwner() instanceof Package) {
+						usedClasses.add(classifier);
+					}
+				}
+			}
+		}
+		
 	}
 }
