@@ -48,7 +48,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3033;
+	public static final String VISUAL_ID = "3033";
 
 	/**
 	 * @generated
@@ -76,9 +76,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -94,7 +92,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -126,21 +124,19 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	public TemplateFigure getPrimaryShape() {
-		return (TemplateFigure) primaryShape;
+		return (TemplateFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-
-		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
+		if(childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((TemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -148,9 +144,9 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
+		if(childEditPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
-			pane.remove(((TemplateSignatureTemplateParameterCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((TemplateSignatureTemplateParameterCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -161,7 +157,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -172,7 +168,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -183,7 +179,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
+		if(editPart instanceof TemplateSignatureTemplateParameterCompartmentEditPart) {
 			return getPrimaryShape().getTemplateParameterRectangle();
 		}
 		return getContentPane();
@@ -213,7 +209,6 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 		figure.add(shape);
 		contentPane = setupContentPane(shape);
 		return figure;
-
 	}
 
 	/**
@@ -225,7 +220,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -238,7 +233,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -249,7 +244,7 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -267,8 +262,8 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -277,16 +272,16 @@ public class TemplateSignatureEditPart extends AbstractBorderItemEditPart {
 	 */
 	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if (request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.ClassifierTemplateParameter_3031)) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.ClassifierTemplateParameter_3031)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.OperationTemplateParameter_3035)) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.OperationTemplateParameter_3035)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if (UMLElementTypes.isKindOf(type, UMLElementTypes.TemplateParameter_3016)) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.TemplateParameter_3016)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(TemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 		}

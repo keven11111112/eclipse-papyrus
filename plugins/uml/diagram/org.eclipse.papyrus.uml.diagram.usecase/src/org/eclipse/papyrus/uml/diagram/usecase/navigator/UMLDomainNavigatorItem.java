@@ -29,23 +29,22 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 */
 	static {
 		@SuppressWarnings("rawtypes")
-		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
+		final Class[] supportedTypes = new Class[]{ EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem) {
-					org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem) adaptableObject;
+				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem) {
+					org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem domainNavigatorItem = (org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem)adaptableObject;
 					EObject eObject = domainNavigatorItem.getEObject();
-					if (adapterType == EObject.class) {
+					if(adapterType == EObject.class) {
 						return eObject;
 					}
-					if (adapterType == IPropertySource.class) {
+					if(adapterType == IPropertySource.class) {
 						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
-
 				return null;
 			}
 
@@ -107,8 +106,8 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem) obj).getEObject()));
+		if(obj instanceof org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem) {
+			return EcoreUtil.getURI(getEObject()).equals(EcoreUtil.getURI(((org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLDomainNavigatorItem)obj).getEObject()));
 		}
 		return super.equals(obj);
 	}

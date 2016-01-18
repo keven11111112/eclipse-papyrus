@@ -278,7 +278,7 @@ public class ActivityParameterMaskEditPolicy extends AbstractMaskManagedEditPoli
 		if (ep instanceof ParameterNodeNameEditPart) {
 			return ep;
 		}
-		return ep.getChildBySemanticHint(Integer.toString(ParameterNodeNameEditPart.VISUAL_ID));
+		return ep.getChildBySemanticHint(ParameterNodeNameEditPart.VISUAL_ID);
 	}
 
 	/**

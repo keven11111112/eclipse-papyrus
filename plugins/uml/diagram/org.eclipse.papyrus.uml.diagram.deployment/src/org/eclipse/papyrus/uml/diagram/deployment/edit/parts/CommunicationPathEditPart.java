@@ -25,13 +25,12 @@ import org.eclipse.papyrus.uml.diagram.common.figure.edge.AssociationFigure;
 /**
 	 * @generated
 	 */
-public class CommunicationPathEditPart extends UMLConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class CommunicationPathEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4011;
+	public static final String VISUAL_ID = "4011";
 
 	/**
 	 * @generated
@@ -50,21 +49,15 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart
 		installEditPolicy(ShowHideLabelEditPolicy.SHOW_HIDE_LABEL_ROLE, new ShowHideLabelEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommunicationPathNameEditPart) {
-			((CommunicationPathNameEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAssociationNameLabel());
+		if(childEditPart instanceof CommunicationPathNameEditPart) {
+			((CommunicationPathNameEditPart)childEditPart).setLabel(getPrimaryShape().getAssociationNameLabel());
 		}
-		if (childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
-			((CommunicationPathAppliedStereotypeEditPart) childEditPart).setLabel(
-					getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
+			((CommunicationPathAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -73,7 +66,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -83,10 +76,10 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof CommunicationPathNameEditPart) {
+		if(childEditPart instanceof CommunicationPathNameEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
+		if(childEditPart instanceof CommunicationPathAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -96,7 +89,7 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -118,7 +111,6 @@ public class CommunicationPathEditPart extends UMLConnectionNodeEditPart
 	 * @generated
 	 */
 	public AssociationFigure getPrimaryShape() {
-		return (AssociationFigure) getFigure();
+		return (AssociationFigure)getFigure();
 	}
-
 }

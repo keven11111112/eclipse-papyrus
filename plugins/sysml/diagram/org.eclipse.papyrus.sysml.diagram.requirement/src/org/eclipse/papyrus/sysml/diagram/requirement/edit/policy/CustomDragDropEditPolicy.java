@@ -33,14 +33,14 @@ public class CustomDragDropEditPolicy extends RequirementDiagramDragDropEditPoli
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
-		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
+	protected Set<String> getDroppableElementVisualId() {
+		Set<String> droppableElementsVisualID = new HashSet<String>();
 		return droppableElementsVisualID;
 	}
 
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
-		String semanticHint = "-1";
+	public String getNodeVisualID(View containerView, EObject domainElement) {
+		String semanticHint = null;
 
 		// Fill the semantic hint during the drop when the top level is the Requirement Diagram
 		if (containerView instanceof Diagram) {
@@ -88,18 +88,18 @@ public class CustomDragDropEditPolicy extends RequirementDiagramDragDropEditPoli
 
 		// In the case of we want to Drag and drop something else than a package or a Requirement, if this is a NamedElement,
 		// we can fill the semanticHint with the NamedElement dedicated Value
-		if (semanticHint == "-1") {
+		if (semanticHint == null) {
 			if ((domainElement instanceof org.eclipse.uml2.uml.NamedElement)) {
 				semanticHint = ElementTypes.DEFAULT_NAMED_ELEMENT.getSemanticHint();
 			}
 		}
 
-		return new Integer(semanticHint);
+		return semanticHint;
 	}
 
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
-		String semanticHint = "-1";
+	public String getLinkWithClassVisualID(EObject domainElement) {
+		String semanticHint = null;
 
 		if (domainElement instanceof Abstraction) {
 			semanticHint = ElementTypes.ABSTRACTION.getSemanticHint();
@@ -116,7 +116,7 @@ public class CustomDragDropEditPolicy extends RequirementDiagramDragDropEditPoli
 			semanticHint = ElementTypes.REALIZATION.getSemanticHint();
 		}
 
-		return new Integer(semanticHint);
+		return semanticHint;
 
 	}
 

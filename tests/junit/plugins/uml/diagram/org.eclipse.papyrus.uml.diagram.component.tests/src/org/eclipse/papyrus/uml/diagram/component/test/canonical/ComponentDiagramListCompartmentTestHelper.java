@@ -27,7 +27,7 @@ public class ComponentDiagramListCompartmentTestHelper extends TestListCompartme
 	 * @return
 	 */
 	@Override
-	protected int getDefaultNamedElementVisualId() {
+	protected String getDefaultNamedElementVisualId() {
 		return DefaultNamedElementEditPart.VISUAL_ID;
 	}
 
@@ -38,7 +38,7 @@ public class ComponentDiagramListCompartmentTestHelper extends TestListCompartme
 	 * @return
 	 */
 	@Override
-	protected IElementType getElementType(int childVID) {
+	protected IElementType getElementType(String childVID) {
 		return UMLElementTypes.getElementType(childVID);
 	}
 
@@ -49,7 +49,7 @@ public class ComponentDiagramListCompartmentTestHelper extends TestListCompartme
 	 * @return
 	 */
 	@Override
-	protected int getVisualID(View view) {
+	protected String getVisualID(View view) {
 		return UMLVisualIDRegistry.getVisualID(view);
 	}
 }

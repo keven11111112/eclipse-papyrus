@@ -11,7 +11,7 @@
  */
 package org.eclipse.papyrus.uml.diagram.usecase.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.DefaultEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
@@ -25,8 +25,6 @@ public class UMLEditPartProvider extends DefaultEditPartProvider {
 	 * @generated
 	 */
 	public UMLEditPartProvider() {
-		super(new UMLEditPartFactory(),
-				UMLVisualIDRegistry.TYPED_INSTANCE,
-				UseCaseDiagramEditPart.MODEL_ID);
+		super(new UMLEditPartFactory(), UMLVisualIDRegistry.TYPED_INSTANCE, UseCaseDiagramEditPart.MODEL_ID);
 	}
 }

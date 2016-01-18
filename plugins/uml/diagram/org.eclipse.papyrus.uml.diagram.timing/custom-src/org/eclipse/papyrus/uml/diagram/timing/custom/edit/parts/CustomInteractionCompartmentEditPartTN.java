@@ -109,7 +109,7 @@ public class CustomInteractionCompartmentEditPartTN extends InteractionCompartme
 		final View stateDefinitionCompartment = ViewUtils.findStateDefinitionCompartmentView(lifelineView);
 		@SuppressWarnings("unchecked")
 		final EList<View> children = stateDefinitionCompartment.getChildren();
-		final String stateDefID = Integer.toString(StateDefinitionEditPart.VISUAL_ID);
+		final String stateDefID = StateDefinitionEditPart.VISUAL_ID;
 		for (final View view : children) {
 			if (stateDefID.equals(view.getType())) {
 				n++;

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.providers;
 
-import org.eclipse.gmf.tooling.runtime.providers.DefaultEditPartProvider;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.DefaultEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -27,8 +27,6 @@ public class UMLEditPartProvider extends DefaultEditPartProvider {
 	 * @generated
 	 */
 	public UMLEditPartProvider() {
-		super(new UMLEditPartFactory(),
-				UMLVisualIDRegistry.TYPED_INSTANCE,
-				ActivityDiagramEditPart.MODEL_ID);
+		super(new UMLEditPartFactory(), UMLVisualIDRegistry.TYPED_INSTANCE, ActivityDiagramEditPart.MODEL_ID);
 	}
 }

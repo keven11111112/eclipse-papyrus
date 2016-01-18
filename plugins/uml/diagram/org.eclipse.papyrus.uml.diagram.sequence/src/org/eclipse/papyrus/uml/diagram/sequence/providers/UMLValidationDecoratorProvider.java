@@ -26,21 +26,20 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	 */
 	@Override
 	public void createDecorators(IDecoratorTarget decoratorTarget) {
-		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart ||
-				editPart instanceof AbstractConnectionEditPart) {
+		EditPart editPart = (EditPart)decoratorTarget.getAdapter(EditPart.class);
+		if(editPart instanceof GraphicalEditPart || editPart instanceof AbstractConnectionEditPart) {
 			Object model = editPart.getModel();
-			if ((model instanceof View)) {
-				View view = (View) model;
-				if (!(view instanceof Edge) && !view.isSetElement()) {
+			if((model instanceof View)) {
+				View view = (View)model;
+				if(!(view instanceof Edge) && !view.isSetElement()) {
 					return;
 				}
 			}
 			EditDomain ed = editPart.getViewer().getEditDomain();
-			if (!(ed instanceof DiagramEditDomain)) {
+			if(!(ed instanceof DiagramEditDomain)) {
 				return;
 			}
-			if (((DiagramEditDomain) ed).getEditorPart() instanceof UMLDiagramEditor) {
+			if(((DiagramEditDomain)ed).getEditorPart() instanceof UMLDiagramEditor) {
 				decoratorTarget.installDecorator(KEY, new StatusDecorator(decoratorTarget));
 			}
 		}
@@ -51,12 +50,11 @@ public class UMLValidationDecoratorProvider extends ValidationDecoratorProvider 
 	 */
 	@Override
 	public boolean provides(IOperation operation) {
-		if (!(operation instanceof CreateDecoratorsOperation)) {
+		if(!(operation instanceof CreateDecoratorsOperation)) {
 			return false;
 		}
-		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		View view = (View) decoratorTarget.getAdapter(
-				View.class);
+		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation)operation).getDecoratorTarget();
+		View view = (View)decoratorTarget.getAdapter(View.class);
 		return view != null && PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view));
 	}
 }

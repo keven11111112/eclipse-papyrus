@@ -175,13 +175,16 @@ import xpt.navigator.Utils_qvtoimport xpt.CodeStyle
 	override getViewChildren(GenNavigator it) '''
 		«generatedMemberComment()»
 		private Object[] getViewChildren(org.eclipse.gmf.runtime.notation.View view, Object parentElement) {
-		   	switch («xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view)) {
-				«««	BEGIN: PapyrusGenCode
-				««« Restructuration of the case 
-		   		«FOR node : getNavigatorContainerNodes(it)»
-		   			«caseNavigatorNode(node, it)»	
-		   		«ENDFOR»
-		   		«««BEGIN: PapyrusGenCode
+			String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it.editorGen.diagram)»(view);
+			if (vid != null) { 
+			   	switch (vid) {
+					«««	BEGIN: PapyrusGenCode
+					««« Restructuration of the case 
+			   		«FOR node : getNavigatorContainerNodes(it)»
+			   			«caseNavigatorNode(node, it)»	
+			   		«ENDFOR»
+			   		«««BEGIN: PapyrusGenCode
+				}
 			}
 			return EMPTY_ARRAY;
 		}

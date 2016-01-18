@@ -49,7 +49,7 @@ public class TimeMarkElementFigure extends SequencePolylineShape {
 	 * @param newLocation
 	 *            the new location rectangle
 	 */
-	public void setCurrentSideOfFigure(int side, Rectangle newLocation, EditPart host, int labelVisualId) {
+	public void setCurrentSideOfFigure(int side, Rectangle newLocation, EditPart host, String labelVisualId) {
 		if (host == null || false == host instanceof IGraphicalEditPart) {
 			return;
 		}

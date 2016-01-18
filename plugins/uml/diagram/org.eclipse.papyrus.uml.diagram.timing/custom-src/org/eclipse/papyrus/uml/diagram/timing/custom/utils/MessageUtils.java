@@ -89,9 +89,9 @@ public final class MessageUtils {
 				|| requestElementType == UMLElementTypes.Message_47 || requestElementType == UMLElementTypes.Message_50 || requestElementType == UMLElementTypes.Message_53;
 	}
 
-	public static boolean isMessage(final int visualID) {
-		return visualID == MessageSyncEditPart.VISUAL_ID || visualID == MessageAsyncEditPart.VISUAL_ID || visualID == MessageReplyEditPart.VISUAL_ID || visualID == MessageCreateEditPart.VISUAL_ID || visualID == MessageDeleteEditPart.VISUAL_ID
-				|| visualID == MessageFoundEditPart.VISUAL_ID || visualID == MessageLostEditPart.VISUAL_ID;
+	public static boolean isMessage(final String visualID) {
+		return MessageSyncEditPart.VISUAL_ID.equals(visualID) || MessageAsyncEditPart.VISUAL_ID.equals(visualID) || MessageReplyEditPart.VISUAL_ID.equals(visualID) || MessageCreateEditPart.VISUAL_ID.equals(visualID) || MessageDeleteEditPart.VISUAL_ID.equals(visualID)
+				|| MessageFoundEditPart.VISUAL_ID.equals(visualID) || MessageLostEditPart.VISUAL_ID.equals(visualID);
 	}
 
 	public static MessageKind getMessageKind(final IElementType requestElementType) {
@@ -275,12 +275,12 @@ public final class MessageUtils {
 
 			// update the type of each View (the element has already been updated at this point)
 			for (final View view : views) {
-				final int type = UMLVisualIDRegistry.getVisualID(view);
+				final String type = UMLVisualIDRegistry.getVisualID(view);
 				if (!OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(type)) {
 					continue;
 				}
 
-				view.setType(Integer.toString(destruction ? DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID : MessageOccurrenceSpecificationEditPartCN.VISUAL_ID));
+				view.setType(destruction ? DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID : MessageOccurrenceSpecificationEditPartCN.VISUAL_ID);
 				/*
 				 * The element must be updated manually here, because since BasicDecorationNodeImpl#getElement changes
 				 * the element without changing the "set" flag, the UsageCrossReferencer used above doesn't consider the
@@ -290,10 +290,10 @@ public final class MessageUtils {
 				@SuppressWarnings("unchecked")
 				final List<View> children = new ArrayList<View>(view.getChildren());
 				for (final View childView : children) {
-					final int childType = UMLVisualIDRegistry.getVisualID(childView);
-					if (OccurrenceSpecificationLabelEditPart.VISUAL_ID == childType || MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID == childType) {
+					final String childType = UMLVisualIDRegistry.getVisualID(childView);
+					if (OccurrenceSpecificationLabelEditPart.VISUAL_ID.equals(childType) || MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID.equals(childType)) {
 						childView.setElement(messageOccurrenceSpecification);
-						childView.setType(Integer.toString(destruction ? DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID : MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID));
+						childView.setType(destruction ? DestructionOccurrenceSpecificationLabelEditPart.VISUAL_ID : MessageOccurrenceSpecificationLabelEditPart.VISUAL_ID);
 					}
 				}
 			}

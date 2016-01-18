@@ -64,7 +64,7 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 	/**
 	 * the compartment editpartID
 	 */
-	public int[] notOrphanNode = { PackagePackageableElementCompartmentEditPart.VISUAL_ID, PackagePackageableElementCompartmentEditPartCN.VISUAL_ID, ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID,
+	public String[] notOrphanNode = { PackagePackageableElementCompartmentEditPart.VISUAL_ID, PackagePackageableElementCompartmentEditPartCN.VISUAL_ID, ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID,
 			ProfilePackageableElementCompartmentEditPartTN.VISUAL_ID, StereotypeAttributeCompartmentEditPart.VISUAL_ID, StereotypeAttributeCompartmentEditPartCN.VISUAL_ID, StereotypeOperationCompartmentEditPart.VISUAL_ID,
 			StereotypeOperationCompartmentEditPartCN.VISUAL_ID, StereotypeOperationCompartmentEditPart.VISUAL_ID, ModelPackageableElementCompartmentEditPartCN.VISUAL_ID, ModelPackageableElementCompartmentEditPartTN.VISUAL_ID,
 			EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID, EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID, DataTypeAttributeCompartmentEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPartCN.VISUAL_ID,
@@ -73,10 +73,10 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 	/**
 	 * the metclass editpartID
 	 */
-	public int[] metaclassNode = { MetaclassEditPart.VISUAL_ID, MetaclassEditPartCN.VISUAL_ID };
+	public String[] metaclassNode = { MetaclassEditPart.VISUAL_ID, MetaclassEditPartCN.VISUAL_ID };
 
 	/** array list of visual id that correspond to views that are not linked to semantic elements. For example, comment links */
-	private ArrayList<Integer> metaclassNodeList = new ArrayList<Integer>();
+	private ArrayList<String> metaclassNodeList = new ArrayList<String>();
 
 	public RemoveOrphanViewPolicy() {
 		super();
@@ -88,10 +88,10 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 	 * @param notOrphanVisualID
 	 * @param metaclassNodeID
 	 */
-	public void init(int[] notOrphanVisualID, int[] metaclassNodeID) {
+	public void init(String[] notOrphanVisualID, String[] metaclassNodeID) {
 		init(notOrphanNode);
 		for (int i = 0; i < metaclassNodeID.length; i++) {
-			metaclassNodeList.add(new Integer(metaclassNodeID[i]));
+			metaclassNodeList.add(metaclassNodeID[i]);
 		}
 	}
 
@@ -100,25 +100,23 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 	@Override
 	protected boolean isOrphaned(View view) {
 		String semanticHint = view.getType();
-		if (isInteger(semanticHint)) {
-			if ((metaclassNodeList.contains(new Integer(semanticHint)))) {
-				String metaclassName = null;
-				EObject el = view.getElement();
-				if (el != null && el instanceof Class) {
-					metaclassName = ((Class) el).getName();
-				}
-				/**
-				 * get the root profile
-				 */
-				Profile rootProfile = DiagramHelper.getTopProfile(view);
-				EList<ElementImport> importedElement = rootProfile.getElementImports();
-				for (ElementImport elementImport : importedElement) {
-					if (elementImport.getAlias().equals(metaclassName)) {
-						return false;
-					}
-				}
-				return true;
+		if ((metaclassNodeList.contains(semanticHint))) {
+			String metaclassName = null;
+			EObject el = view.getElement();
+			if (el != null && el instanceof Class) {
+				metaclassName = ((Class) el).getName();
 			}
+			/**
+			 * get the root profile
+			 */
+			Profile rootProfile = DiagramHelper.getTopProfile(view);
+			EList<ElementImport> importedElement = rootProfile.getElementImports();
+			for (ElementImport elementImport : importedElement) {
+				if (elementImport.getAlias().equals(metaclassName)) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 		return super.isOrphaned(view);

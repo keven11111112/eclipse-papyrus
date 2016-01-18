@@ -120,10 +120,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
-		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
-			if (view instanceof View) {
-				Integer id = new Integer(UMLVisualIDRegistry.getVisualID((View) view));
+		if(request instanceof ReconnectRequest) {
+			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
+			if(view instanceof View) {
+				String id = UMLVisualIDRegistry.getVisualID((View)view);
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 				request.getExtendedData().put(GRAPHICAL_RECONNECTED_EDGE, view);
 			}
@@ -136,9 +136,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 *
 	 * @generated
 	 */
-	protected int getVisualID(IEditCommandRequest request) {
-		Object id = request.getParameter(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
+	protected String getVisualID(IEditCommandRequest request) {
+		return (String)request.getParameter(VISUAL_ID_KEY);
 	}
 
 	/**
@@ -149,8 +148,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
 		semanticCommand = getEditHelperCommand(completedRequest, semanticCommand);
-		if (completedRequest instanceof DestroyRequest) {
-			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
+		if(completedRequest instanceof DestroyRequest) {
+			DestroyRequest destroyRequest = (DestroyRequest)completedRequest;
 			return shouldProceed(destroyRequest) ? addDeleteViewCommand(semanticCommand, destroyRequest) : null;
 		}
 		return semanticCommand;
@@ -160,7 +159,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
-		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View) getHost().getModel()));
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
@@ -169,26 +168,26 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		// disable the request if necessary
-		if (requestIsDisabled(request)) {
+		if(requestIsDisabled(request)) {
 			return null;
 		}
 		// return command for reorient, as this has already been computed through the edit helpers
-		if (request instanceof ReorientRelationshipRequest) {
+		if(request instanceof ReorientRelationshipRequest) {
 			return editPolicyCommand;
 		}
 		// generated code
-		if (editPolicyCommand != null) {
-			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
+		if(editPolicyCommand != null) {
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		if (requestContextElementType != null) {
+		if(requestContextElementType != null) {
 			request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 			ICommand command = requestContextElementType.getEditCommand(request);
 			request.setParameter(GeneratedEditHelperBase.EDIT_POLICY_COMMAND, null);
 			request.setParameter(GeneratedEditHelperBase.CONTEXT_ELEMENT_TYPE, null);
-			if (command != null) {
-				if (!(command instanceof CompositeTransactionalCommand)) {
+			if(command != null) {
+				if(!(command instanceof CompositeTransactionalCommand)) {
 					command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
 				}
 				return new ICommandProxy(command);
@@ -206,10 +205,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated NOT
 	 */
 	private boolean requestIsDisabled(IEditCommandRequest request) {
-		if (request instanceof MoveRequest) {
+		if(request instanceof MoveRequest) {
 			// prevent moving a constraint to another parent, since the representation would not be the same
-			for (Object element : ((MoveRequest) request).getElementsToMove().keySet()) {
-				if (element instanceof Constraint) {
+			for(Object element : ((MoveRequest)request).getElementsToMove().keySet()) {
+				if(element instanceof Constraint) {
 					return true;
 				}
 			}
@@ -229,28 +228,28 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
-		if (req instanceof CreateRelationshipRequest) {
-			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
-		} else if (req instanceof CreateElementRequest) {
-			return getCreateCommand((CreateElementRequest) req);
-		} else if (req instanceof ConfigureRequest) {
-			return getConfigureCommand((ConfigureRequest) req);
-		} else if (req instanceof DestroyElementRequest) {
-			return getDestroyElementCommand((DestroyElementRequest) req);
-		} else if (req instanceof DestroyReferenceRequest) {
-			return getDestroyReferenceCommand((DestroyReferenceRequest) req);
-		} else if (req instanceof DuplicateElementsRequest) {
-			return getDuplicateCommand((DuplicateElementsRequest) req);
-		} else if (req instanceof GetEditContextRequest) {
-			return getEditContextCommand((GetEditContextRequest) req);
-		} else if (req instanceof MoveRequest) {
-			return getMoveCommand((MoveRequest) req);
-		} else if (req instanceof ReorientReferenceRelationshipRequest) {
-			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest) req);
-		} else if (req instanceof ReorientRelationshipRequest) {
-			return getReorientRelationshipCommand((ReorientRelationshipRequest) req);
-		} else if (req instanceof SetRequest) {
-			return getSetCommand((SetRequest) req);
+		if(req instanceof CreateRelationshipRequest) {
+			return getCreateRelationshipCommand((CreateRelationshipRequest)req);
+		} else if(req instanceof CreateElementRequest) {
+			return getCreateCommand((CreateElementRequest)req);
+		} else if(req instanceof ConfigureRequest) {
+			return getConfigureCommand((ConfigureRequest)req);
+		} else if(req instanceof DestroyElementRequest) {
+			return getDestroyElementCommand((DestroyElementRequest)req);
+		} else if(req instanceof DestroyReferenceRequest) {
+			return getDestroyReferenceCommand((DestroyReferenceRequest)req);
+		} else if(req instanceof DuplicateElementsRequest) {
+			return getDuplicateCommand((DuplicateElementsRequest)req);
+		} else if(req instanceof GetEditContextRequest) {
+			return getEditContextCommand((GetEditContextRequest)req);
+		} else if(req instanceof MoveRequest) {
+			return getMoveCommand((MoveRequest)req);
+		} else if(req instanceof ReorientReferenceRelationshipRequest) {
+			return getReorientReferenceRelationshipCommand((ReorientReferenceRelationshipRequest)req);
+		} else if(req instanceof ReorientRelationshipRequest) {
+			return getReorientRelationshipCommand((ReorientRelationshipRequest)req);
+		} else if(req instanceof SetRequest) {
+			return getSetCommand((SetRequest)req);
 		}
 		return null;
 	}
@@ -266,18 +265,15 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
-		if (req.getElementType() != null) {
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart)getHost()).resolveSemanticElement());
+		if(req.getElementType() != null) {
 			commandService = ElementEditServiceUtils.getCommandProvider(req.getElementType());
 		}
-
-		if (commandService == null) {
+		if(commandService == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-
 		ICommand semanticCommand = commandService.getEditCommand(req);
-
-		if ((semanticCommand != null) && (semanticCommand.canExecute())) {
+		if((semanticCommand != null) && (semanticCommand.canExecute())) {
 			return getGEFWrapper(semanticCommand);
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -288,11 +284,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if (requestElementType instanceof IElementType) {
+		if(requestElementType instanceof IElementType) {
 			IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
-			if (commandProvider != null) {
+			if(commandProvider != null) {
 				ICommand command = commandProvider.getEditCommand(req);
-				if (command != null && command.canExecute()) {
+				if(command != null && command.canExecute()) {
 					return new ICommandProxy(command);
 				}
 			}
@@ -305,7 +301,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
-		if (provider == null) {
+		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Retrieve create command from the Element Edit service
@@ -318,7 +314,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
-		if (provider == null) {
+		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Retrieve create command from the Element Edit service
@@ -331,7 +327,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
-		if (provider == null) {
+		if(provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		// Retrieve create command from the Element Edit service
@@ -344,7 +340,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected ICommand getSemanticCreationCommand(CreateElementRequest req) {
 		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getContainer());
-		if (commandService == null) {
+		if(commandService == null) {
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}
 		return commandService.getEditCommand(req);
@@ -390,11 +386,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 		EObject targetCEObject = req.getTargetContainer();
-		if (targetCEObject != null) {
+		if(targetCEObject != null) {
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(targetCEObject);
-			if (provider != null) {
+			if(provider != null) {
 				ICommand moveCommand = provider.getEditCommand(req);
-				if (moveCommand != null) {
+				if(moveCommand != null) {
 					return new ICommandProxy(moveCommand);
 				}
 			}
@@ -402,7 +398,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		} else {
 			return getGEFWrapper(new MoveElementsCommand(req));
 		}
-
 	}
 
 	/**
@@ -432,7 +427,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+		return ((IGraphicalEditPart)getHost()).getEditingDomain();
 	}
 
 	/**
@@ -442,9 +437,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
 		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for (Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
-			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+		for(Iterator<?> it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+			View nextView = (View)it.next();
+			if(nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
 			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
@@ -456,7 +451,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	public static LinkConstraints getLinkConstraints() {
 		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance().getLinkConstraints();
-		if (cached == null) {
+		if(cached == null) {
 			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
 		}
 		return cached;
@@ -477,90 +472,75 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
-			if (source != null) {
-				if (source.getLocalPreconditions()
-						.contains(target)) {
+			if(source != null) {
+				if(source.getLocalPreconditions().contains(target)) {
 					return false;
 				}
-				if (source == target) {
+				if(source == target) {
 					return false;
 				}
 			}
-
-			return canExistActionLocalPrecondition_4001(
-					source, target);
+			return canExistActionLocalPrecondition_4001(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
-			if (source != null) {
-				if (source.getLocalPostconditions()
-						.contains(target)) {
+			if(source != null) {
+				if(source.getLocalPostconditions().contains(target)) {
 					return false;
 				}
-				if (source == target) {
+				if(source == target) {
 					return false;
 				}
 			}
-
-			return canExistActionLocalPostcondition_4002(
-					source, target);
+			return canExistActionLocalPostcondition_4002(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistObjectFlow_4003(
-					container, null, source, target);
+			return canExistObjectFlow_4003(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistControlFlow_4004(
-					container, null, source, target);
+			return canExistControlFlow_4004(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
-			return canExistExceptionHandler_4005(
-					container, null, source, target);
+			return canExistExceptionHandler_4005(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateCommentAnnotatedElement_4006(Comment source, Element target) {
-			if (source != null) {
-				if (source.getAnnotatedElements()
-						.contains(target)) {
+			if(source != null) {
+				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
-
-			return canExistCommentAnnotatedElement_4006(
-					source, target);
+			return canExistCommentAnnotatedElement_4006(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
 		public boolean canCreateConstraintConstrainedElement_4007(Constraint source, Element target) {
-			if (source != null) {
-				if (source.getConstrainedElements()
-						.contains(target)) {
+			if(source != null) {
+				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
-
-			return canExistConstraintConstrainedElement_4007(
-					source, target);
+			return canExistConstraintConstrainedElement_4007(source, target);
 		}
 
 		/**
@@ -584,34 +564,34 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistObjectFlow_4003(Activity container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
 			try {
-				if (source instanceof Action) {
+				if(source instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
 					// rule workaround by addition of pins in case of Action
-					if (!CustomObjectFlowEditHelper.canStartNewObjectFlow((Action) source)) {
+					if(!CustomObjectFlowEditHelper.canStartNewObjectFlow((Action)source)) {
 						return false;
 					}
 				}
-				if (source instanceof InputPin) {
+				if(source instanceof InputPin) {
 					// rule validateInputPin_validateOutgoingEdgesStructuredOnly
-					if (source.getOwner() instanceof StructuredActivityNode) {
-						if (target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+					if(source.getOwner() instanceof StructuredActivityNode) {
+						if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
 							return false;
 						}
 					} else {
 						return false;
 					}
 				}
-				if (source instanceof InitialNode) {
+				if(source instanceof InitialNode) {
 					// rule validateInitialNode_validateControlEdges
 					return false;
 				}
-				if (source instanceof FinalNode) {
+				if(source instanceof FinalNode) {
 					// rule validateFinalNode_validateNoOutgoingEdges
 					return false;
 				}
-				if (source instanceof JoinNode) {
+				if(source instanceof JoinNode) {
 					// rule validateJoinNode_validateOneOutgoingEdge
-					if (!source.getOutgoings().isEmpty()) {
+					if(!source.getOutgoings().isEmpty()) {
 						return false;
 					}
 					/*
@@ -620,105 +600,105 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					 * We let the possibility that the user intends to add an incoming ObjectFlow later.
 					 */
 				}
-				if (source instanceof ForkNode) {
+				if(source instanceof ForkNode) {
 					// rule validateForkNode_validateEdges on source Fork node
 					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
-				if (source instanceof MergeNode) {
+				if(source instanceof MergeNode) {
 					// rule validateMergeNode_validateOneOutgoingEdge
-					if (!source.getOutgoings().isEmpty()) {
+					if(!source.getOutgoings().isEmpty()) {
 						return false;
 					}
 					// rule validateMergeNode_validateEdges on source Merge node
 					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
-				if (source instanceof DecisionNode) {
+				if(source instanceof DecisionNode) {
 					// rule validateDecisionNode_validateEdges on source Decision node
 					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
-				if (source instanceof ActivityParameterNode) {
+				if(source instanceof ActivityParameterNode) {
 					// rule validateActivityParameterNode_validateIncomingOrOutgoing
 					EList<ActivityEdge> incomings = source.getIncomings();
-					if (!incomings.isEmpty()) {
+					if(!incomings.isEmpty()) {
 						return false;
 					}
 				}
-				if (target instanceof Action) {
+				if(target instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
 					// rule workaround by addition of pins in case of Action
-					if (!CustomObjectFlowEditHelper.canEndNewObjectFlow((Action) target)) {
+					if(!CustomObjectFlowEditHelper.canEndNewObjectFlow((Action)target)) {
 						return false;
 					}
 				}
-				if (target instanceof OutputPin) {
+				if(target instanceof OutputPin) {
 					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
-					if (target.getOwner() instanceof StructuredActivityNode) {
-						if (source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+					if(target.getOwner() instanceof StructuredActivityNode) {
+						if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
 							return false;
 						}
 					} else {
 						return false;
 					}
 				}
-				if (target instanceof InitialNode) {
+				if(target instanceof InitialNode) {
 					// rule validateInitialNode_validateNoIncomingEdges
 					return false;
 				}
-				if (target instanceof JoinNode) {
+				if(target instanceof JoinNode) {
 					// rule validateJoinNode_validateIncomingObjectFlow
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null) {
+					if(outgoingControlFlow != null) {
 						// the outgoing edge is a ControlFlow which means there must be no incoming ObjectFlow
 						return false;
 					}
 				}
-				if (target instanceof ForkNode) {
+				if(target instanceof ForkNode) {
 					// rule validateForkNode_validateOneIncomingEdge
-					if (!target.getIncomings().isEmpty()) {
+					if(!target.getIncomings().isEmpty()) {
 						return false;
 					}
 					// rule validateForkNode_validateEdges on target Fork node
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
-				if (target instanceof MergeNode) {
+				if(target instanceof MergeNode) {
 					// rule validateMergeNode_validateEdges on target Merge node
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						// there is a ControlFlow which means there must be no ObjectFlow
 						return false;
 					}
 				}
-				if (target instanceof DecisionNode) {
+				if(target instanceof DecisionNode) {
 					// rule validateDecisionNode_validateIncomingOutgoingEdges
-					if (target.getIncomings().size() >= 2) {
+					if(target.getIncomings().size() >= 2) {
 						// no more than two incoming edges
 						return false;
 					}
 					// rule validateDecisionNode_validateEdges on target Decision node
 					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
 					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
-					if (outgoingControlFlow != null || incomingControlFlow != null) {
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
 						/*
 						 * There is a ControlFlow which means there must be no
 						 * ObjectFlow but the decision flow itself.
@@ -726,16 +706,16 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						 * able to select the decision flow among existing
 						 * input flows.
 						 */
-						if (target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow()) != null) {
+						if(target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow()) != null) {
 							// there is already an object flow which is intended to become the decision flow
 							return false;
 						}
 					}
 				}
-				if (target instanceof ActivityParameterNode) {
+				if(target instanceof ActivityParameterNode) {
 					// rule validateActivityParameterNode_validateIncomingOrOutgoing
 					EList<ActivityEdge> outgoings = target.getOutgoings();
-					if (!outgoings.isEmpty()) {
+					if(!outgoings.isEmpty()) {
 						return false;
 					}
 				}
@@ -751,132 +731,132 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canExistControlFlow_4004(Activity container, ControlFlow linkInstance, ActivityNode source, ActivityNode target) {
 			try {
-				if (source instanceof ObjectNode) {
-					if (!((ObjectNode) source).isControlType()) {
+				if(source instanceof ObjectNode) {
+					if(!((ObjectNode)source).isControlType()) {
 						// rule validateControlFlow_validateObjectNodes
 						return false;
 					}
 				}
-				if (source instanceof InputPin) {
+				if(source instanceof InputPin) {
 					// rule validateInputPin_validateOutgoingEdgesStructuredOnly
-					if (source.getOwner() instanceof StructuredActivityNode) {
-						if (target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+					if(source.getOwner() instanceof StructuredActivityNode) {
+						if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
 							return false;
 						}
 					} else {
 						return false;
 					}
 				}
-				if (source instanceof FinalNode) {
+				if(source instanceof FinalNode) {
 					// rule validateFinalNode_validateNoOutgoingEdges
 					return false;
 				}
-				if (source instanceof JoinNode) {
+				if(source instanceof JoinNode) {
 					// rule validateJoinNode_validateOneOutgoingEdge
-					if (!source.getOutgoings().isEmpty()) {
+					if(!source.getOutgoings().isEmpty()) {
 						return false;
 					}
 					// rule validateJoinNode_validateIncomingObjectFlow
 					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
-					if (incomingObjectFlow != null) {
+					if(incomingObjectFlow != null) {
 						// the outgoing edge must be an ObjectFlow
 						return false;
 					}
 				}
-				if (source instanceof ForkNode) {
+				if(source instanceof ForkNode) {
 					// rule validateForkNode_validateEdges on source Fork node
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
-					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
-				if (source instanceof MergeNode) {
+				if(source instanceof MergeNode) {
 					//rule validateMergeNode_validateOneOutgoingEdge
-					if (!source.getOutgoings().isEmpty()) {
+					if(!source.getOutgoings().isEmpty()) {
 						return false;
 					}
 					// rule validateMergeNode_validateEdges on source Merge node
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
-					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
-				if (source instanceof DecisionNode) {
+				if(source instanceof DecisionNode) {
 					// rule validateDecisionNode_validateEdges on source Decision node
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					int incomingObjectFlowNumber = 0;
-					for (ActivityEdge incomingEdge : source.getIncomings()) {
-						if (incomingEdge instanceof ObjectFlow) {
+					for(ActivityEdge incomingEdge : source.getIncomings()) {
+						if(incomingEdge instanceof ObjectFlow) {
 							incomingObjectFlowNumber++;
 						}
 					}
-					if (outgoingObjectFlow != null || incomingObjectFlowNumber > 1) {
+					if(outgoingObjectFlow != null || incomingObjectFlowNumber > 1) {
 						// there is an ObjectFlow (not intended for decisionInputFlow) which means there must be no ControlFlow
 						return false;
 					}
 				}
-				if (target instanceof ObjectNode) {
-					if (!((ObjectNode) target).isControlType()) {
+				if(target instanceof ObjectNode) {
+					if(!((ObjectNode)target).isControlType()) {
 						// rule validateControlFlow_validateObjectNodes
 						return false;
 					}
 				}
-				if (target instanceof OutputPin) {
+				if(target instanceof OutputPin) {
 					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
-					if (target.getOwner() instanceof StructuredActivityNode) {
-						if (source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+					if(target.getOwner() instanceof StructuredActivityNode) {
+						if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
 							return false;
 						}
 					} else {
 						return false;
 					}
 				}
-				if (target instanceof InitialNode) {
+				if(target instanceof InitialNode) {
 					// rule validateInitialNode_validateNoIncomingEdges
 					return false;
 				}
-				if (target instanceof ForkNode) {
+				if(target instanceof ForkNode) {
 					// rule validateForkNode_validateOneIncomingEdge
-					if (!target.getIncomings().isEmpty()) {
+					if(!target.getIncomings().isEmpty()) {
 						return false;
 					}
 					// rule validateForkNode_validateEdges on target Fork node
 					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
-					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
-				if (target instanceof MergeNode) {
+				if(target instanceof MergeNode) {
 					// rule validateMergeNode_validateEdges on target Merge node
 					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
-					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}
 				}
-				if (target instanceof DecisionNode) {
+				if(target instanceof DecisionNode) {
 					// rule validateDecisionNode_validateIncomingOutgoingEdges
-					if (target.getIncomings().size() >= 2) {
+					if(target.getIncomings().size() >= 2) {
 						// no more than two incoming edges
 						return false;
 					}
 					// rule validateDecisionNode_validateEdges on target Decision node
 					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
 					ActivityEdge incomingObjectFlow = null;
-					for (ActivityEdge incomingEdge : target.getIncomings()) {
+					for(ActivityEdge incomingEdge : target.getIncomings()) {
 						// filter the decision flow
-						if (incomingEdge instanceof ObjectFlow && incomingEdge != ((DecisionNode) target).getDecisionInputFlow()) {
+						if(incomingEdge instanceof ObjectFlow && incomingEdge != ((DecisionNode)target).getDecisionInputFlow()) {
 							incomingObjectFlow = incomingEdge;
 						}
 					}
-					if (outgoingObjectFlow != null || incomingObjectFlow != null) {
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
 						// there is an ObjectFlow which means there must be no ControlFlow
 						return false;
 					}

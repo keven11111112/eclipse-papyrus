@@ -63,7 +63,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2016;
+	public static final String VISUAL_ID = "2016";
 
 	/**
 	 * @generated
@@ -88,9 +88,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -110,21 +108,24 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case DeploymentSpecAsNestedArtifactFloatingLabelEditPart.VISUAL_ID:
+						return new BorderItemSelectionEditPolicy() {
 
-						@Override
-						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
+							@Override
+							protected List<?> createSelectionHandles() {
+								MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+								mh.setBorder(null);
+								return Collections.singletonList(mh);
+							}
+						};
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -143,7 +144,6 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 		return lep;
 	}
 
-
 	/**
 	*Papyrus codeGen
 	*@generated
@@ -153,20 +153,17 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (false == notifier instanceof Edge
-					&& false == notifier instanceof BasicCompartment) {
-				if (modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View)getModel()).getChildren();
+			if(false == notifier instanceof Edge && false == notifier instanceof BasicCompartment) {
+				if(modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
-
 	}
-
 
 	/**
 	 * @generated
@@ -180,19 +177,17 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	public DeploymentSpecificationFigure getPrimaryShape() {
-		return (DeploymentSpecificationFigure) primaryShape;
+		return (DeploymentSpecificationFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DeploymentSpecAsNestedArtifactNameEditPart) {
-			((DeploymentSpecAsNestedArtifactNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof DeploymentSpecAsNestedArtifactNameEditPart) {
+			((DeploymentSpecAsNestedArtifactNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -200,7 +195,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof DeploymentSpecAsNestedArtifactNameEditPart) {
+		if(childEditPart instanceof DeploymentSpecAsNestedArtifactNameEditPart) {
 			return true;
 		}
 		return false;
@@ -210,7 +205,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -220,7 +215,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -230,7 +225,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -240,7 +235,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof DeploymentSpecAsNestedArtifactFloatingLabelEditPart) {
+		if(borderItemEditPart instanceof DeploymentSpecAsNestedArtifactFloatingLabelEditPart) {
 			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(-20, -20));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
@@ -254,7 +249,6 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 		return result;
 	}
 
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -265,7 +259,6 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 */
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -275,7 +268,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -287,7 +280,7 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -297,11 +290,10 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -314,8 +306,8 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	 * @generated
 	 */
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 
@@ -325,9 +317,4 @@ public class DeploymentSpecAsNestedArtifactEditPart extends RoundedCompartmentEd
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DeploymentSpecAsNestedArtifactNameEditPart.VISUAL_ID));
 	}
-
-
-
-
-
 }

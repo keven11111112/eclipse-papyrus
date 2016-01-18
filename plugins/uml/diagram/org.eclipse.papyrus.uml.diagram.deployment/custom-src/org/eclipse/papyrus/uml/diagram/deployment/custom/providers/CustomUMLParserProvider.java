@@ -17,7 +17,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	@Override
-	protected IParser getParser(int visualID) {
+	protected IParser getParser(String visualID) {
 		switch (visualID) {
 		case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser("deployment"); //$NON-NLS-1$

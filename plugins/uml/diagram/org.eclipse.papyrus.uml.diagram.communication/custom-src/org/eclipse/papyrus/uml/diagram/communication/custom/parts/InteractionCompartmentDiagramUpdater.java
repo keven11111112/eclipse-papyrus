@@ -52,24 +52,24 @@ public class InteractionCompartmentDiagramUpdater implements ICustomDiagramUpdat
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getLifelines().iterator(); it.hasNext();) {
 			Lifeline childElement = (Lifeline) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == LifelineEditPartCN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (LifelineEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
 		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == CommentEditPartCN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (CommentEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 		}
 		for (Iterator<?> it = modelElement.getOwnedRules().iterator(); it.hasNext();) {
 			Constraint childElement = (Constraint) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == ConstraintEditPartCN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (ConstraintEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -77,12 +77,12 @@ public class InteractionCompartmentDiagramUpdater implements ICustomDiagramUpdat
 		// Added ".getNearestPackage()"
 		for (Iterator<?> it = modelElement.getNearestPackage().getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == TimeObservationEditPartCN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (TimeObservationEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == DurationObservationEditPartCN.VISUAL_ID) {
+			if (DurationObservationEditPartCN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}

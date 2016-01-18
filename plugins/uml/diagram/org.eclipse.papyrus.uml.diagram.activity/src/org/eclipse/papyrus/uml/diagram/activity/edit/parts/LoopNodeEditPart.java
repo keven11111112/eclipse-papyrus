@@ -56,7 +56,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3071;
+	public static final String VISUAL_ID = "3071";
 
 	/**
 	 * @generated
@@ -83,16 +83,12 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.LoopNodeCanonicalEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE,
-				new OpenDiagramEditPolicy());
+		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -107,7 +103,6 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -118,18 +113,21 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View) child.getModel();
-				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
-				case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
-				case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
-					return new BorderItemResizableEditPolicy();
+				View childView = (View)child.getModel();
+				String vid = UMLVisualIDRegistry.getVisualID(childView);
+				if(vid != null) {
+					switch(vid) {
+					case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+					case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+					case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+					case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
+					case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
+					case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+						return new BorderItemResizableEditPolicy();
+					}
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -161,86 +159,59 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public StructuredActivityNodeFigure getPrimaryShape() {
-		return (StructuredActivityNodeFigure) primaryShape;
+		return (StructuredActivityNodeFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof LoopNodeKeywordEditPart) {
-			((LoopNodeKeywordEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof LoopNodeKeywordEditPart) {
+			((LoopNodeKeywordEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-		if (childEditPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
+		if(childEditPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((LoopNodeStructuredActivityNodeContentCompartmentEditPart) childEditPart).getFigure());
+			pane.add(((LoopNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
+		if(childEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((InputPinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInLoopNodeAsVariableEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
+		if(childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ValuePinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInLoopNodeAsVariableEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
+		if(childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
-			getBorderedFigure().getBorderItemContainer().add(((ActionPinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInLoopNodeAsVariableEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+		if(childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsBodyOutputEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsBodyOutputEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+		if(childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsLoopVariableEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsLoopVariableEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 		//Papyrus Gencode :Affixed Pin locator for Actions
-		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+		if(childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsResultEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
 		return false;
 	}
 
@@ -248,36 +219,36 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof LoopNodeKeywordEditPart) {
+		if(childEditPart instanceof LoopNodeKeywordEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
+		if(childEditPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStructuredActivityNodeCompartment();
-			pane.remove(((LoopNodeStructuredActivityNodeContentCompartmentEditPart) childEditPart).getFigure());
+			pane.remove(((LoopNodeStructuredActivityNodeContentCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((InputPinInLoopNodeAsVariableEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof InputPinInLoopNodeAsVariableEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInLoopNodeAsVariableEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInLoopNodeAsVariableEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInLoopNodeAsVariableEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInLoopNodeAsVariableEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInLoopNodeAsVariableEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsBodyOutputEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsBodyOutputEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsLoopVariableEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsLoopVariableEditPart)childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure());
+		if(childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsResultEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -288,7 +259,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -299,7 +270,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -310,10 +281,10 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
+		if(editPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
 			return getPrimaryShape().getStructuredActivityNodeCompartment();
 		}
-		if (editPart instanceof IBorderItemEditPart) {
+		if(editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -339,7 +310,6 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -352,7 +322,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -365,7 +335,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -376,7 +346,7 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -394,8 +364,8 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.diagram.timing.part.UMLVisualIDRegistry;
 
 public class EditPartUtils {
 
-	public static EditPart findFirstChildEditPartWithId(final EditPart editPart, final int visualId) {
+	public static EditPart findFirstChildEditPartWithId(final EditPart editPart, final String visualId) {
 		final List<? extends EditPart> result = findChildEditPartsWithId(editPart, visualId);
 		if (result.isEmpty()) {
 			return null;
@@ -35,17 +35,17 @@ public class EditPartUtils {
 		return result.get(0);
 	}
 
-	public static List<? extends EditPart> findChildEditPartsWithId(final EditPart editPart, final int visualId) {
+	public static List<? extends EditPart> findChildEditPartsWithId(final EditPart editPart, final String visualId) {
 		final List<EditPart> editParts = new ArrayList<EditPart>();
 		internalFindChildEditPartsWithId(editPart, visualId, editParts);
 		return editParts;
 	}
 
-	private static void internalFindChildEditPartsWithId(final EditPart editPart, final int visualId, final List<EditPart> result) {
+	private static void internalFindChildEditPartsWithId(final EditPart editPart, final String visualId, final List<EditPart> result) {
 		final Object model = editPart.getModel();
 		if (model instanceof View) {
 			final View view = (View) model;
-			if (UMLVisualIDRegistry.getVisualID(view) == visualId) {
+			if (UMLVisualIDRegistry.getVisualID(view).equals(visualId)) {
 				result.add(editPart);
 			}
 		}
@@ -56,13 +56,13 @@ public class EditPartUtils {
 		}
 	}
 
-	public static EditPart findParentEditPartWithId(final EditPart editPart, final int visualId) {
+	public static EditPart findParentEditPartWithId(final EditPart editPart, final String visualId) {
 		EditPart parent = editPart;
 		while (parent != null) {
 			final Object model = parent.getModel();
 			if (model instanceof View) {
 				final View parentView = (View) model;
-				if (UMLVisualIDRegistry.getVisualID(parentView) == visualId) {
+				if (UMLVisualIDRegistry.getVisualID(parentView).equals(visualId)) {
 					return parent;
 				}
 				parent = parent.getParent();

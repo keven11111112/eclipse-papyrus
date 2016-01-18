@@ -48,18 +48,17 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[11];
-		this.expressionBodies = new String[] {
-				"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
-				"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
-				"not self.oclIsTypeOf(uml::AssociationClass)", //$NON-NLS-1$
-				"let sourceName : String = self.memberEnd->first().name in\r\nlet targetName : String = self.memberEnd->at(2).name in\r\n\'A_\'.concat(sourceName).concat(\'_\').concat(targetName)", //$NON-NLS-1$
-				"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)", //$NON-NLS-1$
-				"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)", //$NON-NLS-1$
-				"self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
-				"not self.oclIsKindOf(uml::Interface)\r\n", //$NON-NLS-1$
-				"self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
-				"self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
-				"self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
+		this.expressionBodies = new String[]{ "self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", //$NON-NLS-1$
+		"not self.oclIsTypeOf(uml::AssociationClass)", //$NON-NLS-1$
+		"let sourceName : String = self.memberEnd->first().name in\r\nlet targetName : String = self.memberEnd->at(2).name in\r\n\'A_\'.concat(sourceName).concat(\'_\').concat(targetName)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)", //$NON-NLS-1$
+		"self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) or self.oclIsKindOf(uml::Class) or or self.oclIsKindOf(uml::Component)", //$NON-NLS-1$
+		"self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
+		"not self.oclIsKindOf(uml::Interface)\r\n", //$NON-NLS-1$
+		"self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
+		"self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
+		"self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", //$NON-NLS-1$
 		};
 	}
 
@@ -68,7 +67,7 @@ public class UMLOCLFactory {
 	 */
 	private static UMLOCLFactory getInstance() {
 		UMLOCLFactory instance = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
-		if (instance == null) {
+		if(instance == null) {
 			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(instance = new UMLOCLFactory());
 		}
 		return instance;
@@ -86,10 +85,10 @@ public class UMLOCLFactory {
 	 */
 	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
 		UMLOCLFactory cached = getInstance();
-		if (index < 0 || index >= cached.expressions.length) {
+		if(index < 0 || index >= cached.expressions.length) {
 			throw new IllegalArgumentException();
 		}
-		if (cached.expressions[index] == null) {
+		if(cached.expressions[index] == null) {
 			cached.expressions[index] = getExpression(cached.expressionBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
 		}
 		return cached.expressions[index];
@@ -151,14 +150,14 @@ public class UMLOCLFactory {
 		@Override
 		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
-			if (oclExpression == null) {
+			if(oclExpression == null) {
 				return null;
 			}
 			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
 			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance.getEvaluationEnvironment();
 			// initialize environment
-			for (Object nextKey : env.keySet()) {
-				evalEnv.replace((String) nextKey, env.get(nextKey));
+			for(Object nextKey : env.keySet()) {
+				evalEnv.replace((String)nextKey, env.get(nextKey));
 			}
 			try {
 				Object result = oclInstance.evaluate(context, oclExpression);
@@ -175,7 +174,7 @@ public class UMLOCLFactory {
 		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
 			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
 			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
-			for (String varName : environment.keySet()) {
+			for(String varName : environment.keySet()) {
 				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
 			}

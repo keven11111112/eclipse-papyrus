@@ -51,20 +51,20 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 			final Interaction interaction = modelElement.getInteraction();
 			for (final Object element : interaction.getFragments()) {
 				final InteractionFragment childElement = (InteractionFragment) element;
-				final int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-				if (visualID == FullStateInvariantEditPartCN.VISUAL_ID) {
+				final String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+				if (FullStateInvariantEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == OccurrenceSpecificationEditPartCN.VISUAL_ID) {
+				if (OccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == MessageOccurrenceSpecificationEditPartCN.VISUAL_ID) {
+				if (MessageOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID) {
+				if (DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
@@ -74,12 +74,12 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 			final Interaction interaction = modelElement.getInteraction();
 			for (final Object element : interaction.getOwnedRules()) {
 				final Constraint childElement = (Constraint) element;
-				final int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-				if (visualID == DurationConstraintEditPartCN.VISUAL_ID) {
+				final String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+				if (DurationConstraintEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == DurationObservationEditPartCN.VISUAL_ID) {
+				if (DurationObservationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
@@ -102,20 +102,20 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 			final Interaction interaction = modelElement.getInteraction();
 			for (final Object element : interaction.getFragments()) {
 				final InteractionFragment childElement = (InteractionFragment) element;
-				final int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-				if (visualID == CompactStateInvariantEditPartCN.VISUAL_ID) {
+				final String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+				if (CompactStateInvariantEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == OccurrenceSpecificationEditPartCN.VISUAL_ID) {
+				if (OccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == MessageOccurrenceSpecificationEditPartCN.VISUAL_ID) {
+				if (MessageOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID) {
+				if (DestructionOccurrenceSpecificationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
@@ -125,12 +125,12 @@ public class PropertyDiagramUpdater implements ICustomDiagramUpdater<UMLNodeDesc
 			final Interaction interaction = modelElement.getInteraction();
 			for (final Object element : interaction.getOwnedRules()) {
 				final Constraint childElement = (Constraint) element;
-				final int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-				if (visualID == DurationConstraintEditPartCN.VISUAL_ID) {
+				final String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+				if (DurationConstraintEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
-				if (visualID == DurationObservationEditPartCN.VISUAL_ID) {
+				if (DurationObservationEditPartCN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}

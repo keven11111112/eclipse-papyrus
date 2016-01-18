@@ -28,7 +28,7 @@ public class InterfacePortLinkEditPart extends ConnectionEditPart implements ITr
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4018;
+	public static final String VISUAL_ID = "4018";
 
 	/**
 	 * @generated
@@ -65,6 +65,6 @@ public class InterfacePortLinkEditPart extends ConnectionEditPart implements ITr
 	 */
 	@Override
 	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+		return (PolylineConnectionEx)getFigure();
 	}
 }

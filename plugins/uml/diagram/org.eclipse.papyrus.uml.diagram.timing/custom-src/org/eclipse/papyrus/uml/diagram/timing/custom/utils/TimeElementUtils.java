@@ -32,8 +32,8 @@ public final class TimeElementUtils {
 		// utility class
 	}
 
-	public static boolean isTimeElementEditPart(final int visualID) {
-		return visualID == TimeObservationEditPart.VISUAL_ID || visualID == TimeConstraintEditPart.VISUAL_ID || visualID == DurationObservationEditPartCN.VISUAL_ID || visualID == DurationConstraintEditPartCN.VISUAL_ID;
+	public static boolean isTimeElementEditPart(final String visualID) {
+		return TimeObservationEditPart.VISUAL_ID.equals(visualID) || TimeConstraintEditPart.VISUAL_ID.equals(visualID) || DurationObservationEditPartCN.VISUAL_ID.equals(visualID) || DurationConstraintEditPartCN.VISUAL_ID.equals(visualID);
 	}
 
 	public static boolean isTimeElementEditPart(final EditPart editPart) {

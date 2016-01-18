@@ -15,8 +15,8 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.structure.DiagramStructure;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.part.SysMLDiagramUpdater;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.part.SysMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractUMLShowHideRelatedLinkEditPolicy;

@@ -272,7 +272,7 @@ public class TestTooltip_402964 extends AbstractNodeTest {
 		assertNotNull(target);
 		Message2EditPart message = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), getAbsoluteBounds(source).getTop().translate(0, 50), getAbsoluteBounds(target).getTop().translate(0, 50));
 		assertNotNull(message);
-		MessageEndEditPart messageEnd = (MessageEndEditPart)message.getChildBySemanticHint("999999");
+		MessageEndEditPart messageEnd = (MessageEndEditPart)message.getChildBySemanticHint(MessageEndEditPart.VISUAL_ID);
 		assertNotNull(messageEnd);
 		String name = "Test Message Occurrence Specification";
 		changeName(getEditingDomain(), (NamedElement)messageEnd.resolveSemanticElement(), name);

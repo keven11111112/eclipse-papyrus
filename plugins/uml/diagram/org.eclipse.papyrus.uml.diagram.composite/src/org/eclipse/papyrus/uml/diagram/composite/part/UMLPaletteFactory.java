@@ -193,107 +193,106 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if (toolId.equals(COMPOSITE_TOOL_CLASS)) {
+		if(toolId.equals(COMPOSITE_TOOL_CLASS)) {
 			return createClassCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_PROPERTY)) {
+		if(toolId.equals(COMPOSITE_TOOL_PROPERTY)) {
 			return createPropertyCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_PORT)) {
+		if(toolId.equals(COMPOSITE_TOOL_PORT)) {
 			return createPortCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_COLLABORATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_COLLABORATION)) {
 			return createCollaborationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_COLLABORATIONROLE)) {
+		if(toolId.equals(COMPOSITE_TOOL_COLLABORATIONROLE)) {
 			return createCollaborationRoleCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_COLLABORATIONUSE)) {
+		if(toolId.equals(COMPOSITE_TOOL_COLLABORATIONUSE)) {
 			return createCollaborationUseCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_COMMENT)) {
+		if(toolId.equals(COMPOSITE_TOOL_COMMENT)) {
 			return createCommentCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_CONSTRAINT)) {
+		if(toolId.equals(COMPOSITE_TOOL_CONSTRAINT)) {
 			return createConstraintCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_TIMEOBSERVATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_TIMEOBSERVATION)) {
 			return createTimeObservationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_DURATIONOBSERVATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_DURATIONOBSERVATION)) {
 			return createDurationObservationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_INFORMATIONITEM)) {
+		if(toolId.equals(COMPOSITE_TOOL_INFORMATIONITEM)) {
 			return createInformationItemCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_PARAMETER)) {
+		if(toolId.equals(COMPOSITE_TOOL_PARAMETER)) {
 			return createParameterCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_ACTIVITY)) {
+		if(toolId.equals(COMPOSITE_TOOL_ACTIVITY)) {
 			return createActivityCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_INTERACTION)) {
+		if(toolId.equals(COMPOSITE_TOOL_INTERACTION)) {
 			return createInteractionCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_PROTOCOLSTATEMACHINE)) {
+		if(toolId.equals(COMPOSITE_TOOL_PROTOCOLSTATEMACHINE)) {
 			return createProtocolStateMachineCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_STATEMACHINE)) {
+		if(toolId.equals(COMPOSITE_TOOL_STATEMACHINE)) {
 			return createStateMachineCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_FUNCTIONBEHAVIOR)) {
+		if(toolId.equals(COMPOSITE_TOOL_FUNCTIONBEHAVIOR)) {
 			return createFunctionBehaviorCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_OPAQUEBEHAVIOR)) {
+		if(toolId.equals(COMPOSITE_TOOL_OPAQUEBEHAVIOR)) {
 			return createOpaqueBehaviorCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_STRINGEXPRESSION)) {
+		if(toolId.equals(COMPOSITE_TOOL_STRINGEXPRESSION)) {
 			return createStringExpressionCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_LINK)) {
+		if(toolId.equals(COMPOSITE_TOOL_LINK)) {
 			return createLinkCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_CONNECTOR)) {
+		if(toolId.equals(COMPOSITE_TOOL_CONNECTOR)) {
 			return createConnectorCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_ROLEBINDING)) {
+		if(toolId.equals(COMPOSITE_TOOL_ROLEBINDING)) {
 			return createRoleBindingCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_GENERALIZATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_GENERALIZATION)) {
 			return createGeneralizationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_REALIZATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_REALIZATION)) {
 			return createRealizationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_SUBSTITUTION)) {
+		if(toolId.equals(COMPOSITE_TOOL_SUBSTITUTION)) {
 			return createSubstitutionCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_ABSTRACTION)) {
+		if(toolId.equals(COMPOSITE_TOOL_ABSTRACTION)) {
 			return createAbstractionCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_USAGE)) {
+		if(toolId.equals(COMPOSITE_TOOL_USAGE)) {
 			return createUsageCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_DEPENDENCY)) {
+		if(toolId.equals(COMPOSITE_TOOL_DEPENDENCY)) {
 			return createDependencyCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_REPRESENTATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_REPRESENTATION)) {
 			return createRepresentationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_INFORMATIONFLOW)) {
+		if(toolId.equals(COMPOSITE_TOOL_INFORMATIONFLOW)) {
 			return createInformationFlowCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_MANIFESTATION)) {
+		if(toolId.equals(COMPOSITE_TOOL_MANIFESTATION)) {
 			return createManifestationCreationTool();
 		}
-		if (toolId.equals(COMPOSITE_TOOL_DEPLOYMENT)) {
+		if(toolId.equals(COMPOSITE_TOOL_DEPLOYMENT)) {
 			return createDeploymentCreationTool();
 		}
 		// default return: null
@@ -304,7 +303,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}

@@ -108,8 +108,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Set<Integer> getDroppableElementVisualId() {
-		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
+	protected Set<String> getDroppableElementVisualId() {
+		Set<String> droppableElementsVisualID = new HashSet<String>();
 		droppableElementsVisualID.add(OpaqueActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallBehaviorActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallOperationActionEditPart.VISUAL_ID);
@@ -132,7 +132,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public IElementType getUMLElementType(int elementID) {
+	public IElementType getUMLElementType(String elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
 
@@ -140,7 +140,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 	}
 
@@ -148,7 +148,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
+	public String getLinkWithClassVisualID(EObject domainElement) {
 		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
 	}
 
@@ -156,28 +156,32 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
-		switch (nodeVISUALID) {
-		case OpaqueActionEditPart.VISUAL_ID:
-		case CallBehaviorActionEditPart.VISUAL_ID:
-		case CallOperationActionEditPart.VISUAL_ID:
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-		case ReadSelfActionEditPart.VISUAL_ID:
-			return dropAction(dropRequest, semanticElement, nodeVISUALID);
-		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return dropActionLocalCondition(dropRequest, semanticElement, nodeVISUALID);
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID, String linkVISUALID) {
+		if (nodeVISUALID != null) {
+			switch (nodeVISUALID) {
+			case OpaqueActionEditPart.VISUAL_ID:
+			case CallBehaviorActionEditPart.VISUAL_ID:
+			case CallOperationActionEditPart.VISUAL_ID:
+			case ValueSpecificationActionEditPart.VISUAL_ID:
+			case ReadSelfActionEditPart.VISUAL_ID:
+				return dropAction(dropRequest, semanticElement, nodeVISUALID);
+			case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+				return dropActionLocalCondition(dropRequest, semanticElement, nodeVISUALID);
+			}
 		}
-		switch (linkVISUALID) {
-		case ObjectFlowEditPart.VISUAL_ID:
-		case ControlFlowEditPart.VISUAL_ID:
-			return dropActivityEdge(dropRequest, semanticElement, linkVISUALID);
+		if (linkVISUALID != null) {
+			switch (linkVISUALID) {
+			case ObjectFlowEditPart.VISUAL_ID:
+			case ControlFlowEditPart.VISUAL_ID:
+				return dropActivityEdge(dropRequest, semanticElement, linkVISUALID);
+			}
 		}
 		return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 	}
@@ -194,7 +198,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the command for action
 	 */
-	protected Command dropAction(final DropObjectsRequest dropRequest, final Element semanticElement, int nodeVISUALID) {
+	protected Command dropAction(final DropObjectsRequest dropRequest, final Element semanticElement, String nodeVISUALID) {
 		// The element to drop is a node
 		/*
 		 * Check if the element is contained in this new container.
@@ -238,7 +242,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the command for local condition
 	 */
-	protected Command dropActionLocalCondition(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
+	protected Command dropActionLocalCondition(DropObjectsRequest dropRequest, Element semanticElement, String nodeVISUALID) {
 		if (getHost() instanceof GraphicalEditPart) {
 			// Adapt the location
 			Point location = dropRequest.getLocation().getCopy();
@@ -264,11 +268,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						}
 					}
 				}
-				if (TimeConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID
-						|| ConstraintAsLocalPrecondEditPart.VISUAL_ID == nodeVISUALID) {
+				if (TimeConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(nodeVISUALID) || DurationConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(nodeVISUALID) || IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(nodeVISUALID)
+						|| ConstraintAsLocalPrecondEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Local Precondition link"), linkSource, linkTarget, ActionLocalPreconditionEditPart.VISUAL_ID, location, semanticElement));
-				} else if (TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID
-						|| ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID) {
+				} else if (TimeConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(nodeVISUALID) || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(nodeVISUALID) || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(nodeVISUALID)
+						|| ConstraintAsLocalPostcondEditPart.VISUAL_ID.equals(nodeVISUALID)) {
 					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Local Postcondition link"), linkSource, linkTarget, ActionLocalPostconditionEditPart.VISUAL_ID, location, semanticElement));
 				}
 			}
@@ -297,7 +301,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the composite command
 	 */
-	public CompositeCommand dropObjectFlowSpecification(CompositeCommand cc, ObjectFlow source, Behavior target, int linkVISUALID, int specificationVISUALID, Point location, Element semanticLink) {
+	public CompositeCommand dropObjectFlowSpecification(CompositeCommand cc, ObjectFlow source, Behavior target, String linkVISUALID, String specificationVISUALID, Point location, Element semanticLink) {
 		// look for editpart
 		ObjectFlowEditPart sourceEditPart = lookForEdgePart(source);
 		// look for editpart linked with the object flow
@@ -376,7 +380,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *
 	 * @return the command for association
 	 */
-	protected Command dropActivityEdge(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+	protected Command dropActivityEdge(DropObjectsRequest dropRequest, Element semanticLink, String linkVISUALID) {
 		Collection<?> sources = ActivityLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = ActivityLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if (sources.size() == 1 && targets.size() == 1) {
@@ -409,7 +413,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @param target
 	 * @param source
 	 */
-	protected CompositeCommand getInterruptbleEdgeCommand(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+	protected CompositeCommand getInterruptbleEdgeCommand(CompositeCommand cc, Element source, Element target, String linkVISUALID, Point location, Element semanticLink) {
 		// look for editpart
 		GraphicalEditPart sourceEditPart = (GraphicalEditPart) lookForEditPart(source);
 		GraphicalEditPart targetEditPart = (GraphicalEditPart) lookForEditPart(target);
@@ -525,7 +529,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				if (droppedAction instanceof Action) {
 					Point initialLocation = request.getLocation().getCopy();
 					for (Constraint pre : ((Action) droppedAction).getLocalPreconditions()) {
-						int visual = UMLVisualIDRegistry.getNodeVisualID((View) hostView, pre);
+						String visual = UMLVisualIDRegistry.getNodeVisualID((View) hostView, pre);
 						Command localCmd = dropActionLocalCondition(request, pre, visual);
 						if (localCmd != null && localCmd.canExecute()) {
 							localCmd.execute();
@@ -536,7 +540,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 						}
 					}
 					for (Constraint post : ((Action) droppedAction).getLocalPostconditions()) {
-						int visual = UMLVisualIDRegistry.getNodeVisualID((View) hostView, post);
+						String visual = UMLVisualIDRegistry.getNodeVisualID((View) hostView, post);
 						Command localCmd = dropActionLocalCondition(request, post, visual);
 						if (localCmd != null && localCmd.canExecute()) {
 							localCmd.execute();

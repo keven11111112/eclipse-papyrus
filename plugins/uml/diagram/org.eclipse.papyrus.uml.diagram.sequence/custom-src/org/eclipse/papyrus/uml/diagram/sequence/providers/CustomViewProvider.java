@@ -67,13 +67,13 @@ public class CustomViewProvider extends UMLViewProvider {
 		if (op.getContainerView() == null) {
 			return false;
 		}
-		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if (visualID == DurationConstraintEditPart.VISUAL_ID) { // avoid to
+		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) { // avoid to
 																// modify
 																// UMLVisualIDRegistry.getNodeVisualID(View,
 																// EObject)
-			if (InteractionInteractionCompartmentEditPart.VISUAL_ID == UMLVisualIDRegistry
-					.getVisualID(op.getContainerView())) {
+			if (InteractionInteractionCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry
+					.getVisualID(op.getContainerView()))) {
 				return true;
 			}
 		}
@@ -85,13 +85,13 @@ public class CustomViewProvider extends UMLViewProvider {
 		if (op.getContainerView() == null) {
 			return false;
 		}
-		int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
-		if (visualID == DurationConstraintEditPart.VISUAL_ID) { // avoid to
+		String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+		if (DurationConstraintEditPart.VISUAL_ID.equals(visualID)) { // avoid to
 																// modify
 																// UMLVisualIDRegistry.getNodeVisualID(View,
 																// EObject)
-			if (InteractionInteractionCompartmentEditPart.VISUAL_ID == UMLVisualIDRegistry
-					.getVisualID(op.getContainerView())) {
+			if (InteractionInteractionCompartmentEditPart.VISUAL_ID.equals(UMLVisualIDRegistry
+					.getVisualID(op.getContainerView()))) {
 				return true;
 			}
 		}

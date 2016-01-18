@@ -70,25 +70,25 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
 		for (Iterator<?> it = modelElement.getOwnedTypes().iterator(); it.hasNext();) {
 			Type childElement = (Type) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == ActorEditPartTN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (ActorEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == ActorAsRectangleEditPartTN.VISUAL_ID) {
+			if (ActorAsRectangleEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == UseCaseEditPartTN.VISUAL_ID) {
+			if (UseCaseEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == UseCaseAsRectangleEditPartTN.VISUAL_ID) {
+			if (UseCaseAsRectangleEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 			if (!(childElement instanceof Association)) {
-				if (visualID == SubjectClassifierEditPartTN.VISUAL_ID) {
+				if (SubjectClassifierEditPartTN.VISUAL_ID.equals(visualID)) {
 					result.add(new UMLNodeDescriptor(childElement, visualID));
 					continue;
 				}
@@ -96,24 +96,24 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 		}
 		for (Iterator<?> it = modelElement.getPackagedElements().iterator(); it.hasNext();) {
 			PackageableElement childElement = (PackageableElement) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == PackageEditPartTN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (PackageEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if (visualID == ConstraintEditPartTN.VISUAL_ID) {
+			if (ConstraintEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			// if(visualID == DefaultNamedElementEditPartTN.VISUAL_ID) {
+			// if(DefaultNamedElementEditPartTN.VISUAL_ID.equals(visualID)) {
 			// result.add(new UMLNodeDescriptor(childElement, visualID));
 			// continue;
 			// }
 		}
 		for (Iterator<?> it = modelElement.getOwnedComments().iterator(); it.hasNext();) {
 			Comment childElement = (Comment) it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if (visualID == CommentEditPartTN.VISUAL_ID) {
+			String visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if (CommentEditPartTN.VISUAL_ID.equals(visualID)) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -130,7 +130,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) linkObject;
-			if (AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if (!AssociationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();
@@ -171,7 +171,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) linkObject;
-			if (AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if (!AssociationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();
@@ -219,7 +219,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			Association link = (Association) linkObject;
-			if (AssociationEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+			if (!AssociationEditPart.VISUAL_ID.equals(UMLVisualIDRegistry.getLinkWithClassVisualID(link))) {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();

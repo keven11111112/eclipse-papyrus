@@ -20,7 +20,7 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	@Override
-	protected IParser getParser(int visualID) {
+	protected IParser getParser(String visualID) {
 		switch (visualID) {
 		case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser("abstraction"); //$NON-NLS-1$

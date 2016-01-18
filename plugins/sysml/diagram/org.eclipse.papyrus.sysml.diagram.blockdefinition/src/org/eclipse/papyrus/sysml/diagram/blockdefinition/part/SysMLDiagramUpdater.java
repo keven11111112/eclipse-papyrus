@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.core.util.CrossReferenceAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
-import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
@@ -89,7 +89,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getSemanticChildren(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getSemanticChildren(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -100,7 +100,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getContainedLinks(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getContainedLinks(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -111,7 +111,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getIncomingLinks(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getIncomingLinks(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -122,7 +122,7 @@ public class SysMLDiagramUpdater {
 
 		/**
 		 *
-		 * @see org.eclipse.gmf.tooling.runtime.update.DiagramUpdater#getOutgoingLinks(org.eclipse.gmf.runtime.notation.View)
+		 * @see org.eclipse.papyrus.infra.gmfdiag.common.updater.DiagramUpdater#getOutgoingLinks(org.eclipse.gmf.runtime.notation.View)
 		 *
 		 * @param view
 		 * @return
@@ -155,7 +155,7 @@ public class SysMLDiagramUpdater {
 		if (id.equals(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID)) {
 			return getAssociation_link_sysml_association_IncomingLink(view);
 		}
-		if (id.equals(Integer.toString(PackageEditPart.VISUAL_ID)) || id.equals(Integer.toString(PackageEditPartCN.VISUAL_ID))) {
+		if (id.equals(PackageEditPart.VISUAL_ID) || id.equals(PackageEditPartCN.VISUAL_ID)) {
 			return getPackage_2007IncomingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
@@ -182,10 +182,10 @@ public class SysMLDiagramUpdater {
 		if (id.equals(UMLGraphicalTypes.SHAPE_UML_RECEPTION_AS_LABEL_ID)) {
 			return getReception_shape_uml_reception_as_label_IncomingLinks(view);
 		}
-		if (id.equals(Integer.toString(InstanceSpecificationEditPart.VISUAL_ID)) || id.equals(Integer.toString(InstanceSpecificationEditPartCN.VISUAL_ID))) {
+		if (id.equals(InstanceSpecificationEditPart.VISUAL_ID) || id.equals(InstanceSpecificationEditPartCN.VISUAL_ID)) {
 			return getInstanceSpecification_2001IncomingLinks(view);
 		}
-		if (id.equals(Integer.toString(SlotEditPart.VISUAL_ID))) {
+		if (id.equals(SlotEditPart.VISUAL_ID)) {
 			return getSlot_2001IncomingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
@@ -248,10 +248,10 @@ public class SysMLDiagramUpdater {
 		if (id.equals(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID)) {
 			return getConstraintProperty_shape_sysml_constraintproperty_as_label_IncomingLinks(view);
 		}
-		if (id.equals(Integer.toString(CommentEditPart.VISUAL_ID)) || id.equals(CommentEditPartCN.VISUAL_ID)) {
+		if (id.equals(CommentEditPart.VISUAL_ID) || id.equals(CommentEditPartCN.VISUAL_ID)) {
 			return getComment_IncominkLinks(view);
 		}
-		if (id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID)) || id.equals(ConstraintEditPartCN.VISUAL_ID)) {
+		if (id.equals(ConstraintEditPart.VISUAL_ID) || id.equals(ConstraintEditPartCN.VISUAL_ID)) {
 			return getConstraint_IncomingLinks(view);
 		}
 
@@ -277,7 +277,7 @@ public class SysMLDiagramUpdater {
 		if (id.equals(SysMLGraphicalTypes.LINK_SYSML_ASSOCIATION_ID)) {
 			return getAssociation_link_sysml_association_OutgoingLink(view);
 		}
-		if (id.equals(Integer.toString(PackageEditPart.VISUAL_ID)) || id.equals(Integer.toString(PackageEditPartCN.VISUAL_ID))) {
+		if (id.equals(PackageEditPart.VISUAL_ID) || id.equals(PackageEditPartCN.VISUAL_ID)) {
 			return getPackage_2007OutgoingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.SHAPE_UML_ACTOR_AS_CLASSIFIER_ID)) {
@@ -304,10 +304,10 @@ public class SysMLDiagramUpdater {
 		if (id.equals(UMLGraphicalTypes.SHAPE_UML_RECEPTION_AS_LABEL_ID)) {
 			return getReception_shape_uml_reception_as_label_OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(InstanceSpecificationEditPart.VISUAL_ID)) || id.equals(Integer.toString(InstanceSpecificationEditPartCN.VISUAL_ID))) {
+		if (id.equals(InstanceSpecificationEditPart.VISUAL_ID) || id.equals(InstanceSpecificationEditPartCN.VISUAL_ID)) {
 			return getInstanceSpecification_2001OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(SlotEditPart.VISUAL_ID))) {
+		if (id.equals(SlotEditPart.VISUAL_ID)) {
 			return getSlot_2001OutgoingLinks(view);
 		}
 		if (id.equals(UMLGraphicalTypes.LINK_UML_DEPENDENCY_ID)) {
@@ -370,10 +370,10 @@ public class SysMLDiagramUpdater {
 		if (id.equals(SysMLGraphicalTypes.SHAPE_SYSML_CONSTRAINTPROPERTY_AS_LABEL_ID)) {
 			return getConstraintProperty_shape_sysml_constraintproperty_as_label_OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(CommentEditPart.VISUAL_ID)) || id.equals(CommentEditPartCN.VISUAL_ID)) {
+		if (id.equals(CommentEditPart.VISUAL_ID) || id.equals(CommentEditPartCN.VISUAL_ID)) {
 			return getComment_OutgoingLinks(view);
 		}
-		if (id.equals(Integer.toString(ConstraintEditPart.VISUAL_ID)) || id.equals(ConstraintEditPartCN.VISUAL_ID)) {
+		if (id.equals(ConstraintEditPart.VISUAL_ID) || id.equals(ConstraintEditPartCN.VISUAL_ID)) {
 			return getConstraint_OutgoingLinks(view);
 		}
 		return Collections.emptyList();
@@ -972,7 +972,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4008, -1));
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.Dependency_4008, null));
 		}
 		return result;
 	}
@@ -989,7 +989,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Interface dst = link.getContract();
-			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.InterfaceRealization_4003, -1));
+			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.InterfaceRealization_4003, null));
 		}
 		return result;
 	}
@@ -1011,7 +1011,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			NamedElement src = (NamedElement) theSource;
-			result.add(new UpdaterLinkDescriptor(src, target, link, UMLElementTypes.Usage_4007, -1));
+			result.add(new UpdaterLinkDescriptor(src, target, link, UMLElementTypes.Usage_4007, null));
 		}
 		return result;
 	}
@@ -1107,7 +1107,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4007, -1));
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Usage_4007, null));
 		}
 		return result;
 	}
@@ -1153,7 +1153,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UpdaterLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4008, -1));
+			result.add(new UpdaterLinkDescriptor(src, dst, link, UMLElementTypes.Dependency_4008, null));
 		}
 		return result;
 	}
@@ -1170,7 +1170,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Classifier dst = link.getGeneral();
-			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_4002, -1));
+			result.add(new UpdaterLinkDescriptor(container, dst, link, UMLElementTypes.Generalization_4002, null));
 		}
 		return result;
 	}
@@ -1190,7 +1190,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Classifier container = (Classifier) link.eContainer();
-			result.add(new UpdaterLinkDescriptor(container, target, link, UMLElementTypes.Generalization_4002, -1));
+			result.add(new UpdaterLinkDescriptor(container, target, link, UMLElementTypes.Generalization_4002, null));
 		}
 		return result;
 	}
@@ -1214,7 +1214,7 @@ public class SysMLDiagramUpdater {
 				continue;
 			}
 			Type src = (Type) theSource;
-			result.add(new UMLLinkDescriptor(src, target, link, SysMLElementTypes.ASSOCIATION, -1));
+			result.add(new UMLLinkDescriptor(src, target, link, SysMLElementTypes.ASSOCIATION, null));
 		}
 		return result;
 	}
@@ -1260,7 +1260,7 @@ public class SysMLDiagramUpdater {
 			if (src != source) {
 				continue;
 			}
-			result.add(new UMLLinkDescriptor(src, dst, link, SysMLElementTypes.ASSOCIATION, -1));
+			result.add(new UMLLinkDescriptor(src, dst, link, SysMLElementTypes.ASSOCIATION, null));
 		}
 		return result;
 	}

@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.diagram.timing.edit.parts.TimeRulerCompartmentEdi
 public class TimingReconcilerForCompartment extends ReconcilerForCompartment {
 
 	/** The compartments visual id. */
-	private List<Integer> compartmentsVisualID = Arrays.asList(
+	private List<String> compartmentsVisualID = Arrays.asList(
 			InteractionCompartmentEditPartTN.VISUAL_ID,
 			FullLifelineStateDefinitionCompartmentEditPartCN.VISUAL_ID,
 			FullLifelineTimelineCompartmentEditPartCN.VISUAL_ID,
@@ -51,7 +51,7 @@ public class TimingReconcilerForCompartment extends ReconcilerForCompartment {
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.reconciler.ReconcilerForCompartment#getCompartmentsVisualID()
 	 */
 	@Override
-	public List<Integer> getCompartmentsVisualID() {
+	public List<String> getCompartmentsVisualID() {
 		return compartmentsVisualID;
 	}
 

@@ -98,10 +98,6 @@ public class TestProfileDiagramExtension extends AbstractPapyrusTestCase {
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
 	}
 
-	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		return findChildBySemanticHint(parent, Integer.toString(vid));
-	}
-
 	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, String vid) {
 		IGraphicalEditPart childEP = parent.getChildBySemanticHint(vid);
 		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);

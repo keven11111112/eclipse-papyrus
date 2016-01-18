@@ -30,23 +30,23 @@ public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEd
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getNodeVisualID(View containerView, EObject domainElement) {
+	public String getNodeVisualID(View containerView, EObject domainElement) {
 		String domainType = registry.getNodeGraphicalType(domainElement, containerView.getType());
 		if (IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainType)) {
-			return -1; // undefined
+			return null; // undefined
 		}
-		return new Integer(domainType);
+		return domainType;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public int getLinkWithClassVisualID(EObject domainElement) {
+	public String getLinkWithClassVisualID(EObject domainElement) {
 		String domainType = registry.getEdgeGraphicalType(domainElement);
 		if (IGraphicalTypeRegistry.UNDEFINED_TYPE.equals(domainType)) {
-			return -1; // undefined
+			return null; // undefined
 		}
-		return new Integer(domainType);
+		return domainType;
 	}
 }

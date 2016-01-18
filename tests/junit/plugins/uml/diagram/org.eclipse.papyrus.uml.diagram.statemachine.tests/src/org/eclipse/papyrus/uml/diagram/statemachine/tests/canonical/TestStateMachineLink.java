@@ -55,10 +55,10 @@ public class TestStateMachineLink extends BaseTestCase {
 		return endCommand;
 	}
 
-	protected void ckeckCannotStartConnectionCommand(IElementType type, int... editPartIDs) {
+	protected void ckeckCannotStartConnectionCommand(IElementType type, String... editPartIDs) {
 		List<IElementType> types = Arrays.asList(type);
 
-		for (int vid : editPartIDs) {
+		for (String vid : editPartIDs) {
 			IGraphicalEditPart ep = createChild(vid, getRegionCompartmentEditPart());
 
 			AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest req = new AspectUnspecifiedTypeConnectionTool(types).new CreateAspectUnspecifiedTypeConnectionRequest(types, false, getDiagramEditPart().getDiagramPreferencesHint());

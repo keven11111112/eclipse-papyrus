@@ -160,7 +160,7 @@ public class UsecaseToSubjectinUsecaseDiagramDropStrategy extends GraphicalTrans
 
 		for (EObject eObject : getSourceEObjects(dropRequest)) {
 			if(eObject instanceof org.eclipse.uml2.uml.UseCase){
-				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter(eObject), Node.class, Integer.toString(UseCaseInComponentEditPart.VISUAL_ID), ((IGraphicalEditPart) targetEditPart).getDiagramPreferencesHint()));
+				viewDescriptors.add(new CreateViewRequest.ViewDescriptor(new EObjectAdapter(eObject), Node.class, UseCaseInComponentEditPart.VISUAL_ID, ((IGraphicalEditPart) targetEditPart).getDiagramPreferencesHint()));
 			}
 		}
 		return viewDescriptors;

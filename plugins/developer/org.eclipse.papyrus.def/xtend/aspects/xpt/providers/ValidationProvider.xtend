@@ -47,10 +47,10 @@ import xpt.CodeStyle
 			public boolean selects(Object object) {
 			«IF ctx.ruleTargets.filter(typeof(GenDiagramElementTarget)).notEmpty»
 				if (isInDefaultEditorContext(object) && object instanceof org.eclipse.gmf.runtime.notation.View) {
-					final int id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) object);
+					final String id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) object);
 					boolean result = false;
 				«FOR e : getTargetDiagramElements(ctx)»
-					result = result || id == «VisualIDRegistry::visualID(e)»;
+					result = result || «VisualIDRegistry::visualID(e)».equals(id);
 				«ENDFOR»
 					return result;
 				}
@@ -104,5 +104,102 @@ import xpt.CodeStyle
 			task.run();
 		}
 	}
+	'''
+
+	override def strategy_support(GenDiagram it) '''
+	«IF hasDiagramElementTargetRule(editorGen.audits)»
+	«generatedMemberComment»
+	public static org.eclipse.emf.validation.service.ITraversalStrategy getNotationTraversalStrategy(
+			org.eclipse.emf.validation.service.IBatchValidator validator) {
+		return new CtxSwitchStrategy(validator);
+	}
+
+	«generatedMemberComment»
+	private static class CtxSwitchStrategy implements org.eclipse.emf.validation.service.ITraversalStrategy {
+
+		«generatedMemberComment»
+		private org.eclipse.emf.validation.service.ITraversalStrategy defaultStrategy;
+
+		«generatedMemberComment»
+		private String currentSemanticCtxId;
+
+		«generatedMemberComment»
+		private boolean ctxChanged = true;
+
+		«generatedMemberComment»
+		private org.eclipse.emf.ecore.EObject currentTarget;
+
+		«generatedMemberComment»
+		private org.eclipse.emf.ecore.EObject preFetchedNextTarget;
+
+		«generatedMemberComment»
+		private final String[] contextSwitchingIdentifiers;
+
+		«generatedMemberComment»
+		CtxSwitchStrategy(org.eclipse.emf.validation.service.IBatchValidator validator) {
+			this.defaultStrategy = validator.getDefaultTraversalStrategy();
+			this.contextSwitchingIdentifiers = new String[] {
+				«FOR e : getAllTargetDiagramElements(editorGen.audits) SEPARATOR ','»«VisualIDRegistry::visualID(e)»«ENDFOR»
+			};
+			java.util.Arrays.sort(this.contextSwitchingIdentifiers);
+		}
+
+		«generatedMemberComment»
+		public void elementValidated(org.eclipse.emf.ecore.EObject element,
+				org.eclipse.core.runtime.IStatus status) {
+			defaultStrategy.elementValidated(element, status);
+		}
+
+		«generatedMemberComment»
+		public boolean hasNext() {
+			return defaultStrategy.hasNext();
+		}
+
+		«generatedMemberComment»
+		public boolean isClientContextChanged() {
+			if (preFetchedNextTarget == null) {
+				preFetchedNextTarget = next();
+				prepareNextClientContext(preFetchedNextTarget);
+			}
+			return ctxChanged;
+		}
+
+		«generatedMemberComment»
+		public org.eclipse.emf.ecore.EObject next() {
+			org.eclipse.emf.ecore.EObject nextTarget = preFetchedNextTarget;
+			if (nextTarget == null) {
+				nextTarget = defaultStrategy.next();
+			}
+			this.preFetchedNextTarget = null;
+			return this.currentTarget = nextTarget;
+		}
+
+		«generatedMemberComment»
+		public void startTraversal(java.util.Collection traversalRoots,	org.eclipse.core.runtime.IProgressMonitor monitor) {
+			defaultStrategy.startTraversal(traversalRoots, monitor);
+		}
+
+		«generatedMemberComment»
+		private void prepareNextClientContext(org.eclipse.emf.ecore.EObject nextTarget) { 
+			if (nextTarget != null && currentTarget != null) {
+				if (nextTarget instanceof org.eclipse.gmf.runtime.notation.View) {
+					final String id = «xptVisualIDRegistry.getVisualIDMethodCall(editorGen.diagram)»((org.eclipse.gmf.runtime.notation.View) nextTarget);
+					String nextSemanticId = (id != null && java.util.Arrays.binarySearch(contextSwitchingIdentifiers, id) >= 0) ? id : null;
+					if ((currentSemanticCtxId != null && currentSemanticCtxId != nextSemanticId)
+							|| (nextSemanticId != null && nextSemanticId != currentSemanticCtxId)) {
+						this.ctxChanged = true;
+					}«/*[artem] not sure why not ctxChanged = <expr>, is it intentional not to reset ctxChanged if condition did not match? I doubt. FIXME?*/»
+					currentSemanticCtxId = nextSemanticId;
+				} else {
+					// context of domain model
+					this.ctxChanged = currentSemanticCtxId != null;
+					currentSemanticCtxId = null;
+				}
+			} else {
+				this.ctxChanged = false;
+			}
+		}
+	}
+	«ENDIF»
 	'''
 }

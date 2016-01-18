@@ -29,7 +29,7 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4018;
+	public static final String VISUAL_ID = "4018";
 
 	/**
 	 * @generated
@@ -65,6 +65,6 @@ public class DependencyBranchEditPart extends ConnectionEditPart implements ITre
 	 * @generated
 	 */
 	public DashedEdgeFigure getPrimaryShape() {
-		return (DashedEdgeFigure) getFigure();
+		return (DashedEdgeFigure)getFigure();
 	}
 }

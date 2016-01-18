@@ -215,22 +215,25 @@ override addFixedChild (GenNode it)'''
 override borderItemSelectionEditPolicy(GenNode it)'''
 	«IF hasBorderItems(it)»
 	org.eclipse.gmf.runtime.notation.View childView = (org.eclipse.gmf.runtime.notation.View) child.getModel();
-	switch («getVisualIDMethodCall(getDiagram())»(childView)) {
-	«IF getExternalLabels(it).size > 0»
-	«FOR nextLabel : getExternalLabels(it) »
-	«caseVisualID(nextLabel)»
-	«ENDFOR»
-		return «borderItemSelectionEP(it)»;
-	«ENDIF»
-	«IF getSideAffixedChildren(it).size > 0»
-	«FOR nextBorderItem : getSideAffixedChildren(it)»
-		«caseVisualID(nextBorderItem)»
-	«ENDFOR»
-		«««	BEGIN PapyrusGenCode
-		«««	The purprose is to add replace GMF edit prolicy by an new editPolicy that allows to resize BorderItem
-		return new org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy();
-		««« END PapyrusGenCode
-	«ENDIF»
+	String vid = «getVisualIDMethodCall(getDiagram())»(childView);
+	if (vid != null) {
+		switch (vid) {
+		«IF getExternalLabels(it).size > 0»
+		«FOR nextLabel : getExternalLabels(it) »
+		«caseVisualID(nextLabel)»
+		«ENDFOR»
+			return «borderItemSelectionEP(it)»;
+		«ENDIF»
+		«IF getSideAffixedChildren(it).size > 0»
+		«FOR nextBorderItem : getSideAffixedChildren(it)»
+			«caseVisualID(nextBorderItem)»
+		«ENDFOR»
+			«««	BEGIN PapyrusGenCode
+			«««	The purprose is to add replace GMF edit prolicy by an new editPolicy that allows to resize BorderItem
+			return new org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy();
+			««« END PapyrusGenCode
+		«ENDIF»
+		}
 	}
 «ENDIF»
 '''

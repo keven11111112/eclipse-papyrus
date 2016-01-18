@@ -13,16 +13,19 @@
  */
 package aspects.xpt.providers
 
+import aspects.xpt.CodeStyle
 import com.google.inject.Inject
-import xpt.diagram.Utils_qvto
 import com.google.inject.Singleton
+import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import xpt.Common
+import xpt.diagram.Utils_qvto
 
 @Singleton class ElementTypes extends xpt.providers.ElementTypes {
-
 	@Inject extension Common;
 	@Inject extension Utils_qvto;
+
+	@Inject CodeStyle xptCodeStyle;
 
 	override def getElement(GenDiagram it) '''
 		«generatedMemberComment('Returns \'type\' of the ecore object associated with the hint.\n')»
@@ -82,4 +85,58 @@ import xpt.Common
             return result;
         }
     '''
+
+	override def getElementTypeByVisualID(GenDiagram it) '''
+		«generatedMemberComment»
+		public static org.eclipse.gmf.runtime.emf.type.core.IElementType getElementType(String visualID) {
+			if (visualID != null) {
+				switch (visualID) {
+					«FOR e : it.getAllTypedElements().filter[el|el.elementType != null]»
+						«caseElementType(e)»
+					«ENDFOR»
+				}
+			}
+			return null;
+		}
+	'''
+
+	override def getElementType(GenDiagram it) '''
+		«generatedMemberComment»
+		private static org.eclipse.gmf.runtime.emf.type.core.IElementType getElementTypeByUniqueId(String id) {
+			return org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry.getInstance().getType(id);
+		}
+	'''
+
+	override def elementTypeField(GenCommonBase it) '''
+		«IF null != elementType»
+			«generatedMemberComment»
+			public static final org.eclipse.gmf.runtime.emf.type.core.IElementType «getUniqueIdentifier()» = getElementTypeByUniqueId("«elementType.
+			uniqueIdentifier»"); «nonNLS(1)»
+		«ENDIF»
+	'''
+
+	override def typedInstance(GenDiagram it) '''
+		«generatedClassComment»
+		public static final org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes TYPED_INSTANCE 
+			= new org.eclipse.papyrus.infra.gmfdiag.common.providers.DiagramElementTypes(elementTypeImages) {
+			
+			«generatedMemberComment»
+			«xptCodeStyle.overrideC(it)»
+			public boolean isKnownElementType(org.eclipse.gmf.runtime.emf.type.core.IElementType elementType) {
+				return «qualifiedClassName(it)».isKnownElementType(elementType);
+			}
+			
+			«generatedMemberComment»
+			«xptCodeStyle.overrideC(it)»
+			public org.eclipse.gmf.runtime.emf.type.core.IElementType getElementTypeForVisualId(String visualID) {
+				return «qualifiedClassName(it)».getElementType(visualID);
+			}
+			
+			«generatedMemberComment»
+			«xptCodeStyle.overrideC(it)»
+			public org.eclipse.emf.ecore.ENamedElement getDefiningNamedElement(org.eclipse.core.runtime.IAdaptable elementTypeAdapter) {
+				return «qualifiedClassName(it)».getElement(elementTypeAdapter);
+			}
+		}; 
+	'''
 }

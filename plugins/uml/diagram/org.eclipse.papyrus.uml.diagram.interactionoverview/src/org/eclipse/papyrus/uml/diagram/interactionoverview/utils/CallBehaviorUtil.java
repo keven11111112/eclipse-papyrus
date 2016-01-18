@@ -75,8 +75,8 @@ public class CallBehaviorUtil {
 		eAnnotation.getDetails().put(CALL_BEHAVIOR_ACTION_TYPE, callBehaviorActionType.name());
 	}
 
-	public static boolean isCallBehaviorActionEditPart(final int visualID) {
-		return visualID == CallBehaviorActionEditPart.VISUAL_ID || visualID == CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID;
+	public static boolean isCallBehaviorActionEditPart(final String visualID) {
+		return CallBehaviorActionEditPart.VISUAL_ID.equals(visualID) || CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID.equals(visualID);
 	}
 
 	public static boolean isCallBehaviorActionEditPart(final EditPart editPart) {
@@ -84,8 +84,8 @@ public class CallBehaviorUtil {
 	}
 
 	public static boolean isCallBehaviorActionView(final View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		if (visualID == -1) {
+		String visualID = UMLVisualIDRegistry.getVisualID(view);
+		if (visualID == null) {
 			visualID = UMLVisualIDRegistry.getVisualID(view);
 		}
 		return isCallBehaviorActionEditPart(visualID);

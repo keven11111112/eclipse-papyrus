@@ -73,7 +73,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	/**
 	 * the IDs of the metaclasses
 	 */
-	private int[] metaclassesEP_ID = { MetaclassEditPart.VISUAL_ID, MetaclassEditPartCN.VISUAL_ID };
+	private String[] metaclassesEP_ID = { MetaclassEditPart.VISUAL_ID, MetaclassEditPartCN.VISUAL_ID };
 	/**
 	 * list the metaclasses EditPart
 	 */
@@ -93,9 +93,9 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 	 *
 	 * @param metaclassesID
 	 */
-	private void init(int[] metaclassesID) {
+	private void init(String[] metaclassesID) {
 		for (int i = 0; i < metaclassesID.length; i++) {
-			this.metaclassesEP_ID_List.add(new String(new Integer(metaclassesID[i]).toString()));
+			this.metaclassesEP_ID_List.add(metaclassesID[i]);
 		}
 	}
 

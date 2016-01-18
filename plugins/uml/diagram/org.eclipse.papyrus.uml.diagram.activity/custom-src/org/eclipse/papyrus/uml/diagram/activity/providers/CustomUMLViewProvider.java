@@ -103,7 +103,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	 * @param edge
 	 * @param semanticHint
 	 */
-	private void deleteView(Edge edge, int semanticHint) {
+	private void deleteView(Edge edge, String semanticHint) {
 		View interruptibleIconView = ViewUtil.getChildBySemanticHint(edge, String.valueOf(semanticHint));
 		if (interruptibleIconView != null) {
 			ViewUtil.destroy(interruptibleIconView);
@@ -159,7 +159,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
-		final int visualID;
+		final String visualID;
 		if (semanticHint == null) {
 			visualID = UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
@@ -194,7 +194,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	protected boolean isCustomNode(CreateNodeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		if (op.getContainerView() != null && op.getSemanticHint() != null && elementType == null) {
-			int visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
+			String visualID = UMLVisualIDRegistry.getVisualID(op.getSemanticHint());
 			return isCustomNode(visualID);
 		}
 		return false;
@@ -206,7 +206,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	 * @param visualID
 	 * @return
 	 */
-	protected boolean isCustomNode(int visualID) {
+	protected boolean isCustomNode(String visualID) {
 		switch (visualID) {
 		case ControlFlowInterruptibleIconEditPart.VISUAL_ID:
 		case ObjectFlowInterruptibleIconEditPart.VISUAL_ID:
@@ -223,7 +223,7 @@ public class CustomUMLViewProvider extends UMLViewProvider {
 	 * @param preferencesHint
 	 * @return
 	 */
-	protected Node createCustomNode(int visualID, View containerView, PreferencesHint preferencesHint) {
+	protected Node createCustomNode(String visualID, View containerView, PreferencesHint preferencesHint) {
 		switch (visualID) {
 		case ControlFlowInterruptibleIconEditPart.VISUAL_ID:
 			return createInterruptibleEdgeIconOnControlFlow(containerView, preferencesHint);

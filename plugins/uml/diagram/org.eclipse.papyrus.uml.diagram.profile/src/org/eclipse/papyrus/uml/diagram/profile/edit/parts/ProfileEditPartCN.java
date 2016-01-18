@@ -49,7 +49,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1024;
+	public static final String VISUAL_ID = "1024";
 
 	/**
 	 * @generated
@@ -75,9 +75,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
-
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
@@ -97,7 +95,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if (result == null) {
+				if(result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -124,7 +122,6 @@ public class ProfileEditPartCN extends PackageEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
-
 	}
 
 	/**
@@ -142,26 +139,23 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	public ProfileFigure getPrimaryShape() {
-		return (ProfileFigure) primaryShape;
+		return (ProfileFigure)primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ProfileNameEditPartCN) {
-			((ProfileNameEditPartCN) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if(childEditPart instanceof ProfileNameEditPartCN) {
+			((ProfileNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
-
-		if (childEditPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
+		if(childEditPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
-			pane.add(((ProfilePackageableElementCompartmentEditPartCN) childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((ProfilePackageableElementCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
-
 		return false;
 	}
 
@@ -169,12 +163,12 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ProfileNameEditPartCN) {
+		if(childEditPart instanceof ProfileNameEditPartCN) {
 			return true;
 		}
-		if (childEditPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
+		if(childEditPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
-			pane.remove(((ProfilePackageableElementCompartmentEditPartCN) childEditPart).getFigure());
+			pane.remove(((ProfilePackageableElementCompartmentEditPartCN)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -185,7 +179,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -196,7 +190,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -207,7 +201,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if (editPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
+		if(editPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
 			return getPrimaryShape().getPackageableElementFigure();
 		}
 		return getContentPane();
@@ -233,7 +227,6 @@ public class ProfileEditPartCN extends PackageEditPart {
 	@Override
 	protected NodeFigure createNodeFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
-
 	}
 
 	/**
@@ -246,7 +239,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if (nodeShape.getLayoutManager() == null) {
+		if(nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -259,7 +252,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	public IFigure getContentPane() {
-		if (contentPane != null) {
+		if(contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -270,7 +263,7 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	protected void setForegroundColor(Color color) {
-		if (primaryShape != null) {
+		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -288,8 +281,8 @@ public class ProfileEditPartCN extends PackageEditPart {
 	 */
 	@Override
 	protected void setLineType(int style) {
-		if (primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
+		if(primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
 		}
 	}
 

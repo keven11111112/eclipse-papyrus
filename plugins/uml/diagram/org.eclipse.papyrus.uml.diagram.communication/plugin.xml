@@ -88,7 +88,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Comment"
@@ -98,7 +98,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a constraint"
@@ -108,7 +108,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Duration Observation on a Message"
@@ -118,7 +118,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Time Observation"
@@ -128,7 +128,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="MessageCreate"
@@ -138,7 +138,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Message_createMessage.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Creation of a link for comment, constraint, TimeObservation, DurationObservation"
@@ -148,7 +148,7 @@
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -172,34 +172,34 @@
 		<entry
 		      description="Nodes"
 		      id="communication.group.nodes"
-		      kind="drawer"
+		      kind="stack"
 		      label="Nodes"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="communication.tool.lifeline"
-		        path="/communication.group.nodes">
+				path="/communication.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="communication.tool.comment"
-		        path="/communication.group.nodes">
+				path="/communication.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="communication.tool.constraint"
-		        path="/communication.group.nodes">
+				path="/communication.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="communication.tool.durationobservation"
-		        path="/communication.group.nodes">
+				path="/communication.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="communication.tool.timeobservation"
-		        path="/communication.group.nodes">
+				path="/communication.group.nodes">
 		  </predefinedEntry>
 		<entry
 		      description="Edges tools"
@@ -209,17 +209,17 @@
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="createMessageCreateCreationTool"
-		        path="/createEdges2Group">
+				path="/createEdges2Group">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="createLink13CreationTool"
-		        path="/createEdges2Group">
+				path="/createEdges2Group">
 		  </predefinedEntry>
 		</contribution>
 		<editor id="org.eclipse.papyrus.uml.diagram.communication"/>

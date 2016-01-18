@@ -107,22 +107,28 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 		org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
 		for (java.util.Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			org.eclipse.gmf.runtime.notation.Node node = (org.eclipse.gmf.runtime.notation.Node) nit.next();
-			switch («xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)»(node)) {
-			«FOR cn : it.childNodes»
-				«destroyChildNodes(cn, 'node', it)» 
-			«ENDFOR»
-			«FOR compartment : it.compartments»
-			«xptVisualIDRegistry.caseVisualID(compartment)»
-				for (java.util.Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
-					org.eclipse.gmf.runtime.notation.Node cnode = (org.eclipse.gmf.runtime.notation.Node) cit.next();
-					switch («xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)»(cnode)) {
-					«FOR cn : compartment.childNodes»	
-						«destroyChildNodes(cn, 'cnode', it)»
-					«ENDFOR»
+			String vid = «xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)»(node);
+			if (vid != null) {
+				switch (vid) {
+				«FOR cn : it.childNodes»
+					«destroyChildNodes(cn, 'node', it)» 
+				«ENDFOR»
+				«FOR compartment : it.compartments»
+				«xptVisualIDRegistry.caseVisualID(compartment)»
+					for (java.util.Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
+						org.eclipse.gmf.runtime.notation.Node cnode = (org.eclipse.gmf.runtime.notation.Node) cit.next();
+						String cvid = «xptVisualIDRegistry.getVisualIDMethodCall(it.diagram)»(cnode);
+						if (cvid != null) {
+							switch (cvid) {
+							«FOR cn : compartment.childNodes»	
+								«destroyChildNodes(cn, 'cnode', it)»
+							«ENDFOR»
+							}
+						}
 					}
+					break;
+				«ENDFOR»
 				}
-				break;
-			«ENDFOR»
 			}
 		}
 	}
@@ -179,25 +185,28 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 «IF !genIncomingLinks.isEmpty()»
 	for (java.util.Iterator<?> it = «view».getTargetEdges().iterator(); it.hasNext();) {
 		org.eclipse.gmf.runtime.notation.Edge incomingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-		switch(«xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())»(incomingLink)) {
+		String vid = «xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())»(incomingLink);
+		if (vid != null) {
+			switch(vid) {
 «IF !genIncomingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet].empty»		
 «FOR il : genIncomingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet]»
-			case «VisualIDRegistry.visualID(il)»:
+				case «VisualIDRegistry.visualID(il)»:
 «ENDFOR»		
-				org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest destroyRefReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(destroyRefReq));
-				cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
-				break;
+					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest destroyRefReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(destroyRefReq));
+					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+					break;
 «ENDIF»
 «IF !genIncomingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet].empty»	
 «FOR il : genIncomingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet]»
-			case «VisualIDRegistry.visualID(il)»:
+				case «VisualIDRegistry.visualID(il)»:
 «ENDFOR»		
-				org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest destroyEltReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(destroyEltReq));
-				cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
-				break;
+					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest destroyEltReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest(incomingLink.getElement(), false);
+					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(destroyEltReq));
+					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
+					break;
 «ENDIF»				
+			}
 		}
 	}
 «ENDIF»
@@ -205,25 +214,28 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 «IF genOutgoingLinks.isEmpty()»
 	for (java.util.Iterator<?> it = «view».getSourceEdges().iterator(); it.hasNext();) {
 		org.eclipse.gmf.runtime.notation.Edge outgoingLink = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-		switch(«xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())»(outgoingLink)) {
+		String vid = «xptVisualIDRegistry.getVisualIDMethodCall(getDiagram())»(outgoingLink);
+		if (vid != null) {
+			switch(vid) {
 «IF !genOutgoingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet].empty»		
 «FOR ol : genOutgoingLinks.filter[l | l.modelFacet instanceof FeatureLinkModelFacet]»
-			case «VisualIDRegistry.visualID(ol)»:
+				case «VisualIDRegistry.visualID(ol)»:
 «ENDFOR»		
-				org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest destroyRefReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(destroyRefReq));
-				cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
+					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest destroyRefReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand(destroyRefReq));
+					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+					break;
 «ENDIF»
 «IF !genOutgoingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet].empty»	
 «FOR ol : genOutgoingLinks.filter[l | l.modelFacet instanceof TypeLinkModelFacet]»
-			case «VisualIDRegistry.visualID(ol)»:
+				case «VisualIDRegistry.visualID(ol)»:
 «ENDFOR»		
-				org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest destroyEltReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(destroyEltReq));
-				cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
+					org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest destroyEltReq = new org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest(outgoingLink.getElement(), false);
+					cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(destroyEltReq));
+					cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
+					break;
 «ENDIF»				
+			}
 		}
 	}
 «ENDIF»

@@ -27,7 +27,7 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4024;
+	public static final String VISUAL_ID = "4024";
 
 	/**
 	 * @generated
@@ -63,6 +63,6 @@ public class ConnectorTimeObservationEditPart extends ConnectionEditPart impleme
 	 */
 	@Override
 	public SimpleDashedEdgeFigure getPrimaryShape() {
-		return (SimpleDashedEdgeFigure) getFigure();
+		return (SimpleDashedEdgeFigure)getFigure();
 	}
 }

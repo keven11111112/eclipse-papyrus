@@ -146,7 +146,7 @@ public class CustomCompactLifelineCompartmentLayoutEditPolicy extends AbstractTi
 	@Override
 	protected EditPolicy createChildEditPolicy(final EditPart child) {
 		final View childView = (View) child.getModel();
-		final int visualID = UMLVisualIDRegistry.getVisualID(childView);
+		final String visualID = UMLVisualIDRegistry.getVisualID(childView);
 		// make OccurrenceSpecifications, time and duration elements and general orderings non-resizable
 		if (OccurrenceSpecificationUtils.isOccurrenceSpecificationEditPart(visualID) || TimeElementUtils.isTimeElementEditPart(visualID) || GeneralOrderingUtils.isGeneralOrderingEditPart(visualID)) {
 			return new NonResizableEditPolicyEx() {

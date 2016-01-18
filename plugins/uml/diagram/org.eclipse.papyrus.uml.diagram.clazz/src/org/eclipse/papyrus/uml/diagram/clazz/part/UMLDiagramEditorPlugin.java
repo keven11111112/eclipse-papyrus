@@ -98,7 +98,6 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = Activator.getInstance().getItemProvidersAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
-
 	}
 
 	/**
@@ -141,8 +140,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
-		if (labelProvider != null) {
+		IItemLabelProvider labelProvider = (IItemLabelProvider)adapterFactory.adapt(item, IItemLabelProvider.class);
+		if(labelProvider != null) {
 			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
@@ -173,7 +172,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
-		if (p.isAbsolute() && p.segmentCount() > 1) {
+		if(p.isAbsolute() && p.segmentCount() > 1) {
 			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
@@ -191,7 +190,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	public Image getBundledImage(String path) {
 		Image image = getImageRegistry().get(path);
-		if (image == null) {
+		if(image == null) {
 			getImageRegistry().put(path, getBundledImageDescriptor(path));
 			image = getImageRegistry().get(path);
 		}
@@ -211,7 +210,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public UMLDocumentProvider getDocumentProvider() {
-		if (documentProvider == null) {
+		if(documentProvider == null) {
 			documentProvider = new UMLDocumentProvider();
 		}
 		return documentProvider;

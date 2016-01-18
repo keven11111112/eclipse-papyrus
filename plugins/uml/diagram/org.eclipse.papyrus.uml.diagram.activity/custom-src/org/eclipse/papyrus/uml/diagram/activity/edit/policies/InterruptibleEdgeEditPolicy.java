@@ -190,7 +190,7 @@ public class InterruptibleEdgeEditPolicy extends AbstractEditPolicy {
 	 *
 	 * @return
 	 */
-	protected int getInterruptibleEdgeIconID() {
+	protected String getInterruptibleEdgeIconID() {
 		return getInterruptibleEdgeIcon().getInterruptibleEdgeIconVisualID();
 	}
 

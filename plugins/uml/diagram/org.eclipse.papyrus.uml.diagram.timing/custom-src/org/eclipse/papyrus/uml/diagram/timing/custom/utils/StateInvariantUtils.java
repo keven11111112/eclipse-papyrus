@@ -426,11 +426,11 @@ public final class StateInvariantUtils {
 	}
 
 	public static boolean isStateInvariantView(final View view) {
-		final int visualID = UMLVisualIDRegistry.getVisualID(view);
+		final String visualID = UMLVisualIDRegistry.getVisualID(view);
 		return isStateInvariantEditPart(visualID);
 	}
 
-	public static boolean isStateInvariantEditPart(final int visualID) {
-		return visualID == FullStateInvariantEditPartCN.VISUAL_ID || visualID == CompactStateInvariantEditPartCN.VISUAL_ID;
+	public static boolean isStateInvariantEditPart(final String visualID) {
+		return FullStateInvariantEditPartCN.VISUAL_ID.equals(visualID) || CompactStateInvariantEditPartCN.VISUAL_ID.equals(visualID);
 	}
 }

@@ -87,7 +87,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 public class ExecutionSpecificationEndEditPart extends GraphicalEditPart implements INodeEditPart {
 
-	public static final int VISUAL_ID = 999998;
+	public static final String VISUAL_ID = "999998";
 
 	private static final int DEFAULT_SIZE = 16;
 

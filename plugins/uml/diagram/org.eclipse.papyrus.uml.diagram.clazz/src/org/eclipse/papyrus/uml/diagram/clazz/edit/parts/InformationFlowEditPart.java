@@ -29,7 +29,7 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4026;
+	public static final String VISUAL_ID = "4026";
 
 	/**
 	 * @generated
@@ -52,11 +52,11 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
-			((InformationFlowConveyedLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
+		if(childEditPart instanceof InformationFlowConveyedLabelEditPart) {
+			((InformationFlowConveyedLabelEditPart)childEditPart).setLabel(getPrimaryShape().getConveyedLabel());
 		}
-		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
-			((InformationFlowAppliedStereotypeEditPart) childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+		if(childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
+			((InformationFlowAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 		}
 		return false;
 	}
@@ -66,7 +66,7 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if (addFixedChild(childEditPart)) {
+		if(addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -76,10 +76,10 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof InformationFlowConveyedLabelEditPart) {
+		if(childEditPart instanceof InformationFlowConveyedLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
+		if(childEditPart instanceof InformationFlowAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -90,7 +90,7 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if (removeFixedChild(childEditPart)) {
+		if(removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -114,6 +114,6 @@ public class InformationFlowEditPart extends UMLConnectionNodeEditPart implement
 	 */
 	@Override
 	public InformationFlowFigure getPrimaryShape() {
-		return (InformationFlowFigure) getFigure();
+		return (InformationFlowFigure)getFigure();
 	}
 }

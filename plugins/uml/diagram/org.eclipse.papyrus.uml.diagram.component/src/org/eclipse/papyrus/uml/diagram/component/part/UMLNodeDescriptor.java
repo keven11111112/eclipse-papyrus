@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.uml.diagram.component.part;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
+import org.eclipse.papyrus.infra.gmfdiag.common.updater.UpdaterNodeDescriptor;
 
 /**
  * @generated
@@ -20,9 +20,9 @@ import org.eclipse.gmf.tooling.runtime.update.UpdaterNodeDescriptor;
 public class UMLNodeDescriptor extends UpdaterNodeDescriptor {
 
 	/**
-	 * @generated
-	 */
-	public UMLNodeDescriptor(EObject modelElement, int visualID) {
+	* @generated
+	*/
+	public UMLNodeDescriptor(EObject modelElement, String visualID) {
 		super(modelElement, visualID);
 	}
 }

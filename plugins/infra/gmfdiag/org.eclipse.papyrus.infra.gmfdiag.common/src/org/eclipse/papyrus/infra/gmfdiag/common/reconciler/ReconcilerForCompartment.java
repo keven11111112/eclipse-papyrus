@@ -72,7 +72,7 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 	 *
 	 * @return the compartments visual id
 	 */
-	abstract public List<Integer> getCompartmentsVisualID();
+	abstract public List<String> getCompartmentsVisualID();
 
 
 	/**
@@ -189,8 +189,8 @@ abstract public class ReconcilerForCompartment extends DiagramReconciler {
 	 */
 	protected boolean isCompartment(View view) {
 		boolean value = false;
-		for (Integer compartment : getCompartmentsVisualID()) {
-			value = Integer.toString(compartment).equals(((View) view).getType());
+		for (String compartment : getCompartmentsVisualID()) {
+			value = compartment.equals(((View) view).getType());
 			if (value == true)
 				break;
 		}
