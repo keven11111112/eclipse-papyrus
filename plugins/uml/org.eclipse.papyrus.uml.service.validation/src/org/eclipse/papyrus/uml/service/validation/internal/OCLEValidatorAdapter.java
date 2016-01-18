@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.IConstraintStatus;
-import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateValidator;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.papyrus.infra.services.validation.internal.EValidatorAdapter;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -78,27 +77,20 @@ public class OCLEValidatorAdapter
 				}
 			}
 		}
-		else if (EValidator.Registry.INSTANCE.get(eClass.eContainer()) == registeredValidator) {
-			if (eObject instanceof InstanceSpecification) {
-				UMLOCLEValidator.INSTANCE.validateInstanceSpecification((InstanceSpecification) eObject, diagnostics, context);
-			}
-			else if (eObject instanceof OpaqueAction) {
-				UMLOCLEValidator.INSTANCE.validateOpaqueAction((OpaqueAction) eObject, diagnostics, context);
-			}
-			else if (eObject instanceof OpaqueBehavior) {
-				return UMLOCLEValidator.INSTANCE.validateOpaqueBehavior((OpaqueBehavior) eObject, diagnostics, context);
-			}
-			else if (eObject instanceof OpaqueExpression) {
-				return UMLOCLEValidator.INSTANCE.validateOpaqueExpression((OpaqueExpression) eObject, diagnostics, context);
-			}
-			registeredValidator.validate(eClass, eObject, diagnostics, context);
+		if (eObject instanceof InstanceSpecification) {
+			UMLOCLEValidator.INSTANCE.validateInstanceSpecification((InstanceSpecification) eObject, diagnostics, context);
 		}
-		else {
-			new OCLDelegateValidator(EObjectValidator.INSTANCE) {
-				// Ensure that the class loader for this class will be used downstream.
-			}.validate(eClass, eObject, diagnostics, context);
+		else if (eObject instanceof OpaqueAction) {
+			UMLOCLEValidator.INSTANCE.validateOpaqueAction((OpaqueAction) eObject, diagnostics, context);
 		}
-		
+		else if (eObject instanceof OpaqueBehavior) {
+			return UMLOCLEValidator.INSTANCE.validateOpaqueBehavior((OpaqueBehavior) eObject, diagnostics, context);
+		}
+		else if (eObject instanceof OpaqueExpression) {
+			return UMLOCLEValidator.INSTANCE.validateOpaqueExpression((OpaqueExpression) eObject, diagnostics, context);
+		}
+		registeredValidator.validate(eClass, eObject, diagnostics, context);
+
 		return batchValidate(eObject, diagnostics, context);
 	}
 }
