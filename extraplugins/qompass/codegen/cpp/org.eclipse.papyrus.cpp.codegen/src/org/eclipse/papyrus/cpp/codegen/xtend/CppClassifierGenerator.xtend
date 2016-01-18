@@ -36,10 +36,6 @@ class CppClassifierGenerator {
 		
 		«CppIncludeUtil.includeDirective(CppClassIncludeClassDeclaration.cppOwnerPackageIncludePath(classifier.package))»
 		
-		«FOR path : getSortedIncludePathList(classifier)» 
-			«CppIncludeUtil.includeDirective(path)»
-		«ENDFOR»
-		
 		«CppIncludeUtil.CppIncludeHeader(classifier)»
 		
 		«var tb = GenUtils.getTemplateBinding(classifier)»
@@ -47,6 +43,10 @@ class CppClassifierGenerator {
 		«CppIncludeUtil.includeDirective(
 			GenUtils.getFullPath(classifier.package) + '/' + (templateElement.owner as NamedElement).name + '.' +
 				CppCodeGenUtils.getHeaderSuffix())»
+		
+		«FOR path : getSortedDeclarePathList(classifier)» 
+			«CppIncludeUtil.declareDirective(path)»
+		«ENDFOR»
 		
 		«CppGenUtils.openNS(classifier)»
 		/************************************************************/
@@ -66,6 +66,11 @@ class CppClassifierGenerator {
 		var includePathList = CppClassIncludeClassDeclaration.CppClassAllIncludes(classifier).sort;
 		return includePathList
 	}
+	
+	static def getSortedDeclarePathList(Classifier classifier) {
+		var declarePathList = CppClassIncludeClassDeclaration.CppClassAllDeclares(classifier).sort;
+		return declarePathList
+	}
 
 	static def generateBindBodyCode(Classifier classifier) '''
 		#define «GenUtils.getFullNameUC(classifier)»_BODY
@@ -80,14 +85,15 @@ class CppClassifierGenerator {
 		«CppIncludeUtil.includeDirective(
 			GenUtils.getFullPath(classifier.package) + '/' + classifier.name + '.' + CppCodeGenUtils.getHeaderSuffix())»
 		
+		
+		// Derived includes directives
+		«FOR path : CppClassIncludeClassDeclaration.CppClassAllIncludesDeclarationBody(classifier).sort» 
+			«CppIncludeUtil.includeDirective(path)»
+		«ENDFOR»
+		
 		«CppIncludeUtil.CppIncludeBody(classifier)»
 		
 		«CppGenUtils.openNS(classifier)»
-		
-		// Derived includes directives
-		«FOR path : CppClassIncludeClassDeclaration.CppClassAllIncludes(classifier).sort» 
-			«CppIncludeUtil.includeDirective(path)»
-		«ENDFOR»
 		
 		/************************************************************/
 		«var tb = GenUtils.getTemplateBinding(classifier)»
@@ -112,11 +118,15 @@ class CppClassifierGenerator {
 		
 		«CppIncludeUtil.includeDirective(CppClassIncludeClassDeclaration.cppOwnerPackageIncludePath(classifier.package))»
 		
-		«FOR path : getSortedIncludePathList(classifier)» 
+		«FOR path : getSortedIncludePathList(classifier)»
 			«CppIncludeUtil.includeDirective(path)»
 		«ENDFOR»
 		
 		«CppIncludeUtil.CppIncludeHeader(classifier)»
+		
+		«FOR path : getSortedDeclarePathList(classifier)» 
+			«CppIncludeUtil.declareDirective(path)»
+		«ENDFOR»
 		
 		«CppGenUtils.openNS(classifier)»
 		

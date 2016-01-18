@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterableElement;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TemplateBinding;
 import org.eclipse.uml2.uml.TemplateParameter;
@@ -145,13 +146,13 @@ public class GenUtils {
 	}
 
 	/**
-	 * Retrieve a list of types that belong to by a classifier in the current class
+	 * Retrieve a list of types of attributes that belong to the current classifier.
 	 *
 	 * @param current
 	 *            Class on which the attributes are searched
-	 * @return collection of classes which are the type of the attributes
+	 * @return Collection of classifiers which are the types of the attributes
 	 */
-	public static EList<Classifier> getOwnedAttributeTypes(Classifier current) {
+	public static EList<Classifier> getTypesViaAttributes(Classifier current) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 
 		Iterator<Property> attributes;
@@ -163,32 +164,62 @@ public class GenUtils {
 		}
 		return result;
 	}
-
+	
 	/**
-	 * Retrieve a list of types that belong to by a classifier in the current class
+	 * Retrieve a list of types of attributes that belong to the current classifier. Filter by stereotypes.
 	 *
 	 * @param current
 	 *            Class on which the attributes are searched
-	 * @return collection of classes which are the type of the attributes
+	 * @param excludedStereotypes
+	 *            List of ALL stereotypes that must no be applied
+	 * @param includedStereotypes
+	 *            List of ANY stereotype that must no be applied (at least one)
+	 * @return Collection of classifiers which are the types of the attributes
 	 */
-	public static EList<Classifier> getTypesViaAttributes(Classifier current) {
+	public static EList<Classifier> getTypesViaAttributes(Classifier current, EList<Class<? extends EObject>> excludedStereotypes, EList<Class<? extends EObject>> includedStereotypes, boolean bypassForInnerClassifiers) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
 
-		for (Property currentAttribute : current.getAttributes()) {
+		Iterator<Property> attributes;
+		attributes = current.getAttributes().iterator();
+		while (attributes.hasNext()) {
+			Property currentAttribute = attributes.next();
 			Type type = currentAttribute.getType();
-			addFarthestOwnerType(type, result);
+			
+			if  (type != null) {
+				if (bypassForInnerClassifiers && !(type.getOwner() instanceof Package)) { // if we force inner class types to be processed
+					addFarthestOwnerType(type, result);
+				} else {
+					// Check stereotypes
+					boolean ok = true;
+					if (excludedStereotypes != null && GenUtils.hasAnyStereotype(currentAttribute, excludedStereotypes)) {
+						ok = false;
+					}
+					if (ok) {
+						if (includedStereotypes != null && !GenUtils.hasAnyStereotype(currentAttribute, includedStereotypes)) {
+							ok = false;
+						}
+					}
+					
+					// All ok
+					if (ok) {
+						addFarthestOwnerType(type, result);
+					}
+				}
+			}
 		}
+		
 		return result;
 	}
-
+	
 	/**
-	 * Retrieve the operations in the current class. For each
-	 * operation collected the classifier type. This class thus finds types, on
+	 * Retrieve the operations in the current classifier. For each
+	 * operation, collect types of its parameters.
+	 * This method thus finds types, on
 	 * which the signature depends.
 	 *
 	 * @param current
-	 *            Class on which the attributes are searched
-	 * @return collection of classes which are the types of the operations parameters
+	 *            Classifier on which the operations are searched for
+	 * @return Collection of classifiers which are the types of the operation parameters
 	 */
 	public static EList<Classifier> getTypesViaOperations(Classifier current) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
@@ -202,7 +233,172 @@ public class GenUtils {
 	}
 	
 	/**
-	 * Retrieves a list of types used by inner classifiers of the current classifier
+	 * Retrieve the operations in the current classifier. For each
+	 * operation, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 * We check if operations and parameters must have or not have some stereotypes.
+	 *
+	 * @param current
+	 *            Classifier on which the operations are searched for
+	 * @param excludedOperationStereotypes
+	 *            List of ALL stereotypes that must not be applied to an operation
+	 * @param includedOperationStereotypes
+	 *            List of ANY stereotype that must be applied to an operation (at least one)
+	 * @param excludedParameterStereotypes
+	 *            List of ALL stereotypes that must not be applied to a parameter
+	 * @param includedParameterStereotypes
+	 *            List of ANY stereotype that must be applied to a parameter (at least one)
+	 * @return Collection of classifiers which are the types of the operation parameters
+	 */
+	public static EList<Classifier> getTypesViaOperations(Classifier current,
+			EList<Class<? extends EObject>> excludedOperationStereotypes,
+			EList<Class<? extends EObject>> includedOperationStereotypes,
+			EList<Class<? extends EObject>> excludedParameterStereotypes,
+			EList<Class<? extends EObject>> includedParameterStereotypes,
+			boolean bypassForInnerClassifiers) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		
+		for (Operation operation : current.getOperations()) {
+			boolean ok = true;
+			
+			if (excludedOperationStereotypes != null && GenUtils.hasAnyStereotype(operation, excludedOperationStereotypes)) {
+				ok = false;
+			}
+			
+			if (includedOperationStereotypes != null && !GenUtils.hasAnyStereotype(operation, includedOperationStereotypes)) {
+				ok = false;
+			}
+			
+			if (ok) {
+				for (Parameter param : operation.getOwnedParameters()) {
+					Type type = param.getType();
+					if  (type != null) {
+						if (bypassForInnerClassifiers && !(type.getOwner() instanceof Package)) { // if we force inner class types to be processed
+							addFarthestOwnerType(type, result);
+						} else {
+							ok = true;
+							
+							if (excludedParameterStereotypes != null && GenUtils.hasAnyStereotype(param, excludedParameterStereotypes)) {
+								ok = false;
+							}
+							
+							if (includedParameterStereotypes != null && !GenUtils.hasAnyStereotype(param, includedParameterStereotypes)) {
+								ok = false;
+							}
+							
+							if (ok) {
+								addFarthestOwnerType(type, result);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Retrieve the opaque behaviors in the current classifier, without specification.
+	 * For each opaque behavior, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 *
+	 * @param current
+	 *            Classifier on which the opaque behaviors are searched for
+	 * @return Collection of classifiers which are the types of the opaque behavior parameters
+	 */
+	public static EList<Classifier> getTypesViaOpaqueBehaviors(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element element : current.getOwnedElements()) {
+			if (element instanceof OpaqueBehavior) {
+				OpaqueBehavior opaqueBehavior = (OpaqueBehavior) element;
+				if (opaqueBehavior.getSpecification() == null) {
+					for (Parameter param : opaqueBehavior.getOwnedParameters()) {
+						Type type = param.getType();
+						addFarthestOwnerType(type, result);
+					}
+				}
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve the opaque behaviors in the current classifier, without specification.
+	 * For each opaque behavior, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 * We check if opaque behavior and parameters must have or not have some stereotypes.
+	 *
+	 * @param current
+	 *            Classifier on which the opaque behaviors are searched for
+	 * @param excludedOperationStereotypes
+	 *            List of ALL stereotypes that must not be applied to an opaque behavior
+	 * @param includedOperationStereotypes
+	 *            List of ANY stereotype that must be applied to an opaque behavior (at least one)
+	 * @param excludedParameterStereotypes
+	 *            List of ALL stereotypes that must not be applied to a parameter
+	 * @param includedParameterStereotypes
+	 *            List of ANY stereotype that must be applied to a parameter (at least one)
+	 * @return Collection of classifiers which are the types of the opaque behavior parameters
+	 */
+	public static EList<Classifier> getTypesViaOpaqueBehaviors(Classifier current,
+			EList<Class<? extends EObject>> excludedOperationStereotypes,
+			EList<Class<? extends EObject>> includedOperationStereotypes,
+			EList<Class<? extends EObject>> excludedParameterStereotypes,
+			EList<Class<? extends EObject>> includedParameterStereotypes,
+			boolean bypassForInnerClassifiers) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		
+		for (Element element : current.getOwnedElements()) {
+			if (element instanceof OpaqueBehavior) {
+				OpaqueBehavior opaqueBehavior = (OpaqueBehavior) element;
+				if (opaqueBehavior.getSpecification() == null) {
+					boolean ok = true;
+					
+					if (excludedOperationStereotypes != null && GenUtils.hasAnyStereotype(opaqueBehavior, excludedOperationStereotypes)) {
+						ok = false;
+					}
+					
+					if (includedOperationStereotypes != null && !GenUtils.hasAnyStereotype(opaqueBehavior, includedOperationStereotypes)) {
+						ok = false;
+					}
+					
+					if (ok) {
+						for (Parameter param : opaqueBehavior.getOwnedParameters()) {
+							Type type = param.getType();
+							if  (type != null) {
+								if (bypassForInnerClassifiers && !(type.getOwner() instanceof Package)) { // if we force inner class types to be processed
+									addFarthestOwnerType(type, result);
+								} else {
+									ok = true;
+									
+									if (excludedParameterStereotypes != null && GenUtils.hasAnyStereotype(param, excludedParameterStereotypes)) {
+										ok = false;
+									}
+									
+									if (includedParameterStereotypes != null && !GenUtils.hasAnyStereotype(param, includedParameterStereotypes)) {
+										ok = false;
+									}
+									
+									if (ok) {
+										addFarthestOwnerType(type, result);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Retrieves a list of types of attributes of inner classifiers of the current classifier
 	 * 
 	 * @param current
 	 *            Class on which the attributes are searched
@@ -210,10 +406,163 @@ public class GenUtils {
 	 */
 	public static EList<Classifier> getInnerClassifierTypes(Classifier current) {
 		EList<Classifier> result = new UniqueEList<Classifier>();
+		result.addAll(getInnerClassifierTypesViaAttributes(current));
+		result.addAll(getInnerClassifierTypesViaOperations(current));
+		return result;
+	}
+	
+	/**
+	 * Retrieve a list of types of attributes of inner classifiers that belong to the current classifier.
+	 *
+	 * @param current
+	 *            Class on which the attributes are searched
+	 * @return Collection of classifiers which are the type of the attributes of inner classifiers
+	 */
+	public static EList<Classifier> getInnerClassifierTypesViaAttributes(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
 		for (Element ownedElement : current.allOwnedElements()) {
 			if (ownedElement instanceof Classifier) {
-				result.addAll(getOwnedAttributeTypes((Classifier) ownedElement));
+				result.addAll(getTypesViaAttributes((Classifier) ownedElement));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve a list of types of attributes of inner classifiers that belong to the current classifier. Filter by stereotypes.
+	 *
+	 * @param current
+	 *            Class on which the attributes are searched
+	 * @param excludedStereotypes
+	 *            List of ALL stereotypes that must no be applied
+	 * @param includedStereotypes
+	 *            List of ANY stereotype that must no be applied (at least one)
+	 * @return Collection of classifiers which are the types of the attributes of inner classifiers
+	 */
+	public static EList<Classifier> getInnerClassifierTypesViaAttributes(Classifier current, EList<Class<? extends EObject>> excludedStereotypes, EList<Class<? extends EObject>> includedStereotypes, boolean bypassForInnerClassifiers) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
+				result.addAll(getTypesViaAttributes((Classifier) ownedElement, excludedStereotypes, includedStereotypes, bypassForInnerClassifiers));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve the operations of inner classifiers of the current classifier. For each
+	 * operation, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 *
+	 * @param current
+	 *            Classifier on which the operations are searched for
+	 * @return Collection of classifiers which are the types of the parameters of inner classifiers
+	 */
+	public static EList<Classifier> getInnerClassifierTypesViaOperations(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
 				result.addAll(getTypesViaOperations((Classifier) ownedElement));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve the operations of inner classifiers of the current classifier. For each
+	 * operation, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 * We check if operations and parameters must have or not have some stereotypes.
+	 *
+	 * @param current
+	 *            Classifier on which the operations are searched for
+	 * @param excludedOperationStereotypes
+	 *            List of ALL stereotypes that must not be applied to an operation
+	 * @param includedOperationStereotypes
+	 *            List of ANY stereotype that must be applied to an operation (at least one)
+	 * @param excludedParameterStereotypes
+	 *            List of ALL stereotypes that must not be applied to a parameter
+	 * @param includedParameterStereotypes
+	 *            List of ANY stereotype that must be applied to a parameter (at least one)
+	 * @return Collection of classifiers which are the types of the parameters of inner classifiers
+	 */
+	public static EList<Classifier> getInnerClassifierTypesViaOperations(Classifier current,
+			EList<Class<? extends EObject>> excludedOperationStereotypes,
+			EList<Class<? extends EObject>> includedOperationStereotypes,
+			EList<Class<? extends EObject>> excludedParameterStereotypes,
+			EList<Class<? extends EObject>> includedParameterStereotypes,
+			boolean bypassForInnerClassifiers) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
+				result.addAll(getTypesViaOperations((Classifier) ownedElement,
+						excludedOperationStereotypes,
+						includedOperationStereotypes,
+						excludedParameterStereotypes,
+						includedParameterStereotypes,
+						bypassForInnerClassifiers));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve the opaque behaviors of inner classifiers of the current classifier, without specification.
+	 * For each opaque behavior, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 *
+	 * @param current
+	 *            Classifier on which the opaque behaviors are searched for
+	 * @return Collection of classifiers which are the types of the parameters of inner classifiers
+	 */
+	public static EList<Classifier> getInnerClassifierTypesViaOpaqueBehaviors(Classifier current) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
+				result.addAll(getTypesViaOpaqueBehaviors((Classifier) ownedElement));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * Retrieve the opaque behaviors of inner classifiers of the current classifier, without specification.
+	 * For each opaque behavior, collect types of its parameters.
+	 * This method thus finds types, on
+	 * which the signature depends.
+	 * We check if opaque behavior and parameters must have or not have some stereotypes.
+	 *
+	 * @param current
+	 *            Classifier on which the opaque behaviors are searched for
+	 * @param excludedOperationStereotypes
+	 *            List of ALL stereotypes that must not be applied to an opaque behavior
+	 * @param includedOperationStereotypes
+	 *            List of ANY stereotype that must be applied to an opaque behavior (at least one)
+	 * @param excludedParameterStereotypes
+	 *            List of ALL stereotypes that must not be applied to a parameter
+	 * @param includedParameterStereotypes
+	 *            List of ANY stereotype that must be applied to a parameter (at least one)
+	 * @return Collection of classifiers which are the types of the opaque behavior parameters of inner classifiers
+	 */
+	
+	public static EList<Classifier> getInnerClassifierTypesViaOpaqueBehaviors(Classifier current,
+			EList<Class<? extends EObject>> excludedOperationStereotypes,
+			EList<Class<? extends EObject>> includedOperationStereotypes,
+			EList<Class<? extends EObject>> excludedParameterStereotypes,
+			EList<Class<? extends EObject>> includedParameterStereotypes,
+			boolean bypassForInnerClassifiers) {
+		EList<Classifier> result = new UniqueEList<Classifier>();
+		for (Element ownedElement : current.allOwnedElements()) {
+			if (ownedElement instanceof Classifier) {
+				result.addAll(getTypesViaOpaqueBehaviors((Classifier) ownedElement,
+						excludedOperationStereotypes,
+						includedOperationStereotypes,
+						excludedParameterStereotypes,
+						includedParameterStereotypes,
+						bypassForInnerClassifiers));
 			}
 		}
 		return result;
@@ -368,6 +717,12 @@ public class GenUtils {
 			return;
 		}
 		
+		// TODO why was this condition added?
+		// We don't need the namespace of a primitive type that is not defined since the namespace won't appear before the primitive type in the code
+		/*if (element instanceof PrimitiveType && !GenUtils.hasStereotype(element, "C_Cpp::Typedef")) {
+			return;
+		}*/
+		
 		if (element.getOwner() instanceof Package && element instanceof Classifier) {
 			result.add((Classifier) element);
 		} else { // Type is an inner class. We want to return a classifier C directly owned by a package since it is "C.h" that should be included
@@ -459,6 +814,50 @@ public class GenUtils {
 			if (clazz.isAssignableFrom(stereoApplication.getClass())) {
 				return true;
 			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Is a list of stereotypes all applied?
+	 *
+	 * @param element
+	 *            a UML element
+	 * @param stereotypes
+	 *            The list of classes of an element of a static profile
+	 * @return
+	 */
+	public static boolean hasAllStereotypes(Element element, EList<java.lang.Class<? extends EObject>> stereotypes) {
+		for (EObject stereoApplication : element.getStereotypeApplications()) {
+			// check whether the stereotype is a super-class of the passed parameter clazz
+			for (Class<? extends EObject> stereotype : stereotypes) {
+				if (!stereotype.isAssignableFrom(stereoApplication.getClass())) {
+					return false;
+				}
+			}
+			
+		}
+		return true;
+	}
+	
+	/**
+	 * Is a any stereotype in a list applied?
+	 *
+	 * @param element
+	 *            a UML element
+	 * @param stereotypes
+	 *            The list of classes of an element of a static profile
+	 * @return
+	 */
+	public static boolean hasAnyStereotype(Element element, EList<java.lang.Class<? extends EObject>> stereotypes) {
+		for (EObject stereoApplication : element.getStereotypeApplications()) {
+			// check whether the stereotype is a super-class of the passed parameter clazz
+			for (Class<? extends EObject> stereotype : stereotypes) {
+				if (stereotype.isAssignableFrom(stereoApplication.getClass())) {
+					return true;
+				}
+			}
+			
 		}
 		return false;
 	}

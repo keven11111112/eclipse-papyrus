@@ -24,6 +24,12 @@ class CppIncludeUtil {
 		if ((path != null) && (path.length > 0))
 			return '''#include ''' + '"' + path + '"'
 	}
+	
+	static def declareDirective(String path) {
+		if ((path != null) && (path.length > 0)) {
+			return path
+		}	
+	}
 
 	static def CppIncludeHeader(NamedElement ne) {
 		if (GenUtils.hasStereotype(ne, Include)) {

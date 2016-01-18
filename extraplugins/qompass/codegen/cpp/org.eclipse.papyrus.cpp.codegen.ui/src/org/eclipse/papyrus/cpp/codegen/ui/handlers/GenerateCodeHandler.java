@@ -86,7 +86,8 @@ public class GenerateCodeHandler extends CmdHandler {
 
 		// add required classifiers
 		if (pe instanceof Classifier) {
-			EList<Classifier> requiredClassifiers = ClassUtils.includedClassifiers((Classifier) pe);
+			EList<Classifier> requiredClassifiers = ClassUtils.requiredClassifiers((Classifier) pe);
+			
 			for (Classifier requiredClassifier : requiredClassifiers) {
 				if (!alreadyHandled.contains(requiredClassifier)) {
 					generate(mec, requiredClassifier, alreadyHandled, false);

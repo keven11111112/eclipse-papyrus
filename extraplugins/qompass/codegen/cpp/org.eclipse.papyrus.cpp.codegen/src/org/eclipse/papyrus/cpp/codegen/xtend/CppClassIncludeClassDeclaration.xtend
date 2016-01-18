@@ -23,6 +23,9 @@ import java.util.List
 import java.util.ArrayList
 import org.eclipse.papyrus.cpp.codegen.utils.ClassUtils
 import org.eclipse.papyrus.codegen.base.GenUtils
+import org.eclipse.uml2.uml.DataType
+import org.eclipse.uml2.uml.UMLFactory
+import org.eclipse.papyrus.cpp.codegen.utils.CppGenUtils
 
 /**
  * @author Önder GÜRCAN (onder.gurcan@cea.fr)
@@ -37,8 +40,8 @@ class CppClassIncludeClassDeclaration {
 		}
 	}
 	
-	static def CppClassAllIncludesDeclarationBody(Classifier classifier) { 
-		cppClassAllIncludes(classifier, GenUtils.getTypesViaDependencies(classifier))
+	static def CppClassAllIncludesDeclarationBody(Classifier classifier) {
+		cppClassAllIncludes(classifier, ClassUtils.includedImplementationClassifiers(classifier))
 	}
 	
 	static def cppClassAllIncludes(Classifier classifier, EList<Classifier> list) {
@@ -47,7 +50,10 @@ class CppClassIncludeClassDeclaration {
 			//var String str = null
 			if ((cl != classifier) && (!GenUtils.hasStereotype(cl, NoCodeGen)) || (GenUtils.hasStereotype(cl, External))) {
 				if ((cl instanceof Enumeration) || (cl instanceof PrimitiveType)) {
-					if ((cl.owner != null) && (cl.owner instanceof Package)) {
+					if (cl.owner instanceof Package && cl.owner != classifier.owner) {
+						/* Enum and Primitive must not be in same package as classifier since
+						we always enums and primitives are defined in the package header which
+						is always included in the classifier header */
 						var includePath = (cl.owner as Package).cppOwnerPackageIncludePath
 						if (!newList.contains(includePath)) newList.add(includePath)
 					} else {
@@ -63,7 +69,43 @@ class CppClassIncludeClassDeclaration {
 		return newList.filter[str | str != null]
 	}
 	
+	static def cppClassAllDeclares(Classifier classifier, EList<Classifier> declaredClassifiers, EList<Classifier> includedClassifiers) {
+		var List<String> newList = new ArrayList<String>()
+		
+		if (declaredClassifiers != null) {
+			if (includedClassifiers != null) {
+				declaredClassifiers.removeAll(includedClassifiers)
+			}
+			
+			for (cl : declaredClassifiers) {
+				if ((cl != classifier) && (!GenUtils.hasStereotype(cl, NoCodeGen)) || (GenUtils.hasStereotype(cl, External))) {
+					var declaration = "";
+					
+					if ((cl instanceof Enumeration) || (cl instanceof PrimitiveType)) {
+						// Ignore
+					} else if (cl instanceof DataType) {
+						declaration = CppGenUtils.openNSMinimal(cl) + "struct " + cl.name + ";" + CppGenUtils.closeNSMinimal(cl);
+					} else if (cl.eClass.equals(UMLFactory.eINSTANCE.getUMLPackage().getClass_())) {
+						declaration = CppGenUtils.openNSMinimal(cl).replaceAll("\r", "").replaceAll("\n", "") + "class " + cl.name + ";" + CppGenUtils.closeNSMinimal(cl).replaceAll("\r", "").replaceAll("\n", "");
+					}
+					
+					if (declaration != "") {
+						if (!newList.contains(declaration)) {
+							newList.add(declaration);
+						}
+					}
+				}
+			}
+		}
+		
+		return newList.filter[str | str != null]
+	}
+	
 	static def CppClassAllIncludes(Classifier clazz) {
 		cppClassAllIncludes(clazz, ClassUtils.includedClassifiers(clazz))
+	}
+	
+	static def CppClassAllDeclares(Classifier clazz) {
+		cppClassAllDeclares(clazz, ClassUtils.declaredClassifiers(clazz), ClassUtils.includedClassifiers(clazz))
 	}
 }

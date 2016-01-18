@@ -269,6 +269,27 @@ public class CppGenUtils {
 		}
 		return openNS;
 	}
+	
+	/**
+	 * Return a C++ open-namespace definition for a named element, without spaces and line breaks
+	 *
+	 * @param ne
+	 *            a named element
+	 * @return a C++ open-namespace definition for a named element, without spaces and line breaks
+	 */
+	public static String openNSMinimal(NamedElement ne) {
+		String openNS = ""; //$NON-NLS-1$
+		currentNS = ne.getNamespace();
+		if (ne instanceof Package) {
+			openNS = "namespace " + ne.getName() + " {"; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		for (Namespace ns : ne.allNamespaces()) {
+			if (ns.getOwner() != null) {	// skip top-level package (useful?)
+				openNS = "namespace " + ns.getName() + " {" + openNS; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		return openNS;
+	}
 
 
 	/**
@@ -286,6 +307,26 @@ public class CppGenUtils {
 		for (Namespace ns : ne.allNamespaces()) {
 			if (ns.getOwner() != null) {
 				closeNS += "} // of namespace " + ns.getName() + "\n"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		return closeNS;
+	}
+	
+	/**
+	 * Return a C++ close-namespace definition for a named element, without spaces and line breaks
+	 *
+	 * @param ne
+	 *            a named element
+	 * @return a C++ close-namespace definition for a named element, without spaces and line breaks
+	 */
+	public static String closeNSMinimal(NamedElement ne) {
+		String closeNS = ""; //$NON-NLS-1$
+		if (ne instanceof Package) {
+			closeNS = "}"; //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		for (Namespace ns : ne.allNamespaces()) {
+			if (ns.getOwner() != null) {
+				closeNS += "}"; //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		return closeNS;
