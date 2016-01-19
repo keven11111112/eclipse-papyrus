@@ -30,6 +30,15 @@ public class Utils {
 	 * file is indented with a tab.
 	 */
 	public static String decreaseIndent(char[] contents, int start, int end) {
+		return decreaseIndent(contents, start, end, 4);
+	}
+	
+	/**
+	 * Decrease the indentation of a text block. This function is used during synchronization, since
+	 * the code within an opaque behavior is not indented, whereas the code of an operation within a
+	 * file is indented with a tab.
+	 */
+	public static String decreaseIndent(char[] contents, int start, int end, int indentation) {
 		String newBlock = ""; //$NON-NLS-1$
 		boolean newLine = true;
 		int consume = 0;
@@ -40,23 +49,23 @@ public class Utils {
 			if (newLine && (c == '\t')) {
 				consume = 1;
 			}
+			
 			if (newLine && (c == ' ')) {
-				consume = 4;
+				consume = indentation;
 			}
 
-			if (consume == 0) {
+			if (consume == 0 || c != ' ') {
 				newBlock += c;
-			}
-			else if (c == ' ') {
+				consume = 0;
+			} else if (c == ' ') {
 				consume--;
-			}
-			else {
+			} else {
 				consume = 0;
 			}
+			
 			if ((c == '\n') || (c == '\r')) {
 				newLine = true;
-			}
-			else {
+			} else {
 				newLine = false;
 			}
 		}
