@@ -19,6 +19,7 @@ package org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the Efacet2 edit plugin.
@@ -55,6 +56,7 @@ public final class Efacet2EditPlugin extends EMFPlugin {
 	 */
 	public Efacet2EditPlugin() {
 		super(new ResourceLocator[] {
+				EcoreEditPlugin.INSTANCE,
 		});
 	}
 

@@ -83,23 +83,22 @@ public class EfacetcatalogAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected EfacetcatalogSwitch<Adapter> modelSwitch =
-			new EfacetcatalogSwitch<Adapter>() {
-				@Override
-				public Adapter caseFacetSetCatalog(FacetSetCatalog object) {
-					return createFacetSetCatalogAdapter();
-				}
+	protected EfacetcatalogSwitch<Adapter> modelSwitch = new EfacetcatalogSwitch<Adapter>() {
+		@Override
+		public Adapter caseFacetSetCatalog(FacetSetCatalog object) {
+			return createFacetSetCatalogAdapter();
+		}
 
-				@Override
-				public Adapter caseCatalog(Catalog object) {
-					return createCatalogAdapter();
-				}
+		@Override
+		public Adapter caseCatalog(Catalog object) {
+			return createCatalogAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

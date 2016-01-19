@@ -5,10 +5,11 @@ Export-Package: org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ext
  org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.provider,
  org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.edit,
- org.eclipse.emf.ecore,
- org.eclipse.emf.ecore.edit,
- org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.2.0"
+ org.eclipse.emf.edit;visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.util.emf.catalog;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.papyrus.emf.facet.efacet.metamodel;bundle-version="1.2.0";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

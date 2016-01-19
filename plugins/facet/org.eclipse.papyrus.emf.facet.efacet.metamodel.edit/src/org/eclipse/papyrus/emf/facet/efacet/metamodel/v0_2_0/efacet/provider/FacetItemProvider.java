@@ -27,11 +27,11 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.provider.EClassifierItemProvider;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
@@ -45,7 +45,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.Facet;
  * @generated
  */
 public class FacetItemProvider
-		extends ItemProviderAdapter {
+		extends EClassifierItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -69,11 +69,6 @@ public class FacetItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addInstanceClassNamePropertyDescriptor(object);
-			addInstanceClassPropertyDescriptor(object);
-			addDefaultValuePropertyDescriptor(object);
-			addInstanceTypeNamePropertyDescriptor(object);
 			addDocumentationPropertyDescriptor(object);
 			addExtendedMetaclassPropertyDescriptor(object);
 			addConformanceTypedElementPropertyDescriptor(object);
@@ -83,111 +78,6 @@ public class FacetItemProvider
 			addAllFacetElementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ENamedElement_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature", "_UI_ENamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ENAMED_ELEMENT__NAME,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance Class Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addInstanceClassNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EClassifier_instanceClassName_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EClassifier_instanceClassName_feature", "_UI_EClassifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ECLASSIFIER__INSTANCE_CLASS_NAME,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance Class feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addInstanceClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EClassifier_instanceClass_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EClassifier_instanceClass_feature", "_UI_EClassifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ECLASSIFIER__INSTANCE_CLASS,
-				false,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Default Value feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addDefaultValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EClassifier_defaultValue_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EClassifier_defaultValue_feature", "_UI_EClassifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ECLASSIFIER__DEFAULT_VALUE,
-				false,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Instance Type Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addInstanceTypeNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EClassifier_instanceTypeName_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EClassifier_instanceTypeName_feature", "_UI_EClassifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ECLASSIFIER__INSTANCE_TYPE_NAME,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
 	}
 
 	/**
@@ -350,8 +240,6 @@ public class FacetItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS);
-			childrenFeatures.add(EcorePackage.Literals.ECLASSIFIER__ETYPE_PARAMETERS);
 			childrenFeatures.add(EFacetPackage.Literals.FACET__FACET_ELEMENTS);
 			childrenFeatures.add(EFacetPackage.Literals.FACET__FACET_OPERATIONS);
 		}
@@ -412,16 +300,9 @@ public class FacetItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Facet.class)) {
-		case EFacetPackage.FACET__NAME:
-		case EFacetPackage.FACET__INSTANCE_CLASS_NAME:
-		case EFacetPackage.FACET__INSTANCE_CLASS:
-		case EFacetPackage.FACET__DEFAULT_VALUE:
-		case EFacetPackage.FACET__INSTANCE_TYPE_NAME:
 		case EFacetPackage.FACET__DOCUMENTATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case EFacetPackage.FACET__EANNOTATIONS:
-		case EFacetPackage.FACET__ETYPE_PARAMETERS:
 		case EFacetPackage.FACET__FACET_ELEMENTS:
 		case EFacetPackage.FACET__FACET_OPERATIONS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -447,6 +328,12 @@ public class FacetItemProvider
 
 		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.FACET__FACET_ELEMENTS,
 				EFacetFactory.eINSTANCE.createFacetReference()));
+
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.FACET__FACET_ELEMENTS,
+				EcoreFactory.eINSTANCE.createEAttribute()));
+
+		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.FACET__FACET_ELEMENTS,
+				EcoreFactory.eINSTANCE.createEReference()));
 
 		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.FACET__FACET_OPERATIONS,
 				EFacetFactory.eINSTANCE.createFacetOperation()));

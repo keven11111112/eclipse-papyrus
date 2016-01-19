@@ -42,7 +42,7 @@ public class EfacetcatalogFactoryImpl extends EFactoryImpl implements Efacetcata
 	 */
 	public static EfacetcatalogFactory init() {
 		try {
-			EfacetcatalogFactory theEfacetcatalogFactory = (EfacetcatalogFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/papyrus/emf/facet/efacet/0.2.incubation/efacetcatalog"); //$NON-NLS-1$
+			EfacetcatalogFactory theEfacetcatalogFactory = (EfacetcatalogFactory) EPackage.Registry.INSTANCE.getEFactory(EfacetcatalogPackage.eNS_URI);
 			if (theEfacetcatalogFactory != null) {
 				return theEfacetcatalogFactory;
 			}

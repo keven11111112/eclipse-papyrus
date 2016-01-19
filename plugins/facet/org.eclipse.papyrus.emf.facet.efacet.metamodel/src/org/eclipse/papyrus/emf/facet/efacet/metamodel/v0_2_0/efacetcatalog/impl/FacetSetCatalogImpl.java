@@ -34,11 +34,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.Facet
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl#getInstalledEntries <em>Installed Entries</em>}</li>
  * <li>{@link org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacetcatalog.impl.FacetSetCatalogImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -126,7 +126,7 @@ public class FacetSetCatalogImpl extends EObjectImpl implements FacetSetCatalog 
 	 *
 	 * @generated
 	 */
-	public void setName(final String newName) {
+	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired()) {
@@ -141,7 +141,7 @@ public class FacetSetCatalogImpl extends EObjectImpl implements FacetSetCatalog 
 	 * @generated
 	 */
 	@Override
-	public Object eGet(final int featureID, final boolean resolve, final boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case EfacetcatalogPackage.FACET_SET_CATALOG__INSTALLED_ENTRIES:
 			return getInstalledEntries();
@@ -159,7 +159,7 @@ public class FacetSetCatalogImpl extends EObjectImpl implements FacetSetCatalog 
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	public void eSet(final int featureID, final Object newValue) {
+	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case EfacetcatalogPackage.FACET_SET_CATALOG__INSTALLED_ENTRIES:
 			getInstalledEntries().clear();
@@ -179,7 +179,7 @@ public class FacetSetCatalogImpl extends EObjectImpl implements FacetSetCatalog 
 	 * @generated
 	 */
 	@Override
-	public void eUnset(final int featureID) {
+	public void eUnset(int featureID) {
 		switch (featureID) {
 		case EfacetcatalogPackage.FACET_SET_CATALOG__INSTALLED_ENTRIES:
 			getInstalledEntries().clear();
@@ -198,7 +198,7 @@ public class FacetSetCatalogImpl extends EObjectImpl implements FacetSetCatalog 
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(final int featureID) {
+	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case EfacetcatalogPackage.FACET_SET_CATALOG__INSTALLED_ENTRIES:
 			return installedEntries != null && !installedEntries.isEmpty();

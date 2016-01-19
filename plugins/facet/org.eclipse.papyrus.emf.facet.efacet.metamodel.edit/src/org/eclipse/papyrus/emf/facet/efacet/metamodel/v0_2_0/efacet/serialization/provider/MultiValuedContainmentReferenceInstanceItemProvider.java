@@ -25,13 +25,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
-import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryFactory;
-import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.runtime.RuntimeFactory;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.MultiValuedContainmentReferenceInstance;
-import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationFactory;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.serialization.SerializationPackage;
 
 /**
@@ -159,97 +156,7 @@ public class MultiValuedContainmentReferenceInstanceItemProvider
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createAbstractReferenceInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createMultiValuedContainmentReferenceInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createMultiValuedReferenceInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createAbstractAttributeInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createSingleValuedAttributeInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createExtendedEObjectReference()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createSingleValuedContainmentReferenceInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createSingleValuedReferenceInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				SerializationFactory.eINSTANCE.createMultiValuedAttributeInstance()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createFacetAttribute()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createFacetReference()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createFacetOperation()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createFacetSet()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createFacet()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createCategory()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createParameterValue()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				EFacetFactory.eINSTANCE.createDocumentedElement()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createNavigationQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createIsOneOfQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createStringLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createTrueLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createFalseLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createNullLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createIntegerLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createFloatLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createEObjectLiteralQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				QueryFactory.eINSTANCE.createOperationCallQuery()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				RuntimeFactory.eINSTANCE.createETypedElementPrimitiveTypeResult()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				RuntimeFactory.eINSTANCE.createETypedElementEObjectResult()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				RuntimeFactory.eINSTANCE.createETypedElementPrimitiveTypeListResult()));
-
-		newChildDescriptors.add(createChildParameter(SerializationPackage.Literals.MULTI_VALUED_CONTAINMENT_REFERENCE_INSTANCE__OWNED_ELEMENTS,
-				RuntimeFactory.eINSTANCE.createETypedElementEObjectListResult()));
+				EcoreFactory.eINSTANCE.createEObject()));
 	}
 
 }

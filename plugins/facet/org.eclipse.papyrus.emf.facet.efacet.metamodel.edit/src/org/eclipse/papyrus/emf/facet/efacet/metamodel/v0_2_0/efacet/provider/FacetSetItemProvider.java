@@ -27,10 +27,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.provider.EPackageItemProvider;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetFactory;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
@@ -44,7 +44,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetSet;
  * @generated
  */
 public class FacetSetItemProvider
-		extends ItemProviderAdapter {
+		extends EPackageItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -68,97 +68,9 @@ public class FacetSetItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addNsURIPropertyDescriptor(object);
-			addNsPrefixPropertyDescriptor(object);
-			addEFactoryInstancePropertyDescriptor(object);
 			addDocumentationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ENamedElement_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature", "_UI_ENamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ENAMED_ELEMENT__NAME,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Ns URI feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addNsURIPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EPackage_nsURI_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EPackage_nsURI_feature", "_UI_EPackage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.EPACKAGE__NS_URI,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Ns Prefix feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addNsPrefixPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EPackage_nsPrefix_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EPackage_nsPrefix_feature", "_UI_EPackage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.EPACKAGE__NS_PREFIX,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the EFactory Instance feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addEFactoryInstancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EPackage_eFactoryInstance_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EPackage_eFactoryInstance_feature", "_UI_EPackage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.EPACKAGE__EFACTORY_INSTANCE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
 	}
 
 	/**
@@ -195,9 +107,6 @@ public class FacetSetItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS);
-			childrenFeatures.add(EcorePackage.Literals.EPACKAGE__ECLASSIFIERS);
-			childrenFeatures.add(EcorePackage.Literals.EPACKAGE__ESUBPACKAGES);
 			childrenFeatures.add(EFacetPackage.Literals.FACET_SET__CATEGORIES);
 		}
 		return childrenFeatures;
@@ -257,15 +166,9 @@ public class FacetSetItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FacetSet.class)) {
-		case EFacetPackage.FACET_SET__NAME:
-		case EFacetPackage.FACET_SET__NS_URI:
-		case EFacetPackage.FACET_SET__NS_PREFIX:
 		case EFacetPackage.FACET_SET__DOCUMENTATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case EFacetPackage.FACET_SET__EANNOTATIONS:
-		case EFacetPackage.FACET_SET__ECLASSIFIERS:
-		case EFacetPackage.FACET_SET__ESUBPACKAGES:
 		case EFacetPackage.FACET_SET__CATEGORIES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;

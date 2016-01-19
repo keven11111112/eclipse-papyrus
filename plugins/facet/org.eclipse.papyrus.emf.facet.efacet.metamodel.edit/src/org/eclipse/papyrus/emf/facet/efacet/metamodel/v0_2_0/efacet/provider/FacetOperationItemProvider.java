@@ -26,10 +26,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.provider.EOperationItemProvider;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.EFacetPackage;
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetOperation;
@@ -43,7 +43,7 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.query.QueryF
  * @generated
  */
 public class FacetOperationItemProvider
-		extends ItemProviderAdapter {
+		extends EOperationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -67,209 +67,11 @@ public class FacetOperationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addOrderedPropertyDescriptor(object);
-			addUniquePropertyDescriptor(object);
-			addLowerBoundPropertyDescriptor(object);
-			addUpperBoundPropertyDescriptor(object);
-			addManyPropertyDescriptor(object);
-			addRequiredPropertyDescriptor(object);
-			addETypePropertyDescriptor(object);
-			addEExceptionsPropertyDescriptor(object);
 			addDocumentationPropertyDescriptor(object);
 			addCategoriesPropertyDescriptor(object);
 			addOverridePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ENamedElement_name_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ENamedElement_name_feature", "_UI_ENamedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ENAMED_ELEMENT__NAME,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Ordered feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addOrderedPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_ordered_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_ordered_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__ORDERED,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Unique feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addUniquePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_unique_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_unique_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__UNIQUE,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Lower Bound feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addLowerBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_lowerBound_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_lowerBound_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__LOWER_BOUND,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Upper Bound feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addUpperBoundPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_upperBound_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_upperBound_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__UPPER_BOUND,
-				true,
-				false,
-				false,
-				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Many feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addManyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_many_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_many_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__MANY,
-				false,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Required feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addRequiredPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_required_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_required_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__REQUIRED,
-				false,
-				false,
-				false,
-				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the EType feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addETypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_ETypedElement_eType_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_ETypedElement_eType_feature", "_UI_ETypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.ETYPED_ELEMENT__ETYPE,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
-	}
-
-	/**
-	 * This adds a property descriptor for the EExceptions feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @generated
-	 */
-	protected void addEExceptionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_EOperation_eExceptions_feature"), //$NON-NLS-1$
-				getString("_UI_PropertyDescriptor_description", "_UI_EOperation_eExceptions_feature", "_UI_EOperation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				EcorePackage.Literals.EOPERATION__EEXCEPTIONS,
-				true,
-				false,
-				true,
-				null,
-				null,
-				null));
 	}
 
 	/**
@@ -348,11 +150,6 @@ public class FacetOperationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS);
-			childrenFeatures.add(EcorePackage.Literals.ETYPED_ELEMENT__EGENERIC_TYPE);
-			childrenFeatures.add(EcorePackage.Literals.EOPERATION__ETYPE_PARAMETERS);
-			childrenFeatures.add(EcorePackage.Literals.EOPERATION__EPARAMETERS);
-			childrenFeatures.add(EcorePackage.Literals.EOPERATION__EGENERIC_EXCEPTIONS);
 			childrenFeatures.add(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY);
 		}
 		return childrenFeatures;
@@ -412,21 +209,9 @@ public class FacetOperationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(FacetOperation.class)) {
-		case EFacetPackage.FACET_OPERATION__NAME:
-		case EFacetPackage.FACET_OPERATION__ORDERED:
-		case EFacetPackage.FACET_OPERATION__UNIQUE:
-		case EFacetPackage.FACET_OPERATION__LOWER_BOUND:
-		case EFacetPackage.FACET_OPERATION__UPPER_BOUND:
-		case EFacetPackage.FACET_OPERATION__MANY:
-		case EFacetPackage.FACET_OPERATION__REQUIRED:
 		case EFacetPackage.FACET_OPERATION__DOCUMENTATION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case EFacetPackage.FACET_OPERATION__EANNOTATIONS:
-		case EFacetPackage.FACET_OPERATION__EGENERIC_TYPE:
-		case EFacetPackage.FACET_OPERATION__ETYPE_PARAMETERS:
-		case EFacetPackage.FACET_OPERATION__EPARAMETERS:
-		case EFacetPackage.FACET_OPERATION__EGENERIC_EXCEPTIONS:
 		case EFacetPackage.FACET_OPERATION__QUERY:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
@@ -475,6 +260,28 @@ public class FacetOperationItemProvider
 
 		newChildDescriptors.add(createChildParameter(EFacetPackage.Literals.DERIVED_TYPED_ELEMENT__QUERY,
 				QueryFactory.eINSTANCE.createOperationCallQuery()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify = childFeature == EcorePackage.Literals.ETYPED_ELEMENT__EGENERIC_TYPE ||
+				childFeature == EcorePackage.Literals.EOPERATION__EGENERIC_EXCEPTIONS;
+
+		if (qualify) {
+			return getString("_UI_CreateChild_text2", //$NON-NLS-1$
+					new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 	/**
