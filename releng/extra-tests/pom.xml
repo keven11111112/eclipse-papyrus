@@ -154,7 +154,7 @@
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
-			<!-- updateFrom("MDT OCL 6.0.1",0) -->
+			<!-- updateFrom("MDT OCL 6.0.2",0) -->
 			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.1/S201509081048</url>
 		</repository>
 		<repository>
