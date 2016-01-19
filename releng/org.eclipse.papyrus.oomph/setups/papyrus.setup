@@ -214,7 +214,7 @@
         </repository>
       </repositoryList>
       <repositoryList name="Mars">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.5-M-builds/M-4.5.1RC3-201509040015/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.5-M-builds/M-4.5.2RC1-201601131000/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -243,7 +243,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/tools/gef/updates/milestones">
+        <repository url="http://download.eclipse.org/tools/gef/updates/releases">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>GEF</value>
@@ -271,14 +271,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030321/mwe">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.2/R201511170833/mwe">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.1/R201508030411/mwe2lang/">
+        <repository url="http://download.eclipse.org/modeling/emft/mwe/updates/releases/2.8.2/R201511170842/mwe2lang/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMFT MWE:1</value>
@@ -299,10 +299,10 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.1/S201509081048">
+        <repository url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.2/S201601181240">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
-              <value>MDT OCL 6.0.1</value>
+              <value>MDT OCL 6.0.2</value>
             </detail>
           </annotation>
         </repository>
@@ -327,14 +327,14 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201509010903">
+        <repository url="http://download.eclipse.org/modeling/emf/compare/updates/milestones/3.1/S201509120604">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>EMF COMPARE</value>
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.7.1/S-3.7.1RC3-20150908020029/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.7.1/R-3.7.1-20150915020029/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -1296,7 +1296,7 @@
             </repository>
           </repositoryList>
           <repositoryList name="Mars">
-            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/S20150909-0459">
+            <repository url="http://download.eclipse.org/modeling/emf/cdo/drops/R20150916-0434">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF CDO</value>
@@ -1342,14 +1342,14 @@
             </repository>
           </repositoryList>
           <repositoryList name="Mars">
-            <repository url="http://download.eclipse.org/tools/cdt/builds/mars/milestones">
+            <repository url="http://download.eclipse.org/tools/cdt/builds/mars/milestones/ur2-rc1">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>CDT</value>
                 </detail>
               </annotation>
             </repository>
-            <repository url="http://download.eclipse.org/facet/updates/integration/1.0.1/I201508190910/">
+            <repository url="http://download.eclipse.org/facet/updates/integration/1.0.2/I201601181335/">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>EMF Facet</value>
