@@ -27,7 +27,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Si
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.StateMachineOpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3.StateMachineSemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
-import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.SignalEvent;
@@ -82,18 +81,16 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	}
 		
 	public boolean evaluateGuard(){
-		// TODO
+		// Evaluate the guard specification thanks to an evaluation.
+		// The evaluation does not presume of the type of the guard specification.
 		boolean result = true;  
 		Transition transition = (Transition) this.node;
 		if (transition.getGuard() != null) {
 			ValueSpecification specification = transition.getGuard().getSpecification() ;
 			if(specification!=null){
-				Evaluation evaluation = null;
+				Evaluation evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 				if (specification instanceof OpaqueExpression) {
-					evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 					((StateMachineOpaqueExpressionEvaluation)evaluation).context = this.getExecutionContext() ;
-				}else if(specification instanceof LiteralBoolean){
-					evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 				}
 				if(evaluation!=null){
 					BooleanValue evaluationResult = (BooleanValue)evaluation.evaluate() ;
