@@ -10,7 +10,7 @@ public class StateMachineObjectActivation extends ObjectActivation {
 		// A completion event does not have priority over other completion events.
 		// Therefore if completion events are already in the event pool then the currently
 		// posted completion event will be placed after these latter. In short the FIFO strategy
-		// is applied to completion events
+		// is applied to completion events.
 		CompletionEventOccurrence completionEventOccurrence = new CompletionEventOccurrence();
 		completionEventOccurrence.stateActivation = stateActivation;
 		int insertionIndex = 0;

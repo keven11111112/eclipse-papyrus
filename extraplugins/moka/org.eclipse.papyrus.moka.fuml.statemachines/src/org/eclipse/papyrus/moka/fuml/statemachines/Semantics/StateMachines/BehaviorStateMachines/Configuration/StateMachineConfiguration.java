@@ -27,19 +27,15 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class StateMachineConfiguration {
 		
-	/**
-	 * The state machine execution for which this object plays the role configuration 
-	 */
+	// The state-machine that is executed and for which this object
+	// represents the hierarchy of active states.
 	protected StateMachineExecution execution;
 	
-	/**
-	 * The root configuration has no associated activation 
-	 */
+	// The root node of the state machine configuration. It represents
+	// the top level active state.
 	protected StateConfiguration rootConfiguration;
 	
-	/**
-	 * Cartography of the state-machine configuration
-	 */
+	// Provides a flattened view  of the hierarchy of active states.
 	private Map<Integer, List<VertexActivation>> cartorgraphy;
 	
 	public StateConfiguration getRoot(){
@@ -59,28 +55,16 @@ public class StateMachineConfiguration {
 		this.execution = execution;
 		this.cartorgraphy = new HashMap<Integer, List<VertexActivation>>();
 	}
-	
-	protected void addToCartography(StateConfiguration configuration){
-		if(this.cartorgraphy.containsKey(configuration.getLevel())){
-			this.cartorgraphy.get(configuration.getLevel()).add(configuration.vertexActivation);
-		}else{
-			List<VertexActivation> activation = new ArrayList<VertexActivation>();
-			activation.add(configuration.getVertexActivation());
-			this.cartorgraphy.put(configuration.getLevel(), activation);
-		}
-	}
-	
-	protected void deleteFromCartography(StateConfiguration configuration){
-		if(this.cartorgraphy.containsKey(configuration.getLevel())){
-			this.cartorgraphy.get(configuration.getLevel()).remove(configuration.vertexActivation);
-		}
-	}
 		
 	public boolean register(StateActivation stateActivation){
+		// Register the given state activation in the state-machine configuration.
+		// This occurs when the state activation is entered.
 		return this.add(stateActivation);
 	}
 	
 	public boolean unregister(StateActivation stateActivation){
+		// Unregister the given state activation from the state-machine configuration
+		// This occurs when the state activation is exited.
 		return this.remove(stateActivation);
 	}
 	
@@ -106,7 +90,30 @@ public class StateMachineConfiguration {
 		return added;
 	}
 	
+	protected void addToCartography(StateConfiguration configuration){
+		// Add the given representation of state that is part to the state-machine
+		// configuration to the flattened representation.
+		if(this.cartorgraphy.containsKey(configuration.getLevel())){
+			this.cartorgraphy.get(configuration.getLevel()).add(configuration.vertexActivation);
+		}else{
+			List<VertexActivation> activation = new ArrayList<VertexActivation>();
+			activation.add(configuration.getVertexActivation());
+			this.cartorgraphy.put(configuration.getLevel(), activation);
+		}
+	}
+	
+	protected void deleteFromCartography(StateConfiguration configuration){
+		// Remove the given representation of state that is part to the state-machine configuration
+		// from the flattened representation.
+		if(this.cartorgraphy.containsKey(configuration.getLevel())){
+			this.cartorgraphy.get(configuration.getLevel()).remove(configuration.vertexActivation);
+		}
+	}
+	
 	public String toString(){
+		// Return a string representing the current state-machine configuration.
+		// This representation takes the following form:
+		// [ROOT(L0)[S1(L1)[S1.X(L2), S.2.X(L2)]]]
 		return "["+this.rootConfiguration.toString()+"]";
 	}
 }

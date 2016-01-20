@@ -26,13 +26,16 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 
 public class StateMachineOpaqueExpressionEvaluation extends CS_OpaqueExpressionEvaluation {
 
+	// The context is basically the execution context of the state-machine.
+	// This provides the possibility for the behavior associated to the evaluated
+	// opaque expression to access features available at the context.
 	public Object_ context = null ;
 
 	@Override
 	public List<Value> executeExpressionBehavior() {
-		// Behaves like in PSCS,
-		// except that it takes into account the context object for the
-		// execution of the expression behavior
+		// An opaque expression can have an associated behavior. If this is the case
+		// this behavior is executed. Values produced by the execution of the behavior
+		// are the result of the evaluation of the opaque expression 
 		List<Value> evaluation = new ArrayList<Value>();
 		OpaqueExpression expression = (OpaqueExpression)this.specification;
 		Behavior behavior = expression.getBehavior();
@@ -49,7 +52,4 @@ public class StateMachineOpaqueExpressionEvaluation extends CS_OpaqueExpressionE
 		}
 		return evaluation;
 	}
-
-
-
 }

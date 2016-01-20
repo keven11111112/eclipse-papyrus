@@ -20,14 +20,20 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class StateConfiguration {
 
+	// The activation (i.e. the semantic visitor) for which the StateConfiguration
+	// represents an element of the state-machine configuration.
 	protected VertexActivation vertexActivation;
 	
+	// The parent state configuration of this node
 	protected StateConfiguration parent;
 	
+	// The children state configuration of this state-machine configuration
 	protected List<StateConfiguration> children;
 	
+	// The level at which the the state configuration is located in the hierarchy.
 	private int level;
 	
+	// A reference to the complete state-machine configuration
 	private StateMachineConfiguration completeConfiguration;
 	
 	public StateConfiguration(StateMachineConfiguration configuration){
@@ -82,22 +88,7 @@ public class StateConfiguration {
 		}
 		return context;
 	}
-	
-	/**
-	 * 
-	 * @param activation
-	 * @return
-	 */
-	public boolean removeChild(VertexActivation activation){
-		return this.remove(activation, this.getContext(activation));
-	}
-	
-	/**
-	 * Remove the activation from the given configuration
-	 * @param activation - the activation to be removed
-	 * @param context - the path to the activation
-	 * @return true if the activation was removed false in the other case
-	 */
+
 	private boolean remove(VertexActivation activation, List<VertexActivation> context){
 		boolean removed = false;
 		if(!context.isEmpty()){
@@ -117,9 +108,7 @@ public class StateConfiguration {
 			int i = 0;
 			while(i < this.children.size() && !removed){
 				if(this.children.get(i).vertexActivation==activation){
-					/*1. Remove its reference from the cartography*/
 					this.completeConfiguration.deleteFromCartography(this.children.get(i));
-					/*2. Remove the configuration from the tree*/
 					this.children.remove(i);
 					removed = true;
 				}
@@ -129,21 +118,6 @@ public class StateConfiguration {
 		return removed;
 	}
 	
-	/**
-	 * 
-	 * @param activation
-	 * @return
-	 */
-	public boolean addChild(VertexActivation activation){
-		return this.add(activation, this.getContext(activation));	
-	}
-	
-	/**
-	 * 
-	 * @param activation
-	 * @param context
-	 * @return
-	 */
 	private boolean add(VertexActivation activation, List<VertexActivation> context){
 		boolean added = false;
 		if(!context.isEmpty()){
@@ -169,20 +143,28 @@ public class StateConfiguration {
 				i++;
 			}
 			if(!alreadyAdded){
-				/*1. Build the new StateConfiguration to add in the tree*/
 				StateConfiguration newConfiguration = new StateConfiguration(activation);
 				newConfiguration.level = this.level + 1;
 				newConfiguration.completeConfiguration = this.completeConfiguration;
-				/*2. Add it to the cartography*/
 				this.completeConfiguration.addToCartography(newConfiguration);
-				/*3. Add it to the tree */
 				added = this.children.add(newConfiguration);
 			}
 		}
 		return added;
 	}
 	
+	public boolean removeChild(VertexActivation activation){
+		return this.remove(activation, this.getContext(activation));
+	}
+	
+	public boolean addChild(VertexActivation activation){
+		return this.add(activation, this.getContext(activation));	
+	}
+	
 	public String toString(){
+		// Return a string representing configuration taking this node as a the root.
+		// The string that is obtained is possibly a partial representation of the
+		// state-machine configuration.
 		String result = "";
 		int i = 0;
 		result = this.vertexActivation==null ? "ROOT" : this.vertexActivation.getNode().getName();

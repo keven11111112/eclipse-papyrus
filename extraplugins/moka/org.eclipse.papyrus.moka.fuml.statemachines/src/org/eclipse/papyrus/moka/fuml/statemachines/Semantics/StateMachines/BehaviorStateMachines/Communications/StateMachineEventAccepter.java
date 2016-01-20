@@ -24,17 +24,6 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionSelectionStrategy;
 
-/**
- * This class describes an event accepter for state-machines.
- * 
- * The consumption (i.e. acceptance) of a state-machine event accepter is only allowed if there are
- * enabled transition declaring a trigger matching the given signal instance.
- *
- * There always is a single event accepter registered for a given state-machine.
- * 
- * When a signal triggers an acceptance then accepter is removed from the pool. At the
- * end of the RTC step another one is automatically added to the pool.
- */
 public class StateMachineEventAccepter extends EventAccepter{
 
 	// The execution that actually made the event accepter registered

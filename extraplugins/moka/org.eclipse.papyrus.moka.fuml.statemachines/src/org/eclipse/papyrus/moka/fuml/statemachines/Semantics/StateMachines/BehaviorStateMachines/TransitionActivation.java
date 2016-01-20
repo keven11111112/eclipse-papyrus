@@ -80,13 +80,6 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		// is TRAVERSED; false otherwise.
 		return this.status.equals(TransitionMetadata.TRAVERSED);
 	}
-	
-	public boolean isCompletion(){
-		// Convenience operation to which returns true if the transition is a completion
-		// transition. FIXME: to be verified
-		Transition transition = (Transition)this.node;
-		return transition.getTriggers().isEmpty() && transition.getGuard() == null;
-	}
 		
 	public boolean evaluateGuard(){
 		// TODO

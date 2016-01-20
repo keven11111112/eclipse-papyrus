@@ -26,16 +26,12 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.NamedElement;
 
-
-/**
- * Common ancestor to state machine semantic visitor
- * (i.e., RegionActivation, TransitionActivation, VertexActivation)
- *
- */
 public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 
+	// Each semantic visitor for a state-machine know its parent visitor 
 	protected SemanticVisitor parent;
 
+	// Each semantic visitor traverse a particular node of a state-machine
 	protected NamedElement node;
 	
 	public NamedElement getNode() {
@@ -59,6 +55,9 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 	}
 	
 	public List<SemanticVisitor> getContextChain(){
+		// Return the hierarchy of visitors that need to be traversed to access
+		// the visitor that called context chain. The caller is part of the returned
+		// context chain.
 		List<SemanticVisitor> contextChain = new ArrayList<SemanticVisitor>();
 		if(!(this instanceof ExitPointActivation) && !(this instanceof EntryPointActivation)){
 			contextChain.add(this);
@@ -74,6 +73,7 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 	}
 		
 	public Execution getStateMachineExecution(){
+		// Return the state-machine execution from which the caller of this operation belongs
 		if(this.parent!=null && this.parent instanceof StateMachineExecution){
 			return (Execution)this.parent;
 		}else{
@@ -90,16 +90,23 @@ public abstract class StateMachineSemanticVisitor extends SemanticVisitor {
 	}
 	
 	public void activate(){
-		//By default it does nothing
+		// This operation is intended to be overridden by sub-classes. For required sub-classes
+		// (e.g., RegionActivation, StateActivation) it will initiate the instantiation phase of
+		// child semantic visitors. By default activate does nothing.
 		return;
 	}
 	
 	public void activateTransitions(){
-		//By default it does nothing
+		// ActivateTransition is intended to be overridden by sub-classes. It will capture the instantiation
+		// of transitions visitors as well as the linking between these visitors and the required vertices
+		// activation. By default activate does nothing.
 		return;
 	}
 	
 	protected Execution getExecutionFor(Behavior behavior){
+		// Convenience method to make easier for each semantic visitor of the state-machine
+		// the creation of an execution for a particular behavior. This is particularly useful
+		// for visitors such as TransitionActivation and StateActivation.
 		Locus locus = this.getExecutionLocus();
 		if(behavior==null){
 			return null;
