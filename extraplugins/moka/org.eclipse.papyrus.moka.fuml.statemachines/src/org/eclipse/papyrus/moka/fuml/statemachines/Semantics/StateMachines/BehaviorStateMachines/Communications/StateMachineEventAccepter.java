@@ -76,12 +76,7 @@ public class StateMachineEventAccepter extends EventAccepter{
 	@Override
 	public Boolean match(EventOccurrence eventOccurrence) {
 		// Return true if there is at least one transition that is ready to fire on this event. 
-		// Return false otherwise. Note false is also returned if the registration context was
-		// previously destroyed. The registration context (i.e., the state-machine) is considered
-		// as being destroyed if it has no locus.
-		if(this.registrationContext.locus==null){
-			return false;
-		}
+		// Return false otherwise.
 		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
 		return !selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
 	}

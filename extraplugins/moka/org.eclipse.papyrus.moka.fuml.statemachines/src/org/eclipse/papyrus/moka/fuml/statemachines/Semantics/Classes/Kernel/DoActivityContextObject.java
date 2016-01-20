@@ -21,6 +21,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.DoActivityExecutionEventAccepter;
 import org.eclipse.uml2.uml.Operation;
@@ -86,5 +87,44 @@ public class DoActivityContextObject extends Object_ {
 			execution = this.context.dispatch(operation);
 		}
 		return execution;
+	}
+	
+	@Override
+	public void send(SignalInstance signalInstance) {
+		// Delegate the reception of a signal to the state-machine context
+		if(this.context!=null){
+			this.context.send(signalInstance);
+		}
+	}
+	
+	@Override
+	public void destroy() {
+		// When destroyed in addition to the usual behavior, the do activity context object
+		// has to remove the encapsulating accepters it may have registered.
+		for(int i=0; i < this.objectActivation.waitingEventAccepters.size(); i++){
+			this.unregisterFromContext(this.objectActivation.waitingEventAccepters.get(i));
+		}
+		super.destroy();
+	}
+	
+	protected void unregisterFromContext(EventAccepter encapsulatedAccepter){
+		// Unregister in the context of this do activity context the encapsulating
+		// event accepter.
+		ObjectActivation contextObjectActivation = this.context.objectActivation;
+		if(contextObjectActivation!=null){
+			DoActivityExecutionEventAccepter encapsulatingAccepter = null;
+			int i = 0;
+			while(encapsulatingAccepter==null && i < contextObjectActivation.waitingEventAccepters.size()){
+				EventAccepter currentAccepter = contextObjectActivation.waitingEventAccepters.get(i);
+				if(currentAccepter instanceof DoActivityExecutionEventAccepter
+						&& ((DoActivityExecutionEventAccepter)currentAccepter).encapsulatedAccepter==encapsulatedAccepter){
+					encapsulatingAccepter = (DoActivityExecutionEventAccepter) currentAccepter;
+				}
+				i++;
+			}
+			if(encapsulatingAccepter!=null){
+				contextObjectActivation.unregister(encapsulatingAccepter);
+			}
+		}
 	}
 }

@@ -46,12 +46,7 @@ public class DoActivityExecutionEventAccepter extends EventAccepter {
 
 	@Override
 	public Boolean match(EventOccurrence eventOccurrence) {
-		// Simply delegates to the match operation of the encapsulated accepter
-		// Note the accepter does not match if the object was destroyed. This can
-		// occur when the DoActivity was aborted
-		if(this.context.objectActivation==null){
-			return false;
-		}
+		// Simply delegates to the match operation of the encapsulated accepter.
 		return this.encapsulatedAccepter.match(eventOccurrence);
 	}
 

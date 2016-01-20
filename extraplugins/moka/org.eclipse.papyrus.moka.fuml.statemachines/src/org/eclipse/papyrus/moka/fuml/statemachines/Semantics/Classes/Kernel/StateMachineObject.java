@@ -19,4 +19,18 @@ public class StateMachineObject extends CS_Object {
 		}
 		this.objectActivation.startBehavior(classifier, inputs);
 	}
+	
+	@Override
+	public void destroy() {
+		// In addition to realize the normal process of stopping the object activation
+		// as well as removing the current object from the locus, this destruction phase
+		// also implies removal of all events remaining in the pool. This prevents the
+		// dispatch loop to actually get the next event (even if at this step there is no
+		// chance to match an accepter) whereas the current object is not anymore registered.
+		// in the Locus.
+		if(this.objectActivation!=null){
+			this.objectActivation.eventPool.clear();
+		}
+		super.destroy();
+	}
 }
