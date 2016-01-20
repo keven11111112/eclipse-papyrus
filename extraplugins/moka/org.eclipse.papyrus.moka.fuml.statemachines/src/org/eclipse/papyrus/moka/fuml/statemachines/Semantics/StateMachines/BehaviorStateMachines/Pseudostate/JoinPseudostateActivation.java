@@ -19,7 +19,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class JoinPseudostateActivation extends PseudostateActivation {
 
-	public boolean isReady(TransitionActivation enteringTransition) {
+	public boolean isEnterable(TransitionActivation enteringTransition) {
 		// Determine if all incoming transitions except this one already have been traversed
 		// If this is the case then this node is ready to be entered
 		boolean isReady = true;
@@ -41,21 +41,19 @@ public class JoinPseudostateActivation extends PseudostateActivation {
 		// outgoing transition of the Join. Note that a Fork cannot have more than an outgoing transition
 		// (if this is the case then the model is ill-formed).
 		// The guard of the outgoing transition is evaluated to verify that the transition can be fired
-		if (this.isReady(enteringTransition)) {
-			// If required parent state is entered first (the rule applies recursively)
-			if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
-				VertexActivation parentVertexActivation = this.getParentState();
-				if (parentVertexActivation != null) {
-					parentVertexActivation.enter(enteringTransition, leastCommonAncestor);
-				}
+		// If required parent state is entered first (the rule applies recursively)
+		if (leastCommonAncestor != null && this.getParent() != leastCommonAncestor) {
+			VertexActivation parentVertexActivation = this.getParentState();
+			if (parentVertexActivation != null) {
+				parentVertexActivation.enter(enteringTransition, leastCommonAncestor);
 			}
-			// The Join pseudo state is entered and its outgoing transition is fired (if possible)
-			super.enter(enteringTransition, leastCommonAncestor);
-			if (!this.outgoingTransitionActivations.isEmpty()) {
-				TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(0);
-				if (transitionActivation.evaluateGuard()) {
-					transitionActivation.fire();
-				}
+		}
+		// The Join pseudo state is entered and its outgoing transition is fired (if possible)
+		super.enter(enteringTransition, leastCommonAncestor);
+		if (!this.outgoingTransitionActivations.isEmpty()) {
+			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(0);
+			if (transitionActivation.evaluateGuard()) {
+				transitionActivation.fire();
 			}
 		}
 	}

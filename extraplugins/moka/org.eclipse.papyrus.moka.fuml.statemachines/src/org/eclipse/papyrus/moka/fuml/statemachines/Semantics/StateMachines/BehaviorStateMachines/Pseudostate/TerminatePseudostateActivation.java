@@ -20,7 +20,7 @@ public class TerminatePseudostateActivation extends PseudostateActivation {
 		super.enter(enteringTransition, leastCommonAncestor);
 		Execution stateMachineExecution = this.getStateMachineExecution();
 		stateMachineExecution.terminate();
-		stateMachineExecution.destroy();
+		stateMachineExecution.destroy(); //FIXME: issue here
 		super.exit(enteringTransition, leastCommonAncestor);
 	}
 }

@@ -17,6 +17,7 @@ import static org.eclipse.papyrus.moka.fuml.statemachines.Activator.logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -83,12 +84,14 @@ public class StateMachineConfiguration {
 		return this.remove(stateActivation);
 	}
 	
-	public boolean isStable(){
-		return true; //TODO
-	}
-	
 	public boolean isActive(VertexActivation activation){
-		return this.rootConfiguration.isActive(activation);
+		// A vertex that is currently active is part of the state-machine configuration
+		boolean found = false;
+		Iterator<Integer> levelsIterator = this.cartorgraphy.keySet().iterator();
+		while(!found && levelsIterator.hasNext()){
+			found = this.cartorgraphy.get(levelsIterator.next()).contains(activation);
+		}
+		return found;
 	}
 	
 	protected boolean remove(VertexActivation activation){

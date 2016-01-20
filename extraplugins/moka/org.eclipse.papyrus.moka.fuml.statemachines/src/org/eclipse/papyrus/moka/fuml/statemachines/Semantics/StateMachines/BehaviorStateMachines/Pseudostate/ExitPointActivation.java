@@ -24,7 +24,7 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class ExitPointActivation extends ConnectionPointActivation {
 
-	public boolean isReady(TransitionActivation enteringTransition) {
+	public boolean isEnterable(TransitionActivation enteringTransition) {
 		// Determine if this exit point satisfied its requirement to be exited.
 		// The requirement is: all incoming transitions must have been fired once
 		// if they originate from sub-states located in orthogonal regions
@@ -59,7 +59,7 @@ public class ExitPointActivation extends ConnectionPointActivation {
 		// that can be used to leave the ExitPoint. This transition is fired. This lead
 		// to exit and parent states in cascade if required.
 		List<TransitionActivation> fireableTransitions = this.getFireableTransitions();
-		if (this.isReady(enteringTransition) && !fireableTransitions.isEmpty()) {
+		if (!fireableTransitions.isEmpty()) {
 			ChoiceStrategy choiceStrategy = (ChoiceStrategy) this.getExecutionLocus().factory.getStrategy("choice");
 			int chosenIndex = choiceStrategy.choose(fireableTransitions.size());
 			TransitionActivation selectedTransition = fireableTransitions.get(chosenIndex - 1);

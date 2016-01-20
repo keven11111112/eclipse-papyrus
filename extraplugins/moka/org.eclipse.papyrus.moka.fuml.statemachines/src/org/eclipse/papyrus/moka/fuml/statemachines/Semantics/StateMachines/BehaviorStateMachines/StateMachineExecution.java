@@ -92,20 +92,22 @@ public class StateMachineExecution extends Execution {
 	}
 	
 	public void execute() {
-		/*0. Initialization*/
+		// The execution of state-machine is realized as described below
+		// 1 - An event accepter is placed in the list of waiting event accepters for this state-machine
+		// 2 - All visitors required to interpret the state-machine are instantiated and link together
+		// 3 - All top level regions (i.e. those directly owned by the executed state-machine) are entered
+		//     concurrently.
+		// Note: a state-machine always has at runtime a single event accepter
 		if(this.context!=null && this.context.objectActivation!=null){
 			this.context.register(new StateMachineEventAccepter(this));
 		}
 		this.initRegions();
-		/*1. Create visitors for all vertices*/
 		for(RegionActivation activation: this.regionActivation){
 			activation.activate();
 		}
-		/*2. Create visitors for all transitions*/
 		for(RegionActivation activation: this.regionActivation){
 			activation.activateTransitions();
 		}
-		/*3. Fire "concurrently" all initial transition in the different regions*/
 		for(RegionActivation regionActivation: this.regionActivation){
 			regionActivation.enter(null);
 		}

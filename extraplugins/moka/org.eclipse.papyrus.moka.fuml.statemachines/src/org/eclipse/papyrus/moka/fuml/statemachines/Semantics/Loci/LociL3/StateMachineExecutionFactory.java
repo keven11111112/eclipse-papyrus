@@ -16,11 +16,13 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.LociL3;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_ExecutionFactory;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticVisitor;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.StateMachineOpaqueExpressionEvaluation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.ExternalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.FinalStateActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.InternalTransitionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.LocalTransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ChoicePseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ExitPointActivation;
@@ -64,7 +66,12 @@ public class StateMachineExecutionFactory extends CS_ExecutionFactory {
 				visitor = new StateActivation() ;
 			}
 		}else if (element instanceof Transition) {
-			visitor = new TransitionActivation() ;
+			Transition transition = (Transition) element;
+			switch(transition.getKind()){
+				case EXTERNAL_LITERAL: visitor = new ExternalTransitionActivation(); break;
+				case INTERNAL_LITERAL: visitor = new InternalTransitionActivation(); break;
+				case LOCAL_LITERAL: visitor = new LocalTransitionActivation(); break;
+			}
 		}else if (element instanceof Region) {
 			visitor = new RegionActivation();
 		}else if(element instanceof OpaqueExpression) {

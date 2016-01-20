@@ -19,6 +19,21 @@ import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Behav
 
 public class EntryPointActivation extends ConnectionPointActivation {
 	
+	public boolean isExitable(TransitionActivation exitingTransition) {
+		// An entry point can be exited as soon as every outgoing transition expect
+		// the current "exitingTransition" have been traversed.
+		int i = 0;
+		boolean isExitable = true;
+		while(isExitable && i < this.outgoingTransitionActivations.size()){
+			TransitionActivation transitionActivation = this.outgoingTransitionActivations.get(i);
+			if(transitionActivation != exitingTransition){
+				isExitable = transitionActivation.isTraversed();
+			}
+			i++;
+		}
+		return isExitable;
+	}
+	
 	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
 		// Enter a state through an entry point. The state on which the entry point is
 		// placed can be a deeply nested state. Therefore parent state of that state must

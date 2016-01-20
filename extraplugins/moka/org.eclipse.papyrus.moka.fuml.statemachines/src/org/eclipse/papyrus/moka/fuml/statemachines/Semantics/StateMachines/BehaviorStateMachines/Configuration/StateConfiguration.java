@@ -182,10 +182,6 @@ public class StateConfiguration {
 		return added;
 	}
 	
-	public boolean isActive(VertexActivation activation){
-		return false; //TODO
-	}
-	
 	public String toString(){
 		String result = "";
 		int i = 0;

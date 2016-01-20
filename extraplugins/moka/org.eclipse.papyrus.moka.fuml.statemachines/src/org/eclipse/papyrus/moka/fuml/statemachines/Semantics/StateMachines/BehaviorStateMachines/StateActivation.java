@@ -248,6 +248,12 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
+	public boolean isEnterable(TransitionActivation enteringTransition) {
+		// A state can only be entered if it is not part of the state-machine configuration
+		// (i.e., the state is not currently active)
+		return !((StateMachineExecution)this.getStateMachineExecution()).getConfiguration().isActive(this);
+	}
+	
 	public void enter(TransitionActivation enteringTransition, RegionActivation leastCommonAncestor) {
 		if(this.status.equals(StateMetadata.IDLE)){
 			// The state is entered via an explicit transition
@@ -286,6 +292,12 @@ public class StateActivation extends VertexActivation {
 				this.enterRegions(enteringTransition);
 			}
 		}
+	}
+	
+	public boolean isExitable(TransitionActivation exitingTransition) {
+		// A state can only be be exited if it is part of the state-machine configuration
+		// (i.e., the state is currently active)
+		return !this.isEnterable(exitingTransition);
 	}
 	
 	public void exit(TransitionActivation exitingTransition, RegionActivation leastCommonAncestor){
