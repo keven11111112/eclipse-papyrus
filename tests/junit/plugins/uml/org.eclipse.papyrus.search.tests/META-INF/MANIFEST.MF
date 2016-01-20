@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.search.tests.suites
 Bundle-SymbolicName: org.eclipse.papyrus.search.tests
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui.ide;bundle-version="3.8.0",

@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-Description: Contains validation rules generated from UML/RT profile.
 Bundle-SymbolicName: org.eclipse.papyrus.umlrt.validation;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: UML RealTime Validation (Incubation)
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.validation,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.uml.service.validation;bundle-version="1.1.3"
+ org.eclipse.papyrus.uml.service.validation;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.umlrt.validation.Activator

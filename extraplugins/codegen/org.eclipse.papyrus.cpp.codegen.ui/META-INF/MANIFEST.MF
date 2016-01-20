@@ -1,23 +1,23 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.cpp.codegen.ui;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.common;bundle-version="2.8.0",
  org.eclipse.emf.ecore;bundle-version="2.8.0",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
  org.eclipse.uml2.uml;bundle-version="4.0.0",
- org.eclipse.papyrus.cpp.codegen;bundle-version="1.1.3",
+ org.eclipse.papyrus.cpp.codegen;bundle-version="1.1.4",
  org.eclipse.jface.text;bundle-version="3.8.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.1.4",
  org.eclipse.cdt.core;bundle-version="5.5.0",
- org.eclipse.papyrus.codegen.base;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
+ org.eclipse.papyrus.codegen.base;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
  org.eclipse.core.resources,
- org.eclipse.papyrus.codegen.extensionpoints;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.3"
+ org.eclipse.papyrus.codegen.extensionpoints;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.cpp.codegen.ui.Activator
 Bundle-ManifestVersion: 2

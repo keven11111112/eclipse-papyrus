@@ -4,7 +4,7 @@ Export-Package: japa.parser,
  javagen.umlparser,
  org.eclipse.papyrus.java.reverse.utils
 Bundle-SymbolicName: org.eclipse.papyrus.java.reverse;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,

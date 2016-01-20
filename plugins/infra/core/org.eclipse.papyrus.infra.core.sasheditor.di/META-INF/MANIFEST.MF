@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.infra.core.sasheditor.di;singleton:=true
 Require-Bundle: org.eclipse.swt;bundle-version="3.5.0",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.1.3";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.ui;bundle-version="3.6.0",
  org.eclipse.core.runtime;bundle-version="3.6.0",
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.emf.transaction;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ManifestVersion: 2
@@ -22,7 +22,7 @@ Export-Package: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider,
  org.eclipse.papyrus.infra.core.sashwindows.di.impl,
  org.eclipse.papyrus.infra.core.sashwindows.di.util
 Bundle-Name: %pluginName
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.Activator

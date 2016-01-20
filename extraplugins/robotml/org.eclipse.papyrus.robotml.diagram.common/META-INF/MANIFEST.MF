@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.robotml.diagram.common.commands,
  org.eclipse.papyrus.robotml.diagram.common.editpolicies
 Bundle-SymbolicName: org.eclipse.papyrus.robotml.diagram.common;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,

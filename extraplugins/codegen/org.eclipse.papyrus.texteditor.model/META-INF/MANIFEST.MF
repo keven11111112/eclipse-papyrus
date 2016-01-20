@@ -10,7 +10,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.texteditor.model.texteditormodel,
  org.eclipse.papyrus.texteditor.model.texteditormodel.impl,
  org.eclipse.papyrus.texteditor.model.texteditormodel.util
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

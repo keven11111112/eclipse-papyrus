@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.java.generator.ui
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.ui;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -10,10 +10,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml,
  org.eclipse.ui.ide,
  org.eclipse.core.resources;bundle-version="3.6.0",
- org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.1.3",
+ org.eclipse.papyrus.java.generator.metamodel.jdt;bundle-version="1.1.4",
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
- org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="1.1.3"
+ org.eclipse.papyrus.java.generator.jdtsynchronizer;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.java.generator.ui.Activator
 Bundle-ManifestVersion: 2

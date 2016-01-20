@@ -3,7 +3,7 @@ Export-Package: org.eclipse.papyrus.emf.facet.util.core,
  org.eclipse.papyrus.emf.facet.util.core.internal,
  org.eclipse.papyrus.emf.facet.util.core.internal.exported
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.util.core;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.6.0",

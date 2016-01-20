@@ -15,7 +15,7 @@ Export-Package: org.eclipse.papyrus.cdo.validation.problems,
  org.eclipse.papyrus.cdo.validation.problems.impl,
  org.eclipse.papyrus.cdo.validation.problems.internal;x-internal:=true,
  org.eclipse.papyrus.cdo.validation.problems.util
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

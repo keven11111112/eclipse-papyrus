@@ -11,14 +11,14 @@ Export-Package: org.eclipse.papyrus.infra.widgets.toolbox,
  org.eclipse.papyrus.infra.widgets.toolbox.notification.view,
  org.eclipse.papyrus.infra.widgets.toolbox.utils
 Bundle-SymbolicName: org.eclipse.papyrus.infra.widgets.toolbox;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.ui.forms;bundle-version="3.5.100",
  org.eclipse.draw2d;bundle-version="3.8.1",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.infra.widgets.toolbox.Activator
 Bundle-ManifestVersion: 2

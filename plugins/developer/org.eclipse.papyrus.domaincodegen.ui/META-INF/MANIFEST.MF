@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.ecore,
  org.eclipse.acceleo.model,
  org.eclipse.acceleo.engine,
- org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.1.3"
+ org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
 Bundle-ManifestVersion: 2

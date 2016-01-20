@@ -3,10 +3,10 @@ Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.uml.diagram.ui;singleton:=true
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
- org.eclipse.papyrus.cdo.core;bundle-version="1.1.3",
- org.eclipse.papyrus.cdo.ui;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
+ org.eclipse.papyrus.cdo.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.cdo.ui;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.1.4",
  com.google.guava;bundle-version="11.0.0",
  org.eclipse.emf.cdo.explorer.ui;bundle-version="4.4.0",
  org.eclipse.ui.navigator;bundle-version="3.5.500"
@@ -18,7 +18,7 @@ Export-Package: org.eclipse.papyrus.cdo.uml.diagram.internal.ui;x-internal:=true
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.handlers;x-internal:=true,
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.l10n;x-internal:=true,
  org.eclipse.papyrus.cdo.uml.diagram.internal.ui.wizards;x-internal:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.cdo.uml.diagram.internal.ui.Activator

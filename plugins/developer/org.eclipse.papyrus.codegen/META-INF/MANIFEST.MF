@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.codegen;x-internal:=true,
  org.eclipse.papyrus.codegen.actions;x-internal:=true
 Bundle-SymbolicName: org.eclipse.papyrus.codegen;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gmf.codegen.ui;bundle-version="1.1.0",
  org.eclipse.gmf.codegen.xtend;bundle-version="1.0.0",
  org.eclipse.gmf.codegen.xtend.ui;bundle-version="1.0.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.codegen.Activator
 Bundle-ManifestVersion: 2

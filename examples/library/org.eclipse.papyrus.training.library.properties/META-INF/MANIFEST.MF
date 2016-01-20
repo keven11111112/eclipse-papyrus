@@ -1,16 +1,13 @@
 Manifest-Version: 1.0
+Bundle-SymbolicName: org.eclipse.papyrus.training.library.properties;singleton:=true
+Export-Package: org.eclipse.papyrus.training.library.properties
+Bundle-Version: 1.1.4.qualifier
+Bundle-Name: Library Properties
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.views.properties
-Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.1.3.qualifier
-Bundle-Name: Library Properties
-Bundle-Activator: org.eclipse.papyrus.training.library.properties.Acti
- vator
+Bundle-Activator: org.eclipse.papyrus.training.library.properties.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.training.library.properties;s
- ingleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.papyrus.training.library.properties
-
+Bundle-Vendor: Eclipse Modeling Project

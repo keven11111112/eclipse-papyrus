@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.uml.textedit.property.xtext.ui;singleton:=true
-Require-Bundle: org.eclipse.papyrus.uml.textedit.property.xtext;bundle-version="1.1.3";visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.uml.textedit.property.xtext;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
@@ -8,17 +8,17 @@ Require-Bundle: org.eclipse.papyrus.uml.textedit.property.xtext;bundle-version="
  org.eclipse.ui,
  org.antlr.runtime,
  org.eclipse.xtext.builder,
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.3",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.4",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.4.0",
  org.eclipse.uml2.uml;bundle-version="3.1.0",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.3",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.4",
  org.eclipse.core.expressions;bundle-version="3.4.200",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
  org.apache.log4j;bundle-version="1.2.15",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.alf.common.ui;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.alf.common.ui;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
@@ -34,6 +34,6 @@ Export-Package: org.eclipse.papyrus.uml.textedit.property.xtext.ui,
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.outline,
  org.eclipse.papyrus.uml.textedit.property.xtext.ui.quickfix
 Bundle-Name: %pluginName
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.property.xtext.ui.internal.UmlPropertyActivator
