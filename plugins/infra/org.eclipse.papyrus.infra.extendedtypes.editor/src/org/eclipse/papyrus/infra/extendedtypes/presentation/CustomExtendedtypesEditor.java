@@ -31,7 +31,6 @@ import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguratio
 import org.eclipse.papyrus.infra.extendedtypes.provider.CustomExtendedtypesItemProviderAdapterFactory;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.views.properties.PropertySheetPage;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 /**
  * Custom editor to support metamodel extensions
@@ -52,7 +51,6 @@ public class CustomExtendedtypesEditor extends ExtendedtypesEditor {
 		adapterFactory.addAdapterFactory(new CustomInvariantSemanticTypeConfigurationItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new InvariantContainerConfigurationAdapterFactory());
 		adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-		adapterFactory.addAdapterFactory(new UMLItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// Create the command stack that will notify this editor as commands are

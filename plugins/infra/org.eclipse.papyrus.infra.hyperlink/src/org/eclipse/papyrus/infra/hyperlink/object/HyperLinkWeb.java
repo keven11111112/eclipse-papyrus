@@ -38,11 +38,6 @@ public class HyperLinkWeb extends HyperLinkObject {
 		super.setObject(object);
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject#executeSelectPressed()
-	 *
-	 */
 	@Override
 	public void openLink() {
 		try {
@@ -54,11 +49,6 @@ public class HyperLinkWeb extends HyperLinkObject {
 
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject#executeEditMousePressed(java.util.List, org.eclipse.uml2.uml.Package)
-	 *
-	 */
 	@Override
 	public void executeEditMousePressed(List<HyperLinkObject> list, EObject amodel) {
 		EditorHyperLinkWebShell editor = new EditorHyperLinkWebShell();

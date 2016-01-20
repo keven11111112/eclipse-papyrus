@@ -54,7 +54,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
 			icon="icons/obj16/Diagram_Requirement.gif" label="Create a new Requirement Diagram"
 			style="push" tooltip="Create a new Requirement Diagram">

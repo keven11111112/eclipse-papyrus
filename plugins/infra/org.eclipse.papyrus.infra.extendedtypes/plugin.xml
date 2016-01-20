@@ -104,12 +104,12 @@
     <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
-            nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+            nsURI="http://www.eclipse.org/emf/2002/Ecore">
          <adviceBinding
                class="org.eclipse.papyrus.infra.extendedtypes.advices.ExtendedTypesOwnerAdvice"
-               id="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice"
+               id="org.eclipse.papyrus.infra.extendedtypes.advice.OwnerAdvice"
                inheritance="all"
-               typeId="org.eclipse.papyrus.uml.Element">
+               typeId="*">
          </adviceBinding>
       </metamodel>
    </extension>
@@ -121,7 +121,7 @@
                pattern="org\.eclipse\.papyrus\.uml\.([^d]|$|d([^i]|$)|di([^a]|$)|dia([^g]|$)|diag([^r]|$)|diagr([^a]|$)|diagra([^m]|$))">
          </elementType>
          <advice
-               ref="org.eclipse.papyrus.uml.advice.ExtendedTypesOwnerAdvice">
+               ref="org.eclipse.papyrus.infra.extendedtypes.advice.OwnerAdvice">
          </advice>
       </binding>
    </extension>

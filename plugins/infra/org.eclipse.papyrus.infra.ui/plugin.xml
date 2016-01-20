@@ -162,7 +162,7 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+               id="org.eclipse.papyrus.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.infra.core.commands.dropdowncommand"
                   icon="icons/papyrus/Papyrus_16x16.gif"
@@ -181,7 +181,7 @@
          </toolbar>
       </menuContribution>
       <menuContribution
-            locationURI="toolbar:org.eclipse.papyrus.uml.diagram.ui.toolbar">
+            locationURI="toolbar:org.eclipse.papyrus.ui.toolbar">
       </menuContribution>
       <menuContribution
             locationURI="popup:org.eclipse.papyrus.infra.core.editor.ui.tabmenu?endof=tabcommands">
@@ -514,4 +514,20 @@
              name="Editor">
        </page>
     </extension>
+    
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <!-- Is a Papyrus editor active that has a semantic model selection? -->
+      <definition id="org.eclipse.papyrus.ui.semanticModelActive">
+         <with
+               variable="activeEditor">
+            <adapt
+                  type="org.eclipse.papyrus.infra.core.services.ServicesRegistry">
+               <test
+                     property="org.eclipse.papyrus.infra.core.hasSemanticModel">
+               </test>
+            </adapt>
+         </with>
+      </definition>
+   </extension>
 </plugin>

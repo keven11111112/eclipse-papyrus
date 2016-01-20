@@ -1,6 +1,16 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2010, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *   LIFL - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading;
 
 import java.util.HashSet;
@@ -8,12 +18,13 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.impl.ProxyManager;
-import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 
 /**
@@ -37,6 +48,8 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 	 */
 	private IProxyManager proxyManager;
 
+	private AbstractBaseModel semanticModel;
+
 	/**
 	 *
 	 * Constructor.
@@ -57,6 +70,7 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 	public void unload() {
 		super.unload();
 		proxyManager.dispose();
+		semanticModel = null;
 	}
 
 
@@ -70,8 +84,7 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 
 		URI resourceURI = uri.trimFragment();
 		// for performance reasons, we check the three initial resources first
-		// TODO not use getUMLModel
-		if (resourceURI.equals(UmlUtils.getUmlModel(this).getResourceURI()) || resourceURI.equals(NotationUtils.getNotationModel(this).getResourceURI()) || resourceURI.equals(SashModelUtils.getSashModel(this).getResourceURI())
+		if (resourceURI.equals(getSemanticResourceURI()) || resourceURI.equals(NotationUtils.getNotationModel(this).getResourceURI()) || resourceURI.equals(SashModelUtils.getSashModel(this).getResourceURI())
 				|| uriLoading.contains(resourceURI)) {
 			// do not manage eObject of the current resources
 			return super.getEObject(uri, loadOnDemand);
@@ -95,4 +108,35 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 		uriLoading.add(alwaysLoadedUri);
 	}
 
+	private AbstractBaseModel getSemanticModel() {
+		if (semanticModel == null) {
+			semanticModel = ILanguageService.getLanguageModels(this).stream()
+					.filter(AbstractBaseModel.class::isInstance)
+					.map(AbstractBaseModel.class::cast)
+					.findAny().orElseGet(DummyModel::new);
+		}
+
+		return semanticModel;
+	}
+
+	private URI getSemanticResourceURI() {
+		AbstractBaseModel model = getSemanticModel();
+		return (model == null) ? null : model.getResourceURI();
+	}
+
+	//
+	// Nested types
+	//
+
+	private static class DummyModel extends AbstractBaseModel {
+		@Override
+		public String getIdentifier() {
+			return ""; // Dummy model
+		}
+
+		@Override
+		protected String getModelFileExtension() {
+			return "\0"; // Dummy model
+		}
+	}
 }

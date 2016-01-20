@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,8 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
- *  Christian W. Damus - bug 481149
- *
+ *  Christian W. Damus - bugs 481149, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -21,8 +19,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.tools.util.TypeUtils;
 
 /**
  * A Model is a set of elements defined by a metamodel (preferably an EMF
@@ -35,7 +36,7 @@ import org.eclipse.emf.common.util.URI;
  * @author cedric dumoulin
  *
  */
-public interface IModel {
+public interface IModel extends IAdaptable {
 
 	/**
 	 * Initialize the model and set its associated model manager.
@@ -207,4 +208,10 @@ public interface IModel {
 	 *            the to delete on save
 	 */
 	public void cleanModel(Set<URI> resourcesToDelete);
+
+	@Override
+	default <T> T getAdapter(Class<T> adapter) {
+		// We really need to get any available adapter
+		return TypeUtils.as(Platform.getAdapterManager().loadAdapter(this, adapter.getName()), adapter);
+	}
 }

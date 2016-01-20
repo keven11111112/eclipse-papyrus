@@ -61,7 +61,7 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+               id="org.eclipse.papyrus.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.layers.stackmodel.diagram.createDiagram"
                   icon="icons/layerDiagram.gif"

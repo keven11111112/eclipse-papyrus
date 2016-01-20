@@ -27,11 +27,6 @@ import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 
 public class HyperLinkEditor extends HyperLinkObject {
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.uml.diagram.common.ui.hyperlinkshell.HyperlinkObject#executeSelectPressed()
-	 *
-	 */
 	@Override
 	public void openLink() {
 		EObject context = EMFHelper.getEObject(getObject());

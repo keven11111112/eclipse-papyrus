@@ -29,7 +29,7 @@
          </menu>
       </menuContribution>
       
-      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.uml.diagram.ui.toolbar">
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?endof=org.eclipse.papyrus.ui.toolbar">
          <toolbar id="org.eclipse.papyrus.infra.nattable.toolbar.createnattable" label="New Table Toolbar (New Version)">
          </toolbar>
       </menuContribution>
@@ -129,19 +129,16 @@
        </activeWhen>
     </handler>
  </extension>
-     <!-- ElementType bindings for diagram duplication with paste command -->
+     <!-- ElementType bindings for table duplication with paste command -->
  <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-         <!--metamodel
-            nsURI="http://www.eclipse.org/uml2/5.0.0/UML"-->
       <metamodel
-            nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+            nsURI="http://www.eclipse.org/emf/2002/Ecore">
          <adviceBinding
                class="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice"
                id="org.eclipse.papyrus.infra.nattable.common.helper.advice.NatTableDuplicateEditHelperAdvice"
                inheritance="all"
-               typeId="org.eclipse.papyrus.uml.Element">
-               <!--typeId="org.eclipse.papyrus.uml.Element"-->
+               typeId="*">
          </adviceBinding>
       </metamodel>
    </extension>

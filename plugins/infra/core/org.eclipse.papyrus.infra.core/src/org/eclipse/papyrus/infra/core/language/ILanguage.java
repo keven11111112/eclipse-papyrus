@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.infra.core.language;
 
+import org.eclipse.papyrus.infra.core.internal.language.LanguageModelRegistry;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 /**
@@ -51,6 +53,18 @@ public interface ILanguage {
 	 * @return my name. Never {@code null} or empty
 	 */
 	String getName();
+
+	/**
+	 * Obtains the model, if any, that provides the semantic model content described by this language.
+	 * 
+	 * @param modelSet
+	 *            a model set in which the language is {@linkplain #install(ModelSet) installed}
+	 * 
+	 * @return the language's model in the {code modelSet}, or {@code null} if there is no corresponding model
+	 */
+	default IModel getModel(ModelSet modelSet) {
+		return LanguageModelRegistry.INSTANCE.getModel(this, modelSet);
+	}
 
 	/**
 	 * Installs me on a model-set. This performs whatever registrations, listener attachments, etc. that may be necessary

@@ -40,6 +40,8 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <includes id="org.eclipse.papyrus.uml.tools.feature" version="0.0.0"/>
 
+   <includes id="org.eclipse.papyrus.uml.ui.feature" version="0.0.0"/>
+
    <includes id="org.eclipse.papyrus.views.modelexplorer.feature" version="0.0.0"/>
 
    <includes id="org.eclipse.papyrus.views.properties.feature" version="0.0.0"/>

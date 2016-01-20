@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
- *
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.policy;
@@ -24,6 +24,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -41,22 +43,38 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ViewPrototypeContentProvider implements ITreeContentProvider {
 
-	private static Image loadImage(String uri) {
+	private static ImageDescriptor loadImage(String uri) {
 		URL url = null;
 		try {
 			url = new URL(uri);
 		} catch (MalformedURLException e) {
 		}
-		return ImageDescriptor.createFromURL(url).createImage();
+		return ImageDescriptor.createFromURL(url);
 	}
 
 	public static class LP extends LabelProvider {
+		private static final String IMG_CATEGORY = "imageCategory"; //$NON-NLS-1$
+		private static final String IMG_VIEWPOINT = "imageViewpoint"; //$NON-NLS-1$
+		private static final String IMG_PROFILE = "imageProfile"; //$NON-NLS-1$
+		private static final String IMG_MODEL = "imageModel"; //$NON-NLS-1$
+		private static final String IMG_OWNER = "imageOwner"; //$NON-NLS-1$
 
-		private Image imageCategory = loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusView.png");
-		private Image imageViewpoint = loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusViewpoint.png");
-		private Image imageProfile = loadImage("platform:/plugin/org.eclipse.papyrus.uml.profile/resources/icons/Profile.gif");
-		private Image imageModel = loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/ModelRule.png");
-		private Image imageOwner = loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/OwningRule.png");
+		private ImageRegistry images = new ImageRegistry(JFaceResources.getResources());
+
+		{
+			images.put(IMG_CATEGORY, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusView.png"));
+			images.put(IMG_VIEWPOINT, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/PapyrusViewpoint.png"));
+			images.put(IMG_PROFILE, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Profile.gif"));
+			images.put(IMG_MODEL, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/ModelRule.png"));
+			images.put(IMG_OWNER, loadImage("platform:/plugin/org.eclipse.papyrus.infra.viewpoints.configuration.edit/icons/full/obj16/OwningRule.png"));
+		}
+
+		@Override
+		public void dispose() {
+			super.dispose();
+
+			images.dispose();
+		}
 
 		@Override
 		public String getText(Object element) {
@@ -134,22 +152,22 @@ public class ViewPrototypeContentProvider implements ITreeContentProvider {
 		@Override
 		public Image getImage(Object element) {
 			if (element instanceof Category) {
-				return imageCategory;
+				return images.get(IMG_CATEGORY);
 			}
 			if (element instanceof ViewPrototype) {
 				return ((ViewPrototype) element).getIcon();
 			}
 			if (element instanceof PapyrusViewpoint) {
-				return imageViewpoint;
+				return images.get(IMG_VIEWPOINT);
 			}
 			if (element instanceof EPackage) {
-				return imageProfile;
+				return images.get(IMG_PROFILE);
 			}
 			if (element instanceof ModelRule) {
-				return imageModel;
+				return images.get(IMG_MODEL);
 			}
 			if (element instanceof OwningRule) {
-				return imageOwner;
+				return images.get(IMG_OWNER);
 			}
 			return null;
 		}

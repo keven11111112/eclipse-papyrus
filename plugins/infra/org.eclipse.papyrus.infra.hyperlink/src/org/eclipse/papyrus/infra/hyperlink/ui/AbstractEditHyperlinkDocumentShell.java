@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.hyperlink.ui;
 
+import org.eclipse.papyrus.infra.hyperlink.Activator;
 import org.eclipse.papyrus.infra.hyperlink.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
@@ -24,7 +25,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -112,9 +112,7 @@ public class AbstractEditHyperlinkDocumentShell {
 		ObjectLabeltext.setEditable(true);
 		ObjectLabeltext.setLayoutData(gridData1);
 		chooseDiagramButton = new Button(getEditHyperlinkShell(), SWT.NONE);
-		// chooseDiagramButton.setImage(new Image(Display.getCurrent(),
-		// "C:/Tessier/PROTOTYPE/papyrusII/DEVELOPMENT/GalileoM6/org.eclipse.papyrus.uml.diagram.common/icons/obj16/insp_sbook.gif"));
-		chooseDiagramButton.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/insp_sbook.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		chooseDiagramButton.setImage(Activator.getDefault().getIcon(Activator.IMG_LOUPE));
 		chooseDiagramButton.setLayoutData(gridData51);
 		chooseDiagramButton.setText(""); //$NON-NLS-1$
 		tooltipInputLabel = new CLabel(editHyperlinkShell, SWT.NONE);

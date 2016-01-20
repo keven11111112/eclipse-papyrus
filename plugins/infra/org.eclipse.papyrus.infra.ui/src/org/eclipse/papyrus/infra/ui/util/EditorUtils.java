@@ -247,7 +247,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -285,7 +285,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -323,7 +323,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -368,7 +368,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -415,7 +415,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -504,7 +504,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -530,7 +530,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -565,7 +565,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated
@@ -600,7 +600,7 @@ public class EditorUtils {
 	 *             <li>
 	 *             org.eclipse.papyrus.uml.diagram.common.util.ServiceUtilsForGMF</li>
 	 *             <li>
-	 *             org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 *             org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers (to be used with care !)</li>
 	 *             </ul>
 	 */
 	@Deprecated

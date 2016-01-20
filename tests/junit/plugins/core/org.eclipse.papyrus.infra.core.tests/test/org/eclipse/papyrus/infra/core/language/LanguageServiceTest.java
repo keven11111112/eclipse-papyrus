@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,16 +13,21 @@
 
 package org.eclipse.papyrus.infra.core.language;
 
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.io.IOException;
+import java.util.Collection;
 
+import org.eclipse.papyrus.infra.core.internal.language.LanguageModelRegistry;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.junit.utils.rules.ProjectFixture;
+import org.eclipse.papyrus.junit.utils.resources.EcoreModel;
+import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.junit.utils.rules.ServiceRegistryModelSetFixture;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -31,6 +36,7 @@ import org.junit.Test;
 /**
  * Tests the Papyrus Language Service.
  */
+@PluginResource({ "resources/My.ecore", "resources/My.genmodel" })
 public class LanguageServiceTest {
 	private static final String ECORE_LANGUAGE_ID = "org.eclipse.papyrus.infra.core.tests.language.ecore"; //$NON-NLS-1$
 	private static final String ECORE_LANGUAGE_VERSION = "2.11"; //$NON-NLS-1$
@@ -41,9 +47,9 @@ public class LanguageServiceTest {
 	private static final String GENMODEL_LANGUAGE_NAME = "Genmodel"; //$NON-NLS-1$
 
 	@ClassRule
-	public static final ProjectFixture project = new ProjectFixture();
+	public static final ModelSetFixture modelSet = new ServiceRegistryModelSetFixture();
 
-	static ServicesRegistry registry;
+	private static IModel ecoreModel;
 
 	public LanguageServiceTest() {
 		super();
@@ -51,11 +57,11 @@ public class LanguageServiceTest {
 
 	@Test
 	public void contentTypeBasedLanguages() throws ServiceException {
-		ILanguageService service = registry.getService(ILanguageService.class);
+		ILanguageService service = modelSet.requireService(ILanguageService.class);
 
 		ILanguage ecore = null;
 		ILanguage genmodel = null;
-		for (ILanguage next : service.getLanguages(project.getURI("My.ecore"), true)) {
+		for (ILanguage next : service.getLanguages(modelSet.getProject().getURI("My.ecore"), true)) {
 			if (ECORE_LANGUAGE_ID.equals(next.getID())) {
 				ecore = next;
 			} else if (GENMODEL_LANGUAGE_ID.equals(next.getID())) {
@@ -72,11 +78,11 @@ public class LanguageServiceTest {
 
 	@Test
 	public void contentTypeBasedLanguages_uriWithoutExtension() throws ServiceException {
-		ILanguageService service = registry.getService(ILanguageService.class);
+		ILanguageService service = modelSet.requireService(ILanguageService.class);
 
 		ILanguage ecore = null;
 		ILanguage genmodel = null;
-		for (ILanguage next : service.getLanguages(project.getURI("My"), false)) {
+		for (ILanguage next : service.getLanguages(modelSet.getProject().getURI("My"), false)) {
 			if (ECORE_LANGUAGE_ID.equals(next.getID())) {
 				ecore = next;
 			} else if (GENMODEL_LANGUAGE_ID.equals(next.getID())) {
@@ -93,31 +99,28 @@ public class LanguageServiceTest {
 		assertThat(genmodel.getName(), is(GENMODEL_LANGUAGE_NAME));
 	}
 
+	@Test
+	public void languageBindings() {
+		Collection<IModel> models = ILanguageService.getLanguageModels(modelSet.getResourceSet());
+
+		assertThat(models, hasItem(ecoreModel));
+	}
+
 	//
 	// Test framework
 	//
 
 	@BeforeClass
-	public static void createResources() throws IOException {
-		project.createFile(LanguageServiceTest.class, "resources/My.ecore");
-		project.createFile(LanguageServiceTest.class, "resources/My.genmodel");
-	}
+	public static void registerEcoreModel() {
+		ecoreModel = new EcoreModel();
+		LanguageModelRegistry.INSTANCE.bind(ECORE_LANGUAGE_ID, ecoreModel.getIdentifier());
 
-	@BeforeClass
-	public static void createRegistry() throws Exception {
-		registry = new ServicesRegistry();
-		registry.add(ILanguageService.class, 1, new org.eclipse.papyrus.infra.core.internal.language.LanguageService());
-		registry.startRegistry();
+		modelSet.getResourceSet().getInternal().registerModel(ecoreModel, false);
 	}
 
 	@AfterClass
-	public static void destroyRegistry() throws Exception {
-		if (registry != null) {
-			registry.disposeRegistry();
-		}
-		registry = null;
+	public static void unregisterEcoreModel() {
+		LanguageModelRegistry.INSTANCE.bind(ECORE_LANGUAGE_ID, ecoreModel.getIdentifier());
+		ecoreModel = null;
 	}
-
-
-
 }

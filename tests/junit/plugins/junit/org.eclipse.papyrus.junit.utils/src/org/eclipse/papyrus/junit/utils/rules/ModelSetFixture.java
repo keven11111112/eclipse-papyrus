@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 399859
+ *   Christian W. Damus - bugs 399859, 485220
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.junit.utils.rules;
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
@@ -90,9 +92,36 @@ public class ModelSetFixture extends AbstractModelFixture<TransactionalEditingDo
 		try {
 			getResourceSet().loadModels(getModelResourceURI());
 		} catch (ModelMultiException e) {
-			e.printStackTrace();
+			// Is the problem only a missing model resource?
+			Pattern missingResource = Pattern.compile("ResourceException: Resource '.*' does not exist."); //$NON-NLS-1$
+			for (Throwable next : e.getExceptions()) {
+				if ((next.getMessage() == null) || !missingResource.matcher(next.getMessage()).find()) {
+					e.printStackTrace();
 
-			fail("Failed to initialize ModelSet fixture: " + e.getLocalizedMessage());
+					fail("Failed to initialize ModelSet fixture: " + e.getLocalizedMessage());
+				}
+			}
+		}
+	}
+
+	public final <S> S tryService(Class<S> serviceType) {
+		try {
+			ServicesRegistry services = ServiceUtilsForResourceSet.getInstance().getServiceRegistry(getResourceSet());
+			return services.getService(serviceType);
+		} catch (ServiceException e) {
+			// Okay, no such service
+			return null; // unreachable
+		}
+	}
+
+	public final <S> S requireService(Class<S> serviceType) {
+		try {
+			ServicesRegistry services = ServiceUtilsForResourceSet.getInstance().getServiceRegistry(getResourceSet());
+			return services.getService(serviceType);
+		} catch (ServiceException e) {
+			e.printStackTrace();
+			fail("Failed to initialize service registry and/or service: " + e.getLocalizedMessage());
+			return null; // unreachable
 		}
 	}
 }

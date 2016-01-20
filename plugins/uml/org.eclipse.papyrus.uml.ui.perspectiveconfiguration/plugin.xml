@@ -21,7 +21,7 @@
                menuID="help">
          </menu>
          <toolbar
-               toolbarID="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+               toolbarID="org.eclipse.papyrus.ui.toolbar">
          </toolbar>
          <preferencePage
                preferencepageID="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory">

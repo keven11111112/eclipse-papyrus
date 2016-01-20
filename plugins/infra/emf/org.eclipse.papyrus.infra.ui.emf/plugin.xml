@@ -64,7 +64,7 @@
 			style="push"
 			tooltip="Enable write">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.ui.semanticModelActive"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -77,7 +77,7 @@
 			style="push"
 			tooltip="Enable write">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.ui.semanticModelActive"/>
 			</visibleWhen>
 		</command>
 	</menuContribution>
@@ -90,7 +90,7 @@
 			style="push"
 			tooltip="Enable write">
 			<visibleWhen>
-				<reference definitionId="org.eclipse.papyrus.uml.diagram.common.IsPapyrusActiveWithUMLModel"/>
+				<reference definitionId="org.eclipse.papyrus.ui.semanticModelActive"/>
 			</visibleWhen>
 		</command>
 	</toolbar>

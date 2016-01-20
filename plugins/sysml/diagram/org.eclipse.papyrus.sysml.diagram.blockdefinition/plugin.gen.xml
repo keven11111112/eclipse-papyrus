@@ -53,7 +53,7 @@
 	</menuContribution>
 	
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
-	<toolbar id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+	<toolbar id="org.eclipse.papyrus.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
 			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">

@@ -105,4 +105,15 @@
           </dependsOn>
        </serviceFactory>
     </extension>
+    
+    <extension
+          point="org.eclipse.core.expressions.propertyTesters">
+       <propertyTester
+             id="org.eclipse.papyrus.infra.core.serviceRegistryProperties"
+             type="org.eclipse.papyrus.infra.core.services.ServicesRegistry"
+             namespace="org.eclipse.papyrus.infra.core"
+             properties="hasSemanticModel"
+             class="org.eclipse.papyrus.infra.core.internal.expressions.ServiceRegistryPropertyTester">
+       </propertyTester>
+    </extension>
 </plugin>

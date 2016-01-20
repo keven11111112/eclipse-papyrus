@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,9 +8,12 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
@@ -27,6 +30,15 @@ public interface IEMFModel extends IModel {
 	 * @return
 	 */
 	public Resource getResource();
+
+	/**
+	 * Obtains the top-level model elements in the main resource associated with this model.
+	 * 
+	 * @return the model roots, or an empty iterable if either there definitively are none
+	 *         or they cannot be determined (for example, because the main resource is a controlled
+	 *         unit and the parent unit is not available)
+	 */
+	public Iterable<? extends EObject> getRootElements();
 
 	/**
 	 * Called when a resource is loaded. Implement this method to configure

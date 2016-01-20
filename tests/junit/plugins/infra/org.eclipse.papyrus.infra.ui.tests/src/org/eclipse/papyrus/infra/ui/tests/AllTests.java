@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.ui.tests;
 import org.eclipse.papyrus.infra.ui.contentoutline.NestedEditorDelegatedOutlinePageTest;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.LifeCycleEventsProviderTest;
 import org.eclipse.papyrus.infra.ui.lifecycleevents.SaveAndDirtyServiceTest;
+import org.eclipse.papyrus.infra.ui.providers.DelegatingPapyrusContentProviderTest;
+import org.eclipse.papyrus.infra.ui.providers.SemanticContentProviderFactoryTest;
 import org.eclipse.papyrus.infra.ui.util.UIUtilTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runner.RunWith;
@@ -30,6 +32,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		SaveAndDirtyServiceTest.class,
 		LifeCycleEventsProviderTest.class,
 		NestedEditorDelegatedOutlinePageTest.class,
+		DelegatingPapyrusContentProviderTest.class,
+		SemanticContentProviderFactoryTest.class,
 })
 public class AllTests {
 

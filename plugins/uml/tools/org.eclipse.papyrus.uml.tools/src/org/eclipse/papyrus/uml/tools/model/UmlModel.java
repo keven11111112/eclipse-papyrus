@@ -1,6 +1,16 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *   LIFL - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.model;
 
 import org.eclipse.core.runtime.IPath;
@@ -11,6 +21,7 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -128,5 +139,13 @@ public class UmlModel extends EMFLogicalModel implements IModel {
 		}
 
 		super.unload();
+	}
+
+	/**
+	 * Only UML {@link Element}s are semantic roots, not stereotype applications.
+	 */
+	@Override
+	protected boolean isRootElement(EObject object) {
+		return super.isRootElement(object) && (object instanceof Element);
 	}
 }

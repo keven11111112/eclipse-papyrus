@@ -121,7 +121,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 	/**
 	 *
 	 * @return
-	 *         the list of the objects which are referenced by the listen features
+	 * 		the list of the objects which are referenced by the listen features
 	 */
 	@SuppressWarnings("unchecked")
 	protected List<Object> getFeaturesValue() {
@@ -168,7 +168,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 	 * @param objects
 	 *            the list of objects
 	 * @return
-	 *         the sorted list of objects
+	 * 		the sorted list of objects
 	 */
 	protected List<Object> organizeContents(final List<Object> objects) {
 		return objects;
@@ -205,7 +205,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 	/**
 	 *
 	 * @return
-	 *         the features to listen according to the current table configuration or <code>null</code> if it is not definedS
+	 * 		the features to listen according to the current table configuration or <code>null</code> if it is not definedS
 	 */
 	protected Collection<EStructuralFeature> getListenFeatures() {
 		if (this.listenFeatures == null) {
@@ -225,7 +225,7 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 	/**
 	 *
 	 * @return
-	 *         the filling configuration used by the table or <code>null</code> if any is defined
+	 * 		the filling configuration used by the table or <code>null</code> if any is defined
 	 */
 	protected Collection<EStructuralFeatureValueFillingConfiguration> getFillingConfigurations() {// FIXME : local configuration not yet managed
 		final Collection<EStructuralFeatureValueFillingConfiguration> configs = new ArrayList<EStructuralFeatureValueFillingConfiguration>();
@@ -402,12 +402,6 @@ public abstract class AbstractSynchronizedOnEStructuralFeatureAxisManager extend
 		}
 	}
 
-	/**
-	 *
-	 * @see org.eclipse.papyrus.uml.nattable.manager.axis.AbstractUMLSynchronizedOnFeatureAxisManager#getAllManagedAxis()
-	 *
-	 * @return
-	 */
 	@Override
 	public List<Object> getAllManagedAxis() {
 		return new ArrayList<Object>(this.managedObject);

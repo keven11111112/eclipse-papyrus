@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,10 +9,8 @@
  * Contributors:
  * 	Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Rewrite the sash model - store in the plugin's PreferenceStore (Bug 429239)
- *  Christian W. Damus (CEA) - bug 429242
- *  Christian W. Damus (CEA) - bug 436468
- * 	Christian W. Damus - bug 434983
- * 	Christian W. Damus - bug 469188
+ *  Christian W. Damus (CEA) - bugs 429242, 436468
+ * 	Christian W. Damus - bugs 434983, 469188, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource.sasheditor;
@@ -26,6 +24,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.xmi.XMIResource;
@@ -34,6 +33,7 @@ import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
 import com.google.common.base.Objects;
@@ -344,6 +344,11 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	public URI getSharedResourceURI() {
 		URI modelURI = (getModelManager() == null) ? null : getModelManager().getURIWithoutExtension();
 		return (modelURI == null) ? null : modelURI.appendFileExtension(DiModel.MODEL_FILE_EXTENSION);
+	}
+
+	@Override
+	protected boolean isRootElement(EObject object) {
+		return super.isRootElement(object) && (object instanceof SashWindowsMngr);
 	}
 
 	//

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,8 +10,7 @@
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - manage models by URI, not IFile (CDO)
  *  Christian W. Damus (CEA) - bug 437052
- *  Christian W. Damus - bug 399859
- *  Christian W. Damus - bug 481149
+ *  Christian W. Damus - bugs 399859, 481149, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -428,6 +427,34 @@ public abstract class AbstractBaseModel extends AbstractModel implements IVersio
 		}
 
 		return false;
+	}
+
+	@Override
+	public Iterable<? extends EObject> getRootElements() {
+		Iterable<? extends EObject> result;
+
+		Resource resource = getResource();
+		if (resource == null) {
+			result = Collections.emptyList();
+		} else {
+			result = () -> resource.getContents().stream()
+					.filter(this::isRootElement)
+					.iterator();
+		}
+
+		return result;
+	}
+
+	/**
+	 * By default, an object is a root of the model if it does not
+	 * have a {@linkplain EObject#eContainer() container}.
+	 * 
+	 * @param object
+	 *            an object in a resource
+	 * @return whether it is a root element
+	 */
+	protected boolean isRootElement(EObject object) {
+		return object.eContainer() == null;
 	}
 
 }

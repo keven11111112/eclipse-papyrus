@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
- *   Christian W. Damus - bug 399859
- *   Christian W. Damus - bug 451230
- *   Christian W. Damus - bug 458685
- *   Christian W. Damus - bug 469188
+ *   Christian W. Damus - bugs 399859, 451230, 458685, 469188, 485220
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -107,6 +104,8 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	private T domain;
 
+	private EObject root;
+
 	private Package model;
 
 	private Class<?> testClass;
@@ -189,6 +188,15 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	}
 
 	/**
+	 * Obtains the first root of the main test resource.
+	 * 
+	 * @return the first test resource root
+	 */
+	public EObject getRoot() {
+		return root;
+	}
+
+	/**
 	 * Obtains the test model, which is resident in the <tt>model.uml</tt> file in the test project (as indicated by its {@linkplain #getModelResourceURI() URI}).
 	 * 
 	 * @return the test model
@@ -198,7 +206,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	}
 
 	public Resource getModelResource() {
-		return getModel().eResource();
+		return getRoot().eResource();
 	}
 
 	public URI getModelResourceURI() {
@@ -206,7 +214,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	}
 
 	public URI getModelURI() {
-		return EcoreUtil.getURI(getModel());
+		return EcoreUtil.getURI(getRoot());
 	}
 
 	protected abstract T createEditingDomain();
@@ -218,7 +226,10 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 		Resource main = Iterables.getFirst(initModelResources(description), null);
 		assertThat("No main UML resource in model fixture", main, notNullValue());
 
-		model = (Package) main.getContents().get(0);
+		root = main.getContents().get(0);
+		if (root instanceof Package) {
+			model = (Package) root;
+		}
 
 		// We have finished initializing
 		initialResourceURIs = null;
@@ -509,6 +520,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 		initialResourceURIs = null;
 		model = null;
+		root = null;
 
 		if (domain instanceof TransactionalEditingDomain) {
 			((TransactionalEditingDomain) domain).dispose();

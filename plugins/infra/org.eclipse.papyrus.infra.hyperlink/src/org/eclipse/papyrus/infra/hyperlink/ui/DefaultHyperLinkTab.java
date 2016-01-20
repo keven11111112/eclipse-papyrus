@@ -42,7 +42,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * this is the tab in charge to display the hyperlink for the property defaut
@@ -271,10 +270,10 @@ public class DefaultHyperLinkTab extends AbstractHyperLinkTab {
 
 
 		// associate image to buttons
-		defaultHdown.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowDown_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
-		defaultHup.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowUp_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
-		defaultHleft.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowLeft_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
-		defaultHRight.setImage(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/ArrowRight_16x16.gif").createImage()); //$NON-NLS-1$ //$NON-NLS-2$
+		defaultHdown.setImage(Activator.getDefault().getIcon(Activator.IMG_ARROW_DOWN));
+		defaultHup.setImage(Activator.getDefault().getIcon(Activator.IMG_ARROW_UP));
+		defaultHleft.setImage(Activator.getDefault().getIcon(Activator.IMG_ARROW_LEFT));
+		defaultHRight.setImage(Activator.getDefault().getIcon(Activator.IMG_ARROW_RIGHT));
 
 		EObject contextElement = EMFHelper.getEObject(element);
 

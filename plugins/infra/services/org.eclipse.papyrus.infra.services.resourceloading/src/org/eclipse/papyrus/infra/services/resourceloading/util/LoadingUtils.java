@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 Atos Origin, CEA, and others.
- *
+ * Copyright (c) 2011, 2016 Atos Origin, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,12 +9,14 @@
  * Contributors:
  *  Vincent Hemery (Atos) vincent.hemery@atos.net - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 415639
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,9 @@ import org.eclipse.gef.util.EditPartUtilities;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
@@ -49,7 +53,6 @@ import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -81,6 +84,7 @@ public class LoadingUtils {
 
 			runInEditingDomain(modelSet.getTransactionalEditingDomain(), editor, new IRunnableWithProgress() {
 
+				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
 						IMultiDiagramEditor core = (IMultiDiagramEditor) editor;
@@ -175,6 +179,7 @@ public class LoadingUtils {
 		if (editor instanceof IMultiDiagramEditor) {
 			runInEditingDomain(modelSet.getTransactionalEditingDomain(), editor, new IRunnableWithProgress() {
 
+				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
 					try {
@@ -323,20 +328,6 @@ public class LoadingUtils {
 	}
 
 	/**
-	 * Common extensions
-	 * TODO get rid of listing all model's extensions and find a way to deduce them from model set. Then, delete this attribute.
-	 *
-	 * @see #getExtensions(ModelSet)
-	 */
-	private static final Set<String> COMMON_EXTENSIONS = new HashSet<String>();
-
-	static {
-		COMMON_EXTENSIONS.add(UmlModel.UML_FILE_EXTENSION);
-		COMMON_EXTENSIONS.add(NotationModel.NOTATION_FILE_EXTENSION);
-		COMMON_EXTENSIONS.add(DiModel.DI_FILE_EXTENSION);
-	}
-
-	/**
 	 * Get list of file extensions existing for this model set
 	 *
 	 * @param modelSet
@@ -344,7 +335,29 @@ public class LoadingUtils {
 	 * @return extensions list to explore
 	 */
 	private static Set<String> getExtensions(ModelSet modelSet) {
-		return COMMON_EXTENSIONS;
+		Set<String> result = new HashSet<String>();
+		// FIXME: Also need to generalize the notation and DI models
+		result.add(NotationModel.NOTATION_FILE_EXTENSION);
+		result.add(DiModel.DI_FILE_EXTENSION);
+
+		// Get the semantic model extensions
+		Collection<IModel> languageModels = ILanguageService.getLanguageModels(modelSet);
+		if (languageModels.isEmpty()) {
+			// No semantic models? Force UML for compatibility
+			Activator.log.warn("Semantic service unavailable. Assuming a UML model."); //$NON-NLS-1$
+			result.add("uml"); //$NON-NLS-1$
+		} else {
+			for (IModel model : languageModels) {
+				if (model instanceof AbstractBaseModel) {
+					URI uri = ((AbstractBaseModel) model).getResourceURI();
+					if ((uri != null) && (uri.fileExtension() != null)) {
+						result.add(uri.fileExtension());
+					}
+				}
+			}
+		}
+
+		return result;
 	}
 
 	/**

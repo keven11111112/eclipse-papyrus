@@ -7,7 +7,7 @@
 <!-- Register the UML delegating constraint provider -->
 <!-- Bind the UML metamodel constraint provider's constraints to the Papyrus application. -->
 
-<extension
+   <extension
          point="org.eclipse.papyrus.infra.core.model">
       <model
             classname="org.eclipse.papyrus.uml.tools.model.ExtendedUmlModel"
@@ -18,7 +18,15 @@
                description="Complete the UML model.">
          </modelSnippet>
       </model>
-      </extension>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.language">
+      <modelBinding
+            language="org.eclipse.papyrus.uml.language"
+            model="org.eclipse.papyrus.infra.core.resource.uml.UmlModel">
+      </modelBinding>
+   </extension>
+   
 <extension
       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
    <labelProvider

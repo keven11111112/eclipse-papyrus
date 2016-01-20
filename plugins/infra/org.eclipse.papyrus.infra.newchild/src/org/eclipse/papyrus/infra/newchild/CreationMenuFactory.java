@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,10 @@
  *
  * Contributors:
  *
- *		CEA LIST - Initial API and implementation
- *		Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
+ *  CEA LIST - Initial API and implementation
+ *  Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565
+ *  Christian W. Damus - bug 485220
+ *   
  *****************************************************************************/
 package org.eclipse.papyrus.infra.newchild;
 
@@ -18,6 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -35,6 +40,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.filters.Filter;
@@ -45,8 +52,11 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
+import org.eclipse.papyrus.infra.ui.providers.DelegatingPapyrusContentProvider;
+import org.eclipse.papyrus.infra.ui.providers.ISemanticContentProviderFactory;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
-import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
@@ -106,7 +116,7 @@ public class CreationMenuFactory {
 				boolean result = false;
 				if (currentMenu instanceof Folder) {
 					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
-				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible() && filterMatches((CreationMenu) currentMenu, selectedObject)) {
+				} else if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible() && filterMatches(currentMenu, selectedObject)) {
 					CreationMenu currentCreationMenu = (CreationMenu) currentMenu;
 					EReference reference = null;
 					String role = currentCreationMenu.getRole();
@@ -371,7 +381,7 @@ public class CreationMenuFactory {
 		} else {
 			createGMFCommand = provider.getEditCommand(buildRequest(reference, container, creationMenu, adviceCache));
 		}
-		
+
 		if (createGMFCommand != null) {
 			Command emfCommand = org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper.wrap(createGMFCommand);
 			return emfCommand;
@@ -396,7 +406,7 @@ public class CreationMenuFactory {
 			}
 		} else {
 			if (creationMenu instanceof CreateRelationshipMenu) {
-				request = new CreateRelationshipRequest(editingDomain, null,container,null,getElementType(elementTypeId),reference);
+				request = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(elementTypeId), reference);
 			} else {
 				request = new CreateElementRequest(editingDomain, container, getElementType(elementTypeId), reference);
 			}
@@ -456,7 +466,27 @@ public class CreationMenuFactory {
 			return null;
 		}
 
-		SemanticUMLContentProvider contentProvider = new SemanticUMLContentProvider(eobject.eResource().getResourceSet()) {
+		SemanticService semanticService = null;
+
+		try {
+			semanticService = ServiceUtilsForEObject.getInstance().getService(SemanticService.class, eobject);
+		} catch (Exception e) {
+			Activator.log.error("Could not get the SemanticService for " + eobject, e);
+			return null;
+		}
+
+		// Get the primary language-specific content provider
+		IModel[] models = semanticService.getSemanticIModels();
+		Optional<ISemanticContentProviderFactory> factory = Stream.of(models)
+				.map(m -> m.getAdapter(ISemanticContentProviderFactory.class))
+				.filter(Objects::nonNull)
+				.reduce(ISemanticContentProviderFactory::compose);
+
+		ITreeContentProvider delegate = factory.orElse(SemanticEMFContentProvider::new)
+				.createSemanticContentProvider(eobject.eResource().getResourceSet());
+
+		ITreeContentProvider contentProvider = new DelegatingPapyrusContentProvider(delegate) {
+			@Override
 			public boolean isValidValue(Object element) {
 				if (element == null) {
 					return false;

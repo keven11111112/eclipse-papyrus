@@ -13,11 +13,19 @@
 
 package org.eclipse.papyrus.infra.core.language;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.papyrus.infra.core.editor.ModelSetServiceFactory;
+import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 
 /**
  * <p>
@@ -78,4 +86,32 @@ public interface ILanguageService extends IAdaptable, ILanguageChangeListener {
 	 *            a language provider to remove (may be {@code null}, which has no effect)
 	 */
 	void removeLanguageProvider(ILanguageProvider provider);
+
+	/**
+	 * Obtains all of the {@link IModel}s that are the models for languages instantiated
+	 * in a {@code modelSet}.
+	 * 
+	 * @param modelSet
+	 *            a model-set
+	 * 
+	 * @return its language models, which may be empty if the model-set is not in a
+	 *         service registry that has a language service
+	 */
+	static Collection<IModel> getLanguageModels(ModelSet modelSet) {
+		List<IModel> result;
+
+		ILanguageService service = ServiceUtils.getInstance().getService(ILanguageService.class, ModelSetServiceFactory.getServiceRegistry(modelSet), null);
+		if (service == null) {
+			// No language service? No language models
+			result = Collections.emptyList();
+		} else {
+			result = service.getLanguages(modelSet.getURIWithoutExtension(), false).stream()
+					.map(l -> l.getModel(modelSet))
+					.filter(Objects::nonNull)
+					.distinct() // Only unique models
+					.collect(Collectors.toList());
+		}
+
+		return result;
+	}
 }

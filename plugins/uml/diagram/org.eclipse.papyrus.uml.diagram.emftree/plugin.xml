@@ -52,7 +52,7 @@
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
          <toolbar
-               id="org.eclipse.papyrus.uml.diagram.ui.toolbar">
+               id="org.eclipse.papyrus.ui.toolbar">
             <command
                   commandId="com.cea.papyrus.ui.emftree.createTree"
                   icon="icons/EmfTree.gif"

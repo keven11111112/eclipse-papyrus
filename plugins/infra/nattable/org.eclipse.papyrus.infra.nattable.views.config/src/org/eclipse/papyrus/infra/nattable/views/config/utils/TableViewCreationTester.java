@@ -16,10 +16,14 @@ package org.eclipse.papyrus.infra.nattable.views.config.utils;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.tester.ITableTester;
 import org.eclipse.papyrus.infra.nattable.views.config.Activator;
 import org.eclipse.papyrus.infra.nattable.views.config.messages.Messages;
-import org.eclipse.papyrus.uml.tools.model.UmlModel;
 
 
 public class TableViewCreationTester implements ITableTester {
@@ -29,8 +33,19 @@ public class TableViewCreationTester implements ITableTester {
 	public IStatus isAllowed(Object context) {
 		if (context instanceof EObject) {
 			final EObject current = (EObject) context;
-			if (current.eResource() != null && current.eResource().getURI().fileExtension().equals(UmlModel.UML_FILE_EXTENSION)) {
-				return new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.TableViewCreationTester_TheTableViewCanBeCreated);
+
+			try {
+				ModelSet modelSet = ServiceUtilsForEObject.getInstance().getModelSet(current);
+				IModel model = modelSet.getModelFor(current);
+				if (model != null) {
+					// This is an element of some model. Is it a semantic model?
+					if (ILanguageService.getLanguageModels(modelSet).contains(model)) {
+						return new Status(IStatus.OK, Activator.PLUGIN_ID, Messages.TableViewCreationTester_TheTableViewCanBeCreated);
+					}
+				}
+			} catch (ServiceException e) {
+				// Okay, no services? Then this isn't an appropriate context
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.TableViewCreationTester_ServicesUnavailable);
 			}
 		}
 		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.TableViewCreationTester_TheTableViewCantBeCreated);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 437052
- *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bugs 399859, 485220
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
- *
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -171,4 +170,11 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 
 	}
 
+	@Override
+	public Iterable<? extends EObject> getRootElements() {
+		return () -> getResources().stream()
+				.flatMap(r -> r.getContents().stream())
+				.filter(this::isRootElement)
+				.iterator();
+	}
 }

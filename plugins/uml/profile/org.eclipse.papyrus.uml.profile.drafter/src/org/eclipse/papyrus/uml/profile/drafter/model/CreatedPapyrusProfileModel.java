@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Cedric Dumoulin.
- *
+ * Copyright (c) 2014, 2016 Cedric Dumoulin, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
@@ -52,13 +53,13 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 	public static final String MODEL_ID = CreatedPapyrusProfileModel.class.getName();
 
 	public static final String PROFILE_FILE_EXTENSION = "profile";
-	
+
 	protected URI uriWithoutExtension;
 	protected boolean isAdditionalResourcesRequired;
 	protected Resource umlResource;
 	protected Resource diResource;
 	protected Resource notationResource;
-	
+
 
 	/**
 	 * 
@@ -72,14 +73,14 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 		init(owner);
 		this.uriWithoutExtension = uriWithoutExtension;
 		this.isAdditionalResourcesRequired = isAdditionalResourcesRequired;
-		
+
 		// add '.profile' to uri if needed
 		String currentExtension = uriWithoutExtension.fileExtension();
-		if( ! PROFILE_FILE_EXTENSION.equals(currentExtension)) {
+		if (!PROFILE_FILE_EXTENSION.equals(currentExtension)) {
 			// Add extension
 			uriWithoutExtension.appendFileExtension(PROFILE_FILE_EXTENSION);
 		}
-		
+
 		// Creates Resources
 		createModel();
 		// Register ourself to ModelSet
@@ -112,74 +113,79 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 
 	/**
 	 * Create the model by using the provided fullpath as a hint for the resource
-	 * URIs. 
+	 * URIs.
 	 * In this implementation, create 3 resources (profile.uml, di and notation).
 	 * 
 	 * @param fullPathWithoutExtension
 	 */
 	public void createModel() {
-		
-		
+
+
 		umlResource = createUmlResource();
 		// Initialize resource
-		if( umlResource.getContents().isEmpty()) {
+		if (umlResource.getContents().isEmpty()) {
 			Profile profile = createProfile();
 			umlResource.getContents().add(profile);
 		}
-		
+
 		// Set the main resource
 		resource = umlResource;
 
 		// Add additional resources if requested.
-		if( isAdditionalResourcesRequired ) {
+		if (isAdditionalResourcesRequired) {
 			notationResource = createNotationResource();
-			diResource = createDiResource();			
+			diResource = createDiResource();
 		}
-		
-		
+
+
 	}
 
 	/**
 	 * Create
+	 * 
 	 * @param uriWithoutExtension2
 	 * @return
 	 */
 	private Resource createUmlResource() {
-		umlResource = createResource( uriWithoutExtension.appendFileExtension("uml"));
+		umlResource = createResource(uriWithoutExtension.appendFileExtension("uml"));
 		// init model
-		
+
 		return umlResource;
 	}
 
 	private Resource createNotationResource() {
-		notationResource = createResource( uriWithoutExtension.appendFileExtension("notation"));
+		notationResource = createResource(uriWithoutExtension.appendFileExtension("notation"));
 		// init model
-		
+
 		return notationResource;
 	}
 
 	private Resource createDiResource() {
-		diResource = createResource( uriWithoutExtension.appendFileExtension("di"));
+		diResource = createResource(uriWithoutExtension.appendFileExtension("di"));
 		// init model
-		
+
 		return diResource;
 	}
 
 	/**
 	 * Create the specified Profile
-	 * @param profileName The name of the Profile to create.
+	 * 
+	 * @param profileName
+	 *            The name of the Profile to create.
 	 * 
 	 */
 	private Profile createProfile() {
 		Profile resultProfile = UMLFactory.eINSTANCE.createProfile();
-//		resultProfile.setName(profileName);
+		// resultProfile.setName(profileName);
 
 		return resultProfile;
 	}
-	
+
 	/**
-	 * Get or Create the specified Resource 
-	 * @param resourceURI URI of the {@link Resource} that should be created.
+	 * Get or Create the specified Resource
+	 * 
+	 * @param resourceURI
+	 *            URI of the {@link Resource} that should be created.
 	 * @return The requested Resource with specified URI.
 	 */
 	protected Resource createResource(URI resourceURI) {
@@ -187,7 +193,7 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 		// Create Resource of appropriate type
 		ModelSet modelSet = getModelManager();
 		Resource resource = modelSet.getResource(resourceURI, false);
-		if(resource != null) {
+		if (resource != null) {
 			// it already exists? Best effort to make sure it's loaded
 			try {
 				modelSet.getResource(resourceURI, true);
@@ -195,8 +201,8 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 				// it commonly happens when creating a new model in the
 				// workspace that the wizard creates an empty file, first.
 				Map<String, ?> attributes = modelSet.getURIConverter().getAttributes(resourceURI, Collections.singletonMap(URIConverter.OPTION_REQUESTED_ATTRIBUTES, Collections.singleton(URIConverter.ATTRIBUTE_LENGTH)));
-				Number length = (Number)attributes.get(URIConverter.ATTRIBUTE_LENGTH);
-				if((length != null) && (length.longValue() > 0L)) {
+				Number length = (Number) attributes.get(URIConverter.ATTRIBUTE_LENGTH);
+				if ((length != null) && (length.longValue() > 0L)) {
 					// it has some length but isn't readable; fail
 					throw e;
 				} // otherwise, it's just empty and we'll fill it
@@ -218,8 +224,9 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 	 * @param resource
 	 * @return
 	 */
+	@Override
 	protected boolean isRelatedResource(Resource resource) {
-		if(resource == null) {
+		if (resource == null) {
 			return false;
 		}
 
@@ -231,7 +238,7 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 	 * @return
 	 */
 	public Profile getProfile() {
-		return (Profile)umlResource.getContents().get(0);
+		return (Profile) umlResource.getContents().get(0);
 	}
 
 	/**
@@ -242,5 +249,9 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 		return umlResource;
 	}
 
+	@Override
+	protected boolean isRootElement(EObject object) {
+		return super.isRootElement(object) && (object instanceof Profile);
+	}
 
 }

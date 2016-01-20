@@ -1,6 +1,16 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ *   LIFL - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ *   
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
 import java.util.Collections;
@@ -17,6 +27,7 @@ import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * @author cedric dumoulin
@@ -165,5 +176,14 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 		}
 		// not found
 		throw new NotFoundException(NLS.bind("No Diagram named '{0}' can be found in Model.",diagramName)); //$NON-NLS-1$
+	}
+	
+	/**
+	 * An object is additionally a root element only if it has a corresponding
+	 * viewpoint prototope.
+	 */
+	@Override
+	protected boolean isRootElement(EObject object) {
+		return super.isRootElement(object) && ViewPrototype.isViewObject(object);
 	}
 }

@@ -45,6 +45,7 @@
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.uml.search.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.uml.textedit.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.uml.tools.feature</module>
+		<module>../../features/papyrus-main-features/org.eclipse.papyrus.uml.ui.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.uml.xtext.integration.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.views.modelexplorer.feature</module>
 		<module>../../features/papyrus-main-features/org.eclipse.papyrus.views.properties.feature</module>
@@ -290,6 +291,7 @@
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.service.validation</module>
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.services.decoration</module>
 		<module>../../plugins/uml/org.eclipse.papyrus.uml.templaterepository</module>
+		<module>../../plugins/uml/org.eclipse.papyrus.uml.ui</module>
 		<module>../../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.collaborationuse.xtext</module>
 		<module>../../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.collaborationuse.xtext.ui</module>
 		<module>../../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.common.xtext</module>
