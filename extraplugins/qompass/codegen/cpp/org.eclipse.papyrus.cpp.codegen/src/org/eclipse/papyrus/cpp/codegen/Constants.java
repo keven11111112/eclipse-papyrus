@@ -23,13 +23,13 @@ public class Constants {
 
 	public static final String includeHFile = "// include associated header file"; //$NON-NLS-1$
 
-	public static final String cppIncPreBodyStart = "// Include from CppInclude stereotype (pre-body)"; //$NON-NLS-1$
+	public static final String cppIncPreBodyStart = "// Include from Include stereotype (pre-body)"; //$NON-NLS-1$
 
-	public static final String cppIncPreBodyEnd = "// End of CppInclude stereotype (pre-body)"; //$NON-NLS-1$
+	public static final String cppIncPreBodyEnd = "// End of Include stereotype (pre-body)"; //$NON-NLS-1$
 
-	public static final String cppIncBodyStart = "// Include from CppInclude declaration (body)"; //$NON-NLS-1$
+	public static final String cppIncBodyStart = "// Include from Include declaration (body)"; //$NON-NLS-1$
 
-	public static final String cppIncBodyEnd = "// End of CppInclude stereotype (body)";//$NON-NLS-1$
+	public static final String cppIncBodyEnd = "// End of Include declaration (body)";//$NON-NLS-1$
 
 	public static final String derivedIncludes = "// Derived includes directives";//$NON-NLS-1$
 

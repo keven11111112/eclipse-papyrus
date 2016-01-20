@@ -15,6 +15,7 @@ package org.eclipse.papyrus.cpp.codegen.xtend
 import org.eclipse.papyrus.C_Cpp.Include
 import org.eclipse.uml2.uml.util.UMLUtil
 import org.eclipse.papyrus.codegen.base.GenUtils
+import org.eclipse.papyrus.cpp.codegen.Constants
 
 /**
  * @author Önder GÜRCAN (onder.gurcan@cea.fr)
@@ -63,11 +64,11 @@ class CppIncludeUtil {
 	}
 	
 	static def constIncludePreBodyStart() '''
-		// Include from Include stereotype (pre-body)
+		«Constants.cppIncPreBodyStart»
 	'''
 
 	static def constIncludePreBodyEnd() '''
-		// End of Include stereotype (pre-body)
+		«Constants.cppIncPreBodyEnd»
 	'''
 	
 	static def CppIncludeBody(NamedElement ne) {
@@ -82,11 +83,11 @@ class CppIncludeUtil {
 	}
 	
 	static def constIncludeBodyStart() '''
-		// Include from Include declaration (body)
+		«Constants.cppIncBodyStart»
 	'''
 
 	static def constIncludeBodyEnd() '''
-		// End of Include declaration (body)
+		«Constants.cppIncPreBodyEnd»
 	'''
 
 }
