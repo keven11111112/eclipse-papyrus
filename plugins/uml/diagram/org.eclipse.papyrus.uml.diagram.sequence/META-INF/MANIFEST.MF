@@ -3,10 +3,11 @@ Export-Package: org.eclipse.papyrus.uml.diagram.sequence,
  org.eclipse.papyrus.uml.diagram.sequence.edit.parts,
  org.eclipse.papyrus.uml.diagram.sequence.edit.policies,
  org.eclipse.papyrus.uml.diagram.sequence.figures,
+ org.eclipse.papyrus.uml.diagram.sequence.internal.constraints;x-internal:=true,
  org.eclipse.papyrus.uml.diagram.sequence.part,
  org.eclipse.papyrus.uml.diagram.sequence.providers,
  org.eclipse.papyrus.uml.diagram.sequence.util
-Bundle-ActivationPolicy: lazy
+Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.uml.diagram.sequence.internal.constraints"
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
@@ -72,7 +73,6 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.papyrus.infra.gmfdiag.canonical;bundle-version="1.2.0",
  com.google.guava;bundle-version="11.0.0"
 Bundle-Vendor: %providerName
-Eclipse-LazyStart: true
 Bundle-Version: 1.2.0.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin

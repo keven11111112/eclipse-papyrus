@@ -26,7 +26,7 @@ Export-Package: org.eclipse.papyrus.uml.decoratormodel.internal.properties.const
  org.eclipse.papyrus.uml.decoratormodel.properties.elements,
  org.eclipse.papyrus.uml.decoratormodel.properties.widgets
 Bundle-Vendor: %Bundle-Vendor
-Bundle-ActivationPolicy: lazy
+Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.uml.decoratormodel.internal.properties.constraints"
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2

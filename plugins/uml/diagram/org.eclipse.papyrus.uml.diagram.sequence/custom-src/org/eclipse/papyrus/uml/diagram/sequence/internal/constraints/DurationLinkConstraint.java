@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.sequence.util;
+package org.eclipse.papyrus.uml.diagram.sequence.internal.constraints;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;

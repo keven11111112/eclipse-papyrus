@@ -27,7 +27,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.canonical;bundle-version="1.2.0"
 Bundle-Vendor: %Bundle-Vendor
-Bundle-ActivationPolicy: lazy
+Bundle-ActivationPolicy: lazy;exclude:="org.eclipse.papyrus.infra.gmfdiag.properties.constraint"
 Bundle-Version: 1.2.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %Bundle-Name
