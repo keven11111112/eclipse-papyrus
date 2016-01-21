@@ -87,7 +87,7 @@ class CppIncludeUtil {
 	'''
 
 	static def constIncludeBodyEnd() '''
-		«Constants.cppIncPreBodyEnd»
+		«Constants.cppIncBodyEnd»
 	'''
 
 }
