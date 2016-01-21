@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.contexts">
       <context
             contextModel="Model/SysML.ctx">
       </context>

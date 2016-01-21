@@ -26,12 +26,12 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyl
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableList;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableValue;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.environment.Type;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.Property;
-import org.eclipse.papyrus.views.properties.environment.Type;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 
 

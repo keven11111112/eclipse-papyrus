@@ -16,8 +16,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 /**

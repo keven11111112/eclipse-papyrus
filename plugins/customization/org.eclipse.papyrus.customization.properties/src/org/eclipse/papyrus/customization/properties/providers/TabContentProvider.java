@@ -15,8 +15,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 /**

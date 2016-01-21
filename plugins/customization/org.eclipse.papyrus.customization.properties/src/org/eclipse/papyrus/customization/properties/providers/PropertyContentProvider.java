@@ -16,11 +16,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
-import org.eclipse.papyrus.views.properties.contexts.Property;
 
 /**
  * A Content provider to retrieve all available properties in the current

@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngine;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.runtime.DisplayEngine;
 import org.eclipse.papyrus.views.properties.runtime.EmbeddedDisplayEngine;

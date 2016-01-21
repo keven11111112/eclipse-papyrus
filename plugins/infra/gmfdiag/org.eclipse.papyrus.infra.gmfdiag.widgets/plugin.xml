@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.views.properties.environment">
+         point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="model/Environment.xmi">
       </environment>

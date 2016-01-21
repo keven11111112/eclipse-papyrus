@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.storage.actions;
 
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 
 
 /**

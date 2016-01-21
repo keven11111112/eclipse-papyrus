@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.ElementTypesConfigurationsEditPlugin;
-
-import org.eclipse.papyrus.views.properties.environment.provider.PropertiesEditPlugin;
+import org.eclipse.papyrus.infra.properties.environment.provider.PropertiesEditPlugin;
 
 /**
  * This is the central singleton for the RuntimeValuesEditionAdviceConfiguration edit plugin.

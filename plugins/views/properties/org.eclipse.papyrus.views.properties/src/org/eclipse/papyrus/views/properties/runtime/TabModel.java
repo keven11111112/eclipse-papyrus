@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.papyrus.views.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
 
 
 /**

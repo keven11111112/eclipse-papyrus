@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Context;
 
 /**
  * This is the ContextStorageRegistry type. Enjoy.

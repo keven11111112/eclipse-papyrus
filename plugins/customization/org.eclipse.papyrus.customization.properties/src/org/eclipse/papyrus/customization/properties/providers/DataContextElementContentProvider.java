@@ -21,12 +21,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextRoot;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractFilteredContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
-import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
 
 /**
  * A ContentProvider for retrieving the available DataContextElements

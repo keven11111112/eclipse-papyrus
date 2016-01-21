@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties;
 
@@ -16,12 +18,15 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.properties.spi.IPropertiesResolver;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 
 
 /**
@@ -42,22 +47,24 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
+	private ServiceRegistration<IPropertiesResolver> propertiesResolverReg;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
+
+		// We can resolve ppe: scheme URIs against our workspace metadata storage path
+		propertiesResolverReg = context.registerService(IPropertiesResolver.class,
+				ppeURI -> ppeURI.resolve(URI.createFileURI(getPreferencesPath().toString() + "/")),
+				null);
 
 		Job startProperties = new Job("Starting Configuration Manager") {
 
@@ -79,13 +86,13 @@ public class Activator extends AbstractUIPlugin {
 		return getStateLocation();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		if (propertiesResolverReg != null) {
+			propertiesResolverReg.unregister();
+			propertiesResolverReg = null;
+		}
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -118,7 +125,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param path
 	 *            The path to the image from the plugin
 	 * @return
-	 *         The Image at the given location, or null if it couldn't be found
+	 * 		The Image at the given location, or null if it couldn't be found
 	 */
 	public Image getImage(String pluginId, String path) {
 		final ImageRegistry registry = getImageRegistry();
@@ -137,7 +144,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param imagePath
 	 *            The path of the image, in the form /<plug-in ID>/<path to the image>
 	 * @return
-	 *         The Image at the given location, or null if none was found
+	 * 		The Image at the given location, or null if none was found
 	 */
 	public Image getImageFromPlugin(String imagePath) {
 		if (imagePath.startsWith("/")) { //$NON-NLS-1$

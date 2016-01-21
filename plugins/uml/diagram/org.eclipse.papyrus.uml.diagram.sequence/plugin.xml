@@ -22,12 +22,12 @@
       </contribution>
    </extension>
 
-  <extension point="org.eclipse.papyrus.views.properties.context">
+  <extension point="org.eclipse.papyrus.infra.properties.contexts">
      <context contextModel="model/prop/seq.ctx">
      </context>
   </extension>
   <extension
-         point="org.eclipse.papyrus.views.properties.environment">
+         point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="model/prop/Environment.xmi">
       </environment>

@@ -38,8 +38,8 @@ import org.eclipse.papyrus.customization.model.customizationplugin.Customization
 import org.eclipse.papyrus.customization.model.customizationplugin.FileBasedCustomizableElement;
 import org.eclipse.papyrus.customization.plugin.PluginEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.widgets.util.FileUtil;
-import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.Element;
 

@@ -18,10 +18,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 
 /**
  * A ContentProvider for retrieving the available ConstraintDescriptors

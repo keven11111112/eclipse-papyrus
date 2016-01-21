@@ -47,7 +47,7 @@ import org.eclipse.papyrus.infra.editor.welcome.WelcomePage;
 import org.eclipse.papyrus.infra.editor.welcome.WelcomeSection;
 import org.eclipse.papyrus.infra.editor.welcome.internal.dnd.WelcomeSectionTransfer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSource;

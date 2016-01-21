@@ -32,11 +32,11 @@ import org.eclipse.papyrus.customization.properties.generation.providers.DataCon
 import org.eclipse.papyrus.customization.properties.generation.providers.DataContextPropertiesLabelProvider;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
-import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
-import org.eclipse.papyrus.views.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.TreeEditor;
 import org.eclipse.swt.layout.GridData;

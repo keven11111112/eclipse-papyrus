@@ -9,7 +9,7 @@
       </editor>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.environment">
+         point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="model/environment.xmi">
       </environment>

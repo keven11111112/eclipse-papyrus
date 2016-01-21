@@ -20,7 +20,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.CustomStyleModelElement;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.CustomStyleModelElementFactory;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 
 
 public class CSSModelElementFactory extends CustomStyleModelElementFactory {

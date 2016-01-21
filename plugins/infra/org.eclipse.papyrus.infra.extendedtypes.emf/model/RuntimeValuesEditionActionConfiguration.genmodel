@@ -4,7 +4,7 @@
     editDirectory="/org.eclipse.papyrus.infra.extendedtypes.emf/src-gen" editorDirectory="/org.eclipse.papyrus.infra.extendedtypes.emf.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.extendedtypes.emf" modelName="RuntimeValuesEditionActionConfiguration"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.papyrus.views.properties.model/Model/Properties.genmodel#//properties"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.extendedtypes/model/ExtendedTypes.genmodel#//extendedtypes platform:/plugin/org.eclipse.papyrus.infra.properties/Model/Properties.genmodel#//properties"
     operationReflection="true" importOrganizing="true">
   <foreignModel>RuntimeValuesEditionActionConfiguration.ecore</foreignModel>
   <genPackages prefix="RuntimeValuesEditionActionConfiguration" disposableProviderFactory="true" resource="XML"  basePackage="org.eclipse.papyrus.infra.extendedtypes.emf"

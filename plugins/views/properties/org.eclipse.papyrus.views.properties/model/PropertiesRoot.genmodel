@@ -5,7 +5,7 @@
     editDirectory="/org.eclipse.papyrus.views.properties.edit/src-gen" editorDirectory="/org.eclipse.papyrus.views.properties.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.views.properties" modelName="PropertiesRoot" testsDirectory="/org.eclipse.papyrus.views.properties.tests/src-gen"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="platform:/plugin/org.eclipse.papyrus.views.properties.model/Model/Properties.genmodel#//properties">
+    usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.properties/Model/Properties.genmodel#//properties">
   <foreignModel>PropertiesRoot.ecore</foreignModel>
   <genPackages prefix="Root" basePackage="org.eclipse.papyrus.views.properties" disposableProviderFactory="true"
       ecorePackage="PropertiesRoot.ecore#/">

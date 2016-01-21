@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.swt.widgets.Composite;
 
 class WelcomeTab implements Comparable<WelcomeTab> {

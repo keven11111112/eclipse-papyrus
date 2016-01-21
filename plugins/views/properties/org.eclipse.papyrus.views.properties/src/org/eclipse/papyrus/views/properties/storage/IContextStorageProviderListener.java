@@ -13,7 +13,7 @@ package org.eclipse.papyrus.views.properties.storage;
 
 import java.util.Collection;
 
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 

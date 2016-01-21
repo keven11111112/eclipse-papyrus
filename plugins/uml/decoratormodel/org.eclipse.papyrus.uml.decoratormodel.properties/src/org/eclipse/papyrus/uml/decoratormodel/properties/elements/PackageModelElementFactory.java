@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.decoratormodel.properties.elements;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElementFactory;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 

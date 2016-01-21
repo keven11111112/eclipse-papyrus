@@ -3,7 +3,7 @@
 <plugin>
    <extension-point id="stylehandler" name="StyleHandler" schema="schema/stylehandler.exsd"/>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.contexts">
       <context
             contextModel="model/style/style.ctx">
       </context>
@@ -15,7 +15,7 @@
       </context>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.environment">
+         point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="model/Environment.xmi">
       </environment>

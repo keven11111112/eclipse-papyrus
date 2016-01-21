@@ -10,12 +10,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
-import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.root.RootFactory;
 import org.eclipse.papyrus.views.properties.root.RootPackage;
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.ui.internal.misc.StringMatcher;
 
 /**

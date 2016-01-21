@@ -17,7 +17,7 @@ Export-Package: org.eclipse.papyrus.uml.properties.constraints,
  org.eclipse.papyrus.uml.properties.util,
  org.eclipse.papyrus.uml.properties.widgets
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.views.properties.model;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.properties;bundle-version="1.2.0",
  org.eclipse.papyrus.views.properties;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.widgets;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.services.edit;bundle-version="1.2.0",

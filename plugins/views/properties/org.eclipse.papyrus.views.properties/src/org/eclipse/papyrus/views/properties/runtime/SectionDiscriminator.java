@@ -19,7 +19,7 @@ import java.lang.reflect.Proxy;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.papyrus.views.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
 
 /**
  * A proxy for {@link Section}s that distinguishes multiple occurrences of the same instance via an arbitrary discriminator.

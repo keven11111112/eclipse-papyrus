@@ -3,7 +3,7 @@
 package org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 
 /**
  * <!-- begin-user-doc -->

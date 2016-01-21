@@ -23,7 +23,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
 
 /**

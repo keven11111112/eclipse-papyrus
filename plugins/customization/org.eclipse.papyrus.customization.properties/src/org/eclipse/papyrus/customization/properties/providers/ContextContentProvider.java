@@ -19,8 +19,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
-import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**

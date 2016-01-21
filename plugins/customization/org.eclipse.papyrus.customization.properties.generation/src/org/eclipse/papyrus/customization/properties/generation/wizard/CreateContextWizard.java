@@ -37,17 +37,17 @@ import org.eclipse.papyrus.customization.properties.generation.generators.IGener
 import org.eclipse.papyrus.customization.properties.generation.layout.ILayoutGenerator;
 import org.eclipse.papyrus.customization.properties.generation.messages.Messages;
 import org.eclipse.papyrus.customization.properties.generation.wizard.widget.TernaryButton;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.Property;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.infra.properties.ui.UiFactory;
+import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
-import org.eclipse.papyrus.views.properties.ui.UiFactory;
-import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 

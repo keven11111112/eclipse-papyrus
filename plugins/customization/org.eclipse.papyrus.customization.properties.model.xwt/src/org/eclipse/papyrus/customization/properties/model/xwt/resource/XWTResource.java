@@ -45,10 +45,10 @@ import org.eclipse.papyrus.customization.properties.model.xwt.Activator;
 import org.eclipse.papyrus.customization.properties.model.xwt.format.XMLFormatter;
 import org.eclipse.papyrus.customization.properties.model.xwt.modisco.GenericXMLResourceImpl;
 import org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.Root;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**

@@ -33,9 +33,9 @@ import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopy
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextDeleteAction;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextEditAction;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextStorageActionProvider;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.widgets.editors.InputDialog;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;

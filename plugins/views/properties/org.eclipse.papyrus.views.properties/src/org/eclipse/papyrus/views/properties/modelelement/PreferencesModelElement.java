@@ -14,7 +14,7 @@ package org.eclipse.papyrus.views.properties.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.observable.PreferencesObservableValue;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
 
 /**

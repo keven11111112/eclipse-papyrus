@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.ObservableGradientData;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractEMFModelElementFactory;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;

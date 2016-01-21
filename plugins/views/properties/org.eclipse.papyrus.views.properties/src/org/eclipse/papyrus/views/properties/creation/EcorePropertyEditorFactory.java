@@ -37,10 +37,10 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.providers.CreateInFeatureContentProvider;
 import org.eclipse.swt.SWT;
@@ -55,8 +55,8 @@ import org.eclipse.swt.widgets.MenuItem;
 /**
  * A ReferenceFactory used to instantiate and edit EObjects.
  * The specified nsUri and ClassName are used to instantiate the EObject.
- * The matching {@link org.eclipse.papyrus.views.properties.contexts.View}s from all
- * applied {@link org.eclipse.papyrus.views.properties.contexts.Context}s are used to
+ * The matching {@link org.eclipse.papyrus.infra.properties.contexts.View}s from all
+ * applied {@link org.eclipse.papyrus.infra.properties.contexts.Context}s are used to
  * display the right form to edit the EObject.
  *
  * If no EClass is specified, a list of all concrete subclasses of {@link #type} will be displayed before the instantiation.

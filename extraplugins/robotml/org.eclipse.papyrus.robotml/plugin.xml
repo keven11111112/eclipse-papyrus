@@ -150,7 +150,7 @@
             class="org.eclipse.papyrus.RobotMLLibraries.RobotML_ModelLibrary.RobotML_DataTypes.std_datatypes.Std_datatypesPackage"
             genModel="model/RobotML.genmodel"/>
    </extension>
-   <extension point="org.eclipse.papyrus.views.properties.context">
+   <extension point="org.eclipse.papyrus.infra.properties.contexts">
       <context contextModel="properties/RobotMLProfile.ctx">
       </context>
    </extension>

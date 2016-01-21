@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;

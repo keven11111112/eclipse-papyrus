@@ -11,9 +11,9 @@ import org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactioncon
 import org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfigurationFactory;
 import org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfigurationPackage;
 import org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.ViewToDisplay;
-import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
-import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 
 /**
  * <!-- begin-user-doc -->

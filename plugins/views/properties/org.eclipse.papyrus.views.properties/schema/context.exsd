@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.papyrus.views.properties" id="Context" name="Context"/>
       </appInfo>
       <documentation>
-         Extension point used to provide new Contexts to the Papyrus Property View. A Context is an EMF Model conforming to http://www.eclipse.org/papyrus/properties (From org.eclipse.papyrus.views.properties.model), defining a set of Constraint descriptors, and the view to display for each.
+         Extension point used to associate Contexts with preference pages in the Properties Framework.
       </documentation>
    </annotation>
 
@@ -17,10 +17,9 @@
          </appInfo>
       </annotation>
       <complexType>
-         <choice minOccurs="1" maxOccurs="unbounded">
-            <element ref="context"/>
+         <sequence minOccurs="1" maxOccurs="unbounded">
             <element ref="preferencePageBinding"/>
-         </choice>
+         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -43,35 +42,6 @@
                <appInfo>
                   <meta.attribute translatable="true"/>
                </appInfo>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="context">
-      <complexType>
-         <attribute name="contextModel" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute kind="resource"/>
-               </appInfo>
-            </annotation>
-         </attribute>
-         <attribute name="isCustomizable" type="boolean" use="default" value="true">
-            <annotation>
-               <documentation>
-                  Indicates whether this property view configuration is customizable. Default is true. If this configuration is not marked as customizable, it won&apos;t appear in the Property view customization tools, and the user won&apos;t be able to disable this configuration. Use this option when the user shouldn&apos;t be allowed to modify this configuration (e.g. when the property view configuration is used in a Wizard).
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="appliedByDefault" type="boolean">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
             </annotation>
          </attribute>
       </complexType>

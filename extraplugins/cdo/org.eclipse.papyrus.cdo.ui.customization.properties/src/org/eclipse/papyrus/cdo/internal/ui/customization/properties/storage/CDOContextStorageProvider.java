@@ -37,7 +37,7 @@ import org.eclipse.papyrus.cdo.core.util.CDOFunctions;
 import org.eclipse.papyrus.cdo.core.util.CDOPredicates;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.storage.AbstractContextStorageProvider;
 
 import com.google.common.base.Function;

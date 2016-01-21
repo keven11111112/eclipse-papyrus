@@ -24,7 +24,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.customization.properties.messages.Messages;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextEditAction;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;

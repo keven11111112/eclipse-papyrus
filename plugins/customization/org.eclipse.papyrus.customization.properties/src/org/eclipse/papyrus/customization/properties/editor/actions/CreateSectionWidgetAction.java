@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.StaticSelectionCommandAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.infra.properties.ui.Layout;
+import org.eclipse.papyrus.infra.properties.ui.UiFactory;
+import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
 import org.eclipse.papyrus.infra.widgets.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Section;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
-import org.eclipse.papyrus.views.properties.ui.Layout;
-import org.eclipse.papyrus.views.properties.ui.UiFactory;
-import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
 
 /**
  * An Action to create a section's XWT Resource, with a default Composite
@@ -69,7 +69,7 @@ public class CreateSectionWidgetAction extends StaticSelectionCommandAction {
 		CompositeWidget newWidget = createWidget();
 
 		CompoundCommandActionDelegate createActionCommand = new CompoundCommandActionDelegate();
-		createActionCommand.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.views.properties.model.edit", "icons/full/obj16/CompositeWidget.gif")); //$NON-NLS-1$//$NON-NLS-2$
+		createActionCommand.setImage(Activator.getDefault().getImage("org.eclipse.papyrus.infra.properties.edit", "icons/full/obj16/CompositeWidget.gif")); //$NON-NLS-1$//$NON-NLS-2$
 		createActionCommand.append(getCreateResourceCommand(newWidget));
 		createActionCommand.append(getSetWidgetCommand(newWidget));
 

@@ -29,9 +29,9 @@ import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.DoubleDiagramVie
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.IntegerDiagramViewObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.RulersUnitObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.util.RulersAndGridPropertyConstants;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 
 /**

@@ -36,10 +36,10 @@ import org.eclipse.papyrus.customization.properties.editor.actions.MoDiscoPasteA
 import org.eclipse.papyrus.customization.properties.editor.actions.ToggleDataContextAction;
 import org.eclipse.papyrus.customization.properties.editor.actions.ValidationAction;
 import org.eclipse.papyrus.customization.properties.util.ActionUtil;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 
 /**
  * The Action bar contributor for the Context Editor

@@ -5,7 +5,7 @@
          point="org.eclipse.ui.commands">
       <command
             description="Migrates the selected file to Papyrus 0.9.X"
-            id="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9"
+            id="org.eclipse.papyrus.infra.properties.migration.migrate_0.9"
             name="Migrate to Papyrus 0.9.X">
       </command>
    </extension>
@@ -13,7 +13,7 @@
          point="org.eclipse.ui.handlers">
       <handler
             class="org.eclipse.papyrus.migration.properties.model.handler.MigrationHandler"
-            commandId="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9">
+            commandId="org.eclipse.papyrus.infra.properties.migration.migrate_0.9">
       </handler>
    </extension>
    <extension
@@ -22,7 +22,7 @@
             allPopups="false"
             locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
          <command
-               commandId="org.eclipse.papyrus.views.properties.model.migration.migrate_0.9"
+               commandId="org.eclipse.papyrus.infra.properties.migration.migrate_0.9"
                icon="icons/Customization.gif"
                style="push">
             <visibleWhen

@@ -19,12 +19,12 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextPackage;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.environment.Namespace;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
-import org.eclipse.papyrus.views.properties.contexts.Property;
-import org.eclipse.papyrus.views.properties.environment.Namespace;
 
 /**
  * A Helper class for miscellaneous elements of the Property view framework

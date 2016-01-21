@@ -20,7 +20,7 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.customization.properties.generation.wizard.SelectFieldsPage;
 import org.eclipse.papyrus.customization.properties.providers.ContextLabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.swt.graphics.Image;
 
 public class DataContextPropertiesLabelProvider extends StyledCellLabelProvider {

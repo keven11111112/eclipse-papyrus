@@ -15,7 +15,7 @@ package org.eclipse.papyrus.views.properties.runtime;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 
 /**
  * Represents a conflict in the applied Property view configurations

@@ -15,7 +15,7 @@
       </menuCreationModel>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.contexts">
       <context
             contextModel="resources/property/ecoreUML.ctx"
             isCustomizable="true">

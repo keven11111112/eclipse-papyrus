@@ -14,7 +14,7 @@ package org.eclipse.papyrus.customization.properties.generation.providers;
 import java.util.List;
 
 import org.eclipse.papyrus.customization.properties.providers.PropertyContentProvider;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 
 
 public class DataContextPropertiesContentProvider extends PropertyContentProvider {

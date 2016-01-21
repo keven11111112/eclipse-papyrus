@@ -28,14 +28,14 @@
       </wizard>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.contexts">
       <context
             contextModel="Model/Customization/Customization.ctx"
             isCustomizable="false">
       </context>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.environment">
+         point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="Model/Environment.xmi">
       </environment>

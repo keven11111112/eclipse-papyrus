@@ -36,13 +36,13 @@ import org.eclipse.papyrus.customization.properties.generation.generators.IGener
 import org.eclipse.papyrus.customization.properties.generation.generators.ProfileGenerator;
 import org.eclipse.papyrus.customization.properties.model.xwt.resource.XWTResource;
 import org.eclipse.papyrus.customization.properties.tests.Activator;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
 import org.eclipse.uml2.uml.Profile;
 import org.junit.After;
 import org.junit.AfterClass;

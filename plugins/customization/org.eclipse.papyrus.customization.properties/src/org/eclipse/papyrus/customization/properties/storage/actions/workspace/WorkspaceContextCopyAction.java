@@ -43,10 +43,10 @@ import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.messages.Messages;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopyAction;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.catalog.PropertiesURIHandler;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 

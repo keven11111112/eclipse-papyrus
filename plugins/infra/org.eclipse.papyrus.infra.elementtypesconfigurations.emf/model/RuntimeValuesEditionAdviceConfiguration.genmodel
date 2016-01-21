@@ -9,7 +9,7 @@
     editorPluginClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.presentation.RuntimeValuesEditionAdviceConfigurationEditorPlugin"
     testSuiteClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.tests.RuntimeValuesEditionAdviceConfigurationAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
-    editPluginID="org.eclipse.papyrus.infra.elementtypesconfigurations.emf" usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.genmodel#//elementtypesconfigurations ../../org.eclipse.papyrus.views.properties.model/Model/Properties.genmodel#//properties">
+    editPluginID="org.eclipse.papyrus.infra.elementtypesconfigurations.emf" usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.genmodel#//elementtypesconfigurations ../../org.eclipse.papyrus.infra.properties/Model/Properties.genmodel#//properties">
   <foreignModel>RuntimeValuesEditionAdviceConfiguration.ecore</foreignModel>
   <genPackages prefix="Runtimevalueseditionadviceconfiguration" basePackage="org.eclipse.papyrus.infra.elementtypesconfigurations.emf"
       resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"

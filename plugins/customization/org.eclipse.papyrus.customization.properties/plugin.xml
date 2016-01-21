@@ -25,18 +25,18 @@
       </modelqueryset>
    </extension-->
    <extension point="org.eclipse.ui.editors">
-      <editor class="org.eclipse.papyrus.customization.properties.editor.UIEditor" contributorClass="org.eclipse.papyrus.customization.properties.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.views.properties.model.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.customization.properties.UIEditor" name="%editor.name">
+      <editor class="org.eclipse.papyrus.customization.properties.editor.UIEditor" contributorClass="org.eclipse.papyrus.customization.properties.editor.ContextEditorActionBarContributor" default="true" extensions="ctx" icon="platform:/plugin/org.eclipse.papyrus.infra.properties.edit/icons/full/obj16/Context.gif" id="org.eclipse.papyrus.customization.properties.UIEditor" name="%editor.name">
       </editor>
    </extension>
    <extension point="org.eclipse.emf.ecore.uri_mapping">
       <mapping source="pathmap://PPECustom/" target="platform:/plugin/org.eclipse.papyrus.customization.properties/Model/">
       </mapping>
    </extension>
-   <extension point="org.eclipse.papyrus.views.properties.environment">
+   <extension point="org.eclipse.papyrus.infra.properties.environments">
       <environment environmentModel="Model/CustomizationEnvironment.xmi">
       </environment>
    </extension>
-   <extension point="org.eclipse.papyrus.views.properties.context">
+   <extension point="org.eclipse.papyrus.infra.properties.contexts">
       <context contextModel="Model/Customization.ctx">
       </context>
    </extension>

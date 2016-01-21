@@ -2,10 +2,10 @@ package org.eclipse.papyrus.umlrt.properties.modelelement;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElementFactory;
 import org.eclipse.papyrus.umlrt.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.uml2.uml.Collaboration;
 
 public class UMLRTExtModelElementFactory extends UMLModelElementFactory {

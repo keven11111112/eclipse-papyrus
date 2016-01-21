@@ -8,8 +8,8 @@ package org.eclipse.papyrus.views.properties.root;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.environment.Environment;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.environment.Environment;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ public interface PropertiesRoot extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Environments</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.environment.Environment}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.properties.environment.Environment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Environments</em>' reference list isn't clear, there really should be more of a description here...
@@ -48,7 +48,7 @@ public interface PropertiesRoot extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Contexts</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.Context}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.properties.contexts.Context}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contexts</em>' reference list isn't clear, there really should be more of a description here...

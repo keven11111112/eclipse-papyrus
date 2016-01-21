@@ -24,12 +24,9 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevaluesedi
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationFactory;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay;
-
-import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
-
-import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
-
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 
 /**
  * <!-- begin-user-doc -->

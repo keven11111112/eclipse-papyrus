@@ -57,6 +57,6 @@ Bundle-Activator: org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditor
 Import-Package: org.eclipse.core.databinding.observable,
  org.eclipse.papyrus.infra.ui.emf.databinding,
  org.eclipse.papyrus.uml.tools.databinding,
- org.eclipse.papyrus.views.properties.contexts,
+ org.eclipse.papyrus.infra.properties.contexts,
  org.eclipse.papyrus.views.properties.modelelement
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.sequence; singleton:=true

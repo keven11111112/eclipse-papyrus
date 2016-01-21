@@ -29,15 +29,15 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.StaticSelectionCommandAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
+import org.eclipse.papyrus.infra.properties.ui.Layout;
+import org.eclipse.papyrus.infra.properties.ui.UiFactory;
+import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
-import org.eclipse.papyrus.views.properties.ui.Layout;
-import org.eclipse.papyrus.views.properties.ui.UiFactory;
-import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
 
 /**
  * A Command for create a {@link Section} in the given View.

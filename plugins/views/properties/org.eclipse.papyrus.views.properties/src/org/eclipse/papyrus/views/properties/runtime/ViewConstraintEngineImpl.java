@@ -19,8 +19,8 @@ import java.util.Set;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
 import org.eclipse.papyrus.infra.constraints.runtime.DefaultConstraintEngine;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 
 /**
  * The implementation for ViewConstraintEngine

@@ -30,10 +30,10 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
-import org.eclipse.papyrus.views.properties.contexts.util.ContextsSwitch;
-import org.eclipse.papyrus.views.properties.ui.UiPackage;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsPackage;
+import org.eclipse.papyrus.infra.properties.contexts.util.ContextsSwitch;
+import org.eclipse.papyrus.infra.properties.ui.UiPackage;
 
 /**
  * @author Camille Letavernier

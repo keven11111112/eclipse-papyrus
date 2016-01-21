@@ -44,25 +44,26 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.ContextsFactory;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.environment.CompositeWidgetType;
+import org.eclipse.papyrus.infra.properties.environment.Environment;
+import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
+import org.eclipse.papyrus.infra.properties.environment.LayoutType;
+import org.eclipse.papyrus.infra.properties.environment.Namespace;
+import org.eclipse.papyrus.infra.properties.environment.PropertyEditorType;
+import org.eclipse.papyrus.infra.properties.environment.StandardWidgetType;
+import org.eclipse.papyrus.infra.properties.environment.Type;
+import org.eclipse.papyrus.infra.properties.environment.WidgetType;
+import org.eclipse.papyrus.infra.properties.internal.ContextExtensionPoint;
+import org.eclipse.papyrus.infra.properties.internal.EnvironmentExtensionPoint;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.Property;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
-import org.eclipse.papyrus.views.properties.environment.Environment;
-import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
-import org.eclipse.papyrus.views.properties.environment.LayoutType;
-import org.eclipse.papyrus.views.properties.environment.Namespace;
-import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
-import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
-import org.eclipse.papyrus.views.properties.environment.Type;
-import org.eclipse.papyrus.views.properties.environment.WidgetType;
-import org.eclipse.papyrus.views.properties.extensions.ContextExtensionPoint;
-import org.eclipse.papyrus.views.properties.extensions.EnvironmentExtensionPoint;
+import org.eclipse.papyrus.views.properties.internal.extensions.ContextBindingsExtensionPoint;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.root.RootFactory;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
@@ -153,8 +154,9 @@ public class ConfigurationManager {
 
 		started = true;
 
-		new ContextExtensionPoint();
-		new EnvironmentExtensionPoint();
+		new ContextExtensionPoint(this::addContext);
+		new EnvironmentExtensionPoint(this::addEnvironment);
+		new ContextBindingsExtensionPoint();
 
 		loadCustomContexts();
 

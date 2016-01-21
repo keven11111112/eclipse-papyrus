@@ -30,7 +30,7 @@ import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.messages.Messages;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationConflict;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;

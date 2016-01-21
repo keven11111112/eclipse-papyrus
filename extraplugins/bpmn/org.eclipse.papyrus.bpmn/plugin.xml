@@ -48,7 +48,7 @@
        </elementTypeSet>
     </extension>
     <extension
-          point="org.eclipse.papyrus.views.properties.context">
+          point="org.eclipse.papyrus.infra.properties.contexts">
        <context
              contextModel="properties/bpmn.ctx"
              isCustomizable="true">

@@ -12,7 +12,7 @@
  */
 package org.eclipse.papyrus.views.properties.modelelement;
 
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 
 
 /**

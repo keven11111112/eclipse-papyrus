@@ -14,9 +14,9 @@ package org.eclipse.papyrus.customization.properties.generation.layout;
 import java.util.List;
 
 import org.eclipse.papyrus.customization.properties.generation.generators.IGenerator;
-import org.eclipse.papyrus.views.properties.contexts.Section;
-import org.eclipse.papyrus.views.properties.contexts.View;
-import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.infra.properties.contexts.Section;
+import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
 
 /**
  * An interface for defining Layout generators.

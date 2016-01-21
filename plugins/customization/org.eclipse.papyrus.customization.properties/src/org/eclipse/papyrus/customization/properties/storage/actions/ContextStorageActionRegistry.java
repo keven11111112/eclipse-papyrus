@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.infra.core.utils.OneTimeRegistryReader;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 
 /**
  * This is the ContextStorageActionRegistry type. Enjoy.

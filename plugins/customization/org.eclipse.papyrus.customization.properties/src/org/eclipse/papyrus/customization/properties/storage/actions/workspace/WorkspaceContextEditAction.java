@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.customization.properties.messages.Messages;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextEditAction;
 import org.eclipse.papyrus.customization.properties.util.ProjectUtil;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.FileEditorInput;
 

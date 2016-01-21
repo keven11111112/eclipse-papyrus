@@ -154,17 +154,20 @@
       </page>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.contexts">
       <context
             contextModel="model/general/general.ctx">
       </context>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.context">
       <preferencePageBinding
             context="welcome-general"
             page="org.eclipse.papyrus.infra.editor.welcome.content">
       </preferencePageBinding>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.environment">
+         point="org.eclipse.papyrus.infra.properties.environments">
       <environment
             environmentModel="model/environment.xmi">
       </environment>

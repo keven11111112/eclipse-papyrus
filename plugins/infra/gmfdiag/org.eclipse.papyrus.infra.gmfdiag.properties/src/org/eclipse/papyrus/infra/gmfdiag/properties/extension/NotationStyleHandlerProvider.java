@@ -17,7 +17,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.properties.constraint.GMFNotationConstraint;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.NotationModelElementFactory;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.StyleHandlerProvider;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
 

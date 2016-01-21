@@ -169,6 +169,9 @@
 		<module>../../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.widgets</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.hyperlink</module>
 		<module>../../plugins/infra/nattable</module>
+		<module>../../plugins/infra/properties/org.eclipse.papyrus.infra.properties</module>
+		<module>../../plugins/infra/properties/org.eclipse.papyrus.infra.properties.edit</module>
+		<module>../../plugins/infra/properties/org.eclipse.papyrus.infra.properties.editor</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.newchild</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.newchild.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.onefile</module>
@@ -328,9 +331,6 @@
 		<module>../../plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.resourceloading</module>
 		<module>../../plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.widgets</module>
 		<module>../../plugins/views/properties/org.eclipse.papyrus.views.properties</module>
-		<module>../../plugins/views/properties/org.eclipse.papyrus.views.properties.model</module>
-		<module>../../plugins/views/properties/org.eclipse.papyrus.views.properties.model.edit</module>
-		<module>../../plugins/views/properties/org.eclipse.papyrus.views.properties.model.editor</module>
 		<module>../../plugins/views/org.eclipse.papyrus.views.search</module>
 		<module>../../plugins/views/validation/org.eclipse.papyrus.views.validation</module>
 		<module>../../plugins/team/org.eclipse.papyrus.team.svn</module>

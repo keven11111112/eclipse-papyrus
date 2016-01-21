@@ -15,10 +15,4 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.views.properties" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.views.properties.model" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.views.properties.model.edit" install-size="0" unpack="false" version="0.0.0"/>
-
-   <plugin download-size="0" id="org.eclipse.papyrus.views.properties.model.editor" install-size="0" unpack="false" version="0.0.0"/>
-
 </feature>

@@ -20,13 +20,13 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.environment.ModelElementFactoryDescriptor;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.widgets.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
-import org.eclipse.papyrus.views.properties.contexts.View;
-import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.papyrus.views.properties.xwt.XWTSection;
 

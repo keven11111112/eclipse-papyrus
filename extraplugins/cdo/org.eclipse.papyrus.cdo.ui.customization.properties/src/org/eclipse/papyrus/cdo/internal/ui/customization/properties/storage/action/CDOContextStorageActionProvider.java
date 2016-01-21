@@ -21,7 +21,7 @@ import org.eclipse.papyrus.customization.properties.storage.actions.AbstractCont
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopyAction;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextDeleteAction;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextEditAction;
-import org.eclipse.papyrus.views.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 
 
 /**

@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.extendedtypes.IActionEditHelperAdvice;
 import org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.RuntimeValuesEditionActionConfiguration;
 import org.eclipse.papyrus.infra.extendedtypes.emf.runtimevalueseditionactionconfiguration.ViewToDisplay;
 import org.eclipse.papyrus.infra.extendedtypes.emf.setvaluesactionconfiguration.SetValuesActionConfiguration;
-import org.eclipse.papyrus.views.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.creation.EditionDialog;
 import org.eclipse.swt.widgets.Display;
 

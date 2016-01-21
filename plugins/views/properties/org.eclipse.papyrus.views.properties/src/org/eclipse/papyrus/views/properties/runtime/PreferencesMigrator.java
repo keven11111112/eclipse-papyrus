@@ -17,8 +17,8 @@ import java.lang.reflect.Method;
 import java.util.Locale;
 
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
 import org.eclipse.papyrus.views.properties.runtime.preferences.Preferences;
 
