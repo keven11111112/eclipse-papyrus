@@ -42,7 +42,7 @@
 		<swtbot.repo.url>${eclipse.download}/technology/swtbot/snapshots</swtbot.repo.url>
 		
 		<!-- updateFrom("CDT",0) -->
-		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m4</cdt.repo.url>
+		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones</cdt.repo.url>
 		
 		<!-- updateFrom("EMF CDO",0) -->
 		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/S20151216-1133</emf-cdo.repo.url>
