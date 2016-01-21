@@ -42,7 +42,7 @@
 		<swtbot.repo.url>${eclipse.download}/technology/swtbot/snapshots</swtbot.repo.url>
 		
 		<!-- updateFrom("CDT",0) -->
-		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones</cdt.repo.url>
+		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m4</cdt.repo.url>
 		
 		<!-- updateFrom("EMF CDO",0) -->
 		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/S20151216-1133</emf-cdo.repo.url>
@@ -54,7 +54,7 @@
 		<emf-query.repo.url>${eclipse.download}/modeling/emf/query/updates/milestones</emf-query.repo.url>
 		
 		<!-- updateFrom("M2T ACCELEO",0) -->
-		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201512111602</m2t-acceleo.repo.url>
+		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201601191321</m2t-acceleo.repo.url>
 		
 		<!-- manualUpdate -->
 		<upr.repo.url>${eclipse.download}/upr/0.9RC1/update/</upr.repo.url>
@@ -144,7 +144,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.6milestones/S-4.6M4-201512092300/</url>
+			<url>${eclipse.download}/eclipse/updates/4.6-I-builds/I20160119-0800/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -225,7 +225,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://build.eclipse.org/webtools/committers/wtp-R3.8.0-I/20151215010029/S-3.8.0M4-20151215010029/repository/</url>
+			<url>${eclipse.download}/webtools/downloads/drops/R3.8.0/I-3.8.0-20160118010043/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
