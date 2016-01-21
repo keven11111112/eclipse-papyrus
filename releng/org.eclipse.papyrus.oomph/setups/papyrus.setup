@@ -77,7 +77,7 @@
       <requirement name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement name="org.eclipse.emf.sdk.feature.group"/>
       <repositoryList name="Neon">
-        <repository url="http://download.eclipse.org/eclipse/updates/4.6milestones/S-4.6M4-201512092300/">
+        <repository url="http://download.eclipse.org/eclipse/updates/4.6-I-builds/I20160119-0800/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>Eclipse</value>
@@ -155,7 +155,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201512111602">
+        <repository url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201601191321">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>M2T ACCELEO</value>
@@ -197,7 +197,7 @@
             </detail>
           </annotation>
         </repository>
-        <repository url="http://build.eclipse.org/webtools/committers/wtp-R3.8.0-I/20151215010029/S-3.8.0M4-20151215010029/repository/">
+        <repository url="http://download.eclipse.org/webtools/downloads/drops/R3.8.0/I-3.8.0-20160118010043/repository/">
           <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail key="updateFrom">
               <value>WebTools</value>
@@ -1326,7 +1326,7 @@
           <requirement name="org.eclipse.cdt.feature.group"/>
           <requirement name="org.eclipse.acceleo.feature.group"/>
           <repositoryList name="Neon">
-            <repository url="http://download.eclipse.org/tools/cdt/builds/neon/milestones">
+            <repository url="http://download.eclipse.org/tools/cdt/builds/neon/milestones/m4">
               <annotation source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail key="updateFrom">
                   <value>CDT</value>
