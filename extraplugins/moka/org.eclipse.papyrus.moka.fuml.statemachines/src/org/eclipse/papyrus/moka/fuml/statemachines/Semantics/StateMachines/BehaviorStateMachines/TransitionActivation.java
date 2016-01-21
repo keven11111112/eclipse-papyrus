@@ -79,7 +79,32 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		// is TRAVERSED; false otherwise.
 		return this.status.equals(TransitionMetadata.TRAVERSED);
 	}
-		
+	
+	
+	public boolean isTriggered(){
+		return !((Transition)this.node).getTriggers().isEmpty();
+	}
+	
+	public boolean isGuarded(){
+		return ((Transition)this.node).getGuard()!=null;
+	}
+	
+	public VertexActivation getSourceActivation() {
+		return vertexSourceActivation;
+	}
+
+	public void setSourceActivation(VertexActivation vertexSourceActivation) {
+		this.vertexSourceActivation = vertexSourceActivation;
+	}
+
+	public VertexActivation getTargetActivation() {
+		return vertexTargetActivation;
+	}
+
+	public void setTargetActivation(VertexActivation vertexTargetActivation) {
+		this.vertexTargetActivation = vertexTargetActivation;
+	}
+	
 	public boolean evaluateGuard(){
 		// Evaluate the guard specification thanks to an evaluation.
 		// The evaluation does not presume of the type of the guard specification.
@@ -103,7 +128,8 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	}
 	
 	public boolean hasTrigger(final SignalInstance signal){
-		// TODO
+		// Return true if the following transition has a trigger that is reactive
+		// to the given signal instance.
 		int i = 0;
 		Transition transition = (Transition)this.node;
 		Trigger trigger = null;
@@ -131,30 +157,6 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 			i++;
 		}
 		return trigger != null;
-	}
-	
-	public boolean isTriggered(){
-		return !((Transition)this.node).getTriggers().isEmpty();
-	}
-	
-	public boolean isGuarded(){
-		return ((Transition)this.node).getGuard()!=null;
-	}
-	
-	public VertexActivation getSourceActivation() {
-		return vertexSourceActivation;
-	}
-
-	public void setSourceActivation(VertexActivation vertexSourceActivation) {
-		this.vertexSourceActivation = vertexSourceActivation;
-	}
-
-	public VertexActivation getTargetActivation() {
-		return vertexTargetActivation;
-	}
-
-	public void setTargetActivation(VertexActivation vertexTargetActivation) {
-		this.vertexTargetActivation = vertexTargetActivation;
 	}
 	
 	public void executeEffect(){
@@ -192,8 +194,16 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		return this.leastCommonAncestor;
 	}
 	
+	/*
+	 * This operation is intended to be implemented by sub-classes.
+	 * Sub-classes capture how the source vertex activation must be exited. 
+	 */
 	protected abstract void exitSource();
 	
+	/*
+	 * This operation is intended to be implemented by sub-classes.
+	 * Sub-classes capture how the target vertex activation must be entered.
+	 */
 	protected abstract void enterTarget();
 	
 	public String toString(){
