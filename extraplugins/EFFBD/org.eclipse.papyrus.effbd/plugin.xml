@@ -9,7 +9,7 @@
       </contribution>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
       <diagramCategory
             class="org.eclipse.papyrus.effbd.command.CreateEFFBModelCommand"
             icon="icons/effbd32.png"
