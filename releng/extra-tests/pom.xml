@@ -37,6 +37,11 @@
 			<url>${cdt.repo.url}</url>
 		</repository>
 		<repository>
+			<id>cdt-launchbar</id>
+			<layout>p2</layout>
+			<url>${cdt.launchbar.repo.url}</url>
+		</repository>
+		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<url>${emf-cdo.repo.url}</url>
