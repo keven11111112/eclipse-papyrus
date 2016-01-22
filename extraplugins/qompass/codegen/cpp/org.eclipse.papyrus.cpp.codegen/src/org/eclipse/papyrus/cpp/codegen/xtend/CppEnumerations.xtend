@@ -25,7 +25,7 @@ class CppEnumerations {
 		enum «enumeration.name» {
 			«FOR ownedLiteral : enumeration.ownedLiterals»
 				«CppDocumentation.CppElementDoc(ownedLiteral)»
-				«ownedLiteral.name»«IF GenUtils.hasStereotype(ownedLiteral, CppInit)»«UMLUtil.
+				«ownedLiteral.name»«IF GenUtils.hasStereotype(ownedLiteral, CppInit)» = «UMLUtil.
 				getStereotypeApplication(ownedLiteral, CppInit).value»«ENDIF»,
 			«ENDFOR»
 		};
