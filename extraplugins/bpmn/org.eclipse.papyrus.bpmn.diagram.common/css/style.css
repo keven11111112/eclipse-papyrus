@@ -75,42 +75,49 @@ OpaqueAction > Compartment[kind="symbol"] {
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ManualTask.svg";
+	shapeVisibility: true;
 }
 
 [appliedStereotypes~="BPMNProfile::ReceiveTask"]{
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ReceiveTask.svg";
+	shapeVisibility: true;
 }
 
 [appliedStereotypes~="BPMNProfile::UserTask"]{
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/UserTask.svg";
+	shapeVisibility: true;
 }
 
 [appliedStereotypes~="BPMNProfile::ScriptTask"]{
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ScriptTask.svg";
+	shapeVisibility: true;
 }
 
 [appliedStereotypes~="BPMNProfile::BusinessRuleTask"]{
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/BusinessRuleTask.svg";
+	shapeVisibility: true;
 }
 
 [appliedStereotypes~="BPMNProfile::SendTask"]{
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/SendTask.svg";
+	shapeVisibility: true;
 }
 
 [appliedStereotypes~="BPMNProfile::ServiceTask"]{
 	fillColor: white;	
 	displayTags: false;
 	svgFile: "platform:/plugin/org.eclipse.papyrus.bpmn.diagram.common/shapes/ServiceTask.svg";
+	shapeVisibility: true;
 }
 
 
