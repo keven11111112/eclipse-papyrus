@@ -42,7 +42,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	
 	public VertexActivation(){
 		super();
-		this.setState(StateMetadata.IDLE);
+		this.setStatus(StateMetadata.IDLE);
 		this.incomingTransitionActivations = new ArrayList<TransitionActivation>();
 		this.outgoingTransitionActivations = new ArrayList<TransitionActivation>();
 	}
@@ -60,11 +60,11 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		return null;
 	}
 	
-	public void setState(StateMetadata state){
+	public void setStatus(StateMetadata state){
 		this.status = state;
 	}
 	
-	public StateMetadata getState(){
+	public StateMetadata getStatus(){
 		return this.status;
 	}
 	
@@ -92,14 +92,14 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 	public final void tagOutgoingTransitions(TransitionMetadata status){
 		// Assign the given status to all outgoing transitions of this vertex 
 		for(TransitionActivation transitionActivation: this.outgoingTransitionActivations){
-			transitionActivation.setState(status);
+			transitionActivation.setStatus(status);
 		}
 	}
 	
 	public final void tagIncomingTransitions(TransitionMetadata status){
 		// Assign the given status to all incoming transitions of this vertex
 		for(TransitionActivation transitionActivation: this.incomingTransitionActivations){
-			transitionActivation.setState(status);
+			transitionActivation.setStatus(status);
 		}
 	}
 	
@@ -121,7 +121,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// 2-Outgoing transitions of this vertex are tagged as being REACHED
 		// 3-The vertex starts to be highlighted
 		logger.info(this.getNode().getName()+" => ACTIVE");
-		this.setState(StateMetadata.ACTIVE);
+		this.setStatus(StateMetadata.ACTIVE);
 		this.tagOutgoingTransitions(TransitionMetadata.REACHED);
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this);
 	}
@@ -132,7 +132,7 @@ public abstract class VertexActivation extends StateMachineSemanticVisitor {
 		// 3- The vertex becomes IDLE
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode());
 		this.tagIncomingTransitions(TransitionMetadata.NONE);
-		this.setState(StateMetadata.IDLE);
+		this.setStatus(StateMetadata.IDLE);
 		logger.info(this.getNode().getName()+" => IDLE");
 	}
 	

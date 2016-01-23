@@ -47,10 +47,8 @@ public class RegionActivation extends StateMachineSemanticVisitor{
 		this.transitionActivations = new ArrayList<TransitionActivation>();
 	}
 	
-	/**
-	 * Create visitors for all vertices owned by the region
-	 */
 	public void activate(){
+		// Create visitors for all vertices owned by the region
 		Locus locus = this.getExecutionLocus();
 		VertexActivation activation = null;
 		Region region = (Region)this.getNode();

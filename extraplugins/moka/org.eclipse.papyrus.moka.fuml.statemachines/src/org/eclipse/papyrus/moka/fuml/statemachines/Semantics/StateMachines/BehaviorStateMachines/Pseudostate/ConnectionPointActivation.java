@@ -15,12 +15,10 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
-public class ConnectionPointActivation extends PseudostateActivation{
+public abstract class ConnectionPointActivation extends PseudostateActivation{
 	
-	/**
-	 * The parent state of a connection point reference is its owning state
-	 */
 	public VertexActivation getParentState(){
+		// The parent state of a connection point reference is its owning state
 		return (VertexActivation)this.getParent();
 	}
 }

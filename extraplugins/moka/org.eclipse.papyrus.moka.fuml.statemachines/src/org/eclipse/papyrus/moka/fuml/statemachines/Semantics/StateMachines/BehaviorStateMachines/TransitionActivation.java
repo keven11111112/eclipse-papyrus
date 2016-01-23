@@ -55,11 +55,11 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 	// by the region activation that is the common ancestor of the source and the target. 
 	private RegionActivation leastCommonAncestor;
 	
-	public TransitionMetadata getState() {
+	public TransitionMetadata getStatus() {
 		return status;
 	}
 
-	public void setState(TransitionMetadata state) {
+	public void setStatus(TransitionMetadata state) {
 		this.status = state;
 	}
 
@@ -177,7 +177,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 		FUMLExecutionEngine.eInstance.getControlDelegate().control(this); 
 		this.executeEffect();
 		((SM_ControlDelegate)FUMLExecutionEngine.eInstance.getControlDelegate()).inactive(this.getNode()); 
-		this.setState(TransitionMetadata.TRAVERSED);
+		this.setStatus(TransitionMetadata.TRAVERSED);
 		logger.info(this.getNode().getName()+" => TRAVERSED");
 		this.enterTarget();
 	}
