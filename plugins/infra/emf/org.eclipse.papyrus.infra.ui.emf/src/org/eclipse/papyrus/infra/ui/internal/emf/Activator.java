@@ -25,9 +25,11 @@ import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationCatalogManagerFactory;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.custom.Customization;
+import org.eclipse.papyrus.emf.facet.custom.ui.CustomizedContentProviderUtils;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.emf.CustomizationComparator;
 import org.eclipse.papyrus.infra.emf.readonly.spi.IReadOnlyManagerProcessor;
+import org.eclipse.papyrus.infra.emf.spi.resolver.IEObjectResolver;
 import org.eclipse.papyrus.infra.ui.internal.emf.readonly.EditorReloadProcessor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -51,6 +53,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
+	private ServiceRegistration<IEObjectResolver> eobjectResolverReg;
 	private ServiceRegistration<IReadOnlyManagerProcessor> roManagerProcessorReg;
 
 	private ICustomizationManager customizationManager;
@@ -67,6 +70,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 		log = new LogHelper(this);
 
+		eobjectResolverReg = context.registerService(IEObjectResolver.class, CustomizedContentProviderUtils::resolve, null);
 		roManagerProcessorReg = context.registerService(IReadOnlyManagerProcessor.class, new EditorReloadProcessor(), null);
 	}
 
@@ -75,6 +79,10 @@ public class Activator extends AbstractUIPlugin {
 		if (roManagerProcessorReg != null) {
 			roManagerProcessorReg.unregister();
 			roManagerProcessorReg = null;
+		}
+		if (eobjectResolverReg != null) {
+			eobjectResolverReg.unregister();
+			eobjectResolverReg = null;
 		}
 
 		plugin = null;

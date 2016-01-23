@@ -17,12 +17,15 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManagerFactory;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.emf.spi.resolver.EObjectResolverService;
+import org.eclipse.papyrus.infra.emf.spi.resolver.IEObjectResolver;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -47,10 +50,13 @@ public class Activator extends Plugin {
 	// temp resourceSet
 	private ResourceSet facetRecsourceSet = new ResourceSetImpl();
 
+	private EObjectResolverService resolverService;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
+		super();
 	}
 
 	@Override
@@ -58,10 +64,16 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		resolverService = new EObjectResolverService(context);
+		resolverService.open();
 	}
 
 	@Override
 	public void stop(final BundleContext context) throws Exception {
+		resolverService.close();
+		resolverService = null;
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -104,6 +116,15 @@ public class Activator extends Plugin {
 		builder.append(eClass.getName());
 
 		return builder.toString();
+	}
+
+	/**
+	 * Obtain the instance of the {@link EObject} resolver service, if any.
+	 * 
+	 * @return the object resolver service (never {@code null} while this bundle is active)
+	 */
+	public IEObjectResolver getEObjectResolver() {
+		return resolverService;
 	}
 
 }

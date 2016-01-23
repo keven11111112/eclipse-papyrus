@@ -102,7 +102,7 @@ public class AllTests {
 		}
 
 		/* Profile Drafter */
-		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.profile.drafter.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.profile.drafter.tests.AllTests"));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.profile.drafter.tests.AllTests.class));
 
 		/* uml */
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.uml.service.types.Activator.PLUGIN_ID, "org.eclipse.papyrus.uml.service.types.tests.suites.AllTests"));

@@ -220,6 +220,13 @@ public class EMFHelper {
 	 */
 	public static EObject getEObject(final Object source) {
 
+		// Support for EMF 0.2 CustomizedTree: The TreeElements are IAdaptable, but the
+		// EObject adapter for some of them (e.g. reference node) is not what we need
+		Object resolved = Activator.getDefault().getEObjectResolver().resolve(source);
+		if ((resolved != source) && isEMFModelElement(resolved)) {
+			return (EObject) resolved;
+		}
+
 		// General case
 		if (isEMFModelElement(source)) {
 			return (EObject) source;
