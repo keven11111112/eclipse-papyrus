@@ -15,17 +15,10 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.SemanticStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 
-public abstract class TransitionChoiceStrategy extends SemanticStrategy{
-
-	public final static String NAME = "TransitionChoiceStrategy";
-	
-	@Override
-	public String getName() {
-		return NAME;
-	}
+public abstract class TransitionChoiceStrategy{
 
 	public abstract List<TransitionActivation> choose(List<TransitionActivation> transitionActivations);
+	
 }

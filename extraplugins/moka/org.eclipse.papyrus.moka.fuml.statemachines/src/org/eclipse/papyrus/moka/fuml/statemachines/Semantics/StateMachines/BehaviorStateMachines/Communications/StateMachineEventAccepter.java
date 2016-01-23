@@ -21,6 +21,8 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.DefaultTransitionChoiceStrategy;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.DefaultTransitionSelectionStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.TransitionSelectionStrategy;
 
@@ -32,23 +34,34 @@ public class StateMachineEventAccepter extends EventAccepter{
 	// accepter.
 	public Execution registrationContext;
 	
+	// The strategy on which the transition selection process relies.
+	protected TransitionSelectionStrategy selectionStrategy;
+	
+	// The strategy to choose among "selected" transitions which one(s) are
+	// actually going to be fired
+	protected TransitionChoiceStrategy choiceStrategy;
+	
 	public StateMachineEventAccepter(StateMachineExecution execution) {
-		// The accepter always knows from which execution it comes from
 		this.registrationContext = execution;
+		this.selectionStrategy = new DefaultTransitionSelectionStrategy();
+		this.choiceStrategy = new DefaultTransitionChoiceStrategy();
 	}
 	
 	@Override
 	public void accept(EventOccurrence eventOccurrence) {
-		// Based on the analysis of the state-machine configuration, a set of transition that are ready to fire are selected.
-		// The set of selected transition is reduced.
-		// All the transitions within the set provided by the choice strategy are fired **concurrently**
-		// A new event accepter is placed in the event accepter list
-		// Note: a state-machine has always as single (dedicated) event accepter
-		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		List<TransitionActivation> fireableTransition = selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence);
-		TransitionChoiceStrategy choiceStrategy = (TransitionChoiceStrategy)this.registrationContext.locus.factory.getStrategy(TransitionChoiceStrategy.NAME);
+		// When an event occurrence is accepted this marks the beginning of a new RTC step for
+		// the executed state-machine. The following set of actions takes place:
+		// 1 - The list of transition that can be fired using the given event occurrence is computed
+		// 2 - This list is organized as a different sub-set of transitions that can be fired. One of the
+		//     subset is chosen to be fired. Each transition fires **Concurrently**
+		// 3 - When the RTC step is about to complete a new event accepter for the state-machine
+		//     is registered at the waiting event accepter list handled by the object activation
+		// Note that there always is a single event accepter for a state-machine (this works differently
+		// than for activities).
+		List<TransitionActivation> fireableTransition = this.selectionStrategy.
+				selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence);
 		if(!fireableTransition.isEmpty()){
-			List<TransitionActivation> chosenTransition = choiceStrategy.choose(fireableTransition);
+			List<TransitionActivation> chosenTransition = this.choiceStrategy.choose(fireableTransition);
 			int i = 0;
 			// **Firing occurs concurrently**
 			while(i < chosenTransition.size()){
@@ -64,10 +77,8 @@ public class StateMachineEventAccepter extends EventAccepter{
 
 	@Override
 	public Boolean match(EventOccurrence eventOccurrence) {
-		// Return true if there is at least one transition that is ready to fire on this event. 
-		// Return false otherwise.
-		TransitionSelectionStrategy selectionStrategy = (TransitionSelectionStrategy) this.registrationContext.locus.factory.getStrategy(TransitionSelectionStrategy.NAME);
-		return !selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
+		// The accepter matches only in the case that at least one transition ready is ready to fire on the provided event occurrence
+		return !this.selectionStrategy.selectTransitions(((StateMachineExecution)this.registrationContext).getConfiguration(), eventOccurrence).isEmpty();
 	}
 
 }
