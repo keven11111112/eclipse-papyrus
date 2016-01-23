@@ -22,8 +22,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Actions.IntermediateActions.Restr
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.FIFOGetNextEventStrategy;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.FirstChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.DefaultTransitionChoiceStrategy;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Selection.DefaultTransitionSelectionStrategy;
 
 public class SM_SemanticStrategyRegistry {
 	
@@ -36,8 +34,6 @@ public class SM_SemanticStrategyRegistry {
 		locus.factory.setStrategy(new CS_DefaultConstructStrategy());
 		locus.factory.setStrategy(new RestrictiveGetAssociationStrategy());
 		locus.factory.setStrategy(new DefaultCreateObjectActionStrategy());
-		locus.factory.setStrategy(new DefaultTransitionSelectionStrategy());
-		locus.factory.setStrategy(new DefaultTransitionChoiceStrategy());
 	}
 	
 }
