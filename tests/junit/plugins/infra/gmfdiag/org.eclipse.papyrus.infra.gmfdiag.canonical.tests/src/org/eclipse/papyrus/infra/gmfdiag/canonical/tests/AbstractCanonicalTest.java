@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,6 +25,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -35,10 +36,13 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -50,6 +54,13 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
+import org.eclipse.gmf.codegen.gmfgen.GenChildNode;
+import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
+import org.eclipse.gmf.codegen.gmfgen.GenLink;
+import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode;
+import org.eclipse.gmf.codegen.gmfgen.util.GMFGenSwitch;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -65,12 +76,14 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.TreeIterators;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetCanonicalCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
@@ -89,7 +102,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeAttributeCompart
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DataTypeAttributeCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationEnumerationLiteralCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Dependency;
@@ -122,6 +137,9 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final PapyrusEditorFixture editor = new PapyrusEditorFixture();
+
+	// Cache of information from the GMFGen model about what kind of view each visualID is
+	private static Map<String, Class<? extends View>> visualIDKinds;
 
 	private ComposedAdapterFactory adapterFactory;
 
@@ -542,8 +560,7 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 		String hint = (elementType instanceof IHintedType) ? ((IHintedType) elementType).getSemanticHint() : null;
 		// Don't attempt to create relationship "nodes" like the DependencyNode or AssociationNode
-		//MEE: removed the following check (Integer.parseInt(hint) >= 4000) from next if statement (should not check against a literal)
-		if ((hint != null)) {
+		if ((hint != null) && isVisualIDKind(hint, Edge.class)) {
 			CreateConnectionViewAndElementRequest request = new CreateConnectionViewAndElementRequest(elementType, hint, editor.getPreferencesHint());
 			request.setType(RequestConstants.REQ_CONNECTION_START);
 			request.setLocation(new Point(0, 0));
@@ -724,6 +741,69 @@ public class AbstractCanonicalTest extends AbstractPapyrusTest {
 
 	protected void assertDetached(EObject first, EObject second, EObject... rest) {
 		assertDetached(Lists.asList(first, second, rest));
+	}
+
+	protected static boolean isVisualIDKind(String visualID, Class<? extends View> viewKind) {
+		if (visualIDKinds == null) {
+			initVisualIDKinds();
+		}
+
+		Class<? extends View> actualKind = visualIDKinds.get(visualID);
+		return (actualKind != null) && viewKind.isAssignableFrom(actualKind);
+	}
+
+	private static void initVisualIDKinds() {
+		ResourceSet rset = new ResourceSetImpl();
+		final Map<String, Class<? extends View>> map = new HashMap<>();
+
+		try {
+			URI classdiagram = URI.createPlatformPluginURI(String.format("/%s/model/classdiagram.gmfgen", UMLDiagramEditorPlugin.ID), true);
+			GenEditorGenerator editor = UML2Util.load(rset, classdiagram, GMFGenPackage.eINSTANCE.getGenEditorGenerator());
+
+			GMFGenSwitch<Class<? extends View>> typeSwitch = new GMFGenSwitch<Class<? extends View>>() {
+
+				@Override
+				public Class<? extends View> caseGenDiagram(GenDiagram object) {
+					Class<? extends View> result = Diagram.class;
+					String visualID = Integer.toString(object.getVisualID());
+					map.put(visualID, result);
+					return result;
+				}
+
+				@Override
+				public Class<? extends View> caseGenTopLevelNode(GenTopLevelNode object) {
+					Class<? extends View> result = Node.class;
+					String visualID = Integer.toString(object.getVisualID());
+					map.put(visualID, result);
+					return result;
+				}
+
+				@Override
+				public Class<? extends View> caseGenChildNode(GenChildNode object) {
+					Class<? extends View> result = Node.class;
+					String visualID = Integer.toString(object.getVisualID());
+					map.put(visualID, result);
+					return result;
+				}
+
+				@Override
+				public Class<? extends View> caseGenLink(GenLink object) {
+					Class<? extends View> result = Edge.class;
+					String visualID = Integer.toString(object.getVisualID());
+					map.put(visualID, result);
+					return result;
+				}
+			};
+
+			map.put(editor.getModelID(), Diagram.class);
+			for (Iterator<? extends EObject> iter = editor.eAllContents(); iter.hasNext();) {
+				typeSwitch.doSwitch(iter.next());
+			}
+		} finally {
+			EMFHelper.unload(rset);
+		}
+
+		visualIDKinds = map;
 	}
 
 	//
