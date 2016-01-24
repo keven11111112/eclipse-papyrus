@@ -16,20 +16,28 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.InvocationActions.CS_SignalInstance;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ClassifierBehaviorInvocationEventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.DoActivityContextObject;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.DeferredEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.EntryPointActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.ForkPseudostateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Pseudostate.PseudostateActivation;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.SignalEvent;
 import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.Trigger;
 import org.eclipse.uml2.uml.Vertex;
 
 /**
@@ -335,6 +343,73 @@ public class StateActivation extends VertexActivation {
 				}
 			}
 		}
+	}
+	
+	public boolean canDefer(EventOccurrence eventOccurrence){
+		// Return true if current state activation is capable of deferring the given
+		// event occurrence; false otherwise.
+		// 
+		// Note: for the moment the evaluation is done with the assumption that the
+		// received event occurrence is a signal event occurrence. This will change
+		// as soon as other kind of event (e.g. call event) will be supported in fUML.
+		boolean deferred = false;
+		int i = 0;
+		while(!deferred && i < ((State) this.node).getDeferrableTriggers().size()){
+			Trigger trigger = ((State) this.node).getDeferrableTriggers().get(i);
+			if(eventOccurrence instanceof SignalEventOccurrence
+					&& trigger.getEvent() instanceof SignalEvent){
+				SignalInstance signalInstance = ((SignalEventOccurrence)eventOccurrence).signalInstance;
+				SignalEvent signalEvent = (SignalEvent) trigger.getEvent();
+				deferred = signalInstance.type == signalEvent.getSignal();
+				if(deferred && !trigger.getPorts().isEmpty() 
+						&& signalInstance instanceof CS_SignalInstance){
+					int j = 0;
+					Port matchingPort = null;
+					while(matchingPort==null && j < trigger.getPorts().size()){
+						Port currentPort = trigger.getPorts().get(j);
+						if(((CS_SignalInstance)signalInstance).interactionPoint.definingPort==currentPort){
+							matchingPort = currentPort;
+						}
+						j++;
+					}
+					if(matchingPort==null){
+						deferred = false;
+					}
+				}
+			}
+			i++;
+		}
+		return deferred;
+	}
+	
+	public void defer(EventOccurrence eventOccurrence){
+		// Postpone the time at which this event occurrence will be available at the event pool.
+		// The given event occurrence is placed in the deferred event pool and will be released
+		// only when the current state activation will leave the state-machine configuration.
+		StateMachineObjectActivation objectActivation = (StateMachineObjectActivation) this.getExecutionContext().objectActivation;
+		DeferredEventOccurrence deferredEventOccurrence = new DeferredEventOccurrence();
+		deferredEventOccurrence.constrainingStateActivation = this;
+		deferredEventOccurrence.deferredEventOccurrence = eventOccurrence;
+		objectActivation.deferredEventPool.add(deferredEventOccurrence);
+	}
+	
+	public void releaseDeferredEvents(){
+		// If events have been deferred by that state then following set of action takes place:
+		// 1 - The events return to the event pool owned by the object activation
+		// 2 - The events are removed from the deferred event pool
+		// Note: The release of events deferred by that state occurs when this latter
+		// leaves the state-machine configuration.
+		StateMachineObjectActivation objectActivation = (StateMachineObjectActivation) this.getExecutionContext().objectActivation;
+		List<DeferredEventOccurrence> releasedDeferredEvent = new ArrayList<DeferredEventOccurrence>();
+		for(int i=0; i < objectActivation.deferredEventPool.size(); i++){
+			DeferredEventOccurrence eventOccurrence = objectActivation.deferredEventPool.get(i);
+			if(eventOccurrence.constrainingStateActivation == this){
+				releasedDeferredEvent.add(eventOccurrence);
+				objectActivation.eventPool.add(eventOccurrence.deferredEventOccurrence);
+				objectActivation._send(new ArrivalSignal());
+			}
+		}
+		objectActivation.deferredEventPool.removeAll(releasedDeferredEvent);
 	}
 	
 	public void terminate(){

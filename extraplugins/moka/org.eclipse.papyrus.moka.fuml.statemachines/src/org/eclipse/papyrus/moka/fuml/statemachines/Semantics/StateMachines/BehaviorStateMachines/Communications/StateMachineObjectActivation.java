@@ -1,11 +1,26 @@
 package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 
 public class StateMachineObjectActivation extends ObjectActivation {
 
+	// Events that have been dispatched but that are actually deferred are placed
+	// in this particular event pool. When the state that constrained them to be
+	// placed in this pool leaves the state-machine configuration then the deferred
+	// events leave this pool and are placed in the regular event pool (to be dispatched
+	// again) that is handled by the object activation.
+	public List<DeferredEventOccurrence> deferredEventPool;
+	
+	public StateMachineObjectActivation(){
+		super();
+		this.deferredEventPool = new ArrayList<DeferredEventOccurrence>();
+	}
+	
 	public void registerCompletionEvent(StateActivation stateActivation){
 		// A completion event does not have priority over other completion events.
 		// Therefore if completion events are already in the event pool then the currently

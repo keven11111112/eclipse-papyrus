@@ -21,6 +21,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.RegionActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
@@ -38,25 +39,35 @@ public class DefaultTransitionSelectionStrategy extends TransitionSelectionStrat
 		// then the search continue in the upper level. The search stops when at given level a not empty
 		// set of enabled transition is calculated. Transition returned are only those that are not triggered by an event 
 		// (i.e. Transitions that are automatic or only guarded).
-		List<TransitionActivation> fireableTransition = new ArrayList<TransitionActivation>();
+		List<TransitionActivation> selectedTransitions = new ArrayList<TransitionActivation>();
 		Map<Integer, List<VertexActivation>> cartography = this.execution.getConfiguration().getCartography();
 		int i = cartography.size();
 		boolean nextLevel = true;
 		while(i >= 1 && nextLevel){
 			for(VertexActivation vertexActivation : cartography.get(i)){
-				for(TransitionActivation transitionActivation : vertexActivation.getOutgoingTransitions()){
+				StateActivation currentStateActivation = (StateActivation) vertexActivation;
+				List<TransitionActivation> fireableTransitions = new ArrayList<TransitionActivation>();
+				for(TransitionActivation transitionActivation : currentStateActivation.getOutgoingTransitions()){
 					if(this.isFireable(transitionActivation, eventOccurrence)){
-						fireableTransition.add(transitionActivation);
+						fireableTransitions.add(transitionActivation);
 					}
 				}
+				// If no transition can fire was found for this particular state but this latter
+				// indicates that it defers the given event occurrence the event occurrence is placed
+				// in the deferred event pool
+				if(fireableTransitions.isEmpty() && currentStateActivation.canDefer(eventOccurrence)){
+					currentStateActivation.defer(eventOccurrence);
+					nextLevel = false;
+				}
+				selectedTransitions.addAll(fireableTransitions);
 			}
-			if(!fireableTransition.isEmpty()){
+			if(!selectedTransitions.isEmpty()){
 				nextLevel = false;
 			}else{
 				i--;
 			}
 		}
-		return this.choose(fireableTransition);
+		return this.choose(selectedTransitions);
 	}
 	
 	protected List<TransitionActivation> choose(List<TransitionActivation> transitionActivations) {

@@ -64,8 +64,14 @@ public class StateMachineConfiguration {
 	
 	public boolean unregister(StateActivation stateActivation){
 		// Unregister the given state activation from the state-machine configuration
-		// This occurs when the state activation is exited.
-		return this.remove(stateActivation);
+		// This occurs when the state activation is exited. When the removal process
+		// is successful the last action is to release possibly deferred events related
+		// to that state activation.
+		boolean removed = this.remove(stateActivation);
+		if(removed){
+			stateActivation.releaseDeferredEvents();
+		}
+		return removed;
 	}
 	
 	public boolean isActive(VertexActivation activation){
