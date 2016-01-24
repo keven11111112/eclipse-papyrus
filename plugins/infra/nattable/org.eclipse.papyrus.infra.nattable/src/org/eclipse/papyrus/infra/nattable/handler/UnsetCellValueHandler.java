@@ -1,14 +1,11 @@
 package org.eclipse.papyrus.infra.nattable.handler;
+
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.nebula.widgets.nattable.coordinate.PositionCoordinate;
-import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
-import org.eclipse.nebula.widgets.nattable.layer.LabelStack;
 import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
-import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
-import org.eclipse.papyrus.infra.nattable.handler.AbstractTableHandler;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -79,21 +76,10 @@ public class UnsetCellValueHandler extends AbstractTableHandler {
 	 * @param evaluationContext
 	 * 
 	 * @return
-	 *         <code>true</code> if the mouse is in the Body of the table and if cells are selected
+	 *         <code>true</code> if cells are selected (any selected region must be managed)
 	 */
 	protected boolean canUnsetCell(Object evaluationContext) {
-		boolean enabled = false;
-		TableSelectionWrapper wrapper = getTableSelectionWrapper(evaluationContext);
-		if (!wrapper.getSelectedCells().isEmpty()) {
-			enabled = true;
-			NatEventData data = getNatEventData();
-			if (data != null) { //null with JUnit tests
-				LabelStack labels = data.getRegionLabels();
-				if(labels!=null){  //seem null with JUnit tests
-					enabled = labels.hasLabel(GridRegion.BODY) && labels.getLabels().size() == 1;
-				}
-			}
-		}
-		return enabled;
+		final TableSelectionWrapper wrapper = getTableSelectionWrapper(evaluationContext);
+		return null != wrapper ? !wrapper.getSelectedCells().isEmpty() : false;
 	}
 }

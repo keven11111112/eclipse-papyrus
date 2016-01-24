@@ -28,10 +28,6 @@
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_eLPGUI7EEeW-WMYGxs4DXg" pastedElementId="org.eclipse.papyrus.uml.Class">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
-      <axisIdentifier xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_eLPGUY7EEeW-WMYGxs4DXg">
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.uml.nattable.clazz.config/configs/class_synchronized_tree.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-      </axisIdentifier>
     </ownedAxisConfigurations>
     <ownedAxisConfigurations xmi:type="nattableaxisconfiguration:PasteEObjectConfiguration" xmi:id="_eLPGUo7EEeW-WMYGxs4DXg" pastedElementId="org.eclipse.papyrus.uml.Class">
       <pasteElementContainementFeature xmi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class/nestedClassifier"/>

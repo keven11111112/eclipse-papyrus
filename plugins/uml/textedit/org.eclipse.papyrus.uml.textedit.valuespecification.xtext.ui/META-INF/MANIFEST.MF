@@ -10,14 +10,14 @@ Require-Bundle: org.eclipse.ui,
  org.antlr.runtime,
  org.eclipse.gmf.runtime.common.core,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.3",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
  org.eclipse.uml2.uml,
  org.apache.log4j,
- org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.textedit.valuespecification.xtext;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.tools;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils;bundle-version="1.1.3"
+ org.eclipse.papyrus.uml.xtext.integration.ui;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.textedit.valuespecification.xtext;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -31,7 +31,7 @@ Export-Package: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui,
  org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.labeling,
  org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.outline,
  org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.quickfix
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.internal.UmlValueSpecificationActivator

@@ -6,12 +6,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit,
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.viewpoints.iso42010;bundle-version="1.1.3";visibility:=reexport,
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.constraints;bundle-version="1.1.3";visibility:=reexport,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.viewpoints.iso42010;bundle-version="1.1.4";visibility:=reexport,
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.constraints;bundle-version="1.1.4";visibility:=reexport,
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -20,7 +20,7 @@ Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration,
  org.eclipse.papyrus.infra.viewpoints.configuration.impl,
  org.eclipse.papyrus.infra.viewpoints.configuration.ui,
  org.eclipse.papyrus.infra.viewpoints.configuration.util
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

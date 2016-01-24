@@ -3,7 +3,7 @@ Export-Package: org.eclipse.papyrus.emf.facet.efacet,
  org.eclipse.papyrus.emf.facet.efacet.impl;x-friends:="org.eclipse.papyrus.emf.facet.query.java",
  org.eclipse.papyrus.emf.facet.efacet.util;x-friends:="org.eclipse.papyrus.emf.facet.query.java.edit"
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ClassPath: .
 Require-Bundle: org.eclipse.core.runtime,

@@ -134,11 +134,10 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 				newAxis.setElement(propQN);
 				newAxis.setManager(this.representedAxisManager);
 				toAdd.add(newAxis);
-				managedObject.add(propQN);
 			}
 			
 			if(!toAdd.isEmpty()){
-				return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+				return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd), objectToAdd);
 			}
 		}
 		return null;
@@ -213,7 +212,7 @@ public class UMLStereotypePropertyAxisManager extends UMLFeatureAxisManager impl
 		}
 
 		if (!compositeCommand.isEmpty()) {
-			return new GMFtoEMFCommandWrapper(compositeCommand);
+			return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(compositeCommand), umlProperties);
 		}
 		return null;
 	}

@@ -470,29 +470,25 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 					}
 					
 					// Get the model element
-					final ModelElement modelElement = dataSource.getModelElement(propertyPath);
-					EObject sourceElement = null;
-					EStructuralFeature feature = null;
-					if (modelElement instanceof CompositeModelElement) {
-						if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
-							if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof UMLNotationModelElement) {
-								sourceElement = ((UMLNotationModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0)).getEModelElement();
-							} else if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof EMFModelElement) {
-								final EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0);
-								sourceElement = emfModelElement.getSource();
-								feature = emfModelElement.getFeature(getLocalPropertyPath());
+					if(0 < contexts.size()){
+						final ModelElement modelElement = dataSource.getModelElement(propertyPath);
+						EObject sourceElement = EMFHelper.getEObject(contexts.get(0));
+						EStructuralFeature feature = null;
+						if (modelElement instanceof CompositeModelElement) {
+							if (!((CompositeModelElement) modelElement).getSubElements().isEmpty()) {
+								if (((CompositeModelElement) modelElement).getSubElements().get(0) instanceof EMFModelElement) {
+									final EMFModelElement emfModelElement = (EMFModelElement) ((CompositeModelElement) modelElement).getSubElements().get(0);
+									feature = emfModelElement.getFeature(getLocalPropertyPath());
+								}
 							}
+						} else if (modelElement instanceof EMFModelElement) {
+							final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
+							feature = emfModelElement.getFeature(getLocalPropertyPath());
 						}
-					} else if (modelElement instanceof UMLNotationModelElement) {
-						sourceElement = ((UMLNotationModelElement) modelElement).getEModelElement();
-					} else if (modelElement instanceof EMFModelElement) {
-						final EMFModelElement emfModelElement = (EMFModelElement) modelElement;
-						sourceElement = emfModelElement.getSource();
-						feature = emfModelElement.getFeature(getLocalPropertyPath());
-					}
 					
-					// Recreate the table widget
-					createTableWidget(sourceElement, feature, contexts);
+						// Recreate the table widget
+						createTableWidget(sourceElement, feature, contexts);
+					}
 				}
 			};
 		}

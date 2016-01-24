@@ -147,6 +147,11 @@ public interface RequestParameterConstants {
 	 */
 	public static final String TYPE_MOVING = "TYPE_MOVING"; //$NON-NLS-1$
 
+	/**
+	 * this constant is used to precise if it is needed to make the editdialog cancellable or not
+	 */
+	public static String DIALOG_CANCELLABLE = "DIALOG_CANCELLABLE"; //$NON-NLS-1$
+
 	//
 	// Nested types
 	//

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.java.template;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: Java Template
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,

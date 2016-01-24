@@ -4,10 +4,10 @@ Export-Package: org.eclipse.papyrus.junit.framework.classification,
  org.eclipse.papyrus.junit.framework.classification.tests,
  org.eclipse.papyrus.junit.framework.runner
 Bundle-SymbolicName: org.eclipse.papyrus.junit.framework
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: Conditional Junit Annotations
 Require-Bundle: org.junit;bundle-version="4.11.0",
- org.eclipse.papyrus.infra.tools;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.1.4",
  org.eclipse.emf.edit;bundle-version="2.10.0",
  org.eclipse.ui;bundle-version="3.106.0",
  com.google.guava;bundle-version="11.0.0",

@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.extra.releng</artifactId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.1.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<parent>
 	    <groupId>org.eclipse.papyrus</groupId>
 	    <artifactId>org.eclipse.papyrus.all.releng</artifactId>
-	    <version>1.1.3-SNAPSHOT</version>
+	    <version>1.1.4-SNAPSHOT</version>
 	    <relativePath>..</relativePath>
     </parent>
 	<modules>
@@ -40,6 +40,7 @@
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.sysml14.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.req.feature</module>
 		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.revisiontool.feature</module>
+		<module>../../features/papyrus-extra-features/org.eclipse.papyrus.effbd.feature</module>
 		<module>../../features/papyrus-example-features/org.eclipse.papyrus.example.feature</module>
 		<module>../../features/papyrus-example-features/org.eclipse.papyrus.training.library.feature</module>
 		<module>../../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
@@ -214,9 +215,11 @@
         <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm</module>
         <module>../../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm</module>
         <module>../../extraplugins/layout/org.eclipse.papyrus.layout.subeditor.gmf</module>
-        
         <module>../../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
-        <module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
+        <module>../../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module> 
+        
+        	<!-- Papyrus EFFBD -->
+          <module>../../extraplugins/EFFBD/org.eclipse.papyrus.effbd</module>
 		
 				<!-- Papyrus Sysml 1.4 -->
 		<module>../../extraplugins/sysml14/org.eclipse.papyrus.sysml14</module>
@@ -276,13 +279,13 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.5/R-4.5.1-201509040015/</url>
+			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC1-201601131000/</url>
 		</repository>
 		<repository>
 			<id>cdt</id>
 			<layout>p2</layout>
 			<!-- updateFrom("CDT",0) -->
-			<url>${eclipse.download}/tools/cdt/builds/mars/milestones</url>
+			<url>${eclipse.download}/tools/cdt/builds/mars/milestones/ur2-rc1</url>
 		</repository>
 		<repository>
 			<id>emf-cdo</id>
@@ -360,7 +363,7 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201509091420</url>
+			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201601191321</url>
 		</repository>
 		<repository>
 			<id>m2t-xpand</id>
@@ -371,14 +374,14 @@
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
-			<!-- updateFrom("MDT OCL 6.0.1",0) -->
-			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.1/S201509081048</url>
+			<!-- updateFrom("MDT OCL 6.0.2",0) -->
+			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.2/S201601181240</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT UML2",0) -->
-			<url>${eclipse.download}/modeling/mdt/uml2/updates/5.1</url>
+			<url>${eclipse.download}/modeling/mdt/uml2/updates/5.1.x</url>
 		</repository>
 		<repository>
 			<id>mmt-qvto</id>

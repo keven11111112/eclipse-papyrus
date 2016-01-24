@@ -5,21 +5,21 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.6.0",
  org.eclipse.core.databinding.observable;bundle-version="1.3.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.100",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.widgets;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.3",
- org.eclipse.papyrus.views.properties;bundle-version="1.1.3",
- org.eclipse.papyrus.views.properties.model;bundle-version="1.1.3",
- org.eclipse.papyrus.customization.properties.model.xwt;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.4",
+ org.eclipse.papyrus.views.properties;bundle-version="1.1.4",
+ org.eclipse.papyrus.views.properties.model;bundle-version="1.1.4",
+ org.eclipse.papyrus.customization.properties.model.xwt;bundle-version="1.1.4",
  org.eclipse.emf.ecore.editor;bundle-version="2.6.0",
  org.eclipse.emf.databinding;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.constraints;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.3",
- org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.1.3",
- org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.1.3",
- org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.emf;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.constraints;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.4",
+ org.eclipse.papyrus.emf.facet.custom.ui;bundle-version="1.1.4",
+ org.eclipse.papyrus.emf.facet.custom.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.emf.facet.query.java.core;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
@@ -28,7 +28,7 @@ Export-Package: org.eclipse.papyrus.customization.properties.editor,
  org.eclipse.papyrus.customization.properties.modelelement,
  org.eclipse.papyrus.customization.properties.providers,
  org.eclipse.papyrus.customization.properties.storage.actions
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-ClassPath: .,
  bin

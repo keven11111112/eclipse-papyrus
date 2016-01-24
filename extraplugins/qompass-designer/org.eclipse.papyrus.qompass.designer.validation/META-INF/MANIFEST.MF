@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.validation;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.uml2.uml;bundle-version="3.0.1",
  org.eclipse.emf.validation;bundle-version="1.3.0",
- org.eclipse.papyrus.qompass.designer.core;bundle-version="1.1.3",
- org.eclipse.papyrus.fcm.profile;bundle-version="1.1.3",
+ org.eclipse.papyrus.qompass.designer.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.fcm.profile;bundle-version="1.1.4",
  org.eclipse.ui,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.3"
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.qompass.designer.validation.Activator
 Bundle-ManifestVersion: 2

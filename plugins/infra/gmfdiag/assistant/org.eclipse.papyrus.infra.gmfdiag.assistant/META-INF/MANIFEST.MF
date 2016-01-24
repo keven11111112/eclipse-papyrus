@@ -4,21 +4,21 @@ Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.assistant;singleton:=true
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.11.0";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;bundle-version="2.11.0";visibility:=reexport,
- org.eclipse.papyrus.infra.filters;bundle-version="1.1.3";visibility:=reexport,
+ org.eclipse.papyrus.infra.filters;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport,
  org.eclipse.uml2.common;bundle-version="2.0.100";visibility:=reexport,
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.7.0",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
  com.google.guava;bundle-version="11.0.0",
  org.eclipse.gmf.runtime.emf.ui;bundle-version="1.7.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
  org.eclipse.core.expressions;bundle-version="3.4.600",
  org.eclipse.gmf.runtime.notation;bundle-version="1.8.0",
- org.eclipse.papyrus.infra.emf;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.4",
  com.ibm.icu;bundle-version="52.1.0",
- org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -32,7 +32,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.assistant,
  org.eclipse.papyrus.infra.gmfdiag.assistant.internal.expressions;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations;x-internal:=true,
  org.eclipse.papyrus.infra.gmfdiag.assistant.util
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

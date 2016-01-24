@@ -3,24 +3,24 @@ Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.elementtypesconfigurations;si
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.papyrus.infra.elementtypesconfigurations;bundle-version="1.1.3";visibility:=reexport,
+ org.eclipse.papyrus.infra.elementtypesconfigurations;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.uml2.types;visibility:=reexport,
  org.eclipse.uml2.uml;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.elementtypesconfigurations.edit;bundle-version="1.1.3";visibility:=reexport,
+ org.eclipse.papyrus.infra.elementtypesconfigurations.edit;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.uml2.uml.edit;visibility:=reexport,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.4",
  org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
  org.eclipse.swt,
- org.eclipse.papyrus.infra.widgets;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.properties;bundle-version="1.1.3",
- org.eclipse.papyrus.views.properties;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes;bundle-version="1.1.3";visibility:=reexport,
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.properties;bundle-version="1.1.4",
+ org.eclipse.papyrus.views.properties;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.ui.workbench,
- org.eclipse.papyrus.infra.elementtypesconfigurations.emf;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.elementtypesconfigurations.emf;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -42,7 +42,7 @@ Export-Package: org.eclipse.papyrus.uml.tools.elementtypesconfigurations,
  org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.impl,
  org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.provider,
  org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.util
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

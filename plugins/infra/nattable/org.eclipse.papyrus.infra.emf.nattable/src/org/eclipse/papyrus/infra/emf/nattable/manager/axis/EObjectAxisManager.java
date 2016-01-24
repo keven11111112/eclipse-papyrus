@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
@@ -89,11 +90,10 @@ public class EObjectAxisManager extends AbstractAxisManager {
 				horizontalAxis.setElement((EObject) object);
 				horizontalAxis.setManager(this.representedAxisManager);
 				toAdd.add(horizontalAxis);
-				managedObject.add(object);
 			}
 		}
 		if (!toAdd.isEmpty()) {
-			return AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd);
+			return new AddCommandWrapper(AddCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), toAdd), objectToAdd);
 		}
 		return null;
 	}
@@ -114,7 +114,7 @@ public class EObjectAxisManager extends AbstractAxisManager {
 			final EObject element = ((EObjectAxis) current).getElement();
 			final DestroyElementRequest request = new DestroyElementRequest(getContextEditingDomain(), element, false);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(element);
-			return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+			return new RemoveCommandWrapper(new GMFtoEMFCommandWrapper(provider.getEditCommand(request)), Collections.singleton((Object) ((EObjectAxis) current).getElement()));
 		}
 		return null;
 	}

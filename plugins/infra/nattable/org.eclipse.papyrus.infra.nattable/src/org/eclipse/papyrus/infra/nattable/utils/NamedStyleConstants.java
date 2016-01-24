@@ -31,6 +31,18 @@ public class NamedStyleConstants {
 	public static final String ROW_INDEX_WIDTH = "rowIndexWidth"; //$NON-NLS-1$1
 
 	public static final String ROW_LABEL_WIDTH = "rowLabelWidth"; //$NON-NLS-1$
+	
+	/**
+	 * The prefix of the name style to calculate the width of each row header.
+	 * This prefix is followed by the position of the column to edit width.
+	 */
+	public static final String ROW_LABEL_POSITION_PREFIX_WIDTH = "rowPosition"; //$NON-NLS-1$
+	
+	/**
+	 * The suffix of the name style to calculate the width of each row header
+	 */
+	public static final String ROW_LABEL_POSITION_SUFFIX_WIDTH = "LabelWidth"; //$NON-NLS-1$
+	
 
 	public static final String COLUMN_INDEX_HEIGHT = "columnIndexHeight"; //$NON-NLS-1$
 

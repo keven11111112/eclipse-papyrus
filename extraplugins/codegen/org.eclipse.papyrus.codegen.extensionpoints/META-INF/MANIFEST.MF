@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.codegen.extensionpoints
 Bundle-SymbolicName: org.eclipse.papyrus.codegen.extensionpoints;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.uml2.uml;bundle-version="4.0.2",
  org.eclipse.core.filesystem;bundle-version="1.3.200",
  org.eclipse.core.resources,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.3"
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.codegen.extensionpoints.Activator

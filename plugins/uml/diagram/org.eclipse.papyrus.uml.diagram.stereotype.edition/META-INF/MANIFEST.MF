@@ -2,18 +2,18 @@ Manifest-Version: 1.0
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.stereotype.edition;singleton:=true
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.3",
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.4",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.appearance;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.tools;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.3",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.profile;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.appearance;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.tools;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.4",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.profile;bundle-version="1.1.4",
  org.eclipse.gmf.tooling.runtime;bundle-version="[3.3.0,
  4.0.0)",
  org.eclipse.gmf.runtime.notation
@@ -24,7 +24,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.provider
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.stereotype.edition.Activator

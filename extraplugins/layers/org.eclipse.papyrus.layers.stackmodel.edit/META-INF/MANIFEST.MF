@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.layers.stackmodel.edit;singleton:=true
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.layers.stackmodel;bundle-version="1.1.3";visibility:=reexport,
+ org.eclipse.papyrus.layers.stackmodel;bundle-version="1.1.4";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
@@ -15,7 +15,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.layers.configmodel.layersconfig.provider,
  org.eclipse.papyrus.layers.stackmodel.layers.provider,
  org.eclipse.papyrus.layers.stackmodel.layers.provider.custom
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

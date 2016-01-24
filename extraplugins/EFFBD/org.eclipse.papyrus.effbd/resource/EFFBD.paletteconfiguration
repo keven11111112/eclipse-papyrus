@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ASCII"?>
+<paletteconfiguration:PaletteConfiguration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"
+    id="org.eclipse.papyrus.effbd.palette.model"
+    label="EFFBD Palette">
+  <drawerConfigurations
+      id="org.eclipse.papyrus.effbd.palette"
+      label="EFFBD palette"
+      description="palette to create EFFB elements">
+    <icon pluginID="org.eclipse.papyrus.effbd"
+        iconPath="icons\effbd16.png"/>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.Function"
+        label="Function"
+        description="Create a Function">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\function16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalfunction"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.Flow"
+        label="Flow"
+        description="Flow"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\Flow16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.Data"
+        label="Data"
+        description="Data">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\Data16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.ORbegin"
+        label="OR node (begin)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\OR16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalorbegin"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.ORend"
+        label="OR node (end)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\OR16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalorEnd"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.ANDbegin"
+        label="AND node (begin)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\AND16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalandbegin"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.ANDend"
+        label="AND node (end)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\AND16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalandEnd"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.ITbegin"
+        label="IT node (begin)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\IT16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalitbegin"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.ITEnd"
+        label="IT node (end)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\IT16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicalitend"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.LPbegin"
+        label="LP node (begin)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\LP16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicallpbegin"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.LPEnd"
+        label="LP node (end)">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\LP16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.graphicallpend"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.Inputdata"
+        label="InputData">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\Input16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.inputdata_node"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.effbd.Outputdata"
+        label="OutputData">
+      <icon
+          pluginID="org.eclipse.papyrus.effbd"
+          iconPath="icons\Output16.png"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.effbd.outputdata_node"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>

@@ -12,7 +12,7 @@ Export-Package: org.eclipse.papyrus.operation.editor.xtext,
  org.eclipse.papyrus.operation.editor.xtext.validation,
  org.eclipse.papyrus.operation.editor.xtext.validation.typing
 Bundle-SymbolicName: org.eclipse.papyrus.operation.editor.xtext;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: org.eclipse.papyrus.operation.editor.xtext
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,

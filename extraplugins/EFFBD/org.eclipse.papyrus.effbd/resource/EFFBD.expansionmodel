@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expansionmodel:DiagramExpansion xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:expansionmodel="http:///expansionmodel.ecore" xmi:id="_BOX98NnkEeSFtu511b-yaw" ID="EFFBD">
+  <usages xmi:id="_rC19oNnoEeSqwOe5_frWm1" diagramType="EFFB" representations="_EogAIJ5gEeWsTNbcH1gSQQ" name="EFFBD Context">
+    <gmftRepresentations xmi:id="_EogAIJ5gEeWsTNbcH1gSQQ" editPartQualifiedName="org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart" name="Reuse ActivityRepresentation" viewFactory="org.eclipse.papyrus.effbd.factory.ActivityCompartmentViewFactory" subRepresentations="_FP4wQJ5gEeWsTNbcH1gSQQ" reusedID="2001"/>
+    <gmftRepresentations xmi:id="_FP4wQJ5gEeWsTNbcH1gSQQ" editPartQualifiedName="org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart" name="Reuse Activity Compartment" viewFactory="org.eclipse.papyrus.effbd.factory.ActivityViewFactory" subRepresentations="_j9KhoJ57EeWHhcFWyAfOIA _9UXukJ6IEeWHhcFWyAfOIA _wFRFMJ8mEeWHhcFWyAfOIA" reusedID="7004"/>
+    <gmftRepresentations xmi:id="_wFRFMJ8mEeWHhcFWyAfOIA" editPartQualifiedName="org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart" name="Reuse OpaqueAction" viewFactory="org.eclipse.papyrus.effbd.factory.OpqaqueActionViewFactory" inducedRepresentations="_Q0WVMKAREeWbYYB8YU_3Xg" reusedID="3007"/>
+  </usages>
+  <libraries xmi:id="_g4CjwJ57EeWHhcFWyAfOIA" name="representation">
+    <representations xsi:type="expansionmodel:Representation" xmi:id="_j9KhoJ57EeWHhcFWyAfOIA" name="Input Data as a node" graphicalElementType="org.eclipse.papyrus.effbd.inputdata_node" inducedRepresentations="_M4M0YJ5_EeWHhcFWyAfOIA">
+      <kind href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1P"/>
+    </representations>
+    <representations xsi:type="expansionmodel:InducedRepresentation" xmi:id="_M4M0YJ5_EeWHhcFWyAfOIA" name="Label of External Data" hint="externaldata_label">
+      <kind href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1L"/>
+    </representations>
+    <representations xsi:type="expansionmodel:Representation" xmi:id="_9UXukJ6IEeWHhcFWyAfOIA" name="Output Data as a node" graphicalElementType="org.eclipse.papyrus.effbd.outputdata_node" inducedRepresentations="_M4M0YJ5_EeWHhcFWyAfOIA">
+      <kind href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1P"/>
+    </representations>
+    <representations xsi:type="expansionmodel:InducedRepresentation" xmi:id="_Q0WVMKAREeWbYYB8YU_3Xg" editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.editparts.ListCompartmentEditPart" name="OpaqueActionCompartment" viewFactory="org.eclipse.papyrus.effbd.factory.OpqaqueActionCompartmentViewFactory" hint="OpaqueActionCompartment" children="_go2kMKAbEeWbYYB8YU_3Xg">
+      <kind href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>
+    </representations>
+    <representations xsi:type="expansionmodel:Representation" xmi:id="_go2kMKAbEeWbYYB8YU_3Xg" editPartQualifiedName="org.eclipse.papyrus.effbd.editPart.EditableLabelForNodeEditPart" name="Body of the OpaqueAction" graphicalElementType="org.eclipse.papyrus.effbd.opaqueAction_body">
+      <kind href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1L"/>
+    </representations>
+  </libraries>
+</expansionmodel:DiagramExpansion>

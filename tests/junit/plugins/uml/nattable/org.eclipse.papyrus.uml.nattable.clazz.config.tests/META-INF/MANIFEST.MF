@@ -3,40 +3,41 @@ Bundle-Description: %Bundle-Description
 Bundle-SymbolicName: org.eclipse.papyrus.uml.nattable.clazz.config.tests
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.nattable;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.nattable.clazz.config;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.nattable;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.nattable.clazz.config;bundle-version="1.1.4",
  org.eclipse.uml2.uml;bundle-version="5.0.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.1.4",
  org.junit;bundle-version="4.11.0",
- org.eclipse.papyrus.editor.integration.tests;bundle-version="1.1.3",
- org.eclipse.papyrus.junit.utils;bundle-version="1.1.3",
- org.eclipse.papyrus.junit.framework;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.core;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.nattable.model;bundle-version="1.1.3",
+ org.eclipse.papyrus.editor.integration.tests;bundle-version="1.1.4",
+ org.eclipse.papyrus.junit.utils;bundle-version="1.1.4",
+ org.eclipse.papyrus.junit.framework;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.core.sasheditor;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.core;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.nattable.model;bundle-version="1.1.4",
  org.eclipse.emf.transaction;bundle-version="1.8.0",
- org.eclipse.papyrus.infra.nattable.common;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.3",
+ org.eclipse.papyrus.infra.nattable.common;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.gmfdiag.commands;bundle-version="1.1.4",
  ca.odell.glazedlists;bundle-version="1.9.0",
- org.eclipse.nebula.widgets.nattable.core;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.papyrus.infra.tools;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.service.types;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.3",
+ org.eclipse.nebula.widgets.nattable.core;bundle-version="[1.2.0,
+ 2.0.0)",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.service.types;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.1.4",
  org.eclipse.ui.navigator,
- org.eclipse.papyrus.views.modelexplorer;bundle-version="1.1.3",
+ org.eclipse.papyrus.views.modelexplorer;bundle-version="1.1.4",
  org.eclipse.ui.ide,
- org.eclipse.papyrus.infra.widgets;bundle-version="1.1.3",
- org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.validation;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.services.decoration;bundle-version="1.1.3"
+ org.eclipse.papyrus.infra.widgets;bundle-version="1.1.4",
+ org.eclipse.papyrus.emf.facet.custom.metamodel;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.services.decoration;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: %Bundle-Vendor
 Export-Package: org.eclipse.papyrus.uml.nattable.clazz.config.tests,
  org.eclipse.papyrus.uml.nattable.clazz.config.tests.tests
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.papyrus.uml.nattable.clazz.config.tests.Activator

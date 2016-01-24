@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.soaml.diagram.ui
 Bundle-SymbolicName: org.eclipse.papyrus.soaml.diagram.ui;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.10.1",
- org.eclipse.papyrus.soaml.diagram.common;bundle-version="1.1.3",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.1.3"
+ org.eclipse.papyrus.soaml.diagram.common;bundle-version="1.1.4",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.soaml.diagram.ui.Activator

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.emf.facet.common.core.internal,
  org.eclipse.papyrus.emf.facet.common.core.internal.utils
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.common.core;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Require-Bundle: org.eclipse.core.runtime;bundle-version="3.6.0",
  com.ibm.icu;bundle-version="4.2.1"

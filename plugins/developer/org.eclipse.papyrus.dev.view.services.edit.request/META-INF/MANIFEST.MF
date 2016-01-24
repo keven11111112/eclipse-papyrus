@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.dev.view.services.edit.request;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.emf.facet.common.ui;bundle-version="1.1.3"
+ org.eclipse.papyrus.emf.facet.common.ui;bundle-version="1.1.4"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.papyrus.dev.view.services.edit.request.Activator
 Bundle-ManifestVersion: 2

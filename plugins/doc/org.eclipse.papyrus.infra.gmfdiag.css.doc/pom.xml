@@ -4,12 +4,12 @@
 	<parent>
 		<artifactId>org.eclipse.papyrus.plugins.doc</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
-		<version>1.1.3-SNAPSHOT</version>
+		<version>1.1.4-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.gmfdiag.css.doc</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.1.4-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 
 	<build>

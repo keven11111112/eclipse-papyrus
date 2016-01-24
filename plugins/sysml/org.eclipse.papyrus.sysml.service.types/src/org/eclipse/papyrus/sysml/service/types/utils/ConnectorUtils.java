@@ -14,13 +14,17 @@
 package org.eclipse.papyrus.sysml.service.types.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
@@ -468,6 +472,32 @@ public class ConnectorUtils extends org.eclipse.papyrus.uml.service.types.utils.
 			}
 		}
 		return res;
+	}
+
+	/**
+	 * Filter connectors that have this property in their <NestedConnectorEnd> property path.
+	 *
+	 * @param inverseReferences
+	 *            All the references towards part
+	 * @param part
+	 *
+	 * @return connectors that have this property in their <NestedConnectorEnd> property path.
+	 */
+	public static List<Connector> filterConnectorByPropertyInNestedConnectorEnd(Collection<Setting> inverseReferences, Property part) {
+		Set<Connector> result = new HashSet<Connector>();
+		for (Setting setting : inverseReferences) {
+			EObject referent = setting.getEObject();
+			if (referent instanceof NestedConnectorEnd) {
+				NestedConnectorEnd stereotypeApplication = (NestedConnectorEnd) referent;
+				if (stereotypeApplication.getPropertyPath().contains(part)) {
+					ConnectorEnd end = stereotypeApplication.getBase_ConnectorEnd();
+					if (end != null && end.getOwner() instanceof Connector) {
+						result.add((Connector) end.getOwner());
+					}
+				}
+			}
+		}
+		return new ArrayList<Connector>(result);
 	}
 
 

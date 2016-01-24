@@ -3,18 +3,18 @@ Export-Package: org.eclipse.papyrus.infra.tools.databinding,
  org.eclipse.papyrus.infra.tools.tests,
  org.eclipse.papyrus.infra.tools.util
 Bundle-SymbolicName: org.eclipse.papyrus.infra.tools.tests;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: Papyrus Infrastructure Tools Tests
 Require-Bundle: org.junit;bundle-version="4.10.0",
- org.eclipse.papyrus.junit.framework;bundle-version="1.1.3",
- org.eclipse.papyrus.infra.tools;bundle-version="1.1.3",
+ org.eclipse.papyrus.junit.framework;bundle-version="1.1.4",
+ org.eclipse.papyrus.infra.tools;bundle-version="1.1.4",
  org.eclipse.swt;bundle-version="3.100.0",
  org.eclipse.core.runtime;bundle-version="3.10.0",
  org.eclipse.core.databinding;bundle-version="1.4.0",
  org.eclipse.core.databinding.beans;bundle-version="1.2.0",
  org.eclipse.core.databinding.property;bundle-version="1.4.0",
  com.google.guava;bundle-version="11.0.0",
- org.eclipse.papyrus.junit.utils;bundle-version="1.1.3"
+ org.eclipse.papyrus.junit.utils;bundle-version="1.1.4"
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Vendor: Eclipse Modeling Project

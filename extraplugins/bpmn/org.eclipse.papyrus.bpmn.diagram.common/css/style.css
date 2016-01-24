@@ -12,7 +12,7 @@ ControlFlow{
 ObjectFlow{
 	routing:Rectilinear;
 	roundedBendpointsRadius:20 ;
-	lineStyle:dashed;
+	lineStyle:dotted;
 }
 
 ObjectFlow > Label{
@@ -21,7 +21,8 @@ ObjectFlow > Label{
 
 OpaqueAction{
 	rightMarginLabel : 5;
-    textAlignment : right;    
+    textAlignment : center;    
+    isNameWrap : true;
 }
 OpaqueAction > Compartment[kind="symbol"] {
     visible:false;
@@ -280,7 +281,7 @@ alternateBorderColor path{
 	 */
 	transparency: 100;
 	maintainSymbolRatio: true;
-	
+	displayTag: false;
 }
 
 [appliedStereotypes~="BPMNProfile::DataStoreReference"]{

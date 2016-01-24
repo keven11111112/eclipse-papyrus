@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:BPMNProfile="http://www.omg.org/spec/BPMNProfile/20121112/" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+  <uml:Model xmi:id="_W0OEoJp5EeW_r_Rab4r2Ww" name="DesignSteps">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_XUWWMJp5EeW_r_Rab4r2Ww" name="effbdDesignProcess" node="_rzGSUJp5EeW_r_Rab4r2Ww _8O0d4Jp5EeW_r_Rab4r2Ww _hp5_UJp6EeW_r_Rab4r2Ww _orpjwJp6EeW_r_Rab4r2Ww _BDD0sJqVEeWvrYaIoLwVsQ _GL1sYJqVEeWvrYaIoLwVsQ _KaznMJqVEeWvrYaIoLwVsQ _MGuZcJzlEeWAbLfn_iCQ6g _b963cJzsEeWAbLfn_iCQ6g _taHokJzsEeWAbLfn_iCQ6g _dhbUwJzwEeWAbLfn_iCQ6g _l_g2MJ0CEeW4i7v9QEMhZg _4S88oJ2XEeW4i7v9QEMhZg _O7iTEJ2YEeW4i7v9QEMhZg _bpYxwJ50EeWHhcFWyAfOIA">
+      <edge xmi:type="uml:ControlFlow" xmi:id="_CbWRkJp6EeW_r_Rab4r2Ww" target="_8O0d4Jp5EeW_r_Rab4r2Ww" source="_rzGSUJp5EeW_r_Rab4r2Ww"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_lmi0AJp6EeW_r_Rab4r2Ww" target="_hp5_UJp6EeW_r_Rab4r2Ww" source="_8O0d4Jp5EeW_r_Rab4r2Ww"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_sFyIUJp6EeW_r_Rab4r2Ww" target="_orpjwJp6EeW_r_Rab4r2Ww" source="_hp5_UJp6EeW_r_Rab4r2Ww"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_EJGYkJqVEeWvrYaIoLwVsQ" target="_GL1sYJqVEeWvrYaIoLwVsQ" source="_BDD0sJqVEeWvrYaIoLwVsQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_M7zkUJqVEeWvrYaIoLwVsQ" target="_BDD0sJqVEeWvrYaIoLwVsQ" source="_orpjwJp6EeW_r_Rab4r2Ww"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_N5NAsJqVEeWvrYaIoLwVsQ" target="_KaznMJqVEeWvrYaIoLwVsQ" source="_BDD0sJqVEeWvrYaIoLwVsQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_N_USwJzlEeWAbLfn_iCQ6g" target="_MGuZcJzlEeWAbLfn_iCQ6g" source="_GL1sYJqVEeWvrYaIoLwVsQ"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_dyjd0JzsEeWAbLfn_iCQ6g" target="_b963cJzsEeWAbLfn_iCQ6g" source="_MGuZcJzlEeWAbLfn_iCQ6g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_vzZ0IJzsEeWAbLfn_iCQ6g" target="_taHokJzsEeWAbLfn_iCQ6g" source="_b963cJzsEeWAbLfn_iCQ6g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_hk38EJzwEeWAbLfn_iCQ6g" target="_dhbUwJzwEeWAbLfn_iCQ6g" source="_taHokJzsEeWAbLfn_iCQ6g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_sC6jEJ0CEeW4i7v9QEMhZg" target="_l_g2MJ0CEeW4i7v9QEMhZg" source="_dhbUwJzwEeWAbLfn_iCQ6g"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_8_Rh0J2XEeW4i7v9QEMhZg" target="_4S88oJ2XEeW4i7v9QEMhZg" source="_l_g2MJ0CEeW4i7v9QEMhZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_QuJgMJ2YEeW4i7v9QEMhZg" target="_O7iTEJ2YEeW4i7v9QEMhZg" source="_4S88oJ2XEeW4i7v9QEMhZg"/>
+      <edge xmi:type="uml:ControlFlow" xmi:id="_exSfQJ2iEeWsTNbcH1gSQQ" target="_taHokJzsEeWAbLfn_iCQ6g" source="_O7iTEJ2YEeW4i7v9QEMhZg"/>
+      <node xmi:type="uml:InitialNode" xmi:id="_rzGSUJp5EeW_r_Rab4r2Ww" name="InitialNode1" outgoing="_CbWRkJp6EeW_r_Rab4r2Ww"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_8O0d4Jp5EeW_r_Rab4r2Ww" name="Create Eclipse Plugin" incoming="_CbWRkJp6EeW_r_Rab4r2Ww" outgoing="_lmi0AJp6EeW_r_Rab4r2Ww"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_hp5_UJp6EeW_r_Rab4r2Ww" name="find and understand the formalism" incoming="_lmi0AJp6EeW_r_Rab4r2Ww" outgoing="_sFyIUJp6EeW_r_Rab4r2Ww"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_orpjwJp6EeW_r_Rab4r2Ww" name="create Requirements model" incoming="_sFyIUJp6EeW_r_Rab4r2Ww" outgoing="_M7zkUJqVEeWvrYaIoLwVsQ">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_ouxNYJzkEeWAbLfn_iCQ6g">
+          <body>1 hour</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:ForkNode" xmi:id="_BDD0sJqVEeWvrYaIoLwVsQ" name="ForkNode1" incoming="_M7zkUJqVEeWvrYaIoLwVsQ" outgoing="_EJGYkJqVEeWvrYaIoLwVsQ _N5NAsJqVEeWvrYaIoLwVsQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_GL1sYJqVEeWvrYaIoLwVsQ" name="Viewpoint Creation" incoming="_EJGYkJqVEeWvrYaIoLwVsQ" outgoing="_N_USwJzlEeWAbLfn_iCQ6g">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_kMZOYJzkEeWAbLfn_iCQ6g">
+          <body>2 hours</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_KaznMJqVEeWvrYaIoLwVsQ" name="update model" incoming="_N5NAsJqVEeWvrYaIoLwVsQ"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_MGuZcJzlEeWAbLfn_iCQ6g" name="add new wizard" incoming="_N_USwJzlEeWAbLfn_iCQ6g" outgoing="_dyjd0JzsEeWAbLfn_iCQ6g">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_BngWoJznEeWAbLfn_iCQ6g">
+          <body>   &lt;extension
+  point=&quot;org.eclipse.papyrus.infra.core.papyrusDiagram&quot;>
+   </body>
+        </ownedComment>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_yj8nIJ0CEeW4i7v9QEMhZg">
+          <body>30 min</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_b963cJzsEeWAbLfn_iCQ6g" name="Make icon" incoming="_dyjd0JzsEeWAbLfn_iCQ6g" outgoing="_vzZ0IJzsEeWAbLfn_iCQ6g">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_1HlBgJ0CEeW4i7v9QEMhZg">
+          <body>30 min</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_taHokJzsEeWAbLfn_iCQ6g" name="make a palette draft with one element" incoming="_vzZ0IJzsEeWAbLfn_iCQ6g _exSfQJ2iEeWsTNbcH1gSQQ" outgoing="_hk38EJzwEeWAbLfn_iCQ6g">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_2maXAJ0CEeW4i7v9QEMhZg">
+          <body>30 min</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_dhbUwJzwEeWAbLfn_iCQ6g" name="create draft menu new child with one element" incoming="_hk38EJzwEeWAbLfn_iCQ6g" outgoing="_sC6jEJ0CEeW4i7v9QEMhZg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_36IosJ0CEeW4i7v9QEMhZg">
+          <body>30 min</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_l_g2MJ0CEeW4i7v9QEMhZg" name="create First elementType for Function update new child and palette" incoming="_sC6jEJ0CEeW4i7v9QEMhZg" outgoing="_8_Rh0J2XEeW4i7v9QEMhZg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_42Y1kJ0CEeW4i7v9QEMhZg">
+          <body>2h</body>
+        </ownedComment>
+      </node>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_4S88oJ2XEeW4i7v9QEMhZg" name="CreateCustomization for this first element" incoming="_8_Rh0J2XEeW4i7v9QEMhZg" outgoing="_QuJgMJ2YEeW4i7v9QEMhZg"/>
+      <node xmi:type="uml:OpaqueAction" xmi:id="_O7iTEJ2YEeW4i7v9QEMhZg" name="CreateCSS" incoming="_QuJgMJ2YEeW4i7v9QEMhZg" outgoing="_exSfQJ2iEeWsTNbcH1gSQQ"/>
+      <node xmi:type="uml:FlowFinalNode" xmi:id="_bpYxwJ50EeWHhcFWyAfOIA" name="FlowFinalNode1"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_XRkH8Jp5EeW_r_Rab4r2Ww">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XRnyUJp5EeW_r_Rab4r2Ww" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.omg.org/spec/BPMNProfile/20121112/#/"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://BPMN_PROF/bpmn.profile.uml#_wrG1oHwkEeOWLfCz6n-rOA"/>
+    </profileApplication>
+  </uml:Model>
+  <BPMNProfile:BPMNProcess xmi:id="_XVXp4Jp5EeW_r_Rab4r2Ww" base_Element="_XUWWMJp5EeW_r_Rab4r2Ww" base_PackageableElement="_XUWWMJp5EeW_r_Rab4r2Ww" base_Behavior="_XUWWMJp5EeW_r_Rab4r2Ww" base_Activity="_XUWWMJp5EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:StartEvent xmi:id="_rzYmMJp5EeW_r_Rab4r2Ww" base_Element="_rzGSUJp5EeW_r_Rab4r2Ww" base_ActivityNode="_rzGSUJp5EeW_r_Rab4r2Ww" base_InitialNode="_rzGSUJp5EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:UserTask xmi:id="_8PDucJp5EeW_r_Rab4r2Ww" base_Element="_8O0d4Jp5EeW_r_Rab4r2Ww" base_ActivityNode="_8O0d4Jp5EeW_r_Rab4r2Ww" base_Action="_8O0d4Jp5EeW_r_Rab4r2Ww" base_OpaqueAction="_8O0d4Jp5EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:SequenceFlow xmi:id="_CbkUAJp6EeW_r_Rab4r2Ww" base_Element="_CbWRkJp6EeW_r_Rab4r2Ww" base_ControlFlow="_CbWRkJp6EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:UserTask xmi:id="_hqIo0Jp6EeW_r_Rab4r2Ww" base_Element="_hp5_UJp6EeW_r_Rab4r2Ww" base_ActivityNode="_hp5_UJp6EeW_r_Rab4r2Ww" base_Action="_hp5_UJp6EeW_r_Rab4r2Ww" base_OpaqueAction="_hp5_UJp6EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:SequenceFlow xmi:id="_lmvoUJp6EeW_r_Rab4r2Ww" base_Element="_lmi0AJp6EeW_r_Rab4r2Ww" base_ControlFlow="_lmi0AJp6EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:ManualTask xmi:id="_or3mMJp6EeW_r_Rab4r2Ww" base_Element="_orpjwJp6EeW_r_Rab4r2Ww" base_ActivityNode="_orpjwJp6EeW_r_Rab4r2Ww" base_Action="_orpjwJp6EeW_r_Rab4r2Ww" base_OpaqueAction="_orpjwJp6EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:SequenceFlow xmi:id="_sGBY4Jp6EeW_r_Rab4r2Ww" base_Element="_sFyIUJp6EeW_r_Rab4r2Ww" base_ControlFlow="_sFyIUJp6EeW_r_Rab4r2Ww"/>
+  <BPMNProfile:ParallelGateway xmi:id="_BDddUJqVEeWvrYaIoLwVsQ" base_Element="_BDD0sJqVEeWvrYaIoLwVsQ" base_ActivityNode="_BDD0sJqVEeWvrYaIoLwVsQ" base_ControlNode="_BDD0sJqVEeWvrYaIoLwVsQ" base_ForkNode="_BDD0sJqVEeWvrYaIoLwVsQ"/>
+  <BPMNProfile:SequenceFlow xmi:id="_EJTM4JqVEeWvrYaIoLwVsQ" base_Element="_EJGYkJqVEeWvrYaIoLwVsQ" base_ControlFlow="_EJGYkJqVEeWvrYaIoLwVsQ"/>
+  <BPMNProfile:Task xmi:id="_GMDHwJqVEeWvrYaIoLwVsQ" base_Element="_GL1sYJqVEeWvrYaIoLwVsQ" base_ActivityNode="_GL1sYJqVEeWvrYaIoLwVsQ" base_Action="_GL1sYJqVEeWvrYaIoLwVsQ"/>
+  <BPMNProfile:Task xmi:id="_KbAbgJqVEeWvrYaIoLwVsQ" base_Element="_KaznMJqVEeWvrYaIoLwVsQ" base_ActivityNode="_KaznMJqVEeWvrYaIoLwVsQ" base_Action="_KaznMJqVEeWvrYaIoLwVsQ"/>
+  <BPMNProfile:SequenceFlow xmi:id="_M7_xkJqVEeWvrYaIoLwVsQ" base_Element="_M7zkUJqVEeWvrYaIoLwVsQ" base_ControlFlow="_M7zkUJqVEeWvrYaIoLwVsQ"/>
+  <BPMNProfile:SequenceFlow xmi:id="_N5XYwJqVEeWvrYaIoLwVsQ" base_Element="_N5NAsJqVEeWvrYaIoLwVsQ" base_ControlFlow="_N5NAsJqVEeWvrYaIoLwVsQ"/>
+  <BPMNProfile:ManualTask xmi:id="_MHIpIJzlEeWAbLfn_iCQ6g" base_Element="_MGuZcJzlEeWAbLfn_iCQ6g" base_ActivityNode="_MGuZcJzlEeWAbLfn_iCQ6g" base_Action="_MGuZcJzlEeWAbLfn_iCQ6g" base_OpaqueAction="_MGuZcJzlEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:SequenceFlow xmi:id="_N_lYgJzlEeWAbLfn_iCQ6g" base_Element="_N_USwJzlEeWAbLfn_iCQ6g" base_ControlFlow="_N_USwJzlEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:ManualTask xmi:id="_b-I54JzsEeWAbLfn_iCQ6g" base_Element="_b963cJzsEeWAbLfn_iCQ6g" base_ActivityNode="_b963cJzsEeWAbLfn_iCQ6g" base_Action="_b963cJzsEeWAbLfn_iCQ6g" base_OpaqueAction="_b963cJzsEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:SequenceFlow xmi:id="_dywSIJzsEeWAbLfn_iCQ6g" base_Element="_dyjd0JzsEeWAbLfn_iCQ6g" base_ControlFlow="_dyjd0JzsEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:ManualTask xmi:id="_taSAoJzsEeWAbLfn_iCQ6g" base_Element="_taHokJzsEeWAbLfn_iCQ6g" base_ActivityNode="_taHokJzsEeWAbLfn_iCQ6g" base_Action="_taHokJzsEeWAbLfn_iCQ6g" base_OpaqueAction="_taHokJzsEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:SequenceFlow xmi:id="_vzmocJzsEeWAbLfn_iCQ6g" base_Element="_vzZ0IJzsEeWAbLfn_iCQ6g" base_ControlFlow="_vzZ0IJzsEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:ManualTask xmi:id="_dhls0JzwEeWAbLfn_iCQ6g" base_Element="_dhbUwJzwEeWAbLfn_iCQ6g" base_ActivityNode="_dhbUwJzwEeWAbLfn_iCQ6g" base_Action="_dhbUwJzwEeWAbLfn_iCQ6g" base_OpaqueAction="_dhbUwJzwEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:SequenceFlow xmi:id="_hlF-gJzwEeWAbLfn_iCQ6g" base_Element="_hk38EJzwEeWAbLfn_iCQ6g" base_ControlFlow="_hk38EJzwEeWAbLfn_iCQ6g"/>
+  <BPMNProfile:Task xmi:id="_mADowJ0CEeW4i7v9QEMhZg" base_Element="_l_g2MJ0CEeW4i7v9QEMhZg" base_ActivityNode="_l_g2MJ0CEeW4i7v9QEMhZg" base_Action="_l_g2MJ0CEeW4i7v9QEMhZg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_sDHXYJ0CEeW4i7v9QEMhZg" base_Element="_sC6jEJ0CEeW4i7v9QEMhZg" base_ControlFlow="_sC6jEJ0CEeW4i7v9QEMhZg"/>
+  <BPMNProfile:ManualTask xmi:id="_4TH7wJ2XEeW4i7v9QEMhZg" base_Element="_4S88oJ2XEeW4i7v9QEMhZg" base_ActivityNode="_4S88oJ2XEeW4i7v9QEMhZg" base_Action="_4S88oJ2XEeW4i7v9QEMhZg" base_OpaqueAction="_4S88oJ2XEeW4i7v9QEMhZg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_8_cg8J2XEeW4i7v9QEMhZg" base_Element="_8_Rh0J2XEeW4i7v9QEMhZg" base_ControlFlow="_8_Rh0J2XEeW4i7v9QEMhZg"/>
+  <BPMNProfile:ManualTask xmi:id="_O7tSMJ2YEeW4i7v9QEMhZg" base_Element="_O7iTEJ2YEeW4i7v9QEMhZg" base_ActivityNode="_O7iTEJ2YEeW4i7v9QEMhZg" base_Action="_O7iTEJ2YEeW4i7v9QEMhZg" base_OpaqueAction="_O7iTEJ2YEeW4i7v9QEMhZg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_QuT4QJ2YEeW4i7v9QEMhZg" base_Element="_QuJgMJ2YEeW4i7v9QEMhZg" base_ControlFlow="_QuJgMJ2YEeW4i7v9QEMhZg"/>
+  <BPMNProfile:SequenceFlow xmi:id="_exhv0J2iEeWsTNbcH1gSQQ" base_Element="_exSfQJ2iEeWsTNbcH1gSQQ" base_ControlFlow="_exSfQJ2iEeWsTNbcH1gSQQ"/>
+  <BPMNProfile:EndEvent xmi:id="_bqBD4J50EeWHhcFWyAfOIA" base_Element="_bpYxwJ50EeWHhcFWyAfOIA" base_ActivityNode="_bpYxwJ50EeWHhcFWyAfOIA" base_FlowFinalNode="_bpYxwJ50EeWHhcFWyAfOIA" base_FinalNode="_bpYxwJ50EeWHhcFWyAfOIA"/>
+</xmi:XMI>

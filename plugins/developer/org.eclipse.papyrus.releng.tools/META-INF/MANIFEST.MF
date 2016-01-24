@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-SymbolicName: org.eclipse.papyrus.releng.tools;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %Bundle-Name
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;bundle-version="2.6.0",

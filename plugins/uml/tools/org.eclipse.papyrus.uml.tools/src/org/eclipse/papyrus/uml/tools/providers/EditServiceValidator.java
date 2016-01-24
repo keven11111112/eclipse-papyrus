@@ -11,13 +11,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.providers;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.papyrus.uml.tools.Activator;
 
 /**
@@ -35,6 +42,8 @@ public class EditServiceValidator {
 	private EStructuralFeature editedFeature;
 
 	private IElementEditService editingService;
+
+	private Map<String, Object> adviceCache;
 
 	/**
 	 * Constructor
@@ -54,6 +63,16 @@ public class EditServiceValidator {
 			// log error service not found...
 			Activator.log.warn("Could not create service for " + EMFCoreUtil.getQualifiedName(editedEObject, true));
 		}
+
+		// Bug 485259: Use a cache for the advices, as we will build many SetRequests for the same element type
+		adviceCache = new HashMap<String, Object>();
+		try {
+			RequestCacheEntries.initializeEObjCache(editedEObject, adviceCache);
+			adviceCache.put(IRequestCacheEntries.Dependent_Elements, new HashSet<Object>()); // The set will be populated on the fly
+			adviceCache.put(IRequestCacheEntries.Checked_Elements, new HashSet<Object>()); // The set will be populated on the fly
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
 	}
 
 	/**
@@ -62,7 +81,7 @@ public class EditServiceValidator {
 	 *
 	 * @param element
 	 * @return
-	 *         True if the given element is valid
+	 * 		True if the given element is valid
 	 */
 	public boolean isValidValue(Object element) {
 		// Get semantic element
@@ -73,6 +92,7 @@ public class EditServiceValidator {
 
 		// Test editing command...
 		SetRequest req = new SetRequest(editedEObject, editedFeature, semanticElement);
+		req.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
 		if ((editingService != null) && (editingService.canEdit(req))) {
 			return true;
 		}

@@ -103,7 +103,7 @@ public class RowHeaderLayerStack extends AbstractLayerTransform {
 		// I know that selection layer is probably false
 		final RowHeaderLayer rowHeaderLayer = new RowHeaderLayer(dataLayer, bodyLayer, /* bodyLayer.getSelectionLayer() */new SelectionLayer(dataLayer), false);
 		rowHeaderLayer.addConfiguration(new PapyrusRowResizeBindingsConfiguration());
-		// ne marche pas! but : avoir le même type de cellule dans les headers des lignes et des colonnes
+		// Did not work ! Needed : Have the same type of cell in row and column headers
 		rowHeaderLayer.addConfiguration(new PapyrusRowHeaderStyleConfiguration());
 		// final IConfiguration configuration = new CustomConfig();
 		// setUnderlyingLayer(sortHeaderLayer);

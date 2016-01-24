@@ -81,23 +81,12 @@ public class JoinNodeEditPart extends RoundedCompartmentEditPart {
 	}
 
 	/**
-	 * Return the edit policy to resize figure as a fork or a join
-	 *
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#getPrimaryDragEditPolicy()
-	 * @return EditPolicy
-	 * @generated NOT
-	 */
-	@Override
-	public EditPolicy getPrimaryDragEditPolicy() {
-		return new ForkJoinResizeEditPolicy();
-	}
-
-	/**
 	 * @generated
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());

@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Library Palette
 Bundle-SymbolicName: org.eclipse.papyrus.training.library.palette;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Export-Package: org.eclipse.papyrus.training.library.palette
+Bundle-Name: Library Palette
+Bundle-Version: 1.1.4.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.1"
-Bundle-Vendor: Eclipse Modeling Project
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.4"
+Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.papyrus.training.library.palette
+Bundle-Vendor: Eclipse Modeling Project

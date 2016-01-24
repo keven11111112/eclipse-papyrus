@@ -3,7 +3,7 @@ Export-Package: org.eclipse.papyrus.diagramtemplate,
  org.eclipse.papyrus.diagramtemplate.impl,
  org.eclipse.papyrus.diagramtemplate.util
 Bundle-SymbolicName: org.eclipse.papyrus.diagramtemplate;singleton:=true
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin

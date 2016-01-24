@@ -9,7 +9,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.infra.viewpoints.iso42010,
  org.eclipse.papyrus.infra.viewpoints.iso42010.impl,
  org.eclipse.papyrus.infra.viewpoints.iso42010.util
-Bundle-Version: 1.1.3.qualifier
+Bundle-Version: 1.1.4.qualifier
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-Localization: plugin
