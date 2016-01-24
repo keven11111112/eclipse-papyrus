@@ -11,12 +11,10 @@
  *  Jeremie Tatibouet (CEA LIST)
  *
  *****************************************************************************/
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.VertexActivation;
 
 public class StateConfiguration {
 

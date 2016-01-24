@@ -1,10 +1,10 @@
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers;
 
 import java.util.List;
 
 import org.eclipse.papyrus.moka.composites.Semantics.CompositeStructures.StructuredClasses.CS_Object;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications.StateMachineObjectActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineObjectActivation;
 import org.eclipse.uml2.uml.Class;
 
 public class StateMachineObject extends CS_Object {

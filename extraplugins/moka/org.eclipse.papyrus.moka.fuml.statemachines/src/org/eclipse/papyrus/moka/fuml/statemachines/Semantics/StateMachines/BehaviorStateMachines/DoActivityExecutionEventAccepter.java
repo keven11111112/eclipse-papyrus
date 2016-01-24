@@ -11,11 +11,11 @@
  *  Jeremie Tatibouet (CEA LIST) - Based on Ed Seidewitz remarks
  *
  *****************************************************************************/
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Communications;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel.DoActivityContextObject;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.DoActivityContextObject;
 
 public class DoActivityExecutionEventAccepter extends EventAccepter {
 

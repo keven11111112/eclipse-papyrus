@@ -12,7 +12,7 @@
  *  Arnaud Cuccuru (CEA LIST)
  *
  *****************************************************************************/
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Classes.Kernel;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.Expressions;
 
 import java.util.ArrayList;
 import java.util.List;
