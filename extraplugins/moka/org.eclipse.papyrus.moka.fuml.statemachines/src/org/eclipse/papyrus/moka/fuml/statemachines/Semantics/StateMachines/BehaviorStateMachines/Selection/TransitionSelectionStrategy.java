@@ -16,11 +16,24 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineExecution;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.TransitionActivation;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.Configuration.StateMachineConfiguration;
 
 public abstract class TransitionSelectionStrategy{
-				
-	public abstract List<TransitionActivation> selectTransitions(StateMachineConfiguration configuration, EventOccurrence eventOccurrence);
+	
+	// The state-machine execution for which the configuration
+	// will be used to determine transition which can be fired
+	protected StateMachineExecution execution;
+	
+	public TransitionSelectionStrategy(StateMachineExecution execution){
+		this.execution = execution;
+	}
+	
+	/*
+	 *  Describe  the process of selecting transition that can be fired using the given event
+	 *  occurrence. Note that the selection only assesses outgoing transition that are in the
+	 *  state-machine configuration. Priority rules introduced by hierarchy are taken into account
+	 */
+	public abstract List<TransitionActivation> selectTransitions(EventOccurrence eventOccurrence);
 	
 }
