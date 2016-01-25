@@ -15,7 +15,6 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.Beha
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.DoActivityContextObject;
 
 public class DoActivityExecutionEventAccepter extends EventAccepter {
 

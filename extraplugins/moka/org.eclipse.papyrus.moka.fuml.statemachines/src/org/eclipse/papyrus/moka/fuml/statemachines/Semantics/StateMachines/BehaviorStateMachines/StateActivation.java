@@ -25,7 +25,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.DoActivityContextObject;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Pseudostate;

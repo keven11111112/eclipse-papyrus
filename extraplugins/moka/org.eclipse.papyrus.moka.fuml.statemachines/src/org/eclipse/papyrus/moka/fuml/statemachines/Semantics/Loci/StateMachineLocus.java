@@ -15,7 +15,7 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.StateMachineObject;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineObject;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 

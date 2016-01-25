@@ -11,7 +11,7 @@
  *  Jeremie Tatibouet (CEA LIST) - Based on Ed Seidewitz remarks
  *
  *****************************************************************************/
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines;
 
 import java.util.List;
 
@@ -22,8 +22,6 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Ex
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.DoActivityExecutionEventAccepter;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.StructuralFeature;
 
