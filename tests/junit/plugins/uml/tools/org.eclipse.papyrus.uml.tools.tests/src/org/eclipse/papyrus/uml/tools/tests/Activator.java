@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,17 +8,19 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.tests;
 
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.tools.tests"; //$NON-NLS-1$
@@ -34,11 +36,6 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -46,11 +43,6 @@ public class Activator extends AbstractUIPlugin {
 		log = new LogHelper(this);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;

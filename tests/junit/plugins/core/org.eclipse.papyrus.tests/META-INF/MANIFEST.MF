@@ -116,4 +116,4 @@ Import-Package: org.eclipse.papyrus.infra.core.sasheditor.di.tests,
  org.eclipse.papyrus.uml.service.types.tests.suites,
  org.eclipse.papyrus.uml.profile.drafter.tests,
  org.eclipse.papyrus.uml.profile.tests
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

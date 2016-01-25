@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,13 +13,15 @@
 
 package org.eclipse.papyrus.infra.filters.tests;
 
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.runner.Headless;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * The master test suite for the plug-in.
  */
+@Headless
 @RunWith(ClassificationSuite.class)
 @SuiteClasses(FiltersAllTests.class)
 public class AllTests {

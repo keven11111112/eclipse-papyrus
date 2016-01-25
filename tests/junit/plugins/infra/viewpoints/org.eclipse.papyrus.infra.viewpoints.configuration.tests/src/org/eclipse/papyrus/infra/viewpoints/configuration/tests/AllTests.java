@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,8 +13,9 @@
 
 package org.eclipse.papyrus.infra.viewpoints.configuration.tests;
 
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.runner.Headless;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
@@ -22,6 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses(ConfigurationAllTests.class)
+@Headless
 public class AllTests {
 	// Nothing required
 }

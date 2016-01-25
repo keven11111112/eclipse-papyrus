@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.tools.tests;
 
 import org.eclipse.papyrus.infra.tools.databinding.AllDataBindingTests;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -24,6 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({ AllDataBindingTests.class })
+@Headless
 public class AllTests {
 
 	public AllTests() {

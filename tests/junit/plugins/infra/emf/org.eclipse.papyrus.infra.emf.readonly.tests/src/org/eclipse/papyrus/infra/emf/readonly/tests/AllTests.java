@@ -16,6 +16,7 @@ import org.eclipse.papyrus.infra.emf.readonly.PapyrusROTransactionalEditingDomai
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManagerTest;
 import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyTesterTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
@@ -23,6 +24,7 @@ import org.junit.runners.Suite.SuiteClasses;
 /**
  * Master test suite.
  */
+@Headless
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		PapyrusROTransactionalEditingDomainTest.class, ReadOnlyManagerTest.class, ReadOnlyTesterTest.class

@@ -27,11 +27,13 @@ import org.eclipse.papyrus.infra.core.utils.AdapterUtilsTest;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFutureTest;
 import org.eclipse.papyrus.infra.core.utils.JobExecutorServiceTest;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 
 
+@Headless
 @RunWith(ClassificationSuite.class)
 @SuiteClasses({
 		// {oep.resource}

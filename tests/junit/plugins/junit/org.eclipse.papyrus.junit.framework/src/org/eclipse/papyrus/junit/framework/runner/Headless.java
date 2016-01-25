@@ -11,19 +11,19 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.services.semantic.tests;
+package org.eclipse.papyrus.junit.framework.runner;
 
-import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
-import org.eclipse.papyrus.junit.framework.runner.Headless;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite.SuiteClasses;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * The master test suite for the plug-in.
+ * Marker annotation for test suites that can (and should be) run in "headless mode"
+ * (without the Eclipse Workbench).
  */
-@RunWith(ClassificationSuite.class)
-@SuiteClasses(SemanticServiceTest.class)
-@Headless
-public class AllTests {
-	// Nothing required
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.TYPE, ElementType.PACKAGE })
+public @interface Headless {
+	// Empty
 }

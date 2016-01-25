@@ -19,4 +19,4 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.filters.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

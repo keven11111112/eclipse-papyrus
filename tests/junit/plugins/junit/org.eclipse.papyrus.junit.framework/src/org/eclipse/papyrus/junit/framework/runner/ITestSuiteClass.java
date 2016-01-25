@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bugs 451230, 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.junit.framework.runner;
 
@@ -25,4 +26,13 @@ public interface ITestSuiteClass {
 	 */
 	public Class<?> getMainTestSuiteClass();
 
+	/**
+	 * Queries whether the test suite runs in "headless mode" (without the Eclipse Workbench).
+	 * 
+	 * @return whether I am a headless test suite
+	 */
+	default boolean isHeadless() {
+		Class<?> main = getMainTestSuiteClass();
+		return (main != null) && main.isAnnotationPresent(Headless.class);
+	}
 }
