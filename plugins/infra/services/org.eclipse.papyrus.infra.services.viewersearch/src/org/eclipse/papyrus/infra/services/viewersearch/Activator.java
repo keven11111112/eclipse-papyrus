@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,18 +8,19 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.viewersearch;
 
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The Class Activator.
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends Plugin {
 
 	/** The context. */
 	private static BundleContext context;
@@ -41,35 +41,11 @@ public class Activator extends AbstractUIPlugin {
 		return context;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
-	 */
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 *
-	 * @param bundleContext
-	 * @throws Exception
-	 */
-
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 		log = new LogHelper(this);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 *
-	 * @param bundleContext
-	 * @throws Exception
-	 */
 
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
