@@ -1,12 +1,15 @@
-package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines;
+package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.Behaviors;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ArrivalSignal;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.CompletionEventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.DeferredEventOccurrence;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateActivation;
 
-public class StateMachineObjectActivation extends ObjectActivation {
+public class SM_ObjectActivation extends ObjectActivation {
 
 	// Events that have been dispatched but that are actually deferred are placed
 	// in this particular event pool. When the state that constrained them to be
@@ -15,7 +18,7 @@ public class StateMachineObjectActivation extends ObjectActivation {
 	// again) that is handled by the object activation.
 	public List<DeferredEventOccurrence> deferredEventPool;
 	
-	public StateMachineObjectActivation(){
+	public SM_ObjectActivation(){
 		super();
 		this.deferredEventPool = new ArrayList<DeferredEventOccurrence>();
 	}

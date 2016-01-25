@@ -20,6 +20,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.Behaviors.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
@@ -126,7 +127,7 @@ public class StateMachineExecution extends Execution {
 		// Instead of using a simple ObjectActivation we use a StateMachineObjectActivation.
 		// This specialized kind of ObjectActivation allows the registering of completion events.
 		if (this.objectActivation == null) {
-			this.objectActivation = new StateMachineObjectActivation();
+			this.objectActivation = new SM_ObjectActivation();
 			this.objectActivation.object = this;
 		}
 		this.objectActivation.startBehavior(classifier, inputs);

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.Ev
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.InvocationEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.CommonBehavior.Behaviors.SM_ObjectActivation;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -79,7 +80,7 @@ public class StateActivation extends VertexActivation {
 		// context of the state-machine a completion event occurrence. This event is
 		// placed in the pool before any other event
 		Object_ context = this.getExecutionContext();
-		((StateMachineObjectActivation)context.objectActivation).registerCompletionEvent(this);
+		((SM_ObjectActivation)context.objectActivation).registerCompletionEvent(this);
 	}
 	
 	public List<PseudostateActivation> getConnectionPointActivation(){
@@ -380,7 +381,7 @@ public class StateActivation extends VertexActivation {
 		// Postpone the time at which this event occurrence will be available at the event pool.
 		// The given event occurrence is placed in the deferred event pool and will be released
 		// only when the current state activation will leave the state-machine configuration.
-		StateMachineObjectActivation objectActivation = (StateMachineObjectActivation) this.getExecutionContext().objectActivation;
+		SM_ObjectActivation objectActivation = (SM_ObjectActivation) this.getExecutionContext().objectActivation;
 		DeferredEventOccurrence deferredEventOccurrence = new DeferredEventOccurrence();
 		deferredEventOccurrence.constrainingStateActivation = this;
 		deferredEventOccurrence.deferredEventOccurrence = eventOccurrence;
@@ -393,7 +394,7 @@ public class StateActivation extends VertexActivation {
 		// 2 - The events are removed from the deferred event pool
 		// Note: The release of events deferred by that state occurs when this latter
 		// leaves the state-machine configuration.
-		StateMachineObjectActivation objectActivation = (StateMachineObjectActivation) this.getExecutionContext().objectActivation;
+		SM_ObjectActivation objectActivation = (SM_ObjectActivation) this.getExecutionContext().objectActivation;
 		List<DeferredEventOccurrence> releasedDeferredEvent = new ArrayList<DeferredEventOccurrence>();
 		for(int i=0; i < objectActivation.deferredEventPool.size(); i++){
 			DeferredEventOccurrence eventOccurrence = objectActivation.deferredEventPool.get(i);

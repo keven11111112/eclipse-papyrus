@@ -24,8 +24,8 @@ import org.eclipse.papyrus.moka.composites.CompositeStructuresExecutionEngine;
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Executor;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.debug.ControlDelegate;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.StateMachineExecutionFactory;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.StateMachineLocus;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.SM_ExecutionFactory;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.SM_Locus;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.papyrus.moka.fuml.statemachines.registry.SM_SemanticStrategyRegistry;
 import org.eclipse.papyrus.uml.extensionpoints.library.IRegisteredLibrary;
@@ -41,8 +41,8 @@ public class StateMachineExecutionEngine extends CompositeStructuresExecutionEng
 		if(behavior!=null){
 			main = behavior;
 			// creates the locus, executor and execution factory
-			this.locus = new StateMachineLocus();
-			this.locus.setFactory(new StateMachineExecutionFactory());
+			this.locus = new SM_Locus();
+			this.locus.setFactory(new SM_ExecutionFactory());
 			this.locus.setExecutor(new CS_Executor());
 			// initializes built-in primitive types
 			this.initializeBuiltInPrimitiveTypes(locus);

@@ -24,8 +24,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci.StateMachineSemanticVisitor;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.Expressions.StateMachineOpaqueExpressionEvaluation;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.Expressions.SM_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Port;
@@ -115,7 +114,7 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 			if(specification!=null){
 				Evaluation evaluation = this.getExecutionLocus().factory.createEvaluation(specification);
 				if (specification instanceof OpaqueExpression) {
-					((StateMachineOpaqueExpressionEvaluation)evaluation).context = this.getExecutionContext() ;
+					((SM_OpaqueExpressionEvaluation)evaluation).context = this.getExecutionContext() ;
 				}
 				if(evaluation!=null){
 					BooleanValue evaluationResult = (BooleanValue)evaluation.evaluate() ;

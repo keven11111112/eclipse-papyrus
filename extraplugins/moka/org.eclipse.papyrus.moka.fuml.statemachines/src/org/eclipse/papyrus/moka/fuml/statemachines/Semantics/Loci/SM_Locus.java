@@ -15,18 +15,18 @@ package org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Loci;
 
 import org.eclipse.papyrus.moka.composites.Semantics.Loci.LociL3.CS_Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
-import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StateMachines.BehaviorStateMachines.StateMachineObject;
+import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.StructuredClassifiers.Classes.SM_Object;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 
-public class StateMachineLocus extends CS_Locus {
+public class SM_Locus extends CS_Locus {
 	
 	public Object_ instantiate(Class type) {
 		Object_ object = null;
 		if (type instanceof Behavior) {
 			object = super.instantiate(type);
 		} else {
-			object = new StateMachineObject();
+			object = new SM_Object();
 			object.types.add(type);
 			object.createFeatureValues();
 			this.add(object);
