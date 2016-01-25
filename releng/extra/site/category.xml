@@ -180,6 +180,12 @@
    <feature url="features/org.eclipse.papyrus.revisiontool.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.revisiontool.feature" version="0.7.0.qualifier">
       <category name="org.eclipse.papyrus.extra.others.category"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.manufacturing.extra.feature.source_0.7.0.qualifier.jar" id="org.eclipse.papyrus.manufacturing.extra.feature.source" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.manufacturing.extra.feature_0.7.0.qualifier.jar" id="org.eclipse.papyrus.manufacturing.extra.feature" version="0.7.0.qualifier">
+      <category name="org.eclipse.papyrus.extra.others.category"/>
+   </feature>
    <category-def name="org.eclipse.papyrus.extra.category" label="Papyrus Extra (All - Not recommended)">
       <description>
          Papyrus Extra Category
