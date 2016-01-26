@@ -64,7 +64,7 @@ public class Domain2Notation extends HashMap<EObject, Set<View>> {
 	 */
 	public void putView(View view) {
 		EObject element = view.getElement();
-		if (element == null) {
+		if (element == null && view instanceof Connector) {
 			final EObject source = ((Connector) view).getSource().getElement();
 			final EObject target = ((Connector) view).getTarget().getElement();
 			element = new EdgeWithNoSemanticElementRepresentationImpl(source, target, view.getType());
