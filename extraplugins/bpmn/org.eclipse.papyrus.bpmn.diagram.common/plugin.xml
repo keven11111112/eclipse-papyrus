@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin> 
    <extension
-         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
+         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
       <diagramCategory
             class="org.eclipse.papyrus.bpmn.diagram.common.commands.CreateBpmnModelCommand"
             description="Papyrus BPMN diagrams"
