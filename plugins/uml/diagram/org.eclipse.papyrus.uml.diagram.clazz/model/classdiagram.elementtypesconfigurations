@@ -1172,4 +1172,15 @@
         xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
         href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUVlYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xmi:id="_VPE3UJpvEeWZOI1l_xp4vg"
+      name="GeneralizationHelperAdvice"
+      description="Generalizarion specific advices (remove inconsistent views when a Generalization is deleted)"
+      identifier="org.eclipse.papyrus.uml.diagram.clazz.GeneralizationHelperAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.clazz.custom.helper.advice.GeneralizationHelperAdvice"
+      inheritance="all">
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Scma8FYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

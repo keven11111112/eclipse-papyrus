@@ -9,6 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 481317
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.advice;
@@ -26,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.ElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.papyrus.uml.diagram.common.util.GeneralizationUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;

@@ -9,7 +9,7 @@
  * Contributors:
  * 
  *		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 476873, 481317
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper.advice;
@@ -21,6 +21,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -37,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
+import org.eclipse.papyrus.uml.diagram.common.util.GeneralizationUtil;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
@@ -44,6 +46,7 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -131,7 +134,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			Collection<ConnectorEnd> referencers = EMFCoreUtil.getReferencers(movedProperty, refs);
 
 			IElementEditService provider = ElementEditServiceUtils.getCommandProvider(movedProperty);
-			if (provider != null) {
+			if (null != provider) {
 				for (ConnectorEnd end : referencers) {
 					// General case, delete the ConnectorEnd
 					DestroyElementRequest req = new DestroyElementRequest(end, false);
@@ -186,7 +189,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 			}
 		}
 
-		if (gmfCommand != null) {
+		if (null != gmfCommand) {
 			gmfCommand = gmfCommand.reduce();
 		}
 
@@ -204,7 +207,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 *            the original move request
 	 * @return the re-factoring command
 	 */
-	private ICommand getOppositePropertyRefactoringCommand(Property movedProperty, Association associationToRefactor, MoveRequest request) {
+	private ICommand getOppositePropertyRefactoringCommand(final Property movedProperty, final Association associationToRefactor, final MoveRequest request) {
 
 		Association relatedAssociation = movedProperty.getAssociation(); // Should not be null, test before calling method.
 		// get the opposite the property opposite
@@ -219,7 +222,7 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 		SetRequest setType = new SetRequest(oppositeEnd, UMLPackage.eINSTANCE.getTypedElement_Type(), request.getTargetContainer());
 
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(relatedAssociation);
-		if (provider != null) {
+		if (null != provider) {
 			return provider.getEditCommand(setType);
 		}
 
@@ -233,25 +236,26 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 * @return
 	 */
 	@Override
-	protected ICommand getAfterMoveCommand(MoveRequest request) {
+	protected ICommand getAfterMoveCommand(final MoveRequest request) {
 		ICommand moveCommand = super.getAfterMoveCommand(request);
 
 		Set<View> viewsToDestroy = new HashSet<View>();
 
 		@SuppressWarnings("unchecked")
-		Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
+		final Iterator<EObject> it = request.getElementsToMove().keySet().iterator();
 		while (it.hasNext()) {
-			EObject eObject = it.next();
+			final EObject eObject = it.next();
 
 			if (eObject instanceof Generalization) {
 				viewsToDestroy.addAll(getViewsToDestroy((Generalization) eObject));
+				viewsToDestroy.addAll(getViewsAccordingToGeneralization((Generalization) eObject));
 			}
 		}
 
-		Iterator<View> viewToDestroyIterator = viewsToDestroy.iterator();
+		final Iterator<View> viewToDestroyIterator = viewsToDestroy.iterator();
 		while (viewToDestroyIterator.hasNext()) {
-			View view = viewToDestroyIterator.next();
-			DeleteCommand destroyViewsCommand = new DeleteCommand(request.getEditingDomain(), view);
+			final View view = viewToDestroyIterator.next();
+			final DeleteCommand destroyViewsCommand = new DeleteCommand(request.getEditingDomain(), view);
 			moveCommand = CompositeCommand.compose(moveCommand, destroyViewsCommand);
 		}
 
@@ -266,16 +270,50 @@ public class ClassifierHelperAdvice extends AbstractEditHelperAdvice {
 	 *            the modified Classifier
 	 * @return the list of {@link View} to delete
 	 */
-	private Set<View> getViewsToDestroy(Generalization movedObject) {
+	private Set<View> getViewsToDestroy(final Generalization movedObject) {
 		Set<View> viewsToDestroy = new HashSet<View>();
 
-		Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(movedObject, null).iterator();
+		final Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(movedObject, null).iterator();
 		while (viewIt.hasNext()) {
-			View view = viewIt.next();
+			final View view = viewIt.next();
 
-			String containerType = ViewUtil.getViewContainer(view) != null ? ViewUtil.getViewContainer(view).getType() : null;
-			if (containerType != null) {
+			final String containerType = ViewUtil.getViewContainer(view) != null ? ViewUtil.getViewContainer(view).getType() : null;
+			if (null != containerType) {
 				viewsToDestroy.add(view);
+			}
+		}
+
+		return viewsToDestroy;
+	}
+	
+	/**
+	 * This methods looks for inconsistent views to delete in case the generalization is deleted or
+	 * re-oriented.
+	 *
+	 * @param generalization
+	 *            the modified generalization
+	 * @return the list of {@link View} to delete
+	 */
+	protected Set<View> getViewsAccordingToGeneralization(final Generalization generalization) {
+		Set<View> viewsToDestroy = new HashSet<View>();
+
+		final Classifier general = generalization.getGeneral();
+		if (null != general) {
+			// Parse members
+			final EList<NamedElement> members = general.getMembers();
+			for (final NamedElement member : members) {
+
+				// Find Views in Composite Structure Diagram that are referencing current member
+				final Iterator<View> viewIt = CrossReferencerUtil.getCrossReferencingViews(member, null).iterator();
+				while (viewIt.hasNext()) {
+					final View view = viewIt.next();
+
+					// Test if current view (member) is concerned by the deletion (re-orientation) of the generalization
+					final GeneralizationUtil util = new GeneralizationUtil();
+					if (util.isConcernedByGeneralizationChanges(generalization, view)) {
+						viewsToDestroy.add(view);
+					}
+				}
 			}
 		}
 
