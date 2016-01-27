@@ -81,12 +81,12 @@ class CppClassIncludeClassDeclaration {
 				if ((cl != classifier) && (!GenUtils.hasStereotype(cl, NoCodeGen)) || (GenUtils.hasStereotype(cl, External))) {
 					var declaration = "";
 					
-					if ((cl instanceof Enumeration) || (cl instanceof PrimitiveType)) {
-						// Ignore
-					} else if (cl instanceof DataType) {
-						declaration = CppGenUtils.openNSMinimal(cl) + "struct " + cl.name + ";" + CppGenUtils.closeNSMinimal(cl);
-					} else if (cl.eClass.equals(UMLFactory.eINSTANCE.getUMLPackage().getClass_())) {
-						declaration = CppGenUtils.openNSMinimal(cl).replaceAll("\r", "").replaceAll("\n", "") + "class " + cl.name + ";" + CppGenUtils.closeNSMinimal(cl).replaceAll("\r", "").replaceAll("\n", "");
+					if (!(cl instanceof Enumeration) && !(cl instanceof PrimitiveType)) {
+						if (cl instanceof DataType) {
+							declaration = CppGenUtils.openNSMinimal(cl) + "struct " + cl.name + ";" + CppGenUtils.closeNSMinimal(cl);
+						} else {
+							declaration = CppGenUtils.openNSMinimal(cl).replaceAll("\r", "").replaceAll("\n", "") + "class " + cl.name + ";" + CppGenUtils.closeNSMinimal(cl).replaceAll("\r", "").replaceAll("\n", "");
+						}
 					}
 					
 					if (declaration != "") {
