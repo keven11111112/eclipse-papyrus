@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.diagram.component.test;
 
 import org.eclipse.papyrus.uml.diagram.component.test.canonical.AllCanonicalTests;
+import org.eclipse.papyrus.uml.diagram.component.test.dnd.AllDropTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -22,11 +23,12 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-// canonical
-AllCanonicalTests.class
+		// canonical
+		AllCanonicalTests.class,
+		AllDropTests.class
 
-// load
-//LoadTests.class
+		// load
+		// LoadTests.class
 })
 public class AllTests {
 
