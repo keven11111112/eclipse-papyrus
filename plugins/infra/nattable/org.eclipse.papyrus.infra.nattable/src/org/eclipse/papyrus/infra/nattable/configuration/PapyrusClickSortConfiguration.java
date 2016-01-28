@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 486101
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
@@ -16,10 +17,11 @@ package org.eclipse.papyrus.infra.nattable.configuration;
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.BeveledBorderDecorator;
 import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.CellPainterDecorator;
 import org.eclipse.nebula.widgets.nattable.sort.config.DefaultSortConfiguration;
+import org.eclipse.nebula.widgets.nattable.sort.painter.SortableHeaderTextPainter;
 import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
 import org.eclipse.papyrus.infra.nattable.painter.CustomImagePainter;
 import org.eclipse.papyrus.infra.nattable.painter.CustomizedCellPainter;
-import org.eclipse.papyrus.infra.nattable.painter.PapyrusSortableHeaderTextPainter;
+import org.eclipse.papyrus.infra.nattable.painter.PapyrusSortIconPainter;
 
 /**
  * The abstract configuration used for the sort the sort
@@ -30,12 +32,10 @@ import org.eclipse.papyrus.infra.nattable.painter.PapyrusSortableHeaderTextPaint
 public abstract class PapyrusClickSortConfiguration extends DefaultSortConfiguration {
 
 	/**
-	 *
 	 * Constructor.
-	 *
 	 */
 	public PapyrusClickSortConfiguration() {
-		super(new BeveledBorderDecorator(new CellPainterDecorator(new PapyrusSortableHeaderTextPainter(new CustomizedCellPainter(), CellEdgeEnum.RIGHT), CellEdgeEnum.LEFT, new CustomImagePainter())));
+		super(new BeveledBorderDecorator(new CellPainterDecorator(new SortableHeaderTextPainter(new CustomizedCellPainter(), CellEdgeEnum.RIGHT, new PapyrusSortIconPainter(true)), CellEdgeEnum.LEFT, new CustomImagePainter())));
 	}
 
 }

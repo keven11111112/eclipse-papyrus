@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *   Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 486101
  *
  *****************************************************************************/
 
@@ -16,8 +17,8 @@ package org.eclipse.papyrus.infra.nattable.painter;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
+import org.eclipse.nebula.widgets.nattable.painter.cell.decorator.CellPainterDecorator;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
-import org.eclipse.nebula.widgets.nattable.tree.config.DefaultTreeLayerConfiguration;
 import org.eclipse.nebula.widgets.nattable.tree.painter.IndentedTreeImagePainter;
 import org.eclipse.nebula.widgets.nattable.tree.painter.TreeImagePainter;
 import org.eclipse.nebula.widgets.nattable.ui.util.CellEdgeEnum;
@@ -29,15 +30,11 @@ import org.eclipse.swt.graphics.Rectangle;
 
 /**
  * This intended tree painter allows us to ignore indentation when the table displays the hierarchy as multi column
- *
- * @author VL222926
- *
  */
 public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 
 	/**
 	 * Constructor.
-	 *
 	 */
 	public PapyrusIndentedTreeImagePainter() {
 		super();
@@ -58,11 +55,17 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 	 * Constructor.
 	 *
 	 * @param treeIndent
+	 *            The number of pixels to indent per depth.
 	 * @param interiorPainter
+	 *            the base {@link ICellPainter} to use
 	 * @param paintBg
+	 *            flag to configure whether the {@link TreeImagePainter} should
+	 *            paint the background or not
 	 * @param interiorPainterToSpanFullWidth
+	 *            flag to configure how the bounds of the base painter should be
+	 *            calculated
 	 */
-	public PapyrusIndentedTreeImagePainter(int treeIndent, ICellPainter interiorPainter, boolean paintBg, boolean interiorPainterToSpanFullWidth) {
+	public PapyrusIndentedTreeImagePainter(final int treeIndent, final ICellPainter interiorPainter, final boolean paintBg, final boolean interiorPainterToSpanFullWidth) {
 		super(treeIndent, interiorPainter, paintBg, interiorPainterToSpanFullWidth);
 	}
 
@@ -70,13 +73,27 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 	 * Constructor.
 	 *
 	 * @param treeIndent
+	 *            The number of pixels to indent per depth.
 	 * @param interiorPainter
+	 *            the base {@link ICellPainter} to use
 	 * @param cellEdge
+	 *            the edge of the cell on which the tree state indicator
+	 *            decoration should be applied
 	 * @param paintBg
+	 *            flag to configure whether the {@link TreeImagePainter} should
+	 *            paint the background or not
 	 * @param spacing
+	 *            the number of pixels that should be used as spacing between
+	 *            cell edge and decoration
 	 * @param paintDecorationDependent
+	 *            flag to configure if the base {@link ICellPainter} should
+	 *            render decoration dependent or not. If it is set to
+	 *            <code>false</code>, the base painter will always paint at the
+	 *            same coordinates, using the whole cell bounds,
+	 *            <code>true</code> will cause the bounds of the cell to shrink
+	 *            for the base painter.
 	 */
-	public PapyrusIndentedTreeImagePainter(int treeIndent, ICellPainter interiorPainter, CellEdgeEnum cellEdge, boolean paintBg, int spacing, boolean paintDecorationDependent) {
+	public PapyrusIndentedTreeImagePainter(final int treeIndent, final ICellPainter interiorPainter, final CellEdgeEnum cellEdge, final boolean paintBg, final int spacing, final boolean paintDecorationDependent) {
 		super(treeIndent, interiorPainter, cellEdge, paintBg, spacing, paintDecorationDependent);
 	}
 
@@ -84,14 +101,30 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 	 * Constructor.
 	 *
 	 * @param treeIndent
+	 *            The number of pixels to indent per depth.
 	 * @param interiorPainter
+	 *            the base {@link ICellPainter} to use
 	 * @param cellEdge
+	 *            the edge of the cell on which the tree state indicator
+	 *            decoration should be applied
 	 * @param decoratorPainter
+	 *            the {@link ICellPainter} that should be used to paint the tree
+	 *            state related decoration
 	 * @param paintBg
+	 *            flag to configure whether the {@link CellPainterDecorator}
+	 *            should paint the background or not
 	 * @param spacing
+	 *            the number of pixels that should be used as spacing between
+	 *            cell edge and decoration
 	 * @param paintDecorationDependent
+	 *            flag to configure if the base {@link ICellPainter} should
+	 *            render decoration dependent or not. If it is set to
+	 *            <code>false</code>, the base painter will always paint at the
+	 *            same coordinates, using the whole cell bounds,
+	 *            <code>true</code> will cause the bounds of the cell to shrink
+	 *            for the base painter.
 	 */
-	public PapyrusIndentedTreeImagePainter(int treeIndent, ICellPainter interiorPainter, CellEdgeEnum cellEdge, ICellPainter decoratorPainter, boolean paintBg, int spacing, boolean paintDecorationDependent) {
+	public PapyrusIndentedTreeImagePainter(final int treeIndent, final ICellPainter interiorPainter, final CellEdgeEnum cellEdge, final ICellPainter decoratorPainter, final boolean paintBg, final int spacing, final boolean paintDecorationDependent) {
 		super(treeIndent, interiorPainter, cellEdge, decoratorPainter, paintBg, spacing, paintDecorationDependent);
 	}
 
@@ -99,9 +132,15 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 	 * Constructor.
 	 *
 	 * @param treeIndent
+	 *            The number of pixels to indent per depth.
 	 * @param treeImagePainter
+	 *            The ICellPainter that should be used to paint the images in
+	 *            the tree. It needs to be of type of TreeImagePainter that
+	 *            paints expand/collapse/leaf icons regarding the node state,
+	 *            because the ui bindings for expand/collapse are registered
+	 *            against that type.
 	 */
-	public PapyrusIndentedTreeImagePainter(int treeIndent, TreeImagePainter treeImagePainter) {
+	public PapyrusIndentedTreeImagePainter(final int treeIndent, final TreeImagePainter treeImagePainter) {
 		super(treeIndent, treeImagePainter);
 	}
 
@@ -109,24 +148,20 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 	 * Constructor.
 	 *
 	 * @param treeIndent
+	 *            The number of pixels to indent per depth.
 	 */
-	public PapyrusIndentedTreeImagePainter(int treeIndent) {
+	public PapyrusIndentedTreeImagePainter(final int treeIndent) {
 		super(treeIndent);
 	}
 
 	/**
-	 *
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.tree.painter.IndentedTreeImagePainter#getWrappedPainterBounds(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.swt.graphics.GC, org.eclipse.swt.graphics.Rectangle,
 	 *      org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
-	 *
-	 * @param cell
-	 * @param gc
-	 * @param bounds
-	 * @param configRegistry
-	 * @return
 	 */
 	@Override
-	public Rectangle getWrappedPainterBounds(ILayerCell cell, GC gc, Rectangle bounds, IConfigRegistry configRegistry) {
+	public Rectangle getWrappedPainterBounds(final ILayerCell cell, final GC gc, final Rectangle bounds, final IConfigRegistry configRegistry) {
 		INattableModelManager tableManager = getTableManager(configRegistry);
 		int depth = getDepth(cell);
 		if (TableHelper.isMultiColumnTreeTable(tableManager)) {
@@ -146,7 +181,7 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 	 * @return
 	 */
 	@Override
-	public int getPreferredWidth(ILayerCell cell, GC gc, IConfigRegistry configRegistry) {
+	public int getPreferredWidth(final ILayerCell cell, final GC gc, final IConfigRegistry configRegistry) {
 		INattableModelManager tableManager = getTableManager(configRegistry);
 		int depth = getDepth(cell);
 		if (TableHelper.isMultiColumnTreeTable(tableManager)) {
@@ -156,32 +191,12 @@ public class PapyrusIndentedTreeImagePainter extends IndentedTreeImagePainter {
 		return indent + super.getPreferredWidth(cell, gc, configRegistry);
 	}
 
-
-	/**
-	 * @param cell
-	 *            The cell for which the depth/level in the tree structure is requested.
-	 * @return The depth/level in the tree structure the given cell is located.
-	 */
-	// TODO : ask to nattable to open there api to use this method from the super class
-	protected int getDepth(ILayerCell cell) {
-		int depth = 0;
-
-		for (String configLabel : cell.getConfigLabels().getLabels()) {
-			if (configLabel.startsWith(DefaultTreeLayerConfiguration.TREE_DEPTH_CONFIG_TYPE)) {
-				String[] tokens = configLabel.split("_"); //$NON-NLS-1$
-				depth = Integer.valueOf(tokens[tokens.length - 1]).intValue();
-			}
-		}
-
-		return depth;
-	}
-
 	/**
 	 *
 	 * @param configRegistry
 	 *            the config registry
 	 * @return
-	 *         the INattable manager from the config registry
+	 * 		the INattable manager from the config registry
 	 */
 	private INattableModelManager getTableManager(final IConfigRegistry configRegistry) {
 		return configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
