@@ -64,7 +64,7 @@ public class LinkLFSVGNodePlateFigure extends SVGNodePlateFigure {
 		if (followSVGPapyrusPath) {
 			result = new PapyrusSlidableSnapToGridAnchor(this, p);
 		} else {
-			result = new SlidableRoundedRectangleAnchor(this, p);
+			result = new LinkLFSlidableRoundedRectangleAnchor(this, p);
 		}
 		result.setEditPart(myHost);
 

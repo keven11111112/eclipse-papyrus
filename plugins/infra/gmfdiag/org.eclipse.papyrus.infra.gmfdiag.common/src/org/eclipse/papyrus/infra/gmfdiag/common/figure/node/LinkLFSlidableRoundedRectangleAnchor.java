@@ -22,27 +22,15 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.LineSeg;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.RoundedRectangleUtil;
 
 /**
  * A slideable anchor for rounded rectangle figures.
  */
-public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
+public class LinkLFSlidableRoundedRectangleAnchor extends PapyrusSlidableSnapToGridAnchor {
 
 	/** the offset applied to the size of the rectangle */
 	private final Dimension offset = new Dimension();
-
-	/**
-	 * Constructs a SlidableRoundedRectangleAnchor without a desired anchor
-	 * point.
-	 * 
-	 * @param figure
-	 *            the anchorable figure
-	 */
-	public SlidableRoundedRectangleAnchor(final NodeFigure figure) {
-		super(figure);
-	}
 
 	/**
 	 * Constructs a SlidableRoundedRectangleAnchor with a desired anchor
@@ -53,7 +41,7 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	 * @param p
 	 *            the anchor precision point
 	 */
-	public SlidableRoundedRectangleAnchor(final NodeFigure figure, final PrecisionPoint p) {
+	public LinkLFSlidableRoundedRectangleAnchor(final NodeFigure figure, final PrecisionPoint p) {
 		super(figure, p);
 	}
 
@@ -92,7 +80,9 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor#getPolygonPoints()
+	 *
+	 * @return
 	 */
 	@Override
 	public PointList getPolygonPoints() {
@@ -174,9 +164,8 @@ public class SlidableRoundedRectangleAnchor extends SlidableAnchor {
 	}
 
 	/**
-	 * Get the location on the border with a specific ownReference point. Used for the PortEditPart.
-	 * 
 	 * {@inheritDoc}
+	 * Get the location on the border with a specific ownReference point. Used for the PortEditPart
 	 */
 	@Override
 	public Point getLocation(final Point refParent, final Point refPort) {
