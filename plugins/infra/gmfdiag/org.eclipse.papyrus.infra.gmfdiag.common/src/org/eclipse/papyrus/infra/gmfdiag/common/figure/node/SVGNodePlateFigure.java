@@ -441,7 +441,7 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 			}
 			if (defaultNodePlate instanceof IRoundedRectangleFigure) {
 				defaultNodePlate.setBounds(this.getBounds());
-				return new SlidableRoundedRectangleAnchor(this, new PrecisionPoint(0, 0));
+				return new SlidableRoundedRectangleAnchor(this);
 			}
 		}
 		return super.createDefaultAnchor();
