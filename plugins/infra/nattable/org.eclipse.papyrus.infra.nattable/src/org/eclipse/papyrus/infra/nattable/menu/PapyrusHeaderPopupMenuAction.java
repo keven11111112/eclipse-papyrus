@@ -43,6 +43,16 @@ public class PapyrusHeaderPopupMenuAction extends PopupMenuAction {
 	private final String menuLocation;
 
 	/**
+	 * The menu manager for the menu creation.
+	 */
+	private MenuManager menuManager = null;
+
+	/**
+	 * The create menu.
+	 */
+	private Menu menu = null;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param menu
@@ -54,15 +64,19 @@ public class PapyrusHeaderPopupMenuAction extends PopupMenuAction {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.nebula.widgets.nattable.ui.menu.PopupMenuAction#run(org.eclipse.nebula.widgets.nattable.NatTable, org.eclipse.swt.events.MouseEvent)
-	 *
-	 * @param natTable
-	 * @param event
 	 */
 	@Override
-	public void run(NatTable natTable, MouseEvent event) {
-		final MenuManager menuManager = new MenuManager(MenuConstants.POPUP, this.menuId);
-		final Menu menu = menuManager.createContextMenu(natTable);
+	public void run(final NatTable natTable, final MouseEvent event) {
+		if (null != menu && null != menuManager) {
+			menu.dispose();
+			menuManager.dispose();
+		}
+
+		menuManager = new MenuManager(MenuConstants.POPUP, this.menuId);
+		menu = menuManager.createContextMenu(natTable);
 
 		addMenuSeparators(menuManager);
 		/* This listener allows us to fill the popup menu using extension point contributing to the popup menu of the table */
@@ -96,9 +110,11 @@ public class PapyrusHeaderPopupMenuAction extends PopupMenuAction {
 		final Separator general = new Separator(MenuConstants.GENERAL_SEPARATOR_ID);
 		general.setVisible(false);
 		menuManager.add(general);
-		
+
 		final Separator edit = new Separator(MenuConstants.EDIT_SEPARATOR_ID);
 		edit.setVisible(true);
 		menuManager.add(edit);
 	}
+
+
 }
