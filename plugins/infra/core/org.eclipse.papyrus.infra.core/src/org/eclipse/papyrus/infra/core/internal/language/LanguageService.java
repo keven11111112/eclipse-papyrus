@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.core.language.ILanguageChangeListener;
 import org.eclipse.papyrus.infra.core.language.ILanguageProvider;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.language.LanguageChangeEvent;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.IService;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
@@ -54,6 +55,17 @@ public class LanguageService extends PlatformObject implements ILanguageService,
 
 		for (ILanguageProvider next : languageProviders) {
 			Iterables.addAll(result, next.getLanguages(this, modelURI, uriHasFileExtension));
+		}
+
+		return result;
+	}
+
+	@Override
+	public Set<ILanguage> getLanguages(ModelSet modelSet) {
+		Set<ILanguage> result = Sets.newHashSet();
+
+		for (ILanguageProvider next : languageProviders) {
+			Iterables.addAll(result, next.getLanguages(this, modelSet));
 		}
 
 		return result;

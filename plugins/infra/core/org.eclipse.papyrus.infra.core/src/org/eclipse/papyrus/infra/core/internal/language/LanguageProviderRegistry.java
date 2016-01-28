@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.core.language.ILanguageProvider;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.language.Language;
 import org.eclipse.papyrus.infra.core.language.Version;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -205,6 +206,11 @@ public class LanguageProviderRegistry implements ILanguageProvider.Registry {
 			@Override
 			public Iterable<ILanguage> getLanguages(ILanguageService languageService, URI modelURI, boolean uriHasFileExtension) {
 				return getInstance().getLanguages(languageService, modelURI, uriHasFileExtension);
+			}
+
+			@Override
+			public java.lang.Iterable<ILanguage> getLanguages(ILanguageService languageService, ModelSet modelSet) {
+				return getInstance().getLanguages(languageService, modelSet);
 			}
 
 			ILanguageProvider createDefaultProvider() throws CoreException {

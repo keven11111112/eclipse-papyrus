@@ -15,10 +15,14 @@ package org.eclipse.papyrus.infra.core.internal.language;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
@@ -28,14 +32,20 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.content.IContentDescription;
 import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ContentHandler;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.language.ILanguage;
 import org.eclipse.papyrus.infra.core.language.ILanguageProvider;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
@@ -44,6 +54,10 @@ import com.google.common.collect.Sets;
  * A default language provider for extensions that simply declare content-type matches for languages.
  */
 public class DefaultLanguageProvider implements ILanguageProvider {
+	private static Map<EPackage, IContentType> CONTENT_TYPES = new WeakHashMap<>();
+
+	private static IContentType NULL_CONTENT_TYPE = Platform.getContentTypeManager().getContentType("org.eclipse.emf.ecore.xmi"); //$NON-NLS-1$
+
 	private final Set<IContentType> contentTypes = Sets.newHashSet();
 
 	private final List<ILanguage> languages = Lists.newArrayList();
@@ -68,6 +82,17 @@ public class DefaultLanguageProvider implements ILanguageProvider {
 		}
 
 		if (!matchContentType(allURIs)) {
+			return Collections.emptyList();
+		} else {
+			// If any of my content-types matches, then all of my languages are present
+			resolveProxies();
+			return Collections.unmodifiableList(languages);
+		}
+	}
+
+	@Override
+	public synchronized Iterable<ILanguage> getLanguages(ILanguageService languageService, ModelSet modelSet) {
+		if (!matchContentType(modelSet.getResources())) {
 			return Collections.emptyList();
 		} else {
 			// If any of my content-types matches, then all of my languages are present
@@ -174,6 +199,73 @@ public class DefaultLanguageProvider implements ILanguageProvider {
 		}
 
 		return result;
+	}
+
+	private boolean matchContentType(Collection<? extends Resource> resources) {
+		boolean result = false;
+		Set<EPackage> packagesSeen = new HashSet<>();
+
+		out: for (Resource next : resources) {
+			String filename = next.getURI().lastSegment();
+
+			// TODO: Is it really sufficient to check only the roots? Other content could be contained
+			for (EObject root : next.getContents()) {
+				EPackage ePackage = root.eClass().getEPackage();
+				if (packagesSeen.add(ePackage)) {
+					IContentType contentType = getContentType(ePackage, filename);
+					if (contentType != null) {
+						for (IContentType type : contentTypes) {
+							if (contentType.isKindOf(type)) {
+								result = true;
+								break out;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * We don't actually have a mapping in EMF between packages and content-types,
+	 * so we infer it by feeding the platform's content-type system some fake inputs,
+	 * relaying on the standard EMF pattern of using XML namespace declarations to
+	 * determine content-type.
+	 * 
+	 * @param ePackage
+	 *            the package to infer the content-type
+	 * @param filename
+	 *            used as a hint to the platform's content-type manager
+	 * 
+	 * @return the content-type or a placeholder for unknown content (never {@code null})
+	 */
+	private IContentType getContentType(EPackage ePackage, String filename) {
+		return CONTENT_TYPES.computeIfAbsent(ePackage, package_ -> {
+			IContentType contentType = null;
+
+			StringReader xmiString = createStringReader(ePackage);
+			try {
+				IContentDescription desc = Platform.getContentTypeManager().getDescriptionFor(xmiString, filename, null);
+				contentType = (desc == null) ? null : desc.getContentType();
+			} catch (IOException e) {
+				// Not our content type, I guess
+			}
+
+			if (contentType == null) {
+				contentType = NULL_CONTENT_TYPE;
+			}
+
+			return contentType;
+		});
+	}
+
+	private StringReader createStringReader(EPackage ePackage) {
+		String xmi = String.format(
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?><xmi:XMI xmlns:xmi=\"%s\" xmlns:content=\"%s\"/>", //$NON-NLS-1$
+				XMIResource.XMI_2_1_URI, ePackage.getNsURI());
+		return new StringReader(xmi);
 	}
 
 	//

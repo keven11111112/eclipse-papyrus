@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -40,6 +40,21 @@ public interface ILanguageProvider {
 	 * @return the languages instantiated in the specified resource. May be empty if this provider does not recognize any languages in the resource
 	 */
 	Iterable<ILanguage> getLanguages(ILanguageService languageService, URI modelURI, boolean uriHasFileExtension);
+
+	/**
+	 * Queries the languages that are instantiated in the specified model-set. This has the
+	 * advantage over the {@linkplain #getLanguages(ILanguageService, URI, boolean) URI-based API} of being able
+	 * to inspect resources that don't yet exist in the persistent store or are different from
+	 * the latest persisted state.
+	 * 
+	 * @param modelSet
+	 *            a {@link ModelSet} in which to find the instantiated languages
+	 * 
+	 * @return the languages instantiated in the specified resource
+	 */
+	default Iterable<ILanguage> getLanguages(ILanguageService languageService, ModelSet modelSet) {
+		return getLanguages(languageService, modelSet.getURIWithoutExtension(), false);
+	}
 
 	//
 	// Nested types

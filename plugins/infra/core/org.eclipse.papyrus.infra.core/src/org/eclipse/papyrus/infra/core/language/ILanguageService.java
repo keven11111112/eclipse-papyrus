@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -55,6 +55,19 @@ public interface ILanguageService extends IAdaptable, ILanguageChangeListener {
 	Set<ILanguage> getLanguages(URI modelURI, boolean uriHasFileExtension);
 
 	/**
+	 * Queries the languages that are instantiated in the specified model-set. This has the
+	 * advantage over the {@linkplain #getLanguages(URI, boolean) URI-based API} of being able
+	 * to inspect resources that don't yet exist in the persistent store or are different from
+	 * the latest persisted state.
+	 * 
+	 * @param modelSet
+	 *            a {@link ModelSet} in which to find the instantiated languages
+	 * 
+	 * @return the languages instantiated in the specified resource
+	 */
+	Set<ILanguage> getLanguages(ModelSet modelSet);
+
+	/**
 	 * Adds a listener for language change notifications. Has no effect if the {@code listener} is already added.
 	 * 
 	 * @param listener
@@ -105,7 +118,7 @@ public interface ILanguageService extends IAdaptable, ILanguageChangeListener {
 			// No language service? No language models
 			result = Collections.emptyList();
 		} else {
-			result = service.getLanguages(modelSet.getURIWithoutExtension(), false).stream()
+			result = service.getLanguages(modelSet).stream()
 					.map(l -> l.getModel(modelSet))
 					.filter(Objects::nonNull)
 					.distinct() // Only unique models
