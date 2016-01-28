@@ -119,8 +119,10 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	@Override
 	public void setBorderStyle(final int borderStyle) {
 		this.borderStyle = borderStyle;
-		if (null != shadowborder) {
-			shadowborder.setStyle(borderStyle);
+
+		Border border = getBorder();
+		if (border instanceof RoundedRectangleBorder) {
+			((RoundedRectangleBorder) border).setStyle(borderStyle);
 		}
 	}
 

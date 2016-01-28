@@ -163,6 +163,15 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		super.refreshVisuals();
 	}
 
+	/**
+	 * Get the line type of the shape.
+	 * 
+	 * @return the line type.
+	 */
+	@Override
+	protected int getLineType() {
+		return PapyrusRoundedEditPartHelper.getNotationBorderStyle(this, getDefaultBorderStyle());
+	}
 
 	/**
 	 * Gets the name label color.

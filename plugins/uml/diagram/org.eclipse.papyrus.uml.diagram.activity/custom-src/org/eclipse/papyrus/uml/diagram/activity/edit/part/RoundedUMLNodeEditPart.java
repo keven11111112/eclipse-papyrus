@@ -174,6 +174,16 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 	}
 
 	/**
+	 * Get the line type of the shape.
+	 * 
+	 * @return the line type.
+	 */
+	@Override
+	protected int getLineType() {
+		return PapyrusRoundedEditPartHelper.getNotationBorderStyle(this, getDefaultBorderStyle());
+	}
+
+	/**
 	 * Gets the default shadow color.
 	 *
 	 * @return the default shadow color

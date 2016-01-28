@@ -35,43 +35,56 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 	 *
 	 * @param editpart
 	 *            the editpart
-	 * @param defaultBorderStyle
-	 *            the default border style
 	 * @param defaultLineCustomValue
 	 *            the default line custom value
+	 * @param defaultBorderStyle
 	 */
 	public static void refreshBorderStyle(IPapyrusEditPart editpart, int defaultBorderStyle, int[] defaultLineCustomValue) {
 		// get the Figure
 		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
 			IRoundedRectangleFigure roundedRectangleFigure = (IRoundedRectangleFigure) editpart.getPrimaryShape();
 
-			EClass stringValueStyle = NotationPackage.eINSTANCE.getStringValueStyle();
+			int borderStyle = getNotationBorderStyle(editpart, defaultBorderStyle);
 
-			int borderStyle = defaultBorderStyle;
-
-			if (stringValueStyle != null) {
-
-				if (((GraphicalEditPart) editpart).getModel() instanceof View) {
-					// Get the border style on notation
-					NamedStyle borderValueStyle = ((View) ((GraphicalEditPart) editpart).getModel()).getNamedStyle(stringValueStyle, BORDER_STYLE);
-					// convert the string style name in integer
-					if (borderValueStyle instanceof StringValueStyle) {
-						String str = ((StringValueStyle) borderValueStyle).getStringValue();
-						final LineStyleEnum lineStyle = LineStyleEnum.getByLiteral(str);
-						if (lineStyle != null) {
-							borderStyle = lineStyle.getLineStyle();
-						}
-					}
-				}
-			}
 			// set the border style of the figure
 			roundedRectangleFigure.setBorderStyle(borderStyle);
+
 
 			// get/set the custom dash value
 			int[] customDash = NotationUtils.getIntListValue((View) ((GraphicalEditPart) editpart).getModel(), LINE_CUSTOM_VALUE, defaultLineCustomValue);
 			roundedRectangleFigure.setCustomDash(customDash);
 
 		}
+	}
+
+	/**
+	 * Gets the Border style of the edit part defined in notation
+	 * 
+	 * @param editpart
+	 * @param defaultBorderStyle
+	 * @return the border style
+	 */
+	public static int getNotationBorderStyle(IPapyrusEditPart editpart, int defaultBorderStyle) {
+		EClass stringValueStyle = NotationPackage.eINSTANCE.getStringValueStyle();
+
+		int borderStyle = defaultBorderStyle;
+
+		if (stringValueStyle != null) {
+
+			if (((GraphicalEditPart) editpart).getModel() instanceof View) {
+				// Get the border style on notation
+				NamedStyle borderValueStyle = ((View) ((GraphicalEditPart) editpart).getModel()).getNamedStyle(stringValueStyle, BORDER_STYLE);
+				// convert the string style name in integer
+				if (borderValueStyle instanceof StringValueStyle) {
+					String str = ((StringValueStyle) borderValueStyle).getStringValue();
+					final LineStyleEnum lineStyle = LineStyleEnum.getByLiteral(str);
+					if (lineStyle != null) {
+						borderStyle = lineStyle.getLineStyle();
+					}
+				}
+			}
+		}
+		return borderStyle;
 	}
 
 	/**

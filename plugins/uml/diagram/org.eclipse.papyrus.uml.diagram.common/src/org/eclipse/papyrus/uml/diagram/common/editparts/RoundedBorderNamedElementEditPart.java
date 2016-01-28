@@ -230,6 +230,14 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected int getLineType() {
+		return PapyrusRoundedEditPartHelper.getNotationBorderStyle(this, getDefaultBorderStyle());
+	}
+
+	/**
 	 * Adds listener to handle named Style modifications.
 	 */
 	@Override
