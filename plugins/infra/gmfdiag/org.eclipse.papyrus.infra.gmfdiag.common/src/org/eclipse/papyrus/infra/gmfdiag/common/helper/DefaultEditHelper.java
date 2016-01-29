@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -36,6 +37,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.AbstractNotifierEditHelper;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.AdviceComparator;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
@@ -364,6 +366,8 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
 			}
 		}
+		
+		Arrays.sort(advices, new AdviceComparator());
 
 		return advices;
 	}

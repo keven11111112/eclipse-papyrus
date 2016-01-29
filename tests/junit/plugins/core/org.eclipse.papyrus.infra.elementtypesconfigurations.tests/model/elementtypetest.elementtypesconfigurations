@@ -13,6 +13,7 @@
     xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
     xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
     name="Test element types"
+    identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.tests"
     metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <elementTypeConfigurations
       xsi:type="invarianttypeconfiguration:InvariantTypeConfiguration"

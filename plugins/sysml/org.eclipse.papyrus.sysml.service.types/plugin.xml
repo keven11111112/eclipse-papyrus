@@ -371,56 +371,56 @@
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetActivities"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-activities.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetAllocations"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-allocations.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetBlocks"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-blocks.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetConstraints"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-constraints.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetModelElements"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-modelelements.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetPortsAndFlows"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-portsandflows.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetRequirements"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml-requirements.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.sysml.service.types.elementTypeSetSysML"
+         clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/sysml.elementtypesconfigurations">
    </elementTypeSet>
 </extension>

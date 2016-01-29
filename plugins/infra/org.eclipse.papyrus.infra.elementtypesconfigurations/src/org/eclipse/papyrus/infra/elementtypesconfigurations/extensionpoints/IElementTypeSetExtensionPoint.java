@@ -22,6 +22,6 @@ public interface IElementTypeSetExtensionPoint {
 	/** attribute: path to the model file in the bundle */
 	public static final String PATH = "path";
 
-	/** attribute: identifier of the contribution */
-	public static final String ID = "id";
+	/** attribute: identifier of the clientContext in which to register the elementTypeConfigurationSet */
+	public static final String CLIENT_CONTEXT_ID = "clientContextID";
 }

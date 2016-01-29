@@ -54,10 +54,10 @@
          </documentation>
       </annotation>
       <complexType>
-         <attribute name="id" type="string" use="required">
+         <attribute name="clientContextID" type="string" use="required">
             <annotation>
                <documentation>
-                  The unique identifier of this contribution. To ease debug, it is advised to put the same identifier as the  elementType set configuration identifier.
+                  The unique identifier of the clientContext this elementTypeSet must be registreted to.
                </documentation>
             </annotation>
          </attribute>

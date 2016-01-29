@@ -19,14 +19,24 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.AdviceComparator;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Component;
@@ -46,7 +56,6 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 		List<IElementType> elementTypes = Arrays.asList(ElementTypeRegistry.getInstance().getAllTypesMatching(packageWithComponents, papyrusContext));
 		Assert.assertNotNull("list should not be null", elementTypes);
 		Assert.assertTrue("list should not be empty", elementTypes.size() > 0);
-		System.out.println("elementTypes.size() " + elementTypes.size());
 		Assert.assertTrue(PACKAGE_WITH_COMPONENTS + " should be a Package With components only type", elementTypes.contains(ElementTypeRegistry.getInstance().getType(PACKAGE_WITH_COMPONENTS_TYPE_ID)));
 	}
 
@@ -234,6 +243,65 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 			Assert.assertTrue("Status should be OK", status.isOK());
 		} else {
 			Assert.assertTrue("Command should not be executable", command == null || !command.canExecute());
+		}
+	}
+
+	@Test
+	public void testValidAdvicesOrder() {
+		IElementType classElementType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Class");
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource validAdviesOrderConfigurationResource = resourceSet.getResource(URI.createURI(VALID_ADVICES_ORDER_CONFIGURATIONS), true);
+		EObject root = validAdviesOrderConfigurationResource.getContents().get(0);
+		if (root instanceof ElementTypeSetConfiguration) {
+
+			try {
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) root);
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
+			Arrays.sort(advicesAfterLoading, new AdviceComparator());
+
+			int advice1Index = -1;
+			int advice2Index = -1;
+			int advice3Index = -1;
+			for (int i = 0; i < advicesAfterLoading.length; i++) {
+				IEditHelperAdvice iEditHelperAdvice = advicesAfterLoading[i];
+				if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_1)) {
+					advice1Index = i;
+				} else if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_2)) {
+					advice2Index = i;
+				} else if (iEditHelperAdvice.getClass().getName().equals(ADVICES_ID_3)) {
+					advice3Index = i;
+				}
+			}
+
+			Assert.assertTrue(ADVICES_ID_2 + " should be after " + ADVICES_ID_3, advice3Index < advice2Index);
+			Assert.assertTrue(ADVICES_ID_3 + " should be after " + ADVICES_ID_1, advice2Index < advice1Index);
+		} else {
+			Assert.fail("Failed to load test model: " + CYCLIC_ADVICES_CONFIGURATIONS);
+		}
+	}
+
+	@Test
+	public void testCyclicAdvices() {
+		IElementType classElementType = ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Class");
+		IEditHelperAdvice[] advicesBeforeLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource cyclicAdvicesConfigurationResource = resourceSet.getResource(URI.createURI(CYCLIC_ADVICES_CONFIGURATIONS), true);
+		org.eclipse.emf.ecore.EObject root = cyclicAdvicesConfigurationResource.getContents().get(0);
+		if (root instanceof ElementTypeSetConfiguration) {
+			try {
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) root);
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			IEditHelperAdvice[] advicesAfterLoading = ElementTypeRegistry.getInstance().getEditHelperAdvice(classElementType);
+			Assert.assertArrayEquals("Advices for UML::Class should have not been changed: ", advicesBeforeLoading, advicesAfterLoading);
+		} else {
+			Assert.fail("Failed to load test model: " + CYCLIC_ADVICES_CONFIGURATIONS);
 		}
 	}
 }

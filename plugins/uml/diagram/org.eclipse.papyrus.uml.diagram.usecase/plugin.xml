@@ -976,14 +976,14 @@
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet"
+   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="models/usecaseDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.uml.diagram.usecase.elementTypeSetNotation"
+   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="models/usecaseDiagram-notation.elementtypesconfigurations">
    </elementTypeSet>
 </extension>

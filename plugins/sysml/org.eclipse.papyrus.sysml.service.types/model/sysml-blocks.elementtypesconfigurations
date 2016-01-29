@@ -1,34 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmi:id="_3i038FYIEeS0WsAAtVmToA" metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks">
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtREFYGEeS0WsAAtVmToA" name="SysML::Stereotype::Block" identifier="org.eclipse.papyrus.sysml.stereotype.Block" hint="SysML::Stereotype::Block" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Block"/>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_3i038FYIEeS0WsAAtVmToA"
+    name="elementTypeSetBlocks"
+    identifier="org.eclipse.papyrus.sysml.service.types.elementTypeSetBlocks"
+    metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtREFYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::Block"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Block"
+      hint="SysML::Stereotype::Block"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Block"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtREVYGEeS0WsAAtVmToA" name="SysML::Stereotype::DistributedProperty" identifier="org.eclipse.papyrus.sysml.stereotype.DistributedProperty" hint="SysML::Stereotype::DistributedProperty" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/DistributedProperty"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtREVYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::DistributedProperty"
+      identifier="org.eclipse.papyrus.sysml.stereotype.DistributedProperty"
+      hint="SysML::Stereotype::DistributedProperty"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/DistributedProperty"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRElYGEeS0WsAAtVmToA" name="SysML::Stereotype::Dimension" identifier="org.eclipse.papyrus.sysml.stereotype.Dimension" hint="SysML::Stereotype::Dimension" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Dimension"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRElYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::Dimension"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Dimension"
+      hint="SysML::Stereotype::Dimension"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Dimension"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRE1YGEeS0WsAAtVmToA" name="SysML::Stereotype::Unit" identifier="org.eclipse.papyrus.sysml.stereotype.Unit" hint="SysML::Stereotype::Unit" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Unit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRE1YGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::Unit"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Unit"
+      hint="SysML::Stereotype::Unit"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Unit"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRFFYGEeS0WsAAtVmToA" name="SysML::Stereotype::ValueType" identifier="org.eclipse.papyrus.sysml.stereotype.ValueType" hint="SysML::Stereotype::ValueType" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/ValueType"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRFFYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::ValueType"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ValueType"
+      hint="SysML::Stereotype::ValueType"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/ValueType"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRFVYGEeS0WsAAtVmToA" name="SysML::Stereotype::NestedConnectorEnd" identifier="org.eclipse.papyrus.sysml.stereotype.NestedConnectorEnd" hint="SysML::Stereotype::NestedConnectorEnd" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/NestedConnectorEnd"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRFVYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::NestedConnectorEnd"
+      identifier="org.eclipse.papyrus.sysml.stereotype.NestedConnectorEnd"
+      hint="SysML::Stereotype::NestedConnectorEnd"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/NestedConnectorEnd"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRFlYGEeS0WsAAtVmToA" name="SysML::Stereotype::ParticipantProperty" identifier="org.eclipse.papyrus.sysml.stereotype.ParticipantProperty" hint="SysML::Stereotype::ParticipantProperty" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/ParticipantProperty"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRFlYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::ParticipantProperty"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ParticipantProperty"
+      hint="SysML::Stereotype::ParticipantProperty"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/ParticipantProperty"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRF1YGEeS0WsAAtVmToA" name="SysML::Stereotype::ConnectorProperty" identifier="org.eclipse.papyrus.sysml.stereotype.ConnectorProperty" hint="SysML::Stereotype::ConnectorProperty" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/ConnectorProperty"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRF1YGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::ConnectorProperty"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ConnectorProperty"
+      hint="SysML::Stereotype::ConnectorProperty"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/ConnectorProperty"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRGFYGEeS0WsAAtVmToA" name="SysML::Stereotype::BindingConnector" identifier="org.eclipse.papyrus.sysml.stereotype.BindingConnector" hint="SysML::Stereotype::BindingConnector" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/BindingConnector"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRGFYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::BindingConnector"
+      identifier="org.eclipse.papyrus.sysml.stereotype.BindingConnector"
+      hint="SysML::Stereotype::BindingConnector"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/BindingConnector"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_hYtRGVYGEeS0WsAAtVmToA" name="SysML::Stereotype::PropertySpecificType" identifier="org.eclipse.papyrus.sysml.stereotype.PropertySpecificType" hint="SysML::Stereotype::PropertySpecificType" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/PropertySpecificType"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_hYtRGVYGEeS0WsAAtVmToA"
+      name="SysML::Stereotype::PropertySpecificType"
+      identifier="org.eclipse.papyrus.sysml.stereotype.PropertySpecificType"
+      hint="SysML::Stereotype::PropertySpecificType"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/PropertySpecificType"/>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations xmi:id="_4Jt40FYIEeS0WsAAtVmToA" name="org.eclipse.papyrus.sysml.stereotype.advice.Block" identifier="org.eclipse.papyrus.sysml.stereotype.advice.Block" editHelperAdviceClassName="org.eclipse.papyrus.sysml.service.types.stereotype.helper.advice.BlockEditHelperAdvice" inheritance="all" target="_hYtREFYGEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations
+      xmi:id="_4Jt40FYIEeS0WsAAtVmToA"
+      name="org.eclipse.papyrus.sysml.stereotype.advice.Block"
+      identifier="org.eclipse.papyrus.sysml.stereotype.advice.Block"
+      editHelperAdviceClassName="org.eclipse.papyrus.sysml.service.types.stereotype.helper.advice.BlockEditHelperAdvice"
+      inheritance="all"
+      target="_hYtREFYGEeS0WsAAtVmToA"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

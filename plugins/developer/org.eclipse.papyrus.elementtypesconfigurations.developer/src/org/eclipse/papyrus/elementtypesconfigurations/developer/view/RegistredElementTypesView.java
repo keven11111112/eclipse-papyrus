@@ -12,6 +12,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.elementtypesconfigurations.developer.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -22,15 +26,13 @@ import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.Elemen
 import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesDetailsContentProvider;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesDetailsLabelProvider;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.ElementTypesLabelProvider;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.events.MouseAdapter;
-import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.FilteredTree;
 import org.eclipse.ui.dialogs.PatternFilter;
@@ -38,33 +40,60 @@ import org.eclipse.ui.part.ViewPart;
 
 public class RegistredElementTypesView extends ViewPart {
 
-	IClientContext context = null;
 	FilteredTree detailsFilteredTree = null;
 	SashForm sash = null;
 	FilteredTree elementTypesFilteredTree = null;
+	Combo combo = null;
 
-	public RegistredElementTypesView() {
-		try {
-			context = TypeContext.getContext();
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new GridLayout(1, true));
-		Button button = new Button(parent, SWT.NONE);
-		button.setText("Refresh");
-		button.addMouseListener(new MouseAdapter() {
+
+		combo = new Combo(parent, SWT.NONE);
+		final List<String> itemsList = new ArrayList<>();
+		List<IClientContext> contexts = new ArrayList<IClientContext>(ClientContextManager.getInstance().getClientContexts());
+
+		int index = -1;
+		int i = 0;
+		for (IClientContext context : contexts) {
+			itemsList.add(context.getId());
+			if (context.getId().equals(ClientContextManager.getDefaultClientContext().getId())) {
+				index = i;
+			}
+			i++;
+		}
+		String[] items = new String[itemsList.size()];
+		items = itemsList.toArray(items);
+		combo.setItems(items);
+		if (index != -1) {
+			combo.select(index);
+		}
+		combo.addSelectionListener(new SelectionListener() {
 
 			@Override
-			public void mouseUp(MouseEvent e) {
-				IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(context);
-				elementTypesFilteredTree.getViewer().setInput(elementTypes);
+			public void widgetSelected(SelectionEvent e) {
+				int index = combo.getSelectionIndex();
+
+				String clientContexId = itemsList.get(index);
+
+				if (clientContexId != null) {
+					IClientContext clientContex = ClientContextManager.getInstance().getClientContext(clientContexId);
+					if (clientContex != null) {
+						IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(clientContex);
+						elementTypesFilteredTree.getViewer().setInput(elementTypes);
+					}
+				}
+
 			}
 
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+
+
+			}
 		});
+
 		sash = new SashForm(parent, SWT.HORIZONTAL);
 		sash.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -75,8 +104,9 @@ public class RegistredElementTypesView extends ViewPart {
 		detailsFilteredTree.getViewer().setLabelProvider(new ElementTypesDetailsLabelProvider());
 		detailsFilteredTree.getViewer().setContentProvider(new ElementTypesDetailsContentProvider());
 
-		IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(context);
-		elementTypesFilteredTree.getViewer().setInput(elementTypes);
+		if (index != -1) {
+			combo.select(index);
+		}
 
 		elementTypesFilteredTree.getViewer().addSelectionChangedListener(new ISelectionChangedListener() {
 

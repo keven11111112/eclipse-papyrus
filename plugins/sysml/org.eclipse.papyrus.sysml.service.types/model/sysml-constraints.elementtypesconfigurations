@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints">
-
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::ConstraintBlock" identifier="org.eclipse.papyrus.sysml.stereotype.ConstraintBlock" hint="SysML::Stereotype::ConstraintBlock" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintBlock"/>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_0h9coLOjEeWH6Y3Wi2YKxg"
+    name="elementTypeSetConstraints"
+    identifier="org.eclipse.papyrus.sysml.service.types.elementTypeSetConstraints"
+    metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Constraints">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_0h9cobOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::ConstraintBlock"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ConstraintBlock"
+      hint="SysML::Stereotype::ConstraintBlock"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintBlock"/>
   </elementTypeConfigurations>
-
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::ConstraintProperty" identifier="org.eclipse.papyrus.sysml.stereotype.ConstraintProperty" hint="SysML::Stereotype::ConstraintProperty" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintProperty"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_0h9corOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::ConstraintProperty"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ConstraintProperty"
+      hint="SysML::Stereotype::ConstraintProperty"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintProperty"/>
   </elementTypeConfigurations>
-  
-  
-  
 </elementtypesconfigurations:ElementTypeSetConfiguration>

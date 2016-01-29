@@ -1,36 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Activities">
-
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Optional" identifier="org.eclipse.papyrus.sysml.stereotype.Optional" hint="SysML::Stereotype::Optional" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Optional"/>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_rRIxgLOjEeWH6Y3Wi2YKxg"
+    name="elementTypeSetActivities"
+    identifier="org.eclipse.papyrus.sysml.service.types.elementTypeSetActivities"
+    metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/Activities">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxgbOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::Optional"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Optional"
+      hint="SysML::Stereotype::Optional"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Optional"/>
   </elementTypeConfigurations>
-
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Rate" identifier="org.eclipse.papyrus.sysml.stereotype.Rate" hint="SysML::Stereotype::Rate" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Rate"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxgrOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::Rate"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Rate"
+      hint="SysML::Stereotype::Rate"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Rate"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Probability" identifier="org.eclipse.papyrus.sysml.stereotype.Probability" hint="SysML::Stereotype::Probability" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Probability"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxg7OjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::Probability"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Probability"
+      hint="SysML::Stereotype::Probability"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Probability"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Continuous" identifier="org.eclipse.papyrus.sysml.stereotype.Continuous" hint="SysML::Stereotype::Continuous" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Continuous"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxhLOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::Continuous"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Continuous"
+      hint="SysML::Stereotype::Continuous"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Continuous"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Discrete" identifier="org.eclipse.papyrus.sysml.stereotype.Discrete" hint="SysML::Stereotype::Discrete" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Discrete"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxhbOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::Discrete"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Discrete"
+      hint="SysML::Stereotype::Discrete"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Discrete"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::ControlOperator" identifier="org.eclipse.papyrus.sysml.stereotype.ControlOperator" hint="SysML::Stereotype::ControlOperator" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/ControlOperator"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxhrOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::ControlOperator"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ControlOperator"
+      hint="SysML::Stereotype::ControlOperator"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/ControlOperator"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::NoBuffer" identifier="org.eclipse.papyrus.sysml.stereotype.NoBuffer" hint="SysML::Stereotype::NoBuffer" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/NoBuffer"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxh7OjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::NoBuffer"
+      identifier="org.eclipse.papyrus.sysml.stereotype.NoBuffer"
+      hint="SysML::Stereotype::NoBuffer"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/NoBuffer"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Overwrite" identifier="org.eclipse.papyrus.sysml.stereotype.Overwrite" hint="SysML::Stereotype::Overwrite" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Overwrite"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_rRIxiLOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::Overwrite"
+      identifier="org.eclipse.papyrus.sysml.stereotype.Overwrite"
+      hint="SysML::Stereotype::Overwrite"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//activities/Overwrite"/>
   </elementTypeConfigurations>
-  
 </elementtypesconfigurations:ElementTypeSetConfiguration>

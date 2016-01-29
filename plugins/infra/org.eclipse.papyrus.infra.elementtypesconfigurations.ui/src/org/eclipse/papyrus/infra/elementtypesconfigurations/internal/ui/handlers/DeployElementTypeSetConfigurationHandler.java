@@ -27,14 +27,17 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.internal.ui.preferences.ElementTypesPreferences;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.internal.ui.providers.ClientContextContentProvider;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
 
@@ -42,6 +45,9 @@ import org.eclipse.ui.statushandlers.StatusManager;
  * Handler to deploy new configuration
  */
 public class DeployElementTypeSetConfigurationHandler extends AbstractHandler implements IHandler {
+
+	protected IClientContext clientContext;
+
 
 	/**
 	 * {@inheritDoc}
@@ -53,6 +59,33 @@ public class DeployElementTypeSetConfigurationHandler extends AbstractHandler im
 		}
 		final IStructuredSelection selection = (IStructuredSelection) currentSelection;
 		final Shell activeShell = HandlerUtil.getActiveShell(event);
+
+		activeShell.getDisplay().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				ListSelectionDialog dialog = new ListSelectionDialog(activeShell, ClientContextManager.getInstance().getClientContexts(), new ClientContextContentProvider(), new LabelProvider(),
+						"Select the clientContext you want to register the elementtypesconfiguration to");
+				dialog.open();
+				Object[] clientContextSelection = dialog.getResult();
+
+
+
+				if (clientContextSelection != null) {
+					if (clientContextSelection.length > 0) {
+						Object selectedClientContext = clientContextSelection[0];
+						if (selectedClientContext instanceof IClientContext) {
+							clientContext = (IClientContext) selectedClientContext;
+						}
+					}
+				}
+			}
+		});
+
+		if (clientContext == null) {
+			StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The elementTypes configuration has not been loaded"), StatusManager.SHOW);
+		}
+
 		Job job = new Job("Deploy elementTypes set configuration") {
 
 			@Override
@@ -82,6 +115,7 @@ public class DeployElementTypeSetConfigurationHandler extends AbstractHandler im
 		return null;
 	}
 
+
 	protected IStatus doExecute(IStructuredSelection selection, IProgressMonitor monitor) {
 		Iterator<?> selectionIterator = selection.iterator();
 		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, "The elementTypes configuration has been successfully deployed and activated", null);
@@ -96,21 +130,14 @@ public class DeployElementTypeSetConfigurationHandler extends AbstractHandler im
 				}
 				String fileName = selectedFile.getFullPath().removeFileExtension().lastSegment();
 				monitor.subTask("Deploy " + fileName);
-				URI emfURI = null;
-				if (selectedFile.getFullPath() != null) {
-					emfURI = URI.createPlatformResourceURI(selectedFile.getFullPath().toString(), true);
-				} else if (selectedFile.getRawLocation() != null) {
-					emfURI = URI.createFileURI(selectedFile.getRawLocation().toString());
-				}
-				if (emfURI == null) {
-					monitor.worked(1);
-					result.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The selected element is not a valid configuration file"));
-					continue;
-				}
-				ElementTypesPreferences.registerWorkspaceDefinition(fileName, selectedFile.getFullPath().toString());
-				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(fileName);
+
+
+
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(clientContext.getId(), selectedFile.getFullPath().toString());
+
 				monitor.worked(1);
-				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The elementTypes configuration has been successfully deployed and activated"));
+
+				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The elementTypes configuration has been loaded"));
 			}
 		}
 		if (result.getChildren().length == 1) {

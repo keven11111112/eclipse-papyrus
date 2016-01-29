@@ -72,7 +72,7 @@ public class AdviceConfigurationTypeRegistry {
 		adviceConfigurationTypeToFactory.put(ElementtypesconfigurationsPackage.eINSTANCE.getAdviceBindingConfiguration().getInstanceTypeName(), new AdviceBindingFactory());
 	}
 
-	protected <T extends AdviceConfiguration> IEditHelperAdviceFactory<T> getFactory(AdviceConfiguration adviceConfiguration) {
+	public <T extends AdviceConfiguration> IEditHelperAdviceFactory<T> getFactory(AdviceConfiguration adviceConfiguration) {
 		String adviceConfigurationType = adviceConfiguration.eClass().getInstanceTypeName();
 		// We assume here that the right factory is registered for the right AdviceConfiguration
 		@SuppressWarnings("unchecked")

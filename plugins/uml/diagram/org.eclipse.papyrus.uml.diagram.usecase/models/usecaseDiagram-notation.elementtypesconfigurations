@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmi:id="_qxKXgFkiEeSozs_wDdvj0g" metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_qxK-pFkiEeSozs_wDdvj0g" name="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019" identifier="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019" hint="2019">
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_qxKXgFkiEeSozs_wDdvj0g"
+    name="elementTypeSetNotation"
+    identifier="org.eclipse.papyrus.uml.diagram.usecase.elementTypeSetNotation"
+    metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_qxK-pFkiEeSozs_wDdvj0g"
+      name="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019"
+      identifier="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019"
+      hint="2019">
     <specializedTypesID>org.eclipse.papyrus.gmfdiag.common.Diagram</specializedTypesID>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

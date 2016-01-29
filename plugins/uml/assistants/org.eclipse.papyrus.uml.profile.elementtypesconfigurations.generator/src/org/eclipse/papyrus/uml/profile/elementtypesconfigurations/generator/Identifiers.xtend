@@ -40,6 +40,9 @@ class Identifiers {
     final String umlElementTypesSet = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"
     
     @Accessors
+    final String contextId = "org.eclipse.papyrus.infra.services.edit.TypeContext";
+    
+    @Accessors
     String baseElementTypesSet = umlElementTypesSet
     
     @Accessors

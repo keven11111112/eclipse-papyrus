@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows">
-
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::FlowPort" identifier="org.eclipse.papyrus.sysml.stereotype.FlowPort" hint="SysML::Stereotype::FlowPort" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowPort"/>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_6wATQLOjEeWH6Y3Wi2YKxg"
+    name="elementTypeSetPortsAndFlows"
+    identifier="org.eclipse.papyrus.sysml.service.types.elementTypeSetPortsAndFlows"
+    metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/PortAndFlows">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_6wATQbOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::FlowPort"
+      identifier="org.eclipse.papyrus.sysml.stereotype.FlowPort"
+      hint="SysML::Stereotype::FlowPort"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowPort"/>
   </elementTypeConfigurations>
-
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::FlowProperty" identifier="org.eclipse.papyrus.sysml.stereotype.FlowProperty" hint="SysML::Stereotype::FlowProperty" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowProperty"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_6wATQrOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::FlowProperty"
+      identifier="org.eclipse.papyrus.sysml.stereotype.FlowProperty"
+      hint="SysML::Stereotype::FlowProperty"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowProperty"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::FlowSpecification" identifier="org.eclipse.papyrus.sysml.stereotype.FlowSpecification" hint="SysML::Stereotype::FlowSpecification" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowSpecification"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_6wATQ7OjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::FlowSpecification"
+      identifier="org.eclipse.papyrus.sysml.stereotype.FlowSpecification"
+      hint="SysML::Stereotype::FlowSpecification"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowSpecification"/>
   </elementTypeConfigurations>
-  
-    <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::ItemFlow" identifier="org.eclipse.papyrus.sysml.stereotype.ItemFlow" hint="SysML::Stereotype::ItemFlow" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/ItemFlow"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+      xmi:id="_6wA6ULOjEeWH6Y3Wi2YKxg"
+      name="SysML::Stereotype::ItemFlow"
+      identifier="org.eclipse.papyrus.sysml.stereotype.ItemFlow"
+      hint="SysML::Stereotype::ItemFlow"
+      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass
+        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/ItemFlow"/>
   </elementTypeConfigurations>
-  
 </elementtypesconfigurations:ElementTypeSetConfiguration>

@@ -27,18 +27,29 @@ import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.internal.ui.preferences.ElementTypesPreferences;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.internal.ui.providers.ClientContextContentProvider;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.dialogs.ListSelectionDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 
 public class UndeployElementTypeSetConfigurationHandler extends AbstractHandler {
+
+	protected IClientContext clientContext;
 
 	/**
 	 * {@inheritDoc}
@@ -50,12 +61,38 @@ public class UndeployElementTypeSetConfigurationHandler extends AbstractHandler 
 		}
 		final IStructuredSelection selection = (IStructuredSelection) currentSelection;
 		final Shell activeShell = HandlerUtil.getActiveShell(event);
+
+		activeShell.getDisplay().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				ListSelectionDialog dialog = new ListSelectionDialog(activeShell, ClientContextManager.getInstance().getClientContexts(), new ClientContextContentProvider(), new LabelProvider(),
+						"Select the clientContext you want to register the elementtypesconfiguration to");
+				dialog.open();
+				Object[] clientContextSelection = dialog.getResult();
+
+				if (clientContextSelection != null) {
+					if (clientContextSelection.length > 0) {
+						Object selectedClientContext = clientContextSelection[0];
+						if (selectedClientContext instanceof IClientContext) {
+							clientContext = (IClientContext) selectedClientContext;
+						}
+					}
+				}
+			}
+		});
+
+		if (clientContext == null) {
+			StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The elementTypes configuration has not been undeployed"), StatusManager.SHOW);
+		}
+
+
 		Job job = new Job("Undeploy elementTypes set configuration") {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				monitor.beginTask("Undeploying selected configurations", selection.size());
-				return doExecute(selection, monitor);
+				return doExecute(selection, monitor, activeShell);
 			}
 		};
 		job.addJobChangeListener(new JobChangeAdapter() {
@@ -79,7 +116,7 @@ public class UndeployElementTypeSetConfigurationHandler extends AbstractHandler 
 		return null;
 	}
 
-	protected IStatus doExecute(IStructuredSelection selection, IProgressMonitor monitor) {
+	protected IStatus doExecute(IStructuredSelection selection, IProgressMonitor monitor, Shell shell) {
 		Iterator<?> selectionIterator = selection.iterator();
 		MultiStatus result = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, "The elementTypes configuration has been successfully undeployed", null);
 		while (selectionIterator.hasNext()) {
@@ -104,11 +141,21 @@ public class UndeployElementTypeSetConfigurationHandler extends AbstractHandler 
 					result.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The selected element is not a valid configuration file"));
 					continue;
 				}
-				ElementTypesPreferences.unregisterWorkspaceDefinition(fileName);
 				monitor.subTask("Reset elementTypes Registry");
-				ElementTypeSetConfigurationRegistry.getInstance().unload(fileName);
+
+				ResourceSet resourceSet = new ResourceSetImpl();
+				Resource resource = resourceSet.getResource(emfURI, true);
+
+				EObject root = resource.getContents().get(0);
+				if (!(root instanceof ElementTypeSetConfiguration)) {
+					result.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The selected element is not a valid configuration file"));
+					continue;
+				}
+
+				ElementTypeSetConfigurationRegistry.getInstance().unload(clientContext.getId(), ((ElementTypeSetConfiguration) root).getIdentifier());
+
 				monitor.worked(1);
-				// relaunch papyrus service
+
 				result.add(new Status(IStatus.OK, Activator.PLUGIN_ID, "The elementTypes configuration has been successfully undeployed"));
 			}
 		}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ASCII"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
+    name="Test cyclic edvices dependencies"
+    identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.cyclicAdvices.elementtypesconfigurations"
+    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <adviceBindingsConfigurations
+      xmi:id="_SGAo4LK-EeWUIbTgfwAP3g"
+      name="TestEditHelperAdvice1"
+      identifier="TestEditHelperAdvice1"
+      editHelperAdviceClassName="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice1">
+    <before>org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice2</before>
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xmi:id="_nSyIoLK-EeWUIbTgfwAP3g"
+      name="TestEditHelperAdvice2"
+      identifier="TestEditHelperAdvice2"
+      editHelperAdviceClassName="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice2">
+    <before>org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice3</before>
+    <after>org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice1</after>
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xmi:id="_ojuzILK-EeWUIbTgfwAP3g"
+      name="TestEditHelperAdvice3"
+      identifier="TestEditHelperAdvice3"
+      editHelperAdviceClassName="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice3">
+    <after>org.eclipse.papyrus.infra.elementtypesconfigurations.tests.TestEditHelperAdvice2</after>
+    <target
+        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
+        href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sca0wVYCEeS0WsAAtVmToA"/>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

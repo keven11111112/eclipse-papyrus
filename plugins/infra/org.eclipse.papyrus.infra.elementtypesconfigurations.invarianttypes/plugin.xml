@@ -54,7 +54,7 @@
    <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.elementTypeSet"
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="model/invarianttype.elementtypesconfigurations">
       </elementTypeSet>
    </extension>

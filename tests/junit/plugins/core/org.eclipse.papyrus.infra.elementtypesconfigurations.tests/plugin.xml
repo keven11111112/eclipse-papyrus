@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.tests"
+      	    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="model/elementtypetest.elementtypesconfigurations">
       </elementTypeSet>
    </extension>

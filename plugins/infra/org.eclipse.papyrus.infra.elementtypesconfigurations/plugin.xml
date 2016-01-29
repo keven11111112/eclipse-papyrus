@@ -18,7 +18,6 @@
 	<extension-point id="adviceConfigurationType" name="Advice Configuration Type" schema="schema/adviceConfigurationType.exsd"/>
 	<extension-point id="containerConfigurationType" name="Container Configuration Type" schema="schema/containerConfigurationType.exsd"/>
 	<extension-point id="matcherConfigurationType" name="Matcher Configuration Type" schema="schema/matcherConfigurationType.exsd"/>
-	<extension-point id="userDefinitions" name="User Element Type Definitions" schema="schema/userDefinitions.exsd"/>
    
    <extension
          point="org.eclipse.papyrus.infra.core.service">

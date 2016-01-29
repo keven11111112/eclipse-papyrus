@@ -214,11 +214,28 @@
       <binding context="org.eclipse.papyrus.uml.diagram.statemachine.TypeContext">
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
+      
+      
    </extension>
 	   
 	   
-      
-   
+	<!-- Diagram specific advices -->
+	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+		<metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+			 <adviceBinding
+			   class="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.NamespaceHelperAdvice"
+			   id="org.eclipse.papyrus.uml.diagram.class.NamespaceHelperAdvice"
+			   inheritance="all"
+			   typeId="org.eclipse.papyrus.uml.Namespace">
+			 </adviceBinding>
+			 <adviceBinding
+			   class="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConstraintHelperAdvice"
+			   id="org.eclipse.papyrus.uml.diagram.class.ConstraintHelperAdvice"
+			   inheritance="none"
+			   typeId="org.eclipse.papyrus.uml.Constraint">
+			 </adviceBinding>
+		</metamodel>
+	</extension>
 
    <extension point="org.eclipse.ui.menus" id="context-menus">
       <?gmfgen generated="true"?>
@@ -840,7 +857,7 @@
     <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.uml.diagram.statemachine.elementTypeSet"
+   clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/stateMachineDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>

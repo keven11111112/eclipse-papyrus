@@ -59,6 +59,8 @@ class BaseElementTypeSetBlock {
 
 	private static final String UML_ELEMENT_TYPE_SET = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"; //$NON-NLS-1$
 
+	private static final String CONTEXT_ID = "org.eclipse.papyrus.infra.services.edit.TypeContext";
+
 	private final GeneratorWizardModel model;
 
 	private final BiMap<String, ElementTypeSetConfiguration> elementTypeSets;
@@ -67,7 +69,7 @@ class BaseElementTypeSetBlock {
 		super();
 
 		this.model = model;
-		this.elementTypeSets = HashBiMap.create(ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations());
+		this.elementTypeSets = HashBiMap.create(ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().get(CONTEXT_ID));
 	}
 
 	public void createControl(Composite parent) {

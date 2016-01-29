@@ -40,11 +40,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 
-	/** The hint of Collaboration role (not always possible to distinguish role and property with the model information). */
-	final String COLLABORATION_ROLE_HINT = ((IHintedType) UMLElementTypes.ConnectableElement_3115).getSemanticHint();
-
-	/** The hint of Collaboration role (not always possible to distinguish role and property with the model information). */
-	final String ROLE_BINDING_HINT = ((IHintedType) UMLElementTypes.Dependency_4017).getSemanticHint();
 
 	@Override
 	protected ICommand getBeforeDestroyReferenceCommand(DestroyReferenceRequest request) {
@@ -137,7 +132,7 @@ public class CollaborationHelperAdvice extends AbstractEditHelperAdvice {
 				if (currentChildObject instanceof View) {
 					View currentChildView = (View) currentChildObject;
 
-					if ((COLLABORATION_ROLE_HINT.equals(currentChildView.getType())) && (currentChildView.getElement() == role)) {
+					if ((((IHintedType) UMLElementTypes.ConnectableElement_3115).getSemanticHint().equals(currentChildView.getType())) && (currentChildView.getElement() == role)) {
 						viewsToDelete.add(currentChildView);
 					}
 				}

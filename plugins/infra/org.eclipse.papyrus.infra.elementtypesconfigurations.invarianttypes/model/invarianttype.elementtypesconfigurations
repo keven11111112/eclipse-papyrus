@@ -5,9 +5,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
     xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
+    name="InvariantTypes"
+    identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes/invarianttype"
     metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <adviceBindingsConfigurations
       xmi:id="_mqX8YMHdEeSpuJnfbRdiWQ"
+      name=""
       identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.DefaultInvariantEditHelperAdvice"
       editHelperAdviceClassName="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.DefaultInvariantEditHelperAdvice"
       inheritance="all">

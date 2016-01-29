@@ -9,7 +9,7 @@
     xmi:id="_ubJcsKeUEeSUR5jX0TaAcA"
     name="TestPaletteConfiguration"
     description="Element types configuration for test palette configuration plugin"
-    identifier="org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests"
+    identifier="org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests.TestPaletteConfiguration"
     metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

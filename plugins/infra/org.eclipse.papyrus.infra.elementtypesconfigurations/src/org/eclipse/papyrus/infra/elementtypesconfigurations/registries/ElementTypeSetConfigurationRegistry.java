@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bugs 459174, 467207, 485220
+ *  Christian W. Damus - bug 459174
+ *  Christian W. Damus - bug 467207
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.registries;
@@ -18,19 +19,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
@@ -39,28 +42,30 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IMetamodelType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.NullElementType;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints.IElementTypeSetExtensionPoint;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.ElementTypeCycleUtil;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.ElementTypeConfigurationCycleUtil;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.ElementTypeRegistryUtils;
-import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.OrientedGraph;
 import org.osgi.framework.Bundle;
 
 /**
  * Registry to manage load/unloaded {@link ElementTypeSetConfiguration}.
  */
-@SuppressWarnings("restriction")
 public class ElementTypeSetConfigurationRegistry {
 
-	private static ElementTypeSetConfigurationRegistry elementTypeSetConfigurationRegistry;
+	protected static ElementTypeSetConfigurationRegistry elementTypeSetConfigurationRegistry;
 
 	/** Map of retrieved elementType sets, key is their identifier */
-	protected Map<String, ElementTypeSetConfiguration> elementTypeSetConfigurations = null;
+	protected Map<String, Map<String, ElementTypeSetConfiguration>> elementTypeSetConfigurations = null;
+
+	protected OrientedGraph<String> advicesDeps = null;
+
 
 	/** unique resource set to load all elementType sets models */
 	protected ResourceSet elementTypeSetConfigurationResourceSet = null;
@@ -84,30 +89,25 @@ public class ElementTypeSetConfigurationRegistry {
 	protected void init() {
 		// 0. Resets values
 		elementTypeSetConfigurationResourceSet = null;
-		elementTypeSetConfigurations = null;
+		elementTypeSetConfigurations = new HashMap<String, Map<String, ElementTypeSetConfiguration>>();
 		// 1. creates the resource set
 		elementTypeSetConfigurationResourceSet = createResourceSet();
-		// 2. creates the list only when registry is acceded for the first time, (or on reload?)
-		elementTypeSetConfigurations = readElementTypeSetConfigurationModels();
-		// load all elementType set
-		Collection<ElementTypeSetConfiguration> values = elementTypeSetConfigurations.values();
-		loadElementTypeSetConfigurations(values);
+		// 2. creates the list only when registry is acceded for the first time,
+		Map<String, Set<ElementTypeSetConfiguration>> elementTypeSetConfigurationsToLoad = readElementTypeSetConfigurationModelsFromExtensionPoints();
+		// Try to load all elementType set definitions
+		for (String contexId : elementTypeSetConfigurationsToLoad.keySet()) {
+			loadElementTypeSetConfigurations(contexId, elementTypeSetConfigurationsToLoad.get(contexId));
+		}
+
 	}
 
 
-	protected Map<String, ElementTypeSetConfiguration> readElementTypeSetConfigurationModels() {
-		Map<String, ElementTypeSetConfiguration> ElementTypeSetConfigurations = new HashMap<String, ElementTypeSetConfiguration>();
-		// 1. retrieve from the workspace
-		Map<String, ElementTypeSetConfiguration> localSets = readElementTypeSetConfigurationModelsFromWorkspace();
-		if (localSets != null && !localSets.isEmpty()) {
-			ElementTypeSetConfigurations.putAll(localSets);
-		}
-		// 2. retrieve from the platform. If already in workspace (id), do not load the platform ones
-		Map<String, ElementTypeSetConfiguration> registeredSets = readElementTypeSetConfigurationModelsFromExtensionPoints(localSets.keySet());
-		if (registeredSets != null && !registeredSets.isEmpty()) {
-			ElementTypeSetConfigurations.putAll(registeredSets);
-		}
-		return ElementTypeSetConfigurations;
+	protected Map<String, Set<ElementTypeSetConfiguration>> readElementTypeSetConfigurationModels() {
+		Map<String, Set<ElementTypeSetConfiguration>> elementTypeSetConfigurations = new HashMap<String, Set<ElementTypeSetConfiguration>>();
+
+
+
+		return elementTypeSetConfigurations;
 	}
 
 	/**
@@ -117,10 +117,12 @@ public class ElementTypeSetConfigurationRegistry {
 		if (elementTypeSetConfigurations == null) {
 			return;
 		}
-		// copy set of entries to iterate and unload them one by one
-		List<Entry<String, ElementTypeSetConfiguration>> entriesToDispose = new ArrayList<Entry<String, ElementTypeSetConfiguration>>(elementTypeSetConfigurations.entrySet());
-		for (Entry<String, ElementTypeSetConfiguration> entry : entriesToDispose) {
-			unload(entry.getKey());
+
+		for (String contextId : elementTypeSetConfigurations.keySet()) {
+			for (String elementTypeSetId : elementTypeSetConfigurations.get(contextId).keySet()) {
+				unload(contextId, elementTypeSetId);
+			}
+
 		}
 		elementTypeSetConfigurationResourceSet = null;
 		elementTypeSetConfigurations = null;
@@ -130,11 +132,16 @@ public class ElementTypeSetConfigurationRegistry {
 	/**
 	 * Loads a given elementType set from a given identifier
 	 */
-	public void loadElementTypeSetConfiguration(String identifier) {
-		// retrieve the path from the identifier
-		String path = UserElementTypeDefinitionsRegistry.getInstance().getLocalElementTypeDefinitions().get(identifier);
+	public boolean loadElementTypeSetConfiguration(String contextId, String path) {
+
 		if (path == null) {
-			return;
+			Activator.log.warn("Path must not be null" + path);
+			return false;
+		}
+
+		if (contextId == null) {
+			Activator.log.warn("contextId must not be null" + path);
+			return false;
 		}
 		URI localURI = URI.createPlatformResourceURI(path, true);
 		Resource resource = elementTypeSetConfigurationResourceSet.createResource(localURI);
@@ -142,27 +149,25 @@ public class ElementTypeSetConfigurationRegistry {
 			resource.load(null);
 			EObject content = resource.getContents().get(0);
 			if (content instanceof ElementTypeSetConfiguration) {
-				elementTypeSetConfigurations.put(identifier, (ElementTypeSetConfiguration) content);
-				loadElementTypeSetConfiguration((ElementTypeSetConfiguration) content);
+				return loadElementTypeSetConfiguration(contextId, (ElementTypeSetConfiguration) content);
 			}
 		} catch (IOException e) {
 			Activator.log.error(e);
 		}
+
+		return false;
+
 	}
 
-	protected void loadElementTypeSetConfiguration(ElementTypeSetConfiguration elementTypeSetConfiguration) {
-		loadElementTypeSetConfigurations(Collections.singleton(elementTypeSetConfiguration));
+	public boolean loadElementTypeSetConfiguration(String clientContextID, ElementTypeSetConfiguration elementTypeSetConfiguration) {
+		return loadElementTypeSetConfigurations(clientContextID, Collections.singleton(elementTypeSetConfiguration));
 	}
 
-	protected List<SpecializationTypeConfiguration> getDependencies(SpecializationTypeConfiguration specializationTypeConfiguration, Map<String, SpecializationTypeConfiguration> specializationTypeConfigurationsToRegister) {
-		List<SpecializationTypeConfiguration> result = new ArrayList<SpecializationTypeConfiguration>();
-		for (String specializedTypeID : specializationTypeConfiguration.getSpecializedTypesID()) {
-			SpecializationTypeConfiguration value = specializationTypeConfigurationsToRegister.get(specializedTypeID);
-			if (value != null) {
-				result.add(value);
-			}
+	public OrientedGraph<String> getAdvicesDeps() {
+		if (advicesDeps == null) {
+			advicesDeps = new OrientedGraph<>();
 		}
-		return result;
+		return advicesDeps;
 	}
 
 	protected boolean isAlreadyRegistred(String elementTypeID, IClientContext context) {
@@ -171,7 +176,7 @@ public class ElementTypeSetConfigurationRegistry {
 				if (ElementTypeRegistryUtils.getType(context, elementTypeID) == null) {
 					// The elementType is already existing but not binded yet
 					context.bindId(elementTypeID);
-					Activator.log.info(elementTypeID + " is already registred elementtype but it is not binded yet. It has beeen binded to Papyrus context. ");
+					Activator.log.info(elementTypeID + " is already registred elementtype but it is not binded yet. It has been binded to Papyrus context. ");
 				}
 			}
 			return true;
@@ -235,39 +240,105 @@ public class ElementTypeSetConfigurationRegistry {
 
 	}
 
-	public void loadElementTypeSetConfigurations(Collection<ElementTypeSetConfiguration> elementTypeSetConfigurations) {
-		Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions = new HashMap<String, ElementTypeConfiguration>();
+	public boolean loadElementTypeSetConfigurations(String contexId, Collection<ElementTypeSetConfiguration> elementTypeSetConfigurationsToRegister) {
 
-		IClientContext context;
-		try {
-			context = TypeContext.getContext();
-		} catch (ServiceException e1) {
-			Activator.log.error(e1);
-			return;
+		if (contexId == null) {
+			Activator.log.warn("contexId must not be null. Loading aborted. ");
+			return false;
 		}
 
+		IClientContext context = ClientContextManager.getInstance().getClientContext(contexId);
+		if (context == null) {
+			Activator.log.warn("contexId couldn't be found. Loading aborted. ");
+			return false;
+		}
+
+		Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions = new HashMap<String, ElementTypeConfiguration>();
+
+
+
 		// Read from elementTypeSetConfigurations
-		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations) {
-			for (ElementTypeConfiguration elementTypeConfiguration : elementTypeSetConfiguration.getElementTypeConfigurations()) {
-				elementTypeConfigurationsDefinitions.put(elementTypeConfiguration.getIdentifier(), elementTypeConfiguration);
+		Set<ElementTypeSetConfiguration> registrableElementTypeSetConfiguration = new HashSet<ElementTypeSetConfiguration>();
+		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurationsToRegister) {
+			// Check if not already registered
+			if (elementTypeSetConfigurations.containsKey(elementTypeSetConfiguration.getIdentifier())) {
+				Activator.log.warn("The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: " + elementTypeSetConfiguration.getIdentifier());
+			} else {
+				registrableElementTypeSetConfiguration.add(elementTypeSetConfiguration);
+				for (ElementTypeConfiguration elementTypeConfiguration : elementTypeSetConfiguration.getElementTypeConfigurations()) {
+					elementTypeConfigurationsDefinitions.put(elementTypeConfiguration.getIdentifier(), elementTypeConfiguration);
+				}
 			}
 		}
 
-		Collection<Collection<String>> cycles = ElementTypeCycleUtil.getCycles(elementTypeConfigurationsDefinitions.values());
-		if (!cycles.isEmpty()) {
-			Activator.log.warn("The ElementTypesConfiguration registration has been aborted because there are cyclic-dependencies in the ElementTypes definitions: " + cycles);
-			return;
+		// Check there is no cyclic dependencies among elementTypes introduced by this loading
+		HashSet<ElementTypeConfiguration> elementTypesToCheck = new HashSet<ElementTypeConfiguration>();
+		// The old ones already registered
+		if (elementTypeSetConfigurations.containsKey(contexId)) {
+			for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contexId).values()) {
+				elementTypesToCheck.addAll(elementTypeSetConfiguration.getElementTypeConfigurations());
+			}
+		}
+		// The new ones we wan to register
+		elementTypesToCheck.addAll(elementTypeConfigurationsDefinitions.values());
+		OrientedGraph<String> elementTypesDeps = ElementTypeConfigurationCycleUtil.getDependenciesAmongElementTypes(elementTypesToCheck);
+
+		Collection<Collection<Object>> cyclesElementTypes = ElementTypeConfigurationCycleUtil.getCyclesAmongElementTypes(elementTypesDeps.getVertices(), elementTypesDeps.getEdges());
+		if (!cyclesElementTypes.isEmpty()) {
+			Activator.log.warn("The ElementTypesConfiguration registration has been aborted because there is at least a cyclic-dependency in the ElementTypes definitions: " + cyclesElementTypes);
+			return false;
 		}
 
+		// Collect all advicesconfiguration
+		HashSet<AdviceConfiguration> adviceToCheck = new HashSet<AdviceConfiguration>();
+		// The old ones already registered
+		if (elementTypeSetConfigurations.containsKey(contexId)) {
+			for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contexId).values()) {
+				TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
+				while (it.hasNext()) {
+					EObject element = (EObject) it.next();
+					if (element instanceof AdviceConfiguration) {
+						adviceToCheck.add((AdviceConfiguration) element);
+					}
 
-		// ElementTypesConfigurations can be registered
+				}
+			}
+		}
+		// The new ones we want to register
+		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
+			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
+			while (it.hasNext()) {
+				EObject element = (EObject) it.next();
+				if (element instanceof AdviceConfiguration) {
+					adviceToCheck.add((AdviceConfiguration) element);
+
+				}
+			}
+		}
+
+		// Check that there is no cyclic dependencies among advices introduced by this loading
+		advicesDeps = ElementTypeConfigurationCycleUtil.getDependenciesAmongAdvices(adviceToCheck);
+		Collection<Collection<Object>> cyclesAdvices = ElementTypeConfigurationCycleUtil.getCyclesInAdvices(advicesDeps.getVertices(), advicesDeps.getEdges());
+		if (!cyclesAdvices.isEmpty()) {
+			Activator.log.warn("The ElementTypesConfiguration registration has been aborted because there is at least a cyclic-dependencies in the Advices definitions: " + cyclesAdvices);
+			return false;
+		}
+
+		// If we reached that point, we should be able to register safely the none already registered elementTypeSets
+		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
+			if (!elementTypeSetConfigurations.containsKey(contexId)) {
+				elementTypeSetConfigurations.put(contexId, new HashMap<String, ElementTypeSetConfiguration>());
+			}
+			elementTypeSetConfigurations.get(contexId).put(elementTypeSetConfiguration.getIdentifier(), elementTypeSetConfiguration);
+		}
+
+		// New ElementTypesConfigurations can be registered
 		for (ElementTypeConfiguration elementTypeConfiguration : elementTypeConfigurationsDefinitions.values()) {
 			registerElementTypeConfiguration(elementTypeConfiguration, elementTypeConfigurationsDefinitions, context);
 		}
 
-
 		// Register adviceBindings
-		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations) {
+		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
 			List<AdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
 			for (AdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
 				IAdviceBindingDescriptor editHelperAdviceDecriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
@@ -275,16 +346,22 @@ public class ElementTypeSetConfigurationRegistry {
 				context.bindId(editHelperAdviceDecriptor.getId());
 			}
 		}
+
+		return true;
 	}
 
 
-	public void unload(String identifier) {
+	public boolean unload(String contextId, String elementTypeSetId) {
 		if (elementTypeSetConfigurations == null) {
-			return;
+			return false;
 		}
-		ElementTypeSetConfiguration elementTypeSet = elementTypeSetConfigurations.remove(identifier);
+		if (!elementTypeSetConfigurations.containsKey(contextId)) {
+			return false;
+		}
+		Map<String, ElementTypeSetConfiguration> map = elementTypeSetConfigurations.get(contextId);
+		ElementTypeSetConfiguration elementTypeSet = map.remove(elementTypeSetId);
 		if (elementTypeSet == null) {
-			return;
+			return false;
 		}
 
 		// Remove elementTypes
@@ -320,55 +397,77 @@ public class ElementTypeSetConfigurationRegistry {
 				elementTypeSetConfigurationResourceSet.getResources().remove(resource);
 			}
 		}
+
+		// Recompute adviceDependencies
+		HashSet<AdviceConfiguration> advices = new HashSet<AdviceConfiguration>();
+		// The ones still registered
+		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contextId).values()) {
+			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
+			while (it.hasNext()) {
+				EObject element = (EObject) it.next();
+				if (element instanceof AdviceConfiguration) {
+					advices.add((AdviceConfiguration) element);
+				}
+
+			}
+		}
+		advicesDeps = ElementTypeConfigurationCycleUtil.getDependenciesAmongAdvices(advices);
+
+		return true;
 	}
 
 
-	protected Map<String, ElementTypeSetConfiguration> readElementTypeSetConfigurationModelsFromWorkspace() {
-		Map<String, String> localFilesPath = UserElementTypeDefinitionsRegistry.getInstance().getLocalElementTypeDefinitions();
-		Map<String, ElementTypeSetConfiguration> workspaceElementTypeSets = new HashMap<String, ElementTypeSetConfiguration>();
-		if (localFilesPath != null && !localFilesPath.isEmpty()) {
-			for (Entry<String, String> idToPath : localFilesPath.entrySet()) {
-				String filePath = idToPath.getValue();
-				String id = idToPath.getKey();
-				URI localURI = URI.createPlatformResourceURI(filePath, true);
-				Resource resource = elementTypeSetConfigurationResourceSet.createResource(localURI);
-				try {
-					resource.load(null);
-					EObject content = resource.getContents().get(0);
-					if (content instanceof ElementTypeSetConfiguration) {
-						workspaceElementTypeSets.put(id, (ElementTypeSetConfiguration) content);
+
+	protected void addElementTypeSetConfigurationToDefinitions(ElementTypeSetConfiguration set, String clientContextId, Map<String, Set<ElementTypeSetConfiguration>> existingDefinitions) {
+		if (set.getIdentifier() == null) {
+			Activator.log.warn("The following ElementTypesSetConfiguration has ill-defined ID and is therefore ignored: " + set.eResource().getURI());
+		} else {
+			if (set != null) {
+				if (existingDefinitions.get(clientContextId) != null && containsElementTypeSet(existingDefinitions.get(clientContextId), set.getIdentifier())) {
+					Activator.log.warn("The following ElementTypesSetConfiguration has been ignored because the same ID already registreted: " + set.getIdentifier());
+				} else {
+					if (!existingDefinitions.containsKey(clientContextId)) {
+						existingDefinitions.put(clientContextId, new HashSet<ElementTypeSetConfiguration>());
 					}
-				} catch (IOException e) {
-					Activator.log.error(e);
+					existingDefinitions.get(clientContextId).add(set);
 				}
 			}
 		}
-		return workspaceElementTypeSets;
 	}
 
-	protected Map<String, ElementTypeSetConfiguration> readElementTypeSetConfigurationModelsFromExtensionPoints(Set<String> workspaceDefinitions) {
-		Map<String, ElementTypeSetConfiguration> platformElementTypeSets = new HashMap<String, ElementTypeSetConfiguration>();
+	protected Map<String, Set<ElementTypeSetConfiguration>> readElementTypeSetConfigurationModelsFromExtensionPoints() {
+		Map<String, Set<ElementTypeSetConfiguration>> existingDefinitions = new HashMap<>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(IElementTypeSetExtensionPoint.EXTENSION_POINT_ID);
 		// for each element, parses and retrieve the model file. then loads it and returns the root element
 		for (IConfigurationElement element : elements) {
 			String modelPath = element.getAttribute(IElementTypeSetExtensionPoint.PATH);
-			String elementTypeSetId = element.getAttribute(IElementTypeSetExtensionPoint.ID);
+			String clientContextId = element.getAttribute(IElementTypeSetExtensionPoint.CLIENT_CONTEXT_ID);
 			String contributorID = element.getContributor().getName();
 			if (Platform.inDebugMode()) {
 				Activator.log.debug("[Reading extension point]");
 				Activator.log.debug("-  Path to the model: " + modelPath);
+				Activator.log.debug("-  ClientContext the model should be registreted to: " + clientContextId);
 				Activator.log.debug("-  id of the container bundle: " + contributorID);
-				Activator.log.debug("-  id of the elementType set: " + elementTypeSetId);
 			}
-			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(elementTypeSetId, modelPath, contributorID);
-			if (set != null && !workspaceDefinitions.contains(elementTypeSetId)) { // do not add if it is locally redefined
-				if (platformElementTypeSets.containsKey(elementTypeSetId)) {
-					Activator.log.warn("An element type set is already registered with the id : " + elementTypeSetId);
-				}
-				platformElementTypeSets.put(elementTypeSetId, set);
+			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(modelPath, contributorID);
+
+			addElementTypeSetConfigurationToDefinitions(set, clientContextId, existingDefinitions);
+
+		}
+		return existingDefinitions;
+	}
+
+	protected boolean containsElementTypeSet(Set<ElementTypeSetConfiguration> elementTypeSets, String elementTypeSetConfigurationId) {
+		if (elementTypeSets == null) {
+			return false;
+		}
+
+		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSets) {
+			if (elementTypeSetConfiguration.getIdentifier().equals(elementTypeSetConfigurationId)) {
+				return true;
 			}
 		}
-		return platformElementTypeSets;
+		return false;
 	}
 
 	/**
@@ -388,13 +487,8 @@ public class ElementTypeSetConfigurationRegistry {
 	 *            id of the bundle containing the model file
 	 * @return the loaded file or <code>null</code> if some problem occured during loading
 	 */
-	protected ElementTypeSetConfiguration getElementTypeSetConfiguration(String elementTypesID, String modelPath, String bundleId) {
-		// 1. look in preferences.
-		String filePath = UserElementTypeDefinitionsRegistry.getInstance().getElementTypesRedefinition(elementTypesID);
-		if (filePath != null) {
-			getElementTypeSetConfigurationInPluginStateArea(elementTypesID);
-		}
-		// 2. no local redefinition. Load elementType set from plugin definition
+	protected ElementTypeSetConfiguration getElementTypeSetConfiguration(String modelPath, String bundleId) {
+
 		Bundle bundle = Platform.getBundle(bundleId);
 		if (Platform.isFragment(bundle)) {
 			ElementTypeSetConfiguration configuration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
@@ -433,33 +527,6 @@ public class ElementTypeSetConfigurationRegistry {
 	}
 
 	/**
-	 * Retrieves the contribution in the plugin area
-	 *
-	 * @param path
-	 *            the path of the elementType set to load in the plugin area
-	 */
-	protected ElementTypeSetConfiguration getElementTypeSetConfigurationInPluginStateArea(String path) {
-		// read in preferences area
-		IPath resourcePath = Activator.getDefault().getStateLocation().append(path);
-		URI uri = URI.createFileURI(resourcePath.toOSString());
-		if (uri != null && uri.isFile()) {
-			Resource resource = elementTypeSetConfigurationResourceSet.createResource(uri);
-			try {
-				resource.load(null);
-			} catch (IOException e) {
-				return null;
-			}
-			EObject content = resource.getContents().get(0);
-			if (content instanceof ElementTypeSetConfiguration) {
-				return (ElementTypeSetConfiguration) content;
-			}
-			Activator.log.warn("Impossible to cast the object into an ElementTypeSetConfiguration: " + content);
-			return null;
-		}
-		return null;
-	}
-
-	/**
 	 *
 	 * @param modelPath
 	 *            path of the model in the bundle
@@ -487,7 +554,7 @@ public class ElementTypeSetConfigurationRegistry {
 		return set;
 	}
 
-	public Map<String, ElementTypeSetConfiguration> getElementTypeSetConfigurations() {
+	public Map<String, Map<String, ElementTypeSetConfiguration>> getElementTypeSetConfigurations() {
 		return elementTypeSetConfigurations;
 	}
 }

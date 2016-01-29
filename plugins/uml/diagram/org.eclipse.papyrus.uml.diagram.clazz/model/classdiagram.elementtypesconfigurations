@@ -7,7 +7,7 @@
     xmi:id="_rWI4YHPzEeSnGJwaJWHCSg"
     name="PapyrusUMLClassDiagram"
     description=""
-    identifier=""
+    identifier="org.eclipse.papyrus.uml.diagram.clazz.elementTypeSet"
     metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
@@ -1206,7 +1206,7 @@
       inheritance="all">
     <target
         xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
-        href="platform:/plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUVlYCEeS0WsAAtVmToA"/>
+        href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUVlYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations
       xmi:id="_VPE3UJpvEeWZOI1l_xp4vg"

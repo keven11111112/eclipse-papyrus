@@ -12,7 +12,6 @@ Export-Package: org.eclipse.papyrus.infra.elementtypesconfiguration.notification
  org.eclipse.papyrus.infra.elementtypesconfigurations.factories,
  org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl,
  org.eclipse.papyrus.infra.elementtypesconfigurations.impl,
- org.eclipse.papyrus.infra.elementtypesconfigurations.internal.registries.spi;x-friends:="org.eclipse.papyrus.infra.elementtypesconfigurations.ui",
  org.eclipse.papyrus.infra.elementtypesconfigurations.registries,
  org.eclipse.papyrus.infra.elementtypesconfigurations.resource,
  org.eclipse.papyrus.infra.elementtypesconfigurations.util,

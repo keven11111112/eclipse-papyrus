@@ -1879,21 +1879,21 @@
  <extension
        point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
     <elementTypeSet
-          id="org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"
+    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
           path="model/uml.elementtypesconfigurations">
     </elementTypeSet>
  </extension>
   <extension
        point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
     <elementTypeSet
-          id="org.eclipse.papyrus.uml.service.types.UMLContainmentsElementTypeSet"
+    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
           path="model/uml-containments.elementtypesconfigurations">
     </elementTypeSet>
  </extension>
  <extension
        point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
     <elementTypeSet
-          id="org.eclipse.papyrus.uml.service.types.StandardProfileElementTypeSet"
+    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
           path="model/StandardProfile.elementtypesconfigurations">
     </elementTypeSet>
  </extension>

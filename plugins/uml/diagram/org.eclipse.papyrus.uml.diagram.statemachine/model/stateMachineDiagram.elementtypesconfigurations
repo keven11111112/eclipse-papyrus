@@ -1,114 +1,349 @@
 <?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmi:id="_wYwtMMeDEeSwP_9Vn5UnWg" name="PapyrusUMLStateMachineDiagram" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whhAkMeDEeSwP_9Vn5UnWg" name="Comment" identifier="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment" hint="666">
-    <iconEntry xmi:id="_whhAkceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmi:id="_wYwtMMeDEeSwP_9Vn5UnWg"
+    name="PapyrusUMLStateMachineDiagram"
+    identifier="org.eclipse.papyrus.uml.diagram.statemachine.elementTypeSet"
+    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whhAkMeDEeSwP_9Vn5UnWg"
+      name="Comment"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"
+      hint="666">
+    <iconEntry
+        xmi:id="_whhAkceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Comment.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whtN0MeDEeSwP_9Vn5UnWg" name="Comment Annotated Element" identifier="org.eclipse.papyrus.uml.diagram.statemachine.CommentAnnotatedElement_667" hint="667">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whtN0MeDEeSwP_9Vn5UnWg"
+      name="Comment Annotated Element"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.CommentAnnotatedElement_667"
+      hint="667">
     <specializedTypesID>org.eclipse.papyrus.uml.Comment.AnnotatedElements</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whfycMeDEeSwP_9Vn5UnWg" name="Connection Point Reference" identifier="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000" hint="18000">
-    <iconEntry xmi:id="_whfycceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/ConnectionPointReference.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whfycMeDEeSwP_9Vn5UnWg"
+      name="Connection Point Reference"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"
+      hint="18000">
+    <iconEntry
+        xmi:id="_whfycceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/ConnectionPointReference.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ConnectionPointReference</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whi1wMeDEeSwP_9Vn5UnWg" name="Constraint" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668" hint="668">
-    <iconEntry xmi:id="_whi1wceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whi1wMeDEeSwP_9Vn5UnWg"
+      name="Constraint"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"
+      hint="668">
+    <iconEntry
+        xmi:id="_whi1wceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Constraint.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wht04MeDEeSwP_9Vn5UnWg" name="Constraint Constrained Element" identifier="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintConstrainedElement_670" hint="670">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_wht04MeDEeSwP_9Vn5UnWg"
+      name="Constraint Constrained Element"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintConstrainedElement_670"
+      hint="670">
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint.ConstrainedElements</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wht04ceDEeSwP_9Vn5UnWg" name="Constraint Context" identifier="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintContext_8500" hint="8500">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_wht04ceDEeSwP_9Vn5UnWg"
+      name="Constraint Context"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.ConstraintContext_8500"
+      hint="8500">
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint.Context</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whnuQMeDEeSwP_9Vn5UnWg" name="Do Activity State Behavior" identifier="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691" hint="691">
-    <iconEntry xmi:id="_whnuQceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whnuQMeDEeSwP_9Vn5UnWg"
+      name="Do Activity State Behavior"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"
+      hint="691">
+    <iconEntry
+        xmi:id="_whnuQceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Behavior.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior_As_UML::State::doActivity</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whmgIMeDEeSwP_9Vn5UnWg" name="Entry State Behavior" identifier="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690" hint="690">
-    <iconEntry xmi:id="_whmgIceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whmgIMeDEeSwP_9Vn5UnWg"
+      name="Entry State Behavior"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"
+      hint="690">
+    <iconEntry
+        xmi:id="_whmgIceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Behavior.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior_As_UML::State::entry</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_who8YMeDEeSwP_9Vn5UnWg" name="Exit State Behavior" identifier="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692" hint="692">
-    <iconEntry xmi:id="_who8YceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_who8YMeDEeSwP_9Vn5UnWg"
+      name="Exit State Behavior"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"
+      hint="692">
+    <iconEntry
+        xmi:id="_who8YceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Behavior.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior_As_UML::State::exit</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whMQcMeDEeSwP_9Vn5UnWg" name="Final State" identifier="org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000" hint="5000">
-    <iconEntry xmi:id="_whMQcceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/FinalState.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whMQcMeDEeSwP_9Vn5UnWg"
+      name="Final State"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000"
+      hint="5000">
+    <iconEntry
+        xmi:id="_whMQcceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/FinalState.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.FinalState</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whsmwMeDEeSwP_9Vn5UnWg" name="Generalization" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000" hint="19000">
-    <iconEntry xmi:id="_whsmwceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whsmwMeDEeSwP_9Vn5UnWg"
+      name="Generalization"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"
+      hint="19000">
+    <iconEntry
+        xmi:id="_whsmwceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Generalization.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Generalization</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whkq8MeDEeSwP_9Vn5UnWg" name="Internal Transition" identifier="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680" hint="680">
-    <iconEntry xmi:id="_whkq8ceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Transition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whkq8MeDEeSwP_9Vn5UnWg"
+      name="Internal Transition"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"
+      hint="680">
+    <iconEntry
+        xmi:id="_whkq8ceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Transition.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Transition</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wc3KEMeDEeSwP_9Vn5UnWg" name="Package" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000" hint="PapyrusUMLStateMachineDiagram">
-    <iconEntry xmi:id="_wc3KEceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Package.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_wc3KEMeDEeSwP_9Vn5UnWg"
+      name="Package"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"
+      hint="PapyrusUMLStateMachineDiagram">
+    <iconEntry
+        xmi:id="_wc3KEceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Package.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whPTwMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000" hint="8000">
-    <iconEntry xmi:id="_whPTwceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whPTwMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000"
+      hint="8000">
+    <iconEntry
+        xmi:id="_whPTwceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whRI8MeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000" hint="9000">
-    <iconEntry xmi:id="_whRI8ceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whRI8MeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000"
+      hint="9000">
+    <iconEntry
+        xmi:id="_whRI8ceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whS-IMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000" hint="10000">
-    <iconEntry xmi:id="_whS-IceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whS-IMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000"
+      hint="10000">
+    <iconEntry
+        xmi:id="_whS-IceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whUMQMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000" hint="11000">
-    <iconEntry xmi:id="_whUMQceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whUMQMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000"
+      hint="11000">
+    <iconEntry
+        xmi:id="_whUMQceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whWBcMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000" hint="12000">
-    <iconEntry xmi:id="_whWBcceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whWBcMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000"
+      hint="12000">
+    <iconEntry
+        xmi:id="_whWBcceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whXPkMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000" hint="13000">
-    <iconEntry xmi:id="_whXPkceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whXPkMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000"
+      hint="13000">
+    <iconEntry
+        xmi:id="_whXPkceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whZEwMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000" hint="14000">
-    <iconEntry xmi:id="_whZEwceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whZEwMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000"
+      hint="14000">
+    <iconEntry
+        xmi:id="_whZEwceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wha58MeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000" hint="15000">
-    <iconEntry xmi:id="_wha58ceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_wha58MeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000"
+      hint="15000">
+    <iconEntry
+        xmi:id="_wha58ceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whcvIMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000" hint="16000">
-    <iconEntry xmi:id="_whcvIceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whcvIMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"
+      hint="16000">
+    <iconEntry
+        xmi:id="_whcvIceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whd9QMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000" hint="17000">
-    <iconEntry xmi:id="_whd9QceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whd9QMeDEeSwP_9Vn5UnWg"
+      name="Pseudostate"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"
+      hint="17000">
+    <iconEntry
+        xmi:id="_whd9QceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Pseudostate.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whH_AMeDEeSwP_9Vn5UnWg" name="Region" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Region_3000" hint="3000">
-    <iconEntry xmi:id="_whH_AceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Region.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whH_AMeDEeSwP_9Vn5UnWg"
+      name="Region"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Region_3000"
+      hint="3000">
+    <iconEntry
+        xmi:id="_whH_AceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Region.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Region</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whOFoMeDEeSwP_9Vn5UnWg" name="State" identifier="org.eclipse.papyrus.uml.diagram.statemachine.State_6000" hint="6000">
-    <iconEntry xmi:id="_whOFoceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/State.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whOFoMeDEeSwP_9Vn5UnWg"
+      name="State"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.State_6000"
+      hint="6000">
+    <iconEntry
+        xmi:id="_whOFoceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/State.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.State</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whqKgMeDEeSwP_9Vn5UnWg" name="State Machine" identifier="org.eclipse.papyrus.uml.diagram.statemachine.StateMachine_2000" hint="2000">
-    <iconEntry xmi:id="_whqKgceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/StateMachine.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whqKgMeDEeSwP_9Vn5UnWg"
+      name="State Machine"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.StateMachine_2000"
+      hint="2000">
+    <iconEntry
+        xmi:id="_whqKgceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/StateMachine.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.StateMachine</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whrYoMeDEeSwP_9Vn5UnWg" name="Transition" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000" hint="7000">
-    <iconEntry xmi:id="_whrYoceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Transition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_whrYoMeDEeSwP_9Vn5UnWg"
+      name="Transition"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"
+      hint="7000">
+    <iconEntry
+        xmi:id="_whrYoceDEeSwP_9Vn5UnWg"
+        iconPath="/icons/full/obj16/Transition.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Transition</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_QoNH8NI_EeSQKMzCpfBfWg" name="org.eclipse.papyrus.uml.BasePseudostateType" identifier="org.eclipse.papyrus.uml.BasePseudostateType" hint="org.eclipse.papyrus.uml.BasePseudostateType">
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_QoNH8NI_EeSQKMzCpfBfWg"
+      name="org.eclipse.papyrus.uml.BasePseudostateType"
+      identifier="org.eclipse.papyrus.uml.BasePseudostateType"
+      hint="org.eclipse.papyrus.uml.BasePseudostateType">
     <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
-    <editHelperAdviceConfiguration xmi:id="_EIBgsNJGEeSGnIOah6qfxQ" name="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" inheritance="all"/>
+    <editHelperAdviceConfiguration
+        xmi:id="_EIBgsNJGEeSGnIOah6qfxQ"
+        name="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice"
+        identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice"
+        inheritance="all"/>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations xmi:id="_Gdt5EMf7EeSG9OkAifWKOg" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.DeleteRegionHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.DeleteRegionHelperAdvice" inheritance="all" target="_whqKgMeDEeSwP_9Vn5UnWg"/>
-  <adviceBindingsConfigurations xmi:id="_3RjqQMwTEeSyj5ums1L-vQ" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice" inheritance="all" target="_whOFoMeDEeSwP_9Vn5UnWg"/>
+  <adviceBindingsConfigurations
+      xmi:id="_Gdt5EMf7EeSG9OkAifWKOg"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.DeleteRegionHelperAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.DeleteRegionHelperAdvice"
+      inheritance="all"
+      target="_whqKgMeDEeSwP_9Vn5UnWg"/>
+  <adviceBindingsConfigurations
+      xmi:id="_3RjqQMwTEeSyj5ums1L-vQ"
+      identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice"
+      inheritance="all"
+      target="_whOFoMeDEeSwP_9Vn5UnWg"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

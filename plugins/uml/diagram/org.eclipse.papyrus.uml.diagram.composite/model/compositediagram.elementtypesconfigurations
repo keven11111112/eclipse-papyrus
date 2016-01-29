@@ -6,6 +6,7 @@
     xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
     xmi:id="_tL86sLazEeSbnofizoRSMQ"
     name="CompositeStructure"
+    identifier="org.eclipse.papyrus.uml.diagram.composite.elementTypeSet"
     metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

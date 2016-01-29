@@ -5,6 +5,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
     xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
+    name="UMLElementTypeSet"
+    identifier="org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"
     metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
@@ -3732,12 +3734,13 @@
       inheritance="all"
       target="_SccC-1YCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations
-  	  xmi:id="_PBjP4BM9EeW4hZNFQ_NOtQ" 
-  	  name="" description="" 
-  	  identifier="org.eclipse.papyrus.uml.advice.ConstraintContextDestroyEditHelperAdvice" 
-  	  editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintContextDestroyEditHelperAdvice" 
-  	  inheritance="all" 
-  	  target="_SccC-1YCEeS0WsAAtVmToA"/>
+      xmi:id="_PBjP4BM9EeW4hZNFQ_NOtQ"
+      name=""
+      description=""
+      identifier="org.eclipse.papyrus.uml.advice.ConstraintContextDestroyEditHelperAdvice"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintContextDestroyEditHelperAdvice"
+      inheritance="all"
+      target="_SccC-1YCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations
       xmi:id="_R_pDcWT7EeSzFvTXGJPhUg"
       name="org.eclipse.papyrus.uml.advice.Classifier"

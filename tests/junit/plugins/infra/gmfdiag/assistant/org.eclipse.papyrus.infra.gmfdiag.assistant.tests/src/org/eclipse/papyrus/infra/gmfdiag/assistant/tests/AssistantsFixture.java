@@ -14,11 +14,12 @@
 package org.eclipse.papyrus.infra.gmfdiag.assistant.tests;
 
 import java.net.URL;
-import java.util.Collections;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.core.IModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.DefaultModelingAssistantModelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.ModelingAssistantModelRegistry;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.rules.TestWatcher;
@@ -61,10 +63,27 @@ public class AssistantsFixture extends TestWatcher {
 		URI elementTypesModelURI = getModelURI(assistantsModelPath.replaceFirst("\\.assistants$", ".elementtypesconfigurations"), description);
 		if (elementTypesModelURI != null) {
 			ElementTypeSetConfiguration elementTypes = UMLUtil.load(resourceSet, elementTypesModelURI, ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
-			ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfigurations(Collections.singleton(elementTypes));
+
+			try {
+				ElementTypeSetConfigurationRegistry.getInstance().loadElementTypeSetConfiguration(TypeContext.getContext().getId(), (ElementTypeSetConfiguration) elementTypes);
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			elementTypesID = JUnitUtils.getTestClass(description).getName();
-			ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().put(elementTypesID, elementTypes);
+
+			try {
+				String contextId = TypeContext.getContext().getId();
+
+				if (!ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().containsKey(contextId)) {
+					ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().put(contextId, new HashMap<String, ElementTypeSetConfiguration>());
+				}
+				ElementTypeSetConfigurationRegistry.getInstance().getElementTypeSetConfigurations().get(contextId).put(elementTypesID, elementTypes);
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		// And then the assistants that reference them
@@ -89,7 +108,14 @@ public class AssistantsFixture extends TestWatcher {
 		assistantModelProvider = null;
 
 		if (elementTypesID != null) {
-			ElementTypeSetConfigurationRegistry.getInstance().unload(elementTypesID);
+			try {
+				String contextId = TypeContext.getContext().getId();
+
+				ElementTypeSetConfigurationRegistry.getInstance().unload(contextId, elementTypesID);
+			} catch (ServiceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		EMFHelper.unload(resourceSet);

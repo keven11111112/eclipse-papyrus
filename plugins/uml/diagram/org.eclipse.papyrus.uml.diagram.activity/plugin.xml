@@ -3320,7 +3320,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.uml.diagram.activity.elementTypeSet"
+   		 clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/activityDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>

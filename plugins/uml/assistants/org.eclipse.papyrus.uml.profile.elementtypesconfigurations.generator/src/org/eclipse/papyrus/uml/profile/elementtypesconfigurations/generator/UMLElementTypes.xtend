@@ -51,7 +51,7 @@ class UMLElementTypes {
     }
 
     def getBaseUMLElementTypeSet() {
-        ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(umlElementTypesSet)
+		ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(contextId).get(umlElementTypesSet)
     }
 
     def getBaseUMLElementTypes() {
@@ -76,7 +76,7 @@ class UMLElementTypes {
     }
 
     def getBaseElementTypeSet() {
-        baseElementTypesSetConfiguration ?: ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(baseElementTypesSet)
+        baseElementTypesSetConfiguration ?: ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(contextId).get(baseElementTypesSet)
     }
     
     def getBaseElementTypes() {

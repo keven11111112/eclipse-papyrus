@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.infra.gmfdiag.common.tests.testexpansiondiagram"
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="models/TestExpansionDiagram.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
