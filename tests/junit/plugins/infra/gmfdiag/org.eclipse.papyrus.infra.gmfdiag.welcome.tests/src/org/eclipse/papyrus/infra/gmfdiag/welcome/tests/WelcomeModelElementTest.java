@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -124,12 +124,14 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 			}
 		});
 
-		editor.execute(new RecordingCommand(editor.getEditingDomain(), "Delete Diagram") {
+		editor.execute(new RecordingCommand(editor.getEditingDomain(), "Create Diagram") {
 
 			@Override
 			protected void doExecute() {
+				// Be resilient against misconfigured diagrams: look for the class diagram, specifically
 				ViewPrototype prototype = PolicyChecker.getCurrent().getPrototypesFor(editor.getModel()).stream()
 						.filter(proto -> proto.getConfiguration() instanceof PapyrusDiagram)
+						.filter(proto -> EcoreUtil.getURI(proto.getConfiguration()).toString().contains("org.eclipse.papyrus.uml.diagram.clazz"))
 						.findAny().get();
 				prototype.instantiateOn(editor.getModel(), "CreatedInTest");
 			}
