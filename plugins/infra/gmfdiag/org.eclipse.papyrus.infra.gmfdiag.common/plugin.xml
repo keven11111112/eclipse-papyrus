@@ -139,7 +139,7 @@
          adaptableType="org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor$DiagramOutlinePage"
          class="org.eclipse.papyrus.infra.gmfdiag.common.adapter.DiagramOutlineAdapterFactory">
       <adapter
-            type="org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider">
+            type="org.eclipse.papyrus.infra.ui.editor.reload.IReloadContextProvider">
       </adapter>
    </factory>
 </extension>
