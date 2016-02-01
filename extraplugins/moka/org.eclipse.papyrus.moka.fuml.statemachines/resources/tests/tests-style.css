@@ -1,6 +1,21 @@
 Class{
 	bold: true;
-	fillColor: beige;
+	fillColor: white;
+	elementIcon: false;
+}
+
+Property, Operation, Reception{
+	elementIcon: false;
+}
+
+Activity{
+	elementIcon:false;
+	bold: true;
+	fillColor: white;
+}
+
+AddStructuralFeatureValueAction, ReadStructuralFeatureValueAction, CallBehaviorAction, CallOperationAction, ReadSelfAction, ReadLinkAction, ValueSpecificationAction{
+	fillColor:white;
 }
 
 StateMachine{
@@ -8,12 +23,24 @@ StateMachine{
 	fillColor: white;
 }
 
+State{
+	fillColor: white;
+}
+
+Region{
+	fillColor: white;
+}
+
 Transition{
 	routing: Rectilinear;
 }
 
+ControlFlow{
+	lineColor: grey;
+}
+
 ObjectFlow{
-	lineColor: chocolate;
+	lineColor: black;
 }
 
 ObjectFlow > Label{
@@ -30,12 +57,7 @@ State, ActivityNode{
 }
 
 InputPin, OutputPin{
-	fillColor: orange;
-}
-
-Activity{
-	bold: true;
-	fillColor: beige;
+	fillColor: black;
 }
 
 ActivityParameterNode{
