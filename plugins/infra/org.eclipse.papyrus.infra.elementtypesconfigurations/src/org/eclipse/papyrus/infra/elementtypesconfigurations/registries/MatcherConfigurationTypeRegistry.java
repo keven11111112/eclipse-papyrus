@@ -18,18 +18,20 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints.IMatcherConfigurationTypeExtensionPoint;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.IMatcherFactory;
-import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.DefaultMatcherFactory;
 
 public class MatcherConfigurationTypeRegistry {
 
 	private static MatcherConfigurationTypeRegistry registry;
 
-	protected Map<String, IMatcherFactory<? extends MatcherConfiguration>> matcherConfigurationTypeToFactory = null;
+	protected Map<String, IMatcherFactory<? extends AbstractMatcherConfiguration>> matcherConfigurationTypeToFactory = null;
 
 	public static synchronized MatcherConfigurationTypeRegistry getInstance() {
 		if (registry == null) {
@@ -40,7 +42,7 @@ public class MatcherConfigurationTypeRegistry {
 	}
 
 	protected void init() {
-		matcherConfigurationTypeToFactory = new HashMap<String, IMatcherFactory<? extends MatcherConfiguration>>();
+		matcherConfigurationTypeToFactory = new HashMap<String, IMatcherFactory<? extends AbstractMatcherConfiguration>>();
 		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor(IMatcherConfigurationTypeExtensionPoint.EXTENSION_POINT_ID);
 		for (IConfigurationElement configurationElement : elements) {
 			String configurationClass = configurationElement.getAttribute(IMatcherConfigurationTypeExtensionPoint.CONFIGURATION_CLASS);
@@ -53,9 +55,11 @@ public class MatcherConfigurationTypeRegistry {
 				Activator.log.error(e);
 			}
 		}
+		// Register default interpretation
+		matcherConfigurationTypeToFactory.put(ElementtypesconfigurationsPackage.eINSTANCE.getMatcherConfiguration().getInstanceTypeName(), new DefaultMatcherFactory());
 	}
 
-	protected <T extends MatcherConfiguration> IMatcherFactory<T> getFactory(T matcherConfiguration) {
+	protected <T extends AbstractMatcherConfiguration> IMatcherFactory<T> getFactory(T matcherConfiguration) {
 		String matcherConfigurationType = matcherConfiguration.eClass().getInstanceTypeName();
 		// We assume here that the right factory is registered for the right MatcherConfiguration
 		@SuppressWarnings("unchecked")
@@ -63,20 +67,34 @@ public class MatcherConfigurationTypeRegistry {
 		return factory;
 	}
 
-	public <T extends MatcherConfiguration> IElementMatcher getMatcher(T matcherConfiguration) {
+	public <T extends AbstractMatcherConfiguration> IElementMatcher getMatcher(T matcherConfiguration) {
 		if (matcherConfiguration == null) {
 			return null;
 		} else {
 			IMatcherFactory<T> factory = getFactory(matcherConfiguration);
 			if (factory == null) {
-				// Try to provide default interpretation
-				String matcherClassName = matcherConfiguration.getMatcherClassName();
-				IElementMatcher matcher = ClassLoaderHelper.newInstance(matcherClassName, IElementMatcher.class);
+				// Provide dummy interpretation
+				IElementMatcher matcher = new DummyElementMatcher();
 				return matcher;
 			} else {
 				IElementMatcher matcher = factory.createElementMatcher(matcherConfiguration);
 				return matcher;
 			}
 		}
+	}
+
+	public class DummyElementMatcher implements IElementMatcher {
+
+		/**
+		 * @see org.eclipse.gmf.runtime.emf.type.core.IElementMatcher#matches(org.eclipse.emf.ecore.EObject)
+		 *
+		 * @param eObject
+		 * @return
+		 */
+		@Override
+		public boolean matches(EObject eObject) {
+			return true;
+		}
+
 	}
 }

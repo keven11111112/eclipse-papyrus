@@ -49,7 +49,7 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration";
+	String eNS_URI = "http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration/1.1";
 
 	/**
 	 * The package namespace name.
@@ -78,22 +78,13 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Matcher Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__MATCHER_CLASS_NAME = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION__MATCHER_CLASS_NAME;
-
-	/**
 	 * The feature id for the '<em><b>Stereotypes Qualified Names</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 0;
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__STEREOTYPES_QUALIFIED_NAMES = ElementtypesconfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Profile Uri</b></em>' attribute.
@@ -102,7 +93,7 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 1;
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION__PROFILE_URI = ElementtypesconfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Stereotype Application Matcher Configuration</em>' class.
@@ -111,7 +102,7 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_FEATURE_COUNT + 2;
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Stereotype Application Matcher Configuration</em>' class.
@@ -120,7 +111,7 @@ public interface StereotypeApplicationMatcherConfigurationPackage extends EPacka
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION_OPERATION_COUNT = ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION_OPERATION_COUNT + 0;
+	int STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION_OPERATION_COUNT = ElementtypesconfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION_OPERATION_COUNT + 0;
 
 
 	/**

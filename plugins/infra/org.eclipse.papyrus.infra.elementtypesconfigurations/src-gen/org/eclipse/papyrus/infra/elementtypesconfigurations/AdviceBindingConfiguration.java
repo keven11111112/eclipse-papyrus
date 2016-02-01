@@ -22,92 +22,38 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getContainerConfiguration <em>Container Configuration</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceBindingConfiguration()
  * @model
  * @generated
  */
-public interface AdviceBindingConfiguration extends AdviceConfiguration {
+public interface AdviceBindingConfiguration extends AbstractAdviceBindingConfiguration {
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
+	 * Returns the value of the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target</em>' reference isn't clear,
+	 * If the meaning of the '<em>Edit Helper Advice Class Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(ElementTypeConfiguration)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceBindingConfiguration_Target()
+	 * @return the value of the '<em>Edit Helper Advice Class Name</em>' attribute.
+	 * @see #setEditHelperAdviceClassName(String)
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceBindingConfiguration_EditHelperAdviceClassName()
 	 * @model required="true"
 	 * @generated
 	 */
-	ElementTypeConfiguration getTarget();
+	String getEditHelperAdviceClassName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getTarget <em>Target</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Edit Helper Advice Class Name</em>' attribute.
+	 * @see #getEditHelperAdviceClassName()
 	 * @generated
 	 */
-	void setTarget(ElementTypeConfiguration value);
-
-	/**
-	 * Returns the value of the '<em><b>Container Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Container Configuration</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Container Configuration</em>' containment reference.
-	 * @see #setContainerConfiguration(ContainerConfiguration)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceBindingConfiguration_ContainerConfiguration()
-	 * @model containment="true"
-	 * @generated
-	 */
-	ContainerConfiguration getContainerConfiguration();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getContainerConfiguration <em>Container Configuration</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Container Configuration</em>' containment reference.
-	 * @see #getContainerConfiguration()
-	 * @generated
-	 */
-	void setContainerConfiguration(ContainerConfiguration value);
-
-	/**
-	 * Returns the value of the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Matcher Configuration</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Matcher Configuration</em>' containment reference.
-	 * @see #setMatcherConfiguration(MatcherConfiguration)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceBindingConfiguration_MatcherConfiguration()
-	 * @model containment="true"
-	 * @generated
-	 */
-	MatcherConfiguration getMatcherConfiguration();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Matcher Configuration</em>' containment reference.
-	 * @see #getMatcherConfiguration()
-	 * @generated
-	 */
-	void setMatcherConfiguration(MatcherConfiguration value);
+	void setEditHelperAdviceClassName(String value);
 
 } // AdviceBindingConfiguration

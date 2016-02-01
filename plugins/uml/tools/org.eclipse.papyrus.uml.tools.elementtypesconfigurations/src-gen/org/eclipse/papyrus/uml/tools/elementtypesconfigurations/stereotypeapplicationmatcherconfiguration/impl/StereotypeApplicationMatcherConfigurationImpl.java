@@ -15,14 +15,16 @@ package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeappli
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.MatcherConfigurationImpl;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AbstractMatcherConfigurationImpl;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationPackage;
@@ -41,7 +43,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplic
  *
  * @generated
  */
-public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfigurationImpl implements StereotypeApplicationMatcherConfiguration {
+public class StereotypeApplicationMatcherConfigurationImpl extends AbstractMatcherConfigurationImpl implements StereotypeApplicationMatcherConfiguration {
 	/**
 	 * The cached value of the '{@link #getStereotypesQualifiedNames() <em>Stereotypes Qualified Names</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -61,6 +63,7 @@ public class StereotypeApplicationMatcherConfigurationImpl extends MatcherConfig
 	 * @ordered
 	 */
 	protected static final String PROFILE_URI_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getProfileUri() <em>Profile Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->

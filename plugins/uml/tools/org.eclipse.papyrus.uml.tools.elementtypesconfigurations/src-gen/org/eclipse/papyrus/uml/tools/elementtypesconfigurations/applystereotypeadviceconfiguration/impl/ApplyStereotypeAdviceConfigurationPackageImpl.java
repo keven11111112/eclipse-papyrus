@@ -403,7 +403,7 @@ public class ApplyStereotypeAdviceConfigurationPackageImpl extends EPackageImpl 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		applyStereotypeAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAdviceBindingConfiguration());
+		applyStereotypeAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAbstractAdviceBindingConfiguration());
 		listValueEClass.getESuperTypes().add(this.getFeatureValue());
 		constantValueEClass.getESuperTypes().add(this.getFeatureValue());
 		dynamicValueEClass.getESuperTypes().add(this.getFeatureValue());

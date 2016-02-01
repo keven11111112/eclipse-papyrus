@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="setvaluesadviceconfiguration" nsURI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/setvaluesadviceconfiguration/1.0"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="setvaluesadviceconfiguration" nsURI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/setvaluesadviceconfiguration/1.1"
     nsPrefix="setvaluesadviceconfiguration">
-  <eClassifiers xsi:type="ecore:EClass" name="SetValuesAdviceConfiguration" eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.ecore#//AdviceBindingConfiguration">
+  <eClassifiers xsi:type="ecore:EClass" name="SetValuesAdviceConfiguration" eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.ecore#//AbstractAdviceBindingConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="featuresToSet" upperBound="-1"
         eType="#//FeatureToSet" containment="true"/>
   </eClassifiers>

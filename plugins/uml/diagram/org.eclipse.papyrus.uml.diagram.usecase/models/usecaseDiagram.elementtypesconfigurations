@@ -1,419 +1,139 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmi:id="_qxKXgFkiEeSozs_wDdvj0g"
-    name="UseCase"
-    identifier="org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXgVkiEeSozs_wDdvj0g"
-      name="Extension Point"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3007"
-      hint="3007">
-    <iconEntry
-        xmi:id="_qxKXglkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/ExtensionPoint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.uml.diagram.usecase.elementTypeSet" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="UseCase" xmi:id="_qxKXgFkiEeSozs_wDdvj0g" xmi:version="2.0">
+  <elementTypeConfigurations hint="3007" identifier="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3007" name="Extension Point" xmi:id="_qxKXgVkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExtensionPoint.gif" xmi:id="_qxKXglkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ExtensionPoint</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXg1kiEeSozs_wDdvj0g"
-      name="Extension Point"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3008"
-      hint="3008">
-    <iconEntry
-        xmi:id="_qxKXhFkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/ExtensionPoint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3008" identifier="org.eclipse.papyrus.uml.diagram.usecase.ExtensionPoint_3008" name="Extension Point" xmi:id="_qxKXg1kiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExtensionPoint.gif" xmi:id="_qxKXhFkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ExtensionPoint</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXhVkiEeSozs_wDdvj0g"
-      name="Use Case"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3009"
-      hint="3009">
-    <iconEntry
-        xmi:id="_qxKXhlkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/UseCase.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3009" identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3009" name="Use Case" xmi:id="_qxKXhVkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/UseCase.gif" xmi:id="_qxKXhlkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.UseCase_As_UML::Classifier::ownedUseCase</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXh1kiEeSozs_wDdvj0g"
-      name="Component"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Component_3016"
-      hint="3016">
-    <iconEntry
-        xmi:id="_qxKXiFkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Component.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3016" identifier="org.eclipse.papyrus.uml.diagram.usecase.Component_3016" name="Component" xmi:id="_qxKXh1kiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Component.gif" xmi:id="_qxKXiFkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXiVkiEeSozs_wDdvj0g"
-      name="Comment"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Comment_3015"
-      hint="3015">
-    <iconEntry
-        xmi:id="_qxKXilkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Comment.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3015" identifier="org.eclipse.papyrus.uml.diagram.usecase.Comment_3015" name="Comment" xmi:id="_qxKXiVkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif" xmi:id="_qxKXilkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXi1kiEeSozs_wDdvj0g"
-      name="Constraint"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3017"
-      hint="3017">
-    <iconEntry
-        xmi:id="_qxKXjFkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Constraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3017" identifier="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3017" name="Constraint" xmi:id="_qxKXi1kiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif" xmi:id="_qxKXjFkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXjVkiEeSozs_wDdvj0g"
-      name="Actor"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_3018"
-      hint="3018">
-    <iconEntry
-        xmi:id="_qxKXjlkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Actor.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3018" identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_3018" name="Actor" xmi:id="_qxKXjVkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Actor.gif" xmi:id="_qxKXjlkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Actor</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXj1kiEeSozs_wDdvj0g"
-      name="Constraint"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3010"
-      hint="3010">
-    <iconEntry
-        xmi:id="_qxKXkFkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Constraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3010" identifier="org.eclipse.papyrus.uml.diagram.usecase.Constraint_3010" name="Constraint" xmi:id="_qxKXj1kiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif" xmi:id="_qxKXkFkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXkVkiEeSozs_wDdvj0g"
-      name="Actor"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_3011"
-      hint="3011">
-    <iconEntry
-        xmi:id="_qxKXklkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Actor.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3011" identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_3011" name="Actor" xmi:id="_qxKXkVkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Actor.gif" xmi:id="_qxKXklkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Actor</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXk1kiEeSozs_wDdvj0g"
-      name="Use Case"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3012"
-      hint="3012">
-    <iconEntry
-        xmi:id="_qxKXlFkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/UseCase.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3012" identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_3012" name="Use Case" xmi:id="_qxKXk1kiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/UseCase.gif" xmi:id="_qxKXlFkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.UseCase</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxKXlVkiEeSozs_wDdvj0g"
-      name="Component"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Component_3013"
-      hint="3013">
-    <iconEntry
-        xmi:id="_qxKXllkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Component.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3013" identifier="org.eclipse.papyrus.uml.diagram.usecase.Component_3013" name="Component" xmi:id="_qxKXlVkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Component.gif" xmi:id="_qxKXllkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-kFkiEeSozs_wDdvj0g"
-      name="Package"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Package_3014"
-      hint="3014">
-    <iconEntry
-        xmi:id="_qxK-kVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Package.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="3014" identifier="org.eclipse.papyrus.uml.diagram.usecase.Package_3014" name="Package" xmi:id="_qxK-kFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Package.gif" xmi:id="_qxK-kVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-klkiEeSozs_wDdvj0g"
-      name="Actor"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_2011"
-      hint="2011">
-    <iconEntry
-        xmi:id="_qxK-k1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Actor.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2011" identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_2011" name="Actor" xmi:id="_qxK-klkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Actor.gif" xmi:id="_qxK-k1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Actor</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-lFkiEeSozs_wDdvj0g"
-      name="Actor as Classifier"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_2012"
-      hint="2012">
-    <iconEntry
-        xmi:id="_qxK-lVkiEeSozs_wDdvj0g"
-        iconPath="/icons/obj16/Actor_as_Classifier.gif"
-        bundleId="org.eclipse.papyrus.uml.diagram.usecase"/>
+  <elementTypeConfigurations hint="2012" identifier="org.eclipse.papyrus.uml.diagram.usecase.Actor_2012" name="Actor as Classifier" xmi:id="_qxK-lFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.papyrus.uml.diagram.usecase" iconPath="/icons/obj16/Actor_as_Classifier.gif" xmi:id="_qxK-lVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Actor</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-llkiEeSozs_wDdvj0g"
-      name="Use Case"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013"
-      hint="2013">
-    <iconEntry
-        xmi:id="_qxK-l1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/UseCase.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2013" identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2013" name="Use Case" xmi:id="_qxK-llkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/UseCase.gif" xmi:id="_qxK-l1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.UseCase</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-mFkiEeSozs_wDdvj0g"
-      name="Use Case as Classifier"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014"
-      hint="2014">
-    <iconEntry
-        xmi:id="_qxK-mVkiEeSozs_wDdvj0g"
-        iconPath="/icons/obj16/UseCase_as_Classifier.gif"
-        bundleId="org.eclipse.papyrus.uml.diagram.usecase"/>
+  <elementTypeConfigurations hint="2014" identifier="org.eclipse.papyrus.uml.diagram.usecase.UseCase_2014" name="Use Case as Classifier" xmi:id="_qxK-mFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.papyrus.uml.diagram.usecase" iconPath="/icons/obj16/UseCase_as_Classifier.gif" xmi:id="_qxK-mVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.UseCase</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-mlkiEeSozs_wDdvj0g"
-      name="Classifier"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015"
-      hint="2015">
-    <iconEntry
-        xmi:id="_qxK-m1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Classifier.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2015" identifier="org.eclipse.papyrus.uml.diagram.usecase.Classifier_2015" name="Classifier" xmi:id="_qxK-mlkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Classifier.gif" xmi:id="_qxK-m1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Classifier</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-nFkiEeSozs_wDdvj0g"
-      name="Package"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Package_2016"
-      hint="2016">
-    <iconEntry
-        xmi:id="_qxK-nVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Package.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2016" identifier="org.eclipse.papyrus.uml.diagram.usecase.Package_2016" name="Package" xmi:id="_qxK-nFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Package.gif" xmi:id="_qxK-nVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-nlkiEeSozs_wDdvj0g"
-      name="Constraint"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Constraint_2017"
-      hint="2017">
-    <iconEntry
-        xmi:id="_qxK-n1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Constraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2017" identifier="org.eclipse.papyrus.uml.diagram.usecase.Constraint_2017" name="Constraint" xmi:id="_qxK-nlkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif" xmi:id="_qxK-n1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-oFkiEeSozs_wDdvj0g"
-      name="Comment"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Comment_2018"
-      hint="2018">
-    <iconEntry
-        xmi:id="_qxK-oVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Comment.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2018" identifier="org.eclipse.papyrus.uml.diagram.usecase.Comment_2018" name="Comment" xmi:id="_qxK-oFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Comment.gif" xmi:id="_qxK-oVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-olkiEeSozs_wDdvj0g"
-      name="Default Named Element"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.DefaultNamedElement_2022"
-      hint="2022">
-    <iconEntry
-        xmi:id="_qxK-o1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/NamedElement.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="2022" identifier="org.eclipse.papyrus.uml.diagram.usecase.DefaultNamedElement_2022" name="Default Named Element" xmi:id="_qxK-olkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/NamedElement.gif" xmi:id="_qxK-o1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.NamedElement</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-pFkiEeSozs_wDdvj0g"
-      name="Short Cut Diagram"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019"
-      hint="2019">
+  <elementTypeConfigurations hint="2019" identifier="org.eclipse.papyrus.uml.diagram.usecase.Diagram_2019" name="Short Cut Diagram" xmi:id="_qxK-pFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.gmfdiag.common.Diagram</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-plkiEeSozs_wDdvj0g"
-      name="Include"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Include_4008"
-      hint="4008">
-    <iconEntry
-        xmi:id="_qxK-p1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Include.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4008" identifier="org.eclipse.papyrus.uml.diagram.usecase.Include_4008" name="Include" xmi:id="_qxK-plkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Include.gif" xmi:id="_qxK-p1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Include</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-qFkiEeSozs_wDdvj0g"
-      name="Extend"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Extend_4009"
-      hint="4009">
-    <iconEntry
-        xmi:id="_qxK-qVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Extend.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4009" identifier="org.eclipse.papyrus.uml.diagram.usecase.Extend_4009" name="Extend" xmi:id="_qxK-qFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Extend.gif" xmi:id="_qxK-qVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Extend</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-qlkiEeSozs_wDdvj0g"
-      name="Generalization"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Generalization_4010"
-      hint="4010">
-    <iconEntry
-        xmi:id="_qxK-q1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Generalization.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4010" identifier="org.eclipse.papyrus.uml.diagram.usecase.Generalization_4010" name="Generalization" xmi:id="_qxK-qlkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Generalization.gif" xmi:id="_qxK-q1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Generalization</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-rFkiEeSozs_wDdvj0g"
-      name="Association"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Association_4011"
-      hint="4011">
-    <iconEntry
-        xmi:id="_qxK-rVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Association.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4011" identifier="org.eclipse.papyrus.uml.diagram.usecase.Association_4011" name="Association" xmi:id="_qxK-rFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Association.gif" xmi:id="_qxK-rVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Association</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-rlkiEeSozs_wDdvj0g"
-      name="Dependency"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013"
-      hint="4013">
-    <iconEntry
-        xmi:id="_qxK-r1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Dependency.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4013" identifier="org.eclipse.papyrus.uml.diagram.usecase.Dependency_4013" name="Dependency" xmi:id="_qxK-rlkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Dependency.gif" xmi:id="_qxK-r1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-sFkiEeSozs_wDdvj0g"
-      name="Abstraction"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Abstraction_4015"
-      hint="4015">
-    <iconEntry
-        xmi:id="_qxK-sVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Abstraction.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4015" identifier="org.eclipse.papyrus.uml.diagram.usecase.Abstraction_4015" name="Abstraction" xmi:id="_qxK-sFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Abstraction.gif" xmi:id="_qxK-sVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-slkiEeSozs_wDdvj0g"
-      name="Usage"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Usage_4016"
-      hint="4016">
-    <iconEntry
-        xmi:id="_qxK-s1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Usage.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4016" identifier="org.eclipse.papyrus.uml.diagram.usecase.Usage_4016" name="Usage" xmi:id="_qxK-slkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Usage.gif" xmi:id="_qxK-s1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Usage</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-tFkiEeSozs_wDdvj0g"
-      name="Realization"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Realization_4017"
-      hint="4017">
-    <iconEntry
-        xmi:id="_qxK-tVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/Realization.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4017" identifier="org.eclipse.papyrus.uml.diagram.usecase.Realization_4017" name="Realization" xmi:id="_qxK-tFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Realization.gif" xmi:id="_qxK-tVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Realization</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-tlkiEeSozs_wDdvj0g"
-      name="Package Merge"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.PackageMerge_4018"
-      hint="4018">
-    <iconEntry
-        xmi:id="_qxK-t1kiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/PackageMerge.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4018" identifier="org.eclipse.papyrus.uml.diagram.usecase.PackageMerge_4018" name="Package Merge" xmi:id="_qxK-tlkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/PackageMerge.gif" xmi:id="_qxK-t1kiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.PackageMerge</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qxK-uFkiEeSozs_wDdvj0g"
-      name="Package Import"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.PackageImport_4019"
-      hint="4019">
-    <iconEntry
-        xmi:id="_qxK-uVkiEeSozs_wDdvj0g"
-        iconPath="/icons/full/obj16/PackageImport.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="4019" identifier="org.eclipse.papyrus.uml.diagram.usecase.PackageImport_4019" name="Package Import" xmi:id="_qxK-uFkiEeSozs_wDdvj0g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/PackageImport.gif" xmi:id="_qxK-uVkiEeSozs_wDdvj0g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.PackageImport</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_HAqeSGqFEeS1S7nMA1LVzg"
-      name="Comment Annotated Element"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.CommentAnnotatedElement_4014"
-      hint="4014">
+  <elementTypeConfigurations hint="4014" identifier="org.eclipse.papyrus.uml.diagram.usecase.CommentAnnotatedElement_4014" name="Comment Annotated Element" xmi:id="_HAqeSGqFEeS1S7nMA1LVzg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.Comment.AnnotatedElements</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_HAqeRWqFEeS1S7nMA1LVzg"
-      name="Constraint Constrained Element"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.ConstraintConstrainedElement_4012"
-      hint="4012">
+  <elementTypeConfigurations hint="4012" identifier="org.eclipse.papyrus.uml.diagram.usecase.ConstraintConstrainedElement_4012" name="Constraint Constrained Element" xmi:id="_HAqeRWqFEeS1S7nMA1LVzg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint.ConstrainedElements</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_ewRrIK_rEeSWIf43-VACFg"
-      name="Package"
-      identifier="org.eclipse.papyrus.uml.diagram.usecase.Package_1000"
-      hint="UseCase">
-    <iconEntry
-        xmi:id="_ewRrIa_rEeSWIf43-VACFg"
-        iconPath="/icons/full/obj16/Package.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UseCase" identifier="org.eclipse.papyrus.uml.diagram.usecase.Package_1000" name="Package" xmi:id="_ewRrIK_rEeSWIf43-VACFg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Package.gif" xmi:id="_ewRrIa_rEeSWIf43-VACFg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

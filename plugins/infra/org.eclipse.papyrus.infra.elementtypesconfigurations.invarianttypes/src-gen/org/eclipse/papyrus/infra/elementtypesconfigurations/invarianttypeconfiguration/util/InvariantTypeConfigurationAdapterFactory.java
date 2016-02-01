@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.*;
@@ -108,6 +110,14 @@ public class InvariantTypeConfigurationAdapterFactory extends AdapterFactoryImpl
 			@Override
 			public Adapter caseConfigurationElement(ConfigurationElement object) {
 				return createConfigurationElementAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+				return createIdentifiedConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseNamedConfiguration(NamedConfiguration object) {
+				return createNamedConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseElementTypeConfiguration(ElementTypeConfiguration object) {
@@ -232,6 +242,34 @@ public class InvariantTypeConfigurationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createConfigurationElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration <em>Identified Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration
+	 * @generated
+	 */
+	public Adapter createIdentifiedConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration <em>Named Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration
+	 * @generated
+	 */
+	public Adapter createNamedConfigurationAdapter() {
 		return null;
 	}
 

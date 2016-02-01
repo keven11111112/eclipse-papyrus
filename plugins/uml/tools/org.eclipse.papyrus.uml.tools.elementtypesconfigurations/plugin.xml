@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated ApplyStereotypeAdviceConfiguration -->
       <package
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfigurationPackage"
             genModel="model/ApplyStereotypeAdviceConfiguration.genmodel"/>
    </extension>
@@ -28,7 +28,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated ApplyStereotypeAdviceConfiguration -->
       <factory
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.provider.ApplyStereotypeAdviceConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -41,13 +41,13 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated ApplyStereotypeAdviceConfiguration -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.provider.ApplyStereotypeAdviceConfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
    </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated InvariantStereotypeRuleConfiguration -->
       <package
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfigurationPackage"
             genModel="model/InvariantStereotypeRuleConfiguration.genmodel"/>
    </extension>
@@ -62,7 +62,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated InvariantStereotypeRuleConfiguration -->
       <factory
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.provider.InvariantStereotypeRuleConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -81,7 +81,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SetTypeAdviceConfiguration -->
       <package
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/settypeadvice/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/settypeadvice/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfigurationPackage"
             genModel="model/SetTypeAdviceConfiguration.genmodel"/>
    </extension>
@@ -89,7 +89,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated SetTypeAdviceConfiguration -->
       <factory
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/settypeadvice/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/settypeadvice/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.provider.SetTypeAdviceConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -102,13 +102,13 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated SetTypeAdviceConfiguration -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.provider.SetTypeAdviceConfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
    </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated StereotypeApplicationMatcherConfiguration -->
       <package
-            uri="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration"
+            uri="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationPackage"
             genModel="model/StereotypeApplicationMatcherConfiguration.genmodel"/>
    </extension>
@@ -123,7 +123,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated StereotypeApplicationMatcherConfiguration -->
       <factory
-            uri="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration"
+            uri="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.provider.StereotypeApplicationMatcherConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -136,7 +136,7 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated StereotypeApplicationMatcherConfiguration -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.provider.StereotypeApplicationMatcherConfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
    </extension>
    <extension

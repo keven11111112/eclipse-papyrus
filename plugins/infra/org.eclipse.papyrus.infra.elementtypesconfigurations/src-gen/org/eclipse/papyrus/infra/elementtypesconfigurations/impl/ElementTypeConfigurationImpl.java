@@ -23,15 +23,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>elementType Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Element Type Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getHint <em>Hint</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getIconEntry <em>Icon Entry</em>}</li>
@@ -40,6 +44,46 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
  * @generated
  */
 public abstract class ElementTypeConfigurationImpl extends ConfigurationElementImpl implements ElementTypeConfiguration {
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getHint() <em>Hint</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -107,6 +151,48 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	protected EClass eStaticClass() {
 		return ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_CONFIGURATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER, oldIdentifier, identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME, oldName, name));
 	}
 
 	/**
@@ -216,6 +302,10 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER:
+				return getIdentifier();
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
+				return getName();
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				return getHint();
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__KIND:
@@ -234,6 +324,12 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
+				setName((String)newValue);
+				return;
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				setHint((String)newValue);
 				return;
@@ -255,6 +351,12 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				setHint(HINT_EDEFAULT);
 				return;
@@ -276,6 +378,10 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 				return HINT_EDEFAULT == null ? hint != null : !HINT_EDEFAULT.equals(hint);
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__KIND:
@@ -292,11 +398,59 @@ public abstract class ElementTypeConfigurationImpl extends ConfigurationElementI
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == IdentifiedConfiguration.class) {
+			switch (derivedFeatureID) {
+				case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER: return ElementtypesconfigurationsPackage.IDENTIFIED_CONFIGURATION__IDENTIFIER;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedConfiguration.class) {
+			switch (derivedFeatureID) {
+				case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME: return ElementtypesconfigurationsPackage.NAMED_CONFIGURATION__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == IdentifiedConfiguration.class) {
+			switch (baseFeatureID) {
+				case ElementtypesconfigurationsPackage.IDENTIFIED_CONFIGURATION__IDENTIFIER: return ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedConfiguration.class) {
+			switch (baseFeatureID) {
+				case ElementtypesconfigurationsPackage.NAMED_CONFIGURATION__NAME: return ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (hint: ");
+		result.append(" (identifier: ");
+		result.append(identifier);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", hint: ");
 		result.append(hint);
 		result.append(", kind: ");
 		result.append(kind);

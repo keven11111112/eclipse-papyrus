@@ -42,8 +42,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IMetamodelType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.NullElementType;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
@@ -339,8 +339,8 @@ public class ElementTypeSetConfigurationRegistry {
 
 		// Register adviceBindings
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
-			List<AdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
-			for (AdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
+			List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
+			for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
 				IAdviceBindingDescriptor editHelperAdviceDecriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
 				ElementTypeRegistryUtils.registerAdviceBinding(editHelperAdviceDecriptor);
 				context.bindId(editHelperAdviceDecriptor.getId());
@@ -380,8 +380,8 @@ public class ElementTypeSetConfigurationRegistry {
 		ElementTypeUtil.deregisterElementTypes(elementTypes, ElementTypeUtil.ALL_DEPENDENTS);
 
 		// Remove adviceBindings
-		List<AdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSet.getAdviceBindingsConfigurations();
-		for (AdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
+		List<AbstractAdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSet.getAdviceBindingsConfigurations();
+		for (AbstractAdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
 			IAdviceBindingDescriptor advice = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
 			if (advice != null) {
 				ElementTypeRegistryUtils.removeAdviceDescriptorFromBindings(advice);

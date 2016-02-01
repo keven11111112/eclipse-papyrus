@@ -58,10 +58,56 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdentifierPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addHintPropertyDescriptor(object);
 			addKindPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IdentifiedConfiguration_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IdentifiedConfiguration_identifier_feature", "_UI_IdentifiedConfiguration_type"),
+				 ElementtypesconfigurationsPackage.Literals.IDENTIFIED_CONFIGURATION__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedConfiguration_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedConfiguration_name_feature", "_UI_NamedConfiguration_type"),
+				 ElementtypesconfigurationsPackage.Literals.NAMED_CONFIGURATION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -146,7 +192,7 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ElementTypeConfiguration)object).getIdentifier();
+		String label = ((ElementTypeConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ElementTypeConfiguration_type") :
 			getString("_UI_ElementTypeConfiguration_type") + " " + label;
@@ -165,6 +211,8 @@ public class ElementTypeConfigurationItemProvider extends ConfigurationElementIt
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ElementTypeConfiguration.class)) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__IDENTIFIER:
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__NAME:
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__HINT:
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_CONFIGURATION__KIND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.util.InvariantStereotypeRuleConfigurationResourceFactoryImpl
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationResourceImpl extends XMLResourceImpl
-{
+public class InvariantStereotypeRuleConfigurationResourceImpl extends XMLResourceImpl {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
@@ -32,8 +31,7 @@ public class InvariantStereotypeRuleConfigurationResourceImpl extends XMLResourc
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationResourceImpl(URI uri)
-	{
+	public InvariantStereotypeRuleConfigurationResourceImpl(URI uri) {
 		super(uri);
 	}
 

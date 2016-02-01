@@ -50,24 +50,6 @@ public interface ElementtypesconfigurationsFactory extends EFactory {
 	IconEntry createIconEntry();
 
 	/**
-	 * Returns a new object of class '<em>Matcher Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Matcher Configuration</em>'.
-	 * @generated
-	 */
-	MatcherConfiguration createMatcherConfiguration();
-
-	/**
-	 * Returns a new object of class '<em>Advice Binding Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Advice Binding Configuration</em>'.
-	 * @generated
-	 */
-	AdviceBindingConfiguration createAdviceBindingConfiguration();
-
-	/**
 	 * Returns a new object of class '<em>Specialization Type Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -102,6 +84,24 @@ public interface ElementtypesconfigurationsFactory extends EFactory {
 	 * @generated
 	 */
 	EditHelperAdviceConfiguration createEditHelperAdviceConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Advice Binding Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Advice Binding Configuration</em>'.
+	 * @generated
+	 */
+	AdviceBindingConfiguration createAdviceBindingConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Matcher Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Matcher Configuration</em>'.
+	 * @generated
+	 */
+	MatcherConfiguration createMatcherConfiguration();
 
 	/**
 	 * Returns the package supported by this factory.

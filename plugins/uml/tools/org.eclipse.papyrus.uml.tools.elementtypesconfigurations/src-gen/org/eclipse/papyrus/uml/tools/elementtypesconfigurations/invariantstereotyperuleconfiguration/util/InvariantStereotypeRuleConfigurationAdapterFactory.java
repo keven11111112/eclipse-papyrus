@@ -31,8 +31,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfigurationPackage
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterFactoryImpl
-{
+public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -47,10 +46,8 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationAdapterFactory()
-	{
-		if (modelPackage == null)
-		{
+	public InvariantStereotypeRuleConfigurationAdapterFactory() {
+		if (modelPackage == null) {
 			modelPackage = InvariantStereotypeRuleConfigurationPackage.eINSTANCE;
 		}
 	}
@@ -64,14 +61,11 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * @generated
 	 */
 	@Override
-	public boolean isFactoryForType(Object object)
-	{
-		if (object == modelPackage)
-		{
+	public boolean isFactoryForType(Object object) {
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject) object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -83,27 +77,22 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InvariantStereotypeRuleConfigurationSwitch<Adapter> modelSwitch =
-			new InvariantStereotypeRuleConfigurationSwitch<Adapter>()
-			{
-				@Override
-				public Adapter caseInvariantStereotypeRuleConfiguration(InvariantStereotypeRuleConfiguration object)
-				{
-					return createInvariantStereotypeRuleConfigurationAdapter();
-				}
+	protected InvariantStereotypeRuleConfigurationSwitch<Adapter> modelSwitch = new InvariantStereotypeRuleConfigurationSwitch<Adapter>() {
+		@Override
+		public Adapter caseInvariantStereotypeRuleConfiguration(InvariantStereotypeRuleConfiguration object) {
+			return createInvariantStereotypeRuleConfigurationAdapter();
+		}
 
-				@Override
-				public Adapter caseInvariantRuleConfiguration(InvariantRuleConfiguration object)
-				{
-					return createInvariantRuleConfigurationAdapter();
-				}
+		@Override
+		public Adapter caseInvariantRuleConfiguration(InvariantRuleConfiguration object) {
+			return createInvariantRuleConfigurationAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object)
-				{
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -114,8 +103,7 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * @generated
 	 */
 	@Override
-	public Adapter createAdapter(Notifier target)
-	{
+	public Adapter createAdapter(Notifier target) {
 		return modelSwitch.doSwitch((EObject) target);
 	}
 
@@ -130,8 +118,7 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration
 	 * @generated
 	 */
-	public Adapter createInvariantStereotypeRuleConfigurationAdapter()
-	{
+	public Adapter createInvariantStereotypeRuleConfigurationAdapter() {
 		return null;
 	}
 
@@ -145,8 +132,7 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantRuleConfiguration
 	 * @generated
 	 */
-	public Adapter createInvariantRuleConfigurationAdapter()
-	{
+	public Adapter createInvariantRuleConfigurationAdapter() {
 		return null;
 	}
 
@@ -158,8 +144,7 @@ public class InvariantStereotypeRuleConfigurationAdapterFactory extends AdapterF
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter()
-	{
+	public Adapter createEObjectAdapter() {
 		return null;
 	}
 

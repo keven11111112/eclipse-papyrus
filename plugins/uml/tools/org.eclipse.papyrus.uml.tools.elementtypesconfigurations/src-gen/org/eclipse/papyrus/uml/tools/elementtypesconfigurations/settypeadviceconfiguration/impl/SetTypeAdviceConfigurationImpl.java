@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingConfigurationImpl;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AbstractAdviceBindingConfigurationImpl;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfigurationPackage;
@@ -31,15 +31,15 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadvicecon
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.impl.SetTypeAdviceConfigurationImpl#getValidTypes <em>Valid Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.impl.SetTypeAdviceConfigurationImpl#getCreationTypes <em>Creation Types</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SetTypeAdviceConfigurationImpl extends AdviceBindingConfigurationImpl implements SetTypeAdviceConfiguration {
+public class SetTypeAdviceConfigurationImpl extends AbstractAdviceBindingConfigurationImpl implements SetTypeAdviceConfiguration {
 	/**
 	 * The cached value of the '{@link #getValidTypes() <em>Valid Types</em>}' attribute list.
 	 * <!-- begin-user-doc -->

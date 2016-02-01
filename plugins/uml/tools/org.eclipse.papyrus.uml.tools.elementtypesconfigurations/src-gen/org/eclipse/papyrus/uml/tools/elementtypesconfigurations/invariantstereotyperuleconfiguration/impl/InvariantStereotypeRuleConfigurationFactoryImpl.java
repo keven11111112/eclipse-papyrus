@@ -28,25 +28,20 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImpl implements InvariantStereotypeRuleConfigurationFactory
-{
+public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImpl implements InvariantStereotypeRuleConfigurationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static InvariantStereotypeRuleConfigurationFactory init()
-	{
-		try
-		{
+	public static InvariantStereotypeRuleConfigurationFactory init() {
+		try {
 			InvariantStereotypeRuleConfigurationFactory theInvariantStereotypeRuleConfigurationFactory = (InvariantStereotypeRuleConfigurationFactory) EPackage.Registry.INSTANCE.getEFactory(InvariantStereotypeRuleConfigurationPackage.eNS_URI);
-			if (theInvariantStereotypeRuleConfigurationFactory != null)
-			{
+			if (theInvariantStereotypeRuleConfigurationFactory != null) {
 				return theInvariantStereotypeRuleConfigurationFactory;
 			}
-		} catch (Exception exception)
-		{
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new InvariantStereotypeRuleConfigurationFactoryImpl();
@@ -58,8 +53,7 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationFactoryImpl()
-	{
+	public InvariantStereotypeRuleConfigurationFactoryImpl() {
 		super();
 	}
 
@@ -69,10 +63,8 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * @generated
 	 */
 	@Override
-	public EObject create(EClass eClass)
-	{
-		switch (eClass.getClassifierID())
-		{
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION:
 			return createInvariantStereotypeRuleConfiguration();
 		default:
@@ -85,8 +77,7 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfiguration createInvariantStereotypeRuleConfiguration()
-	{
+	public InvariantStereotypeRuleConfiguration createInvariantStereotypeRuleConfiguration() {
 		InvariantStereotypeRuleConfigurationImpl invariantStereotypeRuleConfiguration = new InvariantStereotypeRuleConfigurationImpl();
 		return invariantStereotypeRuleConfiguration;
 	}
@@ -96,8 +87,7 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationPackage getInvariantStereotypeRuleConfigurationPackage()
-	{
+	public InvariantStereotypeRuleConfigurationPackage getInvariantStereotypeRuleConfigurationPackage() {
 		return (InvariantStereotypeRuleConfigurationPackage) getEPackage();
 	}
 
@@ -108,8 +98,7 @@ public class InvariantStereotypeRuleConfigurationFactoryImpl extends EFactoryImp
 	 * @generated
 	 */
 	@Deprecated
-	public static InvariantStereotypeRuleConfigurationPackage getPackage()
-	{
+	public static InvariantStereotypeRuleConfigurationPackage getPackage() {
 		return InvariantStereotypeRuleConfigurationPackage.eINSTANCE;
 	}
 

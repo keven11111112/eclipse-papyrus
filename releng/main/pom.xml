@@ -134,6 +134,7 @@
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.edit</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.editor</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.emf</module>
+		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes</module>
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.ui</module>
         <module>../../plugins/infra/org.eclipse.papyrus.infra.filters</module>

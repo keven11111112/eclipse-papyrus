@@ -15,7 +15,7 @@ package org.eclipse.papyrus.elementtypesconfigurations.developer.utils;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.AbstractNotifierEditHelper;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.AbstractNotifierEditHelper;
 
 /**
  * Edit helper for the NullElementType that considers before and after

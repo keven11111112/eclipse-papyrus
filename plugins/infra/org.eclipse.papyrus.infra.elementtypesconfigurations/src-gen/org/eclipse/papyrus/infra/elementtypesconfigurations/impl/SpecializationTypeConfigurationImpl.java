@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 
 /**
@@ -67,7 +67,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * @generated
 	 * @ordered
 	 */
-	protected EditHelperAdviceConfiguration editHelperAdviceConfiguration;
+	protected AbstractEditHelperAdviceConfiguration editHelperAdviceConfiguration;
 
 	/**
 	 * The cached value of the '{@link #getContainerConfiguration() <em>Container Configuration</em>}' containment reference.
@@ -87,7 +87,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * @generated
 	 * @ordered
 	 */
-	protected MatcherConfiguration matcherConfiguration;
+	protected AbstractMatcherConfiguration matcherConfiguration;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,7 +125,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EditHelperAdviceConfiguration getEditHelperAdviceConfiguration() {
+	public AbstractEditHelperAdviceConfiguration getEditHelperAdviceConfiguration() {
 		return editHelperAdviceConfiguration;
 	}
 
@@ -134,8 +134,8 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEditHelperAdviceConfiguration(EditHelperAdviceConfiguration newEditHelperAdviceConfiguration, NotificationChain msgs) {
-		EditHelperAdviceConfiguration oldEditHelperAdviceConfiguration = editHelperAdviceConfiguration;
+	public NotificationChain basicSetEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration newEditHelperAdviceConfiguration, NotificationChain msgs) {
+		AbstractEditHelperAdviceConfiguration oldEditHelperAdviceConfiguration = editHelperAdviceConfiguration;
 		editHelperAdviceConfiguration = newEditHelperAdviceConfiguration;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION, oldEditHelperAdviceConfiguration, newEditHelperAdviceConfiguration);
@@ -149,13 +149,13 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEditHelperAdviceConfiguration(EditHelperAdviceConfiguration newEditHelperAdviceConfiguration) {
+	public void setEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration newEditHelperAdviceConfiguration) {
 		if (newEditHelperAdviceConfiguration != editHelperAdviceConfiguration) {
 			NotificationChain msgs = null;
 			if (editHelperAdviceConfiguration != null)
-				msgs = ((InternalEObject)editHelperAdviceConfiguration).eInverseRemove(this, ElementtypesconfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION__TARGET, EditHelperAdviceConfiguration.class, msgs);
+				msgs = ((InternalEObject)editHelperAdviceConfiguration).eInverseRemove(this, ElementtypesconfigurationsPackage.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__TARGET, AbstractEditHelperAdviceConfiguration.class, msgs);
 			if (newEditHelperAdviceConfiguration != null)
-				msgs = ((InternalEObject)newEditHelperAdviceConfiguration).eInverseAdd(this, ElementtypesconfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION__TARGET, EditHelperAdviceConfiguration.class, msgs);
+				msgs = ((InternalEObject)newEditHelperAdviceConfiguration).eInverseAdd(this, ElementtypesconfigurationsPackage.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION__TARGET, AbstractEditHelperAdviceConfiguration.class, msgs);
 			msgs = basicSetEditHelperAdviceConfiguration(newEditHelperAdviceConfiguration, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -211,7 +211,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatcherConfiguration getMatcherConfiguration() {
+	public AbstractMatcherConfiguration getMatcherConfiguration() {
 		return matcherConfiguration;
 	}
 
@@ -220,8 +220,8 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetMatcherConfiguration(MatcherConfiguration newMatcherConfiguration, NotificationChain msgs) {
-		MatcherConfiguration oldMatcherConfiguration = matcherConfiguration;
+	public NotificationChain basicSetMatcherConfiguration(AbstractMatcherConfiguration newMatcherConfiguration, NotificationChain msgs) {
+		AbstractMatcherConfiguration oldMatcherConfiguration = matcherConfiguration;
 		matcherConfiguration = newMatcherConfiguration;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION, oldMatcherConfiguration, newMatcherConfiguration);
@@ -235,7 +235,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMatcherConfiguration(MatcherConfiguration newMatcherConfiguration) {
+	public void setMatcherConfiguration(AbstractMatcherConfiguration newMatcherConfiguration) {
 		if (newMatcherConfiguration != matcherConfiguration) {
 			NotificationChain msgs = null;
 			if (matcherConfiguration != null)
@@ -260,7 +260,7 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
 				if (editHelperAdviceConfiguration != null)
 					msgs = ((InternalEObject)editHelperAdviceConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION, null, msgs);
-				return basicSetEditHelperAdviceConfiguration((EditHelperAdviceConfiguration)otherEnd, msgs);
+				return basicSetEditHelperAdviceConfiguration((AbstractEditHelperAdviceConfiguration)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -317,13 +317,13 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 				getSpecializedTypesID().addAll((Collection<? extends String>)newValue);
 				return;
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
-				setEditHelperAdviceConfiguration((EditHelperAdviceConfiguration)newValue);
+				setEditHelperAdviceConfiguration((AbstractEditHelperAdviceConfiguration)newValue);
 				return;
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION:
 				setContainerConfiguration((ContainerConfiguration)newValue);
 				return;
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:
-				setMatcherConfiguration((MatcherConfiguration)newValue);
+				setMatcherConfiguration((AbstractMatcherConfiguration)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -341,13 +341,13 @@ public class SpecializationTypeConfigurationImpl extends ElementTypeConfiguratio
 				getSpecializedTypesID().clear();
 				return;
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__EDIT_HELPER_ADVICE_CONFIGURATION:
-				setEditHelperAdviceConfiguration((EditHelperAdviceConfiguration)null);
+				setEditHelperAdviceConfiguration((AbstractEditHelperAdviceConfiguration)null);
 				return;
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__CONTAINER_CONFIGURATION:
 				setContainerConfiguration((ContainerConfiguration)null);
 				return;
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__MATCHER_CONFIGURATION:
-				setMatcherConfiguration((MatcherConfiguration)null);
+				setMatcherConfiguration((AbstractMatcherConfiguration)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -28,8 +28,8 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IConfiguredEditHelperAdviceDescriptor;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints.IAdviceConfigurationTypeExtensionPoint;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.IEditHelperAdviceFactory;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.AdviceBindingFactory;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.EditHelperAdviceFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.DefaultAdviceBindingFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.DefaultEditHelperAdviceFactory;
 
 public class AdviceConfigurationTypeRegistry {
 
@@ -68,8 +68,8 @@ public class AdviceConfigurationTypeRegistry {
 			}
 		}
 		// Register default interpretations
-		adviceConfigurationTypeToFactory.put(ElementtypesconfigurationsPackage.eINSTANCE.getEditHelperAdviceConfiguration().getInstanceTypeName(), new EditHelperAdviceFactory());
-		adviceConfigurationTypeToFactory.put(ElementtypesconfigurationsPackage.eINSTANCE.getAdviceBindingConfiguration().getInstanceTypeName(), new AdviceBindingFactory());
+		adviceConfigurationTypeToFactory.put(ElementtypesconfigurationsPackage.eINSTANCE.getEditHelperAdviceConfiguration().getInstanceTypeName(), new DefaultEditHelperAdviceFactory());
+		adviceConfigurationTypeToFactory.put(ElementtypesconfigurationsPackage.eINSTANCE.getAdviceBindingConfiguration().getInstanceTypeName(), new DefaultAdviceBindingFactory());
 	}
 
 	public <T extends AdviceConfiguration> IEditHelperAdviceFactory<T> getFactory(AdviceConfiguration adviceConfiguration) {
@@ -77,6 +77,7 @@ public class AdviceConfigurationTypeRegistry {
 		// We assume here that the right factory is registered for the right AdviceConfiguration
 		@SuppressWarnings("unchecked")
 		IEditHelperAdviceFactory<T> factory = (IEditHelperAdviceFactory<T>) adviceConfigurationTypeToFactory.get(adviceConfigurationType);
+
 		return factory;
 	}
 

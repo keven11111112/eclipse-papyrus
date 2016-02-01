@@ -22,40 +22,38 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getEditHelperAdviceConfiguration()
  * @model
  * @generated
  */
-public interface EditHelperAdviceConfiguration extends AdviceConfiguration {
+public interface EditHelperAdviceConfiguration extends AbstractEditHelperAdviceConfiguration {
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}'.
+	 * Returns the value of the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target</em>' container reference isn't clear,
+	 * If the meaning of the '<em>Edit Helper Advice Class Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target</em>' container reference.
-	 * @see #setTarget(SpecializationTypeConfiguration)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getEditHelperAdviceConfiguration_Target()
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration
-	 * @model opposite="editHelperAdviceConfiguration" required="true" transient="false"
+	 * @return the value of the '<em>Edit Helper Advice Class Name</em>' attribute.
+	 * @see #setEditHelperAdviceClassName(String)
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getEditHelperAdviceConfiguration_EditHelperAdviceClassName()
+	 * @model required="true"
 	 * @generated
 	 */
-	SpecializationTypeConfiguration getTarget();
+	String getEditHelperAdviceClassName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration#getTarget <em>Target</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target</em>' container reference.
-	 * @see #getTarget()
+	 * @param value the new value of the '<em>Edit Helper Advice Class Name</em>' attribute.
+	 * @see #getEditHelperAdviceClassName()
 	 * @generated
 	 */
-	void setTarget(SpecializationTypeConfiguration value);
+	void setEditHelperAdviceClassName(String value);
 
 } // EditHelperAdviceConfiguration

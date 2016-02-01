@@ -94,16 +94,16 @@ public class ElementtypesconfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createConfigurationElementAdapter();
 			}
 			@Override
-			public Adapter caseMatcherConfiguration(MatcherConfiguration object) {
-				return createMatcherConfigurationAdapter();
+			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
+				return createAbstractMatcherConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseAdviceConfiguration(AdviceConfiguration object) {
 				return createAdviceConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
-				return createAdviceBindingConfigurationAdapter();
+			public Adapter caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
+				return createAbstractAdviceBindingConfigurationAdapter();
 			}
 			@Override
 			public Adapter caseSpecializationTypeConfiguration(SpecializationTypeConfiguration object) {
@@ -118,8 +118,28 @@ public class ElementtypesconfigurationsAdapterFactory extends AdapterFactoryImpl
 				return createMetamodelTypeConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseAbstractEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration object) {
+				return createAbstractEditHelperAdviceConfigurationAdapter();
+			}
+			@Override
 			public Adapter caseEditHelperAdviceConfiguration(EditHelperAdviceConfiguration object) {
 				return createEditHelperAdviceConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+				return createAdviceBindingConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseMatcherConfiguration(MatcherConfiguration object) {
+				return createMatcherConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+				return createIdentifiedConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseNamedConfiguration(NamedConfiguration object) {
+				return createNamedConfigurationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -198,16 +218,16 @@ public class ElementtypesconfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration <em>Matcher Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration <em>Abstract Matcher Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration
 	 * @generated
 	 */
-	public Adapter createMatcherConfigurationAdapter() {
+	public Adapter createAbstractMatcherConfigurationAdapter() {
 		return null;
 	}
 
@@ -226,16 +246,16 @@ public class ElementtypesconfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration <em>Advice Binding Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration <em>Abstract Advice Binding Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration
 	 * @generated
 	 */
-	public Adapter createAdviceBindingConfigurationAdapter() {
+	public Adapter createAbstractAdviceBindingConfigurationAdapter() {
 		return null;
 	}
 
@@ -282,6 +302,20 @@ public class ElementtypesconfigurationsAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration <em>Abstract Edit Helper Advice Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration
+	 * @generated
+	 */
+	public Adapter createAbstractEditHelperAdviceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -292,6 +326,62 @@ public class ElementtypesconfigurationsAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createEditHelperAdviceConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration <em>Advice Binding Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration
+	 * @generated
+	 */
+	public Adapter createAdviceBindingConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration <em>Matcher Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
+	 * @generated
+	 */
+	public Adapter createMatcherConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration <em>Identified Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration
+	 * @generated
+	 */
+	public Adapter createIdentifiedConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration <em>Named Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration
+	 * @generated
+	 */
+	public Adapter createNamedConfigurationAdapter() {
 		return null;
 	}
 

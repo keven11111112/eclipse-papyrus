@@ -23,8 +23,6 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypea
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Feature Value</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

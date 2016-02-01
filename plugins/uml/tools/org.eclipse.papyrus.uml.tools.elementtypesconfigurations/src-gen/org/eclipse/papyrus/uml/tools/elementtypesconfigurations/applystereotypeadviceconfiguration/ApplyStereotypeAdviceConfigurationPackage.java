@@ -49,7 +49,7 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.1";
 
 	/**
 	 * The package namespace name.
@@ -78,40 +78,13 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__NAME = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__DESCRIPTION = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__IDENTIFIER = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__DESCRIPTION = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' attribute list.
@@ -120,7 +93,7 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__BEFORE = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__BEFORE;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__BEFORE = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__BEFORE;
 
 	/**
 	 * The feature id for the '<em><b>After</b></em>' attribute list.
@@ -129,16 +102,16 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__AFTER = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__AFTER;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__AFTER = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__INHERITANCE = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__INHERITANCE;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__IDENTIFIER = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -147,7 +120,7 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__TARGET = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__TARGET;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__TARGET = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__TARGET;
 
 	/**
 	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
@@ -156,7 +129,7 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__CONTAINER_CONFIGURATION = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__CONTAINER_CONFIGURATION = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
 
 	/**
 	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
@@ -165,7 +138,16 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__MATCHER_CONFIGURATION = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__MATCHER_CONFIGURATION = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
+
+	/**
+	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__INHERITANCE = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION__INHERITANCE;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes To Apply</b></em>' containment reference list.
@@ -174,7 +156,7 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__STEREOTYPES_TO_APPLY = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 0;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION__STEREOTYPES_TO_APPLY = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Apply Stereotype Advice Configuration</em>' class.
@@ -183,7 +165,7 @@ public interface ApplyStereotypeAdviceConfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 1;
+	int APPLY_STEREOTYPE_ADVICE_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.StereotypeToApplyImpl <em>Stereotype To Apply</em>}' class.

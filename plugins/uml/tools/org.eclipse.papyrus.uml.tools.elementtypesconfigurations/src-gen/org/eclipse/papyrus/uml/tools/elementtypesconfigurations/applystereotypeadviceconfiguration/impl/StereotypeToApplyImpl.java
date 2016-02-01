@@ -39,13 +39,13 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypea
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.StereotypeToApplyImpl#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.StereotypeToApplyImpl#isUpdateName <em>Update Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.StereotypeToApplyImpl#getRequiredProfiles <em>Required Profiles</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.StereotypeToApplyImpl#getFeaturesToSet <em>Features To Set</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

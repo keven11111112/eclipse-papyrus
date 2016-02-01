@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceBindingConfigurationItemProvider;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AbstractAdviceBindingConfigurationItemProvider;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfigurationPackage;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadvicecon
  * <!-- end-user-doc -->
  * @generated
  */
-public class SetTypeAdviceConfigurationItemProvider extends AdviceBindingConfigurationItemProvider {
+public class SetTypeAdviceConfigurationItemProvider extends AbstractAdviceBindingConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -128,7 +128,7 @@ public class SetTypeAdviceConfigurationItemProvider extends AdviceBindingConfigu
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SetTypeAdviceConfiguration)object).getName();
+		String label = ((SetTypeAdviceConfiguration)object).getDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SetTypeAdviceConfiguration_type") :
 			getString("_UI_SetTypeAdviceConfiguration_type") + " " + label;

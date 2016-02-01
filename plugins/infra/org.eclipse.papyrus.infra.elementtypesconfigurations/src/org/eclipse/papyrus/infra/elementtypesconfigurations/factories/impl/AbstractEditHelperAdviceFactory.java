@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,6 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 459174
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl;
@@ -16,37 +15,47 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl;
 import org.eclipse.gmf.runtime.emf.type.core.AdviceBindingInheritance;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.IConfiguredEditHelperAdviceDescriptor;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.IEditHelperAdviceFactory;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredEditHelperAdviceDescriptor;
-import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ContainerConfigurationTypeRegistry;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.MatcherConfigurationTypeRegistry;
 
-public abstract class AbstractEditHelperAdviceFactory<T extends AdviceConfiguration> implements IEditHelperAdviceFactory<T> {
+public abstract class AbstractEditHelperAdviceFactory<T extends AbstractEditHelperAdviceConfiguration> extends AbstractAdviceFactory<T> {
 
 	@Override
-	public IConfiguredEditHelperAdviceDescriptor<T> createEditHelperAdviceDescriptor(T adviceConfiguration) {
-		return new ConfiguredEditHelperAdviceDescriptor<T>(getId(adviceConfiguration), getTypeId(adviceConfiguration), getMatcher(adviceConfiguration), getContainerDescriptor(adviceConfiguration), getEditHelperAdvice(adviceConfiguration),
-				getInheritance(adviceConfiguration));
+	protected String getTypeId(T adviceConfiguration) {
+		return adviceConfiguration.getTarget().getIdentifier();
 	}
 
-	protected String getId(T adviceConfiguration) {
-		return adviceConfiguration.getIdentifier();
-	}
-
-	abstract protected String getTypeId(T adviceConfiguration);
-
-	abstract protected IElementMatcher getMatcher(T adviceConfiguration);
-
-	abstract protected IContainerDescriptor getContainerDescriptor(T adviceConfiguration);
-
-	protected IEditHelperAdvice getEditHelperAdvice(T adviceConfiguration) {
-		IEditHelperAdvice editHelperAdvice = ClassLoaderHelper.newInstance(adviceConfiguration.getEditHelperAdviceClassName(), IEditHelperAdvice.class);
-		return editHelperAdvice;
-	}
-
+	@Override
 	protected AdviceBindingInheritance getInheritance(T adviceConfiguration) {
-		return AdviceBindingInheritance.getAdviceBindingInheritance(adviceConfiguration.getInheritance().getName());
+		return AdviceBindingInheritance.ALL;
+	}
+
+	@Override
+	protected IContainerDescriptor getContainerDescriptor(T adviceConfiguration) {
+		ContainerConfiguration containerConfiguration = ((SpecializationTypeConfiguration) adviceConfiguration.eContainer()).getContainerConfiguration();
+		if (containerConfiguration == null) {
+			return null;
+		}
+		IContainerDescriptor containerDescriptor = ContainerConfigurationTypeRegistry.getInstance().getContainerDescriptor(containerConfiguration);
+		return containerDescriptor;
+	}
+
+	@Override
+	protected IElementMatcher getMatcher(T adviceConfiguration) {
+		AbstractMatcherConfiguration matcherConfiguration = ((SpecializationTypeConfiguration) adviceConfiguration.eContainer()).getMatcherConfiguration();
+		if (matcherConfiguration == null) {
+			return null;
+		}
+		IElementMatcher matcher = MatcherConfigurationTypeRegistry.getInstance().getMatcher(matcherConfiguration);
+		return matcher;
+	}
+
+	@Override
+	protected String getId(T adviceConfiguration) {
+		return adviceConfiguration.getTarget().getIdentifier();
 	}
 }

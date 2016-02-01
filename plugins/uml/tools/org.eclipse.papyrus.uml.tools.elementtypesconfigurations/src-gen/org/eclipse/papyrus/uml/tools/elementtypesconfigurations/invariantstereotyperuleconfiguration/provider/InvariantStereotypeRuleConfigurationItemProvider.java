@@ -37,16 +37,14 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantRuleConfigurationItemProvider
-{
+public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantRuleConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationItemProvider(AdapterFactory adapterFactory)
-	{
+	public InvariantStereotypeRuleConfigurationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -57,10 +55,8 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * @generated
 	 */
 	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addStereotypeQualifiedNamePropertyDescriptor(object);
@@ -76,21 +72,18 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStereotypeQualifiedNamePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_InvariantStereotypeRuleConfiguration_stereotypeQualifiedName_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_stereotypeQualifiedName_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
-						InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addStereotypeQualifiedNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_InvariantStereotypeRuleConfiguration_stereotypeQualifiedName_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_stereotypeQualifiedName_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
+				InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -99,21 +92,18 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRequiredProfilePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_InvariantStereotypeRuleConfiguration_requiredProfile_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_requiredProfile_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
-						InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+	protected void addRequiredProfilePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_InvariantStereotypeRuleConfiguration_requiredProfile_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_requiredProfile_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
+				InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -122,21 +112,18 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStrictPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_InvariantStereotypeRuleConfiguration_strict_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_strict_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
-						InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+	protected void addStrictPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_InvariantStereotypeRuleConfiguration_strict_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_strict_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
+				InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -146,8 +133,7 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/InvariantStereotypeRuleConfiguration"));
 	}
 
@@ -158,12 +144,9 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * @generated
 	 */
 	@Override
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((InvariantStereotypeRuleConfiguration) object).getStereotypeQualifiedName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_InvariantStereotypeRuleConfiguration_type") :
-				getString("_UI_InvariantStereotypeRuleConfiguration_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_InvariantStereotypeRuleConfiguration_type") : getString("_UI_InvariantStereotypeRuleConfiguration_type") + " " + label;
 	}
 
 
@@ -175,12 +158,10 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * @generated
 	 */
 	@Override
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(InvariantStereotypeRuleConfiguration.class))
-		{
+		switch (notification.getFeatureID(InvariantStereotypeRuleConfiguration.class)) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME:
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT:
@@ -198,8 +179,7 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * @generated
 	 */
 	@Override
-	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -210,8 +190,7 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	 * @generated
 	 */
 	@Override
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return InvariantStereotypeRuleConfigurationEditPlugin.INSTANCE;
 	}
 

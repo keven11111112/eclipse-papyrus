@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.eclipse.papyrus.infra.constraints.provider.ConstraintsEditPlugin;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.ElementTypesConfigurationsEditPlugin;
+
 import org.eclipse.papyrus.infra.properties.environment.provider.PropertiesEditPlugin;
 
 /**

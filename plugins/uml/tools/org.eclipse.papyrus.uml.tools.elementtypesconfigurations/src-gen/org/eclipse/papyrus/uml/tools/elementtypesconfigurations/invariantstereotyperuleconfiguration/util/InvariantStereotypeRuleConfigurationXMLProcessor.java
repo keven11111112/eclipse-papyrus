@@ -28,8 +28,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationXMLProcessor extends XMLProcessor
-{
+public class InvariantStereotypeRuleConfigurationXMLProcessor extends XMLProcessor {
 
 	/**
 	 * Public constructor to instantiate the helper.
@@ -37,8 +36,7 @@ public class InvariantStereotypeRuleConfigurationXMLProcessor extends XMLProcess
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationXMLProcessor()
-	{
+	public InvariantStereotypeRuleConfigurationXMLProcessor() {
 		super((EPackage.Registry.INSTANCE));
 		InvariantStereotypeRuleConfigurationPackage.eINSTANCE.eClass();
 	}
@@ -50,10 +48,8 @@ public class InvariantStereotypeRuleConfigurationXMLProcessor extends XMLProcess
 	 * @generated
 	 */
 	@Override
-	protected Map<String, Resource.Factory> getRegistrations()
-	{
-		if (registrations == null)
-		{
+	protected Map<String, Resource.Factory> getRegistrations() {
+		if (registrations == null) {
 			super.getRegistrations();
 			registrations.put(XML_EXTENSION, new InvariantStereotypeRuleConfigurationResourceFactoryImpl());
 			registrations.put(STAR_EXTENSION, new InvariantStereotypeRuleConfigurationResourceFactoryImpl());

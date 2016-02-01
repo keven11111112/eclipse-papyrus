@@ -22,8 +22,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfigurationPackage
  * @generated
  */
-public interface InvariantStereotypeRuleConfigurationFactory extends EFactory
-{
+public interface InvariantStereotypeRuleConfigurationFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

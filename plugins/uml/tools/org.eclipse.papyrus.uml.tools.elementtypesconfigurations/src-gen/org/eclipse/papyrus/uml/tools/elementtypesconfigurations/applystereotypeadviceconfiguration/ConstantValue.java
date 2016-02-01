@@ -21,10 +21,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ConstantValue#getValueInstance <em>Value Instance</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfigurationPackage#getConstantValue()
  * @model

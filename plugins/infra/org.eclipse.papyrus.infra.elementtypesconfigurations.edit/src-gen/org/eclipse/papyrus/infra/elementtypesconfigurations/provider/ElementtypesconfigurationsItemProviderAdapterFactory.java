@@ -145,52 +145,6 @@ public class ElementtypesconfigurationsItemProviderAdapterFactory extends Elemen
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected MatcherConfigurationItemProvider matcherConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createMatcherConfigurationAdapter() {
-		if (matcherConfigurationItemProvider == null) {
-			matcherConfigurationItemProvider = new MatcherConfigurationItemProvider(this);
-		}
-
-		return matcherConfigurationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AdviceBindingConfigurationItemProvider adviceBindingConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAdviceBindingConfigurationAdapter() {
-		if (adviceBindingConfigurationItemProvider == null) {
-			adviceBindingConfigurationItemProvider = new AdviceBindingConfigurationItemProvider(this);
-		}
-
-		return adviceBindingConfigurationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -280,6 +234,52 @@ public class ElementtypesconfigurationsItemProviderAdapterFactory extends Elemen
 		}
 
 		return editHelperAdviceConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AdviceBindingConfigurationItemProvider adviceBindingConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdviceBindingConfigurationAdapter() {
+		if (adviceBindingConfigurationItemProvider == null) {
+			adviceBindingConfigurationItemProvider = new AdviceBindingConfigurationItemProvider(this);
+		}
+
+		return adviceBindingConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MatcherConfigurationItemProvider matcherConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMatcherConfigurationAdapter() {
+		if (matcherConfigurationItemProvider == null) {
+			matcherConfigurationItemProvider = new MatcherConfigurationItemProvider(this);
+		}
+
+		return matcherConfigurationItemProvider;
 	}
 
 	/**
@@ -410,12 +410,12 @@ public class ElementtypesconfigurationsItemProviderAdapterFactory extends Elemen
 	public void dispose() {
 		if (elementTypeSetConfigurationItemProvider != null) elementTypeSetConfigurationItemProvider.dispose();
 		if (iconEntryItemProvider != null) iconEntryItemProvider.dispose();
-		if (matcherConfigurationItemProvider != null) matcherConfigurationItemProvider.dispose();
-		if (adviceBindingConfigurationItemProvider != null) adviceBindingConfigurationItemProvider.dispose();
 		if (specializationTypeConfigurationItemProvider != null) specializationTypeConfigurationItemProvider.dispose();
 		if (containerConfigurationItemProvider != null) containerConfigurationItemProvider.dispose();
 		if (metamodelTypeConfigurationItemProvider != null) metamodelTypeConfigurationItemProvider.dispose();
 		if (editHelperAdviceConfigurationItemProvider != null) editHelperAdviceConfigurationItemProvider.dispose();
+		if (adviceBindingConfigurationItemProvider != null) adviceBindingConfigurationItemProvider.dispose();
+		if (matcherConfigurationItemProvider != null) matcherConfigurationItemProvider.dispose();
 	}
 
 }

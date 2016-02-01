@@ -34,10 +34,10 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypea
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.ListValueImpl#getValues <em>Values</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -124,7 +124,7 @@ public class MetamodelTypeConfigurationItemProvider extends ElementTypeConfigura
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((MetamodelTypeConfiguration)object).getIdentifier();
+		String label = ((MetamodelTypeConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_MetamodelTypeConfiguration_type") :
 			getString("_UI_MetamodelTypeConfiguration_type") + " " + label;

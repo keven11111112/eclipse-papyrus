@@ -7,5 +7,11 @@
             model="model/ElementTypesMenu.xmi">
       </menuCreationModel>
    </extension>
-
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+      	    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
+            path="model/elementtypetestui.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
 </plugin>

@@ -15,8 +15,8 @@ package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator
 import java.util.List
 import javax.inject.Inject
 import javax.inject.Singleton
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsFactory
 import org.eclipse.uml2.uml.Profile
@@ -42,11 +42,10 @@ class ConfigurationSetRule {
         umlProfile.setIdentifierBase
 
         identifier = "elementTypes".qualified
-        name = umlProfile.name
         metamodelNsURI = baseUMLElementTypeSet?.metamodelNsURI ?: UMLPackage.eNS_URI;
 
        val List<ElementTypeConfiguration> elementTypeConfigurationList = newArrayList()
-       val List<AdviceBindingConfiguration> adviceBindingConfigurationList = newArrayList()		
+       val List<AbstractAdviceBindingConfiguration> adviceBindingConfigurationList = newArrayList()		
 		
         umlProfile.allExtensions.forEach[ext | 
             elementTypeConfigurationList.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toElementType(it)])

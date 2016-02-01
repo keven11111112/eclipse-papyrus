@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceBindingConfigurationItemProvider;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AbstractAdviceBindingConfigurationItemProvider;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfigurationFactory;
@@ -38,7 +38,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypea
  * <!-- end-user-doc -->
  * @generated
  */
-public class ApplyStereotypeAdviceConfigurationItemProvider extends AdviceBindingConfigurationItemProvider {
+public class ApplyStereotypeAdviceConfigurationItemProvider extends AbstractAdviceBindingConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -113,7 +113,7 @@ public class ApplyStereotypeAdviceConfigurationItemProvider extends AdviceBindin
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ApplyStereotypeAdviceConfiguration)object).getName();
+		String label = ((ApplyStereotypeAdviceConfiguration)object).getDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ApplyStereotypeAdviceConfiguration_type") :
 			getString("_UI_ApplyStereotypeAdviceConfiguration_type") + " " + label;

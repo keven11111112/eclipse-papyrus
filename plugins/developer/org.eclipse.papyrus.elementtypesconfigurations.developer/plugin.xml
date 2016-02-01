@@ -11,34 +11,10 @@
           allPopups="false"
           locationURI="popup:org.eclipse.ui.popup.any">
        <command
-             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurations"
-             id="org.eclipse.papyrus.infra.elementtypesconfigurations.menus.generateElementTypesConfigurations"
-             label="Generate ElementTypes Configurations"
+             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.migrateElementTypesConfigurations"
+             id="org.eclipse.papyrus.infra.elementtypesconfigurations.menus.migrateElementTypesConfigurations"
+             label="Migrate ElementTypes Configurations"
              mnemonic="S"
-             style="push">
-          <visibleWhen
-                checkEnabled="false">
-                <with
-                   variable="selection">
-                <iterate
-                      ifEmpty="false"
-                      operator="and">
-                   <adapt
-                         type="org.eclipse.core.resources.IFile">
-                   </adapt>
-                </iterate>
-             </with>
-          </visibleWhen>
-       </command>
-    </menuContribution>
-    <menuContribution
-          allPopups="false"
-          locationURI="popup:org.eclipse.ui.popup.any">
-       <command
-             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurationsFromGmfGen"
-             id="org.eclipse.papyrus.infra.elementtypesconfigurations.menus.generateEElementTypesConfigurationsFromGmfGen"
-             label="Generate ElementTypesConfigurations From GmfGen"
-             mnemonic="G"
              style="push">
           <visibleWhen
                 checkEnabled="false">
@@ -84,14 +60,9 @@
 	<extension
          point="org.eclipse.ui.commands">
   <command
-        defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.GenerateElementTypesConfigurations"
-        id="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurations"
-        name="Generate ElementTypesConfigurations">
-  </command>
-    <command
-        defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.GenerateElementTypesConfigurationsFromGmfGen"
-        id="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurationsFromGmfGen"
-        name="Generate ElementTypesConfigurations From GmfGen">
+        defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.MigrateElementTypesConfigurations"
+        id="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.migrateElementTypesConfigurations"
+        name="Migrate ElementTypesConfigurations">
   </command>
       <command
         defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.GenerateElementTypesRegistry"

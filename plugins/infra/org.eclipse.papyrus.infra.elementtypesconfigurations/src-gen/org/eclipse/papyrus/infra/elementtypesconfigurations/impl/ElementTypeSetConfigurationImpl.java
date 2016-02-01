@@ -27,19 +27,23 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>elementType Set Configuration</b></em>'.
+ * An implementation of the model object '<em><b>Element Type Set Configuration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getMetamodelNsURI <em>Metamodel Ns URI</em>}</li>
@@ -48,6 +52,46 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
  * @generated
  */
 public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl implements ElementTypeSetConfiguration {
+	/**
+	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String IDENTIFIER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getIdentifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected String identifier = IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getElementTypeConfigurations() <em>Element Type Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -66,7 +110,7 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AdviceBindingConfiguration> adviceBindingsConfigurations;
+	protected EList<AbstractAdviceBindingConfiguration> adviceBindingsConfigurations;
 
 	/**
 	 * The default value of the '{@link #getMetamodelNsURI() <em>Metamodel Ns URI</em>}' attribute.
@@ -112,6 +156,48 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIdentifier(String newIdentifier) {
+		String oldIdentifier = identifier;
+		identifier = newIdentifier;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER, oldIdentifier, identifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ElementTypeConfiguration> getElementTypeConfigurations() {
 		if (elementTypeConfigurations == null) {
 			elementTypeConfigurations = new EObjectContainmentEList<ElementTypeConfiguration>(ElementTypeConfiguration.class, this, ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS);
@@ -124,9 +210,9 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AdviceBindingConfiguration> getAdviceBindingsConfigurations() {
+	public EList<AbstractAdviceBindingConfiguration> getAdviceBindingsConfigurations() {
 		if (adviceBindingsConfigurations == null) {
-			adviceBindingsConfigurations = new EObjectContainmentEList<AdviceBindingConfiguration>(AdviceBindingConfiguration.class, this, ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
+			adviceBindingsConfigurations = new EObjectContainmentEList<AbstractAdviceBindingConfiguration>(AbstractAdviceBindingConfiguration.class, this, ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS);
 		}
 		return adviceBindingsConfigurations;
 	}
@@ -176,6 +262,10 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER:
+				return getIdentifier();
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
+				return getName();
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 				return getElementTypeConfigurations();
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
@@ -195,13 +285,19 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER:
+				setIdentifier((String)newValue);
+				return;
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
+				setName((String)newValue);
+				return;
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 				getElementTypeConfigurations().clear();
 				getElementTypeConfigurations().addAll((Collection<? extends ElementTypeConfiguration>)newValue);
 				return;
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
 				getAdviceBindingsConfigurations().clear();
-				getAdviceBindingsConfigurations().addAll((Collection<? extends AdviceBindingConfiguration>)newValue);
+				getAdviceBindingsConfigurations().addAll((Collection<? extends AbstractAdviceBindingConfiguration>)newValue);
 				return;
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				setMetamodelNsURI((String)newValue);
@@ -218,6 +314,12 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER:
+				setIdentifier(IDENTIFIER_EDEFAULT);
+				return;
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 				getElementTypeConfigurations().clear();
 				return;
@@ -239,6 +341,10 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER:
+				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ELEMENT_TYPE_CONFIGURATIONS:
 				return elementTypeConfigurations != null && !elementTypeConfigurations.isEmpty();
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__ADVICE_BINDINGS_CONFIGURATIONS:
@@ -255,11 +361,59 @@ public class ElementTypeSetConfigurationImpl extends ConfigurationElementImpl im
 	 * @generated
 	 */
 	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == IdentifiedConfiguration.class) {
+			switch (derivedFeatureID) {
+				case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER: return ElementtypesconfigurationsPackage.IDENTIFIED_CONFIGURATION__IDENTIFIER;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedConfiguration.class) {
+			switch (derivedFeatureID) {
+				case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME: return ElementtypesconfigurationsPackage.NAMED_CONFIGURATION__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == IdentifiedConfiguration.class) {
+			switch (baseFeatureID) {
+				case ElementtypesconfigurationsPackage.IDENTIFIED_CONFIGURATION__IDENTIFIER: return ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER;
+				default: return -1;
+			}
+		}
+		if (baseClass == NamedConfiguration.class) {
+			switch (baseFeatureID) {
+				case ElementtypesconfigurationsPackage.NAMED_CONFIGURATION__NAME: return ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (metamodelNsURI: ");
+		result.append(" (identifier: ");
+		result.append(identifier);
+		result.append(", name: ");
+		result.append(name);
+		result.append(", metamodelNsURI: ");
 		result.append(metamodelNsURI);
 		result.append(')');
 		return result.toString();

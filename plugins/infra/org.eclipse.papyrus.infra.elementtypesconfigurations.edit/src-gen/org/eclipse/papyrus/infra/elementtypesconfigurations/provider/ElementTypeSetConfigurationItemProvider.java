@@ -58,9 +58,55 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdentifierPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addMetamodelNsURIPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Identifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdentifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_IdentifiedConfiguration_identifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_IdentifiedConfiguration_identifier_feature", "_UI_IdentifiedConfiguration_type"),
+				 ElementtypesconfigurationsPackage.Literals.IDENTIFIED_CONFIGURATION__IDENTIFIER,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_NamedConfiguration_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_NamedConfiguration_name_feature", "_UI_NamedConfiguration_type"),
+				 ElementtypesconfigurationsPackage.Literals.NAMED_CONFIGURATION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -135,7 +181,7 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ElementTypeSetConfiguration)object).getMetamodelNsURI();
+		String label = ((ElementTypeSetConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ElementTypeSetConfiguration_type") :
 			getString("_UI_ElementTypeSetConfiguration_type") + " " + label;
@@ -154,6 +200,8 @@ public class ElementTypeSetConfigurationItemProvider extends ConfigurationElemen
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ElementTypeSetConfiguration.class)) {
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__IDENTIFIER:
+			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__NAME:
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION__METAMODEL_NS_URI:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

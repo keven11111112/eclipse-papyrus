@@ -55,34 +55,10 @@ public class AdviceConfigurationItemProvider extends ConfigurationElementItemPro
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEditHelperAdviceClassNamePropertyDescriptor(object);
 			addBeforePropertyDescriptor(object);
 			addAfterPropertyDescriptor(object);
-			addInheritancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Edit Helper Advice Class Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEditHelperAdviceClassNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AdviceConfiguration_editHelperAdviceClassName_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AdviceConfiguration_editHelperAdviceClassName_feature", "_UI_AdviceConfiguration_type"),
-				 ElementtypesconfigurationsPackage.Literals.ADVICE_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -130,28 +106,6 @@ public class AdviceConfigurationItemProvider extends ConfigurationElementItemPro
 	}
 
 	/**
-	 * This adds a property descriptor for the Inheritance feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInheritancePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_AdviceConfiguration_inheritance_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_AdviceConfiguration_inheritance_feature", "_UI_AdviceConfiguration_type"),
-				 ElementtypesconfigurationsPackage.Literals.ADVICE_CONFIGURATION__INHERITANCE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -159,7 +113,7 @@ public class AdviceConfigurationItemProvider extends ConfigurationElementItemPro
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((AdviceConfiguration)object).getEditHelperAdviceClassName();
+		String label = ((AdviceConfiguration)object).getDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_AdviceConfiguration_type") :
 			getString("_UI_AdviceConfiguration_type") + " " + label;
@@ -178,10 +132,8 @@ public class AdviceConfigurationItemProvider extends ConfigurationElementItemPro
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AdviceConfiguration.class)) {
-			case ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME:
 			case ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__BEFORE:
 			case ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__AFTER:
-			case ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__INHERITANCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

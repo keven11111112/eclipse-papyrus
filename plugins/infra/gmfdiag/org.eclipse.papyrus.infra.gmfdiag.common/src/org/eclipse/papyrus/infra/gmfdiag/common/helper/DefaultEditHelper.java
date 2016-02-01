@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.AbstractNotifierEditHelper;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.AbstractNotifierEditHelper;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.utils.AdviceComparator;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;

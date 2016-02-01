@@ -136,7 +136,7 @@ public class SpecializationTypeConfigurationItemProvider extends ElementTypeConf
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SpecializationTypeConfiguration)object).getIdentifier();
+		String label = ((SpecializationTypeConfiguration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SpecializationTypeConfiguration_type") :
 			getString("_UI_SpecializationTypeConfiguration_type") + " " + label;

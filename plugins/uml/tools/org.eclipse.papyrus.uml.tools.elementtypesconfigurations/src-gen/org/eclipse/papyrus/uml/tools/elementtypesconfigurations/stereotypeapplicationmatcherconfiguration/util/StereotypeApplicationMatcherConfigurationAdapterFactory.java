@@ -19,7 +19,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.*;
 
@@ -84,8 +84,8 @@ public class StereotypeApplicationMatcherConfigurationAdapterFactory extends Ada
 				return createStereotypeApplicationMatcherConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseMatcherConfiguration(MatcherConfiguration object) {
-				return createMatcherConfigurationAdapter();
+			public Adapter caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
+				return createAbstractMatcherConfigurationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -122,16 +122,16 @@ public class StereotypeApplicationMatcherConfigurationAdapterFactory extends Ada
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration <em>Matcher Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration <em>Abstract Matcher Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration
 	 * @generated
 	 */
-	public Adapter createMatcherConfigurationAdapter() {
+	public Adapter createAbstractMatcherConfigurationAdapter() {
 		return null;
 	}
 

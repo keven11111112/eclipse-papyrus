@@ -22,10 +22,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IConfiguredContainerDescriptor;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints.IContainerConfigurationTypeExtensionPoint;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.IContainerFactory;
 
@@ -104,7 +104,7 @@ public class ContainerConfigurationTypeRegistry {
 		protected EReference[] references;
 
 		public DefaultContainerDescriptor(ContainerConfiguration containerConfiguration) {
-			MatcherConfiguration matcherConfiguration = containerConfiguration.getContainerMatcherConfiguration();
+			AbstractMatcherConfiguration matcherConfiguration = containerConfiguration.getContainerMatcherConfiguration();
 			matcher = MatcherConfigurationTypeRegistry.getInstance().getMatcher(matcherConfiguration);
 			EList<EReference> eContainmentFeatures = containerConfiguration.getEContainmentFeatures();
 			references = eContainmentFeatures.toArray(new EReference[] {});

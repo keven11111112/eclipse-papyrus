@@ -32,8 +32,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  * @model
  * @generated
  */
-public interface InvariantStereotypeRuleConfiguration extends InvariantRuleConfiguration
-{
+public interface InvariantStereotypeRuleConfiguration extends InvariantRuleConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Stereotype Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

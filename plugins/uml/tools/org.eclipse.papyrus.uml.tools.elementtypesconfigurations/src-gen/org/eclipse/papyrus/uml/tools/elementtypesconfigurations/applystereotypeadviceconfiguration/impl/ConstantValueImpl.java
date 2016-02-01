@@ -31,10 +31,10 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.impl.ConstantValueImpl#getValueInstance <em>Value Instance</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

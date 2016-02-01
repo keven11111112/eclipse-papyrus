@@ -13,20 +13,20 @@
 package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration;
 
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.AdviceBindingFactory;
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.AbstractAdviceBindingFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.NullEditHelperAdvice;
 
-public class ApplyStereotypeAdviceFactory extends AdviceBindingFactory {
+public class ApplyStereotypeAdviceFactory extends AbstractAdviceBindingFactory<AbstractAdviceBindingConfiguration> {
 
 
 	@Override
-	protected IEditHelperAdvice getEditHelperAdvice(AdviceBindingConfiguration adviceConfiguration) {
+	protected IEditHelperAdvice getEditHelperAdvice(AbstractAdviceBindingConfiguration adviceConfiguration) {
 		if (adviceConfiguration instanceof ApplyStereotypeAdviceConfiguration) {
 			IEditHelperAdvice editHelperAdvice = new ApplyStereotypeAdviceEditHelperAdvice((ApplyStereotypeAdviceConfiguration) adviceConfiguration);
 			return editHelperAdvice;
 		}
-		return super.getEditHelperAdvice(adviceConfiguration);
+		return NullEditHelperAdvice.getInstance();
 	}
 
 

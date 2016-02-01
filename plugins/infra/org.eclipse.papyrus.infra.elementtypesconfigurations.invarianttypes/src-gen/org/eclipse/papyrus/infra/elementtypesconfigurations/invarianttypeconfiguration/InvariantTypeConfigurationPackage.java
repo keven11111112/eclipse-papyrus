@@ -49,7 +49,7 @@ public interface InvariantTypeConfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.0";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.1";
 
 	/**
 	 * The package namespace name.
@@ -78,15 +78,6 @@ public interface InvariantTypeConfigurationPackage extends EPackage {
 	int INVARIANT_TYPE_CONFIGURATION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INVARIANT_TYPE_CONFIGURATION__NAME = ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__NAME;
-
-	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,6 +94,15 @@ public interface InvariantTypeConfigurationPackage extends EPackage {
 	 * @ordered
 	 */
 	int INVARIANT_TYPE_CONFIGURATION__IDENTIFIER = ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVARIANT_TYPE_CONFIGURATION__NAME = ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Hint</b></em>' attribute.

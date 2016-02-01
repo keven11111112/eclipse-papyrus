@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.MatcherConfigurationItemProvider;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AbstractMatcherConfigurationItemProvider;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationPackage;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplic
  * <!-- end-user-doc -->
  * @generated
  */
-public class StereotypeApplicationMatcherConfigurationItemProvider extends MatcherConfigurationItemProvider {
+public class StereotypeApplicationMatcherConfigurationItemProvider extends AbstractMatcherConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -128,7 +128,7 @@ public class StereotypeApplicationMatcherConfigurationItemProvider extends Match
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((StereotypeApplicationMatcherConfiguration)object).getMatcherClassName();
+		String label = ((StereotypeApplicationMatcherConfiguration)object).getProfileUri();
 		return label == null || label.length() == 0 ?
 			getString("_UI_StereotypeApplicationMatcherConfiguration_type") :
 			getString("_UI_StereotypeApplicationMatcherConfiguration_type") + " " + label;

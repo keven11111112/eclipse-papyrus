@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadvicec
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfigurationFactory;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfigurationPackage;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceBindingConfigurationItemProvider;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AbstractAdviceBindingConfigurationItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfiguration} object.
@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceBindi
  * <!-- end-user-doc -->
  * @generated
  */
-public class SetValuesAdviceConfigurationItemProvider extends AdviceBindingConfigurationItemProvider {
+public class SetValuesAdviceConfigurationItemProvider extends AbstractAdviceBindingConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -113,7 +113,7 @@ public class SetValuesAdviceConfigurationItemProvider extends AdviceBindingConfi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SetValuesAdviceConfiguration)object).getName();
+		String label = ((SetValuesAdviceConfiguration)object).getDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_SetValuesAdviceConfiguration_type") :
 			getString("_UI_SetValuesAdviceConfiguration_type") + " " + label;

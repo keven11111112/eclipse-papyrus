@@ -32,10 +32,10 @@ import org.eclipse.papyrus.elementtypesconfigurations.developer.providers.Elemen
 import org.eclipse.papyrus.elementtypesconfigurations.developer.utils.ElementTypeRegistryUtils;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.utils.ElementTypesConfigurationsEventPrinter;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.utils.NotifierNullEditHelper;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.ElementTypesConfigurationsEventsChain;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.ElementTypesConfigurationsListenersRegistry;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.IElementTypesConfigurationsEventsChainListener;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.IElementTypesConfigurationsEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.ElementTypesConfigurationsEventsChain;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.ElementTypesConfigurationsListenersRegistry;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.IElementTypesConfigurationsEventsChainListener;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.IElementTypesConfigurationsEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.SashForm;

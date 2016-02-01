@@ -20,7 +20,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated ElementTypesConfigurations -->
       <factory
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.provider.ElementtypesconfigurationsItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

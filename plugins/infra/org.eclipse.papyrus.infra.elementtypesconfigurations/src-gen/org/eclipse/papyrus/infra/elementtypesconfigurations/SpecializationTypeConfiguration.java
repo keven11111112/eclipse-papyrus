@@ -52,7 +52,7 @@ public interface SpecializationTypeConfiguration extends ElementTypeConfiguratio
 
 	/**
 	 * Returns the value of the '<em><b>Edit Helper Advice Configuration</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration#getTarget <em>Target</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Edit Helper Advice Configuration</em>' containment reference isn't clear,
@@ -60,13 +60,13 @@ public interface SpecializationTypeConfiguration extends ElementTypeConfiguratio
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Edit Helper Advice Configuration</em>' containment reference.
-	 * @see #setEditHelperAdviceConfiguration(EditHelperAdviceConfiguration)
+	 * @see #setEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration)
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getSpecializationTypeConfiguration_EditHelperAdviceConfiguration()
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration#getTarget
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration#getTarget
 	 * @model opposite="target" containment="true"
 	 * @generated
 	 */
-	EditHelperAdviceConfiguration getEditHelperAdviceConfiguration();
+	AbstractEditHelperAdviceConfiguration getEditHelperAdviceConfiguration();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}' containment reference.
@@ -76,7 +76,7 @@ public interface SpecializationTypeConfiguration extends ElementTypeConfiguratio
 	 * @see #getEditHelperAdviceConfiguration()
 	 * @generated
 	 */
-	void setEditHelperAdviceConfiguration(EditHelperAdviceConfiguration value);
+	void setEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>Container Configuration</b></em>' containment reference.
@@ -113,12 +113,12 @@ public interface SpecializationTypeConfiguration extends ElementTypeConfiguratio
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matcher Configuration</em>' containment reference.
-	 * @see #setMatcherConfiguration(MatcherConfiguration)
+	 * @see #setMatcherConfiguration(AbstractMatcherConfiguration)
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getSpecializationTypeConfiguration_MatcherConfiguration()
 	 * @model containment="true"
 	 * @generated
 	 */
-	MatcherConfiguration getMatcherConfiguration();
+	AbstractMatcherConfiguration getMatcherConfiguration();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}' containment reference.
@@ -128,6 +128,6 @@ public interface SpecializationTypeConfiguration extends ElementTypeConfiguratio
 	 * @see #getMatcherConfiguration()
 	 * @generated
 	 */
-	void setMatcherConfiguration(MatcherConfiguration value);
+	void setMatcherConfiguration(AbstractMatcherConfiguration value);
 
 } // SpecializationTypeConfiguration

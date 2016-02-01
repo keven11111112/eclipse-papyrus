@@ -23,8 +23,6 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadvicec
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Feature Value</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

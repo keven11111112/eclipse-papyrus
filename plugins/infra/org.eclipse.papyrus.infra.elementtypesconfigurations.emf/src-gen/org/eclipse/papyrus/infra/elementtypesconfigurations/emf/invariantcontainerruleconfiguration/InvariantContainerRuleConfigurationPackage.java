@@ -50,7 +50,7 @@ public interface InvariantContainerRuleConfigurationPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttypeconfiguration/containerruleconfiguration/1.0";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttypeconfiguration/containerruleconfiguration/1.1";
 
 	/**
 	 * The package namespace name.

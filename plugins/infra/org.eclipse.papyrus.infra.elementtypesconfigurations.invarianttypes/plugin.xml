@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated InvariantTypeConfiguration -->
       <package
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.1"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfigurationPackage"
             genModel="model/InvariantTypeConfiguration.genmodel"/>
    </extension>
@@ -28,7 +28,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated InvariantTypeConfiguration -->
       <factory
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.1"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.provider.InvariantTypeConfigurationItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
@@ -41,7 +41,7 @@
    <extension point="org.eclipse.emf.edit.childCreationExtenders">
       <!-- @generated InvariantTypeConfiguration -->
       <extender
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.provider.InvariantTypeConfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
    </extension>
    <extension

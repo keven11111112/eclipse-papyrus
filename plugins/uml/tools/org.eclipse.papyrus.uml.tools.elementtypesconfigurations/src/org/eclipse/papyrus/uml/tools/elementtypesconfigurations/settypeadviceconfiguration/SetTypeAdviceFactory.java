@@ -13,20 +13,20 @@
 package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration;
 
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.AdviceBindingFactory;
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.AbstractAdviceBindingFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.NullEditHelperAdvice;
 
-public class SetTypeAdviceFactory extends AdviceBindingFactory {
+public class SetTypeAdviceFactory extends AbstractAdviceBindingFactory<AbstractAdviceBindingConfiguration> {
 
 
 	@Override
-	protected IEditHelperAdvice getEditHelperAdvice(AdviceBindingConfiguration adviceConfiguration) {
+	protected IEditHelperAdvice getEditHelperAdvice(AbstractAdviceBindingConfiguration adviceConfiguration) {
 		if (adviceConfiguration instanceof SetTypeAdviceConfiguration) {
 			IEditHelperAdvice editHelperAdvice = new SetTypeAdviceEditHelperAdvice((SetTypeAdviceConfiguration) adviceConfiguration);
 			return editHelperAdvice;
 		}
-		return super.getEditHelperAdvice(adviceConfiguration);
+		return NullEditHelperAdvice.getInstance();
 	}
 
 

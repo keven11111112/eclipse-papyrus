@@ -44,12 +44,12 @@ public interface ContainerConfiguration extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Container Matcher Configuration</em>' containment reference.
-	 * @see #setContainerMatcherConfiguration(MatcherConfiguration)
+	 * @see #setContainerMatcherConfiguration(AbstractMatcherConfiguration)
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getContainerConfiguration_ContainerMatcherConfiguration()
 	 * @model containment="true"
 	 * @generated
 	 */
-	MatcherConfiguration getContainerMatcherConfiguration();
+	AbstractMatcherConfiguration getContainerMatcherConfiguration();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration#getContainerMatcherConfiguration <em>Container Matcher Configuration</em>}' containment reference.
@@ -59,7 +59,7 @@ public interface ContainerConfiguration extends EObject {
 	 * @see #getContainerMatcherConfiguration()
 	 * @generated
 	 */
-	void setContainerMatcherConfiguration(MatcherConfiguration value);
+	void setContainerMatcherConfiguration(AbstractMatcherConfiguration value);
 
 	/**
 	 * Returns the value of the '<em><b>EContainment Features</b></em>' reference list.

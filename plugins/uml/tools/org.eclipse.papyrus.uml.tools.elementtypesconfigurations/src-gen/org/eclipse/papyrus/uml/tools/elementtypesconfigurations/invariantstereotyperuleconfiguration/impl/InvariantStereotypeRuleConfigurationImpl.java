@@ -38,8 +38,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  *
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfigurationImpl implements InvariantStereotypeRuleConfiguration
-{
+public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfigurationImpl implements InvariantStereotypeRuleConfiguration {
 	/**
 	 * The default value of the '{@link #getStereotypeQualifiedName() <em>Stereotype Qualified Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -105,8 +104,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InvariantStereotypeRuleConfigurationImpl()
-	{
+	protected InvariantStereotypeRuleConfigurationImpl() {
 		super();
 	}
 
@@ -116,8 +114,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION;
 	}
 
@@ -126,8 +123,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getStereotypeQualifiedName()
-	{
+	public String getStereotypeQualifiedName() {
 		return stereotypeQualifiedName;
 	}
 
@@ -136,8 +132,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStereotypeQualifiedName(String newStereotypeQualifiedName)
-	{
+	public void setStereotypeQualifiedName(String newStereotypeQualifiedName) {
 		String oldStereotypeQualifiedName = stereotypeQualifiedName;
 		stereotypeQualifiedName = newStereotypeQualifiedName;
 		if (eNotificationRequired())
@@ -149,8 +144,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRequiredProfile()
-	{
+	public String getRequiredProfile() {
 		return requiredProfile;
 	}
 
@@ -159,8 +153,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRequiredProfile(String newRequiredProfile)
-	{
+	public void setRequiredProfile(String newRequiredProfile) {
 		String oldRequiredProfile = requiredProfile;
 		requiredProfile = newRequiredProfile;
 		if (eNotificationRequired())
@@ -172,8 +165,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStrict()
-	{
+	public boolean isStrict() {
 		return strict;
 	}
 
@@ -182,8 +174,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStrict(boolean newStrict)
-	{
+	public void setStrict(boolean newStrict) {
 		boolean oldStrict = strict;
 		strict = newStrict;
 		if (eNotificationRequired())
@@ -196,10 +187,8 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME:
 			return getStereotypeQualifiedName();
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
@@ -216,10 +205,8 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME:
 			setStereotypeQualifiedName((String) newValue);
 			return;
@@ -239,10 +226,8 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME:
 			setStereotypeQualifiedName(STEREOTYPE_QUALIFIED_NAME_EDEFAULT);
 			return;
@@ -262,10 +247,8 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME:
 			return STEREOTYPE_QUALIFIED_NAME_EDEFAULT == null ? stereotypeQualifiedName != null : !STEREOTYPE_QUALIFIED_NAME_EDEFAULT.equals(stereotypeQualifiedName);
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
@@ -282,8 +265,7 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy())
 			return super.toString();
 

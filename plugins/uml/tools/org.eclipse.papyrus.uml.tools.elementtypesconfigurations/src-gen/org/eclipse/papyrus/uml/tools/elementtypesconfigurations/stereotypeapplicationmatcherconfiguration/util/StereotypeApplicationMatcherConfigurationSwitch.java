@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.*;
 
@@ -81,7 +81,7 @@ public class StereotypeApplicationMatcherConfigurationSwitch<T> extends Switch<T
 			case StereotypeApplicationMatcherConfigurationPackage.STEREOTYPE_APPLICATION_MATCHER_CONFIGURATION: {
 				StereotypeApplicationMatcherConfiguration stereotypeApplicationMatcherConfiguration = (StereotypeApplicationMatcherConfiguration)theEObject;
 				T result = caseStereotypeApplicationMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
-				if (result == null) result = caseMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
+				if (result == null) result = caseAbstractMatcherConfiguration(stereotypeApplicationMatcherConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,17 +105,17 @@ public class StereotypeApplicationMatcherConfigurationSwitch<T> extends Switch<T
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Matcher Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Matcher Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Matcher Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Matcher Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMatcherConfiguration(MatcherConfiguration object) {
+	public T caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
 		return null;
 	}
 

@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>elementType Set Configuration</b></em>'.
+ * A representation of the model object '<em><b>Element Type Set Configuration</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -32,13 +32,13 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface ElementTypeSetConfiguration extends ConfigurationElement {
+public interface ElementTypeSetConfiguration extends ConfigurationElement, IdentifiedConfiguration, NamedConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Element Type Configurations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>elementType Configurations</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Element Type Configurations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
@@ -51,7 +51,7 @@ public interface ElementTypeSetConfiguration extends ConfigurationElement {
 
 	/**
 	 * Returns the value of the '<em><b>Advice Bindings Configurations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Advice Bindings Configurations</em>' containment reference list isn't clear,
@@ -63,7 +63,7 @@ public interface ElementTypeSetConfiguration extends ConfigurationElement {
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AdviceBindingConfiguration> getAdviceBindingsConfigurations();
+	EList<AbstractAdviceBindingConfiguration> getAdviceBindingsConfigurations();
 
 	/**
 	 * Returns the value of the '<em><b>Metamodel Ns URI</b></em>' attribute.

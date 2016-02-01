@@ -196,7 +196,7 @@ public class StereotypeApplicationMatcherConfigurationPackageImpl extends EPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		stereotypeApplicationMatcherConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getMatcherConfiguration());
+		stereotypeApplicationMatcherConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAbstractMatcherConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(stereotypeApplicationMatcherConfigurationEClass, StereotypeApplicationMatcherConfiguration.class, "StereotypeApplicationMatcherConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

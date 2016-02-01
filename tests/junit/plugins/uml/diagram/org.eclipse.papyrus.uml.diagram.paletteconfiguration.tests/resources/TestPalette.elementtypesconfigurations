@@ -1,41 +1,13 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration"
-    xmi:id="_ubJcsKeUEeSUR5jX0TaAcA"
-    name="TestPaletteConfiguration"
-    description="Element types configuration for test palette configuration plugin"
-    identifier="org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests.TestPaletteConfiguration"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_ubJcsaeUEeSUR5jX0TaAcA"
-      name="ClassWithStoOnClass"
-      identifier="org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests">
-    <iconEntry
-        xmi:id="_ubJcsqeUEeSUR5jX0TaAcA"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.1" xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="Element types configuration for test palette configuration plugin" identifier="org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests.TestPaletteConfiguration" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="TestPaletteConfiguration" xmi:id="_ubJcsKeUEeSUR5jX0TaAcA" xmi:version="2.0">
+  <elementTypeConfigurations identifier="org.eclipse.papyrus.uml.diagram.paletteconfiguration.tests" name="ClassWithStoOnClass" xmi:id="_ubJcsaeUEeSUR5jX0TaAcA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Class.gif" xmi:id="_ubJcsqeUEeSUR5jX0TaAcA"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_ubJcs6eUEeSUR5jX0TaAcA">
+    <matcherConfiguration xmi:id="_ubJcs6eUEeSUR5jX0TaAcA" xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration">
       <stereotypesQualifiedNames>TestPaletteConfiguration::TPC_StoOnClass</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_ubJcyaeUEeSUR5jX0TaAcA"
-      name="Apply StoOnClass"
-      identifier="org.eclipse.papyrus.uml.paletteconfiguration.tests.advice"
-      target="_ubJcsaeUEeSUR5jX0TaAcA">
-    <stereotypesToApply
-        xmi:id="_ubJcyqeUEeSUR5jX0TaAcA"
-        stereotypeQualifiedName="TestPaletteConfiguration::TPC_StoOnClass">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.uml.paletteconfiguration.tests.advice" target="_ubJcsaeUEeSUR5jX0TaAcA" xmi:id="_ubJcyaeUEeSUR5jX0TaAcA" xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="TestPaletteConfiguration::TPC_StoOnClass" xmi:id="_ubJcyqeUEeSUR5jX0TaAcA">
       <requiredProfiles>TestPaletteConfiguration</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>

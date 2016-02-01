@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.infra.elementtypesconfigurations.util;
 
 import org.eclipse.emf.common.util.URI;
+
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**

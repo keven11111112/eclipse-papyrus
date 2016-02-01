@@ -34,8 +34,7 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfigurationPackage
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
-{
+public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -50,10 +49,8 @@ public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public InvariantStereotypeRuleConfigurationSwitch() {
+		if (modelPackage == null) {
 			modelPackage = InvariantStereotypeRuleConfigurationPackage.eINSTANCE;
 		}
 	}
@@ -67,8 +64,7 @@ public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -80,10 +76,8 @@ public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION: {
 			InvariantStereotypeRuleConfiguration invariantStereotypeRuleConfiguration = (InvariantStereotypeRuleConfiguration) theEObject;
 			T result = caseInvariantStereotypeRuleConfiguration(invariantStereotypeRuleConfiguration);
@@ -109,8 +103,7 @@ public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInvariantStereotypeRuleConfiguration(InvariantStereotypeRuleConfiguration object)
-	{
+	public T caseInvariantStereotypeRuleConfiguration(InvariantStereotypeRuleConfiguration object) {
 		return null;
 	}
 
@@ -125,8 +118,7 @@ public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseInvariantRuleConfiguration(InvariantRuleConfiguration object)
-	{
+	public T caseInvariantRuleConfiguration(InvariantRuleConfiguration object) {
 		return null;
 	}
 
@@ -142,8 +134,7 @@ public class InvariantStereotypeRuleConfigurationSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

@@ -71,33 +71,9 @@ public class ConfigurationElementItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
-			addIdentifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConfigurationElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurationElement_name_feature", "_UI_ConfigurationElement_type"),
-				 ElementtypesconfigurationsPackage.Literals.CONFIGURATION_ELEMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -123,28 +99,6 @@ public class ConfigurationElementItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Identifier feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdentifierPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ConfigurationElement_identifier_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ConfigurationElement_identifier_feature", "_UI_ConfigurationElement_type"),
-				 ElementtypesconfigurationsPackage.Literals.CONFIGURATION_ELEMENT__IDENTIFIER,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -152,7 +106,7 @@ public class ConfigurationElementItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConfigurationElement)object).getIdentifier();
+		String label = ((ConfigurationElement)object).getDescription();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ConfigurationElement_type") :
 			getString("_UI_ConfigurationElement_type") + " " + label;
@@ -171,9 +125,7 @@ public class ConfigurationElementItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ConfigurationElement.class)) {
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__NAME:
 			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__IDENTIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

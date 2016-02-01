@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceco
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,17 +23,17 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfigu
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfiguration#getValidTypes <em>Valid Types</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfiguration#getCreationTypes <em>Creation Types</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.settypeadviceconfiguration.SetTypeAdviceConfigurationPackage#getSetTypeAdviceConfiguration()
  * @model
  * @generated
  */
-public interface SetTypeAdviceConfiguration extends AdviceBindingConfiguration {
+public interface SetTypeAdviceConfiguration extends AbstractAdviceBindingConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Valid Types</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

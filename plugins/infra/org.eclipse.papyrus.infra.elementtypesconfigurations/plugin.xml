@@ -30,10 +30,15 @@
       </service>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="elementtypesconfigurations"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.resource.CustomElementtypesconfigurationsResourceFactoryImpl"/>
+   </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated ElementTypesConfigurations -->
       <package
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage"
             genModel="model/ElementTypesConfigurations.genmodel"/>
    </extension>
@@ -54,17 +59,9 @@
             name="%_UI_Elementtypesconfigurations_content_type"
             priority="normal">
          <describer class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
-            <parameter name="namespace" value="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"/>
+            <parameter name="namespace" value="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"/>
             <parameter name="kind" value="xmi"/>
          </describer>
       </content-type>
    </extension>
-
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <parser
-            type="elementtypesconfigurations"
-            class="org.eclipse.papyrus.infra.elementtypesconfigurations.resource.CustomElementtypesconfigurationsResourceFactoryImpl"/>
-   </extension>
-
 </plugin>

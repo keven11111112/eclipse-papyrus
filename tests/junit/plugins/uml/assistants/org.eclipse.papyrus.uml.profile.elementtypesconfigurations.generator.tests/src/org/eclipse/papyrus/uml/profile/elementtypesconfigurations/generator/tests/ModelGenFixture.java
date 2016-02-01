@@ -31,10 +31,10 @@ import java.util.regex.Pattern;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
@@ -190,30 +190,30 @@ public class ModelGenFixture extends ResourceSetFixture {
 	}
 
 	public StereotypeApplicationMatcherConfiguration assertStereotypeMatcher(SpecializationTypeConfiguration specializationType) {
-		MatcherConfiguration result = specializationType.getMatcherConfiguration();
+		AbstractMatcherConfiguration result = specializationType.getMatcherConfiguration();
 		assertThat("not a stereotype matcher", result, instanceOf(StereotypeApplicationMatcherConfiguration.class));
 		return (StereotypeApplicationMatcherConfiguration) result;
 	}
 
 	public void assertNoStereotypeMatcher(SpecializationTypeConfiguration specializationType) {
-		MatcherConfiguration matcher = specializationType.getMatcherConfiguration();
+		AbstractMatcherConfiguration matcher = specializationType.getMatcherConfiguration();
 		assertThat("has a stereotype matcher", matcher, not(instanceOf(StereotypeApplicationMatcherConfiguration.class)));
 	}
 
-	public <C extends AdviceBindingConfiguration> C getAdviceBindingConfiguration(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension, Class<C> type) {
-		AdviceBindingConfiguration result = getAdviceBindingConfiguration(metaclassExtension);
+	public <C extends AbstractAdviceBindingConfiguration> C getAdviceBindingConfiguration(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension, Class<C> type) {
+		AbstractAdviceBindingConfiguration result = getAdviceBindingConfiguration(metaclassExtension);
 		assertThat("not a " + type.getSimpleName(), result, instanceOf(type));
 		return type.cast(result);
 	}
 
-	public AdviceBindingConfiguration getAdviceBindingConfiguration(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
+	public AbstractAdviceBindingConfiguration getAdviceBindingConfiguration(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
 		return getAdviceBindingConfiguration(getElementTypeID(metaclassExtension, true));
 	}
 
-	public AdviceBindingConfiguration getAdviceBindingConfiguration(String id) {
-		AdviceBindingConfiguration result = null;
+	public AbstractAdviceBindingConfiguration getAdviceBindingConfiguration(String id) {
+		AbstractAdviceBindingConfiguration result = null;
 
-		for (AdviceBindingConfiguration next : getElementTypeSet().getAdviceBindingsConfigurations()) {
+		for (AbstractAdviceBindingConfiguration next : getElementTypeSet().getAdviceBindingsConfigurations()) {
 			if (id.equals(next.getIdentifier())) {
 				result = next;
 				break;
@@ -223,23 +223,23 @@ public class ModelGenFixture extends ResourceSetFixture {
 		return result;
 	}
 
-	public <C extends AdviceBindingConfiguration> List<C> getAllAdviceBindingConfigurations(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension, Class<C> type) {
-		List<AdviceBindingConfiguration> result = getAllAdviceBindingConfigurations(metaclassExtension);
-		assertThat("not " + type.getSimpleName(), result, everyItem(CoreMatchers.<AdviceBindingConfiguration> instanceOf(type)));
+	public <C extends AbstractAdviceBindingConfiguration> List<C> getAllAdviceBindingConfigurations(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension, Class<C> type) {
+		List<AbstractAdviceBindingConfiguration> result = getAllAdviceBindingConfigurations(metaclassExtension);
+		assertThat("not " + type.getSimpleName(), result, everyItem(CoreMatchers.<AbstractAdviceBindingConfiguration> instanceOf(type)));
 
 		@SuppressWarnings("unchecked")
 		List<C> resultAsC = (List<C>) result;
 		return resultAsC;
 	}
 
-	public List<AdviceBindingConfiguration> getAllAdviceBindingConfigurations(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
+	public List<AbstractAdviceBindingConfiguration> getAllAdviceBindingConfigurations(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
 		return getAllAdviceBindingConfigurations(Pattern.compile(String.format("%s($|_\\w+)", Pattern.quote(getElementTypeID(metaclassExtension, true)))));
 	}
 
-	public List<AdviceBindingConfiguration> getAllAdviceBindingConfigurations(Pattern idPattern) {
-		List<AdviceBindingConfiguration> result = Lists.newArrayListWithExpectedSize(3);
+	public List<AbstractAdviceBindingConfiguration> getAllAdviceBindingConfigurations(Pattern idPattern) {
+		List<AbstractAdviceBindingConfiguration> result = Lists.newArrayListWithExpectedSize(3);
 
-		for (AdviceBindingConfiguration next : getElementTypeSet().getAdviceBindingsConfigurations()) {
+		for (AbstractAdviceBindingConfiguration next : getElementTypeSet().getAdviceBindingsConfigurations()) {
 			if (idPattern.matcher(next.getIdentifier()).find()) {
 				result.add(next);
 			}

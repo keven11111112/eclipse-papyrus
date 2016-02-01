@@ -1,30 +1,8 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmi:id="_XB3QgM2QEeSF96aioTD1kQ"
-    name="elementTypeSetNotation"
-    description=""
-    identifier="org.eclipse.papyrus.uml.diagram.component.elementTypeSetNotation"
-    metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_XB33kc2QEeSF96aioTD1kQ"
-      name="InterfacePortLink"
-      identifier="org.eclipse.papyrus.uml.diagram.component.Link_4018"
-      hint="4018"
-      kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="" identifier="org.eclipse.papyrus.uml.diagram.component.elementTypeSetNotation" metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation" name="elementTypeSetNotation" xmi:id="_XB3QgM2QEeSF96aioTD1kQ" xmi:version="2.0">
+  <elementTypeConfigurations hint="4018" identifier="org.eclipse.papyrus.uml.diagram.component.Link_4018" kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType" name="InterfacePortLink" xmi:id="_XB33kc2QEeSF96aioTD1kQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_XB33kM2QEeSF96aioTD1kQ"
-      name="Undefined"
-      identifier="org.eclipse.papyrus.uml.diagram.component.Link_4016"
-      hint="4016"
-      kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
+  <elementTypeConfigurations hint="4016" identifier="org.eclipse.papyrus.uml.diagram.component.Link_4016" kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType" name="Undefined" xmi:id="_XB33kM2QEeSF96aioTD1kQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

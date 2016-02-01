@@ -25,16 +25,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.util.InvariantStereotypeRuleConfigurationResourceImpl
  * @generated
  */
-public class InvariantStereotypeRuleConfigurationResourceFactoryImpl extends ResourceFactoryImpl
-{
+public class InvariantStereotypeRuleConfigurationResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
 	 * Creates an instance of the resource factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InvariantStereotypeRuleConfigurationResourceFactoryImpl()
-	{
+	public InvariantStereotypeRuleConfigurationResourceFactoryImpl() {
 		super();
 	}
 
@@ -45,8 +43,7 @@ public class InvariantStereotypeRuleConfigurationResourceFactoryImpl extends Res
 	 * @generated
 	 */
 	@Override
-	public Resource createResource(URI uri)
-	{
+	public Resource createResource(URI uri) {
 		Resource result = new InvariantStereotypeRuleConfigurationResourceImpl(uri);
 		return result;
 	}

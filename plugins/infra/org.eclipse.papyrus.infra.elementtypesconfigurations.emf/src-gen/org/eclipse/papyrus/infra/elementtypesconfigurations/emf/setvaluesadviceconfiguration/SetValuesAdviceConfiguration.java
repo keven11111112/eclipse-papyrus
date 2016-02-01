@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadvice
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,16 +23,16 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfigu
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfiguration#getFeaturesToSet <em>Features To Set</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfigurationPackage#getSetValuesAdviceConfiguration()
  * @model
  * @generated
  */
-public interface SetValuesAdviceConfiguration extends AdviceBindingConfiguration {
+public interface SetValuesAdviceConfiguration extends AbstractAdviceBindingConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Features To Set</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.FeatureToSet}.

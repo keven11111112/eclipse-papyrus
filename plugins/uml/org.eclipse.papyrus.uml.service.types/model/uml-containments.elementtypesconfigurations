@@ -1,824 +1,338 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
-    identifier="org.eclipse.papyrus.uml.service.types.UMLContainmentsElementTypeSet"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_SdLC0lYCEeS0WsAAtVmToA"
-      name="UML::UseCase_As_UML::Classifier::ownedUseCase"
-      identifier="org.eclipse.papyrus.uml.UseCase_As_UML::Classifier::ownedUseCase"
-      hint="UML::UseCase_As_UML::Classifier::ownedUseCase">
-    <iconEntry
-        xmi:id="_SdLpwFYCEeS0WsAAtVmToA"
-        iconPath="/icons/full/obj16/UseCase.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.uml.service.types.UMLContainmentsElementTypeSet" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="UMLContainmentsElementTypeSet" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+  <elementTypeConfigurations hint="UML::UseCase_As_UML::Classifier::ownedUseCase" identifier="org.eclipse.papyrus.uml.UseCase_As_UML::Classifier::ownedUseCase" name="UML::UseCase_As_UML::Classifier::ownedUseCase" xmi:id="_SdLC0lYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/UseCase.gif" xmi:id="_SdLpwFYCEeS0WsAAtVmToA"/>
     <specializedTypesID>org.eclipse.papyrus.uml.UseCase</specializedTypesID>
-    <editHelperAdviceConfiguration
-        xmi:id="_g1eR0FuQEeSq2af_QYA1OA"
-        editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.UseCaseAsClassifierOwnedUseCaseEditHelperAdvice"/>
-    <containerConfiguration
-        xmi:id="_SdLpwVYCEeS0WsAAtVmToA">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier/ownedUseCase"/>
+    <editHelperAdviceConfiguration editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.UseCaseAsClassifierOwnedUseCaseEditHelperAdvice" xmi:id="_g1eR0FuQEeSq2af_QYA1OA" xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration"/>
+    <containerConfiguration xmi:id="_SdLpwVYCEeS0WsAAtVmToA">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier/ownedUseCase"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_OdntAJgmEeSbPLBxcMMcNg"
-      identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Package::packagedElement">
-    <iconEntry
-        xmi:id="_m1srIJgmEeSbPLBxcMMcNg"
-        iconPath="/icons/full/obj16/Constraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Package::packagedElement" name="Constraint_As_UML::Package::packagedElement" xmi:id="_OdntAJgmEeSbPLBxcMMcNg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif" xmi:id="_m1srIJgmEeSbPLBxcMMcNg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_tgfvMJgmEeSbPLBxcMMcNg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+    <containerConfiguration xmi:id="_tgfvMJgmEeSbPLBxcMMcNg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_y2EkwL0dEeSA8oxr--Q4Aw"
-      name="UML::StringExpression_As_UML::Package::packagedElement"
-      identifier="org.eclipse.papyrus.uml.StringExpression_As_UML::Package::packagedElement"
-      hint="UML::StringExpression_As_UML::Package::packagedElement">
-    <iconEntry
-        xmi:id="_y2FL0L0dEeSA8oxr--Q4Aw"
-        iconPath="/icons/full/obj16/StringExpression.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::StringExpression_As_UML::Package::packagedElement" identifier="org.eclipse.papyrus.uml.StringExpression_As_UML::Package::packagedElement" name="UML::StringExpression_As_UML::Package::packagedElement" xmi:id="_y2EkwL0dEeSA8oxr--Q4Aw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/StringExpression.gif" xmi:id="_y2FL0L0dEeSA8oxr--Q4Aw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.StringExpression</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_y2FL0r0dEeSA8oxr--Q4Aw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+    <containerConfiguration xmi:id="_y2FL0r0dEeSA8oxr--Q4Aw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_EcQ3QLocEeSsV_IrhqhBPw"
-      name="Expansion Node"
-      identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_AsInput"
-      hint="ExpansionNode_As_UML::ExpansionRegion::inputElement">
-    <iconEntry
-        xmi:id="_Si-6ULocEeSsV_IrhqhBPw"
-        iconPath="/icons/full/obj16/ExpansionNode.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="ExpansionNode_As_UML::ExpansionRegion::inputElement" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_AsInput" name="Expansion Node" xmi:id="_EcQ3QLocEeSsV_IrhqhBPw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExpansionNode.gif" xmi:id="_Si-6ULocEeSsV_IrhqhBPw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ExpansionNode</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_xpxzMLocEeSsV_IrhqhBPw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/inputElement"/>
+    <containerConfiguration xmi:id="_xpxzMLocEeSsV_IrhqhBPw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/inputElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_4YwzsLocEeSsV_IrhqhBPw"
-      name="Expansion Node"
-      identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_AsOutput"
-      hint="ExpansionNode_As_UML::ExpansionRegion::outputElement">
-    <iconEntry
-        xmi:id="_4YwzsbocEeSsV_IrhqhBPw"
-        iconPath="/icons/full/obj16/ExpansionNode.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="ExpansionNode_As_UML::ExpansionRegion::outputElement" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_AsOutput" name="Expansion Node" xmi:id="_4YwzsLocEeSsV_IrhqhBPw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExpansionNode.gif" xmi:id="_4YwzsbocEeSsV_IrhqhBPw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ExpansionNode</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_4YwzsrocEeSsV_IrhqhBPw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/outputElement"/>
+    <containerConfiguration xmi:id="_4YwzsrocEeSsV_IrhqhBPw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/outputElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_9_NrAL6fEeSWor5pKcy9Fw"
-      name="Constraint_As_Pre"
-      identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPrecondition"
-      hint="UML::Constraint_As_UML::Action::localPrecondition">
-    <iconEntry
-        xmi:id="_4JcVAL6gEeSWor5pKcy9Fw"
-        iconPath="/icons/full/obj16/Constraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::Constraint_As_UML::Action::localPrecondition" identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPrecondition" name="Constraint_As_Pre" xmi:id="_9_NrAL6fEeSWor5pKcy9Fw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif" xmi:id="_4JcVAL6gEeSWor5pKcy9Fw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_9i00gL6gEeSWor5pKcy9Fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    <containerConfiguration xmi:id="_9i00gL6gEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_1fLHIL6gEeSWor5pKcy9Fw"
-      name="Constraint_As_Post"
-      identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPostcondition"
-      hint="UML::Constraint_As_UML::Action::localPostcondition">
-    <iconEntry
-        xmi:id="_7d_O8L6gEeSWor5pKcy9Fw"
-        iconPath="/icons/full/obj16/Constraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::Constraint_As_UML::Action::localPostcondition" identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPostcondition" name="Constraint_As_Post" xmi:id="_1fLHIL6gEeSWor5pKcy9Fw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Constraint.gif" xmi:id="_7d_O8L6gEeSWor5pKcy9Fw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_F9kzQL6hEeSWor5pKcy9Fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    <containerConfiguration xmi:id="_F9kzQL6hEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_cBmEEL6hEeSWor5pKcy9Fw"
-      name="DurationConstraint_As_Pre"
-      identifier="org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPrecondition"
-      hint="UML::DurationConstraint_As_UML::Action::localPrecondition">
-    <iconEntry
-        xmi:id="_cBmEEb6hEeSWor5pKcy9Fw"
-        iconPath="/icons/full/obj16/DurationConstraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::DurationConstraint_As_UML::Action::localPrecondition" identifier="org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPrecondition" name="DurationConstraint_As_Pre" xmi:id="_cBmEEL6hEeSWor5pKcy9Fw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif" xmi:id="_cBmEEb6hEeSWor5pKcy9Fw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_cBmEEr6hEeSWor5pKcy9Fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    <containerConfiguration xmi:id="_cBmEEr6hEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_cBmEE76hEeSWor5pKcy9Fw"
-      name="DurationConstraint_As_Post"
-      identifier="org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPostcondition"
-      hint="UML::DurationConstraint_As_UML::Action::localPostcondition">
-    <iconEntry
-        xmi:id="_51aSIL6hEeSWor5pKcy9Fw"
-        iconPath="/icons/full/obj16/DurationConstraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::DurationConstraint_As_UML::Action::localPostcondition" identifier="org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPostcondition" name="DurationConstraint_As_Post" xmi:id="_cBmEE76hEeSWor5pKcy9Fw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif" xmi:id="_51aSIL6hEeSWor5pKcy9Fw"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_cBmEFb6hEeSWor5pKcy9Fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    <containerConfiguration xmi:id="_cBmEFb6hEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_wT89ML9VEeSdDOiyPlc_Pg"
-      name="TimeConstraint_As_Pre"
-      identifier="org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPrecondition"
-      hint="UML::TimeConstraint_As_UML::Action::localPrecondition">
-    <iconEntry
-        xmi:id="_wT89Mb9VEeSdDOiyPlc_Pg"
-        iconPath="/icons/full/obj16/DurationConstraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::TimeConstraint_As_UML::Action::localPrecondition" identifier="org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPrecondition" name="TimeConstraint_As_Pre" xmi:id="_wT89ML9VEeSdDOiyPlc_Pg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif" xmi:id="_wT89Mb9VEeSdDOiyPlc_Pg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_wT89Mr9VEeSdDOiyPlc_Pg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    <containerConfiguration xmi:id="_wT89Mr9VEeSdDOiyPlc_Pg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_wT89M79VEeSdDOiyPlc_Pg"
-      name="TimeConstraint_As_Post"
-      identifier="org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPostcondition"
-      hint="UML::TimeConstraint_As_UML::Action::localPostcondition">
-    <iconEntry
-        xmi:id="_wT89NL9VEeSdDOiyPlc_Pg"
-        iconPath="/icons/full/obj16/DurationConstraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::TimeConstraint_As_UML::Action::localPostcondition" identifier="org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPostcondition" name="TimeConstraint_As_Post" xmi:id="_wT89M79VEeSdDOiyPlc_Pg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif" xmi:id="_wT89NL9VEeSdDOiyPlc_Pg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_wT89Nb9VEeSdDOiyPlc_Pg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    <containerConfiguration xmi:id="_wT89Nb9VEeSdDOiyPlc_Pg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_iJLVAL9fEeSNNsF8trqP9g"
-      name="IntervalConstraint_As_Pre"
-      identifier="org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPrecondition"
-      hint="UML::IntervalConstraint_As_UML::Action::localPrecondition">
-    <iconEntry
-        xmi:id="_iJLVAb9fEeSNNsF8trqP9g"
-        iconPath="/icons/full/obj16/DurationConstraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::IntervalConstraint_As_UML::Action::localPrecondition" identifier="org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPrecondition" name="IntervalConstraint_As_Pre" xmi:id="_iJLVAL9fEeSNNsF8trqP9g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif" xmi:id="_iJLVAb9fEeSNNsF8trqP9g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_iJLVAr9fEeSNNsF8trqP9g">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    <containerConfiguration xmi:id="_iJLVAr9fEeSNNsF8trqP9g">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_iJLVA79fEeSNNsF8trqP9g"
-      name="IntervalConstraint_As_Post"
-      identifier="org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPostcondition"
-      hint="UML::IntervalConstraint_As_UML::Action::localPostcondition">
-    <iconEntry
-        xmi:id="_iJLVBL9fEeSNNsF8trqP9g"
-        iconPath="/icons/full/obj16/DurationConstraint.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::IntervalConstraint_As_UML::Action::localPostcondition" identifier="org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPostcondition" name="IntervalConstraint_As_Post" xmi:id="_iJLVA79fEeSNNsF8trqP9g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/DurationConstraint.gif" xmi:id="_iJLVBL9fEeSNNsF8trqP9g"/>
     <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_iJLVBb9fEeSNNsF8trqP9g">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    <containerConfiguration xmi:id="_iJLVBb9fEeSNNsF8trqP9g">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_haR0kNCrEeSPA6G9EAuxLg"
-      name="org.eclipse.papyrus.uml.Component_As_UML"
-      identifier="org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement"
-      hint="org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement">
+  <elementTypeConfigurations hint="org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement" identifier="org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement" name="org.eclipse.papyrus.uml.Component_As_UML" xmi:id="_haR0kNCrEeSPA6G9EAuxLg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_yePr4NCrEeSPA6G9EAuxLg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Component/packagedElement"/>
+    <containerConfiguration xmi:id="_yePr4NCrEeSPA6G9EAuxLg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Component/packagedElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_rw_ToMwfEeSDe-jctQxSwg"
-      name="UML::Behavior_As_UML::State::doActivity"
-      identifier="org.eclipse.papyrus.uml.Behavior_As_UML::State::doActivity"
-      hint="UML::Behavior_As_UML::State::doActivity">
-    <iconEntry
-        xmi:id="_5YbZsMwfEeSDe-jctQxSwg"
-        iconPath="/icons/full/obj16/Behavior.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::Behavior_As_UML::State::doActivity" identifier="org.eclipse.papyrus.uml.Behavior_As_UML::State::doActivity" name="UML::Behavior_As_UML::State::doActivity" xmi:id="_rw_ToMwfEeSDe-jctQxSwg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Behavior.gif" xmi:id="_5YbZsMwfEeSDe-jctQxSwg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_KoAEEMwgEeSDe-jctQxSwg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//State/doActivity"/>
+    <containerConfiguration xmi:id="_KoAEEMwgEeSDe-jctQxSwg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//State/doActivity"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_7S3GEMwfEeSDe-jctQxSwg"
-      name="UML::Behavior_As_UML::State::entry"
-      description=""
-      identifier="org.eclipse.papyrus.uml.Behavior_As_UML::State::entry"
-      hint="UML::Behavior_As_UML::State::entry">
-    <iconEntry
-        xmi:id="_7S3GEcwfEeSDe-jctQxSwg"
-        iconPath="/icons/full/obj16/Behavior.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations description="" hint="UML::Behavior_As_UML::State::entry" identifier="org.eclipse.papyrus.uml.Behavior_As_UML::State::entry" name="UML::Behavior_As_UML::State::entry" xmi:id="_7S3GEMwfEeSDe-jctQxSwg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Behavior.gif" xmi:id="_7S3GEcwfEeSDe-jctQxSwg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_QapYIMwgEeSDe-jctQxSwg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//State/entry"/>
+    <containerConfiguration xmi:id="_QapYIMwgEeSDe-jctQxSwg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//State/entry"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_7eFeoMwfEeSDe-jctQxSwg"
-      name="UML::Behavior_As_UML::State::exit"
-      identifier="org.eclipse.papyrus.uml.Behavior_As_UML::State::exit"
-      hint="UML::Behavior_As_UML::State::exit">
-    <iconEntry
-        xmi:id="_7eFeocwfEeSDe-jctQxSwg"
-        iconPath="/icons/full/obj16/Behavior.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::Behavior_As_UML::State::exit" identifier="org.eclipse.papyrus.uml.Behavior_As_UML::State::exit" name="UML::Behavior_As_UML::State::exit" xmi:id="_7eFeoMwfEeSDe-jctQxSwg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Behavior.gif" xmi:id="_7eFeocwfEeSDe-jctQxSwg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_Q3yAEMwgEeSDe-jctQxSwg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//State/exit"/>
+    <containerConfiguration xmi:id="_Q3yAEMwgEeSDe-jctQxSwg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//State/exit"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_cFHhsNRkEeS91tsV_VS13w"
-      name="InputPin_As_CallOperationActionTarget"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::CallOperationAction::target"
-      hint="UML::InputPin_As_UML::CallOperationAction::target">
-    <iconEntry
-        xmi:id="_SFG_4NRlEeS91tsV_VS13w"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::CallOperationAction::target" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::CallOperationAction::target" name="InputPin_As_CallOperationActionTarget" xmi:id="_cFHhsNRkEeS91tsV_VS13w" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_SFG_4NRlEeS91tsV_VS13w"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_40hagNRmEeSVOv5wRpe-fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction/target"/>
+    <containerConfiguration xmi:id="_40hagNRmEeSVOv5wRpe-fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_FlO-0NRlEeS91tsV_VS13w"
-      name="ActionInputPin_As_CallOperationActionTarget"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::CallOperationAction::target"
-      hint="UML::ActionInputPin_As_UML::CallOperationAction::target">
-    <iconEntry
-        xmi:id="_Sdx-kNRlEeS91tsV_VS13w"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::CallOperationAction::target" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::CallOperationAction::target" name="ActionInputPin_As_CallOperationActionTarget" xmi:id="_FlO-0NRlEeS91tsV_VS13w" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_Sdx-kNRlEeS91tsV_VS13w"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_Ev5AUNRnEeSVOv5wRpe-fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction/target"/>
+    <containerConfiguration xmi:id="_Ev5AUNRnEeSVOv5wRpe-fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_v7964NRlEeS91tsV_VS13w"
-      name="ValuePin_As_CallOperationActionTarget"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::CallOperationAction::target"
-      hint="UML::ValuePin_As_UML::CallOperationAction::target">
-    <iconEntry
-        xmi:id="_v7964dRlEeS91tsV_VS13w"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::CallOperationAction::target" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::CallOperationAction::target" name="ValuePin_As_CallOperationActionTarget" xmi:id="_v7964NRlEeS91tsV_VS13w" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_v7964dRlEeS91tsV_VS13w"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_E4Xm4NRnEeSVOv5wRpe-fw">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction/target"/>
+    <containerConfiguration xmi:id="_E4Xm4NRnEeSVOv5wRpe-fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_U92jENRvEeS2r-Rad2ICiQ"
-      name="InputPin_As_Object_In_SendObjectAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::SendObjectAction::object"
-      hint="UML::InputPin_As_UML::SendObjectAction::object">
-    <iconEntry
-        xmi:id="_U92jEdRvEeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::SendObjectAction::object" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::SendObjectAction::object" name="InputPin_As_Object_In_SendObjectAction" xmi:id="_U92jENRvEeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_U92jEdRvEeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_U92jEtRvEeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/request"/>
+    <containerConfiguration xmi:id="_U92jEtRvEeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/request"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_U92jE9RvEeS2r-Rad2ICiQ"
-      name="ActionInputPin_As_Object_In_SendObjectAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::SendObjectAction::object"
-      hint="UML::ActionInputPin_As_UML::SendObjectAction::object">
-    <iconEntry
-        xmi:id="_U92jFNRvEeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::SendObjectAction::object" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::SendObjectAction::object" name="ActionInputPin_As_Object_In_SendObjectAction" xmi:id="_U92jE9RvEeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_U92jFNRvEeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_9SkuoNRwEeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/request"/>
+    <containerConfiguration xmi:id="_9SkuoNRwEeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/request"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_U92jFtRvEeS2r-Rad2ICiQ"
-      name="ValuePin_As_Object_In_SendObjectAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::SendObjectAction::object"
-      hint="UML::ValuePin_As_UML::SendObjectAction::object">
-    <iconEntry
-        xmi:id="_U92jF9RvEeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::SendObjectAction::object" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::SendObjectAction::object" name="ValuePin_As_Object_In_SendObjectAction" xmi:id="_U92jFtRvEeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_U92jF9RvEeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_9dAdANRwEeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/request"/>
+    <containerConfiguration xmi:id="_9dAdANRwEeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/request"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_GS58INRwEeS2r-Rad2ICiQ"
-      name="InputPin_As_Request_In_SendObjectAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::SendObjectAction::request"
-      hint="UML::InputPin_As_UML::SendObjectAction::request">
-    <iconEntry
-        xmi:id="_GS58IdRwEeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::SendObjectAction::request" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::SendObjectAction::request" name="InputPin_As_Request_In_SendObjectAction" xmi:id="_GS58INRwEeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_GS58IdRwEeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_GS58ItRwEeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/target"/>
+    <containerConfiguration xmi:id="_GS58ItRwEeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_GS58I9RwEeS2r-Rad2ICiQ"
-      name="ActionInputPin_As_Request_In_SendObjectAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::SendObjectAction::request"
-      hint="UML::ActionInputPin_As_UML::SendObjectAction::request">
-    <iconEntry
-        xmi:id="_GS58JNRwEeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::SendObjectAction::request" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::SendObjectAction::request" name="ActionInputPin_As_Request_In_SendObjectAction" xmi:id="_GS58I9RwEeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_GS58JNRwEeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_GS58JdRwEeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/target"/>
+    <containerConfiguration xmi:id="_GS58JdRwEeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_GS58JtRwEeS2r-Rad2ICiQ"
-      name="ValuePin_As_Request_In_SendObjectAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::SendObjectAction::request"
-      hint="UML::ValuePin_As_UML::SendObjectAction::request">
-    <iconEntry
-        xmi:id="_GS58J9RwEeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::SendObjectAction::request" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::SendObjectAction::request" name="ValuePin_As_Request_In_SendObjectAction" xmi:id="_GS58JtRwEeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_GS58J9RwEeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_GS58KNRwEeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/target"/>
+    <containerConfiguration xmi:id="_GS58KNRwEeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_wAaYMNR0EeS2r-Rad2ICiQ"
-      name="InputPin_As_Target_In_SendSignalAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::SendSignalAction::target"
-      hint="UML::InputPin_As_UML::SendSignalAction::target">
-    <iconEntry
-        xmi:id="_wAaYMdR0EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::SendSignalAction::target" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::SendSignalAction::target" name="InputPin_As_Target_In_SendSignalAction" xmi:id="_wAaYMNR0EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_wAaYMdR0EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_wAaYMtR0EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction/target"/>
+    <containerConfiguration xmi:id="_wAaYMtR0EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_wAaYM9R0EeS2r-Rad2ICiQ"
-      name="ActionInputPin_As_Target_In_SendSignalAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::SendSignalAction::target"
-      hint="UML::ActionInputPin_As_UML::SendSignalAction::target">
-    <iconEntry
-        xmi:id="_wAaYNNR0EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::SendSignalAction::target" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::SendSignalAction::target" name="ActionInputPin_As_Target_In_SendSignalAction" xmi:id="_wAaYM9R0EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_wAaYNNR0EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_wAaYNdR0EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction/target"/>
+    <containerConfiguration xmi:id="_wAaYNdR0EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_wAaYNtR0EeS2r-Rad2ICiQ"
-      name="ValuePin_As_Target_In_SendSignalAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::SendSignalAction::target"
-      hint="UML::ValuePin_As_UML::SendSignalAction::target">
-    <iconEntry
-        xmi:id="_wAaYN9R0EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::SendSignalAction::target" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::SendSignalAction::target" name="ValuePin_As_Target_In_SendSignalAction" xmi:id="_wAaYNtR0EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_wAaYN9R0EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_wAaYONR0EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction/target"/>
+    <containerConfiguration xmi:id="_wAaYONR0EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction/target"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_GVKk8NR7EeS2r-Rad2ICiQ"
-      name="OutputPin_As_LoopNodeVariable_In_LoopNode"
-      identifier="org.eclipse.papyrus.uml.OutputPin_As_UML::LoopNode::loopNodeVariable"
-      hint="UML::OutputPin_As_UML::LoopNode::loopNodeVariable">
-    <iconEntry
-        xmi:id="_GVKk8dR7EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::OutputPin_As_UML::LoopNode::loopNodeVariable" identifier="org.eclipse.papyrus.uml.OutputPin_As_UML::LoopNode::loopNodeVariable" name="OutputPin_As_LoopNodeVariable_In_LoopNode" xmi:id="_GVKk8NR7EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_GVKk8dR7EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_GVKk8tR7EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//LoopNode/loopVariable"/>
+    <containerConfiguration xmi:id="_GVKk8tR7EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//LoopNode/loopVariable"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_UATp0NR8EeS2r-Rad2ICiQ"
-      name="InputPin_As_InsertAt_In_AddStructuralFeatureValueAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::AddStructuralFeatureValueAction::insertAt"
-      hint="UML::InputPin_As_UML::AddStructuralFeatureValueAction::insertAt">
-    <iconEntry
-        xmi:id="_UATp0dR8EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::AddStructuralFeatureValueAction::insertAt" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::AddStructuralFeatureValueAction::insertAt" name="InputPin_As_InsertAt_In_AddStructuralFeatureValueAction" xmi:id="_UATp0NR8EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_UATp0dR8EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_9IsjcNR8EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction/insertAt"/>
+    <containerConfiguration xmi:id="_9IsjcNR8EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction/insertAt"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_UATp09R8EeS2r-Rad2ICiQ"
-      name="ActionInputPin_As_InsertAt_In_AddStructuralFeatureValueAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::AddStructuralFeatureValueAction::insertAt"
-      hint="UML::ActionInputPin_As_UML::AddStructuralFeatureValueAction::insertAt">
-    <iconEntry
-        xmi:id="_UATp1NR8EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::AddStructuralFeatureValueAction::insertAt" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::AddStructuralFeatureValueAction::insertAt" name="ActionInputPin_As_InsertAt_In_AddStructuralFeatureValueAction" xmi:id="_UATp09R8EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_UATp1NR8EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_VF8mwNR9EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction/insertAt"/>
+    <containerConfiguration xmi:id="_VF8mwNR9EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction/insertAt"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_UATp1tR8EeS2r-Rad2ICiQ"
-      name="ValuePin_As_InsertAt_In_AddStructuralFeatureValueAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::AddStructuralFeatureValueAction::insertAt"
-      hint="UML::ValuePin_As_UML::AddStructuralFeatureValueAction::insertAt">
-    <iconEntry
-        xmi:id="_UATp19R8EeS2r-Rad2ICiQ"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::AddStructuralFeatureValueAction::insertAt" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::AddStructuralFeatureValueAction::insertAt" name="ValuePin_As_InsertAt_In_AddStructuralFeatureValueAction" xmi:id="_UATp1tR8EeS2r-Rad2ICiQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_UATp19R8EeS2r-Rad2ICiQ"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_VXqo4NR9EeS2r-Rad2ICiQ">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction/insertAt"/>
+    <containerConfiguration xmi:id="_VXqo4NR9EeS2r-Rad2ICiQ">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction/insertAt"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_CEKbENSBEeSxgPgY51xQ1A"
-      name="InputPin_As_Value_In_AddStructuralFeatureValueAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::AddStructuralFeatureValueAction::value"
-      hint="UML::InputPin_As_UML::AddStructuralFeatureValueAction::value">
-    <iconEntry
-        xmi:id="_CEKbEdSBEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::AddStructuralFeatureValueAction::value" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::AddStructuralFeatureValueAction::value" name="InputPin_As_Value_In_AddStructuralFeatureValueAction" xmi:id="_CEKbENSBEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_CEKbEdSBEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_CEKbEtSBEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction/value"/>
+    <containerConfiguration xmi:id="_CEKbEtSBEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction/value"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_CEKbE9SBEeSxgPgY51xQ1A"
-      name="ActionInputPin_As_Value_In_AddStructuralFeatureValueAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::AddStructuralFeatureValueAction::value"
-      hint="UML::ActionInputPin_As_UML::AddStructuralFeatureValueAction::value">
-    <iconEntry
-        xmi:id="_CEKbFNSBEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::AddStructuralFeatureValueAction::value" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::AddStructuralFeatureValueAction::value" name="ActionInputPin_As_Value_In_AddStructuralFeatureValueAction" xmi:id="_CEKbE9SBEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_CEKbFNSBEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_CEKbFdSBEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction/value"/>
+    <containerConfiguration xmi:id="_CEKbFdSBEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction/value"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_CEKbFtSBEeSxgPgY51xQ1A"
-      name="ValuePin_As_Value_In_AddStructuralFeatureValueAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::AddStructuralFeatureValueAction::value"
-      hint="UML::ValuePin_As_UML::AddStructuralFeatureValueAction::value">
-    <iconEntry
-        xmi:id="_CEKbF9SBEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::AddStructuralFeatureValueAction::value" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::AddStructuralFeatureValueAction::value" name="ValuePin_As_Value_In_AddStructuralFeatureValueAction" xmi:id="_CEKbFtSBEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_CEKbF9SBEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_CEKbGNSBEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction/value"/>
+    <containerConfiguration xmi:id="_CEKbGNSBEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction/value"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_NIgAUNSDEeSxgPgY51xQ1A"
-      name="InputPin_As_InsertAt_In_AddVariableValueAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::AddVariableValueAction::insertAt"
-      hint="UML::InputPin_As_UML::AddVariableValueAction::insertAt">
-    <iconEntry
-        xmi:id="_NIgAUdSDEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::AddVariableValueAction::insertAt" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::AddVariableValueAction::insertAt" name="InputPin_As_InsertAt_In_AddVariableValueAction" xmi:id="_NIgAUNSDEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_NIgAUdSDEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_NIgAUtSDEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction/insertAt"/>
+    <containerConfiguration xmi:id="_NIgAUtSDEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction/insertAt"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_NIgAU9SDEeSxgPgY51xQ1A"
-      name="ActionInputPin_As_InsertAt_In_AddVariableValueAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::AddVariableValueAction::insertAt"
-      hint="UML::ActionInputPin_As_UML::AddVariableValueAction::insertAt">
-    <iconEntry
-        xmi:id="_NIgAVNSDEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::AddVariableValueAction::insertAt" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::AddVariableValueAction::insertAt" name="ActionInputPin_As_InsertAt_In_AddVariableValueAction" xmi:id="_NIgAU9SDEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_NIgAVNSDEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_NIgAVdSDEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction/insertAt"/>
+    <containerConfiguration xmi:id="_NIgAVdSDEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction/insertAt"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_NIgAVtSDEeSxgPgY51xQ1A"
-      name="ValuePin_As_InsertAt_In_AddVariableValueAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::AddVariableValueAction::insertAt"
-      hint="UML::ValuePin_As_UML::AddVariableValueAction::insertAt">
-    <iconEntry
-        xmi:id="_NIgAV9SDEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::AddVariableValueAction::insertAt" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::AddVariableValueAction::insertAt" name="ValuePin_As_InsertAt_In_AddVariableValueAction" xmi:id="_NIgAVtSDEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_NIgAV9SDEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_NIgAWNSDEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction/insertAt"/>
+    <containerConfiguration xmi:id="_NIgAWNSDEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction/insertAt"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_78em8NSHEeSxgPgY51xQ1A"
-      name="InputPin_As_Object_In_StartObjectBehaviorAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::StartObjectBehaviorAction::object"
-      hint="UML::InputPin_As_UML::StartObjectBehaviorAction::object">
-    <iconEntry
-        xmi:id="_78em8dSHEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::StartObjectBehaviorAction::object" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::StartObjectBehaviorAction::object" name="InputPin_As_Object_In_StartObjectBehaviorAction" xmi:id="_78em8NSHEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_78em8dSHEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_78em8tSHEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction/object"/>
+    <containerConfiguration xmi:id="_78em8tSHEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction/object"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_78em89SHEeSxgPgY51xQ1A"
-      name="ActionInputPin_As_Object_In_StartObjectBehaviorAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::StartObjectBehaviorAction::object"
-      hint="UML::ActionInputPin_As_UML::StartObjectBehaviorAction::object">
-    <iconEntry
-        xmi:id="_78em9NSHEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::StartObjectBehaviorAction::object" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::StartObjectBehaviorAction::object" name="ActionInputPin_As_Object_In_StartObjectBehaviorAction" xmi:id="_78em89SHEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_78em9NSHEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_78em9dSHEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction/object"/>
+    <containerConfiguration xmi:id="_78em9dSHEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction/object"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_78em9tSHEeSxgPgY51xQ1A"
-      name="ValuePin_As_Object_In_StartObjectBehaviorAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::StartObjectBehaviorAction::object"
-      hint="UML::ValuePin_As_UML::StartObjectBehaviorAction::object">
-    <iconEntry
-        xmi:id="_78em99SHEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::StartObjectBehaviorAction::object" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::StartObjectBehaviorAction::object" name="ValuePin_As_Object_In_StartObjectBehaviorAction" xmi:id="_78em9tSHEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_78em99SHEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_78em-NSHEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction/object"/>
+    <containerConfiguration xmi:id="_78em-NSHEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction/object"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qGX2INSJEeSxgPgY51xQ1A"
-      name="InputPin_As_Second_In_TestIdentityAction"
-      identifier="org.eclipse.papyrus.uml.InputPin_As_UML::TestIdentityAction::second"
-      hint="UML::InputPin_As_UML::TestIdentityAction::second">
-    <iconEntry
-        xmi:id="_qGX2IdSJEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/InputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::InputPin_As_UML::TestIdentityAction::second" identifier="org.eclipse.papyrus.uml.InputPin_As_UML::TestIdentityAction::second" name="InputPin_As_Second_In_TestIdentityAction" xmi:id="_qGX2INSJEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/InputPin.gif" xmi:id="_qGX2IdSJEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_qGX2ItSJEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction/second"/>
+    <containerConfiguration xmi:id="_qGX2ItSJEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction/second"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qGX2I9SJEeSxgPgY51xQ1A"
-      name="ActionInputPin_As_Second_In_TestIdentityAction"
-      identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::TestIdentityAction::second"
-      hint="UML::ActionInputPin_As_UML::TestIdentityAction::second">
-    <iconEntry
-        xmi:id="_qGX2JNSJEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ActionInputPin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ActionInputPin_As_UML::TestIdentityAction::second" identifier="org.eclipse.papyrus.uml.ActionInputPin_As_UML::TestIdentityAction::second" name="ActionInputPin_As_Second_In_TestIdentityAction" xmi:id="_qGX2I9SJEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ActionInputPin.gif" xmi:id="_qGX2JNSJEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_qGX2JdSJEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction/second"/>
+    <containerConfiguration xmi:id="_qGX2JdSJEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction/second"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_qGX2JtSJEeSxgPgY51xQ1A"
-      name="ValuePin_As_Second_In_TestIdentityAction"
-      identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::TestIdentityAction::second"
-      hint="UML::ValuePin_As_UML::TestIdentityAction::second">
-    <iconEntry
-        xmi:id="_qGX2J9SJEeSxgPgY51xQ1A"
-        iconPath="/icons/full/obj16/ValuePin.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ValuePin_As_UML::TestIdentityAction::second" identifier="org.eclipse.papyrus.uml.ValuePin_As_UML::TestIdentityAction::second" name="ValuePin_As_Second_In_TestIdentityAction" xmi:id="_qGX2JtSJEeSxgPgY51xQ1A" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ValuePin.gif" xmi:id="_qGX2J9SJEeSxgPgY51xQ1A"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_qGX2KNSJEeSxgPgY51xQ1A">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction/second"/>
+    <containerConfiguration xmi:id="_qGX2KNSJEeSxgPgY51xQ1A">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction/second"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_5TRgkP_rEeSVDoeWScjgfg"
-      name="ExecutionEnvironment_As_NestedNode_In_Node"
-      identifier="org.eclipse.papyrus.um.ExecutionEnvironment_As_UML::Node::nestedNode"
-      hint="UML::ExecutionEnvironment_As_UML::Node::nestedNode">
-    <iconEntry
-        xmi:id="_8CDbAP_rEeSVDoeWScjgfg"
-        iconPath="/icons/full/obj16/ExecutionEnviroment.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::ExecutionEnvironment_As_UML::Node::nestedNode" identifier="org.eclipse.papyrus.um.ExecutionEnvironment_As_UML::Node::nestedNode" name="ExecutionEnvironment_As_NestedNode_In_Node" xmi:id="_5TRgkP_rEeSVDoeWScjgfg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExecutionEnviroment.gif" xmi:id="_8CDbAP_rEeSVDoeWScjgfg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ExecutionEnvironment</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_875NEP_rEeSVDoeWScjgfg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Node/nestedNode"/>
+    <containerConfiguration xmi:id="_875NEP_rEeSVDoeWScjgfg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Node/nestedNode"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_1dxZMP_sEeSVDoeWScjgfg"
-      name="Device_As_NestedNode_In_Node"
-      identifier="org.eclipse.papyrus.um.Device_As_UML::Node::nestedNode"
-      hint="UML::Device_As_UML::Node::nestedNode">
-    <iconEntry
-        xmi:id="_2pe-YP_sEeSVDoeWScjgfg"
-        iconPath="/icons/full/obj16/ExecutionEnviroment.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::Device_As_UML::Node::nestedNode" identifier="org.eclipse.papyrus.um.Device_As_UML::Node::nestedNode" name="Device_As_NestedNode_In_Node" xmi:id="_1dxZMP_sEeSVDoeWScjgfg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExecutionEnviroment.gif" xmi:id="_2pe-YP_sEeSVDoeWScjgfg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Device</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_2pe-Yf_sEeSVDoeWScjgfg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Node/nestedNode"/>
+    <containerConfiguration xmi:id="_2pe-Yf_sEeSVDoeWScjgfg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Node/nestedNode"/>
     </containerConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_11G7IP_sEeSVDoeWScjgfg"
-      name="Node_As_NestedNode_In_Node"
-      identifier="org.eclipse.papyrus.um.Node_As_UML::Node::nestedNode"
-      hint="UML::Node_As_UML::Node::nestedNode">
-    <iconEntry
-        xmi:id="_26IpgP_sEeSVDoeWScjgfg"
-        iconPath="/icons/full/obj16/ExecutionEnviroment.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations hint="UML::Node_As_UML::Node::nestedNode" identifier="org.eclipse.papyrus.um.Node_As_UML::Node::nestedNode" name="Node_As_NestedNode_In_Node" xmi:id="_11G7IP_sEeSVDoeWScjgfg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <iconEntry bundleId="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/ExecutionEnviroment.gif" xmi:id="_26IpgP_sEeSVDoeWScjgfg"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Node</specializedTypesID>
-    <containerConfiguration
-        xmi:id="_26Ipgf_sEeSVDoeWScjgfg">
-      <eContainmentFeatures
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Node/nestedNode"/>
+    <containerConfiguration xmi:id="_26Ipgf_sEeSVDoeWScjgfg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Node/nestedNode"/>
     </containerConfiguration>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

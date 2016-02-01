@@ -19,9 +19,9 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.ElementTypesConfigurationsEventsChain;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.ElementTypesConfigurationsEventType;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.IElementTypesConfigurationsEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.ElementTypesConfigurationsEventsChain;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.ElementTypesConfigurationsEventType;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.IElementTypesConfigurationsEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;

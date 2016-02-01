@@ -83,20 +83,4 @@
             name="Disable ElementTypes Set configuration">
 		</command>
 	</extension>
-	
-   <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.userDefinitions">
-      <provider
-            class="org.eclipse.papyrus.infra.elementtypesconfigurations.internal.ui.UserElementTypeDefinitionsProvider">
-      </provider>
-   </extension>
- 
-   <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
-      <adviceConfigurationType
-            configurationClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration"
-            factoryClass="org.eclipse.papyrus.infra.elementtypesconfigurations.internal.ui.advice.RuntimeValuesEditionAdviceEditHelperAdviceFactory">
-      </adviceConfigurationType>
-   </extension>
-
 </plugin>

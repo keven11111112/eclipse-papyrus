@@ -41,7 +41,7 @@ import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
@@ -271,10 +271,10 @@ public class StereotypeApplicationMatcherConfigurationItemProviderAdapterFactory
 			 * @generated
 			 */
 			@Override
-			public Object caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+			public Object caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 				newChildDescriptors.add
 					(createChildParameter
-						(ElementtypesconfigurationsPackage.Literals.ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION,
+						(ElementtypesconfigurationsPackage.Literals.ABSTRACT_ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION,
 						 StereotypeApplicationMatcherConfigurationFactory.eINSTANCE.createStereotypeApplicationMatcherConfiguration()));
 
 				return null;

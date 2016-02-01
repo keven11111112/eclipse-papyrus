@@ -196,7 +196,7 @@ public class SetTypeAdviceConfigurationPackageImpl extends EPackageImpl implemen
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		setTypeAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAdviceBindingConfiguration());
+		setTypeAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAbstractAdviceBindingConfiguration());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(setTypeAdviceConfigurationEClass, SetTypeAdviceConfiguration.class, "SetTypeAdviceConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

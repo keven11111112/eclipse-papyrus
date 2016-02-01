@@ -23,10 +23,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractEditHelperAdviceConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredHintedSpecializationElementType;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.NullEditHelperAdvice;
@@ -46,7 +46,7 @@ public class SpecializationTypeFactory extends AbstractElementTypeConfigurationF
 	}
 
 	protected IEditHelperAdvice getEditHelperAdvice(SpecializationTypeConfiguration elementTypeConfiguration) {
-		EditHelperAdviceConfiguration editHelperAdviceConfiguration = elementTypeConfiguration.getEditHelperAdviceConfiguration();
+		AbstractEditHelperAdviceConfiguration editHelperAdviceConfiguration = elementTypeConfiguration.getEditHelperAdviceConfiguration();
 		if (editHelperAdviceConfiguration == null) {
 			return NullEditHelperAdvice.getInstance();
 		}
@@ -68,8 +68,7 @@ public class SpecializationTypeFactory extends AbstractElementTypeConfigurationF
 		List<IElementType> specializedTypes = new ArrayList<IElementType>((elementTypeConfiguration).getSpecializedTypesID().size());
 		for (String specializedTypeId : (elementTypeConfiguration).getSpecializedTypesID()) {
 			IElementType specializedType = ElementTypeRegistry.getInstance().getType(specializedTypeId);
-			if (specializedType != null)
-			{
+			if (specializedType != null) {
 				specializedTypes.add(specializedType);
 			} else {
 				Activator.log.info("Unable to add specialization \"" + getID(elementTypeConfiguration) + "\" to \"" + specializedTypeId + "\"");
@@ -80,7 +79,7 @@ public class SpecializationTypeFactory extends AbstractElementTypeConfigurationF
 	}
 
 	protected IElementMatcher createElementMatcher(SpecializationTypeConfiguration configuration) {
-		MatcherConfiguration matcherConfiguration = configuration.getMatcherConfiguration();
+		AbstractMatcherConfiguration matcherConfiguration = configuration.getMatcherConfiguration();
 		if (matcherConfiguration == null) {
 			return null;
 		}

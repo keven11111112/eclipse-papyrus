@@ -80,6 +80,8 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 				ElementTypeSetConfiguration elementTypeSetConfiguration = (ElementTypeSetConfiguration)theEObject;
 				T result = caseElementTypeSetConfiguration(elementTypeSetConfiguration);
 				if (result == null) result = caseConfigurationElement(elementTypeSetConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(elementTypeSetConfiguration);
+				if (result == null) result = caseNamedConfiguration(elementTypeSetConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -87,6 +89,8 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 				ElementTypeConfiguration elementTypeConfiguration = (ElementTypeConfiguration)theEObject;
 				T result = caseElementTypeConfiguration(elementTypeConfiguration);
 				if (result == null) result = caseConfigurationElement(elementTypeConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(elementTypeConfiguration);
+				if (result == null) result = caseNamedConfiguration(elementTypeConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,9 +106,9 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION: {
-				MatcherConfiguration matcherConfiguration = (MatcherConfiguration)theEObject;
-				T result = caseMatcherConfiguration(matcherConfiguration);
+			case ElementtypesconfigurationsPackage.ABSTRACT_MATCHER_CONFIGURATION: {
+				AbstractMatcherConfiguration abstractMatcherConfiguration = (AbstractMatcherConfiguration)theEObject;
+				T result = caseAbstractMatcherConfiguration(abstractMatcherConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -115,11 +119,12 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION: {
-				AdviceBindingConfiguration adviceBindingConfiguration = (AdviceBindingConfiguration)theEObject;
-				T result = caseAdviceBindingConfiguration(adviceBindingConfiguration);
-				if (result == null) result = caseAdviceConfiguration(adviceBindingConfiguration);
-				if (result == null) result = caseConfigurationElement(adviceBindingConfiguration);
+			case ElementtypesconfigurationsPackage.ABSTRACT_ADVICE_BINDING_CONFIGURATION: {
+				AbstractAdviceBindingConfiguration abstractAdviceBindingConfiguration = (AbstractAdviceBindingConfiguration)theEObject;
+				T result = caseAbstractAdviceBindingConfiguration(abstractAdviceBindingConfiguration);
+				if (result == null) result = caseAdviceConfiguration(abstractAdviceBindingConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(abstractAdviceBindingConfiguration);
+				if (result == null) result = caseConfigurationElement(abstractAdviceBindingConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,6 +133,8 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 				T result = caseSpecializationTypeConfiguration(specializationTypeConfiguration);
 				if (result == null) result = caseElementTypeConfiguration(specializationTypeConfiguration);
 				if (result == null) result = caseConfigurationElement(specializationTypeConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(specializationTypeConfiguration);
+				if (result == null) result = caseNamedConfiguration(specializationTypeConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -142,14 +149,54 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 				T result = caseMetamodelTypeConfiguration(metamodelTypeConfiguration);
 				if (result == null) result = caseElementTypeConfiguration(metamodelTypeConfiguration);
 				if (result == null) result = caseConfigurationElement(metamodelTypeConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(metamodelTypeConfiguration);
+				if (result == null) result = caseNamedConfiguration(metamodelTypeConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementtypesconfigurationsPackage.ABSTRACT_EDIT_HELPER_ADVICE_CONFIGURATION: {
+				AbstractEditHelperAdviceConfiguration abstractEditHelperAdviceConfiguration = (AbstractEditHelperAdviceConfiguration)theEObject;
+				T result = caseAbstractEditHelperAdviceConfiguration(abstractEditHelperAdviceConfiguration);
+				if (result == null) result = caseAdviceConfiguration(abstractEditHelperAdviceConfiguration);
+				if (result == null) result = caseConfigurationElement(abstractEditHelperAdviceConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ElementtypesconfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION: {
 				EditHelperAdviceConfiguration editHelperAdviceConfiguration = (EditHelperAdviceConfiguration)theEObject;
 				T result = caseEditHelperAdviceConfiguration(editHelperAdviceConfiguration);
+				if (result == null) result = caseAbstractEditHelperAdviceConfiguration(editHelperAdviceConfiguration);
 				if (result == null) result = caseAdviceConfiguration(editHelperAdviceConfiguration);
 				if (result == null) result = caseConfigurationElement(editHelperAdviceConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION: {
+				AdviceBindingConfiguration adviceBindingConfiguration = (AdviceBindingConfiguration)theEObject;
+				T result = caseAdviceBindingConfiguration(adviceBindingConfiguration);
+				if (result == null) result = caseAbstractAdviceBindingConfiguration(adviceBindingConfiguration);
+				if (result == null) result = caseAdviceConfiguration(adviceBindingConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(adviceBindingConfiguration);
+				if (result == null) result = caseConfigurationElement(adviceBindingConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION: {
+				MatcherConfiguration matcherConfiguration = (MatcherConfiguration)theEObject;
+				T result = caseMatcherConfiguration(matcherConfiguration);
+				if (result == null) result = caseAbstractMatcherConfiguration(matcherConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementtypesconfigurationsPackage.IDENTIFIED_CONFIGURATION: {
+				IdentifiedConfiguration identifiedConfiguration = (IdentifiedConfiguration)theEObject;
+				T result = caseIdentifiedConfiguration(identifiedConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ElementtypesconfigurationsPackage.NAMED_CONFIGURATION: {
+				NamedConfiguration namedConfiguration = (NamedConfiguration)theEObject;
+				T result = caseNamedConfiguration(namedConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -218,17 +265,17 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Matcher Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Matcher Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Matcher Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Matcher Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMatcherConfiguration(MatcherConfiguration object) {
+	public T caseAbstractMatcherConfiguration(AbstractMatcherConfiguration object) {
 		return null;
 	}
 
@@ -248,17 +295,17 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Advice Binding Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Advice Binding Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+	public T caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 		return null;
 	}
 
@@ -308,6 +355,21 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Edit Helper Advice Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Edit Helper Advice Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractEditHelperAdviceConfiguration(AbstractEditHelperAdviceConfiguration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Edit Helper Advice Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -319,6 +381,66 @@ public class ElementtypesconfigurationsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEditHelperAdviceConfiguration(EditHelperAdviceConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Matcher Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Matcher Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMatcherConfiguration(MatcherConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedConfiguration(NamedConfiguration object) {
 		return null;
 	}
 

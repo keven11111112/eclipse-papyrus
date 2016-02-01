@@ -30,34 +30,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfigurationElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfigurationElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfigurationElementImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Container implements ConfigurationElement {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,26 +57,6 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String IDENTIFIER_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getIdentifier() <em>Identifier</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getIdentifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected String identifier = IDENTIFIER_EDEFAULT;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -115,27 +73,6 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	@Override
 	protected EClass eStaticClass() {
 		return ElementtypesconfigurationsPackage.Literals.CONFIGURATION_ELEMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__NAME, oldName, name));
 	}
 
 	/**
@@ -164,36 +101,11 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIdentifier(String newIdentifier) {
-		String oldIdentifier = identifier;
-		identifier = newIdentifier;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__IDENTIFIER, oldIdentifier, identifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__NAME:
-				return getName();
 			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				return getDescription();
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__IDENTIFIER:
-				return getIdentifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,14 +118,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__NAME:
-				setName((String)newValue);
-				return;
 			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				setDescription((String)newValue);
-				return;
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__IDENTIFIER:
-				setIdentifier((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,14 +133,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				setDescription(DESCRIPTION_EDEFAULT);
-				return;
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__IDENTIFIER:
-				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -248,12 +148,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__DESCRIPTION:
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
-			case ElementtypesconfigurationsPackage.CONFIGURATION_ELEMENT__IDENTIFIER:
-				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -268,12 +164,8 @@ public abstract class ConfigurationElementImpl extends MinimalEObjectImpl.Contai
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", description: ");
+		result.append(" (description: ");
 		result.append(description);
-		result.append(", identifier: ");
-		result.append(identifier);
 		result.append(')');
 		return result.toString();
 	}

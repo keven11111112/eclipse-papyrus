@@ -69,12 +69,12 @@ public class ElementtypesconfigurationsFactoryImpl extends EFactoryImpl implemen
 		switch (eClass.getClassifierID()) {
 			case ElementtypesconfigurationsPackage.ELEMENT_TYPE_SET_CONFIGURATION: return createElementTypeSetConfiguration();
 			case ElementtypesconfigurationsPackage.ICON_ENTRY: return createIconEntry();
-			case ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION: return createMatcherConfiguration();
-			case ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION: return createAdviceBindingConfiguration();
 			case ElementtypesconfigurationsPackage.SPECIALIZATION_TYPE_CONFIGURATION: return createSpecializationTypeConfiguration();
 			case ElementtypesconfigurationsPackage.CONTAINER_CONFIGURATION: return createContainerConfiguration();
 			case ElementtypesconfigurationsPackage.METAMODEL_TYPE_CONFIGURATION: return createMetamodelTypeConfiguration();
 			case ElementtypesconfigurationsPackage.EDIT_HELPER_ADVICE_CONFIGURATION: return createEditHelperAdviceConfiguration();
+			case ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION: return createAdviceBindingConfiguration();
+			case ElementtypesconfigurationsPackage.MATCHER_CONFIGURATION: return createMatcherConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -135,26 +135,6 @@ public class ElementtypesconfigurationsFactoryImpl extends EFactoryImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatcherConfiguration createMatcherConfiguration() {
-		MatcherConfigurationImpl matcherConfiguration = new MatcherConfigurationImpl();
-		return matcherConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AdviceBindingConfiguration createAdviceBindingConfiguration() {
-		AdviceBindingConfigurationImpl adviceBindingConfiguration = new AdviceBindingConfigurationImpl();
-		return adviceBindingConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SpecializationTypeConfiguration createSpecializationTypeConfiguration() {
 		SpecializationTypeConfigurationImpl specializationTypeConfiguration = new SpecializationTypeConfigurationImpl();
 		return specializationTypeConfiguration;
@@ -188,6 +168,26 @@ public class ElementtypesconfigurationsFactoryImpl extends EFactoryImpl implemen
 	public EditHelperAdviceConfiguration createEditHelperAdviceConfiguration() {
 		EditHelperAdviceConfigurationImpl editHelperAdviceConfiguration = new EditHelperAdviceConfigurationImpl();
 		return editHelperAdviceConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AdviceBindingConfiguration createAdviceBindingConfiguration() {
+		AdviceBindingConfigurationImpl adviceBindingConfiguration = new AdviceBindingConfigurationImpl();
+		return adviceBindingConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MatcherConfiguration createMatcherConfiguration() {
+		MatcherConfigurationImpl matcherConfiguration = new MatcherConfigurationImpl();
+		return matcherConfiguration;
 	}
 
 	/**

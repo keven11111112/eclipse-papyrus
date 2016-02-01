@@ -28,7 +28,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadvicec
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.SetValuesAdviceConfigurationPackage;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingConfigurationImpl;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AbstractAdviceBindingConfigurationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,14 +36,14 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingCo
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.impl.SetValuesAdviceConfigurationImpl#getFeaturesToSet <em>Features To Set</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SetValuesAdviceConfigurationImpl extends AdviceBindingConfigurationImpl implements SetValuesAdviceConfiguration {
+public class SetValuesAdviceConfigurationImpl extends AbstractAdviceBindingConfigurationImpl implements SetValuesAdviceConfiguration {
 	/**
 	 * The cached value of the '{@link #getFeaturesToSet() <em>Features To Set</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

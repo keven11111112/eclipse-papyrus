@@ -17,9 +17,10 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration;
 
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.*;
 
@@ -61,7 +62,7 @@ public class ApplyStereotypeAdviceConfigurationSwitch<T> extends Switch<T> {
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -83,8 +84,9 @@ public class ApplyStereotypeAdviceConfigurationSwitch<T> extends Switch<T> {
 			case ApplyStereotypeAdviceConfigurationPackage.APPLY_STEREOTYPE_ADVICE_CONFIGURATION: {
 				ApplyStereotypeAdviceConfiguration applyStereotypeAdviceConfiguration = (ApplyStereotypeAdviceConfiguration)theEObject;
 				T result = caseApplyStereotypeAdviceConfiguration(applyStereotypeAdviceConfiguration);
-				if (result == null) result = caseAdviceBindingConfiguration(applyStereotypeAdviceConfiguration);
+				if (result == null) result = caseAbstractAdviceBindingConfiguration(applyStereotypeAdviceConfiguration);
 				if (result == null) result = caseAdviceConfiguration(applyStereotypeAdviceConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(applyStereotypeAdviceConfiguration);
 				if (result == null) result = caseConfigurationElement(applyStereotypeAdviceConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -291,17 +293,32 @@ public class ApplyStereotypeAdviceConfigurationSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+	public T caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Advice Binding Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Advice Binding Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAbstractAdviceBindingConfiguration(AbstractAdviceBindingConfiguration object) {
 		return null;
 	}
 

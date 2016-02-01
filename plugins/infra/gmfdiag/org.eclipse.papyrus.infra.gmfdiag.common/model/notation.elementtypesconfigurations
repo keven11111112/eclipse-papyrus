@@ -1,20 +1,5 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
-    name="NotationElementTypeSet"
-    identifier="org.eclipse.papyrus.infra.gmfdiag.common.NotationElementTypeSet"
-    metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
-      xmi:id="_ScP1oVYCEeS0WsAAtVmToA"
-      name="GMF::Diagram"
-      identifier="org.eclipse.papyrus.gmfdiag.common.Diagram"
-      editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
-    <eClass
-        href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.infra.gmfdiag.common.NotationElementTypeSet" metamodelNsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation" name="NotationElementTypeSet" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+  <elementTypeConfigurations editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper" identifier="org.eclipse.papyrus.gmfdiag.common.Diagram" name="GMF::Diagram" xmi:id="_ScP1oVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration">
+    <eClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"/>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

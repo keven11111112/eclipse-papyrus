@@ -344,7 +344,7 @@ public class SetValuesAdviceConfigurationPackageImpl extends EPackageImpl implem
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		setValuesAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAdviceBindingConfiguration());
+		setValuesAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAbstractAdviceBindingConfiguration());
 		dynamicValueEClass.getESuperTypes().add(this.getFeatureValue());
 		constantValueEClass.getESuperTypes().add(this.getFeatureValue());
 		listValueEClass.getESuperTypes().add(this.getFeatureValue());

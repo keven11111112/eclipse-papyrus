@@ -23,8 +23,8 @@ import java.util.Map;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.ElementTypesConfigurationsEventsChain;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.AbstractElementTypesConfigurationsEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.ElementTypesConfigurationsEventsChain;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.AbstractElementTypesConfigurationsEvent;
 
 
 public class ElementTypesConfigurationsEventContentProvider implements ITreeContentProvider {

@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotype
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractAdviceBindingConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,16 +23,16 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfigu
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration#getStereotypesToApply <em>Stereotypes To Apply</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfigurationPackage#getApplyStereotypeAdviceConfiguration()
  * @model
  * @generated
  */
-public interface ApplyStereotypeAdviceConfiguration extends AdviceBindingConfiguration {
+public interface ApplyStereotypeAdviceConfiguration extends AbstractAdviceBindingConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Stereotypes To Apply</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.StereotypeToApply}.

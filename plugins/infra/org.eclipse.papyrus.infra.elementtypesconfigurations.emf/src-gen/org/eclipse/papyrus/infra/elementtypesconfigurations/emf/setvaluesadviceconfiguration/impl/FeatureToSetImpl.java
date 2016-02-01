@@ -31,11 +31,11 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadvicec
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.impl.FeatureToSetImpl#getFeatureName <em>Feature Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.impl.FeatureToSetImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

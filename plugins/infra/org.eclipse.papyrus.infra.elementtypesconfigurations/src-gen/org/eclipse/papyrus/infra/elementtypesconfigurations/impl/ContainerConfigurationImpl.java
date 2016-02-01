@@ -28,9 +28,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -55,7 +55,7 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * @generated
 	 * @ordered
 	 */
-	protected MatcherConfiguration containerMatcherConfiguration;
+	protected AbstractMatcherConfiguration containerMatcherConfiguration;
 
 	/**
 	 * The cached value of the '{@link #getEContainmentFeatures() <em>EContainment Features</em>}' reference list.
@@ -91,7 +91,7 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MatcherConfiguration getContainerMatcherConfiguration() {
+	public AbstractMatcherConfiguration getContainerMatcherConfiguration() {
 		return containerMatcherConfiguration;
 	}
 
@@ -100,8 +100,8 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetContainerMatcherConfiguration(MatcherConfiguration newContainerMatcherConfiguration, NotificationChain msgs) {
-		MatcherConfiguration oldContainerMatcherConfiguration = containerMatcherConfiguration;
+	public NotificationChain basicSetContainerMatcherConfiguration(AbstractMatcherConfiguration newContainerMatcherConfiguration, NotificationChain msgs) {
+		AbstractMatcherConfiguration oldContainerMatcherConfiguration = containerMatcherConfiguration;
 		containerMatcherConfiguration = newContainerMatcherConfiguration;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ElementtypesconfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION, oldContainerMatcherConfiguration, newContainerMatcherConfiguration);
@@ -115,7 +115,7 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainerMatcherConfiguration(MatcherConfiguration newContainerMatcherConfiguration) {
+	public void setContainerMatcherConfiguration(AbstractMatcherConfiguration newContainerMatcherConfiguration) {
 		if (newContainerMatcherConfiguration != containerMatcherConfiguration) {
 			NotificationChain msgs = null;
 			if (containerMatcherConfiguration != null)
@@ -181,7 +181,7 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ElementtypesconfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
-				setContainerMatcherConfiguration((MatcherConfiguration)newValue);
+				setContainerMatcherConfiguration((AbstractMatcherConfiguration)newValue);
 				return;
 			case ElementtypesconfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES:
 				getEContainmentFeatures().clear();
@@ -200,7 +200,7 @@ public class ContainerConfigurationImpl extends MinimalEObjectImpl.Container imp
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ElementtypesconfigurationsPackage.CONTAINER_CONFIGURATION__CONTAINER_MATCHER_CONFIGURATION:
-				setContainerMatcherConfiguration((MatcherConfiguration)null);
+				setContainerMatcherConfiguration((AbstractMatcherConfiguration)null);
 				return;
 			case ElementtypesconfigurationsPackage.CONTAINER_CONFIGURATION__ECONTAINMENT_FEATURES:
 				getEContainmentFeatures().clear();

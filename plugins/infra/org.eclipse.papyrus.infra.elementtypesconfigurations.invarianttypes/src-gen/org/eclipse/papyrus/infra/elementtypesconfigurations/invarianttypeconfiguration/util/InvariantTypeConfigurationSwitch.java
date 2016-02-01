@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.IdentifiedConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.NamedConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.*;
@@ -86,6 +88,8 @@ public class InvariantTypeConfigurationSwitch<T> extends Switch<T> {
 				if (result == null) result = caseSpecializationTypeConfiguration(invariantTypeConfiguration);
 				if (result == null) result = caseElementTypeConfiguration(invariantTypeConfiguration);
 				if (result == null) result = caseConfigurationElement(invariantTypeConfiguration);
+				if (result == null) result = caseIdentifiedConfiguration(invariantTypeConfiguration);
+				if (result == null) result = caseNamedConfiguration(invariantTypeConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -231,6 +235,36 @@ public class InvariantTypeConfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfigurationElement(ConfigurationElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Identified Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIdentifiedConfiguration(IdentifiedConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedConfiguration(NamedConfiguration object) {
 		return null;
 	}
 

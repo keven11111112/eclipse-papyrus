@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.elementtypesconfigurations;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface MatcherConfiguration extends EObject {
+public interface MatcherConfiguration extends AbstractMatcherConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Matcher Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

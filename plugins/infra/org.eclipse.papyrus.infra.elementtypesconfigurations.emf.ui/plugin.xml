@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ Copyright (c) 2014 CEA LIST.
+ 
+ 
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+  CEA LIST - Initial API and implementation
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.1"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage"
+            genModel="model/RuntimeValuesEditionAdviceConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <parser
+            type="runtimevalueseditionadviceconfiguration"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.util.RuntimevalueseditionadviceconfigurationResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <factory
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.1"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.provider.RuntimevalueseditionadviceconfigurationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <extender
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.provider.RuntimevalueseditionadviceconfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
+      <adviceConfigurationType
+            configurationClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration"
+            factoryClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.internal.ui.advice.RuntimeValuesEditionAdviceEditHelperAdviceFactory">
+      </adviceConfigurationType>
+   </extension>
+
+</plugin>

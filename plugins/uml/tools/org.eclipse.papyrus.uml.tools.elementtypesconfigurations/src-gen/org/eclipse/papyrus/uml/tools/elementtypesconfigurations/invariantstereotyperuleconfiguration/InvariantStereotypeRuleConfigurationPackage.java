@@ -34,8 +34,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  * @model kind="package"
  * @generated
  */
-public interface InvariantStereotypeRuleConfigurationPackage extends EPackage
-{
+public interface InvariantStereotypeRuleConfigurationPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -50,7 +49,7 @@ public interface InvariantStereotypeRuleConfigurationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.0";
+	String eNS_URI = "http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.1";
 
 	/**
 	 * The package namespace name.
@@ -189,8 +188,7 @@ public interface InvariantStereotypeRuleConfigurationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.impl.InvariantStereotypeRuleConfigurationImpl <em>Invariant Stereotype Rule Configuration</em>}' class.
 		 * <!-- begin-user-doc -->

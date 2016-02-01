@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>elementType Configuration</b></em>'.
+ * A representation of the model object '<em><b>Element Type Configuration</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -31,7 +31,7 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations;
  * @model abstract="true"
  * @generated
  */
-public interface ElementTypeConfiguration extends ConfigurationElement {
+public interface ElementTypeConfiguration extends ConfigurationElement, IdentifiedConfiguration, NamedConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Hint</b></em>' attribute.
 	 * The default value is <code>""</code>.

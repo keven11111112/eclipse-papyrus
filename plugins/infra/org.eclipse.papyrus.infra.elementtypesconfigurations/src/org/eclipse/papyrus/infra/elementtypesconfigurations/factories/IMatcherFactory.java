@@ -13,9 +13,9 @@
 package org.eclipse.papyrus.infra.elementtypesconfigurations.factories;
 
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 
-public interface IMatcherFactory<T extends MatcherConfiguration> {
+public interface IMatcherFactory<T extends AbstractMatcherConfiguration> {
 
 	public IElementMatcher createElementMatcher(T configuration);
 }

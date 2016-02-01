@@ -34,7 +34,6 @@ class ApplyStereotypeAdviceRule {
         ImpliedExtension umlExtension, ElementTypeConfiguration supertype) {
 
         identifier = umlStereotype.name.toFirstLower.qualified + supertype.hintSuffix
-        name = "Apply " + umlStereotype.name
         stereotypesToApply.add(umlStereotype.toStereotypeToApply(supertype))
         target = umlExtension.toElementType(supertype)
     }

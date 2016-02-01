@@ -14,7 +14,7 @@ package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeappli
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AbstractMatcherConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
  * @model
  * @generated
  */
-public interface StereotypeApplicationMatcherConfiguration extends MatcherConfiguration {
+public interface StereotypeApplicationMatcherConfiguration extends AbstractMatcherConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Stereotypes Qualified Names</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.

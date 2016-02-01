@@ -20,20 +20,20 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.AdviceApprovedEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.AdviceDisapprovedEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.AdviceRequestConfigurationEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.EditHelperApprovedEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.EditHelperDisapprovedEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.EditHelperRequestConfigurationEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.ExecutableAdviceEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.ExecutableEditHelperEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.IAdviceEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.IElementTypesConfigurationsEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.IdentityAdviceEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.IdentityEditHelperEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.UnexecutableAdviceEvent;
-import org.eclipse.papyrus.infra.elementtypesconfiguration.notification.events.UnexecutableEditHelperEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.AdviceApprovedEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.AdviceDisapprovedEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.AdviceRequestConfigurationEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.EditHelperApprovedEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.EditHelperDisapprovedEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.EditHelperRequestConfigurationEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.ExecutableAdviceEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.ExecutableEditHelperEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.IAdviceEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.IElementTypesConfigurationsEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.IdentityAdviceEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.IdentityEditHelperEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.UnexecutableAdviceEvent;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.notification.events.UnexecutableEditHelperEvent;
 
 public class ElementTypesConfigurationsEventPrinter {
 	public static Map<String, String> getEventDetails(IElementTypesConfigurationsEvent event) {
