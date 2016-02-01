@@ -46,13 +46,16 @@ public class StateMachineEventAccepter extends EventAccepter{
 		//     is registered at the waiting event accepter list handled by the object activation
 		// Note that there always is a single event accepter for a state-machine (this works differently
 		// than for activities).
-		List<TransitionActivation> fireableTransition = this.selectionStrategy.selectTransitions(eventOccurrence);
-		if(!fireableTransition.isEmpty()){
-			int i = 0;
-			// **Firing occurs concurrently**
-			while(i < fireableTransition.size()){
-				fireableTransition.get(i).fire();
-				i++;
+		if(this.selectionStrategy.isDeferred(eventOccurrence)){
+			this.selectionStrategy.defer(eventOccurrence);
+		}else{
+			List<TransitionActivation> fireableTransition = this.selectionStrategy.select(eventOccurrence);
+			if(!fireableTransition.isEmpty()){
+				int i = 0;
+				while(i < fireableTransition.size()){
+					fireableTransition.get(i).fire();
+					i++;
+				}
 			}
 		}
 		Object_ context = this.registrationContext.context;
@@ -63,8 +66,10 @@ public class StateMachineEventAccepter extends EventAccepter{
 
 	@Override
 	public Boolean match(EventOccurrence eventOccurrence) {
-		// The accepter matches only in the case that at least one transition ready is ready to fire on the provided event occurrence
-		return !this.selectionStrategy.selectTransitions(eventOccurrence).isEmpty();
+		// There are two cases in which the state machine event accepter can match
+		// 1 - In the current state machine configuration the event can be deferred
+		// 2 - In the current state machine configuration the current event can trigger one or more transitions
+		return this.selectionStrategy.isDeferred(eventOccurrence) | this.selectionStrategy.isTriggering(eventOccurrence);
 	}
 
 }

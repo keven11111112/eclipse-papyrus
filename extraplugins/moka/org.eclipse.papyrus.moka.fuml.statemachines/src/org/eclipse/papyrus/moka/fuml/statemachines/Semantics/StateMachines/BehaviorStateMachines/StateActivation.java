@@ -340,9 +340,22 @@ public class StateActivation extends VertexActivation {
 		}
 	}
 	
+	public List<TransitionActivation> getFireableTransitions(EventOccurrence eventOccurrence){
+		// Return the set of transitions that can fire using the the given event occurrence
+		List<TransitionActivation> fireableTransitions = new ArrayList<TransitionActivation>();
+		for(int i=0; i < this.outgoingTransitionActivations.size(); i++){
+			TransitionActivation outgoingTransitionActivation = this.outgoingTransitionActivations.get(i);
+			if(outgoingTransitionActivation.canFireOn(eventOccurrence)){
+				fireableTransitions.add(outgoingTransitionActivation);
+			}
+		}
+		return fireableTransitions;
+	}
+	
 	public boolean canDefer(EventOccurrence eventOccurrence){
 		// Return true if current state activation is capable of deferring the given
-		// event occurrence; false otherwise.
+		// event occurrence; false otherwise. Note that false is returned in case where
+		// the deferring constraint is overridden by an outgoing transition
 		// 
 		// Note: for the moment the evaluation is done with the assumption that the
 		// received event occurrence is a signal event occurrence. This will change
@@ -373,6 +386,18 @@ public class StateActivation extends VertexActivation {
 				}
 			}
 			i++;
+		}
+		if(deferred){
+			i = 0;
+			TransitionActivation overridingTransitionActivation = null;
+			while(overridingTransitionActivation == null && i < this.outgoingTransitionActivations.size()){
+				TransitionActivation currentTransitionActivation = this.outgoingTransitionActivations.get(i);
+				if(currentTransitionActivation.canFireOn(eventOccurrence)){
+					overridingTransitionActivation = currentTransitionActivation;
+				}
+				i++;
+			}
+			deferred = overridingTransitionActivation == null;
 		}
 		return deferred;
 	}

@@ -23,6 +23,8 @@ import org.eclipse.papyrus.moka.fuml.FUMLExecutionEngine;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventOccurrence;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalEventOccurrence;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
 import org.eclipse.papyrus.moka.fuml.statemachines.Semantics.Values.Expressions.SM_OpaqueExpressionEvaluation;
 import org.eclipse.papyrus.moka.fuml.statemachines.debug.SM_ControlDelegate;
@@ -156,6 +158,29 @@ public abstract class TransitionActivation extends StateMachineSemanticVisitor {
 			i++;
 		}
 		return trigger != null;
+	}
+	
+	public boolean canFireOn(EventOccurrence eventOccurrence){
+		// A transition is can fire when:
+		//
+		// A completion event is being dispatched and this transition has no trigger
+		// but its eventual guard evaluates to true. Note: the scope of a completion
+		// event is the state from which it was generated
+		//
+		// A signal event is being dispatched and this transition has a trigger
+		// that matches the signal and its eventual guard evaluates to true
+		boolean reactive = true;
+		if(eventOccurrence instanceof CompletionEventOccurrence){
+			reactive = !this.isTriggered() &&
+						this.getSourceActivation()==((CompletionEventOccurrence)eventOccurrence).stateActivation &&
+						this.evaluateGuard();
+		}else if(eventOccurrence instanceof SignalEventOccurrence){
+			reactive = this.hasTrigger(((SignalEventOccurrence)eventOccurrence).signalInstance) &&
+					   this.evaluateGuard();
+		}else{
+			reactive = false;
+		}
+		return reactive;
 	}
 	
 	public void executeEffect(){
