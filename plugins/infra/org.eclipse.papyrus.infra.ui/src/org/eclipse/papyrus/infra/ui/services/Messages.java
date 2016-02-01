@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -19,7 +19,7 @@ import org.eclipse.osgi.util.NLS;
  * Translatable strings.
  */
 class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.core.services.messages"; //$NON-NLS-1$
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.ui.services.messages"; //$NON-NLS-1$
 	public static String SaveLayoutBeforeClose_0;
 	public static String SaveLayoutBeforeClose_1;
 	public static String SaveLayoutBeforeClose_2;

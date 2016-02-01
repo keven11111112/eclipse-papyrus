@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.core.internal.language;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -92,7 +93,8 @@ public class DefaultLanguageProvider implements ILanguageProvider {
 
 	@Override
 	public synchronized Iterable<ILanguage> getLanguages(ILanguageService languageService, ModelSet modelSet) {
-		if (!matchContentType(modelSet.getResources())) {
+		// Make a defensive copy because CDO resources aren't iteration-safe as standard EMF resources are
+		if (!matchContentType(new ArrayList<>(modelSet.getResources()))) {
 			return Collections.emptyList();
 		} else {
 			// If any of my content-types matches, then all of my languages are present
