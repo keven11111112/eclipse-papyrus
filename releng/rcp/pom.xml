@@ -27,7 +27,8 @@
 	    <eclipse.simultaneous.release.build>${maven.build.timestamp}</eclipse.simultaneous.release.build>
 	    <!-- Human readable name of the release, e.g. used in the about dialog (see about.mappings) -->
 	    <eclipse.simultaneous.release.name>Mars.3 (4.5.3)</eclipse.simultaneous.release.name>
-	    <eclipse.download>http://download.eclipse.org</eclipse.download><!-- Set to file:/home/data/httpd/download.eclipse.org when building on Eclipse servers to improve performances -->
+	    <eclipse.download>http://download.eclipse.org</eclipse.download>
+<!-- Set to file:/home/data/httpd/download.eclipse.org when building on Eclipse servers to improve performances -->
 	</properties>
 	<repositories>
 
@@ -66,7 +67,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC1-201601131000/</url>
+			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC2-201601281800/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -102,7 +103,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0.2",0) -->
-			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.2/S201601181240</url>
+			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.0.2/S201601311318</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -145,7 +146,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>${eclipse.download}/webtools/downloads/drops/R3.7.1/R-3.7.1-20150915020029/repository/</url>
+			<url>${eclipse.download}/webtools/downloads/drops/R3.7.2/S-3.7.2RC1-20160118020043/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
@@ -190,7 +191,7 @@
 			<id>egit</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EGIT",0) -->
-			<url>${eclipse.download}/egit/updates-4.0.3</url>
+			<url>${eclipse.download}/egit/updates-4.1.1</url>
 		</repository>
 		<repository>
 			<id>eef</id>
