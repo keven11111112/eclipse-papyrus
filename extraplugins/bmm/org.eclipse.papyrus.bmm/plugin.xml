@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Bmm.profile -->
+      <package
+            uri="https://www.eclipse.org/papyrus/BMM/0.7.0/"
+            class="org.eclipse.papyrus.bmm.BMMProfile.BmmPackage"
+            genModel="pathmap://BMM_PROFILE_1.3/Bmm.profile.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.uml2.uml.generated_package">
+      <profile
+            location="pathmap://BMM_PROFILE_1.3/Bmm.profile.uml#_bNz28BEEEeWdY8_QZO32Xg"
+            uri="https://www.eclipse.org/papyrus/BMM/0.7.0/">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile
+            description="Profile of the Business Motivation Model (BMM) Version 1.3"
+            iconpath="/icons/bmm_16x16.png"
+            name="BmmProfile"
+            path="pathmap://BMM_PROFILE_1.3/Bmm.profile.uml"
+            provider="Eclipse Modeling Project">
+      </profile>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://BMM_PROFILE_1.3/"
+            target="platform:/plugin/org.eclipse.papyrus.bmm/model/">
+      </mapping>
+   </extension>
+
+</plugin>

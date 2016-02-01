@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmi:id="_kG3MQHHxEeWwUO0bdYttAA" defaultStakeholder="_5OhigHHxEeWwUO0bdYttAA">
+  <stakeholders xmi:id="_5OhigHHxEeWwUO0bdYttAA" name="Business Analyst" viewpoints="_9mvf8HHxEeWwUO0bdYttAA"/>
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_9mvf8HHxEeWwUO0bdYttAA" name="Default Papyrus Viewpoint">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_A483kHHyEeWwUO0bdYttAA" name="BMM Diagram" icon="platform:/plugin/org.eclipse.papyrus.bmm.diagram.common/icons/bmm_16x16.png" implementationID="PapyrusUMLDeploymentDiagram" categories="_F_J8YHHyEeWwUO0bdYttAA" customPalette="platform:/plugin/org.eclipse.papyrus.bmm.diagram.common/palette/Palette_BmmPalette2.xml" customStyle="platform:/plugin/org.eclipse.papyrus.bmm.diagram.common/css/BmmStyle.css">
+      <modelRules xmi:id="_3Fu_IHHzEeWwUO0bdYttAA">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+      </modelRules>
+      <owningRules xmi:id="_-K310HHzEeWwUO0bdYttAA">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Model"/>
+      </owningRules>
+      <childRules xmi:id="__dU8MHHzEeWwUO0bdYttAA"/>
+      <paletteRules xmi:id="_AKSv4HH0EeWwUO0bdYttAA" permit="false" element="*.deployment.tool"/>
+    </modelKinds>
+  </viewpoints>
+  <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+  <categories xmi:id="_F_J8YHHyEeWwUO0bdYttAA" name="BMM"/>
+</configuration:PapyrusConfiguration>
