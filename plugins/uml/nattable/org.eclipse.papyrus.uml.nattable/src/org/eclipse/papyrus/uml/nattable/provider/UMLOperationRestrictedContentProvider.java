@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.nattable.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -129,6 +130,7 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 				asList.addAll(eClass.getEAllOperations());
 			}
 			asList.remove(EcorePackage.eINSTANCE.getEModelElement_EAnnotations());
+			removeVoidOperations(asList);
 			return asList.toArray();
 		} else if (parentElement instanceof EPackage) {
 			EPackage ePackage = (EPackage) parentElement;
@@ -178,6 +180,22 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 		return null;
 
 	}
+	
+	/**
+	 * This allows to remove the void EOperation.
+	 * 
+	 * @param objects The list of objects
+	 */
+	protected void removeVoidOperations(final Collection<?> objects){
+		Iterator<?> objectsIterator = objects.iterator();
+		while(objectsIterator.hasNext()){
+			Object currentObject = objectsIterator.next();
+			
+			if(currentObject instanceof EOperation && null == ((EOperation) currentObject).getEType()){
+				objectsIterator.remove();
+			}
+		}
+	}
 
 	/**
 	 *
@@ -209,7 +227,9 @@ public class UMLOperationRestrictedContentProvider extends AbstractRestrictedCon
 	public boolean hasChildren(Object element) {
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
-			boolean hasChildren = !eClass.getEOperations().isEmpty();
+			final Collection<EOperation> eOperations = eClass.getEOperations();
+			removeVoidOperations(eOperations);
+			boolean hasChildren = !eOperations.isEmpty();
 			return hasChildren;
 		} else if (element instanceof EPackage) {
 			EPackage ePackage = (EPackage) element;

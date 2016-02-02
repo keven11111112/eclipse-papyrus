@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.emf.nattable.manager.axis;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.command.Command;
@@ -176,7 +177,24 @@ public class EOperationAxisManager extends EObjectAxisManager {
 			}
 		}
 		operations.removeAll(getElements());
+		removeVoidOperations(operations);
 		return operations;
+	}
+	
+	/**
+	 * This allows to remove the void EOperation.
+	 * 
+	 * @param objects The list of objects
+	 */
+	protected void removeVoidOperations(final Collection<?> objects){
+		Iterator<?> objectsIterator = objects.iterator();
+		while(objectsIterator.hasNext()){
+			Object currentObject = objectsIterator.next();
+			
+			if(currentObject instanceof EOperation && null == ((EOperation) currentObject).getEType()){
+				objectsIterator.remove();
+			}
+		}
 	}
 
 
