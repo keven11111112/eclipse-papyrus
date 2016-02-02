@@ -39,6 +39,11 @@ import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.Crea
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_H3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_H1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.creation.outside.CreateElementDepth2_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleInteger_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringOnlyPrefix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringOnlySuffix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringPrefix_V1_V3_V1_Test;
+import org.eclipse.papyrus.uml.nattable.clazz.config.tests.fillhandle.FillHandleStringSuffix_V1_V3_V1_Test;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_H1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_H1_V1;
 import org.eclipse.papyrus.uml.nattable.clazz.config.tests.filter.ReopenFilteredTable_Empty_V1_H1;
@@ -249,6 +254,13 @@ import org.junit.runners.Suite.SuiteClasses;
 		ReopenFilteredTable_V1_H1_V1.class,
 		ReopenFilteredTable_V1_V1_H1.class,
 		ReopenFilteredTable_V1_V1_V1.class,
+
+		// Fill handle tests
+		FillHandleInteger_V1_V3_V1_Test.class,
+		FillHandleStringOnlySuffix_V1_V3_V1_Test.class,
+		FillHandleStringOnlyPrefix_V1_V3_V1_Test.class,
+		FillHandleStringSuffix_V1_V3_V1_Test.class,
+		FillHandleStringPrefix_V1_V3_V1_Test.class,
 
 		// Attached Mode
 		// Paste tests for single column

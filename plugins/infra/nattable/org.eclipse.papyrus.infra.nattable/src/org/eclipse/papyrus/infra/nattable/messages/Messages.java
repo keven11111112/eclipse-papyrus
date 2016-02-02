@@ -162,7 +162,7 @@ public class Messages extends NLS {
 	public static String EditConfiguration_FactoryHandlesElementButDoesntProvideEditor;
 
 	public static String EObjectManager_AddAxisElement;
-
+	
 	public static String InsertInNattableManager_InsertColumnsError;
 	
 	public static String InsertInNattableManager_InsertNotYetManaged;
@@ -306,7 +306,21 @@ public class Messages extends NLS {
 	public static String LoadCurrentAxisProvidersDialog_2;
 
 	public static String LoadCurrentAxisProvidersDialog_3;
-
+	
+	public static String PapyrusFillHandleDragMode_CopyCommandName;
+	
+	public static String PapyrusFillHandleDragMode_DecrementCommandName;
+	
+	public static String PapyrusFillHandleDragMode_DecrementPrefixCommandName;
+	
+	public static String PapyrusFillHandleDragMode_DecrementSuffixCommandName;
+	
+	public static String PapyrusFillHandleDragMode_IncrementCommandName;
+	
+	public static String PapyrusFillHandleDragMode_IncrementPrefixCommandName;
+	
+	public static String PapyrusFillHandleDragMode_IncrementSuffixCommandName;
+	
 	public static String PapyrusPopupMenuAction_ShowCategoriesOnDepth;
 
 	public static String PasteConfigurationUtils_ContainementFeatureIsNotAReference;

@@ -42,7 +42,6 @@ import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.nebula.widgets.nattable.painter.IOverlayPainter;
 import org.eclipse.nebula.widgets.nattable.painter.layer.CellLayerPainter;
 import org.eclipse.nebula.widgets.nattable.resize.action.VerticalResizeCursorAction;
-import org.eclipse.nebula.widgets.nattable.selection.SelectionLayerPainter;
 import org.eclipse.nebula.widgets.nattable.util.ClientAreaAdapter;
 import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
 import org.eclipse.nebula.widgets.nattable.viewport.SliderScroller;
@@ -284,11 +283,6 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		getRowHeaderLayerStack().getViewportLayer().setClientAreaProvider(leftClientAreaAdapter);
 
 		getRowHeaderLayerStack().getViewportLayer().setVerticalScrollbarEnabled(false);
-
-		// use a cell layer painter that is configured for left clipping
-		// this ensures that the rendering works correctly for split
-		// viewports
-		getBodyLayerStack().getSelectionLayer().setLayerPainter(new SelectionLayerPainter(true, false));
 
 		filterColumnHeaderComposite.setLayerPainter(new CellLayerPainter(true, false));
 
