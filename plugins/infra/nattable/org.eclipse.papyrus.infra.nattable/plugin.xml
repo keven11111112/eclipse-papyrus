@@ -1441,7 +1441,7 @@
             defaultHandler="org.eclipse.papyrus.infra.nattable.handler.ConfigureCategoriesHandler"
             description="Allows to configure the categories to display in the Tree Table"
             id="org.eclipse.papyrus.infra.nattable.row.categories.command"
-            name="Configure Categories">
+            name="Configure Categories And Paste">
       </command>
       <command
             categoryId="org.eclipse.papyrus.infra.nattable.rows.command.category"

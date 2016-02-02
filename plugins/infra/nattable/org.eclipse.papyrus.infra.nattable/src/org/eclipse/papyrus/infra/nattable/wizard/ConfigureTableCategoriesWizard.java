@@ -40,6 +40,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.model.factory.IAxisFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
@@ -111,7 +112,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard implemen
 	public ConfigureTableCategoriesWizard(final INattableModelManager manager) {
 		this.manager = manager;
 		this.natTable = (NatTable) ((IAdaptable) manager).getAdapter(NatTable.class);
-		setWindowTitle("Configure Categories");
+		setWindowTitle(Messages.ConfigureTableCategoriesWizard_ConfigureCategoriesAndPaste);
 		this.initialSelection = createInitialSelection();
 	}
 
@@ -323,9 +324,9 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard implemen
 					Integer value = Integer.parseInt((String) element);
 					int depth = value;
 					if (depth == 0 && axis.getChildren().isEmpty()) {
-						return NLS.bind("depth {0} (filled by user)", depth);
+						return NLS.bind(Messages.ConfigureTableCategoriesWizard_DepthFilledByUser, depth);
 					} else {
-						return NLS.bind("depth {0}", depth);
+						return NLS.bind(Messages.ConfigureTableCategoriesWizard_Depth, depth);
 					}
 				}
 			}

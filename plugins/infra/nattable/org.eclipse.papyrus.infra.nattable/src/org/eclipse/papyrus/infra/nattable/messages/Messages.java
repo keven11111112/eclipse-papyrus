@@ -145,6 +145,12 @@ public class Messages extends NLS {
 	
 	public static String ConfigurePastePage_fourthColumnTitle;
 
+	public static String ConfigureTableCategoriesWizard_ConfigureCategoriesAndPaste;
+
+	public static String ConfigureTableCategoriesWizard_Depth;
+
+	public static String ConfigureTableCategoriesWizard_DepthFilledByUser;
+
 	public static String DeleteNatTableContextAdvice_DestroyNattableCommand;
 
 	public static String EditConfiguration_ConfigurationFactoryNotFound;
