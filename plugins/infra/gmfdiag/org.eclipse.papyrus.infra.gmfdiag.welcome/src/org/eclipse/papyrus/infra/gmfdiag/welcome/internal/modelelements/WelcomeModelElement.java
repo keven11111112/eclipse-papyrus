@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -35,7 +35,7 @@ public class WelcomeModelElement extends EMFModelElement {
 
 		switch (propertyPath) {
 		case VIEWS:
-			result = new NotationObservableList(this);
+			result = new NotationObservableProperty(this).get();
 			break;
 		default:
 			result = super.doGetObservable(propertyPath);

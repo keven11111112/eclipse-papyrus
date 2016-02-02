@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 487027
  *
  */
 package org.eclipse.papyrus.infra.tools.databinding;
@@ -108,14 +109,17 @@ public interface ReferenceCountedObservable extends IObservable {
 			super(realm);
 		}
 
+		@Override
 		public void retain() {
 			refCount.retain();
 		}
 
+		@Override
 		public void release() {
 			refCount.release();
 		}
 
+		@Override
 		public void autorelease() {
 			refCount.autorelease();
 		}
@@ -124,7 +128,7 @@ public interface ReferenceCountedObservable extends IObservable {
 	/**
 	 * A convenient superclass for reference-counted observable values that don't need any other more specific superclass.
 	 */
-	abstract class Value extends AbstractObservableValue implements ReferenceCountedObservable {
+	abstract class Value<T> extends AbstractObservableValue<T> implements ReferenceCountedObservable {
 
 		private final Support refCount = new Support(this);
 
@@ -136,14 +140,17 @@ public interface ReferenceCountedObservable extends IObservable {
 			super(realm);
 		}
 
+		@Override
 		public void retain() {
 			refCount.retain();
 		}
 
+		@Override
 		public void release() {
 			refCount.release();
 		}
 
+		@Override
 		public void autorelease() {
 			refCount.autorelease();
 		}
@@ -215,6 +222,7 @@ public interface ReferenceCountedObservable extends IObservable {
 
 		private final class ReleaseRunnable implements Runnable {
 
+			@Override
 			public void run() {
 				release();
 			}
@@ -362,6 +370,7 @@ public interface ReferenceCountedObservable extends IObservable {
 				}
 			}
 
+			@Override
 			public void handleDispose(DisposeEvent event) {
 				if (event.getObservable() == get()) {
 					clear();

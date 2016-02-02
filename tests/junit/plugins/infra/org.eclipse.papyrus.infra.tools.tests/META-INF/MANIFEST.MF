@@ -16,4 +16,4 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Name: Papyrus Infrastructure Tools Tests
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.tools.tests;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

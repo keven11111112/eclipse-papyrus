@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -115,6 +115,26 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 		LanguageObservable lang = languages.get(0);
 		assertThat(lang.getName().getValue().toUpperCase(), is("UML"));
 		assertThat(lang.getVersion().getValue().compareTo(new Version("2.5")), not(lessThan(0)));
+	}
+
+	/**
+	 * Verifies correct and complete disposal of observables when they are no longer needed.
+	 */
+	@Test
+	public void dispose_bug487027() {
+		@SuppressWarnings("unchecked")
+		IObservableList<LanguageObservable> languages = (IObservableList<LanguageObservable>) fixture.getObservable("languages");
+
+		assumeThat(languages, hasItem(anything()));
+		LanguageObservable lang = languages.get(0);
+
+		// Dispose the model-element
+		fixture.dispose();
+
+		// Let the auto-release pool clean up
+		editor.flushDisplayEvents();
+
+		assertThat("Language observable not disposed", lang.isDisposed(), is(true));
 	}
 
 	@Test

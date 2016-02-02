@@ -20,6 +20,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assume.assumeThat;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -124,18 +125,7 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 			}
 		});
 
-		editor.execute(new RecordingCommand(editor.getEditingDomain(), "Create Diagram") {
-
-			@Override
-			protected void doExecute() {
-				// Be resilient against misconfigured diagrams: look for the class diagram, specifically
-				ViewPrototype prototype = PolicyChecker.getCurrent().getPrototypesFor(editor.getModel()).stream()
-						.filter(proto -> proto.getConfiguration() instanceof PapyrusDiagram)
-						.filter(proto -> EcoreUtil.getURI(proto.getConfiguration()).toString().contains("org.eclipse.papyrus.uml.diagram.clazz"))
-						.findAny().get();
-				prototype.instantiateOn(editor.getModel(), "CreatedInTest");
-			}
-		});
+		createSomeDiagram();
 
 		assertThat("List did not notify", created[0], notNullValue());
 		assertThat(views.size(), is(7));
@@ -146,6 +136,36 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 	public void isEditable() {
 		assertThat(fixture.isEditable("views"), is(true));
 		assertThat(fixture.isEditable("garbage"), is(false));
+	}
+
+	/**
+	 * Verifies correct and complete disposal of observables when they are no longer needed.
+	 */
+	@Test
+	public void dispose_bug487027() {
+		IObservableList<NotationObservable> views = getNotationViews();
+
+		NotationObservable[] obs = { null };
+
+		views.addListChangeListener(event -> {
+			for (ListDiffEntry<? extends NotationObservable> next : event.diff.getDifferences()) {
+				if (next.isAddition() && "CreatedInTest".equals(getName(next.getElement().getView().getValue()))) {
+					obs[0] = next.getElement();
+				}
+			}
+		});
+
+		createSomeDiagram();
+
+		assumeThat("Didn't get the created notation observable", obs[0], notNullValue());
+
+		// Dispose the model-element
+		fixture.dispose();
+
+		// Let the auto-release pool clean up
+		editor.flushDisplayEvents();
+
+		assertThat("Notation observable not disposed", obs[0].isDisposed(), is(true));
 	}
 
 	//
@@ -174,5 +194,20 @@ public class WelcomeModelElementTest extends AbstractWelcomePageTest {
 	String getName(EObject object) {
 		EStructuralFeature nameAttribute = object.eClass().getEStructuralFeature("name");
 		return (String) object.eGet(nameAttribute);
+	}
+
+	void createSomeDiagram() {
+		editor.execute(new RecordingCommand(editor.getEditingDomain(), "Create Diagram") {
+
+			@Override
+			protected void doExecute() {
+				// Be resilient against misconfigured diagrams: look for the class diagram, specifically
+				ViewPrototype prototype = PolicyChecker.getCurrent().getPrototypesFor(editor.getModel()).stream()
+						.filter(proto -> proto.getConfiguration() instanceof PapyrusDiagram)
+						.filter(proto -> EcoreUtil.getURI(proto.getConfiguration()).toString().contains("org.eclipse.papyrus.uml.diagram.clazz"))
+						.findAny().get();
+				prototype.instantiateOn(editor.getModel(), "CreatedInTest");
+			}
+		});
 	}
 }

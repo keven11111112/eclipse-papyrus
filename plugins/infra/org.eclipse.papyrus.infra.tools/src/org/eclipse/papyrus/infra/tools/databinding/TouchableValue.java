@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -18,14 +18,13 @@ import java.util.Objects;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.Realm;
-import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 
 /**
  * An analogue of the {@link WritableValue} that supports "touches" to send
  * change events even though the value is not replaced.
  */
-public class TouchableValue<T> extends AbstractObservableValue<T> {
+public class TouchableValue<T> extends ReferenceCountedObservable.Value<T> {
 	private final Class<? extends T> type;
 
 	private T value;

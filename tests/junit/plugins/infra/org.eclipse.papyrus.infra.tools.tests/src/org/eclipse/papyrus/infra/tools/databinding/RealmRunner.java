@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 487027
  *
  */
 package org.eclipse.papyrus.infra.tools.databinding;
@@ -16,16 +17,20 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.stream.Stream;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.ObservableTracker;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationRunner;
+import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.InitializationError;
@@ -38,8 +43,25 @@ import org.junit.runners.model.Statement;
  */
 public class RealmRunner extends ClassificationRunner {
 
-	public RealmRunner(Class<?> klass) throws InitializationError {
+	private final Field realmField;
+
+	public RealmRunner(@SuppressWarnings("rawtypes") Class klass) throws InitializationError {
 		super(klass);
+
+		realmField = Stream.iterate(klass, Class::getSuperclass)
+				.flatMap(c -> Stream.of(c.getDeclaredFields()))
+				.filter(f -> Modifier.isStatic(f.getModifiers()))
+				.filter(f -> f.getType() == Realm.class)
+				.findAny().get();
+		realmField.setAccessible(true);
+	}
+
+	private TestRealm getRealm() throws Exception {
+		return ((TestRealm) realmField.get(null));
+	}
+
+	private void setRealm(TestRealm realm) throws Exception {
+		realmField.set(null, realm);
 	}
 
 	@Override
@@ -49,12 +71,12 @@ public class RealmRunner extends ClassificationRunner {
 
 			@Override
 			public void evaluate() throws Throwable {
-				DelegatingObservableTest.realm = new TestRealm();
+				setRealm(new TestRealm());
 				try {
 					base.evaluate();
 				} finally {
-					((TestRealm) DelegatingObservableTest.realm).dispose();
-					DelegatingObservableTest.realm = null;
+					getRealm().dispose();
+					setRealm(null);
 				}
 			}
 		};
@@ -77,7 +99,11 @@ public class RealmRunner extends ClassificationRunner {
 			}
 		};
 
-		DelegatingObservableTest.realm.exec(run);
+		try {
+			getRealm().exec(run);
+		} catch (Exception e) {
+			notifier.fireTestFailure(new Failure(describeChild(method), e));
+		}
 		run.await();
 	}
 

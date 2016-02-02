@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,9 +13,9 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.function.Supplier;
 
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -24,29 +24,33 @@ import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
- * An observable list of diagram-observables, tracking all of the diagrams available
+ * A list property of diagram-observables, tracking all of the diagrams available
  * in the resource set.
  */
-public class NotationObservableList extends WritableListWithIterator<NotationObservable> {
+public class NotationObservableProperty implements Supplier<IObservableList<NotationObservable>> {
 	private TransactionalEditingDomain domain;
 	private ResourceAdapter.Transactional diagramsListener;
 
-	public NotationObservableList(WelcomeModelElement owner) {
-		super(new ArrayList<>(), NotationObservable.class);
+	private IObservableList<NotationObservable> list;
 
+	public NotationObservableProperty(WelcomeModelElement owner) {
+		super();
+
+		this.list = new WritableListWithIterator.Containment<>(NotationObservable.class);
 		this.domain = (TransactionalEditingDomain) owner.getDomain();
-		hookDiagramsListener();
-	}
 
-	@Override
-	public synchronized void dispose() {
-		if (diagramsListener != null) {
+		hookDiagramsListener();
+
+		list.addDisposeListener(event -> {
 			diagramsListener.uninstall(domain);
 			diagramsListener = null;
 			domain = null;
-		}
+		});
+	}
 
-		super.dispose();
+	@Override
+	public IObservableList<NotationObservable> get() {
+		return list;
 	}
 
 	void hookDiagramsListener() {
@@ -57,26 +61,20 @@ public class NotationObservableList extends WritableListWithIterator<NotationObs
 				resource.getContents().stream()
 						.filter(ViewPrototype::isViewObject)
 						.map(NotationObservable::new)
-						.forEach(NotationObservableList.this::add);
+						.forEach(list::add);
 			}
 
 			@Override
 			protected void handleRootAdded(Resource resource, EObject root) {
 				if (ViewPrototype.isViewObject(root)) {
-					add(new NotationObservable(root));
+					list.add(new NotationObservable(root));
 				}
 			}
 
 			@Override
 			protected void handleRootRemoved(Resource resource, EObject root) {
 				if (ViewPrototype.isViewObject(root)) {
-					for (Iterator<NotationObservable> iter = iterator(); iter.hasNext();) {
-						NotationObservable next = iter.next();
-						if (next.getView().getValue() == root) {
-							iter.remove();
-							next.dispose();
-						}
-					}
+					list.removeIf(next -> next.getView().getValue() == root);
 				}
 			}
 		};

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,19 +13,19 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.internal.modelelements;
 
-import org.eclipse.core.databinding.observable.AbstractObservable;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.papyrus.infra.core.language.ILanguage;
 import org.eclipse.papyrus.infra.core.language.Version;
+import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.TouchableValue;
 
 /**
  * An observable encapsulation of an {@link ILanguage}.
  */
-public class LanguageObservable extends AbstractObservable {
+public class LanguageObservable extends ReferenceCountedObservable.Abstract {
 	private final ILanguage language;
 
 	private final TouchableValue<String> nameValue;

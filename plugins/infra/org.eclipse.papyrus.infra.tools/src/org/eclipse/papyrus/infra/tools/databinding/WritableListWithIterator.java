@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.tools.databinding;
 
 import static org.eclipse.core.databinding.observable.Diffs.createListDiff;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -22,14 +23,20 @@ import java.util.ListIterator;
 
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.Realm;
+import org.eclipse.core.databinding.observable.list.ListDiff;
 import org.eclipse.core.databinding.observable.list.ListDiffEntry;
+import org.eclipse.core.databinding.observable.list.ListDiffVisitor;
 import org.eclipse.core.databinding.observable.list.WritableList;
 
 /**
  * A specialization of the core Databindings {@link WritableList} providing
  * iterators that support modification.
  */
-public class WritableListWithIterator<E> extends WritableList<E> {
+public class WritableListWithIterator<E> extends WritableList<E> implements ReferenceCountedObservable {
+
+	private final ReferenceCountedObservable.Support refCount = new ReferenceCountedObservable.Support(this);
+
+	private final ListDiffVisitor<E> mutationHook = createMutationHook();
 
 	public WritableListWithIterator() {
 		super();
@@ -54,6 +61,62 @@ public class WritableListWithIterator<E> extends WritableList<E> {
 	public WritableListWithIterator(Realm realm, Collection<E> collection, Object elementType) {
 		super(realm, collection, elementType);
 	}
+
+	//
+	// Mutation hooks
+	//
+
+	void didAdd(E element) {
+		// Pass
+	}
+
+	void didRemove(E element) {
+		// Pass
+	}
+
+	private ListDiffVisitor<E> createMutationHook() {
+		return new ListDiffVisitor<E>() {
+			@Override
+			public void handleAdd(int index, E element) {
+				didAdd(element);
+			}
+
+			@Override
+			public void handleRemove(int index, E element) {
+				didRemove(element);
+			}
+		};
+	}
+
+	@Override
+	protected void fireListChange(ListDiff<E> diff) {
+		diff.accept(mutationHook);
+
+		super.fireListChange(diff);
+	}
+
+	//
+	// Reference counting
+	//
+
+	@Override
+	public void retain() {
+		refCount.retain();
+	}
+
+	@Override
+	public void release() {
+		refCount.release();
+	}
+
+	@Override
+	public void autorelease() {
+		refCount.autorelease();
+	}
+
+	//
+	// Iteration
+	//
 
 	@Override
 	public Iterator<E> iterator() {
@@ -175,5 +238,51 @@ public class WritableListWithIterator<E> extends WritableList<E> {
 			fireListChange(createListDiff(added(e, previousIndex())));
 		}
 
+	}
+
+	/**
+	 * A specialized writable list that owns its elements via strong (and counted) references.
+	 * It does not support wrapping an externally-provided list.
+	 */
+	public static class Containment<E extends ReferenceCountedObservable> extends WritableListWithIterator<E> {
+
+		public Containment() {
+			super();
+		}
+
+		public Containment(Object elementType) {
+			super(new ArrayList<E>(), elementType);
+		}
+
+		public Containment(Realm realm, Object elementType) {
+			super(realm, new ArrayList<E>(), elementType);
+		}
+
+		public Containment(Realm realm) {
+			super(realm);
+		}
+
+		@Override
+		public synchronized void dispose() {
+			super.dispose();
+
+			// Release my contained elements
+			wrappedList.forEach(ReferenceCountedObservable::release);
+			wrappedList.clear();
+		}
+
+		@Override
+		void didAdd(E element) {
+			if (element != null) {
+				element.retain();
+			}
+		}
+
+		@Override
+		void didRemove(E element) {
+			if (element != null) {
+				element.release();
+			}
+		}
 	}
 }

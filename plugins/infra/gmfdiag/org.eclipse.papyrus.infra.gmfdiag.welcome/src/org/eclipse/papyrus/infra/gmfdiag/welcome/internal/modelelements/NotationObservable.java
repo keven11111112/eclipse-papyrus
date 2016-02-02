@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,7 +13,6 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.welcome.internal.modelelements;
 
-import org.eclipse.core.databinding.observable.AbstractObservable;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.Realm;
@@ -27,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.infra.gmfdiag.welcome.internal.util.ViewUtil;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.TouchableValue;
 
 /**
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.tools.databinding.TouchableValue;
  * <li>the view's context element</li>
  * </ul>
  */
-public class NotationObservable extends AbstractObservable {
+public class NotationObservable extends ReferenceCountedObservable.Abstract {
 	private ViewAdapter viewAdapter;
 	private ContextAdapter contextAdapter;
 

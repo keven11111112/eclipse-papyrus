@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -44,7 +44,7 @@ public class WelcomeModelElement extends EMFModelElement {
 			result = new RestoreActivePageValue(this);
 			break;
 		case LANGUAGES:
-			result = new LanguagesObservableList(this);
+			result = new LanguagesObservableProperty(this).get();
 			break;
 		default:
 			result = super.doGetObservable(propertyPath);

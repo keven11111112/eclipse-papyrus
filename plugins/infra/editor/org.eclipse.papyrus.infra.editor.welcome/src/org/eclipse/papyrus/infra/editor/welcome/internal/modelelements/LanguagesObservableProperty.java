@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,10 +13,11 @@
 
 package org.eclipse.papyrus.infra.editor.welcome.internal.modelelements;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.papyrus.infra.core.language.ILanguage;
 import org.eclipse.papyrus.infra.core.language.ILanguageChangeListener;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
@@ -28,54 +29,58 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.tools.databinding.WritableListWithIterator;
 
 /**
- * An observable list of the {@code LanguageObservable}s encapsulating the
+ * A list property of the {@code LanguageObservable}s encapsulating the
  * {@link ILanguage}s instantiated in the model.
  */
-public class LanguagesObservableList extends WritableListWithIterator<LanguageObservable> {
+public class LanguagesObservableProperty implements Supplier<IObservableList<LanguageObservable>> {
 	private ILanguageService languageService;
 	private ILanguageChangeListener languagesListener;
 
+	private IObservableList<LanguageObservable> list;
 
-	public LanguagesObservableList(WelcomeModelElement owner) {
-		super(new ArrayList<>(), LanguageObservable.class);
+	public LanguagesObservableProperty(WelcomeModelElement owner) {
+		super();
+
+		this.list = new WritableListWithIterator.Containment<>(LanguageObservable.class);
 
 		try {
 			this.languageService = ServiceUtilsForResourceSet.getInstance().getService(ILanguageService.class, owner.getDomain().getResourceSet());
+
 			hookLanguagesListener();
+
+			list.addDisposeListener(event -> {
+				languageService.removeLanguageChangeListener(languagesListener);
+				languagesListener = null;
+				languageService = null;
+			});
 		} catch (ServiceException e) {
 			Activator.log.error("Cannot obtain language service. Languages will not be shown.", e); //$NON-NLS-1$
 		}
 	}
 
 	@Override
-	public synchronized void dispose() {
-		if (languagesListener != null) {
-			languageService.removeLanguageChangeListener(languagesListener);
-			languagesListener = null;
-			languageService = null;
-		}
-
-		super.dispose();
+	public IObservableList<LanguageObservable> get() {
+		return list;
 	}
 
 	void hookLanguagesListener() {
 		languagesListener = event -> {
 			switch (event.getType()) {
 			case LanguageChangeEvent.ADDED:
-				addAll(event.getLanguages().stream().map(LanguageObservable::new).collect(Collectors.toList()));
+				list.addAll(event.getLanguages().stream().map(LanguageObservable::new).collect(Collectors.toList()));
 				break;
 			case LanguageChangeEvent.REMOVED:
-				removeAll(getObservables(event.getLanguages()));
+				list.removeAll(getObservables(event.getLanguages()));
 				break;
 			}
 		};
 
 		ModelSet modelSet = languageService.getAdapter(ModelSet.class);
-		addAll(languageService.getLanguages(modelSet.getURIWithoutExtension(), false).stream().map(LanguageObservable::new).collect(Collectors.toList()));
+		list.addAll(languageService.getLanguages(modelSet.getURIWithoutExtension(), false).stream().map(LanguageObservable::new).collect(Collectors.toList()));
 		languageService.addLanguageChangeListener(languagesListener);
 	}
 
 	Collection<LanguageObservable> getObservables(Collection<? extends ILanguage> languages) {
-		return stream().filter(o -> languages.contains(o.getLanguage())).collect(Collectors.toList());
+		return list.stream().filter(o -> languages.contains(o.getLanguage())).collect(Collectors.toList());
 	}
 }
