@@ -52,7 +52,7 @@ public class AddElementsOnConnectedTableTest extends AbstractPapyrusTest {
 	/**
 	 * The number of class features and operations.
 	 */
-	private static final int NB_CLASS_FEATURES_AND_OPERATIONS = 166;
+	private static final int NB_CLASS_FEATURES_AND_OPERATIONS = 164;
 
 	/**
 	 * The number of interface features and operations.
