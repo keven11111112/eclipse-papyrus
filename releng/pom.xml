@@ -47,7 +47,7 @@
 		<swtbot.repo.url>${eclipse.download}/technology/swtbot/snapshots</swtbot.repo.url>
 
 		<!-- updateFrom("CDT",0) -->
-		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m4</cdt.repo.url>
+		<cdt.repo.url>${eclipse.download}/tools/cdt/builds/neon/milestones/m5</cdt.repo.url>
 
 		<!-- updateFrom("CDT",1) -->
 		<cdt.launchbar.repo.url>${eclipse.download}/tools/cdt/launchbar/neon.m5</cdt.launchbar.repo.url>
@@ -56,13 +56,13 @@
 		<emf-cdo.repo.url>${eclipse.download}/modeling/emf/cdo/drops/S20151216-1133</emf-cdo.repo.url>
 
 		<!-- updateFrom("EMF COMPARE",0) -->
-		<emf-compare.repo.url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.2/S201512130548</emf-compare.repo.url>
+		<emf-compare.repo.url>${eclipse.download}/modeling/emf/compare/updates/milestones/3.2/S201602020703</emf-compare.repo.url>
 
 		<!-- updateFrom("EMF Query",0) -->
 		<emf-query.repo.url>${eclipse.download}/modeling/emf/query/updates/milestones</emf-query.repo.url>
 
 		<!-- updateFrom("M2T ACCELEO",0) -->
-		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201601191321</m2t-acceleo.repo.url>
+		<m2t-acceleo.repo.url>${eclipse.download}/acceleo/updates/milestones/3.6/S201601290717</m2t-acceleo.repo.url>
 
 		<!-- manualUpdate -->
 		<upr.repo.url>${eclipse.download}/upr/0.9RC1/update/</upr.repo.url>
@@ -74,7 +74,7 @@
 		<mylyn.repo.url>${eclipse.download}/mylyn/snapshots/3.18</mylyn.repo.url>
 
 		<!-- updateFrom("EGIT",0) -->
-		<egit.repo.url>${eclipse.download}/egit/staging/v4.2.0.201512141825-rc1</egit.repo.url>
+		<egit.repo.url>${eclipse.download}/egit/updates-4.2</egit.repo.url>
 
 		<!-- updateFrom("EPP Logging",0) -->
 		<epp-logging.repo.url>${eclipse.download}/technology/epp/logging/milestones/</epp-logging.repo.url>
@@ -129,13 +129,13 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201512150804/mwe</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201602020321/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201512150821/mwe2lang/</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/milestones/S201602020421/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
@@ -153,13 +153,13 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.6-I-builds/I20160119-0800/</url>
+			<url>${eclipse.download}/eclipse/updates/4.6milestones/S-4.6M5-201601282000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GEF",0) -->
-			<url>${eclipse.download}/tools/gef/updates/milestones</url>
+			<url>${eclipse.download}/tools/gef/updates/milestones/3.11.0M5_gef-master_1819</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-notation</id>
@@ -183,13 +183,13 @@
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>${eclipse.download}/modeling/m2t/xpand/updates/milestones/S201512150757/</url>
+			<url>${eclipse.download}/modeling/m2t/xpand/updates/milestones/S201602020334/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.1.0/S201512161807</url>
+			<url>${eclipse.download}/modeling/mdt/ocl/updates/milestones/6.1.0/S201602011100</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -201,7 +201,7 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>${eclipse.download}/mmt/qvto/updates/milestones/3.6.0/S201512100140</url>
+			<url>${eclipse.download}/mmt/qvto/updates/milestones/3.6.0/S201602020840</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -225,7 +225,7 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>${eclipse.download}/modeling/tmf/xtext/updates/releases/2.9.0/</url>
+			<url>${eclipse.download}/modeling/tmf/xtext/updates/milestones/head/S201602020334/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
