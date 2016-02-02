@@ -4,14 +4,14 @@
  	<extension
           point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
        <elementTypeSet
-             id="org.eclipse.papyrus.bpmn.collaboration.elementTypeSet"
+       		clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
              path="model/collaboration.elementtypesconfigurations">
        </elementTypeSet>
     </extension> 
     <extension
           point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
        <elementTypeSet
-             id="org.eclipse.papyrus.bpmn.collaboration.elementTypeSetCustom"
+             clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
              path="model/collaborationCustom.elementtypesconfigurations">
        </elementTypeSet>
     </extension>

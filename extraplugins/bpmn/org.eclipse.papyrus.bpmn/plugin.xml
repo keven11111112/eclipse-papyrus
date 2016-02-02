@@ -36,14 +36,14 @@
     <extension
           point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
        <elementTypeSet
-             id="org.eclipse.papyrus.bpmn.elementTypeSet"
+             clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
              path="model/bpmn.elementtypesconfigurations">
        </elementTypeSet>
     </extension>
     <extension
           point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
        <elementTypeSet
-             id="org.eclipse.papyrus.bpmn.customElementTypeSet"
+             clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
              path="model/customBpmn.elementtypesconfigurations">
        </elementTypeSet>
     </extension>

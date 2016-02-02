@@ -54,6 +54,13 @@ OpaqueAction > Compartment[kind="symbol"] {
 	maskLabel: stereotype;
 }
 
+[appliedStereotypes~="BPMNProfile::DataInput"]
+{
+	fillColor: white;	
+	maskLabel: stereotype;
+	transparency: 0
+}
+
 [appliedStereotypes~="BPMNProfile::GlobalTask"]
 {
 	fillColor: white;	
@@ -67,6 +74,16 @@ OpaqueAction > Compartment[kind="symbol"] {
 }
 
 [appliedStereotypes~="BPMNProfile::Task"]{
+	fillColor: white;	
+	displayTags: false;
+}
+
+[appliedStereotypes~="BPMNProfile::GlobalTask"]{
+	fillColor: white;	
+	displayTags: false;
+}
+
+[appliedStereotypes~="BPMNProfile::CallActivity"]{
 	fillColor: white;	
 	displayTags: false;
 }
