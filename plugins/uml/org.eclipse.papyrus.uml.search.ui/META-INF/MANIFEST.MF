@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.search.ui.actions,
+ org.eclipse.papyrus.uml.search.ui.pages,
  org.eclipse.papyrus.uml.search.ui.providers,
  org.eclipse.papyrus.uml.search.ui.query,
  org.eclipse.papyrus.uml.search.ui.results,
