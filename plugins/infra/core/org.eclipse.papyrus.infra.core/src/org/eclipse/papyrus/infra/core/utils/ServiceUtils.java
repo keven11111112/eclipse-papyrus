@@ -44,7 +44,14 @@ public class ServiceUtils extends AbstractServiceUtils<ServicesRegistry> {
 	 */
 	@Override
 	public ServicesRegistry getServiceRegistry(ServicesRegistry from) throws ServiceException {
-		return (from != null) ? from : getContextualServiceRegistry();
+		if (from != null) {
+			return from;
+		}
+		ServicesRegistry contextual = getContextualServiceRegistry();
+		if (contextual == null) {
+			throw new ServiceException("The Service Registry could not be found");
+		}
+		return contextual;
 	}
 
 }
