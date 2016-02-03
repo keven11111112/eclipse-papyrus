@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_G_3HYMXkEeWY7oQWr-IL2Q" name="rami40" metaclassReference="_hf1JoMXlEeWY7oQWr-IL2Q">
+  <eAnnotations xmi:id="_QdT5QMXkEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_fFN9AcYUEeWY7oQWr-IL2Q" name="rami40" nsURI="http:///schemas/rami40/_fFN9AMYUEeWY7oQWr-IL2Q/17" nsPrefix="rami40">
+      <eAnnotations xmi:id="_fFN9U8YUEeWY7oQWr-IL2Q" source="PapyrusVersion">
+        <details xmi:id="_fFN9VMYUEeWY7oQWr-IL2Q" key="Version" value="0.0.18"/>
+        <details xmi:id="_fFN9VcYUEeWY7oQWr-IL2Q" key="Comment" value=""/>
+        <details xmi:id="_fFN9VsYUEeWY7oQWr-IL2Q" key="Copyright" value=""/>
+        <details xmi:id="_fFN9V8YUEeWY7oQWr-IL2Q" key="Date" value="2016-01-29"/>
+        <details xmi:id="_fFN9WMYUEeWY7oQWr-IL2Q" key="Author" value=""/>
+      </eAnnotations>
+      <eSubpackages xmi:id="_fFN9AsYUEeWY7oQWr-IL2Q" name="ValueStreamHierarchy" nsURI="http:///rami40/ValueStreamHierarchy.ecore" nsPrefix="rami40.ValueStreamHierarchy">
+        <eAnnotations xmi:id="_fFN9A8YUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_O5G7kMXkEeWY7oQWr-IL2Q"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9BMYUEeWY7oQWr-IL2Q" name="_1BusinessLayer">
+          <eAnnotations xmi:id="_fFN9BcYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_JH7nIMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9BsYUEeWY7oQWr-IL2Q" key="originalName" value="1-BusinessLayer"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9B8YUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9CcYUEeWY7oQWr-IL2Q" name="_2FunctionalLayer">
+          <eAnnotations xmi:id="_fFN9CsYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ksBOQMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9C8YUEeWY7oQWr-IL2Q" key="originalName" value="2-FunctionalLayer"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9DMYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9DsYUEeWY7oQWr-IL2Q" name="_3InformationLayer">
+          <eAnnotations xmi:id="_fFN9D8YUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_nGqEsMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9EMYUEeWY7oQWr-IL2Q" key="originalName" value="3-InformationLayer"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9EcYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9E8YUEeWY7oQWr-IL2Q" name="_4CommunicationLayer">
+          <eAnnotations xmi:id="_fFN9FMYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_tMpykMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9FcYUEeWY7oQWr-IL2Q" key="originalName" value="4-CommunicationLayer"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9FsYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9GMYUEeWY7oQWr-IL2Q" name="_5IntegrationLayer">
+          <eAnnotations xmi:id="_fFN9GcYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_v2VxoMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9GsYUEeWY7oQWr-IL2Q" key="originalName" value="5-IntegrationLayer"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9G8YUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9HcYUEeWY7oQWr-IL2Q" name="_6AssetLayer">
+          <eAnnotations xmi:id="_fFN9HsYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_yKyggMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9H8YUEeWY7oQWr-IL2Q" key="originalName" value="6-AssetLayer"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9IMYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages xmi:id="_fFN9IsYUEeWY7oQWr-IL2Q" name="InfrastructureHierarchy" nsURI="http:///rami40/InfrastructureHierarchy.ecore" nsPrefix="rami40.InfrastructureHierarchy">
+        <eAnnotations xmi:id="_fFN9I8YUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_Rt2UEMXkEeWY7oQWr-IL2Q"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9JMYUEeWY7oQWr-IL2Q" name="_1ConnectedWorld">
+          <eAnnotations xmi:id="_fFN9JcYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_2E2iUMXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9JsYUEeWY7oQWr-IL2Q" key="originalName" value="1-ConnectedWorld"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9J8YUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9KcYUEeWY7oQWr-IL2Q" name="_2EnterpriseLevel">
+          <eAnnotations xmi:id="_fFN9KsYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_8AIN8MXkEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9K8YUEeWY7oQWr-IL2Q" key="originalName" value="2-EnterpriseLevel"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9LMYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9LsYUEeWY7oQWr-IL2Q" name="_3WorkCentersLevel">
+          <eAnnotations xmi:id="_fFN9L8YUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Cs8rQMXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9MMYUEeWY7oQWr-IL2Q" key="originalName" value="3-WorkCentersLevel"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9McYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9M8YUEeWY7oQWr-IL2Q" name="_4StationsLevel">
+          <eAnnotations xmi:id="_fFN9NMYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Gm_e8MXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9NcYUEeWY7oQWr-IL2Q" key="originalName" value="4-StationsLevel"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9NsYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9OMYUEeWY7oQWr-IL2Q" name="_5ControlDeviceLevel">
+          <eAnnotations xmi:id="_fFN9OcYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Jrr_AMXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9OsYUEeWY7oQWr-IL2Q" key="originalName" value="5-ControlDeviceLevel"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9O8YUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9PcYUEeWY7oQWr-IL2Q" name="_6FieldDeviceLevel">
+          <eAnnotations xmi:id="_fFN9PsYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_MhKXUMXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9P8YUEeWY7oQWr-IL2Q" key="originalName" value="6-FieldDeviceLevel"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9QMYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9QsYUEeWY7oQWr-IL2Q" name="_7ProductLevel">
+          <eAnnotations xmi:id="_fFN9Q8YUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Q7ueIMXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9RMYUEeWY7oQWr-IL2Q" key="originalName" value="7-ProductLevel"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9RcYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
+      <eSubpackages xmi:id="_fFN9R8YUEeWY7oQWr-IL2Q" name="LifeCycleHierarchy" nsURI="http:///rami40/LifeCycleHierarchy.ecore" nsPrefix="rami40.LifeCycleHierarchy">
+        <eAnnotations xmi:id="_fFN9SMYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_UgR_cMXkEeWY7oQWr-IL2Q"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9ScYUEeWY7oQWr-IL2Q" name="_2InstanceProduction">
+          <eAnnotations xmi:id="_fFN9SsYUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_WKaJgMXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9S8YUEeWY7oQWr-IL2Q" key="originalName" value="2-InstanceProduction"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9TMYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_fFN9TsYUEeWY7oQWr-IL2Q" name="_1TypeDevelopment">
+          <eAnnotations xmi:id="_fFN9T8YUEeWY7oQWr-IL2Q" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_bajNcMXlEeWY7oQWr-IL2Q">
+            <details xmi:id="_fFN9UMYUEeWY7oQWr-IL2Q" key="originalName" value="1-TypeDevelopment"/>
+          </eAnnotations>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_fFN9UcYUEeWY7oQWr-IL2Q" name="base_Package" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_hf1JoMXlEeWY7oQWr-IL2Q" alias="Package">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_O5G7kMXkEeWY7oQWr-IL2Q" name="ValueStreamHierarchy">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_JH7nIMXkEeWY7oQWr-IL2Q" name="1-BusinessLayer">
+      <ownedAttribute xmi:id="_rznGkMXlEeWY7oQWr-IL2Q" name="base_Package" association="_rzmfgMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_ksBOQMXkEeWY7oQWr-IL2Q" name="2-FunctionalLayer">
+      <ownedAttribute xmi:id="_sXXT4MXlEeWY7oQWr-IL2Q" name="base_Package" association="_sXWs0MXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_nGqEsMXkEeWY7oQWr-IL2Q" name="3-InformationLayer">
+      <ownedAttribute xmi:id="_tFrLYMXlEeWY7oQWr-IL2Q" name="base_Package" association="_tFqkUMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_tMpykMXkEeWY7oQWr-IL2Q" name="4-CommunicationLayer">
+      <ownedAttribute xmi:id="_tnkXgcXlEeWY7oQWr-IL2Q" name="base_Package" association="_tnjwcMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_v2VxoMXkEeWY7oQWr-IL2Q" name="5-IntegrationLayer">
+      <ownedAttribute xmi:id="_u2SNYsXlEeWY7oQWr-IL2Q" name="base_Package" association="_u2SNYMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_yKyggMXkEeWY7oQWr-IL2Q" name="6-AssetLayer">
+      <ownedAttribute xmi:id="_vWKnUMXlEeWY7oQWr-IL2Q" name="base_Package" association="_vWKAQMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_rzmfgMXlEeWY7oQWr-IL2Q" name="E_1-BusinessLayer_Package1" memberEnd="_rzmfgcXlEeWY7oQWr-IL2Q _rznGkMXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_rzmfgcXlEeWY7oQWr-IL2Q" name="extension_1-BusinessLayer" type="_JH7nIMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_rzmfgMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_sXWs0MXlEeWY7oQWr-IL2Q" name="E_2-FunctionalLayer_Package1" memberEnd="_sXWs0cXlEeWY7oQWr-IL2Q _sXXT4MXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_sXWs0cXlEeWY7oQWr-IL2Q" name="extension_2-FunctionalLayer" type="_ksBOQMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_sXWs0MXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_tFqkUMXlEeWY7oQWr-IL2Q" name="E_3-InformationLayer_Package1" memberEnd="_tFqkUcXlEeWY7oQWr-IL2Q _tFrLYMXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_tFqkUcXlEeWY7oQWr-IL2Q" name="extension_3-InformationLayer" type="_nGqEsMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_tFqkUMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_tnjwcMXlEeWY7oQWr-IL2Q" name="E_4-CommunicationLayer_Package1" memberEnd="_tnkXgMXlEeWY7oQWr-IL2Q _tnkXgcXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_tnkXgMXlEeWY7oQWr-IL2Q" name="extension_4-CommunicationLayer" type="_tMpykMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_tnjwcMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_u2SNYMXlEeWY7oQWr-IL2Q" name="E_5-IntegrationLayer_Package1" memberEnd="_u2SNYcXlEeWY7oQWr-IL2Q _u2SNYsXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_u2SNYcXlEeWY7oQWr-IL2Q" name="extension_5-IntegrationLayer" type="_v2VxoMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_u2SNYMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_vWKAQMXlEeWY7oQWr-IL2Q" name="E_6-AssetLayer_Package1" memberEnd="_vWKAQcXlEeWY7oQWr-IL2Q _vWKnUMXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_vWKAQcXlEeWY7oQWr-IL2Q" name="extension_6-AssetLayer" type="_yKyggMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_vWKAQMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_Rt2UEMXkEeWY7oQWr-IL2Q" name="InfrastructureHierarchy">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_2E2iUMXkEeWY7oQWr-IL2Q" name="1-ConnectedWorld">
+      <ownedAttribute xmi:id="_mdUXUcXlEeWY7oQWr-IL2Q" name="base_Package" association="_mdR7EMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_8AIN8MXkEeWY7oQWr-IL2Q" name="2-EnterpriseLevel">
+      <ownedAttribute xmi:id="_nHANgcXlEeWY7oQWr-IL2Q" name="base_Package" association="_nG_mcMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_Cs8rQMXlEeWY7oQWr-IL2Q" name="3-WorkCentersLevel">
+      <ownedAttribute xmi:id="_nnlLAcXlEeWY7oQWr-IL2Q" name="base_Package" association="_nnkj8MXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_Gm_e8MXlEeWY7oQWr-IL2Q" name="4-StationsLevel">
+      <ownedAttribute xmi:id="_oN8ncsXlEeWY7oQWr-IL2Q" name="base_Package" association="_oN8ncMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_Jrr_AMXlEeWY7oQWr-IL2Q" name="5-ControlDeviceLevel">
+      <ownedAttribute xmi:id="_o4c9AcXlEeWY7oQWr-IL2Q" name="base_Package" association="_o4cV8MXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_MhKXUMXlEeWY7oQWr-IL2Q" name="6-FieldDeviceLevel">
+      <ownedAttribute xmi:id="_pmJwgMXlEeWY7oQWr-IL2Q" name="base_Package" association="_pmJJcMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_Q7ueIMXlEeWY7oQWr-IL2Q" name="7-ProductLevel">
+      <ownedAttribute xmi:id="_qNzmYsXlEeWY7oQWr-IL2Q" name="base_Package" association="_qNzmYMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_mdR7EMXlEeWY7oQWr-IL2Q" name="E_1-ConnectedWorld_Package1" memberEnd="_mdUXUMXlEeWY7oQWr-IL2Q _mdUXUcXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_mdUXUMXlEeWY7oQWr-IL2Q" name="extension_1-ConnectedWorld" type="_2E2iUMXkEeWY7oQWr-IL2Q" aggregation="composite" association="_mdR7EMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nG_mcMXlEeWY7oQWr-IL2Q" name="E_2-EnterpriseLevel_Package1" memberEnd="_nHANgMXlEeWY7oQWr-IL2Q _nHANgcXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nHANgMXlEeWY7oQWr-IL2Q" name="extension_2-EnterpriseLevel" type="_8AIN8MXkEeWY7oQWr-IL2Q" aggregation="composite" association="_nG_mcMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_nnkj8MXlEeWY7oQWr-IL2Q" name="E_3-WorkCentersLevel_Package1" memberEnd="_nnlLAMXlEeWY7oQWr-IL2Q _nnlLAcXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_nnlLAMXlEeWY7oQWr-IL2Q" name="extension_3-WorkCentersLevel" type="_Cs8rQMXlEeWY7oQWr-IL2Q" aggregation="composite" association="_nnkj8MXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_oN8ncMXlEeWY7oQWr-IL2Q" name="E_4-StationsLevel_Package1" memberEnd="_oN8nccXlEeWY7oQWr-IL2Q _oN8ncsXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_oN8nccXlEeWY7oQWr-IL2Q" name="extension_4-StationsLevel" type="_Gm_e8MXlEeWY7oQWr-IL2Q" aggregation="composite" association="_oN8ncMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_o4cV8MXlEeWY7oQWr-IL2Q" name="E_5-ControlDeviceLevel_Package1" memberEnd="_o4c9AMXlEeWY7oQWr-IL2Q _o4c9AcXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_o4c9AMXlEeWY7oQWr-IL2Q" name="extension_5-ControlDeviceLevel" type="_Jrr_AMXlEeWY7oQWr-IL2Q" aggregation="composite" association="_o4cV8MXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_pmJJcMXlEeWY7oQWr-IL2Q" name="E_6-FieldDeviceLevel_Package1" memberEnd="_pmJJccXlEeWY7oQWr-IL2Q _pmJwgMXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_pmJJccXlEeWY7oQWr-IL2Q" name="extension_6-FieldDeviceLevel" type="_MhKXUMXlEeWY7oQWr-IL2Q" aggregation="composite" association="_pmJJcMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_qNzmYMXlEeWY7oQWr-IL2Q" name="E_7-ProductLevel_Package1" memberEnd="_qNzmYcXlEeWY7oQWr-IL2Q _qNzmYsXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_qNzmYcXlEeWY7oQWr-IL2Q" name="extension_7-ProductLevel" type="_Q7ueIMXlEeWY7oQWr-IL2Q" aggregation="composite" association="_qNzmYMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_UgR_cMXkEeWY7oQWr-IL2Q" name="LifeCycleHierarchy">
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_WKaJgMXlEeWY7oQWr-IL2Q" name="2-InstanceProduction">
+      <ownedAttribute xmi:id="_rSUXYcXlEeWY7oQWr-IL2Q" name="base_Package" association="_rSTwUMXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_bajNcMXlEeWY7oQWr-IL2Q" name="1-TypeDevelopment">
+      <ownedAttribute xmi:id="_quZK8cXlEeWY7oQWr-IL2Q" name="base_Package" association="_quYj4MXlEeWY7oQWr-IL2Q">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_quYj4MXlEeWY7oQWr-IL2Q" name="E_1-TypeDevelopment_Package1" memberEnd="_quZK8MXlEeWY7oQWr-IL2Q _quZK8cXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_quZK8MXlEeWY7oQWr-IL2Q" name="extension_1-TypeDevelopment" type="_bajNcMXlEeWY7oQWr-IL2Q" aggregation="composite" association="_quYj4MXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_rSTwUMXlEeWY7oQWr-IL2Q" name="E_2-InstanceProduction_Package1" memberEnd="_rSUXYMXlEeWY7oQWr-IL2Q _rSUXYcXlEeWY7oQWr-IL2Q">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_rSUXYMXlEeWY7oQWr-IL2Q" name="extension_2-InstanceProduction" type="_WKaJgMXlEeWY7oQWr-IL2Q" aggregation="composite" association="_rSTwUMXlEeWY7oQWr-IL2Q"/>
+    </packagedElement>
+  </packagedElement>
+</uml:Profile>

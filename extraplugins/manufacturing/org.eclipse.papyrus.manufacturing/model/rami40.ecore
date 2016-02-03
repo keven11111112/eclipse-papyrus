@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="rami40" nsURI="http:///rami40.ecore" nsPrefix="rami40">
+  <eSubpackages name="ValueStreamHierarchy" nsURI="http:///rami40/ValueStreamHierarchy.ecore"
+      nsPrefix="rami40.ValueStreamHierarchy">
+    <eClassifiers xsi:type="ecore:EClass" name="_1BusinessLayer">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="1-BusinessLayer"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_2FunctionalLayer">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="2-FunctionalLayer"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_3InformationLayer">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="3-InformationLayer"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_4CommunicationLayer">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="4-CommunicationLayer"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_5IntegrationLayer">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="5-IntegrationLayer"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_6AssetLayer">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="6-AssetLayer"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="InfrastructureHierarchy" nsURI="http:///rami40/InfrastructureHierarchy.ecore"
+      nsPrefix="rami40.InfrastructureHierarchy">
+    <eClassifiers xsi:type="ecore:EClass" name="_1ConnectedWorld">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="1-ConnectedWorld"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_2EnterpriseLevel">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="2-EnterpriseLevel"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_3WorkCentersLevel">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="3-WorkCentersLevel"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_4StationsLevel">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="4-StationsLevel"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_5ControlDeviceLevel">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="5-ControlDeviceLevel"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_6FieldDeviceLevel">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="6-FieldDeviceLevel"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_7ProductLevel">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="7-ProductLevel"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="LifeCycleHierarchy" nsURI="http:///rami40/LifeCycleHierarchy.ecore"
+      nsPrefix="rami40.LifeCycleHierarchy">
+    <eClassifiers xsi:type="ecore:EClass" name="_2InstanceProduction">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="2-InstanceProduction"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="_1TypeDevelopment">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="1-TypeDevelopment"/>
+      </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="base_Package" ordered="false"
+          lowerBound="1" eType="ecore:EClass ../../org.eclipse.uml2.uml/model/UML.ecore#//Package"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>
