@@ -22,6 +22,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.CellEditorsConfigurat
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeInheritDisplayTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportCellsAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportEmptyAddAll_Test;
 import org.eclipse.papyrus.uml.nattable.generic.tests.importfile.ImportEmptyReplaceAll_Test;
@@ -83,6 +84,9 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterNumericMatcherTest.class,
 		FilterUMLEnumerationMatcherTest.class,
 		CellEditorsConfigurationTest.class,
+		
+		// Stereotype inherited properties
+		StereotypeInheritDisplayTest.class,
 
 		// Paste Overwrite tests
 		PasteEmptyClipboard_Test.class,
