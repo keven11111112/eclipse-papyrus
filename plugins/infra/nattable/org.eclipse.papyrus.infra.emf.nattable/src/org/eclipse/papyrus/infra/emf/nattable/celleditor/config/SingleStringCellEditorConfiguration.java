@@ -74,7 +74,7 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 				EClassifier etype = feature.getEType();
 				if (etype instanceof EDataType) {
 					EDataType datatype = (EDataType) etype;
-					return TypesConstants.STRING.equals(datatype.getName());
+					return TypesConstants.STRING.equals(datatype.getName()) || TypesConstants.ESTRING.equals(datatype.getName());
 				}
 			}
 		}

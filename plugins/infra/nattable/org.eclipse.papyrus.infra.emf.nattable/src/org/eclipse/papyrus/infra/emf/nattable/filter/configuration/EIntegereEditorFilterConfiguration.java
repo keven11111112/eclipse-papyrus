@@ -47,7 +47,7 @@ public class EIntegereEditorFilterConfiguration extends AbstractIntegerEditorFil
 			EClassifier etype = feature.getEType();
 			if (etype instanceof EDataType) {
 				EDataType datatype = (EDataType) etype;
-				return TypesConstants.INTEGER.equals(datatype.getName());
+				return TypesConstants.INTEGER.equals(datatype.getName()) || TypesConstants.EINT.equals(datatype.getName());
 			}
 		}
 		return false;

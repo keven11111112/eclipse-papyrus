@@ -13,23 +13,20 @@
 
 package org.eclipse.papyrus.uml.nattable.config;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
-import org.eclipse.papyrus.infra.tools.util.TypesConstants;
-import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
-import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.types.TypesPackage;
 
 /**
- * The cell editor configuration for the UML Stereotype multi integer value.
+ * The cell editor configuration for the multi UML integer value.
  */
-public class UMLStereotypeMultiIntegerCellEditorConfiguration extends MultiIntegerCellEditorConfiguration {
+public class MultiUMLIntegerCellEditorConfiguration extends MultiIntegerCellEditorConfiguration {
 
 	/**
 	 * The id of this editor.
 	 */
-	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.UMLStereotypeMultiIntegerCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
+	private static final String ID = "org.eclipse.papyrus.uml.nattable.celleditor.configuration.MultiUMLIntegerCellEditorConfiguration.MultiEditor";//$NON-NLS-1$
 
 
 	/**
@@ -50,15 +47,11 @@ public class UMLStereotypeMultiIntegerCellEditorConfiguration extends MultiInteg
 	@Override
 	public boolean handles(final Table table, final Object axisElement) {
 		boolean result = false;
-		final String id = AxisUtils.getPropertyId(axisElement);
-		if (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX)) {
-			Property prop = UMLTableUtils.getRealStereotypeProperty(table.getContext(), id);
-			if (prop != null && prop.isMultivalued()) {
-				Type type = prop.getType();
-				if (type instanceof DataType) {
-					final String name = type.getName();
-					result = TypesConstants.INTEGER.equals(name) || TypesConstants.EINT.equals(name);
-				}
+		Object object = AxisUtils.getRepresentedElement(axisElement);
+		if (object instanceof EStructuralFeature) {
+			EStructuralFeature feature = (EStructuralFeature) object;
+			if (feature.isMany()) {
+				result = feature.getEType() == TypesPackage.eINSTANCE.getInteger();
 			}
 		}
 		return result;

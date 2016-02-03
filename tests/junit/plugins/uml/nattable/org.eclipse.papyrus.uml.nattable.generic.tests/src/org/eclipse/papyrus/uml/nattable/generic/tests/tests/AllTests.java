@@ -19,7 +19,6 @@ import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AddElementsOnConnectedTableTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithoutConfigurationTest;
-import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.CellEditorsConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.EnumerationContentItemsTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;

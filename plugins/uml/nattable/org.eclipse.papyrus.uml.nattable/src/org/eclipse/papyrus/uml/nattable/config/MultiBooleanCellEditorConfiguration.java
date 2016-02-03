@@ -75,7 +75,7 @@ public class MultiBooleanCellEditorConfiguration implements ICellAxisConfigurati
 				EClassifier etype = feature.getEType();
 				if (etype instanceof EDataType) {
 					EDataType datatype = (EDataType) etype;
-					result = TypesConstants.BOOLEAN.equals(datatype.getName());
+					result = TypesConstants.BOOLEAN.equals(datatype.getName()) || TypesConstants.EBOOLEAN.equals(datatype.getName());
 				}
 			}
 		}

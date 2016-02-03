@@ -20,6 +20,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
+import org.eclipse.papyrus.infra.tools.util.TypesConstants;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.utils.PrimitivesTypesUtils;
 import org.eclipse.uml2.uml.Property;
@@ -55,7 +56,7 @@ public class UMLIntegerEditorFilterConfiguration extends AbstractIntegerEditorFi
 				if (prop != null) {
 					Type type = prop.getType();
 					if (null != type){
-						return PrimitivesTypesUtils.UML_INTEGER.equals(type.getName());
+						return PrimitivesTypesUtils.UML_INTEGER.equals(type.getName()) || TypesConstants.EINT.equals(type.getName());
 					}
 				}
 			}

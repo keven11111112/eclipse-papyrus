@@ -75,7 +75,7 @@ public class MultiStringCellEditorConfiguration implements ICellAxisConfiguratio
 				EClassifier etype = feature.getEType();
 				if (etype instanceof EDataType) {
 					EDataType datatype = (EDataType) etype;
-					result = TypesConstants.STRING.equals(datatype.getName());
+					result = TypesConstants.STRING.equals(datatype.getName()) || TypesConstants.ESTRING.equals(datatype.getName());
 				}
 			}
 		}

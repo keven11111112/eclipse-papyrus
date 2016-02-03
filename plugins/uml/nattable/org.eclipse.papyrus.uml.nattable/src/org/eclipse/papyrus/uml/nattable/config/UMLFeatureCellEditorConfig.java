@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
+import org.eclipse.papyrus.infra.tools.util.TypesConstants;
 import org.eclipse.papyrus.uml.nattable.dataprovider.UMLStereotypeSingleEnumerationComboBoxDataProvider;
 import org.eclipse.papyrus.uml.nattable.editor.MultiBooleanCellEditor;
 import org.eclipse.papyrus.uml.nattable.editor.MultiEnumCellEditor;
@@ -336,13 +337,13 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 				if (type instanceof DataType) {
 					if (type instanceof PrimitiveType) {
 						final String name = type.getName();
-						if (PrimitivesTypesUtils.UML_BOOLEAN.equals(name)) {
+						if (PrimitivesTypesUtils.UML_BOOLEAN.equals(name) || TypesConstants.EBOOLEAN.equals(name)) {
 							if (isMany) {
 								editorKind = MULTI_BOOLEAN;
 							} else {
 								editorKind = SINGLE_BOOLEAN;
 							}
-						} else if (PrimitivesTypesUtils.UML_INTEGER.equals(name)) {
+						} else if (PrimitivesTypesUtils.UML_INTEGER.equals(name) || TypesConstants.EINT.equals(name)) {
 							if (isMany) {
 								editorKind = MULTI_INTEGER;
 							} else {
@@ -354,7 +355,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 							} else {
 								editorKind = SINGLE_REAL;
 							}
-						} else if (PrimitivesTypesUtils.UML_STRING.equals(name)) {
+						} else if (PrimitivesTypesUtils.UML_STRING.equals(name) || TypesConstants.ESTRING.equals(name)) {
 							if (isMany) {
 								editorKind = MULTI_STRING;
 							} else {

@@ -56,6 +56,38 @@
         <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#__bISkIlGEeWBlO5sbr8vYw"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_EXqeAYlHEeWBlO5sbr8vYw"/>
       </children>
+      <children xmi:type="notation:Shape" xmi:id="_RRrlAMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_RRYqEMqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_RRrlAcqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_RoIWIMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_Rn1bMMqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_RoIWIcqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_YiuwwMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_YiNMUMqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_YiuwwcqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_Y3jKMMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_Y3KIoMqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Y3jxQMqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_a4MMQMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_a3-w4MqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_a4MMQcqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_cDndkMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_cDZbIMqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_cDndkcqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_dGgd8MqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_dGWs8MqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_dGgd8cqQEeWfb98zdYdNrg"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_eGOOgMqQEeWfb98zdYdNrg" type="3002">
+        <element xmi:type="uml:Property" href="CellEditorsConfiguration.profile.uml#_eGFEkMqQEeWfb98zdYdNrg"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_eGOOgcqQEeWfb98zdYdNrg"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_puT2QYlFEeWBlO5sbr8vYw"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_puT2QolFEeWBlO5sbr8vYw"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_puT2Q4lFEeWBlO5sbr8vYw"/>
@@ -68,7 +100,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_puT2SYlFEeWBlO5sbr8vYw"/>
     </children>
     <element xmi:type="uml:Stereotype" href="CellEditorsConfiguration.profile.uml#_puKsUIlFEeWBlO5sbr8vYw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_puO9wYlFEeWBlO5sbr8vYw" x="394" y="247" width="283" height="319"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_puO9wYlFEeWBlO5sbr8vYw" x="394" y="190" width="283" height="376"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_P8nkYIlGEeWBlO5sbr8vYw" type="2006">
     <children xmi:type="notation:DecorationNode" xmi:id="_P8oLcIlGEeWBlO5sbr8vYw" type="5023"/>
@@ -100,7 +132,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UZ_SI4lHEeWBlO5sbr8vYw"/>
     </children>
     <element xmi:type="uml:Profile" href="CellEditorsConfiguration.profile.uml#_UZ814IlHEeWBlO5sbr8vYw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UZ-rEYlHEeWBlO5sbr8vYw" x="86" y="38" width="312" height="149"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UZ-rEYlHEeWBlO5sbr8vYw" x="60" y="21" width="312" height="149"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_d3xtIYlFEeWBlO5sbr8vYw" name="diagram_compatibility_version" stringValue="1.1.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_d3xtIolFEeWBlO5sbr8vYw"/>

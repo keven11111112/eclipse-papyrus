@@ -75,7 +75,7 @@ public class MultiIntegerCellEditorConfiguration implements ICellAxisConfigurati
 				EClassifier etype = feature.getEType();
 				if (etype instanceof EDataType) {
 					EDataType datatype = (EDataType) etype;
-					result = TypesConstants.INTEGER.equals(datatype.getName());
+					result = TypesConstants.INTEGER.equals(datatype.getName()) || TypesConstants.EINT.equals(datatype.getName());
 				}
 			}
 		}

@@ -18,6 +18,7 @@ import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.utils.PrimitivesTypesUtils;
 import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
@@ -57,7 +58,7 @@ public class UMLStereotypeMultiUnlimitedNaturalCellEditorConfiguration extends M
 				Type type = prop.getType();
 				if (type instanceof DataType) {
 					final String name = type.getName();
-					result = PrimitivesTypesUtils.UML_UNLIMITED_NATURAL.equals(name);
+					result = type instanceof PrimitiveType && PrimitivesTypesUtils.UML_UNLIMITED_NATURAL.equals(name);
 				}
 			}
 		}
