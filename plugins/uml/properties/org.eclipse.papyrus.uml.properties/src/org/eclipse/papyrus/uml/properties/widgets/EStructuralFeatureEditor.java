@@ -199,6 +199,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 						// TODO widget not available
 					} else {
 						LongEditor editor = new LongEditor(pageBook, style);
+						setValueEditorProperties(editor, element, title, feature);
 						currentPage = editor;
 					}
 				}
