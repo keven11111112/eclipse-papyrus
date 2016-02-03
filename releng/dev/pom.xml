@@ -55,13 +55,13 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.2/R201511170833/mwe</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.3/R201512160556/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.2/R201511170842/mwe2lang/</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.3/R201512160634/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
@@ -150,13 +150,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>${eclipse.download}/modeling/tmf/xtext/updates/releases/2.8.4/</url>
+			<url>${eclipse.download}/modeling/tmf/xtext/updates/releases/2.9.1/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>${eclipse.download}/webtools/downloads/drops/R3.7.2/S-3.7.2RC1-20160118020043/repository/</url>
+			<url>${eclipse.download}/webtools/downloads/drops/R3.7.2/S-3.7.2RC2-20160202064558/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
@@ -174,7 +174,7 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201601191321</url>
+			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201602021013</url>
 		</repository>
 		<repository>
 			<id>b3</id>
