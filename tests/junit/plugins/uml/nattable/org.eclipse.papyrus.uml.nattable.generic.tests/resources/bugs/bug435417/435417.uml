@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RootElement="http:///schemas/RootElement/_HBbOQMpxEeWJ1Y7gbiFNRg/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http:///schemas/RootElement/_HBbOQMpxEeWJ1Y7gbiFNRg/0 435417.profile.uml#_HBgGwMpxEeWJ1Y7gbiFNRg">
+  <uml:Model xmi:id="_Lh5IwMpxEeWJ1Y7gbiFNRg" name="RootElement">
+    <packagedElement xmi:type="uml:Class" xmi:id="_OD-rAMpxEeWJ1Y7gbiFNRg" name="Class1"/>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_NncgAMpxEeWJ1Y7gbiFNRg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NneVMMpxEeWJ1Y7gbiFNRg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NneVMcpxEeWJ1Y7gbiFNRg" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NneVMspxEeWJ1Y7gbiFNRg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NneVM8pxEeWJ1Y7gbiFNRg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NneVNMpxEeWJ1Y7gbiFNRg" key="Date" value="2016-02-03"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NneVNcpxEeWJ1Y7gbiFNRg" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_NnduIMpxEeWJ1Y7gbiFNRg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="435417.profile.uml#_HBgGwMpxEeWJ1Y7gbiFNRg"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="435417.profile.uml#_5Nvb8MpwEeWJ1Y7gbiFNRg"/>
+    </profileApplication>
+  </uml:Model>
+  <RootElement:Stereotype2 xmi:id="_P5D9UMpxEeWJ1Y7gbiFNRg" name="Vincent" isHuman="true" base_Class="_OD-rAMpxEeWJ1Y7gbiFNRg" age="30" weight="68.5"/>
+</xmi:XMI>

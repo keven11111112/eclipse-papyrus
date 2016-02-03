@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_5Nvb8MpwEeWJ1Y7gbiFNRg" name="RootElement" metaclassReference="_9dNGAMpwEeWJ1Y7gbiFNRg">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HBffsMpxEeWJ1Y7gbiFNRg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_HBgGwMpxEeWJ1Y7gbiFNRg" name="RootElement" nsURI="http:///schemas/RootElement/_HBbOQMpxEeWJ1Y7gbiFNRg/0" nsPrefix="RootElement">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HBijAMpxEeWJ1Y7gbiFNRg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HBijAcpxEeWJ1Y7gbiFNRg" key="Version" value="0.0.1"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HBijAspxEeWJ1Y7gbiFNRg" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HBijA8pxEeWJ1Y7gbiFNRg" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HBijBMpxEeWJ1Y7gbiFNRg" key="Date" value="2016-02-03"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HBijBcpxEeWJ1Y7gbiFNRg" key="Author" value=""/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HBgGwcpxEeWJ1Y7gbiFNRg" name="Stereotype1">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HBgGwspxEeWJ1Y7gbiFNRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_6pzKQMpwEeWJ1Y7gbiFNRg"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_HBgGw8pxEeWJ1Y7gbiFNRg" name="name" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//String"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_HBgGxcpxEeWJ1Y7gbiFNRg" name="isHuman" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_HBgGx8pxEeWJ1Y7gbiFNRg" name="Stereotype2" eSuperTypes="_HBgGwcpxEeWJ1Y7gbiFNRg">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HBgGyMpxEeWJ1Y7gbiFNRg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_7VPT8MpwEeWJ1Y7gbiFNRg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_HBgGycpxEeWJ1Y7gbiFNRg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_HBgGy8pxEeWJ1Y7gbiFNRg" name="age" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Integer"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_HBgGzcpxEeWJ1Y7gbiFNRg" name="weight" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Real"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:type="uml:ElementImport" xmi:id="_9dNGAMpwEeWJ1Y7gbiFNRg" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_6pzKQMpwEeWJ1Y7gbiFNRg" name="Stereotype1">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_-wB_0MpwEeWJ1Y7gbiFNRg" name="name">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__Arq8MpwEeWJ1Y7gbiFNRg" name="isHuman">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_7VPT8MpwEeWJ1Y7gbiFNRg" name="Stereotype2">
+    <generalization xmi:type="uml:Generalization" xmi:id="_99iy8MpwEeWJ1Y7gbiFNRg" general="_6pzKQMpwEeWJ1Y7gbiFNRg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_-T3oQMpwEeWJ1Y7gbiFNRg" name="base_Class" association="_-T1MAMpwEeWJ1Y7gbiFNRg">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__eMtYMpwEeWJ1Y7gbiFNRg" name="age">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="__tefgMpwEeWJ1Y7gbiFNRg" name="weight">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Real"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_-T1MAMpwEeWJ1Y7gbiFNRg" name="E_Stereotype2_Class1" memberEnd="_-T3BMMpwEeWJ1Y7gbiFNRg _-T3oQMpwEeWJ1Y7gbiFNRg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_-T3BMMpwEeWJ1Y7gbiFNRg" name="extension_Stereotype2" type="_7VPT8MpwEeWJ1Y7gbiFNRg" aggregation="composite" association="_-T1MAMpwEeWJ1Y7gbiFNRg"/>
+  </packagedElement>
+</uml:Profile>

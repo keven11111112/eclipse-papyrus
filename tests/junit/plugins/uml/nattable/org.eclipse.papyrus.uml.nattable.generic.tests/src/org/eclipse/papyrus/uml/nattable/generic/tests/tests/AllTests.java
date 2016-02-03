@@ -20,6 +20,7 @@ import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.AxisChangeIndexWithou
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.InvertedAxisChangeIndexWithoutConfigurationTest;
 import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.OpenAndDeleteTest;
+import org.eclipse.papyrus.uml.nattable.generic.tests.bugs.StereotypeInheritDisplayTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -40,7 +41,10 @@ import org.junit.runners.Suite.SuiteClasses;
 		FilterStringMatcherTest.class,
 		FilterEEnumMatcherTest.class,
 		FilterNumericMatcherTest.class,
-		FilterUMLEnumerationMatcherTest.class
+		FilterUMLEnumerationMatcherTest.class,
+		
+		// Stereotype inherited properties
+		StereotypeInheritDisplayTest.class,
 })
 public class AllTests {
 	// JUnit 4 test suite
