@@ -43,6 +43,7 @@ import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -233,6 +234,16 @@ public class CreateOrShowExistingElementHelper {
 						if (identicalAssociation) {
 							existingElement.add(new LinkEndsMapper(current, sources, null, null));
 						}
+					}
+				}
+			}
+		} else if (UMLPackage.eINSTANCE.getTransition().equals(wantedEClass)) {
+			for (final Element current : ((Region) request.getContainer()).getTransitions()) {
+				if (hasWantedType(current, wantedElementType)) {
+					final Collection<?> sources = this.linkMappingHelper.getSource(current);
+					final Collection<?> targets = this.linkMappingHelper.getTarget(current);
+					if (sources.contains(request.getSource()) && targets.contains(request.getTarget())) {
+						existingElement.add(new LinkEndsMapper(current, null, sources, targets));
 					}
 				}
 			}
