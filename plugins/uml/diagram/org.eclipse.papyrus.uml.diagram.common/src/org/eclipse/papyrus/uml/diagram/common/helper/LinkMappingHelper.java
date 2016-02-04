@@ -26,6 +26,7 @@ import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.util.UMLSwitch;
 
 /**
@@ -160,6 +161,11 @@ public class LinkMappingHelper {
 		public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
 			return Collections.EMPTY_LIST;
 		};
+
+		@Override
+		public Collection<?> caseTransition(Transition object) {
+			return Collections.singletonList(object.getSource());
+		}
 	}
 
 	/**
@@ -240,6 +246,11 @@ public class LinkMappingHelper {
 		public Collection<?> defaultCase(org.eclipse.emf.ecore.EObject object) {
 			return Collections.EMPTY_LIST;
 		};
+
+		@Override
+		public Collection<?> caseTransition(Transition object) {
+			return Collections.singletonList(object.getTarget());
+		}
 	}
 
 }
