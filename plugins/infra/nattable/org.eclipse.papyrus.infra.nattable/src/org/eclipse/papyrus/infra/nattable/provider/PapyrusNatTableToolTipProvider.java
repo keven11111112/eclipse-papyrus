@@ -153,7 +153,10 @@ public class PapyrusNatTableToolTipProvider extends NatTableContentTooltip {
 			DecorationService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.DECORATION_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.DECORATION_SERVICE_ID);
 			Object value = cell.getDataValue();
 			if (value != null) {
-				return Decoration.getMessageFromDecorations(serv, AxisUtils.getRepresentedElement(value));
+				Object element = AxisUtils.getRepresentedElement(value);
+				if (null != element) {
+					return Decoration.getMessageFromDecorations(serv, element);
+				}
 			}
 		}
 		return super.getText(event);
