@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.test.copyPaste.ConstraintPasteStrat
 import org.eclipse.papyrus.uml.diagram.clazz.test.legacy.PackageDiagramLegacyTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug382954_InstanceSpecificationLink;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug476872_MoveCommandTest;
+import org.eclipse.papyrus.uml.diagram.clazz.test.tests.Bug481317_MoveGeneralizationTest;
 import org.eclipse.papyrus.uml.diagram.clazz.test.tests.RoundedCompartmentTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
@@ -37,7 +38,8 @@ import org.junit.runners.Suite.SuiteClasses;
 		Bug382954_InstanceSpecificationLink.class,
 		ConstraintPasteStrategyTest.class,
 		RoundedCompartmentTest.class,
-		Bug476872_MoveCommandTest.class
+		Bug476872_MoveCommandTest.class,
+		Bug481317_MoveGeneralizationTest.class
 		// load
 		// LoadTests.class
 

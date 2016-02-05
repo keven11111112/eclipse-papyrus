@@ -13,29 +13,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.suites;
 
-import org.junit.runner.RunWith;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
+import org.junit.runner.RunWith;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
  * Main test suite class
  */
 @RunWith(ClassificationSuite.class)
-@SuiteClasses({ 
- AllCopyPasteTests.class,
- AllCreationCustomTests.class,
- AllCreationInheritedTests.class,
- AllDiagramTests.class,
- AllDnDCustomTests.class,
- AllDnDInheritedTests.class,
- AllCreationLinkTests.class,
- AllCreationAssociationTests.class,
- AllDnDLinkTests.class,
- AllDeletionTests.class, 
- AllUtilsTests.class,
- AllCanonicalTests.class,
- AllProviderTests.class
- })
+@SuiteClasses({
+		AllCopyPasteTests.class,
+		AllCreationCustomTests.class,
+		AllCreationInheritedTests.class,
+		AllDiagramTests.class,
+		AllDnDCustomTests.class,
+		AllDnDInheritedTests.class,
+		AllCreationLinkTests.class,
+		AllCreationAssociationTests.class,
+		AllDnDLinkTests.class,
+		AllDeletionTests.class,
+		AllUtilsTests.class,
+		AllCanonicalTests.class,
+		AllProviderTests.class
+})
 public class AllTests {
 
 }
