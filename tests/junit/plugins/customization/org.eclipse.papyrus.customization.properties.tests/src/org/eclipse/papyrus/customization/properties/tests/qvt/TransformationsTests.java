@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 422257
- *
+ *  Slimane El Ouadi - elouadi.slimane@yahoo.fr - Bug 507633
  *****************************************************************************/
 package org.eclipse.papyrus.customization.properties.tests.qvt;
 
@@ -120,8 +120,29 @@ public class TransformationsTests extends AbstractPapyrusTest {
 		Assert.assertEquals("PropertiesLayout", widget.getLayout().getLayoutType().getWidgetClass()); //$NON-NLS-1$ //The layout is a Papyrus Properties Layout
 		Assert.assertEquals(3, widget.getWidgets().size()); // There are exactly three widgets under the root composite
 
-		// ...
-		// More precise tests might be required...
+		//First child
+        EObject firstWidgetInRoot = widget.getWidgets().get(0);
+        CompositeWidget widgetFirst = (CompositeWidget) firstWidgetInRoot;
+        Assert.assertTrue(widgetFirst instanceof CompositeWidget); 
+        Assert.assertEquals("Composite",widgetFirst.getWidgetType().getWidgetClass());
+        Assert.assertEquals("PropertiesLayout", widget.getLayout().getLayoutType().getWidgetClass());
+        Assert.assertEquals(2, widgetFirst.getWidgets().size());
+        
+        //Second child
+        EObject secondWidgetInRoot = widget.getWidgets().get(1);
+        CompositeWidget widgetSecond= (CompositeWidget) secondWidgetInRoot;
+        Assert.assertTrue(widgetSecond instanceof CompositeWidget); 
+        Assert.assertEquals("Composite",widgetSecond.getWidgetType().getWidgetClass());
+        Assert.assertEquals("PropertiesLayout", widgetSecond.getLayout().getLayoutType().getWidgetClass());
+        Assert.assertEquals(3, widgetSecond.getWidgets().size());
+
+        //third child
+        EObject thirdWidgetInRoot = widget.getWidgets().get(2);
+        CompositeWidget widgetThird= (CompositeWidget) thirdWidgetInRoot;
+        Assert.assertTrue(widgetThird instanceof CompositeWidget); 
+        Assert.assertEquals("Composite",widgetThird.getWidgetType().getWidgetClass());
+        Assert.assertEquals("PropertiesLayout", widgetThird.getLayout().getLayoutType().getWidgetClass());
+        Assert.assertEquals(2, widgetThird.getWidgets().size());
 	}
 
 	@Test
