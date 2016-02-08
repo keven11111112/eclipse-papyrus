@@ -24,10 +24,10 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.uml.elementtypesconfigurations.edithelper.DefaultUMLEditHelper;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.uml2.uml.Element;
 
@@ -42,7 +42,7 @@ import org.eclipse.uml2.uml.Element;
  * The configure command allows contributions provided by the request parameters.
  * </pre>
  */
-public class ElementEditHelper extends DefaultEditHelper {
+public class ElementEditHelper extends DefaultUMLEditHelper {
 
 	/**
 	 * Obtains an edit command, if available, from the Papyrus Element Edit Service.

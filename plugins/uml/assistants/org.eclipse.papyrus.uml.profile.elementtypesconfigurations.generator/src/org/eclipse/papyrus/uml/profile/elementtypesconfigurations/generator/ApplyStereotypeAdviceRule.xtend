@@ -15,8 +15,8 @@ package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator
 import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfigurationFactory
+import org.eclipse.papyrus.uml.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration
+import org.eclipse.papyrus.uml.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfigurationFactory
 import org.eclipse.uml2.uml.Stereotype
 
 /**

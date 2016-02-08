@@ -18,7 +18,7 @@ import org.eclipse.core.resources.ResourcesPlugin
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsFactory
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationFactory
+import org.eclipse.papyrus.uml.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfigurationFactory
 import org.eclipse.uml2.uml.Stereotype
 
 import static extension org.eclipse.emf.common.util.URI.decode

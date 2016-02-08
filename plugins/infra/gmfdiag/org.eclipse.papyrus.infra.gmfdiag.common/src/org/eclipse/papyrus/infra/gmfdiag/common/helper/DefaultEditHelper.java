@@ -46,8 +46,6 @@ import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 
 /**
  * <pre>
- * This is a default Helper for UML element.
- * 
  * The only reason to override getDestroyElementWithDependentsCommand and getDestroyElementCommand
  * method here is to propagate the shared IClientContext used by Papyrus during the request creation.
  * Without this changes, the command to destroy dependent element won't be correctly created,
@@ -366,7 +364,7 @@ public class DefaultEditHelper extends AbstractNotifierEditHelper {
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
 			}
 		}
-		
+
 		Arrays.sort(advices, new AdviceComparator());
 
 		return advices;

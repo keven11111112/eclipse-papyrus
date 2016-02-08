@@ -139,7 +139,7 @@
 		<module>../../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.ui</module>
         <module>../../plugins/infra/org.eclipse.papyrus.infra.filters</module>
         <module>../../plugins/infra/org.eclipse.papyrus.infra.filters.edit</module>
-		<module>../../plugins/uml/tools/org.eclipse.papyrus.uml.tools.elementtypesconfigurations</module>
+		<module>../../plugins/uml/org.eclipse.papyrus.uml.elementtypesconfigurations</module>
         <module>../../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant</module>
         <module>../../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.edit</module>
         <module>../../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.editor</module>

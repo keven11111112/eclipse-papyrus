@@ -39,10 +39,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.rules.ResourceSetFixture;
+import org.eclipse.papyrus.uml.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
+import org.eclipse.papyrus.uml.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ElementTypesGenerator;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;

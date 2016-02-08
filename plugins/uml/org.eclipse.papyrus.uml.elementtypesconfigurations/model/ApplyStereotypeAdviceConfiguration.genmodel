@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2014 CEA LIST.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA; CEA LIST - Initial API and implementation"
+    modelDirectory="/org.eclipse.papyrus.uml.elementtypesconfigurations/src-gen"
+    editDirectory="/org.eclipse.papyrus.uml.elementtypesconfigurations/src-gen"
+    editorDirectory="/org.eclipse.papyrus.uml.elementtypesconfigurations.editor/src-gen"
+    modelPluginID="org.eclipse.papyrus.uml.elementtypesconfigurations" modelName="ApplyStereotypeAdviceConfiguration"
+    modelPluginClass="" testsDirectory="/org.eclipse.papyrus.uml.elementtypesconfigurations.tests/src-gen"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.genmodel#//elementtypesconfigurations platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
+  <foreignModel>ApplyStereotypeAdviceConfiguration.ecore</foreignModel>
+  <genPackages prefix="ApplyStereotypeAdviceConfiguration" basePackage="org.eclipse.papyrus.uml.elementtypesconfigurations"
+      resource="XML" disposableProviderFactory="true" childCreationExtenders="true"
+      ecorePackage="ApplyStereotypeAdviceConfiguration.ecore#/">
+    <genClasses ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//ApplyStereotypeAdviceConfiguration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeAdviceConfiguration.ecore#//ApplyStereotypeAdviceConfiguration/stereotypesToApply"/>
+    </genClasses>
+    <genClasses ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//StereotypeToApply">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeAdviceConfiguration.ecore#//StereotypeToApply/stereotypeQualifiedName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeAdviceConfiguration.ecore#//StereotypeToApply/updateName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeAdviceConfiguration.ecore#//StereotypeToApply/requiredProfiles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeAdviceConfiguration.ecore#//StereotypeToApply/featuresToSet"/>
+    </genClasses>
+    <genClasses ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//FeatureToSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ApplyStereotypeAdviceConfiguration.ecore#//FeatureToSet/featureName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeAdviceConfiguration.ecore#//FeatureToSet/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//FeatureValue"/>
+    <genClasses ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//ListValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ApplyStereotypeAdviceConfiguration.ecore#//ListValue/values"/>
+    </genClasses>
+    <genClasses ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//ConstantValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ApplyStereotypeAdviceConfiguration.ecore#//ConstantValue/valueInstance"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//DynamicValue"/>
+    <genClasses ecoreClass="ApplyStereotypeAdviceConfiguration.ecore#//QueryExecutionValue"/>
+  </genPackages>
+</genmodel:GenModel>
