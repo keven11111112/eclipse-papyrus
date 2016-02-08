@@ -7,11 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
  *		CEA LIST - Initial API and implementation
- *		Bonnabesse Fanch (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 478288
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 478288, 419357
  *
  *****************************************************************************/
+
 package org.eclipse.papyrus.sysml.diagram.common.utils;
 
 import java.util.ArrayList;
@@ -27,10 +27,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
-import org.eclipse.papyrus.sysml.service.types.utils.AssociationUtils;
 import org.eclipse.papyrus.sysml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
+import org.eclipse.papyrus.uml.diagram.common.util.AssociationUtil;
 import org.eclipse.papyrus.uml.diagram.common.util.LinkEndsMapper;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
@@ -202,42 +202,7 @@ public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExisting
 					final Collection<?> targets = this.linkMappingHelper.getTarget(current);
 
 					if (sources.contains(request.getSource()) && targets.contains(request.getTarget()) && (current instanceof Association)) {
-						boolean identicalAssociation = true;
-
-						final Iterator<Property> iterator = ((Association) current).getMemberEnds().iterator();
-
-						while (iterator.hasNext() && identicalAssociation) {
-							final Property property = iterator.next();
-
-							final boolean source = request.getSource().equals(property.getType());
-
-							// Handle of all types of Association in SysML
-							if (SysMLElementTypes.ASSOCIATION_NONE_DIRECTED.equals(wantedElementType)) {
-								if (!AssociationUtils.isIdenticalProperties(false, AggregationKind.NONE_LITERAL, source, property)) {
-									identicalAssociation = false;
-								}
-							} else if (SysMLElementTypes.ASSOCIATION_NONE.equals(wantedElementType)) {
-								if (!AssociationUtils.isIdenticalProperties(true, AggregationKind.NONE_LITERAL, source, property)) {
-									identicalAssociation = false;
-								}
-							} else if (SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED.equals(wantedElementType)) {
-								if (!AssociationUtils.isIdenticalProperties(false, AggregationKind.COMPOSITE_LITERAL, source, property)) {
-									identicalAssociation = false;
-								}
-							} else if (SysMLElementTypes.ASSOCIATION_COMPOSITE.equals(wantedElementType)) {
-								if (!AssociationUtils.isIdenticalProperties(true, AggregationKind.COMPOSITE_LITERAL, source, property)) {
-									identicalAssociation = false;
-								}
-							} else if (SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED.equals(wantedElementType)) {
-								if (!AssociationUtils.isIdenticalProperties(false, AggregationKind.SHARED_LITERAL, source, property)) {
-									identicalAssociation = false;
-								}
-							} else if (SysMLElementTypes.ASSOCIATION_SHARED.equals(wantedElementType)) {
-								if (!AssociationUtils.isIdenticalProperties(true, AggregationKind.SHARED_LITERAL, source, property)) {
-									identicalAssociation = false;
-								}
-							}
-						}
+						boolean identicalAssociation = compareMembers(current, request, wantedElementType);
 
 						if (identicalAssociation) {
 							existingElement.add(new LinkEndsMapper(current, sources, null, null));
@@ -250,6 +215,85 @@ public class SysMLCreateOrShowExistingElementHelper extends CreateOrShowExisting
 		}
 
 		return existingElement;
+	}
+
+	/**
+	 * Manages all the members of the current relationship to compare with a new relationship.
+	 * 
+	 * @param current
+	 *            The element to compare with the created element.
+	 * @param request
+	 *            The creation relationship request.
+	 * @param wantedElementType
+	 *            The type of the created relationship.
+	 * @return The result of the comparison.
+	 */
+	private boolean compareMembers(final Element current, final CreateRelationshipRequest request, final IElementType wantedElementType) {
+		boolean identicalAssociation = true;
+
+		final Iterator<Property> iterator = ((Association) current).getMemberEnds().iterator();
+
+		while (iterator.hasNext() && identicalAssociation) {
+			final Property property = iterator.next();
+
+			final boolean source = request.getSource().equals(property.getType());
+
+			boolean expectedNavigable = true;
+			AggregationKind expectedAggregation = AggregationKind.NONE_LITERAL;
+
+			// Handle of all types of Association in SysML
+			if (SysMLElementTypes.ASSOCIATION_NONE_DIRECTED.equals(wantedElementType)) {
+				if (source) {
+					expectedNavigable = false;
+				}
+
+				if (!AssociationUtil.isIdenticalProperties(expectedNavigable, expectedAggregation, property)) {
+					identicalAssociation = false;
+				}
+			} else if (SysMLElementTypes.ASSOCIATION_NONE.equals(wantedElementType)) {
+				if (!AssociationUtil.isIdenticalProperties(expectedNavigable, expectedAggregation, property)) {
+					identicalAssociation = false;
+				}
+			} else if (SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED.equals(wantedElementType)) {
+				if (source) {
+					expectedNavigable = false;
+				} else {
+					expectedAggregation = AggregationKind.COMPOSITE_LITERAL;
+				}
+
+				if (!AssociationUtil.isIdenticalProperties(expectedNavigable, expectedAggregation, property)) {
+					identicalAssociation = false;
+				}
+			} else if (SysMLElementTypes.ASSOCIATION_COMPOSITE.equals(wantedElementType)) {
+				if (!source) {
+					expectedAggregation = AggregationKind.COMPOSITE_LITERAL;
+				}
+
+				if (!AssociationUtil.isIdenticalProperties(expectedNavigable, expectedAggregation, property)) {
+					identicalAssociation = false;
+				}
+			} else if (SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED.equals(wantedElementType)) {
+				if (source) {
+					expectedNavigable = false;
+				} else {
+					expectedAggregation = AggregationKind.SHARED_LITERAL;
+				}
+
+				if (!AssociationUtil.isIdenticalProperties(expectedNavigable, expectedAggregation, property)) {
+					identicalAssociation = false;
+				}
+			} else if (SysMLElementTypes.ASSOCIATION_SHARED.equals(wantedElementType)) {
+				if (!source) {
+					expectedAggregation = AggregationKind.SHARED_LITERAL;
+				}
+
+				if (!AssociationUtil.isIdenticalProperties(expectedNavigable, expectedAggregation, property)) {
+					identicalAssociation = false;
+				}
+			}
+		}
+
+		return identicalAssociation;
 	}
 
 }

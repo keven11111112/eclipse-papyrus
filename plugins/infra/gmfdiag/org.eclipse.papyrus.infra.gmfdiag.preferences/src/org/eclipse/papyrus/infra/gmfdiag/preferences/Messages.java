@@ -15,8 +15,6 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.infra.gmfdiag.preferences.messages"; //$NON-NLS-1$
 
-
-
 	public static String AbstractPapyrusElementPreferencePage_Colors;
 
 	public static String AbstractPapyrusElementPreferencePage_Font;
@@ -85,9 +83,12 @@ public class Messages extends NLS {
 
 	public static String DimensionGroupName;
 
-
-
 	public static String NodeCompartmentGroup_Compartiments;
+
+	public static String RestoreElementGroup_RestoreElementLink;
+
+	public static String RestoreElementGroup_AlwaysCreateANewLink;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

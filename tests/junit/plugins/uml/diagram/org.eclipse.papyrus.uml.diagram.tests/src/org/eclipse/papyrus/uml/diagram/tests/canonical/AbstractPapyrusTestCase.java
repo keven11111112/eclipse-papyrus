@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -47,7 +48,9 @@ import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.diagram.common.commands.CreateUMLModelCommand;
@@ -147,6 +150,12 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		// Set the preference to "true" for the dialog to display existing link instead of create a new one.
+		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		final String alwaysCreateLinkPreferenceName = PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RESTORE_LINK_ELEMENT);
+		store.setValue(alwaysCreateLinkPreferenceName, true);
+		store.setDefault(alwaysCreateLinkPreferenceName, true);
+
 		suiteState.setupTest();
 	}
 
@@ -170,7 +179,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 * @return the root semantic model
 	 */
 	protected Element getRootSemanticModel() {
-		return (Element)getRootView().getElement();
+		return (Element) getRootView().getElement();
 	}
 
 	/**
@@ -187,13 +196,13 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		Runnable runnable = new Runnable() {
 
 			public void run() {
-				//if the diagram is a Profile we dont save it because we dont need to define it
-				if(diagramEditPart == null || !diagramEditPart.getDiagramView().getType().equals("PapyrusUMLProfileDiagram")) { //$NON-NLS-1$
+				// if the diagram is a Profile we dont save it because we dont need to define it
+				if (diagramEditPart == null || !diagramEditPart.getDiagramView().getType().equals("PapyrusUMLProfileDiagram")) { //$NON-NLS-1$
 					papyrusEditor.doSave(new NullProgressMonitor());
 				}
 
 				// diResourceSet.save( new NullProgressMonitor());
-				if(diagramEditor != null) {
+				if (diagramEditor != null) {
 					diagramEditor.close(true);
 				}
 				papyrusEditor = null;
@@ -210,14 +219,14 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 	 * @return the diagram edit part
 	 */
 	protected DiagramEditPart getDiagramEditPart() {
-		if(diagramEditPart == null) {
-			diagramEditor = (UmlGmfDiagramEditor)papyrusEditor.getActiveEditor();
-			diagramEditPart = (DiagramEditPart)papyrusEditor.getAdapter(DiagramEditPart.class);
+		if (diagramEditPart == null) {
+			diagramEditor = (UmlGmfDiagramEditor) papyrusEditor.getActiveEditor();
+			diagramEditPart = (DiagramEditPart) papyrusEditor.getAdapter(DiagramEditPart.class);
 			Assert.assertNotNull("Cannot find the diagram editor", diagramEditor); //$NON-NLS-1$
 			Assert.assertNotNull("Cannot find the Diagram edit part", diagramEditPart); //$NON-NLS-1$
-			StringValueStyle style = (StringValueStyle)diagramEditPart.getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), DiagramVersioningUtils.COMPATIBILITY_VERSION);
+			StringValueStyle style = (StringValueStyle) diagramEditPart.getNotationView().getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), DiagramVersioningUtils.COMPATIBILITY_VERSION);
 			Assert.assertNotNull("A version must be associated with every diagram", style); //$NON-NLS-1$
-			Assert.assertTrue("The created diagram has not a good version", DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram)diagramEditPart.getNotationView())); //$NON-NLS-1$
+			Assert.assertTrue("The created diagram has not a good version", DiagramVersioningUtils.isOfCurrentPapyrusVersion((Diagram) diagramEditPart.getNotationView())); //$NON-NLS-1$
 		}
 		return diagramEditPart;
 	}
@@ -248,7 +257,7 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 			public void run() {
 				try {
 					IIntroPart introPart = PlatformUI.getWorkbench().getIntroManager().getIntro();
-					if(introPart != null) {
+					if (introPart != null) {
 						PlatformUI.getWorkbench().getIntroManager().closeIntro(introPart);
 					}
 				} catch (Exception ex) {
@@ -269,16 +278,16 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 		this.diResourceSet = houseKeeper.cleanUpLater(new DiResourceSet());
 		// at this point, no resources have been created
 
-		if(file.exists()) {
+		if (file.exists()) {
 			file.delete(true, new NullProgressMonitor());
 		}
-		if(!file.exists()) {
+		if (!file.exists()) {
 			// Don't create a zero-byte file. Create an empty XMI document
 			Resource diResource = diResourceSet.createResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
 			diResource.save(null);
 			diResource.unload();
 			diResourceSet.createsModels(file);
-			if(!file.getName().endsWith(".profile.di")) { //$NON-NLS-1$
+			if (!file.getName().endsWith(".profile.di")) { //$NON-NLS-1$
 
 				new CreateUMLModelCommand().createModel(this.diResourceSet);
 
@@ -304,11 +313,11 @@ public abstract class AbstractPapyrusTestCase extends AbstractPapyrusTest {
 						} catch (NotFoundException e) {
 							return CommandResult.newErrorCommandResult(e);
 						}
-						if(obj instanceof Model) {
-							Model model = (Model)obj;
-							for(String uri : getRequiredProfiles()) {
+						if (obj instanceof Model) {
+							Model model = (Model) obj;
+							for (String uri : getRequiredProfiles()) {
 								EPackage definition = EPackage.Registry.INSTANCE.getEPackage(uri);
-								if(definition != null) {
+								if (definition != null) {
 									Profile profile = UMLUtil.getProfile(definition, model);
 									model.applyProfile(profile);
 								}

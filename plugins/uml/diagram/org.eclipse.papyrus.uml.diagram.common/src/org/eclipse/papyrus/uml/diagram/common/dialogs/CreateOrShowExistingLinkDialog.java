@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.dialogs;
@@ -20,6 +21,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
@@ -28,13 +30,17 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerColumn;
+import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.uml.diagram.common.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.common.util.LinkEndsMapper;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -55,9 +61,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 * indexes of the button
 	 */
 	public static final int CREATE = Dialog.OK;
-
 	public static final int RESTORE_SELECTED_LINK = CREATE + 1;
-
 	public static final int CANCEL = RESTORE_SELECTED_LINK + 1;
 
 	/**
@@ -69,9 +73,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 * Message for the Buttons
 	 */
 	private static final String CREATE_STRING = Messages.CreateOrShowExistingLinkDialog_Create;
-
 	private static final String RESTORE_SELECTION = Messages.CreateOrShowExistingLinkDialog_RestoreSelection;
-
 	private static final String CANCEL_STRING = "Cancel"; //$NON-NLS-1$
 
 
@@ -79,25 +81,21 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 * Titles for the columns
 	 */
 	private static final String NAME = Messages.CreateOrShowExistingLinkDialog_Name;
-
 	private static final String ENDS = Messages.CreateOrShowExistingLinkDialog_Ends;
-
 	private static final String SOURCES = Messages.CreateOrShowExistingLinkDialog_Sources;
-
 	private static final String TARGETS = Messages.CreateOrShowExistingLinkDialog_Targets;
+	private static final String CHECKBOX_LABEL = Messages.CreateOrShowExistingElementHelper_AlwaysCreateNewLink;
 
 	/**
 	 * Size for the columns
 	 */
 	private static final int COLUMN_NAME_SIZE = 150;
-
 	private static final int COLUMN_SIZE = 200;
 
 	/**
 	 * the list of the elements to display in the Table
 	 */
 	private final List<LinkEndsMapper> existingLinks;
-
 
 	final UMLLabelProvider labelProvider = new UMLLabelProvider();
 
@@ -127,6 +125,11 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	private EObject result = null;
 
 	/**
+	 * The value of the toggle button of the dialog.
+	 */
+	private boolean toggleState = false;
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -150,7 +153,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 * @param viewer
 	 * @return
 	 */
-	private TableViewerColumn createTableViewerColumn(String title, int bound, TableViewer viewer) {
+	private TableViewerColumn createTableViewerColumn(final String title, final int bound, final TableViewer viewer) {
 		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
 		column.setText(title);
@@ -295,10 +298,20 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 		return parent;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected void buttonPressed(int buttonId) {
+	protected void buttonPressed(final int buttonId) {
 		if (buttonId == RESTORE_SELECTED_LINK && this.existingLinks.size() >= this.selectedElementIndex) {
 			this.result = this.existingLinks.get(this.selectedElementIndex).getLink();
+		}
+
+		// If the user selects CREATE or RESTORE and check the toggle button, the preferences are modified
+		if ((CREATE == buttonId || RESTORE_SELECTED_LINK == buttonId) && toggleState) {
+			final IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
+			final String alwaysCreateLinkPreferenceName = PreferencesConstantsHelper.getPapyrusEditorConstant(PreferencesConstantsHelper.RESTORE_LINK_ELEMENT);
+			store.setValue(alwaysCreateLinkPreferenceName, true);
 		}
 		super.buttonPressed(buttonId);
 	}
@@ -318,7 +331,7 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	 * @param list
 	 *            the list of the elements for which we want the label
 	 * @return
-	 *         the string to display for this list
+	 * 		the string to display for this list
 	 */
 	private String getLabel(final Collection<?> list) {
 		if (list != null) {
@@ -338,9 +351,50 @@ public class CreateOrShowExistingLinkDialog extends MessageDialog {
 	/**
 	 *
 	 * @return
-	 *         the selected link
+	 * 		the selected link
 	 */
 	public EObject getResult() {
 		return this.result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Control createDialogArea(final Composite parent) {
+		final Control createDialogArea = super.createDialogArea(parent);
+
+		if (createDialogArea instanceof Composite) {
+			createToggleButton((Composite) createDialogArea);
+		}
+
+		return createDialogArea;
+	}
+
+	/**
+	 * Creates a toggle button.
+	 *
+	 * @param parent
+	 *            The composite in which the toggle button should be placed;
+	 *            must not be <code>null</code>.
+	 * @return The added toggle button; never <code>null</code>.
+	 */
+	protected Button createToggleButton(final Composite parent) {
+		final Button button = new Button(parent, SWT.CHECK | SWT.LEFT);
+		final GridData data = new GridData(SWT.NONE);
+		data.horizontalSpan = 2;
+		button.setLayoutData(data);
+		button.setFont(parent.getFont());
+		button.setText(CHECKBOX_LABEL);
+		button.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				toggleState = button.getSelection();
+			}
+
+		});
+
+		return button;
 	}
 }

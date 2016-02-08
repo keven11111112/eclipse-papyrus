@@ -9,6 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
+ *		Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.preferences;
@@ -144,6 +145,7 @@ public class PreferencesConstantsHelper {
 
 	public final static String INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE_CONSTANT = "invertBindingForDefaultResizeAndConstrainedResize"; //$NON-NLS-1$
 
+	public final static String RESTORE_LINK_ELEMENT_CONSTANT = "restoreLinkElement"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -328,6 +330,11 @@ public class PreferencesConstantsHelper {
 	public static final int INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE = DRAW_CONNECTION_POINT + 1;
 
 	/**
+	 * A preference to indicate if the link element must be restore or not
+	 */
+	public static final int RESTORE_LINK_ELEMENT = INVERT_BINDING_FOR_DEFAULT_RESIZE_AND_CONSTRAINED_RESIZE + 1;
+
+	/**
 	 * Get the preference constant used to store the preference of an element.
 	 *
 	 * @param elementName
@@ -440,6 +447,9 @@ public class PreferencesConstantsHelper {
 			break;
 		case VIEW_PAGE_BREAK:
 			sb.append(VIEW_PAGE_BREAK_CONSTANT);
+			break;
+		case RESTORE_LINK_ELEMENT:
+			sb.append(RESTORE_LINK_ELEMENT_CONSTANT);
 			break;
 		default:
 			break;

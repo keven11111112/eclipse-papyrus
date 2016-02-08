@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *	Fanch Bonnabesse (ALL4TEC) fanch.bonnabesse@alltec.net - Bug 419357
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.messages;
@@ -39,6 +40,8 @@ public class Messages extends NLS {
 
 	public static String CreateOrShowExistingElementHelper_XBetweenTheseElementAlreadyExists;
 
+	public static String CreateOrShowExistingElementHelper_AlwaysCreateNewLink;
+
 	public static String CreateOrShowExistingLinkDialog_Create;
 
 	public static String CreateOrShowExistingLinkDialog_Ends;
@@ -52,7 +55,7 @@ public class Messages extends NLS {
 	public static String CreateOrShowExistingLinkDialog_Sources;
 
 	public static String CreateOrShowExistingLinkDialog_Targets;
-	
+
 	public static String CreateOrSelectTypeDialog_DialogTitle;
 
 	public static String CreateOrSelectTypeDialog_SelectionSectionTitle;
@@ -74,7 +77,7 @@ public class Messages extends NLS {
 	public static String CreateOrSelectTypeDialog_SelectNewTypeContainerDialogTitle;
 
 	public static String CreateOrSelectTypeDialog_SelectNewTypeContainerDialogMessage;
-	
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
