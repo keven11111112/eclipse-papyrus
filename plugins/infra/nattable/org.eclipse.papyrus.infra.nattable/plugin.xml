@@ -1562,9 +1562,9 @@
             class="org.eclipse.papyrus.infra.nattable.wizard.ImportTableWizard"
             icon="icons/import_wiz_16x16-papyrusColor.gif"
             id="org.eclipse.papyrus.infra.nattable.import.category"
-            name="Import In Open Table">
+            name="CSV In Open Table">
          <description>
-            This wizard allows to import a table.
+            This wizard allows to import CSV file in a table.
          </description>
       </wizard>
    </extension>
