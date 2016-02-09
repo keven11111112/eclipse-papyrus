@@ -44,7 +44,7 @@ public class StateActivation extends VertexActivation {
 	protected List<RegionActivation> regionActivation;
 	
 	// The visitors for the connection points (EntryPoint / ExitPoint) owned by this state 
-	protected List<PseudostateActivation> connectionPointActivation;
+	protected List<ConnectionPointActivation> connectionPointActivation;
 	
 	// Boolean flag to know if the entry behavior was completed
 	public boolean isEntryCompleted;
@@ -83,12 +83,12 @@ public class StateActivation extends VertexActivation {
 		((SM_ObjectActivation)context.objectActivation).registerCompletionEvent(this);
 	}
 	
-	public List<PseudostateActivation> getConnectionPointActivation(){
+	public List<ConnectionPointActivation> getConnectionPointActivation(){
 		return this.connectionPointActivation;
 	}
 
-	public PseudostateActivation getConnectionPointActivation(Vertex vertex){
-		PseudostateActivation activation = null;
+	public ConnectionPointActivation getConnectionPointActivation(Vertex vertex){
+		ConnectionPointActivation activation = null;
 		int i = 0;
 		while(i < this.connectionPointActivation.size() && activation==null){
 			if(this.connectionPointActivation.get(i).getNode()==vertex){
@@ -124,7 +124,7 @@ public class StateActivation extends VertexActivation {
 		this.isEntryCompleted = false;
 		this.isDoActivityCompleted = false;
 		this.regionActivation = new ArrayList<RegionActivation>();
-		this.connectionPointActivation = new ArrayList<PseudostateActivation>();
+		this.connectionPointActivation = new ArrayList<ConnectionPointActivation>();
 	}
 	
 	public void activate(){
@@ -133,7 +133,7 @@ public class StateActivation extends VertexActivation {
 		if(state.isComposite()){
 			Object_ context = this.getExecutionContext();
 			for(Pseudostate connectionPoint : state.getConnectionPoints()){
-				PseudostateActivation activation = (PseudostateActivation)context.locus.factory.instantiateVisitor(connectionPoint);
+				ConnectionPointActivation activation = (ConnectionPointActivation)context.locus.factory.instantiateVisitor(connectionPoint);
 				activation.setParent(this);
 				activation.setNode(connectionPoint);
 				this.connectionPointActivation.add(activation);
