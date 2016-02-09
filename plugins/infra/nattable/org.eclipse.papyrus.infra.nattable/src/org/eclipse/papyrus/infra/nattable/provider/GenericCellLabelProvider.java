@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 458260
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bugs 458260, 481366
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.provider;
@@ -92,6 +92,7 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 	private boolean isDisplayCollectionHooks(){
 		// This allow to manage if the hooks of collection will be displayed or not
 		// This will be managed by preference later
+		// Ignore the preference when this is an export to XLS action
 		return false;
 	}
 	
@@ -103,6 +104,7 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 	private boolean isDisplayBigCollection(){
 		// This allow to manage if the big collection display will be added or not
 		// This will be managed by preference later
+		// Ignore the preference when this is an export to XLS action
 		return false;
 	}
 	
@@ -114,16 +116,17 @@ public class GenericCellLabelProvider extends AbstractNattableCellLabelProvider 
 	 * @return The string representing the object.
 	 */
 	protected String getCollectionText(LabelProviderService service, Collection<?> value){
-		final StringBuffer label = new StringBuffer();
+		final StringBuilder label = new StringBuilder();
 		Iterator<?> iter = ((Collection<?>) value).iterator();
 		if(isDisplayCollectionHooks())
 			label.append(Constants.BEGIN_OF_COLLECTION);
 		int i = 1;
 		while (iter.hasNext()) {
 			if (i > MAX_DISPLAYED_ELEMENTS) {
-				if(isDisplayBigCollection())
+				if(isDisplayBigCollection()){
 					label.append(Constants.BIG_COLLECTION);
-				break;
+					break;
+				}
 			}
 
 			Object current = iter.next();
