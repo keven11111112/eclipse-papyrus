@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Ss5AEMuTEeWtzKTAc6Yojw" type="PapyrusUMLProfileDiagram" name="Profile Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_WQK5kMuTEeWtzKTAc6Yojw" type="1030">
+    <children xmi:type="notation:DecorationNode" xmi:id="_WQd0gMuTEeWtzKTAc6Yojw" type="1047"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_WQd0gcuTEeWtzKTAc6Yojw" type="1042">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_WQd0gsuTEeWtzKTAc6Yojw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WQd0g8uTEeWtzKTAc6Yojw"/>
+    </children>
+    <element xmi:type="uml:Profile" href="B2MML_unmerged.profile.uml#__wKQUMuSEeWtzKTAc6Yojw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WQK5kcuTEeWtzKTAc6Yojw" x="292" y="166"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_WUex0MuTEeWtzKTAc6Yojw" type="1030">
+    <children xmi:type="notation:DecorationNode" xmi:id="_WUex0suTEeWtzKTAc6Yojw" type="1047"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_WUex08uTEeWtzKTAc6Yojw" type="1042">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_WUex1MuTEeWtzKTAc6Yojw"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WUex1cuTEeWtzKTAc6Yojw"/>
+    </children>
+    <element xmi:type="uml:Profile" href="B2MML_unmerged.profile.uml#__T_RsMuSEeWtzKTAc6Yojw"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WUex0cuTEeWtzKTAc6Yojw" x="630" y="134"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_Ss5AEcuTEeWtzKTAc6Yojw" name="diagram_compatibility_version" stringValue="1.1.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Ss5AEsuTEeWtzKTAc6Yojw"/>
+  <styles xmi:type="style:PapyrusViewStyle" xmi:id="_Ss5AE8uTEeWtzKTAc6Yojw">
+    <owner xmi:type="uml:Profile" href="B2MML_unmerged.profile.uml#_kE4cEMuSEeWtzKTAc6Yojw"/>
+  </styles>
+  <element xmi:type="uml:Profile" href="B2MML_unmerged.profile.uml#_kE4cEMuSEeWtzKTAc6Yojw"/>
+</notation:Diagram>

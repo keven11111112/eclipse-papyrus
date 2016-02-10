@@ -1,0 +1,900 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_kE4cEMuSEeWtzKTAc6Yojw" name="B2MML" URI="http://papyrus/B2MML">
+  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0VkMuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_jv0VkcuTEeWtzKTAc6Yojw" name="B2MML" nsURI="http://papyrus/B2MML" nsPrefix="B2MML">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0VksuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="__T_RsMuSEeWtzKTAc6Yojw"/>
+    </contents>
+  </eAnnotations>
+  <packagedElement xmi:type="uml:Profile" xmi:id="__T_RsMuSEeWtzKTAc6Yojw" name="B2MML_WorkSchedule" metamodelReference="__T_RscuSEeWtzKTAc6Yojw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0VlMuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_jv0VlcuTEeWtzKTAc6Yojw" name="B2MML_WorkSchedule" nsURI="http://B2MML/schemas/B2MML_WorkSchedule/_jv0Vk8uTEeWtzKTAc6Yojw/0" nsPrefix="B2MML_WorkSchedule">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-HKMuTEeWtzKTAc6Yojw" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jv-HKcuTEeWtzKTAc6Yojw" key="Version" value="0.0.2"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jv-HKsuTEeWtzKTAc6Yojw" key="Comment" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jv-HK8uTEeWtzKTAc6Yojw" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jv-HLMuTEeWtzKTAc6Yojw" key="Date" value="2016-02-05"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_jv-HLcuTEeWtzKTAc6Yojw" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0VlsuTEeWtzKTAc6Yojw" name="UnnamedDataType6">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Vl8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_RtcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0VmMuTEeWtzKTAc6Yojw" name="UnnamedDataType14">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0VmcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_RucuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0VmsuTEeWtzKTAc6Yojw" name="ChangeWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Vm8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_RusuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VnMuTEeWtzKTAc6Yojw" name="change" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VnsuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VoMuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0VlsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VosuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VpMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0VpsuTEeWtzKTAc6Yojw" name="WorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Vp8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XpcuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VqMuTEeWtzKTAc6Yojw" name="workRequest" ordered="false" lowerBound="1" eType="_jv0VvsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VqsuTEeWtzKTAc6Yojw" name="hierarchyScope" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VrMuTEeWtzKTAc6Yojw" name="endTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VrsuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VsMuTEeWtzKTAc6Yojw" name="description" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VssuTEeWtzKTAc6Yojw" name="workType" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VtMuTEeWtzKTAc6Yojw" name="startTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VtsuTEeWtzKTAc6Yojw" name="iD" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VuMuTEeWtzKTAc6Yojw" name="publishedDate" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VusuTEeWtzKTAc6Yojw" name="scheduleState" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VvMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0VvsuTEeWtzKTAc6Yojw" name="WorkRequest">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Vv8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_R28uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VwMuTEeWtzKTAc6Yojw" name="description" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VwsuTEeWtzKTAc6Yojw" name="priority" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VxMuTEeWtzKTAc6Yojw" name="hierarchyScope" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VxsuTEeWtzKTAc6Yojw" name="endTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VyMuTEeWtzKTAc6Yojw" name="workRequest" ordered="false" lowerBound="1" eType="_jv0VvsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VysuTEeWtzKTAc6Yojw" name="jobOrder" ordered="false" lowerBound="1" eType="_jv0V1MuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VzMuTEeWtzKTAc6Yojw" name="startTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0VzsuTEeWtzKTAc6Yojw" name="workype" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V0MuTEeWtzKTAc6Yojw" name="iD" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V0suTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0V1MuTEeWtzKTAc6Yojw" name="JobOrder">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0V1cuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XUsuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V1suTEeWtzKTAc6Yojw" name="endTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V2MuTEeWtzKTAc6Yojw" name="personnelRequirement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V2suTEeWtzKTAc6Yojw" name="workType" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V3MuTEeWtzKTAc6Yojw" name="command" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V3suTEeWtzKTAc6Yojw" name="iD" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V4MuTEeWtzKTAc6Yojw" name="description" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V4suTEeWtzKTAc6Yojw" name="hierarchyScope" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V5MuTEeWtzKTAc6Yojw" name="priority" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V5suTEeWtzKTAc6Yojw" name="workMasterVersion" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V6MuTEeWtzKTAc6Yojw" name="commandRule" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V6suTEeWtzKTAc6Yojw" name="jobOrderParameter" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V7MuTEeWtzKTAc6Yojw" name="startTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V7suTEeWtzKTAc6Yojw" name="workMasterID" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V8MuTEeWtzKTAc6Yojw" name="equipmentRequirement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V8suTEeWtzKTAc6Yojw" name="physicalAssetRequirement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V9MuTEeWtzKTAc6Yojw" name="materialRequirement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V9suTEeWtzKTAc6Yojw" name="dispatchStatus" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V-MuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0V-suTEeWtzKTAc6Yojw" name="RespondJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0V-8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_RwMuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V_MuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WBsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0V_suTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WAMuTEeWtzKTAc6Yojw" name="respond" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WAsuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WBMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WBsuTEeWtzKTAc6Yojw" name="UnnamedDataType7">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WB8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_R7MuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WCMuTEeWtzKTAc6Yojw" name="JobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WCcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XQ8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WCsuTEeWtzKTAc6Yojw" name="workype" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WDMuTEeWtzKTAc6Yojw" name="description" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WDsuTEeWtzKTAc6Yojw" name="endTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WEMuTEeWtzKTAc6Yojw" name="hierarchyScope" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WEsuTEeWtzKTAc6Yojw" name="jobOrder" ordered="false" lowerBound="1" eType="_jv0V1MuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WFMuTEeWtzKTAc6Yojw" name="iD" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WFsuTEeWtzKTAc6Yojw" name="startTime" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WGMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WGsuTEeWtzKTAc6Yojw" name="GetWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WG8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_R1cuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WHMuTEeWtzKTAc6Yojw" name="get" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WHsuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WIMuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0VmMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WIsuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WJMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WJsuTEeWtzKTAc6Yojw" name="SyncWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WJ8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_R5suSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WKMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WKsuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WLMuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WMsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WLsuTEeWtzKTAc6Yojw" name="sync" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WMMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WMsuTEeWtzKTAc6Yojw" name="UnnamedDataType16">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WM8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XkMuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WNMuTEeWtzKTAc6Yojw" name="CancelWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WNcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_WV8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WNsuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WQMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WOMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WOsuTEeWtzKTAc6Yojw" name="cancel" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WPMuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WPsuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WQMuTEeWtzKTAc6Yojw" name="UnnamedDataType10">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WQcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XhcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WQsuTEeWtzKTAc6Yojw" name="ShowJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WQ8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_WYMuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WRMuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WRsuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WSMuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WTsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WSsuTEeWtzKTAc6Yojw" name="show" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WTMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WTsuTEeWtzKTAc6Yojw" name="UnnamedDataType5">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WT8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XnsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WUMuTEeWtzKTAc6Yojw" name="UnnamedDataType11">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WUcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_WZsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WUsuTEeWtzKTAc6Yojw" name="UnnamedDataType3">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WU8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_WZ8uSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WVMuTEeWtzKTAc6Yojw" name="GetJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WVcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XPcuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WVsuTEeWtzKTAc6Yojw" name="get" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WWMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WWsuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WYMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WXMuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WXsuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WYMuTEeWtzKTAc6Yojw" name="UnnamedDataType8">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WYcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XmsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WYsuTEeWtzKTAc6Yojw" name="AcknowledgeWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WY8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XTMuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WZMuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WZsuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WbsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WaMuTEeWtzKTAc6Yojw" name="acknowledge" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WasuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WbMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WbsuTEeWtzKTAc6Yojw" name="UnnamedDataType15">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Wb8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XcsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WcMuTEeWtzKTAc6Yojw" name="ProcessWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WccuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_Xa8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WcsuTEeWtzKTAc6Yojw" name="process" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WdMuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WdsuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WfMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WeMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WesuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WfMuTEeWtzKTAc6Yojw" name="UnnamedDataType12">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WfcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XycuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WfsuTEeWtzKTAc6Yojw" name="UnnamedDataType4">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Wf8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XccuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WgMuTEeWtzKTAc6Yojw" name="ShowWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WgcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_Xc8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WgsuTEeWtzKTAc6Yojw" name="show" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WhMuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WhsuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WjMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WiMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WisuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WjMuTEeWtzKTAc6Yojw" name="UnnamedDataType13">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WjcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XlcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WjsuTEeWtzKTAc6Yojw" name="RespondWorkSchedule">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Wj8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_Xf8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WkMuTEeWtzKTAc6Yojw" name="workSchedule" ordered="false" lowerBound="1" eType="_jv0VpsuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WksuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WmsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WlMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WlsuTEeWtzKTAc6Yojw" name="respond" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WmMuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WmsuTEeWtzKTAc6Yojw" name="UnnamedDataType2">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Wm8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XjMuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WnMuTEeWtzKTAc6Yojw" name="ChangeJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WncuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XhsuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WnsuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WoMuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WqMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WosuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WpMuTEeWtzKTAc6Yojw" name="change" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WpsuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WqMuTEeWtzKTAc6Yojw" name="UnnamedDataType9">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WqcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XkcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WqsuTEeWtzKTAc6Yojw" name="UnnamedDataType1">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0Wq8uTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XlsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WrMuTEeWtzKTAc6Yojw" name="CancelJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WrcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_Xn8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WrsuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WfsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WsMuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WssuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WtMuTEeWtzKTAc6Yojw" name="cancel" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WtsuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WuMuTEeWtzKTAc6Yojw" name="SyncJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WucuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XscuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WusuTEeWtzKTAc6Yojw" name="sync" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WvMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WvsuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WwMuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WqsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WwsuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0WxMuTEeWtzKTAc6Yojw" name="ProcessJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0WxcuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_Xt8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WxsuTEeWtzKTAc6Yojw" name="process" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WyMuTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WysuTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WUsuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WzMuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0WzsuTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv0W0MuTEeWtzKTAc6Yojw" name="AcknowledgeJobList">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv0W0cuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__T_XvcuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0W0suTEeWtzKTAc6Yojw" name="applicationArea" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0W1MuTEeWtzKTAc6Yojw" name="acknowledge" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0W1suTEeWtzKTAc6Yojw" name="dataArea" ordered="false" lowerBound="1" eType="_jv0WUMuTEeWtzKTAc6Yojw" containment="true"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0W2MuTEeWtzKTAc6Yojw" name="jobList" ordered="false" lowerBound="1" eType="_jv0WCMuTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv0W2suTEeWtzKTAc6Yojw" name="base_NamedElement" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="__T_RscuSEeWtzKTAc6Yojw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_RssuSEeWtzKTAc6Yojw" name="NamedElement_ChangeJobList" memberEnd="__T_Rs8uSEeWtzKTAc6Yojw __T_Xi8uSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_Rs8uSEeWtzKTAc6Yojw" name="extension_ChangeJobList" type="__T_XhsuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_RssuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_RtMuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_RtcuSEeWtzKTAc6Yojw" name="UnnamedDataType6"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_RtsuSEeWtzKTAc6Yojw" name="NamedElement_RespondJobList" memberEnd="__T_Rt8uSEeWtzKTAc6Yojw __T_RxcuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_Rt8uSEeWtzKTAc6Yojw" name="extension_RespondJobList" type="__T_RwMuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_RtsuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_RuMuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_RucuSEeWtzKTAc6Yojw" name="UnnamedDataType14"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_RusuSEeWtzKTAc6Yojw" name="ChangeWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Ru8uSEeWtzKTAc6Yojw" name="change"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RvMuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RvcuSEeWtzKTAc6Yojw" name="dataArea" type="__T_RtcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RvsuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Rv8uSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_RxsuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_RwMuSEeWtzKTAc6Yojw" name="RespondJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RwcuSEeWtzKTAc6Yojw" name="dataArea" type="__T_R7MuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RwsuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Rw8uSEeWtzKTAc6Yojw" name="respond"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RxMuSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_RxcuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_RtsuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_RxsuSEeWtzKTAc6Yojw" name="NamedElement_ChangeWorkSchedule" memberEnd="__T_Rx8uSEeWtzKTAc6Yojw __T_Rv8uSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_Rx8uSEeWtzKTAc6Yojw" name="extension_ChangeWorkSchedule" type="__T_RusuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_RxsuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_RyMuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_RycuSEeWtzKTAc6Yojw" name="NamedElement_AcknowledgeWorkSchedule" memberEnd="__T_RysuSEeWtzKTAc6Yojw __T_XUcuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_RysuSEeWtzKTAc6Yojw" name="extension_AcknowledgeWorkSchedule" type="__T_XTMuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_RycuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_Ry8uSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_RzMuSEeWtzKTAc6Yojw" name="NamedElement_ProcessJobList" memberEnd="__T_RzcuSEeWtzKTAc6Yojw __T_XvMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_RzcuSEeWtzKTAc6Yojw" name="extension_ProcessJobList" type="__T_Xt8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_RzMuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_RzsuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_Rz8uSEeWtzKTAc6Yojw" name="NamedElement_AcknowledgeJobList" memberEnd="__T_R0MuSEeWtzKTAc6Yojw __T_XwsuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_R0MuSEeWtzKTAc6Yojw" name="extension_AcknowledgeJobList" type="__T_XvcuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_Rz8uSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_R0cuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_R0suSEeWtzKTAc6Yojw" name="NamedElement_CancelJobList" memberEnd="__T_R08uSEeWtzKTAc6Yojw __T_XpMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_R08uSEeWtzKTAc6Yojw" name="extension_CancelJobList" type="__T_Xn8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_R0suSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_R1MuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_R1cuSEeWtzKTAc6Yojw" name="GetWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R1suSEeWtzKTAc6Yojw" name="get"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R18uSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R2MuSEeWtzKTAc6Yojw" name="dataArea" type="__T_RucuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R2cuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R2suSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XksuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_R28uSEeWtzKTAc6Yojw" name="WorkRequest">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R3MuSEeWtzKTAc6Yojw" name="description"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R3cuSEeWtzKTAc6Yojw" name="priority"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R3suSEeWtzKTAc6Yojw" name="hierarchyScope"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R38uSEeWtzKTAc6Yojw" name="endTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R4MuSEeWtzKTAc6Yojw" name="workRequest" type="__T_R28uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R4cuSEeWtzKTAc6Yojw" name="jobOrder" type="__T_XUsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R4suSEeWtzKTAc6Yojw" name="startTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R48uSEeWtzKTAc6Yojw" name="workype"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R5MuSEeWtzKTAc6Yojw" name="iD"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R5cuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XecuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_R5suSEeWtzKTAc6Yojw" name="SyncWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R58uSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R6MuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R6cuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XkMuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R6suSEeWtzKTAc6Yojw" name="sync"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_R68uSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XZcuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_R7MuSEeWtzKTAc6Yojw" name="UnnamedDataType7"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_WV8uSEeWtzKTAc6Yojw" name="CancelWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WWMuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XhcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WWcuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WWsuSEeWtzKTAc6Yojw" name="cancel"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WW8uSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WXMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XaMuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_WXcuSEeWtzKTAc6Yojw" name="NamedElement_SyncJobList" memberEnd="__T_WXsuSEeWtzKTAc6Yojw __T_XtsuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_WXsuSEeWtzKTAc6Yojw" name="extension_SyncJobList" type="__T_XscuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_WXcuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_WX8uSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_WYMuSEeWtzKTAc6Yojw" name="ShowJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WYcuSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WYsuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WY8uSEeWtzKTAc6Yojw" name="dataArea" type="__T_XnsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WZMuSEeWtzKTAc6Yojw" name="show"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_WZcuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_Xw8uSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_WZsuSEeWtzKTAc6Yojw" name="UnnamedDataType11"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_WZ8uSEeWtzKTAc6Yojw" name="UnnamedDataType3"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_WaMuSEeWtzKTAc6Yojw" name="NamedElement_JobList" memberEnd="__T_WacuSEeWtzKTAc6Yojw __T_XS8uSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_WacuSEeWtzKTAc6Yojw" name="extension_JobList" type="__T_XQ8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_WaMuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_WasuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XPcuSEeWtzKTAc6Yojw" name="GetJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XPsuSEeWtzKTAc6Yojw" name="get"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XP8uSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XQMuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XmsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XQcuSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XQsuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_Xm8uSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XQ8uSEeWtzKTAc6Yojw" name="JobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XRMuSEeWtzKTAc6Yojw" name="workype"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XRcuSEeWtzKTAc6Yojw" name="description"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XRsuSEeWtzKTAc6Yojw" name="endTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XR8uSEeWtzKTAc6Yojw" name="hierarchyScope"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XSMuSEeWtzKTAc6Yojw" name="jobOrder" type="__T_XUsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XScuSEeWtzKTAc6Yojw" name="iD"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XSsuSEeWtzKTAc6Yojw" name="startTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XS8uSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_WaMuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XTMuSEeWtzKTAc6Yojw" name="AcknowledgeWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XTcuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XTsuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XcsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XT8uSEeWtzKTAc6Yojw" name="acknowledge"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XUMuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XUcuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_RycuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XUsuSEeWtzKTAc6Yojw" name="JobOrder">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XU8uSEeWtzKTAc6Yojw" name="endTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XVMuSEeWtzKTAc6Yojw" name="personnelRequirement"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XVcuSEeWtzKTAc6Yojw" name="workType"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XVsuSEeWtzKTAc6Yojw" name="command"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XV8uSEeWtzKTAc6Yojw" name="iD"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XWMuSEeWtzKTAc6Yojw" name="description"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XWcuSEeWtzKTAc6Yojw" name="hierarchyScope"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XWsuSEeWtzKTAc6Yojw" name="priority"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XW8uSEeWtzKTAc6Yojw" name="workMasterVersion"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XXMuSEeWtzKTAc6Yojw" name="commandRule"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XXcuSEeWtzKTAc6Yojw" name="jobOrderParameter"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XXsuSEeWtzKTAc6Yojw" name="startTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XX8uSEeWtzKTAc6Yojw" name="workMasterID"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XYMuSEeWtzKTAc6Yojw" name="equipmentRequirement"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XYcuSEeWtzKTAc6Yojw" name="physicalAssetRequirement"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XYsuSEeWtzKTAc6Yojw" name="materialRequirement"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XY8uSEeWtzKTAc6Yojw" name="dispatchStatus"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XZMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_Xl8uSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XZcuSEeWtzKTAc6Yojw" name="NamedElement_SyncWorkSchedule" memberEnd="__T_XZsuSEeWtzKTAc6Yojw __T_R68uSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XZsuSEeWtzKTAc6Yojw" name="extension_SyncWorkSchedule" type="__T_R5suSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XZcuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XZ8uSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XaMuSEeWtzKTAc6Yojw" name="NamedElement_CancelWorkSchedule" memberEnd="__T_XacuSEeWtzKTAc6Yojw __T_WXMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XacuSEeWtzKTAc6Yojw" name="extension_CancelWorkSchedule" type="__T_WV8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XaMuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XasuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_Xa8uSEeWtzKTAc6Yojw" name="ProcessWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XbMuSEeWtzKTAc6Yojw" name="process"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XbcuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XbsuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XycuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xb8uSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XcMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XjcuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XccuSEeWtzKTAc6Yojw" name="UnnamedDataType4"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XcsuSEeWtzKTAc6Yojw" name="UnnamedDataType15"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_Xc8uSEeWtzKTAc6Yojw" name="ShowWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XdMuSEeWtzKTAc6Yojw" name="show"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XdcuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XdsuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XlcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xd8uSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XeMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XysuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XecuSEeWtzKTAc6Yojw" name="NamedElement_WorkRequest" memberEnd="__T_XesuSEeWtzKTAc6Yojw __T_R5cuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XesuSEeWtzKTAc6Yojw" name="extension_WorkRequest" type="__T_R28uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XecuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_Xe8uSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XfMuSEeWtzKTAc6Yojw" name="NamedElement_RespondWorkSchedule" memberEnd="__T_XfcuSEeWtzKTAc6Yojw __T_XhMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XfcuSEeWtzKTAc6Yojw" name="extension_RespondWorkSchedule" type="__T_Xf8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XfMuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XfsuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_Xf8uSEeWtzKTAc6Yojw" name="RespondWorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XgMuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XgcuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XjMuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XgsuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xg8uSEeWtzKTAc6Yojw" name="respond"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XhMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XfMuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XhcuSEeWtzKTAc6Yojw" name="UnnamedDataType10"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XhsuSEeWtzKTAc6Yojw" name="ChangeJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xh8uSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XiMuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XkcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XicuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XisuSEeWtzKTAc6Yojw" name="change"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xi8uSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_RssuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XjMuSEeWtzKTAc6Yojw" name="UnnamedDataType2"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XjcuSEeWtzKTAc6Yojw" name="NamedElement_ProcessWorkSchedule" memberEnd="__T_XjsuSEeWtzKTAc6Yojw __T_XcMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XjsuSEeWtzKTAc6Yojw" name="extension_ProcessWorkSchedule" type="__T_Xa8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XjcuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_Xj8uSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XkMuSEeWtzKTAc6Yojw" name="UnnamedDataType16"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XkcuSEeWtzKTAc6Yojw" name="UnnamedDataType9"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XksuSEeWtzKTAc6Yojw" name="NamedElement_GetWorkSchedule" memberEnd="__T_Xk8uSEeWtzKTAc6Yojw __T_R2suSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_Xk8uSEeWtzKTAc6Yojw" name="extension_GetWorkSchedule" type="__T_R1cuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XksuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XlMuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XlcuSEeWtzKTAc6Yojw" name="UnnamedDataType13"/>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XlsuSEeWtzKTAc6Yojw" name="UnnamedDataType1"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_Xl8uSEeWtzKTAc6Yojw" name="NamedElement_JobOrder" memberEnd="__T_XmMuSEeWtzKTAc6Yojw __T_XZMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XmMuSEeWtzKTAc6Yojw" name="extension_JobOrder" type="__T_XUsuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_Xl8uSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XmcuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XmsuSEeWtzKTAc6Yojw" name="UnnamedDataType8"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_Xm8uSEeWtzKTAc6Yojw" name="NamedElement_GetJobList" memberEnd="__T_XnMuSEeWtzKTAc6Yojw __T_XQsuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XnMuSEeWtzKTAc6Yojw" name="extension_GetJobList" type="__T_XPcuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_Xm8uSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XncuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XnsuSEeWtzKTAc6Yojw" name="UnnamedDataType5"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_Xn8uSEeWtzKTAc6Yojw" name="CancelJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XoMuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XccuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XocuSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XosuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xo8uSEeWtzKTAc6Yojw" name="cancel"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XpMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_R0suSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XpcuSEeWtzKTAc6Yojw" name="WorkSchedule">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XpsuSEeWtzKTAc6Yojw" name="workRequest" type="__T_R28uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xp8uSEeWtzKTAc6Yojw" name="hierarchyScope"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XqMuSEeWtzKTAc6Yojw" name="endTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XqcuSEeWtzKTAc6Yojw" name="workSchedule" type="__T_XpcuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XqsuSEeWtzKTAc6Yojw" name="description"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xq8uSEeWtzKTAc6Yojw" name="workType"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XrMuSEeWtzKTAc6Yojw" name="startTime"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XrcuSEeWtzKTAc6Yojw" name="iD"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XrsuSEeWtzKTAc6Yojw" name="publishedDate"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xr8uSEeWtzKTAc6Yojw" name="scheduleState"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XsMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_XxsuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XscuSEeWtzKTAc6Yojw" name="SyncJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XssuSEeWtzKTAc6Yojw" name="sync"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xs8uSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XtMuSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XtcuSEeWtzKTAc6Yojw" name="dataArea" type="__T_XlsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XtsuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_WXcuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_Xt8uSEeWtzKTAc6Yojw" name="ProcessJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XuMuSEeWtzKTAc6Yojw" name="process"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XucuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XusuSEeWtzKTAc6Yojw" name="dataArea" type="__T_WZ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xu8uSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XvMuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_RzMuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__T_XvcuSEeWtzKTAc6Yojw" name="AcknowledgeJobList">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XvsuSEeWtzKTAc6Yojw" name="applicationArea"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_Xv8uSEeWtzKTAc6Yojw" name="acknowledge"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XwMuSEeWtzKTAc6Yojw" name="dataArea" type="__T_WZsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XwcuSEeWtzKTAc6Yojw" name="jobList" type="__T_XQ8uSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__T_XwsuSEeWtzKTAc6Yojw" name="base_NamedElement" association="__T_Rz8uSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#NamedElement"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_Xw8uSEeWtzKTAc6Yojw" name="NamedElement_ShowJobList" memberEnd="__T_XxMuSEeWtzKTAc6Yojw __T_WZcuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_XxMuSEeWtzKTAc6Yojw" name="extension_ShowJobList" type="__T_WYMuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_Xw8uSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XxcuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XxsuSEeWtzKTAc6Yojw" name="NamedElement_WorkSchedule" memberEnd="__T_Xx8uSEeWtzKTAc6Yojw __T_XsMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_Xx8uSEeWtzKTAc6Yojw" name="extension_WorkSchedule" type="__T_XpcuSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XxsuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XyMuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:DataType" xmi:id="__T_XycuSEeWtzKTAc6Yojw" name="UnnamedDataType12"/>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__T_XysuSEeWtzKTAc6Yojw" name="NamedElement_ShowWorkSchedule" memberEnd="__T_Xy8uSEeWtzKTAc6Yojw __T_XeMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__T_Xy8uSEeWtzKTAc6Yojw" name="extension_ShowWorkSchedule" type="__T_Xc8uSEeWtzKTAc6Yojw" aggregation="composite" association="__T_XysuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__T_XzMuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Profile" xmi:id="__wKQUMuSEeWtzKTAc6Yojw" name="B2MML_ProcessSegment" URI="http://papyrus/B2MML" metaclassReference="__wKQccuSEeWtzKTAc6Yojw __wKQcsuSEeWtzKTAc6Yojw __wKQc8uSEeWtzKTAc6Yojw">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQUcuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_jv-GkMuTEeWtzKTAc6Yojw" name="B2MML_ProcessSegment" nsURI="http://papyrus/B2MML" nsPrefix="B2MML_ProcessSegment">
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-GkcuTEeWtzKTAc6Yojw" name="ProcessSegmentInformation">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GksuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQdMuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv-Gk8uTEeWtzKTAc6Yojw" name="processsegment" ordered="false" lowerBound="1" eType="_jv-Gl8uTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv-GlcuTEeWtzKTAc6Yojw" name="base_Activity" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-Gl8uTEeWtzKTAc6Yojw" name="ProcessSegment">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GmMuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQd8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv-GmcuTEeWtzKTAc6Yojw" name="base_Action" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv-Gm8uTEeWtzKTAc6Yojw" name="processsegment" ordered="false" upperBound="-1" eType="_jv-Gl8uTEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_jv-GncuTEeWtzKTAc6Yojw" name="base_Behavior" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Behavior"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-Gn8uTEeWtzKTAc6Yojw" name="ProcessSegmentParameter">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GoMuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQfcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-GocuTEeWtzKTAc6Yojw" name="PersonnelSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GosuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQfsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-Go8uTEeWtzKTAc6Yojw" name="EquipmentSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GpMuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQf8uSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-GpcuTEeWtzKTAc6Yojw" name="PhysicalAssetSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GpsuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQgMuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_jv-Gp8uTEeWtzKTAc6Yojw" name="MaterialSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jv-GqMuTEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQgcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+      </contents>
+      <contents xmi:type="ecore:EPackage" xmi:id="__wKQUsuSEeWtzKTAc6Yojw" name="B2MML" nsURI="http://papyrus/B2MML" nsPrefix="B2MML">
+        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQU8uSEeWtzKTAc6Yojw" source="PapyrusVersion">
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQVMuSEeWtzKTAc6Yojw" key="Version" value="0.1.0"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQVcuSEeWtzKTAc6Yojw" key="Comment" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQVsuSEeWtzKTAc6Yojw" key="Copyright" value=""/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQV8uSEeWtzKTAc6Yojw" key="Date" value="2015-09-11"/>
+          <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQWMuSEeWtzKTAc6Yojw" key="Author" value=""/>
+        </eAnnotations>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQWcuSEeWtzKTAc6Yojw" name="ProcessSegmentInformation">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQWsuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQdMuSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__wKQW8uSEeWtzKTAc6Yojw" name="processsegment" ordered="false" lowerBound="1" eType="__wKQX8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__wKQXcuSEeWtzKTAc6Yojw" name="base_Activity" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQX8uSEeWtzKTAc6Yojw" name="ProcessSegment">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQYMuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQd8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__wKQYcuSEeWtzKTAc6Yojw" name="base_Action" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
+          </eStructuralFeatures>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__wKQY8uSEeWtzKTAc6Yojw" name="processsegment" ordered="false" upperBound="-1" eType="__wKQX8uSEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="__wKQZcuSEeWtzKTAc6Yojw" name="base_Behavior" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Behavior"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQZ8uSEeWtzKTAc6Yojw" name="ProcessSegmentParameter">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQaMuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQfcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQacuSEeWtzKTAc6Yojw" name="PersonnelSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQasuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQfsuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQa8uSEeWtzKTAc6Yojw" name="EquipmentSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQbMuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQf8uSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQbcuSEeWtzKTAc6Yojw" name="PhysicalAssetSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQbsuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQgMuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="__wKQb8uSEeWtzKTAc6Yojw" name="MaterialSegmentSpecification">
+          <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQcMuSEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="__wKQgcuSEeWtzKTAc6Yojw"/>
+        </eClassifiers>
+      </contents>
+    </eAnnotations>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="__wKQccuSEeWtzKTAc6Yojw" alias="Activity">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="__wKQcsuSEeWtzKTAc6Yojw" alias="Action">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
+    </elementImport>
+    <elementImport xmi:type="uml:ElementImport" xmi:id="__wKQc8uSEeWtzKTAc6Yojw" alias="Behavior">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQdMuSEeWtzKTAc6Yojw" name="ProcessSegmentInformation">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__wKQdcuSEeWtzKTAc6Yojw" name="processsegment" type="__wKQd8uSEeWtzKTAc6Yojw" aggregation="shared" association="__wKQgsuSEeWtzKTAc6Yojw"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__wKQdsuSEeWtzKTAc6Yojw" name="base_Activity" association="__wKQiMuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQd8uSEeWtzKTAc6Yojw" name="ProcessSegment">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__wKQeMuSEeWtzKTAc6Yojw" name="base_Action" association="__wKQisuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__wKQecuSEeWtzKTAc6Yojw" name="processsegment" type="__wKQd8uSEeWtzKTAc6Yojw" association="__wKQjMuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__wKQesuSEeWtzKTAc6Yojw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__wKQe8uSEeWtzKTAc6Yojw" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__wKQfMuSEeWtzKTAc6Yojw" name="base_Behavior" association="__wKQksuSEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQfcuSEeWtzKTAc6Yojw" name="ProcessSegmentParameter"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQfsuSEeWtzKTAc6Yojw" name="PersonnelSegmentSpecification"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQf8uSEeWtzKTAc6Yojw" name="EquipmentSegmentSpecification"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQgMuSEeWtzKTAc6Yojw" name="PhysicalAssetSegmentSpecification"/>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="__wKQgcuSEeWtzKTAc6Yojw" name="MaterialSegmentSpecification"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="__wKQgsuSEeWtzKTAc6Yojw" memberEnd="__wKQdcuSEeWtzKTAc6Yojw __wKQhcuSEeWtzKTAc6Yojw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQg8uSEeWtzKTAc6Yojw" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQhMuSEeWtzKTAc6Yojw" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="__wKQhcuSEeWtzKTAc6Yojw" name="processsegmentinformation" type="__wKQdMuSEeWtzKTAc6Yojw" association="__wKQgsuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__wKQhsuSEeWtzKTAc6Yojw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__wKQh8uSEeWtzKTAc6Yojw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__wKQiMuSEeWtzKTAc6Yojw" name="E_ProcessSegmentInformation_Activity1" memberEnd="__wKQicuSEeWtzKTAc6Yojw __wKQdsuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__wKQicuSEeWtzKTAc6Yojw" name="extension_ProcessSegmentInformation" type="__wKQdMuSEeWtzKTAc6Yojw" aggregation="composite" association="__wKQiMuSEeWtzKTAc6Yojw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__wKQisuSEeWtzKTAc6Yojw" name="E_ProcessSegment_Action1" memberEnd="__wKQi8uSEeWtzKTAc6Yojw __wKQeMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__wKQi8uSEeWtzKTAc6Yojw" name="extension_ProcessSegment" type="__wKQd8uSEeWtzKTAc6Yojw" aggregation="composite" association="__wKQisuSEeWtzKTAc6Yojw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="__wKQjMuSEeWtzKTAc6Yojw" memberEnd="__wKQecuSEeWtzKTAc6Yojw __wKQj8uSEeWtzKTAc6Yojw" navigableOwnedEnd="__wKQj8uSEeWtzKTAc6Yojw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__wKQjcuSEeWtzKTAc6Yojw" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="__wKQjsuSEeWtzKTAc6Yojw" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="__wKQj8uSEeWtzKTAc6Yojw" name="processsegment" type="__wKQd8uSEeWtzKTAc6Yojw" aggregation="shared" association="__wKQjMuSEeWtzKTAc6Yojw">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__wKQkMuSEeWtzKTAc6Yojw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__wKQkcuSEeWtzKTAc6Yojw" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="__wKQksuSEeWtzKTAc6Yojw" name="E_ProcessSegment_Behavior1" memberEnd="__wKQk8uSEeWtzKTAc6Yojw __wKQfMuSEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="__wKQk8uSEeWtzKTAc6Yojw" name="extension_ProcessSegment" type="__wKQd8uSEeWtzKTAc6Yojw" aggregation="composite" association="__wKQksuSEeWtzKTAc6Yojw"/>
+    </packagedElement>
+  </packagedElement>
+</uml:Profile>

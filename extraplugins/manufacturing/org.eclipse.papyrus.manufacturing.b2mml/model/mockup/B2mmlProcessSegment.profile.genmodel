@@ -52,5 +52,16 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="B2mmlProcessSegment.ecore#//EquipmentSegmentSpecification"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="B2mmlProcessSegment.ecore#//PhysicalAssetSegmentSpecification"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="B2mmlProcessSegment.ecore#//MaterialSegmentSpecification"/>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="ProductionSchedule"
+        disposableProviderFactory="true" ecorePackage="B2mmlProcessSegment.ecore#//ProductionSchedule">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="B2mmlProcessSegment.ecore#//ProductionSchedule/ProductionSchedule">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference B2mmlProcessSegment.ecore#//ProductionSchedule/ProductionSchedule/base_Artifact"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="B2mmlProcessSegment.ecore#//ProductionSchedule/ProductionRequest">
+        <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+            propertySortChoices="true" ecoreFeature="ecore:EReference B2mmlProcessSegment.ecore#//ProductionSchedule/ProductionRequest/base_Artifact"/>
+      </genClasses>
+    </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

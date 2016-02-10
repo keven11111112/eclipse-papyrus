@@ -1,72 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-4BeoFJVEeWYd7vE_Ti-XA" name="B2MML" URI="http://papyrus/B2MML" metaclassReference="_kk1pQFJWEeWYd7vE_Ti-XA _nPUSgFJWEeWYd7vE_Ti-XA _WF7cYFb7EeWtvrEKeo_LXQ">
-  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ESyeMFJWEeWYd7vE_Ti-XA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-    <contents xmi:type="ecore:EPackage" xmi:id="_0vYy4FjFEeWQfons7oLW-g" name="B2MML" nsURI="http://papyrus/B2MML" nsPrefix="B2MML">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vcdQFjFEeWQfons7oLW-g" source="PapyrusVersion">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0vcdQVjFEeWQfons7oLW-g" key="Version" value="0.1.0"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0vcdQljFEeWQfons7oLW-g" key="Comment" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0vcdQ1jFEeWQfons7oLW-g" key="Copyright" value=""/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0vcdRFjFEeWQfons7oLW-g" key="Date" value="2015-09-11"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_0vcdRVjFEeWQfons7oLW-g" key="Author" value=""/>
-      </eAnnotations>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy4VjFEeWQfons7oLW-g" name="ProcessSegmentInformation">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy4ljFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Ghw3MFJWEeWYd7vE_Ti-XA"/>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_0vYy41jFEeWQfons7oLW-g" name="processsegment" ordered="false" lowerBound="1" eType="_0vYy51jFEeWQfons7oLW-g"/>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_0vYy5VjFEeWQfons7oLW-g" name="base_Activity" ordered="false" lowerBound="1">
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_-4BeoFJVEeWYd7vE_Ti-XA" name="B2MML_ProcessSegment" URI="http://papyrus/B2MML" metaclassReference="_kk1pQFJWEeWYd7vE_Ti-XA _nPUSgFJWEeWYd7vE_Ti-XA _WF7cYFb7EeWtvrEKeo_LXQ">
+  <eAnnotations xmi:id="_ESyeMFJWEeWYd7vE_Ti-XA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_GLTAYMuWEeWtzKTAc6Yojw" name="B2MML_ProcessSegment" nsURI="http://papyrus/B2MML" nsPrefix="B2MML_ProcessSegment">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAYcuWEeWtzKTAc6Yojw" name="ProcessSegmentInformation">
+        <eAnnotations xmi:id="_GLTAYsuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Ghw3MFJWEeWYd7vE_Ti-XA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAY8uWEeWtzKTAc6Yojw" name="processsegment" ordered="false" lowerBound="1" eType="_GLTAZ8uWEeWtzKTAc6Yojw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAZcuWEeWtzKTAc6Yojw" name="base_Activity" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Activity"/>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy51jFEeWQfons7oLW-g" name="ProcessSegment">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy6FjFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_H1GuYFJWEeWYd7vE_Ti-XA"/>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_0vYy6VjFEeWQfons7oLW-g" name="base_Action" ordered="false" lowerBound="1">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAZ8uWEeWtzKTAc6Yojw" name="ProcessSegment">
+        <eAnnotations xmi:id="_GLTAaMuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_H1GuYFJWEeWYd7vE_Ti-XA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAacuWEeWtzKTAc6Yojw" name="base_Action" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
         </eStructuralFeatures>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_0vYy61jFEeWQfons7oLW-g" name="processsegment" ordered="false" upperBound="-1" eType="_0vYy51jFEeWQfons7oLW-g"/>
-        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_0vYy7VjFEeWQfons7oLW-g" name="base_Behavior" ordered="false" lowerBound="1">
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAa8uWEeWtzKTAc6Yojw" name="processsegment" ordered="false" upperBound="-1" eType="_GLTAZ8uWEeWtzKTAc6Yojw"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAbcuWEeWtzKTAc6Yojw" name="base_Behavior" ordered="false" lowerBound="1">
           <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Behavior"/>
         </eStructuralFeatures>
       </eClassifiers>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy71jFEeWQfons7oLW-g" name="ProcessSegmentParameter">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy8FjFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_M3C-QFJWEeWYd7vE_Ti-XA"/>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAb8uWEeWtzKTAc6Yojw" name="ProcessSegmentParameter">
+        <eAnnotations xmi:id="_GLTAcMuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_M3C-QFJWEeWYd7vE_Ti-XA"/>
       </eClassifiers>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy8VjFEeWQfons7oLW-g" name="PersonnelSegmentSpecification">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy8ljFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OuRloFJWEeWYd7vE_Ti-XA"/>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAccuWEeWtzKTAc6Yojw" name="PersonnelSegmentSpecification">
+        <eAnnotations xmi:id="_GLTAcsuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_OuRloFJWEeWYd7vE_Ti-XA"/>
       </eClassifiers>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy81jFEeWQfons7oLW-g" name="EquipmentSegmentSpecification">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy9FjFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_RZxikFJWEeWYd7vE_Ti-XA"/>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAc8uWEeWtzKTAc6Yojw" name="EquipmentSegmentSpecification">
+        <eAnnotations xmi:id="_GLTAdMuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_RZxikFJWEeWYd7vE_Ti-XA"/>
       </eClassifiers>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy9VjFEeWQfons7oLW-g" name="PhysicalAssetSegmentSpecification">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy9ljFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Um_sgFJWEeWYd7vE_Ti-XA"/>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAdcuWEeWtzKTAc6Yojw" name="PhysicalAssetSegmentSpecification">
+        <eAnnotations xmi:id="_GLTAdsuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Um_sgFJWEeWYd7vE_Ti-XA"/>
       </eClassifiers>
-      <eClassifiers xmi:type="ecore:EClass" xmi:id="_0vYy91jFEeWQfons7oLW-g" name="MaterialSegmentSpecification">
-        <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0vYy-FjFEeWQfons7oLW-g" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Wn_68FJWEeWYd7vE_Ti-XA"/>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAd8uWEeWtzKTAc6Yojw" name="MaterialSegmentSpecification">
+        <eAnnotations xmi:id="_GLTAeMuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Wn_68FJWEeWYd7vE_Ti-XA"/>
       </eClassifiers>
+      <eSubpackages xmi:id="_GLTAecuWEeWtzKTAc6Yojw" name="ProductionSchedule" nsURI="http:///B2MML_ProcessSegment/ProductionSchedule.ecore" nsPrefix="B2MML_ProcessSegment.ProductionSchedule">
+        <eAnnotations xmi:id="_GLTAesuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/4.0.0/UML" references="_NUlMsMuVEeWtzKTAc6Yojw"/>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAe8uWEeWtzKTAc6Yojw" name="ProductionSchedule">
+          <eAnnotations xmi:id="_GLTAfMuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Z11GwMuVEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAfcuWEeWtzKTAc6Yojw" name="base_Artifact" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+        <eClassifiers xmi:type="ecore:EClass" xmi:id="_GLTAf8uWEeWtzKTAc6Yojw" name="ProductionRequest">
+          <eAnnotations xmi:id="_GLTAgMuWEeWtzKTAc6Yojw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_c_mUEMuVEeWtzKTAc6Yojw"/>
+          <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_GLTAgcuWEeWtzKTAc6Yojw" name="base_Artifact" ordered="false" lowerBound="1">
+            <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/5.0.0/UML#//Artifact"/>
+          </eStructuralFeatures>
+        </eClassifiers>
+      </eSubpackages>
     </contents>
   </eAnnotations>
-  <elementImport xmi:type="uml:ElementImport" xmi:id="_kk1pQFJWEeWYd7vE_Ti-XA" alias="Activity">
+  <elementImport xmi:id="_kk1pQFJWEeWYd7vE_Ti-XA" alias="Activity">
     <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
   </elementImport>
-  <elementImport xmi:type="uml:ElementImport" xmi:id="_nPUSgFJWEeWYd7vE_Ti-XA" alias="Action">
+  <elementImport xmi:id="_nPUSgFJWEeWYd7vE_Ti-XA" alias="Action">
     <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
   </elementImport>
-  <elementImport xmi:type="uml:ElementImport" xmi:id="_WF7cYFb7EeWtvrEKeo_LXQ" alias="Behavior">
+  <elementImport xmi:id="_WF7cYFb7EeWtvrEKeo_LXQ" alias="Behavior">
     <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
   </elementImport>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_Ghw3MFJWEeWYd7vE_Ti-XA" name="ProcessSegmentInformation">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_YvGxYFJWEeWYd7vE_Ti-XA" name="processsegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" aggregation="shared" association="_Yu59EFJWEeWYd7vE_Ti-XA"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_lo5uUFJWEeWYd7vE_Ti-XA" name="base_Activity" association="_lo3SEFJWEeWYd7vE_Ti-XA">
+    <ownedAttribute xmi:id="_YvGxYFJWEeWYd7vE_Ti-XA" name="processsegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" aggregation="shared" association="_Yu59EFJWEeWYd7vE_Ti-XA"/>
+    <ownedAttribute xmi:id="_lo5uUFJWEeWYd7vE_Ti-XA" name="base_Activity" association="_lo3SEFJWEeWYd7vE_Ti-XA">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Activity"/>
     </ownedAttribute>
   </packagedElement>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_H1GuYFJWEeWYd7vE_Ti-XA" name="ProcessSegment">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_n8b3MFJWEeWYd7vE_Ti-XA" name="base_Action" association="_n8apEFJWEeWYd7vE_Ti-XA">
+    <ownedAttribute xmi:id="_n8b3MFJWEeWYd7vE_Ti-XA" name="base_Action" association="_n8apEFJWEeWYd7vE_Ti-XA">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Action"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_fu5MoFb5EeWtvrEKeo_LXQ" name="processsegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" association="_fumRsFb5EeWtvrEKeo_LXQ">
+    <ownedAttribute xmi:id="_fu5MoFb5EeWtvrEKeo_LXQ" name="processsegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" association="_fumRsFb5EeWtvrEKeo_LXQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MipkwFb6EeWtvrEKeo_LXQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Mi1yAFb6EeWtvrEKeo_LXQ" value="*"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_WorkIFb7EeWtvrEKeo_LXQ" name="base_Behavior" association="_Wopu8Fb7EeWtvrEKeo_LXQ">
+    <ownedAttribute xmi:id="_WorkIFb7EeWtvrEKeo_LXQ" name="base_Behavior" association="_Wopu8Fb7EeWtvrEKeo_LXQ">
       <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Behavior"/>
     </ownedAttribute>
   </packagedElement>
@@ -76,10 +84,10 @@
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_Um_sgFJWEeWYd7vE_Ti-XA" name="PhysicalAssetSegmentSpecification"/>
   <packagedElement xmi:type="uml:Stereotype" xmi:id="_Wn_68FJWEeWYd7vE_Ti-XA" name="MaterialSegmentSpecification"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_Yu59EFJWEeWYd7vE_Ti-XA" memberEnd="_YvGxYFJWEeWYd7vE_Ti-XA _YvGxYVJWEeWYd7vE_Ti-XA">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Yu8ZUFJWEeWYd7vE_Ti-XA" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Yu8ZUVJWEeWYd7vE_Ti-XA" key="nature" value="UML_Nature"/>
+    <eAnnotations xmi:id="_Yu8ZUFJWEeWYd7vE_Ti-XA" source="org.eclipse.papyrus">
+      <details xmi:id="_Yu8ZUVJWEeWYd7vE_Ti-XA" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_YvGxYVJWEeWYd7vE_Ti-XA" name="processsegmentinformation" type="_Ghw3MFJWEeWYd7vE_Ti-XA" association="_Yu59EFJWEeWYd7vE_Ti-XA">
+    <ownedEnd xmi:id="_YvGxYVJWEeWYd7vE_Ti-XA" name="processsegmentinformation" type="_Ghw3MFJWEeWYd7vE_Ti-XA" association="_Yu59EFJWEeWYd7vE_Ti-XA">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eUz1oFJWEeWYd7vE_Ti-XA"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eU7KYFJWEeWYd7vE_Ti-XA" value="*"/>
     </ownedEnd>
@@ -91,15 +99,36 @@
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_n8bQIFJWEeWYd7vE_Ti-XA" name="extension_ProcessSegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" aggregation="composite" association="_n8apEFJWEeWYd7vE_Ti-XA"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_fumRsFb5EeWtvrEKeo_LXQ" memberEnd="_fu5MoFb5EeWtvrEKeo_LXQ _fu5MoVb5EeWtvrEKeo_LXQ" navigableOwnedEnd="_fu5MoVb5EeWtvrEKeo_LXQ">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_fuvboFb5EeWtvrEKeo_LXQ" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_fuvboVb5EeWtvrEKeo_LXQ" key="nature" value="UML_Nature"/>
+    <eAnnotations xmi:id="_fuvboFb5EeWtvrEKeo_LXQ" source="org.eclipse.papyrus">
+      <details xmi:id="_fuvboVb5EeWtvrEKeo_LXQ" key="nature" value="UML_Nature"/>
     </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_fu5MoVb5EeWtvrEKeo_LXQ" name="processsegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" aggregation="shared" association="_fumRsFb5EeWtvrEKeo_LXQ">
+    <ownedEnd xmi:id="_fu5MoVb5EeWtvrEKeo_LXQ" name="processsegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" aggregation="shared" association="_fumRsFb5EeWtvrEKeo_LXQ">
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_peTRMFb5EeWtvrEKeo_LXQ"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pebNAFb5EeWtvrEKeo_LXQ" value="1"/>
     </ownedEnd>
   </packagedElement>
   <packagedElement xmi:type="uml:Extension" xmi:id="_Wopu8Fb7EeWtvrEKeo_LXQ" name="E_ProcessSegment_Behavior1" memberEnd="_Woq9EFb7EeWtvrEKeo_LXQ _WorkIFb7EeWtvrEKeo_LXQ">
     <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_Woq9EFb7EeWtvrEKeo_LXQ" name="extension_ProcessSegment" type="_H1GuYFJWEeWYd7vE_Ti-XA" aggregation="composite" association="_Wopu8Fb7EeWtvrEKeo_LXQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_NUlMsMuVEeWtzKTAc6Yojw" name="ProductionSchedule">
+    <elementImport xmi:id="_36TnAMuVEeWtzKTAc6Yojw" alias="Artifact">
+      <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_Z11GwMuVEeWtzKTAc6Yojw" name="ProductionSchedule">
+      <ownedAttribute xmi:id="_FkBlAsuWEeWtzKTAc6Yojw" name="base_Artifact" association="_FkBlAMuWEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Stereotype" xmi:id="_c_mUEMuVEeWtzKTAc6Yojw" name="ProductionRequest">
+      <ownedAttribute xmi:id="_E2V_ocuWEeWtzKTAc6Yojw" name="base_Artifact" association="_E2M1sMuWEeWtzKTAc6Yojw">
+        <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Artifact"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_E2M1sMuWEeWtzKTAc6Yojw" name="E_ProductionRequest_Artifact1" memberEnd="_E2V_oMuWEeWtzKTAc6Yojw _E2V_ocuWEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_E2V_oMuWEeWtzKTAc6Yojw" name="extension_ProductionRequest" type="_c_mUEMuVEeWtzKTAc6Yojw" aggregation="composite" association="_E2M1sMuWEeWtzKTAc6Yojw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Extension" xmi:id="_FkBlAMuWEeWtzKTAc6Yojw" name="E_ProductionSchedule_Artifact1" memberEnd="_FkBlAcuWEeWtzKTAc6Yojw _FkBlAsuWEeWtzKTAc6Yojw">
+      <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_FkBlAcuWEeWtzKTAc6Yojw" name="extension_ProductionSchedule" type="_Z11GwMuVEeWtzKTAc6Yojw" aggregation="composite" association="_FkBlAMuWEeWtzKTAc6Yojw"/>
+    </packagedElement>
   </packagedElement>
 </uml:Profile>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-
    <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
@@ -36,13 +35,6 @@
             -->
       </profile>
    </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated B2mmlProcessSegment.profile -->
-      <package
-            uri="http://papyrus/B2MML"
-            class="org.eclipse.papyrus.manufacturing.b2mml.profile.B2MML.B2mmlProcessSegmentPackage"
-            genModel="model/mockup/B2mmlProcessSegment.profile.genmodel"/>
-   </extension>
       <!-- @generated B2MML-profile -->
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
@@ -59,4 +51,19 @@
             genModel="model/B2MML-profile.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated B2mmlProcessSegment.profile -->
+      <package
+            uri="http://papyrus/B2MML"
+            class="org.eclipse.papyrus.manufacturing.b2mml.profile.B2MML_ProcessSegment.B2mmlProcessSegmentPackage"
+            genModel="model/mockup/B2mmlProcessSegment.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated B2mmlProcessSegment.profile -->
+      <package
+            uri="http:///B2MML_ProcessSegment/ProductionSchedule.ecore"
+            class="org.eclipse.papyrus.manufacturing.b2mml.profile.B2MML_ProcessSegment.ProductionSchedule.ProductionSchedulePackage"
+            genModel="model/mockup/B2mmlProcessSegment.profile.genmodel"/>
+   </extension>
 </plugin>
