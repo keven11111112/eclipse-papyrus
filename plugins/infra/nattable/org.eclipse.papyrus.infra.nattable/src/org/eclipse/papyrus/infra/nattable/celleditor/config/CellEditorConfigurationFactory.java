@@ -9,11 +9,15 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 482372
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.celleditor.config;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -32,7 +36,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
  */
 public class CellEditorConfigurationFactory {
 
-	private Map<Integer, IAxisCellEditorConfiguration> registry;
+	private Map<Integer, Collection<IAxisCellEditorConfiguration>> registry;
 
 	public static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.celleditor.configuration"; //$NON-NLS-1$
 
@@ -55,7 +59,7 @@ public class CellEditorConfigurationFactory {
 		// to prevent instanciation
 		// final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT_NAMESPACE, EXTENSION_POINT_NAME);
-		this.registry = new TreeMap<Integer, IAxisCellEditorConfiguration>();
+		this.registry = new TreeMap<Integer, Collection<IAxisCellEditorConfiguration>>();
 		for (final IConfigurationElement iConfigurationElement : configElements) {
 			if (EXTENSION_POINT_NAME.equals(iConfigurationElement.getName())) {
 				// final String id = iConfigurationElement.getAttribute(FACTORY_ID_ATTRIBUTE);
@@ -65,7 +69,10 @@ public class CellEditorConfigurationFactory {
 					// factory.initFactory(id);
 
 					if (factory != null) {
-						this.registry.put(order, factory);
+						if(!this.registry.containsKey(order)){
+							this.registry.put(order, new HashSet<IAxisCellEditorConfiguration>());
+						}
+						this.registry.get(order).add(factory);
 					}
 				} catch (final CoreException e) {
 					Activator.log.error(e);
@@ -99,13 +106,19 @@ public class CellEditorConfigurationFactory {
 	 */
 	public IAxisCellEditorConfiguration getCellEditorConfiguration(final String configurationId) {
 		Assert.isNotNull(configurationId);
-		for (final Integer order : this.registry.keySet()) {
-			final IAxisCellEditorConfiguration current = this.registry.get(order);
-			if (configurationId.equals(current.getEditorConfigId())) {
-				return current;
+		IAxisCellEditorConfiguration result = null;
+		final Iterator<Integer> orders = this.registry.keySet().iterator();
+		while(orders.hasNext() && null == result){
+			final Integer order = orders.next();
+			final Iterator<IAxisCellEditorConfiguration> configurations = this.registry.get(order).iterator();
+			while(configurations.hasNext() && null == result){
+				final IAxisCellEditorConfiguration current = configurations.next();
+				if (configurationId.equals(current.getEditorConfigId())) {
+					result = current;
+				}
 			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
@@ -136,9 +149,11 @@ public class CellEditorConfigurationFactory {
 	 */
 	public List<IAxisCellEditorConfiguration> getCellEditorConfigurationFactories(final Table table, final Object obj) {
 		final List<IAxisCellEditorConfiguration> factories = new ArrayList<IAxisCellEditorConfiguration>();
-		for (final IAxisCellEditorConfiguration current : this.registry.values()) {
-			if (current.handles(table, obj)) {
-				factories.add(current);
+		for (final Collection<IAxisCellEditorConfiguration> configurations : this.registry.values()) {
+			for(final IAxisCellEditorConfiguration current : configurations){
+				if (current.handles(table, obj)) {
+					factories.add(current);
+				}
 			}
 		}
 		return factories;
