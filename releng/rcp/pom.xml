@@ -43,13 +43,13 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.2/R201511170833/mwe</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.3/R201512160556/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.2/R201511170842/mwe2lang/</url>
+			<url>${eclipse.download}/modeling/emft/mwe/updates/releases/2.8.3/R201512160634/mwe2lang/</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
@@ -67,7 +67,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC2-201601281800/</url>
+			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC3-201602031000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -140,13 +140,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>${eclipse.download}/modeling/tmf/xtext/updates/releases/2.8.4/</url>
+			<url>${eclipse.download}/modeling/tmf/xtext/updates/releases/2.9.1/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>${eclipse.download}/webtools/downloads/drops/R3.7.2/S-3.7.2RC1-20160118020043/repository/</url>
+			<url>${eclipse.download}/webtools/downloads/drops/R3.7.2/S-3.7.2RC2-20160202064558/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
@@ -184,8 +184,8 @@
 		<repository>
 			<id>emf-cdo</id>
 			<layout>p2</layout>
-			<!-- updateFrom("EMF CDO",0) -->
-			<url>${eclipse.download}/modeling/emf/cdo/drops/R20150916-0434</url>
+			<!-- updateFrom("CDO Model Repository",0) -->
+			<url>${eclipse.download}/modeling/emf/cdo/drops/S20160209-0943</url>
 		</repository>
 		<repository>
 			<id>egit</id>
@@ -203,7 +203,7 @@
 			<id>acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201601191321</url>
+			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201602090916</url>
 		</repository>
 		<repository>
 			<id>epp-log</id>
@@ -215,7 +215,7 @@
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("oomph",0) -->
-			<url>${eclipse.download}/oomph/drops/release/1.2.0</url>
+			<url>${eclipse.download}/oomph/drops/milestone/S20160203-080059-1.3.0-M5</url>
 		</repository>
 		<!--<repository>
 			<id>ecp</id>

@@ -79,7 +79,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC2-201601281800/</url>
+			<url>${eclipse.download}/eclipse/updates/4.5-M-builds/M-4.5.2RC3-201602031000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -174,7 +174,7 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201602021013</url>
+			<url>${eclipse.download}/acceleo/updates/milestones/3.6/S201602090916</url>
 		</repository>
 		<repository>
 			<id>b3</id>
@@ -186,7 +186,7 @@
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Oomph",0) -->
-			<url>${eclipse.download}/oomph/drops/release/1.2.0</url>
+			<url>${eclipse.download}/oomph/drops/milestone/S20160203-080059-1.3.0-M5</url>
 		</repository>		
 		<repository>
 			<id>papyrus-main</id>
