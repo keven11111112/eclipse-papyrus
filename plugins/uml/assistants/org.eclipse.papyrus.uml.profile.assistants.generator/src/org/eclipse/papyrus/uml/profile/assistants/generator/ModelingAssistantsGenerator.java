@@ -14,8 +14,8 @@
 package org.eclipse.papyrus.uml.profile.assistants.generator;
 
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.AbstractGenerator;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.AbstractGenerator;
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
 import org.eclipse.uml2.uml.Profile;
 
 import com.google.inject.Inject;

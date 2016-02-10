@@ -54,16 +54,16 @@
       </profile>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.umlrt.elementTypeSet"
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="elementtypes/uml-rt.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.umlrt.elementTypeSet2"
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="elementtypes/uml-rt.umlclassdiagram.elementtypesconfigurations">
       </elementTypeSet>
    </extension>

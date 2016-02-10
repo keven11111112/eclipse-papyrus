@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditServiceProvider;
+import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
@@ -51,11 +51,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML ModelElements sub-profile contents
 		Iterator<EObject> it = ModelelementsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -66,11 +66,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML ModelElements sub-profile contents
 		Iterator<EObject> it = ModelelementsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -81,37 +81,37 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Blocks sub-profile contents
 		Iterator<EObject> it = BlocksPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
-				EClass eClass = (EClass)eObject;
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
 
-				if("DistributedProperty".equals(eClass.getName())) {
+				if ("DistributedProperty".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("NestedConnectorEnd".equals(eClass.getName())) {
+				if ("NestedConnectorEnd".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("ParticipantProperty".equals(eClass.getName())) {
+				if ("ParticipantProperty".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("ConnectorProperty".equals(eClass.getName())) {
+				if ("ConnectorProperty".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("BindingConnector".equals(eClass.getName())) {
+				if ("BindingConnector".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("PropertySpecificType".equals(eClass.getName())) {
+				if ("PropertySpecificType".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
@@ -126,10 +126,10 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Blocks sub-profile contents
 		Iterator<EObject> it = BlocksPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
-				EClass eClass = (EClass)eObject;
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
 
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
@@ -141,11 +141,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Constraints sub-profile contents
 		Iterator<EObject> it = ConstraintsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -156,11 +156,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Constraints sub-profile contents
 		Iterator<EObject> it = ConstraintsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -171,11 +171,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Activities sub-profile contents
 		Iterator<EObject> it = ActivitiesPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -186,17 +186,17 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Requirements sub-profile contents
 		Iterator<EObject> it = RequirementsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
-				EClass eClass = (EClass)eObject;
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
 
-				if("TestCase".equals(eClass.getName())) {
+				if ("TestCase".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("RequirementRelated".equals(eClass.getName())) {
+				if ("RequirementRelated".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
@@ -211,10 +211,10 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Requirements sub-profile contents
 		Iterator<EObject> it = RequirementsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
-				EClass eClass = (EClass)eObject;
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
 
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
@@ -226,17 +226,17 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Allocations sub-profile contents
 		Iterator<EObject> it = AllocationsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
-				EClass eClass = (EClass)eObject;
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
 
-				if("Allocated".equals(eClass.getName())) {
+				if ("Allocated".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
 
-				if("AllocateActivityPartition".equals(eClass.getName())) {
+				if ("AllocateActivityPartition".equals(eClass.getName())) {
 					// Not implemented
 					continue;
 				}
@@ -251,10 +251,10 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML Allocations sub-profile contents
 		Iterator<EObject> it = AllocationsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
-				EClass eClass = (EClass)eObject;
+			if (eObject instanceof EClass) {
+				EClass eClass = (EClass) eObject;
 
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
@@ -266,11 +266,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML PortAndFlows sub-profile contents
 		Iterator<EObject> it = PortandflowsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ELEMENT_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -281,11 +281,11 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 
 		// Iterate over SysML PortAndFlows sub-profile contents
 		Iterator<EObject> it = PortandflowsPackage.eINSTANCE.eAllContents();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			EObject eObject = it.next();
-			if(eObject instanceof EClass) {
+			if (eObject instanceof EClass) {
 
-				EClass eClass = (EClass)eObject;
+				EClass eClass = (EClass) eObject;
 				assertTrue("No type found in Papyrus context for " + eClass.getName(), ElementEditServiceUtils.getEditServiceProvider().isKnownElementType(PAPYRUS_ST_APPLICATION_TYPE_PREFIX + eClass.getName()));
 			}
 		}
@@ -295,7 +295,7 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 	public void testRegistryContentForSysMLAssociations() {
 
 		IClientContext context = ClientContextManager.getInstance().getClientContext(PAPYRUS_CONTEXT_ID);
-		if(context == null) {
+		if (context == null) {
 			fail("Papyrus IClientContext could not be found.");
 		}
 
@@ -327,13 +327,13 @@ public class TestElementTypeRegistryContent extends AbstractPapyrusTest {
 		assertTrue("Incorrect kind of ElementType (ISpecializationType expected for " + SysMLElementTypes.ASSOCIATION_SHARED.getId() + ")", SysMLElementTypes.ASSOCIATION_SHARED instanceof ISpecializationType);
 		assertTrue("Incorrect kind of ElementType (ISpecializationType expected for " + SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED.getId() + ")", SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED instanceof ISpecializationType);
 
-		ISpecializationType association = (ISpecializationType)SysMLElementTypes.ASSOCIATION;
-		ISpecializationType associationComposite = (ISpecializationType)SysMLElementTypes.ASSOCIATION_COMPOSITE;
-		ISpecializationType associationCompositeDirected = (ISpecializationType)SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED;
-		ISpecializationType associationNone = (ISpecializationType)SysMLElementTypes.ASSOCIATION_NONE;
-		ISpecializationType associationNoneDirected = (ISpecializationType)SysMLElementTypes.ASSOCIATION_NONE_DIRECTED;
-		ISpecializationType associationShared = (ISpecializationType)SysMLElementTypes.ASSOCIATION_SHARED;
-		ISpecializationType associationSharedDirected = (ISpecializationType)SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED;
+		ISpecializationType association = (ISpecializationType) SysMLElementTypes.ASSOCIATION;
+		ISpecializationType associationComposite = (ISpecializationType) SysMLElementTypes.ASSOCIATION_COMPOSITE;
+		ISpecializationType associationCompositeDirected = (ISpecializationType) SysMLElementTypes.ASSOCIATION_COMPOSITE_DIRECTED;
+		ISpecializationType associationNone = (ISpecializationType) SysMLElementTypes.ASSOCIATION_NONE;
+		ISpecializationType associationNoneDirected = (ISpecializationType) SysMLElementTypes.ASSOCIATION_NONE_DIRECTED;
+		ISpecializationType associationShared = (ISpecializationType) SysMLElementTypes.ASSOCIATION_SHARED;
+		ISpecializationType associationSharedDirected = (ISpecializationType) SysMLElementTypes.ASSOCIATION_SHARED_DIRECTED;
 
 		assertTrue("Incorrect specialization type hierarchy for " + SysMLElementTypes.ASSOCIATION.getId(), association.isSpecializationOf(UMLElementTypes.ASSOCIATION_BASE));
 		assertTrue("Incorrect specialization type hierarchy for " + SysMLElementTypes.ASSOCIATION_COMPOSITE.getId(), associationComposite.isSpecializationOf(association));

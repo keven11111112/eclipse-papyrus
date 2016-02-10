@@ -45,7 +45,7 @@ public class AllTests {
 		// UML layer
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.filters.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.profile.assistants.generator.tests.AllTests.class));
-		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests.AllTests.class));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.profile.types.generator.tests.AllTests.class));
 	}
 
 	public static void appendTo(Collection<? super ITestSuiteClass> suite) {

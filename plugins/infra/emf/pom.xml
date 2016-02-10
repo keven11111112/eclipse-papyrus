@@ -18,5 +18,7 @@
 		<module>org.eclipse.papyrus.infra.emf.gmf</module>
 		<module>org.eclipse.papyrus.infra.emf.readonly</module>
 		<module>org.eclipse.papyrus.infra.ui.emf</module>
+		<module>org.eclipse.papyrus.infra.emf.types</module>
+		<module>org.eclipse.papyrus.infra.emf.types.ui</module>
 	</modules>
 </project>

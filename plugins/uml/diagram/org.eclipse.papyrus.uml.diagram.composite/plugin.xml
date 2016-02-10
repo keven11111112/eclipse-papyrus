@@ -946,14 +946,14 @@
    </semanticChildrenStrategy>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
    <elementTypeSet
    		clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/compositediagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
    <elementTypeSet
    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/compositediagram-notation.elementtypesconfigurations">

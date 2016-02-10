@@ -23,8 +23,8 @@ import org.eclipse.uml2.uml.Profile
 import org.eclipse.papyrus.uml.filters.UMLFiltersFactory
 import org.eclipse.emf.ecore.util.EcoreUtil
 import javax.inject.Inject
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UML
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
+import org.eclipse.papyrus.uml.profile.types.generator.UML
 
 /**
  * Utility extensions for working with {@link Filter}s.

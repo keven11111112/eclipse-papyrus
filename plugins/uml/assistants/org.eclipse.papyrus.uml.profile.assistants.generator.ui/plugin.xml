@@ -5,7 +5,7 @@
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
-            locationURI="popup:org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.generateMenu?after=additions">
+            locationURI="popup:org.eclipse.papyrus.uml.profile.types.generator.ui.generateMenu?after=additions">
          <command
                commandId="org.eclipse.papyrus.uml.profile.assistants.generator.ui.generateModelAssistants"
                id="org.eclipse.papyrus.uml.profile.assistants.generator.ui.generateModelAssistants"

@@ -22,15 +22,15 @@ import org.junit.Test;
 
 /**
  * Test the compositediagram-notation model :
- *  - validate the model
+ * - validate the model
  * 
  * @author Benoit Maggi
  */
 public class CompositeDiagramNotationElementTypeConfigurationTest {
-	
+
 	// path to the model
-	public static final String ELEMENT_TYPE_NOTATION_CONFIGURATION_MODEL_PATH = org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin.ID+"/model/compositediagram-notation.elementtypesconfigurations"; //$NON-NLS-0$
-	
+	public static final String ELEMENT_TYPE_NOTATION_CONFIGURATION_MODEL_PATH = org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin.ID + "/model/compositediagram-notation.typesconfigurations"; // $NON-NLS-0$
+
 	/**
 	 * Validate the model with the rules defined in the meta-model tooling
 	 */

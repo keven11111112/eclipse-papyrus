@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.dev.assistants.codegen.generator;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.papyrus.uml.profile.assistants.generator.ModelingAssistantProviderRule;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.InputModel;
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.InputModel;
 
 /**
  * The Guice injector module for the Element Types to Modeling Assistants transformation.
@@ -44,7 +44,7 @@ public class GeneratorModule extends org.eclipse.papyrus.uml.profile.assistants.
 
 	@Override
 	protected void bindInputType() {
-		bind(EClass.class).annotatedWith(InputModel.class).toInstance(ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
+		bind(EClass.class).annotatedWith(InputModel.class).toInstance(ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
 	}
 
 	@Override

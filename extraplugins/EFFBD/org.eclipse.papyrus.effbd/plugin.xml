@@ -24,16 +24,16 @@
       </menuCreationModel>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.effbd.elementTypeSet"
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="resource/EFFB.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
-            id="org.eclipse.papyrus.effbd.graphicalelementTypeSet"
+            clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="resource/GraphicalEFFB.elementtypesconfigurations">
       </elementTypeSet>
    </extension>

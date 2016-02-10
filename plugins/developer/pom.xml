@@ -23,13 +23,13 @@
 		<module>org.eclipse.papyrus.dev.project.management</module>
 		<module>org.eclipse.papyrus.dev.tests.framework</module>
 		<module>org.eclipse.papyrus.dev.tests.framework.ui</module>
+		<module>org.eclipse.papyrus.dev.types</module>
 		<module>org.eclipse.papyrus.dev.view.services.edit.request</module>
 		<module>org.eclipse.papyrus.developer.profile</module>
 		<module>org.eclipse.papyrus.domaincodegen.ui</module>
 		<module>org.eclipse.papyrus.domaincontextcodegen</module>
 		<module>org.eclipse.papyrus.domaincontextcodegen.edit</module>
 		<module>org.eclipse.papyrus.domaincontextcodegen.editor</module>
-		<module>org.eclipse.papyrus.elementtypesconfigurations.developer</module>
 		<module>org.eclipse.papyrus.gmf.editpartview</module>
 		<module>org.eclipse.papyrus.gmf.editpoliciesstates</module>
 		<module>org.eclipse.papyrus.gmf.figureview</module>

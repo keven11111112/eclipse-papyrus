@@ -14,14 +14,14 @@ package org.eclipse.papyrus.uml.profile.assistants.generator
 
 import javax.inject.Inject
 import javax.inject.Singleton
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
 import org.eclipse.papyrus.infra.filters.Filter
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantFactory
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UML
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UMLElementTypes
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ImpliedExtension
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers
+import org.eclipse.papyrus.uml.profile.types.generator.UML
+import org.eclipse.papyrus.uml.profile.types.generator.UMLElementTypes
+import org.eclipse.papyrus.uml.profile.types.generator.ImpliedExtension
 
 /**
  * Transformation rule for generating a {@link PopupAssistant} from a UML {@link Extension}.

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:setvaluesadvice="http://www.eclipse.org/papyrus/emf/types/setvaluesadvice/1.1" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="" identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.workspacetype" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="WorkspaceTypeTests" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+  <elementTypeConfigurations hint="WorkspaceType_AbstractClass" identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.tool" name="WorkspaceType_AbstractClass" xmi:id="_Sg8B4MyyEeS2aYvfnAB4ZA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.tool" target="_Sg8B4MyyEeS2aYvfnAB4ZA" xmi:id="_1JyvELtVEeSfJNL-2_VlLg" xsi:type="setvaluesadvice:SetValuesAdviceConfiguration">
+    <featuresToSet featureName="isAbstract" xmi:id="_CNnKsLtWEeSfJNL-2_VlLg">
+      <value xmi:id="_E2SdILtWEeSfJNL-2_VlLg" xsi:type="setvaluesadvice:ConstantValue">
+        <valueInstance value="true" xmi:id="_FySLULtWEeSfJNL-2_VlLg" xsi:type="uml:LiteralBoolean"/>
+      </value>
+    </featuresToSet>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

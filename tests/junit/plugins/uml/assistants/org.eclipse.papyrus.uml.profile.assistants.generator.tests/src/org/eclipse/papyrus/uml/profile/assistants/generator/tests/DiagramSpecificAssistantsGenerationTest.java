@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests.BaseElementTypes;
+import org.eclipse.papyrus.uml.profile.types.generator.tests.BaseElementTypes;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;

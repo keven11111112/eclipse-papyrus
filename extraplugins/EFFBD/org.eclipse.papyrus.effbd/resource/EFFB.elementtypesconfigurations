@@ -1,249 +1,92 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
-    xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration"
-    xmi:id="_k4SmgLwFEeSwNLK2W02HwA"
-    name="EFFB"
-    description="EFFB extension element type set"
-    identifier="org.eclipse.papyrus.effb.elementTypes"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_e5fIUJz6EeWAbLfn_iCQ6g"
-      name="Function"
-      description="Create a function"
-      identifier="org.eclipse.papyrus.effbd.function">
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:applystereotypeadvice="http://www.eclipse.org/papyrus/uml/types/applystereotypeadvice/1.1" xmlns:stereotypematcher="http://www.eclipse.org/papyrus/uml/types/stereotypematcher/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="EFFB extension element type set" identifier="org.eclipse.papyrus.effb.elementTypes" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="EFFB" xmi:id="_k4SmgLwFEeSwNLK2W02HwA" xmi:version="2.0">
+  <elementTypeConfigurations description="Create a function" identifier="org.eclipse.papyrus.effbd.function" name="Function" xmi:id="_e5fIUJz6EeWAbLfn_iCQ6g" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.OpaqueAction</specializedTypesID>
-    <editHelperAdviceConfiguration
-        xmi:id="_TbuPEJz7EeWAbLfn_iCQ6g"
-        name="FunctionAdvice"
-        identifier="org.eclipse.papyrus.effbd.advice.FunctionEditHelperAdvice"
-        editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.FunctionEditHelperAdvice"/>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_xbhKsKM9EeWq3orFSZ8l-w">
+    <editHelperAdviceConfiguration editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.FunctionEditHelperAdvice" xmi:id="_TbuPEJz7EeWAbLfn_iCQ6g" xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration"/>
+    <matcherConfiguration xmi:id="_xbhKsKM9EeWq3orFSZ8l-w" xsi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration">
       <stereotypesQualifiedNames>EFFBProfile::Function</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_-YNlwJ0KEeW4i7v9QEMhZg"
-      name="an Enhanced Function Flow Block"
-      description="create an Enhanced Function Flow Block"
-      identifier="org.eclipse.papyrus.effbd.effb">
+  <elementTypeConfigurations description="create an Enhanced Function Flow Block" identifier="org.eclipse.papyrus.effbd.effb" name="an Enhanced Function Flow Block" xmi:id="_-YNlwJ0KEeW4i7v9QEMhZg" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.Activity</specializedTypesID>
-    <editHelperAdviceConfiguration
-        xmi:id="_tk8ncJ0LEeW4i7v9QEMhZg"
-        name="EFFBAdvice"
-        identifier="org.eclipse.papyrus.effbd.advice.EFFBEditHelperAdvice"
-        editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.EFFBEditHelperAdvice"/>
+    <editHelperAdviceConfiguration editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.EFFBEditHelperAdvice" xmi:id="_tk8ncJ0LEeW4i7v9QEMhZg" xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_-CRUMJ55EeWHhcFWyAfOIA"
-      name="Input data"
-      identifier="org.eclipse.papyrus.effbd.inputdata">
+  <elementTypeConfigurations identifier="org.eclipse.papyrus.effbd.inputdata" name="Input data" xmi:id="_-CRUMJ55EeWHhcFWyAfOIA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityParameterNode</specializedTypesID>
-    <editHelperAdviceConfiguration
-        xmi:id="_qLlxwJ6GEeWHhcFWyAfOIA"
-        name="set as input"
-        identifier="org.eclipse.papyrus.effbd.advice.InputDataEditHelperAdvice"
-        editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.InputDataEditHelperAdvice"/>
+    <editHelperAdviceConfiguration editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.InputDataEditHelperAdvice" xmi:id="_qLlxwJ6GEeWHhcFWyAfOIA" xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_NqniEJ56EeWHhcFWyAfOIA"
-      name="Output Data"
-      identifier="org.eclipse.papyrus.effbd.outputdata">
+  <elementTypeConfigurations identifier="org.eclipse.papyrus.effbd.outputdata" name="Output Data" xmi:id="_NqniEJ56EeWHhcFWyAfOIA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityParameterNode</specializedTypesID>
-    <editHelperAdviceConfiguration
-        xmi:id="_eU8pAJ6IEeWHhcFWyAfOIA"
-        name="set as input"
-        identifier="org.eclipse.papyrus.effbd.advice.OutputDataEditHelperAdvice"
-        editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.OutputDataEditHelperAdvice"/>
+    <editHelperAdviceConfiguration editHelperAdviceClassName="org.eclipse.papyrus.effbd.advice.OutputDataEditHelperAdvice" xmi:id="_eU8pAJ6IEeWHhcFWyAfOIA" xsi:type="elementtypesconfigurations:EditHelperAdviceConfiguration"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_uko5gKJTEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.orbegin"
-      description="OR operator"
-      identifier="org.eclipse.papyrus.effbd.orbegin">
+  <elementTypeConfigurations description="OR operator" identifier="org.eclipse.papyrus.effbd.orbegin" name="org.eclipse.papyrus.effbd.orbegin" xmi:id="_uko5gKJTEeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.DecisionNode</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_Fo1YkKM-EeWq3orFSZ8l-w">
+    <matcherConfiguration xmi:id="_Fo1YkKM-EeWq3orFSZ8l-w" xsi:type="stereotypematcher:StereotypeApplicationMatcherConfiguration">
       <stereotypesQualifiedNames>EFFBProfile::ORBegin</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_L4dY4KJUEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.orend"
-      description="OR operator"
-      identifier="org.eclipse.papyrus.effbd.orend">
+  <elementTypeConfigurations description="OR operator" identifier="org.eclipse.papyrus.effbd.orend" name="org.eclipse.papyrus.effbd.orend" xmi:id="_L4dY4KJUEeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.MergeNode</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_EBgJEKJnEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.andbegin"
-      description="AND operator"
-      identifier="org.eclipse.papyrus.effbd.andbegin">
+  <elementTypeConfigurations description="AND operator" identifier="org.eclipse.papyrus.effbd.andbegin" name="org.eclipse.papyrus.effbd.andbegin" xmi:id="_EBgJEKJnEeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.ForkNode</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_FYApAKJnEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.andend"
-      description="AND operator"
-      identifier="org.eclipse.papyrus.effbd.andend">
+  <elementTypeConfigurations description="AND operator" identifier="org.eclipse.papyrus.effbd.andend" name="org.eclipse.papyrus.effbd.andend" xmi:id="_FYApAKJnEeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.JoinNode</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_vXOxEKJ0EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.itbegin"
-      description="IT operator"
-      identifier="org.eclipse.papyrus.effbd.itbegin">
+  <elementTypeConfigurations description="IT operator" identifier="org.eclipse.papyrus.effbd.itbegin" name="org.eclipse.papyrus.effbd.itbegin" xmi:id="_vXOxEKJ0EeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.MergeNode</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_wjESEKJ0EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.itend"
-      description="IT operator"
-      identifier="org.eclipse.papyrus.effbd.itend">
+  <elementTypeConfigurations description="IT operator" identifier="org.eclipse.papyrus.effbd.itend" name="org.eclipse.papyrus.effbd.itend" xmi:id="_wjESEKJ0EeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.DecisionNode</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_-Lb9gKJ6EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.lpbegin"
-      description="LP operator"
-      identifier="org.eclipse.papyrus.effbd.lpbegin">
+  <elementTypeConfigurations description="LP operator" identifier="org.eclipse.papyrus.effbd.lpbegin" name="org.eclipse.papyrus.effbd.lpbegin" xmi:id="_-Lb9gKJ6EeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.MergeNode</specializedTypesID>
   </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_-Lb9gaJ6EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.lpend"
-      description="LP operator"
-      identifier="org.eclipse.papyrus.effbd.lpend">
+  <elementTypeConfigurations description="LP operator" identifier="org.eclipse.papyrus.effbd.lpend" name="org.eclipse.papyrus.effbd.lpend" xmi:id="_-Lb9gaJ6EeWBS5oHY8K2yw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration">
     <specializedTypesID>org.eclipse.papyrus.uml.DecisionNode</specializedTypesID>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_do1VIKJSEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.functionstereotypeadvice"
-      identifier="org.eclipse.papyrus.effbd.functionstereotypeadvice"
-      target="_e5fIUJz6EeWAbLfn_iCQ6g">
-    <stereotypesToApply
-        xmi:id="_mAQ6IKJSEeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::Function">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.effbd.functionstereotypeadvice" target="_e5fIUJz6EeWAbLfn_iCQ6g" xmi:id="_do1VIKJSEeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::Function" xmi:id="_mAQ6IKJSEeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="__66BwKJTEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.orbeginstereotypeadvice"
-      identifier="org.eclipse.papyrus.effbd.orbeginstereotypeadvice"
-      target="_uko5gKJTEeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_I_hc4KJUEeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::ORBegin">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.effbd.orbeginstereotypeadvice" target="_uko5gKJTEeWBS5oHY8K2yw" xmi:id="__66BwKJTEeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::ORBegin" xmi:id="_I_hc4KJUEeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_Rc6f8KJUEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.orendstereotypeadvice"
-      description=""
-      identifier="org.eclipse.papyrus.effbd.orendstereotypeadvice"
-      target="_L4dY4KJUEeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_Rc6f8aJUEeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::OREnd">
+  <adviceBindingsConfigurations description="" identifier="org.eclipse.papyrus.effbd.orendstereotypeadvice" target="_L4dY4KJUEeWBS5oHY8K2yw" xmi:id="_Rc6f8KJUEeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::OREnd" xmi:id="_Rc6f8aJUEeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_Ua8csKJnEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.andbeginstereotypeadvice"
-      identifier="org.eclipse.papyrus.effbd.andbeginstereotypeadvice"
-      target="_EBgJEKJnEeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_Ua8csaJnEeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::ANDBegin">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.effbd.andbeginstereotypeadvice" target="_EBgJEKJnEeWBS5oHY8K2yw" xmi:id="_Ua8csKJnEeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::ANDBegin" xmi:id="_Ua8csaJnEeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_Ua8csqJnEeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.andendstereotypeadvice"
-      description=""
-      identifier="org.eclipse.papyrus.effbd.andendstereotypeadvice"
-      target="_FYApAKJnEeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_Ua8cs6JnEeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::ANDEnd">
+  <adviceBindingsConfigurations description="" identifier="org.eclipse.papyrus.effbd.andendstereotypeadvice" target="_FYApAKJnEeWBS5oHY8K2yw" xmi:id="_Ua8csqJnEeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::ANDEnd" xmi:id="_Ua8cs6JnEeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_Q5P5wKJ2EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.itbeginstereotypeadvice"
-      identifier="org.eclipse.papyrus.effbd.itbeginstereotypeadvice"
-      target="_vXOxEKJ0EeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_Q5P5waJ2EeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::ITBegin">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.effbd.itbeginstereotypeadvice" target="_vXOxEKJ0EeWBS5oHY8K2yw" xmi:id="_Q5P5wKJ2EeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::ITBegin" xmi:id="_Q5P5waJ2EeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_Q5P5wqJ2EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.itendstereotypeadvice"
-      description=""
-      identifier="org.eclipse.papyrus.effbd.itendstereotypeadvice"
-      target="_wjESEKJ0EeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_Q5P5w6J2EeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::ITEnd">
+  <adviceBindingsConfigurations description="" identifier="org.eclipse.papyrus.effbd.itendstereotypeadvice" target="_wjESEKJ0EeWBS5oHY8K2yw" xmi:id="_Q5P5wqJ2EeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::ITEnd" xmi:id="_Q5P5w6J2EeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_JpCpQKJ7EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.lpbeginstereotypeadvice"
-      identifier="org.eclipse.papyrus.effbd.lpbeginstereotypeadvice"
-      target="_-Lb9gKJ6EeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_JpCpQaJ7EeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::LPBegin">
+  <adviceBindingsConfigurations identifier="org.eclipse.papyrus.effbd.lpbeginstereotypeadvice" target="_-Lb9gKJ6EeWBS5oHY8K2yw" xmi:id="_JpCpQKJ7EeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::LPBegin" xmi:id="_JpCpQaJ7EeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_JpCpQqJ7EeWBS5oHY8K2yw"
-      name="org.eclipse.papyrus.effbd.lpendstereotypeadvice"
-      description=""
-      identifier="org.eclipse.papyrus.effbd.lpendstereotypeadvice"
-      target="_-Lb9gaJ6EeWBS5oHY8K2yw">
-    <stereotypesToApply
-        xmi:id="_JpCpQ6J7EeWBS5oHY8K2yw"
-        stereotypeQualifiedName="EFFBProfile::LPEnd">
+  <adviceBindingsConfigurations description="" identifier="org.eclipse.papyrus.effbd.lpendstereotypeadvice" target="_-Lb9gaJ6EeWBS5oHY8K2yw" xmi:id="_JpCpQqJ7EeWBS5oHY8K2yw" xsi:type="applystereotypeadvice:ApplyStereotypeAdviceConfiguration">
+    <stereotypesToApply stereotypeQualifiedName="EFFBProfile::LPEnd" xmi:id="_JpCpQ6J7EeWBS5oHY8K2yw">
       <requiredProfiles>EFFBProfile</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>

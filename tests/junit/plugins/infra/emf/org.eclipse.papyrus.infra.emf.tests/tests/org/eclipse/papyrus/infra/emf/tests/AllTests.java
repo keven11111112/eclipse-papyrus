@@ -13,11 +13,11 @@
  */
 package org.eclipse.papyrus.infra.emf.tests;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.emf.advice.ReadOnlyObjectEditAdviceTest;
 import org.eclipse.papyrus.infra.emf.edit.domain.PapyrusTransactionalEditingDomainTest;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexTest;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceTest;
+import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.eclipse.papyrus.junit.framework.runner.Headless;
 import org.junit.BeforeClass;

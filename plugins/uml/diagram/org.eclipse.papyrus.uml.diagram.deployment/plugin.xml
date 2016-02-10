@@ -747,14 +747,14 @@
    </diagramReconciler>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
    <elementTypeSet
    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/DeploymentDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
    <elementTypeSet
    clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
          path="model/DeploymentDiagram-notation.elementtypesconfigurations">

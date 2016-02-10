@@ -26,10 +26,10 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.dev.assistants.codegen.generator.ElementTypesToAssistantsGenerator;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.util.AssistantResource;
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration;
+import org.eclipse.papyrus.infra.types.ElementTypesConfigurationsPackage;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
 
@@ -52,7 +52,7 @@ public class GenerateModelingAssistantsFromElementTypesHandler extends AbstractH
 				final ResourceSet rset = new ResourceSetImpl();
 				try {
 					Resource resource = rset.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
-					Object input = EcoreUtil.getObjectByType(resource.getContents(), ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
+					Object input = EcoreUtil.getObjectByType(resource.getContents(), ElementTypesConfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
 					if (input instanceof ElementTypeSetConfiguration) {
 						ElementTypeSetConfiguration elementTypeSet = (ElementTypeSetConfiguration) input;
 

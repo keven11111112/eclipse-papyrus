@@ -13,10 +13,10 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.assistant.tests;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
+import org.eclipse.papyrus.infra.types.core.registries.ElementTypeSetConfigurationRegistry;
+import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
-import org.eclipse.papyrus.junit.framework.classification.ClassificationSuite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**

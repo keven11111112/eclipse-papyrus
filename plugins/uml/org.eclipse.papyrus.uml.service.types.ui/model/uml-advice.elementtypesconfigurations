@@ -1,103 +1,29 @@
-<?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1"
-    xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
-    name="UML Edit Advices with UI"
-    description="Additional edit advices for UML that implement UI interactions"
-    identifier="org.eclipse.papyrus.uml.service.types.ui.UMLElementTypeUIAdvices"
-    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_R_pDcWT7EeSzFvTXGJPhUg"
-      identifier="org.eclipse.papyrus.uml.ui.advice.ClassifierTemplateParameter"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.ClassifierTemplateParameterEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_kyfxEH67EeSVzvxdAiQ3xA"/>
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" description="Additional edit advices for UML that implement UI interactions" identifier="org.eclipse.papyrus.uml.service.types.ui.UMLElementTypeUIAdvices" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="UML Edit Advices with UI" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.ClassifierTemplateParameterEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.ClassifierTemplateParameter" inheritance="all" xmi:id="_R_pDcWT7EeSzFvTXGJPhUg" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_kyfxEH67EeSVzvxdAiQ3xA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_XzjBAMO1EeWVMJ0KdwVfSA"
-      description=""
-      identifier="org.eclipse.papyrus.uml.ui.advice.CollaborationRole"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.CollaborationCollaborationRoleEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_IsX6UMc9EeS1POoqrCEMrQ"/>
+  <adviceBindingsConfigurations description="" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.CollaborationCollaborationRoleEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.CollaborationRole" inheritance="all" xmi:id="_XzjBAMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_IsX6UMc9EeS1POoqrCEMrQ" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_YO3rEMO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.ConnectableElementTemplateParameter"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.ConnectableElementTemplateParameterEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_yjhpkJXIEeSmV5hdT3HeBw"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.ConnectableElementTemplateParameterEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.ConnectableElementTemplateParameter" inheritance="all" xmi:id="_YO3rEMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_yjhpkJXIEeSmV5hdT3HeBw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_YZtCEMO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.Extension"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.ExtensionEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScjXoVYCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.ExtensionEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.Extension" inheritance="all" xmi:id="_YZtCEMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScjXoVYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_YeHoAMO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.InformationFlow"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.InformationFlowEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ZLpUILgeEeSANYuUIb1qQA"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.InformationFlowEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.InformationFlow" inheritance="all" xmi:id="_YeHoAMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ZLpUILgeEeSANYuUIb1qQA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_YismAMO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.InstanceSpecification.Link"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.InstanceSpecificationLinkEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_bvHrYJXNEeSmV5hdT3HeBw"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.InstanceSpecificationLinkEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.InstanceSpecification.Link" inheritance="all" xmi:id="_YismAMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_bvHrYJXNEeSmV5hdT3HeBw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_YngNgMO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.OperationTemplateParameter"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.OperationTemplateParameterEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_vg_QMJXJEeSmV5hdT3HeBw"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.OperationTemplateParameterEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.OperationTemplateParameter" inheritance="all" xmi:id="_YngNgMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_vg_QMJXJEeSmV5hdT3HeBw" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_YsKrEMO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.RoleBinding"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.RoleBindingHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_TFofsLhAEeSANYuUIb1qQA"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.RoleBindingHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.RoleBinding" inheritance="all" xmi:id="_YsKrEMO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_TFofsLhAEeSANYuUIb1qQA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="elementtypesconfigurations:AdviceBindingConfiguration"
-      xmi:id="_Y2rR8MO1EeWVMJ0KdwVfSA"
-      identifier="org.eclipse.papyrus.uml.ui.advice.TemplateParameter"
-      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.TemplateParameterEditHelperAdvice"
-      inheritance="all">
-    <target
-        xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-        href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_kyfxEH67EeSVzvxdAiQ3xA"/>
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.internal.ui.advice.TemplateParameterEditHelperAdvice" identifier="org.eclipse.papyrus.uml.ui.advice.TemplateParameter" inheritance="all" xmi:id="_Y2rR8MO1EeWVMJ0KdwVfSA" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_kyfxEH67EeSVzvxdAiQ3xA" xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"/>
   </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

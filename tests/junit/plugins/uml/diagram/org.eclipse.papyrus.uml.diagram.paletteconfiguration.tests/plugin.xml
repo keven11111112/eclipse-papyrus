@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
             clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="resources/TestPalette.elementtypesconfigurations">
@@ -31,7 +31,7 @@
 
 	<!-- false palette declaraiton, with no corresponding profile applied -->
 <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+         point="org.eclipse.papyrus.infra.types.core.elementTypeSetConfiguration">
       <elementTypeSet
             clientContextID="org.eclipse.papyrus.infra.services.edit.TypeContext"
             path="resources/FakeProfile.elementtypesconfigurations">

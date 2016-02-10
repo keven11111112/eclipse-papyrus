@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.util.AssistantResource;
 import org.eclipse.papyrus.uml.profile.assistants.generator.ModelingAssistantsGenerator;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -46,7 +46,7 @@ import com.google.common.collect.Lists;
 /**
  * A specialization of the element types generation fixture that additionally generates the Diagram Assistants model.
  */
-public class ModelGenFixture extends org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests.ModelGenFixture {
+public class ModelGenFixture extends org.eclipse.papyrus.uml.profile.types.generator.tests.ModelGenFixture {
 	public ModelGenFixture() {
 		super();
 	}

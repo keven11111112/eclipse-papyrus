@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII" standalone="no"?><elementtypesconfigurations:ElementTypeSetConfiguration xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.1" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" identifier="org.eclipse.papyrus.infra.types.rules/rulebased" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML" name="RuleBased" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" xmi:version="2.0">
+  <adviceBindingsConfigurations editHelperAdviceClassName="org.eclipse.papyrus.infra.types.rulebased.core.DefaultRuleEditHelperAdvice" identifier="org.eclipse.papyrus.infra.types.rulebased.core.DefaultRuleEditHelperAdvice" inheritance="all" xmi:id="_mqX8YMHdEeSpuJnfbRdiWQ" xsi:type="elementtypesconfigurations:AdviceBindingConfiguration">
+    <target href="../../org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_ScgUUFYCEeS0WsAAtVmToA" xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"/>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

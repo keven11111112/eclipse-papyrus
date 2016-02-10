@@ -16,8 +16,8 @@ package org.eclipse.papyrus.uml.profile.newchildmenu.generator
 import org.eclipse.emf.common.util.EList
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
+import org.eclipse.papyrus.infra.types.impl.ElementTypeSetConfigurationImpl
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelFactory
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder

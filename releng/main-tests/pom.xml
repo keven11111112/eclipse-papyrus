@@ -38,8 +38,8 @@
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
 		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.ui.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.tests</module>
-		<module>../../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.ui.tests</module>
+		<module>../../tests/junit/plugins/infra/types/org.eclipse.papyrus.infra.types.tests</module>
+		<module>../../tests/junit/plugins/infra/types/org.eclipse.papyrus.infra.types.ui.tests</module>
 		<module>../../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
 		<module>../../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
@@ -71,7 +71,7 @@
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
 		<module>../../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
 		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.tests</module>
-		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests</module>
+		<module>../../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.types.generator.tests</module>
 		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
 		<module>../../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
 		<module>../../tests/junit/plugins/uml/diagram</module>

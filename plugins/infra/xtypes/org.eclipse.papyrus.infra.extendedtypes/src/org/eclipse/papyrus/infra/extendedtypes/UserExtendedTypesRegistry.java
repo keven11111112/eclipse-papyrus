@@ -24,8 +24,8 @@ import java.util.function.Predicate;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.extendedtypes.internal.spi.IUserExtendedTypesProvider;
+import org.eclipse.papyrus.infra.types.core.Activator;
 
 /**
  * Registry of {@link IUserExtendedTypesProvider}s.

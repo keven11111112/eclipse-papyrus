@@ -15,13 +15,13 @@ package org.eclipse.papyrus.uml.profile.assistants.generator;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.OutputModel;
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.OutputModel;
 
 /**
  * The base Guice injector module for the UML Profile to Modeling Assistants transformation.
  */
-public class GeneratorModule extends org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.GeneratorModule {
+public class GeneratorModule extends org.eclipse.papyrus.uml.profile.types.generator.GeneratorModule {
 	public GeneratorModule(Identifiers identifiers) {
 		super(identifiers);
 	}

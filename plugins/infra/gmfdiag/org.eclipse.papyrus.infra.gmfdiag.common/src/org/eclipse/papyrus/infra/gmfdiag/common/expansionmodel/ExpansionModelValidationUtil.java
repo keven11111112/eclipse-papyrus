@@ -22,9 +22,9 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeConfigurationTypeRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelValidator;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
+import org.eclipse.papyrus.infra.types.core.registries.ElementTypeConfigurationTypeRegistry;
 
 /**
  * This utility class has been added in order to ensure that model is well built.

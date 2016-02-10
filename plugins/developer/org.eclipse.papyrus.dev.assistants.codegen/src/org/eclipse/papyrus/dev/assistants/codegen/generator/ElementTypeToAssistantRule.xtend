@@ -14,12 +14,12 @@
 package org.eclipse.papyrus.dev.assistants.codegen.generator
 
 import javax.inject.Inject
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration
-import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration
+import org.eclipse.papyrus.infra.types.ElementTypeConfiguration
+import org.eclipse.papyrus.infra.types.ElementTypeSetConfiguration
 import org.eclipse.papyrus.infra.filters.Filter
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantFactory
 import org.eclipse.papyrus.uml.profile.assistants.generator.FiltersUtil
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UMLElementTypes
+import org.eclipse.papyrus.uml.profile.types.generator.UMLElementTypes
 
 /**
  * Element Type to Assistant transformation rule.

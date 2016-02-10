@@ -15,8 +15,8 @@ package org.eclipse.papyrus.dev.assistants.codegen.generator;
 
 import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.AbstractGenerator;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.AbstractGenerator;
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
 
 import com.google.inject.Inject;
 

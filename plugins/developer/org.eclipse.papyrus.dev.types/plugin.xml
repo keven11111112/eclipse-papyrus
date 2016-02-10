@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+
+
+	<extension
+         point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.dev.types.commands.migrateTypesConfigurations"
+             id="org.eclipse.papyrus.infra.dev.types.menus.migrateTypesConfigurations"
+             label="Migrate ElementTypes Configurations"
+             mnemonic="S"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+                <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.dev.types.commands.generateElementTypesRegistry"
+             id="org.eclipse.papyrus.infra.dev.types.menus.generateElementTypesRegistry"
+             label="Generate ElementTypes Registry"
+             mnemonic="G"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+                <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+	</extension>
+
+	<extension
+         point="org.eclipse.ui.commands">
+  <command
+        defaultHandler="org.eclipse.papyrus.dev.types.handlers.MigrateTypesConfigurations"
+        id="org.eclipse.papyrus.infra.dev.types.commands.migrateTypesConfigurations"
+        name="Migrate TypesConfigurations">
+  </command>
+      <command
+        defaultHandler="org.eclipse.papyrus.dev.types.handlers.GenerateElementTypesRegistry"
+        id="org.eclipse.papyrus.infra.dev.types.commands.generateElementTypesRegistry"
+        name="Generate ElementTypes Registry">
+  </command>
+	</extension>
+ <extension
+       point="org.eclipse.ui.views">
+    <view
+          category="org.eclipse.papyrus.views.category"
+          class="org.eclipse.papyrus.dev.types.view.RegistredElementTypesView"
+          id="org.eclipse.papyrus.dev.types.registeredElementTypesView"
+          name="Registred ElementTypes View"
+          restorable="true">
+    </view>
+ </extension>
+ 
+  <extension
+       point="org.eclipse.ui.views">
+    <view
+          category="org.eclipse.papyrus.views.category"
+          class="org.eclipse.papyrus.dev.types.view.TypesConfigurationsListenerView"
+          id="org.eclipse.papyrus.dev.types.typesConfigurationsListenerView"
+          name="TypesConfigurations Listener View"
+          restorable="true">
+    </view>
+ </extension>
+
+</plugin>

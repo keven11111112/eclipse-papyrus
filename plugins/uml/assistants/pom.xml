@@ -14,7 +14,7 @@
 	<modules>
 		<module>org.eclipse.papyrus.uml.profile.assistants.generator</module>
 		<module>org.eclipse.papyrus.uml.profile.assistants.generator.ui</module>
-		<module>org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator</module>
-		<module>org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui</module>
+		<module>org.eclipse.papyrus.uml.profile.types.generator</module>
+		<module>org.eclipse.papyrus.uml.profile.types.generator.ui</module>
 	</modules>
 </project>

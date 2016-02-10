@@ -22,14 +22,7 @@
 		<module>services</module>
 		<module>newchild</module>
 
-		<!-- These are not in a subdirectory because other refactorings are in progress -->
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations</module>
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations.edit</module>
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations.editor</module>
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations.emf</module>
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui</module>
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes</module>
-		<module>org.eclipse.papyrus.infra.elementtypesconfigurations.ui</module>
+		<module>types</module>
 
 		<module>viewpoints</module>
 		<module>nattable</module>

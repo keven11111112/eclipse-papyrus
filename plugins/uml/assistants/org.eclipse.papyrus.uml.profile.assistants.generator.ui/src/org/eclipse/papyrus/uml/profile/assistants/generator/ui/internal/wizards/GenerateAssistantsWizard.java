@@ -20,13 +20,13 @@ import org.eclipse.jface.dialogs.DialogSettings;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.util.AssistantResource;
 import org.eclipse.papyrus.uml.profile.assistants.generator.ModelingAssistantsGenerator;
 import org.eclipse.papyrus.uml.profile.assistants.generator.ui.internal.Activator;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.AbstractGenerator;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ElementTypesGenerator;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.wizards.GeneratorMainPage;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.wizards.GeneratorWizard;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.wizards.GeneratorWizardModel;
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.wizards.IGeneratorWizardPage;
+import org.eclipse.papyrus.uml.profile.types.generator.AbstractGenerator;
+import org.eclipse.papyrus.uml.profile.types.generator.ElementTypesGenerator;
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers;
+import org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards.GeneratorMainPage;
+import org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards.GeneratorWizard;
+import org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards.GeneratorWizardModel;
+import org.eclipse.papyrus.uml.profile.types.generator.ui.internal.wizards.IGeneratorWizardPage;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.uml2.uml.Profile;
 
@@ -58,7 +58,7 @@ public class GenerateAssistantsWizard extends GeneratorWizard {
 	@Override
 	protected URI getOutputURI(AbstractGenerator<Profile, ?> generator, Identifiers identifiers, GeneratorWizardModel wizardModel) {
 		if (generator instanceof ElementTypesGenerator) {
-			return wizardModel.getOutputModelURI().trimFileExtension().appendFileExtension("elementtypesconfigurations");
+			return wizardModel.getOutputModelURI().trimFileExtension().appendFileExtension("typesconfigurations");
 		}
 
 		return super.getOutputURI(generator, identifiers, wizardModel);

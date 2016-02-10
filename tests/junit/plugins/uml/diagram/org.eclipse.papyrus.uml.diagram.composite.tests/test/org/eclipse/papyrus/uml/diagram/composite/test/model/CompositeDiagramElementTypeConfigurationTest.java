@@ -21,16 +21,16 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test the compositediagram.elementtypesconfigurations model :
- *  - validate the model
+ * Test the compositediagram.typesconfigurations model :
+ * - validate the model
  * 
  * @author Benoit Maggi
  */
 public class CompositeDiagramElementTypeConfigurationTest {
-	
+
 	// path to the model
-	public static final String ELEMENT_TYPE_CONFIGURATION_MODEL_PATH = org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin.ID+"/model/compositediagram.elementtypesconfigurations"; //$NON-NLS-0$
-	
+	public static final String ELEMENT_TYPE_CONFIGURATION_MODEL_PATH = org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramEditorPlugin.ID + "/model/compositediagram.typesconfigurations"; // $NON-NLS-0$
+
 	/**
 	 * Validate the model with the rules defined in the meta-model tooling
 	 */

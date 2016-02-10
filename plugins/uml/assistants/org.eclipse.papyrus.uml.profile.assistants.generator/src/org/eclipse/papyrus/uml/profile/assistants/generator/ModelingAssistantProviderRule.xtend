@@ -16,9 +16,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantFactory
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UML
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UMLElementTypes
+import org.eclipse.papyrus.uml.profile.types.generator.Identifiers
+import org.eclipse.papyrus.uml.profile.types.generator.UML
+import org.eclipse.papyrus.uml.profile.types.generator.UMLElementTypes
 import org.eclipse.uml2.uml.Profile
 
 /**
