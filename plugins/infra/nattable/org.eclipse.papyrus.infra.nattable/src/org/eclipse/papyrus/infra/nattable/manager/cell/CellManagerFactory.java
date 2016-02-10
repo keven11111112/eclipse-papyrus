@@ -16,6 +16,8 @@ package org.eclipse.papyrus.infra.nattable.manager.cell;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -53,7 +55,7 @@ public final class CellManagerFactory {
 	/**
 	 * the map of the cell manager sorted by priority
 	 */
-	private final Map<Integer, ICellManager> managersMap;
+	private final Map<Integer, Collection<ICellManager>> managersMap;
 
 	/**
 	 * The cell manager factory
@@ -66,7 +68,7 @@ public final class CellManagerFactory {
 	 * Initialize the field of the class
 	 */
 	private CellManagerFactory() {
-		this.managersMap = new TreeMap<Integer, ICellManager>();
+		this.managersMap = new TreeMap<Integer, Collection<ICellManager>>();
 		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 
 		for (final IConfigurationElement iConfigurationElement : configElements) {
@@ -76,7 +78,10 @@ public final class CellManagerFactory {
 			final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER));
 			try {
 				final ICellManager solver = (ICellManager) iConfigurationElement.createExecutableExtension(CLASS_MANAGER);
-				this.managersMap.put(order, new StringResolutionProblemWrapperCellManager(solver));
+				if(!this.managersMap.containsKey(order)){
+					this.managersMap.put(order, new HashSet<ICellManager>());
+				}
+				this.managersMap.get(order).add(new StringResolutionProblemWrapperCellManager(solver));
 			} catch (final CoreException e) {
 				Activator.log.error(e);
 			}
@@ -127,20 +132,25 @@ public final class CellManagerFactory {
 	 *            the column element as described in the model (you must ignore the invert axis)
 	 *
 	 * @param rowElement
-	 *            -
 	 *            the row element as described in the model (you must ignore the invert axis)
 	 *
 	 * @return
 	 *         the cell manager
 	 */
 	private ICellManager getCellManager(final Object columnElement, final Object rowElement) {
-		for (final Integer integer : this.managersMap.keySet()) {
-			ICellManager current = this.managersMap.get(integer);
-			if (current.handles(columnElement, rowElement)) {
-				return current;
+		ICellManager result = null;
+		final Iterator<Integer> orders = this.managersMap.keySet().iterator();
+		while(orders.hasNext() && null == result){
+			final Integer integer = orders.next();
+			final Iterator<ICellManager> cellManagers = this.managersMap.get(integer).iterator();
+			while(cellManagers.hasNext() && null == result){
+				final ICellManager current = cellManagers.next();
+				if (current.handles(columnElement, rowElement)) {
+					result = current;
+				}
 			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
