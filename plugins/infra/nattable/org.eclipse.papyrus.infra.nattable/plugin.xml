@@ -65,6 +65,7 @@
        </command>
        <command
              commandId="org.eclipse.ui.edit.delete"
+             label="Unset"
              style="push">
        </command>
        <command
