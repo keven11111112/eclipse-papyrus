@@ -12,56 +12,16 @@
             notation_file="template/rami40.notation">
       </template>
    </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RAMI40.profile -->
-      <package
-            uri="http:///rami40/ValueStreamHierarchy.ecore"
-            class="org.eclipse.papyrus.manufacturing.rami40.ValueStreamHierarchy.ValueStreamHierarchyPackage"
-            genModel="model/RAMI40.profile.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RAMI40.profile -->
-      <package
-            uri="http:///rami40/InfrastructureHierarchy.ecore"
-            class="org.eclipse.papyrus.manufacturing.rami40.InfrastructureHierarchy.InfrastructureHierarchyPackage"
-            genModel="model/RAMI40.profile.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RAMI40.profile -->
-      <package
-            uri="http:///rami40/LifeCycleHierarchy.ecore"
-            class="org.eclipse.papyrus.manufacturing.rami40.LifeCycleHierarchy.LifeCycleHierarchyPackage"
-            genModel="model/RAMI40.profile.genmodel"/>
-   </extension>
-   
-       <extension
+   <!--
+          <extension
          point="org.eclipse.uml2.uml.generated_package">
       <profile
-            location="pathmap://RAMI40_PROF/RAMI40.profile.uml#_O5G7kMXkEeWY7oQWr-IL2Q"
+            location="pathmap://RAMI40_PROF/RAMI40.profile.uml#_G_3HYMXkEeWY7oQWr-IL2Q"
             uri="pathmap://RAMI40_PROF/RAMI40.profile.uml" >
             
       </profile>
-   </extension>
-   
-       <extension
-         point="org.eclipse.uml2.uml.generated_package">
-      <profile
-            location="pathmap://RAMI40_PROF/RAMI40.profile.uml#_Rt2UEMXkEeWY7oQWr-IL2Q"
-            uri="pathmap://RAMI40_PROF/RAMI40.profile.uml">
-      </profile>
-   </extension>
-   
-       <extension
-         point="org.eclipse.uml2.uml.generated_package">
-      <profile
-            location="pathmap://RAMI40_PROF/RAMI40.profile.uml#_UgR_cMXkEeWY7oQWr-IL2Q"
-            uri="pathmap://RAMI40_PROF/RAMI40.profile.uml">
-      </profile>
-   </extension>
-   
-   
+   </extension>   
+   -->
    <extension
          point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
@@ -71,12 +31,36 @@
             provider="CEA List">
       </profile>
    </extension>
-   
-      <extension
+   <extension
          point="org.eclipse.emf.ecore.uri_mapping">
       <mapping
             source="pathmap://RAMI40_PROF/"
             target="platform:/plugin/org.eclipse.papyrus.manufacturing/model/">
       </mapping>
    </extension>
+   <!--
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <- @generated RAMI40.profile ->
+      <package
+            uri="http:///RAMI40/ValueStreamHierarchy.ecore"
+            class="org.eclipse.papyrus.manufacturing.RAMI40.ValueStreamHierarchy.ValueStreamHierarchyPackage"
+            genModel="model/RAMI40.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <- @generated RAMI40.profile ->
+      <package
+            uri="http:///RAMI40/InfrastructureHierarchy.ecore"
+            class="org.eclipse.papyrus.manufacturing.RAMI40.InfrastructureHierarchy.InfrastructureHierarchyPackage"
+            genModel="model/RAMI40.profile.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <- @generated RAMI40.profile ->
+      <package
+            uri="http:///RAMI40/LifeCycleHierarchy.ecore"
+            class="org.eclipse.papyrus.manufacturing.RAMI40.LifeCycleHierarchy.LifeCycleHierarchyPackage"
+            genModel="model/RAMI40.profile.genmodel"/>
+   </extension>
+   -->
 </plugin>

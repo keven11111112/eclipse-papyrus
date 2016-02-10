@@ -31,75 +31,75 @@
     <details key="VALIDATION_DELEGATES" value="IGNORE"/>
   </genAnnotations>
   <foreignModel>RAMI40.profile.uml</foreignModel>
-  <genPackages xsi:type="genmodel:GenPackage" prefix="Rami40" basePackage="org.eclipse.papyrus.manufacturing"
-      disposableProviderFactory="true" ecorePackage="rami40.ecore#/">
+  <genPackages xsi:type="genmodel:GenPackage" prefix="RAMI40" basePackage="org.eclipse.papyrus.manufacturing"
+      disposableProviderFactory="true" ecorePackage="RAMI40.ecore#/">
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="ValueStreamHierarchy"
-        disposableProviderFactory="true" ecorePackage="rami40.ecore#//ValueStreamHierarchy">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//ValueStreamHierarchy/_1BusinessLayer">
+        disposableProviderFactory="true" ecorePackage="RAMI40.ecore#//ValueStreamHierarchy">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//ValueStreamHierarchy/_1BusinessLayer">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//ValueStreamHierarchy/_1BusinessLayer/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//ValueStreamHierarchy/_1BusinessLayer/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//ValueStreamHierarchy/_2FunctionalLayer">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//ValueStreamHierarchy/_2FunctionalLayer">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//ValueStreamHierarchy/_2FunctionalLayer/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//ValueStreamHierarchy/_2FunctionalLayer/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//ValueStreamHierarchy/_3InformationLayer">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//ValueStreamHierarchy/_3InformationLayer">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//ValueStreamHierarchy/_3InformationLayer/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//ValueStreamHierarchy/_3InformationLayer/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//ValueStreamHierarchy/_4CommunicationLayer">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//ValueStreamHierarchy/_4CommunicationLayer">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//ValueStreamHierarchy/_4CommunicationLayer/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//ValueStreamHierarchy/_4CommunicationLayer/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//ValueStreamHierarchy/_5IntegrationLayer">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//ValueStreamHierarchy/_5IntegrationLayer">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//ValueStreamHierarchy/_5IntegrationLayer/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//ValueStreamHierarchy/_5IntegrationLayer/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//ValueStreamHierarchy/_6AssetLayer">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//ValueStreamHierarchy/_6AssetLayer">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//ValueStreamHierarchy/_6AssetLayer/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//ValueStreamHierarchy/_6AssetLayer/base_Package"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="InfrastructureHierarchy"
-        disposableProviderFactory="true" ecorePackage="rami40.ecore#//InfrastructureHierarchy">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_1ConnectedWorld">
+        disposableProviderFactory="true" ecorePackage="RAMI40.ecore#//InfrastructureHierarchy">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_1ConnectedWorld">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_1ConnectedWorld/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_1ConnectedWorld/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_2EnterpriseLevel">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_2EnterpriseLevel">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_2EnterpriseLevel/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_2EnterpriseLevel/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_3WorkCentersLevel">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_3WorkCentersLevel">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_3WorkCentersLevel/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_3WorkCentersLevel/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_4StationsLevel">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_4StationsLevel">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_4StationsLevel/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_4StationsLevel/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_5ControlDeviceLevel">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_5ControlDeviceLevel">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_5ControlDeviceLevel/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_5ControlDeviceLevel/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_6FieldDeviceLevel">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_6FieldDeviceLevel">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_6FieldDeviceLevel/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_6FieldDeviceLevel/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//InfrastructureHierarchy/_7ProductLevel">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//InfrastructureHierarchy/_7ProductLevel">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//InfrastructureHierarchy/_7ProductLevel/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//InfrastructureHierarchy/_7ProductLevel/base_Package"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="LifeCycleHierarchy"
-        disposableProviderFactory="true" ecorePackage="rami40.ecore#//LifeCycleHierarchy">
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//LifeCycleHierarchy/_2InstanceProduction">
+        disposableProviderFactory="true" ecorePackage="RAMI40.ecore#//LifeCycleHierarchy">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//LifeCycleHierarchy/_2InstanceProduction">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//LifeCycleHierarchy/_2InstanceProduction/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//LifeCycleHierarchy/_2InstanceProduction/base_Package"/>
       </genClasses>
-      <genClasses xsi:type="genmodel:GenClass" ecoreClass="rami40.ecore#//LifeCycleHierarchy/_1TypeDevelopment">
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="RAMI40.ecore#//LifeCycleHierarchy/_1TypeDevelopment">
         <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
-            propertySortChoices="true" ecoreFeature="ecore:EReference rami40.ecore#//LifeCycleHierarchy/_1TypeDevelopment/base_Package"/>
+            propertySortChoices="true" ecoreFeature="ecore:EReference RAMI40.ecore#//LifeCycleHierarchy/_1TypeDevelopment/base_Package"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
