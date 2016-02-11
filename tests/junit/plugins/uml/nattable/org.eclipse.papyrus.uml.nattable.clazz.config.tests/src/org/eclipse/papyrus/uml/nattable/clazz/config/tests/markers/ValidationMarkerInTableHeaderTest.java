@@ -35,6 +35,7 @@ import org.eclipse.papyrus.junit.utils.TableUtils;
 import org.eclipse.papyrus.junit.utils.rules.ActiveTable;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.service.validation.UMLDiagnostician;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
@@ -145,7 +146,8 @@ public class ValidationMarkerInTableHeaderTest extends AbstractPapyrusTest {
 		this.manager.doCollapseExpandAction(CollapseAndExpandActionsEnum.EXPAND_ALL, null);
 		this.fixture.flushDisplayEvents();
 		// we validate the model
-		ValidateModelCommand cmd = new ValidateModelCommand(this.root, new EcoreDiagnostician());
+		final ValidateModelCommand cmd = new ValidateModelCommand(this.root, new UMLDiagnostician());
+		cmd.disableUIFeedback();
 		this.fixture.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(cmd));
 		this.fixture.flushDisplayEvents();
 
