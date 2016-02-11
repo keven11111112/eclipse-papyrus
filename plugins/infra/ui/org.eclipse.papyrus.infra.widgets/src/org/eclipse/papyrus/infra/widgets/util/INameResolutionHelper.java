@@ -20,13 +20,13 @@ import java.util.List;
  *
  */
 public interface INameResolutionHelper {
-	
+
 	/**
 	 * 
 	 * @param aString
 	 *            a string
 	 * @return
-	 *         all elements whose the name starts with this string, or all found element if the string is <code>null</code> or empty
+	 * 		all elements whose the name starts with this string, or all found element if the string is <code>null</code> or empty
 	 */
 	public List<?> getMatchingElements(final String aString);
 
@@ -35,16 +35,32 @@ public interface INameResolutionHelper {
 	 * @param aString
 	 *            a string
 	 * @return
-	 *         all elements which have the wanted string as (qualified) name
+	 * 		all elements which have the wanted string as (qualified) name
 	 */
 	public List<?> getElementsByName(final String aString);
 
 
 	/**
-	 * @param namedElement
+	 * Get the shortest qualified name.
+	 * 
+	 * @param element
+	 *            The element to get the shortest qualified name.
 	 * @return
-	 *         the shortest qualified to use for the element
+	 * 		the shortest qualified to use for the element
+	 * @deprecated since 1.2.0
 	 */
-	public List<String> getShortestQualifiedNames(Object element);
+	@Deprecated
+	public List<String> getShortestQualifiedNames(final Object element);
+
+	/**
+	 * Get the shortest qualified name.
+	 * 
+	 * @param element
+	 *            The element to get the shortest qualified name.
+	 * @param manageDuplicate
+	 *            Boolean to determinate if the duplicated shortest qualified names must be remove from the returned list.
+	 * @return the shortest qualified to use for the element
+	 */
+	public List<String> getShortestQualifiedNames(final Object element, final boolean manageDuplicate);
 
 }

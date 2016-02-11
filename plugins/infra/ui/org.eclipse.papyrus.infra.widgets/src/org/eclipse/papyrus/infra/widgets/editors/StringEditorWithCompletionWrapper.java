@@ -20,6 +20,7 @@ import org.eclipse.jface.text.contentassist.ContentAssistEvent;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.ICompletionListener;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.contentassist.ICompletionProposalSorter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.infra.widgets.util.ISetPapyrusConverter;
@@ -143,6 +144,15 @@ public class StringEditorWithCompletionWrapper implements ISetPapyrusConverter{
 			this.processor = parser.getCompletionProcessor(null);
 			assistant.setContentAssistProcessor(this.processor, IDocument.DEFAULT_CONTENT_TYPE);
 		}
+		
+		// Manage the sorter for the completion proposal
+		assistant.setSorter(new ICompletionProposalSorter() {
+			
+			@Override
+			public int compare(final ICompletionProposal p1, final ICompletionProposal p2) {
+				return p1.getDisplayString().compareTo(p2.getDisplayString());
+			}
+		});
 		
 		assistant.install(textViewer);
 		assistant.addCompletionListener(new ICompletionListener() {

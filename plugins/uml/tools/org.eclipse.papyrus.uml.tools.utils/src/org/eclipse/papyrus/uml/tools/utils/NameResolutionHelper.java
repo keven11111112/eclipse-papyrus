@@ -63,7 +63,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	/**
 	 * the empty string
 	 */
-	private static final String EMPTY_STRING = ""; //$NON-NLS-N1
+	private static final String EMPTY_STRING = ""; // $NON-NLS-N1
 
 	/**
 	 * 
@@ -120,7 +120,7 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	 * @param name
 	 *            a name
 	 * @return
-	 *         all named element matching this name
+	 * 		all named element matching this name
 	 * 
 	 * @deprecated you should use {@link #getElementsByName(String)}
 	 */
@@ -258,12 +258,30 @@ public class NameResolutionHelper implements INameResolutionHelper {
 	}
 
 	/**
+	 * This allows to get the shortest qualified name for a named element in parameter.
+	 * 
 	 * @param namedElement
+	 *            The named element.
 	 * @return
-	 *         the shortest qualified to use for the element
+	 * 		the shortest qualified to use for the element
 	 */
+	@Deprecated
 	public List<String> getShortestQualifiedNames(NamedElement namedElement) {
-		return NameResolutionUtils.getShortestQualifiedNames(namedElement, this.scope);
+		return getShortestQualifiedNames(namedElement, true);
+	}
+
+	/**
+	 * This allows to get the shortest qualified name for a named element in parameter.
+	 * 
+	 * @param namedElement
+	 *            The named element.
+	 * @param manageDuplicate
+	 *            Boolean to determinate if the duplicated shortest qualified names must be remove from the returned list.
+	 * @return
+	 * 		the shortest qualified to use for the element
+	 */
+	public List<String> getShortestQualifiedNames(NamedElement namedElement, final boolean manageDusplicate) {
+		return NameResolutionUtils.getShortestQualifiedNames(namedElement, this.scope, manageDusplicate);
 	}
 
 	/**
@@ -310,16 +328,24 @@ public class NameResolutionHelper implements INameResolutionHelper {
 		return returnedValues != null ? returnedValues : Collections.emptyList();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object)
+	 * @deprecated since 1.2.0
+	 */
+	public List<String> getShortestQualifiedNames(final Object element) {
+		return getShortestQualifiedNames(element, true);
+	}
 
 	/**
-	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object)
-	 *
-	 * @param element
-	 * @return
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object, boolean)
 	 */
-	public List<String> getShortestQualifiedNames(Object element) {
+	public List<String> getShortestQualifiedNames(final Object element, final boolean manageDuplicate) {
 		if (element instanceof NamedElement) {
-			return getShortestQualifiedNames((NamedElement) element);
+			return getShortestQualifiedNames((NamedElement) element, manageDuplicate);
 		}
 		return null;
 	}

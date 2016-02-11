@@ -129,7 +129,6 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 		for (String string2 : names) {
 			List<?> values = sharedResolutionHelper.getElementsByName(string2);
 			if (values.size() > 0) {
-				Assert.isTrue(values.size() == 1);
 				elements.add((NamedElement) values.get(0));
 			}
 		}
@@ -167,16 +166,18 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 * @return
 	 *         the name of the named element, starting and ending with {@link #STRING_DELIMITER} if its name contains {@link #STRING_DELIMITER}
 	 */
-	protected String getElementNameWithDelimiterIfRequired(NamedElement namedElement) {
-		StringBuffer builder = new StringBuffer();
-		List<String> names = sharedResolutionHelper.getShortestQualifiedNames(namedElement);
-		String name = names.get(0);
-		if (name.contains(STRING_SEPARATOR)) {
-			builder.append(STRING_DELIMITER);
-			builder.append(name);
-			builder.append(STRING_DELIMITER);
-		} else {
-			builder.append(name);
+	protected String getElementNameWithDelimiterIfRequired(final NamedElement namedElement) {
+		final StringBuilder builder = new StringBuilder();
+		final List<String> names = sharedResolutionHelper.getShortestQualifiedNames(namedElement, true);
+		if(!names.isEmpty()){
+			String name = names.get(0);
+			if (name.contains(STRING_SEPARATOR)) {
+				builder.append(STRING_DELIMITER);
+				builder.append(name);
+				builder.append(STRING_DELIMITER);
+			} else {
+				builder.append(name);
+			}
 		}
 		return builder.toString();
 	}
@@ -237,12 +238,24 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 
 
 	/**
-	 * @param namedElement
-	 * @return
-	 *         the shortest qualified to use for the element
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object)
+	 * @deprecated since 1.2.0
 	 */
-	public List<String> getShortestQualifiedNames(Object element) {
-		return this.sharedResolutionHelper.getShortestQualifiedNames(element);
+	@Override
+	public List<String> getShortestQualifiedNames(final Object element) {
+		return this.sharedResolutionHelper.getShortestQualifiedNames(element, false);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object, boolean)
+	 */
+	@Override
+	public List<String> getShortestQualifiedNames(final Object element, final boolean manageDuplicate) {
+		return this.sharedResolutionHelper.getShortestQualifiedNames(element, manageDuplicate);
 	}
 
 	/**
@@ -268,7 +281,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 			while (iter.hasNext()) {
 				Object tmp = iter.next();
 				Assert.isTrue(tmp instanceof NamedElement);
-				List<String> names = getShortestQualifiedNames(tmp);
+				List<String> names = getShortestQualifiedNames(tmp, false);
 				if (names.size() > 0) {
 					builder.append(names.get(0));
 				}
@@ -280,7 +293,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 		} else if (object instanceof EObject) {
 			EObject eobject = (EObject) object;
 			Assert.isTrue(eobject instanceof NamedElement);
-			List<String> names = getShortestQualifiedNames(eobject);
+			List<String> names = getShortestQualifiedNames(eobject, false);
 			if (names.size() > 0) {
 				return names.get(0);
 			}

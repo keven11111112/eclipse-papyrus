@@ -232,7 +232,7 @@ public class NameResolutionUtils {
 		if (!(scope instanceof Namespace)) {
 			return shortestNames;
 		}
-		return NameResolutionUtils.getShortestQualifiedNames(element, (Namespace) scope);
+		return NameResolutionUtils.getShortestQualifiedNames(element, (Namespace) scope, true);
 	}
 
 	/**
@@ -251,19 +251,46 @@ public class NameResolutionUtils {
 	 * @param scope
 	 *            , the scope in which we try to determine the shortest qualified name for element
 	 * @return the shortest qualified names for element
+	 * @deprecated since 1.2.0
 	 */
+	@Deprecated
 	public static final List<String> getShortestQualifiedNames(final NamedElement element, final Namespace scope) {
+		return getShortestQualifiedNames(element, scope, true);
+	}
+
+	/**
+	 * Computes the shortest qualified names for a named element, in the context of a scope.
+	 * The shortest qualified names are the shortest name in terms of qualification depth which unambiguously
+	 * resolve to the researched element if specified in parameter
+	 * In the case where the returned list is empty, there is no unambiguous name that could be found if specified in parameter,
+	 * including the fully qualified name of the element. This typically means that there are problems in the
+	 * context model in terms of organization of element imports and package imports and named element
+	 * definitions, or conflict in loaded UML resources.
+	 * In the case where the list contains more than one name, all these names are all valid, all have the same
+	 * qualification depth, and can be used indifferently.
+	 *
+	 * @param element
+	 *            , the named element for which we try to determine the shortest qualified name
+	 * @param scope
+	 *            , the scope in which we try to determine the shortest qualified name for element
+	 * @param manageDuplicate
+	 *            Boolean to determinate if the duplicated shortest qualified names must be remove from the returned list.
+	 * @return the shortest qualified names for element
+	 */
+	public static final List<String> getShortestQualifiedNames(final NamedElement element, final Namespace scope, final boolean manageDuplicate) {
 		final List<String> shortestNames = new ArrayList<String>();
 
 		// Tries to compute
-		shortestNames.addAll(NameResolutionUtils.getShortestQualifiedNamesOmittingFullyQualifiedName(element, scope));
+		shortestNames.addAll(NameResolutionUtils.getShortestQualifiedNamesOmittingFullyQualifiedName(element, scope, manageDuplicate));
 
 		// if no short name have been found, returns the fully qualified name, if it is itself unambiguous
 		if (shortestNames.isEmpty()) {
 			final String fullyQualifiedNameOfElement = element.getQualifiedName();
 			if ((fullyQualifiedNameOfElement != null) && !(fullyQualifiedNameOfElement.length() == 0)) {
 				shortestNames.add(fullyQualifiedNameOfElement);
-				shortestNames.removeAll(NameResolutionUtils.findAmbiguousNames(shortestNames, element, scope));
+				if (manageDuplicate) {
+					shortestNames.removeAll(NameResolutionUtils.findAmbiguousNames(shortestNames, element, scope));
+				}
 			}
 		}
 		return shortestNames;
@@ -287,9 +314,37 @@ public class NameResolutionUtils {
 	 *            , the named element for which we try to determine the shortest qualified name
 	 * @param scope
 	 *            , the scope in which we try to determine the shortest qualified name for element
+	 * @param manageDuplicate
+	 *            Boolean to determinate if the duplicated shortest qualified names must be remove from the returned list.
+	 * @return the shortest qualified names for element (omitting the fully qualified name element)
+	 * @deprecated since 1.2.0
+	 */
+	@Deprecated
+	private static final List<String> getShortestQualifiedNamesOmittingFullyQualifiedName(final NamedElement element, final Namespace scope) {
+		return getShortestQualifiedNamesOmittingFullyQualifiedName(element, scope, true);
+	}
+
+	/**
+	 * Computes the shortest qualified names for a named element in the context of a scope, omitting
+	 * fully qualified name of the named element (The fully qualified name is handled as a special case of
+	 * getShortestQualifiedName, in the case where this method was not able to produce a non-ambiguous qualified
+	 * name if specified in parameter).
+	 * The basic principle is the following (each step is applied if the previous one did not succeed.
+	 * "Evaluates" means assuring that computed names are not ambiguous):
+	 * 1. if element and scope are the same, directly evaluates the name of the element.
+	 * 2. if element is a member of scope, evaluates member names for this element,
+	 * 3. Iterate over enclosing namespaces of scope, and if element is a member of an enclosing namespace,
+	 * evaluate member names for element in the context of this enclosing namespace
+	 * 4. Recursively call this method using the enclosing namespace of element as the reasearched named element,
+	 * build partially qualified names from the obtained list, and evaluate the computed names
+	 *
+	 * @param element
+	 *            , the named element for which we try to determine the shortest qualified name
+	 * @param scope
+	 *            , the scope in which we try to determine the shortest qualified name for element
 	 * @return the shortest qualified names for element (omitting the fully qualified name element)
 	 */
-	private static final List<String> getShortestQualifiedNamesOmittingFullyQualifiedName(final NamedElement element, final Namespace scope) {
+	private static final List<String> getShortestQualifiedNamesOmittingFullyQualifiedName(final NamedElement element, final Namespace scope, final boolean manageDuplicate) {
 		boolean continueResearch = true;
 		final List<String> shortestNames = new ArrayList<String>();
 		// if element and scope are the same, the shortest name is the name of the element
@@ -314,7 +369,9 @@ public class NameResolutionUtils {
 			while ((enclosingNamespaceOfScope != null) && shortestNames.isEmpty()) {
 				if (enclosingNamespaceOfScope.getMembers().contains(element)) {
 					shortestNames.addAll(enclosingNamespaceOfScope.getNamesOfMember(element));
-					shortestNames.removeAll(NameResolutionUtils.findAmbiguousNames(shortestNames, element, scope));
+					if (manageDuplicate) {
+						shortestNames.removeAll(NameResolutionUtils.findAmbiguousNames(shortestNames, element, scope));
+					}
 				}
 				enclosingNamespaceOfScope = enclosingNamespaceOfScope.getNamespace();
 			}
@@ -323,7 +380,7 @@ public class NameResolutionUtils {
 				final Namespace enclosingNamespaceOfElement = element.getNamespace();
 				if (enclosingNamespaceOfElement != null) {
 					final List<String> shortestNamesForEnclosingNamespace = new ArrayList<String>();
-					shortestNamesForEnclosingNamespace.addAll(NameResolutionUtils.getShortestQualifiedNames(enclosingNamespaceOfElement, scope));
+					shortestNamesForEnclosingNamespace.addAll(NameResolutionUtils.getShortestQualifiedNames(enclosingNamespaceOfElement, scope, manageDuplicate));
 					// creates the list of shortest name from the list of shortest names for the enclosing namespace
 					for (final String shortestNameForEnclosing : shortestNamesForEnclosingNamespace) {
 						final List<String> memberNames = enclosingNamespaceOfElement.getNamesOfMember(element);
@@ -331,7 +388,9 @@ public class NameResolutionUtils {
 							shortestNames.add(shortestNameForEnclosing + NamedElementUtil.QUALIFIED_NAME_SEPARATOR + memberName);
 						}
 					}
-					shortestNames.removeAll(NameResolutionUtils.findAmbiguousNames(shortestNames, element, scope));
+					if (manageDuplicate) {
+						shortestNames.removeAll(NameResolutionUtils.findAmbiguousNames(shortestNames, element, scope));
+					}
 				}
 			}
 		}

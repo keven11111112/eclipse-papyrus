@@ -7,7 +7,7 @@
  *
  * Contributors:
  *     Vincent Lorenzo (CEA-LIST)  - duplicated and adapted code from nattable project.
- *     Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue - Bug 482790
+ *     Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue - Bug 482790, 481835
  *
  ******************************************************************************/
 package org.eclipse.papyrus.uml.nattable.manager.cell.editor;
@@ -142,6 +142,8 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 		final CrossAxisWrapper<EObject, EStructuralFeature> editedElement = UMLTableUtils.getRealEditedObject(layerCell, elementProvider);
 		final EObject element = editedElement.getFirstAxis();
 		
+		boolean useSimpleDialog = true;
+		
 		Control control = null;
 		
 		// Bug 482790: Check if this is not an object with a null namespace
@@ -149,8 +151,28 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 			this.helper = createNameResolutionHelper();
 			parser = new StringResolutionProblemPapyrusConverter(new UMLReferenceConverter(this.helper, isMultiValued));
 			setPapyrusConverter(parser);
-			control = super.activateCell(parent, originalCanonicalValue);
-		}else{
+			
+			// Get the display value
+			Object displayValue = null;
+			if (this.displayConverter != null) {
+	            displayValue = this.displayConverter.canonicalToDisplayValue(this.layerCell, this.configRegistry, originalCanonicalValue);
+	        } else {
+	            displayValue = originalCanonicalValue;
+	        }
+			
+			// Bug 481835 : If the display value is empty and the data value is not null,
+			//              this means the namespace of the object to edit cannot be resolved (same Objects name? other?).
+			//              In this case, use the simple reference dialog.
+			if(displayValue.toString().isEmpty() && null != layerCell.getDataValue()){
+				helper = null;
+				parser = null;
+				setPapyrusConverter(parser);
+			}else{
+				useSimpleDialog = false;
+			}
+		}
+
+		if(useSimpleDialog){
 			// Bug 482790: The parse can't be used because no name resolution helper can't be created
 			// So re-initialize the display converter to null
 			this.displayConverter = null;
@@ -201,6 +223,8 @@ public class UMLReferenceTextWithCompletionCellEditor extends AbstractPapyrusSty
 			} else {
 				singleReferenceValueCellEditor.close();
 			}
+		}else{
+			control = super.activateCell(parent, originalCanonicalValue);
 		}
 		return control;
 	}

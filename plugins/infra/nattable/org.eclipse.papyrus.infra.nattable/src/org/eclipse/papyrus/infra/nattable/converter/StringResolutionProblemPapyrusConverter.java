@@ -63,13 +63,24 @@ public class StringResolutionProblemPapyrusConverter implements IPapyrusConverte
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object)
-	 *
-	 * @param element
-	 * @return
+	 * @deprecated since 1.2.0
 	 */
-	public List<String> getShortestQualifiedNames(Object element) {
-		return wrappedDisplayConverter.getShortestQualifiedNames(element);
+	@Override
+	public List<String> getShortestQualifiedNames(final Object element) {
+		return getShortestQualifiedNames(element, true);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object, boolean)
+	 */
+	@Override
+	public List<String> getShortestQualifiedNames(final Object element, final boolean manageDuplicate) {
+		return wrappedDisplayConverter.getShortestQualifiedNames(element, manageDuplicate);
 	}
 
 	/**
