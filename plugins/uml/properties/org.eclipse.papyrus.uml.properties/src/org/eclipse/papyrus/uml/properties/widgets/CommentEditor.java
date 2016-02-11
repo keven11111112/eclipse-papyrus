@@ -12,8 +12,8 @@
 package org.eclipse.papyrus.uml.properties.widgets;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.papyrus.infra.properties.ui.widgets.MultiReferenceEditorWithPropertyView;
 import org.eclipse.papyrus.uml.properties.providers.CommentContentProvider;
-import org.eclipse.papyrus.views.properties.widgets.MultiReferenceEditorWithPropertyView;
 import org.eclipse.swt.widgets.Composite;
 
 public class CommentEditor extends MultiReferenceEditorWithPropertyView {

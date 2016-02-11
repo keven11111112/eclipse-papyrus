@@ -22,7 +22,8 @@
       <model
             classname="org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel"
             description="Main Papyrus IModel"
-            fileExtension="di">
+            fileExtension="di"
+            required="true">
       </model>
    </extension>
    <extension

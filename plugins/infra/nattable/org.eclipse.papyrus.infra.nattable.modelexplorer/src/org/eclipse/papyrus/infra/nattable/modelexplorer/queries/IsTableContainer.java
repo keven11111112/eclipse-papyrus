@@ -20,17 +20,16 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
+import org.eclipse.papyrus.infra.viewpoints.policy.NotationUtils;
 
-public class IsTableContainer extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
+public class IsTableContainer implements IJavaQuery2<EObject, Boolean> {
 
 	/**
 	 * Return true if the element is a Table Container
 	 */
 	@Override
 	public Boolean evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
+		Iterator<EObject> roots = NotationUtils.getNotationRoots(source);
 		if (roots == null) {
 			return false;
 		}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  *     Juan Cadavid <juan.cadavid@cea.fr> implementation
  *     Christian W. Damus (CEA) - bug 437217 - control-mode strategy changes interfere with later tests
  *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 459427
- *     Christian W. Damus - bug 480209
+ *     Christian W. Damus - bugs 480209, 485220
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol;
 
@@ -72,7 +72,7 @@ public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 	@Before
 	public void setUp() {
 		// Set the current resource loading strategy to the default
-		houseKeeper.cleanUpLater(new StrategyChooserFixture(0));
+		houseKeeper.cleanUpLater(new StrategyChooserFixture(editorFixture.getServiceRegistry(), 0));
 
 		openEditor();
 	}

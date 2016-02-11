@@ -13,8 +13,6 @@
     Christian W. Damus - bug 485220
 -->
 <plugin>
-   <extension-point id="context" name="%extension-point.context" schema="schema/context.exsd"/>
-   <extension-point id="labelprovider" name="labelprovider" schema="schema/labelprovider.exsd"/>
    <extension-point id="contextStorage" name="%extension-point.contextStorage" schema="schema/contextStorage.exsd"/>
    
    <extension
@@ -26,17 +24,10 @@
       </package>
    </extension>
    <extension
-         point="org.eclipse.emf.ecore.uri_mapping">
-      <mapping
-            source="pathmap://PPEResources/"
-            target="platform:/plugin/org.eclipse.papyrus.views.properties/model/">
-      </mapping>
-   </extension>
-   <extension
          point="org.eclipse.ui.preferencePages">
       <page
             category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
-            class="org.eclipse.papyrus.views.properties.preferences.Preferences"
+            class="org.eclipse.papyrus.infra.properties.ui.preferences.Preferences"
             id="org.eclipse.papyrus.views.properties.propertyview"
             name="%page.name">
       </page>
@@ -49,30 +40,6 @@
             uri="http://www.eclipse.org/papyrus/properties/root">
       </package>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.properties.environments">
-      <environment
-            environmentModel="model/Environment.xmi">
-      </environment>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.views.properties.labelprovider">
-      <labelProvider
-            labelProvider="org.eclipse.papyrus.infra.ui.emf.providers.EMFFilteredLabelProvider"
-            priority="100">
-      </labelProvider>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
-      <context
-            description="The properties view label provider context (Widgets)"
-            id="org.eclipse.papyrus.views.properties.labelProvider.context">
-      </context>
-      <context
-            description="The properties view label provider context (Header)"
-            id="org.eclipse.papyrus.views.properties.header.labelProvider.context">
-      </context>
-   </extension>
    
    <extension
          point="org.eclipse.papyrus.views.properties.contextStorage">
@@ -80,6 +47,7 @@
             class="org.eclipse.papyrus.views.properties.storage.workspace.WorkspaceContextStorageProvider">
       </provider>
    </extension>
+   
    <extension
          point="org.eclipse.ui.menus">
          <menuContribution
@@ -147,5 +115,11 @@
             id="org.eclipse.papyrus.views.properties.undeploy"
             name="Disable properties view configuration">
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.properties.ui.configuration">
+      <configurationManager
+            class="org.eclipse.papyrus.views.properties.internal.runtime.ConfigurationManagerProvider">
+      </configurationManager>
    </extension>
 </plugin>

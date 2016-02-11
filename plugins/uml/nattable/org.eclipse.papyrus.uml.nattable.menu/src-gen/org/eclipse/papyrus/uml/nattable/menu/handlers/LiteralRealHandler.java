@@ -27,7 +27,7 @@ public class LiteralRealHandler extends AbstractUmlNattableCreateCommandHandler 
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.uml.AbstractUmlCreateCommandHandler.handler.CreateCommandHandler#getElementTypeToCreate()
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractUmlCreateCommandHandler.handler.CreateCommandHandler#getElementTypeToCreate()
 	 *
 	 * @return the IElementType this handler is supposed to create
 	 *

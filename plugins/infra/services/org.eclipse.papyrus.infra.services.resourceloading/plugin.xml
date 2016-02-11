@@ -14,6 +14,13 @@
             priority="5"
             startKind="startup">
       </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.infra.services.resourceloading.impl.StrategyChooserFactory"
+            description="On-demand resource loading strategy chooser."
+            id="org.eclipse.papyrus.infra.services.resourceloading.IStrategyChooser"
+            priority="50"
+            startKind="startup">
+      </serviceFactory>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.services.resourceloading.loadingStrategy">
@@ -32,29 +39,6 @@
             id="2"
             strategy="org.eclipse.papyrus.infra.services.resourceloading.strategies.LoadControlledResources">
       </loadingStrategy>
-      <loadingStrategy
-            description="Ask the user if a resource has to be loaded"
-            id="3"
-            strategy="org.eclipse.papyrus.infra.services.resourceloading.strategies.AskUserStrategy">
-      </loadingStrategy>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.ui.papyrusDiagram">
-      <editorDiagram
-            factoryClass="org.eclipse.papyrus.infra.services.resourceloading.editor.UnloadResourcesEditorFactory">
-      </editorDiagram>
-   </extension>
-   
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-         <!-- the property tester is used to enable/disable handlers for loading/unloading a resource -->
-      <propertyTester
-            class="org.eclipse.papyrus.infra.services.resourceloading.util.LoadingTester"
-            id="org.eclipse.papyrus.infra.core.resourceloading.tester"
-            namespace="org.eclipse.papyrus.infra.core.resourceloading.tester"
-            properties="isAllLoaded, isAllNotLoaded"
-            type="org.eclipse.jface.viewers.IStructuredSelection">
-      </propertyTester>
    </extension>
 
 </plugin>

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 LIFL and others.
- *
+ * Copyright (c) 2011, 2016 LIFL, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  LIFL - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.services;
@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 
 /**
@@ -55,9 +56,26 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 	private static final String DEPENDSON_KEY_ATTRIBUTE_NAME = "serviceKeyRef";
 
 	/**
-	 * Constructor.
-	 *
-	 * @throws Exception
+	 * Initializes me with the default extension-point namespace from which to load
+	 * registered services.
+	 * 
+	 * @throws ServiceException
+	 *             on any problem in the loading of service registrations
+	 */
+	public ExtensionServicesRegistry() throws ServiceException {
+		this(Activator.PLUGIN_ID);
+	}
+
+	/**
+	 * Initializes me with the specified extension-point namespace from which to load
+	 * registered services.
+	 * 
+	 * @param extensionPointNamespace
+	 *            the extension point namespace from which to
+	 *            load service registration extensions
+	 * 
+	 * @throws ServiceException
+	 *             on any problem in the loading of service registrations
 	 */
 	public ExtensionServicesRegistry(String extensionPointNamespace) throws ServiceException {
 		this.extensionPointNamespace = extensionPointNamespace;
@@ -119,8 +137,7 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 		if (exceptions != null) {
 			if (exceptions.size() == 1) {
 				throw exceptions.get(0);
-			}
-			else {
+			} else {
 				throw new ServiceException("Somme services are not started (first is shown)", exceptions.get(0)); //$NON-NLS-1$
 			}
 

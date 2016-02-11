@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 459174
- *  Christian W. Damus - bug 467207
+ *  Christian W. Damus - bugs 459174, 467207, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.registries;
@@ -296,7 +295,7 @@ public class ElementTypeSetConfigurationRegistry {
 			for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contexId).values()) {
 				TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 				while (it.hasNext()) {
-					EObject element = (EObject) it.next();
+					EObject element = it.next();
 					if (element instanceof AdviceConfiguration) {
 						adviceToCheck.add((AdviceConfiguration) element);
 					}
@@ -308,7 +307,7 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : registrableElementTypeSetConfiguration) {
 			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 			while (it.hasNext()) {
-				EObject element = (EObject) it.next();
+				EObject element = it.next();
 				if (element instanceof AdviceConfiguration) {
 					adviceToCheck.add((AdviceConfiguration) element);
 
@@ -404,7 +403,7 @@ public class ElementTypeSetConfigurationRegistry {
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations.get(contextId).values()) {
 			TreeIterator<EObject> it = elementTypeSetConfiguration.eAllContents();
 			while (it.hasNext()) {
-				EObject element = (EObject) it.next();
+				EObject element = it.next();
 				if (element instanceof AdviceConfiguration) {
 					advices.add((AdviceConfiguration) element);
 				}
@@ -449,9 +448,12 @@ public class ElementTypeSetConfigurationRegistry {
 				Activator.log.debug("-  ClientContext the model should be registreted to: " + clientContextId);
 				Activator.log.debug("-  id of the container bundle: " + contributorID);
 			}
-			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(modelPath, contributorID);
 
-			addElementTypeSetConfigurationToDefinitions(set, clientContextId, existingDefinitions);
+			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(modelPath, contributorID);
+			if (set != null) {
+				// It will be null if the file was absent or malformed and so failed to load.
+				addElementTypeSetConfigurationToDefinitions(set, clientContextId, existingDefinitions);
+			}
 
 		}
 		return existingDefinitions;
@@ -493,36 +495,33 @@ public class ElementTypeSetConfigurationRegistry {
 		if (Platform.isFragment(bundle)) {
 			ElementTypeSetConfiguration configuration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
 			if (configuration == null) {
-				Activator.log.warn("Cannot find resource " + modelPath + " in bundle " + bundleId);
+				Activator.log.warn("Failed to load resource " + modelPath + " from bundle " + bundleId);
 			}
 			return configuration;
 		} else { // this is a plugin. Search in sub fragments, then in the plugin
+			ElementTypeSetConfiguration elementTypeSetConfiguration = null;
+
 			Bundle[] fragments = Platform.getFragments(bundle);
-			// no fragment, so the file should be in the plugin itself
-			if (fragments == null) {
-				return getElementTypeSetConfigurationInBundle(modelPath, bundleId);
-			} else {
 
-				ElementTypeSetConfiguration elementTypeSetConfiguration = null;
-
+			if (fragments != null) {
 				for (Bundle fragment : fragments) {
 					elementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, fragment.getSymbolicName());
 					if (elementTypeSetConfiguration != null) {
 						break;
 					}
 				}
+			} // else no fragments, so the file should be in the plugin, itself
 
-				if (elementTypeSetConfiguration == null) {
-					// not found in fragments. Look in the plugin itself
-					elementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
-				}
-
-				if (elementTypeSetConfiguration == null) {
-					Activator.log.warn("Cannot find resource " + modelPath + " in bundle " + bundleId);
-				}
-
-				return elementTypeSetConfiguration;
+			if (elementTypeSetConfiguration == null) {
+				// not found in fragments. Look in the plugin itself
+				elementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
 			}
+
+			if (elementTypeSetConfiguration == null) {
+				Activator.log.warn("Failed to load resource " + modelPath + " from bundle " + bundleId);
+			}
+
+			return elementTypeSetConfiguration;
 		}
 	}
 

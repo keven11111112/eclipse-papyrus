@@ -21,9 +21,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
+import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.services.resourceloading.impl.ProxyManager;
 
 
@@ -49,6 +48,8 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 	private IProxyManager proxyManager;
 
 	private AbstractBaseModel semanticModel;
+
+	private Set<AbstractBaseModel> requiredModels;
 
 	/**
 	 *
@@ -83,9 +84,8 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 		// return super.getEObject(uri, loadOnDemand);
 
 		URI resourceURI = uri.trimFragment();
-		// for performance reasons, we check the three initial resources first
-		if (resourceURI.equals(getSemanticResourceURI()) || resourceURI.equals(NotationUtils.getNotationModel(this).getResourceURI()) || resourceURI.equals(SashModelUtils.getSashModel(this).getResourceURI())
-				|| uriLoading.contains(resourceURI)) {
+		// for performance reasons, we check the required resources first
+		if (resourceURI.equals(getSemanticResourceURI()) || isRequired(resourceURI) || uriLoading.contains(resourceURI)) {
 			// do not manage eObject of the current resources
 			return super.getEObject(uri, loadOnDemand);
 		} else if (loadOnDemand) {
@@ -95,6 +95,20 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 			// if the resource is already loaded
 			return super.getEObject(uri, loadOnDemand);
 		}
+	}
+
+	Set<AbstractBaseModel> getRequiredModels() {
+		if (requiredModels == null) {
+			requiredModels = new ModelsReader().getRequiredModels(this, AbstractBaseModel.class);
+		}
+
+		return requiredModels;
+		}
+
+	boolean isRequired(URI resourceURI) {
+		return getRequiredModels().stream()
+				.map(AbstractBaseModel::getResourceURI)
+				.anyMatch(u -> resourceURI.equals(u));
 	}
 
 	/**
@@ -137,6 +151,16 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 		@Override
 		protected String getModelFileExtension() {
 			return "\0"; // Dummy model
+		}
+
+		@Override
+		public boolean canPersist(EObject object) {
+			return false;
+		}
+
+		@Override
+		public void persist(EObject object) {
+			throw new IllegalArgumentException("cannot persist " + object); //$NON-NLS-1$
 		}
 	}
 }

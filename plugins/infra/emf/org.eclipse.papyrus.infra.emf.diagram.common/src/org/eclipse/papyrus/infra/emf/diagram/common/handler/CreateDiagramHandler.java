@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
- *
+ * Copyright (c) 2008, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.diagram.common.handler;
@@ -23,11 +23,11 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.ui.extension.diagrameditor.IPluggableEditorFactory;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForHandlers;
 
@@ -133,13 +133,13 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 			di2Diagram.setName(name);
 		}
 
-		// Add it to resource, so that it will be saved.
-		// NotationUtils.getNotationResource().getContents().add(di2Diagram);
-		NotationUtils.getNotationModel().addDiagram(di2Diagram);
-
 		// Attach to sash in order to show it
 		// Add the diagram as a page to the current sash folder
 		try {
+			// Persist the new diagram. This should find the Notation Model.
+			// If there is no Notation Model, we shouldn't even be here
+			registry.getService(ModelSet.class).getModelToPersist(di2Diagram).persist(di2Diagram);
+
 			registry.getService(IPageManager.class).openPage(di2Diagram);
 		} catch (ServiceException ex) {
 			Activator.log.error(ex);

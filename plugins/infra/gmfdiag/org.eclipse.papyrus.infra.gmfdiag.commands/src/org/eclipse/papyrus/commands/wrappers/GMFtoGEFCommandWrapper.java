@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +9,7 @@
  * Contributors:
  *  Benoit Maggi  benoit.maggi@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 430701
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
@@ -19,17 +19,25 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.INonDirtying;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
 
 /**
  * A GEF Command that wraps a GMF command. Each method is redirected to the GMF one.
  */
-public class GMFtoGEFCommandWrapper extends Command {
+public class GMFtoGEFCommandWrapper extends Command implements ICommandWrapper<ICommand> {
 
 	/**
 	 * The wrapped GMF Command. Package-level visibility so that the command stack wrapper can
 	 * access the field.
 	 */
 	private final ICommand gmfCommand;
+
+	static {
+		REGISTRY.registerWrapper(ICommand.class, Command.class,
+				GMFtoGEFCommandWrapper::wrap);
+		REGISTRY.registerUnwrapper(GMFtoGEFCommandWrapper.class, ICommand.class,
+				GMFtoGEFCommandWrapper::getWrappedCommand);
+	}
 
 
 	/**
@@ -64,6 +72,11 @@ public class GMFtoGEFCommandWrapper extends Command {
 	 */
 	public ICommand getGMFCommand() {
 		return gmfCommand;
+	}
+
+	@Override
+	public ICommand getWrappedCommand() {
+		return getGMFCommand();
 	}
 
 	/**
@@ -151,7 +164,7 @@ public class GMFtoGEFCommandWrapper extends Command {
 		public NonDirtying(ICommand command) {
 			super(command);
 
-			if (!(command instanceof INonDirtying)) {
+			if (!(command instanceof org.eclipse.papyrus.infra.emf.gmf.command.INonDirtying)) {
 				throw new IllegalArgumentException("Wrapped command is not non-dirtying"); //$NON-NLS-1$
 			}
 		}

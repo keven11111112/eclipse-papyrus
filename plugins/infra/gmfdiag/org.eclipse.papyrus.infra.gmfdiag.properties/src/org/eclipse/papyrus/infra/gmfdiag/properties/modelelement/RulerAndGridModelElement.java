@@ -30,9 +30,9 @@ import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.IntegerDiagramVi
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.RulersUnitObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.util.RulersAndGridPropertyConstants;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 
 /**
  *
@@ -75,7 +75,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#dispose()
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#dispose()
 	 *
 	 */
 	@Override
@@ -87,7 +87,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#doGetObservable(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#doGetObservable(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -129,7 +129,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getContentProvider(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#getContentProvider(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -147,7 +147,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getLabelProvider(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#getLabelProvider(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -165,7 +165,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#isMandatory(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#isMandatory(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -180,7 +180,7 @@ public class RulerAndGridModelElement extends AbstractModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#forceRefresh(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#forceRefresh(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return

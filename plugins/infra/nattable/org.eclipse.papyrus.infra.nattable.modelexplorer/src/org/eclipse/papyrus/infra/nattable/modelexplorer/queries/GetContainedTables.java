@@ -22,16 +22,15 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
+import org.eclipse.papyrus.infra.viewpoints.policy.NotationUtils;
 
 /** Get the collection of all contained tables */
-public class GetContainedTables extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Collection<Table>> {
+public class GetContainedTables implements IJavaQuery2<EObject, Collection<Table>> {
 
 	@Override
 	public Collection<Table> evaluate(EObject source, IParameterValueList2 parameterValues, IFacetManager facetManager) throws DerivedTypedElementException {
 		List<Table> result = new ArrayList<Table>();
-		Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
+		Iterator<EObject> roots = NotationUtils.getNotationRoots(source);
 		if (roots == null) {
 			return result;
 		}

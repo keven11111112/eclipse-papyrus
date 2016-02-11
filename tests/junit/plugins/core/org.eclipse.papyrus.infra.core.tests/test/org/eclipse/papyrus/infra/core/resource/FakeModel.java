@@ -1,9 +1,19 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2011, 2016 LIFL, Christian W. Damus, and others.
  * 
- */
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   LIFL - Initial API and implementation
+ *   Christian W. Damus - bug 485220
+ * 
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
 
-
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author dumoulin
@@ -38,5 +48,16 @@ public class FakeModel extends AbstractBaseModel {
 		// TODO Auto-generated method stub
 		return identifier;
 	}
+
+	@Override
+	public boolean canPersist(EObject object) {
+		return false;
+	}
+
+	@Override
+	public void persist(EObject object) {
+		throw new IllegalArgumentException("cannot persist " + object); //$NON-NLS-1$
+	}
+
 
 }

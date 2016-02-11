@@ -29,7 +29,7 @@ import org.eclipse.papyrus.customization.model.customizationplugin.UMLModel;
 import org.eclipse.papyrus.customization.wizard.CreateNewCustomizationPluginWizard;
 import org.eclipse.papyrus.infra.emf.utils.EClassNameComparator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
+import org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
 
 

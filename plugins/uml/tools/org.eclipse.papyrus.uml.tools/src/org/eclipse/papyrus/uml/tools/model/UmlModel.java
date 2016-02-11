@@ -148,4 +148,9 @@ public class UmlModel extends EMFLogicalModel implements IModel {
 	protected boolean isRootElement(EObject object) {
 		return super.isRootElement(object) && (object instanceof Element);
 	}
+
+	@Override
+	protected boolean isSupportedRoot(EObject object) {
+		return UMLPackage.Literals.PACKAGE.isInstance(object);
+	}
 }

@@ -12,8 +12,11 @@
 	<groupId>org.eclipse.papyrus</groupId>
 	<version>1.2.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>Papyrus Developer Tools</name>
+	<description>Optional tools for Papyrus developers providing aids for debugging, releng, and other development tasks.</description>
+
 	<modules>
-		<module>./org.eclipse.papyrus.dev.view.services.edit.request</module>
-		<module>./org.eclipse.papyrus.infra.extendedtypes.elementtypeview</module>
+		<module>org.eclipse.papyrus.dev.view.services.edit.request</module>
+		<module>org.eclipse.papyrus.infra.extendedtypes.elementtypeview</module>
 	</modules>	
 </project>

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,12 +8,14 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
 
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -42,9 +43,9 @@ public class DuplicateDiagramHandler extends AbstractDiagramCommandHandler {
 	 * @return
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
-		final IPageManager pageManager = getPageManager();
+	protected Command getCommand(IEvaluationContext context) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(context);
+		final IPageManager pageManager = getPageManager(context);
 		List<Diagram> diagrams = getSelectedDiagrams();
 
 		if (editingDomain != null && pageManager != null && !diagrams.isEmpty()) {

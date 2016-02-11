@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.Theme;
-import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
+import org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
 
 
@@ -38,7 +38,7 @@ public class ThemePropertyEditorFactory extends EcorePropertyEditorFactory {
 
 
 	/**
-	 * @see org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory#simpleCreateObject(org.eclipse.swt.widgets.Control)
+	 * @see org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory#simpleCreateObject(org.eclipse.swt.widgets.Control)
 	 *
 	 * @param widget
 	 * @return

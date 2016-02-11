@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
+import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 
 /**
  * This DiagramCommandStack uses CheckedOperationHistory instead of the default one.

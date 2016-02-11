@@ -20,7 +20,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.ui.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor;

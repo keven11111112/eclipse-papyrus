@@ -25,7 +25,7 @@ mapping EPackage::toContext() : c: Context, root:DataContextRoot when {
 				->union(self.eSubpackages->map toDataContextPackage());
 	
 	root.modelElementFactory := pRoot.rootObjects()[PropertiesRoot].environments.modelElementFactories
-		->any(e | e.factoryClass = 'org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory');
+		->any(e | e.factoryClass = 'org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory');
 }
 
 mapping EPackage::toDataContextPackage() : DataContextPackage{

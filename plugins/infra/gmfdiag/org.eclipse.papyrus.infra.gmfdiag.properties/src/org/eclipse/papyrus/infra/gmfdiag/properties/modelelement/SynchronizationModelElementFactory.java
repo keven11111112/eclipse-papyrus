@@ -16,7 +16,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory;
 
 /**
  * Model-element factory for synthetic synchronization properties of GMF notation views.

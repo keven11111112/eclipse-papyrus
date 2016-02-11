@@ -16,7 +16,7 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.CanonicalObservableValue;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 
 /**
  * An encapsulation of the synthetic synchronization-related properties of an {@link EditPart} in the diagrams.

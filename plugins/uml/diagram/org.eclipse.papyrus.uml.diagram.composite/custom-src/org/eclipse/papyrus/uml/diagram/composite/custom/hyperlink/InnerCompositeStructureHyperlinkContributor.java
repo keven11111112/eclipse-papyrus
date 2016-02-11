@@ -23,7 +23,7 @@ import org.eclipse.papyrus.infra.core.services.BadStateException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkEditor;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.object.HyperLinkEditor;
 import org.eclipse.papyrus.infra.hyperlink.object.HyperLinkObject;
 import org.eclipse.papyrus.infra.hyperlink.service.HyperlinkContributor;
 import org.eclipse.papyrus.infra.services.viewersearch.impl.ViewerSearchService;

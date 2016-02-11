@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bugs 451230, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
@@ -41,7 +41,6 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * The Class HyperLinkPopupBarEditPolicy can be applied on edit part to display
@@ -84,7 +83,7 @@ public class HyperLinkPopupBarEditPolicy extends PapyrusPopupBarEditPolicy {
 		}
 
 		// Add the New Hyperlink tool
-		addPopupBarDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Plus.gif").createImage(), new AddHyperlinkTool(), "Add hyperlink");
+		addPopupBarDescriptor(Activator.getDefault().getIcon(Activator.IMG_PLUS), new AddHyperlinkTool(), "Add hyperlink");
 	}
 
 	//

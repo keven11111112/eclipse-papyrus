@@ -49,14 +49,14 @@ public class PropertyViewExtensionFactory extends FileBasedExtensionFactory {
 	protected IStatus result;
 
 	public PropertyViewExtensionFactory() {
-		super(Messages.PropertyViewExtensionFactory_PropertyView, "org.eclipse.papyrus.views.properties.context", "contextModel", "context", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		super(Messages.PropertyViewExtensionFactory_PropertyView, "org.eclipse.papyrus.infra.properties.ui.context", "contextModel", "context", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.views.properties"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
 	}
 
 	@Override

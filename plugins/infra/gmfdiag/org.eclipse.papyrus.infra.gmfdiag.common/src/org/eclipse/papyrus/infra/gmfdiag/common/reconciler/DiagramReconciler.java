@@ -8,7 +8,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 
 /**
- * Instances of this base class are provided via "org.eclipse.papyrus.uml.diagram.common.diagramReconciler" extension point and provide migration of
+ * Instances of this base class are provided via "org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler" extension point and provide migration of
  * the diagram instances from "previous" version to the "current" Papyrus version. The version is stored as a {@link StringValueStyle} with name {@link DiagramVersioningUtils#COMPATIBILITY_VERSION}.
  * <p/>
  * Every {@link DiagramReconciler} subclass provides statical descriptor of its capabilities (that is, the supported diagram type, outdated "previous" version and the expected "current" version). For some possible advanced cases it also gets a chance to

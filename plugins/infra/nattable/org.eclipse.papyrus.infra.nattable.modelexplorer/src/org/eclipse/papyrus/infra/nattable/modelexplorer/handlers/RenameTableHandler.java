@@ -13,6 +13,7 @@ package org.eclipse.papyrus.infra.nattable.modelexplorer.handlers;
 
 import java.util.List;
 
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
@@ -22,6 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.modelexplorer.messages.Messages;
 import org.eclipse.swt.widgets.Display;
@@ -41,8 +43,8 @@ public class RenameTableHandler extends AbstractTableCommandHandler {
 	 * @return
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+	protected Command getCommand(IEvaluationContext context) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(context);
 		List<Table> tables = getSelectedTables();
 		if (editingDomain != null && tables.size() == 1) {
 
@@ -66,7 +68,7 @@ public class RenameTableHandler extends AbstractTableCommandHandler {
 						}
 					}
 				};
-				return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(cmd);
+				return new GMFtoEMFCommandWrapper(cmd);
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

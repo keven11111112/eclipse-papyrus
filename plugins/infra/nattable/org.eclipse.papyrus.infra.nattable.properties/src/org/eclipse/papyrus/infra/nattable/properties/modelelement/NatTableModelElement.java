@@ -83,10 +83,10 @@ import org.eclipse.papyrus.infra.nattable.properties.provider.RowPostActionIdsPr
 import org.eclipse.papyrus.infra.nattable.properties.utils.Constants;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -303,7 +303,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#dispose()
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#dispose()
 	 *
 	 */
 	@Override
@@ -329,7 +329,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#doGetObservable(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#doGetObservable(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -522,7 +522,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#getContentProvider(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#getContentProvider(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -558,7 +558,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isUnique(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#isUnique(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -575,7 +575,7 @@ public class NatTableModelElement extends EMFModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#isOrdered(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#isOrdered(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 Christian W. Damus and others.
+ * Copyright (c) 2015, 2016 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -26,17 +26,20 @@ import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGEFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.OperationToGEFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 
 /**
  * An iterator over the tree structure of EMF, GEF, and GMF commands that returns leaf commands of one or all of these kinds,
  * with accounting for the various kinds of wrappers employed to intermix them. This iterator does not support the
  * optional {@link Iterator#remove()} operation.
+ * 
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.util.CommandTreeIterator} API, instead.
  */
+@Deprecated
 public class CommandTreeIterator<C> implements Iterator<C> {
 	private final Class<C> type;
 
@@ -130,6 +133,7 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 		return (current == null) && iterators.isEmpty();
 	}
 
+	@Override
 	public boolean hasNext() {
 		while (!isDone() && (preparedNext == null)) {
 			Object next = internalNext();
@@ -141,6 +145,7 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 		return preparedNext != null;
 	}
 
+	@Override
 	public C next() {
 		if (!hasNext()) {
 			throw new NoSuchElementException();
@@ -154,6 +159,7 @@ public class CommandTreeIterator<C> implements Iterator<C> {
 	/**
 	 * Remove is not supported.
 	 */
+	@Override
 	public void remove() {
 		throw new UnsupportedOperationException("remove"); //$NON-NLS-1$
 	}

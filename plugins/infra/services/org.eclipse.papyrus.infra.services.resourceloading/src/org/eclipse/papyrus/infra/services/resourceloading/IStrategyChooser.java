@@ -27,4 +27,18 @@ public interface IStrategyChooser {
 	 * @return the current strategy id
 	 */
 	int getCurrentStrategy();
+
+	/**
+	 * Suggests a new strategy to take effect in preference over the current.
+	 * The strategy-chooser may deny the suggestion, in which case the current
+	 * strategy remains effective.
+	 * 
+	 * @param strategy
+	 *            the new strategy to engage
+	 * 
+	 * @return whether the suggestion to set the new {@code strategy} was accepted and implemented
+	 */
+	default boolean setStrategy(int strategy) {
+		return strategy == getCurrentStrategy();
+	}
 }

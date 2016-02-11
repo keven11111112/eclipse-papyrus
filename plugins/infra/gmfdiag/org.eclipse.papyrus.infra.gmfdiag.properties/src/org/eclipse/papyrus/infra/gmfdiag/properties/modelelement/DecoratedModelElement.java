@@ -27,10 +27,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomBoolean
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomIntStyleObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.ShapeDecorator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.messages.Messages;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.MapLabelProvider;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 
 /**
  * Model element for the decorated view in GMF. This is not a model element, as the properties to search are non-EMF Properties

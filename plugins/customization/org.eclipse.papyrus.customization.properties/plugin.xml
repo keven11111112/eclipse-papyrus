@@ -41,7 +41,7 @@
       </context>
    </extension>
    <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-      <propertyContributor contributorId="CustomizationPropertyView" labelProvider="org.eclipse.papyrus.views.properties.providers.PropertiesHeaderLabelProvider" tabDescriptorProvider="org.eclipse.papyrus.views.properties.xwt.XWTTabDescriptorProvider">
+      <propertyContributor contributorId="CustomizationPropertyView" labelProvider="org.eclipse.papyrus.infra.properties.ui.providers.PropertiesHeaderLabelProvider" tabDescriptorProvider="org.eclipse.papyrus.infra.properties.ui.xwt.XWTTabDescriptorProvider">
          <propertyCategory
                category="org.eclipse.papyrus">
          </propertyCategory>

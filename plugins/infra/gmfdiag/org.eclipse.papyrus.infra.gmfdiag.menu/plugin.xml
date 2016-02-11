@@ -86,7 +86,7 @@
             </visibleWhen>
          </command>
          <command
-               commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
+               commandId="org.eclipse.papyrus.infra.gmfdiag.menu.DeleteFromDiagram"
                icon="icons/obj16/eraser.gif"
                label="Delete From diagram"
                style="push">
@@ -297,7 +297,7 @@
                            value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                      </instanceof>
                      <test
-                           property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
+                           property="org.eclipse.papyrus.infra.gmfdiag.common.isSemanticDeletion"
                            value="true">
                      </test>
                   </iterate>
@@ -325,12 +325,12 @@
                            value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                      </instanceof>
                      <test
-                           property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
+                           property="org.eclipse.papyrus.infra.gmfdiag.common.isSemanticDeletion"
                            value="false">
                      </test>
                      <test
-                           property="org.eclipse.papyrus.uml.diagram.common.isReadOnly"
-                           value="false">
+                           property="org.eclipse.papyrus.infra.gmfdiag.common.canDelete"
+                           value="true">
                      </test>
                   </iterate>
                </with>
@@ -339,7 +339,7 @@
       </handler>
       <handler
             class="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.DeleteFromDiagramCommandHandler"
-            commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram">
+            commandId="org.eclipse.papyrus.infra.gmfdiag.menu.DeleteFromDiagram">
          <activeWhen>
             <and>
                <with
@@ -429,7 +429,7 @@
       <command
             categoryId="org.eclipse.papyrus.editor.category"
             description="Delete the selection from diagram"
-            id="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
+            id="org.eclipse.papyrus.infra.gmfdiag.menu.DeleteFromDiagram"
             name="Delete From Diagram Command">
       </command>                      
       <command
@@ -488,7 +488,7 @@
             sequence="M1+M2+X">
       </key>
       <key
-            commandId="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
+            commandId="org.eclipse.papyrus.infra.gmfdiag.menu.DeleteFromDiagram"
             contextId="org.eclipse.gmf.runtime.diagram.ui.diagramContext"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M2+DEL">
@@ -505,7 +505,7 @@
                      ifEmpty="false"
                      operator="and">
                   <test
-                        property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.isSemanticDeletion"
                         value="true">
                   </test>
                   <instanceof
@@ -518,7 +518,7 @@
                      ifEmpty="false"
                      operator="and">
                   <test
-                        property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
+                        property="org.eclipse.papyrus.infra.gmfdiag.common.isSemanticDeletion"
                         value="false">
                   </test>
                   <instanceof

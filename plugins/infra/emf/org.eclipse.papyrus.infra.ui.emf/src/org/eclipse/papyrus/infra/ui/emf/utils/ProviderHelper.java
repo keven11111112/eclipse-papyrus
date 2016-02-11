@@ -13,16 +13,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.ui.emf.utils;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.resource.IModel;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.ContainmentBrowseStrategy;
+import org.eclipse.papyrus.infra.ui.emf.providers.strategy.SemanticEMFContentProvider;
 import org.eclipse.papyrus.infra.ui.internal.emf.Activator;
+import org.eclipse.papyrus.infra.ui.providers.ISemanticContentProviderFactory;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
@@ -70,4 +79,38 @@ public class ProviderHelper {
 		ResourceSet rs = editedEObject == null ? null : editedEObject.eResource() == null ? null : editedEObject.eResource().getResourceSet();
 		return encapsulateProvider(provider, rs, HistoryUtil.getHistoryID(editedEObject, feature));
 	}
+
+	/**
+	 * Obtain the best available semantic content provider factory for a given resource set.
+	 * 
+	 * @param resourceSet
+	 *            a resource set
+	 * @return the best available semantic content provider factory (never {@code null})
+	 * 
+	 * @see #getContentProvider(ResourceSet)
+	 */
+	public static ISemanticContentProviderFactory getContentProviderFactory(ResourceSet resourceSet) {
+		Collection<? extends IModel> models = (resourceSet instanceof ModelSet)
+				? ILanguageService.getLanguageModels((ModelSet) resourceSet)
+				: Collections.emptyList();
+		return models.stream()
+				.map(m -> m.getAdapter(ISemanticContentProviderFactory.class))
+				.filter(Objects::nonNull)
+				.reduce(ISemanticContentProviderFactory::compose)
+				.orElse(SemanticEMFContentProvider::new);
+	}
+
+	/**
+	 * Obtain the best available semantic content provider for a given resource set.
+	 * 
+	 * @param resourceSet
+	 *            a resource set
+	 * @return the best available semantic content provider factory (never {@code null})
+	 * 
+	 * @see #getContentProviderFactory(ResourceSet)
+	 */
+	public static ITreeContentProvider getContentProvider(ResourceSet resourceSet) {
+		return getContentProviderFactory(resourceSet).createSemanticContentProvider(resourceSet);
+	}
+
 }

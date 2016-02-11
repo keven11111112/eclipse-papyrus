@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Christian W. Damus - bug 485220
  *   
  *****************************************************************************/
 
@@ -19,21 +20,21 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
+import org.eclipse.papyrus.infra.gmfdiag.css.service.StylingService;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
 import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
@@ -49,8 +50,8 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 	/** The Constant colorNames. */
 	static final Set<String> colorNames = new LinkedHashSet<String>();
 
-	/** The Constant umlProperties. */
-	static final Set<String> umlProperties = new LinkedHashSet<String>();
+	/** The CSS properties of supported semantic classes. */
+	static final Set<String> semanticProperties;
 
 	static {
 		colorNames.add("aliceblue");//$NON-NLS-1$
@@ -202,26 +203,16 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 	}
 
 	static {
-		for (EClassifier umlMetaclass : UMLPackage.eINSTANCE.getEClassifiers()) {
-			if (umlMetaclass instanceof EClass) {
-				EClass umlClass = (EClass) umlMetaclass;
-				for (EAttribute attribute : umlClass.getEAllAttributes()) {
-					umlProperties.add(attribute.getName());
-				}
-
-				for (EReference reference : umlClass.getEAllReferences()) {
-					EClassifier type = reference.getEType();
-					if (type instanceof EClass) {
-						EClass eType = (EClass) type;
-						if (EMFHelper.isSubclass(eType, UMLPackage.eINSTANCE.getNamedElement())) {
-							umlProperties.add(reference.getName());
-						}
-					}
-				}
-			}
-		}
+		semanticProperties = supportedSemanticCSSClasses()
+				.flatMap(cssClass -> cssClass.getEAllStructuralFeatures().stream())
+				.filter(StylingService.getInstance().getSemanticPropertySupportedPredicate())
+				.map(EStructuralFeature::getName)
+				.collect(Collectors.toCollection(LinkedHashSet::new));
 	}
 
+	private static Stream<EClass> supportedSemanticCSSClasses() {
+		return StreamSupport.stream(StylingService.getInstance().getSupportedSemanticClasses().spliterator(), false);
+	}
 
 	/**
 	 * Gets the custom properties.
@@ -486,14 +477,10 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 	@Override
 	public void complete_selector(final EObject model, final RuleCall ruleCall, final ContentAssistContext context, final ICompletionProposalAcceptor acceptor) {
 		super.complete_selector(model, ruleCall, context, acceptor);
-		for (EClassifier umlMetaclass : UMLPackage.eINSTANCE.getEClassifiers()) {
-			if (umlMetaclass instanceof EClass) {
-				EClass umlClass = (EClass) umlMetaclass;
-				if (umlClass.getName().contains(context.getPrefix())) {
-					acceptor.accept(buildProposal(umlClass.getName(), context));
-				}
-			}
-		}
+
+		supportedSemanticCSSClasses()
+				.filter(cssClass -> cssClass.getName().contains(context.getPrefix()))
+				.forEach(cssClass -> acceptor.accept(buildProposal(cssClass.getName(), context)));
 
 		String[] otherSemanticElements = new String[] {
 				"Compartment", //$NON-NLS-1$
@@ -529,9 +516,9 @@ public class CustomCSSProposalProvider extends AbstractCSSProposalProvider {
 				prefix = prefix.substring(1);
 			}
 
-			for (String umlProperty : umlProperties) {
-				if (umlProperty.contains(prefix)) {
-					acceptor.accept(buildProposal(umlProperty, context));
+			for (String semanticProperty : semanticProperties) {
+				if (semanticProperty.contains(prefix)) {
+					acceptor.accept(buildProposal(semanticProperty, context));
 				}
 			}
 		} else {

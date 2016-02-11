@@ -11,12 +11,12 @@ Require-Bundle: org.eclipse.ui.ide;bundle-version="3.7.0",
  org.eclipse.papyrus.infra.gmfdiag.css;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.services.markerlistener;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.services.decoration;bundle-version="1.2.0",
- org.eclipse.papyrus.views.validation;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.services.validation;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.2.0",
- org.eclipse.papyrus.uml.tools;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.services.semantic;bundle-version="1.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier
@@ -25,4 +25,4 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.export.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.export;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

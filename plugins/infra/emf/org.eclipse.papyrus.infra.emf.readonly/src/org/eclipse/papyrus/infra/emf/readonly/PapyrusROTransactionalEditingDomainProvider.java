@@ -18,10 +18,10 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IResourceUndoContextPolicy;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
-import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStack;
-import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.core.resource.ITransactionalEditingDomainProvider;
+import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
+import org.eclipse.papyrus.infra.emf.gmf.command.NestingNotifyingWorkspaceCommandStack;
+import org.eclipse.papyrus.infra.emf.gmf.command.NotifyingWorkspaceCommandStack;
 
 /**
  * Editing Domain created using this provider will use handlers registered on readOnlyHandler extension

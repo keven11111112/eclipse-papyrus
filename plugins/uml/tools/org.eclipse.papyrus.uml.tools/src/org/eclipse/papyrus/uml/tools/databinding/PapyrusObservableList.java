@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
@@ -27,7 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList;
@@ -37,8 +39,9 @@ import org.eclipse.papyrus.infra.ui.emf.databinding.EMFObservableList;
  * Papyrus commands
  *
  * @author Camille Letavernier
- *
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList} API, instead
  */
+@Deprecated
 @SuppressWarnings("unchecked")
 public class PapyrusObservableList extends EMFObservableList {
 
@@ -72,7 +75,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * @param provider
 	 * @param requests
 	 * @return
-	 *         The EMF command corresponding to the given request
+	 * 		The EMF command corresponding to the given request
 	 */
 	protected Command getCommandFromRequests(IElementEditService provider, Collection<? extends IEditCommandRequest> requests) {
 		if (requests.size() == 1) {

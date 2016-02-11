@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,20 +8,15 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
 
-import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.emf.common.command.Command;
-
-
-public interface CommandBasedObservable extends IObservable {
-
-	/**
-	 * Returns the EMF Command for modifying this Observable's value
-	 *
-	 * @param value
-	 * @return
-	 */
-	public Command getCommand(Object value);
+/**
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservable} API, instead.
+ */
+@Deprecated
+public interface CommandBasedObservable extends org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservable {
+	// Nothing additional
 }

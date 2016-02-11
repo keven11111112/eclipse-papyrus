@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,9 +9,9 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
- *  Christian W. Damus (CEA) - bug 440108
- *  Christian W. Damus (CEA) - bug 417409
+ *  Christian W. Damus (CEA) - bug 440108, 417409
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 447698
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.databinding;
@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
@@ -43,8 +43,9 @@ import org.eclipse.papyrus.uml.tools.Activator;
  * Papyrus commands
  *
  * @author Camille Letavernier
- *
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList} API, instead
  */
+@Deprecated
 public class PapyrusObservableValue extends EMFObservableValue implements AggregatedObservable, CommandBasedObservableValue, ReferenceCountedObservable {
 
 	private final ReferenceCountedObservable.Support refCount = new ReferenceCountedObservable.Support(this);
@@ -95,6 +96,7 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public Command getCommand(Object value) {
 		EObject eObjectValue = EMFHelper.getEObject(value);
 		if (eObjectValue != null) {
@@ -150,6 +152,7 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 		return eObject;
 	}
 
+	@Override
 	public AggregatedObservable aggregate(IObservable observable) {
 		try {
 			return new AggregatedPapyrusObservableValue(domain, this, observable);
@@ -158,18 +161,22 @@ public class PapyrusObservableValue extends EMFObservableValue implements Aggreg
 		}
 	}
 
+	@Override
 	public boolean hasDifferentValues() {
 		return false; // The value is not aggregated yet
 	}
 
+	@Override
 	public void retain() {
 		refCount.retain();
 	}
 
+	@Override
 	public void release() {
 		refCount.release();
 	}
 
+	@Override
 	public void autorelease() {
 		refCount.autorelease();
 	}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 LIFL & CEA LIST.
+ * Copyright (c) 2011, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,17 +9,14 @@
  *
  * Contributors:
  *  Cedric Dumoulin (LIFL) cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.common.modelresource;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.URI;
@@ -32,7 +29,6 @@ import org.eclipse.papyrus.infra.core.resource.BadArgumentExcetion;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.infra.nattable.common.helper.TableViewPrototype;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
@@ -54,7 +50,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	/**
 	 * the file extension where table are stored
 	 */
-	public static final String TABLE_MODEL_FILE_EXTENSION = NotationModel.NOTATION_FILE_EXTENSION;
+	public static final String TABLE_MODEL_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
 	/**
 	 *
@@ -301,7 +297,7 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<Table>
 	 * @param tableName
 	 *            the name of the wanted table
 	 * @return
-	 * the list of the tables matching the parameters. <code>null</code> parameters are ignored
+	 * 		the list of the tables matching the parameters. <code>null</code> parameters are ignored
 	 */
 	public List<Table> findMatchingTables(final EObject tableContext, final EObject tableOwner, final String tableType, final String tableName) {
 		final List<Table> matchingTables = new ArrayList<Table>();

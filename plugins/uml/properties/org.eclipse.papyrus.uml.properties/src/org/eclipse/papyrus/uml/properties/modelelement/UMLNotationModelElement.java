@@ -21,6 +21,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -30,7 +31,6 @@ import org.eclipse.papyrus.uml.properties.databinding.MaskValueObservableList;
 import org.eclipse.papyrus.uml.properties.messages.Messages;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**

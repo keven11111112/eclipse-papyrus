@@ -67,7 +67,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleCustomizationConfiguration">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="CustomizationConfiguration" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -78,7 +78,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleCustomizableElement">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -90,7 +90,7 @@
 		<constraints xsi:type="constraints:SimpleConstraint"
 			name="isSingleFileBasedCustomizableElement">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="FileBasedCustomizableElement" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -101,7 +101,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertyView">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -112,7 +112,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleUICustom">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="UICustom" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -123,7 +123,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleModelTemplate">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -134,7 +134,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSinglePalette">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -145,7 +145,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleProfile">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="Profile" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -156,7 +156,7 @@
 		automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isSingleUMLModel">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -169,7 +169,7 @@
 		<constraints xsi:type="constraints:SimpleConstraint"
 			name="isMultipleCustomizationConfiguration">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="CustomizationConfiguration" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -181,7 +181,7 @@
 		datacontexts="//@dataContexts.0/@elements.1">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCustomizableElement">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="CustomizableElement" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -194,7 +194,7 @@
 		<constraints xsi:type="constraints:SimpleConstraint"
 			name="isMultipleFileBasedCustomizableElement">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -206,7 +206,7 @@
 		datacontexts="//@dataContexts.0/@elements.3">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertyView">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -218,7 +218,7 @@
 		datacontexts="//@dataContexts.0/@elements.4">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultipleUICustom">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="UICustom" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
@@ -230,7 +230,7 @@
 		datacontexts="//@dataContexts.0/@elements.5">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultipleModelTemplate">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -242,7 +242,7 @@
 		datacontexts="//@dataContexts.0/@elements.6">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePalette">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -254,7 +254,7 @@
 		datacontexts="//@dataContexts.0/@elements.7">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultipleProfile">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"
 				value="http://www.eclipse.org/papyrus/customization" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
@@ -266,7 +266,7 @@
 		datacontexts="//@dataContexts.0/@elements.8">
 		<constraints xsi:type="constraints:SimpleConstraint" name="isMultipleUMLModel">
 			<constraintType
-				href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0" />
+				href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0" />
 			<properties xsi:type="constraints:ValueProperty" name="className"
 				value="UMLModel" />
 			<properties xsi:type="constraints:ValueProperty" name="nsUri"

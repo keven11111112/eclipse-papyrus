@@ -49,15 +49,15 @@ import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagemen
 import org.eclipse.papyrus.infra.nattable.utils.NattableModelManagerFactory;
 import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.CompositeModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSourceChangedEvent;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.IDataSourceListener;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLNotationModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.CompositeModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.DataSource;
-import org.eclipse.papyrus.views.properties.modelelement.DataSourceChangedEvent;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.IDataSourceListener;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
-import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -143,7 +143,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#checkInput()
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#checkInput()
 	 */
 	@Override
 	protected void checkInput() {
@@ -155,7 +155,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#doBinding()
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#doBinding()
 	 */
 	@Override
 	protected void doBinding() {
@@ -280,7 +280,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#updateDescription(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#updateDescription(java.lang.String)
 	 */
 	@Override
 	protected void updateDescription(String description) {
@@ -290,7 +290,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#updateLabel(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#updateLabel(java.lang.String)
 	 */
 	@Override
 	public void updateLabel(final String label) {
@@ -459,7 +459,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#unhookDataSourceListener(org.eclipse.papyrus.views.properties.modelelement.DataSource)
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#unhookDataSourceListener(org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource)
 	 */
 	@Override
 	protected void unhookDataSourceListener(DataSource oldInput) {
@@ -469,7 +469,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#hookDataSourceListener(org.eclipse.papyrus.views.properties.modelelement.DataSource)
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#hookDataSourceListener(org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource)
 	 */
 	@Override
 	protected void hookDataSourceListener(DataSource newInput) {

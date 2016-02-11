@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,29 +8,26 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
 import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.papyrus.commands.Activator;
 
 
 /**
  * Utilities for operations in the GMF context that we might consider as "unsafe" or exceptional cases.
+ * 
+ * @deprecated use the {@link org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe} API, instead.
  */
+@Deprecated
 public class GMFUnsafe {
 
 	/**
@@ -56,17 +53,7 @@ public class GMFUnsafe {
 	 *             if the current thread is interrupted while waiting for the unprotected write transaction to start
 	 */
 	public static void write(TransactionalEditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {
-		runUnprotected(domain, writeOperation);
-	}
-
-	private static void runUnprotected(TransactionalEditingDomain domain, Runnable writeOperation) throws InterruptedException, RollbackException {
-		InternalTransactionalEditingDomain internalDomain = (InternalTransactionalEditingDomain) domain;
-		Transaction unprotected = internalDomain.startTransaction(false, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, true));
-		try {
-			writeOperation.run();
-		} finally {
-			unprotected.commit();
-		}
+		org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe.write(domain, writeOperation);
 	}
 
 	/**
@@ -88,7 +75,7 @@ public class GMFUnsafe {
 	 * @see #write(TransactionalEditingDomain, Runnable)
 	 */
 	public static void write(TransactionalEditingDomain domain, Command command) throws InterruptedException, RollbackException {
-		write(domain, new CommandRunnable(command));
+		org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe.write(domain, command);
 	}
 
 	/**
@@ -112,16 +99,7 @@ public class GMFUnsafe {
 	 * @see #write(TransactionalEditingDomain, Runnable)
 	 */
 	public static void write(TransactionalEditingDomain domain, ICommand command) throws InterruptedException, RollbackException, ExecutionException {
-		try {
-			write(domain, new GMFCommandRunnable(command));
-		} catch (WrappedException e) {
-			if (e.exception() instanceof ExecutionException) {
-				throw (ExecutionException) e.exception();
-			} else {
-				// It must have been an unchecked RuntimeException of some kind
-				throw (RuntimeException) e.exception();
-			}
-		}
+		org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe.write(domain, command);
 	}
 
 	/**
@@ -143,84 +121,22 @@ public class GMFUnsafe {
 
 	/**
 	 * A useful base class for commands that need to execute, undo, and redo in unprotected mode on the command stack.
+	 * 
+	 * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe.UnsafeCommand} API, instead.
 	 */
-	public static abstract class UnsafeCommand extends AbstractCommand {
-
-		private final TransactionalEditingDomain domain;
+	@Deprecated
+	public static abstract class UnsafeCommand extends org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe.UnsafeCommand {
 
 		protected UnsafeCommand(TransactionalEditingDomain domain) {
-			this.domain = domain;
+			super(domain);
 		}
 
 		protected UnsafeCommand(TransactionalEditingDomain domain, String label, String description) {
-			super(label, description);
-
-			this.domain = domain;
+			super(domain, label, description);
 		}
 
 		protected UnsafeCommand(TransactionalEditingDomain domain, String label) {
-			super(label);
-
-			this.domain = domain;
-		}
-
-		@Override
-		public final void execute() {
-			try {
-				runUnprotected(domain, new Runnable() {
-
-					@Override
-					public void run() {
-						doExecute();
-					}
-				});
-			} catch (Exception e) {
-				handleException(e);
-			}
-		}
-
-		protected abstract void doExecute();
-
-		@Override
-		public final void undo() {
-			try {
-				runUnprotected(domain, new Runnable() {
-
-					@Override
-					public void run() {
-						doUndo();
-					}
-				});
-			} catch (Exception e) {
-				handleException(e);
-			}
-		}
-
-		protected void doUndo() {
-			// Pass. Usually, unprotected changes are not undoable
-		}
-
-		@Override
-		public final void redo() {
-			try {
-				runUnprotected(domain, new Runnable() {
-
-					@Override
-					public void run() {
-						doRedo();
-					}
-				});
-			} catch (Exception e) {
-				handleException(e);
-			}
-		}
-
-		protected void doRedo() {
-			// Pass. Usually, unprotected changes are not undoable
-		}
-
-		void handleException(Exception e) {
-			Activator.log.error(e);
+			super(domain, label);
 		}
 	}
 
@@ -280,35 +196,4 @@ public class GMFUnsafe {
 		}
 	}
 
-	private static class CommandRunnable implements Runnable {
-
-		private final Command command;
-
-		CommandRunnable(Command command) {
-			this.command = command;
-		}
-
-		@Override
-		public void run() {
-			command.execute();
-		}
-	}
-
-	private static class GMFCommandRunnable implements Runnable {
-
-		private final ICommand command;
-
-		GMFCommandRunnable(ICommand command) {
-			this.command = command;
-		}
-
-		@Override
-		public void run() {
-			try {
-				command.execute(new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				throw new WrappedException(e);
-			}
-		}
-	}
 }

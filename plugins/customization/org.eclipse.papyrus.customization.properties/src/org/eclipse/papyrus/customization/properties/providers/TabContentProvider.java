@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 
 /**
  * A Content provider used to retrieve all tabs from the available contexts
@@ -55,7 +55,7 @@ public class TabContentProvider extends AbstractContextualContentProvider {
 
 	private boolean isValidContext(Context context) {
 		if (editableTabsOnly) {
-			return !ConfigurationManager.getInstance().isPlugin(context);
+			return !PropertiesRuntime.getConfigurationManager().isPlugin(context);
 		}
 		return true;
 	}

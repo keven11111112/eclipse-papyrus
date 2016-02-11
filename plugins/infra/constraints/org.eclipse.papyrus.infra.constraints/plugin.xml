@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?>
+<!--
+ Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
+
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+
+ Contributors:
+  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+  Christian W. Damus - bug 485220
+-->
+<plugin>
+   <extension-point id="ConstraintEnvironment" name="ConstraintEnvironment" schema="schema/ConstraintEnvironment.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package class="org.eclipse.papyrus.infra.constraints.ConstraintsPackage" genModel="Model/Constraints.genmodel" uri="http://www.eclipse.org/papyrus/constraints/0.9"/>
+      <package
+            class="org.eclipse.papyrus.infra.constraints.environment.EnvironmentPackage"
+            genModel="Model/Constraints.genmodel"
+            uri="http://www.eclipse.org/papyrus/constraints/environment/0.9">
+      </package>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.constraints.ConstraintEnvironment">
+      <environment
+            environmentModel="Model/ConstraintEnvironment.xmi">
+      </environment>
+   </extension>
+
+</plugin>

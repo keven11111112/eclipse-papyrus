@@ -22,9 +22,9 @@ import org.eclipse.papyrus.infra.emf.appearance.commands.SetShadowFigureCommand;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
+import org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.databinding.AbstractUMLAggregatedObservableValue;
-import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
 
 /**
  * An IObservableValue for custom Papyrus properties.

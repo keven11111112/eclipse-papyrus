@@ -35,6 +35,8 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.nattable.properties" install-size="0" unpack="false" version="0.0.0"/>
 
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.nattable.gmfdiag" install-size="0" unpack="false" version="0.0.0"/>
+
    <plugin download-size="0" id="org.eclipse.nebula.widgets.nattable.core" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="ca.odell.glazedlists" install-size="0" unpack="false" version="0.0.0"/>

@@ -188,7 +188,7 @@ public class DeletePureUMLElementTest extends AbstractPapyrusTest {
 				fail("Delete command is executable but it was expected as not executable");
 			} else {
 				// command is executable, and it was expected to => run the creation
-				Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
+				Command emfCommand = new org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper(command);
 				return emfCommand;
 			}
 		} else {

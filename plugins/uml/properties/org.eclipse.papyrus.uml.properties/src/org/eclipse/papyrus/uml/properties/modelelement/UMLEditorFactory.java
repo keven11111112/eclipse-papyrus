@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory;
 import org.eclipse.papyrus.uml.properties.Activator;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
 
 /**
  * A Factory for building ModelElements for specific UML properties

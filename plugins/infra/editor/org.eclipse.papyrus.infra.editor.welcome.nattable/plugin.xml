@@ -19,7 +19,7 @@
       </context>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.context">
+         point="org.eclipse.papyrus.infra.properties.ui.context">
       <preferencePageBinding
             context="welcome-languages"
             page="org.eclipse.papyrus.infra.editor.welcome.content">

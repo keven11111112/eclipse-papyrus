@@ -24,10 +24,9 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterVal
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
+import org.eclipse.papyrus.infra.viewpoints.policy.NotationUtils;
 
-public class DisplayTablesRef extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
+public class DisplayTablesRef implements IJavaQuery2<EObject, Boolean> {
 
 	/**
 	 * Return true if the element is a Table Container and the the Ereference is diagrams
@@ -39,7 +38,7 @@ public class DisplayTablesRef extends AbstractEditorContainerQuery implements IJ
 		EStructuralFeature eStructuralFeature = (EStructuralFeature) parameterValue.getValue();
 		if ((eStructuralFeature instanceof FacetReference) && ("tables".equals((eStructuralFeature).getName()))) {
 
-			Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
+			Iterator<EObject> roots = NotationUtils.getNotationRoots(source);
 			if (roots == null) {
 				return false;
 			}

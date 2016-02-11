@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
-import org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice;
+import org.eclipse.papyrus.uml.service.types.internal.ui.advice.InstanceSpecificationLinkEditHelperAdvice;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -76,14 +76,14 @@ public abstract class TestInstanceSpecification extends TestLink {
 
 	private void testToCreateInstanceSpecificationLink(IElementType instanceSpecType, GraphicalEditPart source, GraphicalEditPart target, Association association, boolean executable, int expectedEdges) {
 		if (association != null) {
-			Set<Association> associations = InstanceSpecificationEditHelperAdvice.getModelAssociations((InstanceSpecification) source.resolveSemanticElement(), (InstanceSpecification) target.resolveSemanticElement());
+			Set<Association> associations = InstanceSpecificationLinkEditHelperAdvice.getModelAssociations((InstanceSpecification) source.resolveSemanticElement(), (InstanceSpecification) target.resolveSemanticElement());
 			assertEquals(CREATION + "Associations list", executable, associations.contains(association));
 		}
 		if (!executable) {
 			return;
 		}
 		CreateConnectionViewRequest request = createConnectionViewRequest(instanceSpecType, source, target);
-		InstanceSpecificationEditHelperAdvice.setupSuppressDialogRequest(request, association);
+		InstanceSpecificationLinkEditHelperAdvice.setupSuppressDialogRequest(request, association);
 		testToCreateLink(request, source, target, expectedEdges);
 	}
 

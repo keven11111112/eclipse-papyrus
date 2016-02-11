@@ -38,8 +38,8 @@ import org.eclipse.papyrus.infra.properties.ui.Layout;
 import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.infra.properties.ui.UiFactory;
 import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 
 /**
  * Default implementation for ILayoutGenerator
@@ -61,7 +61,7 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 		editorsByCategory.clear();
 		namespaces.clear();
 
-		namespaces.addAll(ConfigurationManager.getInstance().getBaseNamespaces());
+		namespaces.addAll(PropertiesRuntime.getConfigurationManager().getBaseNamespaces());
 
 		sortEditors(editors);
 
@@ -80,8 +80,8 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	}
 
 	protected CompositeWidget layoutCategorizedEditors(Category category, List<PropertyEditor> editors) {
-		CompositeWidgetType compositeType = ConfigurationManager.getInstance().getDefaultCompositeType();
-		LayoutType propertiesLayoutType = ConfigurationManager.getInstance().getDefaultLayoutType();
+		CompositeWidgetType compositeType = PropertiesRuntime.getConfigurationManager().getDefaultCompositeType();
+		LayoutType propertiesLayoutType = PropertiesRuntime.getConfigurationManager().getDefaultLayoutType();
 
 		CompositeWidget container = UiFactory.eINSTANCE.createCompositeWidget();
 		container.setWidgetType(compositeType);
@@ -130,9 +130,9 @@ public class StandardLayoutGenerator implements ILayoutGenerator {
 	}
 
 	protected CompositeWidget createSectionRoot() {
-		CompositeWidgetType compositeType = ConfigurationManager.getInstance().getDefaultCompositeType();
+		CompositeWidgetType compositeType = PropertiesRuntime.getConfigurationManager().getDefaultCompositeType();
 		namespaces.add(compositeType.getNamespace());
-		LayoutType propertiesLayoutType = ConfigurationManager.getInstance().getDefaultLayoutType();
+		LayoutType propertiesLayoutType = PropertiesRuntime.getConfigurationManager().getDefaultLayoutType();
 		namespaces.add(propertiesLayoutType.getNamespace());
 
 		CompositeWidget sectionRoot = UiFactory.eINSTANCE.createCompositeWidget();

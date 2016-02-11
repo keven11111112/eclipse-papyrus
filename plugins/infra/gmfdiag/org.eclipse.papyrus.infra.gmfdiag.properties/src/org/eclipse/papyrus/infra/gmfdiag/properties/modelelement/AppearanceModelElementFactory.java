@@ -16,8 +16,8 @@ package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.extension.StyleHandlerManager;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElementFactory;
 
 /**
  * A ModelElementFactory for the Appearance property view. Dispatches the

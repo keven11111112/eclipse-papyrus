@@ -18,7 +18,9 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
+import java.util.concurrent.atomic.AtomicReference;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RollbackException;
@@ -27,6 +29,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.TransactionImpl;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
+import org.eclipse.papyrus.infra.tools.util.IExecutorService;
+import org.eclipse.papyrus.infra.tools.util.IProgressCallable;
+import org.eclipse.papyrus.infra.tools.util.IProgressRunnable;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -456,5 +461,62 @@ public class TransactionHelper {
 		}
 
 		return new TransactionPrecommitExecutor(domain, fallback, policy, options);
+	}
+
+	/**
+	 * Create a privileged progress runnable, which is like a regular {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
+	 * privileged runnable} except that it is given a progress monitor for progress reporting.
+	 *
+	 * @param domain
+	 *            an editing domain
+	 * @param runnable
+	 *            a progress runnable that is to borrow the {@code domain}'s active transaction on the modal context thread
+	 * @return the privileged runnable, ready to pass into the {@link IExecutorService} or other such API
+	 */
+	public static IProgressRunnable createPrivilegedRunnable(TransactionalEditingDomain domain, final IProgressRunnable runnable) {
+		IProgressMonitor monitorHolder[] = { null };
+
+		Runnable privileged = domain.createPrivilegedRunnable(() -> runnable.run(monitorHolder[0]));
+
+		return monitor -> {
+			monitorHolder[0] = monitor;
+			privileged.run();
+		};
+	}
+
+	/**
+	 * Create a privileged progress callable, which is like a {@linkplain TransactionalEditingDomain#createPrivilegedRunnable(Runnable)
+	 * privileged runnable} except that it is given a progress monitor for progress reporting and it computes a result.
+	 *
+	 * @param callable
+	 *            an editing domain
+	 * @param callable
+	 *            a progress callable that is to borrow the {@code domain}'s active transaction on the modal context thread
+	 * @return the privileged callable, ready to pass into the {@link IExecutorService} or other such API
+	 */
+	public static <V> IProgressCallable<V> createPrivilegedCallable(TransactionalEditingDomain domain, final IProgressCallable<V> callable) {
+		IProgressMonitor monitorHolder[] = { null };
+		AtomicReference<V> resultHolder = new AtomicReference<V>();
+		Exception failHolder[] = { null };
+
+		Runnable privileged = domain.createPrivilegedRunnable(() -> {
+			try {
+				resultHolder.set(callable.call(monitorHolder[0]));
+			} catch (Exception e) {
+				failHolder[0] = e;
+			}
+		});
+
+		return monitor -> {
+			monitorHolder[0] = monitor;
+
+			privileged.run();
+
+			if (failHolder[0] != null) {
+				throw failHolder[0];
+			}
+
+			return resultHolder.get();
+		};
 	}
 }

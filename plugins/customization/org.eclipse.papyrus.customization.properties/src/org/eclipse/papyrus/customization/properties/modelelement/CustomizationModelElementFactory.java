@@ -16,10 +16,10 @@ package org.eclipse.papyrus.customization.properties.modelelement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractEMFModelElementFactory;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractEMFModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory;
 
 /**
  * A Factory for build {@link CustomizationModelElement}s

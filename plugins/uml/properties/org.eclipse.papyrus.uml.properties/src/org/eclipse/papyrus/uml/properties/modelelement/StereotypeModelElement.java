@@ -24,14 +24,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
 import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
-import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -127,7 +127,7 @@ public class StereotypeModelElement extends EMFModelElement {
 
 		return FeaturePath.fromList(features);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

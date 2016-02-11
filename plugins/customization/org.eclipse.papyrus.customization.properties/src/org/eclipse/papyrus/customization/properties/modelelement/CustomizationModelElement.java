@@ -39,6 +39,11 @@ import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.strategy.ContainmentBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
@@ -48,10 +53,6 @@ import org.eclipse.papyrus.infra.widgets.strategy.IStrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.ProviderBasedBrowseStrategy;
 import org.eclipse.papyrus.infra.widgets.strategy.StrategyBasedContentProvider;
 import org.eclipse.papyrus.infra.widgets.strategy.TreeBrowseStrategy;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.DataSource;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 /**
  * A {@link ModelElement} for customization specific properties
@@ -124,7 +125,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 			if (feature.getEType() == EnvironmentPackage.eINSTANCE.getPropertyEditorType()) {
 				return new PropertyEditorTypeContentProvider(strategyProvider, (PropertyEditor) delegate.getSource());
 			} else {
-				return new EMFGraphicalContentProvider(strategyProvider, ConfigurationManager.getInstance().getResourceSet(), "history_" + feature.getName());
+				return new EMFGraphicalContentProvider(strategyProvider, PropertiesRuntime.getConfigurationManager().getResourceSet(), "history_" + feature.getName());
 			}
 		}
 		return provider;

@@ -36,7 +36,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.ui.NatEventData;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.listener.UpdateTableContentListener;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;

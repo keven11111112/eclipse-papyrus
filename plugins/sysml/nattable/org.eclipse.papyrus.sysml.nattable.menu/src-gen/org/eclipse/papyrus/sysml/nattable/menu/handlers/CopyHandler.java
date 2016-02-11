@@ -26,7 +26,7 @@ public class CopyHandler extends AbstractSysmlNattableCreateCommandHandler {
 
 	/**
 	 * <pre>
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#getElementTypeToCreate()
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCreateCommandHandler#getElementTypeToCreate()
 	 *
 	 * @return the IElementType this handler is supposed to create
 	 *

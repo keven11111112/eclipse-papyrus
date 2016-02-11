@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-import org.eclipse.core.commands.operations.AbstractOperation;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
 import org.eclipse.core.commands.operations.IUndoContext;
@@ -35,7 +34,6 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
@@ -43,9 +41,9 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.emf.facet.common.ui.internal.views.AbstractTreeView;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 
 public class CommandStackView extends AbstractTreeView {
 
@@ -63,9 +61,10 @@ public class CommandStackView extends AbstractTreeView {
 		this.history = OperationHistoryFactory.getOperationHistory();
 		this.history.addOperationHistoryListener(historyListener = new IOperationHistoryListener() {
 
+			@Override
 			public void historyNotification(final OperationHistoryEvent event) {
-				if(!CommandStackView.this.commandList.contains(event.getOperation())) {
-					if(CommandStackView.this.commandList.size() == CommandStackView.this.maxSize) {
+				if (!CommandStackView.this.commandList.contains(event.getOperation())) {
+					if (CommandStackView.this.commandList.size() == CommandStackView.this.maxSize) {
 						IUndoableOperation removedOperation = CommandStackView.this.commandList.remove(CommandStackView.this.maxSize - 1);
 						dates.remove(removedOperation);
 					}
@@ -80,8 +79,8 @@ public class CommandStackView extends AbstractTreeView {
 	}
 
 	private boolean isValidUndoContext(IUndoableOperation operation) {
-		for(IUndoContext undoContext : operation.getContexts()) {
-			if(undoContext instanceof EditingDomainUndoContext) {
+		for (IUndoContext undoContext : operation.getContexts()) {
+			if (undoContext instanceof EditingDomainUndoContext) {
 				return true;
 			}
 		}
@@ -142,14 +141,7 @@ public class CommandStackView extends AbstractTreeView {
 
 			@Override
 			public String getText(final Object element) {
-				if(element instanceof AbstractOperation) {
-					return ((AbstractOperation)element).getLabel();
-				} else if(element instanceof AbstractCommand) {
-					return ((AbstractCommand)element).getLabel();
-				} else if(element instanceof org.eclipse.gef.commands.Command) {
-					return ((org.eclipse.gef.commands.Command)element).getLabel();
-				}
-				return "no managed";
+				return CommandUtils.getLabel(element);
 			}
 		};
 		createColumn("Name", "NAME_COLUMN_ID", 200, columnLabelProvider);
@@ -160,8 +152,8 @@ public class CommandStackView extends AbstractTreeView {
 
 			@Override
 			public String getText(final Object element) {
-				if(element instanceof IUndoableOperation) {
-					return Boolean.toString(isValidUndoContext((IUndoableOperation)element));
+				if (element instanceof IUndoableOperation) {
+					return Boolean.toString(isValidUndoContext((IUndoableOperation) element));
 				}
 				return "?";
 			}
@@ -174,8 +166,8 @@ public class CommandStackView extends AbstractTreeView {
 
 			@Override
 			public String getText(final Object element) {
-				if(element instanceof AbstractCommand) {
-					return ((AbstractCommand)element).getDescription();
+				if (element instanceof AbstractCommand) {
+					return ((AbstractCommand) element).getDescription();
 				}
 				return "no description";
 			}
@@ -188,7 +180,7 @@ public class CommandStackView extends AbstractTreeView {
 
 			@Override
 			public String getText(final Object element) {
-				if(CommandStackView.this.dates.containsKey(element)) {
+				if (CommandStackView.this.dates.containsKey(element)) {
 					return CommandStackView.this.dates.get(element);
 				}
 				return "";
@@ -201,53 +193,61 @@ public class CommandStackView extends AbstractTreeView {
 	protected IContentProvider getContentProvider() {
 		return new ITreeContentProvider() {
 
+			@Override
 			public Object[] getElements(final Object inputElement) {
-				if(inputElement instanceof Command) {
-					return new Object[]{ inputElement };
-				} else if(inputElement instanceof Collection<?>) {
-					return ((Collection<?>)inputElement).toArray();
+				if (inputElement instanceof Command) {
+					return new Object[] { inputElement };
+				} else if (inputElement instanceof Collection<?>) {
+					return ((Collection<?>) inputElement).toArray();
 				}
 				return new Object[0];
 			}
 
+			@Override
 			public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 				// nothing
 			}
 
+			@Override
 			public void dispose() {
 				// nothing
 			}
 
+			@Override
 			public boolean hasChildren(final Object element) {
 				return getChildren(element).length != 0;
 			}
 
+			@Override
 			public Object getParent(final Object element) {
 				return null;
 			}
 
+			@Override
 			public Object[] getChildren(final Object parentElement) {
-				if(parentElement instanceof CompoundCommand) {
-					return ((CompoundCommand)parentElement).getCommandList().toArray();
-				} else if(parentElement instanceof CompositeCommand) {
+				if (parentElement instanceof CompoundCommand) {
+					return ((CompoundCommand) parentElement).getCommandList().toArray();
+				} else if (parentElement instanceof CompositeCommand) {
 					final List<Object> children = new ArrayList<Object>();
-					final ListIterator<Object> iter = ((CompositeCommand)parentElement).listIterator();
-					while(iter.hasNext()) {
+					final ListIterator<Object> iter = ((CompositeCommand) parentElement).listIterator();
+					while (iter.hasNext()) {
 						children.add(iter.next());
 					}
 					return children.toArray();
-				} else if(parentElement instanceof EMFCommandOperation) {
+				} else if (parentElement instanceof EMFCommandOperation) {
 					final List<Object> children = new ArrayList<Object>();
-					children.add(((EMFCommandOperation)parentElement).getCommand());
+					children.add(((EMFCommandOperation) parentElement).getCommand());
 					return children.toArray();
-				} else if(parentElement instanceof GMFtoEMFCommandWrapper) {
-					return new Object[]{ ((GMFtoEMFCommandWrapper)parentElement).getGMFCommand() };
-				} else if(parentElement instanceof GEFtoEMFCommandWrapper) {
-					return new Object[]{ ((GEFtoEMFCommandWrapper)parentElement).getGEFCommand() };
-				} else if(parentElement instanceof CommandProxy) {
-					return new Object[]{ ((CommandProxy)parentElement).getCommand() };
-				} else if(parentElement instanceof org.eclipse.gef.commands.CompoundCommand) {
-					return ((org.eclipse.gef.commands.CompoundCommand)parentElement).getChildren();
+				} else if (parentElement instanceof ICommandWrapper<?>) {
+					return new Object[] { ((ICommandWrapper<?>) parentElement).getWrappedCommand() };
+				} else if (CommandUtils.isCompound(parentElement)) {
+					final List<Object> children = new ArrayList<Object>();
+					for (Object next : CommandUtils.getChildren(parentElement)) {
+						children.add(next);
+					}
+					return children.toArray();
+				} else if (ICommandWrapper.isWrapper(parentElement, Object.class)) {
+					return new Object[] { ICommandWrapper.unwrap(parentElement, Object.class) };
 				}
 				return new Object[0];
 			}

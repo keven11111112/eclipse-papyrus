@@ -26,9 +26,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gef.EditPart;
@@ -53,60 +51,6 @@ import org.osgi.framework.Constants;
  *
  */
 public class MDTUtil {
-
-	// ID for the EAnnotation that describes the version of the first editor
-	// that modified the diagram
-	/** The EDITO r_ version. */
-	public static final String EDITOR_VERSION = "org.eclipse.papyrus.uml.diagram.common.Editor";
-
-	/**
-	 * Add to a diagram the version of the first editor that will modify the
-	 * diagram.
-	 *
-	 * @param diagram
-	 *            the diagram
-	 * @param version
-	 *            version of the editor that is going to modify the diagram
-	 *
-	 * @author gmerin
-	 * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
-	 */
-	public static void addDiagramVersion(Diagram diagram, String version) {
-		if (version == null) {
-			// if version is null no action will be taken:
-			return;
-		}
-		EAnnotation eAnnotation = diagram.getEAnnotation(EDITOR_VERSION);
-		if (eAnnotation == null) {
-			eAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			eAnnotation.setSource(EDITOR_VERSION);
-			// Add a detail to store the version
-			eAnnotation.getDetails().put("version", version);
-
-			diagram.getEAnnotations().add(eAnnotation);
-		}
-	}
-
-	/**
-	 * Obtain the diagram the version of first editor that modified the diagram.
-	 *
-	 * @param diagram
-	 *            the diagram
-	 *
-	 * @return the diagram version
-	 *
-	 * @author <a href="mailto:gmerin@prodevelop.es">Gabriel Merin</a> The
-	 *         version of the first editor that modified the diagram
-	 */
-	// @unused
-	public static String getDiagramVersion(Diagram diagram) {
-		EAnnotation eAnnotation = diagram.getEAnnotation(EDITOR_VERSION);
-		// No version of the diagram
-		if (eAnnotation == null) {
-			return null;
-		}
-		return eAnnotation.getDetails().get("version");
-	}
 
 	/**
 	 * Obtain the plugin's version of the editor.

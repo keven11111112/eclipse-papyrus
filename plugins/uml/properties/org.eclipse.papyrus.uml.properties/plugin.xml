@@ -16,8 +16,8 @@
          point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
       <propertyContributor
             contributorId="TreeOutlinePage"
-            labelProvider="org.eclipse.papyrus.views.properties.providers.PropertiesHeaderLabelProvider"
-            tabDescriptorProvider="org.eclipse.papyrus.views.properties.xwt.XWTTabDescriptorProvider">
+            labelProvider="org.eclipse.papyrus.infra.properties.ui.providers.PropertiesHeaderLabelProvider"
+            tabDescriptorProvider="org.eclipse.papyrus.infra.properties.ui.xwt.XWTTabDescriptorProvider">
          <propertyCategory
                category="org.eclipse.papyrus"></propertyCategory>
       </propertyContributor>
@@ -51,7 +51,7 @@
       </modelqueryset>
    </extension-->
    <extension
-         point="org.eclipse.papyrus.views.properties.labelprovider">
+         point="org.eclipse.papyrus.infra.properties.ui.labelprovider">
       <labelProvider
             labelProvider="org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider"
             priority="50">
@@ -81,7 +81,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.views.properties.propertyview"
+            category="org.eclipse.papyrus.infra.properties.ui.propertyview"
             class="org.eclipse.papyrus.uml.properties.preferences.MultiplicityEditorPreferencePage"
             id="org.eclipse.papyrus.uml.properties.multiplicityEditorProperties"
             name="Multiplicity Editor">

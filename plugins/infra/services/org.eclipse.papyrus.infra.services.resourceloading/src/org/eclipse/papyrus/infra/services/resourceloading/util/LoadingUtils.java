@@ -14,7 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.util;
 
-import java.lang.reflect.InvocationTargetException;
+import static org.eclipse.papyrus.infra.core.utils.TransactionHelper.createPrivilegedRunnable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -24,21 +25,11 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.util.EditPartUtilities;
-import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.infra.core.language.ILanguageService;
 import org.eclipse.papyrus.infra.core.resource.AbstractBaseModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
@@ -46,20 +37,14 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.core.utils.IPapyrusRunnable;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.resourceloading.Activator;
 import org.eclipse.papyrus.infra.services.resourceloading.Messages;
-import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.infra.ui.util.TransactionUIHelper;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
-import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
-import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.papyrus.infra.tools.notify.NotificationBuilder;
+import org.eclipse.papyrus.infra.tools.notify.Type;
+import org.eclipse.papyrus.infra.tools.util.CoreExecutors;
+import org.eclipse.papyrus.infra.tools.util.IProgressRunnable;
 
 /**
  * This class provides utility methods for model loading
@@ -77,79 +62,73 @@ public class LoadingUtils {
 	 *            path of resources to load without file extension
 	 */
 	public static void loadResourcesInModelSet(final ModelSet modelSet, final URI uriWithoutFileExtension) {
-		final IEditorPart editor = getEditor();
-		if (editor instanceof IMultiDiagramEditor) {
-			// This must be created on the UI thread
-			final NotificationBuilder error = NotificationBuilder.createAsyncPopup(Messages.LoadingUtils_ErrorTitle, String.format(Messages.LoadingUtils_ErrorMessage, uriWithoutFileExtension.toString())).setType(Type.ERROR).setDelay(2000);
+		// This must be created on the UI thread
+		final NotificationBuilder error = NotificationBuilder
+				.createAsyncPopup(Messages.LoadingUtils_ErrorTitle, String.format(Messages.LoadingUtils_ErrorMessage, uriWithoutFileExtension.toString()))
+				.setType(Type.ERROR).setDelay(2000);
 
-			runInEditingDomain(modelSet.getTransactionalEditingDomain(), editor, new IRunnableWithProgress() {
-
-				@Override
-				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					try {
-						IMultiDiagramEditor core = (IMultiDiagramEditor) editor;
-						try {
-							IPageManager pageMngr = core.getServicesRegistry().getService(IPageManager.class);
-							List<Object> allPages = pageMngr.allPages();
-							// mark progress
-							monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
-							// the uri is added after getting all the pages. If it is done before, the eobjects are resolved
-							for (Object o : allPages) {
-								// refresh pages to display proxy diagrams
-								if (o instanceof EObject) {
-									EObject eobject = (EObject) o;
-									if (eobject.eIsProxy()) {
-										InternalEObject internal = (InternalEObject) eobject;
-										URI uriProxy = internal.eProxyURI();
-										URI trimFragment = uriProxy.trimFragment();
-										if (uriWithoutFileExtension.equals(trimFragment.trimFileExtension())) {
-											try {
-												Resource r = modelSet.getResource(trimFragment, true);
-												if (r != null) {
-													EObject newEObject = r.getEObject(uriProxy.fragment());
-													if (pageMngr.isOpen(newEObject)) {
-														pageMngr.selectPage(newEObject);
-													}
-												} else {
-													error.run();
-												}
-											} catch (Exception e) {
-												error.run();
-												Activator.logError(e);
+		runInEditingDomain(modelSet, monitor -> {
+			try {
+				try {
+					IPageManager pageMngr = ServiceUtilsForResourceSet.getInstance().getIPageManager(modelSet);
+					List<Object> allPages = pageMngr.allPages();
+					// mark progress
+					monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
+					// the uri is added after getting all the pages. If it is done before, the eobjects are resolved
+					for (Object o : allPages) {
+						// refresh pages to display proxy diagrams
+						if (o instanceof EObject) {
+							EObject eobject = (EObject) o;
+							if (eobject.eIsProxy()) {
+								InternalEObject internal = (InternalEObject) eobject;
+								URI uriProxy = internal.eProxyURI();
+								URI trimFragment = uriProxy.trimFragment();
+								if (uriWithoutFileExtension.equals(trimFragment.trimFileExtension())) {
+									try {
+										Resource r = modelSet.getResource(trimFragment, true);
+										if (r != null) {
+											EObject newEObject = r.getEObject(uriProxy.fragment());
+											if (pageMngr.isOpen(newEObject)) {
+												pageMngr.selectPage(newEObject);
 											}
+										} else {
+											error.run();
 										}
-									}
-								}
-								// mark progress
-								monitor.worked(1);
-							}
-							Set<String> extensions = getExtensions(modelSet);
-							// mark progress
-							monitor.beginTask(Messages.LoadingUtils_LoadModelsTask, extensions.size());
-							for (String s : extensions) {
-								try {
-									URI uriToLoad = uriWithoutFileExtension.appendFileExtension(s);
-									Resource r = modelSet.getResource(uriToLoad, true);
-									if (r == null) {
+									} catch (Exception e) {
 										error.run();
+										Activator.logError(e);
 									}
-								} catch (Exception re) {
-									error.run();
-									Activator.logError(re);
 								}
-								// mark progress
-								monitor.worked(1);
 							}
-						} catch (ServiceException e) {
-							Activator.logError(e);
 						}
-					} finally {
 						// mark progress
-						monitor.done();
+						monitor.worked(1);
 					}
+					Set<String> extensions = getExtensions(modelSet);
+					// mark progress
+					monitor.beginTask(Messages.LoadingUtils_LoadModelsTask, extensions.size());
+					for (String s : extensions) {
+						try {
+							URI uriToLoad = uriWithoutFileExtension.appendFileExtension(s);
+							Resource r = modelSet.getResource(uriToLoad, true);
+							if (r == null) {
+								error.run();
+							}
+						} catch (Exception re) {
+							error.run();
+							Activator.logError(re);
+						}
+						// mark progress
+						monitor.worked(1);
+					}
+				} catch (ServiceException e) {
+					Activator.logError(e);
 				}
-			});
-		}
+			} finally {
+				// mark progress
+				monitor.done();
+			}
+		});
 	}
 
 	/**
@@ -161,169 +140,68 @@ public class LoadingUtils {
 	 *            path of resources to unload without file extension
 	 */
 	public static void unloadResourcesFromModelSet(ModelSet modelSet, URI uriWithoutFileExtension) {
-		unloadResourcesFromModelSet(modelSet, uriWithoutFileExtension, false);
-	}
+		runInEditingDomain(modelSet, monitor -> {
 
-	/**
-	 * Unload corresponding resources from model set for all its existing models.
-	 *
-	 * @param modelSet
-	 *            the model set
-	 * @param uriWithoutFileExtension
-	 *            path of resources to unload without file extension
-	 * @param refreshDiagramsWithProxies
-	 *            true if we must refresh necessary diagrams, false to skip it.
-	 */
-	public static void unloadResourcesFromModelSet(final ModelSet modelSet, final URI uriWithoutFileExtension, final boolean refreshDiagramsWithProxies) {
-		final IEditorPart editor = getEditor();
-		if (editor instanceof IMultiDiagramEditor) {
-			runInEditingDomain(modelSet.getTransactionalEditingDomain(), editor, new IRunnableWithProgress() {
+			try {
+				// mark progress
+				monitor.beginTask(Messages.LoadingUtils_UnloadModelsTask, modelSet.getResources().size());
 
-				@Override
-				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-
-					try {
-						IMultiDiagramEditor core = (IMultiDiagramEditor) editor;
-						try {
-							IPageManager pageMngr = core.getServicesRegistry().getService(IPageManager.class);
-							List<Object> allPages = pageMngr.allPages();
-							List<URI> pagesURIToOpen = new ArrayList<URI>(allPages.size());
-							List<URI> pagesURIToRefresh = new ArrayList<URI>(allPages.size());
-							if (refreshDiagramsWithProxies) {
-								// mark progress
-								monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
-								for (Object o : allPages) {
-									// refresh pages to cancel display of proxified elements
-									if (o instanceof EObject) {
-										EObject eobject = (EObject) o;
-										if (!eobject.eIsProxy()) {
-											URI trimFragment = eobject.eResource().getURI();
-											String frag = eobject.eResource().getURIFragment(eobject);
-											if (uriWithoutFileExtension.equals(trimFragment.trimFileExtension())) {
-												// diagram was in unloaded resource. Refresh it.
-												if (pageMngr.isOpen(eobject)) {
-													pageMngr.closePage(eobject);
-													pagesURIToOpen.add(trimFragment.appendFragment(frag));
-												}
-											} else if (pageMngr.isOpen(eobject)) {
-												// diagram is still loaded but may display proxified elements
-												pagesURIToRefresh.add(trimFragment.appendFragment(frag));
-											}
-										}
-									}
-									// mark progress
-									monitor.worked(1);
-								}
-							}
-							// mark progress
-							monitor.beginTask(Messages.LoadingUtils_UnloadModelsTask, modelSet.getResources().size());
-
-							// Use the platform string of a normalized URI for comparison below, see bug 372326
-							// (registered libraries in the model set have different URIs - e.g. due to a pathmap -
-							// although they point to the same location).
-							// TODO: Use a single detection mechanism in ResourceUpdateService and here
-							String unloadPlatformString;
-							if (uriWithoutFileExtension.isPlatform()) {
-								unloadPlatformString = uriWithoutFileExtension.toPlatformString(true);
-							} else {
-								unloadPlatformString = URI.decode(uriWithoutFileExtension.toString());
-							}
-							// URIConverter uriConverter = modelSet.getURIConverter();
-							// unload resource
-							for (Resource res : new ArrayList<Resource>(modelSet.getResources())) {
-								URI normalizedURI = res.getURI();
-								String platformString;
-								if (normalizedURI.isPlatform()) {
-									platformString = normalizedURI.trimFileExtension().toPlatformString(true);
-								} else {
-									platformString = URI.decode(normalizedURI.trimFileExtension().toString());
-								}
-
-								if ((platformString != null) && platformString.equals(unloadPlatformString)) {
-									// unload this resource
-									res.unload();
-									// there is no need to remove it from the resource set (which inevitably
-									// causes ConcurrentModificationExceptions!), especially as we may be
-									// loading it again (the editor is still open)
-								}
-								// mark progress
-								monitor.worked(1);
-							}
-							// // mark progress
-							// monitor.beginTask("Resolve", 1);
-							// EcoreUtil.resolveAll(modelSet);
-							// monitor.worked(1);
-
-							if (refreshDiagramsWithProxies) {
-								// mark progress
-								monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
-								// reopen pages from proxies and refresh necessary pages
-								for (Object page : allPages) {
-									if (page instanceof EObject) {
-										EObject eobject = (EObject) page;
-										if (eobject.eIsProxy()) {
-											// reopen page from proxy if needed
-											InternalEObject internal = (InternalEObject) eobject;
-											URI uriProxy = internal.eProxyURI();
-											if (pagesURIToOpen.contains(uriProxy)) {
-												pageMngr.openPage(eobject);
-											}
-										} else if (eobject instanceof Diagram) {
-											// refresh page's diagram if needed
-											Diagram diag = ((Diagram) eobject);
-											if (pageMngr.isOpen(diag)) {
-
-												IDiagramGraphicalViewer graphicalViewer = core.getAdapter(IDiagramGraphicalViewer.class);
-												if (graphicalViewer == null) {
-													continue;
-												}
-
-												Object part = graphicalViewer.getEditPartRegistry().get(diag);
-												if (part instanceof GraphicalEditPart) {
-													// refresh nodes
-													for (Object child : EditPartUtilities.getAllChildren((GraphicalEditPart) part)) {
-														if (child instanceof EditPart) {
-															((EditPart) child).refresh();
-														}
-													}
-													// refresh edges
-													for (Object child : EditPartUtilities.getAllNestedConnectionEditParts((GraphicalEditPart) part)) {
-														if (child instanceof EditPart) {
-															((EditPart) child).refresh();
-														}
-													}
-												}
-											}
-										}
-									}
-									// mark progress
-									monitor.worked(1);
-								}
-							}
-						} catch (ServiceException e) {
-							Activator.logError(e);
-						}
-					} finally {
-						// mark progress
-						monitor.done();
-					}
+				// Use the platform string of a normalized URI for comparison below, see bug 372326
+				// (registered libraries in the model set have different URIs - e.g. due to a pathmap -
+				// although they point to the same location).
+				// TODO: Use a single detection mechanism in ResourceUpdateService and here
+				String unloadPlatformString;
+				if (uriWithoutFileExtension.isPlatform()) {
+					unloadPlatformString = uriWithoutFileExtension.toPlatformString(true);
+				} else {
+					unloadPlatformString = URI.decode(uriWithoutFileExtension.toString());
 				}
-			});
-		}
+				// URIConverter uriConverter = modelSet.getURIConverter();
+				// unload resource
+				for (Resource res : new ArrayList<Resource>(modelSet.getResources())) {
+					URI normalizedURI = res.getURI();
+					String platformString;
+					if (normalizedURI.isPlatform()) {
+						platformString = normalizedURI.trimFileExtension().toPlatformString(true);
+					} else {
+						platformString = URI.decode(normalizedURI.trimFileExtension().toString());
+					}
+
+					if ((platformString != null) && platformString.equals(unloadPlatformString)) {
+						// unload this resource
+						res.unload();
+						// there is no need to remove it from the resource set (which inevitably
+						// causes ConcurrentModificationExceptions!), especially as we may be
+						// loading it again (the editor is still open)
+					}
+					// mark progress
+					monitor.worked(1);
+				}
+				// // mark progress
+				// monitor.beginTask("Resolve", 1);
+				// EcoreUtil.resolveAll(modelSet);
+				// monitor.worked(1);
+			} finally {
+				// mark progress
+				monitor.done();
+			}
+		});
 	}
 
-	static void runInEditingDomain(TransactionalEditingDomain domain, IEditorPart editorContext, IRunnableWithProgress operation) {
-		final IWorkbenchSiteProgressService progress = editorContext.getSite().getService(IWorkbenchSiteProgressService.class);
-
+	static void runInEditingDomain(ModelSet modelSet, IPapyrusRunnable runnable) {
 		try {
-			progress.incrementBusy();
-			progress.busyCursorWhile(TransactionUIHelper.createPrivilegedRunnableWithProgress(domain, operation));
-		} catch (InterruptedException e) {
+			// Created the privileged progress-runnable that borrows the editing domain
+			IProgressRunnable privileged = createPrivilegedRunnable(
+					modelSet.getTransactionalEditingDomain(),
+					runnable);
+
+			// And wrap it in the service-registry context for best possible UI feed-back
+			privileged = ServiceUtilsForResourceSet.getInstance().runnable(privileged, modelSet);
+
+			// Go
+			CoreExecutors.getUIExecutorService().syncExec(privileged);
+		} catch (Exception e) {
 			Activator.log.error(e);
-		} catch (InvocationTargetException e) {
-			StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to manage controlled resources.", e.getTargetException()), StatusManager.SHOW);
-		} finally {
-			progress.decrementBusy();
 		}
 	}
 
@@ -337,7 +215,7 @@ public class LoadingUtils {
 	private static Set<String> getExtensions(ModelSet modelSet) {
 		Set<String> result = new HashSet<String>();
 		// FIXME: Also need to generalize the notation and DI models
-		result.add(NotationModel.NOTATION_FILE_EXTENSION);
+		result.add("notation"); //$NON-NLS-1$
 		result.add(DiModel.DI_FILE_EXTENSION);
 
 		// Get the semantic model extensions
@@ -358,26 +236,6 @@ public class LoadingUtils {
 		}
 
 		return result;
-	}
-
-	/**
-	 * Get currently opened editor
-	 *
-	 * @return editor
-	 */
-	public static IEditorPart getEditor() {
-		IEditorPart editor = null;
-		IWorkbench workbench = PlatformUI.getWorkbench();
-		if (workbench != null) {
-			IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-			if (activeWorkbenchWindow != null) {
-				IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-				if (activePage != null) {
-					editor = activePage.getActiveEditor();
-				}
-			}
-		}
-		return editor;
 	}
 
 	/**

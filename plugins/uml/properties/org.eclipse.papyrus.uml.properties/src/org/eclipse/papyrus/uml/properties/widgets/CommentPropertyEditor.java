@@ -11,8 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
-import org.eclipse.papyrus.views.properties.widgets.MultiReferenceEditorWithPropertyView;
-import org.eclipse.papyrus.views.properties.widgets.MultiReferencePropertyEditorWithPropertyView;
+import org.eclipse.papyrus.infra.properties.ui.widgets.MultiReferenceEditorWithPropertyView;
+import org.eclipse.papyrus.infra.properties.ui.widgets.MultiReferencePropertyEditorWithPropertyView;
 import org.eclipse.swt.widgets.Composite;
 
 public class CommentPropertyEditor extends MultiReferencePropertyEditorWithPropertyView {

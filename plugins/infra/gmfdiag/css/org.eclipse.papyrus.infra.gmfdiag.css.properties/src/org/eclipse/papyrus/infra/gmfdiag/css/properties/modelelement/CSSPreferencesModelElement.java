@@ -15,7 +15,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.preferences.ThemePreferences;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSThemeLabelProvider;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.PreferencesModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.PreferencesModelElement;
 
 
 public class CSSPreferencesModelElement extends PreferencesModelElement {

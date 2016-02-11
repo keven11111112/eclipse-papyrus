@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2013 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +7,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
  * 		Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *      Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr
  *      Christian W. Damus (CEA) - Refactoring package/profile import/apply UI for CDO
+ *      Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
@@ -45,7 +44,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * (the command is now shown in menu if not executable).
  *
  * </pre>
+ * 
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler} API, instead.
  */
+@Deprecated
 public abstract class AbstractCommandHandler extends AbstractModelExplorerHandler {
 
 	private List<?> selection = Collections.EMPTY_LIST;

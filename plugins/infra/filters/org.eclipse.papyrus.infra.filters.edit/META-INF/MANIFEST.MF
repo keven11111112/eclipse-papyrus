@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.filters.provider
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.papyrus.infra.filters;bundle-version="1.2.0";visibility:=reexport,
+ org.eclipse.emf.edit;bundle-version="2.11.0";visibility:=reexport,
+ org.eclipse.uml2.types;bundle-version="2.0.0";visibility:=reexport,
+ org.eclipse.uml2.common.edit;bundle-version="2.0.0";visibility:=reexport
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Version: 1.2.0.qualifier
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.infra.filters.provider.FiltersEditPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.filters.edit;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

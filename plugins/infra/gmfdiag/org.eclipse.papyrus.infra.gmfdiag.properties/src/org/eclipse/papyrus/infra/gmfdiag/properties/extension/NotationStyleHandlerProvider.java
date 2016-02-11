@@ -18,8 +18,8 @@ import org.eclipse.papyrus.infra.gmfdiag.properties.constraint.GMFNotationConstr
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.NotationModelElementFactory;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.StyleHandlerProvider;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElementFactory;
 
 /**
  * Default implementation of StyleHandlerProvider

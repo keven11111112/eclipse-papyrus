@@ -15,9 +15,9 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.customization.messages.Messages;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationConfiguration;
 import org.eclipse.papyrus.customization.model.customizationplugin.CustomizationPluginFactory;
-import org.eclipse.papyrus.views.properties.runtime.DisplayEngine;
-import org.eclipse.papyrus.views.properties.util.PropertiesDisplayHelper;
-import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
+import org.eclipse.papyrus.infra.properties.ui.runtime.DisplayEngine;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesDisplayHelper;
+import org.eclipse.papyrus.infra.properties.ui.widgets.layout.PropertiesLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 

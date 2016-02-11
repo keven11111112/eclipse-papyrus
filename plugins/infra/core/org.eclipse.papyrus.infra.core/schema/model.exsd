@@ -88,6 +88,13 @@ The class will be registered using the key set in the Model.
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="required" type="boolean">
+            <annotation>
+               <documentation>
+                  Indication of whether the model&apos;s resources are required to be present and loaded in the resource set.  The default if not specified is &lt;tt&gt;false&lt;/tt&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

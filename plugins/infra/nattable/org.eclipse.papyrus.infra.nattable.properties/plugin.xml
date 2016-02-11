@@ -15,7 +15,7 @@
       </environment>
    </extension>
    <extension
-         point="org.eclipse.papyrus.views.properties.labelprovider">
+         point="org.eclipse.papyrus.infra.properties.ui.labelprovider">
       <labelProvider
             labelProvider="org.eclipse.papyrus.infra.nattable.properties.labelprovider.TablePropertyLabelProvider"
             priority="45">
@@ -27,7 +27,7 @@
             priority="10"
             provider="org.eclipse.papyrus.infra.nattable.provider.TableLabelProvider">
          <labelProviderContext
-               context="org.eclipse.papyrus.views.properties.header.labelProvider.context">
+               context="org.eclipse.papyrus.infra.properties.ui.header.labelProvider.context">
          </labelProviderContext>
       </labelProvider>
    </extension>

@@ -25,8 +25,8 @@ import org.eclipse.jface.viewers.AbstractTableViewer;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
-import org.eclipse.papyrus.views.validation.internal.IValidationMarkerListener;
-import org.eclipse.papyrus.views.validation.internal.ValidationMarkersService;
+import org.eclipse.papyrus.infra.services.validation.IValidationMarkerListener;
+import org.eclipse.papyrus.infra.services.validation.IValidationMarkersService;
 
 import com.google.common.collect.Iterables;
 
@@ -39,7 +39,7 @@ public class ProblemsContentProvider implements IStructuredContentProvider {
 
 	private AbstractTableViewer viewer;
 
-	private ValidationMarkersService service;
+	private IValidationMarkersService service;
 
 	private IValidationMarkerListener listener;
 
@@ -56,8 +56,8 @@ public class ProblemsContentProvider implements IStructuredContentProvider {
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		this.viewer = (AbstractTableViewer) viewer;
 
-		if (oldInput instanceof ValidationMarkersService) {
-			ValidationMarkersService service = (ValidationMarkersService) oldInput;
+		if (oldInput instanceof IValidationMarkersService) {
+			IValidationMarkersService service = (IValidationMarkersService) oldInput;
 			unhookMarkers(service);
 
 			// The old service may have been disposed if its editor was closed
@@ -68,8 +68,8 @@ public class ProblemsContentProvider implements IStructuredContentProvider {
 			this.service = null;
 		}
 
-		if (newInput instanceof ValidationMarkersService) {
-			ValidationMarkersService service = (ValidationMarkersService) newInput;
+		if (newInput instanceof IValidationMarkersService) {
+			IValidationMarkersService service = (IValidationMarkersService) newInput;
 			this.service = service;
 			hookMarkers(service);
 			hookResourceSet(service.getModelSet().getTransactionalEditingDomain());
@@ -77,14 +77,14 @@ public class ProblemsContentProvider implements IStructuredContentProvider {
 	}
 
 	public Object[] getElements(Object inputElement) {
-		return (inputElement instanceof ValidationMarkersService) ? Iterables.toArray(((ValidationMarkersService) inputElement).getMarkers(), IPapyrusMarker.class) : NONE;
+		return (inputElement instanceof IValidationMarkersService) ? Iterables.toArray(((IValidationMarkersService) inputElement).getMarkers(), IPapyrusMarker.class) : NONE;
 	}
 
-	protected void hookMarkers(ValidationMarkersService service) {
+	protected void hookMarkers(IValidationMarkersService service) {
 		service.addValidationMarkerListener(getValidationMarkerListener());
 	}
 
-	protected void unhookMarkers(ValidationMarkersService service) {
+	protected void unhookMarkers(IValidationMarkersService service) {
 		service.removeValidationMarkerListener(getValidationMarkerListener());
 	}
 

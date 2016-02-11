@@ -24,7 +24,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstants
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.messages.Messages;
-import org.eclipse.papyrus.views.properties.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

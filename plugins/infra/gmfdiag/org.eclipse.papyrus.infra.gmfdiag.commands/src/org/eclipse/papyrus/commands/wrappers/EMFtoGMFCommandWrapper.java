@@ -1,5 +1,5 @@
 /***************************************************************************
- * Copyright (c) 2007, 2014 Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana, CEA, and others.
+ * Copyright (c) 2007, 2014 Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,44 +7,28 @@
  *
  * Contributors: Mario Cervera Ubeda (Prodevelop)
  *    Christian W. Damus (CEA) - bug 430701
+ *    Christian W. Damus - bug 485220
  *
  ******************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gmf.runtime.common.core.command.AbstractCommand;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.INonDirtying;
 
 /**
  * A GMF Command that wraps an EMF command. Each method is redirected to the EMF one.
+ * 
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper} API, instead.
  */
-public class EMFtoGMFCommandWrapper extends AbstractCommand {
+@Deprecated
+public class EMFtoGMFCommandWrapper extends org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper {
 
-	/**
-	 * The wrapped EMF Command. Package-level visibility so that the command stack wrapper can
-	 * access the field.
-	 */
-	protected Command emfCommand;
-
-	/**
-	 * This variable is used to avoid reentrant call in canUndo/undo/redo
-	 *
-	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=389382
-	 */
-	protected boolean isBusy;
+	static {
+		// Configure legacy compatibility
+		setWrapperFunction(EMFtoGMFCommandWrapper::new);
+		setNonDirtyingWrapperFunction(NonDirtying::new);
+	}
 
 	/**
 	 * Constructor.
@@ -53,8 +37,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 *            the emf command
 	 */
 	public EMFtoGMFCommandWrapper(Command emfCommand) {
-		super(emfCommand.getLabel());
-		this.emfCommand = emfCommand;
+		super(emfCommand);
 	}
 
 	/**
@@ -65,140 +48,7 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 	 * @return the best wrapper for the {@code command}
 	 */
 	public static ICommand wrap(Command command) {
-		if (command instanceof org.eclipse.emf.common.command.AbstractCommand.NonDirtying) {
-			return new NonDirtying(command);
-		}
-		return new EMFtoGMFCommandWrapper(command);
-	}
-
-	/**
-	 * Returns the wrapped EMF command.
-	 *
-	 * @return the EMF command
-	 */
-	// @unused
-	public org.eclipse.emf.common.command.Command getEMFCommand() {
-		return emfCommand;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @seeorg.eclipse.gmf.runtime.common.core.command.AbstractCommand#
-	 * doExecuteWithResult(org.eclipse .core.runtime.IProgressMonitor,
-	 * org.eclipse.core.runtime.IAdaptable)
-	 */
-	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		emfCommand.execute();
-
-		return CommandResult.newOKCommandResult();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doRedoWithResult
-	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 */
-	@Override
-	protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		if (!isBusy) {
-			isBusy = true;
-			emfCommand.redo();
-			isBusy = false;
-		}
-
-		return CommandResult.newOKCommandResult();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#doUndoWithResult
-	 * (org.eclipse. core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
-	 */
-	@Override
-	protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-
-		if (!isBusy) {
-			isBusy = true;
-			emfCommand.undo();
-			isBusy = false;
-		}
-
-		return CommandResult.newOKCommandResult();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.commands.operations.AbstractOperation#canExecute()
-	 */
-	@Override
-	public boolean canExecute() {
-		return emfCommand.canExecute();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gmf.runtime.common.core.command.AbstractCommand#dispose()
-	 */
-	@Override
-	public void dispose() {
-		emfCommand.dispose();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.commands.operations.AbstractOperation#canUndo()
-	 */
-	@Override
-	public boolean canUndo() {
-		if (!isBusy) {
-			isBusy = true;
-			boolean res = emfCommand.canUndo();
-			isBusy = false;
-			return res;
-		} else {
-			return true;
-		}
-	}
-
-	@Override
-	public List getAffectedFiles() {
-		ArrayList affectedFiles = new ArrayList();
-		Collection<?> affectedObjects = emfCommand.getAffectedObjects();
-		if (affectedObjects != null) {
-			for (Object o : affectedObjects) {
-				if (o instanceof EObject) {
-					o = ((EObject) o).eResource();
-				}
-				if (o instanceof Resource) {
-					o = WorkspaceSynchronizer.getFile((Resource) o);
-				}
-				if (o instanceof IFile) {
-					affectedFiles.add(o);
-				}
-			}
-		}
-		return affectedFiles;
-	}
-
-	@Override
-	public CommandResult getCommandResult() {
-		Collection<?> res = emfCommand.getResult();
-		if (res != null && !res.isEmpty()) {
-			if (res.size() == 1) {
-				return CommandResult.newOKCommandResult(res.iterator().next());
-			}
-			return CommandResult.newOKCommandResult(res);
-		}
-		return CommandResult.newOKCommandResult();
+		return org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper.wrap(command);
 	}
 
 	//
@@ -207,15 +57,14 @@ public class EMFtoGMFCommandWrapper extends AbstractCommand {
 
 	/**
 	 * A non-dirtying wrapper for non-dirtying commands.
+	 * 
+	 * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper.NonDirtying} API, instead.
 	 */
-	public static class NonDirtying extends EMFtoGMFCommandWrapper implements INonDirtying {
+	@Deprecated
+	public static class NonDirtying extends org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper.NonDirtying implements INonDirtying {
 
 		public NonDirtying(org.eclipse.emf.common.command.Command command) {
 			super(command);
-
-			if (!(command instanceof org.eclipse.emf.common.command.AbstractCommand.NonDirtying)) {
-				throw new IllegalArgumentException("Wrapped command is not non-dirtying"); //$NON-NLS-1$
-			}
 		}
 
 	}

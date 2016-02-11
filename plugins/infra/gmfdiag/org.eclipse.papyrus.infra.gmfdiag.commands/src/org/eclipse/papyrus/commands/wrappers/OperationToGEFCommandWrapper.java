@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 Atos, CEA, and others.
+ * Copyright (c) 2011, 2016 Atos, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Hemery (Atos) - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 430701
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
@@ -22,6 +23,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.commands.INonDirtying;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
 
 /**
  * A GEF Command that wraps an undoable operation. Each method is redirected to the operation. <br>
@@ -29,10 +31,16 @@ import org.eclipse.papyrus.commands.INonDirtying;
  *
  * @author vhemery
  */
-public class OperationToGEFCommandWrapper extends Command {
+public class OperationToGEFCommandWrapper extends Command implements ICommandWrapper<IUndoableOperation> {
 
 	/** the IUndoableOperation which calls are redirected to */
 	private IUndoableOperation operation = null;
+
+	static {
+		// The registry prefers the GMFtoGEFCommandWrapper for ICommands
+		REGISTRY.registerUnwrapper(OperationToGEFCommandWrapper.class, IUndoableOperation.class,
+				OperationToGEFCommandWrapper::getWrappedCommand);
+	}
 
 	/**
 	 * Construct a new command wrapper
@@ -66,6 +74,11 @@ public class OperationToGEFCommandWrapper extends Command {
 	 */
 	public IUndoableOperation getOperation() {
 		return operation;
+	}
+
+	@Override
+	public IUndoableOperation getWrappedCommand() {
+		return getOperation();
 	}
 
 	/**
@@ -149,7 +162,7 @@ public class OperationToGEFCommandWrapper extends Command {
 		public NonDirtying(IUndoableOperation operation) {
 			super(operation);
 
-			if (!(operation instanceof INonDirtying)) {
+			if (!(operation instanceof org.eclipse.papyrus.infra.emf.gmf.command.INonDirtying)) {
 				throw new IllegalArgumentException("Wrapped operation is not non-dirtying"); //$NON-NLS-1$
 			}
 		}

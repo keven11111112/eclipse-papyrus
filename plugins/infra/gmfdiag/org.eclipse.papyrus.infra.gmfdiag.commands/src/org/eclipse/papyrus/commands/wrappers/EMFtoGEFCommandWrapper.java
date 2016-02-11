@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2014 AIRBUS FRANCE, CEA, and others.
+ * Copyright (c) 2005, 2016 AIRBUS FRANCE, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,6 +9,7 @@
  *    David Sciamma (Anyware Technologies), Mathieu Garcia (Anyware Technologies),
  *    Jacques Lescot (Anyware Technologies) - initial API and implementation
  *    Christian W. Damus (CEA) - bug 430701
+ *    Christian W. Damus - bug 485220
  *
  *******************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
@@ -16,8 +17,8 @@ package org.eclipse.papyrus.commands.wrappers;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.papyrus.commands.INonDirtying;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
 
-// TODO: Auto-generated Javadoc
 /**
  * A GEF Command that wraps an EMF command. Each method is redirected to the EMF one. <br>
  * Adapts an {@link org.eclipse.emf.common.command.Command EMF Command} to be a {@link org.eclipse.gef.commands.Command GEF Command}.
@@ -26,13 +27,20 @@ import org.eclipse.papyrus.commands.INonDirtying;
  *
  * @author aarong, <a href="mailto:jacques.lescot@anyware-tech.com">Jacques LESCOT</a>
  */
-public class EMFtoGEFCommandWrapper extends Command {
+public class EMFtoGEFCommandWrapper extends Command implements ICommandWrapper<org.eclipse.emf.common.command.Command> {
 
 	/**
 	 * The wrapped EMF Command. Package-level visibility so that the command stack wrapper can
 	 * access the field.
 	 */
 	private final org.eclipse.emf.common.command.Command emfCommand;
+
+	static {
+		REGISTRY.registerWrapper(org.eclipse.emf.common.command.Command.class, Command.class,
+				EMFtoGEFCommandWrapper::wrap);
+		REGISTRY.registerUnwrapper(EMFtoGEFCommandWrapper.class, org.eclipse.emf.common.command.Command.class,
+				EMFtoGEFCommandWrapper::getWrappedCommand);
+	}
 
 	/**
 	 * Constructor.
@@ -64,9 +72,13 @@ public class EMFtoGEFCommandWrapper extends Command {
 	 *
 	 * @return the EMF command
 	 */
-	// @unused
 	public org.eclipse.emf.common.command.Command getEMFCommand() {
 		return emfCommand;
+	}
+
+	@Override
+	public org.eclipse.emf.common.command.Command getWrappedCommand() {
+		return getEMFCommand();
 	}
 
 	/**

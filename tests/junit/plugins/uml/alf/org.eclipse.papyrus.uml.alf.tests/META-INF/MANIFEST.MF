@@ -32,8 +32,7 @@ Export-Package: org.eclipse.papyrus.uml.alf,
  org.eclipse.papyrus.uml.alf.tests
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: bin/,
- .,
+Bundle-ClassPath: .,
  Alf/,
  UML/
 Bundle-Version: 1.2.0.qualifier

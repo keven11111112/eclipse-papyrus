@@ -124,280 +124,280 @@
   </tabs>
   <views xmi:id="_LxfSjmTrEeSnqN8Csryy_Q" name="Single ExtendedElementTypeSet" sections="_LxfSZmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTL2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSj2TrEeSnqN8Csryy_Q" name="isSingleExtendedElementTypeSet">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSkGTrEeSnqN8Csryy_Q" name="className" value="ExtendedElementTypeSet"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSkWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSkmTrEeSnqN8Csryy_Q" name="Single ElementTypeConfiguration" sections="_LxfSZ2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTMmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSk2TrEeSnqN8Csryy_Q" name="isSingleElementTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSlGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSlWTrEeSnqN8Csryy_Q" name="className" value="ElementTypeConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSlmTrEeSnqN8Csryy_Q" name="Single IconEntry" sections="_LxfSaGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTN2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSl2TrEeSnqN8Csryy_Q" name="isSingleIconEntry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSmGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSmWTrEeSnqN8Csryy_Q" name="className" value="IconEntry"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSmmTrEeSnqN8Csryy_Q" name="Single ConfigurationElement" sections="_LxfSaWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTOmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSm2TrEeSnqN8Csryy_Q" name="isSingleConfigurationElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSnGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSnWTrEeSnqN8Csryy_Q" name="className" value="ConfigurationElement"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSnmTrEeSnqN8Csryy_Q" name="Single MatcherConfiguration" sections="_LxfSamTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTP2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSn2TrEeSnqN8Csryy_Q" name="isSingleMatcherConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSoGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSoWTrEeSnqN8Csryy_Q" name="className" value="MatcherConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSomTrEeSnqN8Csryy_Q" name="Single ActionConfiguration" sections="_LxfSa2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSo2TrEeSnqN8Csryy_Q" name="isSingleActionConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSpGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSpWTrEeSnqN8Csryy_Q" name="className" value="ActionConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSpmTrEeSnqN8Csryy_Q" name="Single ViewActionConfiguration" sections="_LxfSbGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQWTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSp2TrEeSnqN8Csryy_Q" name="isSingleViewActionConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSqGTrEeSnqN8Csryy_Q" name="className" value="ViewActionConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSqWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSqmTrEeSnqN8Csryy_Q" name="Single SemanticActionConfiguration" sections="_LxfSbWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSq2TrEeSnqN8Csryy_Q" name="isSingleSemanticActionConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSrGTrEeSnqN8Csryy_Q" name="className" value="SemanticActionConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSrWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSrmTrEeSnqN8Csryy_Q" name="Single SemanticTypeConfiguration" sections="_LxfSbmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQ2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSr2TrEeSnqN8Csryy_Q" name="isSingleSemanticTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSsGTrEeSnqN8Csryy_Q" name="className" value="SemanticTypeConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSsWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSsmTrEeSnqN8Csryy_Q" name="Single ViewTypeConfiguration" sections="_LxfSb2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTRGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSs2TrEeSnqN8Csryy_Q" name="isSingleViewTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfStGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfStWTrEeSnqN8Csryy_Q" name="className" value="ViewTypeConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfStmTrEeSnqN8Csryy_Q" name="Single ElementTypeAdviceConfiguration" sections="_LxfScGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTRmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSt2TrEeSnqN8Csryy_Q" name="isSingleElementTypeAdviceConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSuGTrEeSnqN8Csryy_Q" name="className" value="ElementTypeAdviceConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSuWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSumTrEeSnqN8Csryy_Q" name="Single AspectSemanticTypeConfiguration" sections="_LxfScWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTR2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSu2TrEeSnqN8Csryy_Q" name="isSingleAspectSemanticTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSvGTrEeSnqN8Csryy_Q" name="className" value="AspectSemanticTypeConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSvWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSvmTrEeSnqN8Csryy_Q" name="Single AspectViewTypeConfiguration" sections="_LxfScmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTSWTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSv2TrEeSnqN8Csryy_Q" name="isSingleAspectViewTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSwGTrEeSnqN8Csryy_Q" name="className" value="AspectViewTypeConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSwWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSwmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ExtendedElementTypeSet" sections="_LxfSc2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTL2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSw2TrEeSnqN8Csryy_Q" name="isMultipleExtendedElementTypeSet">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSxGTrEeSnqN8Csryy_Q" name="className" value="ExtendedElementTypeSet"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSxWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSxmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ElementTypeConfiguration" sections="_LxfSdGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTMmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSx2TrEeSnqN8Csryy_Q" name="isMultipleElementTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSyGTrEeSnqN8Csryy_Q" name="className" value="ElementTypeConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSyWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSymTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple IconEntry" sections="_LxfSdWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTN2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSy2TrEeSnqN8Csryy_Q" name="isMultipleIconEntry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSzGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfSzWTrEeSnqN8Csryy_Q" name="className" value="IconEntry"/>
     </constraints>
   </views>
   <views xmi:id="_LxfSzmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ConfigurationElement" sections="_LxfSdmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTOmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfSz2TrEeSnqN8Csryy_Q" name="isMultipleConfigurationElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS0GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS0WTrEeSnqN8Csryy_Q" name="className" value="ConfigurationElement"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS0mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple MatcherConfiguration" sections="_LxfSd2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTP2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS02TrEeSnqN8Csryy_Q" name="isMultipleMatcherConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS1GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS1WTrEeSnqN8Csryy_Q" name="className" value="MatcherConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS1mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ActionConfiguration" sections="_LxfSeGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS12TrEeSnqN8Csryy_Q" name="isMultipleActionConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS2GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS2WTrEeSnqN8Csryy_Q" name="className" value="ActionConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS2mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ViewActionConfiguration" sections="_LxfSeWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQWTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS22TrEeSnqN8Csryy_Q" name="isMultipleViewActionConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS3GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS3WTrEeSnqN8Csryy_Q" name="className" value="ViewActionConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS3mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple SemanticActionConfiguration" sections="_LxfSemTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS32TrEeSnqN8Csryy_Q" name="isMultipleSemanticActionConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS4GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS4WTrEeSnqN8Csryy_Q" name="className" value="SemanticActionConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS4mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple SemanticTypeConfiguration" sections="_LxfSe2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTQ2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS42TrEeSnqN8Csryy_Q" name="isMultipleSemanticTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS5GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS5WTrEeSnqN8Csryy_Q" name="className" value="SemanticTypeConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS5mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ViewTypeConfiguration" sections="_LxfSfGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTRGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS52TrEeSnqN8Csryy_Q" name="isMultipleViewTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS6GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS6WTrEeSnqN8Csryy_Q" name="className" value="ViewTypeConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS6mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ElementTypeAdviceConfiguration" sections="_LxfSfWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTRmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS62TrEeSnqN8Csryy_Q" name="isMultipleElementTypeAdviceConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS7GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS7WTrEeSnqN8Csryy_Q" name="className" value="ElementTypeAdviceConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS7mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple AspectSemanticTypeConfiguration" sections="_LxfSfmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTR2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS72TrEeSnqN8Csryy_Q" name="isMultipleAspectSemanticTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS8GTrEeSnqN8Csryy_Q" name="className" value="AspectSemanticTypeConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS8WTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS8mTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple AspectViewTypeConfiguration" sections="_LxfSf2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTSWTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS82TrEeSnqN8Csryy_Q" name="isMultipleAspectViewTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS9GTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS9WTrEeSnqN8Csryy_Q" name="className" value="AspectViewTypeConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS9mTrEeSnqN8Csryy_Q" name="Single InvariantSemanticTypeConfiguration" sections="_LxfShGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTTGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS92TrEeSnqN8Csryy_Q" name="isSingleInvariantSemanticTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS-GTrEeSnqN8Csryy_Q" name="className" value="InvariantSemanticTypeConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS-WTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS-mTrEeSnqN8Csryy_Q" name="Single InvariantRuleConfiguration" sections="_LxfShWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTTmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS-2TrEeSnqN8Csryy_Q" name="isSingleInvariantRuleConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS_GTrEeSnqN8Csryy_Q" name="className" value="InvariantRuleConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfS_WTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfS_mTrEeSnqN8Csryy_Q" name="Single ComposedRuleConfiguration" sections="_LxfShmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTT2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfS_2TrEeSnqN8Csryy_Q" name="isSingleComposedRuleConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTAGTrEeSnqN8Csryy_Q" name="className" value="ComposedRuleConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTAWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTAmTrEeSnqN8Csryy_Q" name="Single AndRule" sections="_LxfSh2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTUWTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTA2TrEeSnqN8Csryy_Q" name="isSingleAndRule">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTBGTrEeSnqN8Csryy_Q" name="className" value="AndRule"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTBWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTBmTrEeSnqN8Csryy_Q" name="Single OrRule" sections="_LxfSiGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTUmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTB2TrEeSnqN8Csryy_Q" name="isSingleOrRule">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTCGTrEeSnqN8Csryy_Q" name="className" value="OrRule"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTCWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTCmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple InvariantSemanticTypeConfiguration" sections="_LxfSiWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTTGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTC2TrEeSnqN8Csryy_Q" name="isMultipleInvariantSemanticTypeConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTDGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTDWTrEeSnqN8Csryy_Q" name="className" value="InvariantSemanticTypeConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTDmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple InvariantRuleConfiguration" sections="_LxfSimTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTTmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTD2TrEeSnqN8Csryy_Q" name="isMultipleInvariantRuleConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTEGTrEeSnqN8Csryy_Q" name="className" value="InvariantRuleConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTEWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTEmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple ComposedRuleConfiguration" sections="_LxfSi2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTT2TrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTE2TrEeSnqN8Csryy_Q" name="isMultipleComposedRuleConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTFGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTFWTrEeSnqN8Csryy_Q" name="className" value="ComposedRuleConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTFmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple AndRule" sections="_LxfSjGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTUWTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTF2TrEeSnqN8Csryy_Q" name="isMultipleAndRule">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTGGTrEeSnqN8Csryy_Q" name="className" value="AndRule"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTGWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTGmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple OrRule" sections="_LxfSjWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTUmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTG2TrEeSnqN8Csryy_Q" name="isMultipleOrRule">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTHGTrEeSnqN8Csryy_Q" name="className" value="OrRule"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTHWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTHmTrEeSnqN8Csryy_Q" name="Single InvariantContainerConfiguration" sections="_LxfSgGTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTVGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTH2TrEeSnqN8Csryy_Q" name="isSingleInvariantContainerConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTIGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTIWTrEeSnqN8Csryy_Q" name="className" value="InvariantContainerConfiguration"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTImTrEeSnqN8Csryy_Q" name="Single HierarchyPermission" sections="_LxfSgWTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTVmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTI2TrEeSnqN8Csryy_Q" name="isSingleHierarchyPermission">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTJGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTJWTrEeSnqN8Csryy_Q" name="className" value="HierarchyPermission"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTJmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple InvariantContainerConfiguration" sections="_LxfSgmTrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTVGTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTJ2TrEeSnqN8Csryy_Q" name="isMultipleInvariantContainerConfiguration">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTKGTrEeSnqN8Csryy_Q" name="className" value="InvariantContainerConfiguration"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTKWTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"/>
     </constraints>
   </views>
   <views xmi:id="_LxfTKmTrEeSnqN8Csryy_Q" elementMultiplicity="-1" name="Multiple HierarchyPermission" sections="_LxfSg2TrEeSnqN8Csryy_Q" automaticContext="true" datacontexts="_LxfTVmTrEeSnqN8Csryy_Q">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_LxfTK2TrEeSnqN8Csryy_Q" name="isMultipleHierarchyPermission">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTLGTrEeSnqN8Csryy_Q" name="nsUri" value="http://www.eclipse.org/papyrus/infra/extendedtypes/semantictype/invariant/container/1.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_LxfTLWTrEeSnqN8Csryy_Q" name="className" value="HierarchyPermission"/>
     </constraints>
@@ -438,7 +438,7 @@
     <elements xmi:id="_LxfTSWTrEeSnqN8Csryy_Q" name="AspectViewTypeConfiguration" supertypes="_LxfTRGTrEeSnqN8Csryy_Q">
       <properties xmi:id="_LxfTSmTrEeSnqN8Csryy_Q" name="actionConfiguration" type="Reference" multiplicity="-1"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts xmi:id="_LxfTS2TrEeSnqN8Csryy_Q" name="invariantsemantictypeconfiguration" label="invariantsemantictypeconfiguration">
     <elements xmi:id="_LxfTTGTrEeSnqN8Csryy_Q" name="InvariantSemanticTypeConfiguration" supertypes="_LxfTQ2TrEeSnqN8Csryy_Q">
@@ -450,7 +450,7 @@
     </elements>
     <elements xmi:id="_LxfTUWTrEeSnqN8Csryy_Q" name="AndRule" supertypes="_LxfTT2TrEeSnqN8Csryy_Q"/>
     <elements xmi:id="_LxfTUmTrEeSnqN8Csryy_Q" name="OrRule" supertypes="_LxfTT2TrEeSnqN8Csryy_Q"/>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts xmi:id="_LxfTU2TrEeSnqN8Csryy_Q" name="invariantcontainerconfiguration" label="invariantcontainerconfiguration">
     <elements xmi:id="_LxfTVGTrEeSnqN8Csryy_Q" name="InvariantContainerConfiguration" supertypes="_LxfTTmTrEeSnqN8Csryy_Q">
@@ -461,6 +461,6 @@
       <properties xmi:id="_LxfTWGTrEeSnqN8Csryy_Q" name="isPermitted" type="Boolean"/>
       <properties xmi:id="_LxfTWWTrEeSnqN8Csryy_Q" name="isStrict" type="Boolean"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>

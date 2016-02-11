@@ -18,9 +18,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
@@ -50,7 +50,7 @@ public abstract class AbstractTableCommandHandler extends AbstractCommandHandler
 					 * Get the table object. This getElement is used in order to
 					 * use IAdaptable mechanisme For example for Facet Elements
 					 */
-					EObject table = NavigatorUtils.getElement(current, EObject.class);
+					EObject table = EMFHelper.getEObject(current);
 					if (table instanceof Table) {
 						tables.add((Table) table);
 					}

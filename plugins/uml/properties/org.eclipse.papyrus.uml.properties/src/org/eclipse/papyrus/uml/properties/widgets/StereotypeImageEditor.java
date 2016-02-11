@@ -19,15 +19,15 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
-import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionEvent;
@@ -49,8 +49,8 @@ import org.eclipse.uml2.uml.Image;
  * An expression can be attached to each image, which will be interpreted at runtime
  * to determine which image should be displayed.
  *
- * Based on the org.eclipse.papyrus.views.properties.tabbed.profile.imagesection package
- * in the org.eclipse.papyrus.views.properties.tabbed.profile plug-in
+ * Based on the org.eclipse.papyrus.infra.properties.ui.tabbed.profile.imagesection package
+ * in the org.eclipse.papyrus.infra.properties.ui.tabbed.profile plug-in
  *
  * @author Camille Letavernier
  *

@@ -38,7 +38,7 @@
    </propertyTester>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.gmfdiag.commands.operationApprover">
+      point="org.eclipse.papyrus.infra.emf.gmf.operationApprovers">
    <operationApprover
          class="org.eclipse.papyrus.infra.emf.readonly.ReadOnlyOneFileApprover"
          priority="10">

@@ -27,6 +27,7 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
 import org.eclipse.papyrus.uml.properties.Activator;
@@ -34,7 +35,6 @@ import org.eclipse.papyrus.uml.tools.databinding.ExtendedMultiplicityObservableV
 import org.eclipse.papyrus.uml.tools.databinding.ExtensionEndMultiplicityObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.NavigationObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.OwnerObservableValue;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.uml2.uml.ExtensionEnd;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;

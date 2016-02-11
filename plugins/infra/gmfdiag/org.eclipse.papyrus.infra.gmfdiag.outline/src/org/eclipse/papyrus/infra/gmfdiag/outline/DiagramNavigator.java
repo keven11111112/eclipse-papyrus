@@ -1,5 +1,5 @@
 /***********************************************************************
- * Copyright (c) 2007, 2014 Anyware Technologies, Obeo, CEA, and others.
+ * Copyright (c) 2007, 2016 Anyware Technologies, Obeo, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,21 +10,14 @@
  *    Anyware Technologies - initial API and implementation
  *    Obeo
  *    Christian W. Damus (CEA) - bug 410346
+ *    Christian W. Damus - bug 485220
  *
  **********************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.outline;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.emf.edit.provider.IViewerNotification;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
@@ -44,7 +37,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.part.IPageSite;
-import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 
 /**
  * <b>Diagram navigator :</b><br>
@@ -157,17 +149,8 @@ public class DiagramNavigator extends Composite {
 	 * Set the tree providers for the outline
 	 */
 	protected void initProviders() {
-		final AdapterFactory adapterFactory = getAdapterFactory();
-		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(adapterFactory) {
-			@Override
-			public void dispose() {
-				// Dispose the adapter factory because we created it
-				if (adapterFactory instanceof IDisposable) {
-					((IDisposable) adapterFactory).dispose();
-				}
-				super.dispose();
-			}
-		};
+		final AdapterFactory adapterFactory = org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance().getItemProvidersAdapterFactory();
+		AdapterFactoryContentProvider adapterContentProvider = new NavigatorAdapterFactoryContentProvider(adapterFactory);
 		adapterContentProvider.inputChanged(viewer, null, null);
 		viewer.setContentProvider(new DiagramOrientedContentProvider(adapterContentProvider));
 		try {
@@ -223,20 +206,6 @@ public class DiagramNavigator extends Composite {
 	@Override
 	public void dispose() {
 		super.dispose();
-	}
-
-	/**
-	 * Get the AdapterFactory associated with an editor
-	 *
-	 * @return AdapterFactory
-	 */
-	protected AdapterFactory getAdapterFactory() {
-		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
-		factories.add(new UMLItemProviderAdapterFactory());
-		factories.add(new EcoreItemProviderAdapterFactory());
-		factories.add(new ResourceItemProviderAdapterFactory());
-		factories.add(new ReflectiveItemProviderAdapterFactory());
-		return new ComposedAdapterFactory(factories);
 	}
 
 }

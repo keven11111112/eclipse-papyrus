@@ -21,7 +21,8 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextDeleteAction;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -55,8 +56,9 @@ public class RemoveContextAction {
 				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					try {
+						IInternalConfigurationManager mgr = (IInternalConfigurationManager) PropertiesRuntime.getConfigurationManager();
 						delegate.delete(sourceContext, monitor);
-						ConfigurationManager.getInstance().deleteContext(sourceContext);
+						mgr.deleteContext(sourceContext);
 					} catch (CoreException ex) {
 						Activator.log.error(ex);
 					}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.eclipse.papyrus.editor</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.plugins</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+    </parent>
+	<name>Papyrus Editor</name>
+	<description>The Eclipse Editors contributions of Papyrus, including the multi-page model editor.</description>
+
+	<modules>
+		<module>org.eclipse.papyrus.eclipse.project.editors</module>
+		<module>org.eclipse.papyrus.editor</module>
+	</modules>
+</project>

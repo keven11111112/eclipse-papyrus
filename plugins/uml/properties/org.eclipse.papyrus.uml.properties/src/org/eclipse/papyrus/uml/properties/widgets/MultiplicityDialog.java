@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.preferences.MultiplicityEditorPreferences;
-import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -83,7 +83,7 @@ public class MultiplicityDialog extends AbstractPropertyEditor {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor#doBinding()
+	 * @see org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor#doBinding()
 	 */
 	@Override
 	protected void doBinding() {

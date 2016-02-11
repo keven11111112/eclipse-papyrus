@@ -16,6 +16,7 @@
 
 package org.eclipse.papyrus.infra.core.utils;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -23,6 +24,8 @@ import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.spi.IContextualServiceRegistryTracker;
+import org.eclipse.papyrus.infra.tools.util.IProgressCallable;
+import org.eclipse.papyrus.infra.tools.util.IProgressRunnable;
 
 /**
  * Set of utility methods for accessing core Services. This class provide
@@ -152,5 +155,71 @@ public abstract class AbstractServiceUtils<T> {
 			// That's OK. It's optional and we have a default
 			return defaultImpl;
 		}
+	}
+
+	/**
+	 * Obtains a Papyrus callable from a plain {@code callable} with the registry
+	 * context derived {@code from} the given context object.
+	 * 
+	 * @param callable
+	 *            a callable to encapsulate
+	 * @param from
+	 *            the Papyrus context from which to derive the registry
+	 * 
+	 * @return the Papyrus callable
+	 */
+	public <V> IPapyrusCallable<V> callable(IProgressCallable<V> callable, T from) {
+		return new IPapyrusCallable<V>() {
+			@Override
+			public V call(IProgressMonitor monitor) throws Exception {
+				return callable.call(monitor);
+			}
+
+			@Override
+			public ServicesRegistry getServiceRegistry() {
+				ServicesRegistry result = null;
+
+				try {
+					result = AbstractServiceUtils.this.getServiceRegistry(from);
+				} catch (ServiceException e) {
+					Activator.log.error(e);
+				}
+
+				return result;
+			}
+		};
+	}
+
+	/**
+	 * Obtains a Papyrus runnable from a plain {@code runnable} with the registry
+	 * context derived {@code from} the given context object.
+	 * 
+	 * @param runnable
+	 *            a runnable to encapsulate
+	 * @param from
+	 *            the Papyrus context from which to derive the registry
+	 * 
+	 * @return the Papyrus runnable
+	 */
+	public IPapyrusRunnable runnable(IProgressRunnable runnable, T from) {
+		return new IPapyrusRunnable() {
+			@Override
+			public void run(IProgressMonitor monitor) {
+				runnable.run(monitor);
+			}
+
+			@Override
+			public ServicesRegistry getServiceRegistry() {
+				ServicesRegistry result = null;
+
+				try {
+					result = AbstractServiceUtils.this.getServiceRegistry(from);
+				} catch (ServiceException e) {
+					Activator.log.error(e);
+				}
+
+				return result;
+			}
+		};
 	}
 }

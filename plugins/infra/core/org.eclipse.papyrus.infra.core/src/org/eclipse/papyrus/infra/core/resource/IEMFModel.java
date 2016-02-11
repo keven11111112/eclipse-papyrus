@@ -56,4 +56,30 @@ public interface IEMFModel extends IModel {
 	 */
 	public boolean isControlled(Resource resource);
 
+	/**
+	 * Queries whether I am the primary model in which the specified {@code object}
+	 * should be stored as a root of one of my resources.
+	 * 
+	 * @param object
+	 *            an object that needs to be {@link #persist(EObject) persisted}
+	 * 
+	 * @return whether I should persist the {@code object}
+	 * 
+	 * @see #persist(EObject)
+	 */
+	public boolean canPersist(EObject object);
+
+	/**
+	 * Persists an {@code object} in my most appriopriate resource, if
+	 * I {@link #canPersist(EObject) can persist} it
+	 * 
+	 * @param object
+	 *            an object
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if I cannot persist the {@code object}
+	 * 
+	 * @see #canPersist(EObject)
+	 */
+	public void persist(EObject object);
 }

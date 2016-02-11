@@ -93,7 +93,7 @@ public class RoundedRectangleNodePlateFigure extends DefaultSizeNodeFigure imple
 	 *
 	 * @param svgNodePlateFigure
 	 *            the new SVG node plate container
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ICustomNodePlate#setSVGNodePlateContainer(org.eclipse.papyrus.uml.diagram.common.figure.node.SVGNodePlateFigure)
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ICustomNodePlate#setSVGNodePlateContainer(SVGNodePlateFigure)
 	 */
 	@Override
 	public void setSVGNodePlateContainer(SVGNodePlateFigure svgNodePlateFigure) {

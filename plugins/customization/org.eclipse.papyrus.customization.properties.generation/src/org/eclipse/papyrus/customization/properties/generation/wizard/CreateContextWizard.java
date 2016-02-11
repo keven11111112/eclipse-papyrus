@@ -47,7 +47,8 @@ import org.eclipse.papyrus.infra.properties.contexts.View;
 import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.infra.properties.ui.UiFactory;
 import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.IConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -93,7 +94,7 @@ public class CreateContextWizard extends Wizard implements INewWizard {
 			return false;
 		}
 
-		ConfigurationManager configManager = ConfigurationManager.getInstance();
+		IConfigurationManager configManager = PropertiesRuntime.getConfigurationManager();
 
 		for (Context context : contexts) {
 			Tab defaultTab = ContextsFactory.eINSTANCE.createTab();

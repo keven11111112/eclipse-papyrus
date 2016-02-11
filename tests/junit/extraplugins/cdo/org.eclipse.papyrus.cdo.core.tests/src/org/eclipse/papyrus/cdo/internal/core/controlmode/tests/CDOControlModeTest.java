@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
- *   Christian W. Damus - bug 436998
+ *   Christian W. Damus - bugs 436998, 485220
  *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
@@ -53,7 +53,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
-import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
+import org.eclipse.papyrus.infra.services.resourceloading.IStrategyChooser;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;
@@ -71,6 +71,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 
 	private final List<Runnable> cleanupActions = Lists.newArrayListWithExpectedSize(2);
 
+	private ServicesRegistry strategyRegistry;
 	private int oldControlModeStrategy;
 
 	public CDOControlModeTest() {
@@ -158,16 +159,32 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 	//
 
 	@Before
-	public void setControlModeStrategy() {
+	public void setControlModeStrategy() throws Exception {
 		final int MAGIC_NUMBER_OF_DONT_LOAD_ANYTHING_STRATEGY = 2;
 
-		oldControlModeStrategy = new StrategyChooser().getCurrentStrategy();
-		StrategyChooser.setCurrentStrategy(MAGIC_NUMBER_OF_DONT_LOAD_ANYTHING_STRATEGY);
+		strategyRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
+
+		// We know that it has no dependencies
+		strategyRegistry.startServicesByClassKeys(IStrategyChooser.class);
+		IStrategyChooser chooser = strategyRegistry.getService(IStrategyChooser.class);
+
+		oldControlModeStrategy = chooser.getCurrentStrategy();
+		chooser.setStrategy(MAGIC_NUMBER_OF_DONT_LOAD_ANYTHING_STRATEGY);
 	}
 
 	@After
-	public void restoreControlModeStrategy() {
-		StrategyChooser.setCurrentStrategy(oldControlModeStrategy);
+	public void restoreControlModeStrategy() throws Exception {
+		if (strategyRegistry != null) {
+			try {
+				strategyRegistry.getService(IStrategyChooser.class).setStrategy(oldControlModeStrategy);
+			} finally {
+				try {
+					strategyRegistry.disposeRegistry();
+				} finally {
+					strategyRegistry = null;
+				}
+			}
+		}
 	}
 
 	@After

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
- *
+ * Copyright (c) 2008, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,13 +13,10 @@
  *  Christian W. Damus (CEA) - Support read-only state at object level (CDO)
  *  Christian W. Damus (CEA) - Refactoring of Create Model Wizard (CDO)
  *  Christian W. Damus (CEA LIST) - Controlled resources in CDO repositories
- *  Christian W. Damus (CEA) - bug 429826
- *  Christian W. Damus (CEA) - bug 432813
- *  Christian W. Damus (CEA) - bug 437052
+ *  Christian W. Damus (CEA) - bugs 429826, 432813, 437052
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436998
- *  Christian W. Damus - bug 436998
- *  Christian W. Damus - bug 468030
+ *  Christian W. Damus - bugs 436998, 468030, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -1295,5 +1291,22 @@ public class ModelSet extends ResourceSetImpl {
 
 			languages.clear();
 		}
+	}
+
+	/**
+	 * Obtains the model that should persist an {@code object}.
+	 * 
+	 * @param object
+	 *            an object to be persisted as a new root of a managed EMF {@code Resource}
+	 * 
+	 * @return the model that is best suited to persist the {@code object}, or {@code null} if none
+	 */
+	public IEMFModel getModelToPersist(EObject object) {
+		return models.values().stream()
+				.filter(IEMFModel.class::isInstance)
+				.map(IEMFModel.class::cast)
+				.filter(m -> m.canPersist(object))
+				.findFirst()
+				.orElse(null);
 	}
 }

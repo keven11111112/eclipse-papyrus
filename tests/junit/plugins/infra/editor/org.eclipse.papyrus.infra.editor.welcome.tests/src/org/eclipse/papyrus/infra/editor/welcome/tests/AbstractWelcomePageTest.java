@@ -32,11 +32,12 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
 import org.eclipse.papyrus.infra.editor.welcome.Welcome;
 import org.eclipse.papyrus.infra.editor.welcome.internal.WelcomePage;
+import org.eclipse.papyrus.infra.properties.ui.runtime.IConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.papyrus.infra.tools.util.PlatformHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.DisplayUtils;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.swt.widgets.Display;
 import org.hamcrest.Matcher;
 import org.junit.BeforeClass;
@@ -59,9 +60,9 @@ public abstract class AbstractWelcomePageTest extends AbstractPapyrusTest {
 		// Preëmptively load the configuration manager to avoid deadlocks in
 		// diagram bundle loading and preferences initialization
 		ExecutorService exec = Executors.newSingleThreadExecutor();
-		CompletionService<ConfigurationManager> completion = new ExecutorCompletionService<ConfigurationManager>(exec);
+		CompletionService<IConfigurationManager> completion = new ExecutorCompletionService<IConfigurationManager>(exec);
 
-		Future<ConfigurationManager> waitFor = completion.submit(() -> ConfigurationManager.getInstance());
+		Future<IConfigurationManager> waitFor = completion.submit(() -> PropertiesRuntime.getConfigurationManager());
 
 		try {
 			// Wait for these bundles to finish activating

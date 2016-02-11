@@ -15,8 +15,8 @@ package org.eclipse.papyrus.uml.properties.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.uml.properties.databinding.ImportedPackageLocationObservableValue;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.uml2.uml.Package;
 
 /**
@@ -44,7 +44,7 @@ public class ImportedPackageModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#doGetObservable(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#doGetObservable(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return

@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2011 Atos.
+ *  Copyright (c) 2011 Atos, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -7,15 +7,15 @@
  *  http://www.eclipse.org/legal/epl-v10.html
  *
  *  Contributors:
- *  Atos - Initial API and implementation
+ *    Atos - Initial API and implementation
+ *    Christian W. Damus - bug 485220
  *
  */
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
@@ -24,11 +24,11 @@ import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.FacetReferen
 import org.eclipse.papyrus.emf.facet.efacet.metamodel.v0_2_0.efacet.ParameterValue;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
-import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
-public class DisplayDiagramRef extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
+public class DisplayDiagramRef implements IJavaQuery2<EObject, Boolean> {
 
 	/**
 	 * Return true if the element is a Diagram Container and the Ereference is diagrams
@@ -39,15 +39,11 @@ public class DisplayDiagramRef extends AbstractEditorContainerQuery implements I
 		EStructuralFeature eStructuralFeature = (EStructuralFeature) parameterValue.getValue();
 		if ((eStructuralFeature instanceof FacetReference) && ("diagrams".equals((eStructuralFeature).getName()))) {
 
-			Iterator<EObject> roots = NavigatorUtils.getNotationRoots(source);
-			if (roots == null) {
-				return false;
-			}
+			ResourceSet resourceSet = EMFHelper.getResourceSet(source);
 
-			while (roots.hasNext()) {
-				EObject root = roots.next();
-				if (root instanceof Diagram) {
-					if (EcoreUtil.equals(DiagramUtils.getOwner((Diagram) root), source)) {
+			if (resourceSet != null) {
+				for (Diagram diagram : NotationUtils.getAllNotations(resourceSet, Diagram.class)) {
+					if (EcoreUtil.equals(DiagramUtils.getOwner(diagram), source)) {
 						return true;
 					}
 				}

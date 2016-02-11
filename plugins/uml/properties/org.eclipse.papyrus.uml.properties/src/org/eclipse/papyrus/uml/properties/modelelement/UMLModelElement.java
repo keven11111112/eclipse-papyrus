@@ -38,6 +38,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.HistoryUtil;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.providers.FeatureContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
@@ -62,8 +64,6 @@ import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.util.UMLReferenceConverter;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionHelper;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.providers.FeatureContentProvider;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
@@ -293,7 +293,7 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getNameResolutionHelper(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#getNameResolutionHelper(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
@@ -314,7 +314,7 @@ public class UMLModelElement extends EMFModelElement {
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getPapyrusConverter(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement#getPapyrusConverter(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return

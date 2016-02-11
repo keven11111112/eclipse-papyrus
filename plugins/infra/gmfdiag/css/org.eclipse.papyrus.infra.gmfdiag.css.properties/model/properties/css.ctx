@@ -95,7 +95,7 @@
     <elements xmi:id="_8MrCVIk1EeWBadfj_-2HEQ" name="ModelStyleSheet">
       <properties xmi:id="_8MrCVYk1EeWBadfj_-2HEQ" name="stylesheets" label="Model style sheets" type="Reference" multiplicity="-1" description="The style sheets associated to the model"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
   <dataContexts xmi:id="_8MrCVok1EeWBadfj_-2HEQ" name="Preferences" label="Preferences">
     <elements xmi:id="_8MrCV4k1EeWBadfj_-2HEQ" name="org.eclipse.papyrus.infra.gmfdiag.css">

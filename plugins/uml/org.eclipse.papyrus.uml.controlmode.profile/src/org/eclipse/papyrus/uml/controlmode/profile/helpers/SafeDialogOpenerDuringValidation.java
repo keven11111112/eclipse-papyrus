@@ -19,7 +19,7 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.papyrus.commands.CheckedOperationHistory;
+import org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory;
 
 /**
  * This class must be used to open a dialog during a validation. Its usage avoids side effects with the Properties view, which would throw an {@link IllegalStateException}. The parameterizing class can be used to return a result from the dialog (use

@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -163,7 +163,7 @@ public class TableMenuUtils {
 					}
 				});
 			}
-			return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(cmd);
+			return new org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper(cmd);
 
 		}
 		return UnexecutableCommand.INSTANCE;

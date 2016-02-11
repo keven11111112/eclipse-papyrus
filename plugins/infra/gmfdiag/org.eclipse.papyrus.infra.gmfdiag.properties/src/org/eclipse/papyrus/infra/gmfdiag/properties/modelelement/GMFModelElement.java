@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 454891
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 
@@ -28,20 +30,20 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.GMFObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.provider.ModelContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.properties.util.LegacyOwnerObservable;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -91,14 +93,14 @@ public class GMFModelElement extends EMFModelElement {
 			Diagram diagram = (Diagram) source;
 			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			if (style != null) {
-				return new PapyrusObservableValue(style, StylePackage.Literals.PAPYRUS_VIEW_STYLE__OWNER, domain);
+				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_VIEW_STYLE__OWNER, domain);
 			}
 			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_VIEW_STYLE__OWNER, domain);
 		} else if (propertyPath.endsWith("prototype")) {
 			Diagram diagram = (Diagram) source;
 			Style style = diagram.getStyle(StylePackage.Literals.PAPYRUS_VIEW_STYLE);
 			if (style != null) {
-				return new PapyrusObservableValue(style, StylePackage.Literals.PAPYRUS_VIEW_STYLE__CONFIGURATION, domain);
+				return new GMFObservableValue(style, StylePackage.Literals.PAPYRUS_VIEW_STYLE__CONFIGURATION, domain);
 			}
 			return new LegacyOwnerObservable(diagram, StylePackage.Literals.PAPYRUS_VIEW_STYLE__CONFIGURATION, domain);
 		}
@@ -115,11 +117,11 @@ public class GMFModelElement extends EMFModelElement {
 		}
 
 		if (feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new GMFObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 			return list;
 		}
 
-		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
+		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new GMFObservableValue(getSource(featurePath), feature, domain);
 		return value;
 	}
 
@@ -128,24 +130,30 @@ public class GMFModelElement extends EMFModelElement {
 		if (propertyPath.endsWith("prototype")) {
 			return new ILabelProvider() {
 
+				@Override
 				public void addListener(ILabelProviderListener listener) {
 				}
 
+				@Override
 				public void removeListener(ILabelProviderListener listener) {
 				}
 
+				@Override
 				public void dispose() {
 				}
 
+				@Override
 				public boolean isLabelProperty(Object element, String property) {
 					return false;
 				}
 
+				@Override
 				public Image getImage(Object element) {
 					ViewPrototype proto = DiagramUtils.getPrototype((Diagram) source);
 					return proto.getIcon();
 				}
 
+				@Override
 				public String getText(Object element) {
 					ViewPrototype proto = DiagramUtils.getPrototype((Diagram) source);
 					return proto.getQualifiedName();
@@ -161,7 +169,7 @@ public class GMFModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#getContentProvider(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#getContentProvider(java.lang.String)
 	 */
 	@Override
 	public IStaticContentProvider getContentProvider(String propertyPath) {

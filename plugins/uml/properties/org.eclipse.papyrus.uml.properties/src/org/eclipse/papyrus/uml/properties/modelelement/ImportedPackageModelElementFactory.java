@@ -15,9 +15,9 @@ package org.eclipse.papyrus.uml.properties.modelelement;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory;
+import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -40,7 +40,7 @@ public class ImportedPackageModelElementFactory extends EMFModelElementFactory {
 	 * @param context
 	 *            the context
 	 * @return the imported package model element
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory#doCreateFromSource(java.lang.Object, org.eclipse.papyrus.infra.properties.contexts.DataContextElement)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory#doCreateFromSource(java.lang.Object, org.eclipse.papyrus.infra.properties.contexts.DataContextElement)
 	 */
 	@Override
 	protected ImportedPackageModelElement doCreateFromSource(Object source, DataContextElement context) {

@@ -44,7 +44,8 @@ Export-Package: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.diagram.common.ui.helper,
  org.eclipse.papyrus.uml.diagram.common.util,
  org.eclipse.papyrus.uml.diagram.common.util.functions,
- org.eclipse.papyrus.uml.diagram.common.util.predicates
+ org.eclipse.papyrus.uml.diagram.common.util.predicates,
+ org.eclipse.papyrus.uml.diagram.internal.common.services;x-internal:=true
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName

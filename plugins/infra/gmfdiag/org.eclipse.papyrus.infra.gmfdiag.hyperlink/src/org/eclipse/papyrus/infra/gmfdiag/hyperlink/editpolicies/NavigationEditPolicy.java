@@ -40,10 +40,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.INonDirtying;
-import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.gmf.command.INonDirtying;
+import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.hyperlink.Activator;
@@ -241,7 +241,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 					@Override
 					public void execute() {
 						Iterator<HyperLinkObject> iter = hList.iterator();
-						openLinksCommand = NonDirtyingUtils.nonDirtyingGMFComposite("Navigate hyperlinks");
+						openLinksCommand = CommandUtils.nonDirtyingGMFComposite("Navigate hyperlinks");
 
 						try {
 							TransactionalEditingDomain editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(getHost());

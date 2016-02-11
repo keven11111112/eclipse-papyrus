@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
- *
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,8 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus - bug 433206
- *  Christian W. Damus - bug 473148
+ *  Christian W. Damus - bugs 433206, 473148, 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -30,6 +28,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
@@ -55,7 +54,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.ui.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
@@ -63,6 +68,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -905,6 +911,90 @@ public class DiagramEditPartsUtil {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Checks if is semantic deletion.
+	 *
+	 * @param editPart
+	 *            the edit part
+	 * @return true, if is semantic deletion
+	 */
+	public static boolean isSemanticDeletion(IGraphicalEditPart editPart) {
+		boolean isSemanticDeletion = false;
+		TransactionalEditingDomain editingDomain = null;
+
+		// Get Editing Domain
+		try {
+			editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
+		} catch (ServiceException e) {
+
+		}
+
+		if (editingDomain != null) {
+
+			IReadOnlyHandler2 readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+			EObject semantic = EMFHelper.getEObject(editPart);
+			View graphical = NotationHelper.findView(editPart);
+
+			isSemanticDeletion = !(semantic == null || semantic == graphical || semantic.eContainer() == null);
+
+
+			if (isSemanticDeletion && readOnly != null) {
+				// Is the semantic element read-only?
+				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
+				if (!result.or(false) && (graphical != null)) {
+					// Or, if not, is the graphical element read-only?
+					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
+				}
+
+				// Are both the semantic and graphical elements writable?
+				isSemanticDeletion = !result.or(false);
+			}
+		}
+
+
+		return isSemanticDeletion;
+	}
+
+	/**
+	 * Checks if this is a read only element from the edit part.
+	 *
+	 * @param editPart
+	 *            the edit part
+	 * @return true, if this is a read only element.
+	 */
+	public static boolean isReadOnly(final IGraphicalEditPart editPart) {
+		boolean isReadOnly = true;
+		TransactionalEditingDomain editingDomain = null;
+
+		// Get Editing Domain
+		try {
+			editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
+		} catch (ServiceException e) {
+			// Do nothing
+		}
+
+		if (null != editingDomain) {
+
+			final IReadOnlyHandler2 readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
+			final EObject semantic = EMFHelper.getEObject(editPart);
+			final View graphical = NotationHelper.findView(editPart);
+
+			if (null != readOnly && null != semantic) {
+				// Is the semantic element read-only?
+				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
+				isReadOnly = result.get();
+
+				if (!isReadOnly && (graphical != null)) {
+					// Or, if not, is the graphical element read-only?
+					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
+					isReadOnly = result.get();
+				}
+			}
+		}
+
+		return isReadOnly;
 	}
 
 }

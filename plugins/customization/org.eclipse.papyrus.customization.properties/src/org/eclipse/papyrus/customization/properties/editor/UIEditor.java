@@ -62,12 +62,13 @@ import org.eclipse.papyrus.customization.properties.providers.ContextContentProv
 import org.eclipse.papyrus.customization.properties.providers.ContextLabelProvider;
 import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.properties.ui.widgets.layout.GridData;
+import org.eclipse.papyrus.infra.properties.ui.widgets.layout.PropertiesLayout;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.widgets.layout.GridData;
-import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -397,7 +398,7 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	private void refreshContext() {
 		Context context = getContext();
 		if (context != null) {
-			ConfigurationManager.getInstance().refresh(context);
+			((IInternalConfigurationManager) PropertiesRuntime.getConfigurationManager()).refresh(context);
 		}
 	}
 

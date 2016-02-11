@@ -215,7 +215,7 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 		if (canCreate) {
 			Assert.assertNotNull("Command should be executable, so not null", command);
 			Assert.assertTrue("Command should be executable", command.canExecute());
-			return new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(command);
+			return new org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper(command);
 		} else {
 			if (command != null) {
 				// command was not null. It should be unexecutable in this case

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
- *
+ * Copyright (c) 2011, 2016 Atos Origin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.controlmode.profile.validation;
@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -34,7 +35,8 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.infra.services.resourceloading.IStrategyChooser;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.uml.controlmode.profile.Activator;
 import org.eclipse.papyrus.uml.controlmode.profile.Messages;
@@ -51,36 +53,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * @author vhemery
  */
 public class ProfileApplicationDuplicationChecker extends AbstractModelConstraint {
-
-	/**
-	 * This is a result which is intended to be set with a boolean value with notification runables.
-	 *
-	 * @author vhemery
-	 */
-	public class BooleanResult {
-
-		boolean value = false;
-
-		/**
-		 * Get result
-		 *
-		 * @return boolean result value
-		 */
-		public boolean getValue() {
-			return value;
-		}
-
-		/**
-		 * Set result
-		 *
-		 * @param pValue
-		 *            boolean result value
-		 */
-		public void setValue(boolean pValue) {
-			value = pValue;
-		}
-
-	}
 
 	/** Format String for a list entry */
 	private static final String ENTRY_FORMAT = "<li>%s</li>";
@@ -291,26 +263,32 @@ public class ProfileApplicationDuplicationChecker extends AbstractModelConstrain
 		// Change the control strategy if necessary
 		if (notLoadedPackages) {
 			String msg = NLS.bind(Messages.switch_loading_strategy, notLoadedPackagesList.toString());
-			final BooleanResult stategyChanged = new BooleanResult();
+			final AtomicBoolean stategyChanged = new AtomicBoolean();
+
+			try {
+				final IStrategyChooser strategyChooser = ServiceUtilsForResourceSet.getInstance().getService(IStrategyChooser.class, domain.getResourceSet());
 			Runnable runStrategySwitch = new Runnable() {
 
 				public void run() {
 					// TODO
-					StrategyChooser.setCurrentStrategy(LOAD_ALL_STRATEGY);
-					stategyChanged.setValue(true);
+						stategyChanged.set(strategyChooser.setStrategy(LOAD_ALL_STRATEGY));
 				}
 			};
 			Runnable cancel = new Runnable() {
 
 				public void run() {
-					stategyChanged.setValue(false);
+						stategyChanged.set(false);
 				}
 			};
 			NotificationBuilder notifBuild = NotificationBuilder.createYesNo(msg, runStrategySwitch, cancel);
 			notifBuild.setHTML(true);
 			notifBuild.setAsynchronous(false);
 			notifBuild.run();
-			if (stategyChanged.getValue()) {
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+
+			if (stategyChanged.get()) {
 				// refresh set controlledPackages
 				return checkControlledPackagesUpdateable(controlledPackages);
 			} else {

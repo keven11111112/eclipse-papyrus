@@ -1,5 +1,5 @@
 /**
- *  Copyright (c) 2011 Atos.
+ *  Copyright (c) 2011, 2016 Atos, CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -7,8 +7,9 @@
  *  http://www.eclipse.org/legal/epl-v10.html
  *
  *  Contributors:
- *  Atos - Initial API and implementation
- *  Patrick Tessier (CEA LIST) Modification
+ *    Atos - Initial API and implementation
+ *    Patrick Tessier (CEA LIST) - Modification
+ *    Christian W. Damus - bug 485220
  *
  */
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.queries;
@@ -21,8 +22,8 @@ import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementEx
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
+import org.eclipse.papyrus.infra.ui.editorsfactory.AbstractGetEditorIconQuery;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
 /** Return the path to the icon of the corresponding diagram */
 public class GetDiagramIcon extends AbstractGetEditorIconQuery implements IJavaQuery2<Diagram, IImage> {

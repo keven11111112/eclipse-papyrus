@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bugs 451230, 485220
  *  Shuai Li - Modifications for navigation menu integration
  *
  *****************************************************************************/
@@ -47,7 +47,6 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.ui.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.ui.editorsfactory.PageIconsRegistry;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * The Class HyperlinkNavigationMenuEditPolicy can be applied on edit part to display
@@ -105,7 +104,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 		}
 
 		// Add the New Hyperlink tool
-		addNavigationMenuHyperlinkDescriptor(AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.papyrus.uml.diagram.common", "/icons/obj16/Plus.gif").createImage(), new AddHyperlinkAction(), "Open hyperlinks menu", "Modify hyperlinks");
+		addNavigationMenuHyperlinkDescriptor(Activator.getDefault().getIcon(Activator.IMG_PLUS), new AddHyperlinkAction(), "Open hyperlinks menu", "Modify hyperlinks");
 	}
 
 	private void addHyperlinks() {
@@ -167,7 +166,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 	// Nested types
 	//
 
-	//protected abstract class AbstractHyperlinkTool extends AbstractTool implements DragTracker {
+	// protected abstract class AbstractHyperlinkTool extends AbstractTool implements DragTracker {
 	protected abstract class AbstractHyperlinkAction extends Action {
 
 	}
@@ -180,7 +179,7 @@ public class HyperlinkNavigationMenuEditPolicy extends NavigationEditPolicy {
 			hyperLinkManagerShell.setInput(hyperLinkObjectList);
 
 			// Hide the navigation menu now because the shell is modal
-			//destroyViewerContext();
+			// destroyViewerContext();
 
 			hyperLinkManagerShell.open();
 		}

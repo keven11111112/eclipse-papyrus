@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
- *
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,8 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  /*****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
 
@@ -21,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler;
+import org.eclipse.papyrus.infra.ui.command.AbstractCommandHandler;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
@@ -31,7 +32,7 @@ public abstract class AbstractDiagramCommandHandler extends AbstractCommandHandl
 	 * Returns the list of selected diagrams
 	 *
 	 * @return
-	 *         the list of selected diagrams
+	 * 		the list of selected diagrams
 	 */
 	protected List<Diagram> getSelectedDiagrams() {
 		List<Diagram> diagrams = new ArrayList<Diagram>();

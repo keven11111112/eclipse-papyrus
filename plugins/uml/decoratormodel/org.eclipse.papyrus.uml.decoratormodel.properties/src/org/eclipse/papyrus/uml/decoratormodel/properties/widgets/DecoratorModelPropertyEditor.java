@@ -43,6 +43,7 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.uml.decoratormodel.internal.properties.messages.Messages;
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.commands.UnloadDecoratorModelHandler;
@@ -50,7 +51,6 @@ import org.eclipse.papyrus.uml.decoratormodel.internal.ui.providers.DecoratorMod
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.wizards.DuplicateDecoratorModelWizard;
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.wizards.LoadProfileApplicationsWizard;
 import org.eclipse.papyrus.uml.decoratormodel.properties.Activator;
-import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;

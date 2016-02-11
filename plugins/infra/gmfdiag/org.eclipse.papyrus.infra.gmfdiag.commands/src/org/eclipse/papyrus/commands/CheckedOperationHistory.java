@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 Atos, CEA, and others.
- *
+ * Copyright (c) 2011, 2016 Atos, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,36 +8,27 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos) - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 357250, bug 323802
+ *  Christian W. Damus (CEA) - bugs 357250, 323802
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.ICompositeOperation;
 import org.eclipse.core.commands.operations.IOperationApprover;
-import org.eclipse.core.commands.operations.IOperationApprover2;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.commands.operations.IOperationHistoryListener;
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.workspace.EMFCommandOperation;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 
+/**
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory} API, instead.
+ */
+@Deprecated
 public class CheckedOperationHistory implements IOperationHistory {
 
 	private static class CheckedOperationHistoryHolder {
@@ -50,270 +40,125 @@ public class CheckedOperationHistory implements IOperationHistory {
 		return CheckedOperationHistoryHolder.instance;
 	}
 
-	protected static final IOperationApprover2[] approversArray;
-
-	protected IOperationHistory history;
-
-	private static class ApproverPriorityPair implements Comparable<ApproverPriorityPair> {
-
-		public IOperationApprover2 approver;
-
-		public int priority;
-
-		public int compareTo(ApproverPriorityPair o) {
-			if (o.priority > priority) {
-				return 1;
-			} else if (o.priority < priority) {
-				return -1;
-			} else {
-				return 0;
-			}
-		}
-
-	}
-
-	static {
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "operationApprover"); //$NON-NLS-1$
-
-		List<ApproverPriorityPair> approverPriorityPairs = new LinkedList<ApproverPriorityPair>();
-		for (IConfigurationElement elem : configElements) {
-			if ("operationApprover".equals(elem.getName())) { //$NON-NLS-1$
-				try {
-					ApproverPriorityPair approverPriorityPair = new ApproverPriorityPair();
-					approverPriorityPair.approver = (IOperationApprover2) elem.createExecutableExtension("class"); //$NON-NLS-1$
-					approverPriorityPair.priority = Integer.parseInt(elem.getAttribute("priority")); //$NON-NLS-1$
-
-					approverPriorityPairs.add(approverPriorityPair);
-				} catch (Exception e) {
-					Activator.log.error("Uncaught exception in instantiation of operation approver.", e); //$NON-NLS-1$
-				}
-			}
-		}
-
-		Collections.sort(approverPriorityPairs);
-
-		approversArray = new IOperationApprover2[approverPriorityPairs.size()];
-
-		for (int i = 0; i < approversArray.length; i++) {
-			approversArray[i] = approverPriorityPairs.get(i).approver;
-		}
-	}
+	private final IOperationHistory delegate = org.eclipse.papyrus.infra.emf.gmf.command.CheckedOperationHistory.getInstance();
 
 	private CheckedOperationHistory() {
-		history = OperationHistoryFactory.getOperationHistory();
-
-		addRegisteredListeners(history);
+		super();
 	}
 
-	/*
-	 * Consult the IOperationApprovers to see if the proposed redo should be
-	 * allowed.
-	 */
-	protected IStatus getRedoApproval(IUndoableOperation operation, IAdaptable info) {
-		operation = unwrap(operation);
-		for (int i = 0; i < approversArray.length; i++) {
-			IStatus approval = approversArray[i].proceedRedoing(operation, this, info);
-			if (!approval.isOK()) {
-				return approval;
-			}
-		}
-		return Status.OK_STATUS;
-	}
-
-	/*
-	 * Consult the IOperationApprovers to see if the proposed undo should be
-	 * allowed.
-	 */
-	protected IStatus getUndoApproval(IUndoableOperation operation, IAdaptable info) {
-		operation = unwrap(operation);
-		for (int i = 0; i < approversArray.length; i++) {
-			IStatus approval = approversArray[i].proceedUndoing(operation, this, info);
-			if (!approval.isOK()) {
-				return approval;
-			}
-		}
-		return Status.OK_STATUS;
-	}
-
-	/*
-	 * Consult the IOperationApprovers to see if the proposed execution should
-	 * be allowed.
-	 *
-	 * @since 3.2
-	 */
-	protected IStatus getExecuteApproval(IUndoableOperation operation, IAdaptable info) {
-		operation = unwrap(operation);
-		for (int i = 0; i < approversArray.length; i++) {
-			IStatus approval = approversArray[i].proceedExecuting(operation, this, info);
-			if (!approval.isOK()) {
-				return approval;
-			}
-		}
-		return Status.OK_STATUS;
-	}
-
-	/**
-	 * the unified command stack wraps ICommand GMFtoEMFCommandWrapper
-	 * which are wrapped in EMFCommandOperation,
-	 * unwrap it before validation
-	 *
-	 * @param operation
-	 * @return
-	 */
-	protected IUndoableOperation unwrap(IUndoableOperation operation) {
-		if (operation instanceof EMFCommandOperation) {
-			Command emfCommand = ((EMFCommandOperation) operation).getCommand();
-			if (emfCommand instanceof GMFtoEMFCommandWrapper) {
-				ICommand gmfCommand = ((GMFtoEMFCommandWrapper) emfCommand).getGMFCommand();
-				if (gmfCommand != null) {
-					return gmfCommand;
-				}
-			}
-		}
-
-		return operation;
-	}
-
-	public IStatus execute(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// check with the operation approvers
-		IStatus status = getExecuteApproval(operation, info);
-		if (!status.isOK()) {
-			// not approved. No notifications are sent, just return the status.
-			return status;
-		}
-		return history.execute(operation, monitor, info);
-	}
-
-	public IStatus undo(IUndoContext context, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Assert.isNotNull(context);
-		IUndoableOperation operation = getUndoOperation(context);
-
-		// info if there is no operation
-		if (operation == null) {
-			return IOperationHistory.NOTHING_TO_UNDO_STATUS;
-		}
-
-		// check with the operation approvers
-		IStatus status = getUndoApproval(operation, info);
-		if (!status.isOK()) {
-			// not approved. No notifications are sent, just return the status.
-			return status;
-		}
-		return history.undo(context, monitor, info);
-	}
-
-	public IStatus redo(IUndoContext context, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Assert.isNotNull(context);
-		IUndoableOperation operation = getRedoOperation(context);
-
-		// info if there is no operation
-		if (operation == null) {
-			return IOperationHistory.NOTHING_TO_REDO_STATUS;
-		}
-
-		// check with the operation approvers
-		IStatus status = getRedoApproval(operation, info);
-		if (!status.isOK()) {
-			// not approved. No notifications are sent, just return the status.
-			return status;
-		}
-		return history.redo(context, monitor, info);
-	}
-
-	private static void addRegisteredListeners(IOperationHistory history) {
-		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(Activator.PLUGIN_ID, "historyListeners"); //$NON-NLS-1$
-
-		for (IConfigurationElement elem : configElements) {
-			if ("historyListener".equals(elem.getName())) { //$NON-NLS-1$
-				try {
-					IOperationHistoryListener listener = (IOperationHistoryListener) elem.createExecutableExtension("class"); //$NON-NLS-1$
-					history.addOperationHistoryListener(listener);
-				} catch (Exception e) {
-					Activator.log.error("Uncaught exception in instantiation of operation history listener.", e); //$NON-NLS-1$
-				}
-			}
-		}
-	}
-
-	// all the following methods are pure delegation
-
-	public IStatus undoOperation(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		return history.undoOperation(operation, monitor, info);
-	}
-
-	public void setLimit(IUndoContext context, int limit) {
-		history.setLimit(context, limit);
-	}
-
-	public void replaceOperation(IUndoableOperation operation, IUndoableOperation[] replacements) {
-		history.replaceOperation(operation, replacements);
-	}
-
-	public void removeOperationHistoryListener(IOperationHistoryListener listener) {
-		history.removeOperationHistoryListener(listener);
-	}
-
-	public void removeOperationApprover(IOperationApprover approver) {
-		history.removeOperationApprover(approver);
-	}
-
-	public IStatus redoOperation(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		return history.redoOperation(operation, monitor, info);
-	}
-
-	public void operationChanged(IUndoableOperation operation) {
-		history.operationChanged(operation);
-	}
-
-	public void openOperation(ICompositeOperation operation, int mode) {
-		history.openOperation(operation, mode);
-	}
-
-	public IUndoableOperation getUndoOperation(IUndoContext context) {
-		return history.getUndoOperation(context);
-	}
-
-	public IUndoableOperation[] getUndoHistory(IUndoContext context) {
-		return history.getUndoHistory(context);
-	}
-
-	public IUndoableOperation getRedoOperation(IUndoContext context) {
-		return history.getRedoOperation(context);
-	}
-
-	public IUndoableOperation[] getRedoHistory(IUndoContext context) {
-		return history.getRedoHistory(context);
-	}
-
-	public int getLimit(IUndoContext context) {
-		return history.getLimit(context);
-	}
-
-	public void dispose(IUndoContext context, boolean flushUndo, boolean flushRedo, boolean flushContext) {
-		history.dispose(context, flushUndo, flushRedo, flushContext);
-	}
-
-	public void closeOperation(boolean operationOK, boolean addToHistory, int mode) {
-		history.closeOperation(operationOK, addToHistory, mode);
-	}
-
-	public boolean canUndo(IUndoContext context) {
-		return history.canUndo(context);
-	}
-
-	public boolean canRedo(IUndoContext context) {
-		return history.canRedo(context);
-	}
-
-	public void addOperationHistoryListener(IOperationHistoryListener listener) {
-		history.addOperationHistoryListener(listener);
-	}
-
-	public void addOperationApprover(IOperationApprover approver) {
-		history.addOperationApprover(approver);
-	}
-
+	@Override
 	public void add(IUndoableOperation operation) {
-		history.add(operation);
+		delegate.add(operation);
 	}
+
+	@Override
+	public void addOperationApprover(IOperationApprover approver) {
+		delegate.addOperationApprover(approver);
+	}
+
+	@Override
+	public void addOperationHistoryListener(IOperationHistoryListener listener) {
+		delegate.addOperationHistoryListener(listener);
+	}
+
+	@Override
+	public void closeOperation(boolean operationOK, boolean addToHistory, int mode) {
+		delegate.closeOperation(operationOK, addToHistory, mode);
+	}
+
+	@Override
+	public boolean canRedo(IUndoContext context) {
+		return delegate.canRedo(context);
+	}
+
+	@Override
+	public boolean canUndo(IUndoContext context) {
+		return delegate.canUndo(context);
+	}
+
+	@Override
+	public void dispose(IUndoContext context, boolean flushUndo, boolean flushRedo, boolean flushContext) {
+		delegate.dispose(context, flushUndo, flushRedo, flushContext);
+	}
+
+	@Override
+	public IStatus execute(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		return delegate.execute(operation, monitor, info);
+	}
+
+	@Override
+	public int getLimit(IUndoContext context) {
+		return delegate.getLimit(context);
+	}
+
+	@Override
+	public IUndoableOperation[] getRedoHistory(IUndoContext context) {
+		return delegate.getRedoHistory(context);
+	}
+
+	@Override
+	public IUndoableOperation getRedoOperation(IUndoContext context) {
+		return delegate.getRedoOperation(context);
+	}
+
+	@Override
+	public IUndoableOperation[] getUndoHistory(IUndoContext context) {
+		return delegate.getUndoHistory(context);
+	}
+
+	@Override
+	public void openOperation(ICompositeOperation operation, int mode) {
+		delegate.openOperation(operation, mode);
+	}
+
+	@Override
+	public void operationChanged(IUndoableOperation operation) {
+		delegate.operationChanged(operation);
+	}
+
+	@Override
+	public IUndoableOperation getUndoOperation(IUndoContext context) {
+		return delegate.getUndoOperation(context);
+	}
+
+	@Override
+	public IStatus redo(IUndoContext context, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		return delegate.redo(context, monitor, info);
+	}
+
+	@Override
+	public IStatus redoOperation(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		return delegate.redoOperation(operation, monitor, info);
+	}
+
+	@Override
+	public void removeOperationApprover(IOperationApprover approver) {
+		delegate.removeOperationApprover(approver);
+	}
+
+	@Override
+	public void removeOperationHistoryListener(IOperationHistoryListener listener) {
+		delegate.removeOperationHistoryListener(listener);
+	}
+
+	@Override
+	public void replaceOperation(IUndoableOperation operation, IUndoableOperation[] replacements) {
+		delegate.replaceOperation(operation, replacements);
+	}
+
+	@Override
+	public void setLimit(IUndoContext context, int limit) {
+		delegate.setLimit(context, limit);
+	}
+
+	@Override
+	public IStatus undo(IUndoContext context, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		return delegate.undo(context, monitor, info);
+	}
+
+	@Override
+	public IStatus undoOperation(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		return delegate.undoOperation(operation, monitor, info);
+	}
+
 }

@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.properties.widgets;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.ResetStyleHelper;
-import org.eclipse.papyrus.views.properties.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

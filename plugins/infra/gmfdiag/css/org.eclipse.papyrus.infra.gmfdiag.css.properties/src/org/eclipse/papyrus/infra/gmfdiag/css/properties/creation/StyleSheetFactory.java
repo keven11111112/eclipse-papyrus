@@ -18,8 +18,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsPackage;
+import org.eclipse.papyrus.infra.properties.ui.creation.EcorePropertyEditorFactory;
 import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
-import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 import org.eclipse.swt.widgets.Control;
 
 /**
@@ -46,7 +46,7 @@ public class StyleSheetFactory extends EcorePropertyEditorFactory {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.views.properties.creation.PropertyEditorFactory#getOperationExecutor(java.lang.Object)
+	 * @see org.eclipse.papyrus.infra.properties.ui.creation.PropertyEditorFactory#getOperationExecutor(java.lang.Object)
 	 *
 	 * @param context
 	 * @return

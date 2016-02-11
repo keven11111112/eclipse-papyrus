@@ -32,8 +32,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.ui.runtimevalueseditionadviceconfiguration.ViewToDisplay;
 import org.eclipse.papyrus.infra.properties.contexts.View;
+import org.eclipse.papyrus.infra.properties.ui.creation.EditionDialog;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
-import org.eclipse.papyrus.views.properties.creation.EditionDialog;
 import org.eclipse.swt.widgets.Display;
 
 /**

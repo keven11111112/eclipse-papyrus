@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 
-public class PreferencesModelElementFactory extends org.eclipse.papyrus.views.properties.modelelement.PreferencesModelElementFactory {
+public class PreferencesModelElementFactory extends org.eclipse.papyrus.infra.properties.ui.modelelement.PreferencesModelElementFactory {
 
 	// Empty
 }

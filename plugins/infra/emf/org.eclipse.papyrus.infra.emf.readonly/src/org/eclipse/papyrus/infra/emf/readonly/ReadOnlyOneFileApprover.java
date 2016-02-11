@@ -39,9 +39,9 @@ import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
+import org.eclipse.papyrus.infra.emf.gmf.command.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
 import org.eclipse.papyrus.infra.onefile.utils.OneFileUtils;
@@ -50,14 +50,17 @@ import com.google.common.base.Optional;
 
 public class ReadOnlyOneFileApprover implements IOperationApprover2 {
 
+	@Override
 	public IStatus proceedRedoing(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
 		return proceedExecuting(operation, history, info);
 	}
 
+	@Override
 	public IStatus proceedUndoing(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
 		return proceedExecuting(operation, history, info);
 	}
 
+	@Override
 	public IStatus proceedExecuting(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
 		HashSet<URI> filesToCheckForLock = new HashSet<URI>();
 

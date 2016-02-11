@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *
  */
 package org.eclipse.papyrus.junit.utils.resources;
@@ -15,6 +16,7 @@ package org.eclipse.papyrus.junit.utils.resources;
 import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -46,7 +48,7 @@ public class EcoreModel extends EMFLogicalModel {
 	}
 
 	public EPackage getRoot() {
-		return (EPackage)EcoreUtil.getObjectByType(getResource().getContents(), EcorePackage.Literals.EPACKAGE);
+		return (EPackage) EcoreUtil.getObjectByType(getResource().getContents(), EcorePackage.Literals.EPACKAGE);
 	}
 
 	@Override
@@ -62,6 +64,7 @@ public class EcoreModel extends EMFLogicalModel {
 		try {
 			TransactionHelper.run(getModelManager().getTransactionalEditingDomain(), new Runnable() {
 
+				@Override
 				public void run() {
 					resource.getContents().add(ePackage);
 				}
@@ -70,5 +73,10 @@ public class EcoreModel extends EMFLogicalModel {
 			e.printStackTrace();
 			fail("Creation of Ecore model failed: " + e.getLocalizedMessage());
 		}
+	}
+
+	@Override
+	protected boolean isSupportedRoot(EObject object) {
+		return EcorePackage.Literals.EPACKAGE.isInstance(object);
 	}
 }

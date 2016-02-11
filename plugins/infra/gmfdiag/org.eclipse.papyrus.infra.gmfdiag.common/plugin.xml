@@ -78,7 +78,8 @@
       <model
             classname="org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel"
             description="Model for notation"
-            fileExtension="notation">
+            fileExtension="notation"
+            required="true">
       </model>
   </extension>
 
@@ -202,6 +203,13 @@
          properties="diagramType"
          type="org.eclipse.gmf.runtime.notation.View">
    </propertyTester>   
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.internal.common.expressions.GraphicalEditPartPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.GraphicalEditPartProperties"
+         namespace="org.eclipse.papyrus.infra.gmfdiag.common"
+         properties="canDelete,isSemanticDeletion"
+         type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+   </propertyTester>
 </extension>
 <extension
       point="org.eclipse.ui.menus">

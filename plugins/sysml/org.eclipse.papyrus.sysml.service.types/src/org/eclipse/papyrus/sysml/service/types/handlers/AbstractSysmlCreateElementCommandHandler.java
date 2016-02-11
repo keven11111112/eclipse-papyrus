@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.service.types.handlers;
 
 import org.eclipse.papyrus.sysml.service.types.filter.SysmlCommandFilter;
 import org.eclipse.papyrus.uml.service.types.filter.ICommandFilter;
-import org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateElementCommandHandler;
+import org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCreateElementCommandHandler;
 
 /**
  *

@@ -19,8 +19,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.customization.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElementFactory;
 
 
 public class CustomizationModelElementFactory extends EMFModelElementFactory {

@@ -22,42 +22,42 @@
   </tabs>
   <views xmi:id="_zJ4D0XZLEeSwiJkQAQl2Jg" name="Single Config" sections="_5w-6sXZLEeSwiJkQAQl2Jg" automaticContext="true" datacontexts="_zJ4D6nZLEeSwiJkQAQl2Jg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zJ4D0nZLEeSwiJkQAQl2Jg" name="isSingleConfig">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D03ZLEeSwiJkQAQl2Jg" name="className" value="Config"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D1HZLEeSwiJkQAQl2Jg" name="nsUri" value="http:///RSAToPapyrusParameters.ecore"/>
     </constraints>
   </views>
   <views xmi:id="_zJ4D1XZLEeSwiJkQAQl2Jg" name="Single MappingParameters" sections="_5w-6snZLEeSwiJkQAQl2Jg" automaticContext="true" datacontexts="_zJ4D8XZLEeSwiJkQAQl2Jg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zJ4D1nZLEeSwiJkQAQl2Jg" name="isSingleMappingParameters">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D13ZLEeSwiJkQAQl2Jg" name="nsUri" value="http:///RSAToPapyrusParameters.ecore"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D2HZLEeSwiJkQAQl2Jg" name="className" value="MappingParameters"/>
     </constraints>
   </views>
   <views xmi:id="_zJ4D2XZLEeSwiJkQAQl2Jg" name="Single URIMapping" sections="_5w-6s3ZLEeSwiJkQAQl2Jg" automaticContext="true" datacontexts="_zJ4D83ZLEeSwiJkQAQl2Jg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zJ4D2nZLEeSwiJkQAQl2Jg" name="isSingleURIMapping">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D23ZLEeSwiJkQAQl2Jg" name="nsUri" value="http:///RSAToPapyrusParameters.ecore"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D3HZLEeSwiJkQAQl2Jg" name="className" value="URIMapping"/>
     </constraints>
   </views>
   <views xmi:id="_zJ4D3XZLEeSwiJkQAQl2Jg" elementMultiplicity="-1" name="Multiple Config" sections="_5w-6tHZLEeSwiJkQAQl2Jg" automaticContext="true" datacontexts="_zJ4D6nZLEeSwiJkQAQl2Jg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zJ4D3nZLEeSwiJkQAQl2Jg" name="isMultipleConfig">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D33ZLEeSwiJkQAQl2Jg" name="className" value="Config"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D4HZLEeSwiJkQAQl2Jg" name="nsUri" value="http:///RSAToPapyrusParameters.ecore"/>
     </constraints>
   </views>
   <views xmi:id="_zJ4D4XZLEeSwiJkQAQl2Jg" elementMultiplicity="-1" name="Multiple MappingParameters" sections="_5w-6tXZLEeSwiJkQAQl2Jg" automaticContext="true" datacontexts="_zJ4D8XZLEeSwiJkQAQl2Jg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zJ4D4nZLEeSwiJkQAQl2Jg" name="isMultipleMappingParameters">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D43ZLEeSwiJkQAQl2Jg" name="className" value="MappingParameters"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D5HZLEeSwiJkQAQl2Jg" name="nsUri" value="http:///RSAToPapyrusParameters.ecore"/>
     </constraints>
   </views>
   <views xmi:id="_zJ4D5XZLEeSwiJkQAQl2Jg" elementMultiplicity="-1" name="Multiple URIMapping" sections="_5w-6tnZLEeSwiJkQAQl2Jg" automaticContext="true" datacontexts="_zJ4D83ZLEeSwiJkQAQl2Jg">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_zJ4D5nZLEeSwiJkQAQl2Jg" name="isMultipleURIMapping">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D53ZLEeSwiJkQAQl2Jg" name="className" value="URIMapping"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_zJ4D6HZLEeSwiJkQAQl2Jg" name="nsUri" value="http:///RSAToPapyrusParameters.ecore"/>
     </constraints>
@@ -80,6 +80,6 @@
       <properties xmi:id="_zJ4D9HZLEeSwiJkQAQl2Jg" name="sourceURI"/>
       <properties xmi:id="_zJ4D9XZLEeSwiJkQAQl2Jg" name="targetURI"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>

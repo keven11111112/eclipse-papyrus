@@ -15,12 +15,12 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.properties.environment.PropertyEditorType;
 import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
+import org.eclipse.papyrus.infra.properties.ui.widgets.layout.PropertiesLayout;
 import org.eclipse.papyrus.infra.ui.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.BooleanToggle;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractTreeFilter;
-import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 

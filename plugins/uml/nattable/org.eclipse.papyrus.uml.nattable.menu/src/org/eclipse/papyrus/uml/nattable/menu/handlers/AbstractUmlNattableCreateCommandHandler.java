@@ -16,7 +16,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.INattableModelManagerUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
-import org.eclipse.papyrus.uml.service.types.handlers.AbstractUmlCreateElementCommandHandler;
+import org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractUmlCreateElementCommandHandler;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 
 /**
@@ -47,7 +47,7 @@ public abstract class AbstractUmlNattableCreateCommandHandler extends AbstractUm
 	/**
 	 * Obtain the context of the active table editor.
 	 *
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractUmlCreateCommandHandler#getCommandContext()
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractUmlCreateCommandHandler#getCommandContext()
 	 *
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public abstract class AbstractUmlNattableCreateCommandHandler extends AbstractUm
 	/**
 	 * Verify if this handler is currently active and the command can execute. Additionally, verify if this table can add this type of element.
 	 *
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#setEnabled(java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCreateCommandHandler#setEnabled(java.lang.Object)
 	 *
 	 * @param evaluationContext
 	 */

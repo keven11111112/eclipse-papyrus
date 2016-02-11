@@ -13,7 +13,7 @@ package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 
 /**
  *

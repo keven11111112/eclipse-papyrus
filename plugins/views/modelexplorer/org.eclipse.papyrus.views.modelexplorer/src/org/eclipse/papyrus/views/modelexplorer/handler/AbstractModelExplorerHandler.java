@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
@@ -16,7 +16,6 @@ package org.eclipse.papyrus.views.modelexplorer.handler;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.Platform;
@@ -26,51 +25,39 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.ui.command.AbstractPapyrusHandler;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
  * This provides facilities to get the TransactionEditingDomain and the PageManager from the Model Explorer
  *
  *
- *
+ * @deprecated Use the {@link AbstractPapyrusHandler} API, instead.
  */
-public abstract class AbstractModelExplorerHandler extends AbstractHandler {
+@Deprecated
+public abstract class AbstractModelExplorerHandler extends AbstractPapyrusHandler {
 
 	/**
 	 * Returns the
 	 *
 	 * @return
-	 *         the current editing domain
+	 * 		the current editing domain
 	 */
+	@Deprecated
 	protected TransactionalEditingDomain getEditingDomain() {
-		TransactionalEditingDomain editingDomain = null;
-		try {
-			editingDomain = org.eclipse.papyrus.infra.ui.util.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
-		} catch (ServiceException e) {
-			// we are closing the editor, so the model explorer has nothing to display
-			// e.printStackTrace();
-		}
-		return editingDomain;
+		return getEditingDomain((ExecutionEvent) null);
 	}
 
 	/**
 	 * Returns the page manager
 	 *
 	 * @return
-	 *         the page manager
+	 * 		the page manager
 	 */
+	@Deprecated
 	protected IPageManager getPageManager() {
-		IPageManager pageManager = null;
-		try {
-			pageManager = ServiceUtilsForActionHandlers.getInstance().getIPageManager();
-		} catch (ServiceException e) {
-			// we are closing the editor, so the model explorer has nothing to display
-			// e.printStackTrace();
-		}
-		return pageManager;
+		return getPageManager((ExecutionEvent) null);
 	}
 
 	/**
@@ -143,6 +130,7 @@ public abstract class AbstractModelExplorerHandler extends AbstractHandler {
 	 * @return
 	 * @throws ExecutionException
 	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	protected <T> List<T> getCurrentSelectionAdaptedToType(ExecutionEvent event, Class<T> expectedType) throws ExecutionException {
 

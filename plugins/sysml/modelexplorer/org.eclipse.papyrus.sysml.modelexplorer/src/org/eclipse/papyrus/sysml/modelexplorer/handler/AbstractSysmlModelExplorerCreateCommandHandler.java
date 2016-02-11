@@ -24,7 +24,7 @@ public abstract class AbstractSysmlModelExplorerCreateCommandHandler extends Abs
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCommandHandler#getCommandContext()
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCommandHandler#getCommandContext()
 	 *
 	 * @return
 	 */

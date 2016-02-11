@@ -4102,7 +4102,7 @@
         <properties xsi:type="constraints:ValueProperty" xmi:id="_69ussaDJEeSZxfCXzZz3-w" name="umlClassName" value="Message"/>
       </constraints>
       <constraints xmi:id="_69ussqDJEeSZxfCXzZz3-w" name="isAsync">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.2"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
         <properties xsi:type="constraints:ReferenceProperty" xmi:id="_69uss6DJEeSZxfCXzZz3-w" name="query">
           <value href="uml.querySet#isAsynchCall"/>
         </properties>
@@ -4116,7 +4116,7 @@
         <properties xsi:type="constraints:ValueProperty" xmi:id="_69ust6DJEeSZxfCXzZz3-w" name="umlClassName" value="Message"/>
       </constraints>
       <constraints xmi:id="_69usuKDJEeSZxfCXzZz3-w" name="isSync">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.2"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
         <properties xsi:type="constraints:ReferenceProperty" xmi:id="_69usuaDJEeSZxfCXzZz3-w" name="query">
           <value href="uml.querySet#isSynchCall"/>
         </properties>
@@ -4130,7 +4130,7 @@
         <properties xsi:type="constraints:ValueProperty" xmi:id="_69usvaDJEeSZxfCXzZz3-w" name="umlClassName" value="Message"/>
       </constraints>
       <constraints xmi:id="_69usvqDJEeSZxfCXzZz3-w" name="isReply">
-        <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.2"/>
+        <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.2"/>
         <properties xsi:type="constraints:ReferenceProperty" xmi:id="_69usv6DJEeSZxfCXzZz3-w" name="query">
           <value href="uml.querySet#isReply"/>
         </properties>
@@ -5315,7 +5315,7 @@
       <properties xmi:id="_6964t6DJEeSZxfCXzZz3-w" name="Date"/>
       <properties xmi:id="_6964uKDJEeSZxfCXzZz3-w" name="Comment"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.1"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.1"/>
   </dataContexts>
   <dataContexts xmi:id="_6964uaDJEeSZxfCXzZz3-w" name="ImportedPackage" label="Imported Package">
     <elements xmi:id="_6964uqDJEeSZxfCXzZz3-w" name="Package">

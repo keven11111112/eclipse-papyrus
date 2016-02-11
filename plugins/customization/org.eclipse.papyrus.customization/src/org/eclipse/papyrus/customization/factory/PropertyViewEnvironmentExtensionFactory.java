@@ -29,7 +29,7 @@ public class PropertyViewEnvironmentExtensionFactory extends FileBasedExtensionF
 	public void addElement(CustomizableElement element, PluginEditor editor) {
 		super.addElement(element, editor);
 
-		editor.getManifestEditor().addDependency("org.eclipse.papyrus.views.properties"); //$NON-NLS-1$
+		editor.getManifestEditor().addDependency("org.eclipse.papyrus.infra.properties.ui"); //$NON-NLS-1$
 	}
 
 	@Override

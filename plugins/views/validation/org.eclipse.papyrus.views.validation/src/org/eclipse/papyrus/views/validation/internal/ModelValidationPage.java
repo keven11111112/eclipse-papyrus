@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.validation.IValidationMarkersService;
 import org.eclipse.papyrus.views.validation.internal.actions.CopyMarkerAction;
 import org.eclipse.papyrus.views.validation.internal.actions.DeleteMarkerAction;
 import org.eclipse.papyrus.views.validation.internal.actions.GotoMarkerAction;
@@ -73,7 +74,7 @@ public class ModelValidationPage
 
 	private final ViewSettings settings;
 
-	private ValidationMarkersService markers;
+	private IValidationMarkersService markers;
 
 	private LabelProviderService labelProviders;
 
@@ -104,7 +105,7 @@ public class ModelValidationPage
 		this.services = services;
 		
 		this.markers = ServiceUtils.getInstance().getService(
-				ValidationMarkersService.class, services);
+				IValidationMarkersService.class, services);
 		this.labelProviders = ServiceUtils.getInstance().getService(
 				LabelProviderService.class, services);
 		this.modelSet = ServiceUtils.getInstance().getModelSet(services);
@@ -175,7 +176,7 @@ public class ModelValidationPage
 		try {
 			if (services != newServices) {
 				services = newServices;
-				markers = ServiceUtils.getInstance().getService(ValidationMarkersService.class, services);
+				markers = ServiceUtils.getInstance().getService(IValidationMarkersService.class, services);
 				table.setInput(markers);
 			}	
 		}

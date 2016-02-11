@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  * Contributors:
  *     Juan Cadavid <juan.cadavid@cea.fr> implementation
  *     Christian W. Damus (CEA) - bug 437217 - control-mode strategy changes interfere with later tests
+ *     Christian W. Damus - bug 485220
  *     
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.control;
@@ -79,7 +80,7 @@ public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 	public void setUp() throws Exception {
 
 		// Set the current resource loading strategy to the default
-		houseKeeper.cleanUpLater(new StrategyChooserFixture(0));
+		houseKeeper.cleanUpLater(new StrategyChooserFixture(editorFixture.getServiceRegistry(), 0));
 
 		openEditor();
 

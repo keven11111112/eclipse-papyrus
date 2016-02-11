@@ -28,22 +28,6 @@
       </view>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.core.service">
-      <service
-            classname="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService"
-            description="Validation markers tracking service for the Model Validation View."
-            id="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService"
-            priority="1"
-            startKind="startup">
-      </service>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
-      <listener
-            class="org.eclipse.papyrus.views.validation.internal.ValidationMarkersService">
-      </listener>
-   </extension>
-   <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
             class="org.eclipse.papyrus.views.validation.internal.expressions.PapyrusMarkerPropertyTester"

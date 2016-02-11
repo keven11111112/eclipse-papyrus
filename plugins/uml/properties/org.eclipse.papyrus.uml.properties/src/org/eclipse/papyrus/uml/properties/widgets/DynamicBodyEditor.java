@@ -16,10 +16,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor;
 import org.eclipse.papyrus.uml.properties.expression.ExpressionList.Expression;
 import org.eclipse.papyrus.uml.properties.preferences.LanguageRegistry;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;

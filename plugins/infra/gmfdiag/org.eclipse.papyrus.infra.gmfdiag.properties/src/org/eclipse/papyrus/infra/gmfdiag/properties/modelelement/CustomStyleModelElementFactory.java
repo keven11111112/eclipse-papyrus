@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractEMFModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractEMFModelElementFactory;
 
 
 public class CustomStyleModelElementFactory extends AbstractEMFModelElementFactory<CustomStyleModelElement> {

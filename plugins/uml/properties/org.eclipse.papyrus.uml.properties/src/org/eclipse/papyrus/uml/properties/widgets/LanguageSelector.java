@@ -13,13 +13,13 @@ package org.eclipse.papyrus.uml.properties.widgets;
 
 import java.util.LinkedList;
 
+import org.eclipse.papyrus.infra.properties.ui.widgets.layout.GridData;
+import org.eclipse.papyrus.infra.properties.ui.widgets.layout.PropertiesLayout;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener;
 import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.papyrus.uml.properties.expression.ExpressionList.Expression;
 import org.eclipse.papyrus.uml.properties.preferences.LanguageRegistry;
-import org.eclipse.papyrus.views.properties.widgets.layout.GridData;
-import org.eclipse.papyrus.views.properties.widgets.layout.PropertiesLayout;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;

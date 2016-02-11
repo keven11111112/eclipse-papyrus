@@ -66,12 +66,11 @@ public class Activator extends Plugin {
 		log = new LogHelper(this);
 
 		resolverService = new EObjectResolverService(context);
-		resolverService.open();
 	}
 
 	@Override
 	public void stop(final BundleContext context) throws Exception {
-		resolverService.close();
+		resolverService.dispose();
 		resolverService = null;
 
 		plugin = null;

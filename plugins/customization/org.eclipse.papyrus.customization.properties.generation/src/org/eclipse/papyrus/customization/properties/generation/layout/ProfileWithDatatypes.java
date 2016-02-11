@@ -32,8 +32,9 @@ import org.eclipse.papyrus.infra.properties.ui.Layout;
 import org.eclipse.papyrus.infra.properties.ui.PropertyEditor;
 import org.eclipse.papyrus.infra.properties.ui.UiFactory;
 import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -67,7 +68,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 	@Override
 	protected CompositeWidget layoutCategorizedEditors(Category category, List<PropertyEditor> editors) {
 		if (((TypeCategory) category).isDatatype) {
-			CompositeWidgetType compositeType = ConfigurationManager.getInstance().getDefaultCompositeType();
+			CompositeWidgetType compositeType = PropertiesRuntime.getConfigurationManager().getDefaultCompositeType();
 
 			CompositeWidget container = UiFactory.eINSTANCE.createCompositeWidget();
 			container.setWidgetType(compositeType);
@@ -155,7 +156,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 	}
 
 	protected Layout createLayout(Integer columns) {
-		LayoutType propertiesLayoutType = ConfigurationManager.getInstance().getDefaultLayoutType();
+		LayoutType propertiesLayoutType = PropertiesRuntime.getConfigurationManager().getDefaultLayoutType();
 
 		Layout layout = UiFactory.eINSTANCE.createLayout();
 		ValueAttribute numColumns = UiFactory.eINSTANCE.createValueAttribute();
@@ -178,7 +179,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 		}
 
 		Activator.log.warn("Cannot find the Group composite type");
-		return ConfigurationManager.getInstance().getDefaultCompositeType();
+		return PropertiesRuntime.getConfigurationManager().getDefaultCompositeType();
 	}
 
 	protected PropertyEditorType getViewEditor() {
@@ -191,7 +192,7 @@ public class ProfileWithDatatypes extends StandardLayoutGenerator {
 		}
 
 		Activator.log.warn("Cannot find the Group composite type");
-		return ConfigurationManager.getInstance().getDefaultEditorType(Type.STRING, false);
+		return PropertiesRuntime.getConfigurationManager().getDefaultEditorType(Type.STRING, false);
 	}
 
 	@Override

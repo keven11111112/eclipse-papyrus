@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2016 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,8 +8,8 @@
  *
  * Contributors:
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
- *  Christian W. Damus - bug 459566
- *  Christian W. Damus - bug 463846
+ *  Christian W. Damus - bugs 459566, 463846, 485220
+ *  
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.menu.utils;
@@ -31,15 +31,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
-import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.readonly.ReadOnlyManager;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-
-import com.google.common.base.Optional;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
  * Utility class to manage delete action in GMF Diagram context.
@@ -62,42 +55,12 @@ public final class DeleteActionUtil {
 	 * @param editPart
 	 *            the edit part
 	 * @return true, if is semantic deletion
+	 * 
+	 * @deprecated Use the {@link DiagramEditPartsUtil#isSemanticDeletion(IGraphicalEditPart)} API, instead
 	 */
+	@Deprecated
 	public static boolean isSemanticDeletion(IGraphicalEditPart editPart) {
-		boolean isSemanticDeletion = false;
-		TransactionalEditingDomain editingDomain = null;
-
-		// Get Editing Domain
-		try {
-			editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
-		} catch (ServiceException e) {
-
-		}
-
-		if (editingDomain != null) {
-
-			IReadOnlyHandler2 readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
-			EObject semantic = EMFHelper.getEObject(editPart);
-			View graphical = NotationHelper.findView(editPart);
-
-			isSemanticDeletion = !(semantic == null || semantic == graphical || semantic.eContainer() == null);
-
-
-			if (isSemanticDeletion && readOnly != null) {
-				// Is the semantic element read-only?
-				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
-				if (!result.or(false) && (graphical != null)) {
-					// Or, if not, is the graphical element read-only?
-					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
-				}
-
-				// Are both the semantic and graphical elements writable?
-				isSemanticDeletion = !result.or(false);
-			}
-		}
-
-
-		return isSemanticDeletion;
+		return DiagramEditPartsUtil.isSemanticDeletion(editPart);
 	}
 
 	/**
@@ -106,40 +69,14 @@ public final class DeleteActionUtil {
 	 * @param editPart
 	 *            the edit part
 	 * @return true, if this is a read only element.
+	 * 
+	 * @deprecated Use the {@link DiagramEditPartsUtil#isReadOnly(IGraphicalEditPart)} API, instead
 	 */
+	@Deprecated
 	public static boolean isReadOnly(final IGraphicalEditPart editPart) {
-		boolean isReadOnly = true;
-		TransactionalEditingDomain editingDomain = null;
-
-		// Get Editing Domain
-		try {
-			editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
-		} catch (ServiceException e) {
-			// Do nothing
-		}
-
-		if (null != editingDomain) {
-
-			final IReadOnlyHandler2 readOnly = ReadOnlyManager.getReadOnlyHandler(editingDomain);
-			final EObject semantic = EMFHelper.getEObject(editPart);
-			final View graphical = NotationHelper.findView(editPart);
-
-			if (null != readOnly && null != semantic) {
-				// Is the semantic element read-only?
-				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
-				isReadOnly = result.get();
-				
-				if (!isReadOnly && (graphical != null)) {
-					// Or, if not, is the graphical element read-only?
-					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
-					isReadOnly = result.get();
-				}
-			}
-		}
-
-		return isReadOnly;
+		return DiagramEditPartsUtil.isReadOnly(editPart);
 	}
-	
+
 	/**
 	 * Gets the delete from model command.
 	 *

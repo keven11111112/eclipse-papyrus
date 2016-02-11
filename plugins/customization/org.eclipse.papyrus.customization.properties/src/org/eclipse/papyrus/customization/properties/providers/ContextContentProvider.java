@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.infra.ui.emf.utils.ProviderHelper;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * The customization editor's content provider. Based on the EMF Facet

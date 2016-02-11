@@ -61,9 +61,14 @@ import org.eclipse.papyrus.infra.properties.environment.Type;
 import org.eclipse.papyrus.infra.properties.environment.WidgetType;
 import org.eclipse.papyrus.infra.properties.internal.ContextExtensionPoint;
 import org.eclipse.papyrus.infra.properties.internal.EnvironmentExtensionPoint;
+import org.eclipse.papyrus.infra.properties.internal.ui.extensions.ContextBindingsExtensionPoint;
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.ConfigurationConflict;
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.ViewConstraintEngine;
+import org.eclipse.papyrus.infra.properties.ui.runtime.ViewConstraintEngineImpl;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.internal.extensions.ContextBindingsExtensionPoint;
 import org.eclipse.papyrus.views.properties.root.PropertiesRoot;
 import org.eclipse.papyrus.views.properties.root.RootFactory;
 import org.eclipse.papyrus.views.properties.runtime.preferences.ContextDescriptor;
@@ -73,7 +78,6 @@ import org.eclipse.papyrus.views.properties.runtime.preferences.PreferencesPacka
 import org.eclipse.papyrus.views.properties.storage.ContextStorageRegistry;
 import org.eclipse.papyrus.views.properties.storage.IContextStorageProvider;
 import org.eclipse.papyrus.views.properties.storage.IContextStorageProviderListener;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -89,7 +93,12 @@ import org.eclipse.swt.widgets.Display;
  *
  * @author Camille Letavernier
  */
-public class ConfigurationManager {
+public class ConfigurationManager implements IInternalConfigurationManager {
+
+	/**
+	 * The unique identifier of the default preference page, covering the <b>Properties View</b>.
+	 */
+	private static final String DEFAULT_VIEW_ID = "org.eclipse.papyrus.views.properties.propertyview"; //$NON-NLS-1$
 
 	private final Preferences preferences;
 
@@ -135,7 +144,7 @@ public class ConfigurationManager {
 	}
 
 	private ConfigurationManager() {
-		constraintEngine = new ViewConstraintEngineImpl();
+		constraintEngine = new ViewConstraintEngineImpl(this);
 		enabledContexts = new LinkedHashSet<Context>();
 		customizableContexts = new HashMap<Context, Boolean>();
 		contexts = new LinkedHashMap<URI, Context>();
@@ -156,7 +165,7 @@ public class ConfigurationManager {
 
 		new ContextExtensionPoint(this::addContext);
 		new EnvironmentExtensionPoint(this::addEnvironment);
-		new ContextBindingsExtensionPoint();
+		new ContextBindingsExtensionPoint(this::registerPreferencePageBinding);
 
 		loadCustomContexts();
 
@@ -332,6 +341,7 @@ public class ConfigurationManager {
 	 * @param context
 	 *            A Context model to re-load
 	 */
+	@Override
 	public void refresh(Context context) {
 		IContextStorageProvider provider = contextStorageRegistry.getStorageProvider(context);
 		if (provider != null) {
@@ -377,6 +387,7 @@ public class ConfigurationManager {
 	 *
 	 * @see Preferences
 	 */
+	@Override
 	public boolean isApplied(Context context) {
 		boolean result = !isCustomizable(context) || findDescriptor(context).isApplied();
 
@@ -521,6 +532,7 @@ public class ConfigurationManager {
 		}
 	}
 
+	@Override
 	public Boolean isAppliedByDefault(Context context) {
 		return findDescriptor(context).isAppliedByDefault();
 	}
@@ -534,6 +546,7 @@ public class ConfigurationManager {
 	 * @throws IOException
 	 *             If the model behind this URI is not a valid Context
 	 */
+	@Override
 	public void addContext(URI uri) throws IOException {
 		addContext(uri, true, true);
 	}
@@ -552,6 +565,7 @@ public class ConfigurationManager {
 	 *
 	 * @see ConfigurationManager#addContext(URI)
 	 */
+	@Override
 	public void addContext(Context context, boolean apply) {
 		addContext(context, apply, true);
 	}
@@ -626,6 +640,7 @@ public class ConfigurationManager {
 	/**
 	 * @return the list of <strong>enabled</strong> contexts
 	 */
+	@Override
 	public Collection<Context> getEnabledContexts() {
 		return enabledContexts;
 	}
@@ -643,6 +658,7 @@ public class ConfigurationManager {
 	 * @see Preferences
 	 * @see #enableContext(Context, boolean)
 	 */
+	@Override
 	public void disableContext(Context context, boolean update) {
 		disableContext(context, update, true);
 	}
@@ -683,6 +699,7 @@ public class ConfigurationManager {
 	 *
 	 * @see #disableContext(Context, boolean)
 	 */
+	@Override
 	public void enableContext(Context context, boolean update) {
 		enableContext(context, update, true);
 	}
@@ -716,6 +733,7 @@ public class ConfigurationManager {
 	 * 
 	 * @see #getEnabledContexts()
 	 */
+	@Override
 	public boolean isEnabled(Context context) {
 		return enabledContexts.contains(context);
 	}
@@ -729,6 +747,7 @@ public class ConfigurationManager {
 	 * @return
 	 * 		True if the context comes from a plugin, and is thus read-only
 	 */
+	@Override
 	public boolean isPlugin(Context context) {
 		// a missing context can't be a plug-in context because plug-ins can't go missing
 		boolean result = !isMissing(context) && contextStorageRegistry.getStorageProvider(context) == IContextStorageProvider.NULL;
@@ -743,6 +762,7 @@ public class ConfigurationManager {
 	 *            a context
 	 * @return whether it represents a missing context
 	 */
+	@Override
 	public boolean isMissing(Context context) {
 		return !contexts.containsValue(context) && !findDescriptor(context).isDeleted();
 	}
@@ -757,6 +777,7 @@ public class ConfigurationManager {
 	 * @throws IOException
 	 *             If the URI doesn't represent a valid Context model
 	 */
+	@Override
 	public Context getContext(URI uri) throws IOException {
 		return (Context) loadEMFModel(uri);
 	}
@@ -795,6 +816,7 @@ public class ConfigurationManager {
 	 * @return
 	 * 		The context corresponding to the given name
 	 */
+	@Override
 	public Context getContext(String contextName) {
 		for (Context context : getContexts()) {
 			if (context.getName().equals(contextName)) {
@@ -824,6 +846,7 @@ public class ConfigurationManager {
 	 *
 	 * @see PropertiesRoot#getContexts()
 	 */
+	@Override
 	public Collection<Context> getContexts() {
 		return contexts.values();
 	}
@@ -836,6 +859,7 @@ public class ConfigurationManager {
 	 * @see PropertiesRoot#getContexts()
 	 * @see {@link #getEnabledContexts()}
 	 */
+	@Override
 	public Collection<Context> getCustomizableContexts() {
 		List<Context> result = new LinkedList<Context>();
 		for (Context context : contexts.values()) {
@@ -852,6 +876,7 @@ public class ConfigurationManager {
 	 *
 	 * @return the current collection of missing contexts
 	 */
+	@Override
 	public Collection<Context> getMissingContexts() {
 		List<Context> result = new java.util.ArrayList<Context>();
 
@@ -891,6 +916,7 @@ public class ConfigurationManager {
 	/**
 	 * @return the default implementation of CompositeWidgetType
 	 */
+	@Override
 	public CompositeWidgetType getDefaultCompositeType() {
 		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__COMPOSITE_WIDGET_TYPES, CompositeWidgetType.class, "Composite", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -898,6 +924,7 @@ public class ConfigurationManager {
 	/**
 	 * @return the default implementation of LayoutType
 	 */
+	@Override
 	public LayoutType getDefaultLayoutType() {
 		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__LAYOUT_TYPES, LayoutType.class, "PropertiesLayout", "ppel"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -905,6 +932,7 @@ public class ConfigurationManager {
 	/**
 	 * @return the default implementation of StandardWidgetType
 	 */
+	@Override
 	public StandardWidgetType getDefaultWidgetType() {
 		return getDefaultWidget(EnvironmentPackage.ENVIRONMENT__WIDGET_TYPES, StandardWidgetType.class, "Label", ""); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -915,6 +943,7 @@ public class ConfigurationManager {
 	 * @return the default implementation of PropertyEditorType for the given property Type
 	 *         and multiplicity
 	 */
+	@Override
 	public PropertyEditorType getDefaultEditorType(Type propertyType, boolean multiple) {
 		String propertyEditorName = null;
 		switch (propertyType) {
@@ -950,6 +979,7 @@ public class ConfigurationManager {
 	 *
 	 * @return the default XWT namespaces
 	 */
+	@Override
 	public Set<Namespace> getBaseNamespaces() {
 		Set<Namespace> result = new HashSet<Namespace>();
 		result.add(getNamespaceByName("")); //$NON-NLS-1$
@@ -963,6 +993,7 @@ public class ConfigurationManager {
 	 * @return
 	 * 		The namespace corresponding to the given name
 	 */
+	@Override
 	public Namespace getNamespaceByName(String name) {
 		for (Environment environment : root.getEnvironments()) {
 			for (Namespace namespace : environment.getNamespaces()) {
@@ -980,6 +1011,7 @@ public class ConfigurationManager {
 	 * @return
 	 * 		the default PropertyEditorType for the given Property
 	 */
+	@Override
 	public PropertyEditorType getDefaultEditorType(Property property) {
 		return getDefaultEditorType(property.getType(), property.getMultiplicity() != 1);
 	}
@@ -992,6 +1024,7 @@ public class ConfigurationManager {
 	 * @param context
 	 *            The context to delete
 	 */
+	@Override
 	public void deleteContext(Context context) {
 		deleteContext(context, true);
 	}
@@ -1062,6 +1095,7 @@ public class ConfigurationManager {
 	 * @return
 	 * 		The property associated to the given propertyPath
 	 */
+	@Override
 	public Property getProperty(String propertyPath, Context context) {
 		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
 		String propertyName = propertyPath.substring(propertyPath.lastIndexOf(":") + 1, propertyPath.length()); //$NON-NLS-1$
@@ -1095,6 +1129,7 @@ public class ConfigurationManager {
 	 * Updates the constraint engine to handle changes in the contexts
 	 * activation
 	 */
+	@Override
 	public void update() {
 		constraintEngine.refresh();
 	}
@@ -1107,6 +1142,7 @@ public class ConfigurationManager {
 	 * @return
 	 * 		The list of conflicts
 	 */
+	@Override
 	public Collection<ConfigurationConflict> checkConflicts() {
 		return checkConflicts(getEnabledContexts());
 	}
@@ -1125,6 +1161,7 @@ public class ConfigurationManager {
 	 * 
 	 * @see #isEnabled(Context)
 	 */
+	@Override
 	public Collection<ConfigurationConflict> checkConflicts(Collection<? extends Context> contexts) {
 		Map<String, List<Context>> sections = new HashMap<String, List<Context>>();
 		Map<String, ConfigurationConflict> conflicts = new HashMap<String, ConfigurationConflict>();
@@ -1171,10 +1208,12 @@ public class ConfigurationManager {
 	 *
 	 * @return
 	 */
+	@Override
 	public ResourceSet getResourceSet() {
 		return resourceSet;
 	}
 
+	@Override
 	public boolean isCustomizable(Context propertyViewConfiguration) {
 
 		if (isMissing(propertyViewConfiguration)) {
@@ -1193,6 +1232,7 @@ public class ConfigurationManager {
 		return false;
 	}
 
+	@Override
 	public ViewConstraintEngine getConstraintEngine() {
 		return constraintEngine;
 	}
@@ -1228,6 +1268,7 @@ public class ConfigurationManager {
 		contexts.add(context);
 	}
 
+	@Override
 	public List<Context> getContextsForPreferencePage(String page) {
 		return Stream.concat(getContexts().stream(), getMissingContexts().stream())
 				.filter(this::isCustomizable) // Only present customizable contexts
@@ -1239,8 +1280,8 @@ public class ConfigurationManager {
 		boolean result = false;
 		String contextName = context.getName();
 
-		if ((page == null) || page.equals(org.eclipse.papyrus.views.properties.preferences.Preferences.DEFAULT_ID)) {
-			page = org.eclipse.papyrus.views.properties.preferences.Preferences.DEFAULT_ID;
+		if ((page == null) || page.equals(DEFAULT_VIEW_ID)) {
+			page = DEFAULT_VIEW_ID;
 			Set<String> explicitBindings = preferencePageBindings.getOrDefault(page, Collections.emptySet());
 
 			// Looking for bindings to the default preference page. This includes

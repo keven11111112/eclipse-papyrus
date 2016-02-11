@@ -27,10 +27,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetCanonicalCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.SynchronizationModelElement;
+import org.eclipse.papyrus.infra.services.edit.ui.databinding.AggregatedPapyrusObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
+import org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
-import org.eclipse.papyrus.uml.tools.databinding.AggregatedPapyrusObservableValue;
-import org.eclipse.papyrus.uml.tools.databinding.CommandBasedObservableValue;
 
 /**
  * The observable boolean "canonical synchronization" state of an {@link EditPart}, as represented by
@@ -51,6 +51,7 @@ public class CanonicalObservableValue extends ReferenceCountedObservable.Value i
 		this.editPart = editPart;
 
 		final Runnable update = new Runnable() {
+			@Override
 			public void run() {
 				boolean oldValue = lastComputed; // doGetValue updates this
 				fireValueChange(Diffs.createValueDiff(oldValue, doGetValue()));
@@ -63,10 +64,12 @@ public class CanonicalObservableValue extends ReferenceCountedObservable.Value i
 
 			refreshHandler = new CanonicalStateListener.Handler() {
 
+				@Override
 				public Runnable handleAdd(CanonicalStyle style) {
 					return update;
 				}
 
+				@Override
 				public Runnable handleRemove(CanonicalStyle style) {
 					return update;
 				}
@@ -88,10 +91,12 @@ public class CanonicalObservableValue extends ReferenceCountedObservable.Value i
 		}
 	}
 
+	@Override
 	public Object getObserved() {
 		return editPart;
 	}
 
+	@Override
 	public Object getValueType() {
 		return Boolean.class;
 	}
@@ -109,16 +114,19 @@ public class CanonicalObservableValue extends ReferenceCountedObservable.Value i
 		domain.getCommandStack().execute(command);
 	}
 
+	@Override
 	public Command getCommand(Object value) {
 		boolean canonical = (value instanceof Boolean) && ((Boolean) value).booleanValue();
 
 		return GMFtoEMFCommandWrapper.wrap(new SetCanonicalCommand(domain, NotationHelper.findView(editPart), canonical));
 	}
 
+	@Override
 	public AggregatedObservable aggregate(IObservable observable) {
 		return new AggregatedPapyrusObservableValue(domain, this, observable);
 	}
 
+	@Override
 	public boolean hasDifferentValues() {
 		return false; // Primitive component has only one value
 	}

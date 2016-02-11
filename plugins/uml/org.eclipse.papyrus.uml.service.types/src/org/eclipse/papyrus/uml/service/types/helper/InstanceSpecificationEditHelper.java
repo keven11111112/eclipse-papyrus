@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010-2011 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.service.types.command.InstanceSpecificationLinkCreateCommand;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
@@ -45,6 +44,8 @@ import org.eclipse.uml2.uml.UMLPackage;
  * This helper is used to set the source and the target for a {@link Dependency}
  */
 public class InstanceSpecificationEditHelper extends ElementEditHelper {
+
+	public static final String INSTANCE_END = "InstanceEnd"; //$NON-NLS-1$
 
 
 	/**
@@ -219,7 +220,7 @@ public class InstanceSpecificationEditHelper extends ElementEditHelper {
 	 */
 	private List<InstanceSpecification> getEnds(InstanceSpecification instance) {
 		List<InstanceSpecification> array = new ArrayList<InstanceSpecification>();
-		EAnnotation endtypes = instance.getEAnnotation(InstanceSpecificationLinkCreateCommand.INSTANCE_END);
+		EAnnotation endtypes = instance.getEAnnotation(INSTANCE_END);
 		if (endtypes != null) {
 			assert (endtypes.getReferences().size() == 2);
 			array.add((InstanceSpecification) endtypes.getReferences().get(0));

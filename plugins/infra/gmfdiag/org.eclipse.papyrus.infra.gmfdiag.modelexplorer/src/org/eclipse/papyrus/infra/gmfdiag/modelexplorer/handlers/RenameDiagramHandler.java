@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.modelexplorer.handlers;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
@@ -45,8 +46,8 @@ public class RenameDiagramHandler extends AbstractDiagramCommandHandler {
 	 * @return
 	 */
 	@Override
-	protected Command getCommand() {
-		TransactionalEditingDomain editingDomain = getEditingDomain();
+	protected Command getCommand(IEvaluationContext context) {
+		TransactionalEditingDomain editingDomain = getEditingDomain(context);
 		List<Diagram> diagrams = getSelectedDiagrams();
 		if (editingDomain != null && diagrams.size() == 1) {
 

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
- *
+ * Copyright (c) 2009, 2016 Atos Origin, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,10 +8,12 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 482220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.model;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -191,6 +192,41 @@ public class NotationUtils {
 			EcoreUtil.resolveAll(notationResource);
 		}
 		return getDiagrams(notationResource, eObject);
+	}
+
+	/**
+	 * Obtains all of the notation views (diagrams, tables, etc.) persisted in a resource-set.
+	 * 
+	 * @param resourceSet
+	 *            a resource-set
+	 * 
+	 * @return all of the notations within it
+	 * 
+	 * @see #getAllNotations(ResourceSet, Class)
+	 */
+	public static Iterable<EObject> getAllNotations(ResourceSet resourceSet) {
+		return getAllNotations(resourceSet, EObject.class);
+	}
+
+	/**
+	 * Obtains all of the notation views of some type persisted in a resource-set.
+	 * 
+	 * @param resourceSet
+	 *            a resource-set
+	 * @param type
+	 *            the notation type (diagram, table, etc.)
+	 * 
+	 * @return all of the notations of that {@code type} within it
+	 */
+	public static <T extends EObject> Iterable<T> getAllNotations(ResourceSet resourceSet, Class<T> type) {
+		// Algorithm ported from NavigatorUtils::getNotationRoots() in the Model Explorer View bundle
+		return () -> resourceSet.getResources().stream()
+				.filter(r -> NotationModel.NOTATION_FILE_EXTENSION.equalsIgnoreCase(r.getURI().fileExtension()))
+				.map(Resource::getContents)
+				.flatMap(Collection::stream)
+				.filter(type::isInstance)
+				.map(type::cast)
+				.iterator();
 	}
 
 	/**

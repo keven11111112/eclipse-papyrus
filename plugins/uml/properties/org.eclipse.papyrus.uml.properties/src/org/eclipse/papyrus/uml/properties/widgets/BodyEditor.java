@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.widgets;
 
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Listener;
 

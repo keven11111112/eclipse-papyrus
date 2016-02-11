@@ -16,9 +16,9 @@ package org.eclipse.papyrus.uml.properties.modelelement;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Image;
 

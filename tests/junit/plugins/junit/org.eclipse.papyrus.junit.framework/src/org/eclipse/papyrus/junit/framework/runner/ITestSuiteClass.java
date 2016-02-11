@@ -29,10 +29,20 @@ public interface ITestSuiteClass {
 	/**
 	 * Queries whether the test suite runs in "headless mode" (without the Eclipse Workbench).
 	 * 
-	 * @return whether I am a headless test suite
+	 * @return whether I am an headless test suite
 	 */
 	default boolean isHeadless() {
 		Class<?> main = getMainTestSuiteClass();
 		return (main != null) && main.isAnnotationPresent(Headless.class);
+	}
+
+	/**
+	 * Queries whether the test suite runs in "UI mode" (in an Eclipse Workbench).
+	 * 
+	 * @return whether I am an UI test suite
+	 */
+	default boolean isUI() {
+		Class<?> main = getMainTestSuiteClass();
+		return (main != null) && !main.isAnnotationPresent(Headless.class);
 	}
 }

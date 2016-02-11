@@ -1,0 +1,32 @@
+/*****************************************************************************
+ * Copyright (c) 2016 Christian W. Damus and others.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Christian W. Damus - Initial API and implementation
+ *   
+ *****************************************************************************/
+
+package org.eclipse.papyrus.views.properties.internal.runtime;
+
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
+import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+
+/**
+ * Provider of our configuration manager implementation.
+ */
+public class ConfigurationManagerProvider implements IInternalConfigurationManager.Provider {
+
+	public ConfigurationManagerProvider() {
+		super();
+	}
+
+	@Override
+	public IInternalConfigurationManager getConfigurationManager() {
+		return ConfigurationManager.getInstance();
+	}
+}

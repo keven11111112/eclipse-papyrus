@@ -62,7 +62,7 @@ import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 

@@ -19,7 +19,11 @@ import static org.eclipse.papyrus.infra.core.Activator.log;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -71,8 +75,11 @@ public class ModelsReader extends ExtensionUtils {
 	/** name of the attribute "identifier" */
 	public static final String IDENTIFIER_ATTRIBUTE_NAME = "identifier";
 
-	/** Name of the extension indicating the model's canonical file extension. */
+	/** Name of the attribute indicating the model's canonical file extension. */
 	private static final String EXTENSION_ATTRIBUTE = "fileExtension"; //$NON-NLS-1$
+
+	/** Name of the attribute indicating whether the model is required to be available. */
+	private static final String REQUIRED_ATTRIBUTE = "required"; //$NON-NLS-1$
 
 	/** Namespace where to look for the extension points. */
 	protected String extensionPointNamespace;
@@ -342,5 +349,52 @@ public class ModelsReader extends ExtensionUtils {
 		// all config elements have been parsed. sets the dependencies in the model
 		model.setAfterLoadModelDependencies(afterLoadModelIdentifiers);
 		model.setBeforeUnloadDependencies(unloadBeforeModelIdentifiers);
+	}
+
+	/**
+	 * Queries the models that are required in their model-set.
+	 * 
+	 * @param modelSet
+	 *            a model-set
+	 * @return ones that are required
+	 */
+	public Set<IModel> getRequiredModels(ModelSet modelSet) {
+		return getRequiredModels(modelSet, IModel.class);
+	}
+
+	/**
+	 * Queries the models that are required in their model-set.
+	 * 
+	 * @param modelSet
+	 *            a model-set
+	 * @param modelType
+	 *            the specific type of models to request
+	 * @return ones that are required
+	 */
+	public <M extends IModel> Set<M> getRequiredModels(ModelSet modelSet, Class<M> modelType) {
+		Set<String> requiredModelClasses = Stream.of(getExtensions())
+				.filter(c -> Boolean.parseBoolean(c.getAttribute(REQUIRED_ATTRIBUTE)))
+				.map(c -> c.getAttribute(CLASSNAME_ATTRIBUTE))
+				.filter(Objects::nonNull)
+				.collect(Collectors.toSet());
+		return modelSet.models.values().stream()
+				.filter(modelType::isInstance)
+				.map(modelType::cast)
+				.filter(instanceOfAny(requiredModelClasses))
+				.collect(Collectors.toSet());
+	}
+
+	private static Predicate<IModel> instanceOfAny(Set<String> classNames) {
+		return model -> {
+			boolean result = false;
+
+			// We don't have to worry about interfaces because the extension point
+			// identifies instantiable classes only
+			for (Class<?> type = model.getClass(); !result && (type != null); type = type.getSuperclass()) {
+				result = classNames.contains(type.getName());
+			}
+
+			return result;
+		};
 	}
 }

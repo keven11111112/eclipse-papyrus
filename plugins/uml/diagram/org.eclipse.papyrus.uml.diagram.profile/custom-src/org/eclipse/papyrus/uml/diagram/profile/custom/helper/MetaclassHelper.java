@@ -34,7 +34,7 @@ import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfilePackageableElementCompartmentEditPartTN;
-import org.eclipse.papyrus.uml.service.types.helper.ExtensionHelper;
+import org.eclipse.papyrus.uml.service.types.ui.util.ExtensionHelper;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.ExtensionEnd;

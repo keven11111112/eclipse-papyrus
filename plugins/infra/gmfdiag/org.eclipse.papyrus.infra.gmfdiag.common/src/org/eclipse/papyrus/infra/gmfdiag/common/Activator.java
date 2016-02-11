@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 LIFL, CEA LIST, and others.
+ * Copyright (c) 2008, 2016 LIFL, CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,8 @@
  *
  * Contributors:
  *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 410346
- *  Christian W. Damus (CEA) - bug 425270
+ *  Christian W. Damus (CEA) - bugs 410346, 425270
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -21,11 +21,14 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.spi.GraphicalDeletionHelperService;
+import org.eclipse.papyrus.infra.gmfdiag.common.spi.IGraphicalDeletionHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -35,9 +38,13 @@ public class Activator extends AbstractUIPlugin {
 	public static final String ID = "org.eclipse.papyrus.infra.gmfdiag.common"; //$NON-NLS-1$
 
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
-	public static final String EXPANSION_TRACE="expansion";
+	public static final String EXPANSION_TRACE = "expansion";
 
 	private static Activator instance;
+
+	private ComposedAdapterFactory adapterFactory;
+
+	private GraphicalDeletionHelperService deletionHelper;
 
 	public Activator() {
 	}
@@ -51,11 +58,16 @@ public class Activator extends AbstractUIPlugin {
 		instance = this;
 		// register the login helper
 		log = new LogHelper(this);
+		adapterFactory = createAdapterFactory();
+		deletionHelper = new GraphicalDeletionHelperService(context);
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		deletionHelper.dispose();
+		adapterFactory.dispose();
+		adapterFactory = null;
 		log = null;
 		instance = null;
 		super.stop(context);
@@ -65,8 +77,12 @@ public class Activator extends AbstractUIPlugin {
 		return instance;
 	}
 
+	protected ComposedAdapterFactory createAdapterFactory() {
+		return new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	}
+
 	public AdapterFactory getItemProvidersAdapterFactory() {
-		return org.eclipse.papyrus.uml.tools.Activator.getDefault().getItemProviderAdapterFactory();
+		return adapterFactory;
 	}
 
 	public ImageDescriptor getItemImageDescriptor(Object item) {
@@ -187,4 +203,7 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(ID, path);
 	}
 
+	public IGraphicalDeletionHelper getGraphicalDeletionHelper() {
+		return deletionHelper;
+	}
 }

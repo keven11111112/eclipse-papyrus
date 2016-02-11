@@ -406,938 +406,938 @@
   </tabs>
   <views name="Single LayerNamedStyle" sections="//@tabs.0/@sections.0" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerNamedStyle">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerNamedStyle"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single LayersStack" sections="//@tabs.0/@sections.1" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayersStack">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayersStack"/>
     </constraints>
   </views>
   <views name="Single LayerExpression" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerExpression">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerExpression"/>
     </constraints>
   </views>
   <views name="Single ApplicationDependantElement" sections="//@tabs.0/@sections.3" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleApplicationDependantElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="ApplicationDependantElement"/>
     </constraints>
   </views>
   <views name="Single LayersStackApplication" sections="//@tabs.0/@sections.4" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayersStackApplication">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayersStackApplication"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single FolderElement" sections="//@tabs.0/@sections.5" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFolderElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FolderElement"/>
     </constraints>
   </views>
   <views name="Single LayerStackDescriptorRegistry" sections="//@tabs.0/@sections.6" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerStackDescriptorRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerStackDescriptorRegistry"/>
     </constraints>
   </views>
   <views name="Single PropertyRegistry" sections="//@tabs.0/@sections.7" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertyRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyRegistry"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single Property" sections="//@tabs.0/@sections.8" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleProperty">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Property"/>
     </constraints>
   </views>
   <views name="Single Type" sections="//@tabs.0/@sections.9" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Type"/>
     </constraints>
   </views>
   <views name="Single Metamodel" sections="//@tabs.0/@sections.10" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleMetamodel">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Metamodel"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single TypeInstance" sections="//@tabs.0/@sections.11" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTypeInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TypeInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single ComputePropertyValueCommandItf" sections="//@tabs.0/@sections.12" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleComputePropertyValueCommandItf">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="ComputePropertyValueCommandItf"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single TypeRegistry" sections="//@tabs.0/@sections.13" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTypeRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TypeRegistry"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single StringToTypeMap" sections="//@tabs.0/@sections.14" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringToTypeMap">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToTypeMap"/>
     </constraints>
   </views>
   <views name="Single LayerDescriptorRegistry" sections="//@tabs.0/@sections.15" automaticContext="true" datacontexts="//@dataContexts.0/@elements.15">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerDescriptorRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerDescriptorRegistry"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single LayerDescriptor" sections="//@tabs.0/@sections.16" automaticContext="true" datacontexts="//@dataContexts.0/@elements.16">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single LayerApplicationFactory" sections="//@tabs.0/@sections.17" automaticContext="true" datacontexts="//@dataContexts.0/@elements.17">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerApplicationFactory">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerApplicationFactory"/>
     </constraints>
   </views>
   <views name="Single PropertySetterRegistry" sections="//@tabs.0/@sections.18" automaticContext="true" datacontexts="//@dataContexts.0/@elements.18">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertySetterRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertySetterRegistry"/>
     </constraints>
   </views>
   <views name="Single PropertySetter" sections="//@tabs.0/@sections.19" automaticContext="true" datacontexts="//@dataContexts.0/@elements.19">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single StringToPropertySetter" sections="//@tabs.0/@sections.20" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringToPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToPropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single LayerOperatorDescriptorRegistry" sections="//@tabs.0/@sections.21" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerOperatorDescriptorRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerOperatorDescriptorRegistry"/>
     </constraints>
   </views>
   <views name="Single LayerOperatorDescriptor" sections="//@tabs.0/@sections.22" automaticContext="true" datacontexts="//@dataContexts.0/@elements.22">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerOperatorDescriptor"/>
     </constraints>
   </views>
   <views name="Single PropertyOperator" sections="//@tabs.0/@sections.23" automaticContext="true" datacontexts="//@dataContexts.0/@elements.23">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertyOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single AbstractLayerOperator" sections="//@tabs.0/@sections.24" automaticContext="true" datacontexts="//@dataContexts.0/@elements.24">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAbstractLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractLayerOperator"/>
     </constraints>
   </views>
   <views name="Single LayerOperator" sections="//@tabs.0/@sections.25" automaticContext="true" datacontexts="//@dataContexts.0/@elements.25">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerOperator"/>
     </constraints>
   </views>
   <views name="Single DefaultPropertyOperator" sections="//@tabs.0/@sections.26" automaticContext="true" datacontexts="//@dataContexts.0/@elements.26">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleDefaultPropertyOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="DefaultPropertyOperator"/>
     </constraints>
   </views>
   <views name="Single AbstractLayer" sections="//@tabs.0/@sections.27" automaticContext="true" datacontexts="//@dataContexts.0/@elements.27">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAbstractLayer">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractLayer"/>
     </constraints>
   </views>
   <views name="Single StringToTypeInstanceMap" sections="//@tabs.0/@sections.28" automaticContext="true" datacontexts="//@dataContexts.0/@elements.28">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringToTypeInstanceMap">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToTypeInstanceMap"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single Folder" sections="//@tabs.0/@sections.29" automaticContext="true" datacontexts="//@dataContexts.0/@elements.29">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFolder">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Folder"/>
     </constraints>
   </views>
   <views name="Single IntInstance" sections="//@tabs.0/@sections.30" automaticContext="true" datacontexts="//@dataContexts.0/@elements.30">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIntInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IntInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single BooleanInstance" sections="//@tabs.0/@sections.31" automaticContext="true" datacontexts="//@dataContexts.0/@elements.31">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBooleanInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="BooleanInstance"/>
     </constraints>
   </views>
   <views name="Single StringInstance" sections="//@tabs.0/@sections.32" automaticContext="true" datacontexts="//@dataContexts.0/@elements.32">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringInstance"/>
     </constraints>
   </views>
   <views name="Single IntType" sections="//@tabs.0/@sections.33" automaticContext="true" datacontexts="//@dataContexts.0/@elements.33">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIntType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IntType"/>
     </constraints>
   </views>
   <views name="Single BooleanType" sections="//@tabs.0/@sections.34" automaticContext="true" datacontexts="//@dataContexts.0/@elements.34">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleBooleanType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="BooleanType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single StringType" sections="//@tabs.0/@sections.35" automaticContext="true" datacontexts="//@dataContexts.0/@elements.35">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringType"/>
     </constraints>
   </views>
   <views name="Single CustomType" sections="//@tabs.0/@sections.36" automaticContext="true" datacontexts="//@dataContexts.0/@elements.36">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCustomType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="CustomType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single TopLayerOperator" sections="//@tabs.0/@sections.37" automaticContext="true" datacontexts="//@dataContexts.0/@elements.37">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTopLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TopLayerOperator"/>
     </constraints>
   </views>
   <views name="Single StackedLayerOperator" sections="//@tabs.0/@sections.38" automaticContext="true" datacontexts="//@dataContexts.0/@elements.38">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStackedLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StackedLayerOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single CustomLayerOperator" sections="//@tabs.0/@sections.39" automaticContext="true" datacontexts="//@dataContexts.0/@elements.39">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCustomLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="CustomLayerOperator"/>
     </constraints>
   </views>
   <views name="Single PropertyIndex" sections="//@tabs.0/@sections.40" automaticContext="true" datacontexts="//@dataContexts.0/@elements.40">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSinglePropertyIndex">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyIndex"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single StringToPropertyIndexMap" sections="//@tabs.0/@sections.41" automaticContext="true" datacontexts="//@dataContexts.0/@elements.41">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStringToPropertyIndexMap">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToPropertyIndexMap"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single SimpleLayerDescriptor" sections="//@tabs.0/@sections.42" automaticContext="true" datacontexts="//@dataContexts.0/@elements.42">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleSimpleLayerDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="SimpleLayerDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single RegExpLayerDescriptor" sections="//@tabs.0/@sections.43" automaticContext="true" datacontexts="//@dataContexts.0/@elements.43">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRegExpLayerDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="RegExpLayerDescriptor"/>
     </constraints>
   </views>
   <views name="Single NullInstance" sections="//@tabs.0/@sections.44" automaticContext="true" datacontexts="//@dataContexts.0/@elements.44">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleNullInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="NullInstance"/>
     </constraints>
   </views>
   <views name="Single RegExpLayer" sections="//@tabs.0/@sections.45" automaticContext="true" datacontexts="//@dataContexts.0/@elements.45">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleRegExpLayer">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="RegExpLayer"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single Layer" sections="//@tabs.0/@sections.46" automaticContext="true" datacontexts="//@dataContexts.0/@elements.46">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLayer">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Layer"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single Color" sections="//@tabs.0/@sections.47" automaticContext="true" datacontexts="//@dataContexts.0/@elements.47">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleColor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Color"/>
     </constraints>
   </views>
   <views name="Single ColorInstance" sections="//@tabs.0/@sections.48" automaticContext="true" datacontexts="//@dataContexts.0/@elements.48">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleColorInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="ColorInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single FillInstance" sections="//@tabs.0/@sections.49" automaticContext="true" datacontexts="//@dataContexts.0/@elements.49">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFillInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FillInstance"/>
     </constraints>
   </views>
   <views name="Single Fill" sections="//@tabs.0/@sections.50" automaticContext="true" datacontexts="//@dataContexts.0/@elements.50">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFill">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Fill"/>
     </constraints>
   </views>
   <views name="Single FillPropertySetter" sections="//@tabs.0/@sections.51" automaticContext="true" datacontexts="//@dataContexts.0/@elements.51">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFillPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FillPropertySetter"/>
     </constraints>
   </views>
   <views name="Single IsValidPropertySetter" sections="//@tabs.0/@sections.52" automaticContext="true" datacontexts="//@dataContexts.0/@elements.52">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIsValidPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IsValidPropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single NullPropertySetter" sections="//@tabs.0/@sections.53" automaticContext="true" datacontexts="//@dataContexts.0/@elements.53">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleNullPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="NullPropertySetter"/>
     </constraints>
   </views>
   <views name="Single LineType" sections="//@tabs.0/@sections.54" automaticContext="true" datacontexts="//@dataContexts.0/@elements.54">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLineType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LineType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single LineInstance" sections="//@tabs.0/@sections.55" automaticContext="true" datacontexts="//@dataContexts.0/@elements.55">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLineInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LineInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single LinePropertySetter" sections="//@tabs.0/@sections.56" automaticContext="true" datacontexts="//@dataContexts.0/@elements.56">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleLinePropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LinePropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single FontPropertySetter" sections="//@tabs.0/@sections.57" automaticContext="true" datacontexts="//@dataContexts.0/@elements.57">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFontPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FontPropertySetter"/>
     </constraints>
   </views>
   <views name="Single FontInstance" sections="//@tabs.0/@sections.58" automaticContext="true" datacontexts="//@dataContexts.0/@elements.58">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFontInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FontInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single FontType" sections="//@tabs.0/@sections.59" automaticContext="true" datacontexts="//@dataContexts.0/@elements.59">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleFontType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FontType"/>
     </constraints>
   </views>
   <views name="Single IsVisiblePropertySetter" sections="//@tabs.0/@sections.60" automaticContext="true" datacontexts="//@dataContexts.0/@elements.60">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIsVisiblePropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IsVisiblePropertySetter"/>
     </constraints>
   </views>
   <views name="Single TopLayerOperatorDescriptor" sections="//@tabs.0/@sections.61" automaticContext="true" datacontexts="//@dataContexts.0/@elements.61">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleTopLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TopLayerOperatorDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single StackedLayerOperatorDescriptor" sections="//@tabs.0/@sections.62" automaticContext="true" datacontexts="//@dataContexts.0/@elements.62">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStackedLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StackedLayerOperatorDescriptor"/>
     </constraints>
   </views>
   <views name="Single CustomPropertyOperator" sections="//@tabs.0/@sections.63" automaticContext="true" datacontexts="//@dataContexts.0/@elements.63">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleCustomPropertyOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="CustomPropertyOperator"/>
     </constraints>
   </views>
   <views name="Single AndStackedLayerOperatorDescriptor" sections="//@tabs.0/@sections.64" automaticContext="true" datacontexts="//@dataContexts.0/@elements.64">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleAndStackedLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="AndStackedLayerOperatorDescriptor"/>
     </constraints>
   </views>
   <views name="Single OrStackedLayerOperatorDescriptor" sections="//@tabs.0/@sections.65" automaticContext="true" datacontexts="//@dataContexts.0/@elements.65">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleOrStackedLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="OrStackedLayerOperatorDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views name="Single IsAbstractUmlSetter" sections="//@tabs.0/@sections.66" automaticContext="true" datacontexts="//@dataContexts.0/@elements.66">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleIsAbstractUmlSetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IsAbstractUmlSetter"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerNamedStyle" sections="//@tabs.0/@sections.67" automaticContext="true" datacontexts="//@dataContexts.0/@elements.0">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerNamedStyle">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerNamedStyle"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayersStack" sections="//@tabs.0/@sections.68" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayersStack">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayersStack"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerExpression" sections="//@tabs.0/@sections.69" automaticContext="true" datacontexts="//@dataContexts.0/@elements.2">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerExpression">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerExpression"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple ApplicationDependantElement" sections="//@tabs.0/@sections.70" automaticContext="true" datacontexts="//@dataContexts.0/@elements.3">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleApplicationDependantElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="ApplicationDependantElement"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayersStackApplication" sections="//@tabs.0/@sections.71" automaticContext="true" datacontexts="//@dataContexts.0/@elements.4">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayersStackApplication">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayersStackApplication"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple FolderElement" sections="//@tabs.0/@sections.72" automaticContext="true" datacontexts="//@dataContexts.0/@elements.5">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFolderElement">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FolderElement"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerStackDescriptorRegistry" sections="//@tabs.0/@sections.73" automaticContext="true" datacontexts="//@dataContexts.0/@elements.6">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerStackDescriptorRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerStackDescriptorRegistry"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple PropertyRegistry" sections="//@tabs.0/@sections.74" automaticContext="true" datacontexts="//@dataContexts.0/@elements.7">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertyRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyRegistry"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Property" sections="//@tabs.0/@sections.75" automaticContext="true" datacontexts="//@dataContexts.0/@elements.8">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleProperty">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Property"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Type" sections="//@tabs.0/@sections.76" automaticContext="true" datacontexts="//@dataContexts.0/@elements.9">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Type"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Metamodel" sections="//@tabs.0/@sections.77" automaticContext="true" datacontexts="//@dataContexts.0/@elements.10">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleMetamodel">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Metamodel"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple TypeInstance" sections="//@tabs.0/@sections.78" automaticContext="true" datacontexts="//@dataContexts.0/@elements.11">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTypeInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TypeInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple ComputePropertyValueCommandItf" sections="//@tabs.0/@sections.79" automaticContext="true" datacontexts="//@dataContexts.0/@elements.12">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleComputePropertyValueCommandItf">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="ComputePropertyValueCommandItf"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple TypeRegistry" sections="//@tabs.0/@sections.80" automaticContext="true" datacontexts="//@dataContexts.0/@elements.13">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTypeRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TypeRegistry"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StringToTypeMap" sections="//@tabs.0/@sections.81" automaticContext="true" datacontexts="//@dataContexts.0/@elements.14">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringToTypeMap">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToTypeMap"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerDescriptorRegistry" sections="//@tabs.0/@sections.82" automaticContext="true" datacontexts="//@dataContexts.0/@elements.15">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerDescriptorRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerDescriptorRegistry"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerDescriptor" sections="//@tabs.0/@sections.83" automaticContext="true" datacontexts="//@dataContexts.0/@elements.16">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerApplicationFactory" sections="//@tabs.0/@sections.84" automaticContext="true" datacontexts="//@dataContexts.0/@elements.17">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerApplicationFactory">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerApplicationFactory"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple PropertySetterRegistry" sections="//@tabs.0/@sections.85" automaticContext="true" datacontexts="//@dataContexts.0/@elements.18">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertySetterRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertySetterRegistry"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple PropertySetter" sections="//@tabs.0/@sections.86" automaticContext="true" datacontexts="//@dataContexts.0/@elements.19">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertySetter"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StringToPropertySetter" sections="//@tabs.0/@sections.87" automaticContext="true" datacontexts="//@dataContexts.0/@elements.20">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringToPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToPropertySetter"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerOperatorDescriptorRegistry" sections="//@tabs.0/@sections.88" automaticContext="true" datacontexts="//@dataContexts.0/@elements.21">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerOperatorDescriptorRegistry">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerOperatorDescriptorRegistry"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerOperatorDescriptor" sections="//@tabs.0/@sections.89" automaticContext="true" datacontexts="//@dataContexts.0/@elements.22">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerOperatorDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple PropertyOperator" sections="//@tabs.0/@sections.90" automaticContext="true" datacontexts="//@dataContexts.0/@elements.23">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertyOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple AbstractLayerOperator" sections="//@tabs.0/@sections.91" automaticContext="true" datacontexts="//@dataContexts.0/@elements.24">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAbstractLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractLayerOperator"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LayerOperator" sections="//@tabs.0/@sections.92" automaticContext="true" datacontexts="//@dataContexts.0/@elements.25">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LayerOperator"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple DefaultPropertyOperator" sections="//@tabs.0/@sections.93" automaticContext="true" datacontexts="//@dataContexts.0/@elements.26">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleDefaultPropertyOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="DefaultPropertyOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple AbstractLayer" sections="//@tabs.0/@sections.94" automaticContext="true" datacontexts="//@dataContexts.0/@elements.27">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAbstractLayer">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="AbstractLayer"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StringToTypeInstanceMap" sections="//@tabs.0/@sections.95" automaticContext="true" datacontexts="//@dataContexts.0/@elements.28">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringToTypeInstanceMap">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToTypeInstanceMap"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Folder" sections="//@tabs.0/@sections.96" automaticContext="true" datacontexts="//@dataContexts.0/@elements.29">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFolder">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Folder"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple IntInstance" sections="//@tabs.0/@sections.97" automaticContext="true" datacontexts="//@dataContexts.0/@elements.30">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIntInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IntInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple BooleanInstance" sections="//@tabs.0/@sections.98" automaticContext="true" datacontexts="//@dataContexts.0/@elements.31">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBooleanInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="BooleanInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StringInstance" sections="//@tabs.0/@sections.99" automaticContext="true" datacontexts="//@dataContexts.0/@elements.32">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringInstance"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple IntType" sections="//@tabs.0/@sections.100" automaticContext="true" datacontexts="//@dataContexts.0/@elements.33">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIntType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IntType"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple BooleanType" sections="//@tabs.0/@sections.101" automaticContext="true" datacontexts="//@dataContexts.0/@elements.34">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleBooleanType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="BooleanType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StringType" sections="//@tabs.0/@sections.102" automaticContext="true" datacontexts="//@dataContexts.0/@elements.35">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple CustomType" sections="//@tabs.0/@sections.103" automaticContext="true" datacontexts="//@dataContexts.0/@elements.36">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCustomType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="CustomType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple TopLayerOperator" sections="//@tabs.0/@sections.104" automaticContext="true" datacontexts="//@dataContexts.0/@elements.37">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTopLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TopLayerOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StackedLayerOperator" sections="//@tabs.0/@sections.105" automaticContext="true" datacontexts="//@dataContexts.0/@elements.38">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStackedLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StackedLayerOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple CustomLayerOperator" sections="//@tabs.0/@sections.106" automaticContext="true" datacontexts="//@dataContexts.0/@elements.39">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCustomLayerOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="CustomLayerOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple PropertyIndex" sections="//@tabs.0/@sections.107" automaticContext="true" datacontexts="//@dataContexts.0/@elements.40">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultiplePropertyIndex">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="PropertyIndex"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StringToPropertyIndexMap" sections="//@tabs.0/@sections.108" automaticContext="true" datacontexts="//@dataContexts.0/@elements.41">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStringToPropertyIndexMap">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StringToPropertyIndexMap"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple SimpleLayerDescriptor" sections="//@tabs.0/@sections.109" automaticContext="true" datacontexts="//@dataContexts.0/@elements.42">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleSimpleLayerDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="SimpleLayerDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple RegExpLayerDescriptor" sections="//@tabs.0/@sections.110" automaticContext="true" datacontexts="//@dataContexts.0/@elements.43">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRegExpLayerDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="RegExpLayerDescriptor"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple NullInstance" sections="//@tabs.0/@sections.111" automaticContext="true" datacontexts="//@dataContexts.0/@elements.44">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleNullInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="NullInstance"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple RegExpLayer" sections="//@tabs.0/@sections.112" automaticContext="true" datacontexts="//@dataContexts.0/@elements.45">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleRegExpLayer">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="RegExpLayer"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Layer" sections="//@tabs.0/@sections.113" automaticContext="true" datacontexts="//@dataContexts.0/@elements.46">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLayer">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Layer"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Color" sections="//@tabs.0/@sections.114" automaticContext="true" datacontexts="//@dataContexts.0/@elements.47">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleColor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Color"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple ColorInstance" sections="//@tabs.0/@sections.115" automaticContext="true" datacontexts="//@dataContexts.0/@elements.48">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleColorInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="ColorInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple FillInstance" sections="//@tabs.0/@sections.116" automaticContext="true" datacontexts="//@dataContexts.0/@elements.49">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFillInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FillInstance"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple Fill" sections="//@tabs.0/@sections.117" automaticContext="true" datacontexts="//@dataContexts.0/@elements.50">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFill">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="Fill"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple FillPropertySetter" sections="//@tabs.0/@sections.118" automaticContext="true" datacontexts="//@dataContexts.0/@elements.51">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFillPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FillPropertySetter"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple IsValidPropertySetter" sections="//@tabs.0/@sections.119" automaticContext="true" datacontexts="//@dataContexts.0/@elements.52">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIsValidPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IsValidPropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple NullPropertySetter" sections="//@tabs.0/@sections.120" automaticContext="true" datacontexts="//@dataContexts.0/@elements.53">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleNullPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="NullPropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LineType" sections="//@tabs.0/@sections.121" automaticContext="true" datacontexts="//@dataContexts.0/@elements.54">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLineType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LineType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LineInstance" sections="//@tabs.0/@sections.122" automaticContext="true" datacontexts="//@dataContexts.0/@elements.55">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLineInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LineInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple LinePropertySetter" sections="//@tabs.0/@sections.123" automaticContext="true" datacontexts="//@dataContexts.0/@elements.56">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleLinePropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="LinePropertySetter"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple FontPropertySetter" sections="//@tabs.0/@sections.124" automaticContext="true" datacontexts="//@dataContexts.0/@elements.57">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFontPropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FontPropertySetter"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple FontInstance" sections="//@tabs.0/@sections.125" automaticContext="true" datacontexts="//@dataContexts.0/@elements.58">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFontInstance">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FontInstance"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple FontType" sections="//@tabs.0/@sections.126" automaticContext="true" datacontexts="//@dataContexts.0/@elements.59">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleFontType">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="FontType"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple IsVisiblePropertySetter" sections="//@tabs.0/@sections.127" automaticContext="true" datacontexts="//@dataContexts.0/@elements.60">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIsVisiblePropertySetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IsVisiblePropertySetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple TopLayerOperatorDescriptor" sections="//@tabs.0/@sections.128" automaticContext="true" datacontexts="//@dataContexts.0/@elements.61">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleTopLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="TopLayerOperatorDescriptor"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple StackedLayerOperatorDescriptor" sections="//@tabs.0/@sections.129" automaticContext="true" datacontexts="//@dataContexts.0/@elements.62">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleStackedLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="StackedLayerOperatorDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple CustomPropertyOperator" sections="//@tabs.0/@sections.130" automaticContext="true" datacontexts="//@dataContexts.0/@elements.63">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleCustomPropertyOperator">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="CustomPropertyOperator"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple AndStackedLayerOperatorDescriptor" sections="//@tabs.0/@sections.131" automaticContext="true" datacontexts="//@dataContexts.0/@elements.64">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleAndStackedLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="AndStackedLayerOperatorDescriptor"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple OrStackedLayerOperatorDescriptor" sections="//@tabs.0/@sections.132" automaticContext="true" datacontexts="//@dataContexts.0/@elements.65">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleOrStackedLayerOperatorDescriptor">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="OrStackedLayerOperatorDescriptor"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
   </views>
   <views elementMultiplicity="-1" name="Multiple IsAbstractUmlSetter" sections="//@tabs.0/@sections.133" automaticContext="true" datacontexts="//@dataContexts.0/@elements.66">
     <constraints xsi:type="constraints:SimpleConstraint" name="isMultipleIsAbstractUmlSetter">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.0"/>
       <properties xsi:type="constraints:ValueProperty" name="className" value="IsAbstractUmlSetter"/>
       <properties xsi:type="constraints:ValueProperty" name="nsUri" value="org.eclipse.papyrus.layers.0.10"/>
     </constraints>
@@ -1535,6 +1535,6 @@
     <elements name="AndStackedLayerOperatorDescriptor" supertypes="//@dataContexts.0/@elements.62"/>
     <elements name="OrStackedLayerOperatorDescriptor" supertypes="//@dataContexts.0/@elements.62"/>
     <elements name="IsAbstractUmlSetter" supertypes="//@dataContexts.0/@elements.19"/>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.0"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>

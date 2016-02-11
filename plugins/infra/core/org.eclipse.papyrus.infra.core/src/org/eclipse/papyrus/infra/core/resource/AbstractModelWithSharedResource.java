@@ -250,4 +250,8 @@ public abstract class AbstractModelWithSharedResource<T extends EObject> extends
 		}
 	}
 
+	@Override
+	protected boolean isSupportedRoot(EObject object) {
+		return isModelRoot(object);
+	}
 }

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
- *
+ * Copyright (c) 2011, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
  *  Arnaud Cuccuru (CEA LIST) - arnaud.cuccuru@cea.fr
  *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 
@@ -39,7 +39,6 @@ import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerProvid
 import org.eclipse.papyrus.infra.services.markerlistener.providers.MarkerMonitorRegistry;
 import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtils;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MarkersMonitorService.
  */
@@ -103,17 +102,16 @@ public class MarkersMonitorService implements IService {
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(IMarkerEventListener.MARKER_EVENT_LISTENER_EXTENSION_POINT_ID);
 		this.registeredMarkerEventListeners = new ArrayList<IMarkerEventListener>();
-		try {
 			for (int i = 0; i < config.length; i++) {
-				Object o = config[i].createExecutableExtension("class");
+			// Access services by their ID (interface name) rather than create and throw away an instance
+			String serviceClass = config[i].getAttribute("class"); //$NON-NLS-1$
 				try {
-					this.registeredMarkerEventListeners.add((IMarkerEventListener) servicesRegistry.getService(o.getClass()));
+				this.registeredMarkerEventListeners.add((IMarkerEventListener) servicesRegistry.getService(serviceClass));
+			} catch (ClassCastException e) {
+				Activator.log.error("Registered service is not an IMarkerEventListener: " + serviceClass, e); //$NON-NLS-1$
 				} catch (ServiceException e) {
-					e.printStackTrace();
-				}
+				Activator.log.error("Failed to access registered service for marker listening", e); //$NON-NLS-1$
 			}
-		} catch (CoreException e) {
-			e.printStackTrace();
 		}
 		return this.registeredMarkerEventListeners;
 	}

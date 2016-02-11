@@ -4,6 +4,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.advice,
  org.eclipse.papyrus.infra.gmfdiag.common.commands,
  org.eclipse.papyrus.infra.gmfdiag.common.commands.requests,
+ org.eclipse.papyrus.infra.gmfdiag.common.databinding,
  org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom,
  org.eclipse.papyrus.infra.gmfdiag.common.decoration,
  org.eclipse.papyrus.infra.gmfdiag.common.editpart,
@@ -28,10 +29,12 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.providers,
  org.eclipse.papyrus.infra.gmfdiag.common.reconciler,
  org.eclipse.papyrus.infra.gmfdiag.common.selection,
+ org.eclipse.papyrus.infra.gmfdiag.common.service,
  org.eclipse.papyrus.infra.gmfdiag.common.service.shape,
  org.eclipse.papyrus.infra.gmfdiag.common.service.visualtype,
  org.eclipse.papyrus.infra.gmfdiag.common.snap,
  org.eclipse.papyrus.infra.gmfdiag.common.snap.copy,
+ org.eclipse.papyrus.infra.gmfdiag.common.spi,
  org.eclipse.papyrus.infra.gmfdiag.common.strategy,
  org.eclipse.papyrus.infra.gmfdiag.common.strategy.copy,
  org.eclipse.papyrus.infra.gmfdiag.common.strategy.paste,
@@ -40,7 +43,8 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.types,
  org.eclipse.papyrus.infra.gmfdiag.common.undocontext,
  org.eclipse.papyrus.infra.gmfdiag.common.updater,
- org.eclipse.papyrus.infra.gmfdiag.common.utils
+ org.eclipse.papyrus.infra.gmfdiag.common.utils,
+ org.eclipse.papyrus.infra.gmfdiag.internal.common.expressions;x-internal:=true
 Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.emf.ecore.edit;bundle-version="2.5.0",
  org.eclipse.papyrus.infra.core;bundle-version="1.2.0",
@@ -86,12 +90,12 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.papyrus.uml.tools;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.sync;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.core.sasheditor.di;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.core.sashwindows.di;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0",
+ org.eclipse.papyrus.infra.services.edit.ui;bundle-version="1.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
@@ -101,4 +105,4 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.infra.gmfdiag.common.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.common;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

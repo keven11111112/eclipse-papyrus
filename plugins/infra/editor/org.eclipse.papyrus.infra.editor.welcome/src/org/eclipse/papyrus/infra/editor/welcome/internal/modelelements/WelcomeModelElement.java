@@ -17,7 +17,7 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 
 /**
  * @author damus

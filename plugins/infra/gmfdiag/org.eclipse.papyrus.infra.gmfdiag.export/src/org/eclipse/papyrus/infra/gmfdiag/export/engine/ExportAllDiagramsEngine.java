@@ -20,6 +20,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
@@ -50,12 +52,11 @@ import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelsReader;
 import org.eclipse.papyrus.infra.core.sasheditor.di.contentprovider.DiSashModelManager;
-import org.eclipse.papyrus.infra.core.sashwindows.di.service.ILocalPageService;
 import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.infra.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
 import org.eclipse.papyrus.infra.core.services.ServiceStartKind;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
@@ -67,10 +68,8 @@ import org.eclipse.papyrus.infra.gmfdiag.export.actions.ExportAllDiagramsParamet
 import org.eclipse.papyrus.infra.gmfdiag.export.messages.Messages;
 import org.eclipse.papyrus.infra.services.decoration.DecorationService;
 import org.eclipse.papyrus.infra.services.markerlistener.MarkersMonitorService;
-import org.eclipse.papyrus.infra.ui.editor.DiSashModelManagerServiceFactory;
-import org.eclipse.papyrus.infra.ui.editor.PageMngrServiceFactory;
-import org.eclipse.papyrus.uml.tools.model.UmlUtils;
-import org.eclipse.papyrus.views.validation.internal.ValidationMarkersService;
+import org.eclipse.papyrus.infra.services.semantic.service.SemanticService;
+import org.eclipse.papyrus.infra.services.validation.IValidationMarkersService;
 import org.eclipse.swt.SWTError;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -202,11 +201,14 @@ public class ExportAllDiagramsEngine {
 
 
 				// Get pages manager from service registry
-				IPageManager pageManager = null;
+				IPageManager pageManager;
+				SemanticService semanticService;
 				try {
 					pageManager = ServiceUtilsForResourceSet.getInstance().getService(IPageManager.class, modelSet);
+					semanticService = ServiceUtilsForResourceSet.getInstance().getService(SemanticService.class, modelSet);
 				} catch (ServiceException e) {
 					Activator.log.error(e);
+					return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to obtain required services.", e);
 				}
 
 				if (diagnostic.getSeverity() != Diagnostic.OK || newMonitor.isCanceled()) {
@@ -214,17 +216,13 @@ public class ExportAllDiagramsEngine {
 				}
 
 				// Step 3 : Get all diagram
-				ILocalPageService service = new ExportDiagramLocalPageService(UmlUtils.getUmlResource(modelSet).getContents().get(0));
-				List<Object> pagesList = pageManager.allLocalPages(service);
-				List<Diagram> diagrams = new ArrayList<Diagram>();
-
-
-				for (Object page : pagesList) {
-
-					if (page instanceof Diagram) {
-						diagrams.add((Diagram) page);
-					}
-				}
+				List<Diagram> diagrams = Stream.of(semanticService.getSemanticRoots())
+						.map(ExportDiagramLocalPageService::new)
+						.flatMap(service -> pageManager.allLocalPages(service).stream())
+						.filter(Diagram.class::isInstance)
+						.map(Diagram.class::cast)
+						.distinct()
+						.collect(Collectors.toList());
 
 				if (newMonitor.isCanceled()) {
 					return handleDiagnosticStatus();
@@ -267,21 +265,30 @@ public class ExportAllDiagramsEngine {
 	 * @return the model set
 	 */
 	private ModelSet initialiseModelSet() {
-		ServicesRegistry service = new ServicesRegistry();
+		ServicesRegistry service = null;
 
-		// Add service factory for Model Set
+		try {
+			service = new ExtensionServicesRegistry();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			service = new ServicesRegistry(); // This won't really work
+		}
+
+		// Override service factory for Model Set
 		ServiceDescriptor descriptor = new ServiceDescriptor(ModelSet.class, ModelSetServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10);
 		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
 		service.add(descriptor);
 
-		// Add factory for editing domain
+		// Override factory for editing domain
 		descriptor = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
 		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
 		service.add(descriptor);
 
 		try {
-			service.startRegistry();
-		} catch (ServiceMultiException e) {
+			service.startServicesByClassKeys(
+					ModelSet.class,
+					TransactionalEditingDomain.class);
+		} catch (ServiceException e) {
 			Activator.log.error(e);
 		}
 
@@ -326,87 +333,66 @@ public class ExportAllDiagramsEngine {
 	 *            the model set
 	 */
 	private void initialiseServiceRegistry(ModelSet modelSet) {
-
 		ServicesRegistry service = ModelSetServiceFactory.getServiceRegistry(modelSet);
 
 		try {
 
 			if (service == null) {
-				service = new ServicesRegistry();
-				addModelSetServices(modelSet, service);
-				service.startRegistry();
+				service = new ExtensionServicesRegistry();
+				startModelSetServices(modelSet, service);
 			}
 
-			addCSSServices(service);
-			service.startRegistry();
-
-			addModelerServices(service);
-			service.startRegistry();
+			startCSSServices(service);
+			startModelerServices(service);
 
 		} catch (ServiceException e) {
 			diagnostic = new BasicDiagnostic(Diagnostic.ERROR, Activator.PLUGIN_ID, 0, "Failed to load models", new Object[] { e });
 		}
-
-
-
-
 	}
 
 
 	/**
-	 * Adds the model set services.
+	 * Starts the model set services.
 	 *
 	 * @param modelSet
 	 *            the model set
 	 * @param service
 	 *            the service
 	 */
-	private void addModelSetServices(ModelSet modelSet, ServicesRegistry service) {
+	private void startModelSetServices(ModelSet modelSet, ServicesRegistry service) throws ServiceException {
 		service.add(ModelSet.class, 10, modelSet);
-		ServiceDescriptor descriptor = new ServiceDescriptor(TransactionalEditingDomain.class, EditingDomainServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(ModelSet.class.getName()));
-		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
-		service.add(descriptor);
+
+		service.startServicesByClassKeys(ModelSet.class);
 	}
 
 
 	/**
-	 * Adds the modeler services.
+	 * Starts the modeler services.
 	 *
 	 * @param service
 	 *            the service
 	 */
-	private void addModelerServices(ServicesRegistry service) {
-
-		// Di model services
-		ServiceDescriptor descriptor = new ServiceDescriptor(DiSashModelManager.class, DiSashModelManagerServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(TransactionalEditingDomain.class.getName()));
-		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
-		service.add(descriptor);
-
-		// Page Manager services
-		descriptor = new ServiceDescriptor(IPageManager.class, PageMngrServiceFactory.class.getName(), ServiceStartKind.STARTUP, 10, Collections.singletonList(DiSashModelManager.class.getName()));
-		descriptor.setServiceTypeKind(ServiceTypeKind.serviceFactory);
-		service.add(descriptor);
-
-
-
+	private void startModelerServices(ServicesRegistry service) throws ServiceException {
+		service.startServicesByClassKeys(
+				DiSashModelManager.class,
+				IPageManager.class,
+				SemanticService.class);
 	}
 
 
 	/**
-	 * Adds the css services.
+	 * Starts the css services.
 	 *
 	 * @param service
 	 *            the service
 	 */
-	private void addCSSServices(ServicesRegistry service) {
-
-		service.add(MarkersMonitorService.class, 10, new MarkersMonitorService());
-		service.add(CssMarkerEventManagerService.class, 10, new CssMarkerEventManagerService());
-		service.add(MarkerToPseudoSelectorMappingService.class, 10, new MarkerToPseudoSelectorMappingService());
-		service.add(ValidationMarkersService.class, 10, new ValidationMarkersService());
-		service.add(DecorationService.class, 10, new DecorationService());
-
-
+	private void startCSSServices(ServicesRegistry service) throws ServiceException {
+		service.startServicesByClassKeys(
+				MarkersMonitorService.class,
+				CssMarkerEventManagerService.class,
+				MarkerToPseudoSelectorMappingService.class,
+				IValidationMarkersService.class,
+				DecorationService.class);
 	}
 
 	/**

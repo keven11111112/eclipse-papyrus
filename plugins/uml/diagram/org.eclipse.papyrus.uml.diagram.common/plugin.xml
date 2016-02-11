@@ -531,23 +531,6 @@
    </initializer>
 </extension>
 <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.eclipse.papyrus.uml.diagram.common.propertytester.DeleteActionPropertyTester"
-            id="org.eclipse.papyrus.uml.diagram.common.propertytester.deleteActionTester"
-            namespace="org.eclipse.papyrus.uml.diagram.common"
-            properties="isSemanticDeletion"
-            type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-      </propertyTester>
-      <propertyTester
-            class="org.eclipse.papyrus.uml.diagram.common.propertytester.DeleteActionPropertyTester"
-            id="org.eclipse.papyrus.uml.diagram.common.propertytester.deleteReadOnlyActionTester"
-            namespace="org.eclipse.papyrus.uml.diagram.common"
-            properties="isReadOnly"
-            type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-      </propertyTester>
-   </extension>
-<extension
       point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
    <defaultSemanticChildrenStrategy
          class="org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy"

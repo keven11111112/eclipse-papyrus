@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.infra.properties.ui.Layout;
 import org.eclipse.papyrus.infra.properties.ui.UiFactory;
 import org.eclipse.papyrus.infra.properties.ui.ValueAttribute;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 
 /**
  * A Command for create a {@link Section} in the given View.
@@ -153,10 +153,10 @@ public class CreateSectionAction extends StaticSelectionCommandAction {
 			newWidget.getAttributes().add(attribute);
 		}
 
-		newWidget.setWidgetType(ConfigurationManager.getInstance().getDefaultCompositeType());
+		newWidget.setWidgetType(PropertiesRuntime.getConfigurationManager().getDefaultCompositeType());
 
 		Layout layout = UiFactory.eINSTANCE.createLayout();
-		layout.setLayoutType(ConfigurationManager.getInstance().getDefaultLayoutType());
+		layout.setLayoutType(PropertiesRuntime.getConfigurationManager().getDefaultLayoutType());
 		newWidget.setLayout(layout);
 
 		return newWidget;
@@ -166,8 +166,8 @@ public class CreateSectionAction extends StaticSelectionCommandAction {
 		Map<String, String> namespaces = new HashMap<String, String>();
 		namespaces.put("xmlns", "http://www.eclipse.org/xwt/presentation"); //$NON-NLS-1$ //$NON-NLS-2$
 		namespaces.put("xmlns:x", "http://www.eclipse.org/xwt"); //$NON-NLS-1$ //$NON-NLS-2$
-		namespaces.put("xmlns:ppe", "clr-namespace:org.eclipse.papyrus.views.properties.widgets"); //$NON-NLS-1$ //$NON-NLS-2$
-		namespaces.put("xmlns:ppel", "clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"); //$NON-NLS-1$ //$NON-NLS-2$
+		namespaces.put("xmlns:ppe", "clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets"); //$NON-NLS-1$ //$NON-NLS-2$
+		namespaces.put("xmlns:ppel", "clr-namespace:org.eclipse.papyrus.infra.properties.ui.widgets.layout"); //$NON-NLS-1$ //$NON-NLS-2$
 		return namespaces;
 	}
 

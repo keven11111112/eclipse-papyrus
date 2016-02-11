@@ -29,7 +29,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.service.types.helper.ExtensionHelper;
+import org.eclipse.papyrus.uml.service.types.ui.util.ExtensionHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
-	public final static String SPECIFIC_EXTENSION_NAME_POLICY = org.eclipse.papyrus.uml.service.types.helper.ExtensionHelper.SPECIFIC_EXTENSION_NAME_POLICY;
+	public final static String SPECIFIC_EXTENSION_NAME_POLICY = org.eclipse.papyrus.uml.service.types.ui.util.ExtensionHelper.SPECIFIC_EXTENSION_NAME_POLICY;
 
 	public final static int CHANGE_NAME_OF_A_STEREOTYPE = Notification.SET;
 

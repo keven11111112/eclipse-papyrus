@@ -13,7 +13,7 @@
    <element name="extension">
       <annotation>
          <appinfo>
-            <meta.element />
+            <meta.element deprecated="true" replacement="org.eclipse.papyrus.infra.emf.gmf.historyListeners" />
          </appinfo>
       </annotation>
       <complexType>

@@ -23,15 +23,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngine;
 import org.eclipse.papyrus.infra.constraints.runtime.ConstraintEngineListener;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ICloseablePart;
 import org.eclipse.papyrus.infra.editor.welcome.IWelcomePageService;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.View;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.runtime.DefaultDisplayEngine;
-import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
-import org.eclipse.papyrus.views.properties.xwt.XWTSection;
+import org.eclipse.papyrus.infra.properties.ui.runtime.DefaultDisplayEngine;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.properties.ui.xwt.XWTSection;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -49,7 +49,7 @@ public class WelcomePage implements ICloseablePart {
 	private final Object model;
 
 	private FormToolkit toolkit;
-	private ViewConstraintEngine constraintEngine;
+	private ConstraintEngine<View> constraintEngine;
 	private ConstraintEngineListener constraintsListener;
 	private DefaultDisplayEngine displayEngine;
 	private ScrolledForm form;
@@ -94,7 +94,7 @@ public class WelcomePage implements ICloseablePart {
 
 	public Composite createControl(Composite parent) {
 		toolkit = new FormToolkit(parent.getDisplay());
-		constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
+		constraintEngine = PropertiesRuntime.getConstraintEngine();
 		displayEngine = new DefaultDisplayEngine(false);
 		attachConstraintEngine(constraintEngine);
 
@@ -114,7 +114,7 @@ public class WelcomePage implements ICloseablePart {
 		return form;
 	}
 
-	protected void attachConstraintEngine(ViewConstraintEngine engine) {
+	protected void attachConstraintEngine(ConstraintEngine<? extends View> engine) {
 		constraintsListener = event -> rebuildSections(form.getBody());
 		engine.addConstraintEngineListener(constraintsListener);
 	}
@@ -148,8 +148,7 @@ public class WelcomePage implements ICloseablePart {
 	}
 
 	protected void createSections(Composite parent) {
-		IStructuredSelection selection = new StructuredSelection(model);
-		Set<View> views = constraintEngine.getViews(selection);
+		Set<View> views = constraintEngine.getDisplayUnits(model);
 
 		// Get the unique tabs
 		Map<String, WelcomeTab> tabProxies = new HashMap<>();
@@ -177,6 +176,7 @@ public class WelcomePage implements ICloseablePart {
 			next.filterSections(views);
 		}
 
+		IStructuredSelection selection = new StructuredSelection(model);
 		for (WelcomeTab tab : tabs) {
 			for (Section section : tab.getSections()) {
 				XWTSection xwtSection = new XWTSection(section, tab.getView(section), displayEngine);

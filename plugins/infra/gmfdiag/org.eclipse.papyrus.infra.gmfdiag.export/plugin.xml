@@ -98,7 +98,7 @@
             allPopups="true"
             locationURI="popup:org.eclipse.papyrus.views.modelexplorer.modelexplorer.popup?after=org.eclipse.papyrus.uml.import.menu">
          <menu
-               id="org.eclipse.papyrus.uml.export.menu"
+               id="org.eclipse.papyrus.infra.gmfdiag.export.menu"
                label="&amp;Export"
                icon="icons/export_wiz_16x16-papyrusColor.gif"
                tooltip="Papyrus Export Menu">            

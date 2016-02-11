@@ -14,7 +14,7 @@ package org.eclipse.papyrus.customization.properties.storage.actions;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.IConfigurationManager;
 
 
 /**
@@ -40,7 +40,7 @@ public interface IContextCopyAction {
 
 	/**
 	 * Copy an existing context to a new one with the given name.
-	 * The new context is registered to the {@link ConfigurationManager}.
+	 * The new context is registered to the {@link IConfigurationManager}.
 	 *
 	 * @param source
 	 *            The source Context to copy
@@ -49,7 +49,7 @@ public interface IContextCopyAction {
 	 * @param monitor
 	 *            A monitor to track the progress of the copy operation. Will not be {@code null}
 	 * @return
-	 *         The new Context
+	 * 		The new Context
 	 *
 	 * @throws CoreException
 	 *             If an error occurred : the previous context cannot be read, or

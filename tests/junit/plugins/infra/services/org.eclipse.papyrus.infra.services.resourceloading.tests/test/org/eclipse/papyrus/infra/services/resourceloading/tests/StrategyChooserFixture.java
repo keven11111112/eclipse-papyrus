@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2016 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 485220
  *
  */
 package org.eclipse.papyrus.infra.services.resourceloading.tests;
 
-import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyChooser;
+import org.eclipse.papyrus.infra.services.resourceloading.IStrategyChooser;
+import org.eclipse.papyrus.infra.services.resourceloading.impl.ProxyManager;
 
 
 /**
@@ -23,14 +25,21 @@ import org.eclipse.papyrus.infra.services.resourceloading.preferences.StrategyCh
 public class StrategyChooserFixture {
 
 	private final int strategyToRestore;
+	private IStrategyChooser chooser;
 
 	public StrategyChooserFixture(int choose) {
-		strategyToRestore = new StrategyChooser().getCurrentStrategy();
-		StrategyChooser.setCurrentStrategy(choose);
+		super();
+
+		chooser = ProxyManager.getStrategyChooser();
+		strategyToRestore = chooser.getCurrentStrategy();
+		chooser.setStrategy(choose);
 	}
 
 	public void dispose() {
-		StrategyChooser.setCurrentStrategy(strategyToRestore);
+		if (chooser != null) {
+			chooser.setStrategy(strategyToRestore);
+			chooser = null;
+		}
 	}
 
 }

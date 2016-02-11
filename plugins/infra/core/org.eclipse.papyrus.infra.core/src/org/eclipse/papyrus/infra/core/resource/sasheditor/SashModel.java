@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.EMFLogicalModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.sashwindows.di.DiPackage;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 
@@ -349,6 +350,11 @@ public class SashModel extends EMFLogicalModel implements IModel {
 	@Override
 	protected boolean isRootElement(EObject object) {
 		return super.isRootElement(object) && (object instanceof SashWindowsMngr);
+	}
+
+	@Override
+	protected boolean isSupportedRoot(EObject object) {
+		return DiPackage.Literals.SASH_WINDOWS_MNGR.isInstance(object);
 	}
 
 	//

@@ -17,8 +17,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 
 /**
  * A Content provider returning the list of registered contexts
@@ -35,7 +35,7 @@ public class DependencyContentProvider extends AbstractStaticContentProvider {
 
 	@Override
 	public Object[] getElements() {
-		List<Context> registeredContexts = new LinkedList<Context>(ConfigurationManager.getInstance().getContexts());
+		List<Context> registeredContexts = new LinkedList<Context>(PropertiesRuntime.getConfigurationManager().getContexts());
 		List<Context> localContexts = new LinkedList<Context>();
 		for (Resource resource : source.eResource().getResourceSet().getResources()) {
 			for (EObject element : resource.getContents()) {

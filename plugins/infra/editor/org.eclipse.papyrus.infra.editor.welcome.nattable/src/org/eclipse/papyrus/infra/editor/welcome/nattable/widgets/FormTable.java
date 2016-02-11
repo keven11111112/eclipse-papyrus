@@ -49,11 +49,11 @@ import org.eclipse.papyrus.infra.editor.welcome.nattable.sorting.EventListObserv
 import org.eclipse.papyrus.infra.editor.welcome.nattable.sorting.PapyrusGlazedListEventsLayer;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.DataSource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.ModelElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
 import org.eclipse.papyrus.infra.ui.editor.IMultiDiagramEditor;
-import org.eclipse.papyrus.views.properties.modelelement.DataSource;
-import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;

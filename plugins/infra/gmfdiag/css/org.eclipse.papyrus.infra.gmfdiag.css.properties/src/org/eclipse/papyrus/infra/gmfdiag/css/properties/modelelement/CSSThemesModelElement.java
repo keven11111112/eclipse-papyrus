@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetLabelProvider;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 
 
 /**
@@ -44,7 +44,7 @@ public class CSSThemesModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.views.properties.modelelement.EMFModelElement#getLabelProvider(java.lang.String)
+	 * @see org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement#getLabelProvider(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return

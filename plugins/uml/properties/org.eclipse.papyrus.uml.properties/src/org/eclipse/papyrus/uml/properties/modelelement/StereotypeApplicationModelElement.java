@@ -23,6 +23,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.databinding.StereotypeApplicationObservableList;
@@ -30,7 +31,6 @@ import org.eclipse.papyrus.uml.tools.databinding.ProfileApplicationObservableLis
 import org.eclipse.papyrus.uml.tools.providers.ApplicableStereotypeContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.ProfileLabelProvider;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;

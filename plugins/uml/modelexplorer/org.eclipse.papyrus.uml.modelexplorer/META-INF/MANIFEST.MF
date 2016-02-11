@@ -37,11 +37,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui;bundle-version="2.11.0",
  org.eclipse.papyrus.infra.ui;bundle-version="1.2.0",
  org.eclipse.core.expressions,
- org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.ui.emf;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.service.types.ui;bundle-version="1.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-ClassPath: .,
- bin/
+Bundle-ClassPath: .
 Bundle-Version: 1.2.0.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin

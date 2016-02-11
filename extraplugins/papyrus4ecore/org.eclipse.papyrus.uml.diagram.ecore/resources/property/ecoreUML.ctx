@@ -2683,6 +2683,6 @@
       <properties name="Date"/>
       <properties name="Comment"/>
     </elements>
-    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@modelElementFactories.1"/>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@modelElementFactories.1"/>
   </dataContexts>
 </contexts:Context>

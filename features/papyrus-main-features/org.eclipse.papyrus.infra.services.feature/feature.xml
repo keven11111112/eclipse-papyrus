@@ -25,7 +25,7 @@ http://www.eclipse.org/legal/epl-v10.html
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.services.resourceloading" install-size="0" unpack="false" version="0.0.0"/>
 
-   <plugin download-size="0" id="org.eclipse.papyrus.infra.services.resourceloading.preferences" install-size="0" unpack="false" version="0.0.0"/>
+   <plugin download-size="0" id="org.eclipse.papyrus.infra.services.resourceloading.ui" install-size="0" unpack="false" version="0.0.0"/>
 
    <plugin download-size="0" id="org.eclipse.papyrus.infra.services.validation" install-size="0" unpack="false" version="0.0.0"/>
 

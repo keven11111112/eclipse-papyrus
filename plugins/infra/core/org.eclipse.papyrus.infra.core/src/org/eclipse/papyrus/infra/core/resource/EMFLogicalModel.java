@@ -177,4 +177,24 @@ public abstract class EMFLogicalModel extends AbstractBaseModel implements IEMFM
 				.filter(this::isRootElement)
 				.iterator();
 	}
+
+	/**
+	 * The very basic requirement is that I have a {@link #getResource() resource} in which
+	 * to persist the {@code object}.
+	 */
+	@Override
+	public boolean canPersist(EObject object) {
+		return (getResource() != null) && isSupportedRoot(object);
+	}
+
+	protected abstract boolean isSupportedRoot(EObject object);
+
+	@Override
+	public void persist(EObject object) {
+		if (!canPersist(object)) {
+			throw new IllegalArgumentException("cannot persist " + object); //$NON-NLS-1$
+		}
+
+		getResource().getContents().add(object);
+	}
 }

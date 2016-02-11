@@ -2,13 +2,13 @@
 <?eclipse version="3.4"?>
 
 <plugin>
-   <extension-point id="diagnosticians" name="Registered diagnostician" schema="schema/diagnostician.exsd"/>
+   <extension-point id="diagnosticians" name="Registered diagnostician" schema="schema/diagnosticians.exsd"/>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
             category="org.eclipse.papyrus.infra.core.sasheditor.preferences.generalcategory"
             class="org.eclipse.papyrus.infra.services.validation.preferences.PreferencePage"
-            id="org.eclipse.papyrus.infra.gmfdiag.preferences.validation"
+            id="org.eclipse.papyrus.infra.services.validation.preferences"
             name="Validation preferences">
       </page>
    </extension>
@@ -142,5 +142,21 @@
             class="org.eclipse.papyrus.infra.services.validation.ValidationFunctions"
             decorationType="org.eclipse.emf.ecore.diagnostic">
       </client>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.services.validation.internal.ValidationMarkersService"
+            description="Validation markers tracking service for the Model Validation View."
+            id="org.eclipse.papyrus.infra.services.validation.IValidationMarkersService"
+            priority="1"
+            startKind="startup">
+      </service>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.markerlistener.markereventlistener">
+      <listener
+            class="org.eclipse.papyrus.infra.services.validation.IValidationMarkersService">
+      </listener>
    </extension>
 </plugin>

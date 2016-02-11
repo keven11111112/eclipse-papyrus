@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal;
@@ -22,12 +22,14 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.DiagramPreferencePage
  * In the case of button ok pressed, the behavior of eclipse try of apply in the first preference page found.
  * Here each page has a specific behavior. So to store the preference, the active page is called
  *
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.ui.preferences.VisiblePageSingleton} API, instead.
  */
+@Deprecated
 public class VisiblePageSingleton {
 
 	private static VisiblePageSingleton instance;
 
-	private IPreferencePage page;
+	private final org.eclipse.papyrus.infra.ui.preferences.VisiblePageSingleton delegate = org.eclipse.papyrus.infra.ui.preferences.VisiblePageSingleton.getInstance();
 
 	/**
 	 *
@@ -47,7 +49,7 @@ public class VisiblePageSingleton {
 	 *            a {@link IPreferencePage} --> {@link DiagramPreferencePage} or {@link AbstractPapyrusPreferencePage}
 	 */
 	public void setVisiblePage(IPreferencePage page) {
-		this.page = page;
+		delegate.setVisiblePage(page);
 	}
 
 	/**
@@ -55,21 +57,13 @@ public class VisiblePageSingleton {
 	 * @return the Visible Page
 	 */
 	public IPreferencePage getVisiblePage() {
-		return this.page;
+		return delegate.getVisiblePage();
 	}
 
 	/**
 	 * call the visisble page in order to store preferences
 	 */
 	public void store() {
-		if (this.page != null) {
-			if (this.page instanceof DiagramPreferencePage) {
-				((DiagramPreferencePage) (this.page)).storeAllPreferences();
-			}
-			if (this.page instanceof AbstractPapyrusPreferencePage) {
-				((AbstractPapyrusPreferencePage) (this.page)).storeAllPreferences();
-			}
-
-		}
+		delegate.store();
 	}
 }

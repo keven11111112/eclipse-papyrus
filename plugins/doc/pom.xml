@@ -2,13 +2,15 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus.releng</artifactId>
+		<artifactId>org.eclipse.papyrus.plugins</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
-		<version>1.2.0-SNAPSHOT</version>
-		<relativePath>../../releng/main</relativePath>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>org.eclipse.papyrus.plugins.doc</artifactId>
+	<artifactId>org.eclipse.papyrus.plugins-doc</artifactId>
 	<packaging>pom</packaging>
+	<name>The Papyrus end-user and developer documentation bundles</name>
+	<description>Maven plugin dedicated to generate developer documentation through a dedicated website and pdf files.</description>
+	
 	<modules>
 		<module>org.eclipse.papyrus.cdo.ui.doc</module>
 		<module>org.eclipse.papyrus.copypaste.ui.doc</module>
@@ -31,8 +33,6 @@
 		<module>org.eclipse.papyrus.uml.search.ui.doc</module>
 		<module>org.eclipse.papyrus.views.properties.doc</module>
 	</modules>
-
-	<description>Maven plugin dedicated to generate developer documentation through a dedicated website and pdf files.</description>
 
 	<!-- mvn clean site site:stage-deploy scm-publish:publish-scm -->
 	<properties>

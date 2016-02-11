@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.widgets.editors;
 
 import org.eclipse.papyrus.infra.gmfdiag.widgets.Activator;
-import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
+import org.eclipse.papyrus.infra.properties.ui.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Composite;

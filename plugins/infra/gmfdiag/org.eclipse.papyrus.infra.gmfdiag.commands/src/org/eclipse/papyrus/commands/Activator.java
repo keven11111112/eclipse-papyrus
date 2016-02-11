@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
- *
+ * Copyright (c) 2011, 2016 Atos, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,11 +8,21 @@
  *
  * Contributors:
  *  Vincent Hemery (Atos) - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
 
+import java.util.function.BinaryOperator;
+
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.util.CommandUtils;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -31,17 +40,28 @@ public class Activator extends AbstractUIPlugin {
 	/** The log helper */
 	public static LogHelper log = new LogHelper();
 
+	// Teach the infra layer how to deal with GEF commands
+	static {
+		// The registry prefers the GMFtoGEFCommandWrapper for GMF ICommands
+		ICommandWrapper.REGISTRY.registerUnwrapper(ICommandProxy.class, ICommand.class,
+				ICommandProxy::getICommand);
+		// The registry prefers the GEFtoGMFCommandWrapper for GEF Commands
+		ICommandWrapper.REGISTRY.registerUnwrapper(CommandProxy.class, Command.class,
+				CommandProxy::getCommand);
+
+		@SuppressWarnings("deprecation")
+		BinaryOperator<Command> gefComposer = org.eclipse.papyrus.commands.util.NonDirtyingUtils::chain;
+		CommandUtils.REGISTRY.registerComposer(Command.class, gefComposer);
+		CommandUtils.REGISTRY.registerDecomposer(CompoundCommand.class, CompoundCommand::getCommands);
+		CommandUtils.REGISTRY.registerLabeller(Command.class, Command::getLabel);
+	}
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -50,11 +70,6 @@ public class Activator extends AbstractUIPlugin {
 		log.setPlugin(plugin);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;

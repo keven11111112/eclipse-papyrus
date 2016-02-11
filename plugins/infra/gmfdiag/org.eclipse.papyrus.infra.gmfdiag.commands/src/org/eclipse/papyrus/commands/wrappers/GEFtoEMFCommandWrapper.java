@@ -1,5 +1,5 @@
 /***************************************************************************
- * Copyright (c) 2007, 2014 Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana, CEA, and others.
+ * Copyright (c) 2007, 2014 Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana, CEA, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,25 +7,33 @@
  *
  * Contributors: Mario Cervera Ubeda (Prodevelop)
  *    Christian W. Damus (CEA) - bug 430701
+ *    Christian W. Damus - bug 485220
  *
  ******************************************************************************/
 package org.eclipse.papyrus.commands.wrappers;
 
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.papyrus.commands.INonDirtying;
+import org.eclipse.papyrus.infra.emf.gmf.command.ICommandWrapper;
+import org.eclipse.papyrus.infra.emf.gmf.command.INonDirtying;
 
-// TODO: Auto-generated Javadoc
 /**
  * A EMF Command that wraps a GEF command. Each method is redirected to the GEF one.
  */
-public class GEFtoEMFCommandWrapper extends AbstractCommand {
+public class GEFtoEMFCommandWrapper extends AbstractCommand implements ICommandWrapper<Command> {
 
 	/**
 	 * The wrapped GEF Command. Package-level visibility so that the command stack wrapper can
 	 * access the field.
 	 */
 	private final Command gefCommand;
+
+	static {
+		REGISTRY.registerWrapper(Command.class, org.eclipse.emf.common.command.Command.class,
+				GEFtoEMFCommandWrapper::wrap);
+		REGISTRY.registerUnwrapper(GEFtoEMFCommandWrapper.class, Command.class,
+				GEFtoEMFCommandWrapper::getWrappedCommand);
+	}
 
 	/**
 	 * Constructor.
@@ -57,56 +65,37 @@ public class GEFtoEMFCommandWrapper extends AbstractCommand {
 	 *
 	 * @return the GEF command
 	 */
-	// @unused
 	public Command getGEFCommand() {
 		return gefCommand;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canExecute()
-	 */
+	@Override
+	public Command getWrappedCommand() {
+		return getGEFCommand();
+	}
+
 	@Override
 	public boolean canExecute() {
 		return gefCommand.canExecute();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.emf.common.command.AbstractCommand#dispose()
-	 */
 	@Override
 	public void dispose() {
 		gefCommand.dispose();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.emf.common.command.AbstractCommand#canUndo()
-	 */
 	@Override
 	public boolean canUndo() {
 		return gefCommand.canUndo();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.emf.common.command.Command#execute()
-	 */
+	@Override
 	public void execute() {
 
 		gefCommand.execute();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.emf.common.command.Command#redo()
-	 */
+	@Override
 	public void redo() {
 		gefCommand.redo();
 	}

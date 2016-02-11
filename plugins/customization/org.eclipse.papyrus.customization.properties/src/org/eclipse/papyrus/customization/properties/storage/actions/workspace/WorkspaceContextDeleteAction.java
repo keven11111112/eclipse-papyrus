@@ -21,11 +21,11 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.customization.properties.messages.Messages;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextDeleteAction;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
 
 /**
  * An action to delete an existing context. This action cannot be undone.
- * If you simply want to disable an existing context, see {@link ConfigurationManager#disableContext(Context)}
+ * If you simply want to disable an existing context, see {@link IInternalConfigurationManager#disableContext(Context, boolean)}
  *
  * @author Camille Letavernier
  */

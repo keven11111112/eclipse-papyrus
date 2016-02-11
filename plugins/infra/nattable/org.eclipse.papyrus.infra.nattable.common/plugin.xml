@@ -250,12 +250,6 @@
    </helper>
 </extension>
 <extension
-      point="org.eclipse.papyrus.infra.gmfdiag.common.pasteStrategy">
-   <strategy
-         strategy="org.eclipse.papyrus.infra.nattable.common.strategy.paste.TablePasteStrategy">
-   </strategy>
-</extension>
-<extension
       point="org.eclipse.ui.commands">
    <command
          categoryId="org.eclipse.papyrus.infra.nattable.category"

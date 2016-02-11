@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +10,7 @@
  *  Jerome Benois (OBEO) - Initial API and implementation
  *  Francisco Javier Cano (PRODEVELOP)
  *  Thomas Szadel (ATOS) - Remove Backbone dependency
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -43,6 +43,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
@@ -70,7 +71,10 @@ public class NavigatorUtils {
 	 * @param element
 	 *            The object from which to retrieve the notation resources
 	 * @return An iterator of notation resources' roots, or <code>null</code> if none cannot be resolved
+	 * 
+	 * @deprecated Use the {@link NotationUtils#getAllNotations(org.eclipse.papyrus.infra.core.resource.ModelSet)} API, instead.
 	 */
+	@Deprecated
 	public static Iterator<EObject> getNotationRoots(EObject element) {
 		Iterator<Resource> notations = getResources(element, NotationModel.NOTATION_FILE_EXTENSION);
 		if (notations == null) {
@@ -105,6 +109,7 @@ public class NavigatorUtils {
 			}
 		}
 
+		@Override
 		public boolean hasNext() {
 			if (inner == null) {
 				return false;
@@ -125,6 +130,7 @@ public class NavigatorUtils {
 			return false;
 		}
 
+		@Override
 		public EObject next() {
 			if (inner == null) {
 				return null;
@@ -145,6 +151,7 @@ public class NavigatorUtils {
 			return null;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -225,16 +232,19 @@ public class NavigatorUtils {
 			return null;
 		}
 
+		@Override
 		public boolean hasNext() {
 			return (next != null);
 		}
 
+		@Override
 		public Resource next() {
 			Resource result = next;
 			next = getNextResource();
 			return result;
 		}
 
+		@Override
 		public void remove() {
 			throw new UnsupportedOperationException();
 		}
@@ -253,6 +263,7 @@ public class NavigatorUtils {
 		RunnableWithResult<IViewPart> runnable;
 		Display.getDefault().syncExec(runnable = new RunnableWithResult.Impl<IViewPart>() {
 
+			@Override
 			public void run() {
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				if (page == null) {
@@ -519,7 +530,7 @@ public class NavigatorUtils {
 	 *
 	 *
 	 * @return
-	 *         True if at least one object matches the predicate and targets the referencedElement
+	 * 		True if at least one object matches the predicate and targets the referencedElement
 	 */
 	public static boolean any(EObject referencedElement, final EClass type, final boolean searchAllContents, Predicate<EObject> predicate) {
 		if (referencedElement == null || referencedElement.eResource() == null || referencedElement.eResource().getResourceSet() == null) {
@@ -530,6 +541,7 @@ public class NavigatorUtils {
 
 		Predicate<EObject> composedPredicate = Predicates.and(new Predicate<EObject>() {
 
+			@Override
 			public boolean apply(EObject arg0) {
 				return type.isSuperTypeOf(arg0.eClass());
 			}
@@ -539,6 +551,7 @@ public class NavigatorUtils {
 
 			Iterable<EObject> iterable = new Iterable<EObject>() {
 
+				@Override
 				public Iterator<EObject> iterator() {
 					Iterator<EObject> allContentsIterator;
 

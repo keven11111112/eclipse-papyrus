@@ -51,6 +51,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.commands.CheckedOperationHistory;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.OpenDiagramCommand;
+import org.eclipse.papyrus.infra.core.language.ILanguageService;
+import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler2;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
@@ -72,7 +74,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.OwningRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.RootAutoSelect;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.statushandlers.StatusManager;
 
@@ -124,7 +125,6 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 
 		private CommandResult createDiagram() throws ServiceException {
-			Resource modelResource = UmlUtils.getUmlResource(modelSet);
 			Resource notationResource = getNotationResource(modelSet, owner, element);
 			if (notationResource == null) {
 				return CommandResult.newErrorCommandResult("Cannot create a diagram on the selected element (ReadOnly?)");
@@ -132,6 +132,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 			Resource diResource = DiModelUtils.getDiResource(modelSet);
 
 			if (owner == null) {
+				Resource modelResource = ILanguageService.getLanguageModels(modelSet).stream()
+						.filter(IEMFModel.class::isInstance)
+						.map(IEMFModel.class::cast)
+						.findAny()
+						.map(IEMFModel::getResource)
+						.orElse(null);
 				owner = getRootElement(modelResource);
 				attachModelToResource(owner, modelResource);
 			}

@@ -21,7 +21,7 @@ import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.papyrus.infra.widgets.util.RevealSemanticElementWrapper;
 import org.eclipse.papyrus.uml.modelexplorer.util.ModelExplorerUtils;
-import org.eclipse.papyrus.uml.service.types.handlers.AbstractUmlCreateCommandHandler;
+import org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractUmlCreateCommandHandler;
 import org.eclipse.papyrus.uml.service.types.utils.ICommandContext;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -38,7 +38,7 @@ public abstract class AbstractUmlModelExplorerCreateCommandHandler extends Abstr
 
 	/**
 	 *
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCommandHandler#getCommandContext()
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCommandHandler#getCommandContext()
 	 *
 	 * @return
 	 */

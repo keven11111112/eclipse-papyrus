@@ -175,9 +175,9 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 			}
 		}
 		// not found
-		throw new NotFoundException(NLS.bind("No Diagram named '{0}' can be found in Model.",diagramName)); //$NON-NLS-1$
+		throw new NotFoundException(NLS.bind("No Diagram named '{0}' can be found in Model.", diagramName)); //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * An object is additionally a root element only if it has a corresponding
 	 * viewpoint prototope.
@@ -185,5 +185,10 @@ public class NotationModel extends EMFLogicalModel implements IModel {
 	@Override
 	protected boolean isRootElement(EObject object) {
 		return super.isRootElement(object) && ViewPrototype.isViewObject(object);
+	}
+
+	@Override
+	protected boolean isSupportedRoot(EObject object) {
+		return ViewPrototype.isViewObject(object);
 	}
 }

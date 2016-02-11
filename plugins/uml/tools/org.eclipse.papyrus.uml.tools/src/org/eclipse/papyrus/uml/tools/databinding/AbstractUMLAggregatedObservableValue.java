@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.tools.databinding;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
+import org.eclipse.papyrus.infra.tools.databinding.CommandBasedObservableValue;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 
 /**

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net	- Bug 455311
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.command;
 
@@ -27,10 +29,9 @@ import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 
 
 public class ResetStyleCommand extends RecordingCommand {
@@ -42,7 +43,6 @@ public class ResetStyleCommand extends RecordingCommand {
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.SHADOWFIGURE);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.QUALIFIED_NAME);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		papyrusStyleAnnotations.add(StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH);
 	}
 
 	private Iterator<?> iterator;
@@ -169,27 +169,11 @@ public class ResetStyleCommand extends RecordingCommand {
 		// Remove the Papyrus Style EAnnotations
 		resetStyleAnnotations(view);
 
-		// Reset Stereotype Persistency
-		resetStereotypeView(view);
+		// Delegate to extenders
+		Activator.getDefault().getStylingService().resetStyle(view);
 
 		// Reset the visibility
 		view.eUnset(NotationPackage.eINSTANCE.getView_Visible());
-	}
-
-	/**
-	 * This method reset the style of the Stereotype Node
-	 * 
-	 * @param view
-	 *            Stereotype View
-	 */
-	private void resetStereotypeView(final View view) {
-		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
-
-		if (helper.isStereotypeView(view)) {
-			helper.unsetPersistency(domain, view);
-
-		}
-
 	}
 
 	/**

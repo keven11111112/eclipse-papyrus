@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.properties.modelelement;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElementFactory;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElementFactory;
 
 /**
  * A ModelElementFactory for handling UML-specific appearance properties

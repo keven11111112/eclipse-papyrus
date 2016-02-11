@@ -774,7 +774,7 @@
   </views>
   <views xmi:id="_O2hXSpLDEeWbp4A9_-WIrQ" name="SingleGradientData" sections="_O2e7AZLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_O2hXS5LDEeWbp4A9_-WIrQ" name="isGradientData">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.3"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.3"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_O2hXTJLDEeWbp4A9_-WIrQ" name="class" value="org.eclipse.gmf.runtime.notation.datatype.GradientData"/>
     </constraints>
   </views>

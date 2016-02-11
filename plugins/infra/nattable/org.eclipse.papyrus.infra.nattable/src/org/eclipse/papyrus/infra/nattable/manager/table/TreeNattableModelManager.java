@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
@@ -24,7 +23,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -34,8 +32,8 @@ import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnHideComma
 import org.eclipse.nebula.widgets.nattable.hideshow.command.MultiColumnShowCommand;
 import org.eclipse.nebula.widgets.nattable.hideshow.command.ShowAllColumnsCommand;
 import org.eclipse.nebula.widgets.nattable.layer.ILayer;
-import org.eclipse.papyrus.commands.Activator;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.emf.gmf.util.GMFUnsafe;
+import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.configuration.TreeTableClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.TreeTablePopupMenuConfiguration;
@@ -181,6 +179,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		return this.treeList;
 	}
 
+	@Override
 	public TreeList getTreeList() {
 		return this.treeList;
 	}
@@ -278,7 +277,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		if (columnAxisManager) {
 			return super.createAxisManager(representations, contentProvider, columnAxisManager);
 		} else {
-			CompositeTreeAxisManagerForEventList compositeAxisManager = new CompositeTreeAxisManagerForEventList((EventList<Object>) horizontalFilterList);
+			CompositeTreeAxisManagerForEventList compositeAxisManager = new CompositeTreeAxisManagerForEventList(horizontalFilterList);
 			final List<IAxisManagerForEventList> managers = new ArrayList<IAxisManagerForEventList>();
 			for (AxisManagerRepresentation current : representations) {
 				final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(current);
@@ -289,8 +288,8 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 			}
 			compositeAxisManager.init(this, null, contentProvider);
 			DatumTreeFormat treeFormat = getTreeFormat();
-			treeFormat.setTreeComparatorProvider((CompositeTreeAxisManagerForEventList) compositeAxisManager);
-			this.expansionModel.setAxisManager((CompositeTreeAxisManagerForEventList) compositeAxisManager);
+			treeFormat.setTreeComparatorProvider(compositeAxisManager);
+			this.expansionModel.setAxisManager(compositeAxisManager);
 			((CompositeAxisManagerForEventList) compositeAxisManager).setSubManagers(managers);
 			return compositeAxisManager;
 		}
@@ -435,6 +434,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	 * @return
 	 * 		the row header layer stack to use
 	 */
+	@Override
 	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
 		return new RowHeaderHierarchicalLayerStack(bodyLayerStack, this);
 	}

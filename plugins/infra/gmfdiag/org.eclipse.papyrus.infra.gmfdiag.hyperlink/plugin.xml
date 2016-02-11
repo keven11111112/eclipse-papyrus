@@ -24,4 +24,20 @@
       
    </extension>
 
+   <extension
+         point="org.eclipse.papyrus.infra.hyperlink.registration">
+      <hyperlink
+            helper="org.eclipse.papyrus.infra.gmfdiag.hyperlink.helper.EditorHyperLinkHelper"
+            position="50"
+            tabId="org.eclipse.papyrus.infra.hyperlink.editor">
+      </hyperlink>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <!-- Priority 35 is higher than the core's priority-40 label provider for the same type. -->
+      <labelProvider
+            priority="35"
+            provider="org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers.EditorHyperlinkLabelProvider">
+      </labelProvider>
+   </extension>
 </plugin>

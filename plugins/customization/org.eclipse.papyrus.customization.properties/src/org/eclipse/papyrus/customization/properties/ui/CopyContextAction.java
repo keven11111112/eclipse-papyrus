@@ -21,7 +21,8 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.storage.actions.IContextCopyAction;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
+import org.eclipse.papyrus.infra.properties.internal.ui.runtime.IInternalConfigurationManager;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.statushandlers.StatusManager;
 
@@ -55,7 +56,7 @@ public class CopyContextAction {
 	 *            If true, the new context will be activated and available immediately,
 	 *            while the previous one will be disabled to avoid conflicts
 	 * @return
-	 *         The new Context or {@code null} if it was not created (because of error or user cancellation
+	 * 		The new Context or {@code null} if it was not created (because of error or user cancellation
 	 */
 	public Context copy(final Context source, final String targetName, final boolean activate) {
 		final Context[] result = { null };
@@ -70,9 +71,10 @@ public class CopyContextAction {
 						result[0] = delegate.copy(source, targetName, monitor);
 
 						if (result[0] != null) {
-							ConfigurationManager.getInstance().addContext(result[0], activate);
+							IInternalConfigurationManager mgr = (IInternalConfigurationManager) PropertiesRuntime.getConfigurationManager();
+							mgr.addContext(result[0], activate);
 							if (activate) {
-								ConfigurationManager.getInstance().disableContext(source, true);
+								mgr.disableContext(source, true);
 							}
 						}
 					} catch (CoreException ex) {

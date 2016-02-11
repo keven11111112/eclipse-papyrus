@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
- *
+ * Copyright (c) 2009, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.preferences.pages;
@@ -19,7 +19,6 @@ import java.util.Set;
 import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.PapyrusPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.pages.internal.VisiblePageSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.AbstractGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.BackgroundColor;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.ConnectionGroup;
@@ -33,6 +32,8 @@ import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramDecoratio
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramFontGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramNodeColorGroup;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.ui.diagram.DiagramRulersAndGridGroup;
+import org.eclipse.papyrus.infra.ui.preferences.IPapyrusPreferencePage;
+import org.eclipse.papyrus.infra.ui.preferences.VisiblePageSingleton;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -40,7 +41,7 @@ import org.eclipse.swt.widgets.Group;
 
 /**
  */
-public class DiagramPreferencePage extends DiagramsPreferencePage {
+public class DiagramPreferencePage extends DiagramsPreferencePage implements IPapyrusPreferencePage {
 
 
 	private Set<AbstractGroup> groupSet;

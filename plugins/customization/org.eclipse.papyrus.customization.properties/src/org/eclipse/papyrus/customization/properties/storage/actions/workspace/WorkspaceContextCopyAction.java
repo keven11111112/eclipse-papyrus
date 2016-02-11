@@ -47,8 +47,9 @@ import org.eclipse.papyrus.infra.properties.catalog.PropertiesURIHandler;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.contexts.Section;
 import org.eclipse.papyrus.infra.properties.contexts.Tab;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * An action to build a new Property view context from an existing one.
@@ -105,7 +106,7 @@ public class WorkspaceContextCopyAction implements IContextCopyAction {
 			IStatus copyResult = copyAll(sourceContext, new File(targetDirectory, targetName + ".ctx"), sub.newChild(1, SubMonitor.SUPPRESS_NONE)); //$NON-NLS-1$
 
 			if (copyResult.isOK()) {
-				result = ConfigurationManager.getInstance().getContext(targetModelUri);
+				result = PropertiesRuntime.getConfigurationManager().getContext(targetModelUri);
 
 				result.setName(targetName);
 				result.setPrototype(source);

@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,11 +8,15 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  */
 package org.eclipse.papyrus.infra.gmfdiag.navigation;
 
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.preference.NavigationPreferenceInitializer;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -24,6 +27,8 @@ public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.gmfdiag.navigation"; //$NON-NLS-1$
+
+	public static final String IMG_SEPARATOR = "separator"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -36,12 +41,6 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -51,12 +50,6 @@ public class Activator extends AbstractUIPlugin {
 		preferenceInitializer.initializeDefaultPreferences();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see
-	 * org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -101,4 +94,14 @@ public class Activator extends AbstractUIPlugin {
 		return workBench.getActiveWorkbenchWindow();
 	}
 
+	@Override
+	protected void initializeImageRegistry(ImageRegistry reg) {
+		super.initializeImageRegistry(reg);
+
+		reg.put(IMG_SEPARATOR, imageDescriptorFromPlugin(PLUGIN_ID, "icons/separator.gif")); //$NON-NLS-1$
+	}
+
+	public Image getIcon(String key) {
+		return getImageRegistry().get(key);
+	}
 }

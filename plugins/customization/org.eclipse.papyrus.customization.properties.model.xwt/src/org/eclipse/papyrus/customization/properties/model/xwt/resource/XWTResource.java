@@ -48,8 +48,8 @@ import org.eclipse.papyrus.customization.properties.model.xwt.xwtxml.Root;
 import org.eclipse.papyrus.infra.properties.contexts.Context;
 import org.eclipse.papyrus.infra.properties.ui.CompositeWidget;
 import org.eclipse.papyrus.infra.properties.ui.UiPackage;
+import org.eclipse.papyrus.infra.properties.ui.util.PropertiesUtil;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 
 /**
  * A Resource for representing XWT (XML Widget Toolkit) files

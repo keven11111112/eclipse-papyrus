@@ -11,20 +11,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.customization.display;
 
-import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
-import org.eclipse.papyrus.views.properties.runtime.ViewConstraintEngine;
+import org.eclipse.papyrus.infra.properties.ui.runtime.PropertiesRuntime;
+import org.eclipse.papyrus.infra.properties.ui.runtime.ViewConstraintEngine;
 
 
 public class DisplayManager {
 
 	private DisplayManager() {
 		// TODO : Use a local constraint engine, and remove the context declaration in plugin.xml
-		constraintEngine = ConfigurationManager.getInstance().getConstraintEngine();
+		constraintEngine = PropertiesRuntime.getConfigurationManager().getConstraintEngine();
 
 		// TODO : Add support for local constraint engines in the creation factories
 		// constraintEngine = new DefaultViewConstraintEngine();
 		// ResourceSet resourceSet = new ResourceSetImpl();
-		//		URI uri = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/Model/Customization/Customization.ctx", true); //$NON-NLS-1$
+		// URI uri = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/Model/Customization/Customization.ctx", true); //$NON-NLS-1$
 		// try {
 		// EObject eObject = EMFHelper.loadEMFModel(resourceSet, uri);
 		//

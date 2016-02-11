@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A {@link ModelSet}'s {@link IModel} dedicated to created {@link Profile}.
@@ -254,4 +255,8 @@ public class CreatedPapyrusProfileModel extends EMFLogicalModel {
 		return super.isRootElement(object) && (object instanceof Profile);
 	}
 
+	@Override
+	protected boolean isSupportedRoot(EObject object) {
+		return UMLPackage.Literals.PROFILE.isInstance(object);
+	}
 }

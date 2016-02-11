@@ -11,15 +11,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.common.utils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
@@ -34,18 +36,27 @@ public class TableUtil {
 	 * @return the list of diagrams associated with the given element
 	 */
 	public static List<Table> getAssociatedTables(EObject element, ResourceSet resourceSet) {
+		List<Table> result;
+
 		if (resourceSet == null) {
-			if (element != null && element.eResource() != null) {
-				resourceSet = element.eResource().getResourceSet();
+			resourceSet = EMFHelper.getResourceSet(element);
+		}
+
+		if (resourceSet == null) {
+			// Deny
+			result = Collections.emptyList();
+		} else {
+			result = new ArrayList<Table>(3); // Don't anticipate many
+			for (EStructuralFeature.Setting setting : EMFHelper.getUsages(element)) {
+				if (setting.getEStructuralFeature() == NattablePackage.Literals.TABLE__OWNER) {
+					if (EMFHelper.getResourceSet(setting.getEObject()) == resourceSet) {
+						result.add((Table) setting.getEObject());
+					}
+				}
 			}
 		}
 
-		if (resourceSet instanceof ModelSet) {
-			Resource notationResource = NotationUtils.getNotationResource((ModelSet) resourceSet);
-			return getAssociatedTablesFromNotationResource(element, notationResource);
-		}
-
-		return Collections.emptyList();
+		return result;
 	}
 
 	/**

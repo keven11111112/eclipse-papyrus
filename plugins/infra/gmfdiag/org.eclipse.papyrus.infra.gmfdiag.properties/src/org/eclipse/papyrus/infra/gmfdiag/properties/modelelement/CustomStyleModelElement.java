@@ -29,10 +29,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringS
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.infra.properties.contexts.Property;
 import org.eclipse.papyrus.infra.properties.environment.Type;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.EMFModelElement;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 
 
 public class CustomStyleModelElement extends EMFModelElement {

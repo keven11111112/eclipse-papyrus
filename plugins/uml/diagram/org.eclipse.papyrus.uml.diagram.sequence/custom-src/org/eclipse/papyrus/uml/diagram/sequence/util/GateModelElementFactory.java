@@ -24,10 +24,10 @@ import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AnnotationModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AnnotationModelElementFactory;
 import org.eclipse.papyrus.infra.ui.emf.databinding.AnnotationObservableValue;
-import org.eclipse.papyrus.views.properties.Activator;
-import org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElementFactory;
+import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
@@ -40,7 +40,7 @@ public class GateModelElementFactory extends AnnotationModelElementFactory {
 	protected AnnotationModelElement doCreateFromSource(Object sourceElement, DataContextElement context) {
 		View source = NotationHelper.findView(sourceElement);
 		if (source == null) {
-			Activator.log.warn("Unable to resolve the selected element to an EObject"); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.log.warn("Unable to resolve the selected element to an EObject"); //$NON-NLS-1$
 			return null;
 		}
 		EditingDomain domain = EMFHelper.resolveEditingDomain(source);

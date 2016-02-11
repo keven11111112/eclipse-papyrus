@@ -90,7 +90,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.services.edit.ui.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.elementtypesconfigurations.ui.tests;bundle-version="1.2.0",
  org.eclipse.papyrus.infra.extendedtypes.ui.tests;bundle-version="1.2.0",
- org.eclipse.papyrus.infra.services.semantic.tests;bundle-version="1.2.0"
+ org.eclipse.papyrus.infra.services.semantic.tests;bundle-version="1.2.0",
+ org.eclipse.papyrus.uml.service.types.ui;bundle-version="1.2.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.2.0.qualifier

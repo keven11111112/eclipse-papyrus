@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.eclipse.papyrus.infra-gmfdiag</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.infra</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+    </parent>
+	<name>Papyrus Diagram Infrastructure</name>
+	<description>Common language-agnostic frameworks for GMF-based diagram editors.</description>
+
+	<modules>
+		<module>org.eclipse.papyrus.extensionpoints.editors</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.canonical</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.commands</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.common</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.controlmode</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.css.model</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.dnd</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.export</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.gef</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.hyperlink</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.menu</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.modelexplorer</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.navigation</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.outline</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.preferences</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.properties</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.viewersearcher</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.welcome</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.widgets</module>
+		<module>assistant</module>
+		<module>css</module>
+	</modules>
+</project>

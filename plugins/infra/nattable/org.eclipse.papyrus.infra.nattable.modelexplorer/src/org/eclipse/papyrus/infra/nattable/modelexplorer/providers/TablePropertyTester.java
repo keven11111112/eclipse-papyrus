@@ -16,8 +16,8 @@ import java.util.Iterator;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
-import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
 
 /**
  * This class provides test called by the plugin.xml in order to know if handlers should be active or not.
@@ -73,7 +73,7 @@ public class TablePropertyTester extends PropertyTester {
 				 * Used for example for facet elements
 				 */
 				final Object next = iter.next();
-				EObject object = NavigatorUtils.getElement(next, EObject.class);
+				EObject object = EMFHelper.getEObject(next);
 				if (!(object instanceof Table)) {
 					return false;
 				}

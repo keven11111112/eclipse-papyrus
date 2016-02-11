@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2016 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 410346
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common;
@@ -36,9 +37,11 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.OverlayVisibilityIcon;
+import org.eclipse.papyrus.infra.gmfdiag.common.spi.IGraphicalDeletionHelper;
 import org.eclipse.papyrus.uml.diagram.common.providers.AlternativeUMLItemProviderAdapterFactory;
 import org.eclipse.papyrus.uml.diagram.common.util.ColorManager;
 import org.eclipse.papyrus.uml.diagram.common.util.FontManager;
+import org.eclipse.papyrus.uml.diagram.internal.common.services.UMLGraphicalDeletionHelper;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.swt.graphics.Image;
@@ -50,6 +53,7 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.VisibilityKind;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -120,7 +124,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return image;
 	}
-	
+
 	private ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
@@ -141,6 +145,7 @@ public class Activator extends AbstractUIPlugin {
 		// TODO : support structural features
 		return null;
 	}
+
 	/**
 	 * Get an image descriptor for current item.
 	 *
@@ -155,6 +160,7 @@ public class Activator extends AbstractUIPlugin {
 		}
 		return null;
 	}
+
 	/**
 	 * Return the color manager. Initialize it if required.
 	 *
@@ -332,7 +338,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @param element
 	 *            The element for which we will retrieve the stereotype icon
 	 * @return
-	 *         The element's first applied stereotype's Image
+	 * 		The element's first applied stereotype's Image
 	 */
 	public static Image getIconElement(Element element) {
 		return getIconElement(element, false);
@@ -498,6 +504,8 @@ public class Activator extends AbstractUIPlugin {
 	/** The adapter factory. */
 	private ComposedAdapterFactory adapterFactory;
 
+	private ServiceRegistration<IGraphicalDeletionHelper> deletionHelperReg;
+
 	/**
 	 * Start.
 	 *
@@ -515,6 +523,8 @@ public class Activator extends AbstractUIPlugin {
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		plugin = this;
 		log = new LogHelper(plugin);
+
+		deletionHelperReg = context.registerService(IGraphicalDeletionHelper.class, new UMLGraphicalDeletionHelper(), null);
 	}
 
 	/**
@@ -530,6 +540,11 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		if (deletionHelperReg != null) {
+			deletionHelperReg.unregister();
+			deletionHelperReg = null;
+		}
+
 		super.stop(context);
 		log = null;
 		plugin = null;

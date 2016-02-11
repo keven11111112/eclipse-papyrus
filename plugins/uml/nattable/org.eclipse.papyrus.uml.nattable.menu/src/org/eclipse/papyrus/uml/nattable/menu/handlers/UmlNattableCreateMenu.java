@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.uml.nattable.menu.handlers;
 
 import org.eclipse.papyrus.infra.nattable.utils.NattableWidgetPropertyTester;
-import org.eclipse.papyrus.uml.service.types.menu.AbstractCreateUmlChildMenu;
+import org.eclipse.papyrus.uml.service.types.ui.menu.AbstractCreateUmlChildMenu;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.menus.IContributionRoot;

@@ -45,7 +45,7 @@ public abstract class AbstractSysmlNattableCreateCommandHandler extends Abstract
 	/**
 	 * Obtain the context of the active table editor.
 	 *
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCommandHandler#getCommandContext()
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCommandHandler#getCommandContext()
 	 *
 	 * @return
 	 */
@@ -58,7 +58,7 @@ public abstract class AbstractSysmlNattableCreateCommandHandler extends Abstract
 	/**
 	 * Verify if this handler is currently active and the command can execute. Additionally, verify if this table can add this type of element.
 	 *
-	 * @see org.eclipse.papyrus.uml.service.types.handlers.AbstractCreateCommandHandler#setEnabled(java.lang.Object)
+	 * @see org.eclipse.papyrus.uml.service.types.ui.handlers.AbstractCreateCommandHandler#setEnabled(java.lang.Object)
 	 *
 	 * @param evaluationContext
 	 */

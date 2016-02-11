@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - adapted for self-nesting behaviour
+ *  Christian W. Damus - bug 485220
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -20,7 +21,10 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RollbackException;
 
-
+/**
+ * @deprecated Use the {@link org.eclipse.papyrus.infra.emf.gmf.command.NestingNotifyingWorkspaceCommandStack} API, instead.
+ */
+@Deprecated
 public class NestingNotifyingWorkspaceCommandStack extends NotifyingWorkspaceCommandStack {
 
 	private NestingNotifyingWorkspaceCommandStack childCommandStack;
@@ -48,10 +52,12 @@ public class NestingNotifyingWorkspaceCommandStack extends NotifyingWorkspaceCom
 	private static IUndoContext computeNestedUndoContext() {
 		return new IUndoContext() {
 
+			@Override
 			public boolean matches(IUndoContext context) {
 				return context == this;
 			}
 
+			@Override
 			public String getLabel() {
 				return "Nested Undo Context";
 			}

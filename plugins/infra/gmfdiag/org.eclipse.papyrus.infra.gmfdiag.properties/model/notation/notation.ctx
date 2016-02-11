@@ -391,7 +391,7 @@
   </views>
   <views xmi:id="_Lf9rSJLDEeWbp4A9_-WIrQ" name="Single RulersAndGrid" sections="_Lf8dHZLDEeWbp4A9_-WIrQ" datacontexts="_Lf_gapLDEeWbp4A9_-WIrQ">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_Lf9rSZLDEeWbp4A9_-WIrQ" name="isSingleDiagramEditorConstraint" overrideable="false">
-      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.4"/>
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.infra.properties.ui/model/Environment.xmi#//@constraintTypes.4"/>
       <properties xsi:type="constraints:ValueProperty" xmi:id="_Lf9rSpLDEeWbp4A9_-WIrQ" name="className" value="org.eclipse.papyrus.infra.gmfdiag.properties.constraint.IsSingleDiagramEditorConstraint"/>
     </constraints>
   </views>

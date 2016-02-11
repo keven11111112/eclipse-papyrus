@@ -32,12 +32,12 @@ import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.properties.contexts.DataContextElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AnnotationModelElement;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AnnotationModelElementFactory;
 import org.eclipse.papyrus.infra.ui.emf.databinding.AnnotationObservableValue;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElement;
-import org.eclipse.papyrus.views.properties.modelelement.AnnotationModelElementFactory;
 
 public class LinkRouteModelElementFactory extends AnnotationModelElementFactory {
 

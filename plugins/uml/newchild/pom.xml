@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.eclipse.papyrus.uml-newchild</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.uml</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+    </parent>
+	<name>Papyrus UML New Child Menu</name>
+	<description>Plug-ins comprising and support the "New Child" context menu for UML models.</description>
+
+	<modules>
+		<module>org.eclipse.papyrus.uml.profile.newchildmenu.generator</module>
+		<module>org.eclipse.papyrus.uml.profile.newchildmenu.generator.ui</module>
+	</modules>
+</project>

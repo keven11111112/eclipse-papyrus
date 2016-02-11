@@ -30,10 +30,10 @@ import org.eclipse.papyrus.infra.constraints.ConfigProperty;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.properties.ui.WidgetAttribute;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 
 /**
  * XWT relies a lot on reflectivity, as it is based on an XML syntax.

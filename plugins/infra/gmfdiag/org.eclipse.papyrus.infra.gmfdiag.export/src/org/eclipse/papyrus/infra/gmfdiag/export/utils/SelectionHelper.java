@@ -15,22 +15,16 @@
 package org.eclipse.papyrus.infra.gmfdiag.export.utils;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.sashwindows.di.service.ILocalPageService;
-import org.eclipse.papyrus.infra.core.sashwindows.di.service.IPageManager;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.gmfdiag.export.engine.ExportDiagramLocalPageService;
 import org.eclipse.papyrus.infra.ui.util.ServiceUtilsForSelection;
-import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 /**
  * Helper to extract file from selection in Project Explorer.
@@ -120,39 +114,15 @@ public class SelectionHelper {
 	 * @return true, if is exportable mosdel
 	 */
 	public static boolean isExportableModel(IStructuredSelection receiver) {
+		boolean result = false;
 
-
-		IPageManager pageManager = null;
 		try {
-			pageManager = ServiceUtilsForSelection.getInstance().getService(IPageManager.class, receiver);
+			ModelSet modelSet = ServiceUtilsForSelection.getInstance().getModelSet(receiver);
+			result = (modelSet != null) && ExportUtils.hasExportableDiagrams(modelSet);
 		} catch (ServiceException e) {
-			// Ignore service exception
+			// Ignore; it's normal for some selections
 		}
 
-
-		boolean isExportable = false;
-
-		if (pageManager != null) {
-
-			ModelSet modelSet = null;
-			try {
-				modelSet = ServiceUtilsForSelection.getInstance().getModelSet(receiver);
-			} catch (ServiceException e) {
-				// Ignore service exception
-				return false;
-			}
-
-			// There is at least one diagram in resource
-			Resource umlResource = UmlUtils.getUmlResource(modelSet);
-			ILocalPageService service = new ExportDiagramLocalPageService(umlResource.getContents().get(0));
-			List<Object> localPages = pageManager.allLocalPages(service);
-
-			isExportable = !localPages.isEmpty();
-
-		}
-
-
-
-		return isExportable;
+		return result;
 	}
 }

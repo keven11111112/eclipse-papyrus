@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2016 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 485220
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.gmfdiag.css.service.StylingService;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -28,7 +31,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The CSS Context
 	 */
-	public static final String CSS = "Papyrus CSS"; //ID of the CSS context //$NON-NLS-1$
+	public static final String CSS = "Papyrus CSS"; // ID of the CSS context //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -38,31 +41,28 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
+	private StylingService stylingService;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		stylingService = new StylingService(context);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
+		stylingService.dispose();
+		stylingService = null;
+
 		plugin = null;
 		super.stop(context);
 	}
@@ -76,4 +76,7 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	public StylingService getStylingService() {
+		return stylingService;
+	}
 }

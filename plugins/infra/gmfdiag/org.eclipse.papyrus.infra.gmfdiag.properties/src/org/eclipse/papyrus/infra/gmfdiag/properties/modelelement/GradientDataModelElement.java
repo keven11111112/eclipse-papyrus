@@ -23,9 +23,9 @@ import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientDataObservableValue;
 import org.eclipse.papyrus.infra.gmfdiag.properties.databinding.GradientDataObservableValue.GradientProperty;
 import org.eclipse.papyrus.infra.gmfdiag.properties.messages.Messages;
+import org.eclipse.papyrus.infra.properties.ui.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 
 /**
  * A ModelElement for manipulating GradientData

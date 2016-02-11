@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.eclipse.papyrus.features</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+	    <groupId>org.eclipse.papyrus</groupId>
+	    <artifactId>org.eclipse.papyrus.releng</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	    <relativePath>../../releng/main</relativePath>
+    </parent>
+	<name>Papyrus Main Features</name>
+	<description>Container of the Eclipse Feature definition projects for the main Papyrus distribution.</description>
+
+	<modules>
+		<module>org.eclipse.papyrus.customization.feature</module>
+		<module>org.eclipse.papyrus.doc.feature</module>
+		<module>org.eclipse.papyrus.editor.feature</module>
+		<module>org.eclipse.papyrus.emf.facet.feature</module>
+		<module>org.eclipse.papyrus.infra.core.feature</module>
+		<module>org.eclipse.papyrus.infra.discovery.feature</module>
+		<module>org.eclipse.papyrus.infra.emf.feature</module>
+		<module>org.eclipse.papyrus.infra.feature</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.css.feature</module>
+		<module>org.eclipse.papyrus.infra.gmfdiag.feature</module>
+		<module>org.eclipse.papyrus.infra.nattable.feature</module>
+		<module>org.eclipse.papyrus.infra.services.feature</module>
+		<module>org.eclipse.papyrus.infra.ui.feature</module>
+		<module>org.eclipse.papyrus.infra.viewpoints.feature</module>
+		<module>org.eclipse.papyrus.infra.widget.feature</module>
+		<module>org.eclipse.papyrus.sdk.feature</module>
+		<module>org.eclipse.papyrus.sysml.diagram.feature</module>
+		<module>org.eclipse.papyrus.sysml.feature</module>
+		<module>org.eclipse.papyrus.sysml.modelexplorer.feature</module>
+		<module>org.eclipse.papyrus.sysml.nattable.feature</module>
+		<module>org.eclipse.papyrus.sysml.properties.feature</module>
+		<module>org.eclipse.papyrus.uml.alf.feature</module>
+		<module>org.eclipse.papyrus.uml.assistants.feature</module>
+		<module>org.eclipse.papyrus.uml.decoratormodel.feature</module>
+		<module>org.eclipse.papyrus.uml.diagram.css.feature</module>
+		<module>org.eclipse.papyrus.uml.diagram.feature</module>
+		<module>org.eclipse.papyrus.uml.feature</module>
+		<module>org.eclipse.papyrus.uml.modelexplorer.feature</module>
+		<module>org.eclipse.papyrus.uml.nattable.feature</module>
+		<module>org.eclipse.papyrus.uml.properties.feature</module>
+		<module>org.eclipse.papyrus.uml.search.feature</module>
+		<module>org.eclipse.papyrus.uml.textedit.feature</module>
+		<module>org.eclipse.papyrus.uml.tools.feature</module>
+		<module>org.eclipse.papyrus.uml.ui.feature</module>
+		<module>org.eclipse.papyrus.uml.xtext.integration.feature</module>
+		<module>org.eclipse.papyrus.views.modelexplorer.feature</module>
+		<module>org.eclipse.papyrus.views.properties.feature</module>
+		<module>org.eclipse.papyrus.views.search.feature</module>
+		<module>org.eclipse.papyrus.views.validation.feature</module>
+	</modules>
+</project>
